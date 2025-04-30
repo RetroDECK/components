@@ -1,0 +1,462 @@
+name: "Build RetroDECK Components"
+
+on:
+  push:
+    branches:
+        - cooker
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+  workflow_dispatch:
+
+  schedule:
+    - cron: '00 17 * * *' # 2:00 AM JST (JST is UTC+9, so 17:00 UTC)
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  setup-recipes:
+    runs-on: ubuntu-latest
+    if: github.event_name != 'schedule' || github.ref == 'refs/heads/update/components'
+    outputs:
+      heavy-matrix: ${{ steps.set-matrix.outputs.heavy }}
+      light-matrix: ${{ steps.set-matrix.outputs.light }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Assignign recipes to different runners
+        id: set-matrix
+        run: |
+          heavy=()
+          light=()
+      
+          for recipe in */recipe.sh; do
+            if grep -q "flatpak_id_CULO" "$recipe"; then  #TODO: we might not need this anymore
+              heavy+=("$recipe")
+            else
+              light+=("$recipe")
+            fi
+          done
+      
+          heavy_json=$(printf '%s\n' "${heavy[@]}" | jq -R . | jq -s -c .)
+          light_json=$(printf '%s\n' "${light[@]}" | jq -R . | jq -s -c .)
+      
+          echo "heavy=$heavy_json" >> $GITHUB_OUTPUT
+          echo "light=$light_json" >> $GITHUB_OUTPUT
+
+  build-light:
+    needs: setup-recipes
+    runs-on: ubuntu-latest
+    if: github.event_name != 'schedule' || github.ref == 'refs/heads/update/components'
+    strategy:
+      matrix:
+        recipe: ${{ fromJson(needs.setup-recipes.outputs.light-matrix) }}
+      fail-fast: false
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v4
+
+      # Remove Stuck Mounts
+      - name: Remove stuck mounts
+        run: |
+          if [ -d "/home/ubuntu/actions-runner/_work/RetroDECK/RetroDECK/.flatpak-builder/rofiles" ]; then sudo umount -f /home/ubuntu/actions-runner/_work/RetroDECK/RetroDECK/.flatpak-builder/rofiles/*; fi
+          if [ -d "$HOME/actions-run/_work/RetroDECK/RetroDECK/.flatpak-builder/rofiles" ]; then sudo umount -f $HOME/actions-run/_work/RetroDECK/RetroDECK/.flatpak-builder/rofiles/*; fi
+
+      # Install Dependencies
+      - name: Install dependencies
+        run: curl "https://raw.githubusercontent.com/RetroDECK/components-template/main/automation_tools/install_dependencies.sh" | bash
+
+      # Clone Repository (pull_request_target)
+      - name: Clone Target Branch
+        if: github.event_name == 'pull_request_target'
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.base.ref }}
+          submodules: true
+
+      # Clone Repository (normal)
+      - name: Clone Components repo
+        if: github.event_name != 'pull_request_target'
+        uses: actions/checkout@v4
+        with:
+          submodules: true
+
+      # Merge PR for validation
+      - name: Merge and Validate PR Code
+        if: github.event_name == 'pull_request_target'
+        run: |
+          echo "Fetching PR..."
+          git fetch origin pull/${{ github.event.pull_request.number }}/head:pr
+          git merge --no-ff pr || {
+            echo "Merge conflict detected.";
+            exit 1;
+          }
+          git log -1 --oneline
+
+      # Run Build
+      - name: Run Build Artifacts
+        run: |
+          source automation-tools/utils.sh
+          artifact_name=$(basename $(dirname "${{ matrix.recipe }}"))
+          echo "artifact_name=$artifact_name" >> $GITHUB_ENV
+          bash "${{ matrix.recipe }}"
+
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ env.artifact_name }}
+          path: ${{ env.artifact_name }}/artifacts
+        
+  build-heavy:
+    needs: setup-recipes
+    runs-on: retrodeck
+    if: (github.event_name != 'schedule' || github.ref == 'refs/heads/update/components') && fromJSON(needs.setup-recipes.outputs.heavy-matrix).length > 0
+    strategy:
+      matrix:
+        recipe: ${{ fromJson(needs.setup-recipes.outputs.heavy-matrix) }}
+      fail-fast: false
+    continue-on-error: true
+    steps:
+      
+      - uses: actions/checkout@v4
+
+      # Remove Stuck Mounts
+      - name: Remove stuck mounts
+        run: |
+          if [ -d "/home/ubuntu/actions-runner/_work/RetroDECK/RetroDECK/.flatpak-builder/rofiles" ]; then sudo umount -f /home/ubuntu/actions-runner/_work/RetroDECK/RetroDECK/.flatpak-builder/rofiles/*; fi
+          if [ -d "$HOME/actions-run/_work/RetroDECK/RetroDECK/.flatpak-builder/rofiles" ]; then sudo umount -f $HOME/actions-run/_work/RetroDECK/RetroDECK/.flatpak-builder/rofiles/*; fi
+
+      # Clone Repository (pull_request_target)
+      - name: Clone Target Branch
+        if: github.event_name == 'pull_request_target'
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.base.ref }}
+          submodules: true
+
+      # Clone Repository (normal)
+      - name: Clone Components repo
+        if: github.event_name != 'pull_request_target'
+        uses: actions/checkout@v4
+        with:
+          submodules: true
+
+      # Merge PR for validation
+      - name: Merge and Validate PR Code
+        if: github.event_name == 'pull_request_target'
+        run: |
+          echo "Fetching PR..."
+          git fetch origin pull/${{ github.event.pull_request.number }}/head:pr
+          git merge --no-ff pr || {
+            echo "Merge conflict detected.";
+            exit 1;
+          }
+          git log -1 --oneline
+
+      # Run Build
+      - name: Run Build Artifacts
+        run: |
+          source automation-tools/utils.sh
+          artifact_name=$(basename $(dirname "${{ matrix.recipe }}"))
+          echo "artifact_name=$artifact_name" >> $GITHUB_ENV
+          bash "${{ matrix.recipe }}"
+
+      # - name: Upload Artifacts
+      #   uses: actions/upload-artifact@v4
+      #   with:
+      #     name: ${{ env.artifact_name }}
+      #     path: ${{ env.artifact_name }}/artifacts
+
+  Release_RetroDECK_Components:
+    needs: [build-light, build-heavy]
+    runs-on: ubuntu-latest
+    if: always() && (github.event_name != 'schedule' || github.ref == 'refs/heads/update/components')
+    continue-on-error: true
+    steps:
+
+      # Clone Repository (pull_request_target)
+      - name: Clone Target Branch
+        if: github.event_name == 'pull_request_target'
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.base.ref }}
+          submodules: true
+
+      # Clone Repository (normal)
+      - name: Clone Components repo
+        if: github.event_name != 'pull_request_target'
+        uses: actions/checkout@v4
+        with:
+          submodules: true
+
+      - name: Download All Artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: downloaded-artifacts
+
+      - name: Move Downloaded Artifacts
+        run: |
+          for dir in downloaded-artifacts/*; do
+            if [ -d "$dir" ]; then
+              component_name=$(basename "$dir")
+              mkdir -p "$component_name/artifacts"
+              mv -v "$dir"/* "$component_name/artifacts/"
+            fi
+          done
+
+      - name: Generate a token for Rekku
+        id: generate-rekku-token
+        uses: actions/create-github-app-token@v1
+        with:
+          app-id: ${{ vars.REKKU_APP_ID }}
+          private-key: ${{ secrets.REKKU_PRIVATE_KEY }}
+          repositories: "components"
+          owner: "RetroDECK"
+   
+      - name: Commit and Push Safely
+        env:
+          GITHUB_TOKEN: ${{ steps.generate-rekku-token.outputs.token }}
+        run: |
+          set -e
+
+          git fetch origin
+          BRANCH=$(git rev-parse --abbrev-ref HEAD)
+          git config user.name "Rekku Bot"
+          git config user.email "rekku-bot@users.noreply.github.com"
+
+          echo "[INFO] Adding all changed artifacts..."
+          git add -A
+
+          if git diff --cached --quiet; then
+            echo "[INFO] No changes to commit"
+            exit 0
+          fi
+
+          echo "[INFO] Preparing commit message..."
+          COMMIT_MSG=""
+
+          for version_file in */artifacts/version; do
+            if [[ -f "$version_file" ]]; then
+              component=$(basename "$(dirname "$version_file")")
+              version=$(cat "$version_file")
+              COMMIT_MSG+="upd(component): updated $component to $version"$'\n'
+            fi
+          done
+
+          if [[ -z "$COMMIT_MSG" ]]; then
+            COMMIT_MSG="upd(component): updated components on $(date +'%Y-%m-%d')"
+          fi
+
+          git commit -m "$COMMIT_MSG"
+
+          echo "[INFO] Rebasing and pushing..."
+          git fetch origin
+          BRANCH=$(git rev-parse --abbrev-ref HEAD)
+
+          git config http.postBuffer 524288000
+          git config --global http.lowSpeedLimit 0
+          git config --global http.lowSpeedTime 999999
+
+          git pull --rebase origin "$BRANCH"
+          git push origin HEAD
+
+      - name: Get Branch Name
+        run: |
+          if [[ "$GITHUB_EVENT_NAME" == "pull_request" || "$GITHUB_EVENT_NAME" == "pull_request_target" ]]; then
+            branch_name="$GITHUB_HEAD_REF"
+          else
+            branch_name="$GITHUB_REF_NAME"
+          fi
+          echo "Branch name: $branch_name"
+          echo "BRANCH_NAME=$branch_name" >> $GITHUB_ENV      
+
+      - name: Get commits since last published main release
+        id: get-commits
+        run: |
+          # If this is a Pull Request
+          if [[ "$GITHUB_EVENT_NAME" == "pull_request" ]]; then
+            echo "[INFO] Pull Request detected."
+
+            BASE_REF=${GITHUB_BASE_REF}
+            echo "[INFO] Base ref: $BASE_REF"
+
+            git fetch origin $BASE_REF
+            git log origin/$BASE_REF..HEAD --pretty=format:"- %s" > commits_list.txt
+            cp commits_list.txt commits_since_main.txt
+          else
+            # Get the latest published release tag
+            LATEST_TAG=$(git describe --tags $(git rev-list --tags --max-count=1) 2>/dev/null || echo "")
+          
+            if [ -z "$LATEST_TAG" ]; then
+              echo "[INFO] No previous tag found."
+              echo "- No previous release." > commits_list.txt
+            else
+              echo "[INFO] Latest tag: $LATEST_TAG"
+              git log ${LATEST_TAG}..HEAD --pretty=format:"- %s" > commits_list.txt
+            fi
+
+            # Get the latest tag on the main branch
+            LATEST_MAIN_REF=$(git tag --merged origin/main --sort=-creatordate | head -n 1 || echo "")
+          
+            if [ -z "$LATEST_MAIN_REF" ]; then
+              echo "[INFO] No tag found on main branch."
+              echo "- No main release found." > commits_since_main.txt
+            else
+              echo "[INFO] Latest tag on main: $LATEST_MAIN_REF"
+              git log ${LATEST_MAIN_REF}..HEAD --pretty=format:"- %s" > commits_since_main.txt
+            fi
+          fi
+
+          echo "COMMITS_FILE=commits_list.txt" >> $GITHUB_ENV
+          echo "COMMITS_MAIN_FILE=commits_since_main.txt" >> $GITHUB_ENV
+
+      - name: Generate release body text
+        id: generate-body
+        run: |
+          RELEASE_BODY_FILE="release_body.md"
+          echo "# Release Notes" > $RELEASE_BODY_FILE
+          echo "This is a RetroDECK Components Artifacts release from [this commit](https://github.com/${{ github.repository }}/commit/${{ github.sha }}), from branch [${{ env.BRANCH_NAME }}](https://github.com/RetroDECK/RetroDECK/tree/feat/${{ env.BRANCH_NAME }})." >> $RELEASE_BODY_FILE
+          echo "" >> $RELEASE_BODY_FILE
+
+          # Append the contents of components_version.md to the release body
+          if [ -f "components_version.md" ]; then
+              echo "[INFO] Adding components_version.md to release body."
+              cat components_version.md >> $RELEASE_BODY_FILE
+          else
+              echo "[WARNING] components_version.md not found. Skipping."
+              echo "- No components version information available." >> $RELEASE_BODY_FILE
+          fi
+          echo "" >> $RELEASE_BODY_FILE
+
+          # Fetch latest main to compare against
+          git fetch origin main
+
+          # Build comparison link
+          COMPARE_URL="https://github.com/${{ github.repository }}/compare/main...${{ github.sha }}"
+
+          # Append comparison link to release body
+          echo "" >> $RELEASE_BODY_FILE
+          echo "---" >> $RELEASE_BODY_FILE
+          echo "" >> $RELEASE_BODY_FILE
+          echo "[Check changes since latest main release](${COMPARE_URL})" >> $RELEASE_BODY_FILE
+          echo "" >> $RELEASE_BODY_FILE
+
+          # Output the final body
+          echo "RELEASE_BODY<<EOF" >> $GITHUB_OUTPUT
+          cat $RELEASE_BODY_FILE >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+      - name: Set Make Latest
+        run: |
+          if [[ "${GITHUB_REF}" == "refs/heads/main" ]]; then
+            echo "MAKE_LATEST=true" >> $GITHUB_ENV
+          else
+            echo "MAKE_LATEST=false" >> $GITHUB_ENV
+          fi
+
+      - name: Generate Version Tag
+        id: version-tag
+        run: |
+            # Get the current date and time in GMT
+            CURRENT_DATE=$(date -u +"%Y%m%d%H%M%S")
+            # Generate the tag name
+            TAG="${CURRENT_DATE}"
+            echo "TAG=$TAG" >> $GITHUB_ENV
+            echo "TAG=$TAG" >> $GITHUB_OUTPUT
+
+      - name: Publish release
+        uses: ncipollo/release-action@v1
+        with:
+          tag: "${{ env.TAG }}"
+          name: "RetroDECK Components ${{ env.TAG }}"
+          body: ${{ steps.generate-body.outputs.RELEASE_BODY }}
+          artifacts: "*/artifacts/*"
+          allowUpdates: true
+          omitBodyDuringUpdate: true
+          makeLatest: ${{ env.MAKE_LATEST }}
+          repo: ${{ env.REPO_NAME }}
+          token: ${{ steps.generate-rekku-token.outputs.token }}
+
+      - name: Publish Artifacts
+        uses: ncipollo/release-action@v1
+        with:
+          tag: ${{ env.TAG }}
+          name: "RetroDECK Artifacts - ${{ env.TAG }}"
+          body: "RetroDECK Components artifacts for version ${{ env.TAG }}"
+          artifacts: "*/artifacts/**"
+          allowUpdates: true
+          omitBodyDuringUpdate: true
+          makeLatest: ${{ env.MAKE_LATEST }}
+          token: ${{ steps.generate-rekku-token.outputs.token }}
+
+      - name: Create diff between target branch and PR components_version.md
+        run: |
+          if [[ "${GITHUB_BASE_REF}" == "cooker" ]]; then
+            TARGET_BRANCH="main"
+          else
+            TARGET_BRANCH="cooker"
+          fi
+
+          git fetch origin $TARGET_BRANCH
+          if [ -f "components_version.md" ]; then
+            if git show origin/$TARGET_BRANCH:components_version.md > target_components_version.md 2>/dev/null; then
+              echo "Generating diff between $TARGET_BRANCH and PR components_version.md..."
+              diff -u target_components_version.md components_version.md > components_version_diff.txt || true
+              echo "Diff saved to components_version_diff.txt"
+            else
+              echo "components_version.md does not exist on $TARGET_BRANCH branch. Skipping diff."
+              echo "No components_version.md on $TARGET_BRANCH branch." > components_version_diff.txt
+            fi
+              else
+            echo "components_version.md not found in PR. Skipping diff."
+            echo "No components_version.md in PR." > components_version_diff.txt
+          fi
+
+      - name: Write PR body
+        if: github.event_name == 'pull_request_target' || github.event_name == 'pull_request' || github.event_name != 'schedule' || github.ref == 'refs/heads/update/components'
+        run: |
+          echo "## RetroDECK Components Artifacts" > pr_body.md
+          echo "" >> pr_body.md
+          echo "This pull request updates the RetroDECK components artifacts to version ${{ env.TAG }}." >> pr_body.md"
+
+          echo "## Changes:" >> pr_body.md
+          echo "$(cat commits_list.txt)" >> pr_body.md
+          echo "" >> pr_body.md
+          echo "## Diff between main and PR components_version.md:" >> pr_body.md
+          echo "```diff" >> pr_body.md
+          echo "$(cat components_version_diff.txt)" >> pr_body.md
+          echo "```" >> pr_body.md
+
+      - name: Open Pull Request
+        uses: peter-evans/create-pull-request@v5
+        if: github.event_name != 'schedule' || github.ref == 'refs/heads/update/components'
+        with:
+          token: ${{ steps.generate-rekku-token.outputs.token }}
+          commit-message: "Update RetroDECK Components Artifacts"
+          branch: "update/components-artifacts-${{ env.TAG }}"
+          title: "Update RetroDECK Components Artifacts - ${{ env.TAG }}"
+          body: pr_body.md
+
+      - name: Post PR comment with artifacts
+        uses: marocchino/sticky-pull-request-comment@v2
+        if: github.event_name == 'pull_request_target' || github.event_name == 'pull_request' || github.event_name != 'schedule' || github.ref == 'refs/heads/update/components'
+        with:
+          GITHUB_TOKEN: ${{ steps.generate-rekku-token.outputs.token }}
+          header: "RetroDECK Build Artifacts"
+          message: pr_body.md
+          
+      - name: Rewrite Tag
+        if: github.ref == 'refs/heads/main'
+        run: |
+          git submodule deinit -f --all
+          git fetch --tags
+          if git rev-parse --verify "${{ env.TAG }}" >/dev/null 2>&1; then
+              git tag -d "${{ env.TAG }}"
+              git push --delete origin "${{ env.TAG }}"
+          fi
+          git tag "${{ env.TAG }}"
+          git push origin "${{ env.TAG }}"
+        env:
+          GITHUB_TOKEN: ${{ steps.generate-rekku-token.outputs.token }}
