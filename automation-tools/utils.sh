@@ -1,10 +1,11 @@
 #!/bin/bash
 
-FORCE=0
+FORCE=0                 # Force the download even if the version is the same, useful for local retention, not useful for CI/CD
 DRY_RUN=0
 FINALIZE_PATH=""
 FINALIZE_VERSION=""
 FINALIZE_COMPONENT=""
+SPLIT="false"           # When this is enalbed it will split the archive into multiple parts if it is larger than 95MB
 
 parse_flags() {
     while [[ "$1" =~ ^-- ]]; do
@@ -410,7 +411,7 @@ finalize_artifact() {
 
         local artifact_size_mb=$(( $(stat -c%s "$source_path") / 1024 / 1024 ))
 
-        if [[ "$artifact_size_mb" -gt "$max_size_mb" ]]; then
+        if [[ "$artifact_size_mb" -gt "$max_size_mb" && "$SPLIT" == "true" ]]; then
             echo "[INFO] File larger than ${max_size_mb}MB, preparing split ZIP archive."
 
             echo "[INFO] Preparing temporary directory for zipping..."
@@ -443,7 +444,7 @@ finalize_artifact() {
             done
 
         else
-            echo "[INFO] File size is within limit, copying directly."
+            echo "[INFO] File size is within limit or splitting is disabled, copying directly."
             cp "$source_path" "$artifact_base" || { echo "[ERROR] Failed to copy artifact file."; exit 1; }
 
             hash=($(sha256sum "$artifact_base"))
