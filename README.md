@@ -33,6 +33,7 @@ The `.github/workflows/` directory contains GitHub Actions workflows for:
 - Publishing releases.
 
 ## How to Use
+**NOTE:** during the process the recipes with type `flatpak_id` will actually install flatpaks and then they should remove them, but if something error happens those might not be uninstalled. Be aware of this before runningthe script: in some circumistances the installed flatpak will be retained on your system, and the ones already present will be updated.
 
 ### Fetch Latest Releases
 
