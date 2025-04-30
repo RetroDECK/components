@@ -1,28 +1,17 @@
 # RetroDECK Components
 
-This repository contains the components and automation tools for building and managing the RetroDECK project. RetroDECK is a platform for managing emulators and retro gaming software.
-
-## Note on Pushing and pulling
-Due to the peculiar usage of this repo is better to don't push manually to it but rely on the pipelines.
-If for some reason the manual push is needed please push using the following command:
-```bash
-git push --force
-```
-And pull:
-```bash
-git fetch --all && git reset --hard origin/<branch>
-```
-Be aware that this is not a proper git approach in all the standard sistuations, be very careful to use it even here, and avoid it if possible as it can easly overwrite important repo data.
+This repository contains the and automation tools for building and managing RetroDECK components.
 
 ### Why?
-This repo is storing artifacts and we are using `BFG` to clear the older big files, BFG is rewriting the repo history, so your history would be misaligned.
+This repo is generating artifacts and publish them in new releases.
+`main` are labeled as `latest` while `cooker` (dev branch) ones will be not as they are intended for the cooker builds, hence the development channel.
 
 ## Component folders structure
 
 Each component directory contains:
 - `recipe.sh`: Script to fetch and prepare the component.
 - `manifest.json`: A manifest with all the features of the emulator to be read by the RetroDECK Framework
-- `artifacts/`: Directory for storing downloaded or built artifacts.
+- `artifacts/`: Directory for storing downloaded or built artifacts, this directory is gitignored and cannot be pushed due to the big amount of data it will contain. The products of this folder are available as releases.
 
 ## Automation Tools
 
