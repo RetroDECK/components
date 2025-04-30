@@ -1,6 +1,6 @@
 #!/bin/bash
 
-FORCE=0                 # Force the download even if the version is the same, useful for local retention, not useful for CI/CD
+FORCE=0                 # Force the download even if the version is the same, useful for local retention, enabled by default on CI/CD to avoid missing updates since the version files are present bu the artifacts are not
 DRY_RUN=0
 FINALIZE_PATH=""
 FINALIZE_VERSION=""
@@ -162,9 +162,13 @@ grab() {
     fi
 
     version=$(version_check "link" "$component" "$url")
-    output=$(manage_appimage "$component" "$output_path" "$version")
+    output=$(manage_appimage "$component" "$output_path" "$version" 2>/dev/null | tail -n 1)
 
-    # Only set FINALIZE_* if a valid output was returned
+    if [[ -z "$output" ]]; then
+        echo "[ERROR] manage_appimage returned empty output!"
+        exit 1
+    fi
+
     if [[ "$output" == "skip" ]]; then
         echo "[INFO] Skipping $component, already up-to-date."
         return
@@ -173,6 +177,14 @@ grab() {
     FINALIZE_PATH=$(echo "$output" | cut -d'|' -f1)
     FINALIZE_VERSION=$(echo "$output" | cut -d'|' -f2)
     FINALIZE_COMPONENT="$component"
+
+    if [[ ! -e "$FINALIZE_PATH" ]]; then
+        echo "[DEBUG] FINALIZE_PATH=$FINALIZE_PATH"
+        [[ -e "$FINALIZE_PATH" ]] && echo "[DEBUG] Finalize path exists." || echo "[DEBUG] Finalize path does NOT exist!"
+        ls -lah "$(dirname "$FINALIZE_PATH")"
+        exit 1
+    fi
+
 }
 
 manage_appimage() {
@@ -191,11 +203,10 @@ manage_appimage() {
 
     finalize_appimage_file() {
         local source="$1"
+        echo "[INFO] Finalizing AppImage..."
         mv "$source" "$final_appimage"
         chmod +x "$final_appimage"
-        echo "AppImage moved to: $final_appimage"
-
-        # return the artifacts path and version
+        echo "[INFO] AppImage moved to: $final_appimage"
         echo "$final_appimage|$version"
     }
 
@@ -214,9 +225,10 @@ manage_appimage() {
 
         if [[ -n "$appimage_path" ]]; then
             echo "Found AppImage: $(basename "$appimage_path")"
-            finalize_appimage_file "$appimage_path"
+            output=$(finalize_appimage_file "$appimage_path")
         else
             echo "[ERROR] No AppImage found in extracted archive!"
+            rm -rf "$tempdir"
             exit 1
         fi
 
@@ -224,17 +236,26 @@ manage_appimage() {
 
     elif [[ "$file_path" =~ \.AppImage$ ]]; then
         echo "Direct AppImage detected."
-        temp_download=$(mktemp)
-        cp "$file_path" "$temp_download"
-        # return the artifacts path and version
-        echo "$final_appimage|$version"
 
+        if [[ "$file_path" == "$final_appimage" ]]; then
+             if [[ ! -f "$file_path" ]]; then
+                 echo "[ERROR] Expected file $file_path does not exist."
+                 exit 1
+             fi
+             echo "[INFO] File already exists at destination."
+        else
+             cp "$file_path" "$final_appimage" || { echo "[ERROR] Failed to copy AppImage"; exit 1; }
+        fi
+
+        chmod +x "$final_appimage"
+        output="$final_appimage|$version"
     else
         echo "[ERROR] Unsupported appimage file format: $file_path"
         exit 1
     fi
 
     echo "AppImage management completed"
+    echo "$output"
 }
 
 manage_flatpak() {
@@ -293,7 +314,6 @@ manage_generic() {
     echo "$file_path|$version"
 }
 
-
 # This function not compiling the flatpak, just downloading it and extracting it (+ runtimes and sdk)
 manage_flatpak_id() {
     local component="$1"
@@ -312,26 +332,20 @@ manage_flatpak_id() {
         was_installed="false"
     fi
 
-    flatpak install --user -y --or-update flathub "$flatpak_id" #|| { echo "[ERROR] Failed to download flatpak for $flatpak_id"; exit 1; }
+    flatpak install --user -y --or-update flathub "$flatpak_id"
 
     local app_path="$HOME/.local/share/flatpak/app/$flatpak_id/x86_64/stable/active/files"
     local metainfo_path="$HOME/.local/share/flatpak/app/$flatpak_id/x86_64/stable/active/export/share/metainfo/$flatpak_id.metainfo.xml"
 
     if [[ ! -f "$metainfo_path" ]]; then
         echo "[ERROR] Metainfo file not found at \"$metainfo_path\"."
-        local metainfo_dir
-        metainfo_dir=$(dirname "$metainfo_path")
-        echo "[INFO] Listing files in $metainfo_dir"
-        ls -lah "$metainfo_dir"
+        ls -lah "$(dirname "$metainfo_path")"
         exit 1
     fi
 
     if [[ ! -d "$app_path" ]]; then
-        echo "[ERROR] /app path not found: \"$app_path\"."
-        local app_dir
-        app_dir=$(dirname "$app_path")
-        echo "[INFO] Listing parent directory: $app_dir"
-        ls -lah "$app_dir"
+        echo "[ERROR] App path not found: \"$app_path\"."
+        ls -lah "$(dirname "$app_path")"
         exit 1
     fi
 
@@ -366,18 +380,20 @@ manage_flatpak_id() {
         if [[ -d "$runtime_path" ]]; then
             echo "[INFO] Copying runtime files for $runtime_id..."
             mkdir -p "$component/artifacts/.tmp/runtimes/$runtime_id"
-            cp -r "$runtime_path"/* "$component/artifacts/.tmp/runtimes/$runtime_id/" || { echo "[ERROR] Execution failed, exiting."; exit 1; }
+            cp -r "$runtime_path"/* "$component/artifacts/.tmp/runtimes/$runtime_id/" || { echo "[ERROR] Copy failed"; exit 1; }
         else
             echo "[WARNING] Runtime path $runtime_path not found, skipping."
         fi
     done
 
+    # ✅ Imposta le variabili globali per finalize()
+    FINALIZE_COMPONENT="$component"
+    FINALIZE_PATH="$component/artifacts/.tmp"
+    FINALIZE_VERSION="$extracted_version"
+
     echo "[INFO] Finalizing artifact..."
-    # return the artifacts path and version
-    echo "$final_appimage|$version"
 
-    rm -rf "$component/artifacts/.tmp"
-
+    # cleanup dopo finalize
     if [[ "$was_installed" == "false" ]]; then
         echo "[INFO] Uninstalling $flatpak_id as it was not previously installed."
         flatpak uninstall --user -y "$flatpak_id" || echo "[WARNING] Failed to uninstall $flatpak_id"
@@ -440,7 +456,6 @@ finalize_artifact() {
                 [ -e "$part" ] || continue
                 hash=($(sha256sum "$part"))
                 echo "$hash" > "$artifact_dir/$(basename "$part").sha"
-                git add "$part" "$artifact_dir/$(basename "$part").sha" || { echo "[ERROR] Git add failed."; exit 1; }
             done
 
         else
@@ -449,7 +464,6 @@ finalize_artifact() {
 
             hash=($(sha256sum "$artifact_base"))
             echo "$hash" > "$artifact_dir/$(basename "$artifact_base").sha"
-            git add "$artifact_base" "$artifact_dir/$(basename "$artifact_base").sha" || { echo "[ERROR] Git add failed."; exit 1; }
         fi
 
     elif [[ -d "$source_path" ]]; then
@@ -478,14 +492,12 @@ finalize_artifact() {
                 [ -e "$part" ] || continue
                 hash=($(sha256sum "$part"))
                 echo "$hash" > "$artifact_dir/$(basename "$part").sha"
-                git add "$part" "$artifact_dir/$(basename "$part").sha" || { echo "[ERROR] Git add failed."; exit 1; }
             done
 
         else
             echo "[INFO] Archive size is within limit, keeping tar.gz."
             hash=($(sha256sum "$temp_tar"))
             echo "$hash" > "$artifact_dir/$(basename "$temp_tar").sha"
-            git add "$temp_tar" "$artifact_dir/$(basename "$temp_tar").sha" || { echo "[ERROR] Git add failed."; exit 1; }
         fi
 
     else
@@ -495,7 +507,6 @@ finalize_artifact() {
 
     if [[ -n "$version" ]]; then
         echo "$version" > "$artifact_dir/version"
-        git add "$artifact_dir/version" || { echo "[ERROR] Git add failed."; exit 1; }
     fi
 }
 
