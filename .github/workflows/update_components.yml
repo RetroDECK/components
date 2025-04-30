@@ -419,7 +419,7 @@ jobs:
         run: |
           echo "## RetroDECK Components Artifacts" > pr_body.md
           echo "" >> pr_body.md
-          echo "This pull request updates the RetroDECK components artifacts to version ${{ env.TAG }}." >> pr_body.md"
+          echo "This pull request updates the RetroDECK components artifacts to version ${{ env.TAG }}." >> pr_body.md
 
           echo "## Changes:" >> pr_body.md
           echo "$(cat commits_list.txt)" >> pr_body.md
