@@ -369,12 +369,16 @@ jobs:
       - name: Generate Version Tag
         id: version-tag
         run: |
-            # Get the current date and time in GMT
-            CURRENT_DATE=$(date -u +"%Y%m%d-%H%M")
-            # Generate the tag name
+          # Get the current date and time in GMT
+          CURRENT_DATE=$(date -u +"%Y%m%d-%H%M")
+          # Check if the branch is main or not
+          if [[ "${GITHUB_REF}" == "refs/heads/main" ]]; then
             TAG="${CURRENT_DATE}"
-            echo "TAG=$TAG" >> $GITHUB_ENV
-            echo "TAG=$TAG" >> $GITHUB_OUTPUT
+          else
+            TAG="cooker-${CURRENT_DATE}"
+          fi
+          echo "TAG=$TAG" >> $GITHUB_ENV
+          echo "TAG=$TAG" >> $GITHUB_OUTPUT
 
       - name: Publish release
         uses: ncipollo/release-action@v1
