@@ -29,25 +29,7 @@ FINALIZE_VERSION=""
 FINALIZE_COMPONENT=""
 SPLIT="false"           # When this is enalbed it will split the archive into multiple parts if it is larger than 95MB
 
-parse_flags() {
-    while [[ "$1" =~ ^-- ]]; do
-        case "$1" in
-            --force)
-                FORCE=1
-                ;;
-            --dry-run)
-                DRY_RUN=1
-                ;;
-            *)
-                echo "Unknown option: $1"
-                exit 1
-                ;;
-        esac
-        shift
-    done
-    # Return the remaining non-flag arguments
-    echo "$@"
-}
+
 parse_flags() {
     while [[ "$1" =~ ^-- ]]; do
         case "$1" in
@@ -86,12 +68,21 @@ grab() {
     log i "Grabbing type '$type' from URL: $url" "$logfile"
     mkdir -p "$component/artifacts"
 
-    # Early return for flatpak_id type (no download)
-    if [[ "$type" == "flatpak_id" ]]; then
-        log i "Type flatpak_id detected, skipping download." "$logfile"
-        manage_flatpak_id "$component" "$url"
-        return
-    fi
+    case "$type" in
+        flatpak_id)
+            log i "Type flatpak_id detected, skipping download." "$logfile"
+            manage_flatpak_id "$component" "$url"
+            return
+            ;;
+        flatpak_artifacts)
+            log i "Type flatpak_artifacts detected, handling flatpak artifacts from URL: $url" "$logfile"
+            output=$(manage_flatpak_artifacts "$component" "$url" "$version")
+            FINALIZE_PATH=$(echo "$output" | cut -d'|' -f1)
+            FINALIZE_VERSION=$(echo "$output" | cut -d'|' -f2)
+            FINALIZE_COMPONENT="$component"
+            return
+            ;;
+    esac
 
     # --- Resolve Wildcards First ---
     log i "Resolving wildcards in URL..." "$logfile"
@@ -202,7 +193,6 @@ grab() {
         return
     fi
 
-    #FINALIZE_PATH=$(echo "$output" | cut -d'|' -f1)
     FINALIZE_PATH=$(echo "$output" | cut -d'|' -f1)
     FINALIZE_VERSION=$(echo "$output" | cut -d'|' -f2)
     FINALIZE_COMPONENT="$component"
@@ -277,7 +267,7 @@ manage_appimage() {
              log i "File already exists at destination." "$logfile"
              output="$final_appimage|$version"
         else
-             cp "$file_path" "$final_appimage" || { log e "Failed to copy AppImage" "$logfile"; exit 1; }
+             cp -f "$file_path" "$final_appimage" || { log e "Failed to copy AppImage" "$logfile"; exit 1; }
         fi
 
         chmod +x "$final_appimage"
@@ -395,7 +385,6 @@ manage_flatpak_id() {
 
     if [[ $? -eq 0 ]]; then
         log i "Skipping $flatpak_id because version is already up-to-date." "$logfile"
-        echo "skip" > result.txt
         [[ "$was_installed" == "false" ]] && flatpak uninstall --user -y "$flatpak_id" || true
         exit 0
     fi
@@ -444,8 +433,44 @@ manage_flatpak_id() {
     fi
 }
 
-finalize() {
+manage_flatpak_artifacts() {
+    log d "Starting manage_flatpak_artifacts function" "$logfile"
 
+    local component="$1"
+    local url="$2"
+    local version="$3"
+
+    local filename
+    filename=$(basename "$url")
+    local extension="${filename##*.}"
+    local output_path="$component/artifacts/$filename"
+
+    mkdir -p "$component/artifacts"
+
+    wget -qc "$url" -O "$output_path" || {
+        log e "Failed to download Flatpak artifacts from $url" "$logfile"
+        exit 1
+    }
+
+    if [[ ! -s "$output_path" ]]; then
+        log e "Downloaded file is empty or missing: $output_path" "$logfile"
+        exit 1
+    fi
+
+    # Tentativo di estrazione versione dal file se non fornita
+    if [[ -z "$version" ]]; then
+        version=$(version_check "metainfo" "$component" "$output_path" 2>/dev/null)
+        if [[ -z "$version" ]]; then
+            log w "Unable to extract version from $output_path, falling back to filename." "$logfile"
+            version=$(basename "$url" | grep -oE '[0-9]+\.[0-9]+(\.[0-9]+)?' | head -n 1)
+            [[ -z "$version" ]] && version="unknown"
+        fi
+    fi
+
+    echo "$output_path|$version"
+}
+
+finalize() {
     log d "Starting finalize function" "$logfile"
 
     if [[ -z "$FINALIZE_COMPONENT" || -z "$FINALIZE_PATH" || -z "$FINALIZE_VERSION" ]]; then
@@ -460,100 +485,82 @@ finalize() {
     local source_path="${2:-$FINALIZE_PATH}"
     local version="${3:-$FINALIZE_VERSION}"
     local max_size_mb=95
-
     local artifact_dir="$component/artifacts"
-    mkdir -p "$artifact_dir"
-
     local artifact_base="$artifact_dir/$component"
     local temp_tar="$artifact_base.tar.gz"
     local tmpzip_dir="$artifact_dir/.tmpzip"
 
+    mkdir -p "$artifact_dir"
+
+    # Case 1: single file
     if [[ -f "$source_path" ]]; then
-        log i "Source is a file, checking size..." "$logfile"
+        log i "Source is a file: $source_path" "$logfile"
 
-        local artifact_size_mb=$(( $(stat -c%s "$source_path") / 1024 / 1024 ))
-
-        if [[ "$artifact_size_mb" -gt "$max_size_mb" && "$SPLIT" == "true" ]]; then
-            log i "File larger than ${max_size_mb}MB, preparing split ZIP archive." "$logfile"
-
-            log i "Preparing temporary directory for zipping..." "$logfile"
-            rm -rf "$tmpzip_dir"
-            mkdir -p "$tmpzip_dir"
-
-            if [[ "$source_path" =~ \.tar\.(gz|bz2|xz)$ ]]; then
-                log i "Extracting TAR archive before zipping..." "$logfile"
-                tar -xf "$source_path" -C "$tmpzip_dir" || { log e "Failed to extract tar archive." "$logfile"; exit 1; }
-            elif [[ "$source_path" =~ \.zip$ ]]; then
-                log i "Extracting ZIP archive before re-zipping..." "$logfile"
-                unzip -q "$source_path" -d "$tmpzip_dir" || { log e "Failed to extract zip archive." "$logfile"; exit 1; }
+        # If AppImage we don't compress it
+        if [[ "$source_path" == *.AppImage ]]; then
+            log i "Detected AppImage file, skipping compression." "$logfile"
+            if [[ "$(realpath "$source_path")" != "$(realpath "$artifact_base.AppImage")" ]]; then
+                cp -f "$source_path" "$artifact_base.AppImage" || { log e "Failed to copy AppImage." "$logfile"; exit 1; }
             else
-                log i "Copying file to temporary zipping folder..."
-                cp "$source_path" "$tmpzip_dir/" || { log e "Failed to copy file." "$logfile"; exit 1; }
+                log i "Source and destination are the same file, skipping copy." "$logfile"
             fi
+            chmod +x "$artifact_base.AppImage"
+            sha256sum "$artifact_base.AppImage" > "$artifact_base.AppImage.sha"
 
-            log i "Creating split ZIP archive..." "$logfile"
-            (cd "$artifact_dir" && zip -r -s ${max_size_mb}m "${component}.zip" ".tmpzip") || { log e "Failed to create split zip archive." "$logfile"; exit 1; }
-
-            log i "Cleaning temporary zipping folder..." "$logfile"
-            rm -rf "$tmpzip_dir"
-
-            log i "Moving split archive parts..." "$logfile"
-            for part in "$artifact_dir"/${component}.zip "$artifact_dir"/${component}.z*; do
-                [ -e "$part" ] || continue
-                hash=($(sha256sum "$part"))
-                echo "$hash" > "$artifact_dir/$(basename "$part").sha"
-            done
-
+        # Otherwise, split if required
         else
-            log i "File size is within limit or splitting is disabled, copying directly." "$logfile"
-            cp "$source_path" "$artifact_base" || { log e "Failed to copy artifact file." "$logfile"; exit 1; }
+            local artifact_size_mb=$(( $(stat -c%s "$source_path") / 1024 / 1024 ))
 
-            hash=($(sha256sum "$artifact_base"))
-            echo "$hash" > "$artifact_dir/$(basename "$artifact_base").sha"
+            if [[ "$artifact_size_mb" -gt "$max_size_mb" && "$SPLIT" == "true" ]]; then
+                log i "Large file detected and SPLIT=true. Creating split ZIP..." "$logfile"
+                rm -rf "$tmpzip_dir"
+                mkdir -p "$tmpzip_dir"
+                cp -f "$source_path" "$tmpzip_dir/" || { log e "Failed to copy file to tmp." "$logfile"; exit 1; }
+                (cd "$artifact_dir" && zip -r -s ${max_size_mb}m "${component}.zip" ".tmpzip") || { log e "ZIP split failed." "$logfile"; exit 1; }
+                rm -rf "$tmpzip_dir"
+                for part in "$artifact_dir"/${component}.zip "$artifact_dir"/${component}.z*; do
+                    [[ -f "$part" ]] && sha256sum "$part" > "$artifact_dir/$(basename "$part").sha"
+                done
+            else
+                log i "Copying file as-is (no split)." "$logfile"
+                cp -f "$source_path" "$artifact_base" || { log e "Copy failed." "$logfile"; exit 1; }
+                sha256sum "$artifact_base" > "$artifact_base.sha"
+            fi
         fi
 
+    # Case 2: Directory
     elif [[ -d "$source_path" ]]; then
-        log i "Source is a directory, creating tar.gz to check size..." "$logfile"
-        tar -czf "$temp_tar" -C "$source_path" . || { log e "Failed to create tar.gz archive." "$logfile"; exit 1; }
+        log i "Source is a directory." "$logfile"
+
+        tar -czf "$temp_tar" -C "$source_path" . || { log e "Tar creation failed." "$logfile"; exit 1; }
 
         local artifact_size_mb=$(( $(stat -c%s "$temp_tar") / 1024 / 1024 ))
 
-        if [[ "$artifact_size_mb" -gt "$max_size_mb" ]]; then
-            log i "Archive larger than ${max_size_mb}MB, preparing split ZIP archive." "$logfile"
-
+        if [[ "$artifact_size_mb" -gt "$max_size_mb" && "$SPLIT" == "true" ]]; then
+            log i "Directory archive is large and SPLIT=true. Creating split ZIP..." "$logfile"
             rm -f "$temp_tar"
-
-            log i "Preparing temporary directory for zipping..." "$logfile"
             rm -rf "$tmpzip_dir"
-            cp -r "$source_path" "$tmpzip_dir" || { log e "Failed to copy directory." "$logfile"; exit 1; }
-
-            log i "Creating split ZIP archive..." "$logfile"
-            (cd "$artifact_dir" && zip -r -s ${max_size_mb}m "${component}.zip" ".tmpzip") || { log e "Failed to create split zip archive." "$logfile"; exit 1; }
-
-            log i "Cleaning temporary zipping folder..." "$logfile"
+            cp -rf "$source_path" "$tmpzip_dir" || { log e "Failed to copy directory." "$logfile"; exit 1; }
+            (cd "$artifact_dir" && zip -r -s ${max_size_mb}m "${component}.zip" ".tmpzip") || { log e "Split zip failed." "$logfile"; exit 1; }
             rm -rf "$tmpzip_dir"
-
-            log i "Moving split archive parts..." "$logfile"
             for part in "$artifact_dir"/${component}.zip "$artifact_dir"/${component}.z*; do
-                [ -e "$part" ] || continue
-                hash=($(sha256sum "$part"))
-                echo "$hash" > "$artifact_dir/$(basename "$part").sha"
+                [[ -f "$part" ]] && sha256sum "$part" > "$artifact_dir/$(basename "$part").sha"
             done
-
         else
-            log i "Archive size is within limit, keeping tar.gz." "$logfile"
-            hash=($(sha256sum "$temp_tar"))
-            echo "$hash" > "$artifact_dir/$(basename "$temp_tar").sha"
+            log i "Archive size OK or split disabled. Keeping tar.gz." "$logfile"
+            sha256sum "$temp_tar" > "$temp_tar.sha"
         fi
 
     else
-        log e "Source path is neither a file nor a directory." "$logfile"
+        log e "Source path is neither a file nor a directory: $source_path" "$logfile"
         exit 1
     fi
 
     if [[ -n "$version" ]]; then
         echo "$version" > "$artifact_dir/version"
     fi
+
+    rm -rf "$artifact_dir/.tmp"
 }
 
 write_components_version() {
@@ -593,44 +600,49 @@ version_check() {
     local current_version=""
     local version_file="$component/version"
 
-    if [[ "$check_type" == "manual" || "$check_type" == "link" || "$check_type" == "file" ]]; then
-        if [[ "$source" =~ ^[0-9]+\.[0-9]+(\.[0-9]+)?$ ]]; then
-            version="$source"
-        fi
-    fi
-
-    if [[ -z "$version" && "$source" =~ ^https?:// ]]; then
-        version=$(basename "$source" | grep -oE '[0-9]+\.[0-9]+(\.[0-9]+)?' | head -n 1)
-    fi
-
-    if [[ -z "$version" && "$check_type" == "metainfo" ]]; then
-        local tempdir=""
-        local metainfo_file=""
-
-        if [[ -f "$source" ]]; then
-            tempdir=$(mktemp -d)
-
-            if [[ "$source" =~ \.tar\.(gz|bz2|xz)$ ]]; then
-                tar -xf "$source" -C "$tempdir" || { log e "Failed to extract archive." "$logfile"; rm -rf "$tempdir"; exit 1; }
-            elif [[ "$source" =~ \.zip$ ]]; then
-                unzip -q "$source" -d "$tempdir" || { log e "Failed to extract archive." "$logfile"; rm -rf "$tempdir"; exit 1; }
-            else
-                log e "Unsupported archive format for metainfo extraction." "$logfile"
-                rm -rf "$tempdir"
-                exit 1
+    case "$check_type" in
+        manual|link|file)
+            if [[ "$source" =~ ^[0-9]+\.[0-9]+(\.[0-9]+)?$ ]]; then
+                version="$source"
+            elif [[ "$source" =~ ^https?:// ]]; then
+                version=$(basename "$source" | grep -oE '[0-9]+\.[0-9]+(\.[0-9]+)?' | head -n 1)
             fi
+            ;;
 
-            metainfo_file=$(find "$tempdir" -type f -name "*.metainfo.xml" | head -n 1)
-        elif [[ -d "$source" ]]; then
-            metainfo_file=$(find "$source" -type f -name "*.metainfo.xml" | head -n 1)
-        fi
+        metainfo)
+            if [[ -f "$source" && "$source" =~ \.(metainfo|appdata)\.xml$ ]]; then
+                version=$(xmlstarlet sel -t -v "/component/releases/release[1]/@version" "$source" 2>/dev/null | head -n 1)
 
-        if [[ -n "$metainfo_file" ]]; then
-            version=$(xmlstarlet sel -t -v "/component/releases/release[1]/@version" "$metainfo_file" 2>/dev/null | head -n 1)
-        fi
+            elif [[ -d "$source" ]]; then
+                local metainfo_file
+                metainfo_file=$(find "$source" -type f \( -name "*.metainfo.xml" -o -name "*.appdata.xml" \) | head -n 1)
+                if [[ -n "$metainfo_file" ]]; then
+                    version=$(xmlstarlet sel -t -v "/component/releases/release[1]/@version" "$metainfo_file" 2>/dev/null | head -n 1)
+                fi
 
-        [[ -n "$tempdir" ]] && rm -rf "$tempdir"
-    fi
+            elif [[ -f "$source" && "$source" =~ \.tar\.(gz|xz|bz2)$ ]]; then
+                local metainfo_path
+                metainfo_path=$(tar -tf "$source" | grep -m1 -E '\.(metainfo|appdata)\.xml$')
+                if [[ -n "$metainfo_path" ]]; then
+                    log d "Found metadata in archive: $metainfo_path" "$logfile"
+                    version=$(tar -xOf "$source" "$metainfo_path" 2>/dev/null | \
+                        xmlstarlet sel -t -v "/component/releases/release[1]/@version" 2>/dev/null | head -n 1)
+                fi
+
+            elif [[ -f "$source" && "$source" =~ \.zip$ ]]; then
+                version=$(unzip -p "$source" '*.metainfo.xml' '*.appdata.xml' 2>/dev/null | \
+                    xmlstarlet sel -t -v "/component/releases/release[1]/@version" 2>/dev/null | head -n 1)
+
+            else
+                log w "Unsupported format for metainfo extraction: $source" "$logfile"
+            fi
+            ;;
+        
+        *)
+            log e "Unknown version check type: $check_type" "$logfile"
+            exit 1
+            ;;
+    esac
 
     if [[ -z "$version" ]]; then
         log e "Could not determine version for $component (source: \"$source\")" "$logfile"
@@ -642,7 +654,7 @@ version_check() {
     if [[ -f "$version_file" ]]; then
         current_version=$(cat "$version_file")
         if [[ "$current_version" == "$version" && "${FORCE:-0}" -ne 1 ]]; then
-            echo "$version"  # <-- AGGIUNTA per sicurezza
+            echo "$version"
             return 0
         fi
     fi
@@ -651,3 +663,4 @@ version_check() {
     echo "$version"
     return 1
 }
+
