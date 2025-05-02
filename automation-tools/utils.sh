@@ -6,7 +6,7 @@ then
     wget -q https://raw.githubusercontent.com/RetroDECK/RetroDECK/main/functions/logger.sh -O ".tmpfunc/logger.sh"
 fi
 
-export logfile="grab.log"
+export logfile="$(realpath grab.log)"
 
 if [[ -f ".tmpfunc/logger.sh" ]]; then
     source ".tmpfunc/logger.sh"
@@ -178,9 +178,12 @@ grab() {
     log i "Checking version..." "$logfile"
     version=$(version_check "link" "$component" "$url")
 
+    log d "Evaluating type: $type" "$logfile"
+
     case "$type" in
         appimage)
-            output=$(manage_appimage "$component" "$output_path" "$version" 2>/dev/null | tail -n 1)
+            output=$(manage_appimage "$component" "$output_path" "$version")
+            log d "manage_appimage() output: $output" "$logfile"
             ;;
         generic)
             output=$(manage_generic "$component" "$output_path" "$version" 2>/dev/null | tail -n 1)
@@ -214,7 +217,6 @@ grab() {
 }
 
 manage_appimage() {
-
     log d "Starting manage_appimage function" "$logfile"
 
     local component="$1"
@@ -223,69 +225,68 @@ manage_appimage() {
 
     if [[ "$DRY_RUN" -eq 1 ]]; then
         echo "[DRY-RUN] Would manage appimage for $component from $file_path"
-        return
+        return 0
     fi
 
-    echo "Managing appimage for component: $component from $file_path"
+    log i "Managing AppImage for component: $component" "$logfile"
 
-    local final_appimage="$component/artifacts/$component.AppImage"
+    local temp_root
+    temp_root=$(mktemp -d)
+    local extracted_dir="$component/artifacts/.tmp_extracted"
 
-    finalize_appimage_file() {
-        local source="$1"
-        log i "Finalizing AppImage..." "$logfile"
-        mv "$source" "$final_appimage"
-        chmod +x "$final_appimage"
-        log i "AppImage moved to: $final_appimage" "$logfile"
-        echo "$final_appimage|$version"
-    }
+    rm -rf "$extracted_dir"
+    mkdir -p "$extracted_dir"
 
+    local appimage_path=""
+
+    # Handle archives
     if [[ "$file_path" =~ \.tar\.(gz|xz|bz2)$ || "$file_path" =~ \.7z$ ]]; then
-        echo "Extracting archive..."
-        local tempdir
-        tempdir=$(mktemp -d)
-
+        log i "Extracting archive to temp..." "$logfile"
         if [[ "$file_path" =~ \.7z$ ]]; then
-            7z x -y "$file_path" -o"$tempdir" > /dev/null || { log e "Failed to extract 7z archive" "$logfile"; exit 1; }
+            7z x -y "$file_path" -o"$temp_root" > /dev/null || { log e "Failed to extract 7z archive" "$logfile"; rm -rf "$temp_root"; return 1; }
         else
-            tar -xf "$file_path" -C "$tempdir" || { log e "Failed to extract tar archive" "$logfile"; exit 1; }
+            tar -xf "$file_path" -C "$temp_root" || { log e "Failed to extract tar archive" "$logfile"; rm -rf "$temp_root"; return 1; }
         fi
 
-        appimage_path=$(find "$tempdir" -type f -name '*.AppImage' | head -n 1)
-
-        if [[ -n "$appimage_path" ]]; then
-            log i "Found AppImage: $(basename "$appimage_path")" "$logfile"
-            output=$(finalize_appimage_file "$appimage_path")
-        else
-            log e "No AppImage found in extracted archive!" "$logfile"
-            rm -rf "$tempdir"
-            exit 1
-        fi
-
-        rm -rf "$tempdir"
+        appimage_path=$(find "$temp_root" -type f -name '*.AppImage' | head -n 1)
+        [[ -z "$appimage_path" ]] && { log e "No AppImage found in archive." "$logfile"; rm -rf "$temp_root"; return 1; }
 
     elif [[ "$file_path" =~ \.AppImage$ ]]; then
-        echo "Direct AppImage detected."
-
-        if [[ "$file_path" == "$final_appimage" ]]; then
-             if [[ ! -f "$file_path" ]]; then
-                 log e "Expected file $file_path does not exist." "$logfile"
-                 exit 1
-             fi
-             log i "File already exists at destination." "$logfile"
-             output="$final_appimage|$version"
-        else
-             cp -f "$file_path" "$final_appimage" || { log e "Failed to copy AppImage" "$logfile"; exit 1; }
-        fi
-
-        chmod +x "$final_appimage"
-        output="$final_appimage|$version"
+        appimage_path="$file_path"
+        [[ ! -f "$appimage_path" ]] && { log e "AppImage file not found: $appimage_path" "$logfile"; return 1; }
     else
-        log e "Unsupported appimage file format: $file_path" "$logfile"
-        exit 1
+        log e "Unsupported file type for AppImage: $file_path" "$logfile"
+        return 1
     fi
 
-    log i "AppImage management completed" "$logfile"
-    echo "$output"
+    local abs_appimage_path=$(realpath "$appimage_path")
+
+    chmod +x "$appimage_path"
+
+    log d "Running AppImage extraction command..." "$logfile"
+    cd "$extracted_dir"
+    log d "$(pwd)" "$logfile"
+    "$abs_appimage_path" --appimage-extract
+    cd - > /dev/null
+    extract_status=$?
+
+    if [[ $extract_status -ne 0 ]]; then
+        log e "AppImage extraction failed with status $extract_status." "$logfile"
+        rm -rf "$temp_root"
+        return 1
+    fi
+
+    log i "Compressing extracted AppImage contents..." "$logfile"
+    local output_appimage_artifact="$component/artifacts/$component.tar.gz"
+    tar -czf "$output_appimage_artifact" -C "$extracted_dir/squashfs-root" . 
+
+    rm -rf "$temp_root" "$extracted_dir" "$abs_appimage_path"
+    log i "AppImage repacked successfully to: $output_appimage_artifact" "$logfile"
+
+    # Final return
+    log d "manage_appimage returning: $output_appimage_artifact|$version" "$logfile"
+    echo -n "$output_appimage_artifact|$version"
+
 }
 
 manage_flatpak() {
