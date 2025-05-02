@@ -562,7 +562,9 @@ write_components_version() {
 
     # Create or overwrite the components_version.md file
     local output_file="components_version.md"
-    echo "# Components Version Summary" > "$output_file"
+    if [[ ! -f "$output_file" ]]; then
+        echo "# Components Version Summary" > "$output_file"
+    fi
     echo "" >> "$output_file"
 
     # Loop through all */*/artifacts/version files
