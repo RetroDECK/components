@@ -323,7 +323,7 @@ jobs:
 
           # Iterate through folders in the repo root
           MISSING_ARTIFACTS=()
-          for folder in $(find . -maxdepth 1 -type d -not -name '.*' -not -name 'automation_tools' -exec basename {} \;); do
+          for folder in $(find . -maxdepth 1 -type d -not -name '.*' -not -name 'automation-tools' -not -name 'downloaded-artifacts' -exec basename {} \;); do
             if [ ! -d "$folder/artifacts" ] || ! ls "$folder/artifacts/"*.{zip,tar.gz,gz,tar,7z,appimage} >/dev/null 2>&1; then
               MISSING_ARTIFACTS+=("$folder")
             fi
