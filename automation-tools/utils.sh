@@ -493,30 +493,31 @@ finalize() {
     local version="${3:-$FINALIZE_VERSION}"
     local max_size_mb=95
     local artifact_dir="$component/artifacts"
-    local artifact_base="$artifact_dir/$component"
-    local temp_tar="$artifact_base.tar.gz"
+    local temp_tar="$artifact_dir/$component.tar.gz"
     local tmpzip_dir="$artifact_dir/.tmpzip"
 
     mkdir -p "$artifact_dir"
 
-    # Case 1: single file
     if [[ -f "$source_path" ]]; then
         log i "Source is a file: $source_path" "$logfile"
 
-        # If AppImage we don't compress it
         if [[ "$source_path" == *.AppImage ]]; then
             log i "Detected AppImage file, skipping compression." "$logfile"
-            if [[ "$(realpath "$source_path")" != "$(realpath "$artifact_base.AppImage")" ]]; then
-                cp -f "$source_path" "$artifact_base.AppImage" || { log e "Failed to copy AppImage." "$logfile"; exit 1; }
+            local target_path="$artifact_dir/$component.AppImage"
+
+            if [[ "$(realpath "$source_path")" != "$(realpath "$target_path")" ]]; then
+                cp -f "$source_path" "$target_path" || { log e "Failed to copy AppImage." "$logfile"; exit 1; }
             else
                 log i "Source and destination are the same file, skipping copy." "$logfile"
             fi
-            chmod +x "$artifact_base.AppImage"
-            sha256sum "$artifact_base.AppImage" > "$artifact_base.AppImage.sha"
 
-        # Otherwise, split if required
+            chmod +x "$target_path"
+            sha256sum "$target_path" > "$target_path.sha"
+
         else
             local artifact_size_mb=$(( $(stat -c%s "$source_path") / 1024 / 1024 ))
+            local filename=$(basename "$source_path")
+            local target_path="$artifact_dir/$filename"
 
             if [[ "$artifact_size_mb" -gt "$max_size_mb" && "$SPLIT" == "true" ]]; then
                 log i "Large file detected and SPLIT=true. Creating split ZIP..." "$logfile"
@@ -530,16 +531,15 @@ finalize() {
                 done
             else
                 log i "Copying file as-is (no split)." "$logfile"
-                if [[ "$source_path" != "$artifact_base" ]]; then
-                    cp -f "$source_path" "$artifact_base" || { log e "Copy failed." "$logfile"; exit 1; }
+                if [[ "$(realpath "$source_path")" != "$(realpath "$target_path")" ]]; then
+                    cp -f "$source_path" "$target_path" || { log e "Copy failed." "$logfile"; exit 1; }
                 else
                     log i "Source and destination are the same file, skipping copy." "$logfile"
                 fi
-                sha256sum "$artifact_base" > "$artifact_base.sha"
+                sha256sum "$target_path" > "$target_path.sha"
             fi
         fi
 
-    # Case 2: Directory
     elif [[ -d "$source_path" ]]; then
         log i "Source is a directory." "$logfile"
 
@@ -573,6 +573,7 @@ finalize() {
 
     rm -rf "$artifact_dir/.tmp"
 }
+
 
 write_components_version() {
 
