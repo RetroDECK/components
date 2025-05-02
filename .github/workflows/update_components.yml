@@ -437,9 +437,10 @@ jobs:
         with:
           token: ${{ steps.generate-rekku-token.outputs.token }}
           commit-message: "Update RetroDECK Components Artifacts"
-          branch: "update/components-artifacts-${{ env.TAG }}"
-          title: "Update RetroDECK Components Artifacts - ${{ env.TAG }}"
+          branch: "update/components-artifacts"
+          title: "Update RetroDECK Components Artifacts"
           body: pr_body.md
+          target: "cooker"
 
       - name: Post PR comment with artifacts
         uses: marocchino/sticky-pull-request-comment@v2
