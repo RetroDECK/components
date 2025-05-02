@@ -21,7 +21,6 @@ else
     log e "Logger script not found. Please ensure .tmpfunc/logger.sh exists." >&2
 fi
 export logging_level="debug"
-log d "Loggger function started"
 
 FORCE=0                 # Force the download even if the version is the same, useful for local retention, enabled by default on CI/CD to avoid missing updates since the version files are present bu the artifacts are not
 DRY_RUN=0
@@ -276,6 +275,7 @@ manage_appimage() {
                  exit 1
              fi
              log i "File already exists at destination." "$logfile"
+             output="$final_appimage|$version"
         else
              cp "$file_path" "$final_appimage" || { log e "Failed to copy AppImage" "$logfile"; exit 1; }
         fi
@@ -427,10 +427,13 @@ manage_flatpak_id() {
         fi
     done
 
-    # ✅ Imposta le variabili globali per finalize()
     FINALIZE_COMPONENT="$component"
     FINALIZE_PATH="$component/artifacts/.tmp"
     FINALIZE_VERSION="$extracted_version"
+
+    log d "FINALIZE_COMPONENT=$FINALIZE_COMPONENT" "$logfile"
+    log d "FINALIZE_PATH=$FINALIZE_PATH" "$logfile"
+    log d "FINALIZE_VERSION=$FINALIZE_VERSION" "$logfile"
 
     log i "Finalizing artifact..." "$logfile"
 
@@ -447,12 +450,15 @@ finalize() {
 
     if [[ -z "$FINALIZE_COMPONENT" || -z "$FINALIZE_PATH" || -z "$FINALIZE_VERSION" ]]; then
         log e "finalize() called without a valid grab step." "$logfile"
+        log d "FINALIZE_COMPONENT=$FINALIZE_COMPONENT" "$logfile"
+        log d "FINALIZE_PATH=$FINALIZE_PATH" "$logfile"
+        log d "FINALIZE_VERSION=$FINALIZE_VERSION" "$logfile"
         return 1
     fi
 
-    local component="$1"
-    local source_path="$2"
-    local version="$3"
+    local component="${1:-$FINALIZE_COMPONENT}"
+    local source_path="${2:-$FINALIZE_PATH}"
+    local version="${3:-$FINALIZE_VERSION}"
     local max_size_mb=95
 
     local artifact_dir="$component/artifacts"
@@ -575,7 +581,6 @@ write_components_version() {
 }
 
 version_check() {
-
     log d "Starting version_check function" "$logfile"
 
     local check_type="$1"
@@ -586,19 +591,16 @@ version_check() {
     local current_version=""
     local version_file="$component/version"
 
-    # 1. If the source is already a version (for manual or wildcard type), use it directly
     if [[ "$check_type" == "manual" || "$check_type" == "link" || "$check_type" == "file" ]]; then
         if [[ "$source" =~ ^[0-9]+\.[0-9]+(\.[0-9]+)?$ ]]; then
             version="$source"
         fi
     fi
 
-    # 2. If it is a URL, extract from the file name
     if [[ -z "$version" && "$source" =~ ^https?:// ]]; then
         version=$(basename "$source" | grep -oE '[0-9]+\.[0-9]+(\.[0-9]+)?' | head -n 1)
     fi
 
-    # 3. Metainfo extraction (only for flatpak/metainfo)
     if [[ -z "$version" && "$check_type" == "metainfo" ]]; then
         local tempdir=""
         local metainfo_file=""
@@ -635,15 +637,15 @@ version_check() {
 
     log i "Detected version: $version" "$logfile"
 
-    # Compare with the current version (if it exists)
     if [[ -f "$version_file" ]]; then
         current_version=$(cat "$version_file")
         if [[ "$current_version" == "$version" && "${FORCE:-0}" -ne 1 ]]; then
-            return 0  # skip
+            echo "$version"  # <-- AGGIUNTA per sicurezza
+            return 0
         fi
     fi
 
     echo "$version" > "$version_file"
-    echo "$version"  # output the version
-    return 1  # do not skip
+    echo "$version"
+    return 1
 }
