@@ -107,7 +107,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: ${{ env.artifact_name }}
-          path: ${{ env.artifact_name }}/artifacts
+          path: ${{ env.artifact_name }}/artifacts/*
         
   build-heavy:
     needs: setup-recipes
