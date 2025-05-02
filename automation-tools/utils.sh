@@ -6,17 +6,20 @@ then
     wget -q https://raw.githubusercontent.com/RetroDECK/RetroDECK/main/functions/logger.sh -O ".tmpfunc/logger.sh"
 fi
 
+export logfile="grab.log"
+
 if [[ -f ".tmpfunc/logger.sh" ]]; then
     source ".tmpfunc/logger.sh"
 else
-
-    echo "[ERROR] Logger script not found. Please ensure .tmpfunc/logger.sh exists."
+    # Fallback logger function if logger.sh is not available
 
     log() {
-        echo "[$1] $2"
+        echo "[$1] $2" >&2
+        echo "[$1] $2" >> "$logfile"
     }
+
+    log e "Logger script not found. Please ensure .tmpfunc/logger.sh exists." >&2
 fi
-export logfile="grab.log"
 export logging_level="debug"
 log d "Loggger function started"
 
