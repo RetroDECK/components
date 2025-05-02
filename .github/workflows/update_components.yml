@@ -163,12 +163,6 @@ jobs:
           echo "artifact_name=$artifact_name" >> $GITHUB_ENV
           bash "${{ matrix.recipe }}"
 
-      # - name: Upload Artifacts
-      #   uses: actions/upload-artifact@v4
-      #   with:
-      #     name: ${{ env.artifact_name }}
-      #     path: ${{ env.artifact_name }}/artifacts
-
   Release_RetroDECK_Components:
     needs: [build-light, build-heavy]
     runs-on: ubuntu-latest
@@ -206,6 +200,9 @@ jobs:
             fi
           done
 
+      - name: Generate components_version.md
+        run: source automation-tools/utils.sh && write_components_version
+
       - name: Generate a token for Rekku
         id: generate-rekku-token
         uses: actions/create-github-app-token@v1
@@ -215,52 +212,52 @@ jobs:
           repositories: "components"
           owner: "RetroDECK"
    
-      - name: Commit and Push Safely
-        env:
-          GITHUB_TOKEN: ${{ steps.generate-rekku-token.outputs.token }}
-        run: |
-          set -e
+      # - name: Commit and Push
+      #   env:
+      #     GITHUB_TOKEN: ${{ steps.generate-rekku-token.outputs.token }}
+      #   run: |
+      #     set -e
 
-          git fetch origin
-          BRANCH=$(git rev-parse --abbrev-ref HEAD)
-          git config user.name "Rekku Bot"
-          git config user.email "rekku-bot@users.noreply.github.com"
+      #     git fetch origin
+      #     BRANCH=$(git rev-parse --abbrev-ref HEAD)
+      #     git config user.name "Rekku Bot"
+      #     git config user.email "rekku-bot@users.noreply.github.com"
 
-          echo "[INFO] Adding all changed artifacts..."
-          git add -A
+      #     echo "[INFO] Adding all changed artifacts..."
+      #     git add -A
 
-          if git diff --cached --quiet; then
-            echo "[INFO] No changes to commit"
-            exit 0
-          fi
+      #     if git diff --cached --quiet; then
+      #       echo "[INFO] No changes to commit"
+      #       exit 0
+      #     fi
 
-          echo "[INFO] Preparing commit message..."
-          COMMIT_MSG=""
+      #     echo "[INFO] Preparing commit message..."
+      #     COMMIT_MSG=""
 
-          for version_file in */artifacts/version; do
-            if [[ -f "$version_file" ]]; then
-              component=$(basename "$(dirname "$version_file")")
-              version=$(cat "$version_file")
-              COMMIT_MSG+="upd(component): updated $component to $version"$'\n'
-            fi
-          done
+      #     for version_file in */artifacts/version; do
+      #       if [[ -f "$version_file" ]]; then
+      #         component=$(basename "$(dirname "$version_file")")
+      #         version=$(cat "$version_file")
+      #         COMMIT_MSG+="upd(component): updated $component to $version"$'\n'
+      #       fi
+      #     done
 
-          if [[ -z "$COMMIT_MSG" ]]; then
-            COMMIT_MSG="upd(component): updated components on $(date +'%Y-%m-%d')"
-          fi
+      #     if [[ -z "$COMMIT_MSG" ]]; then
+      #       COMMIT_MSG="upd(component): updated components on $(date +'%Y-%m-%d')"
+      #     fi
 
-          git commit -m "$COMMIT_MSG"
+      #     git commit -m "$COMMIT_MSG"
 
-          echo "[INFO] Rebasing and pushing..."
-          git fetch origin
-          BRANCH=$(git rev-parse --abbrev-ref HEAD)
+      #     echo "[INFO] Rebasing and pushing..."
+      #     git fetch origin
+      #     BRANCH=$(git rev-parse --abbrev-ref HEAD)
 
-          git config http.postBuffer 524288000
-          git config --global http.lowSpeedLimit 0
-          git config --global http.lowSpeedTime 999999
+      #     git config http.postBuffer 524288000
+      #     git config --global http.lowSpeedLimit 0
+      #     git config --global http.lowSpeedTime 999999
 
-          git pull --rebase origin "$BRANCH"
-          git push origin HEAD
+      #     git pull --rebase origin "$BRANCH"
+      #     git push origin HEAD
 
       - name: Get Branch Name
         run: |
@@ -321,12 +318,25 @@ jobs:
           echo "" >> $RELEASE_BODY_FILE
 
           # Append the contents of components_version.md to the release body
-          if [ -f "components_version.md" ]; then
-              echo "[INFO] Adding components_version.md to release body."
-              cat components_version.md >> $RELEASE_BODY_FILE
-          else
-              echo "[WARNING] components_version.md not found. Skipping."
-              echo "- No components version information available." >> $RELEASE_BODY_FILE
+          cat components_version.md >> $RELEASE_BODY_FILE
+          echo "" >> $RELEASE_BODY_FILE
+
+          # Iterate through folders in the repo root
+          MISSING_ARTIFACTS=()
+          for folder in $(find . -maxdepth 1 -type d -not -name '.*' -not -name 'automation_tools' -exec basename {} \;); do
+            if [ ! -d "$folder/artifacts" ] || ! ls "$folder/artifacts/"*.{zip,tar.gz,gz,tar,7z,appimage} >/dev/null 2>&1; then
+              MISSING_ARTIFACTS+=("$folder")
+            fi
+          done
+
+          # Add warnings for missing artifacts
+          if [ ${#MISSING_ARTIFACTS[@]} -ne 0 ]; then
+            echo "[WARNING] The following components are missing from this release:" >> $RELEASE_BODY_FILE
+            for folder in "${MISSING_ARTIFACTS[@]}"; do
+              echo "- $folder" >> $RELEASE_BODY_FILE
+            done
+            else
+              echo "[INFO] All folders have their artifacts." >> $RELEASE_BODY_FILE
           fi
           echo "" >> $RELEASE_BODY_FILE
 
@@ -360,7 +370,7 @@ jobs:
         id: version-tag
         run: |
             # Get the current date and time in GMT
-            CURRENT_DATE=$(date -u +"%Y%m%d%H%M%S")
+            CURRENT_DATE=$(date -u +"%Y%m%d-%H%M")
             # Generate the tag name
             TAG="${CURRENT_DATE}"
             echo "TAG=$TAG" >> $GITHUB_ENV
@@ -372,23 +382,11 @@ jobs:
           tag: "${{ env.TAG }}"
           name: "RetroDECK Components ${{ env.TAG }}"
           body: ${{ steps.generate-body.outputs.RELEASE_BODY }}
-          artifacts: "*/artifacts/*"
+          artifacts: "*/artifacts/*,!*/artifacts/version"
           allowUpdates: true
           omitBodyDuringUpdate: true
           makeLatest: ${{ env.MAKE_LATEST }}
           repo: ${{ env.REPO_NAME }}
-          token: ${{ steps.generate-rekku-token.outputs.token }}
-
-      - name: Publish Artifacts
-        uses: ncipollo/release-action@v1
-        with:
-          tag: ${{ env.TAG }}
-          name: "RetroDECK Artifacts - ${{ env.TAG }}"
-          body: "RetroDECK Components artifacts for version ${{ env.TAG }}"
-          artifacts: "*/artifacts/**"
-          allowUpdates: true
-          omitBodyDuringUpdate: true
-          makeLatest: ${{ env.MAKE_LATEST }}
           token: ${{ steps.generate-rekku-token.outputs.token }}
 
       - name: Create diff between target branch and PR components_version.md
