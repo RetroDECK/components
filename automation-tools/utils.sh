@@ -58,7 +58,6 @@ grab() {
     local component="${args[2]:-$(basename "$(dirname "$(realpath "${BASH_SOURCE[1]}")")")}"
     local version=""
     local output_path=""
-    local output=""
 
     echo ""
     echo "-----------------------------------------------------------"
@@ -76,9 +75,9 @@ grab() {
             ;;
         flatpak_artifacts)
             log i "Type flatpak_artifacts detected, handling flatpak artifacts from URL: $url" "$logfile"
-            output=$(manage_flatpak_artifacts "$component" "$url" "$version")
-            FINALIZE_PATH=$(echo "$output" | cut -d'|' -f1)
-            FINALIZE_VERSION=$(echo "$output" | cut -d'|' -f2)
+            manage_flatpak_artifacts "$component" "$url" "$version"
+            FINALIZE_PATH="$MANAGED_OUTPUT_PATH"
+            FINALIZE_VERSION="$MANAGED_OUTPUT_VERSION"
             FINALIZE_COMPONENT="$component"
             return
             ;;
@@ -162,7 +161,7 @@ grab() {
 
             if file "$output_path" | grep -q "HTML"; then
                 log e "Downloaded file is HTML. Probably a 404 page." "$logfile"
-                cat "$output_path" | head -n 20
+                head -n 20 "$output_path"
                 exit 1
             fi
         else
@@ -180,13 +179,16 @@ grab() {
 
     log d "Evaluating type: $type" "$logfile"
 
+    # Reset globals
+    MANAGED_OUTPUT_PATH=""
+    MANAGED_OUTPUT_VERSION=""
+
     case "$type" in
         appimage)
-            output=$(manage_appimage "$component" "$output_path" "$version")
-            log d "manage_appimage() output: $output" "$logfile"
+            manage_appimage "$component" "$output_path" "$version"
             ;;
         generic)
-            output=$(manage_generic "$component" "$output_path" "$version" 2>/dev/null | tail -n 1)
+            manage_generic "$component" "$output_path" "$version"
             ;;
         *)
             log e "Unsupported type for automatic management: $type" "$logfile"
@@ -194,18 +196,18 @@ grab() {
             ;;
     esac
 
-    if [[ -z "$output" ]]; then
-        log e "manage_${type} returned empty output!" "$logfile"
+    if [[ -z "$MANAGED_OUTPUT_PATH" ]]; then
+        log e "manage_${type} did not set output!" "$logfile"
         exit 1
     fi
 
-    if [[ "$output" == "skip" ]]; then
+    if [[ "$MANAGED_OUTPUT_PATH" == "skip" ]]; then
         log i "Skipping $component, already up-to-date." "$logfile"
         return
     fi
 
-    FINALIZE_PATH=$(echo "$output" | cut -d'|' -f1)
-    FINALIZE_VERSION=$(echo "$output" | cut -d'|' -f2)
+    FINALIZE_PATH="$MANAGED_OUTPUT_PATH"
+    FINALIZE_VERSION="$MANAGED_OUTPUT_VERSION"
     FINALIZE_COMPONENT="$component"
 
     if [[ ! -e "$FINALIZE_PATH" ]]; then
@@ -284,8 +286,8 @@ manage_appimage() {
     log i "AppImage repacked successfully to: $output_appimage_artifact" "$logfile"
 
     # Final return
-    log d "manage_appimage returning: $output_appimage_artifact|$version" "$logfile"
-    echo -n "$output_appimage_artifact|$version"
+    MANAGED_OUTPUT_PATH="$output_appimage_artifact"
+    MANAGED_OUTPUT_VERSION="$version"
 
 }
 
@@ -347,7 +349,9 @@ manage_generic() {
     fi
 
     # return the artifacts path and version
-    echo "$file_path|$version"
+    MANAGED_OUTPUT_PATH="$file_path"
+    MANAGED_OUTPUT_VERSION="$version"
+
 }
 
 # This function not compiling the flatpak, just downloading it and extracting it (+ runtimes and sdk)
@@ -475,7 +479,10 @@ manage_flatpak_artifacts() {
         fi
     fi
 
-    echo "$output_path|$version"
+    # Final return
+    MANAGED_OUTPUT_PATH="$output_path"
+    MANAGED_OUTPUT_VERSION="$version"
+
 }
 
 finalize() {
