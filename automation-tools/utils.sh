@@ -1,5 +1,25 @@
 #!/bin/bash
 
+if [[ ! -f ".tmpfunc/logger.sh" ]]; 
+then
+    mkdir -p ".tmpfunc"
+    wget -q https://raw.githubusercontent.com/RetroDECK/RetroDECK/main/functions/logger.sh -O ".tmpfunc/logger.sh"
+fi
+
+if [[ -f ".tmpfunc/logger.sh" ]]; then
+    source ".tmpfunc/logger.sh"
+else
+
+    echo "[ERROR] Logger script not found. Please ensure .tmpfunc/logger.sh exists."
+
+    log() {
+        echo "[$1] $2"
+    }
+fi
+export logfile="grab.log"
+export logging_level="debug"
+log d "Loggger function started"
+
 FORCE=0                 # Force the download even if the version is the same, useful for local retention, enabled by default on CI/CD to avoid missing updates since the version files are present bu the artifacts are not
 DRY_RUN=0
 FINALIZE_PATH=""
@@ -26,12 +46,6 @@ parse_flags() {
     # Return the remaining non-flag arguments
     echo "$@"
 }
-
-#!/bin/bash
-
-FORCE=0
-DRY_RUN=0
-
 parse_flags() {
     while [[ "$1" =~ ^-- ]]; do
         case "$1" in
@@ -52,6 +66,7 @@ parse_flags() {
 }
 
 grab() {
+
     local args
     args=($(parse_flags "$@"))
     local type="${args[0]}"
@@ -66,20 +81,22 @@ grab() {
     echo "   PREPARING ARTIFACTS FOR COMPONENT: $component"
     echo "-----------------------------------------------------------"
 
-    echo "Grabbing type '$type' from URL: $url"
+    log i "Grabbing type '$type' from URL: $url" "$logfile"
     mkdir -p "$component/artifacts"
 
     # Early return for flatpak_id type (no download)
     if [[ "$type" == "flatpak_id" ]]; then
-        echo "[INFO] Type flatpak_id detected, skipping download."
+        log i "Type flatpak_id detected, skipping download." "$logfile"
         manage_flatpak_id "$component" "$url"
         return
     fi
 
     # --- Resolve Wildcards First ---
+    log i "Resolving wildcards in URL..." "$logfile"
+
     case "$url" in
         *github.com*'*'*)
-            echo "[INFO] GitHub wildcard URL detected, resolving via GitHub API..."
+            log i "GitHub wildcard URL detected, resolving via GitHub API..." "$logfile"
 
             repo=$(echo "$url" | sed -E 's|https://github.com/([^/]+/[^/]+).*|\1|')
             pattern=$(basename "$url")
@@ -88,12 +105,12 @@ grab() {
             releases=$(curl -s "https://api.github.com/repos/$repo/releases")
 
             if ! echo "$releases" | jq empty > /dev/null 2>&1; then
-                echo "[ERROR] Invalid JSON from GitHub API."
+                log e "Invalid JSON from GitHub API." "$logfile"
                 exit 1
             fi
 
             if echo "$releases" | grep -q "API rate limit exceeded"; then
-                echo "[ERROR] GitHub API rate limit exceeded."
+                log e "GitHub API rate limit exceeded." "$logfile"
                 exit 1
             fi
 
@@ -102,16 +119,16 @@ grab() {
             ' | head -n 1)
 
             if [[ -z "$asset_url" ]]; then
-                echo "[ERROR] No matching asset found for pattern: $pattern"
+                log e "No matching asset found for pattern: $pattern" "$logfile"
                 exit 1
             fi
 
             url="$asset_url"
-            echo "[INFO] Resolved URL: $url"
+            log i "Resolved URL: $url" "$logfile"
             ;;
 
         *buildbot.libretro.com*'*'*)
-            echo "[INFO] Buildbot wildcard URL detected, resolving latest folder..."
+            log i "Buildbot wildcard URL detected, resolving latest folder..." "$logfile"
 
             base_url="${url%%\**}"
             tail_path="${url#*\*}"
@@ -121,15 +138,17 @@ grab() {
             if [[ -n "$folder" ]]; then
                 url="${base_url}${folder}/${tail_path}"
                 version="$folder"
-                echo "[INFO] Resolved URL: $url"
+                log i "Resolved URL: $url" "$logfile"
             else
-                echo "[ERROR] No version folders found at $base_url."
+                log e "No version folders found at $base_url." "$logfile"
                 exit 1
             fi
             ;;
     esac
 
     # --- Determine Output Path ---
+    log i "Determining output path..." "$logfile"
+
     if [[ "$url" =~ ^(http|https|ftp|ftps|sftp|ssh):// ]]; then
         filename=$(basename "$url")
         if [[ "$filename" =~ \.tar\.(gz|bz2|xz)$ ]]; then
@@ -140,47 +159,55 @@ grab() {
         output_path="$component/artifacts/$component.$file_extension"
 
         if [[ ! -f "$output_path" ]]; then
-            echo "[INFO] Downloading $url -> $output_path"
-            wget -qc "$url" -O "$output_path" || { echo "[ERROR] Failed to download $url"; exit 1; }
+            log i "Downloading $url -> $output_path" "$logfile"
+            if [[ -f "$output_path" ]]; then
+                log i "File already exists, skipping download." "$logfile"
+                return
+            fi
+            wget -qc "$url" -O "$output_path" || { log e "Failed to download $url" "$logfile"; exit 1; }
 
             if [[ ! -s "$output_path" ]]; then
-                echo "[ERROR] Downloaded file is empty. Something went wrong."
+                log e "Downloaded file is empty. Something went wrong." "$logfile"
                 exit 1
             fi
 
             if file "$output_path" | grep -q "HTML"; then
-                echo "[ERROR] Downloaded file is HTML. Probably a 404 page."
+                log e "Downloaded file is HTML. Probably a 404 page." "$logfile"
                 cat "$output_path" | head -n 20
                 exit 1
             fi
         else
-            echo "[INFO] Using already downloaded $output_path"
+            log i "Using already downloaded $output_path" "$logfile"
         fi
     else
-        echo "[INFO] Using local file: $url"
+        log i "Using local file: $url" "$logfile"
         output_path="$url"
     fi
 
+    log i "Output path: $output_path" "$logfile"
+
+    log i "Checking version..." "$logfile"
     version=$(version_check "link" "$component" "$url")
     output=$(manage_appimage "$component" "$output_path" "$version" 2>/dev/null | tail -n 1)
 
     if [[ -z "$output" ]]; then
-        echo "[ERROR] manage_appimage returned empty output!"
+        log e "manage_appimage returned empty output!" "$logfile"
         exit 1
     fi
 
     if [[ "$output" == "skip" ]]; then
-        echo "[INFO] Skipping $component, already up-to-date."
+        log i "Skipping $component, already up-to-date." "$logfile"
         return
     fi
 
+    #FINALIZE_PATH=$(echo "$output" | cut -d'|' -f1)
     FINALIZE_PATH=$(echo "$output" | cut -d'|' -f1)
     FINALIZE_VERSION=$(echo "$output" | cut -d'|' -f2)
     FINALIZE_COMPONENT="$component"
 
     if [[ ! -e "$FINALIZE_PATH" ]]; then
-        echo "[DEBUG] FINALIZE_PATH=$FINALIZE_PATH"
-        [[ -e "$FINALIZE_PATH" ]] && echo "[DEBUG] Finalize path exists." || echo "[DEBUG] Finalize path does NOT exist!"
+        log d "FINALIZE_PATH=$FINALIZE_PATH" "$logfile"
+        [[ -e "$FINALIZE_PATH" ]] && log d "Finalize path exists." "$logfile" || log d "Finalize path does NOT exist!" "$logfile"
         ls -lah "$(dirname "$FINALIZE_PATH")"
         exit 1
     fi
@@ -188,6 +215,9 @@ grab() {
 }
 
 manage_appimage() {
+
+    log d "Starting manage_appimage function" "$logfile"
+
     local component="$1"
     local file_path="$2"
     local version="$3"
@@ -203,10 +233,10 @@ manage_appimage() {
 
     finalize_appimage_file() {
         local source="$1"
-        echo "[INFO] Finalizing AppImage..."
+        log i "Finalizing AppImage..." "$logfile"
         mv "$source" "$final_appimage"
         chmod +x "$final_appimage"
-        echo "[INFO] AppImage moved to: $final_appimage"
+        log i "AppImage moved to: $final_appimage" "$logfile"
         echo "$final_appimage|$version"
     }
 
@@ -216,18 +246,18 @@ manage_appimage() {
         tempdir=$(mktemp -d)
 
         if [[ "$file_path" =~ \.7z$ ]]; then
-            7z x -y "$file_path" -o"$tempdir" > /dev/null || { echo "[ERROR] Failed to extract 7z archive"; exit 1; }
+            7z x -y "$file_path" -o"$tempdir" > /dev/null || { log e "Failed to extract 7z archive" "$logfile"; exit 1; }
         else
-            tar -xf "$file_path" -C "$tempdir" || { echo "[ERROR] Failed to extract tar archive"; exit 1; }
+            tar -xf "$file_path" -C "$tempdir" || { log e "Failed to extract tar archive" "$logfile"; exit 1; }
         fi
 
         appimage_path=$(find "$tempdir" -type f -name '*.AppImage' | head -n 1)
 
         if [[ -n "$appimage_path" ]]; then
-            echo "Found AppImage: $(basename "$appimage_path")"
+            log i "Found AppImage: $(basename "$appimage_path")" "$logfile"
             output=$(finalize_appimage_file "$appimage_path")
         else
-            echo "[ERROR] No AppImage found in extracted archive!"
+            log e "No AppImage found in extracted archive!" "$logfile"
             rm -rf "$tempdir"
             exit 1
         fi
@@ -239,26 +269,28 @@ manage_appimage() {
 
         if [[ "$file_path" == "$final_appimage" ]]; then
              if [[ ! -f "$file_path" ]]; then
-                 echo "[ERROR] Expected file $file_path does not exist."
+                 log e "Expected file $file_path does not exist." "$logfile"
                  exit 1
              fi
-             echo "[INFO] File already exists at destination."
+             log i "File already exists at destination." "$logfile"
         else
-             cp "$file_path" "$final_appimage" || { echo "[ERROR] Failed to copy AppImage"; exit 1; }
+             cp "$file_path" "$final_appimage" || { log e "Failed to copy AppImage" "$logfile"; exit 1; }
         fi
 
         chmod +x "$final_appimage"
         output="$final_appimage|$version"
     else
-        echo "[ERROR] Unsupported appimage file format: $file_path"
+        log e "Unsupported appimage file format: $file_path" "$logfile"
         exit 1
     fi
 
-    echo "AppImage management completed"
+    log i "AppImage management completed" "$logfile"
     echo "$output"
 }
 
 manage_flatpak() {
+
+    log d "Starting manage_flatpak function" "$logfile"
 
     # TODO: make me quicker by comparing the current hash with the one provided in the release artifacts
 
@@ -283,7 +315,7 @@ manage_flatpak() {
     local output_path="$component/artifacts/$component.$file_extension"
     wget -qc "$url" -O "$output_path"
     if [ ! -f "$output_path" ]; then
-        echo "[ERROR] Failed to download flatpak from $url"
+        log e "Failed to download flatpak from $url" "$logfile"
         return 1
     else
         echo "Flatpak grabbed successfully: \"$output_path\""
@@ -294,6 +326,9 @@ manage_flatpak() {
 }
 
 manage_generic() {
+
+    log d "Starting manage_generic function" "$logfile"
+
     local component="$1"
     local file_path="$2"
     local version="$3"
@@ -306,7 +341,7 @@ manage_generic() {
     echo "Managing generic artifact for component: $component from $file_path"
 
     if [[ ! -f "$file_path" ]]; then
-        echo "[ERROR] Generic artifact not found: $file_path"
+        log e "Generic artifact not found: $file_path" "$logfile"
         exit 1
     fi
 
@@ -316,6 +351,9 @@ manage_generic() {
 
 # This function not compiling the flatpak, just downloading it and extracting it (+ runtimes and sdk)
 manage_flatpak_id() {
+
+    log d "Starting manage_flatpak_id function" "$logfile"
+
     local component="$1"
     local flatpak_id="$2"
 
@@ -328,7 +366,7 @@ manage_flatpak_id() {
 
     local was_installed="true"
     if ! flatpak info --user "$flatpak_id" > /dev/null 2>&1; then
-        echo "[INFO] Flatpak $flatpak_id is not installed. Proceeding with installation."
+        log i "Flatpak $flatpak_id is not installed. Proceeding with installation." "$logfile"
         was_installed="false"
     fi
 
@@ -338,13 +376,13 @@ manage_flatpak_id() {
     local metainfo_path="$HOME/.local/share/flatpak/app/$flatpak_id/x86_64/stable/active/export/share/metainfo/$flatpak_id.metainfo.xml"
 
     if [[ ! -f "$metainfo_path" ]]; then
-        echo "[ERROR] Metainfo file not found at \"$metainfo_path\"."
+        log e "Metainfo file not found at \"$metainfo_path\"." "$logfile"
         ls -lah "$(dirname "$metainfo_path")"
         exit 1
     fi
 
     if [[ ! -d "$app_path" ]]; then
-        echo "[ERROR] App path not found: \"$app_path\"."
+        log e "App path not found: \"$app_path\"." "$logfile"
         ls -lah "$(dirname "$app_path")"
         exit 1
     fi
@@ -353,23 +391,23 @@ manage_flatpak_id() {
     extracted_version=$(version_check "metainfo" "$component" "$metainfo_path")
 
     if [[ $? -eq 0 ]]; then
-        echo "[INFO] Skipping $flatpak_id because version is already up-to-date."
+        log i "Skipping $flatpak_id because version is already up-to-date." "$logfile"
         echo "skip" > result.txt
         [[ "$was_installed" == "false" ]] && flatpak uninstall --user -y "$flatpak_id" || true
         exit 0
     fi
 
     mkdir -p "$component/artifacts/.tmp"
-    echo "[INFO] Copying application files..."
+    log i "Copying application files..." "$logfile"
     cp -r "$app_path"/* "$component/artifacts/.tmp/"
 
-    echo "[INFO] Finding required runtimes for $flatpak_id..."
+    log i "Finding required runtimes for $flatpak_id..." "$logfile"
     local runtimes
     runtimes=$(flatpak info --user "$flatpak_id" | awk '/Runtime:/ {print $2} /Sdk:/ {print $2}')
     echo -e "[INFO] Found runtimes:\n$runtimes"
 
     for runtime_id in $runtimes; do
-        echo "[INFO] Including runtime: $runtime_id"
+        log i "Including runtime: $runtime_id" "$logfile"
 
         local runtime_name=$(echo "$runtime_id" | cut -d'/' -f1)
         local runtime_arch=$(echo "$runtime_id" | cut -d'/' -f2)
@@ -378,9 +416,9 @@ manage_flatpak_id() {
         local runtime_path="$HOME/.local/share/flatpak/runtime/$runtime_name/$runtime_arch/$runtime_branch/active/files"
 
         if [[ -d "$runtime_path" ]]; then
-            echo "[INFO] Copying runtime files for $runtime_id..."
+            log i "Copying runtime files for $runtime_id..." "$logfile"
             mkdir -p "$component/artifacts/.tmp/runtimes/$runtime_id"
-            cp -r "$runtime_path"/* "$component/artifacts/.tmp/runtimes/$runtime_id/" || { echo "[ERROR] Copy failed"; exit 1; }
+            cp -r "$runtime_path"/* "$component/artifacts/.tmp/runtimes/$runtime_id/" || { log e "Copy failed" "$logfile"; exit 1; }
         else
             echo "[WARNING] Runtime path $runtime_path not found, skipping."
         fi
@@ -391,25 +429,24 @@ manage_flatpak_id() {
     FINALIZE_PATH="$component/artifacts/.tmp"
     FINALIZE_VERSION="$extracted_version"
 
-    echo "[INFO] Finalizing artifact..."
+    log i "Finalizing artifact..." "$logfile"
 
     # cleanup dopo finalize
     if [[ "$was_installed" == "false" ]]; then
-        echo "[INFO] Uninstalling $flatpak_id as it was not previously installed."
+        log i "Uninstalling $flatpak_id as it was not previously installed." "$logfile"
         flatpak uninstall --user -y "$flatpak_id" || echo "[WARNING] Failed to uninstall $flatpak_id"
     fi
 }
 
 finalize() {
+
+    log d "Starting finalize function" "$logfile"
+
     if [[ -z "$FINALIZE_COMPONENT" || -z "$FINALIZE_PATH" || -z "$FINALIZE_VERSION" ]]; then
-        echo "[ERROR] finalize() called without a valid grab step."
+        log e "finalize() called without a valid grab step." "$logfile"
         return 1
     fi
 
-    finalize_artifact "$FINALIZE_COMPONENT" "$FINALIZE_PATH" "$FINALIZE_VERSION"
-}
-
-finalize_artifact() {
     local component="$1"
     local source_path="$2"
     local version="$3"
@@ -423,35 +460,35 @@ finalize_artifact() {
     local tmpzip_dir="$artifact_dir/.tmpzip"
 
     if [[ -f "$source_path" ]]; then
-        echo "[INFO] Source is a file, checking size..."
+        log i "Source is a file, checking size..." "$logfile"
 
         local artifact_size_mb=$(( $(stat -c%s "$source_path") / 1024 / 1024 ))
 
         if [[ "$artifact_size_mb" -gt "$max_size_mb" && "$SPLIT" == "true" ]]; then
-            echo "[INFO] File larger than ${max_size_mb}MB, preparing split ZIP archive."
+            log i "File larger than ${max_size_mb}MB, preparing split ZIP archive." "$logfile"
 
-            echo "[INFO] Preparing temporary directory for zipping..."
+            log i "Preparing temporary directory for zipping..." "$logfile"
             rm -rf "$tmpzip_dir"
             mkdir -p "$tmpzip_dir"
 
             if [[ "$source_path" =~ \.tar\.(gz|bz2|xz)$ ]]; then
-                echo "[INFO] Extracting TAR archive before zipping..."
-                tar -xf "$source_path" -C "$tmpzip_dir" || { echo "[ERROR] Failed to extract tar archive."; exit 1; }
+                log i "Extracting TAR archive before zipping..." "$logfile"
+                tar -xf "$source_path" -C "$tmpzip_dir" || { log e "Failed to extract tar archive." "$logfile"; exit 1; }
             elif [[ "$source_path" =~ \.zip$ ]]; then
-                echo "[INFO] Extracting ZIP archive before re-zipping..."
-                unzip -q "$source_path" -d "$tmpzip_dir" || { echo "[ERROR] Failed to extract zip archive."; exit 1; }
+                log i "Extracting ZIP archive before re-zipping..." "$logfile"
+                unzip -q "$source_path" -d "$tmpzip_dir" || { log e "Failed to extract zip archive." "$logfile"; exit 1; }
             else
-                echo "[INFO] Copying file to temporary zipping folder..."
-                cp "$source_path" "$tmpzip_dir/" || { echo "[ERROR] Failed to copy file."; exit 1; }
+                log i "Copying file to temporary zipping folder..."
+                cp "$source_path" "$tmpzip_dir/" || { log e "Failed to copy file." "$logfile"; exit 1; }
             fi
 
-            echo "[INFO] Creating split ZIP archive..."
-            (cd "$artifact_dir" && zip -r -s ${max_size_mb}m "${component}.zip" ".tmpzip") || { echo "[ERROR] Failed to create split zip archive."; exit 1; }
+            log i "Creating split ZIP archive..." "$logfile"
+            (cd "$artifact_dir" && zip -r -s ${max_size_mb}m "${component}.zip" ".tmpzip") || { log e "Failed to create split zip archive." "$logfile"; exit 1; }
 
-            echo "[INFO] Cleaning temporary zipping folder..."
+            log i "Cleaning temporary zipping folder..." "$logfile"
             rm -rf "$tmpzip_dir"
 
-            echo "[INFO] Moving split archive parts..."
+            log i "Moving split archive parts..." "$logfile"
             for part in "$artifact_dir"/${component}.zip "$artifact_dir"/${component}.z*; do
                 [ -e "$part" ] || continue
                 hash=($(sha256sum "$part"))
@@ -459,35 +496,35 @@ finalize_artifact() {
             done
 
         else
-            echo "[INFO] File size is within limit or splitting is disabled, copying directly."
-            cp "$source_path" "$artifact_base" || { echo "[ERROR] Failed to copy artifact file."; exit 1; }
+            log i "File size is within limit or splitting is disabled, copying directly." "$logfile"
+            cp "$source_path" "$artifact_base" || { log e "Failed to copy artifact file." "$logfile"; exit 1; }
 
             hash=($(sha256sum "$artifact_base"))
             echo "$hash" > "$artifact_dir/$(basename "$artifact_base").sha"
         fi
 
     elif [[ -d "$source_path" ]]; then
-        echo "[INFO] Source is a directory, creating tar.gz to check size..."
-        tar -czf "$temp_tar" -C "$source_path" . || { echo "[ERROR] Failed to create tar.gz archive."; exit 1; }
+        log i "Source is a directory, creating tar.gz to check size..." "$logfile"
+        tar -czf "$temp_tar" -C "$source_path" . || { log e "Failed to create tar.gz archive." "$logfile"; exit 1; }
 
         local artifact_size_mb=$(( $(stat -c%s "$temp_tar") / 1024 / 1024 ))
 
         if [[ "$artifact_size_mb" -gt "$max_size_mb" ]]; then
-            echo "[INFO] Archive larger than ${max_size_mb}MB, preparing split ZIP archive."
+            log i "Archive larger than ${max_size_mb}MB, preparing split ZIP archive." "$logfile"
 
             rm -f "$temp_tar"
 
-            echo "[INFO] Preparing temporary directory for zipping..."
+            log i "Preparing temporary directory for zipping..." "$logfile"
             rm -rf "$tmpzip_dir"
-            cp -r "$source_path" "$tmpzip_dir" || { echo "[ERROR] Failed to copy directory."; exit 1; }
+            cp -r "$source_path" "$tmpzip_dir" || { log e "Failed to copy directory." "$logfile"; exit 1; }
 
-            echo "[INFO] Creating split ZIP archive..."
-            (cd "$artifact_dir" && zip -r -s ${max_size_mb}m "${component}.zip" ".tmpzip") || { echo "[ERROR] Failed to create split zip archive."; exit 1; }
+            log i "Creating split ZIP archive..." "$logfile"
+            (cd "$artifact_dir" && zip -r -s ${max_size_mb}m "${component}.zip" ".tmpzip") || { log e "Failed to create split zip archive." "$logfile"; exit 1; }
 
-            echo "[INFO] Cleaning temporary zipping folder..."
+            log i "Cleaning temporary zipping folder..." "$logfile"
             rm -rf "$tmpzip_dir"
 
-            echo "[INFO] Moving split archive parts..."
+            log i "Moving split archive parts..." "$logfile"
             for part in "$artifact_dir"/${component}.zip "$artifact_dir"/${component}.z*; do
                 [ -e "$part" ] || continue
                 hash=($(sha256sum "$part"))
@@ -495,13 +532,13 @@ finalize_artifact() {
             done
 
         else
-            echo "[INFO] Archive size is within limit, keeping tar.gz."
+            log i "Archive size is within limit, keeping tar.gz." "$logfile"
             hash=($(sha256sum "$temp_tar"))
             echo "$hash" > "$artifact_dir/$(basename "$temp_tar").sha"
         fi
 
     else
-        echo "[ERROR] Source path is neither a file nor a directory."
+        log e "Source path is neither a file nor a directory." "$logfile"
         exit 1
     fi
 
@@ -511,6 +548,9 @@ finalize_artifact() {
 }
 
 write_components_version() {
+
+    log d "Starting write_components_version function" "$logfile"
+
     # Create or overwrite the components_version.md file
     local output_file="components_version.md"
     echo "# Components Version Summary" > "$output_file"
@@ -532,6 +572,9 @@ write_components_version() {
 }
 
 version_check() {
+
+    log d "Starting version_check function" "$logfile"
+
     local check_type="$1"
     local component="$2"
     local source="$3"
@@ -561,11 +604,11 @@ version_check() {
             tempdir=$(mktemp -d)
 
             if [[ "$source" =~ \.tar\.(gz|bz2|xz)$ ]]; then
-                tar -xf "$source" -C "$tempdir" || { echo "[ERROR] Failed to extract archive."; rm -rf "$tempdir"; exit 1; }
+                tar -xf "$source" -C "$tempdir" || { log e "Failed to extract archive." "$logfile"; rm -rf "$tempdir"; exit 1; }
             elif [[ "$source" =~ \.zip$ ]]; then
-                unzip -q "$source" -d "$tempdir" || { echo "[ERROR] Failed to extract archive."; rm -rf "$tempdir"; exit 1; }
+                unzip -q "$source" -d "$tempdir" || { log e "Failed to extract archive." "$logfile"; rm -rf "$tempdir"; exit 1; }
             else
-                echo "[ERROR] Unsupported archive format for metainfo extraction." >&2
+                log e "Unsupported archive format for metainfo extraction." "$logfile"
                 rm -rf "$tempdir"
                 exit 1
             fi
@@ -583,11 +626,11 @@ version_check() {
     fi
 
     if [[ -z "$version" ]]; then
-        echo "[ERROR] Could not determine version for $component (source: \"$source\")" >&2
+        log e "Could not determine version for $component (source: \"$source\")" "$logfile"
         exit 1
     fi
 
-    echo "[INFO] Detected version: $version"
+    log i "Detected version: $version" "$logfile"
 
     # Compare with the current version (if it exists)
     if [[ -f "$version_file" ]]; then
