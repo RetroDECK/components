@@ -153,10 +153,6 @@ grab() {
 
         if [[ ! -f "$output_path" ]]; then
             log i "Downloading $url -> $output_path" "$logfile"
-            if [[ -f "$output_path" ]]; then
-                log i "File already exists, skipping download." "$logfile"
-                return
-            fi
             wget -qc "$url" -O "$output_path" || { log e "Failed to download $url" "$logfile"; exit 1; }
 
             if [[ ! -s "$output_path" ]]; then
@@ -181,10 +177,22 @@ grab() {
 
     log i "Checking version..." "$logfile"
     version=$(version_check "link" "$component" "$url")
-    output=$(manage_appimage "$component" "$output_path" "$version" 2>/dev/null | tail -n 1)
+
+    case "$type" in
+        appimage)
+            output=$(manage_appimage "$component" "$output_path" "$version" 2>/dev/null | tail -n 1)
+            ;;
+        generic)
+            output=$(manage_generic "$component" "$output_path" "$version" 2>/dev/null | tail -n 1)
+            ;;
+        *)
+            log e "Unsupported type for automatic management: $type" "$logfile"
+            exit 1
+            ;;
+    esac
 
     if [[ -z "$output" ]]; then
-        log e "manage_appimage returned empty output!" "$logfile"
+        log e "manage_${type} returned empty output!" "$logfile"
         exit 1
     fi
 
@@ -203,7 +211,6 @@ grab() {
         ls -lah "$(dirname "$FINALIZE_PATH")"
         exit 1
     fi
-
 }
 
 manage_appimage() {
@@ -523,7 +530,11 @@ finalize() {
                 done
             else
                 log i "Copying file as-is (no split)." "$logfile"
-                cp -f "$source_path" "$artifact_base" || { log e "Copy failed." "$logfile"; exit 1; }
+                if [[ "$source_path" != "$artifact_base" ]]; then
+                    cp -f "$source_path" "$artifact_base" || { log e "Copy failed." "$logfile"; exit 1; }
+                else
+                    log i "Source and destination are the same file, skipping copy." "$logfile"
+                fi
                 sha256sum "$artifact_base" > "$artifact_base.sha"
             fi
         fi
@@ -602,12 +613,26 @@ version_check() {
 
     case "$check_type" in
         manual|link|file)
-            if [[ "$source" =~ ^[0-9]+\.[0-9]+(\.[0-9]+)?$ ]]; then
-                version="$source"
-            elif [[ "$source" =~ ^https?:// ]]; then
-                version=$(basename "$source" | grep -oE '[0-9]+\.[0-9]+(\.[0-9]+)?' | head -n 1)
+        if [[ "$source" =~ ^[0-9]+\.[0-9]+(\.[0-9]+)?$ ]]; then
+            version="$source"
+
+        elif [[ "$source" =~ ^https?:// ]]; then
+            # Try standard version pattern
+            version=$(echo "$source" | grep -oE '[0-9]+\.[0-9]+(\.[0-9]+)?' | head -n 1)
+
+            # Fallback: try nightly or date-based version
+            if [[ -z "$version" ]]; then
+                version=$(echo "$source" | grep -oE 'nightly-[0-9]{4}-[0-9]{2}-[0-9]{2}' | head -n 1)
             fi
-            ;;
+
+            if [[ -z "$version" ]]; then
+                version=$(echo "$source" | grep -oE '[0-9]{4}[_-][0-9]{2}[_-][0-9]{2}' | head -n 1)
+            fi
+
+        elif [[ -f "$source" ]]; then
+            version=$(basename "$source" | grep -oE '[0-9]+\.[0-9]+(\.[0-9]+)?' | head -n 1)
+        fi
+        ;;
 
         metainfo)
             if [[ -f "$source" && "$source" =~ \.(metainfo|appdata)\.xml$ ]]; then
@@ -645,8 +670,8 @@ version_check() {
     esac
 
     if [[ -z "$version" ]]; then
-        log e "Could not determine version for $component (source: \"$source\")" "$logfile"
-        exit 1
+        log w "Could not determine version for $component (source: \"$source\"), setting as \"unknown\"" "$logfile"
+        version="unknown"
     fi
 
     log i "Detected version: $version" "$logfile"
