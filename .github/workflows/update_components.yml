@@ -347,7 +347,7 @@ jobs:
           tag: "${{ env.TAG }}"
           name: "RetroDECK Components ${{ env.TAG }}"
           body: ${{ steps.generate-body.outputs.RELEASE_BODY }}
-          artifacts: "*/artifacts/*,!*/artifacts/version"
+          artifacts: "*/artifacts/*,!*/artifacts/version,components_version.md"
           allowUpdates: true
           omitBodyDuringUpdate: true
           makeLatest: ${{ env.MAKE_LATEST }}
