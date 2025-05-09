@@ -19,7 +19,7 @@ permissions:
 jobs:
   setup-recipes:
     runs-on: ubuntu-latest
-    if: (github.event_name != 'schedule' || github.ref == 'refs/heads/update/components') && github.head_ref != github.base_ref
+    if: (github.event_name != 'schedule' || github.ref == 'refs/heads/update/components')
     outputs:
       heavy-matrix: ${{ steps.set-matrix.outputs.heavy }}
       light-matrix: ${{ steps.set-matrix.outputs.light }}
@@ -394,7 +394,7 @@ jobs:
 
       - name: Open Pull Request
         uses: peter-evans/create-pull-request@v7
-        if: github.event_name != 'schedule' || github.ref == 'refs/heads/update/components'
+        if: github.event_name != 'schedule' || github.ref == 'refs/heads/update/components' && github.head_ref != github.base_ref
         with:
           token: ${{ steps.generate-rekku-token.outputs.token }}
           commit-message: "Update RetroDECK Components Artifacts"
@@ -409,7 +409,7 @@ jobs:
         with:
           GITHUB_TOKEN: ${{ steps.generate-rekku-token.outputs.token }}
           header: "RetroDECK Build Artifacts"
-          message: pr_body.md
+          path: pr_body.md
           
       - name: Rewrite Tag
         if: github.ref == 'refs/heads/main'
