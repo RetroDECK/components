@@ -321,7 +321,7 @@ jobs:
 
       - name: Set Make Latest
         run: |
-          if [[ "${GITHUB_REF}" == "refs/heads/main" ]]; then
+          if [[ "${{ github.ref }}" == "refs/heads/main" ]]; then
             MAKE_LATEST=true
           else
             MAKE_LATEST=false
