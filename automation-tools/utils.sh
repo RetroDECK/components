@@ -588,11 +588,11 @@ write_components_version() {
     log d "Starting write_components_version function" "$logfile"
 
     # Create or overwrite the components_version.md file
-    local output_file="components_version.md"
-    if [[ ! -f "$output_file" ]]; then
-        echo "# Components Version Summary" > "$output_file"
+    local components_version_file="components_version.md"
+    if [[ ! -f "$components_version_file" ]]; then
+        echo "# Components Version Summary" > "$components_version_file"
     fi
-    echo "" >> "$output_file"
+    echo "" >> "$components_version_file"
 
     # Loop through all */*/artifacts/version files
     for version_file in */*/artifacts/version; do
@@ -600,11 +600,15 @@ write_components_version() {
             local component_name=$(basename "$(dirname "$(dirname "$version_file")")")
             local version=$(cat "$version_file")
             local update_date=$(date -r "$version_file" +"%Y-%m-%d %H:%M:%S")
+
+            log d "Component: $component_name" "$logfile"
+            log d "Version: $version" "$logfile"
+            log d "Last Updated: $update_date" "$logfile"
             
-            echo "## $component_name" >> "$output_file"
-            echo "- Version: $version" >> "$output_file"
-            echo "- Last Updated: $update_date" >> "$output_file"
-            echo "" >> "$output_file"
+            echo "## $component_name" >> "$components_version_file"
+            echo "- Version: $version" >> "$components_version_file"
+            echo "- Last Updated: $update_date" >> "$components_version_file"
+            echo "" >> "$components_version_file"
         fi
     done
 }
