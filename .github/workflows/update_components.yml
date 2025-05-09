@@ -314,10 +314,11 @@ jobs:
       - name: Set Make Latest
         run: |
           if [[ "${GITHUB_REF}" == "refs/heads/main" ]]; then
-            echo "MAKE_LATEST=true" >> $GITHUB_ENV
+            MAKE_LATEST=true
           else
-            echo "MAKE_LATEST=false" >> $GITHUB_ENV
+            MAKE_LATEST=false
           fi
+          echo "MAKE_LATEST=$MAKE_LATEST" >> $GITHUB_ENV
 
       - name: Generate Version Tag
         id: version-tag
