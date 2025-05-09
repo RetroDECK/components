@@ -211,53 +211,6 @@ jobs:
           private-key: ${{ secrets.REKKU_PRIVATE_KEY }}
           repositories: "components"
           owner: "RetroDECK"
-   
-      # - name: Commit and Push
-      #   env:
-      #     GITHUB_TOKEN: ${{ steps.generate-rekku-token.outputs.token }}
-      #   run: |
-      #     set -e
-
-      #     git fetch origin
-      #     BRANCH=$(git rev-parse --abbrev-ref HEAD)
-      #     git config user.name "Rekku Bot"
-      #     git config user.email "rekku-bot@users.noreply.github.com"
-
-      #     echo "[INFO] Adding all changed artifacts..."
-      #     git add -A
-
-      #     if git diff --cached --quiet; then
-      #       echo "[INFO] No changes to commit"
-      #       exit 0
-      #     fi
-
-      #     echo "[INFO] Preparing commit message..."
-      #     COMMIT_MSG=""
-
-      #     for version_file in */artifacts/version; do
-      #       if [[ -f "$version_file" ]]; then
-      #         component=$(basename "$(dirname "$version_file")")
-      #         version=$(cat "$version_file")
-      #         COMMIT_MSG+="upd(component): updated $component to $version"$'\n'
-      #       fi
-      #     done
-
-      #     if [[ -z "$COMMIT_MSG" ]]; then
-      #       COMMIT_MSG="upd(component): updated components on $(date +'%Y-%m-%d')"
-      #     fi
-
-      #     git commit -m "$COMMIT_MSG"
-
-      #     echo "[INFO] Rebasing and pushing..."
-      #     git fetch origin
-      #     BRANCH=$(git rev-parse --abbrev-ref HEAD)
-
-      #     git config http.postBuffer 524288000
-      #     git config --global http.lowSpeedLimit 0
-      #     git config --global http.lowSpeedTime 999999
-
-      #     git pull --rebase origin "$BRANCH"
-      #     git push origin HEAD
 
       - name: Get Branch Name
         run: |
