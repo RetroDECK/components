@@ -265,33 +265,37 @@ jobs:
       - name: Generate release body text
         id: generate-body
         run: |
+          set -e
           RELEASE_BODY_FILE="release_body.md"
-          echo "# Release Notes" > $RELEASE_BODY_FILE
-          echo "This is a RetroDECK Components Artifacts release from [this commit](https://github.com/${{ github.repository }}/commit/${{ github.sha }}), from branch [${{ env.BRANCH_NAME }}](https://github.com/RetroDECK/RetroDECK/tree/feat/${{ env.BRANCH_NAME }})." >> $RELEASE_BODY_FILE
-          echo "" >> $RELEASE_BODY_FILE
+          echo "# Release Notes" > "$RELEASE_BODY_FILE"
+          echo "This is a RetroDECK Components Artifacts release from [this commit](https://github.com/${{ github.repository }}/commit/${{ github.sha }}), from branch [${{ env.BRANCH_NAME }}](https://github.com/RetroDECK/RetroDECK/tree/feat/${{ env.BRANCH_NAME }})." >> "$RELEASE_BODY_FILE"
+          echo "" >> "$RELEASE_BODY_FILE"
 
           # Append the contents of components_version.md to the release body
-          cat components_version.md >> $RELEASE_BODY_FILE
-          echo "" >> $RELEASE_BODY_FILE
+          cat components_version.md >> "$RELEASE_BODY_FILE"
+          echo "" >> "$RELEASE_BODY_FILE"
+
+          # Prepare array
+          MISSING_ARTIFACTS=()
 
           # Iterate through folders in the repo root
-          MISSING_ARTIFACTS=()
-          for folder in $(find . -maxdepth 1 -type d -not -name '.*' -not -name 'automation-tools' -not -name 'downloaded-artifacts' -exec basename {} \;); do
-            if [ ! -d "$folder/artifacts" ] || ! ls "$folder/artifacts/"*.{zip,tar.gz,gz,tar,7z,appimage} >/dev/null 2>&1; then
+          for folder in $(find . -maxdepth 1 -mindepth 1 -type d -not -name '.*' -not -name 'automation-tools' -not -name 'downloaded-artifacts' -exec basename {} \;); do
+            if [ ! -d "$folder/artifacts" ] || ! find "$folder/artifacts" -maxdepth 1 -type f \( -name "*.tar.gz" -o -name "*.zip" -o -name "*.gz" -o -name "*.tar" -o -name "*.7z" -o -name "*.appimage" \) | grep -q .; then
               MISSING_ARTIFACTS+=("$folder")
             fi
           done
 
           # Add warnings for missing artifacts
           if [ ${#MISSING_ARTIFACTS[@]} -ne 0 ]; then
-            echo "[WARNING] The following components are missing from this release:" >> $RELEASE_BODY_FILE
+            echo "[WARNING] The following components are missing from this release:" >> "$RELEASE_BODY_FILE"
             for folder in "${MISSING_ARTIFACTS[@]}"; do
-              echo "- $folder" >> $RELEASE_BODY_FILE
+              echo "- $folder" >> "$RELEASE_BODY_FILE"
             done
-            else
-              echo "[INFO] All folders have their artifacts." >> $RELEASE_BODY_FILE
+          else
+            echo "[INFO] All folders have their artifacts." >> "$RELEASE_BODY_FILE"
           fi
-          echo "" >> $RELEASE_BODY_FILE
+
+          echo "" >> "$RELEASE_BODY_FILE"
 
           # Fetch latest main to compare against
           git fetch origin main
@@ -299,16 +303,15 @@ jobs:
           # Build comparison link
           COMPARE_URL="https://github.com/${{ github.repository }}/compare/main...${{ github.sha }}"
 
-          # Append comparison link to release body
-          echo "" >> $RELEASE_BODY_FILE
-          echo "---" >> $RELEASE_BODY_FILE
-          echo "" >> $RELEASE_BODY_FILE
-          echo "[Check changes since latest main release](${COMPARE_URL})" >> $RELEASE_BODY_FILE
-          echo "" >> $RELEASE_BODY_FILE
+          echo "" >> "$RELEASE_BODY_FILE"
+          echo "---" >> "$RELEASE_BODY_FILE"
+          echo "" >> "$RELEASE_BODY_FILE"
+          echo "[Check changes since latest main release](${COMPARE_URL})" >> "$RELEASE_BODY_FILE"
+          echo "" >> "$RELEASE_BODY_FILE"
 
           # Output the final body
           echo "RELEASE_BODY<<EOF" >> $GITHUB_OUTPUT
-          cat $RELEASE_BODY_FILE >> $GITHUB_OUTPUT
+          cat "$RELEASE_BODY_FILE" >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
 
       - name: Set Make Latest
