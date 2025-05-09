@@ -103,11 +103,6 @@ jobs:
           echo "artifact_name=$artifact_name" >> $GITHUB_ENV
           bash "${{ matrix.recipe }}"
 
-      - name: Build Components Version
-        run: |
-          source automation-tools/utils.sh
-          write_components_version
-
       - name: Upload Artifacts
         uses: actions/upload-artifact@v4
         with:
@@ -206,8 +201,12 @@ jobs:
           done
 
       - name: Generate components_version.md
-        run: source automation-tools/utils.sh && write_components_version
-
+        run: |
+          source automation-tools/utils.sh
+          write_components_version
+          echo "Components version file generated."
+          cat components_version.md
+          
       - name: Generate a token for Rekku
         id: generate-rekku-token
         uses: actions/create-github-app-token@v1
