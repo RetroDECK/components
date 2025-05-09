@@ -394,14 +394,14 @@ jobs:
           echo "```" >> pr_body.md
 
       - name: Open Pull Request
-        uses: peter-evans/create-pull-request@v5
+        uses: peter-evans/create-pull-request@v7
         if: github.event_name != 'schedule' || github.ref == 'refs/heads/update/components'
         with:
           token: ${{ steps.generate-rekku-token.outputs.token }}
           commit-message: "Update RetroDECK Components Artifacts"
           branch: "update/components-artifacts"
           title: "Update RetroDECK Components Artifacts"
-          body: pr_body.md
+          body-path: pr_body.md
           target: "cooker"
 
       - name: Post PR comment with artifacts
