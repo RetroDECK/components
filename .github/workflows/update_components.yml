@@ -19,7 +19,7 @@ permissions:
 jobs:
   setup-recipes:
     runs-on: ubuntu-latest
-    if: github.event_name != 'schedule' || github.ref == 'refs/heads/update/components'
+    if: (github.event_name != 'schedule' || github.ref == 'refs/heads/update/components') && github.head_ref != github.base_ref
     outputs:
       heavy-matrix: ${{ steps.set-matrix.outputs.heavy }}
       light-matrix: ${{ steps.set-matrix.outputs.light }}
@@ -298,7 +298,6 @@ jobs:
           else
             echo "No missing components detected!" >> "$RELEASE_BODY_FILE"
           fi
-          cat components_version.md >> "$RELEASE_BODY_FILE"
 
           echo "" >> "$RELEASE_BODY_FILE"
 
