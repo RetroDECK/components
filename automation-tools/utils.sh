@@ -594,8 +594,8 @@ write_components_version() {
     fi
     echo "" >> "$components_version_file"
 
-    # Loop through all */*/artifacts/version files
-    for version_file in */*/artifacts/version; do
+    # Loop through all */artifacts/version files
+    for version_file in */artifacts/version; do
         if [[ -f "$version_file" ]]; then
             local component_name=$(basename "$(dirname "$(dirname "$version_file")")")
             local version=$(cat "$version_file")
