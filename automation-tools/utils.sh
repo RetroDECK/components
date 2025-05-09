@@ -605,9 +605,7 @@ write_components_version() {
             log d "Version: $version" "$logfile"
             log d "Last Updated: $update_date" "$logfile"
             
-            echo "## $component_name" >> "$components_version_file"
-            echo "- Version: $version" >> "$components_version_file"
-            echo "- Last Updated: $update_date" >> "$components_version_file"
+            echo "**$component_name**: $version (updated on $update_date)" >> "$components_version_file"
             echo "" >> "$components_version_file"
         fi
     done
