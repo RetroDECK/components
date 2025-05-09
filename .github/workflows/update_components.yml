@@ -297,7 +297,7 @@ jobs:
               echo "- $folder" >> "$RELEASE_BODY_FILE"
             done
           else
-            echo "[INFO] All folders have their artifacts." >> "$RELEASE_BODY_FILE"
+            echo "No missing components detected!" >> "$RELEASE_BODY_FILE"
           fi
 
           echo "" >> "$RELEASE_BODY_FILE"
