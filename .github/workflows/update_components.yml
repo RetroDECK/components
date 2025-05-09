@@ -103,6 +103,11 @@ jobs:
           echo "artifact_name=$artifact_name" >> $GITHUB_ENV
           bash "${{ matrix.recipe }}"
 
+      - name: Build Components Version
+        run: |
+          source automation-tools/utils.sh
+          write_components_version
+
       - name: Upload Artifacts
         uses: actions/upload-artifact@v4
         with:
