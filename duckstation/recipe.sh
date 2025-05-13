@@ -8,7 +8,7 @@ $(realpath "DuckStation-x64.AppImage") --appimage-extract
 
 mkdir -p duckstation
 
-mv mv squashfs-root/apprun-hooks duckstation/
+mv squashfs-root/apprun-hooks duckstation/
 mv squashfs-root/usr/* duckstation/
 rm -rf squashfs-root
 

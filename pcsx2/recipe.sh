@@ -8,7 +8,7 @@ $(realpath "pcsx2-v2.2.0-linux-appimage-x64-Qt.AppImage") --appimage-extract
 
 mkdir -p pcsx2
 
-mv mv squashfs-root/apprun-hooks pcsx2/
+mv squashfs-root/apprun-hooks pcsx2/
 mv squashfs-root/usr/* pcsx2/
 rm -rf squashfs-root
 
