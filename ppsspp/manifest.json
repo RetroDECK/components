@@ -1,57 +1,79 @@
 {
-    "ppsspp": {
-      "name": "PPSSPP",
-      "description": "PlayStation Portable Emulator",
-      "url": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/ppsspp/ppsspp-guide/",
-      "system": "psp",
-      "system_friendly_name": "Sony Playstation Portable",
-      "compatible_presets": {
-        "cheevos": [ "false", "true" ],
-        "cheevos_hardcore": [ "false", "true" ]
+  "ppsspp": {
+    "name": "PPSSPP",
+    "description": "PlayStation Portable Emulator",
+    "url": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/ppsspp/ppsspp-guide/",
+    "system": "psp",
+    "system_friendly_name": "Sony Playstation Portable",
+    "configurator_menus": {
+      "tools": {
+        "test_function": {
+          "name": "PPSSPP Test Function",
+          "description": "A test function",
+          "command": "ppsspp_test arg"
+        },
+        "test_function2": {
+          "name": "PPSSPP Test Function2",
+          "description": "A test function 2",
+          "command": "ppsspp_test2"
+        }
+      }
+    },
+    "compatible_presets": {
+      "cheevos": [ "false", "true" ],
+      "cheevos_hardcore": [ "false", "true" ],
+      "test_preset": [ "false", "true" ]
+    },
+    "preset_actions": {
+      "config_file_format": "ppsspp",
+      "savestate_auto_load": {
+        "AutoLoadSaveState": {
+          "action": "change",
+          "new_setting_value": "2",
+          "section": "General",
+          "target_file": "$ppssppconf",
+          "defaults_file": "$config/ppssppsdl/ppsspp.ini"
+        }
       },
-      "preset_actions": {
-        "config_file_format": "ppsspp",
-        "savestate_auto_load": {
-          "AutoLoadSaveState": {
-            "action": "change",
-            "new_setting_value": "2",
-            "section": "General",
-            "target_file": "$ppssppconf",
-            "defaults_file": "$config/ppssppsdl/ppsspp.ini"
-          }
+      "cheevos": {
+        "AchievementsEnable": {
+          "action": "change",
+          "new_setting_value": "True",
+          "section": "Achievements",
+          "target_file": "$ppssppconf",
+          "defaults_file": "$config/ppssppsdl/ppsspp.ini"
         },
-        "cheevos": {
-          "AchievementsEnable": {
-            "action": "change",
-            "new_setting_value": "True",
-            "section": "Achievements",
-            "target_file": "$ppssppconf",
-            "defaults_file": "$config/ppssppsdl/ppsspp.ini"
-          },
-          "AchievementsUserName": {
-            "action": "change",
-            "new_setting_value": "$cheevos_username",
-            "section": "Achievements",
-            "target_file": "$ppssppconf",
-            "defaults_file": "$config/ppssppsdl/ppsspp.ini"
-          },
-          "cheevos_token": {
-            "action": "change",
-            "new_setting_value": "$cheevos_token",
-            "section": "",
-            "target_file": "$ppssppcheevosconf",
-            "defaults_file": "$ppssppcheevosconf"
-          }
+        "AchievementsUserName": {
+          "action": "change",
+          "new_setting_value": "$cheevos_username",
+          "section": "Achievements",
+          "target_file": "$ppssppconf",
+          "defaults_file": "$config/ppssppsdl/ppsspp.ini"
         },
-        "cheevos_hardcore": {
-          "AchievementsChallengeMode": {
-            "action": "change",
-            "new_setting_value": "True",
-            "section": "Achievements",
-            "target_file": "$ppssppconf",
-            "defaults_file": "$config/ppssppsdl/ppsspp.ini"
-          }
+        "cheevos_token": {
+          "action": "change",
+          "new_setting_value": "$cheevos_token",
+          "section": "",
+          "target_file": "$ppssppcheevosconf",
+          "defaults_file": "$ppssppcheevosconf"
+        }
+      },
+      "cheevos_hardcore": {
+        "AchievementsChallengeMode": {
+          "action": "change",
+          "new_setting_value": "True",
+          "section": "Achievements",
+          "target_file": "$ppssppconf",
+          "defaults_file": "$config/ppssppsdl/ppsspp.ini"
+        }
+      },
+      "test_preset": {
+        "test_files": {
+          "action": "install",
+          "source": "/app/retrodeck/test_files/",
+          "destination": "/home/deck/test_files/"
         }
       }
     }
   }
+}
