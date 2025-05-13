@@ -1,6 +1,6 @@
 #!/bin/bash
 
-wget "https://github.com/stenzek/duckstation/releases/download/latest/DuckStation-x64.AppImage"
+wget "https://github.com/RetroDECK/Duckstation/releases/download/preview/DuckStation-x64.AppImage"
 
 chmod +x "DuckStation-x64.AppImage"
 
