@@ -1,11 +1,33 @@
 #!/bin/bash
 
-source "automation-tools/utils.sh"
+mkdir ppsspp
 
-#grab flatpak_id "https://github.com/flathub/org.ppsspp.PPSSPP"
+git clone https://github.com/flathub/org.ppsspp.PPSSPP.git
 
-grab flatpak_id "org.ppsspp.PPSSPP"
+cd org.ppsspp.PPSSPP
 
-# custom commnads goes here
+git submodule init
 
-finalize
+git submodule update
+
+flatpak-builder --user --force-clean --install-deps-from=flathub --install-deps-from=flathub-beta --repo=ppsspp-repo "ppsspp-build-dir" "org.ppsspp.PPSSPP.yml"
+
+rm -rf ppsspp-build-dir/files/lib/debug
+
+cd ..
+
+mv org.ppsspp.PPSSPP/ppsspp-build-dir/files/bin ppsspp/
+mv org.ppsspp.PPSSPP/ppsspp-build-dir/files/lib ppsspp/
+mv org.ppsspp.PPSSPP/ppsspp-build-dir/files/share/ppsspp/assets ppsspp/bin/
+mv org.ppsspp.PPSSPP/ppsspp-build-dir/files/share ppsspp/
+
+rm -rf ppsspp/share/ppsspp
+
+cp component_launcher.sh manifest.json functions.sh prepare_component.sh ppsspp/
+
+chmod +x ppsspp/component_launcher.sh
+
+tar -czf "ppsspp-artifact.tar.gz" "ppsspp"
+
+rm -rf ppsspp
+rm -rf org.ppsspp.PPSSPP
