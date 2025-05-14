@@ -1,0 +1,28 @@
+app-id: net.retrodeck.retrodeck.shared-libs
+runtime: org.kde.Platform
+runtime-version: '6.8'
+sdk: org.kde.Sdk
+
+cleanup:
+  - "/include"
+  - "/lib/pkgconfig"
+  - "/lib/debug"
+
+modules:
+
+  - name: shared-libs.68
+    buildsystem: simple
+    build-commands:
+      - mkdir -p ${FLATPAK_DEST}/lib/
+
+      - xargs -a shared-libs-68.txt -I{} cp /lib/x86_64-linux-gnu/{} ${FLATPAK_DEST}/lib/
+
+      - mkdir -p ${FLATPAK_DEST}/lib/openh264/extras/
+      - cp -P /lib/x86_64-linux-gnu/openh264/extras/{libopenh264.so*,libopenh264.so*}
+
+      - mkdir -p ${FLATPAK_DEST}/lib/plugins/platforms
+      - cp -P /usr/plugins/platforms/libqxcb.so ${FLATPAK_DEST}/lib/plugins/platforms/
+
+    sources:
+      - type: dir
+        path: .

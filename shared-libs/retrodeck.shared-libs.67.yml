@@ -1,0 +1,37 @@
+app-id: net.retrodeck.retrodeck.shared-libs
+runtime: org.kde.Platform
+runtime-version: '6.7'
+sdk: org.kde.Sdk
+
+cleanup:
+  - "/include"
+  - "/lib/pkgconfig"
+  - "/lib/debug"
+
+modules:
+
+  - name: shared-libs.67
+    buildsystem: simple
+    build-commands:
+      - mkdir -p ${FLATPAK_DEST}/lib/
+
+      - xargs -a shared-libs-67.txt -I{} cp /lib/x86_64-linux-gnu/{} ${FLATPAK_DEST}/lib/
+
+      - mkdir -p ${FLATPAK_DEST}/lib/plugins/imageformats
+      - cp -P /usr/plugins/imageformats/{libqgif.so,libqico.so,libqjpeg.so,libqsvg.so} ${FLATPAK_DEST}/lib/plugins/imageformats/
+
+      - mkdir -p ${FLATPAK_DEST}/lib/plugins/platforminputcontexts
+      - cp -P /usr/plugins/platforminputcontexts/{libcomposeplatforminputcontextplugin.so,libibusplatforminputcontextplugin.so} ${FLATPAK_DEST}/lib/plugins/platforminputcontexts/
+
+      - mkdir -p ${FLATPAK_DEST}/lib/plugins/platforms
+      - cp -P /usr/plugins/platforms/libqxcb.so ${FLATPAK_DEST}/lib/plugins/platforms/
+
+      - mkdir -p ${FLATPAK_DEST}/lib/plugins/tls
+      - cp -P /usr/plugins/tls/{libqcertonlybackend.so,libqopensslbackend.so} ${FLATPAK_DEST}/lib/plugins/tls/
+
+      - mkdir -p ${FLATPAK_DEST}/lib/plugins/xcbglintegrations
+      - cp -P /usr/plugins/xcbglintegrations/{libqxcb-egl-integration.so,libqxcb-glx-integration.so} ${FLATPAK_DEST}/lib/plugins/xcbglintegrations/
+
+    sources:
+      - type: dir
+        path: .
