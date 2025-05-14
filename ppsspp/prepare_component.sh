@@ -28,7 +28,7 @@ if [[ "$component" =~ ^(ppsspp|all)$ ]]; then
       tar -czf "$backup_file" -C "$cheats_folder" PPSSPP
       log i "PPSSPP cheats backed up to $backup_file"
     fi
-    tar -xzf "/app/retrodeck/cheats/ppsspp.tar.gz" -C "$cheats_folder/PPSSPP" --overwrite
+    rsync "$ppssppcheatsdb" "$cheats_folder/PPSSPP/"
   fi
   if [[ "$action" == "postmove" ]]; then # Run only post-move commands
     set_setting_value "$ppssppconf" "CurrentDirectory" "$roms_folder/psp" "ppsspp" "General"
