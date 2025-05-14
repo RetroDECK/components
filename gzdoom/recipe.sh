@@ -21,7 +21,7 @@ mv org.zdoom.GZDoom/gzdoom-build-dir/files/include gzdoom/
 mv org.zdoom.GZDoom/gzdoom-build-dir/files/lib gzdoom/
 mv org.zdoom.GZDoom/gzdoom-build-dir/files/share gzdoom/
 
-cp component_launcher.sh manifest.json functions.sh prepare_component.sh pcsx2/
+cp component_launcher.sh manifest.json functions.sh prepare_component.sh gzdoom/
 
 chmod +x gzdoom/component_launcher.sh
 
