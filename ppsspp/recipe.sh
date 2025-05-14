@@ -23,6 +23,10 @@ mv org.ppsspp.PPSSPP/ppsspp-build-dir/files/share ppsspp/
 
 rm -rf ppsspp/share/ppsspp
 
+wget https://github.com/Saramagrean/CWCheat-Database-Plus-/blob/master/cheat.db
+
+mv cheat.db ppsspp/
+
 cp component_launcher.sh manifest.json functions.sh prepare_component.sh ppsspp/
 
 chmod +x ppsspp/component_launcher.sh
