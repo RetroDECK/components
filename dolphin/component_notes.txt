@@ -1,0 +1,5 @@
+This component appears to have a static path coded for its assets. The current workaround appears to be to create this symlink in the core RetroDECK flatpak:
+
+ln -s "/app/retrodeck/components/dolphin/share/dolphin-emu" "/app/share/dolphin-emu"
+
+If this path can be modified through the component_launcher.sh at some point, it should be handled that way.
