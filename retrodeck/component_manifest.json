@@ -1,0 +1,176 @@
+{
+  "retrodeck": {
+    "name": "RetroDECK",
+    "description": "RetroDECK Framework",
+    "url": "https://retrodeck.net",
+    "configurator_menus": {
+      "settings": {
+        "portmaster_show_hide": {
+          "name": "Portmaster: Show / Hide",
+          "description": "Enable / Disable: PortMaster in ES-DE.",
+          "command": {
+            "zenity": "configurator_portmaster_toggle_dialog"
+          }
+        }
+      },
+      "tools": {
+        "bios_checker": {
+          "name": "BIOS Checker",
+          "description": "Checks and shows information about BIOS files.",
+          "command": {
+            "zenity": "configurator_bios_checker_dialog"
+          }
+        },
+        "games_compressor": {
+          "name": "Games Compressor",
+          "description": "Compress games to save space for supported systems.",
+          "command": {
+            "zenity": "configurator_compression_tool_dialog"
+          }
+        },
+        "install_retrodeck_controller_layouts": {
+          "name": "Install: RetroDECK Controller Layouts",
+          "description": "Install RetroDECK controller templates into Steam.",
+          "command": {
+            "zenity": "configurator_install_retrodeck_controller_profile_dialog"
+          }
+        },
+        "update_notification": {
+          "name": "Update Notification",
+          "description": "Enable / Disable: Notifications for new RetroDECK versions.",
+          "command": {
+            "zenity": "configurator_update_notify_dialog"
+          }
+        },
+        "m3u_multi_file_validator": {
+          "name": "M3U Multi-File Validator",
+          "description": "Verify the proper structure of multi-file or multi-disc games.",
+          "command": {
+            "zenity": "configurator_check_multifile_game_structure_dialog"
+          }
+        },
+        "repair_retrodeck_paths": {
+          "name": "Repair RetroDECK Paths",
+          "description": "Repair RetroDECK folder path configs for unexpectedly missing folders.",
+          "command": {
+            "zenity": "configurator_repair_paths_dialog"
+          }
+        },
+        "change_logging_level": {
+          "name": "Change Logging Level",
+          "description": "Change the RetroDECK logging level, for debugging purposes.",
+          "command": {
+            "zenity": "configurator_change_logging_level_dialog"
+          }
+        }
+      },
+      "data_management": {
+        "backup_retrodeck": {
+          "name": "Backup RetroDECK",
+          "description": "Backup & Compress RetroDECK userdata folders into a zip file.",
+          "command": {
+            "zenity": "configurator_retrodeck_backup_dialog"
+          }
+        },
+        "clean_empty_systems": {
+          "name": "ROMS Folder: Clean Empty Systems",
+          "description": "Removes some or all of the empty system folders in ROMS folder.",
+          "command": {
+            "zenity": "configurator_clean_empty_systems_dialog"
+          }
+        },
+        "rebuild_esde_systems": {
+          "name": "ROMS Folder: Rebuild Systems",
+          "description": "Rebuilds any missing system folders in the ROMS folder.",
+          "command": {
+            "zenity": "configurator_rebuild_esde_systems"
+          }
+        },
+        "move_all": {
+          "name": "Move: All of RetroDECK",
+          "description": "Move the entire RetroDECK folder to a new location.",
+          "command": {
+            "zenity": "configurator_move_folder_dialog \"rdhome\""
+          }
+        },
+        "move_roms": {
+          "name": "Move: ROMS folder",
+          "description": "Move the ROMS folder to a new location.",
+          "command": {
+            "zenity": "configurator_move_folder_dialog \"roms_folder\""
+          }
+        },
+        "move_bios": {
+          "name": "Move: BIOS folder",
+          "description": "Move the BIOS folder to a new location.",
+          "command": {
+            "zenity": "configurator_move_folder_dialog \"bios_folder\""
+          }
+        },
+        "move_media": {
+          "name": "Move: Downloaded Media folder",
+          "description": "Move the Downloaded Media folder to a new location.",
+          "command": {
+            "zenity": "configurator_move_folder_dialog \"media_folder\""
+          }
+        },
+        "move_saves": {
+          "name": "Move: Saves folder",
+          "description": "Move the Saves folder to a new location.",
+          "command": {
+            "zenity": "configurator_move_folder_dialog \"saves_folder\""
+          }
+        },
+        "move_states": {
+          "name": "Move: States folder",
+          "description": "Move the States folder to a new location.",
+          "command": {
+            "zenity": "configurator_move_folder_dialog \"states_folder\""
+          }
+        },
+        "move_themes": {
+          "name": "Move: Themes folder",
+          "description": "Move the Themes folder to a new location.",
+          "command": {
+            "zenity": "configurator_move_folder_dialog \"themes_folder\""
+          }
+        },
+        "move_screenshots": {
+          "name": "Move: Screenshots folder",
+          "description": "Move the Screenshots folder to a new location.",
+          "command": {
+            "zenity": "configurator_move_folder_dialog \"screenshots_folder\""
+          }
+        },
+        "move_mods": {
+          "name": "Move: Mods folder",
+          "description": "Move the Mods folder to a new location.",
+          "command": {
+            "zenity": "configurator_move_folder_dialog \"mods_folder\""
+          }
+        },
+        "move_texture_packs": {
+          "name": "Move: Texture Packs folder",
+          "description": "Move the Texture Packs folder to a new location",
+          "command": {
+            "zenity": "configurator_move_folder_dialog \"texture_packs_folder\""
+          }
+        },
+        "move_cheats": {
+          "name": "Move: Cheats folder",
+          "description": "Move the Cheats folder to a new location.",
+          "command": {
+            "zenity": "configurator_move_folder_dialog \"cheats_folder\""
+          }
+        },
+        "move_shaders": {
+          "name": "Move: Shaders folder",
+          "description": "Move the Shaders folder to a new location.",
+          "command": {
+            "zenity": "configurator_move_folder_dialog \"shaders_folder\""
+          }
+        }
+      }
+    }
+  }
+}
