@@ -63,6 +63,8 @@ grab() {
 
     log d "Preparing work directory: $WORK_DIR" "$logfile"
     mkdir -p "$WORK_DIR"
+    log d "Component: $component" "$logfile"
+    mkdir -p "$component/artifacts"
 
     log i "Grabbing type '$type' from URL: $url" "$logfile"
 
