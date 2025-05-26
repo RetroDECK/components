@@ -45,6 +45,7 @@ parse_flags() {
     done
     echo "$@"
 }
+
 # Auto-detect CI/CD environment and force artifact generation
 if [[ -n "$CI" || -n "$GITHUB_ACTIONS" || -n "$GITLAB_CI" || -n "$BUILDKITE" || -n "$JENKINS_HOME" ]]; then
     FORCE=1
@@ -263,6 +264,8 @@ manage_appimage() {
 
     # Cleanup
     [[ -d "$WORK_DIR/squashfs-root/share/metainfo" ]] && rm -rf "$WORK_DIR/squashfs-root/share/metainfo"
+    [[ -d "$WORK_DIR/squashfs-root/usr/share/metainfo" ]] && rm -rf "$WORK_DIR/squashfs-root/usr/share/metainfo"
+    [[ -d "$WORK_DIR/squashfs-root/usr/lib/debug" ]] && rm -rf "$WORK_DIR/squashfs-root/usr/lib/debug"
     # Remove any .desktop files and .DirIcon from the extracted AppImage
     # Define a list of filenames to search for and delete
     files_to_remove=(".DirIcon" "*.desktop" "*.metainfo.xml")
@@ -291,7 +294,6 @@ manage_appimage() {
 }
 
 manage_generic() {
-
     log d "Starting manage_generic function" "$logfile"
 
     if [[ "$DRY_RUN" -eq 1 ]]; then
@@ -306,6 +308,18 @@ manage_generic() {
         exit 1
     fi
 
+    # Extract to WORK_DIR
+    tar -xf "$output_path" -C "$WORK_DIR" || {
+        log e "Failed to extract generic artifact: $output_path" "$logfile"
+        exit 1
+    }
+
+    # Move extracted files into artifacts dir
+    log d "Moving extracted contents to $component/artifacts/" "$logfile"
+    mv "$WORK_DIR"/* "$component/artifacts/" || {
+        log e "Failed to move extracted files to artifacts." "$logfile"
+        exit 1
+    }
 }
 
 # This function not compiling the flatpak, just downloading it and extracting it (+ runtimes and sdk)
@@ -588,8 +602,7 @@ version_check() {
     if [[ -f "$version_file" ]]; then
         current_version=$(< "$version_file")
         if [[ "$current_version" == "$version" && "$FORCE" -ne 1 ]]; then
-            log i "Version check passed: $version (no update needed)" "$logfile"
-            return 0
+            log i "Version check passed: $version (same as previous), continuing to generate artifact." "$logfile"
         fi
     fi
 
