@@ -278,6 +278,10 @@ manage_appimage() {
         return 1
     fi
 
+    mv squashfs-root/apprun-hooks $component/artifacts
+    mv squashfs-root/usr/* $component/artifacts
+    rm -rf squashfs-root
+
     log i "Compressing extracted AppImage contents..." "$logfile"
     local output_appimage_artifact="$component/artifacts/$component.tar.gz"
     tar -czf "$output_appimage_artifact" -C "$extracted_dir/squashfs-root" . 
@@ -509,6 +513,8 @@ finalize() {
     if [[ -f "$source_path" ]]; then
         log i "Source is a file: $source_path" "$logfile"
 
+        # If the artifacts is an AppImage just move it to the artifacts directory
+        # TODO: probably deprecated as we don't deliver .AppImage files anymore
         if [[ "$source_path" == *.AppImage ]]; then
             log i "Detected AppImage file, skipping compression." "$logfile"
             local target_path="$artifact_dir/$component.AppImage"
@@ -522,6 +528,8 @@ finalize() {
             chmod +x "$target_path"
             sha256sum "$target_path" > "$target_path.sha"
 
+        # Splitting logic
+        # TODO: probably deprecated now
         else
             local artifact_size_mb=$(( $(stat -c%s "$source_path") / 1024 / 1024 ))
             local filename=$(basename "$source_path")
@@ -551,6 +559,20 @@ finalize() {
     elif [[ -d "$source_path" ]]; then
         log i "Source is a directory." "$logfile"
 
+        # Injecting needed component files
+        local inject_files=("component_launcher.sh" "manifest.json" "functions.sh" "prepare_component.sh")
+        for file in "${inject_files[@]}"; do
+            if [[ -f "$file" ]]; then
+            mv "$file" "$component/artifacts"
+                if [[ "$file" == *.sh ]]; then
+                    chmod +x "$component/artifacts/$file"
+                fi
+            else
+                log w "File $file not found, skipping." "$logfile"
+            fi
+        done
+
+        # TODO: split logic, probably deprecated now
         tar -czf "$temp_tar" -C "$source_path" . || { log e "Tar creation failed." "$logfile"; exit 1; }
 
         local artifact_size_mb=$(( $(stat -c%s "$temp_tar") / 1024 / 1024 ))
