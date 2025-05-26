@@ -50,8 +50,8 @@ grab() {
 
     local args
     args=($(parse_flags "$@"))
-    local type="${args[0]}"
-    local url="${args[1]}"
+    export type="${args[0]}"
+    export url="${args[1]}"
     export component="${args[2]:-$(basename "$(dirname "$(realpath "${BASH_SOURCE[1]}")")")}"
     export WORK_DIR=$(mktemp -d)
     local output_path=""
@@ -71,12 +71,12 @@ grab() {
     case "$type" in
         flatpak_id)
             log i "Type flatpak_id detected, skipping download." "$logfile"
-            manage_flatpak_id "$component" "$url"
+            manage_flatpak_id
             return
             ;;
         flatpak_artifacts)
             log i "Type flatpak_artifacts detected, handling flatpak artifacts from URL: $url" "$logfile"
-            manage_flatpak_artifacts "$component" "$url" "$version"
+            manage_flatpak_artifacts
             return
             ;;
     esac
@@ -178,10 +178,10 @@ grab() {
 
     case "$type" in
         appimage)
-            manage_appimage "$component" "$output_path" "$version"
+            manage_appimage
             ;;
         generic)
-            manage_generic "$component" "$output_path" "$version"
+            manage_generic
             ;;
         *)
             log e "Unsupported type for automatic management: $type" "$logfile"
@@ -193,12 +193,8 @@ grab() {
 manage_appimage() {
     log d "Starting manage_appimage function" "$logfile"
 
-    local component="$1"
-    local file_path="$2"
-    local version="$3"
-
     if [[ "$DRY_RUN" -eq 1 ]]; then
-        echo "[DRY-RUN] Would manage appimage for $component from $file_path"
+        log i "[DRY-RUN] Would manage appimage for $component from $output_path"
         return 0
     fi
 
@@ -210,22 +206,22 @@ manage_appimage() {
     local appimage_path=""
 
     # Handle archives
-    if [[ "$file_path" =~ \.tar\.(gz|xz|bz2)$ || "$file_path" =~ \.7z$ ]]; then
+    if [[ "$output_path" =~ \.tar\.(gz|xz|bz2)$ || "$output_path" =~ \.7z$ ]]; then
         log i "Extracting archive to temp..." "$logfile"
-        if [[ "$file_path" =~ \.7z$ ]]; then
-            7z x -y "$file_path" -o"$temp_root" > /dev/null || { log e "Failed to extract 7z archive" "$logfile"; rm -rf "$temp_root"; return 1; }
+        if [[ "$output_path" =~ \.7z$ ]]; then
+            7z x -y "$output_path" -o"$temp_root" > /dev/null || { log e "Failed to extract 7z archive" "$logfile"; rm -rf "$temp_root"; return 1; }
         else
-            tar -xf "$file_path" -C "$temp_root" || { log e "Failed to extract tar archive" "$logfile"; rm -rf "$temp_root"; return 1; }
+            tar -xf "$output_path" -C "$temp_root" || { log e "Failed to extract tar archive" "$logfile"; rm -rf "$temp_root"; return 1; }
         fi
 
         appimage_path=$(find "$temp_root" -type f -name '*.AppImage' | head -n 1)
         [[ -z "$appimage_path" ]] && { log e "No AppImage found in archive." "$logfile"; rm -rf "$temp_root"; return 1; }
 
-    elif [[ "$file_path" =~ \.AppImage$ ]]; then
-        appimage_path="$file_path"
+    elif [[ "$output_path" =~ \.AppImage$ ]]; then
+        appimage_path="$output_path"
         [[ ! -f "$appimage_path" ]] && { log e "AppImage file not found: $appimage_path" "$logfile"; return 1; }
     else
-        log e "Unsupported file type for AppImage: $file_path" "$logfile"
+        log e "Unsupported file type for AppImage: $output_path" "$logfile"
         return 1
     fi
 
@@ -263,19 +259,15 @@ manage_generic() {
 
     log d "Starting manage_generic function" "$logfile"
 
-    local component="$1"
-    local file_path="$2"
-    local version="$3"
-
     if [[ "$DRY_RUN" -eq 1 ]]; then
-        log d "[DRY-RUN] Would manage generic artifact for $component from $file_path"
+        log i "[DRY-RUN] Would manage generic artifact for $component from $output_path"
         return
     fi
 
-    log i "Managing generic artifact for component: $component from $file_path"
+    log i "Managing generic artifact for component: $component from $output_path"
 
-    if [[ ! -f "$file_path" ]]; then
-        log e "Generic artifact not found: $file_path" "$logfile"
+    if [[ ! -f "$output_path" ]]; then
+        log e "Generic artifact not found: $output_path" "$logfile"
         exit 1
     fi
 
@@ -286,11 +278,10 @@ manage_flatpak_id() {
 
     log d "Starting manage_flatpak_id function" "$logfile"
 
-    local component="$1"
-    local flatpak_id="$2"
+    local flatpak_id="$url"
 
     if [[ "$DRY_RUN" -eq 1 ]]; then
-        log d "[DRY-RUN] Would manage flatpak for $flatpak_id"
+        log i "[DRY-RUN] Would manage flatpak for $flatpak_id"
         return 0
     fi
 
@@ -372,12 +363,7 @@ manage_flatpak_id() {
 manage_flatpak_artifacts() {
     log d "Starting manage_flatpak_artifacts function" "$logfile"
 
-    local component="$1"
-    local url="$2"
-    local version="$3"
-
-    local filename
-    filename=$(basename "$url")
+    local filename=$(basename "$url")
     local extension="${filename##*.}"
     local output_path="$component/artifacts/$filename"
 
@@ -492,53 +478,49 @@ version_check() {
 
     local current_version=""
     local version_file="$component/version"
+    local extracted_version=""
 
     case "$check_type" in
         manual|link|file)
-        if [[ "$source" =~ ^[0-9]+\.[0-9]+(\.[0-9]+)?$ ]]; then
-            version="$source"
+            if [[ "$source" =~ ^[0-9]+\.[0-9]+(\.[0-9]+)?$ ]]; then
+                extracted_version="$source"
 
-        elif [[ "$source" =~ ^https?:// ]]; then
-            # Try standard version pattern
-            export version=$(echo "$source" | grep -oE '[0-9]+\.[0-9]+(\.[0-9]+)?' | head -n 1)
+            elif [[ "$source" =~ ^https?:// ]]; then
+                extracted_version=$(echo "$source" | grep -oE '[0-9]+\.[0-9]+(\.[0-9]+)?' | head -n 1)
 
-            # Fallback: try nightly or date-based version
-            if [[ -z "$version" ]]; then
-                export version=$(echo "$source" | grep -oE 'nightly-[0-9]{4}-[0-9]{2}-[0-9]{2}' | head -n 1)
+                [[ -z "$extracted_version" ]] && \
+                    extracted_version=$(echo "$source" | grep -oE 'nightly-[0-9]{4}-[0-9]{2}-[0-9]{2}' | head -n 1)
+
+                [[ -z "$extracted_version" ]] && \
+                    extracted_version=$(echo "$source" | grep -oE '[0-9]{4}[_-][0-9]{2}[_-][0-9]{2}' | head -n 1)
+
+            elif [[ -f "$source" ]]; then
+                extracted_version=$(basename "$source" | grep -oE '[0-9]+\.[0-9]+(\.[0-9]+)?' | head -n 1)
             fi
-
-            if [[ -z "$version" ]]; then
-                export version=$(echo "$source" | grep -oE '[0-9]{4}[_-][0-9]{2}[_-][0-9]{2}' | head -n 1)
-            fi
-
-        elif [[ -f "$source" ]]; then
-            export version=$(basename "$source" | grep -oE '[0-9]+\.[0-9]+(\.[0-9]+)?' | head -n 1)
-        fi
-        ;;
+            ;;
 
         metainfo)
             if [[ -f "$source" && "$source" =~ \.(metainfo|appdata)\.xml$ ]]; then
-                export version=$(xmlstarlet sel -t -v "/component/releases/release[1]/@version" "$source" 2>/dev/null | head -n 1)
+                extracted_version=$(xmlstarlet sel -t -v "/component/releases/release[1]/@version" "$source" 2>/dev/null)
 
             elif [[ -d "$source" ]]; then
                 local metainfo_file
                 metainfo_file=$(find "$source" -type f \( -name "*.metainfo.xml" -o -name "*.appdata.xml" \) | head -n 1)
-                if [[ -n "$metainfo_file" ]]; then
-                    export version=$(xmlstarlet sel -t -v "/component/releases/release[1]/@version" "$metainfo_file" 2>/dev/null | head -n 1)
-                fi
+                [[ -n "$metainfo_file" ]] && \
+                    extracted_version=$(xmlstarlet sel -t -v "/component/releases/release[1]/@version" "$metainfo_file" 2>/dev/null)
 
             elif [[ -f "$source" && "$source" =~ \.tar\.(gz|xz|bz2)$ ]]; then
                 local metainfo_path
                 metainfo_path=$(tar -tf "$source" | grep -m1 -E '\.(metainfo|appdata)\.xml$')
                 if [[ -n "$metainfo_path" ]]; then
                     log d "Found metadata in archive: $metainfo_path" "$logfile"
-                    export version=$(tar -xOf "$source" "$metainfo_path" 2>/dev/null | \
-                        xmlstarlet sel -t -v "/component/releases/release[1]/@version" 2>/dev/null | head -n 1)
+                    extracted_version=$(tar -xOf "$source" "$metainfo_path" 2>/dev/null | \
+                        xmlstarlet sel -t -v "/component/releases/release[1]/@version" 2>/dev/null)
                 fi
 
             elif [[ -f "$source" && "$source" =~ \.zip$ ]]; then
-                export version=$(unzip -p "$source" '*.metainfo.xml' '*.appdata.xml' 2>/dev/null | \
-                    xmlstarlet sel -t -v "/component/releases/release[1]/@version" 2>/dev/null | head -n 1)
+                extracted_version=$(unzip -p "$source" '*.metainfo.xml' '*.appdata.xml' 2>/dev/null | \
+                    xmlstarlet sel -t -v "/component/releases/release[1]/@version" 2>/dev/null)
 
             else
                 log w "Unsupported format for metainfo extraction: $source" "$logfile"
@@ -547,27 +529,28 @@ version_check() {
         
         *)
             log e "Unknown version check type: $check_type" "$logfile"
-            exit 1
+            return 1
             ;;
     esac
 
-    if [[ -z "$version" ]]; then
+    if [[ -z "$extracted_version" ]]; then
         log w "Could not determine version for $component (source: \"$source\"), setting as \"unknown\"" "$logfile"
-        export version="unknown"
+        extracted_version="unknown"
     fi
 
+    export version="$extracted_version"
     log i "Detected version: $version" "$logfile"
 
     if [[ -f "$version_file" ]]; then
-        current_version=$(cat "$version_file")
-        if [[ "$current_version" == "$version" && "${FORCE:-0}" -ne 1 ]]; then
-            echo "$version"
+        current_version=$(< "$version_file")
+        if [[ "$current_version" == "$version" && "$FORCE" -ne 1 ]]; then
+            log i "Version check passed: $version (no update needed)" "$logfile"
             return 0
         fi
     fi
 
     echo "$version" > "$version_file"
-    echo "$version"
+    log i "Version file updated: $version_file with version $version" "$logfile"
     return 1
 }
 
