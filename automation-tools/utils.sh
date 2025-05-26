@@ -256,10 +256,30 @@ manage_appimage() {
         return 1
     fi
 
+    # Cleanup
+    [[ -d "$WORK_DIR/squashfs-root/share/metainfo" ]] && rm -rf "$WORK_DIR/squashfs-root/share/metainfo"
+    # Remove any .desktop files and .DirIcon from the extracted AppImage
+    # Define a list of filenames to search for and delete
+    files_to_remove=(".DirIcon" "*.desktop" "*.metainfo.xml")
+
+    files_to_delete=()
+    for pattern in "${files_to_remove[@]}"; do
+        while IFS= read -r file; do
+            files_to_delete+=("$file")
+        done < <(find "$WORK_DIR/squashfs-root" -type f -name "$pattern")
+    done
+
+    for file in "${files_to_delete[@]}"; do
+        rm -f "$file"
+    done
+
     # Move only if dirs exist
     [[ -d "$WORK_DIR/squashfs-root/usr" ]] && mv "$WORK_DIR/squashfs-root/usr"/* "$component/artifacts/" || log w "No usr/ content found"
     [[ -d "$WORK_DIR/squashfs-root/share" ]] && mv "$WORK_DIR/squashfs-root/share" "$component/artifacts/"
     [[ -d "$WORK_DIR/squashfs-root/apprun-hooks" ]] && mv "$WORK_DIR/squashfs-root/apprun-hooks" "$component/artifacts/"
+
+    # Move any other top-level files (e.g. binaries, .pak, etc.)
+    find "$WORK_DIR/squashfs-root" -maxdepth 1 -type f -exec mv {} "$component/artifacts/" \;
 
     rm -rf "$temp_root" "$abs_appimage_path"
     log i "AppImage files moved to artifacts directory." "$logfile"
