@@ -172,7 +172,7 @@ grab() {
     log i "Output path: $output_path" "$logfile"
 
     log i "Checking version..." "$logfile"
-    export version=$(version_check "link" "$component" "$url")
+    version_check "link" "$component" "$url"
 
     log d "Evaluating type: $type" "$logfile"
 
@@ -194,7 +194,7 @@ manage_appimage() {
     log d "Starting manage_appimage function" "$logfile"
 
     if [[ "$DRY_RUN" -eq 1 ]]; then
-        log i "[DRY-RUN] Would manage appimage for $component from $output_path"
+        log i "[DRY-RUN] Would manage appimage for $component from $output_path" "$logfile"
         return 0
     fi
 
@@ -260,11 +260,11 @@ manage_generic() {
     log d "Starting manage_generic function" "$logfile"
 
     if [[ "$DRY_RUN" -eq 1 ]]; then
-        log i "[DRY-RUN] Would manage generic artifact for $component from $output_path"
+        log i "[DRY-RUN] Would manage generic artifact for $component from $output_path" "$logfile"
         return
     fi
 
-    log i "Managing generic artifact for component: $component from $output_path"
+    log i "Managing generic artifact for component: $component from $output_path" "$logfile"
 
     if [[ ! -f "$output_path" ]]; then
         log e "Generic artifact not found: $output_path" "$logfile"
@@ -281,7 +281,7 @@ manage_flatpak_id() {
     local flatpak_id="$url"
 
     if [[ "$DRY_RUN" -eq 1 ]]; then
-        log i "[DRY-RUN] Would manage flatpak for $flatpak_id"
+        log i "[DRY-RUN] Would manage flatpak for $flatpak_id" "$logfile"
         return 0
     fi
 
@@ -356,7 +356,7 @@ manage_flatpak_id() {
     # Uninstall the flatpak if it was not previously installed
     if [[ "$was_installed" == "false" ]]; then
         log i "Uninstalling $flatpak_id as it was not previously installed." "$logfile"
-        flatpak uninstall --user -y "$flatpak_id" || log w "Failed to uninstall $flatpak_id"
+        flatpak uninstall --user -y "$flatpak_id" || log w "Failed to uninstall $flatpak_id" "$logfile"
     fi
 }
 
