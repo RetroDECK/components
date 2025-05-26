@@ -483,7 +483,7 @@ manage_flatpak_artifacts() {
         exit 1
     fi
 
-    # Tentativo di estrazione versione dal file se non fornita
+    # Attempt to extract version from the file if not provided
     if [[ -z "$version" ]]; then
         version=$(version_check "metainfo" "$component" "$output_path" 2>/dev/null)
         if [[ -z "$version" ]]; then
@@ -492,6 +492,18 @@ manage_flatpak_artifacts() {
             [[ -z "$version" ]] && version="unknown"
         fi
     fi
+
+    local tmpzip_dir="$artifact_dir/.tmpzip"
+
+    mkdir -p "$component/artifacts/extracted"
+    tar -xf "$output_path" -C "$tmpzip_dir" || {
+        log e "Failed to extract Flatpak artifacts from $output_path" "$logfile"
+        exit 1
+    }
+
+    mv $tmpzip_dir/files/bin/ artifact/
+    mv $tmpzip_dir/files/lib/ melonds/
+    mv $tmpzip_dir/files/share/ melonds/
 
     # Final return
     MANAGED_OUTPUT_PATH="$output_path"
