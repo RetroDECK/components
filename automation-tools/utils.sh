@@ -209,32 +209,46 @@ manage_appimage() {
     if [[ "$output_path" =~ \.tar\.(gz|xz|bz2)$ || "$output_path" =~ \.7z$ ]]; then
         log i "Extracting archive to temp..." "$logfile"
         if [[ "$output_path" =~ \.7z$ ]]; then
-            7z x -y "$output_path" -o"$temp_root" > /dev/null || { log e "Failed to extract 7z archive" "$logfile"; rm -rf "$temp_root"; return 1; }
+            7z x -y "$output_path" -o"$temp_root" > /dev/null || {
+                log e "Failed to extract 7z archive" "$logfile"
+                rm -rf "$temp_root"
+                return 1
+            }
         else
-            tar -xf "$output_path" -C "$temp_root" || { log e "Failed to extract tar archive" "$logfile"; rm -rf "$temp_root"; return 1; }
+            tar -xf "$output_path" -C "$temp_root" || {
+                log e "Failed to extract tar archive" "$logfile"
+                rm -rf "$temp_root"
+                return 1
+            }
         fi
 
         appimage_path=$(find "$temp_root" -type f -name '*.AppImage' | head -n 1)
-        [[ -z "$appimage_path" ]] && { log e "No AppImage found in archive." "$logfile"; rm -rf "$temp_root"; return 1; }
+        [[ -z "$appimage_path" ]] && {
+            log e "No AppImage found in archive." "$logfile"
+            rm -rf "$temp_root"
+            return 1
+        }
 
     elif [[ "$output_path" =~ \.AppImage$ ]]; then
         appimage_path="$output_path"
-        [[ ! -f "$appimage_path" ]] && { log e "AppImage file not found: $appimage_path" "$logfile"; return 1; }
+        [[ ! -f "$appimage_path" ]] && {
+            log e "AppImage file not found: $appimage_path" "$logfile"
+            return 1
+        }
     else
         log e "Unsupported file type for AppImage: $output_path" "$logfile"
         return 1
     fi
 
-    local abs_appimage_path=$(realpath "$appimage_path")
-
-    chmod +x "$appimage_path"
+    local abs_appimage_path
+    abs_appimage_path=$(realpath "$appimage_path")
+    chmod +x "$abs_appimage_path"
 
     log d "Running AppImage extraction command..." "$logfile"
     cd "$WORK_DIR"
-    log d "$(ls -lah)" "$logfile"
     "$abs_appimage_path" --appimage-extract
-    cd - > /dev/null
     extract_status=$?
+    cd - > /dev/null
 
     if [[ $extract_status -ne 0 ]]; then
         log e "AppImage extraction failed with status $extract_status." "$logfile"
@@ -242,13 +256,13 @@ manage_appimage() {
         return 1
     fi
 
-    mv squashfs-root/apprun-hooks $component/artifacts
-    mv squashfs-root/usr/* $component/artifacts
-    rm -rf squashfs-root
+    # Move only if dirs exist
+    [[ -d "$WORK_DIR/squashfs-root/usr" ]] && mv "$WORK_DIR/squashfs-root/usr"/* "$component/artifacts/" || log w "No usr/ content found"
+    [[ -d "$WORK_DIR/squashfs-root/share" ]] && mv "$WORK_DIR/squashfs-root/share" "$component/artifacts/"
+    [[ -d "$WORK_DIR/squashfs-root/apprun-hooks" ]] && mv "$WORK_DIR/squashfs-root/apprun-hooks" "$component/artifacts/"
 
-    rm -rf "$temp_root" "$WORK_DIR" "$abs_appimage_path"
-    log i "AppImage repacked successfully to: $output_appimage_artifact" "$logfile"
-
+    rm -rf "$temp_root" "$abs_appimage_path"
+    log i "AppImage files moved to artifacts directory." "$logfile"
 }
 
 manage_generic() {
