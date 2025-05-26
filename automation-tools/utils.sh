@@ -515,13 +515,24 @@ write_components_version() {
         if [[ -f "$version_file" ]]; then
             local component_name=$(basename "$(dirname "$(dirname "$version_file")")")
             export version=$(cat "$version_file")
-            local update_date=$(date -r "$version_file" +"%Y-%m-%d %H:%M:%S")
+            local update_date=$(date -r "$version_file" +"%Y-%m-%d")
+
+            # Try to get the previous version from git, if available
+            local old_version=""
+            if git rev-parse --is-inside-work-tree > /dev/null 2>&1; then
+                old_version=$(git show HEAD~1:"$version_file" 2>/dev/null | head -n 1)
+            fi
 
             log d "Component: $component_name" "$logfile"
             log d "Version: $version" "$logfile"
             log d "Last Updated: $update_date" "$logfile"
+            [[ -n "$old_version" && "$old_version" != "$version" ]] && log d "Old Version: $old_version" "$logfile"
             
-            echo "**$component_name**: $version (updated on $update_date)" >> "$components_version_file"
+            if [[ -n "$old_version" && "$old_version" != "$version" ]]; then
+                echo "**$component_name**: $version (was $old_version, grabbed on $update_date)" >> "$components_version_file"
+            else
+                echo "**$component_name**: $version (grabbed on $update_date)" >> "$components_version_file"
+            fi
             echo "" >> "$components_version_file"
         fi
     done
