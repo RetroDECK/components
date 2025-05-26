@@ -319,8 +319,7 @@ manage_flatpak_id() {
         exit 1
     fi
 
-    local extracted_version
-    extracted_version=$(version_check "metainfo" "$component" "$metainfo_path")
+    export version=$(version_check "metainfo" "$component" "$metainfo_path")
 
     if [[ $? -eq 0 ]]; then
         log i "Skipping $flatpak_id because version is already up-to-date." "$logfile"
