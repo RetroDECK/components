@@ -426,11 +426,14 @@ finalize() {
     done
 
     # Package artifact directory
-    tar -czf "$artifact_dir/$component.tar.gz" -C "$artifact_dir" . || {
+    local tar_output_path="${component}/${component}.tar.gz"
+    tar -czf "$tar_output_path" -C "$artifact_dir" . || {
         log e "Tar creation failed." "$logfile"
         return 1
     }
-    sha256sum "$artifact_dir/$component.tar.gz" > "$artifact_dir/$component.tar.gz.sha"
+    sha256sum "$tar_output_path" > "$tar_output_path.sha"
+    mv "$tar_output_path" "$artifact_dir/"
+    mv "$tar_output_path.sha" "$artifact_dir/"
 
     echo "$version" > "$artifact_dir/version"
 
