@@ -405,9 +405,19 @@ manage_flatpak_id() {
         exit 0
     fi
 
+    log i "Removing debug symbols from $flatpak_id..." "$logfile"
+    rm -rf "$app_path/lib/debug"
+
     mkdir -p "$component/artifacts/.tmp"
+
     log i "Copying application files..." "$logfile"
-    cp -r "$app_path"/* "$component/artifacts/.tmp/"
+    mv "$app_path/bin" "$component/artifacts/.tmp/"
+    mv "$app_path/lib" "$component/artifacts/.tmp/"
+    mv "$app_path/share/ppsspp/assets" "$component/artifacts/.tmp/"
+    mv "$app_path/share" "$component/artifacts/.tmp/"
+
+    # Remove unnecessary directories
+    rm -rf "$app_path/share/ppsspp"
 
     log i "Finding required runtimes for $flatpak_id..." "$logfile"
     local runtimes
