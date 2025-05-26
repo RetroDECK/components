@@ -231,7 +231,7 @@ manage_appimage() {
 
     log d "Running AppImage extraction command..." "$logfile"
     cd "$WORK_DIR"
-    log d "$(pwd)" "$logfile"
+    log d "$(ls -lah)" "$logfile"
     "$abs_appimage_path" --appimage-extract
     cd - > /dev/null
     extract_status=$?
@@ -245,10 +245,6 @@ manage_appimage() {
     mv squashfs-root/apprun-hooks $component/artifacts
     mv squashfs-root/usr/* $component/artifacts
     rm -rf squashfs-root
-
-    log i "Compressing extracted AppImage contents..." "$logfile"
-    local output_appimage_artifact="$component/artifacts/$component.tar.gz"
-    tar -czf "$output_appimage_artifact" -C "$WORK_DIR/squashfs-root" .
 
     rm -rf "$temp_root" "$WORK_DIR" "$abs_appimage_path"
     log i "AppImage repacked successfully to: $output_appimage_artifact" "$logfile"
