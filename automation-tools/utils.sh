@@ -26,6 +26,7 @@ export logging_level="debug"
 
 FORCE=0                 # Force the download even if the version is the same, useful for local retention, enabled by default on CI/CD to avoid missing updates since the version files are present bu the artifacts are not
 DRY_RUN=0
+GITHUB_REPO=$(git config --get remote.origin.url | sed -E 's|.*github.com[:/](.*)\.git|\1|')
 
 parse_flags() {
     while [[ "$1" =~ ^-- ]]; do
@@ -466,11 +467,12 @@ finalize() {
     fi
 
     # Inject standard component files if present
-    local inject_files=("component_launcher.sh" "manifest.json" "functions.sh" "prepare_component.sh")
+    local inject_files=("component_launcher.sh" "manifest.json" "functions.sh" "prepare_component.sh" "artifacts/version")
     for file in "${inject_files[@]}"; do
-        if [[ -f "$file" ]]; then
-            mv "$file" "$artifact_dir"
-            [[ "$file" == *.sh ]] && chmod +x "$artifact_dir/$file"
+        full_path="$component/$file"
+        if [[ -f "$full_path" ]]; then
+            mv "$full_path" "$artifact_dir"
+            [[ "$file" == *.sh ]] && chmod +x "$artifact_dir/$(basename "$file")"
         fi
     done
 
@@ -496,45 +498,63 @@ finalize() {
         log d "  $line" "$logfile"
     done
 
+    log i "Cleaning up artifacts directory, keeping only archive and checksum..." "$logfile"
+    find "$artifact_dir" -mindepth 1 -maxdepth 1 \
+        ! -name "$(basename "$component.tar.gz")" \
+        ! -name "$(basename "$component.tar.gz.sha")" \
+        -exec rm -rf {} +
+
     log i "Finalization complete for $component" "$logfile"
 }
 
 write_components_version() {
-
     log d "Starting write_components_version function" "$logfile"
 
-    # Create or overwrite the components_version.md file
     local components_version_file="components_version.md"
-    if [[ ! -f "$components_version_file" ]]; then
-        echo "# Components Version Summary" > "$components_version_file"
-    fi
+    echo "# Components Version Summary" > "$components_version_file"
     echo "" >> "$components_version_file"
 
-    # Loop through all */artifacts/version files
+    local branch_name="${GITHUB_REF_NAME:-$(git rev-parse --abbrev-ref HEAD)}"
+    local match_label="cooker"
+    [[ "$branch_name" == "main" ]] && match_label="main"
+
     for version_file in */artifacts/version; do
-        if [[ -f "$version_file" ]]; then
-            local component_name=$(basename "$(dirname "$(dirname "$version_file")")")
-            export version=$(cat "$version_file")
-            local update_date=$(date -r "$version_file" +"%Y-%m-%d")
+        [[ ! -f "$version_file" ]] && continue
 
-            # Try to get the previous version from git, if available
-            local old_version=""
-            if git rev-parse --is-inside-work-tree > /dev/null 2>&1; then
-                old_version=$(git show HEAD~1:"$version_file" 2>/dev/null | head -n 1)
-            fi
+        local component_name
+        component_name=$(basename "$(dirname "$(dirname "$version_file")")")
+        local current_version
+        current_version=$(< "$version_file")
+        local update_date
+        update_date=$(date -r "$version_file" +"%Y-%m-%d")
 
-            log d "Component: $component_name" "$logfile"
-            log d "Version: $version" "$logfile"
-            log d "Last Updated: $update_date" "$logfile"
-            [[ -n "$old_version" && "$old_version" != "$version" ]] && log d "Old Version: $old_version" "$logfile"
-            
-            if [[ -n "$old_version" && "$old_version" != "$version" ]]; then
-                echo "**$component_name**: $version (was $old_version, grabbed on $update_date)" >> "$components_version_file"
-            else
-                echo "**$component_name**: $version (grabbed on $update_date)" >> "$components_version_file"
-            fi
-            echo "" >> "$components_version_file"
+        log d "Component: $component_name" "$logfile"
+        log d "Version: $current_version" "$logfile"
+        log d "Last Updated: $update_date" "$logfile"
+
+        local api_url="https://api.github.com/repos/${GITHUB_REPO}/releases"
+        local version_url
+        version_url=$(curl -s "$api_url" | jq -r --arg component "$component_name" --arg label "$match_label" '
+            .[] 
+            | select(.tag_name | test($label)) 
+            | .assets[]? 
+            | select(.name == "\($component)/artifacts/version") 
+            | .browser_download_url' | head -n 1)
+
+        local old_version=""
+        if [[ -n "$version_url" ]]; then
+            log d "Fetching previous version from: $version_url" "$logfile"
+            old_version=$(curl -s "$version_url")
+        else
+            log w "Previous version for $component_name not found in releases matching '$match_label'" "$logfile"
         fi
+
+        if [[ -n "$old_version" && "$old_version" != "$current_version" ]]; then
+            echo "**$component_name**: $current_version (was $old_version, grabbed on $update_date)" >> "$components_version_file"
+        else
+            echo "**$component_name**: $current_version (grabbed on $update_date)" >> "$components_version_file"
+        fi
+        echo "" >> "$components_version_file"
     done
 }
 
