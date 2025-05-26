@@ -441,6 +441,12 @@ finalize() {
         log i "Cleaning up work directory: $WORK_DIR" "$logfile"
         rm -rf "$WORK_DIR"
     fi
+
+    log d "Final artifact contents:" "$logfile"
+    tar -tzf "$artifact_dir/$component.tar.gz" | while read -r line; do
+        log d "  $line" "$logfile"
+    done
+
     log i "Finalization complete for $component" "$logfile"
 }
 
