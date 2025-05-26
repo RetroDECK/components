@@ -45,6 +45,11 @@ parse_flags() {
     done
     echo "$@"
 }
+# Auto-detect CI/CD environment and force artifact generation
+if [[ -n "$CI" || -n "$GITHUB_ACTIONS" || -n "$GITLAB_CI" || -n "$BUILDKITE" || -n "$JENKINS_HOME" ]]; then
+    FORCE=1
+    log d "CI/CD environment detected — forcing artifact regeneration (FORCE=1)" "$logfile"
+fi
 
 grab() {
 
