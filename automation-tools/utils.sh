@@ -359,7 +359,7 @@ manage_flatpak_id() {
         exit 1
     fi
 
-    export version=$(version_check "metainfo" "$component" "$metainfo_path")
+    version_check "metainfo" "$component" "$metainfo_path"
 
     if [[ $? -eq 0 ]]; then
         log i "Skipping $flatpak_id because version is already up-to-date." "$logfile"
@@ -430,10 +430,10 @@ manage_flatpak_artifacts() {
 
     # Attempt to extract version from the file if not provided
     if [[ -z "$version" ]]; then
-        export version=$(version_check "metainfo" "$component" "$output_path" 2>/dev/null)
+        version_check "metainfo" "$component" "$output_path"
         if [[ -z "$version" ]]; then
             log w "Unable to extract version from $output_path, falling back to filename." "$logfile"
-            export version=$(basename "$url" | grep -oE '[0-9]+\.[0-9]+(\.[0-9]+)?' | head -n 1)
+            version=$(basename "$url" | grep -oE '[0-9]+\.[0-9]+(\.[0-9]+)?' | head -n 1)
             [[ -z "$version" ]] && version="unknown"
         fi
     fi
@@ -617,8 +617,11 @@ version_check() {
         fi
     fi
 
-    echo "$version" > "$version_file"
-    log i "Version file updated: $version_file with version $version" "$logfile"
+    if [[ "$FORCE" -eq 1 || "$current_version" != "$version" ]]; then
+        echo "$version" > "$version_file"
+        log i "Version file updated: $version_file with version $version" "$logfile"
+    fi
+
     return 1
 }
 
