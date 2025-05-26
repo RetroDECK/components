@@ -1,3 +1,5 @@
+# NOTE: be aware that WORK_DIR is a disposable directory, so you should not use it to store any data that you want to keep after the script ends, that is going in $component/artifacts
+
 #!/bin/bash
 
 if [[ ! -f ".tmpfunc/logger.sh" ]]; 
@@ -24,11 +26,6 @@ export logging_level="debug"
 
 FORCE=0                 # Force the download even if the version is the same, useful for local retention, enabled by default on CI/CD to avoid missing updates since the version files are present bu the artifacts are not
 DRY_RUN=0
-FINALIZE_PATH=""
-FINALIZE_VERSION=""
-FINALIZE_COMPONENT=""
-SPLIT="false"           # When this is enalbed it will split the archive into multiple parts if it is larger than 95MB
-
 
 parse_flags() {
     while [[ "$1" =~ ^-- ]]; do
@@ -55,8 +52,8 @@ grab() {
     args=($(parse_flags "$@"))
     local type="${args[0]}"
     local url="${args[1]}"
-    local component="${args[2]:-$(basename "$(dirname "$(realpath "${BASH_SOURCE[1]}")")")}"
-    local version=""
+    export component="${args[2]:-$(basename "$(dirname "$(realpath "${BASH_SOURCE[1]}")")")}"
+    export WORK_DIR=$(mktemp -d)
     local output_path=""
 
     echo ""
@@ -64,8 +61,10 @@ grab() {
     echo "   PREPARING ARTIFACTS FOR COMPONENT: $component"
     echo "-----------------------------------------------------------"
 
+    log d "Preparing work directory: $WORK_DIR" "$logfile"
+    mkdir -p "$WORK_DIR"
+
     log i "Grabbing type '$type' from URL: $url" "$logfile"
-    mkdir -p "$component/artifacts"
 
     case "$type" in
         flatpak_id)
@@ -76,9 +75,6 @@ grab() {
         flatpak_artifacts)
             log i "Type flatpak_artifacts detected, handling flatpak artifacts from URL: $url" "$logfile"
             manage_flatpak_artifacts "$component" "$url" "$version"
-            FINALIZE_PATH="$MANAGED_OUTPUT_PATH"
-            FINALIZE_VERSION="$MANAGED_OUTPUT_VERSION"
-            FINALIZE_COMPONENT="$component"
             return
             ;;
     esac
@@ -129,7 +125,7 @@ grab() {
 
             if [[ -n "$folder" ]]; then
                 url="${base_url}${folder}/${tail_path}"
-                version="$folder"
+                export version="$folder"
                 log i "Resolved URL: $url" "$logfile"
             else
                 log e "No version folders found at $base_url." "$logfile"
@@ -138,7 +134,6 @@ grab() {
             ;;
     esac
 
-    # --- Determine Output Path ---
     log i "Determining output path..." "$logfile"
 
     if [[ "$url" =~ ^(http|https|ftp|ftps|sftp|ssh):// ]]; then
@@ -175,13 +170,9 @@ grab() {
     log i "Output path: $output_path" "$logfile"
 
     log i "Checking version..." "$logfile"
-    version=$(version_check "link" "$component" "$url")
+    export version=$(version_check "link" "$component" "$url")
 
     log d "Evaluating type: $type" "$logfile"
-
-    # Reset globals
-    MANAGED_OUTPUT_PATH=""
-    MANAGED_OUTPUT_VERSION=""
 
     case "$type" in
         appimage)
@@ -195,27 +186,6 @@ grab() {
             exit 1
             ;;
     esac
-
-    if [[ -z "$MANAGED_OUTPUT_PATH" ]]; then
-        log e "manage_${type} did not set output!" "$logfile"
-        exit 1
-    fi
-
-    if [[ "$MANAGED_OUTPUT_PATH" == "skip" ]]; then
-        log i "Skipping $component, already up-to-date." "$logfile"
-        return
-    fi
-
-    FINALIZE_PATH="$MANAGED_OUTPUT_PATH"
-    FINALIZE_VERSION="$MANAGED_OUTPUT_VERSION"
-    FINALIZE_COMPONENT="$component"
-
-    if [[ ! -e "$FINALIZE_PATH" ]]; then
-        log d "FINALIZE_PATH=$FINALIZE_PATH" "$logfile"
-        [[ -e "$FINALIZE_PATH" ]] && log d "Finalize path exists." "$logfile" || log d "Finalize path does NOT exist!" "$logfile"
-        ls -lah "$(dirname "$FINALIZE_PATH")"
-        exit 1
-    fi
 }
 
 manage_appimage() {
@@ -234,10 +204,6 @@ manage_appimage() {
 
     local temp_root
     temp_root=$(mktemp -d)
-    local extracted_dir="$component/artifacts/.tmp_extracted"
-
-    rm -rf "$extracted_dir"
-    mkdir -p "$extracted_dir"
 
     local appimage_path=""
 
@@ -266,7 +232,7 @@ manage_appimage() {
     chmod +x "$appimage_path"
 
     log d "Running AppImage extraction command..." "$logfile"
-    cd "$extracted_dir"
+    cd "$WORK_DIR"
     log d "$(pwd)" "$logfile"
     "$abs_appimage_path" --appimage-extract
     cd - > /dev/null
@@ -284,52 +250,11 @@ manage_appimage() {
 
     log i "Compressing extracted AppImage contents..." "$logfile"
     local output_appimage_artifact="$component/artifacts/$component.tar.gz"
-    tar -czf "$output_appimage_artifact" -C "$extracted_dir/squashfs-root" . 
+    tar -czf "$output_appimage_artifact" -C "$WORK_DIR/squashfs-root" .
 
-    rm -rf "$temp_root" "$extracted_dir" "$abs_appimage_path"
+    rm -rf "$temp_root" "$WORK_DIR" "$abs_appimage_path"
     log i "AppImage repacked successfully to: $output_appimage_artifact" "$logfile"
 
-    # Final return
-    MANAGED_OUTPUT_PATH="$output_appimage_artifact"
-    MANAGED_OUTPUT_VERSION="$version"
-
-}
-
-manage_flatpak() {
-
-    log d "Starting manage_flatpak function" "$logfile"
-
-    # TODO: make me quicker by comparing the current hash with the one provided in the release artifacts
-
-    local component="$1"
-    local url="$2"
-    local version="$3"
-
-    if [[ "$DRY_RUN" -eq 1 ]]; then
-        echo "[DRY-RUN] Would manage $type for $component from $url"
-        return
-    fi
-
-    echo "Managing flatpak for component: $component from URL: $url"
-
-    local filename=$(basename "$url")
-    if [[ "$filename" =~ \.tar\.(gz|bz2|xz)$ ]]; then
-        file_extension="tar.${BASH_REMATCH[1]}"
-    else
-        file_extension="${filename##*.}"
-    fi
-
-    local output_path="$component/artifacts/$component.$file_extension"
-    wget -qc "$url" -O "$output_path"
-    if [ ! -f "$output_path" ]; then
-        log e "Failed to download flatpak from $url" "$logfile"
-        return 1
-    else
-        echo "Flatpak grabbed successfully: \"$output_path\""
-    fi
-
-    # return the artifacts path and version
-    echo "$output_path|$version"
 }
 
 manage_generic() {
@@ -341,20 +266,16 @@ manage_generic() {
     local version="$3"
 
     if [[ "$DRY_RUN" -eq 1 ]]; then
-        echo "[DRY-RUN] Would manage generic artifact for $component from $file_path"
+        log d "[DRY-RUN] Would manage generic artifact for $component from $file_path"
         return
     fi
 
-    echo "Managing generic artifact for component: $component from $file_path"
+    log i "Managing generic artifact for component: $component from $file_path"
 
     if [[ ! -f "$file_path" ]]; then
         log e "Generic artifact not found: $file_path" "$logfile"
         exit 1
     fi
-
-    # return the artifacts path and version
-    MANAGED_OUTPUT_PATH="$file_path"
-    MANAGED_OUTPUT_VERSION="$version"
 
 }
 
@@ -367,7 +288,7 @@ manage_flatpak_id() {
     local flatpak_id="$2"
 
     if [[ "$DRY_RUN" -eq 1 ]]; then
-        echo "[DRY-RUN] Would manage flatpak for $flatpak_id"
+        log d "[DRY-RUN] Would manage flatpak for $flatpak_id"
         return 0
     fi
 
@@ -405,24 +326,22 @@ manage_flatpak_id() {
         exit 0
     fi
 
+    # Roughly moving all the files to the work directory
+    cp -r "$app_path" "$WORK_DIR"
+
     log i "Removing debug symbols from $flatpak_id..." "$logfile"
-    rm -rf "$app_path/lib/debug"
+    rm -rf "$WORK_DIR/lib/debug"
 
-    mkdir -p "$component/artifacts/.tmp"
-
-    log i "Copying application files..." "$logfile"
-    mv "$app_path/bin" "$component/artifacts/.tmp/"
-    mv "$app_path/lib" "$component/artifacts/.tmp/"
-    mv "$app_path/share/ppsspp/assets" "$component/artifacts/.tmp/"
-    mv "$app_path/share" "$component/artifacts/.tmp/"
-
-    # Remove unnecessary directories
-    rm -rf "$app_path/share/ppsspp"
+    log i "Copying application files in the actual artifacts directory..." "$logfile"
+    mv "$WORK_DIR/bin" "$component/artifacts/"
+    mv "$WORK_DIR/lib" "$component/artifacts/"
+    mv "$WORK_DIR/share/ppsspp/assets" "$component/artifacts/"
+    mv "$WORK_DIR/share" "$component/artifacts/"
 
     log i "Finding required runtimes for $flatpak_id..." "$logfile"
     local runtimes
     runtimes=$(flatpak info --user "$flatpak_id" | awk '/Runtime:/ {print $2} /Sdk:/ {print $2}')
-    echo -e "[INFO] Found runtimes:\n$runtimes"
+    log i "Found runtimes:\n$runtimes" "$logfile"
 
     for runtime_id in $runtimes; do
         log i "Including runtime: $runtime_id" "$logfile"
@@ -435,27 +354,17 @@ manage_flatpak_id() {
 
         if [[ -d "$runtime_path" ]]; then
             log i "Copying runtime files for $runtime_id..." "$logfile"
-            mkdir -p "$component/artifacts/.tmp/runtimes/$runtime_id"
-            cp -r "$runtime_path"/* "$component/artifacts/.tmp/runtimes/$runtime_id/" || { log e "Copy failed" "$logfile"; exit 1; }
+            mkdir -p "$component/artifacts/runtimes/$runtime_id"
+            cp -r "$runtime_path"/* "$component/artifacts/runtimes/$runtime_id/" || { log e "Copy failed" "$logfile"; exit 1; }
         else
             echo "[WARNING] Runtime path $runtime_path not found, skipping."
         fi
     done
 
-    FINALIZE_COMPONENT="$component"
-    FINALIZE_PATH="$component/artifacts/.tmp"
-    FINALIZE_VERSION="$extracted_version"
-
-    log d "FINALIZE_COMPONENT=$FINALIZE_COMPONENT" "$logfile"
-    log d "FINALIZE_PATH=$FINALIZE_PATH" "$logfile"
-    log d "FINALIZE_VERSION=$FINALIZE_VERSION" "$logfile"
-
-    log i "Finalizing artifact..." "$logfile"
-
-    # cleanup dopo finalize
+    # Uninstall the flatpak if it was not previously installed
     if [[ "$was_installed" == "false" ]]; then
         log i "Uninstalling $flatpak_id as it was not previously installed." "$logfile"
-        flatpak uninstall --user -y "$flatpak_id" || echo "[WARNING] Failed to uninstall $flatpak_id"
+        flatpak uninstall --user -y "$flatpak_id" || log w "Failed to uninstall $flatpak_id"
     fi
 }
 
@@ -471,7 +380,7 @@ manage_flatpak_artifacts() {
     local extension="${filename##*.}"
     local output_path="$component/artifacts/$filename"
 
-    mkdir -p "$component/artifacts"
+    mkdir -p "$WORK_DIR/$component/artifacts"
 
     wget -qc "$url" -O "$output_path" || {
         log e "Failed to download Flatpak artifacts from $url" "$logfile"
@@ -485,147 +394,65 @@ manage_flatpak_artifacts() {
 
     # Attempt to extract version from the file if not provided
     if [[ -z "$version" ]]; then
-        version=$(version_check "metainfo" "$component" "$output_path" 2>/dev/null)
+        export version=$(version_check "metainfo" "$component" "$output_path" 2>/dev/null)
         if [[ -z "$version" ]]; then
             log w "Unable to extract version from $output_path, falling back to filename." "$logfile"
-            version=$(basename "$url" | grep -oE '[0-9]+\.[0-9]+(\.[0-9]+)?' | head -n 1)
+            export version=$(basename "$url" | grep -oE '[0-9]+\.[0-9]+(\.[0-9]+)?' | head -n 1)
             [[ -z "$version" ]] && version="unknown"
         fi
     fi
 
-    local tmpzip_dir="$artifact_dir/.tmpzip"
-
-    mkdir -p "$component/artifacts/extracted"
-    tar -xf "$output_path" -C "$tmpzip_dir" || {
+    mkdir -p "$WORK_DIR"
+    tar -xf "$output_path" -C "$WORK_DIR" || {
         log e "Failed to extract Flatpak artifacts from $output_path" "$logfile"
         exit 1
     }
 
-    mv $tmpzip_dir/files/bin/ artifact/
-    mv $tmpzip_dir/files/lib/ melonds/
-    mv $tmpzip_dir/files/share/ melonds/
-
-    # Final return
-    MANAGED_OUTPUT_PATH="$output_path"
-    MANAGED_OUTPUT_VERSION="$version"
-
+    mv "$WORK_DIR/files/bin/" "$component/artifacts/"
+    mv "$WORK_DIR/files/lib/" "$component/artifacts/"
+    mv "$WORK_DIR/files/share/" "$component/artifacts/"
 }
 
 finalize() {
-    log d "Starting finalize function" "$logfile"
+    log i "Finalizing $component" "$logfile"
 
-    if [[ -z "$FINALIZE_COMPONENT" || -z "$FINALIZE_PATH" || -z "$FINALIZE_VERSION" ]]; then
-        log e "finalize() called without a valid grab step." "$logfile"
-        log d "FINALIZE_COMPONENT=$FINALIZE_COMPONENT" "$logfile"
-        log d "FINALIZE_PATH=$FINALIZE_PATH" "$logfile"
-        log d "FINALIZE_VERSION=$FINALIZE_VERSION" "$logfile"
+    local artifact_dir="$component/artifacts"
+
+    if [[ -z "$component" || -z "$version" ]]; then
+        log e "finalize() missing required environment: component=$component version=$version" "$logfile"
         return 1
     fi
 
-    local component="${1:-$FINALIZE_COMPONENT}"
-    local source_path="${2:-$FINALIZE_PATH}"
-    local version="${3:-$FINALIZE_VERSION}"
-    local max_size_mb=95
-    local artifact_dir="$component/artifacts"
-    local temp_tar="$artifact_dir/$component.tar.gz"
-    local tmpzip_dir="$artifact_dir/.tmpzip"
-
-    mkdir -p "$artifact_dir"
-
-    if [[ -f "$source_path" ]]; then
-        log i "Source is a file: $source_path" "$logfile"
-
-        # If the artifacts is an AppImage just move it to the artifacts directory
-        # TODO: probably deprecated as we don't deliver .AppImage files anymore
-        if [[ "$source_path" == *.AppImage ]]; then
-            log i "Detected AppImage file, skipping compression." "$logfile"
-            local target_path="$artifact_dir/$component.AppImage"
-
-            if [[ "$(realpath "$source_path")" != "$(realpath "$target_path")" ]]; then
-                cp -f "$source_path" "$target_path" || { log e "Failed to copy AppImage." "$logfile"; exit 1; }
-            else
-                log i "Source and destination are the same file, skipping copy." "$logfile"
-            fi
-
-            chmod +x "$target_path"
-            sha256sum "$target_path" > "$target_path.sha"
-
-        # Splitting logic
-        # TODO: probably deprecated now
-        else
-            local artifact_size_mb=$(( $(stat -c%s "$source_path") / 1024 / 1024 ))
-            local filename=$(basename "$source_path")
-            local target_path="$artifact_dir/$filename"
-
-            if [[ "$artifact_size_mb" -gt "$max_size_mb" && "$SPLIT" == "true" ]]; then
-                log i "Large file detected and SPLIT=true. Creating split ZIP..." "$logfile"
-                rm -rf "$tmpzip_dir"
-                mkdir -p "$tmpzip_dir"
-                cp -f "$source_path" "$tmpzip_dir/" || { log e "Failed to copy file to tmp." "$logfile"; exit 1; }
-                (cd "$artifact_dir" && zip -r -s ${max_size_mb}m "${component}.zip" ".tmpzip") || { log e "ZIP split failed." "$logfile"; exit 1; }
-                rm -rf "$tmpzip_dir"
-                for part in "$artifact_dir"/${component}.zip "$artifact_dir"/${component}.z*; do
-                    [[ -f "$part" ]] && sha256sum "$part" > "$artifact_dir/$(basename "$part").sha"
-                done
-            else
-                log i "Copying file as-is (no split)." "$logfile"
-                if [[ "$(realpath "$source_path")" != "$(realpath "$target_path")" ]]; then
-                    cp -f "$source_path" "$target_path" || { log e "Copy failed." "$logfile"; exit 1; }
-                else
-                    log i "Source and destination are the same file, skipping copy." "$logfile"
-                fi
-                sha256sum "$target_path" > "$target_path.sha"
-            fi
-        fi
-
-    elif [[ -d "$source_path" ]]; then
-        log i "Source is a directory." "$logfile"
-
-        # Injecting needed component files
-        local inject_files=("component_launcher.sh" "manifest.json" "functions.sh" "prepare_component.sh")
-        for file in "${inject_files[@]}"; do
-            if [[ -f "$file" ]]; then
-            mv "$file" "$component/artifacts"
-                if [[ "$file" == *.sh ]]; then
-                    chmod +x "$component/artifacts/$file"
-                fi
-            else
-                log w "File $file not found, skipping." "$logfile"
-            fi
-        done
-
-        # TODO: split logic, probably deprecated now
-        tar -czf "$temp_tar" -C "$source_path" . || { log e "Tar creation failed." "$logfile"; exit 1; }
-
-        local artifact_size_mb=$(( $(stat -c%s "$temp_tar") / 1024 / 1024 ))
-
-        if [[ "$artifact_size_mb" -gt "$max_size_mb" && "$SPLIT" == "true" ]]; then
-            log i "Directory archive is large and SPLIT=true. Creating split ZIP..." "$logfile"
-            rm -f "$temp_tar"
-            rm -rf "$tmpzip_dir"
-            cp -rf "$source_path" "$tmpzip_dir" || { log e "Failed to copy directory." "$logfile"; exit 1; }
-            (cd "$artifact_dir" && zip -r -s ${max_size_mb}m "${component}.zip" ".tmpzip") || { log e "Split zip failed." "$logfile"; exit 1; }
-            rm -rf "$tmpzip_dir"
-            for part in "$artifact_dir"/${component}.zip "$artifact_dir"/${component}.z*; do
-                [[ -f "$part" ]] && sha256sum "$part" > "$artifact_dir/$(basename "$part").sha"
-            done
-        else
-            log i "Archive size OK or split disabled. Keeping tar.gz." "$logfile"
-            sha256sum "$temp_tar" > "$temp_tar.sha"
-        fi
-
-    else
-        log e "Source path is neither a file nor a directory: $source_path" "$logfile"
-        exit 1
+    if [[ ! -d "$artifact_dir" ]]; then
+        log e "Artifact directory does not exist: $artifact_dir" "$logfile"
+        ls -lah "$component"
+        return 1
     fi
 
-    if [[ -n "$version" ]]; then
-        echo "$version" > "$artifact_dir/version"
-    fi
+    # Inject standard component files if present
+    local inject_files=("component_launcher.sh" "manifest.json" "functions.sh" "prepare_component.sh")
+    for file in "${inject_files[@]}"; do
+        if [[ -f "$file" ]]; then
+            mv "$file" "$artifact_dir"
+            [[ "$file" == *.sh ]] && chmod +x "$artifact_dir/$file"
+        fi
+    done
 
-    rm -rf "$artifact_dir/.tmp"
+    # Package artifact directory
+    tar -czf "$artifact_dir/$component.tar.gz" -C "$artifact_dir" . || {
+        log e "Tar creation failed." "$logfile"
+        return 1
+    }
+    sha256sum "$artifact_dir/$component.tar.gz" > "$artifact_dir/$component.tar.gz.sha"
+
+    echo "$version" > "$artifact_dir/version"
+
+    if [[ -d $WORK_DIR ]]; then
+        log i "Cleaning up work directory: $WORK_DIR" "$logfile"
+        rm -rf "$WORK_DIR"
+    fi
+    log i "Finalization complete for $component" "$logfile"
 }
-
 
 write_components_version() {
 
@@ -642,7 +469,7 @@ write_components_version() {
     for version_file in */artifacts/version; do
         if [[ -f "$version_file" ]]; then
             local component_name=$(basename "$(dirname "$(dirname "$version_file")")")
-            local version=$(cat "$version_file")
+            export version=$(cat "$version_file")
             local update_date=$(date -r "$version_file" +"%Y-%m-%d %H:%M:%S")
 
             log d "Component: $component_name" "$logfile"
@@ -662,7 +489,6 @@ version_check() {
     local component="$2"
     local source="$3"
 
-    local version=""
     local current_version=""
     local version_file="$component/version"
 
@@ -673,31 +499,31 @@ version_check() {
 
         elif [[ "$source" =~ ^https?:// ]]; then
             # Try standard version pattern
-            version=$(echo "$source" | grep -oE '[0-9]+\.[0-9]+(\.[0-9]+)?' | head -n 1)
+            export version=$(echo "$source" | grep -oE '[0-9]+\.[0-9]+(\.[0-9]+)?' | head -n 1)
 
             # Fallback: try nightly or date-based version
             if [[ -z "$version" ]]; then
-                version=$(echo "$source" | grep -oE 'nightly-[0-9]{4}-[0-9]{2}-[0-9]{2}' | head -n 1)
+                export version=$(echo "$source" | grep -oE 'nightly-[0-9]{4}-[0-9]{2}-[0-9]{2}' | head -n 1)
             fi
 
             if [[ -z "$version" ]]; then
-                version=$(echo "$source" | grep -oE '[0-9]{4}[_-][0-9]{2}[_-][0-9]{2}' | head -n 1)
+                export version=$(echo "$source" | grep -oE '[0-9]{4}[_-][0-9]{2}[_-][0-9]{2}' | head -n 1)
             fi
 
         elif [[ -f "$source" ]]; then
-            version=$(basename "$source" | grep -oE '[0-9]+\.[0-9]+(\.[0-9]+)?' | head -n 1)
+            export version=$(basename "$source" | grep -oE '[0-9]+\.[0-9]+(\.[0-9]+)?' | head -n 1)
         fi
         ;;
 
         metainfo)
             if [[ -f "$source" && "$source" =~ \.(metainfo|appdata)\.xml$ ]]; then
-                version=$(xmlstarlet sel -t -v "/component/releases/release[1]/@version" "$source" 2>/dev/null | head -n 1)
+                export version=$(xmlstarlet sel -t -v "/component/releases/release[1]/@version" "$source" 2>/dev/null | head -n 1)
 
             elif [[ -d "$source" ]]; then
                 local metainfo_file
                 metainfo_file=$(find "$source" -type f \( -name "*.metainfo.xml" -o -name "*.appdata.xml" \) | head -n 1)
                 if [[ -n "$metainfo_file" ]]; then
-                    version=$(xmlstarlet sel -t -v "/component/releases/release[1]/@version" "$metainfo_file" 2>/dev/null | head -n 1)
+                    export version=$(xmlstarlet sel -t -v "/component/releases/release[1]/@version" "$metainfo_file" 2>/dev/null | head -n 1)
                 fi
 
             elif [[ -f "$source" && "$source" =~ \.tar\.(gz|xz|bz2)$ ]]; then
@@ -705,12 +531,12 @@ version_check() {
                 metainfo_path=$(tar -tf "$source" | grep -m1 -E '\.(metainfo|appdata)\.xml$')
                 if [[ -n "$metainfo_path" ]]; then
                     log d "Found metadata in archive: $metainfo_path" "$logfile"
-                    version=$(tar -xOf "$source" "$metainfo_path" 2>/dev/null | \
+                    export version=$(tar -xOf "$source" "$metainfo_path" 2>/dev/null | \
                         xmlstarlet sel -t -v "/component/releases/release[1]/@version" 2>/dev/null | head -n 1)
                 fi
 
             elif [[ -f "$source" && "$source" =~ \.zip$ ]]; then
-                version=$(unzip -p "$source" '*.metainfo.xml' '*.appdata.xml' 2>/dev/null | \
+                export version=$(unzip -p "$source" '*.metainfo.xml' '*.appdata.xml' 2>/dev/null | \
                     xmlstarlet sel -t -v "/component/releases/release[1]/@version" 2>/dev/null | head -n 1)
 
             else
@@ -726,7 +552,7 @@ version_check() {
 
     if [[ -z "$version" ]]; then
         log w "Could not determine version for $component (source: \"$source\"), setting as \"unknown\"" "$logfile"
-        version="unknown"
+        export version="unknown"
     fi
 
     log i "Detected version: $version" "$logfile"
