@@ -6,4 +6,6 @@ grab appimage "https://github.com/xemu-project/xemu/releases/latest/download/xem
 
 # custom commnads goes here
 
+# TODO: We need XBOX HDD, check main manifest
+
 finalize

@@ -6,4 +6,6 @@ grab appimage "https://github.com/PCSX2/pcsx2/releases/latest/download/pcsx2-*-l
 
 # custom commands go here
 
+# TODO: We need cheats, check main manifest
+
 finalize
