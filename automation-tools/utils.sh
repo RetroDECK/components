@@ -380,28 +380,29 @@ manage_flatpak_id() {
     mv "$WORK_DIR/share/ppsspp/assets" "$component/artifacts/"
     mv "$WORK_DIR/share" "$component/artifacts/"
 
-    log i "Finding required runtimes for $flatpak_id..." "$logfile"
-    local runtimes
-    runtimes=$(flatpak info --user "$flatpak_id" | awk '/Runtime:/ {print $2} /Sdk:/ {print $2}')
-    log i "Found runtimes:\n$runtimes" "$logfile"
+    # Runtimes are disabled as they are managed in shared-libs
+    # log i "Finding required runtimes for $flatpak_id..." "$logfile"
+    # local runtimes
+    # runtimes=$(flatpak info --user "$flatpak_id" | awk '/Runtime:/ {print $2} /Sdk:/ {print $2}')
+    # log i "Found runtimes:\n$runtimes" "$logfile"
 
-    for runtime_id in $runtimes; do
-        log i "Including runtime: $runtime_id" "$logfile"
+    # for runtime_id in $runtimes; do
+    #     log i "Including runtime: $runtime_id" "$logfile"
 
-        local runtime_name=$(echo "$runtime_id" | cut -d'/' -f1)
-        local runtime_arch=$(echo "$runtime_id" | cut -d'/' -f2)
-        local runtime_branch=$(echo "$runtime_id" | cut -d'/' -f3)
+    #     local runtime_name=$(echo "$runtime_id" | cut -d'/' -f1)
+    #     local runtime_arch=$(echo "$runtime_id" | cut -d'/' -f2)
+    #     local runtime_branch=$(echo "$runtime_id" | cut -d'/' -f3)
 
-        local runtime_path="$HOME/.local/share/flatpak/runtime/$runtime_name/$runtime_arch/$runtime_branch/active/files"
+    #     local runtime_path="$HOME/.local/share/flatpak/runtime/$runtime_name/$runtime_arch/$runtime_branch/active/files"
 
-        if [[ -d "$runtime_path" ]]; then
-            log i "Copying runtime files for $runtime_id..." "$logfile"
-            mkdir -p "$component/artifacts/runtimes/$runtime_id"
-            cp -r "$runtime_path"/* "$component/artifacts/runtimes/$runtime_id/" || { log e "Copy failed" "$logfile"; exit 1; }
-        else
-            echo "[WARNING] Runtime path $runtime_path not found, skipping."
-        fi
-    done
+    #     if [[ -d "$runtime_path" ]]; then
+    #         log i "Copying runtime files for $runtime_id..." "$logfile"
+    #         mkdir -p "$component/artifacts/runtimes/$runtime_id"
+    #         cp -r "$runtime_path"/* "$component/artifacts/runtimes/$runtime_id/" || { log e "Copy failed" "$logfile"; exit 1; }
+    #     else
+    #         echo "[WARNING] Runtime path $runtime_path not found, skipping."
+    #     fi
+    # done
 
     # Uninstall the flatpak if it was not previously installed
     if [[ "$was_installed" == "false" ]]; then
