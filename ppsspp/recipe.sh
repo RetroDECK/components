@@ -4,6 +4,9 @@ source "automation-tools/utils.sh"
 
 grab flatpak_id "org.ppsspp.PPSSPP"
 
+# PPSSPP Assets
+mv "$WORK_DIR/share/ppsspp/assets" "$component/artifacts/"
+
 # PPSSPP BIOS
 log i "Downloading PPSSPP BIOS..." "$logfile"
 wget "https://github.com/hrydgard/ppsspp/archive/refs/heads/master.zip" -O "$WORK_DIR/ppsspp-bios.zip"
