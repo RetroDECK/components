@@ -397,10 +397,19 @@ manage_flatpak_id() {
     rm -rf "$WORK_DIR/lib/debug"
 
     log i "Copying application files in the actual artifacts directory..." "$logfile"
-    mv "$WORK_DIR/bin" "$component/artifacts/"
-    mv "$WORK_DIR/lib" "$component/artifacts/"
-    mv "$WORK_DIR/share/ppsspp/assets" "$component/artifacts/"
-    mv "$WORK_DIR/share" "$component/artifacts/"
+    for dir in bin lib share; do
+        if [[ -d "$WORK_DIR/$dir" ]]; then
+            mv "$WORK_DIR/$dir" "$component/artifacts/"
+        else
+            log w "Directory $WORK_DIR/$dir not found. Listing contents of $WORK_DIR:" "$logfile"
+            local need_to_ls="true"
+        fi
+    done
+
+    if [[ "$need_to_ls" == "true" ]]; then
+        ls -lah "$WORK_DIR"
+        need_to_ls="false"
+    fi
 
     # Runtimes are disabled as they are managed in shared-libs
     # log i "Finding required runtimes for $flatpak_id..." "$logfile"
