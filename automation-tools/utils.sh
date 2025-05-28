@@ -414,11 +414,13 @@ manage_flatpak_id() {
 manage_flatpak_artifacts() {
     log d "Starting manage_flatpak_artifacts function" "$logfile"
 
+    local temp_dir=$(mktemp -d)
+
     local filename=$(basename "$url")
     local extension="${filename##*.}"
-    local output_path="$component/artifacts/$filename"
+    local output_path="$temp_dir/$filename"
 
-    mkdir -p "$WORK_DIR/$component/artifacts"
+    mkdir -p "$(dirname "$output_path")"
 
     wget -qc "$url" -O "$output_path" || {
         log e "Failed to download Flatpak artifacts from $url" "$logfile"
