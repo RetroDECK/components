@@ -1,32 +1,16 @@
 #!/bin/bash
 
+# This recipe differs fomr the standard as PortMaster needs a special setup
+
 source "automation-tools/utils.sh"
 
-grab generic "https://github.com/PortsMaster/PortMaster-GUI/releases/latest/download/retrodeck.portmaster.zip"
+wget -qc "https://github.com/PortsMaster/PortMaster-GUI/releases/latest/download/retrodeck.portmaster.zip" -O "$WORK_DIR/extras/PortMaster.zip"
+
+echo '#!/bin/bash' > "$WORK_DIR/extras/PortMaster"
+echo "\"/var/data/PortMaster/PortMaster.sh\" \"$@\"" >> "$WORK_DIR/extras/PortMaster"
+echo '#!/bin/bash' > "$WORK_DIR/extras/harbourmaster"
+echo "\"/var/data/PortMaster/harbourmaster\" \"$@\"" >> "$WORK_DIR/extras/harbourmaster"
+chmod +x "$WORK_DIR/extras/PortMaster"
+chmod +x "$WORK_DIR/extras/harbourmaster"
 
 finalize
-
-# TODO: we need to adapt this to the new NEO format
-
-#   - name: PortMaster
-#     buildsystem: simple
-#     build-commands:
-#       - mkdir -p "${FLATPAK_DEST}/retrodeck/PortMaster/"
-#       - install -Dm755 "PortMaster" "${FLATPAK_DEST}/bin/PortMaster"
-#       - install -Dm755 "harbourmaster" "${FLATPAK_DEST}/bin/harbourmaster"
-#       - cp PortMaster.zip "${FLATPAK_DEST}/retrodeck/PortMaster.zip"
-#     sources:
-#       - type: file
-#         url: 
-#         sha256: PORTMASTERLATESTSHA
-#         dest-filename: PortMaster.zip
-#       - type: script
-#         commands:
-#           - |
-#             "/var/data/PortMaster/PortMaster.sh" "$@"
-#         dest-filename: PortMaster
-#       - type: script
-#         commands:
-#           - |
-#             "/var/data/PortMaster/harbourmaster" "$@"
-#         dest-filename: harbourmaster
