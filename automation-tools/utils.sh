@@ -310,10 +310,32 @@ manage_generic() {
     fi
 
     # Extract to WORK_DIR
-    tar -xf "$output_path" -C "$WORK_DIR" || {
-        log e "Failed to extract generic artifact: $output_path" "$logfile"
-        exit 1
-    }
+    case "$output_path" in
+        *.tar.gz|*.tar.bz2|*.tar.xz)
+            tar -xf "$output_path" -C "$WORK_DIR" || {
+                log e "Failed to extract tar archive: $output_path" "$logfile"
+                exit 1
+            }
+            ;;
+        *.zip)
+            unzip -q "$output_path" -d "$WORK_DIR" || {
+                log e "Failed to extract zip archive: $output_path" "$logfile"
+                exit 1
+            }
+            ;;
+        *.7z)
+            7z x -y "$output_path" -o"$WORK_DIR" > /dev/null || {
+                log e "Failed to extract 7z archive: $output_path" "$logfile"
+                exit 1
+            }
+            ;;
+        *)
+            tar -xf "$output_path" -C "$WORK_DIR" || {
+                log e "Failed to extract generic artifact: $output_path" "$logfile"
+                exit 1
+            }
+            ;;
+    esac
 
     # Move extracted files into artifacts dir
     log d "Moving extracted contents to $component/artifacts/" "$logfile"
