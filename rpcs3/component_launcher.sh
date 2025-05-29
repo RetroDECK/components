@@ -8,4 +8,5 @@ export APPDIR="$RD_MODULES/$COMPONENT_NAME"
 
 LD_LIBRARY_PATH="$RD_MODULES/$COMPONENT_NAME/lib:${LD_LIBRARY_PATH}"
 
-exec "$RD_MODULES/$COMPONENT_NAME/bin/AppRun" "$@"
+# NOTE: AppRun is not working for RPCS3
+exec "$RD_MODULES/$COMPONENT_NAME/bin/rpcs3" "$@"
