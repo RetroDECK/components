@@ -1,8 +1,12 @@
 #!/bin/bash
 
+COMPONENT_NAME="gzdoom"
 RD_MODULES="/app/retrodeck/components"
 
-LD_LIBRARY_PATH="$RD_MODULES/gzdoom/lib:${LD_LIBRARY_PATH}"
-export DOOMWADDIR="$RD_MODULES/gzdoom/share/games/doom"
+# This ensures the application can find its resources
+export APPDIR="$RD_MODULES/$COMPONENT_NAME"
 
-exec "$RD_MODULES/gzdoom/bin/gzdoom" +fluid_patchset "$RD_MODULES/gzdoom/share/games/doom/soundfonts/gzdoom.sf2" "$@"
+LD_LIBRARY_PATH="$RD_MODULES/$COMPONENT_NAME/lib:${LD_LIBRARY_PATH}"
+export DOOMWADDIR="$RD_MODULES/$COMPONENT_NAME/share/games/doom"
+
+exec "$RD_MODULES/$COMPONENT_NAME/AppRun" --no-sandbox +fluid_patchset "$RD_MODULES/$COMPONENT_NAME/share/games/doom/soundfonts/gzdoom.sf2" "$@"
