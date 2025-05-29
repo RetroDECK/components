@@ -18,8 +18,8 @@ modules:
       - xargs -a shared-libs-6.8.txt -I{} cp /lib/x86_64-linux-gnu/{} ${FLATPAK_DEST}/lib/
 
       - mkdir -p ${FLATPAK_DEST}/lib/openh264/extras/
-      - cp -P /lib/x86_64-linux-gnu/openh264/extras/{libopenh264.so*,libopenh264.so*}
       - ls -lah ${FLATPAK_DEST}/lib/openh264/extras/ # DEBUG
+      #- cp -P /lib/x86_64-linux-gnu/openh264/extras/{libopenh264.so*,libopenh264.so*} # is breaking the build
 
       - mkdir -p ${FLATPAK_DEST}/lib/plugins/platforms
       - cp -P /usr/plugins/platforms/libqxcb.so ${FLATPAK_DEST}/lib/plugins/platforms/
