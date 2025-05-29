@@ -5,6 +5,7 @@
 source "automation-tools/assembler.sh"
 WORK_DIR=$(mktemp -d)
 component="portmaster"
+version="stable"
 
 wget -qc "https://github.com/PortsMaster/PortMaster-GUI/releases/latest/download/retrodeck.portmaster.zip" -O "$WORK_DIR/PortMaster.zip"
 
