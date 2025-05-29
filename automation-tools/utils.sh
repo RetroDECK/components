@@ -348,7 +348,6 @@ manage_generic() {
 
 # This function not compiling the flatpak, just downloading it and extracting it (+ runtimes and sdk)
 manage_flatpak_id() {
-
     log d "Starting manage_flatpak_id function" "$logfile"
 
     local flatpak_id="$url"
@@ -358,6 +357,7 @@ manage_flatpak_id() {
         return 0
     fi
 
+    # Ensure flathub is added as a remote
     flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo || true
 
     local was_installed="true"
@@ -366,43 +366,60 @@ manage_flatpak_id() {
         was_installed="false"
     fi
 
+    # Install or update the Flatpak app (user scope)
     flatpak install --user -y --or-update flathub "$flatpak_id"
 
+    # Define expected file locations
     local app_path="$HOME/.local/share/flatpak/app/$flatpak_id/x86_64/stable/active/files"
     local metainfo_path="$HOME/.local/share/flatpak/app/$flatpak_id/x86_64/stable/active/export/share/metainfo/$flatpak_id.metainfo.xml"
 
+    # Ensure the metainfo exists for version detection
     if [[ ! -f "$metainfo_path" ]]; then
         log e "Metainfo file not found at \"$metainfo_path\"." "$logfile"
         ls -lah "$(dirname "$metainfo_path")"
         exit 1
     fi
 
+    # Ensure the app files exist
     if [[ ! -d "$app_path" ]]; then
         log e "App path not found: \"$app_path\"." "$logfile"
         ls -lah "$(dirname "$app_path")"
         exit 1
     fi
 
+    # Perform version check using the metainfo XML
     version_check "metainfo" "$component" "$metainfo_path"
-
     if [[ $? -eq 0 ]]; then
         log i "Skipping $flatpak_id because version is already up-to-date." "$logfile"
         [[ "$was_installed" == "false" ]] && flatpak uninstall --user -y "$flatpak_id" || true
         exit 0
     fi
 
-    # Roughly moving all the files to the work directory
+    # Copy app contents into a temporary working directory
     cp -r "$app_path" "$WORK_DIR"
 
     log i "Removing debug symbols from $flatpak_id..." "$logfile"
     rm -rf "$WORK_DIR/lib/debug"
 
-    log i "Copying application files in the actual artifacts directory..." "$logfile"
-    for dir in bin lib share; do
-        if [[ -d "$WORK_DIR/$dir" ]]; then
-            mv "$WORK_DIR/$dir" "$component/artifacts/"
+    log i "Copying application files to artifacts directory..." "$logfile"
+
+    # Target folders to extract \u2014 only those that exist at top level
+    target_dirs=(bin lib share)
+
+    # Loop through each folder type
+    for target in "${target_dirs[@]}"; do
+        # Search only one level deep into $WORK_DIR to avoid nested matches like usr/lib
+        found_path=$(find "$WORK_DIR" -mindepth 1 -maxdepth 2 -type d -name "$target" | head -n 1)
+
+        if [[ -n "$found_path" ]]; then
+            log i "Found top-level $target at $found_path, moving to artifacts..." "$logfile"
+            mv "$found_path" "$component/artifacts/" || {
+                log e "Failed to move $target from $found_path" "$logfile"
+                exit 1
+                local need_to_ls="true"
+            }
         else
-            log w "Directory $WORK_DIR/$dir not found. Listing contents of $WORK_DIR:" "$logfile"
+            log w "No top-level '$target' found in $WORK_DIR" "$logfile"
             local need_to_ls="true"
         fi
     done
@@ -436,7 +453,10 @@ manage_flatpak_id() {
     #     fi
     # done
 
-    # Uninstall the flatpak if it was not previously installed
+    # Clean up any now-empty directories left behind
+    find "$WORK_DIR" -depth -type d -empty -delete
+
+    # Uninstall the Flatpak if it was not previously installed
     if [[ "$was_installed" == "false" ]]; then
         log i "Uninstalling $flatpak_id as it was not previously installed." "$logfile"
         flatpak uninstall --user -y "$flatpak_id" || log w "Failed to uninstall $flatpak_id" "$logfile"
