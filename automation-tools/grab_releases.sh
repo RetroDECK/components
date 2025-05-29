@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source "automation-tools/utils.sh"
+source "automation-tools/assembler.sh"
 
 # curl -s "https://raw.githubusercontent.com/RetroDECK/components-template/refs/heads/main/automation_tools/install_dependencies.sh" | /bin/bash
 

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source "automation-tools/utils.sh"
+source "automation-tools/assembler.sh"
 
 #grab flatpak_id "https://github.com/flathub/org.solarus_games.solarus.Launcher"
 

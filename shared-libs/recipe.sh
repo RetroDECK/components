@@ -2,7 +2,7 @@
 
 # This is out of standard so utils are not used here, maybe we can refactor this later
 
-source "automation-tools/utils.sh"
+source "automation-tools/assembler.sh"
 
 WORK_DIR=$(mktemp -d)
 component="shared-libs"

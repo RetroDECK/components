@@ -22,7 +22,7 @@ The `automation-tools/` directory contains scripts to automate tasks such as:
 
 ### Key Scripts
 
-- `utils.sh`: Contains utility functions for managing components.
+- `assembler.sh`: Contains utility functions for managing components.
 - `grab_releases.sh`: Automates the process of fetching and updating components.
 
 ## CI/CD Workflows

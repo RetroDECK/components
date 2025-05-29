@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source "automation-tools/utils.sh"
+source "automation-tools/assembler.sh"
 
 grab appimage "https://github.com/xemu-project/xemu/releases/latest/download/xemu-*-x86_64.AppImage"
 

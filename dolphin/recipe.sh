@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source "automation-tools/utils.sh"
+source "automation-tools/assembler.sh"
 
 grab flatpak_id org.DolphinEmu.dolphin-emu
 
