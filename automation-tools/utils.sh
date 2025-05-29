@@ -27,6 +27,7 @@ export logging_level="debug"
 FORCE=0                 # Force the download even if the version is the same, useful for local retention, enabled by default on CI/CD to avoid missing updates since the version files are present bu the artifacts are not
 DRY_RUN=0
 GITHUB_REPO=$(git config --get remote.origin.url | sed -E 's|.*github.com[:/](.*)\.git|\1|')
+EXTRAS="rd_extras"      # Name of the extras folder used to place components extras such as free bioses, cheats files and such
 
 parse_flags() {
     while [[ "$1" =~ ^-- ]]; do
