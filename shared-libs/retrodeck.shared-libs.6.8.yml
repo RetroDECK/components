@@ -15,7 +15,7 @@ modules:
     build-commands:
       - mkdir -p ${FLATPAK_DEST}/lib/
 
-      - xargs -a shared-libs-68.txt -I{} cp /lib/x86_64-linux-gnu/{} ${FLATPAK_DEST}/lib/
+      - xargs -a shared-libs-6.8.txt -I{} cp /lib/x86_64-linux-gnu/{} ${FLATPAK_DEST}/lib/
 
       - mkdir -p ${FLATPAK_DEST}/lib/openh264/extras/
       - cp -P /lib/x86_64-linux-gnu/openh264/extras/{libopenh264.so*,libopenh264.so*}

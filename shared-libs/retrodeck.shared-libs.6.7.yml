@@ -15,7 +15,7 @@ modules:
     build-commands:
       - mkdir -p ${FLATPAK_DEST}/lib/
 
-      - xargs -a shared-libs-67.txt -I{} cp /lib/x86_64-linux-gnu/{} ${FLATPAK_DEST}/lib/
+      - xargs -a shared-libs-6.7.txt -I{} cp /lib/x86_64-linux-gnu/{} ${FLATPAK_DEST}/lib/
 
       - mkdir -p ${FLATPAK_DEST}/lib/plugins/imageformats
       - cp -P /usr/plugins/imageformats/{libqgif.so,libqico.so,libqjpeg.so,libqsvg.so} ${FLATPAK_DEST}/lib/plugins/imageformats/
