@@ -1,7 +1,11 @@
 #!/bin/bash
 
 RD_MODULES="/app/retrodeck/components"
+COMPONENT_NAME="steam-rom-manager"
 
-LD_LIBRARY_PATH="$RD_MODULES/steam-rom-manager/lib:${LD_LIBRARY_PATH}"
+# This ensures the application can find its resources
+export APPDIR="$RD_MODULES/$COMPONENT_NAME"
 
-exec "$RD_MODULES/steam-rom-manager/bin/steam-rom-manager" "$@"
+LD_LIBRARY_PATH="$RD_MODULES/$COMPONENT_NAME/lib:${LD_LIBRARY_PATH}"
+
+exec "$RD_MODULES/$COMPONENT_NAME/AppRun" --no-sandbox "$@"
