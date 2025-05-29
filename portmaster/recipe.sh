@@ -4,11 +4,11 @@
 
 source "automation-tools/utils.sh"
 
-wget -qc "https://github.com/PortsMaster/PortMaster-GUI/releases/latest/download/retrodeck.portmaster.zip" -O "$WORK_DIR/extras/PortMaster.zip"
+wget -qc "https://github.com/PortsMaster/PortMaster-GUI/releases/latest/download/retrodeck.portmaster.zip" -O "$WORK_DIR/$EXTRAS/PortMaster.zip"
 
 # Adding an additional launcher for harbourmaster
-echo '#!/bin/bash' > "$WORK_DIR/extras/harbourmaster"
-echo "\"/var/data/PortMaster/harbourmaster\" \"$@\"" >> "$WORK_DIR/extras/harbourmaster"
-chmod +x "$WORK_DIR/extras/harbourmaster"
+echo '#!/bin/bash' > "$WORK_DIR/$EXTRAS/harbourmaster"
+echo "\"/var/data/PortMaster/harbourmaster\" \"$@\"" >> "$WORK_DIR/$EXTRAS/harbourmaster"
+chmod +x "$WORK_DIR/$EXTRAS/harbourmaster"
 
 finalize
