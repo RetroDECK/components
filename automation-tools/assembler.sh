@@ -340,7 +340,7 @@ manage_generic() {
 
     # Move extracted files into artifacts dir
     log d "Moving extracted contents to $component/artifacts/" "$logfile"
-    mv "$WORK_DIR"/* "$component/artifacts/" || {
+    cp -rL "$WORK_DIR"/* "$component/artifacts/" || {
         log e "Failed to move extracted files to artifacts." "$logfile"
         exit 1
     }
@@ -396,7 +396,7 @@ manage_flatpak_id() {
     fi
 
     # Copy app contents into a temporary working directory
-    cp -r "$app_path" "$WORK_DIR"
+    cp -rL "$app_path" "$WORK_DIR"
 
     log i "Removing debug symbols from $flatpak_id..." "$logfile"
     rm -rf "$WORK_DIR/lib/debug"
@@ -413,10 +413,10 @@ manage_flatpak_id() {
 
         if [[ -n "$found_path" ]]; then
             log i "Found top-level $target at $found_path, moving to artifacts..." "$logfile"
-            mv "$found_path" "$component/artifacts/" || {
-                log e "Failed to move $target from $found_path" "$logfile"
+            cp -rL "$found_path" "$component/artifacts/" || {
+                log e "Failed to copy $target from $found_path" "$logfile"
                 exit 1
-                local need_to_ls="true"
+            local need_to_ls="true"
             }
         else
             log w "No top-level '$target' found in $WORK_DIR" "$logfile"
