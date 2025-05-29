@@ -10,7 +10,7 @@ cleanup:
 
 modules:
 
-  - name: shared-libs.67
+  - name: shared-libs.6.7
     buildsystem: simple
     build-commands:
       - mkdir -p ${FLATPAK_DEST}/lib/

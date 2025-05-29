@@ -10,7 +10,7 @@ cleanup:
 
 modules:
 
-  - name: shared-libs.68
+  - name: shared-libs.6.8
     buildsystem: simple
     build-commands:
       - mkdir -p ${FLATPAK_DEST}/lib/
@@ -19,6 +19,7 @@ modules:
 
       - mkdir -p ${FLATPAK_DEST}/lib/openh264/extras/
       - cp -P /lib/x86_64-linux-gnu/openh264/extras/{libopenh264.so*,libopenh264.so*}
+      - ls -lah ${FLATPAK_DEST}/lib/openh264/extras/ # DEBUG
 
       - mkdir -p ${FLATPAK_DEST}/lib/plugins/platforms
       - cp -P /usr/plugins/platforms/libqxcb.so ${FLATPAK_DEST}/lib/plugins/platforms/
