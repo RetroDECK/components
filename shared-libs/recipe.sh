@@ -10,11 +10,13 @@ version=""                  # Needed for finalize function
 
 mkdir -p $WORK_DIR/artifacts/qt-6.7/lib
 flatpak-builder --user --force-clean --install-deps-from=flathub --install-deps-from=flathub-beta --repo=$WORK_DIR/shared-libs-6.7-repo "$WORK_DIR/shared-libs-6.7-build-dir" "$component/retrodeck.shared-libs.6.7.yml"
+ls -lah $WORK_DIR/shared-libs-6.7-build-dir/files/lib # DEBUG
 mv $WORK_DIR/shared-libs-6.7-build-dir/files/lib/* $WORK_DIR/artifacts/qt-6.7/lib
 version="6.7"
 
 mkdir -p $WORK_DIR/artifacts/qt-6.8/lib
 flatpak-builder --user --force-clean --install-deps-from=flathub --install-deps-from=flathub-beta --repo=$WORK_DIR/shared-libs-6.8-repo "$WORK_DIR/shared-libs-6.8-build-dir" "$component/retrodeck.shared-libs.6.8.yml"
+ls -lah $WORK_DIR/shared-libs-6.7-build-dir/files/lib # DEBUG
 mv $WORK_DIR/shared-libs-6.8-build-dir/files/lib/* $WORK_DIR/artifacts/qt-6.8/lib
 version="$version, 6.8"
 
