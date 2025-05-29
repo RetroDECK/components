@@ -4,6 +4,9 @@
 
 source "automation-tools/utils.sh"
 
+WORK_DIR=$(mktemp -d)
+component="shared-libs"
+
 mkdir -p $WORK_DIR/qt-67
 flatpak-builder --user --force-clean --install-deps-from=flathub --install-deps-from=flathub-beta --repo=$component/shared-libs-67-repo "$component/shared-libs-67-build-dir" "retrodeck.shared-libs.67.yml"
 mv $component/shared-libs-67-build-dir/files/lib/* $WORK_DIR/qt-67/
