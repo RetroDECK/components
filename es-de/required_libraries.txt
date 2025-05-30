@@ -1,0 +1,6 @@
+These are needed libraries for ES-DE that are added to Runtime 6.8 list
+
+libavcodec.so.60
+libavfilter.so.9
+libavformat.so.60
+libavutil.so.58

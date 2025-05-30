@@ -30,3 +30,7 @@ libQt6XcbQpa.so.6
 libQt6XcbQpa.so.6.7.3
 libSDL2-2.0.so.0
 libSDL2-2.0.so.0.2800.5
+libavcodec.so.60
+libavfilter.so.9
+libavformat.so.60
+libavutil.so.58
