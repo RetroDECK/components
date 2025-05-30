@@ -4,7 +4,7 @@ source "automation-tools/assembler.sh"
 
 grab flatpak_artifacts "https://github.com/RetroDECK/ES-DE/releases/latest/download/RetroDECK-ES-DE-Artifact.tar.gz"
 
-# custom commnads goes here
+# Custom Commands
 
 # TODO: adapt the paths to the new NEO pathing scheme
 # RetroDECK Theme
