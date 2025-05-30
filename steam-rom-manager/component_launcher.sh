@@ -2,6 +2,7 @@
 
 RD_MODULES="/app/retrodeck/components"
 COMPONENT_NAME="steam-rom-manager"
+IN_FLATPAK=1
 
 # This ensures the application can find its resources
 export APPDIR="$RD_MODULES/$COMPONENT_NAME"
