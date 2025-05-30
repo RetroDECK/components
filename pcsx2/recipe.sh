@@ -4,7 +4,7 @@ source "automation-tools/assembler.sh"
 
 grab appimage "https://github.com/PCSX2/pcsx2/releases/latest/download/pcsx2-*-linux-appimage-x64-Qt.AppImage"
 
-# custom commands go here
+# Custom Commands
 
 # PCSX2 Cheats
 log i "Downloading PCSX2 cheat database..." "$logfile"
