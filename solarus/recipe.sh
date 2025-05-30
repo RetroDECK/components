@@ -6,6 +6,6 @@ source "automation-tools/assembler.sh"
 
 grab flatpak_id "org.solarus_games.solarus.Launcher"
 
-# custom commnads goes here
+# Custom Commands
 
 finalize
