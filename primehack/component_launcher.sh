@@ -8,7 +8,7 @@ case "${XDG_CURRENT_DESKTOP}" in
         ;;
 esac
 
-LD_LIBRARY_PATH="$RD_MODULES/primehack/lib:/app/retrodeck/components/shared_libs/qt-68:${LD_LIBRARY_PATH}"
-export QT_PLUGIN_PATH="/app/retrodeck/components/shared_libs/qt-68/plugins:${QT_PLUGIN_PATH}"
+LD_LIBRARY_PATH="$RD_MODULES/primehack/lib:/app/retrodeck/components/shared_libs/qt-6.8:${LD_LIBRARY_PATH}"
+export QT_PLUGIN_PATH="/app/retrodeck/components/shared_libs/qt-6.8/plugins:${QT_PLUGIN_PATH}"
 
 exec "$RD_MODULES/primehack/bin/dolphin-emu" "$@"
