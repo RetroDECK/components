@@ -4,7 +4,7 @@ source "automation-tools/assembler.sh"
 
 grab flatpak_id org.DolphinEmu.dolphin-emu
 
-# custom commands goes here
+# Custom Commands
 
 # Universal Dynamic Input for Dolphin and Primehack
 log i "Downloading Universal Dynamic Input textures for Dolphin and PrimeHack..." "$logfile"
