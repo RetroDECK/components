@@ -4,6 +4,8 @@ source "automation-tools/assembler.sh"
 
 grab flatpak_id "org.ppsspp.PPSSPP"
 
+# Custom Commands
+
 # PPSSPP Assets
 mv "$WORK_DIR/share/ppsspp/assets" "$component/artifacts/"
 
