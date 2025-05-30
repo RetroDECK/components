@@ -1,7 +1,15 @@
 app-id: net.retrodeck.retrodeck.shared-libs
 runtime: org.kde.Platform
-runtime-version: '6.8'
+runtime-version: &runtime-version '6.8'
 sdk: org.kde.Sdk
+
+add-extensions:
+  org.freedesktop.Platform.ffmpeg-full:
+    directory: lib/ffmpeg
+    add-ld-path: .
+    version: *runtime-version
+    no-autodownload: true
+    autodelete: false
 
 cleanup:
   - "/include"
@@ -13,18 +21,7 @@ modules:
   - name: shared-libs.6.8
     buildsystem: simple
     build-commands:
-      - mkdir -p ${FLATPAK_DEST}/lib/
-
-      - xargs -a shared-libs-6.8.txt -I{} cp /lib/x86_64-linux-gnu/{} ${FLATPAK_DEST}/lib/
-
-      #- mkdir -p ${FLATPAK_DEST}/lib/openh264/extras/
-      #- cp -P /lib/x86_64-linux-gnu/openh264/extras/{libopenh264.so*,libopenh264.so*} # is breaking the build
-
-      #- mkdir -p ${FLATPAK_DEST}/lib/plugins/platforms
-      #- cp -P /usr/plugins/platforms/libqxcb.so ${FLATPAK_DEST}/lib/plugins/platforms/
-
-      - ls -lah ${FLATPAK_DEST}/lib/ # Debugging line to check if files are copied correctly
-
+      - bash search-libs.sh 6.8
     sources:
       - type: dir
         path: .

@@ -15,10 +15,7 @@ modules:
   - name: shared-libs.5.15
     buildsystem: simple
     build-commands:
-      - mkdir -p ${FLATPAK_DEST}/lib/
-
-      - xargs -a shared-libs-5.15.txt -I{} cp /lib/x86_64-linux-gnu/{} ${FLATPAK_DEST}/lib/
-
+      - bash search-libs.sh 5.15
     sources:
       - type: dir
         path: .

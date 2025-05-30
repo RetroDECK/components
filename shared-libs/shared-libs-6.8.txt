@@ -42,3 +42,5 @@ libxcb-cursor.so.0
 libxcb-cursor.so.0.0.0
 libxcb.so.1
 libxcb.so.1.1.0
+libopenh264.so
+libqxcb.so
