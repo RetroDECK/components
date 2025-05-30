@@ -4,7 +4,7 @@ source "automation-tools/assembler.sh"
 
 grab appimage "https://buildbot.libretro.com/stable/*/linux/x86_64/RetroArch.7z"
 
-# custom commands goes here
+# Custom Commands
 
 # Nightly Cores
 # As some comres are not available in the stable version, we need to download the nightly cores
