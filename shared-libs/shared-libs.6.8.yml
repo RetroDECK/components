@@ -1,4 +1,4 @@
-app-id: net.retrodeck.retrodeck.shared-libs
+app-id: net.retrodeck.shared-libs
 runtime: org.kde.Platform
 runtime-version: &runtime-version '6.8'
 sdk: org.kde.Sdk
@@ -21,7 +21,11 @@ modules:
   - name: shared-libs.6.8
     buildsystem: simple
     build-commands:
-      - bash search-libs.sh 6.8
+      - |
+        source ./search_libs.sh
+        search_libs "shared-libs-6.8.txt"
     sources:
       - type: dir
         path: .
+      - type: file
+        path: ../automation-tools/search_libs.sh

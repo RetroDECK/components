@@ -1,6 +1,6 @@
 # Needed for Solarus (and even RPCS3 albiet that is brought by it)
 
-app-id: net.retrodeck.retrodeck.shared-libs
+app-id: net.retrodeck.shared-libs
 runtime: org.kde.Platform
 runtime-version: '5.15-23.08'
 sdk: org.kde.Sdk
@@ -15,7 +15,11 @@ modules:
   - name: shared-libs.5.15
     buildsystem: simple
     build-commands:
-      - bash search-libs.sh 5.15
+      - |
+        source ./search_libs.sh
+        search_libs "shared-libs-5.15.txt"
     sources:
       - type: dir
         path: .
+      - type: file
+        path: ../automation-tools/search_libs.sh
