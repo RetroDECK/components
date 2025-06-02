@@ -1,1 +1,10 @@
-placeholder
+{
+    "ruffle": {
+      "description": "Flash Games emulator",
+      "name": "Ruffle",
+      "url": "https://retrodeck.readthedocs.io/en/latest/wiki_about/what-is-retrodeck/",
+      "system": "flash",
+      "logs": "$XDG_CACHE_HOME/ruffle/ruffle.log",
+      "cli-arg": ""
+    }
+}
