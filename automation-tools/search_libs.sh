@@ -2,7 +2,6 @@
 
 # This script searches for shared libraries in specified paths and copies them to a destination directory.
 # Usage: search_libs <library_list_file>
-# Ensure the script is run with a library list file as an argument
 # Example:
 # ./search-libs.sh /shared-libs/retrodeck-shared-libs.6.8.txt
 
@@ -28,7 +27,17 @@ search_libs() {
         path=$(find "${SEARCH_PATHS[@]}" -type f -name "$lib" 2>/dev/null | head -n 1)
         if [ -z "$path" ]; then
             path=$(find "${SEARCH_PATHS[@]}" -type f -iname "*$lib*" 2>/dev/null | head -n 1)
-            [ -z "$path" ] && { echo "❌ Library not found: $lib"; not_found_libs+=("$lib"); need_to_debug=true; continue; }
+            if [ -z "$path" ]; then
+                # Special handling: if libopenh264.so.7 is requested, create symlink from .2.5.1 if available
+                if [ "$lib" == "libopenh264.so.7" ] && [ -f "${FLATPAK_DEST}/lib/libopenh264.so.2.5.1" ]; then
+                    give_libopenh264_warning=true
+                    continue
+                fi
+                echo "❌ Library not found: $lib"
+                not_found_libs+=("$lib")
+                need_to_debug=true
+                continue
+            fi
         fi
 
         dest="${FLATPAK_DEST}/lib/$(basename "$path")"
@@ -56,5 +65,13 @@ search_libs() {
             fi
             echo ""
         done
+    fi
+
+    if [ "$give_libopenh264_warning" = true ]; then
+        echo "⚠️  Warning: You included libopenh264.so.2.5.1, but you also requested libopenh264.so.7."
+        echo "You may need to create a symlink manually if the application requires it."
+        echo "We do this because libopenh264.so.7 is usually just a symlink to libopenh264.so.2.5.1 and not a separate library."
+        echo "LibMan is already instructed to create this symlink, so it should be fine."
+        echo ""
     fi
 }
