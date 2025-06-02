@@ -403,7 +403,7 @@ manage_flatpak_id() {
 
     log i "Copying application files to artifacts directory..." "$logfile"
 
-    # Target folders to extract \u2014 only those that exist at top level
+    # Target folders to extract: only those that exist at top level
     target_dirs=(bin lib share)
 
     # Loop through each folder type
