@@ -200,12 +200,12 @@ jobs:
             fi
           done
 
-      - name: Generate components_version.md
+      - name: Generate components_version_list.md
         run: |
           source automation-tools/assembler.sh
           write_components_version
           echo "Components version file generated."
-          cat components_version.md
+          cat components_version_list.md
 
       - name: Generate a token for Rekku
         id: generate-rekku-token
@@ -275,8 +275,8 @@ jobs:
           echo "This is a RetroDECK Components Artifacts release from [this commit](https://github.com/${{ github.repository }}/commit/${{ github.sha }}), from branch [${{ env.BRANCH_NAME }}](https://github.com/RetroDECK/RetroDECK/tree/feat/${{ env.BRANCH_NAME }})." >> "$RELEASE_BODY_FILE"
           echo "" >> "$RELEASE_BODY_FILE"
 
-          # Append the contents of components_version.md to the release body
-          cat components_version.md >> "$RELEASE_BODY_FILE"
+          # Append the contents of components_version_list.md to the release body
+          cat components_version_list.md >> "$RELEASE_BODY_FILE"
           echo "" >> "$RELEASE_BODY_FILE"
 
           # Prepare array
@@ -347,14 +347,14 @@ jobs:
           tag: "${{ env.TAG }}"
           name: "RetroDECK Components ${{ env.TAG }}"
           body: ${{ steps.generate-body.outputs.RELEASE_BODY }}
-          artifacts: "*/artifacts/*,!*/artifacts/version,components_version.md"
+          artifacts: "*/artifacts/*,!*/artifacts/component_version,components_version_list.md"
           allowUpdates: true
           omitBodyDuringUpdate: true
           makeLatest: ${{ env.MAKE_LATEST }}
           repo: ${{ env.REPO_NAME }}
           token: ${{ steps.generate-rekku-token.outputs.token }}
 
-      - name: Create diff between target branch and PR components_version.md
+      - name: Create diff between target branch and PR components_version_list.md
         run: |
           if [[ "${GITHUB_BASE_REF}" == "cooker" ]]; then
             TARGET_BRANCH="main"
@@ -363,18 +363,18 @@ jobs:
           fi
 
           git fetch origin $TARGET_BRANCH
-          if [ -f "components_version.md" ]; then
-            if git show origin/$TARGET_BRANCH:components_version.md > target_components_version.md 2>/dev/null; then
-              echo "Generating diff between $TARGET_BRANCH and PR components_version.md..."
-              diff -u target_components_version.md components_version.md > components_version_diff.txt || true
+          if [ -f "components_version_list.md" ]; then
+            if git show origin/$TARGET_BRANCH:components_version_list.md > target_components_version_list.md 2>/dev/null; then
+              echo "Generating diff between $TARGET_BRANCH and PR components_version_list.md..."
+              diff -u target_components_version_list.md components_version_list.md > components_version_diff.txt || true
               echo "Diff saved to components_version_diff.txt"
             else
-              echo "components_version.md does not exist on $TARGET_BRANCH branch. Skipping diff."
-              echo "No components_version.md on $TARGET_BRANCH branch." > components_version_diff.txt
+              echo "components_version_list.md does not exist on $TARGET_BRANCH branch. Skipping diff."
+              echo "No components_version_list.md on $TARGET_BRANCH branch." > components_version_diff.txt
             fi
               else
-            echo "components_version.md not found in PR. Skipping diff."
-            echo "No components_version.md in PR." > components_version_diff.txt
+            echo "components_version_list.md not found in PR. Skipping diff."
+            echo "No components_version_list.md in PR." > components_version_diff.txt
           fi
 
       - name: Write PR body
@@ -387,7 +387,7 @@ jobs:
           echo "## Changes:" >> pr_body.md
           echo "$(cat commits_list.txt)" >> pr_body.md
           echo "" >> pr_body.md
-          echo "## Diff between main and PR components_version.md:" >> pr_body.md
+          echo "## Diff between main and PR components_version_list.md:" >> pr_body.md
           echo "```diff" >> pr_body.md
           echo "$(cat components_version_diff.txt)" >> pr_body.md
           echo "```" >> pr_body.md

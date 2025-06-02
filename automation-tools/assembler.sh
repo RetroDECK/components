@@ -28,6 +28,8 @@ FORCE=0                 # Force the download even if the version is the same, us
 DRY_RUN=0
 GITHUB_REPO=$(git config --get remote.origin.url | sed -E 's|.*github.com[:/](.*)\.git|\1|')
 EXTRAS="rd_extras"      # Name of the extras folder used to place components extras such as free bioses, cheats files and such
+components_version_list="components_version_list.md"
+version_file="$component/component_version"
 
 parse_flags() {
     while [[ "$1" =~ ^-- ]]; do
@@ -523,7 +525,7 @@ finalize() {
     fi
 
     # Inject standard component files if present
-    local inject_files=("component_launcher.sh" "manifest.json" "functions.sh" "prepare_component.sh" "version" "rd_config")
+    local inject_files=("component_launcher.sh" "component_manifest.json" "component_functions.sh" "prepare_component.sh" "version" "rd_config")
     for file in "${inject_files[@]}"; do
         full_path="$component/$file"
         if [[ -f "$full_path" ]]; then
@@ -566,15 +568,14 @@ finalize() {
 write_components_version() {
     log d "Starting write_components_version function" "$logfile"
 
-    local components_version_file="components_version.md"
-    echo "# Components Version Summary" > "$components_version_file"
-    echo "" >> "$components_version_file"
+    echo "# Components Version Summary" > "$components_version_list"
+    echo "" >> "$components_version_list"
 
     local branch_name="${GITHUB_REF_NAME:-$(git rev-parse --abbrev-ref HEAD)}"
     local match_label="cooker"
     [[ "$branch_name" == "main" ]] && match_label="main"
 
-    for version_file in */artifacts/version; do
+    for version_file in */artifacts/component_version; do
         [[ ! -f "$version_file" ]] && continue
 
         local component_name
@@ -594,7 +595,7 @@ write_components_version() {
             .[] 
             | select(.tag_name | test($label)) 
             | .assets[]? 
-            | select(.name == "\($component)/artifacts/version") 
+            | select(.name == "\($component)/artifacts/component_version") 
             | .browser_download_url' | head -n 1)
 
         local old_version=""
@@ -606,11 +607,11 @@ write_components_version() {
         fi
 
         if [[ -n "$old_version" && "$old_version" != "$current_version" ]]; then
-            echo "**$component_name**: $current_version (was $old_version, grabbed on $update_date)" >> "$components_version_file"
+            echo "**$component_name**: $current_version (was $old_version, grabbed on $update_date)" >> "$components_version_list"
         else
-            echo "**$component_name**: $current_version (grabbed on $update_date)" >> "$components_version_file"
+            echo "**$component_name**: $current_version (grabbed on $update_date)" >> "$components_version_list"
         fi
-        echo "" >> "$components_version_file"
+        echo "" >> "$components_version_list"
     done
 }
 
@@ -622,7 +623,6 @@ version_check() {
     local source="$3"
 
     local current_version=""
-    local version_file="$component/version"
     local extracted_version=""
 
     case "$check_type" in
