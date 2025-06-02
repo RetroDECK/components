@@ -13,7 +13,15 @@ else
     POSTFIX="$1"
 fi
 
-echo "Searching for shared libraries in ${SEARCH_PATHS[@]}..."
+lib_list="shared-libs-${POSTFIX}.txt"
+if [ ! -f "$lib_list" ]; then
+    echo "[ERROR] Library list file $lib_list not found. Please provide a valid library list file."
+    exit 1
+fi
+
+echo "Searching for shared libraries in ${SEARCH_PATHS[@]} from \"$lib_list\"..."
+
+echo "[DEBUG] Using library list: $(cat $lib_list)"
 
 while read -r lib; do
     path=$(find "${SEARCH_PATHS[@]}" -type f -name "$lib" 2>/dev/null | head -n 1)
@@ -30,7 +38,7 @@ while read -r lib; do
         need_to_debug=true
     fi
     fi
-done < shared-libs-$POSTFIX.txt
+done < "$lib_list"
 echo ""
 
 if [ "$need_to_debug" = true ]; then
