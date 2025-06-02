@@ -1,0 +1,7 @@
+{
+    "gzdoom": {
+        "name": "GZDoom",
+        "description": "A modern source port for Doom and other classic games.",
+        "system": "doom"
+    }
+}

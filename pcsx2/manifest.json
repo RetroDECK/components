@@ -1,1 +1,15 @@
-placeholder
+{
+    "pcsx2": {
+      "name": "pcsx2",
+      "description": "PlayStation 2 Emulator",
+      "url": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/pcsx2/pcsx2-guide/",
+      "system": "ps2",
+      "cli-arg": "-version",
+      "properties": [
+        {
+          "ask_to_exit": true,
+          "cheevos": true
+        }
+      ]
+    }
+}

@@ -1,1 +1,15 @@
-placeholder
+{
+    "cemu": {
+        "description": "Wii U emulator",
+        "name": "Cemu",
+        "url": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/cemu/cemu-guide/",
+        "system": "wiiu",
+        "cli-arg": "--version",
+        "properties": [
+        {
+            "abxy_button": true,
+            "multi_user_config_dir": "Cemu"
+        }
+        ]
+    }
+}
