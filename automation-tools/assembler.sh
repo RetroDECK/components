@@ -522,11 +522,11 @@ finalize() {
     fi
 
     # Inject standard component files if present
-    local inject_files=("component_launcher.sh" "manifest.json" "functions.sh" "prepare_component.sh" "artifacts/version")
+    local inject_files=("component_launcher.sh" "manifest.json" "functions.sh" "prepare_component.sh" "version")
     for file in "${inject_files[@]}"; do
         full_path="$component/$file"
         if [[ -f "$full_path" ]]; then
-            mv "$full_path" "$artifact_dir"
+            cp "$full_path" "$artifact_dir"
             [[ "$file" == *.sh ]] && chmod +x "$artifact_dir/$(basename "$file")"
         fi
     done
