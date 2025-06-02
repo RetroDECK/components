@@ -1,23 +1,29 @@
 #!/bin/bash
 
-if [[ "$component" =~ ^(primehack|all)$ ]]; then
-    component_found="true"
-    if [[ "$action" == "reset" ]]; then # Run reset-only commands
+component_name="$(basename "$(dirname "$0")")"
+config="/app/retrodeck/config/$component_name/rd_config"
+
+if [[ "$action" == "reset" ]]; then # Run reset-only commands
+
     log i "----------------------"
     log i "Prepearing Primehack"
     log i "----------------------"
+
     if [[ $multi_user_mode == "true" ]]; then # Multi-user actions
         create_dir -d "$multi_user_data_folder/$SteamAppUser/config/primehack"
         cp -fvr "$config/primehack/config/"* "$multi_user_data_folder/$SteamAppUser/config/primehack/"
         set_setting_value "$multi_user_data_folder/$SteamAppUser/config/primehack/Dolphin.ini" "ISOPath0" "$roms_folder/wii" "primehack" "General"
         set_setting_value "$multi_user_data_folder/$SteamAppUser/config/primehack/Dolphin.ini" "ISOPath1" "$roms_folder/gc" "primehack" "General"
         dir_prep "$multi_user_data_folder/$SteamAppUser/config/primehack" "$XDG_CONFIG_HOME/primehack"
+
     else # Single-user actions
+
         create_dir -d "$XDG_CONFIG_HOME/primehack/"
         cp -fvr "$config/primehack/config/"* "$XDG_CONFIG_HOME/primehack/"
         set_setting_value "$primehackconf" "ISOPath0" "$roms_folder/wii" "primehack" "General"
         set_setting_value "$primehackconf" "ISOPath1" "$roms_folder/gc" "primehack" "General"
     fi
+
     # Shared actions
     dir_prep "$saves_folder/gc/primehack/EU" "$XDG_DATA_HOME/primehack/GC/EUR"
     dir_prep "$saves_folder/gc/primehack/US" "$XDG_DATA_HOME/primehack/GC/USA"
@@ -34,8 +40,9 @@ if [[ "$component" =~ ^(primehack|all)$ ]]; then
 
     # Reset default preset settings
     set_setting_value "$rd_conf" "primehack" "$(get_setting_value "$rd_defaults" "primehack" "retrodeck" "ask_to_exit")" "retrodeck" "ask_to_exit"
-    fi
-    if [[ "$action" == "postmove" ]]; then # Run only post-move commands
+fi
+
+if [[ "$action" == "postmove" ]]; then # Run only post-move commands
     dir_prep "$saves_folder/gc/primehack/EU" "$XDG_DATA_HOME/primehack/GC/EUR"
     dir_prep "$saves_folder/gc/primehack/US" "$XDG_DATA_HOME/primehack/GC/USA"
     dir_prep "$saves_folder/gc/primehack/JP" "$XDG_DATA_HOME/primehack/GC/JAP"
@@ -45,5 +52,4 @@ if [[ "$component" =~ ^(primehack|all)$ ]]; then
     dir_prep "$mods_folder/Primehack" "$XDG_DATA_HOME/primehack/Load/GraphicMods"
     dir_prep "$texture_packs_folder/Primehack" "$XDG_DATA_HOME/primehack/Load/Textures"
     set_setting_value "$primehackconf" "ISOPath0" "$roms_folder/gc" "primehack" "General"
-    fi
 fi

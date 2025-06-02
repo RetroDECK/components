@@ -1,13 +1,17 @@
 #!/bin/bash
 
-if [[ "$component" =~ ^(ryujinx|all)$ ]]; then
-    component_found="true"
-    # NOTE: for techincal reasons the system folder of Ryujinx IS NOT a sumlink of the bios/switch/keys as not only the keys are located there
-    # When RetroDECK starts there is a "manage_ryujinx_keys" function that symlinks the keys only in Rryujinx/system.
-    if [[ "$action" == "reset" ]]; then # Run reset-only commands
+# NOTE: for techincal reasons the system folder of Ryujinx IS NOT a symlink of the bios/switch/keys as not only the keys are located there
+# When RetroDECK starts there is a "manage_ryujinx_keys" function that symlinks the keys only in Rryujinx/system.
+
+component_name="$(basename "$(dirname "$0")")"
+config="/app/retrodeck/config/$component_name/rd_config"
+
+if [[ "$action" == "reset" ]]; then # Run reset-only commands
+
     log i "------------------------"
     log i "Prepearing RYUJINX"
     log i "------------------------"
+
     if [[ $multi_user_mode == "true" ]]; then
         rm -rf "$multi_user_data_folder/$SteamAppUser/config/Ryujinx"
         #create_dir "$multi_user_data_folder/$SteamAppUser/config/Ryujinx/system"
@@ -27,12 +31,13 @@ if [[ "$component" =~ ^(ryujinx|all)$ ]]; then
         create_dir "$mods_folder/ryujinx"
         create_dir "$screenshots_folder/ryujinx"
     fi
-    fi
-    # if [[ "$action" == "reset" ]] || [[ "$action" == "postmove" ]]; then # Run commands that apply to both resets and moves
-    #   dir_prep "$bios_folder/switch/keys" "$XDG_CONFIG_HOME/Ryujinx/system"
-    # fi
-    if [[ "$action" == "postmove" ]]; then # Run only post-move commands
+fi
+
+# if [[ "$action" == "reset" ]] || [[ "$action" == "postmove" ]]; then # Run commands that apply to both resets and moves
+#   dir_prep "$bios_folder/switch/keys" "$XDG_CONFIG_HOME/Ryujinx/system"
+# fi
+
+if [[ "$action" == "postmove" ]]; then # Run only post-move commands
     log d "Replacing placeholders in \"$ryujinxconf\""
     sed -i 's#RETRODECKHOMEDIR#'"$rdhome"'#g' "$ryujinxconf" # This is an unfortunate one-off because set_setting_value does not currently support JSON
-    fi
 fi

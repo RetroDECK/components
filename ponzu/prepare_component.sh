@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# TODO: adapt me to the NEO project (maybe?)
+
+component="$(basename "$(dirname "$0")")"
+config="/app/retrodeck/config/$component/rd_config"
+
 if [[ $(get_setting_value "$rd_conf" "akai_ponzu" "retrodeck" "options") == "true" ]]; then
     if [[ "$component" =~ ^(citra|citra-emu|all)$ ]]; then
     component_found="true"
