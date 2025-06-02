@@ -10,7 +10,4 @@ source "$RD_MODULES/$COMPONENT_NAME/apprun-hooks/linuxdeploy-plugin-qt-hook.sh"
 log i "RetroDECK is now launching $COMPONENT_NAME"
 log d "Loaded app run hooks in apprun-hooks/linuxdeploy-plugin-qt-hook.sh"
 
-log i "RetroDECK is now launching $COMPONENT_NAME"
-log d "Loaded app run hooks in apprun-hooks/linuxdeploy-plugin-qt-hook.sh"
-
 exec "$RD_MODULES/$COMPONENT_NAME/bin/duckstation-qt" "$@"
