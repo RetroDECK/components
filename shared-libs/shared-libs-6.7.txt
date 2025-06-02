@@ -34,3 +34,5 @@ libavcodec.so.60
 libavfilter.so.9
 libavformat.so.60
 libavutil.so.58
+libicui18n.so.73
+libicuuc.so.73
