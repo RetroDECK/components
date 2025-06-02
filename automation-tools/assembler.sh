@@ -8,7 +8,7 @@ then
     wget -q https://raw.githubusercontent.com/RetroDECK/RetroDECK/main/functions/logger.sh -O ".tmpfunc/logger.sh"
 fi
 
-export logfile="$(realpath grab.log)"
+export logfile="$(realpath assemble.log)"
 
 if [[ -f ".tmpfunc/logger.sh" ]]; then
     source ".tmpfunc/logger.sh"
@@ -48,7 +48,7 @@ parse_flags() {
     echo "$@"
 }
 
-grab() {
+assemble() {
 
     local args
     args=($(parse_flags "$@"))
@@ -229,6 +229,7 @@ manage_appimage() {
                 return 1
             }
         fi
+        rm -f "$output_path" # Remove the original archive to save space
 
         appimage_path=$(find "$temp_root" -type f -name '*.AppImage' | head -n 1)
         [[ -z "$appimage_path" ]] && {
@@ -522,7 +523,7 @@ finalize() {
     fi
 
     # Inject standard component files if present
-    local inject_files=("component_launcher.sh" "manifest.json" "functions.sh" "prepare_component.sh" "version")
+    local inject_files=("component_launcher.sh" "manifest.json" "functions.sh" "prepare_component.sh" "version" "rd_config")
     for file in "${inject_files[@]}"; do
         full_path="$component/$file"
         if [[ -f "$full_path" ]]; then

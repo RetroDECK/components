@@ -1,6 +1,6 @@
 downloaded-artifacts
 */artifacts
 .tmpfunc
-grab.log
+assemble.log
 _work
 .flatpak-builder
