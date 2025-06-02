@@ -15,19 +15,19 @@ echo "Using WORK_DIR: $WORK_DIR"
 echo "Artifacts will be stored in: $component/artifacts"
 
 mkdir -p "$component/artifacts/qt-5.15/lib"
-flatpak-builder --user --force-clean --install-deps-from=flathub --install-deps-from=flathub-beta --repo=$WORK_DIR/shared-libs-5.15-repo --state-dir="$WORK_DIR/.flatpak-builder" "$WORK_DIR/shared-libs-5.15-build-dir" "$component/retrodeck.shared-libs.5.15.yml"
+flatpak-builder --user --force-clean --install-deps-from=flathub --install-deps-from=flathub-beta --repo=$WORK_DIR/shared-libs-5.15-repo --state-dir="$WORK_DIR/.flatpak-builder" "$WORK_DIR/shared-libs-5.15-build-dir" "$component/shared-libs.5.15.yml"
 ls -lah $WORK_DIR/shared-libs-5.15-build-dir/files/lib # DEBUG
 cp -rL $WORK_DIR/shared-libs-5.15-build-dir/files/lib/* $component/artifacts/qt-5.15/lib
 version="5.15"
 
 mkdir -p "$component/artifacts/qt-6.7/lib"
-flatpak-builder --user --force-clean --install-deps-from=flathub --install-deps-from=flathub-beta --repo=$WORK_DIR/shared-libs-6.7-repo --state-dir="$WORK_DIR/.flatpak-builder" "$WORK_DIR/shared-libs-6.7-build-dir" "$component/retrodeck.shared-libs.6.7.yml"
+flatpak-builder --user --force-clean --install-deps-from=flathub --install-deps-from=flathub-beta --repo=$WORK_DIR/shared-libs-6.7-repo --state-dir="$WORK_DIR/.flatpak-builder" "$WORK_DIR/shared-libs-6.7-build-dir" "$component/shared-libs.6.7.yml"
 ls -lah $WORK_DIR/shared-libs-6.7-build-dir/files/lib # DEBUG
 cp -rL $WORK_DIR/shared-libs-6.7-build-dir/files/lib/* $component/artifacts/qt-6.7/lib
 version="$version, 6.7"
 
 mkdir -p "$component/artifacts/qt-6.8/lib"
-flatpak-builder --user --force-clean --install-deps-from=flathub --install-deps-from=flathub-beta --repo=$WORK_DIR/shared-libs-6.8-repo --state-dir="$WORK_DIR/.flatpak-builder" "$WORK_DIR/shared-libs-6.8-build-dir" "$component/retrodeck.shared-libs.6.8.yml"
+flatpak-builder --user --force-clean --install-deps-from=flathub --install-deps-from=flathub-beta --repo=$WORK_DIR/shared-libs-6.8-repo --state-dir="$WORK_DIR/.flatpak-builder" "$WORK_DIR/shared-libs-6.8-build-dir" "$component/shared-libs.6.8.yml"
 ls -lah $WORK_DIR/shared-libs-6.7-build-dir/files/lib # DEBUG
 cp -rL $WORK_DIR/shared-libs-6.8-build-dir/files/lib/* $component/artifacts/qt-6.8/lib
 version="$version, 6.8"
