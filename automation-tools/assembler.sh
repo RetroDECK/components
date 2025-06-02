@@ -525,7 +525,7 @@ finalize() {
     fi
 
     # Inject standard component files if present
-    local inject_files=("component_launcher.sh" "component_manifest.json" "component_functions.sh" "prepare_component.sh" "version" "rd_config")
+    local inject_files=("component_launcher.sh" "component_manifest.json" "component_functions.sh" "component_prepare.sh" "component_version" "rd_config")
     for file in "${inject_files[@]}"; do
         full_path="$component/$file"
         if [[ -f "$full_path" ]]; then
