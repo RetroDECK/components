@@ -1,8 +1,9 @@
 #!/bin/bash
 
+COMPONENT_NAME="vita3k"
 RD_MODULES="/app/retrodeck/components"
 
-LD_LIBRARY_PATH="$RD_MODULES/vita3k/lib:${LD_LIBRARY_PATH}"
-PATH="$RD_MODULES/vita3k/bin:$PATH"
+LD_LIBRARY_PATH="$RD_MODULES/$COMPONENT_NAME/lib:${LD_LIBRARY_PATH}"
+PATH="$RD_MODULES/$COMPONENT_NAME/bin:$PATH"
 
-exec "$RD_MODULES/vita3k/bin/Vita3K" "$@"
+exec "$RD_MODULES/$COMPONENT_NAME/bin/Vita3K" "$@"

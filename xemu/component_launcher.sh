@@ -1,7 +1,7 @@
 #!/bin/bash
 
-RD_MODULES="/app/retrodeck/components"
 COMPONENT_NAME="xemu"
+RD_MODULES="/app/retrodeck/components"
 
 unset QEMU_AUDIO_DRV
 

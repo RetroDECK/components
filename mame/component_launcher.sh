@@ -1,8 +1,10 @@
 #!/bin/bash
 
+COMPONENT_NAME="mame"
 RD_MODULES="/app/retrodeck/components"
+SHARED_LIBS="/app/retrodeck/components/shared-libs/qt-6.8/lib"
 
-LD_LIBRARY_PATH="$RD_MODULES/mame/lib:/app/retrodeck/components/shared-libs/qt-6.8/lib:${LD_LIBRARY_PATH}"
-export QT_PLUGIN_PATH="/app/retrodeck/components/shared-libs/qt-6.8/lib/plugins:${QT_PLUGIN_PATH}"
+LD_LIBRARY_PATH="$RD_MODULES/$COMPONENT_NAME/lib:$SHARED_LIBS:${LD_LIBRARY_PATH}"
+export QT_PLUGIN_PATH="$SHARED_LIBS/plugins:${QT_PLUGIN_PATH}"
 
-exec "$RD_MODULES/mame/bin/mame" "$@"
+exec "$RD_MODULES/$COMPONENT_NAME/bin/mame" "$@"
