@@ -1,0 +1,9 @@
+{
+    "portmaster": {
+      "description": "Port Manager also available on various linux handheld devices that ease the managing of ports",
+      "name": "PortMaster",
+      "url": "https://retrodeck.readthedocs.io/en/latest/wiki_about/what-is-retrodeck/",
+      "system": "portmaster",
+      "cli-arg": ""
+    }
+}

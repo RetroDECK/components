@@ -1,0 +1,9 @@
+{
+    "ryujinx": {
+      "name": "Ryujinx",
+      "description": "A legacy Nintendo Switch Emulator",
+      "url": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/ryujinx/ryujinx-guide/",
+      "system": "switch",
+      "cli-arg": ""
+    }
+}

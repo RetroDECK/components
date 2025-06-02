@@ -1,0 +1,9 @@
+{
+    "pico-8": {
+        "name": "PICO-8",
+        "description": "Fantasy console for making, sharing and playing tiny games and other computer programs.",
+        "url": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/pico-8/pico-8-guide/",
+        "system": "pico8",
+        "cli-arg": "--version"
+    }
+}

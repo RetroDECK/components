@@ -1,1 +1,7 @@
-placeholder
+{
+    "solarus": {
+        "name": "Solarus",
+        "description": "Solarus is a free and open-source game engine for creating 2D action-adventure games.",
+        "system": "solarus"
+    }
+}

@@ -1,0 +1,28 @@
+{
+    "yuzu": {
+      "name": "Yuzu (via Ponzu)",
+      "description": "A legacy Nintendo Switch Emulator (via Ponzu)",
+      "url": "https://retrodeck.readthedocs.io/en/latest/wiki_about/what-is-retrodeck/",
+      "launch": "/var/data/ponzu/Yuzu/bin/yuzu",
+      "cli-arg": "",
+      "system": "switch",
+      "ponzu": true,
+      "abxy_button": true
+    },
+
+    "citra": {
+      "description": "A legacy Nintendo 3DS Emulator (via Ponzu)",
+      "name": "Citra (via Ponzu)",
+      "url": "https://retrodeck.readthedocs.io/en/latest/wiki_about/what-is-retrodeck/",
+      "system": "n3ds",
+      "ponzu": true,
+      "launch": "/var/data/ponzu/citra/bin/citra-qt",
+      "cli-arg": "-version",
+      "properties": [
+        {
+          "abxy_button": true,
+          "ask_to_exit": true
+        }
+      ]
+    }
+}
