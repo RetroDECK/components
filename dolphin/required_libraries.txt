@@ -1,7 +1,7 @@
-This file will list any libraries that have been identified as required by this component that are not otherwise included in the freedesktop runtime used by the core Flatpak. 
-Some are symlinks back to the base library file, but all should be included for compatibility.
+# This file will list any libraries that have been identified as required by this component that are not otherwise included in the freedesktop runtime used by the core Flatpak. 
+# Some are symlinks back to the base library file, but all should be included for compatibility.
 
-For this component, these files can be grabbed from the org.kde.Platform version 6.8 runtime. If the runtime the component is built under changes, different versions of these files will need to be grabbed.
+# For this component, these files can be grabbed from the org.kde.Platform version 6.8 runtime. If the runtime the component is built under changes, different versions of these files will need to be grabbed.
 
 libavcodec.so.61
 libavcodec.so.61.3.100
@@ -48,5 +48,6 @@ libxcb-cursor.so.0.0.0
 libxcb.so.1
 libxcb.so.1.1.0
 
-plugins/platforms
+#plugins/platforms
+
 libqxcb.so
