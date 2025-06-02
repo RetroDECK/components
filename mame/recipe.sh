@@ -2,7 +2,7 @@
 
 source "automation-tools/assembler.sh"
 
-grab flatpak_id "org.mamedev.MAME"
+assemble flatpak_id "org.mamedev.MAME"
 
 # Custom Commands
 

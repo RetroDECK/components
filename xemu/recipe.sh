@@ -2,7 +2,7 @@
 
 source "automation-tools/assembler.sh"
 
-grab appimage "https://github.com/xemu-project/xemu/releases/latest/download/xemu-*-x86_64.AppImage"
+assemble appimage "https://github.com/xemu-project/xemu/releases/latest/download/xemu-*-x86_64.AppImage"
 
 # Custom Commands
 

@@ -2,7 +2,7 @@
 
 source "automation-tools/assembler.sh"
 
-grab flatpak_id org.DolphinEmu.dolphin-emu
+assemble flatpak_id org.DolphinEmu.dolphin-emu
 
 # Custom Commands
 

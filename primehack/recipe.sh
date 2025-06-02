@@ -2,7 +2,7 @@
 
 source "automation-tools/assembler.sh"
 
-grab flatpak_artifacts "https://github.com/RetroDECK/io.github.shiiion.primehack/releases/latest/download/RetroDECK-primehack-Artifact.tar.gz"
+assemble flatpak_artifacts "https://github.com/RetroDECK/io.github.shiiion.primehack/releases/latest/download/RetroDECK-primehack-Artifact.tar.gz"
 
 # Custom Commands
 

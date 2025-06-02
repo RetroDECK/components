@@ -2,7 +2,7 @@
 
 source "automation-tools/assembler.sh"
 
-grab flatpak_id "org.ppsspp.PPSSPP"
+assemble flatpak_id "org.ppsspp.PPSSPP"
 
 # Custom Commands
 

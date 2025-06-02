@@ -2,7 +2,7 @@
 
 source "automation-tools/assembler.sh"
 
-grab appimage "https://github.com/SteamGridDB/steam-rom-manager/releases/latest/download/Steam-ROM-Manager-*.AppImage"
+assemble appimage "https://github.com/SteamGridDB/steam-rom-manager/releases/latest/download/Steam-ROM-Manager-*.AppImage"
 
 # Custom Commands
 
