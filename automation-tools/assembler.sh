@@ -59,9 +59,9 @@ assemble() {
     local output_path=""
 
     echo ""
-    echo "-----------------------------------------------------------"
-    echo "   PREPARING ARTIFACTS FOR COMPONENT: $component"
-    echo "-----------------------------------------------------------"
+    echo "-------------------------------------------"
+    echo "   ASSEMBLING COMPONENT: $component"
+    echo "-------------------------------------------"
 
     # Auto-detect CI/CD environment and force artifact generation
     if [[ -n "$CI" || -n "$GITHUB_ACTIONS" || -n "$GITLAB_CI" || -n "$BUILDKITE" || -n "$JENKINS_HOME" ]]; then
