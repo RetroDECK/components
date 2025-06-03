@@ -29,7 +29,6 @@ DRY_RUN=0
 GITHUB_REPO=$(git config --get remote.origin.url | sed -E 's|.*github.com[:/](.*)\.git|\1|')
 EXTRAS="rd_extras"      # Name of the extras folder used to place components extras such as free bioses, cheats files and such
 components_version_list="components_version_list.md"
-version_file="$component/component_version"
 
 parse_flags() {
     while [[ "$1" =~ ^-- ]]; do
@@ -571,6 +570,8 @@ write_components_version() {
     echo "# Components Version Summary" > "$components_version_list"
     echo "" >> "$components_version_list"
 
+    local version_file="$component/artifacts/component_version"
+
     local branch_name="${GITHUB_REF_NAME:-$(git rev-parse --abbrev-ref HEAD)}"
     local match_label="cooker"
     [[ "$branch_name" == "main" ]] && match_label="main"
@@ -624,6 +625,8 @@ version_check() {
 
     local current_version=""
     local extracted_version=""
+
+    local version_file="$component/component_version"
 
     case "$check_type" in
         manual|link|file)
