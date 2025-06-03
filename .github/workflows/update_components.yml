@@ -220,13 +220,13 @@ jobs:
                   echo "Checking archive: $archive"
 
                   # Check if archive contains component_version file
-                  if tar -tzf "$archive" | grep -q '^component_version$'; then
+                  if tar -tzf "$archive" | grep -q 'component_version'; then
                     echo "Extracting component_version from $archive"
                     tar -xzf "$archive" -C "$component_dir" component_version
                   else
                     echo "No component_version found in $archive"
                     echo "DEBUG: Listing contents of $archive"
-                    tar -tzf "$archive"
+                    tar -tzf "$archive" | awk -F/ 'NF==1'
                     echo "Listing contents of $archive's folder:"
                     ls -lah $(dirname "$archive")
                   fi
