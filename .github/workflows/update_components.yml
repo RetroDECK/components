@@ -202,6 +202,23 @@ jobs:
 
       - name: Generate components_version_list.md
         run: |
+
+          echo "------------------"
+          echo "      DEBUG"
+          echo "------------------"
+          echo "Printing directory structure:"
+          tree
+          echo ""
+          echo "Listing contents of downloaded-artifacts:"
+          ls -lah
+          echo ""
+          echo "Listing contents of each component's artifacts directory:"
+          ls -lah */artifacts
+          echo ""
+          echo "------------------"
+          echo "    DEBUG END"
+          echo "------------------"
+
           for tarfile in */artifacts/*.tar.gz; do
             [ -f "$tarfile" ] || continue
             dir=$(dirname "$tarfile")
