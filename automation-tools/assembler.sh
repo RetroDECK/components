@@ -568,6 +568,7 @@ finalize() {
 write_components_version() {
     log d "Starting write_components_version function" "$logfile"
 
+    log d "Initializing components version list file: $components_version_list" "$logfile"
     echo "# Components Version Summary" > "$components_version_list"
     echo "" >> "$components_version_list"
 
@@ -576,7 +577,12 @@ write_components_version() {
     [[ "$branch_name" == "main" ]] && match_label="main"
 
     for version_file in *"/$version_file"; do
-        [[ ! -f "$version_file" ]] && continue
+        log d "Checking version file: $version_file..." "$logfile"
+        if [[ ! -f "$version_file" ]]; then
+            log w "Version file not found: $version_file, skipping..." "$logfile"
+            continue
+        fi
+        log d "Processing version file: $version_file..." "$logfile"
 
         local component_name
         component_name=$(basename "$(dirname "$(dirname "$version_file")")")
