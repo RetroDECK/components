@@ -202,47 +202,44 @@ jobs:
 
       - name: Generate components_version_list.md
         run: |
-
-          echo "------------------"
-          echo "      DEBUG"
-          echo "------------------"
-          echo "Printing directory structure:"
-          tree
-          echo ""
-          echo "Listing contents of downloaded-artifacts:"
-          ls -lah
-          echo ""
-          echo "Listing contents of each component's artifacts directory:"
-          ls -lah */artifacts
-          echo ""
-          echo "------------------"
-          echo "    DEBUG END"
-          echo "------------------"
-
-          for tarfile in */artifacts/*.tar.gz; do
-            [ -f "$tarfile" ] || continue
-            dir=$(dirname "$tarfile")
-            # Extract component_version from nested archives: component.zip -> component.tar.gz -> component_version
-            zipfile="$tarfile"
-            if unzip -l "$zipfile" | grep -q 'component.tar.gz'; then
-              unzip -o "$zipfile" component.tar.gz -d "$dir"
-              if [ -f "$dir/component.tar.gz" ]; then
-                if tar -tzf "$dir/component.tar.gz" | grep -q '^component_version$'; then
-                  tar -xzf "$dir/component.tar.gz" -C "$dir" component_version
-                  echo "Extracted component_version from $zipfile"
-                else
-                  echo "No component_version found in $zipfile"
-                fi
-                rm -f "$dir/component.tar.gz"
-              else
-                echo "component.tar.gz not found after extracting from $zipfile"
-              fi
-            else
-              echo "No component.tar.gz found in $zipfile"
+          # Loop through each <component_name> folder
+          for component_dir in */; do
+            # Skip automation-tools and other non-component directories
+            if [[ "$component_dir" == "automation-tools/" ]] || [[ "$component_dir" == "downloaded-artifacts/" ]]; then
+              continue
             fi
-            done
+
+            # Path to artifacts directory
+            artifacts_dir="${component_dir}artifacts"
+
+            # Check if artifacts directory exists
+            if [[ -d "$artifacts_dir" ]]; then
+              # Look for tar.gz files in artifacts
+              for archive in "$artifacts_dir"/*.tar.gz; do
+                if [[ -f "$archive" ]]; then
+                  echo "Checking archive: $archive"
+
+                  # Check if archive contains component_version file
+                  if tar -tzf "$archive" | grep -q '^component_version$'; then
+                    echo "Extracting component_version from $archive"
+                    tar -xzf "$archive" -C "$component_dir" component_version
+                  else
+                    echo "No component_version found in $archive"
+                    echo "DEBUG: Listing contents of $archive"
+                    tar -tzf "$archive"
+                    echo "Listing contents of $archive's folder:"
+                    ls -lah $(dirname "$archive")
+                  fi
+                fi
+              done
+            fi
+          done
+
+          # Source the write function and call it
           source automation-tools/assembler.sh
           write_components_version
+
+          # Show the resulting components_version_list.md file
           cat components_version_list.md
 
       - name: Generate a token for Rekku
