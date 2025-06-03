@@ -29,6 +29,8 @@ DRY_RUN=0
 GITHUB_REPO=$(git config --get remote.origin.url | sed -E 's|.*github.com[:/](.*)\.git|\1|')
 EXTRAS="rd_extras"      # Name of the extras folder used to place components extras such as free bioses, cheats files and such
 components_version_list="components_version_list.md"
+export component="${args[2]:-$(basename "$(dirname "$(realpath "${BASH_SOURCE[1]}")")")}"
+export version_file="$component/component_version"
 
 parse_flags() {
     while [[ "$1" =~ ^-- ]]; do
@@ -55,7 +57,6 @@ assemble() {
     args=($(parse_flags "$@"))
     export type="${args[0]}"
     export url="${args[1]}"
-    export component="${args[2]:-$(basename "$(dirname "$(realpath "${BASH_SOURCE[1]}")")")}"
     export WORK_DIR=$(mktemp -d)
     local output_path=""
 
@@ -524,7 +525,7 @@ finalize() {
     fi
 
     # Inject standard component files if present
-    local inject_files=("component_launcher.sh" "component_manifest.json" "component_functions.sh" "component_prepare.sh" "component_version" "rd_config")
+    local inject_files=("component_launcher.sh" "component_manifest.json" "component_functions.sh" "component_prepare.sh" "$version_file" "rd_config")
     for file in "${inject_files[@]}"; do
         full_path="$component/$file"
         if [[ -f "$full_path" ]]; then
@@ -570,13 +571,11 @@ write_components_version() {
     echo "# Components Version Summary" > "$components_version_list"
     echo "" >> "$components_version_list"
 
-    local version_file="$component/artifacts/component_version"
-
     local branch_name="${GITHUB_REF_NAME:-$(git rev-parse --abbrev-ref HEAD)}"
     local match_label="cooker"
     [[ "$branch_name" == "main" ]] && match_label="main"
 
-    for version_file in */artifacts/component_version; do
+    for version_file in *"/$version_file"; do
         [[ ! -f "$version_file" ]] && continue
 
         local component_name
@@ -596,7 +595,7 @@ write_components_version() {
             .[] 
             | select(.tag_name | test($label)) 
             | .assets[]? 
-            | select(.name == "\($component)/artifacts/component_version") 
+            | select(.name == "$version_file") 
             | .browser_download_url' | head -n 1)
 
         local old_version=""
@@ -625,8 +624,6 @@ version_check() {
 
     local current_version=""
     local extracted_version=""
-
-    local version_file="$component/component_version"
 
     case "$check_type" in
         manual|link|file)
