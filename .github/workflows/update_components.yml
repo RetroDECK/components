@@ -219,21 +219,25 @@ jobs:
                 if [[ -f "$archive" ]]; then
                   echo "Checking archive: $archive"
 
-                  # Check if archive contains component_version file
-                  if tar -tzf "$archive" | grep -q 'component_version'; then
-                    echo "Extracting component_version from $archive"
-                    tar -xzf "$archive" -C "$component_dir" component_version
-                  else
-                    echo "No component_version found in $archive"
-                    echo "DEBUG: Listing contents of $archive"
-                    tar -tzf "$archive" | awk -F/ 'NF==1'
-                    echo "Listing contents of $archive's folder:"
-                    ls -lah $(dirname "$archive")
-                  fi
+              # Check if archive contains component_version file
+              fullpath=$(tar -tzf "$archive" | grep 'component_version' | head -n 1)
+              if [[ -n "$fullpath" ]]; then
+                echo "Extracting $fullpath from $archive"
+                tar -xzf "$archive" -C "$component_dir" "$fullpath"
+                
+                # Clean up the ugly path (normalize it)
+                extracted_path=$(realpath "$component_dir/$fullpath")
+                normalized_path=$(realpath "$component_dir/component_version")
+
+                # Check if $fullpath is exactly 'component_version' (no leading dirs)
+                if [[ "$extracted_path" != "$normalized_path" ]]; then
+                  mv -f "$extracted_path" "$normalized_path"
                 fi
-              done
-            fi
-          done
+              else
+                echo "No component_version found in $archive"
+                echo "DEBUG: Listing contents of $archive"
+                tar -tzf "$archive"
+              fi
 
           # Source the write function and call it
           source automation-tools/assembler.sh
