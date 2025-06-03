@@ -205,14 +205,25 @@ jobs:
           for tarfile in */artifacts/*.tar.gz; do
             [ -f "$tarfile" ] || continue
             dir=$(dirname "$tarfile")
-            # Extract only the file named 'component_version' from the tar.gz
-            if tar -tzf "$tarfile" | grep -q '^component_version$'; then
-              tar -xzf "$tarfile" -C "$dir" component_version
-              echo "Extracted component_version from $tarfile"
+            # Extract component_version from nested archives: component.zip -> component.tar.gz -> component_version
+            zipfile="$tarfile"
+            if unzip -l "$zipfile" | grep -q 'component.tar.gz'; then
+              unzip -o "$zipfile" component.tar.gz -d "$dir"
+              if [ -f "$dir/component.tar.gz" ]; then
+                if tar -tzf "$dir/component.tar.gz" | grep -q '^component_version$'; then
+                  tar -xzf "$dir/component.tar.gz" -C "$dir" component_version
+                  echo "Extracted component_version from $zipfile"
+                else
+                  echo "No component_version found in $zipfile"
+                fi
+                rm -f "$dir/component.tar.gz"
+              else
+                echo "component.tar.gz not found after extracting from $zipfile"
+              fi
             else
-              echo "No component_version found in $tarfile"
+              echo "No component.tar.gz found in $zipfile"
             fi
-          done
+            done
           source automation-tools/assembler.sh
           write_components_version
           cat components_version_list.md
