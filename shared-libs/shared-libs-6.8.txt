@@ -23,6 +23,7 @@ libQt6DBus.so.6.8.3
 libQt6Gui.so
 libQt6Gui.so.6
 libQt6Gui.so.6.8.3
+libQt6Network.so.6
 libQt6Widgets.so
 libQt6Widgets.so.6
 libQt6Widgets.so.6.8.3
