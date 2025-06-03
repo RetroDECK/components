@@ -202,9 +202,19 @@ jobs:
 
       - name: Generate components_version_list.md
         run: |
+          for tarfile in */artifacts/*.tar.gz; do
+            [ -f "$tarfile" ] || continue
+            dir=$(dirname "$tarfile")
+            # Extract only the file named 'component_version' from the tar.gz
+            if tar -tzf "$tarfile" | grep -q '^component_version$'; then
+              tar -xzf "$tarfile" -C "$dir" component_version
+              echo "Extracted component_version from $tarfile"
+            else
+              echo "No component_version found in $tarfile"
+            fi
+          done
           source automation-tools/assembler.sh
           write_components_version
-          echo "Components version file generated."
           cat components_version_list.md
 
       - name: Generate a token for Rekku
