@@ -27,6 +27,11 @@ export logging_level="debug"
 FORCE=0                 # Force the download even if the version is the same, useful for local retention, enabled by default on CI/CD to avoid missing updates since the version files are present bu the artifacts are not
 DRY_RUN=0
 GITHUB_REPO=$(git config --get remote.origin.url | sed -E 's|.*github.com[:/](.*)\.git|\1|')
+# Fix GITHUB_REPO if it mistakenly has the full URL
+if [[ "$GITHUB_REPO" == https://github.com/* ]]; then
+  GITHUB_REPO="${GITHUB_REPO#https://github.com/}"
+fi
+REPO_ROOT=$(git rev-parse --show-toplevel 2>/dev/null || pwd)
 EXTRAS="rd_extras"      # Name of the extras folder used to place components extras such as free bioses, cheats files and such
 components_version_list="components_version_list.md"
 export component="${args[2]:-$(basename "$(dirname "$(realpath "${BASH_SOURCE[1]}")")")}"
@@ -524,8 +529,22 @@ finalize() {
         return 1
     fi
 
+    # Remove existing $component.tar.gz if present to avoid conflicts
+    local tar_file="$artifact_dir/$component.tar.gz"
+    if [[ -f "$tar_file" ]]; then
+        log w "Existing archive $tar_file found, deleting before creating new one." "$logfile"
+        rm -f "$tar_file"
+    fi
+
+        # Remove existing $component.tar.gz if present to avoid conflicts
+    local sha_file="$artifact_dir/$component.tar.gz.sha"
+    if [[ -f "$sha_file" ]]; then
+        log w "Existing sha $sha_file found, deleting before creating new one." "$logfile"
+        rm -f "$sha_file"
+    fi
+
     # Inject standard component files if present
-    local inject_files=("component_launcher.sh" "component_manifest.json" "component_functions.sh" "component_prepare.sh" "$version_file" "rd_config")
+    local inject_files=("component_launcher.sh" "component_manifest.json" "component_functions.sh" "component_prepare.sh" "rd_config")
     for file in "${inject_files[@]}"; do
         full_path="$component/$file"
         if [[ -f "$full_path" ]]; then
@@ -533,6 +552,10 @@ finalize() {
             [[ "$file" == *.sh ]] && chmod +x "$artifact_dir/$(basename "$file")"
         fi
     done
+    # Copy version_file separately since it is already a full path
+    if [[ -f "$version_file" ]]; then
+        cp "$version_file" "$artifact_dir"
+    fi
 
     # Package artifact directory
     local tar_output_path="${component}/${component}.tar.gz"
@@ -572,52 +595,83 @@ write_components_version() {
     echo "# Components Version Summary" > "$components_version_list"
     echo "" >> "$components_version_list"
 
+    local skip_api_requests=0
+
     local branch_name="${GITHUB_REF_NAME:-$(git rev-parse --abbrev-ref HEAD)}"
     local match_label="cooker"
     [[ "$branch_name" == "main" ]] && match_label="main"
 
-    for version_file in *"/$version_file"; do
+    for version_file in $(find "$REPO_ROOT" -type f -name "component_version"); do
         log d "Checking version file: $version_file..." "$logfile"
         if [[ ! -f "$version_file" ]]; then
             log w "Version file not found: $version_file, skipping..." "$logfile"
             continue
         fi
-        log d "Processing version file: $version_file..." "$logfile"
-
-        local component_name
-        component_name=$(basename "$(dirname "$(dirname "$version_file")")")
         local current_version
         current_version=$(< "$version_file")
+        log d "Version file contents: $current_version" "$logfile"
+
+        local component_name
+        component_name=$(basename "$(dirname "$version_file")")
         local update_date
         update_date=$(date -r "$version_file" +"%Y-%m-%d")
 
-        log d "Component: $component_name" "$logfile"
-        log d "Version: $current_version" "$logfile"
-        log d "Last Updated: $update_date" "$logfile"
+        log d "Processing component: $component_name, version: $current_version, last updated: $update_date" "$logfile"
 
-        local api_url="https://api.github.com/repos/${GITHUB_REPO}/releases"
-        local version_url
-        version_url=$(curl -s "$api_url" | jq -r --arg component "$component_name" --arg label "$match_label" '
-            .[] 
-            | select(.tag_name | test($label)) 
-            | .assets[]? 
-            | select(.name == "$version_file") 
-            | .browser_download_url' | head -n 1)
-
+        local version_url=""
         local old_version=""
+
+        if [[ $skip_api_requests -eq 1 ]]; then
+            log w "Skipping API requests due to earlier rate-limit warning." "$logfile"
+        else
+            local api_url="https://api.github.com/repos/${GITHUB_REPO}/releases"
+            log d "Using GitHub API URL: $api_url" "$logfile"
+
+            local releases_json
+            if [[ -n "$GITHUB_TOKEN" ]]; then
+                releases_json=$(curl -s -H "Authorization: token ${GITHUB_TOKEN}" "$api_url")
+            else
+                releases_json=$(curl -s "$api_url")
+            fi
+
+            # Check if response is an error object
+            if echo "$releases_json" | jq -e 'if type == "object" then . else empty end' >/dev/null; then
+                local error_message
+                error_message=$(echo "$releases_json" | jq -r '.message // empty')
+
+                if [[ "$error_message" == *"API rate limit exceeded"* ]]; then
+                    log e "GitHub API rate limit exceeded! Further API requests will be skipped." "$logfile"
+                    skip_api_requests=1
+                else
+                    log w "GitHub API error for $component_name: $error_message" "$logfile"
+                fi
+            else
+                # Validate: must be an array
+                if echo "$releases_json" | jq -e 'if type == "array" then . else empty end' >/dev/null; then
+                    version_url=$(echo "$releases_json" | jq -r --arg label "$match_label" '
+                        .[]
+                        | select(.tag_name | test($label))
+                        | .assets[]?
+                        | select(.name == "component_version")
+                        | .browser_download_url' | head -n 1)
+                else
+                    log w "Unexpected API response for $component_name. Skipping API fetch." "$logfile"
+                fi
+            fi
+        fi
+
         if [[ -n "$version_url" ]]; then
             log d "Fetching previous version from: $version_url" "$logfile"
             old_version=$(curl -s "$version_url")
         else
-            log w "Previous version for $component_name not found in releases matching '$match_label'" "$logfile"
+            log w "Previous version for $component_name not found in releases matching '$match_label' or skipped." "$logfile"
         fi
 
         if [[ -n "$old_version" && "$old_version" != "$current_version" ]]; then
-            echo "**$component_name**: $current_version (was $old_version, grabbed on $update_date)" >> "$components_version_list"
+            echo -e "**$component_name**: $current_version (was $old_version, grabbed on $update_date)\n" >> "$components_version_list"
         else
-            echo "**$component_name**: $current_version (grabbed on $update_date)" >> "$components_version_list"
+            echo -e "**$component_name**: $current_version (grabbed on $update_date)\n" >> "$components_version_list"
         fi
-        echo "" >> "$components_version_list"
     done
 }
 
