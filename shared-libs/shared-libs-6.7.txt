@@ -40,3 +40,9 @@ libavcodec.so.60
 libavfilter.so.9
 libavformat.so.60
 libavutil.so.58
+libswresample.so.4
+libvpx.so.8
+libdav1d.so.6
+libopenh264.so.6
+libswscale.so.7
+libswresample.so.4
