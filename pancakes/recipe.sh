@@ -6,10 +6,10 @@ assemble generic "https://github.com/RetroDECK/Pancakes-bin/releases/latest/down
 rm -rf pancakes.tar.gz
 
 # Move the files from publish folder to work directory
-cp -rL "$WORK_DIR/publish/"* "$WORK_DIR/" || {
+cp -rL "$component/artifacts/publish/"* "$component/artifacts/" || {
         echo "ERROR: Failed to copy files from publish/"
         exit 1
     }
-rm -rf "$WORK_DIR/publish"
+rm -rf "$component/artifacts/publish"
 
 finalize

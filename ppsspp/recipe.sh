@@ -13,13 +13,12 @@ mv "$WORK_DIR/share/ppsspp/assets" "$component/artifacts/"
 log i "Downloading PPSSPP BIOS..." "$logfile"
 wget "https://github.com/hrydgard/ppsspp/archive/refs/heads/master.zip" -O "$WORK_DIR/ppsspp-bios.zip"
 unzip -o "$WORK_DIR/ppsspp-bios.zip" -d "$WORK_DIR/ppsspp-bios"
-mkdir -p "$WORK_DIR/ppsspp-bios/assets/PPSSPP"
-cp -rf "$WORK_DIR/ppsspp-bios/ppsspp-master/assets/PPSSPP"/* "$WORK_DIR/ppsspp-bios/assets/PPSSPP/"
-rm -f "$WORK_DIR/ppsspp-bios.zip"
-rm -rf "$WORK_DIR/ppsspp-bios"
+mkdir -p "$component/artifacts/ppsspp-bios/"
+cp -rf "$WORK_DIR/ppsspp-bios/ppsspp-master/assets/PPSSPP"/* "$component/artifacts/ppsspp-bios/"
 
 # PPSSPP Cheats
 log i "Downloading PPSSPP cheat database..." "$logfile"
-wget -O "$WORK_DIR/cheat.db" https://github.com/Saramagrean/CWCheat-Database-Plus-/raw/master/cheat.db
+mkdir -p "$component/artifacts/cheats"
+wget -O "$component/artifacts/cheats/cheat.db" https://github.com/Saramagrean/CWCheat-Database-Plus-/raw/master/cheat.db
 
 finalize

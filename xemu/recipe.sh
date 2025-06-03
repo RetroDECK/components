@@ -10,7 +10,6 @@ assemble appimage "https://github.com/xemu-project/xemu/releases/latest/download
 log i "Downloading XEMU dummy HDD..." "$logfile"
 wget "https://github.com/mborgerson/xemu-hdd-image/releases/latest/download/xbox_hdd.qcow2.zip" -O "$WORK_DIR/xbox_hdd.qcow2.zip"
 unzip -o "$WORK_DIR/xbox_hdd.qcow2.zip" -d "$WORK_DIR/"
-cp -f "$WORK_DIR/xbox_hdd.qcow2" "$WORK_DIR/$$EXTRAS/xbox_hdd.qcow2"
-rm -f "$WORK_DIR/xbox_hdd.qcow2.zip"
+cp -f "$WORK_DIR/xbox_hdd.qcow2" "$component/artifacts/$EXTRAS/xbox_hdd.qcow2"
 
 finalize
