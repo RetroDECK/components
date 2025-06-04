@@ -10,4 +10,10 @@ assemble generic "https://github.com/vpinball/vpinball/releases/download/v10.8.1
 
 # Custom Commands
 
+unzip VPinballX_BGFX-*-linux-x64-Release.zip
+rm -f VPinballX_BGFX-*-linux-x64-Release.zip
+tar -xvf VPinballX_BGFX-*-linux-x64-Release.tar.gz
+rm -f VPinballX_BGFX-*-linux-x64-Release.tar.gz
+cp -f * $component/artifacts/
+
 finalize
