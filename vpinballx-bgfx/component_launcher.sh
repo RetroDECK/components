@@ -2,7 +2,7 @@
 
 source /app/libexec/logger.sh
 
-COMPONENT_NAME="vpinball"
+COMPONENT_NAME="vpinballx-bgfx"
 RD_MODULES="/app/retrodeck/components"
 
 # This ensures the application can find its resources
