@@ -346,6 +346,8 @@ manage_generic() {
             ;;
     esac
 
+    rm -f "$output_path" # Remove the original archive to save space
+
     # Move extracted files into artifacts dir
     log d "Moving extracted contents to $component/artifacts/" "$logfile"
     cp -rL "$WORK_DIR"/* "$component/artifacts/" || {
