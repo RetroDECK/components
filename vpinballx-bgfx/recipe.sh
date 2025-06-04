@@ -15,5 +15,6 @@ rm -f vpinballx-bgfx*.zip
 tar -xvf VPinballX_BGFX-*.tar.gz
 rm -f VPinballX_BGFX-*.tar.gz
 cp -f * $component/artifacts/
+mkdir $component/artifacts/Plugins
 
 finalize
