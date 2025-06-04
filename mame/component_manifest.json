@@ -4,7 +4,8 @@
       "name": "MAME",
       "url": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/mame/mame-guide/",
       "system": [
-        "arcade"
+        "arcade",
+        "mame"
       ],
       "cli-arg": "-help"
     }

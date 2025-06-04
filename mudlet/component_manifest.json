@@ -1,0 +1,7 @@
+{
+    "mudlet": {
+        "name": "Mudlet",
+        "description": "Mudlet is a platform for gaming and enhancing game-play with MUDs.",
+        "system": "muds"
+    }
+}
