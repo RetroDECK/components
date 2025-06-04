@@ -14,6 +14,5 @@ log i "RetroDECK is now launching $COMPONENT_NAME"
 log d "Library path is: $LD_LIBRARY_PATH"
 log d "AppDir is: $APPDIR"
 
-# NOTE: AppRun is not working for Mudlet
 exec "$RD_MODULES/$COMPONENT_NAME/VPinballX_BGFX" "$@"
 
