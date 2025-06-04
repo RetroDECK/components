@@ -6,7 +6,7 @@ assemble appimage "https://make.mudlet.org/snapshots/ac8fcb/Mudlet-4.19.1-ptb-20
 
 # Custom Commands
 
-tar -xvf Mudlet-*-linux-x64.AppImage.tar
-rm -f Mudlet-*-linux-x64.AppImage.tar
+tar -xvf mudlet*.tar
+rm -f mudlet*.tar
 
 finalize
