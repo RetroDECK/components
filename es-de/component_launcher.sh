@@ -13,4 +13,4 @@ log i "RetroDECK is now launching $COMPONENT_NAME"
 log d "Library path is: $LD_LIBRARY_PATH"
 log d "QT plugin path is: $QT_PLUGIN_PATH"
 
-exec "$RD_MODULES/$COMPONENT_NAME/es-de" "$@"
+exec "$RD_MODULES/$COMPONENT_NAME/es-de" --home "$XDG_CONFIG_HOME" "$@"
