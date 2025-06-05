@@ -6,8 +6,8 @@ assemble generic "https://github.com/user-attachments/files/20533904/xroarbinary
 
 # Custom Commands
 
-unzip xroarbinary.zip
-rm -f xroarbinary.zip
+unzip xroar.zip
+rm -f xroar.zip
 cp -f * $component/artifacts/
 
 finalize

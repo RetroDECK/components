@@ -6,8 +6,8 @@ assemble generic "https://github.com/xenia-canary/xenia-canary-releases/releases
 
 # Custom Commands
 
-tar -xvf xenia_canary_linux.tar.gz
-rm -f xenia_canary_linux.tar.gz
+tar -xvf xenia.tar.gz
+rm -f xenia.tar.gz
 cp -f * $component/artifacts/
 
 finalize
