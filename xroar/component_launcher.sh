@@ -2,9 +2,9 @@
 
 source /app/libexec/logger.sh
 
-COMPONENT_NAME="mudlet"
+COMPONENT_NAME="xroar"
 RD_MODULES="/app/retrodeck/components"
-SHARED_LIBS="/app/retrodeck/components/shared-libs/qt-5.15/lib"
+SHARED_LIBS="/app/retrodeck/components/shared-libs/qt-6.8/lib"
 
 # This ensures the application can find its resources
 export APPDIR="$RD_MODULES/$COMPONENT_NAME"
@@ -16,6 +16,5 @@ log i "RetroDECK is now launching $COMPONENT_NAME"
 log d "Library path is: $LD_LIBRARY_PATH"
 log d "AppDir is: $APPDIR"
 
-# NOTE: AppRun is not working for Mudlet
-exec "$RD_MODULES/$COMPONENT_NAME/mudlet" "$@"
+exec "$RD_MODULES/$COMPONENT_NAME/xroar" "$@"
 
