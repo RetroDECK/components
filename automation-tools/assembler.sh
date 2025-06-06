@@ -902,7 +902,7 @@ version_check() {
 
     if [[ -z "$extracted_version" ]]; then
         log w "Could not determine version for $component (source: \"$source\"), setting as \"unknown\"" "$logfile"
-        extracted_version="unknown"
+        extracted_version="latest on $(date +%Y-%m-%d)"
     fi
 
     export version="$extracted_version"
