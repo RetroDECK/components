@@ -7,6 +7,14 @@ source "automation-tools/assembler.sh"
 rm -rf "$component/artifacts"
 mkdir -p "$component/artifacts"
 
+if [[ "$GITHUB_REF_NAME" != "main" ]]; then
+    branch="cooker"
+else
+    branch="main"
+fi
+
+echo "$branch-latest on $(date +%Y-%m-%d)" > "$component/component_version"
+
 version="dummy"
 
 finalize
