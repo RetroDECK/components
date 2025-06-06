@@ -2,8 +2,10 @@
 
 source "automation-tools/assembler.sh"
 
-assemble generic "https://github.com/user-attachments/files/20605948/xroar.zip"
+assemble gh_latest_release "RetroDECK/XRoar"
 
 # Custom Commands
+
+chmod +x "$component/artifacts/xroar"
 
 finalize
