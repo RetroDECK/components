@@ -1,5 +1,7 @@
 # NOTE: be aware that WORK_DIR is a disposable directory, so you should not use it to store any data that you want to keep after the script ends, that is going in $component/artifacts
 
+# TODO: create a proper function to handle archives instead of repeating the same code in each component
+
 #!/bin/bash
 
 if [[ ! -f ".tmpfunc/logger.sh" ]]; 
@@ -197,6 +199,9 @@ assemble() {
             ;;
         generic)
             manage_generic
+            ;;
+        gh_latest_release)
+            manage_gh_latest_release
             ;;
         *)
             log e "Unsupported type for automatic management: $type" "$logfile"
@@ -515,6 +520,89 @@ manage_flatpak_artifacts() {
     mv "$WORK_DIR/files/share/" "$component/artifacts/"
 }
 
+manage_gh_latest_release() {
+    log d "Starting manage_gh_latest_release function" "$logfile"
+
+    if [[ "$DRY_RUN" -eq 1 ]]; then
+        log i "[DRY-RUN] Would manage latest GitHub release for $component from $url" "$logfile"
+        return 0
+    fi
+
+    log i "Managing latest GitHub release for component: $component" "$logfile"
+
+    local api_url="https://api.github.com/repos/${url}/releases/latest"
+    local release_json
+
+    if [[ -n "$GITHUB_TOKEN" ]]; then
+        release_json=$(curl -s -H "Authorization: token ${GITHUB_TOKEN}" "$api_url")
+    else
+        release_json=$(curl -s "$api_url")
+    fi
+
+    if ! echo "$release_json" | jq empty > /dev/null 2>&1; then
+        log e "Invalid JSON from GitHub API." "$logfile"
+        exit 1
+    fi
+
+    if echo "$release_json" | grep -q "API rate limit exceeded"; then
+        log e "GitHub API rate limit exceeded." "$logfile"
+        exit 1
+    fi
+
+    local asset_url=$(echo "$release_json" | jq -r --arg label "$component" '
+        .assets[]? | select(.name | test($label)) | .browser_download_url' | head -n 1)
+
+    if [[ -z "$asset_url" ]]; then
+        log e "No matching asset found for component: $component" "$logfile"
+        exit 1
+    fi
+
+    log i "Downloading latest release asset from: $asset_url" "$logfile"
+    # Download the asset to a temporary file, preserving its original extension
+    asset_filename=$(basename "$asset_url")
+    asset_download_path="$WORK_DIR/$asset_filename"
+    wget -qc "$asset_url" -O "$asset_download_path" || {
+        log e "Failed to download latest release asset." "$logfile"
+        exit 1
+    }
+
+    version=$(version_check "link" "$component" "$asset_url")
+
+    # Extract the downloaded archive (supports .tar, .tar.gz, .zip, .7z)
+    case "$asset_download_path" in
+        *.tar.gz|*.tar.bz2|*.tar.xz|*.tar)
+            tar -xf "$asset_download_path" -C "$WORK_DIR" || {
+                log e "Failed to extract latest release asset (tar)." "$logfile"
+                exit 1
+            }
+            ;;
+        *.zip)
+            unzip -q "$asset_download_path" -d "$WORK_DIR" || {
+                log e "Failed to extract latest release asset (zip)." "$logfile"
+                exit 1
+            }
+            ;;
+        *.7z)
+            7z x -y "$asset_download_path" -o"$WORK_DIR" > /dev/null || {
+                log e "Failed to extract latest release asset (7z)." "$logfile"
+                exit 1
+            }
+            ;;
+        *)
+            log e "Unsupported archive format for $asset_download_path" "$logfile"
+            exit 1
+            ;;
+    esac
+
+    rm -f "$asset_download_path" # Remove the original archive to save space
+
+    # Move extracted files to artifacts directory
+    mv "$WORK_DIR/"* "$component/artifacts/" || {
+        log e "Failed to move extracted files to artifacts directory." "$logfile"
+        exit 1
+    }
+}
+
 finalize() {
     log i "Finalizing $component" "$logfile"
 
@@ -678,6 +766,12 @@ write_components_version() {
 }
 
 version_check() {
+
+    # usage: version_check <check_type> <component> <source>
+    # check_type: manual|link|file|metainfo
+    # component: name of the component being checked
+    # source: URL, file path, or metainfo XML file
+
     log d "Starting version_check function" "$logfile"
 
     local check_type="$1"
