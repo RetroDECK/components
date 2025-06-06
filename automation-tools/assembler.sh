@@ -189,7 +189,12 @@ assemble() {
     log i "Output path: $output_path" "$logfile"
 
     log i "Checking version..." "$logfile"
-    version_check "link" "$component" "$url"
+    # TODO: bad, streamline me
+    if [[ "$type" == "gh_latest_release" ]]; then
+        log i "Skipping version_check here for gh_latest_release (handled later)" "$logfile"
+    else
+        version_check "link" "$component" "$url"
+    fi
 
     log d "Evaluating type: $type" "$logfile"
 
@@ -530,16 +535,46 @@ manage_gh_latest_release() {
 
     log i "Managing latest GitHub release for component: $component" "$logfile"
 
-    local api_url="https://api.github.com/repos/${url}/releases/latest"
-    local release_json
+    # Parse url: can be "org/repo" or "org/repo/asset-pattern"
+    local repo asset_pattern
+    if [[ "$url" == */*/* ]]; then
+        repo="${url%/*}"
+        asset_pattern="${url#*/*/}"
+    else
+        repo="$url"
+        asset_pattern=""
+    fi
 
+    log d "Parsed repo: $repo" "$logfile"
+
+    # Try to fetch the latest official release
+    local api_url="https://api.github.com/repos/$repo/releases/latest"
+    log d "Fetching latest official release JSON from: $api_url" "$logfile"
+
+    local release_json
     if [[ -n "$GITHUB_TOKEN" ]]; then
         release_json=$(curl -s -H "Authorization: token ${GITHUB_TOKEN}" "$api_url")
     else
         release_json=$(curl -s "$api_url")
     fi
 
-    if ! echo "$release_json" | jq empty > /dev/null 2>&1; then
+    # If latest is not available (404), fallback to the first available release (which may be a prerelease)
+    if echo "$release_json" | jq -e 'has("message") and .message == "Not Found"' >/dev/null; then
+        log w "No official (non-prerelease) release found. Falling back to the first available release (which may be a prerelease)." "$logfile"
+        
+        local fallback_api_url="https://api.github.com/repos/$repo/releases"
+        if [[ -n "$GITHUB_TOKEN" ]]; then
+            releases_json=$(curl -s -H "Authorization: token ${GITHUB_TOKEN}" "$fallback_api_url")
+        else
+            releases_json=$(curl -s "$fallback_api_url")
+        fi
+
+        # Use the first release entry as the fallback
+        release_json=$(echo "$releases_json" | jq '.[0]')
+    fi
+
+    # Validate JSON
+    if ! echo "$release_json" | jq empty >/dev/null 2>&1; then
         log e "Invalid JSON from GitHub API." "$logfile"
         exit 1
     fi
@@ -549,28 +584,46 @@ manage_gh_latest_release() {
         exit 1
     fi
 
-    local asset_url=$(echo "$release_json" | jq -r --arg label "$component" '
-        .assets[]? | select(.name | test($label)) | .browser_download_url' | head -n 1)
+    local asset_url=""
+    if [[ -n "$asset_pattern" ]]; then
+        local pattern_regex="${asset_pattern//\*/.*}"
+        log d "Asset pattern provided: $asset_pattern" "$logfile"
+        log d "Converted pattern to regex: $pattern_regex" "$logfile"
+        log d "Release JSON (truncated): $(echo "$release_json" | head -c 500)" "$logfile"
+
+        asset_url=$(echo "$release_json" | jq -r --arg pattern "$pattern_regex" '
+            .assets[]? | select(.name | test($pattern)) | .browser_download_url' | head -n 1)
+        log d "Asset URL resolved: $asset_url" "$logfile"
+    else
+        asset_url=$(echo "$release_json" | jq -r --arg label "$component" '
+            .assets[]? | select(.name | test($label)) | .browser_download_url' | head -n 1)
+        log d "Fallback asset URL resolved: $asset_url" "$logfile"
+    fi
 
     if [[ -z "$asset_url" ]]; then
-        log e "No matching asset found for component: $component" "$logfile"
+        log e "No matching asset found for pattern: ${asset_pattern:-$component}" "$logfile"
         exit 1
     fi
 
     log i "Downloading latest release asset from: $asset_url" "$logfile"
-    # Download the asset to a temporary file, preserving its original extension
     asset_filename=$(basename "$asset_url")
     asset_download_path="$WORK_DIR/$asset_filename"
-    wget -qc "$asset_url" -O "$asset_download_path" || {
-        log e "Failed to download latest release asset." "$logfile"
-        exit 1
-    }
 
-    # In this case version should be recalculated because we are passing only organization/repo
-    # TODO: this is very bad, we should streamline this and not recalculate the version
+    # Use token for downloading too
+    if [[ -n "$GITHUB_TOKEN" ]]; then
+        wget -qc --header="Authorization: token ${GITHUB_TOKEN}" "$asset_url" -O "$asset_download_path" || {
+            log e "Failed to download latest release asset." "$logfile"
+            exit 1
+        }
+    else
+        wget -qc "$asset_url" -O "$asset_download_path" || {
+            log e "Failed to download latest release asset." "$logfile"
+            exit 1
+        }
+    fi
+
     version_check "link" "$component" "$asset_url"
 
-    # Extract the downloaded archive (supports .tar, .tar.gz, .zip, .7z)
     case "$asset_download_path" in
         *.tar.gz|*.tar.bz2|*.tar.xz|*.tar)
             tar -xf "$asset_download_path" -C "$WORK_DIR" || {
@@ -596,9 +649,7 @@ manage_gh_latest_release() {
             ;;
     esac
 
-    rm -f "$asset_download_path" # Remove the original archive to save space
-
-    # Move extracted files to artifacts directory
+    rm -f "$asset_download_path"
     mv "$WORK_DIR/"* "$component/artifacts/" || {
         log e "Failed to move extracted files to artifacts directory." "$logfile"
         exit 1
