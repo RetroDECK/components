@@ -2,19 +2,15 @@
 
 source "automation-tools/assembler.sh"
 
-assemble generic "https://github.com/vpinball/vpinball/releases/download/v10.8.1-3155-8054cc2/VPinballX_BGFX-10.8.1-3155-8054cc2-linux-x64-Release.zip"
+assemble gh_latest_release "vpinball/vpinball/VPinballX_BGFX-*-linux-x64-Release.zip"
 
-# "https://github.com//vpinball/vpinball/releases/latest/download/VPinballX_BGFX-*-linux-x64-Release.zip"
-
-## Right now they are only on pre-release for BGFX we update to above later pathing later.
+# Right now they are only on pre-release for BGFX
+# gh_latest_release is instructed to fallback to the latest pre-release if no latest tag is found.
 
 # Custom Commands
 
-unzip  vpinballx-bgfx*.zip
-rm -f vpinballx-bgfx*.zip
-tar -xvf VPinballX_BGFX-*.tar.gz
-rm -f VPinballX_BGFX-*.tar.gz
-cp -f * $component/artifacts/
+tar -xvf $component/artifacts/VPinballX_BGFX-*.tar.gz -C $component/artifacts/
+rm -f $component/artifacts/VPinballX_BGFX-*.tar.gz
 mkdir $component/artifacts/Plugins
 
 finalize
