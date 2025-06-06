@@ -566,7 +566,9 @@ manage_gh_latest_release() {
         exit 1
     }
 
-    version=$(version_check "link" "$component" "$asset_url")
+    # In this case version should be recalculated because we are passing only organization/repo
+    # TODO: this is very bad, we should streamline this and not recalculate the version
+    version_check "link" "$component" "$asset_url"
 
     # Extract the downloaded archive (supports .tar, .tar.gz, .zip, .7z)
     case "$asset_download_path" in
