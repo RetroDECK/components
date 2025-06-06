@@ -2,7 +2,7 @@
 
 source "automation-tools/assembler.sh"
 
-assemble generic "https://github.com/ruffle-rs/ruffle/releases/latest/download/ruffle-nightly-*-linux-x86_64.tar.gz"
+assemble gh_latest_release "ruffle-rs/ruffle/ruffle-nightly-*-linux-x86_64.tar.gz"
 
 # Custom Commands
 
