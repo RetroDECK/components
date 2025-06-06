@@ -1,10 +1,12 @@
 #!/bin/bash
 
+# This is a dummy recipe just to make this component available to being installed with the defaulted files
 
 source "automation-tools/assembler.sh"
 
-# This is a dummy recipe just to make this component available to being installed
+rm -rf "$component/artifacts"
+mkdir -p "$component/artifacts"
 
-echo "Installing RetroDECK Framework"
+version="dummy"
 
 finalize
