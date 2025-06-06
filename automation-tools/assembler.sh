@@ -535,7 +535,7 @@ manage_gh_latest_release() {
 
     log i "Managing latest GitHub release for component: $component" "$logfile"
 
-    # Parse url: can be "org/repo" or "org/repo/asset-pattern"
+    # Parse url
     local repo asset_pattern
     if [[ "$url" == */*/* ]]; then
         repo="${url%/*}"
@@ -547,36 +547,15 @@ manage_gh_latest_release() {
 
     log d "Parsed repo: $repo" "$logfile"
 
-    # Try to fetch the latest official release
     local api_url="https://api.github.com/repos/$repo/releases/latest"
+    local release_json
+
     log d "Fetching latest official release JSON from: $api_url" "$logfile"
 
-    local release_json
     if [[ -n "$GITHUB_TOKEN" ]]; then
         release_json=$(curl -s -H "Authorization: token ${GITHUB_TOKEN}" "$api_url")
     else
         release_json=$(curl -s "$api_url")
-    fi
-
-    # If latest is not available (404), fallback to the first available release (which may be a prerelease)
-    if echo "$release_json" | jq -e 'has("message") and .message == "Not Found"' >/dev/null; then
-        log w "No official (non-prerelease) release found. Falling back to the first available release (which may be a prerelease)." "$logfile"
-        
-        local fallback_api_url="https://api.github.com/repos/$repo/releases"
-        if [[ -n "$GITHUB_TOKEN" ]]; then
-            releases_json=$(curl -s -H "Authorization: token ${GITHUB_TOKEN}" "$fallback_api_url")
-        else
-            releases_json=$(curl -s "$fallback_api_url")
-        fi
-
-        # Use the first release entry as the fallback
-        release_json=$(echo "$releases_json" | jq '.[0]')
-    fi
-
-    # Validate JSON
-    if ! echo "$release_json" | jq empty >/dev/null 2>&1; then
-        log e "Invalid JSON from GitHub API." "$logfile"
-        exit 1
     fi
 
     if echo "$release_json" | grep -q "API rate limit exceeded"; then
@@ -584,40 +563,74 @@ manage_gh_latest_release() {
         exit 1
     fi
 
-    local asset_url=""
-    if [[ -n "$asset_pattern" ]]; then
-        local pattern_regex="${asset_pattern//\*/.*}"
-        log d "Asset pattern provided: $asset_pattern" "$logfile"
-        log d "Converted pattern to regex: $pattern_regex" "$logfile"
-        log d "Release JSON (truncated): $(echo "$release_json" | head -c 500)" "$logfile"
-
-        asset_url=$(echo "$release_json" | jq -r --arg pattern "$pattern_regex" '
-            .assets[]? | select(.name | test($pattern)) | .browser_download_url' | head -n 1)
-        log d "Asset URL resolved: $asset_url" "$logfile"
-    else
-        asset_url=$(echo "$release_json" | jq -r --arg label "$component" '
-            .assets[]? | select(.name | test($label)) | .browser_download_url' | head -n 1)
-        log d "Fallback asset URL resolved: $asset_url" "$logfile"
-    fi
-
-    if [[ -z "$asset_url" ]]; then
-        log e "No matching asset found for pattern: ${asset_pattern:-$component}" "$logfile"
+    if ! echo "$release_json" | jq empty >/dev/null 2>&1; then
+        log e "Invalid JSON from GitHub API." "$logfile"
         exit 1
     fi
 
-    log i "Downloading latest release asset from: $asset_url" "$logfile"
+    # Convert wildcard pattern to regex
+    local pattern_regex
+    if [[ -n "$asset_pattern" ]]; then
+        pattern_regex="${asset_pattern//\*/.*}"
+        log d "Asset pattern provided: $asset_pattern" "$logfile"
+        log d "Converted pattern to regex: $pattern_regex" "$logfile"
+    else
+        pattern_regex="$component"
+    fi
+
+    # Check assets in latest official release
+    asset_url=$(echo "$release_json" | jq -r --arg pattern "$pattern_regex" '
+        .assets[]? | select(.name | test($pattern; "i")) | .browser_download_url' | head -n 1)
+
+    if [[ -z "$asset_url" ]]; then
+        log w "No matching asset found in latest official release. Checking latest prerelease." "$logfile"
+        # Fallback: check the latest prerelease
+        local releases_api_url="https://api.github.com/repos/$repo/releases"
+        local releases_json
+
+        if [[ -n "$GITHUB_TOKEN" ]]; then
+            releases_json=$(curl -s -H "Authorization: token ${GITHUB_TOKEN}" "$releases_api_url")
+        else
+            releases_json=$(curl -s "$releases_api_url")
+        fi
+
+        if echo "$releases_json" | grep -q "API rate limit exceeded"; then
+            log e "GitHub API rate limit exceeded." "$logfile"
+            exit 1
+        fi
+
+        # Find the first prerelease
+        release_json=$(echo "$releases_json" | jq 'map(select(.prerelease == true)) | .[0]')
+
+        if [[ -z "$release_json" || "$release_json" == "null" ]]; then
+            log e "No prerelease found with matching asset either." "$logfile"
+            exit 1
+        fi
+
+        # Try to find matching asset in prerelease
+        asset_url=$(echo "$release_json" | jq -r --arg pattern "$pattern_regex" '
+            .assets[]? | select(.name | test($pattern; "i")) | .browser_download_url' | head -n 1)
+
+        if [[ -z "$asset_url" ]]; then
+            log e "No matching asset found in latest prerelease either." "$logfile"
+            exit 1
+        fi
+
+        log w "Using asset from latest prerelease!" "$logfile"
+    fi
+
+    log i "Downloading asset from: $asset_url" "$logfile"
     asset_filename=$(basename "$asset_url")
     asset_download_path="$WORK_DIR/$asset_filename"
 
-    # Use token for downloading too
     if [[ -n "$GITHUB_TOKEN" ]]; then
         wget -qc --header="Authorization: token ${GITHUB_TOKEN}" "$asset_url" -O "$asset_download_path" || {
-            log e "Failed to download latest release asset." "$logfile"
+            log e "Failed to download asset." "$logfile"
             exit 1
         }
     else
         wget -qc "$asset_url" -O "$asset_download_path" || {
-            log e "Failed to download latest release asset." "$logfile"
+            log e "Failed to download asset." "$logfile"
             exit 1
         }
     fi
@@ -627,19 +640,19 @@ manage_gh_latest_release() {
     case "$asset_download_path" in
         *.tar.gz|*.tar.bz2|*.tar.xz|*.tar)
             tar -xf "$asset_download_path" -C "$WORK_DIR" || {
-                log e "Failed to extract latest release asset (tar)." "$logfile"
+                log e "Failed to extract asset (tar)." "$logfile"
                 exit 1
             }
             ;;
         *.zip)
             unzip -q "$asset_download_path" -d "$WORK_DIR" || {
-                log e "Failed to extract latest release asset (zip)." "$logfile"
+                log e "Failed to extract asset (zip)." "$logfile"
                 exit 1
             }
             ;;
         *.7z)
             7z x -y "$asset_download_path" -o"$WORK_DIR" > /dev/null || {
-                log e "Failed to extract latest release asset (7z)." "$logfile"
+                log e "Failed to extract asset (7z)." "$logfile"
                 exit 1
             }
             ;;
