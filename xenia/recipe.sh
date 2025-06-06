@@ -2,7 +2,7 @@
 
 source "automation-tools/assembler.sh"
 
-assemble generic "https://github.com/xenia-canary/xenia-canary-releases/releases/latest/download/xenia_canary_linux.tar.gz"
+assemble gh_latest_release "xenia-canary/xenia-canary-releases/xenia_canary_linux.tar.gz"
 
 # Custom Commands
 
