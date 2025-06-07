@@ -205,6 +205,9 @@ assemble() {
         generic)
             manage_generic
             ;;
+        local)
+            manage_local
+        ;;
         gh_latest_release)
             manage_gh_latest_release
             ;;
@@ -664,6 +667,58 @@ manage_gh_latest_release() {
 
     rm -f "$asset_download_path"
     mv "$WORK_DIR/"* "$component/artifacts/" || {
+        log e "Failed to move extracted files to artifacts directory." "$logfile"
+        exit 1
+    }
+}
+
+manage_local() {
+    log d "Starting manage_local function" "$logfile"
+
+    if [[ "$DRY_RUN" -eq 1 ]]; then
+        log i "[DRY-RUN] Would manage local file for $component from $url" "$logfile"
+        return
+    fi
+
+    log i "Managing local file artifact for component: $component from $url" "$logfile"
+
+    if [[ ! -f "$url" ]]; then
+        log e "Local file not found: $url" "$logfile"
+        exit 1
+    fi
+
+    # Determine if it's an archive or regular file
+    case "$url" in
+        *.tar.gz|*.tar.bz2|*.tar.xz|*.tar)
+            tar -xf "$url" -C "$WORK_DIR" || {
+                log e "Failed to extract tar archive: $url" "$logfile"
+                exit 1
+            }
+            ;;
+        *.zip)
+            unzip -q "$url" -d "$WORK_DIR" || {
+                log e "Failed to extract zip archive: $url" "$logfile"
+                exit 1
+            }
+            ;;
+        *.7z)
+            7z x -y "$url" -o"$WORK_DIR" > /dev/null || {
+                log e "Failed to extract 7z archive: $url" "$logfile"
+                exit 1
+            }
+            ;;
+        *)
+            log i "No extraction needed, treating as a single file." "$logfile"
+            cp -vL "$url" "$WORK_DIR/" || {
+                log e "Failed to copy local file to artifacts." "$logfile"
+                exit 1
+            }
+            ;;
+    esac
+
+    # Move extracted contents to artifacts directory
+    log d "Moving extracted contents to $component/artifacts/" "$logfile"
+    cp -vrL "$WORK_DIR"/* "$component/artifacts/" || {
         log e "Failed to move extracted files to artifacts directory." "$logfile"
         exit 1
     }
