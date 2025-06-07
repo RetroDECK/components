@@ -243,11 +243,11 @@ manage_appimage() {
                 return 1
             }
         else
-            tar -xf "$output_path" -C "$temp_root" || {
-                log e "Failed to extract tar archive" "$logfile"
-                rm -rf "$temp_root"
-                return 1
-            }
+            extract_archive "$output_path" "$temp_root" || {
+            log e "Failed to extract archive for AppImage." "$logfile"
+            rm -rf "$temp_root"
+            return 1
+        }
         fi
         rm -f "$output_path" # Remove the original archive to save space
 
@@ -331,37 +331,8 @@ manage_generic() {
         exit 1
     fi
 
-    # Extract to WORK_DIR
-    case "$output_path" in
-        *.tar.gz|*.tar.bz2|*.tar.xz)
-            tar -xf "$output_path" -C "$WORK_DIR" || {
-                log e "Failed to extract tar archive: $output_path" "$logfile"
-                exit 1
-            }
-            ;;
-        *.zip)
-            unzip -q "$output_path" -d "$WORK_DIR" || {
-                log e "Failed to extract zip archive: $output_path" "$logfile"
-                exit 1
-            }
-            ;;
-        *.7z)
-            7z x -y "$output_path" -o"$WORK_DIR" > /dev/null || {
-                log e "Failed to extract 7z archive: $output_path" "$logfile"
-                exit 1
-            }
-            ;;
-        *)
-            tar -xf "$output_path" -C "$WORK_DIR" || {
-                log e "Failed to extract generic artifact: $output_path" "$logfile"
-                exit 1
-            }
-            ;;
-    esac
+    extract_archive "$output_path" "$WORK_DIR"
 
-    rm -f "$output_path" # Remove the original archive to save space
-
-    # Move extracted files into artifacts dir
     log d "Moving extracted contents to $component/artifacts/" "$logfile"
     cp -rL "$WORK_DIR"/* "$component/artifacts/" || {
         log e "Failed to move extracted files to artifacts." "$logfile"
@@ -640,30 +611,10 @@ manage_gh_latest_release() {
 
     version_check "link" "$component" "$asset_url"
 
-    case "$asset_download_path" in
-        *.tar.gz|*.tar.bz2|*.tar.xz|*.tar)
-            tar -xf "$asset_download_path" -C "$WORK_DIR" || {
-                log e "Failed to extract asset (tar)." "$logfile"
-                exit 1
-            }
-            ;;
-        *.zip)
-            unzip -q "$asset_download_path" -d "$WORK_DIR" || {
-                log e "Failed to extract asset (zip)." "$logfile"
-                exit 1
-            }
-            ;;
-        *.7z)
-            7z x -y "$asset_download_path" -o"$WORK_DIR" > /dev/null || {
-                log e "Failed to extract asset (7z)." "$logfile"
-                exit 1
-            }
-            ;;
-        *)
-            log e "Unsupported archive format for $asset_download_path" "$logfile"
-            exit 1
-            ;;
-    esac
+    extract_archive "$asset_download_path" "$WORK_DIR" || {
+        log e "Failed to extract asset archive." "$logfile"
+        exit 1
+    }
 
     rm -f "$asset_download_path"
     mv "$WORK_DIR/"* "$component/artifacts/" || {
@@ -687,36 +638,21 @@ manage_local() {
         exit 1
     fi
 
-    # Determine if it's an archive or regular file
+    # Check if it's an archive or a single file
     case "$url" in
-        *.tar.gz|*.tar.bz2|*.tar.xz|*.tar)
-            tar -xf "$url" -C "$WORK_DIR" || {
-                log e "Failed to extract tar archive: $url" "$logfile"
-                exit 1
-            }
-            ;;
-        *.zip)
-            unzip -q "$url" -d "$WORK_DIR" || {
-                log e "Failed to extract zip archive: $url" "$logfile"
-                exit 1
-            }
-            ;;
-        *.7z)
-            7z x -y "$url" -o"$WORK_DIR" > /dev/null || {
-                log e "Failed to extract 7z archive: $url" "$logfile"
-                exit 1
-            }
+        *.tar.gz|*.tar.bz2|*.tar.xz|*.tar|*.zip|*.7z)
+            extract_archive "$url" "$WORK_DIR"
             ;;
         *)
-            log i "No extraction needed, treating as a single file." "$logfile"
-            cp -vL "$url" "$WORK_DIR/" || {
+            log i "No extraction needed, treating as single file." "$logfile"
+            cp -vL "$url" "$component/artifacts/" || {
                 log e "Failed to copy local file to artifacts." "$logfile"
                 exit 1
             }
+            return
             ;;
     esac
 
-    # Move extracted contents to artifacts directory
     log d "Moving extracted contents to $component/artifacts/" "$logfile"
     cp -vrL "$WORK_DIR"/* "$component/artifacts/" || {
         log e "Failed to move extracted files to artifacts directory." "$logfile"
@@ -976,5 +912,56 @@ version_check() {
     fi
 
     return 1
+}
+
+extract_archive() {
+    local archive="$1"
+    local dest_dir="$2"
+
+    if [[ ! -f "$archive" ]]; then
+        log e "Archive not found: $archive" "$logfile"
+        return 1
+    fi
+
+    log i "Extracting archive: $archive -> $dest_dir" "$logfile"
+
+    # Extract based on file extension
+    case "$archive" in
+        *.tar.gz|*.tar.bz2|*.tar.xz|*.tar)
+            tar -xf "$archive" -C "$dest_dir" || {
+                log e "Failed to extract tar archive: $archive" "$logfile"
+                return 1
+            }
+            ;;
+        *.zip)
+            unzip -q "$archive" -d "$dest_dir" || {
+                log e "Failed to extract zip archive: $archive" "$logfile"
+                return 1
+            }
+            ;;
+        *.7z)
+            7z x -y "$archive" -o"$dest_dir" > /dev/null || {
+                log e "Failed to extract 7z archive: $archive" "$logfile"
+                return 1
+            }
+            ;;
+        *)
+            log w "Unsupported archive format: $archive" "$logfile"
+            return 1
+            ;;
+    esac
+
+    # Remove the original archive after extraction
+    rm -f "$archive"
+
+    # Recursively check for nested archives
+    find "$dest_dir" -type f \( \
+        -iname "*.tar.gz" -o -iname "*.tar.bz2" -o -iname "*.tar.xz" -o -iname "*.tar" \
+        -o -iname "*.zip" -o -iname "*.7z" \) | while read -r nested_archive; do
+            log i "Found nested archive: $nested_archive — extracting recursively." "$logfile"
+            local nested_dir
+            nested_dir=$(dirname "$nested_archive")
+            extract_archive "$nested_archive" "$nested_dir"
+    done
 }
 
