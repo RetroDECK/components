@@ -2,15 +2,16 @@
 
 source /app/libexec/logger.sh
 
-COMPONENT_NAME="vpinballx-bgfx"
+COMPONENT_NAME="azahar"
 
 # This ensures the application can find its resources
 export APPDIR="$rd_components/$COMPONENT_NAME"
 
-LD_LIBRARY_PATH="$rd_components/$COMPONENT_NAME/"
+LD_LIBRARY_PATH="$rd_components/$COMPONENT_NAME/lib:$rd_shared_libs/qt-6.8/lib:${LD_LIBRARY_PATH}"
+export QT_PLUGIN_PATH="$rd_rd_shared_libs/qt-6.8/lib/plugins:${QT_PLUGIN_PATH}"
 
 log i "RetroDECK is now launching $COMPONENT_NAME"
 log d "Library path is: $LD_LIBRARY_PATH"
 log d "AppDir is: $APPDIR"
 
-exec "$rd_components/$COMPONENT_NAME/VPinballX_BGFX" "$@"
+exec "$rd_components/$COMPONENT_NAME/usr/bin/azahar" "$@"

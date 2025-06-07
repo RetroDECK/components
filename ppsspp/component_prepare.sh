@@ -25,11 +25,12 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
   # Shared actions
   dir_prep "$saves_folder/PSP/PPSSPP-SA" "$XDG_CONFIG_HOME/ppsspp/PSP/SAVEDATA"
   dir_prep "$states_folder/PSP/PPSSPP-SA" "$XDG_CONFIG_HOME/ppsspp/PSP/PPSSPP_STATE"
-  dir_prep "$texture_packs_folder/PPSSPP" "$XDG_CONFIG_HOME/ppsspp/PSP/TEXTURES"
-  create_dir -d "$cheats_folder/PPSSPP"
-  dir_prep "$cheats_folder/PPSSPP" "$XDG_CONFIG_HOME/ppsspp/PSP/Cheats"
-  if [[ -d "$cheats_folder/PPSSPP" && "$(ls -A "$cheats_folder"/PPSSPP)" ]]; then
-    backup_file="$backups_folder/cheats/PPSSPP-$(date +%y%m%d).tar.gz"
+  dir_prep "$texture_packs_folder/PPSSPP-SA" "$XDG_CONFIG_HOME/ppsspp/PSP/TEXTURES"
+  dir_prep "$shaders_folder/PPSSPP-SA" "$XDG_CONFIG_HOME/ppsspp/assets/shaders"
+  create_dir -d "$cheats_folder/PPSSPP-SA"
+  dir_prep "$cheats_folder/PPSSPP-SA" "$XDG_CONFIG_HOME/ppsspp/PSP/Cheats"
+  if [[ -d "$cheats_folder/PPSSPP-SA" && "$(ls -A "$cheats_folder"/PPSSPP)" ]]; then
+    backup_file="$backups_folder/cheats/PPSSPP-SA-$(date +%y%m%d).tar.gz"
     create_dir "$(dirname "$backup_file")"
     tar -czf "$backup_file" -C "$cheats_folder" PPSSPP
     log i "PPSSPP cheats backed up to $backup_file"
@@ -41,6 +42,7 @@ if [[ "$action" == "postmove" ]]; then # Run only post-move commands
   set_setting_value "$ppssppconf" "CurrentDirectory" "$roms_folder/psp" "ppsspp" "General"
   dir_prep "$saves_folder/PSP/PPSSPP-SA" "$XDG_CONFIG_HOME/ppsspp/PSP/SAVEDATA"
   dir_prep "$states_folder/PSP/PPSSPP-SA" "$XDG_CONFIG_HOME/ppsspp/PSP/PPSSPP_STATE"
-  dir_prep "$texture_packs_folder/PPSSPP" "$XDG_CONFIG_HOME/ppsspp/PSP/TEXTURES"
-  dir_prep "$cheats_folder/PPSSPP" "$XDG_CONFIG_HOME/ppsspp/PSP/Cheats"
+  dir_prep "$texture_packs_folder/PPSSPP-SA" "$XDG_CONFIG_HOME/ppsspp/PSP/TEXTURES"
+  dir_prep "$shaders_folder/PPSSPP-SA" "$XDG_CONFIG_HOME/ppsspp/assets/shaders"
+  dir_prep "$cheats_folder/PPSSPP-SA" "$XDG_CONFIG_HOME/ppsspp/PSP/Cheats"
 fi
