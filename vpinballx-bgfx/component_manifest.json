@@ -1,5 +1,5 @@
 {
-    "mudlet": {
+    "vpinballx-bgfx": {
         "name": "Visual Pinball X",
         "description": "Visual Pinball X (VPX) simulates pinball table physics and renders the table with bgfx",
         "system": "vpinball"
