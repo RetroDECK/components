@@ -691,12 +691,15 @@ finalize() {
     fi
 
     # Inject standard component files if present
+    log i "Injecting standard component files into artifact directory..." "$logfile"
     local inject_files=("component_launcher.sh" "component_manifest.json" "component_functions.sh" "component_prepare.sh" "rd_config")
     for file in "${inject_files[@]}"; do
         full_path="$component/$file"
         if [[ -f "$full_path" ]]; then
             cp "$full_path" "$artifact_dir"
             [[ "$file" == *.sh ]] && chmod +x "$artifact_dir/$(basename "$file")"
+        elif [[ -d "$full_path" ]]; then
+            cp -r "$full_path" "$artifact_dir"
         fi
     done
     # Copy version_file separately since it is already a full path
