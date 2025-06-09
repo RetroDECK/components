@@ -645,7 +645,7 @@ manage_local() {
             ;;
         *)
             log i "No extraction needed, treating as single file." "$logfile"
-            cp -vL "$url" "$component/artifacts/" || {
+            cp -L "$url" "$component/artifacts/" || {
                 log e "Failed to copy local file to artifacts." "$logfile"
                 exit 1
             }
@@ -654,7 +654,7 @@ manage_local() {
     esac
 
     log d "Moving extracted contents to $component/artifacts/" "$logfile"
-    cp -vrL "$WORK_DIR"/* "$component/artifacts/" || {
+    cp -rL "$WORK_DIR"/* "$component/artifacts/" || {
         log e "Failed to move extracted files to artifacts directory." "$logfile"
         exit 1
     }
