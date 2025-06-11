@@ -151,6 +151,29 @@ assemble() {
                 exit 1
             fi
             ;;
+        *api/v4/projects/*/packages/generic/*'*'*)
+            log i "GitLab wildcard URL detected, resolving via GitLab API..." "$logfile"
+
+            gitlab_base="${url%%/api/v4/*}"
+            repo_id=$(echo "$url" | grep -oP '/api/v4/projects/\K[0-9]+')
+            package_name=$(echo "$url" | sed -E 's|.*/packages/generic/([^/]+)/.*|\1|')
+
+            packages_api="$gitlab_base/api/v4/projects/$repo_id/packages?package_name=$package_name&order_by=version&sort=desc"
+            log d "Querying package versions: $packages_api" "$logfile"
+            packages_json=$(curl -s --header "PRIVATE-TOKEN: $GITLAB_TOKEN" "$packages_api")
+            latest_version=$(echo "$packages_json" | jq -r '.[0].version')
+
+            if [[ -z "$latest_version" || "$latest_version" == "null" ]]; then
+                log e "No versions found for package: $package_name" "$logfile"
+                exit 1
+            fi
+
+            export version="$latest_version"
+            log i "Resolved latest version: $version" "$logfile"
+
+            url="${url//\*/$version}"
+            log i "Resolved URL: $url" "$logfile"
+            ;;
     esac
 
     log i "Determining output path..." "$logfile"
@@ -207,7 +230,7 @@ assemble() {
             ;;
         local)
             manage_local
-        ;;
+            ;;
         gh_latest_release)
             manage_gh_latest_release
             ;;
