@@ -4,7 +4,7 @@
 # When RetroDECK starts there is a "manage_ryujinx_keys" function that symlinks the keys only in Rryujinx/system.
 
 component_name="$(basename "$(dirname "$0")")"
-config="/app/retrodeck/config/$component_name/rd_config"
+config="/app/retrodeck/components/$component_name/rd_config"
 
 if [[ "$action" == "reset" ]]; then # Run reset-only commands
 

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 component_name="$(basename "$(dirname "$0")")"
-config="/app/retrodeck/config/$component_name/rd_config"
+config="/app/retrodeck/components/$component_name/rd_config"
 extras="/app/retrodeck/config/$component_name/rd_extras"
 
     log i "--------------------------------"
