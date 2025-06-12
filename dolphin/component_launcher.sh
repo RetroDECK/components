@@ -3,9 +3,10 @@
 source /app/libexec/logger.sh
 
 COMPONENT_NAME="dolphin"
+COMPONENT_FOLDER="$(cd "$(dirname "${BASH_SOURCE[0]}" )" && pwd)"
 
 # Set LD_LIBRARY_PATH
-export LD_LIBRARY_PATH="$rd_components/$COMPONENT_NAME/lib:$rd_shared_libs/qt-6.8/lib:${LD_LIBRARY_PATH}"
+export LD_LIBRARY_PATH="$COMPONENT_FOLDER/lib:$rd_shared_libs/qt-6.8/lib:${LD_LIBRARY_PATH}"
 
 # Set plugin paths
 export QT_PLUGIN_PATH="$rd_shared_libs/plugins:${QT_PLUGIN_PATH}"
@@ -30,4 +31,4 @@ if [ "$XDG_SESSION_TYPE" = "wayland" ]; then
 fi
 
 # Launch Dolphin
-exec "$rd_components/$COMPONENT_NAME/bin/dolphin-emu" "$@"
+exec "$COMPONENT_FOLDER/bin/dolphin-emu" "$@"
