@@ -17,4 +17,4 @@ log d "Library Path: $LD_LIBRARY_PATH"
 log d "QT Plugin Path: $QT_PLUGIN_PATH"
 log d "QT QPA Platform Plugin Path is: $QT_QPA_PLATFORM_PLUGIN_PATH"
 
-exec "$component_path/$component_name/bin/shadps4" "$@"
+exec "$component_path/bin/shadps4" "$@"
