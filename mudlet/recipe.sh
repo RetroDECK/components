@@ -2,7 +2,10 @@
 
 source "automation-tools/assembler.sh"
 
-assemble appimage "https://make.mudlet.org/snapshots/ac8fcb/Mudlet-4.19.1-ptb-2025-06-02-52436899-linux-x64.AppImage.tar"
+# URL is a redirect, so we need to resolve it
+resolved_url=$(curl -L -o /dev/null -w '%{url_effective}' https://www.mudlet.org/download/42)
+
+assemble appimage "$resolved_url"
 
 # Custom Commands
 
