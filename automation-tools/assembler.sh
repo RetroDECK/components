@@ -270,7 +270,7 @@ manage_appimage() {
     local appimage_path=""
 
     # Handle archives
-    if [[ "$output_path" =~ \.tar\.(gz|xz|bz2)$ || "$output_path" =~ \.7z$ ]]; then
+    if [[ "$output_path" =~ \.tar(\.(gz|xz|bz2))?$ || "$output_path" =~ \.7z$ ]]; then
         log i "Extracting archive to temp..." "$logfile"
         if [[ "$output_path" =~ \.7z$ ]]; then
             7z x -y "$output_path" -o"$temp_root" > /dev/null || {
