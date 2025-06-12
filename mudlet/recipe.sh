@@ -6,7 +6,6 @@ assemble appimage "https://make.mudlet.org/snapshots/ac8fcb/Mudlet-4.19.1-ptb-20
 
 # Custom Commands
 
-tar -xvf mudlet*.tar
-rm -f mudlet*.tar
+touch "$component/artifacts/portable.txt"
 
 finalize
