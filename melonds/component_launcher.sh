@@ -3,9 +3,9 @@
 source /app/libexec/logger.sh
 
 component_name="melonds"
-component_folder_path="$(cd "$(dirname "${BASH_SOURCE[0]}" )" && pwd)"
+component_path="$(cd "$(dirname "${BASH_SOURCE[0]}" )" && pwd)"
 
-LD_LIBRARY_PATH="$component_folder_path/lib:/app/retrodeck/components/shared-libs/qt-6.7/lib:${LD_LIBRARY_PATH}"
+LD_LIBRARY_PATH="$component_path/lib:/app/retrodeck/components/shared-libs/qt-6.7/lib:${LD_LIBRARY_PATH}"
 export QT_PLUGIN_PATH="/app/retrodeck/components/shared-libs/qt-6.7/lib/plugins:${QT_PLUGIN_PATH}"
 
 log i "RetroDECK is now launching $component_name"
@@ -20,4 +20,4 @@ esac
 
 log d "QT_QPA_PLATFORMTHEME is set to: $QT_QPA_PLATFORMTHEME"
 
-exec "$component_folder_path/bin/melonDS" "$@"
+exec "$component_path/bin/melonDS" "$@"

@@ -3,10 +3,10 @@
 source /app/libexec/logger.sh
 
 component_name="shadps4"
-component_folder_path="$(cd "$(dirname "${BASH_SOURCE[0]}" )" && pwd)"
+component_path="$(cd "$(dirname "${BASH_SOURCE[0]}" )" && pwd)"
 
 # set LD_LIBRARY_PATH
-export LD_LIBRARY_PATH="$component_folder_path/lib:/app/retrodeck/components/shared-libs/qt-6.8/lib:${LD_LIBRARY_PATH}"
+export LD_LIBRARY_PATH="$component_path/lib:/app/retrodeck/components/shared-libs/qt-6.8/lib:${LD_LIBRARY_PATH}"
 
 # set plugin paths
 export QT_PLUGIN_PATH="/app/retrodeck/components/shared-libs/plugins:${QT_PLUGIN_PATH}"

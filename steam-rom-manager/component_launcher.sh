@@ -3,13 +3,13 @@
 source /app/libexec/logger.sh
 
 component_name="steam-rom-manager"
-component_folder_path="$(cd "$(dirname "${BASH_SOURCE[0]}" )" && pwd)"
+component_path="$(cd "$(dirname "${BASH_SOURCE[0]}" )" && pwd)"
 IN_FLATPAK=1
 
-LD_LIBRARY_PATH="$component_folder_path/lib:${LD_LIBRARY_PATH}"
+LD_LIBRARY_PATH="$component_path/lib:${LD_LIBRARY_PATH}"
 
 log i "RetroDECK is now launching $component_name"
 log d "Library path is: $LD_LIBRARY_PATH"
-log d "AppDir is: $component_folder_path"
+log d "AppDir is: $component_path"
 
-exec "$component_folder_path/AppRun" --no-sandbox "$@"
+exec "$component_path/AppRun" --no-sandbox "$@"
