@@ -12,4 +12,4 @@ log i "RetroDECK is now launching $component_name"
 log d "Library path is: $LD_LIBRARY_PATH"
 log d "AppDir is: $component_path"
 
-exec "$component_path/usr/bin/azahar" "$@"
+exec "$component_path/bin/azahar" "$@"

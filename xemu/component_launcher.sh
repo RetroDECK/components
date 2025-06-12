@@ -9,4 +9,4 @@ unset QEMU_AUDIO_DRV
 
 log i "RetroDECK is now launching $component_name"
 
-exec "$component_path/AppRun" --no-sandbox "$@"
+exec "exec "$component_path/bin/xemu" --no-sandbox "$@"
