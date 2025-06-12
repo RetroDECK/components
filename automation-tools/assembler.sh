@@ -174,6 +174,19 @@ assemble() {
             url="${url//\*/$version}"
             log i "Resolved URL: $url" "$logfile"
             ;;
+        # Handle local file wildcards (e.g., /path/to/*.zip)
+        /*\**)
+            log i "Local file wildcard detected, resolving..." "$logfile"
+            local_dir=$(dirname "$url")
+            pattern=$(basename "$url")
+            resolved_file=$(find "$local_dir" -maxdepth 1 -type f -name "$pattern" | sort | head -n 1)
+            if [[ -z "$resolved_file" ]]; then
+                log e "No matching local file found for pattern: $url" "$logfile"
+                exit 1
+            fi
+            url="$resolved_file"
+            log i "Resolved local file: $url" "$logfile"
+            ;;
     esac
 
     log i "Determining output path..." "$logfile"
