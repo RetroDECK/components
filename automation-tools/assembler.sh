@@ -341,7 +341,7 @@ manage_appimage() {
     done
 
     # Move only if dirs exist
-    [[ -d "$WORK_DIR/squashfs-root/usr" ]] && mv "$WORK_DIR/squashfs-root/usr"/* "$component/artifacts/" || log w "No usr/ content found"
+    [[ -d "$WORK_DIR/squashfs-root/usr" ]] && mv "$WORK_DIR/squashfs-root/usr"/* "$component/artifacts/" || log w "No usr/ content found" "$logfile"
     [[ -d "$WORK_DIR/squashfs-root/share" ]] && mv "$WORK_DIR/squashfs-root/share" "$component/artifacts/"
     [[ -d "$WORK_DIR/squashfs-root/apprun-hooks" ]] && mv "$WORK_DIR/squashfs-root/apprun-hooks" "$component/artifacts/"
 
