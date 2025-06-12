@@ -2,11 +2,11 @@
 
 source /app/libexec/logger.sh
 
-COMPONENT_NAME="xemu"
-COMPONENT_FOLDER="$(cd "$(dirname "${BASH_SOURCE[0]}" )" && pwd)"
+component_name="xemu"
+component_folder_path="$(cd "$(dirname "${BASH_SOURCE[0]}" )" && pwd)"
 
 unset QEMU_AUDIO_DRV
 
-log i "RetroDECK is now launching $COMPONENT_NAME"
+log i "RetroDECK is now launching $component_name"
 
-exec "$COMPONENT_FOLDER/AppRun" --no-sandbox "$@"
+exec "$component_folder_path/AppRun" --no-sandbox "$@"

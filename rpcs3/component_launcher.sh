@@ -2,14 +2,14 @@
 
 source /app/libexec/logger.sh
 
-COMPONENT_NAME="rpcs3"
-COMPONENT_FOLDER="$(cd "$(dirname "${BASH_SOURCE[0]}" )" && pwd)"
+component_name="rpcs3"
+component_folder_path="$(cd "$(dirname "${BASH_SOURCE[0]}" )" && pwd)"
 
-LD_LIBRARY_PATH="$COMPONENT_FOLDER/lib:${LD_LIBRARY_PATH}"
+component_library_path="$component_folder_path/lib:${component_library_path}"
 
-log i "RetroDECK is now launching $COMPONENT_NAME"
-log d "Library path is: $LD_LIBRARY_PATH"
-log d "AppDir is: $COMPONENT_FOLDER"
+log i "RetroDECK is now launching $component_name"
+log d "Library path is: $component_library_path"
+log d "AppDir is: $component_folder_path"
 
 # NOTE: AppRun is not working for RPCS3
-exec "$COMPONENT_FOLDER/bin/rpcs3" "$@"
+exec "$component_folder_path/bin/rpcs3" "$@"

@@ -2,13 +2,13 @@
 
 source /app/libexec/logger.sh
 
-COMPONENT_NAME="openbor"
-COMPONENT_FOLDER="$(cd "$(dirname "${BASH_SOURCE[0]}" )" && pwd)"
+component_name="openbor"
+component_folder_path="$(cd "$(dirname "${BASH_SOURCE[0]}" )" && pwd)"
 
-LD_LIBRARY_PATH="$COMPONENT_FOLDER/lib"
+component_library_path="$component_folder_path/lib"
 
-log i "RetroDECK is now launching $COMPONENT_NAME"
-log d "Library path is: $LD_LIBRARY_PATH"
-log d "AppDir is: $COMPONENT_FOLDER"
+log i "RetroDECK is now launching $component_name"
+log d "Library path is: $component_library_path"
+log d "AppDir is: $component_folder_path"
 
-exec "$COMPONENT_FOLDER/bin/OpenBOR" "$@"
+exec "$component_folder_path/bin/OpenBOR" "$@"

@@ -2,14 +2,14 @@
 
 source /app/libexec/logger.sh
 
-COMPONENT_NAME="es-de"
-COMPONENT_FOLDER="$(cd "$(dirname "${BASH_SOURCE[0]}" )" && pwd)"
+component_name="es-de"
+component_folder_path="$(cd "$(dirname "${BASH_SOURCE[0]}" )" && pwd)"
 
-LD_LIBRARY_PATH="$COMPONENT_FOLDER/lib:/app/retrodeck/components/shared-libs/qt-6.7/lib:${LD_LIBRARY_PATH}"
-export QT_PLUGIN_PATH="/app/retrodeck/components/shared-libs/qt-6.7/lib/plugins:${QT_PLUGIN_PATH}"
+component_library_path="$component_folder_path/lib:/app/retrodeck/components/shared-libs/qt-6.7/lib:${component_library_path}"
+export qt_plugin_path="/app/retrodeck/components/shared-libs/qt-6.7/lib/plugins:${qt_plugin_path}"
 
-log i "RetroDECK is now launching $COMPONENT_NAME"
-log d "Library path is: $LD_LIBRARY_PATH"
-log d "QT plugin path is: $QT_PLUGIN_PATH"
+log i "RetroDECK is now launching $component_name"
+log d "Library path is: $component_library_path"
+log d "QT plugin path is: $qt_plugin_path"
 
-exec "$COMPONENT_FOLDER/es-de" --home "$XDG_CONFIG_HOME" "$@"
+exec "$component_folder_path/es-de" --home "$XDG_CONFIG_HOME" "$@"

@@ -2,14 +2,14 @@
 
 source /app/libexec/logger.sh
 
-COMPONENT_NAME="vcmi"
-COMPONENT_FOLDER="$(cd "$(dirname "${BASH_SOURCE[0]}" )" && pwd)"
+component_name="vcmi"
+component_folder_path="$(cd "$(dirname "${BASH_SOURCE[0]}" )" && pwd)"
 
-LD_LIBRARY_PATH="$COMPONENT_FOLDER/lib:/app/retrodeck/components/shared-libs/qt-6.8/lib:${LD_LIBRARY_PATH}"
-export QT_PLUGIN_PATH="/app/retrodeck/components/shared-libs/qt-6.8/lib/plugins:${QT_PLUGIN_PATH}"
+component_library_path="$component_folder_path/lib:/app/retrodeck/components/shared-libs/qt-6.8/lib:${component_library_path}"
+export qt_plugin_path="/app/retrodeck/components/shared-libs/qt-6.8/lib/plugins:${qt_plugin_path}"
 
-log i "RetroDECK is now launching $COMPONENT_NAME"
-log d "Library path is: $LD_LIBRARY_PATH"
-log d "AppDir is: $COMPONENT_FOLDER"
+log i "RetroDECK is now launching $component_name"
+log d "Library path is: $component_library_path"
+log d "AppDir is: $component_folder_path"
 
-exec "$COMPONENT_FOLDER/bin/vcmilauncher" "$@"
+exec "$component_folder_path/bin/vcmilauncher" "$@"

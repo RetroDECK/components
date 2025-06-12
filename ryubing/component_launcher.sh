@@ -2,12 +2,12 @@
 
 source /app/libexec/logger.sh
 
-COMPONENT_NAME="ryubing"
-COMPONENT_FOLDER="$(cd "$(dirname "${BASH_SOURCE[0]}" )" && pwd)"
+component_name="ryubing"
+component_folder_path="$(cd "$(dirname "${BASH_SOURCE[0]}" )" && pwd)"
 
-LD_LIBRARY_PATH="$COMPONENT_FOLDER/lib:${LD_LIBRARY_PATH}"
+component_library_path="$component_folder_path/lib:${component_library_path}"
 
-log i "RetroDECK is now launching $COMPONENT_NAME"
-log d "Library path is: $LD_LIBRARY_PATH"
+log i "RetroDECK is now launching $component_name"
+log d "Library path is: $component_library_path"
 
-exec "$COMPONENT_FOLDER/usr/bin/Ryujinx.sh" "$@"
+exec "$component_folder_path/usr/bin/Ryujinx.sh" "$@"
