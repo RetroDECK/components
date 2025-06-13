@@ -31,7 +31,7 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
         cp -fvr "$config/ryubing/profiles/controller" "$XDG_CONFIG_HOME/$ryubing_profiles_path"
         log d "Replacing placeholders in \"$ryubing_config\""
         sed -i 's#RETRODECKHOMEDIR#'"$rdhome"'#g' "$ryubing_config"
-        create_dir "$logs_folder/ryubing"
+        create_dir "$rd_internal_logs_path/ryubing"
         create_dir "$mods_folder/ryubing"
         create_dir "$screenshots_folder/ryubing"
     fi
