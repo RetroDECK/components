@@ -28,7 +28,7 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
         cp -fvr "$config/ryujinx/profiles" "$XDG_CONFIG_HOME/Ryujinx/"
         log d "Replacing placeholders in \"$ryujinxconf\""
         sed -i 's#RETRODECKHOMEDIR#'"$rdhome"'#g' "$ryujinxconf"
-        create_dir "$logs_folder/ryujinx"
+        create_dir "$rd_internal_logs_path/ryujinx"
         create_dir "$mods_folder/ryujinx"
         create_dir "$screenshots_folder/ryujinx"
     fi
