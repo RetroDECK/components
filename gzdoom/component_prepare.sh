@@ -18,6 +18,6 @@ create_dir "$bios_folder/gzdoom"
 
 cp -fvr "$config/"gzdoom.ini" "$XDG_CONFIG_HOME/gzdoom"
 
-sed -i 's#RETRODECKHOMEDIR#'"$rdhome"'#g' "$XDG_CONFIG_HOME/gzdoom/gzdoom.ini" # This is an unfortunate one-off because set_setting_value does not currently support JSON
-sed -i 's#RETRODECKROMSDIR#'"$roms_folder"'#g' "$XDG_CONFIG_HOME/gzdoom/gzdoom.ini" # This is an unfortunate one-off because set_setting_value does not currently support JSON
-sed -i 's#RETRODECKSAVESDIR#'"$saves_folder"'#g' "$XDG_CONFIG_HOME/gzdoom/gzdoom.ini" # This is an unfortunate one-off because set_setting_value does not currently support JSON
+sed -i "s#RETRODECKHOMEDIR#${rdhome}#g" "$XDG_CONFIG_HOME/gzdoom/gzdoom.ini" # This is an unfortunate one-off because set_setting_value does not currently support JSON
+sed -i "s#RETRODECKROMSDIR#${roms_folder}#g" "$XDG_CONFIG_HOME/gzdoom/gzdoom.ini" # This is an unfortunate one-off because set_setting_value does not currently support JSON
+sed -i "s#RETRODECKSAVESDIR#${saves_folder}#g" "$XDG_CONFIG_HOME/gzdoom/gzdoom.ini" # This is an unfortunate one-off because set_setting_value does not currently support JSON
