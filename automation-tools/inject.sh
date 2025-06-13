@@ -36,9 +36,9 @@ if [[ "$continue" =~ ^[Yy]$ ]]; then
     for dir in */; do
         # Skip hidden folders and automation-tools
         [[ "$dir" == .* || "$dir" == "automation-tools/" ]] && continue
-            echo "Injecting $dir into $app/components/$dir"
-            mkdir -p "$app/components/$dir"
-            cp -r "$dir"* "$app/components/$dir"
+            echo "Injecting $dir into $app/retrodeck/components/$dir"
+            mkdir -p "$app/retrodeck/components/$dir"
+            cp -r "$dir"* "$app/retrodeck/components/$dir"
     done
 
 else
