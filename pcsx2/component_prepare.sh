@@ -3,6 +3,7 @@
 # Setting component name and path based on the directory name
 component_name="$(basename "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")")"
 config="/app/retrodeck/components/$component_name/rd_config"
+extras="/app/retrodeck/config/$component_name/rd_extras"
 
 if [[ "$action" == "reset" ]]; then # Run reset-only commands
 
@@ -12,7 +13,7 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
 
   if [[ $multi_user_mode == "true" ]]; then # Multi-user actions
     create_dir -d "$multi_user_data_folder/$SteamAppUser/config/PCSX2/inis"
-    cp -fvr "$config/PCSX2/"* "$multi_user_data_folder/$SteamAppUser/config/PCSX2/inis/"
+    cp -fvr "$config/"* "$multi_user_data_folder/$SteamAppUser/config/PCSX2/inis/"
     set_setting_value "$multi_user_data_folder/$SteamAppUser/config/PCSX2/inis/PCSX2.ini" "Bios" "$bios_folder" "pcsx2" "Folders"
     set_setting_value "$multi_user_data_folder/$SteamAppUser/config/PCSX2/inis/PCSX2.ini" "Snapshots" "$screenshots_folder" "pcsx2" "Folders"
     set_setting_value "$multi_user_data_folder/$SteamAppUser/config/PCSX2/inis/PCSX2.ini" "SaveStates" "$states_folder/ps2/pcsx2" "pcsx2" "Folders"
@@ -23,7 +24,7 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
   else # Single-user actions
 
     create_dir -d "$XDG_CONFIG_HOME/PCSX2/inis"
-    cp -fvr "$config/PCSX2/"* "$XDG_CONFIG_HOME/PCSX2/inis/"
+    cp -fvr "$config/"* "$XDG_CONFIG_HOME/PCSX2/inis/"
     set_setting_value "$pcsx2conf" "Bios" "$bios_folder" "pcsx2" "Folders"
     set_setting_value "$pcsx2conf" "Snapshots" "$screenshots_folder" "pcsx2" "Folders"
     set_setting_value "$pcsx2conf" "SaveStates" "$states_folder/ps2/pcsx2" "pcsx2" "Folders"
@@ -37,7 +38,7 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
       log i "PCSX2 cheats backed up to $backup_file"
     fi
     create_dir -d "$cheats_folder/pcsx2"
-    tar --strip-components=1 -xzf "/app/retrodeck/cheats/pcsx2.tar.gz" -C "$cheats_folder/pcsx2" --overwrite
+    tar --strip-components=1 -xzf "$extras/pcsx2.tar.gz" -C "$cheats_folder/pcsx2" --overwrite
   fi
 
   # Shared actions
