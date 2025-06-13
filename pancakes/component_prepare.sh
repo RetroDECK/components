@@ -3,7 +3,8 @@
 # NOTE: for techincal reasons the system folder of Ryujinx IS NOT a symlink of the bios/switch/keys as not only the keys are located there
 # When RetroDECK starts there is a "manage_ryujinx_keys" function that symlinks the keys only in Rryujinx/system.
 
-component_name="$(basename "$(dirname "$0")")"
+# Setting component name and path based on the directory name
+component_name="$(basename "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")")"
 config="/app/retrodeck/components/$component_name/rd_config"
 
 if [[ "$action" == "reset" ]]; then # Run reset-only commands

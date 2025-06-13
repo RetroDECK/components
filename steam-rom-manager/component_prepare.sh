@@ -1,6 +1,7 @@
 #!/bin/bash
 
-component_name="$(basename "$(dirname "$0")")"
+# Setting component name and path based on the directory name
+component_name="$(basename "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")")"
 config="/app/retrodeck/components/$component_name/rd_config"
 
 log i "-----------------------------"

@@ -5,7 +5,8 @@ source /app/libexec/logger.sh
 
 arg="$@"
 
-component_name="ruffle"
+# Setting component name and path based on the directory name
+component_name="$(basename "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")")"
 component_path="$(cd "$(dirname "${BASH_SOURCE[0]}" )" && pwd)"
 
 log i "RetroDECK is now launching $component_name"
