@@ -20,7 +20,7 @@ echo "Listing /lib folder:"
 ls -lah $WORK_DIR/shared-libs-5.15-build-dir/files/lib # DEBUG
 echo "Listing /usr/lib/plugins folder:"
 ls -lah $WORK_DIR/shared-libs-5.15-build-dir/files/usr/lib/plugins # DEBUG
-cp -rL $WORK_DIR/shared-libs-5.15-build-dir/files/usr/lib/* $component/artifacts/qt-5.15/lib
+cp -rL $WORK_DIR/shared-libs-5.15-build-dir/files/lib/* $component/artifacts/qt-5.15/lib
 cp -rL $WORK_DIR/shared-libs-5.15-build-dir/files/usr/lib/plugins $component/artifacts/qt-5.15/lib/
 version="5.15"
 
@@ -30,7 +30,7 @@ echo "Listing /lib folder:"
 ls -lah $WORK_DIR/shared-libs-6.7-build-dir/files/lib # DEBUG
 echo "Listing /usr/lib/plugins folder:"
 ls -lah $WORK_DIR/shared-libs-6.7-build-dir/files/usr/lib/plugins # DEBUG
-cp -rL $WORK_DIR/shared-libs-6.7-build-dir/files/usr/lib/* $component/artifacts/qt-6.7/lib
+cp -rL $WORK_DIR/shared-libs-6.7-build-dir/files/lib/* $component/artifacts/qt-6.7/lib
 cp -rL $WORK_DIR/shared-libs-6.7-build-dir/files/usr/lib/plugins $component/artifacts/qt-6.7/lib/
 version="$version, 6.7"
 
@@ -40,7 +40,7 @@ echo "Listing /lib folder:"
 ls -lah $WORK_DIR/shared-libs-6.8-build-dir/files/lib # DEBUG
 echo "Listing /usr/lib/plugins folder:"
 ls -lah $WORK_DIR/shared-libs-6.8-build-dir/files/usr/lib/plugins # DEBUG
-cp -rL $WORK_DIR/shared-libs-6.8-build-dir/files/usr/lib/* $component/artifacts/qt-6.8/lib
+cp -rL $WORK_DIR/shared-libs-6.8-build-dir/files/lib/* $component/artifacts/qt-6.8/lib
 cp -rL $WORK_DIR/shared-libs-6.8-build-dir/files/usr/lib/plugins $component/artifacts/qt-6.8/lib/
 version="$version, 6.8"
 
