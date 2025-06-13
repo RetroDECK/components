@@ -5,9 +5,9 @@ component_name="$(basename "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")")"
 config="/app/retrodeck/components/$component_name/rd_config"
 extras="/app/retrodeck/config/$component_name/rd_extras"
 
-    log i "--------------------------------"
-    log i "Prepearing RetroArch"
-    log i "--------------------------------"
+log i "--------------------------------"
+log i "Prepearing RetroArch"
+log i "--------------------------------"
 
 if [[ "$action" == "reset" ]]; then # Run reset-only commands
     if [[ $multi_user_mode == "true" ]]; then # Multi-user actions
@@ -20,19 +20,18 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
         dir_prep "$rdhome/logs/retroarch" "$XDG_CONFIG_HOME/retroarch/logs"
         create_dir -d "$XDG_CONFIG_HOME/retroarch/shaders/"
         if [[ -d "$cheats_folder/retroarch" && "$(ls -A "$cheats_folder/retroarch")" ]]; then
-        backup_file="$backups_folder/cheats/retroarch-$(date +%y%m%d).tar.gz"
-        create_dir "$(dirname "$backup_file")"
-        tar -czf "$backup_file" -C "$cheats_folder" retroarch
-        log i "RetroArch cheats backed up to $backup_file"
+            backup_file="$backups_folder/cheats/retroarch-$(date +%y%m%d).tar.gz"
+            create_dir "$(dirname "$backup_file")"
+            tar -czf "$backup_file" -C "$cheats_folder" retroarch
+            log i "RetroArch cheats backed up to $backup_file"
         fi
         create_dir -d "$cheats_folder/retroarch"
-        tar --strip-components=1 -xzf "/app/retrodeck/cheats/retroarch.tar.gz" -C "$cheats_folder/retroarch" --overwrite
-        cp -rf "/app/share/libretro/shaders" "$XDG_CONFIG_HOME/retroarch/"
+        log d "Linking shaders folder to ensure retroarch can find it $XDG_CONFIG_HOME/retroarch/shaders to $shaders_folder/retroarch"
         dir_prep "$shaders_folder/retroarch" "$XDG_CONFIG_HOME/retroarch/shaders"
         cp -fv "$config/retroarch.cfg" "$XDG_CONFIG_HOME/retroarch/"
         cp -fv "$config/retroarch-core-options.cfg" "$XDG_CONFIG_HOME/retroarch/"
         rsync -rlD --mkpath "$config/core-overrides/" "$XDG_CONFIG_HOME/retroarch/config/"
-        rsync -rlD --mkpath "$config/retrodeck/presets/remaps/" "$XDG_CONFIG_HOME/retroarch/config/remaps/"
+        rsync -rlD --mkpath "$config/remaps/" "$XDG_CONFIG_HOME/retroarch/config/remaps/"
         dir_prep "$borders_folder" "$XDG_CONFIG_HOME/retroarch/overlays/borders"
         set_setting_value "$raconf" "savefile_directory" "$saves_folder" "retroarch"
         set_setting_value "$raconf" "savestate_directory" "$states_folder" "retroarch"
