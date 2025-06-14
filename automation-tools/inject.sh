@@ -33,12 +33,33 @@ if [[ "$continue" =~ ^[Yy]$ ]]; then
         exit 1
     fi
 
+    excluded_folders=(
+        ".*"
+        "archive"
+        "ares"
+        "automation-tools"
+    )
     for dir in */; do
-        # Skip hidden folders and automation-tools
-        [[ "$dir" == .* || "$dir" == "automation-tools/" ]] && continue
-            echo "Injecting $dir into $app/retrodeck/components/$dir"
-            mkdir -p "$app/retrodeck/components/$dir"
-            cp -r "$dir"* "$app/retrodeck/components/$dir"
+        folder_name="${dir%/}"
+        if [[ -d "$folder_name" ]]; then
+            if [[ " ${excluded_folders[@]} " =~ " $folder_name " ]]; then
+                echo "Skipping folder: $folder_name"
+            continue
+            fi
+
+            echo "Injecting folder: $folder_name"
+            # Exclude 'artifacts' folder if it exists
+            if [[ -d "$folder_name/artifacts" ]]; then
+                echo "Found 'artifacts' folder in $folder_name, injecting contents separately."
+                sudo rsync -a --exclude 'artifacts' "$folder_name/" "$app/retrodeck/components/$folder_name/"
+                sudo cp -r "$folder_name/artifacts/." "$app/retrodeck/components/$folder_name/"
+            else
+                sudo cp -r "$folder_name" "$app/retrodeck/components/$folder_name"
+            fi
+        else
+            echo "Skipping non-directory item: $folder_name"
+        fi
+
     done
 
 else
