@@ -2,7 +2,7 @@
 
 source "automation-tools/assembler.sh"
 
-assemble flatpak_id com.dosbox_x.DOSBox-X
+assemble flatpak_id com.supermodel3.Supermodel
 
 # Custom Commands
 
