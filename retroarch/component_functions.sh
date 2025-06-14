@@ -7,15 +7,15 @@ retroarch_updater() {
     log i "Running RetroArch updater"
 
     log i "Updating cores..."
-    tar --strip-components=1 -xzf "$extras/cores.tar.gz" -C "$XDG_CONFIG_HOME/retroarch/" --overwrite && log d "RetroArch cores updated correctly"
+    tar -xzf "$extras/cores.tar.gz" -C "$XDG_CONFIG_HOME/retroarch/" --overwrite && log d "RetroArch cores updated correctly"
 
     log i "Updating overlays/borders..."
-    tar --strip-components=1 -xzf "$extras/overlays.tar.gz" -C "$XDG_CONFIG_HOME/retroarch/" --overwrite && log d "RetroArch overlays and borders updated correctly"
-
-    log i "Updating cheats..."
-    tar --strip-components=1 -xzf "$extras/cheats.tar.gz" -C "$cheats_folder/retroarch" --overwrite
+    tar -xzf "$extras/overlays.tar.gz" -C "$XDG_CONFIG_HOME/retroarch/" --overwrite && log d "RetroArch overlays and borders updated correctly"
 
     log i "Updating shaders..."
-    tar --strip-components=1 -xzf "$extras/shaders.tar.gz" -C "$XDG_CONFIG_HOME/retroarch/" --overwrite
+    tar -xzf "$extras/shaders.tar.gz" -C "$XDG_CONFIG_HOME/retroarch/" --overwrite && log d "RetroArch shaders updated correctly"
+
+    log i "Updating cheats..."
+    tar -xzf "$extras/cheats.tar.gz" -C "$cheats_folder/retroarch" --overwrite && log d "RetroArch cheats updated correctly"
 
 }
