@@ -2,12 +2,15 @@
 
 # Setting component name and path based on the directory name
 component_name="$(basename "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")")"
-config="/app/retrodeck/components/$component_name/rd_config"
-extras="/app/retrodeck/config/$component_name/rd_extras"
+component_path="$(cd "$(dirname "${BASH_SOURCE[0]}" )" && pwd)"
+config="$component_path/rd_config"
+extras="$component_path/rd_extras"
 
 log i "--------------------------------"
 log i "Prepearing RetroArch"
 log i "--------------------------------"
+
+log d "RetroArch config path: $config/retroarch.cfg"
 
 if [[ "$action" == "reset" ]]; then # Run reset-only commands
     if [[ $multi_user_mode == "true" ]]; then # Multi-user actions
@@ -33,12 +36,16 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
         rsync -rlD --mkpath "$config/core-overrides/" "$XDG_CONFIG_HOME/retroarch/config/"
         rsync -rlD --mkpath "$config/remaps/" "$XDG_CONFIG_HOME/retroarch/config/remaps/"
         dir_prep "$borders_folder" "$XDG_CONFIG_HOME/retroarch/overlays/borders"
-        set_setting_value "$raconf" "savefile_directory" "$saves_folder" "retroarch"
-        set_setting_value "$raconf" "savestate_directory" "$states_folder" "retroarch"
-        set_setting_value "$raconf" "screenshot_directory" "$screenshots_folder" "retroarch"
-        set_setting_value "$raconf" "log_dir" "$rd_internal_logs_path" "retroarch"
-        set_setting_value "$raconf" "rgui_browser_directory" "$roms_folder" "retroarch"
-        set_setting_value "$raconf" "cheat_database_path" "$cheats_folder/retroarch" "retroarch"
+        set_setting_value "$config/retroarch.cfg" "savefile_directory" "$saves_folder" "retroarch"
+        set_setting_value "$config/retroarch.cfg" "savestate_directory" "$states_folder" "retroarch"
+        set_setting_value "$config/retroarch.cfg" "screenshot_directory" "$screenshots_folder" "retroarch"
+        set_setting_value "$config/retroarch.cfg" "log_dir" "$rd_internal_logs_path" "retroarch"
+        set_setting_value "$config/retroarch.cfg" "rgui_browser_directory" "$roms_folder" "retroarch"
+        set_setting_value "$config/retroarch.cfg" "cheat_database_path" "$cheats_folder/retroarch" "retroarch"
+        set_setting_value "$config/retroarch.cfg" "assets_directory" "$component_path/assets" "retroarch"
+        set_setting_value "$config/retroarch.cfg" "joypad_autoconfig_dir" "$component_path/autoconfig" "retroarch"
+        set_setting_value "$config/retroarch.cfg" "cursor_directory" "$component_path/database/cursors" "retroarch"
+        set_setting_value "$config/retroarch.cfg" "content_database_path" "$component_path/database/rdb" "retroarch"
     fi
 
     # Shared actions
@@ -142,8 +149,8 @@ if [[ "$action" == "postmove" ]]; then # Run only post-move commands
     dir_prep "$texture_packs_folder/RetroArch-Mesen" "$XDG_CONFIG_HOME/retroarch/system/HdPacks"
     dir_prep "$texture_packs_folder/RetroArch-Mupen64Plus/cache" "$XDG_CONFIG_HOME/retroarch/system/Mupen64plus/cache"
     dir_prep "$texture_packs_folder/RetroArch-Mupen64Plus/hires_texture" "$XDG_CONFIG_HOME/retroarch/system/Mupen64plus/hires_texture"
-    set_setting_value "$raconf" "savefile_directory" "$saves_folder" "retroarch"
-    set_setting_value "$raconf" "savestate_directory" "$states_folder" "retroarch"
-    set_setting_value "$raconf" "screenshot_directory" "$screenshots_folder" "retroarch"
-    set_setting_value "$raconf" "log_dir" "$rd_internal_logs_path" "retroarch"
+    set_setting_value "$config/retroarch.cfg" "savefile_directory" "$saves_folder" "retroarch"
+    set_setting_value "$config/retroarch.cfg" "savestate_directory" "$states_folder" "retroarch"
+    set_setting_value "$config/retroarch.cfg" "screenshot_directory" "$screenshots_folder" "retroarch"
+    set_setting_value "$config/retroarch.cfg" "log_dir" "$rd_internal_logs_path" "retroarch"
 fi
