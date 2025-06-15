@@ -38,6 +38,7 @@ EXTRAS="rd_extras"      # Name of the extras folder used to place components ext
 components_version_list="components_version_list.md"
 export component="${args[2]:-$(basename "$(dirname "$(realpath "${BASH_SOURCE[1]}")")")}"
 export version_file="$component/component_version"
+safe_download_warning="false"
 
 parse_flags() {
     while [[ "$1" =~ ^-- ]]; do
@@ -56,6 +57,60 @@ parse_flags() {
         shift
     done
     echo "$@"
+}
+
+safe_download() {
+    local url="$1"
+    local dest="$2"
+    local component_name="${3:-$component}"  # Use provided or fallback to current
+
+    log i "Attempting to download: $url -> $dest" "$logfile"
+    wget -qc "$url" -O "$dest"
+
+    if [[ $? -ne 0 || ! -s "$dest" ]]; then
+        log w "Primary download failed for $component_name from $url" "$logfile"
+        rm -f "$dest"
+
+        # Try fallback from RetroDECK/components release assets
+        local fallback_repo="${FALLBACK_GITHUB_REPO:-RetroDECK/components}"
+        local fallback_pattern="${component_name}.*"
+
+        log i "Trying fallback from $fallback_repo releases for asset matching: $fallback_pattern" "$logfile"
+
+        local fallback_json
+        if [[ -n "$GITHUB_TOKEN" ]]; then
+            fallback_json=$(curl -s -H "Authorization: token ${GITHUB_TOKEN}" "https://api.github.com/repos/$fallback_repo/releases")
+        else
+            fallback_json=$(curl -s "https://api.github.com/repos/$fallback_repo/releases")
+        fi
+
+        if echo "$fallback_json" | grep -q "API rate limit exceeded"; then
+            log e "GitHub API rate limit exceeded while trying fallback." "$logfile"
+            return 1
+        fi
+
+        # Find first matching asset
+        local fallback_asset_url
+        fallback_asset_url=$(echo "$fallback_json" | jq -r --arg pattern "$fallback_pattern" '
+            .[] | .assets[]? | select(.name | test($pattern)) | .browser_download_url' | head -n 1)
+
+        if [[ -n "$fallback_asset_url" ]]; then
+            log i "Found fallback asset: $fallback_asset_url" "$logfile"
+            wget -qc "$fallback_asset_url" -O "$dest"
+            if [[ $? -ne 0 || ! -s "$dest" ]]; then
+                log e "Fallback download also failed for $fallback_asset_url" "$logfile"
+                return 1
+            fi
+            export safe_download_warning="true"
+            wget -qc "${url}.sha" -O "${dest}.sha" || log w "Could not fetch checksum file for $dest"
+        else
+            log e "No fallback asset found in $fallback_repo for $component_name" "$logfile"
+            return 1
+        fi
+    fi
+
+    log i "Download successful: $dest" "$logfile"
+    return 0
 }
 
 assemble() {
@@ -202,7 +257,7 @@ assemble() {
 
         if [[ ! -f "$output_path" ]]; then
             log i "Downloading $url -> $output_path" "$logfile"
-            wget -qc "$url" -O "$output_path" || { log e "Failed to download $url" "$logfile"; exit 1; }
+            safe_download "$url" "$output_path" "$component" || { log e "Failed to download $url" "$logfile"; exit 1; }
 
             if [[ ! -s "$output_path" ]]; then
                 log e "Downloaded file is empty. Something went wrong." "$logfile"
@@ -507,7 +562,7 @@ manage_flatpak_artifacts() {
 
     mkdir -p "$(dirname "$output_path")"
 
-    wget -qc "$url" -O "$output_path" || {
+    safe_download "$url" "$output_path" "$component" || {
         log e "Failed to download Flatpak artifacts from $url" "$logfile"
         exit 1
     }
@@ -636,16 +691,22 @@ manage_gh_latest_release() {
     asset_filename=$(basename "$asset_url")
     asset_download_path="$WORK_DIR/$asset_filename"
 
+    # safe_download does not support token yet
     if [[ -n "$GITHUB_TOKEN" ]]; then
         wget -qc --header="Authorization: token ${GITHUB_TOKEN}" "$asset_url" -O "$asset_download_path" || {
             log e "Failed to download asset." "$logfile"
-            exit 1
+            # If wget with token fails, try safe_download as fallback
+            safe_download "$asset_url" "$asset_download_path" "$component" || {
+                log e "Failed to download asset (even with fallback)." "$logfile"
+                exit 1
+            }
         }
     else
-        wget -qc "$asset_url" -O "$asset_download_path" || {
-            log e "Failed to download asset." "$logfile"
-            exit 1
-        }
+        safe_download "$asset_url" "$asset_download_path" "$component" || {
+        log e "Failed to download asset (even with fallback)." "$logfile"
+        exit 1
+    }
+
     fi
 
     version_check "link" "$component" "$asset_url"
@@ -854,6 +915,10 @@ write_components_version() {
             old_version=$(curl -s "$version_url")
         else
             log w "Previous version for $component_name not found in releases matching '$match_label' or skipped." "$logfile"
+        fi
+
+        if [[ $safe_download_warning == "true" ]]; then
+            echo -e "**$component_name**: $current_version (WARNING: URI was unreachable, used latest available version)\n" >> "$components_version_list"
         fi
 
         if [[ -n "$old_version" && "$old_version" != "$current_version" ]]; then
