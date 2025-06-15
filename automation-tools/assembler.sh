@@ -402,6 +402,9 @@ manage_flatpak_id() {
     # Define expected file locations
     local app_path="$HOME/.local/share/flatpak/app/$flatpak_id/x86_64/stable/active/files"
     local metainfo_path="$HOME/.local/share/flatpak/app/$flatpak_id/x86_64/stable/active/export/share/metainfo/$flatpak_id.metainfo.xml"
+    if [[ ! -f "$metainfo_path" ]]; then
+        metainfo_path="$HOME/.local/share/flatpak/app/$flatpak_id/x86_64/stable/active/export/share/metainfo/$flatpak_id.appdata.xml"
+    fi
 
     # Ensure the metainfo exists for version detection
     if [[ ! -f "$metainfo_path" ]]; then
