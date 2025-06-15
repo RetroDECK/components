@@ -1,6 +1,6 @@
 #!/bin/bash
 
-steamsync_folder="$rdhome/.sync"                                                                                        # Folder containing favorites manifest for SRM
+steamsync_folder="$rd_home_path/.sync"                                                                                        # Folder containing favorites manifest for SRM
 srm_userdata="$XDG_CONFIG_HOME/steam-rom-manager/userData"                                                              # SRM userdata folder, holding 
 retrodeck_favorites_file="$steamsync_folder/retrodeck_favorites.json"                                                   # The current SRM manifest of all games that have been favorited in ES-DE
 srm_log="$rd_internal_logs_path/srm_log.log"                                                                                      # Log file for capturing the output of the most recent SRM run, for debugging purposes                                                                                     # Log file for capturing the output of the most recent SRM run, for debugging purposes

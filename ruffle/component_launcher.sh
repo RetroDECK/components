@@ -12,7 +12,7 @@ component_path="$(cd "$(dirname "${BASH_SOURCE[0]}" )" && pwd)"
 log i "RetroDECK is now launching $component_name"
 log i "Ruffle is running: $arg"
 
-static_invoke="--config /var/data/ruffle --save-directory $saves_folder/ruffle --fullscreen"
+static_invoke="--config /var/data/ruffle --save-directory $rd_home_saves_path/ruffle --fullscreen"
 
 #Check if Steam Deck in Desktop Mode
 if [[ $(check_desktop_mode) == "true" ]]; then

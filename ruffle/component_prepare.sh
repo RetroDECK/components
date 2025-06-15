@@ -7,5 +7,5 @@ log i "--------------------------------"
 log i "Prepearing Ruffle"
 log i "--------------------------------"
 if [[ "$action" == "reset" ]]; then
-    create_dir "$saves_folder/ruffle"
+    create_dir "$rd_home_saves_path/ruffle"
 fi

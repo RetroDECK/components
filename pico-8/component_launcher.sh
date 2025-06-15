@@ -2,4 +2,4 @@
 
 source /app/libexec/global.sh
 
-exec "$bios_folder/pico-8/pico-8" "$@"
+exec "$rd_home_bios_path/pico-8/pico-8" "$@"

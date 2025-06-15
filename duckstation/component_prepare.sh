@@ -13,25 +13,25 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
     if [[ $multi_user_mode == "true" ]]; then # Multi-user actions
       create_dir -d "$multi_user_data_folder/$SteamAppUser/data/duckstation/"
       cp -fv "$config/"* "$multi_user_data_folder/$SteamAppUser/data/duckstation"
-      set_setting_value "$multi_user_data_folder/$SteamAppUser/data/duckstation/settings.ini" "SearchDirectory" "$bios_folder" "duckstation" "BIOS"
-      set_setting_value "$multi_user_data_folder/$SteamAppUser/data/duckstation/settings.ini" "Card1Path" "$saves_folder/psx/duckstation/memcards/shared_card_1.mcd" "duckstation" "MemoryCards"
-      set_setting_value "$multi_user_data_folder/$SteamAppUser/data/duckstation/settings.ini" "Card2Path" "$saves_folder/psx/duckstation/memcards/shared_card_2.mcd" "duckstation" "MemoryCards"
-      set_setting_value "$multi_user_data_folder/$SteamAppUser/data/duckstation/settings.ini" "Directory" "$saves_folder/psx/duckstation/memcards" "duckstation" "MemoryCards"
-      set_setting_value "$multi_user_data_folder/$SteamAppUser/data/duckstation/settings.ini" "RecursivePaths" "$roms_folder/psx" "duckstation" "GameList"
+      set_setting_value "$multi_user_data_folder/$SteamAppUser/data/duckstation/settings.ini" "SearchDirectory" "$rd_home_bios_path" "duckstation" "BIOS"
+      set_setting_value "$multi_user_data_folder/$SteamAppUser/data/duckstation/settings.ini" "Card1Path" "$rd_home_saves_path/psx/duckstation/memcards/shared_card_1.mcd" "duckstation" "MemoryCards"
+      set_setting_value "$multi_user_data_folder/$SteamAppUser/data/duckstation/settings.ini" "Card2Path" "$rd_home_saves_path/psx/duckstation/memcards/shared_card_2.mcd" "duckstation" "MemoryCards"
+      set_setting_value "$multi_user_data_folder/$SteamAppUser/data/duckstation/settings.ini" "Directory" "$rd_home_saves_path/psx/duckstation/memcards" "duckstation" "MemoryCards"
+      set_setting_value "$multi_user_data_folder/$SteamAppUser/data/duckstation/settings.ini" "RecursivePaths" "$rd_home_roms_path/psx" "duckstation" "GameList"
       dir_prep "$multi_user_data_folder/$SteamAppUser/config/duckstation" "$XDG_CONFIG_HOME/duckstation"
     else # Single-user actions
       create_dir -d "$XDG_CONFIG_HOME/duckstation/"
-      create_dir "$saves_folder/psx/duckstation/memcards"
+      create_dir "$rd_home_saves_path/psx/duckstation/memcards"
       cp -fv "$config/"* "$XDG_CONFIG_HOME/duckstation"
-      set_setting_value "$duckstationconf" "SearchDirectory" "$bios_folder" "duckstation" "BIOS"
-      set_setting_value "$duckstationconf" "Card1Path" "$saves_folder/psx/duckstation/memcards/shared_card_1.mcd" "duckstation" "MemoryCards"
-      set_setting_value "$duckstationconf" "Card2Path" "$saves_folder/psx/duckstation/memcards/shared_card_2.mcd" "duckstation" "MemoryCards"
-      set_setting_value "$duckstationconf" "Directory" "$saves_folder/psx/duckstation/memcards" "duckstation" "MemoryCards"
-      set_setting_value "$duckstationconf" "RecursivePaths" "$roms_folder/psx" "duckstation" "GameList"
+      set_setting_value "$duckstationconf" "SearchDirectory" "$rd_home_bios_path" "duckstation" "BIOS"
+      set_setting_value "$duckstationconf" "Card1Path" "$rd_home_saves_path/psx/duckstation/memcards/shared_card_1.mcd" "duckstation" "MemoryCards"
+      set_setting_value "$duckstationconf" "Card2Path" "$rd_home_saves_path/psx/duckstation/memcards/shared_card_2.mcd" "duckstation" "MemoryCards"
+      set_setting_value "$duckstationconf" "Directory" "$rd_home_saves_path/psx/duckstation/memcards" "duckstation" "MemoryCards"
+      set_setting_value "$duckstationconf" "RecursivePaths" "$rd_home_roms_path/psx" "duckstation" "GameList"
     fi
     # Shared actions
-    dir_prep "$states_folder/psx/duckstation" "$XDG_CONFIG_HOME/duckstation/savestates" # This is hard-coded in Duckstation, always needed
-    dir_prep "$texture_packs_folder/Duckstation" "$XDG_CONFIG_HOME/duckstation/textures"
+    dir_prep "$rd_home_states_path/psx/duckstation" "$XDG_CONFIG_HOME/duckstation/savestates" # This is hard-coded in Duckstation, always needed
+    dir_prep "$rd_home_texture_packs_path/Duckstation" "$XDG_CONFIG_HOME/duckstation/textures"
 
     # Reset default preset settings
     set_setting_value "$rd_conf" "duckstation" "$(get_setting_value "$rd_defaults" "duckstation" "retrodeck" "cheevos")" "retrodeck" "cheevos"
@@ -41,11 +41,11 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
 fi
 
 if [[ "$action" == "postmove" ]]; then # Run only post-move commands
-  set_setting_value "$duckstationconf" "SearchDirectory" "$bios_folder" "duckstation" "BIOS"
-  set_setting_value "$duckstationconf" "Card1Path" "$saves_folder/psx/duckstation/memcards/shared_card_1.mcd" "duckstation" "MemoryCards"
-  set_setting_value "$duckstationconf" "Card2Path" "$saves_folder/psx/duckstation/memcards/shared_card_2.mcd" "duckstation" "MemoryCards"
-  set_setting_value "$duckstationconf" "Directory" "$saves_folder/psx/duckstation/memcards" "duckstation" "MemoryCards"
-  set_setting_value "$duckstationconf" "RecursivePaths" "$roms_folder/psx" "duckstation" "GameList"
-  dir_prep "$states_folder/psx/duckstation" "$XDG_CONFIG_HOME/duckstation/savestates" # This is hard-coded in Duckstation, always needed
-  dir_prep "$texture_packs_folder/Duckstation" "$XDG_CONFIG_HOME/duckstation/textures"
+  set_setting_value "$duckstationconf" "SearchDirectory" "$rd_home_bios_path" "duckstation" "BIOS"
+  set_setting_value "$duckstationconf" "Card1Path" "$rd_home_saves_path/psx/duckstation/memcards/shared_card_1.mcd" "duckstation" "MemoryCards"
+  set_setting_value "$duckstationconf" "Card2Path" "$rd_home_saves_path/psx/duckstation/memcards/shared_card_2.mcd" "duckstation" "MemoryCards"
+  set_setting_value "$duckstationconf" "Directory" "$rd_home_saves_path/psx/duckstation/memcards" "duckstation" "MemoryCards"
+  set_setting_value "$duckstationconf" "RecursivePaths" "$rd_home_roms_path/psx" "duckstation" "GameList"
+  dir_prep "$rd_home_states_path/psx/duckstation" "$XDG_CONFIG_HOME/duckstation/savestates" # This is hard-coded in Duckstation, always needed
+  dir_prep "$rd_home_texture_packs_path/Duckstation" "$XDG_CONFIG_HOME/duckstation/textures"
 fi

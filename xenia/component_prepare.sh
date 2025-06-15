@@ -14,7 +14,7 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
 
   else # Single-user actions
   create_dir "$XDG_CONFIG_HOME/xenia"
-  dir_prep "$saves_folder/xbox360/content" "/app/retrodeck/components/xenia/content"
+  dir_prep "$rd_home_saves_path/xbox360/content" "/app/retrodeck/components/xenia/content"
   fi
   # Shared actions
 

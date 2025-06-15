@@ -20,7 +20,7 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
         rm -rf "$multi_user_data_folder/$SteamAppUser/config/ryubing"
         #create_dir "$multi_user_data_folder/$SteamAppUser/config/ryubing/system"
         cp -fv "$config/ryubing/"* "$multi_user_data_folder/$SteamAppUser/config/ryubing"
-        sed -i '#RETRODECKHOMEDIR#'"$rdhome"'#g' "$multi_user_data_folder/$SteamAppUser/config/ryubing/Config.json"
+        sed -i '#RETRODECKHOMEDIR#'"$rd_home_path"'#g' "$multi_user_data_folder/$SteamAppUser/config/ryubing/Config.json"
         dir_prep "$multi_user_data_folder/$SteamAppUser/config/ryubing" "$XDG_CONFIG_HOME/ryubing"
     else
         # removing config directory to wipe legacy files
@@ -30,18 +30,18 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
         cp -fv "$config/ryubing/Config.json" "$ryubing_config"
         cp -fvr "$config/ryubing/profiles/controller" "$XDG_CONFIG_HOME/$ryubing_profiles_path"
         log d "Replacing placeholders in \"$ryubing_config\""
-        sed -i 's#RETRODECKHOMEDIR#'"$rdhome"'#g' "$ryubing_config"
+        sed -i 's#RETRODECKHOMEDIR#'"$rd_home_path"'#g' "$ryubing_config"
         create_dir "$rd_internal_logs_path/ryubing"
         create_dir "$mods_folder/ryubing"
-        create_dir "$screenshots_folder/ryubing"
+        create_dir "$rd_home_screenshots_path/ryubing"
     fi
 fi
 
 # if [[ "$action" == "reset" ]] || [[ "$action" == "postmove" ]]; then # Run commands that apply to both resets and moves
-#   dir_prep "$bios_folder/switch/keys" "$XDG_CONFIG_HOME/ryubing/system"
+#   dir_prep "$rd_home_bios_path/switch/keys" "$XDG_CONFIG_HOME/ryubing/system"
 # fi
 
 if [[ "$action" == "postmove" ]]; then # Run only post-move commands
     log d "Replacing placeholders in \"$ryubing_config\""
-    sed -i 's#RETRODECKHOMEDIR#'"$rdhome"'#g' "$ryubing_config" # This is an unfortunate one-off because set_setting_value does not currently support JSON
+    sed -i 's#RETRODECKHOMEDIR#'"$rd_home_path"'#g' "$ryubing_config" # This is an unfortunate one-off because set_setting_value does not currently support JSON
 fi

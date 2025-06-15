@@ -16,6 +16,6 @@ retroarch_updater() {
     tar -xzf "$extras/shaders.tar.gz" -C "$XDG_CONFIG_HOME/retroarch/" --overwrite && log d "RetroArch shaders updated correctly"
 
     log i "Updating cheats..."
-    tar -xzf "$extras/cheats.tar.gz" -C "$cheats_folder/retroarch" --overwrite && log d "RetroArch cheats updated correctly"
+    tar -xzf "$extras/cheats.tar.gz" -C "$rd_home_cheats_path/retroarch" --overwrite && log d "RetroArch cheats updated correctly"
 
 }

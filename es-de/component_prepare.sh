@@ -13,20 +13,20 @@ if [[ "$action" == "reset" ]]; then
     create_dir "$XDG_CONFIG_HOME/ES-DE/settings"
     log d "Prepearing es_settings.xml"
     cp -f "$config/es_settings.xml" "$XDG_CONFIG_HOME/ES-DE/settings/es_settings.xml"
-    set_setting_value "$es_settings" "ROMDirectory" "$roms_folder" "es_settings"
-    set_setting_value "$es_settings" "MediaDirectory" "$media_folder" "es_settings"
-    set_setting_value "$es_settings" "UserThemeDirectory" "$themes_folder" "es_settings"
-    dir_prep "$rdhome/ES-DE/gamelists" "$XDG_CONFIG_HOME/ES-DE/gamelists"
-    dir_prep "$rdhome/ES-DE/collections" "$XDG_CONFIG_HOME/ES-DE/collections"
-    dir_prep "$rdhome/ES-DE/custom_systems" "$XDG_CONFIG_HOME/ES-DE/custom_systems"
+    set_setting_value "$es_settings" "ROMDirectory" "$rd_home_roms_path" "es_settings"
+    set_setting_value "$es_settings" "MediaDirectory" "$rd_home_downloaded_media_path" "es_settings"
+    set_setting_value "$es_settings" "UserThemeDirectory" "$rd_home_themes_path" "es_settings"
+    dir_prep "$rd_home_path/ES-DE/gamelists" "$XDG_CONFIG_HOME/ES-DE/gamelists"
+    dir_prep "$rd_home_path/ES-DE/collections" "$XDG_CONFIG_HOME/ES-DE/collections"
+    dir_prep "$rd_home_path/ES-DE/custom_systems" "$XDG_CONFIG_HOME/ES-DE/custom_systems"
     log d "Generating roms system folders"
     start_esde --create-system-dirs
     update_splashscreens
 fi
 
 if [[ "$action" == "postmove" ]]; then
-    set_setting_value "$es_settings" "ROMDirectory" "$roms_folder" "es_settings"
-    set_setting_value "$es_settings" "MediaDirectory" "$media_folder" "es_settings"
-    set_setting_value "$es_settings" "UserThemeDirectory" "$themes_folder" "es_settings"
-    dir_prep "$rdhome/ES-DE/gamelists" "$XDG_CONFIG_HOME/ES-DE/gamelists"
+    set_setting_value "$es_settings" "ROMDirectory" "$rd_home_roms_path" "es_settings"
+    set_setting_value "$es_settings" "MediaDirectory" "$rd_home_downloaded_media_path" "es_settings"
+    set_setting_value "$es_settings" "UserThemeDirectory" "$rd_home_themes_path" "es_settings"
+    dir_prep "$rd_home_path/ES-DE/gamelists" "$XDG_CONFIG_HOME/ES-DE/gamelists"
 fi
