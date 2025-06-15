@@ -83,4 +83,4 @@ rm -rf "$WORK_DIR/overlays"
 
 cp -rf "$WORK_DIR/"* "$artifacts_dir/"
 
-#finalize
+finalize
