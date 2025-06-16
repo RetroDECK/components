@@ -9,8 +9,18 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
   log i "Preparing $component_name"
   log i "----------------------"
 
+  if [[ $multi_user_mode == "true" ]]; then # Multi-user actions
   # Add Multiuser things and reset things
 
+  else # Single-user actions
+  create_dir "$XDG_CONFIG_HOME/scummvm"
+
+  fi
   # Shared actions
+
+
+
+
+
 
 fi
