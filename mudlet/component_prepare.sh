@@ -14,6 +14,6 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
   # Shared actions
   create_dir "$XDG_CONFIG_HOME/mudlet"
   dir_prep "$XDG_CONFIG_HOME/mudlet" "/app/retrodeck/components/mudlet/portable"
-  dir_prep "$rd_home_saves_path/muds/profiles" "$XDG_CONFIG_HOME/mudlet/profiles"
+  dir_prep "$rd_home_saves_path/muds/profiles" "$XDG_CONFIG_HOME/mudlet/portable/profiles"
 
 fi

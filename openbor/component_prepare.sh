@@ -25,4 +25,4 @@ if [[ "$action" == "postmove" ]]; then # Run only post-move commands
 
 fi
 
-# Each game has it's own config. All data is contained within each games folder under roms/openbor/<gamedir>.
+# Each game has it's own config and folder structure. All data is contained within each games folder under roms/openbor/<gamedir>. IDK if there is a standard path to saves and if each game looks the same.
