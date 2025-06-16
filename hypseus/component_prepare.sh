@@ -13,10 +13,10 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
   # Add Multiuser things and reset things
 
   else # Single-user actions
-    create_dir "$XDG_CONFIG_HOME/simcoupe"
-    create_dir "$rd_home_saves_path/ruffle"
+  create_dir "$XDG_CONFIG_HOME/hypseus"
 
   fi
   # Shared actions
+
 
 fi
