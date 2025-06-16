@@ -7,7 +7,7 @@ config="/app/retrodeck/components/$component_name/rd_config"
 # TODO: do a proper script
 # This is just a placeholder script to test the emulator's flow
 log i "----------------------"
-log i "Prepearing MAME"
+log i "Preparing $component_name"
 log i "----------------------"
 
 # TODO: probably some of these needs to be put elsewhere

@@ -5,7 +5,7 @@ component_name="$(basename "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")")"
 config="/app/retrodeck/components/$component_name/rd_config"
 
 log i "--------------------------------"
-log i "Prepearing ES-DE"
+log i "Preparing $component_name"
 log i "--------------------------------"
 
 if [[ "$action" == "reset" ]]; then

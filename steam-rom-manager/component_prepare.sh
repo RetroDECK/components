@@ -5,7 +5,7 @@ component_name="$(basename "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")")"
 config="/app/retrodeck/components/$component_name/rd_config"
 
 log i "-----------------------------"
-log i "Prepearing Steam ROM Manager"
+log i "Preparing Steam ROM Manager"
 log i "-----------------------------"
 
 create_dir -d "$srm_userdata"

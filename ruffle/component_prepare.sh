@@ -4,7 +4,7 @@
 component_name="$(basename "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")")"
 
 log i "--------------------------------"
-log i "Prepearing Ruffle"
+log i "Preparing $component_name"
 log i "--------------------------------"
 if [[ "$action" == "reset" ]]; then
     create_dir "$rd_home_saves_path/ruffle"

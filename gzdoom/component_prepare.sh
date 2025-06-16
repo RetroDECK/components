@@ -7,7 +7,7 @@ config="/app/retrodeck/components/$component_name/rd_config"
 # TODO: do a proper script
 # This is just a placeholder script to test the emulator's flow
 log i "----------------------"
-log i "Prepearing GZDOOM"
+log i "Preparing $component_name"
 log i "----------------------"
 
 create_dir "$XDG_CONFIG_HOME/gzdoom"

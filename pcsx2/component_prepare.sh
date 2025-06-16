@@ -8,7 +8,7 @@ extras="/app/retrodeck/config/$component_name/rd_extras"
 if [[ "$action" == "reset" ]]; then # Run reset-only commands
 
   log i "----------------------"
-  log i "Preparing PCSX2"
+  log i "Preparing $component_name"
   log i "----------------------"
 
   if [[ $multi_user_mode == "true" ]]; then # Multi-user actions

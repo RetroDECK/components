@@ -7,7 +7,7 @@ config="$component_path/rd_config"
 extras="$component_path/rd_extras"
 
 log i "--------------------------------"
-log i "Prepearing RetroArch"
+log i "Preparing $component_name"
 log i "--------------------------------"
 
 log d "RetroArch config path: $config/retroarch.cfg"

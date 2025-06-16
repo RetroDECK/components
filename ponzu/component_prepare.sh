@@ -10,7 +10,7 @@ if [[ $(get_setting_value "$rd_conf" "akai_ponzu" "retrodeck" "options") == "tru
     component_found="true"
     if [[ "$action" == "reset" ]]; then # Run reset-only commands
         log i "------------------------"
-        log i "Prepearing CITRA"
+        log i "Preparing Citra"
         log i "------------------------"
         if [[ $multi_user_mode == "true" ]]; then # Multi-user actions
         create_dir -d "$multi_user_data_folder/$SteamAppUser/config/citra-emu"
@@ -58,7 +58,7 @@ if [[ $(get_setting_value "$rd_conf" "kiroi_ponzu" "retrodeck" "options") == "tr
     component_found="true"
     if [[ "$action" == "reset" ]]; then # Run reset-only commands
         log i "----------------------"
-        log i "Prepearing YUZU"
+        log i "Preparing Yuzu"
         log i "----------------------"
         if [[ $multi_user_mode == "true" ]]; then # Multi-user actions
         create_dir -d "$multi_user_data_folder/$SteamAppUser/config/yuzu"

@@ -6,7 +6,7 @@ config="/app/retrodeck/components/$component_name/rd_config"
 
 # TODO: MultiUser
 log i "----------------------"
-log i "Prepearing PortMaster"
+log i "Preparing $component_name"
 log i "----------------------"
 
 rm -rf "$XDG_DATA_HOME/PortMaster"

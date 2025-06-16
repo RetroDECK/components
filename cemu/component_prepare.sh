@@ -6,7 +6,7 @@ config="/app/retrodeck/components/$component_name/rd_config"
 
 if [[ "$action" == "reset" ]]; then # Run reset-only commands
   log i "----------------------"
-  log i "Prepearing CEMU"
+  log i "Preparing $component_name"
   log i "----------------------"
   if [[ $multi_user_mode == "true" ]]; then # Multi-user actions
     create_dir -d "$multi_user_data_folder/$SteamAppUser/config/Cemu"

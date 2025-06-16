@@ -7,7 +7,7 @@ config="/app/retrodeck/components/$component_name/rd_config"
 if [[ "$action" == "reset" ]]; then # Run reset-only commands
 
   log i "------------------------"
-  log i "Preparing DUCKSTATION"
+  log i "Preparing $component_name"
   log i "------------------------"
   
     if [[ $multi_user_mode == "true" ]]; then # Multi-user actions
