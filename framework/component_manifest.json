@@ -146,7 +146,7 @@
           "name": "Move: Mods folder",
           "description": "Move the Mods folder to a new location",
           "command": {
-            "zenity": "configurator_move_folder_dialog \"mods_folder\""
+            "zenity": "configurator_move_folder_dialog \"rd_home_mods_path\""
           }
         },
         "move_texture_packs": {

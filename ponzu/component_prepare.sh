@@ -33,7 +33,7 @@ if [[ $(get_setting_value "$rd_conf" "akai_ponzu" "retrodeck" "options") == "tru
         create_dir "$rd_home_saves_path/n3ds/citra/sdmc/"
         dir_prep "$rd_home_bios_path/citra/sysdata" "$XDG_DATA_HOME/citra-emu/sysdata"
         dir_prep "$rd_internal_logs_path/citra" "$XDG_DATA_HOME/citra-emu/log"
-        dir_prep "$mods_folder/Citra" "$XDG_DATA_HOME/citra-emu/load/mods"
+        dir_prep "$rd_home_mods_path/Citra" "$XDG_DATA_HOME/citra-emu/load/mods"
         dir_prep "$rd_home_texture_packs_path/Citra" "$XDG_DATA_HOME/citra-emu/load/textures"
 
         # Reset default preset settings
@@ -43,7 +43,7 @@ if [[ $(get_setting_value "$rd_conf" "akai_ponzu" "retrodeck" "options") == "tru
     if [[ "$action" == "postmove" ]]; then # Run only post-move commands
         dir_prep "$rd_home_bios_path/citra/sysdata" "$XDG_DATA_HOME/citra-emu/sysdata"
         dir_prep "$rd_home_path/logs/citra" "$XDG_DATA_HOME/citra-emu/log"
-        dir_prep "$mods_folder/Citra" "$XDG_DATA_HOME/citra-emu/load/mods"
+        dir_prep "$rd_home_mods_path/Citra" "$XDG_DATA_HOME/citra-emu/load/mods"
         dir_prep "$rd_home_texture_packs_path/Citra" "$XDG_DATA_HOME/citra-emu/load/textures"
         set_setting_value "$citraconf" "nand_directory" "$rd_home_saves_path/n3ds/citra/nand/" "citra" "Data%20Storage"
         set_setting_value "$citraconf" "sdmc_directory" "$rd_home_saves_path/n3ds/citra/sdmc/" "citra" "Data%20Storage"
@@ -83,7 +83,7 @@ if [[ $(get_setting_value "$rd_conf" "kiroi_ponzu" "retrodeck" "options") == "tr
         dir_prep "$rd_home_bios_path/switch/firmware" "$XDG_DATA_HOME/yuzu/nand/system/Contents/registered"
         dir_prep "$rd_internal_logs_path/yuzu" "$XDG_DATA_HOME/yuzu/log"
         dir_prep "$rd_home_screenshots_path" "$XDG_DATA_HOME/yuzu/screenshots"
-        dir_prep "$mods_folder/Yuzu" "$XDG_DATA_HOME/yuzu/load"
+        dir_prep "$rd_home_mods_path/Yuzu" "$XDG_DATA_HOME/yuzu/load"
         # removing dead symlinks as they were present in a past version
         if [ -d "$rd_home_bios_path/switch" ]; then
         find "$rd_home_bios_path/switch" -xtype l -exec rm {} \;
@@ -100,7 +100,7 @@ if [[ $(get_setting_value "$rd_conf" "kiroi_ponzu" "retrodeck" "options") == "tr
         dir_prep "$rd_home_saves_path/switch/yuzu/sdmc" "$XDG_DATA_HOME/yuzu/sdmc"
         dir_prep "$rd_internal_logs_path/yuzu" "$XDG_DATA_HOME/yuzu/log"
         dir_prep "$rd_home_screenshots_path" "$XDG_DATA_HOME/yuzu/screenshots"
-        dir_prep "$mods_folder/Yuzu" "$XDG_DATA_HOME/yuzu/load"
+        dir_prep "$rd_home_mods_path/Yuzu" "$XDG_DATA_HOME/yuzu/load"
         set_setting_value "$yuzuconf" "nand_directory" "$rd_home_saves_path/switch/yuzu/nand" "yuzu" "Data%20Storage"
         set_setting_value "$yuzuconf" "sdmc_directory" "$rd_home_saves_path/switch/yuzu/sdmc" "yuzu" "Data%20Storage"
         set_setting_value "$yuzuconf" "Paths\gamedirs\4\path" "$rd_home_roms_path/switch" "yuzu" "UI"

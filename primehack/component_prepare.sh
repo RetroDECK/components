@@ -33,7 +33,7 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
     dir_prep "$rd_home_states_path/primehack" "$XDG_DATA_HOME/primehack/StateSaves"
     create_dir "$XDG_DATA_HOME/primehack/Wii/"
     dir_prep "$rd_home_saves_path/wii/primehack" "$XDG_DATA_HOME/primehack/Wii"
-    dir_prep "$mods_folder/Primehack" "$XDG_DATA_HOME/primehack/Load/GraphicMods"
+    dir_prep "$rd_home_mods_path/Primehack" "$XDG_DATA_HOME/primehack/Load/GraphicMods"
     dir_prep "$rd_home_texture_packs_path/Primehack" "$XDG_DATA_HOME/primehack/Load/Textures"
     if [[ $multi_user_mode == "true" ]]; then # Multi-user actions
         cp -fvr "$config/primehack/data/"* "$multi_user_data_folder/$SteamAppUser/data/primehack/" # this must be done after the dirs are prepared as it copying some "mods"
@@ -50,7 +50,7 @@ if [[ "$action" == "postmove" ]]; then # Run only post-move commands
     dir_prep "$rd_home_screenshots_path" "$XDG_DATA_HOME/primehack/ScreenShots"
     dir_prep "$rd_home_states_path/primehack" "$XDG_DATA_HOME/primehack/StateSaves"
     dir_prep "$rd_home_saves_path/wii/primehack" "$XDG_DATA_HOME/primehack/Wii/"
-    dir_prep "$mods_folder/Primehack" "$XDG_DATA_HOME/primehack/Load/GraphicMods"
+    dir_prep "$rd_home_mods_path/Primehack" "$XDG_DATA_HOME/primehack/Load/GraphicMods"
     dir_prep "$rd_home_texture_packs_path/Primehack" "$XDG_DATA_HOME/primehack/Load/Textures"
     set_setting_value "$primehackconf" "ISOPath0" "$rd_home_roms_path/gc" "primehack" "General"
 fi

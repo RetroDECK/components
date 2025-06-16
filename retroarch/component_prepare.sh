@@ -64,7 +64,7 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
     # TODO: cheats support
     create_dir "$rd_home_bios_path/fbneo/cheats"
     create_dir "$rd_home_bios_path/fbneo/blend"
-    dir_prep "$mods_folder/FBNeo" "$rd_home_bios_path/fbneo/patched"
+    dir_prep "$rd_home_mods_path/FBNeo" "$rd_home_bios_path/fbneo/patched"
 
     # PPSSPP
     log i "--------------------------------"
@@ -101,22 +101,22 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
     log i "Prepearing ScummVM LIBRETRO"
     log i "-----------------------------------------------------------"
     cp -fv "$config/scummvm.ini" "$ra_scummvm_conf"
-    create_dir "$mods_folder/RetroArch/ScummVM/icons"
+    create_dir "$rd_home_mods_path/RetroArch/ScummVM/icons"
     log i "Installing ScummVM assets"
     unzip -o "$config/ScummVM.zip" 'scummvm/extra/*' -d /tmp
     unzip -o "$config/ScummVM.zip" 'scummvm/theme/*' -d /tmp
-    mv -f /tmp/scummvm/extra "$mods_folder/RetroArch/ScummVM"
-    mv -f /tmp/scummvm/theme "$mods_folder/RetroArch/ScummVM"
+    mv -f /tmp/scummvm/extra "$rd_home_storage_path/retroarch/ScummVM"
+    mv -f /tmp/scummvm/theme "$rd_home_storage_path/retroarch/ScummVM"
     rm -rf /tmp/extra /tmp/theme
-    set_setting_value "$ra_scummvm_conf" "iconspath" "$mods_folder/RetroArch/ScummVM/icons" "libretro_scummvm" "scummvm"
-    set_setting_value "$ra_scummvm_conf" "extrapath" "$mods_folder/RetroArch/ScummVM/extra" "libretro_scummvm" "scummvm"
-    set_setting_value "$ra_scummvm_conf" "themepath" "$mods_folder/RetroArch/ScummVM/theme" "libretro_scummvm" "scummvm"
+    set_setting_value "$ra_scummvm_conf" "iconspath" "$rd_home_storage_path/retroarch/ScummVM/icons" "libretro_scummvm" "scummvm"
+    set_setting_value "$ra_scummvm_conf" "extrapath" "$rd_home_storage_path/retroarch/ScummVM/extra" "libretro_scummvm" "scummvm"
+    set_setting_value "$ra_scummvm_conf" "themepath" "$rd_home_storage_path/retroarch/ScummVM/theme" "libretro_scummvm" "scummvm"
     set_setting_value "$ra_scummvm_conf" "savepath" "$rd_home_saves_path/scummvm" "libretro_scummvm" "scummvm"
     set_setting_value "$ra_scummvm_conf" "browser_lastpath" "$rd_home_roms_path/scummvm" "libretro_scummvm" "scummvm"
 
-    dir_prep "$rd_home_texture_packs_path/RetroArch-Mesen" "$XDG_CONFIG_HOME/retroarch/system/HdPacks"
-    dir_prep "$rd_home_texture_packs_path/RetroArch-Mupen64Plus/cache" "$XDG_CONFIG_HOME/retroarch/system/Mupen64plus/cache"
-    dir_prep "$rd_home_texture_packs_path/RetroArch-Mupen64Plus/hires_texture" "$XDG_CONFIG_HOME/retroarch/system/Mupen64plus/hires_texture"
+    dir_prep "$rd_home_texture_packs_path/retroarch/Mesen" "$XDG_CONFIG_HOME/retroarch/system/HdPacks"
+    dir_prep "$rd_home_texture_packs_path/retroarch/Mupen64Plus/cache" "$XDG_CONFIG_HOME/retroarch/system/Mupen64plus/cache"
+    dir_prep "$rd_home_texture_packs_path/retroarch/Mupen64Plus/hires_texture" "$XDG_CONFIG_HOME/retroarch/system/Mupen64plus/hires_texture"
 
     # Reset default preset settings
     set_setting_value "$rd_conf" "retroarch" "$(get_setting_value "$rd_defaults" "retroarch" "retrodeck" "cheevos")" "retrodeck" "cheevos"
@@ -146,9 +146,9 @@ if [[ "$action" == "postmove" ]]; then # Run only post-move commands
     dir_prep "$rd_home_bios_path" "$XDG_CONFIG_HOME/retroarch/system"
     dir_prep "$rd_internal_logs_path/retroarch" "$XDG_CONFIG_HOME/retroarch/logs"
     dir_prep "$rd_home_shaders_path/retroarch" "$XDG_CONFIG_HOME/retroarch/shaders"
-    dir_prep "$rd_home_texture_packs_path/RetroArch-Mesen" "$XDG_CONFIG_HOME/retroarch/system/HdPacks"
-    dir_prep "$rd_home_texture_packs_path/RetroArch-Mupen64Plus/cache" "$XDG_CONFIG_HOME/retroarch/system/Mupen64plus/cache"
-    dir_prep "$rd_home_texture_packs_path/RetroArch-Mupen64Plus/hires_texture" "$XDG_CONFIG_HOME/retroarch/system/Mupen64plus/hires_texture"
+    dir_prep "$rd_home_texture_packs_path/retroarch/Mesen" "$XDG_CONFIG_HOME/retroarch/system/HdPacks"
+    dir_prep "$rd_home_texture_packs_path/retroarch/Mupen64Plus/cache" "$XDG_CONFIG_HOME/retroarch/system/Mupen64plus/cache"
+    dir_prep "$rd_home_texture_packs_path/retroarch/Mupen64Plus/hires_texture" "$XDG_CONFIG_HOME/retroarch/system/Mupen64plus/hires_texture"
     set_setting_value "$config/retroarch.cfg" "savefile_directory" "$rd_home_saves_path" "retroarch"
     set_setting_value "$config/retroarch.cfg" "savestate_directory" "$rd_home_states_path" "retroarch"
     set_setting_value "$config/retroarch.cfg" "screenshot_directory" "$rd_home_screenshots_path" "retroarch"

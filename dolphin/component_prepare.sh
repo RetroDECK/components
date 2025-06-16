@@ -36,7 +36,7 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
     dir_prep "$rd_home_screenshots_path" "$XDG_DATA_HOME/dolphin-emu/ScreenShots"
     dir_prep "$rd_home_states_path/dolphin" "$XDG_DATA_HOME/dolphin-emu/StateSaves"
     dir_prep "$rd_home_saves_path/wii/dolphin" "$XDG_DATA_HOME/dolphin-emu/Wii"
-    dir_prep "$mods_folder/Dolphin" "$XDG_DATA_HOME/dolphin-emu/Load/GraphicMods"
+    dir_prep "$rd_home_mods_path/Dolphin" "$XDG_DATA_HOME/dolphin-emu/Load/GraphicMods"
     dir_prep "$rd_home_texture_packs_path/Dolphin" "$XDG_DATA_HOME/dolphin-emu/Load/Textures"
 
     # Reset default preset settings
@@ -50,7 +50,7 @@ if [[ "$action" == "postmove" ]]; then # Run only post-move commands
     dir_prep "$rd_home_screenshots_path" "$XDG_DATA_HOME/dolphin-emu/ScreenShots"
     dir_prep "$rd_home_states_path/dolphin" "$XDG_DATA_HOME/dolphin-emu/StateSaves"
     dir_prep "$rd_home_saves_path/wii/dolphin" "$XDG_DATA_HOME/dolphin-emu/Wii"
-    dir_prep "$mods_folder/Dolphin" "$XDG_DATA_HOME/dolphin-emu/Load/GraphicMods"
+    dir_prep "$rd_home_mods_path/Dolphin" "$XDG_DATA_HOME/dolphin-emu/Load/GraphicMods"
     dir_prep "$rd_home_texture_packs_path/Dolphin" "$XDG_DATA_HOME/dolphin-emu/Load/Textures"
     set_setting_value "$dolphinconf" "BIOS" "$rd_home_bios_path" "dolphin" "GBA"
     set_setting_value "$dolphinconf" "SavesPath" "$rd_home_saves_path/gba" "dolphin" "GBA"
