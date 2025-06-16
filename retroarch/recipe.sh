@@ -2,11 +2,16 @@
 
 source "automation-tools/assembler.sh"
 
+artifacts_dir="$component/artifacts"
+
+# Stable Cores
+# Doing this here so the version will be calculated later
+assemble generic "https://buildbot.libretro.com/stable/*/linux/x86_64/RetroArch_cores.7z"
+
 assemble appimage "https://buildbot.libretro.com/stable/*/linux/x86_64/RetroArch.7z"
 
 # Custom Commands
 
-artifacts_dir="$component/artifacts"
 mkdir -p "$artifacts_dir/$EXTRAS"
 
 # Unfortunately this is a one off as we need to extract even the assets from the same appimage
@@ -19,6 +24,10 @@ rm -rf "$WORK_DIR/RetroArch.7z"
 
 cp -rf "$WORK_DIR/RetroArch-Linux-x86_64/RetroArch-Linux-x86_64.AppImage.home/.config/retroarch/"* "$WORK_DIR/"
 rm -rf "$WORK_DIR/RetroArch-Linux-x86_64"
+
+# Stable Cores - PT 2
+mv "$artifacts_dir/RetroArch-Linux-x86_64/RetroArch-Linux-x86_64.AppImage.home/.config/retroarch/cores/"* "$WORK_DIR/cores/"
+rm -rf "$artifacts_dir/RetroArch-Linux-x86_64"
 
 # Citra Libretro Core
 # Citra is removed from the LibretroCores but is still available in Libretro 
@@ -42,7 +51,8 @@ wget "https://buildbot.libretro.com/nightly/linux/x86_64/RetroArch_cores.7z" -O 
 7z x "$WORK_DIR/RetroArch_cores_nightly.7z" -o"$WORK_DIR/cores_nightly"
 rm -rf "$WORK_DIR/RetroArch_cores_nightly.7z"
 # Without overwriting the existent cores
-cp -rn "$WORK_DIR/cores_nightly/RetroArch-Linux-x86_64/RetroArch-Linux-x86_64.AppImage.home/.config/retroarch/cores/"* "$artifacts_dir/cores/"
+log d "Copying RetroArch nightly cores that are not available in the main build..." "$logfile"
+cp -vrn "$WORK_DIR/cores_nightly/RetroArch-Linux-x86_64/RetroArch-Linux-x86_64.AppImage.home/.config/retroarch/cores/"* "$WORK_DIR/cores/"
 rm -rf "$WORK_DIR/cores_nightly"
 
 # RetroArch Cheats
