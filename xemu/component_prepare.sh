@@ -28,12 +28,12 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
         rm -rf "$XDG_CONFIG_HOME/xemu"
         rm -rf "$XDG_DATA_HOME/xemu"
         dir_prep "$XDG_CONFIG_HOME/xemu" "$XDG_DATA_HOME/xemu/xemu" # Creating config folder in $XDG_CONFIG_HOME for consistentcy and linking back to original location where component will look
-        cp -fv "$config/xemu.toml" "$xemuconf"
-        set_setting_value "$xemuconf" "screenshot_dir" "'$rd_home_screenshots_path'" "xemu" "General"
-        set_setting_value "$xemuconf" "bootrom_path" "'$rd_home_bios_path/mcpx_1.0.bin'" "xemu" "sys.files"
-        set_setting_value "$xemuconf" "flashrom_path" "'$rd_home_bios_path/Complex.bin'" "xemu" "sys.files"
-        set_setting_value "$xemuconf" "eeprom_path" "'$rd_home_saves_path/xbox/xemu/xbox-eeprom.bin'" "xemu" "sys.files"
-        set_setting_value "$xemuconf" "hdd_path" "'$rd_home_bios_path/xbox_hdd.qcow2'" "xemu" "sys.files"
+        cp -fv "$config/xemu.toml" "$xemu_config"
+        set_setting_value "$xemu_config" "screenshot_dir" "'$rd_home_screenshots_path'" "xemu" "General"
+        set_setting_value "$xemu_config" "bootrom_path" "'$rd_home_bios_path/mcpx_1.0.bin'" "xemu" "sys.files"
+        set_setting_value "$xemu_config" "flashrom_path" "'$rd_home_bios_path/Complex.bin'" "xemu" "sys.files"
+        set_setting_value "$xemu_config" "eeprom_path" "'$rd_home_saves_path/xbox/xemu/xbox-eeprom.bin'" "xemu" "sys.files"
+        set_setting_value "$xemu_config" "hdd_path" "'$rd_home_bios_path/xbox_hdd.qcow2'" "xemu" "sys.files"
     fi
     
     # Shared actions
@@ -47,9 +47,9 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
 fi
 
 if [[ "$action" == "postmove" ]]; then # Run only post-move commands
-    set_setting_value "$xemuconf" "screenshot_dir" "'$rd_home_screenshots_path'" "xemu" "General"
-    set_setting_value "$xemuconf" "bootrom_path" "'$rd_home_bios_path/mcpx_1.0.bin'" "xemu" "sys.files"
-    set_setting_value "$xemuconf" "flashrom_path" "'$rd_home_bios_path/Complex.bin'" "xemu" "sys.files"
-    set_setting_value "$xemuconf" "eeprom_path" "'$rd_home_saves_path/xbox/xemu/xbox-eeprom.bin'" "xemu" "sys.files"
-    set_setting_value "$xemuconf" "hdd_path" "'$rd_home_bios_path/xbox_hdd.qcow2'" "xemu" "sys.files"
+    set_setting_value "$xemu_config" "screenshot_dir" "'$rd_home_screenshots_path'" "xemu" "General"
+    set_setting_value "$xemu_config" "bootrom_path" "'$rd_home_bios_path/mcpx_1.0.bin'" "xemu" "sys.files"
+    set_setting_value "$xemu_config" "flashrom_path" "'$rd_home_bios_path/Complex.bin'" "xemu" "sys.files"
+    set_setting_value "$xemu_config" "eeprom_path" "'$rd_home_saves_path/xbox/xemu/xbox-eeprom.bin'" "xemu" "sys.files"
+    set_setting_value "$xemu_config" "hdd_path" "'$rd_home_bios_path/xbox_hdd.qcow2'" "xemu" "sys.files"
 fi
