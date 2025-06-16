@@ -17,10 +17,10 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
     
         create_dir -d "$XDG_CONFIG_HOME/azahar/"
         cp -fvr "$config/azahar/qt-config.ini" "$XDG_CONFIG_HOME/azahar/"
-        set_setting_value "$azaharconf" "nand_directory" "$rd_home_saves_path/n3ds/azahar/nand/"
-        set_setting_value "$azaharconf" "nand_directory" "$rd_home_saves_path/n3ds/azahar/sdmc/"
-        set_setting_value "$azaharconf" "Paths\gamedirs\3\path" "$rd_home_roms_path/n3ds"
-        set_setting_value "$azaharconf" "Paths\screenshotPath" "$rd_home_screenshots_path/n3ds/azahar"
+        set_setting_value "$azahar_config" "nand_directory" "$rd_home_saves_path/n3ds/azahar/nand/" "azahar"
+        set_setting_value "$azahar_config" "nand_directory" "$rd_home_saves_path/n3ds/azahar/sdmc/" "azahar"
+        set_setting_value "$azahar_config" "Paths\gamedirs\3\path" "$rd_home_roms_path/n3ds" "azahar"
+        set_setting_value "$azahar_config" "Paths\screenshotPath" "$rd_home_screenshots_path/n3ds/azahar" "azahar"
 
 
 
