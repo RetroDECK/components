@@ -4,6 +4,8 @@
 component_name="$(basename "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")")"
 config="/app/retrodeck/components/$component_name/rd_config"
 
+rpcs3_vfs_conf="$XDG_CONFIG_HOME/rpcs3/vfs.yml"
+
 if [[ "$action" == "reset" ]]; then # Run reset-only commands
 
     log i "------------------------"
@@ -23,8 +25,8 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
         create_dir -d "$XDG_CONFIG_HOME/rpcs3/"
         cp -fr "$config/"* "$XDG_CONFIG_HOME/rpcs3/"
         # This is an unfortunate one-off because set_setting_value does not currently support settings with $ in the name.
-        sed -i 's^\^$(EmulatorDir): .*^$(EmulatorDir): '"$rd_home_storage_path/ps3/rpcs3/"'^' "$rpcs3vfsconf"
-        set_setting_value "$rpcs3vfsconf" "/games/" "$rd_home_roms_path/ps3/" "rpcs3"
+        sed -i 's^\^$(EmulatorDir): .*^$(EmulatorDir): '"$rd_home_storage_path/ps3/rpcs3/"'^' "$rpcs3_vfs_conf"
+        set_setting_value "$rpcs3_vfs_conf" "/games/" "$rd_home_roms_path/ps3/" "rpcs3"
         dir_prep "$rd_home_saves_path/ps3/rpcs3" "$rd_home_storage_path/ps3/rpcs3/dev_hdd0/home/00000001/savedata"
         dir_prep "$rd_home_states_path/ps3/rpcs3" "$XDG_CONFIG_HOME/rpcs3/savestates"
     fi
@@ -41,6 +43,6 @@ fi
 
 if [[ "$action" == "postmove" ]]; then # Run only post-move commands
     # This is an unfortunate one-off because set_setting_value does not currently support settings with $ in the name.
-    sed -i 's^\^$(EmulatorDir): .*^$(EmulatorDir): '"$rd_home_storage_path/ps3/rpcs3/"'^' "$rpcs3vfsconf"
-    set_setting_value "$rpcs3vfsconf" "/games/" "$rd_home_roms_path/ps3" "rpcs3"
+    sed -i 's^\^$(EmulatorDir): .*^$(EmulatorDir): '"$rd_home_storage_path/ps3/rpcs3/"'^' "$rpcs3_vfs_conf"
+    set_setting_value "$rpcs3_vfs_conf" "/games/" "$rd_home_roms_path/ps3" "rpcs3"
 fi
