@@ -20,6 +20,7 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
     create_dir "$XDG_CONFIG_HOME/gargoyle"
 
   fi
+  
   # Shared actions
 
 fi
