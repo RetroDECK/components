@@ -9,6 +9,9 @@ assemble appimage "$resolved_url"
 
 # Custom Commands
 
+# Creating a symlink to be used later
+ln -s "$XDG_CONFIG_HOME/mudlet" "$component/artifacts/portable"
+
 touch "$component/artifacts/portable.txt"
 
 finalize
