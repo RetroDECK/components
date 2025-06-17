@@ -44,7 +44,7 @@ rd_api_socket="$rd_api_dir/retrodeck_api_server.sock"
 
 # File lock file for multi-threaded write operations to the same file
 
-RD_FILE_LOCK="$rd_api_dir/retrodeck_file_lock"
+rd_file_lock="$rd_api_dir/retrodeck_file_lock"
 
 configurator_portmaster_toggle_dialog(){
 
