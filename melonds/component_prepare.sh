@@ -4,6 +4,8 @@
 component_name="$(basename "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")")"
 config="/app/retrodeck/components/$component_name/rd_config"
 
+melonds_config="$XDG_CONFIG_HOME/melonDS/melonDS.ini"
+
 if [[ "$action" == "reset" ]]; then # Run reset-only commands
 
     log i "----------------------"
