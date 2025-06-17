@@ -88,9 +88,9 @@ create_dir "$rd_home_cheats_path/mame/cheat"
 
 dir_prep "$rd_home_saves_path/mame-sa/hiscore" "$XDG_CONFIG_HOME/mame/hiscore"
 
-cp -fvr "$config/mame.ini" "$mame_config"
-cp -fvr "$config/ui.ini" "$" "$mame_ui_config"
-cp -fvr "$config/default.cfg" "$mame_default_config"
+cp -fvr "$config/mame.ini" "$mame_config_mame"
+cp -fvr "$config/ui.ini" "$" "$mame_config_ui"
+cp -fvr "$config/default.cfg" "$mame_config_default"
 cp -fvr "/app/retrodeck/components/mame/share/mame/bgfx/"* "$rd_home_shaders_path/mame/bgfx"
 
 sed -i 's#RETRODECKROMSDIR#'"$rd_home_roms_path"'#g' "$mame_config" # one-off as roms folders are a lot

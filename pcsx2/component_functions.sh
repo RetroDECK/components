@@ -1,3 +1,6 @@
 #!/bin/bash
 
-pcsx2conf="$XDG_CONFIG_HOME/PCSX2/inis/PCSX2.ini"
+pcsx2_config_PCSX2="$XDG_CONFIG_HOME/pcsx2/inis/PCSX2.ini"
+pcsx2_config_PCSX2_vm="$XDG_CONFIG_HOME/pcsx2/inis/PCSX2_vm.ini"
+pcsx2_config_PCSX2_ui="$XDG_CONFIG_HOME/pcsx2/inis/PCSX2_ui.ini"
+pcsx2_config_GS="$XDG_CONFIG_HOME/pcsx2/inis/GS.ini"

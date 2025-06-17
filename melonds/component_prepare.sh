@@ -4,8 +4,6 @@
 component_name="$(basename "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")")"
 config="/app/retrodeck/components/$component_name/rd_config"
 
-melonds_config="$XDG_CONFIG_HOME/melonDS/melonDS.ini"
-
 if [[ "$action" == "reset" ]]; then # Run reset-only commands
 
     log i "----------------------"
@@ -26,11 +24,11 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
     
         create_dir -d "$XDG_CONFIG_HOME/melonDS/"
         cp -fvr "$config/melonds/melonDS.ini" "$XDG_CONFIG_HOME/melonDS/"
-        set_setting_value "$melonds_config" "BIOS9Path" "$rd_home_bios_path/bios9.bin" "melonds"
-        set_setting_value "$melonds_config" "BIOS7Path" "$rd_home_bios_path/bios7.bin" "melonds"
-        set_setting_value "$melonds_config" "FirmwarePath" "$rd_home_bios_path/firmware.bin" "melonds"
-        set_setting_value "$melonds_config" "SaveFilePath" "$rd_home_saves_path/nds/melonds" "melonds"
-        set_setting_value "$melonds_config" "SavestatePath" "$rd_home_states_path/nds/melonds" "melonds"
+        set_setting_value "$melonds_config_melonDS" "BIOS9Path" "$rd_home_bios_path/bios9.bin" "melonds"
+        set_setting_value "$melonds_config_melonDS" "BIOS7Path" "$rd_home_bios_path/bios7.bin" "melonds"
+        set_setting_value "$melonds_config_melonDS" "FirmwarePath" "$rd_home_bios_path/firmware.bin" "melonds"
+        set_setting_value "$melonds_config_melonDS" "SaveFilePath" "$rd_home_saves_path/nds/melonds" "melonds"
+        set_setting_value "$melonds_config_melonDS" "SavestatePath" "$rd_home_states_path/nds/melonds" "melonds"
     fi
 
     # Shared actions
@@ -41,9 +39,9 @@ fi
 
 if [[ "$action" == "postmove" ]]; then # Run only post-move commands
     dir_prep "$rd_home_bios_path" "$XDG_CONFIG_HOME/melonDS/bios"
-    set_setting_value "$melonds_config" "BIOS9Path" "$rd_home_bios_path/bios9.bin" "melonds"
-    set_setting_value "$melonds_config" "BIOS7Path" "$rd_home_bios_path/bios7.bin" "melonds"
-    set_setting_value "$melonds_config" "FirmwarePath" "$rd_home_bios_path/firmware.bin" "melonds"
-    set_setting_value "$melonds_config" "SaveFilePath" "$rd_home_saves_path/nds/melonds" "melonds"
-    set_setting_value "$melonds_config" "SavestatePath" "$rd_home_states_path/nds/melonds" "melonds"
+    set_setting_value "$melonds_config_melonDS" "BIOS9Path" "$rd_home_bios_path/bios9.bin" "melonds"
+    set_setting_value "$melonds_config_melonDS" "BIOS7Path" "$rd_home_bios_path/bios7.bin" "melonds"
+    set_setting_value "$melonds_config_melonDS" "FirmwarePath" "$rd_home_bios_path/firmware.bin" "melonds"
+    set_setting_value "$melonds_config_melonDS" "SaveFilePath" "$rd_home_saves_path/nds/melonds" "melonds"
+    set_setting_value "$melonds_config_melonDS" "SavestatePath" "$rd_home_states_path/nds/melonds" "melonds"
 fi
