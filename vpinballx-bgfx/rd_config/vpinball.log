@@ -1,0 +1,10 @@
+﻿2025-06-13 13:25:54.111 INFO  [6314] [VPApp::InitInstance@948] Starting VPX - v10.8.1 Beta (Rev. 3155 (8054cc2), linux BGFX 64bits)
+2025-06-13 13:25:54.118 INFO  [6314] [VPApp::InitInstance@949] Setting file is: /home/laz/.vpinball/VPinballX.ini
+2025-06-13 13:25:54.118 INFO  [6314] [VPApp::InitInstance@952] Settings file was loaded from /home/laz/.vpinball/VPinballX.ini
+2025-06-13 13:25:54.118 INFO  [6314] [VPApp::InitInstance@953] m_logicalNumberOfProcessors=16
+2025-06-13 13:25:54.118 INFO  [6314] [VPApp::InitInstance@954] m_szMyPath=/app/retrodeck/components/vpinballx-bgfx/
+2025-06-13 13:25:54.118 INFO  [6314] [VPApp::InitInstance@955] m_szMyPrefPath=/home/laz/.vpinball/
+2025-06-13 13:25:54.118 ERROR [6314] [MsgPluginManager::ScanPluginFolder@256] Missing plugin directory: /app/retrodeck/components/vpinballx-bgfx/plugins
+2025-06-13 13:25:54.119 INFO  [6314] [WinMain@1371] Closing VPX...
+
+
