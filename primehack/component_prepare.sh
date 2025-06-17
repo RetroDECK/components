@@ -4,6 +4,13 @@
 component_name="$(basename "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")")"
 config="/app/retrodeck/components/$component_name/rd_config"
 
+primehack_conf="$XDG_CONFIG_HOME/primehack/Dolphin.ini"
+primehack_gc_pad_conf="$XDG_CONFIG_HOME/primehack/GCPadNew.ini"
+primehack_gfx_conf="$XDG_CONFIG_HOME/primehack/GFX.ini"
+primehack_hk_conf="$XDG_CONFIG_HOME/primehack/Hotkeys.ini"
+primehack_qt_conf="$XDG_CONFIG_HOME/primehack/Qt.ini"
+primehack_dynamic_input_textures_path="$XDG_DATA_HOME/primehack/Load/DynamicInputTextures"
+
 if [[ "$action" == "reset" ]]; then # Run reset-only commands
 
     log i "----------------------"
@@ -21,8 +28,8 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
 
         create_dir -d "$XDG_CONFIG_HOME/primehack/"
         cp -fvr "$config/"* "$XDG_CONFIG_HOME/primehack/"
-        set_setting_value "$primehackconf" "ISOPath0" "$rd_home_roms_path/wii" "primehack" "General"
-        set_setting_value "$primehackconf" "ISOPath1" "$rd_home_roms_path/gc" "primehack" "General"
+        set_setting_value "$primehack_conf" "ISOPath0" "$rd_home_roms_path/wii" "primehack" "General"
+        set_setting_value "$primehack_conf" "ISOPath1" "$rd_home_roms_path/gc" "primehack" "General"
     fi
 
     # Shared actions
@@ -52,5 +59,5 @@ if [[ "$action" == "postmove" ]]; then # Run only post-move commands
     dir_prep "$rd_home_saves_path/wii/primehack" "$XDG_DATA_HOME/primehack/Wii/"
     dir_prep "$rd_home_mods_path/Primehack" "$XDG_DATA_HOME/primehack/Load/GraphicMods"
     dir_prep "$rd_home_texture_packs_path/Primehack" "$XDG_DATA_HOME/primehack/Load/Textures"
-    set_setting_value "$primehackconf" "ISOPath0" "$rd_home_roms_path/gc" "primehack" "General"
+    set_setting_value "$primehack_conf" "ISOPath0" "$rd_home_roms_path/gc" "primehack" "General"
 fi
