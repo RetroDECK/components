@@ -10,10 +10,13 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
   log i "----------------------"
 
   if [[ $multi_user_mode == "true" ]]; then # Multi-user actions
-  # Add Multiuser things and reset things
+    # Add Multiuser things and reset things
+
+    # if this section is empty the if will be invalid so we put a log message here
+    log d "TODO: Implement multi-user actions for $component_name"
 
   else # Single-user actions
-  create_dir "$XDG_CONFIG_HOME/kegs"
+    create_dir "$XDG_CONFIG_HOME/kegs"
 
   fi
   # Shared actions
