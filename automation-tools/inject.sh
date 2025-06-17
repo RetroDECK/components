@@ -54,7 +54,7 @@ if [[ "$continue" =~ ^[Yy]$ ]]; then
                 sudo rsync -a --exclude 'artifacts' "$folder_name/" "$app/retrodeck/components/$folder_name/"
                 sudo cp -r "$folder_name/artifacts/." "$app/retrodeck/components/$folder_name/"
             else
-                sudo cp -r "$folder_name" "$app/retrodeck/components/$folder_name"
+                sudo cp -r "$folder_name" "$app/retrodeck/components/"
             fi
         else
             echo "Skipping non-directory item: $folder_name"
