@@ -15,7 +15,7 @@ default_splash_file="$XDG_CONFIG_HOME/ES-DE/resources/graphics/splash-orig.svg" 
 # TODO: instead of this maybe we can iterate the features.json
 multi_user_emulator_config_dirs="$config/retrodeck/reference_lists/multi_user_emulator_config_dirs.cfg"  # A list of emulator config folders that can be safely linked/unlinked entirely in multi-user mode
 rd_es_themes="/app/share/es-de/themes"                                                                   # The directory where themes packaged with RetroDECK are stored
-lockfile="$XDG_CONFIG_HOME/retrodeck/.lock"                                                                   # Where the lockfile is located
+rd_lockfile="$XDG_CONFIG_HOME/retrodeck/.lock"                                                                   # Where the lockfile is located
 sd_sdcard_default_path="/run/media/mmcblk0p1"                                                                        # Steam Deck SD default path
 hard_version="$(cat '/app/retrodeck/version')"                                                           # hardcoded version (in the readonly filesystem)
 rd_repo="https://github.com/RetroDECK/RetroDECK"                                                         # The URL of the main RetroDECK GitHub repo
