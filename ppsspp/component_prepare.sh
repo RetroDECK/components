@@ -4,6 +4,11 @@
 component_name="$(basename "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")")"
 config="/app/retrodeck/components/$component_name/rd_config"
 
+ppsspp_conf="$XDG_CONFIG_HOME/ppsspp/PSP/SYSTEM/ppsspp.ini"
+ppsspp_controls_conf="$XDG_CONFIG_HOME/ppsspp/PSP/SYSTEM/controls.ini"
+ppsspp_cheevos_conf="$XDG_CONFIG_HOME/ppsspp/PSP/SYSTEM/ppsspp_retroachievements.dat"
+ppsspp_cheats_db="$rd_components/ppsspp/cheats/cheat.db"
+
 if [[ "$action" == "reset" ]]; then # Run reset-only commands
 
   log i "------------------------"
@@ -20,7 +25,7 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
 
     create_dir -d "$XDG_CONFIG_HOME/ppsspp/PSP/SYSTEM/"
     cp -fv "$config/"* "$XDG_CONFIG_HOME/ppsspp/PSP/SYSTEM/"
-    set_setting_value "$ppssppconf" "CurrentDirectory" "$rd_home_roms_path/psp" "ppsspp" "General"
+    set_setting_value "$ppsspp_conf" "CurrentDirectory" "$rd_home_roms_path/psp" "ppsspp" "General"
   fi
 
   # Shared actions
@@ -36,11 +41,11 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
     tar -czf "$backup_file" -C "$rd_home_cheats_path" PPSSPP
     log i "PPSSPP cheats backed up to $backup_file"
   fi
-  rsync "$ppssppcheatsdb" "$rd_home_cheats_path/PPSSPP/"
+  rsync "$ppsspp_cheats_db" "$rd_home_cheats_path/PPSSPP/"
 fi
 
 if [[ "$action" == "postmove" ]]; then # Run only post-move commands
-  set_setting_value "$ppssppconf" "CurrentDirectory" "$rd_home_roms_path/psp" "ppsspp" "General"
+  set_setting_value "$ppsspp_conf" "CurrentDirectory" "$rd_home_roms_path/psp" "ppsspp" "General"
   dir_prep "$rd_home_saves_path/PSP/PPSSPP-SA" "$XDG_CONFIG_HOME/ppsspp/PSP/SAVEDATA"
   dir_prep "$rd_home_states_path/PSP/PPSSPP-SA" "$XDG_CONFIG_HOME/ppsspp/PSP/PPSSPP_STATE"
   dir_prep "$rd_home_texture_packs_path/PPSSPP-SA" "$XDG_CONFIG_HOME/ppsspp/PSP/TEXTURES"
