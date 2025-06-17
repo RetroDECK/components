@@ -6,11 +6,6 @@ component_path="$(cd "$(dirname "${BASH_SOURCE[0]}" )" && pwd)"
 config="$component_path/rd_config"
 extras="$component_path/rd_extras"
 
-ra_conf="$XDG_CONFIG_HOME/retroarch/retroarch.cfg"
-ra_core_conf="$XDG_CONFIG_HOME/retroarch/retroarch-core-options.cfg"
-ra_scummvm_conf="$XDG_CONFIG_HOME/retroarch/system/scummvm.ini"
-ra_cores_path="$XDG_CONFIG_HOME/retroarch/cores"
-
 log i "--------------------------------"
 log i "Preparing $component_name"
 log i "--------------------------------"
@@ -105,7 +100,7 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
     log i "-----------------------------------------------------------"
     log i "Prepearing ScummVM LIBRETRO"
     log i "-----------------------------------------------------------"
-    cp -fv "$config/scummvm.ini" "$ra_scummvm_conf"
+    cp -fv "$config/scummvm.ini" "$retroarch_config_scummvm"
     create_dir "$rd_home_mods_path/RetroArch/ScummVM/icons"
     log i "Installing ScummVM assets"
     unzip -o "$config/ScummVM.zip" 'scummvm/extra/*' -d /tmp
@@ -113,11 +108,11 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
     mv -f /tmp/scummvm/extra "$rd_home_storage_path/retroarch/ScummVM"
     mv -f /tmp/scummvm/theme "$rd_home_storage_path/retroarch/ScummVM"
     rm -rf /tmp/extra /tmp/theme
-    set_setting_value "$ra_scummvm_conf" "iconspath" "$rd_home_storage_path/retroarch/ScummVM/icons" "libretro_scummvm" "scummvm"
-    set_setting_value "$ra_scummvm_conf" "extrapath" "$rd_home_storage_path/retroarch/ScummVM/extra" "libretro_scummvm" "scummvm"
-    set_setting_value "$ra_scummvm_conf" "themepath" "$rd_home_storage_path/retroarch/ScummVM/theme" "libretro_scummvm" "scummvm"
-    set_setting_value "$ra_scummvm_conf" "savepath" "$rd_home_saves_path/scummvm" "libretro_scummvm" "scummvm"
-    set_setting_value "$ra_scummvm_conf" "browser_lastpath" "$rd_home_roms_path/scummvm" "libretro_scummvm" "scummvm"
+    set_setting_value "$retroarch_config_scummvm" "iconspath" "$rd_home_storage_path/retroarch/ScummVM/icons" "libretro_scummvm" "scummvm"
+    set_setting_value "$retroarch_config_scummvm" "extrapath" "$rd_home_storage_path/retroarch/ScummVM/extra" "libretro_scummvm" "scummvm"
+    set_setting_value "$retroarch_config_scummvm" "themepath" "$rd_home_storage_path/retroarch/ScummVM/theme" "libretro_scummvm" "scummvm"
+    set_setting_value "$retroarch_config_scummvm" "savepath" "$rd_home_saves_path/scummvm" "libretro_scummvm" "scummvm"
+    set_setting_value "$retroarch_config_scummvm" "browser_lastpath" "$rd_home_roms_path/scummvm" "libretro_scummvm" "scummvm"
 
     dir_prep "$rd_home_texture_packs_path/retroarch/Mesen" "$XDG_CONFIG_HOME/retroarch/system/HdPacks"
     dir_prep "$rd_home_texture_packs_path/retroarch/Mupen64Plus/cache" "$XDG_CONFIG_HOME/retroarch/system/Mupen64plus/cache"

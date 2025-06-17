@@ -1,5 +1,10 @@
 #!/bin/bash
 
+retroarch_config_retroarch="$XDG_CONFIG_HOME/retroarch/retroarch.cfg"
+retroarch_config_core_options="$XDG_CONFIG_HOME/retroarch/retroarch-core-options.cfg"
+retroarch_config_scummvm="$XDG_CONFIG_HOME/retroarch/system/scummvm.ini"
+retroarch_cores_path="$XDG_CONFIG_HOME/retroarch/cores"
+
 retroarch_updater() {
     # This function updates RetroArch by synchronizing shaders, cores, and border overlays.
     # It should be called whenever RetroArch is reset or updated.
