@@ -27,7 +27,7 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
         log d "Removing \"$XDG_CONFIG_HOME/ryubing\""
         rm -rf "$XDG_CONFIG_HOME/ryubing"
         create_dir "$XDG_CONFIG_HOME/ryubing/system"
-        cp -fv "$config/ryubing/Config.json" "$ryubing_config"
+        cp -fv "$config/Config.json" "$ryubing_config"
         cp -fvr "$config/ryubing/profiles/controller" "$XDG_CONFIG_HOME/$ryubing_profiles_path"
         log d "Replacing placeholders in \"$ryubing_config\""
         sed -i 's#RETRODECKHOMEDIR#'"$rd_home_path"'#g' "$ryubing_config"
