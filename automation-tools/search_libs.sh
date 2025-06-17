@@ -67,6 +67,19 @@ search_libs() {
         done
     fi
 
+    # Copy all Qt plugins from the runtime
+    qt_plugin_root="/usr/lib/plugins"
+    qt_plugin_dest="${FLATPAK_DEST}/usr/lib/plugins"
+
+    if [ -d "$qt_plugin_root" ]; then
+        echo "🔁 Copying all Qt plugins from $qt_plugin_root to $qt_plugin_dest"
+        mkdir -p "$qt_plugin_dest"
+        cp -r "$qt_plugin_root/"* "$qt_plugin_dest/"
+        echo "✅ Qt plugins copied to $qt_plugin_dest"
+    else
+        echo "❌ Qt plugin directory not found: $qt_plugin_root"
+    fi
+
     if [ "$give_libopenh264_warning" = true ]; then
         echo "⚠️  Warning: You included libopenh264.so.2.5.1, but you also requested libopenh264.so.7."
         echo "You may need to create a symlink manually if the application requires it."

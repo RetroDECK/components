@@ -4,8 +4,7 @@
 
 source "automation-tools/assembler.sh"
 
-rm -rf "$component/artifacts"
-mkdir -p "$component/artifacts"
+assemble local "$component/rd_config_note.md"
 
 if [[ "$GITHUB_REF_NAME" != "main" ]]; then
     branch="cooker"

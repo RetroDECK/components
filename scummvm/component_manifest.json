@@ -1,0 +1,10 @@
+{
+    "scummvm": {
+        "name": "ScummVM",
+        "url": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/shadps4/shadps4-guide/",
+        "description": "ScummVM allows you to play classic graphic point-and-click adventure games, text adventure games, and RPGs.",
+        "system_friendly_name": "ScummVM",
+        "system": "scummvm"
+
+    }
+}

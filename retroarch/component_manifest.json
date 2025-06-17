@@ -5,7 +5,7 @@
       "url": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/retroarch/retroarch-guide/",
       "cli-arg": "--version",
       "system": "retroarch",
-      "logs": "$logs_folder/retroarch/retroarch.log",
+      "logs": "$rd_internal_logs_path/retroarch/retroarch.log",
       "properties": [
         {
           "cheevos": true,

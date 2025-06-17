@@ -2,16 +2,15 @@
 
 source /app/libexec/logger.sh
 
-COMPONENT_NAME="xroar"
+# Setting component name and path based on the directory name
+component_name="$(basename "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")")"
+component_path="$(cd "$(dirname "${BASH_SOURCE[0]}" )" && pwd)"
 
-# This ensures the application can find its resources
-export APPDIR="$rd_components/$COMPONENT_NAME"
+LD_LIBRARY_PATH="$component_path/lib:/app/retrodeck/components/shared-libs/qt-6.8/lib:${LD_LIBRARY_PATH}"
+export QT_PLUGIN_PATH="/app/retrodeck/components/shared-libs/qt-6.8/lib/plugins:${QT_PLUGIN_PATH}"
 
-LD_LIBRARY_PATH="$rd_components/$COMPONENT_NAME/lib:$rd_shared_libs/qt-6.8/lib:${LD_LIBRARY_PATH}"
-export QT_PLUGIN_PATH="$rd_shared_libs/qt-6.8/lib/plugins:${QT_PLUGIN_PATH}"
-
-log i "RetroDECK is now launching $COMPONENT_NAME"
+log i "RetroDECK is now launching $component_name"
 log d "Library path is: $LD_LIBRARY_PATH"
-log d "AppDir is: $APPDIR"
+log d "AppDir is: $component_path"
 
-exec "$rd_components/$COMPONENT_NAME/xroar" "$@"
+exec "$component_path/xroar" "$@"

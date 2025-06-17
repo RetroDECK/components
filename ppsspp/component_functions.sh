@@ -1,6 +1,6 @@
 #!/bin/bash
 
-ppssppconf="$XDG_CONFIG_HOME/ppsspp/PSP/SYSTEM/ppsspp.ini"
-ppssppcontrolsconf="$XDG_CONFIG_HOME/ppsspp/PSP/SYSTEM/controls.ini"
-ppssppcheevosconf="$XDG_CONFIG_HOME/ppsspp/PSP/SYSTEM/ppsspp_retroachievements.dat"
-ppssppcheatsdb="$rd_components/ppsspp/cheats/cheat.db"
+ppsspp_config_ppsspp="$XDG_CONFIG_HOME/ppsspp/ppsspp.ini"
+ppsspp_config_controls="$XDG_CONFIG_HOME/ppsspp/controls.ini"
+ppsspp_retroachievements_dat="$XDG_CONFIG_HOME/ppsspp/ppsspp_retroachievements.dat"
+ppsspp_cheats_db="$XDG_CONFIG_HOME/ppsspp/ppsspp_retroachievements.dat

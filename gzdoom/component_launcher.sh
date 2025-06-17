@@ -2,16 +2,15 @@
 
 source /app/libexec/logger.sh
 
-COMPONENT_NAME="gzdoom"
+# Setting component name and path based on the directory name
+component_name="$(basename "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")")"
+component_path="$(cd "$(dirname "${BASH_SOURCE[0]}" )" && pwd)"
 
-# This ensures the application can find its resources
-export APPDIR="$rd_components/$COMPONENT_NAME"
+LD_LIBRARY_PATH="$component_path/lib:${LD_LIBRARY_PATH}"
+export DOOMWADDIR="$component_path/share/games/doom"
 
-LD_LIBRARY_PATH="$rd_components/$COMPONENT_NAME/lib:${LD_LIBRARY_PATH}"
-export DOOMWADDIR="$rd_components/$COMPONENT_NAME/share/games/doom"
-
-log i "RetroDECK is now launching $COMPONENT_NAME"
+log i "RetroDECK is now launching $component_name"
 log d "Library path is: $LD_LIBRARY_PATH"
 log d "DOOM WADs directory is: $DOOMWADDIR"
 
-exec "$rd_components/$COMPONENT_NAME/AppRun" --no-sandbox +fluid_patchset "$rd_components/$COMPONENT_NAME/share/games/doom/soundfonts/gzdoom.sf2" "$@"
+exec "$component_path/AppRun" --no-sandbox +fluid_patchset "$component_path/share/games/doom/soundfonts/gzdoom.sf2" "$@"

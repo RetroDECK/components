@@ -1,0 +1,6 @@
+#!/bin/bash
+
+flycast_config_emu="$XDG_CONFIG_HOME/flycast/emu.cfg"
+flycast_controller_keyboard="$XDG_CONFIG_HOME/flycast/mappings/flycast_controller_keyboard.cfg"
+flycast_controller_neptune="$XDG_CONFIG_HOME/flycast/mappings/flycast_controller_neptune.cfg"
+flycast_controller_xbox360="$XDG_CONFIG_HOME/flycast/mappings/flycast_controller_xbox360.cfg"

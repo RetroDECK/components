@@ -15,18 +15,18 @@ default_splash_file="$XDG_CONFIG_HOME/ES-DE/resources/graphics/splash-orig.svg" 
 # TODO: instead of this maybe we can iterate the features.json
 multi_user_emulator_config_dirs="$config/retrodeck/reference_lists/multi_user_emulator_config_dirs.cfg"  # A list of emulator config folders that can be safely linked/unlinked entirely in multi-user mode
 rd_es_themes="/app/share/es-de/themes"                                                                   # The directory where themes packaged with RetroDECK are stored
-lockfile="$XDG_CONFIG_HOME/retrodeck/.lock"                                                                   # Where the lockfile is located
-default_sd="/run/media/mmcblk0p1"                                                                        # Steam Deck SD default path
+rd_lockfile="$XDG_CONFIG_HOME/retrodeck/.lock"                                                                   # Where the lockfile is located
+sd_sdcard_default_path="/run/media/mmcblk0p1"                                                                        # Steam Deck SD default path
 hard_version="$(cat '/app/retrodeck/version')"                                                           # hardcoded version (in the readonly filesystem)
 rd_repo="https://github.com/RetroDECK/RetroDECK"                                                         # The URL of the main RetroDECK GitHub repo
 es_themes_list="https://gitlab.com/es-de/themes/themes-list/-/raw/master/themes.json"                    # The URL of the ES-DE 2.0 themes list
 remote_network_target_1="https://flathub.org"                                                            # The URL of a common internet target for testing network access
 remote_network_target_2="$rd_repo"                                                                       # The URL of a common internet target for testing network access
 remote_network_target_3="https://one.one.one.one"                                                        # The URL of a common internet target for testing network access
-helper_files_folder="$config/retrodeck/helper_files"                                                     # The parent folder of RetroDECK documentation files for deployment
+helper_files_path="$config/retrodeck/helper_files"                                                     # The parent folder of RetroDECK documentation files for deployment
 rd_metainfo="/app/share/metainfo/net.retrodeck.retrodeck.metainfo.xml"                                   # The shipped metainfo XML file for this version
-rpcs3_firmware="http://dus01.ps3.update.playstation.net/update/ps3/image/us/2024_0227_3694eb3fb8d9915c112e6ab41a60c69f/PS3UPDAT.PUP" # RPCS3 Firmware download location
-RA_API_URL="https://retroachievements.org/dorequest.php"                                                 # API URL for RetroAchievements.org
+rpcs3_firmware_url="http://dus01.ps3.update.playstation.net/update/ps3/image/us/2024_0227_3694eb3fb8d9915c112e6ab41a60c69f/PS3UPDAT.PUP" # RPCS3 Firmware download location
+ra_cheevos_api_url="https://retroachievements.org/dorequest.php"                                                 # API URL for RetroAchievements.org
 presets_dir="$config/retrodeck/presets"                                                                  # Repository for all system preset config files
 git_organization_name="RetroDECK"                                                                        # The name of the organization in our git repository such as GitHub
 cooker_repository_name="Cooker"                                                                          # The name of the cooker repository under RetroDECK organization
@@ -82,11 +82,11 @@ configurator_portmaster_toggle_dialog(){
 portmaster_show(){
   log d "Setting PortMaster visibility in ES-DE"
   if [ "$1" = "true" ]; then
-      log d "\"$roms_folder/portmaster/PortMaster.sh\" is not found, installing it"
-      install -Dm755 "$XDG_DATA_HOME/PortMaster/PortMaster.sh" "$roms_folder/portmaster/PortMaster.sh" && log d "PortMaster is correctly showing in ES-DE"
+      log d "\"$rd_home_roms_path/portmaster/PortMaster.sh\" is not found, installing it"
+      install -Dm755 "$XDG_DATA_HOME/PortMaster/PortMaster.sh" "$rd_home_roms_path/portmaster/PortMaster.sh" && log d "PortMaster is correctly showing in ES-DE"
       set_setting_value "$rd_conf" "portmaster_show" "true" retrodeck "options"
   elif [ "$1" = "false" ]; then
-    rm -rf "$roms_folder/portmaster/PortMaster.sh" && log d "PortMaster is correctly hidden in ES-DE"
+    rm -rf "$rd_home_roms_path/portmaster/PortMaster.sh" && log d "PortMaster is correctly hidden in ES-DE"
     set_setting_value "$rd_conf" "portmaster_show" "false" retrodeck "options"
   else
     log e "\"$1\" is not a valid choice, quitting"
@@ -108,7 +108,7 @@ configurator_bios_checker_dialog() {
 
      while IFS=$'\t' read -r bios_file bios_systems bios_desc required bios_md5 bios_paths; do
 
-      # Expand any embedded shell variables (e.g. $saves_folder or $bios_folder) with their actual values
+      # Expand any embedded shell variables (e.g. $rd_home_saves_path or $rd_home_bios_path) with their actual values
       bios_paths=$(echo "$bios_paths" | envsubst)
 
       bios_file_found="No"
@@ -154,7 +154,7 @@ configurator_bios_checker_dialog() {
               (.value.description // "No description provided"),
               (.value.required // "No"),
               (.value.md5 | if type=="array" then join(", ") elif type=="string" then . else "Unknown" end),
-              (.value.paths | if type=="array" then join(", ") elif type=="string" then . else "$bios_folder" end)
+              (.value.paths | if type=="array" then join(", ") elif type=="string" then . else "$rd_home_bios_path" end)
             ]
           | @tsv
         ' "$bios_checklist")
@@ -244,7 +244,7 @@ configurator_compression_tool_dialog() {
 configurator_compress_single_game_dialog() {
   local file=$(file_browse "Game to compress")
   if [[ ! -z "$file" ]]; then
-    local system=$(echo "$file" | grep -oE "$roms_folder/[^/]+" | grep -oE "[^/]+$")
+    local system=$(echo "$file" | grep -oE "$rd_home_roms_path/[^/]+" | grep -oE "[^/]+$")
     local compatible_compression_format=$(find_compatible_compression_format "$file")
     if [[ ! $compatible_compression_format == "none" ]]; then
       local post_compression_cleanup=$(configurator_compression_cleanup_dialog)
@@ -292,7 +292,7 @@ configurator_compress_multiple_games_dialog() {
     local checklist_entries=()
     for line in "${all_compressible_games[@]}"; do
       IFS="^" read -r game comp <<< "$line"
-      local short_game="${game#$roms_folder}"
+      local short_game="${game#$rd_home_roms_path}"
       checklist_entries+=( "TRUE" "$short_game" "$line" )
     done
 
@@ -337,7 +337,7 @@ configurator_compress_multiple_games_dialog() {
     IFS="^" read -r game compression_format <<< "$game_line"
 
     local system
-    system=$(echo "$game" | grep -oE "$roms_folder/[^/]+" | grep -oE "[^/]+$")
+    system=$(echo "$game" | grep -oE "$rd_home_roms_path/[^/]+" | grep -oE "[^/]+$")
     log i "Compressing $(basename "$game") into $compression_format format"
 
     echo "#Compressing $(basename "$game") into $compression_format format.\n\n$games_left games left to compress." # Update Zenity dialog text
@@ -407,7 +407,7 @@ configurator_repair_paths_dialog() {
   configurator_tools_dialog
 }
 
-configurator_change_logging_level_dialog() {
+configurator_change_rd_logging_level_dialog() {
   choice=$(rd_zenity --list --title="RetroDECK Configurator Utility - RetroDECK: Change Logging Level" --cancel-label="Back" \
   --window-icon="/app/share/icons/hicolor/scalable/apps/net.retrodeck.retrodeck.svg" --width=1200 --height=720 \
   --column="Choice" --column="Action" \
@@ -420,29 +420,29 @@ configurator_change_logging_level_dialog() {
 
   "Level 1: Informational" )
     log i "Configurator: Changing logging level to \"$choice\""
-    set_setting_value "$rd_conf" "logging_level" "info" "retrodeck" "options"
-    declare -g "$logging_level=info"
+    set_setting_value "$rd_conf" "rd_logging_level" "info" "retrodeck" "options"
+    declare -g "$rd_logging_level=info"
     configurator_generic_dialog "RetroDECK Configurator - Change Logging Level" "The logging level has been changed to Level 1: Informational"
   ;;
 
   "Level 2: Warnings" )
     log i "Configurator: Changing logging level to \"$choice\""
-    set_setting_value "$rd_conf" "logging_level" "warn" "retrodeck" "options"
-    declare -g "$logging_level=warn"
+    set_setting_value "$rd_conf" "rd_logging_level" "warn" "retrodeck" "options"
+    declare -g "$rd_logging_level=warn"
     configurator_generic_dialog "RetroDECK Configurator - Change Logging Level" "The logging level has been changed to Level 2: Warnings"
   ;;
 
   "Level 3: Errors" )
     log i "Configurator: Changing logging level to \"$choice\""
-    set_setting_value "$rd_conf" "logging_level" "error" "retrodeck" "options"
-    declare -g "$logging_level=error"
+    set_setting_value "$rd_conf" "rd_logging_level" "error" "retrodeck" "options"
+    declare -g "$rd_logging_level=error"
     configurator_generic_dialog "RetroDECK Configurator - Change Logging Level" "The logging level has been changed to Level 3: Errors"
   ;;
 
   "Level 4: Debug" )
     log i "Configurator: Changing logging level to \"$choice\""
-    set_setting_value "$rd_conf" "logging_level" "debug" "retrodeck" "options"
-    declare -g "$logging_level=debug"
+    set_setting_value "$rd_conf" "rd_logging_level" "debug" "retrodeck" "options"
+    declare -g "$rd_logging_level=debug"
     configurator_generic_dialog "RetroDECK Configurator - Change Logging Level" "The logging level has been changed to Level 4: Debug"
   ;;
 
@@ -455,7 +455,7 @@ configurator_change_logging_level_dialog() {
 }
 
 configurator_retrodeck_backup_dialog() {
-  configurator_generic_dialog "RetroDECK Configurator - Backup Userdata" "This tool will compress one or more RetroDECK userdata folders into a single zip file.\n\nPlease note that this process may take several minutes.\n\n<span foreground='$purple'><b>The resulting zip file will be located in $backups_folder.</b></span>\n\n"
+  configurator_generic_dialog "RetroDECK Configurator - Backup Userdata" "This tool will compress one or more RetroDECK userdata folders into a single zip file.\n\nPlease note that this process may take several minutes.\n\n<span foreground='$purple'><b>The resulting zip file will be located in $rd_home_backups_path.</b></span>\n\n"
 
   choice=$(rd_zenity --title "RetroDECK Configurator - Backup Userdata" --info --no-wrap --ok-label="Cancel" --extra-button="Core Backup" --extra-button="Custom Backup" --extra-button="Complete Backup" \
   --window-icon="/app/share/icons/hicolor/scalable/apps/net.retrodeck.retrodeck.svg" --text="Would you like to backup some or all of the RetroDECK userdata?\n\nChoose one of the following options:\n\n1. Core Backup: Only essential files (such as saves, states, and gamelists).\n\n2. Custom Backup: You will be given the option to select specific folders to backup.\n\n3. Complete Backup: All data, including games and downloaded media, will be backed up.\n\n<span foreground='$purple'><b>PLEASE NOTE: A complete backup may require a significant amount of space.</b></span>\n\n")
@@ -470,7 +470,7 @@ configurator_retrodeck_backup_dialog() {
       log i "User chose to backup custom userdata prior to update."
       while read -r config_line; do
         local current_setting_name=$(get_setting_name "$config_line" "retrodeck")
-        if [[ ! $current_setting_name =~ (rdhome|sdcard|backups_folder) ]]; then # Ignore these locations
+        if [[ ! $current_setting_name =~ (rd_home_path|sdcard|rd_home_backups_path) ]]; then # Ignore these locations
         log d "Adding $current_setting_name to compressible paths."
           local current_setting_value=$(get_setting_value "$rd_conf" "$current_setting_name" "retrodeck" "paths")
           compressible_paths=("${compressible_paths[@]}" "false" "$current_setting_name" "$current_setting_value")
@@ -539,7 +539,7 @@ configurator_clean_empty_systems_dialog() {
 
 configurator_rebuild_esde_systems() {
   es-de --create-system-dirs
-  configurator_generic_dialog "RetroDECK Configurator - Rebuild System Folders" "The rebuilding process is complete.\n\nAll missing default system folders will now exist in $roms_folder"
+  configurator_generic_dialog "RetroDECK Configurator - Rebuild System Folders" "The rebuilding process is complete.\n\nAll missing default system folders will now exist in $rd_home_roms_path"
   configurator_data_management_dialog
 }
 
@@ -727,11 +727,11 @@ configurator_usb_import_dialog() {
       "${external_devices[@]}")
 
       if [[ ! -z "$choice" ]]; then
-        if [[ $(verify_space "$choice/RetroDECK Import/ROMs" "$roms_folder") == "false" || $(verify_space "$choice/RetroDECK Import/BIOS" "$bios_folder") == "false" ]]; then
+        if [[ $(verify_space "$choice/RetroDECK Import/ROMs" "$rd_home_roms_path") == "false" || $(verify_space "$choice/RetroDECK Import/BIOS" "$rd_home_bios_path") == "false" ]]; then
           if [[ $(configurator_generic_question_dialog "RetroDECK Configurator Utility - USB Migration Tool" "You MAY not have enough free space to import this ROM/BIOS library.\n\nThis utility only imports new additions from the USB device, so if there are a lot of the same files in both locations you are likely going to be fine\nbut we are not able to verify how much data will be transferred before it happens.\n\nIf you are unsure, please verify your available free space before continuing.\n\nDo you want to continue now?") == "true" ]]; then
             (
-            rsync -a --mkpath "$choice/RetroDECK Import/ROMs/"* "$roms_folder"
-            rsync -a --mkpath "$choice/RetroDECK Import/BIOS/"* "$bios_folder"
+            rsync -a --mkpath "$choice/RetroDECK Import/ROMs/"* "$rd_home_roms_path"
+            rsync -a --mkpath "$choice/RetroDECK Import/BIOS/"* "$rd_home_bios_path"
             ) |
             rd_zenity --icon-name=net.retrodeck.retrodeck --progress --no-cancel --auto-close \
             --window-icon="/app/share/icons/hicolor/scalable/apps/net.retrodeck.retrodeck.svg" \
@@ -740,8 +740,8 @@ configurator_usb_import_dialog() {
           fi
         else
           (
-          rsync -a --mkpath "$choice/RetroDECK Import/ROMs/"* "$roms_folder"
-          rsync -a --mkpath "$choice/RetroDECK Import/BIOS/"* "$bios_folder"
+          rsync -a --mkpath "$choice/RetroDECK Import/ROMs/"* "$rd_home_roms_path"
+          rsync -a --mkpath "$choice/RetroDECK Import/BIOS/"* "$rd_home_bios_path"
           ) |
           rd_zenity --icon-name=net.retrodeck.retrodeck --progress --no-cancel --auto-close \
           --window-icon="/app/share/icons/hicolor/scalable/apps/net.retrodeck.retrodeck.svg" \

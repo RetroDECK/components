@@ -1,11 +1,11 @@
 {
-    "mudlet": {
+    "xroar": {
         "name": "XRoar",
         "description": "Dragon and Tandy 8-bit Computer Emulator XRoar.",
         "system": [
         "coco",
         "dragon32",
         "tanodragon"
-        ],
+        ]
     }
 }

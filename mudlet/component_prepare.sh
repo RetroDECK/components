@@ -1,18 +1,18 @@
 #!/bin/bash
 
-component_name="$(basename "$(dirname "$0")")"
-config="/app/retrodeck/config/$component_name/rd_config"
+# Setting component name and path based on the directory name
+component_name="$(basename "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")")"
+config="/app/retrodeck/components/$component_name/rd_config"
 
 if [[ "$action" == "reset" ]]; then # Run reset-only commands
   log i "----------------------"
-  log i "Prepearing Mudlet"
+  log i "Preparing $component_name"
   log i "----------------------"
 
   # Add Multiuser things and reset things
 
   # Shared actions
   create_dir "$XDG_CONFIG_HOME/mudlet"
-  dir_prep "$XDG_CONFIG_HOME/mudlet" "/app/retrodeck/components/mudlet/portable"
-  dir_prep "$saves_folder/muds/profiles" "$XDG_CONFIG_HOME/mudlet/profiles"
+  dir_prep "$rd_home_saves_path/muds/profiles" "$XDG_CONFIG_HOME/mudlet/portable/profiles"
 
 fi

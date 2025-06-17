@@ -2,13 +2,15 @@
 
 source /app/libexec/logger.sh
 
-COMPONENT_NAME="cemu"
+# Setting component name and path based on the directory name
+component_name="$(basename "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")")"
+component_path="$(cd "$(dirname "${BASH_SOURCE[0]}" )" && pwd)"
 
-source "$rd_components/$COMPONENT_NAME/apprun-hooks/linuxdeploy-plugin-checkrt.sh"
-source "$rd_components/$COMPONENT_NAME/apprun-hooks/linuxdeploy-plugin-gtk.sh"
+source "$component_path/apprun-hooks/linuxdeploy-plugin-checkrt.sh"
+source "$component_path/apprun-hooks/linuxdeploy-plugin-gtk.sh"
 
-log i "RetroDECK is now launching $COMPONENT_NAME"
+log i "RetroDECK is now launching $component_name"
 log d "Loaded app run hooks in apprun-hooks/linuxdeploy-plugin-checkrt.sh"
 log d "Loaded app run hooks in apprun-hooks/linuxdeploy-plugin-gtk.sh"
 
-exec "$rd_components/$COMPONENT_NAME/bin/Cemu" "$@"
+exec "$component_path/bin/Cemu" "$@"

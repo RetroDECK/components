@@ -1,3 +1,3 @@
 #!/bin/bash
 
-duckstationconf="$XDG_CONFIG_HOME/duckstation/settings.ini"
+duckstation_config_settings="$XDG_CONFIG_HOME/duckstation/settings.ini"

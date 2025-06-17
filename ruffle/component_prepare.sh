@@ -1,10 +1,22 @@
 #!/bin/bash
 
-component_name="$(basename "$(dirname "$0")")"
+# Setting component name and path based on the directory name
+component_name="$(basename "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")")"
+config="/app/retrodeck/components/$component_name/rd_config"
 
-log i "--------------------------------"
-log i "Prepearing Ruffle"
-log i "--------------------------------"
-if [[ "$action" == "reset" ]]; then
-    create_dir "$saves_folder/ruffle"
+if [[ "$action" == "reset" ]]; then # Run reset-only commands
+  log i "----------------------"
+  log i "Preparing $component_name"
+  log i "----------------------"
+
+  if [[ $multi_user_mode == "true" ]]; then # Multi-user actions
+  # Add Multiuser things and reset things
+
+  else # Single-user actions
+    create_dir "$XDG_CONFIG_HOME/simcoupe"
+    create_dir "$rd_home_saves_path/ruffle"
+
+  fi
+  # Shared actions
+
 fi

@@ -1,0 +1,10 @@
+{
+    "openbor": {
+        "name": "OpenBOR",
+        "url": "https://retrodeck.readthedocs.io/en/latest/wiki_engine_guides/openbor/openbor-guide/",
+        "description": "OpenBOR is a royalty free sprite-based side scrolling gaming engine.",
+        "system_friendly_name": "Open Beats of Rage (OpenBOR)",
+        "system": "openbor"
+
+    }
+}
