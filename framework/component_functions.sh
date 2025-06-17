@@ -407,7 +407,7 @@ configurator_repair_paths_dialog() {
   configurator_tools_dialog
 }
 
-configurator_change_logging_level_dialog() {
+configurator_change_rd_logging_level_dialog() {
   choice=$(rd_zenity --list --title="RetroDECK Configurator Utility - RetroDECK: Change Logging Level" --cancel-label="Back" \
   --window-icon="/app/share/icons/hicolor/scalable/apps/net.retrodeck.retrodeck.svg" --width=1200 --height=720 \
   --column="Choice" --column="Action" \
@@ -420,29 +420,29 @@ configurator_change_logging_level_dialog() {
 
   "Level 1: Informational" )
     log i "Configurator: Changing logging level to \"$choice\""
-    set_setting_value "$rd_conf" "logging_level" "info" "retrodeck" "options"
-    declare -g "$logging_level=info"
+    set_setting_value "$rd_conf" "rd_logging_level" "info" "retrodeck" "options"
+    declare -g "$rd_logging_level=info"
     configurator_generic_dialog "RetroDECK Configurator - Change Logging Level" "The logging level has been changed to Level 1: Informational"
   ;;
 
   "Level 2: Warnings" )
     log i "Configurator: Changing logging level to \"$choice\""
-    set_setting_value "$rd_conf" "logging_level" "warn" "retrodeck" "options"
-    declare -g "$logging_level=warn"
+    set_setting_value "$rd_conf" "rd_logging_level" "warn" "retrodeck" "options"
+    declare -g "$rd_logging_level=warn"
     configurator_generic_dialog "RetroDECK Configurator - Change Logging Level" "The logging level has been changed to Level 2: Warnings"
   ;;
 
   "Level 3: Errors" )
     log i "Configurator: Changing logging level to \"$choice\""
-    set_setting_value "$rd_conf" "logging_level" "error" "retrodeck" "options"
-    declare -g "$logging_level=error"
+    set_setting_value "$rd_conf" "rd_logging_level" "error" "retrodeck" "options"
+    declare -g "$rd_logging_level=error"
     configurator_generic_dialog "RetroDECK Configurator - Change Logging Level" "The logging level has been changed to Level 3: Errors"
   ;;
 
   "Level 4: Debug" )
     log i "Configurator: Changing logging level to \"$choice\""
-    set_setting_value "$rd_conf" "logging_level" "debug" "retrodeck" "options"
-    declare -g "$logging_level=debug"
+    set_setting_value "$rd_conf" "rd_logging_level" "debug" "retrodeck" "options"
+    declare -g "$rd_logging_level=debug"
     configurator_generic_dialog "RetroDECK Configurator - Change Logging Level" "The logging level has been changed to Level 4: Debug"
   ;;
 

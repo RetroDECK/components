@@ -24,7 +24,7 @@ else
 
     log e "Logger script not found. Please ensure .tmpfunc/logger.sh exists." >&2
 fi
-export logging_level="debug"
+export rd_logging_level="debug"
 
 FORCE=0                 # Force the download even if the version is the same, useful for local retention, enabled by default on CI/CD to avoid missing updates since the version files are present bu the artifacts are not
 DRY_RUN=0

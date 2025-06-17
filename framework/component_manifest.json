@@ -56,11 +56,11 @@
             "zenity": "configurator_repair_paths_dialog"
           }
         },
-        "change_logging_level": {
+        "change_rd_logging_level": {
           "name": "Change Logging Level",
           "description": "Change the RetroDECK logging level, for debugging purposes",
           "command": {
-            "zenity": "configurator_change_logging_level_dialog"
+            "zenity": "configurator_change_rd_logging_level_dialog"
           }
         }
       },
