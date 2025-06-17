@@ -4,8 +4,6 @@
 component_name="$(basename "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")")"
 config="/app/retrodeck/components/$component_name/rd_config"
 
-duckstation_conf="$XDG_CONFIG_HOME/duckstation/settings.ini"
-
 if [[ "$action" == "reset" ]]; then # Run reset-only commands
 
   log i "------------------------"
@@ -25,11 +23,11 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
       create_dir -d "$XDG_CONFIG_HOME/duckstation/"
       create_dir "$rd_home_saves_path/psx/duckstation/memcards"
       cp -fv "$config/"* "$XDG_CONFIG_HOME/duckstation"
-      set_setting_value "$duckstation_conf" "SearchDirectory" "$rd_home_bios_path" "duckstation" "BIOS"
-      set_setting_value "$duckstation_conf" "Card1Path" "$rd_home_saves_path/psx/duckstation/memcards/shared_card_1.mcd" "duckstation" "MemoryCards"
-      set_setting_value "$duckstation_conf" "Card2Path" "$rd_home_saves_path/psx/duckstation/memcards/shared_card_2.mcd" "duckstation" "MemoryCards"
-      set_setting_value "$duckstation_conf" "Directory" "$rd_home_saves_path/psx/duckstation/memcards" "duckstation" "MemoryCards"
-      set_setting_value "$duckstation_conf" "RecursivePaths" "$rd_home_roms_path/psx" "duckstation" "GameList"
+      set_setting_value "$duckstation_config_settings" "SearchDirectory" "$rd_home_bios_path" "duckstation" "BIOS"
+      set_setting_value "$duckstation_config_settings" "Card1Path" "$rd_home_saves_path/psx/duckstation/memcards/shared_card_1.mcd" "duckstation" "MemoryCards"
+      set_setting_value "$duckstation_config_settings" "Card2Path" "$rd_home_saves_path/psx/duckstation/memcards/shared_card_2.mcd" "duckstation" "MemoryCards"
+      set_setting_value "$duckstation_config_settings" "Directory" "$rd_home_saves_path/psx/duckstation/memcards" "duckstation" "MemoryCards"
+      set_setting_value "$duckstation_config_settings" "RecursivePaths" "$rd_home_roms_path/psx" "duckstation" "GameList"
     fi
     # Shared actions
     dir_prep "$rd_home_states_path/psx/duckstation" "$XDG_CONFIG_HOME/duckstation/savestates" # This is hard-coded in Duckstation, always needed
@@ -43,11 +41,11 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
 fi
 
 if [[ "$action" == "postmove" ]]; then # Run only post-move commands
-  set_setting_value "$duckstation_conf" "SearchDirectory" "$rd_home_bios_path" "duckstation" "BIOS"
-  set_setting_value "$duckstation_conf" "Card1Path" "$rd_home_saves_path/psx/duckstation/memcards/shared_card_1.mcd" "duckstation" "MemoryCards"
-  set_setting_value "$duckstation_conf" "Card2Path" "$rd_home_saves_path/psx/duckstation/memcards/shared_card_2.mcd" "duckstation" "MemoryCards"
-  set_setting_value "$duckstation_conf" "Directory" "$rd_home_saves_path/psx/duckstation/memcards" "duckstation" "MemoryCards"
-  set_setting_value "$duckstation_conf" "RecursivePaths" "$rd_home_roms_path/psx" "duckstation" "GameList"
+  set_setting_value "$duckstation_config_settings" "SearchDirectory" "$rd_home_bios_path" "duckstation" "BIOS"
+  set_setting_value "$duckstation_config_settings" "Card1Path" "$rd_home_saves_path/psx/duckstation/memcards/shared_card_1.mcd" "duckstation" "MemoryCards"
+  set_setting_value "$duckstation_config_settings" "Card2Path" "$rd_home_saves_path/psx/duckstation/memcards/shared_card_2.mcd" "duckstation" "MemoryCards"
+  set_setting_value "$duckstation_config_settings" "Directory" "$rd_home_saves_path/psx/duckstation/memcards" "duckstation" "MemoryCards"
+  set_setting_value "$duckstation_config_settings" "RecursivePaths" "$rd_home_roms_path/psx" "duckstation" "GameList"
   dir_prep "$rd_home_states_path/psx/duckstation" "$XDG_CONFIG_HOME/duckstation/savestates" # This is hard-coded in Duckstation, always needed
   dir_prep "$rd_home_texture_packs_path/Duckstation" "$XDG_CONFIG_HOME/duckstation/textures"
 fi
