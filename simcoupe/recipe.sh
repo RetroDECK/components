@@ -12,6 +12,8 @@ assemble gh_latest_release "simonowen/simcoupe/simcoupe_*_amd64.tar.gz"
 artifacts_path="$component/artifacts"
 
 tar -xvf $component/artifacts/simcoupe_*_amd64.tar.gz -C $component/artifacts/
+mv -f $component/artifacts/simcoupe_*_amd64/* $component/artifacts/
 rm -f $component/artifacts/simcoupe_*_amd64.tar.gz
+rmdir -f $component/artifacts/simcoupe_*_amd/
 
 finalize
