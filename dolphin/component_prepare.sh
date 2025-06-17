@@ -4,14 +4,6 @@
 component_name="$(basename "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")")"
 config="/app/retrodeck/components/$component_name/rd_config"
 
-dolphin_conf="$XDG_CONFIG_HOME/dolphin-emu/Dolphin.ini"
-dolphin_gcpad_conf="$XDG_CONFIG_HOME/dolphin-emu/GCPadNew.ini"
-dolphin_gfx_conf="$XDG_CONFIG_HOME/dolphin-emu/GFX.ini"
-dolphin_hotkeys_conf="$XDG_CONFIG_HOME/dolphin-emu/Hotkeys.ini"
-dolphin_qt_conf="$XDG_CONFIG_HOME/dolphin-emu/Qt.ini"
-dolphin_dynamic_input_textures_path="$XDG_DATA_HOME/dolphin-emu/Load/DynamicInputTextures"
-dolphin_cheevos_conf="$XDG_CONFIG_HOME/dolphin-emu/RetroAchievements.ini"
-
 if [[ "$action" == "reset" ]]; then # Run reset-only commands
 
     log i "----------------------"
@@ -30,11 +22,11 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
     else # Single-user actions
         create_dir -d "$XDG_CONFIG_HOME/dolphin-emu/"
         cp -fvr "$config/"* "$XDG_CONFIG_HOME/dolphin-emu/"
-        set_setting_value "$dolphin_conf" "BIOS" "$rd_home_bios_path" "dolphin" "GBA"
-        set_setting_value "$dolphin_conf" "SavesPath" "$rd_home_saves_path/gba" "dolphin" "GBA"
-        set_setting_value "$dolphin_conf" "ISOPath0" "$rd_home_roms_path/wii" "dolphin" "General"
-        set_setting_value "$dolphin_conf" "ISOPath1" "$rd_home_roms_path/gc" "dolphin" "General"
-        set_setting_value "$dolphin_conf" "WiiSDCardPath" "$rd_home_saves_path/wii/dolphin/sd.raw" "dolphin" "General"
+        set_setting_value "$dolphin_config_Dolphin" "BIOS" "$rd_home_bios_path" "dolphin" "GBA"
+        set_setting_value "$dolphin_config_Dolphin" "SavesPath" "$rd_home_saves_path/gba" "dolphin" "GBA"
+        set_setting_value "$dolphin_config_Dolphin" "ISOPath0" "$rd_home_roms_path/wii" "dolphin" "General"
+        set_setting_value "$dolphin_config_Dolphin" "ISOPath1" "$rd_home_roms_path/gc" "dolphin" "General"
+        set_setting_value "$dolphin_config_Dolphin" "WiiSDCardPath" "$rd_home_saves_path/wii/dolphin/sd.raw" "dolphin" "General"
     fi
 
     # Shared actions
@@ -60,9 +52,9 @@ if [[ "$action" == "postmove" ]]; then # Run only post-move commands
     dir_prep "$rd_home_saves_path/wii/dolphin" "$XDG_DATA_HOME/dolphin-emu/Wii"
     dir_prep "$rd_home_mods_path/Dolphin" "$XDG_DATA_HOME/dolphin-emu/Load/GraphicMods"
     dir_prep "$rd_home_texture_packs_path/Dolphin" "$XDG_DATA_HOME/dolphin-emu/Load/Textures"
-    set_setting_value "$dolphin_conf" "BIOS" "$rd_home_bios_path" "dolphin" "GBA"
-    set_setting_value "$dolphin_conf" "SavesPath" "$rd_home_saves_path/gba" "dolphin" "GBA"
-    set_setting_value "$dolphin_conf" "ISOPath0" "$rd_home_roms_path/wii" "dolphin" "General"
-    set_setting_value "$dolphin_conf" "ISOPath1" "$rd_home_roms_path/gc" "dolphin" "General"
-    set_setting_value "$dolphin_conf" "WiiSDCardPath" "$rd_home_saves_path/wii/dolphin/sd.raw" "dolphin" "General"
+    set_setting_value "$dolphin_config_Dolphin" "BIOS" "$rd_home_bios_path" "dolphin" "GBA"
+    set_setting_value "$dolphin_config_Dolphin" "SavesPath" "$rd_home_saves_path/gba" "dolphin" "GBA"
+    set_setting_value "$dolphin_config_Dolphin" "ISOPath0" "$rd_home_roms_path/wii" "dolphin" "General"
+    set_setting_value "$dolphin_config_Dolphin" "ISOPath1" "$rd_home_roms_path/gc" "dolphin" "General"
+    set_setting_value "$dolphin_config_Dolphin" "WiiSDCardPath" "$rd_home_saves_path/wii/dolphin/sd.raw" "dolphin" "General"
 fi
