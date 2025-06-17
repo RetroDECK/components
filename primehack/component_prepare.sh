@@ -12,7 +12,7 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
 
     if [[ $multi_user_mode == "true" ]]; then # Multi-user actions
         create_dir -d "$multi_user_data_folder/$SteamAppUser/config/primehack"
-        cp -fvr "$config/primehack/config/"* "$multi_user_data_folder/$SteamAppUser/config/primehack/"
+        cp -fvr "$config/"* "$multi_user_data_folder/$SteamAppUser/config/primehack/"
         set_setting_value "$multi_user_data_folder/$SteamAppUser/config/primehack/Dolphin.ini" "ISOPath0" "$rd_home_roms_path/wii" "primehack" "General"
         set_setting_value "$multi_user_data_folder/$SteamAppUser/config/primehack/Dolphin.ini" "ISOPath1" "$rd_home_roms_path/gc" "primehack" "General"
         dir_prep "$multi_user_data_folder/$SteamAppUser/config/primehack" "$XDG_CONFIG_HOME/primehack"
@@ -20,7 +20,7 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
     else # Single-user actions
 
         create_dir -d "$XDG_CONFIG_HOME/primehack/"
-        cp -fvr "$config/primehack/config/"* "$XDG_CONFIG_HOME/primehack/"
+        cp -fvr "$config/"* "$XDG_CONFIG_HOME/primehack/"
         set_setting_value "$primehackconf" "ISOPath0" "$rd_home_roms_path/wii" "primehack" "General"
         set_setting_value "$primehackconf" "ISOPath1" "$rd_home_roms_path/gc" "primehack" "General"
     fi
@@ -36,7 +36,7 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
     dir_prep "$rd_home_mods_path/Primehack" "$XDG_DATA_HOME/primehack/Load/GraphicMods"
     dir_prep "$rd_home_texture_packs_path/Primehack" "$XDG_DATA_HOME/primehack/Load/Textures"
     if [[ $multi_user_mode == "true" ]]; then # Multi-user actions
-        cp -fvr "$config/primehack/data/"* "$multi_user_data_folder/$SteamAppUser/data/primehack/" # this must be done after the dirs are prepared as it copying some "mods"
+        cp -fvr "$config/data/"* "$multi_user_data_folder/$SteamAppUser/data/primehack/" # this must be done after the dirs are prepared as it copying some "mods"
     fi
 
     # Reset default preset settings
