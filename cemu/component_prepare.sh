@@ -20,8 +20,13 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
   else
     create_dir -d "$XDG_CONFIG_HOME/Cemu/"
     cp -fr "$config/"* "$XDG_CONFIG_HOME/Cemu/"
+<<<<<<< HEAD
     set_setting_value "$cemu_conf" "mlc_path" "$rd_home_bios_path/cemu" "cemu"
     set_setting_value "$cemu_conf" "Entry" "$rd_home_roms_path/wiiu" "cemu" "GamePaths"
+=======
+    set_setting_value "$cemu_config_settings" "mlc_path" "$rd_home_bios_path/cemu" "cemu"
+    set_setting_value "$cemu_config_settings" "Entry" "$rd_home_roms_path/wiiu" "cemu" "GamePaths"
+>>>>>>> df2fd99 (cemu variables)
     if [[ -e "$rd_home_bios_path/cemu/keys.txt" ]]; then
       rm -rf "$XDG_DATA_HOME/Cemu/keys.txt" && ln -s "$rd_home_bios_path/cemu/keys.txt" "$XDG_DATA_HOME/Cemu/keys.txt" && log d "Linked $rd_home_bios_path/cemu/keys.txt to $XDG_DATA_HOME/Cemu/keys.txt"
     fi
@@ -30,8 +35,13 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
   dir_prep "$rd_home_saves_path/wiiu/cemu" "$rd_home_bios_path/cemu/usr/save"
 fi
 if [[ "$action" == "postmove" ]]; then # Run commands that apply to both resets and moves
+<<<<<<< HEAD
   set_setting_value "$cemu_conf" "mlc_path" "$rd_home_bios_path/cemu" "cemu"
   set_setting_value "$cemu_conf" "Entry" "$rd_home_roms_path/wiiu" "cemu" "GamePaths"
+=======
+  set_setting_value "$cemu_config_settings" "mlc_path" "$rd_home_bios_path/cemu" "cemu"
+  set_setting_value "$cemu_config_settings" "Entry" "$rd_home_roms_path/wiiu" "cemu" "GamePaths"
+>>>>>>> df2fd99 (cemu variables)
   dir_prep "$rd_home_saves_path/wiiu/cemu" "$rd_home_bios_path/cemu/usr/save"
 fi
 
