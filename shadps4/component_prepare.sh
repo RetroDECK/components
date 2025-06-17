@@ -14,8 +14,8 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
   # Shared actions
     create_dir "$rd_home_storage_path/ps4/shadps4/installed"
     create_dir "$rd_home_storage_path/ps4/shadps4/addcont"
-    set_setting_value "$shadps4_config" "installDirs" "$rd_home_storage_path/ps4/installed" "shadps4"
-    set_setting_value "$shadps4_config" "addonInstallDir" "$rd_home_storage_path/ps4/addcont" "shadps4"
-    set_setting_value "$shadps4_config" "saveDataPath" "$rd_home_saves_path/ps4/shadps4" "shadps4"
+    set_setting_value "$shadps4_config_config" "installDirs" "$rd_home_storage_path/ps4/installed" "shadps4"
+    set_setting_value "$shadps4_config_config" "addonInstallDir" "$rd_home_storage_path/ps4/addcont" "shadps4"
+    set_setting_value "$shadps4_config_config" "saveDataPath" "$rd_home_saves_path/ps4/shadps4" "shadps4"
 
 fi

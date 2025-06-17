@@ -4,8 +4,6 @@
 component_name="$(basename "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")")"
 config="/app/retrodeck/components/$component_name/rd_config"
 
-vita3k_conf="$XDG_CONFIG_HOME/Vita3K/config.yml"
-
 if [[ "$action" == "reset" ]]; then # Run reset-only commands
 
     log i "----------------------"
@@ -20,9 +18,9 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
       # NOTE: the component is writing in "." so it must be placed in the rw filesystem. A symlink of the binary is already placed in /app/bin/Vita3K
       rm -rf "$XDG_CONFIG_HOME/Vita3K"
       create_dir "$XDG_CONFIG_HOME/Vita3K"
-      cp -fvr "$config/config.yml" "$vita3k_conf" # component config
+      cp -fvr "$config/config.yml" "$vita3k_config_config" # component config
       cp -fvr "$config/ux0" "$rd_home_storage_path/psvita/Vita3K/" # User config
-      set_setting_value "$vita3k_conf" "pref-path" "$rd_home_storage_path/psvita/Vita3K/" "vita3k"
+      set_setting_value "$vita3k_config_config" "pref-path" "$rd_home_storage_path/psvita/Vita3K/" "vita3k"
     fi
 
     # Shared actions
@@ -31,6 +29,6 @@ fi
 
 if [[ "$action" == "postmove" ]]; then # Run only post-move commands
   dir_prep "$rd_home_saves_path/psvita/vita3k" "$rd_home_storage_path/psvita/Vita3K/ux0/user/00/savedata" # Multi-user safe?
-  set_setting_value "$vita3k_conf" "pref-path" "$rd_home_storage_path/psvita/Vita3K/" "vita3k"
+  set_setting_value "$vita3k_config_config" "pref-path" "$rd_home_storage_path/psvita/Vita3K/" "vita3k"
 fi
 

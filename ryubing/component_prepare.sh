@@ -27,10 +27,10 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
         log d "Removing \"$XDG_CONFIG_HOME/ryubing\""
         rm -rf "$XDG_CONFIG_HOME/ryubing"
         create_dir "$XDG_CONFIG_HOME/ryubing/system"
-        cp -fv "$config/Config.json" "$ryubing_config"
+        cp -fv "$config/Config.json" "$ryubing_config_Config"
         cp -fvr "$config/ryubing/profiles/controller" "$XDG_CONFIG_HOME/$ryubing_profiles_path"
-        log d "Replacing placeholders in \"$ryubing_config\""
-        sed -i 's#RETRODECKHOMEDIR#'"$rd_home_path"'#g' "$ryubing_config"
+        log d "Replacing placeholders in \"$ryubing_config_Config\""
+        sed -i 's#RETRODECKHOMEDIR#'"$rd_home_path"'#g' "$ryubing_config_Config"
         create_dir "$rd_internal_logs_path/switch/ryubing"
         create_dir "$rd_home_mods_path/switch/ryubing"
         create_dir "$rd_home_screenshots_path/switch/ryubing"
@@ -42,6 +42,6 @@ fi
 # fi
 
 if [[ "$action" == "postmove" ]]; then # Run only post-move commands
-    log d "Replacing placeholders in \"$ryubing_config\""
-    sed -i 's#RETRODECKHOMEDIR#'"$rd_home_path"'#g' "$ryubing_config" # This is an unfortunate one-off because set_setting_value does not currently support JSON
+    log d "Replacing placeholders in \"$ryubing_config_Config\""
+    sed -i 's#RETRODECKHOMEDIR#'"$rd_home_path"'#g' "$ryubing_config_Config" # This is an unfortunate one-off because set_setting_value does not currently support JSON
 fi
