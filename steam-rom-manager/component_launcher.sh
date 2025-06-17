@@ -11,6 +11,6 @@ LD_LIBRARY_PATH="$component_path/lib:${LD_LIBRARY_PATH}"
 
 log i "RetroDECK is now launching $component_name"
 log d "Library path is: $LD_LIBRARY_PATH"
-log d "AppDir is: $component_path"
+log d "AppDir is: $APPDIR"
 
-exec "$component_path/AppRun" --no-sandbox "$@"
+APPDIR="$component_path" exec "$component_path/AppRun" --no-sandbox "$@"
