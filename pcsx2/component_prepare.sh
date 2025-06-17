@@ -5,6 +5,8 @@ component_name="$(basename "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")")"
 config="/app/retrodeck/components/$component_name/rd_config"
 extras="/app/retrodeck/config/$component_name/rd_extras"
 
+pcsx2_conf="$XDG_CONFIG_HOME/PCSX2/inis/PCSX2.ini"
+
 if [[ "$action" == "reset" ]]; then # Run reset-only commands
 
   log i "----------------------"
@@ -25,12 +27,12 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
 
     create_dir -d "$XDG_CONFIG_HOME/PCSX2/inis"
     cp -fvr "$config/"* "$XDG_CONFIG_HOME/PCSX2/inis/"
-    set_setting_value "$pcsx2conf" "Bios" "$rd_home_bios_path" "pcsx2" "Folders"
-    set_setting_value "$pcsx2conf" "Snapshots" "$rd_home_screenshots_path" "pcsx2" "Folders"
-    set_setting_value "$pcsx2conf" "SaveStates" "$rd_home_states_path/ps2/pcsx2" "pcsx2" "Folders"
-    set_setting_value "$pcsx2conf" "MemoryCards" "$rd_home_saves_path/ps2/pcsx2/memcards" "pcsx2" "Folders"
-    set_setting_value "$pcsx2conf" "RecursivePaths" "$rd_home_roms_path/ps2" "pcsx2" "GameList"
-    set_setting_value "$pcsx2conf" "Cheats" "$rd_home_cheats_path/pcsx2" "Folders"
+    set_setting_value "$pcsx2_conf" "Bios" "$rd_home_bios_path" "pcsx2" "Folders"
+    set_setting_value "$pcsx2_conf" "Snapshots" "$rd_home_screenshots_path" "pcsx2" "Folders"
+    set_setting_value "$pcsx2_conf" "SaveStates" "$rd_home_states_path/ps2/pcsx2" "pcsx2" "Folders"
+    set_setting_value "$pcsx2_conf" "MemoryCards" "$rd_home_saves_path/ps2/pcsx2/memcards" "pcsx2" "Folders"
+    set_setting_value "$pcsx2_conf" "RecursivePaths" "$rd_home_roms_path/ps2" "pcsx2" "GameList"
+    set_setting_value "$pcsx2_conf" "Cheats" "$rd_home_cheats_path/pcsx2" "Folders"
     if [[ -d "$rd_home_cheats_path/pcsx2" && "$(ls -A "$rd_home_cheats_path/pcsx2")" ]]; then
       backup_file="$rd_home_backups_path/cheats/pcsx2-$(date +%y%m%d).tar.gz"
       create_dir "$(dirname "$backup_file")"
@@ -54,11 +56,11 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
 fi
 
 if [[ "$action" == "postmove" ]]; then # Run only post-move commands
-  set_setting_value "$pcsx2conf" "Bios" "$rd_home_bios_path" "pcsx2" "Folders"
-  set_setting_value "$pcsx2conf" "Snapshots" "$rd_home_screenshots_path" "pcsx2" "Folders"
-  set_setting_value "$pcsx2conf" "SaveStates" "$rd_home_states_path/ps2/pcsx2" "pcsx2" "Folders"
-  set_setting_value "$pcsx2conf" "MemoryCards" "$rd_home_saves_path/ps2/pcsx2/memcards" "pcsx2" "Folders"
-  set_setting_value "$pcsx2conf" "RecursivePaths" "$rd_home_roms_path/ps2" "pcsx2" "GameList"
-  set_setting_value "$pcsx2conf" "Cheats" "$rd_home_cheats_path/pcsx2" "Folders"
+  set_setting_value "$pcsx2_conf" "Bios" "$rd_home_bios_path" "pcsx2" "Folders"
+  set_setting_value "$pcsx2_conf" "Snapshots" "$rd_home_screenshots_path" "pcsx2" "Folders"
+  set_setting_value "$pcsx2_conf" "SaveStates" "$rd_home_states_path/ps2/pcsx2" "pcsx2" "Folders"
+  set_setting_value "$pcsx2_conf" "MemoryCards" "$rd_home_saves_path/ps2/pcsx2/memcards" "pcsx2" "Folders"
+  set_setting_value "$pcsx2_conf" "RecursivePaths" "$rd_home_roms_path/ps2" "pcsx2" "GameList"
+  set_setting_value "$pcsx2_conf" "Cheats" "$rd_home_cheats_path/pcsx2" "Folders"
   dir_prep "$rd_home_texture_packs_path/PCSX2" "$XDG_CONFIG_HOME/PCSX2/textures"
 fi
