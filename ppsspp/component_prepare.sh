@@ -4,9 +4,6 @@
 component_name="$(basename "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")")"
 config="/app/retrodeck/components/$component_name/rd_config"
 
-ppsspp_conf="$XDG_CONFIG_HOME/ppsspp/PSP/SYSTEM/ppsspp.ini"
-ppsspp_controls_conf="$XDG_CONFIG_HOME/ppsspp/PSP/SYSTEM/controls.ini"
-ppsspp_cheevos_conf="$XDG_CONFIG_HOME/ppsspp/PSP/SYSTEM/ppsspp_retroachievements.dat"
 ppsspp_cheats_db="$rd_components/ppsspp/cheats/cheat.db"
 
 if [[ "$action" == "reset" ]]; then # Run reset-only commands
