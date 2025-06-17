@@ -30,7 +30,7 @@ if [[ "$action" == "reset" ]]; then # Update the paths of all folders in retrode
                 log d "Logs folder moved to $rd_internal_logs_path and linked back to $rd_rd_home_logs_path"
             fi
         fi
-    done < <(grep -v '^\s*$' "$rd_conf" | awk '/^\[paths\]/{f=1;next} /^\[/{f=0} f')
+    done < <(jq -r '.paths | to_entries[] | "\(.key)=\(.value)"' "$rd_conf")
     create_dir "$XDG_CONFIG_HOME/retrodeck/godot" # TODO: what is this for? Can we delete it or add it to the retrodeck.cfg so the folder will be created by the above script?
 fi
 
