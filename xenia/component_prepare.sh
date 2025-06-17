@@ -12,9 +12,17 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
   if [[ $multi_user_mode == "true" ]]; then # Multi-user actions
   # Add Multiuser things and reset things
 
+    # if this section is empty the if will be invalid so we put a log message here
+    log d "TODO: Implement multi-user actions for $component_name"
+
   else # Single-user actions
-  create_dir "$XDG_CONFIG_HOME/xenia"
-  dir_prep "$rd_home_saves_path/xbox360/content" "/app/retrodeck/components/xenia/content"
+    create_dir "$XDG_CONFIG_HOME/xenia"
+    dir_prep "$rd_home_saves_path/xbox360/content" "/app/retrodeck/components/xenia/content"
+  fi
+
+  else # Single-user actions
+    create_dir "$XDG_CONFIG_HOME/xenia"
+    dir_prep "$rd_home_saves_path/xbox360/content" "/app/retrodeck/components/xenia/content"
   fi
   # Shared actions
 
@@ -23,6 +31,5 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
   dir_prep "$XDG_CACHE_HOME/xenia/cache0" "/app/retrodeck/components/xenia/cache0"
   dir_prep "$XDG_CACHE_HOME/xenia/cache1" "/app/retrodeck/components/xenia/cache1"
   dir_prep "$rd_home_storage_path/xbox360/xenia/content" "/app/retrodeck/components/xenia/content"
-
 
 fi

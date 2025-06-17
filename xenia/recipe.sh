@@ -8,4 +8,7 @@ touch "$component/artifacts/portable.txt"
 
 # Custom Commands
 
+# Creating a symlink to be used later
+ln -s "$XDG_CONFIG_HOME/xenia" "$component/artifacts/portable"
+
 finalize
