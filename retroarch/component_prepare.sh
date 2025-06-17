@@ -6,6 +6,11 @@ component_path="$(cd "$(dirname "${BASH_SOURCE[0]}" )" && pwd)"
 config="$component_path/rd_config"
 extras="$component_path/rd_extras"
 
+ra_conf="$XDG_CONFIG_HOME/retroarch/retroarch.cfg"
+ra_core_conf="$XDG_CONFIG_HOME/retroarch/retroarch-core-options.cfg"
+ra_scummvm_conf="$XDG_CONFIG_HOME/retroarch/system/scummvm.ini"
+ra_cores_path="$XDG_CONFIG_HOME/retroarch/cores"
+
 log i "--------------------------------"
 log i "Preparing $component_name"
 log i "--------------------------------"
