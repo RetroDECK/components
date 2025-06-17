@@ -15,6 +15,8 @@ create_dir "$XDG_DATA_HOME/gzdoom/audio/midi"
 create_dir "$XDG_DATA_HOME/gzdoom/audio/fm_banks"
 create_dir "$XDG_DATA_HOME/gzdoom/audio/soundfonts"
 create_dir "$rd_home_bios_path/gzdoom"
+create_dir "$rd_home_storage_path/gzdoom/audio/soundfonts"
+create_dir "$rd_home_storage_path/gzdoom/audio/fm_banks"
 
 cp -fvr "$config/"gzdoom.ini" "$XDG_CONFIG_HOME/gzdoom"
 
