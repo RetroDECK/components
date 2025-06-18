@@ -4,7 +4,6 @@
 component_name="$(basename "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")")"
 component_path="$(cd "$(dirname "${BASH_SOURCE[0]}" )" && pwd)"
 component_config="$component_path/rd_config"
-component_extras="$component_path/rd_extras"
 
 log i "--------------------------------"
 log i "Preparing $component_name"
@@ -65,7 +64,7 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
   if [ -d "$bios_path/PPSSPP/flash0/font" ]; then
     mv -fv "$bios_path/PPSSPP/flash0/font" "$bios_path/PPSSPP/flash0/font.bak"
   fi
-  cp -rf "$extras/PPSSPP" "$bios_path/PPSSPP"
+  cp -rf "$retroarch_extras_path/PPSSPP" "$bios_path/PPSSPP"
   if [ -d "$bios_path/PPSSPP/flash0/font.bak" ]; then
     mv -f "$bios_path/PPSSPP/flash0/font.bak" "$bios_path/PPSSPP/flash0/font"
   fi
@@ -74,17 +73,17 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
   log i "-----------------------------------------------------------"
   log i "Preparing MSX / SVI / ColecoVision / SG-1000 LIBRETRO"
   log i "-----------------------------------------------------------"
-  log i "Copying \"$extras/MSX/Databases\" in \"$bios_path/Databases\""
-  cp -rf "$extras/MSX/Databases" "$bios_path/Databases"
-  log i "Copying \"$extras/MSX/Machines\" in \"$bios_path/Machines\""
-  cp -rf "$extras/MSX/Machines" "$bios_path/Machines"
+  log i "Copying \"$retroarch_extras_path/MSX/Databases\" in \"$bios_path/Databases\""
+  cp -rf "$retroarch_extras_path/MSX/Databases" "$bios_path/Databases"
+  log i "Copying \"$retroarch_extras_path/MSX/Machines\" in \"$bios_path/Machines\""
+  cp -rf "$retroarch_extras_path/MSX/Machines" "$bios_path/Machines"
 
   # AMIGA
   log i "-----------------------------------------------------------"
   log i "Prepearing AMIGA LIBRETRO"
   log i "-----------------------------------------------------------"
-  log i "Copying \"$extras/Amiga/capsimg.so\" in \"$bios_path/capsimg.so\""
-  cp -f "$extras/Amiga/capsimg.so" "$bios_path/capsimg.so"
+  log i "Copying \"$retroarch_extras_path/Amiga/capsimg.so\" in \"$bios_path/capsimg.so\""
+  cp -f "$retroarch_extras_path/Amiga/capsimg.so" "$bios_path/capsimg.so"
 
   # ScummVM
   log i "-----------------------------------------------------------"
