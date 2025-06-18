@@ -31,7 +31,7 @@ if [[ $(get_setting_value "$rd_conf" "akai_ponzu" "retrodeck" "options") == "tru
     fi
     if [[ "$action" == "postmove" ]]; then # Run only post-move commands
       dir_prep "$bios_path/citra/sysdata" "$XDG_DATA_HOME/citra-emu/sysdata"
-      dir_prep "$path/logs/citra" "$XDG_DATA_HOME/citra-emu/log"
+      dir_prep "$logs_path/citra" "$XDG_DATA_HOME/citra-emu/log"
       dir_prep "$mods_path/Citra" "$XDG_DATA_HOME/citra-emu/load/mods"
       dir_prep "$texture_packs_path/Citra" "$XDG_DATA_HOME/citra-emu/load/textures"
       set_setting_value "$citraconf" "nand_directory" "$saves_path/n3ds/citra/nand/" "citra" "Data%20Storage"
