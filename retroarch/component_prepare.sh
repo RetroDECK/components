@@ -33,7 +33,7 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
   set_setting_value "$retroarch_config" "savefile_directory" "$saves_path" "retroarch"
   set_setting_value "$retroarch_config" "savestate_directory" "$states_path" "retroarch"
   set_setting_value "$retroarch_config" "screenshot_directory" "$screenshots_path" "retroarch"
-  set_setting_value "$retroarch_config" "log_dir" "$rd_internal_logs_path" "retroarch"
+  set_setting_value "$retroarch_config" "log_dir" "$logs_path" "retroarch"
   set_setting_value "$retroarch_config" "rgui_browser_directory" "$roms_path" "retroarch"
   set_setting_value "$retroarch_config" "cheat_database_path" "$cheats_path/retroarch" "retroarch"
   set_setting_value "$retroarch_config" "assets_directory" "$component_path/assets" "retroarch"
@@ -116,7 +116,7 @@ fi
 
 if [[ "$action" == "postmove" ]]; then # Run only post-move commands
   dir_prep "$bios_path" "$XDG_CONFIG_HOME/retroarch/system"
-  dir_prep "$rd_internal_logs_path/retroarch" "$XDG_CONFIG_HOME/retroarch/logs"
+  dir_prep "$logs_path/retroarch" "$XDG_CONFIG_HOME/retroarch/logs"
   dir_prep "$shaders_path/retroarch" "$XDG_CONFIG_HOME/retroarch/shaders"
   dir_prep "$texture_packs_path/retroarch/Mesen" "$XDG_CONFIG_HOME/retroarch/system/HdPacks"
   dir_prep "$texture_packs_path/retroarch/Mupen64Plus/cache" "$XDG_CONFIG_HOME/retroarch/system/Mupen64plus/cache"
@@ -124,5 +124,5 @@ if [[ "$action" == "postmove" ]]; then # Run only post-move commands
   set_setting_value "$retroarch_config" "savefile_directory" "$saves_path" "retroarch"
   set_setting_value "$retroarch_config" "savestate_directory" "$states_path" "retroarch"
   set_setting_value "$retroarch_config" "screenshot_directory" "$screenshots_path" "retroarch"
-  set_setting_value "$retroarch_config" "log_dir" "$rd_internal_logs_path" "retroarch"
+  set_setting_value "$retroarch_config" "log_dir" "$logs_path" "retroarch"
 fi
