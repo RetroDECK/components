@@ -14,7 +14,7 @@ log d "RetroArch config path: $component_config/retroarch.cfg"
 if [[ "$action" == "reset" ]]; then # Run reset-only commands
   create_dir -d "$XDG_CONFIG_HOME/retroarch"
   dir_prep "$bios_path" "$XDG_CONFIG_HOME/retroarch/system"
-  dir_prep "$path/logs/retroarch" "$XDG_CONFIG_HOME/retroarch/logs"
+  dir_prep "$logs_path/retroarch" "$XDG_CONFIG_HOME/retroarch/logs"
   create_dir -d "$XDG_CONFIG_HOME/retroarch/shaders/"
   if [[ -d "$cheats_path/retroarch" && "$(ls -A "$cheats_path/retroarch")" ]]; then
     backup_file="$backups_path/cheats/retroarch-$(date +%y%m%d).tar.gz"
