@@ -16,6 +16,6 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
   cp -fvr "$component_config/"raze.ini" "$XDG_CONFIG_HOME/raze"
 
   sed -i "s#RETRODECKHOMEDIR#${rd_home_path}#g" "$XDG_CONFIG_HOME/raze/raze.ini" # This is an unfortunate one-off because set_setting_value does not currently support JSON
-  sed -i "s#RETRODECKROMSDIR#${rd_home_roms_path}#g" "$XDG_CONFIG_HOME/raze/raze.ini" # This is an unfortunate one-off because set_setting_value does not currently support JSON
-  sed -i "s#RETRODECKSAVESDIR#${rd_home_saves_path}#g" "$XDG_CONFIG_HOME/raze/raze.ini" # This is an unfortunate one-off because set_setting_value does not currently support JSON
+  sed -i "s#RETRODECKROMSDIR#${roms_path}#g" "$XDG_CONFIG_HOME/raze/raze.ini" # This is an unfortunate one-off because set_setting_value does not currently support JSON
+  sed -i "s#RETRODECKSAVESDIR#${saves_path}#g" "$XDG_CONFIG_HOME/raze/raze.ini" # This is an unfortunate one-off because set_setting_value does not currently support JSON
 fi
