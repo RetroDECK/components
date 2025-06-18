@@ -5,7 +5,7 @@ component_name="$(basename "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")")"
 component_path="$(cd "$(dirname "${BASH_SOURCE[0]}" )" && pwd)"
 
 # Set LD_LIBRARY_PATH
-export LD_LIBRARY_PATH="$component_path/lib:$rd_shared_libs/qt-5.15/lib:${LD_LIBRARY_PATH}"
+LD_LIBRARY_PATH="$component_path/lib:$rd_shared_libs/qt-5.15/lib:${LD_LIBRARY_PATH}"
 
 # Set plugin paths
 export QT_PLUGIN_PATH="$rd_shared_libs/plugins:${QT_PLUGIN_PATH}"
