@@ -1,8 +1,5 @@
 #!/bin/bash
 
-source /app/libexec/global.sh
-source /app/libexec/logger.sh
-
 arg="$@"
 
 # Setting component name and path based on the directory name
@@ -12,7 +9,7 @@ component_path="$(cd "$(dirname "${BASH_SOURCE[0]}" )" && pwd)"
 log i "RetroDECK is now launching $component_name"
 log i "Ruffle is running: $arg"
 
-static_invoke="--config /var/data/ruffle --save-directory $rd_home_saves_path/ruffle --fullscreen"
+static_invoke="--config /var/data/ruffle --save-directory $saves_path/ruffle --fullscreen"
 
 #Check if Steam Deck in Desktop Mode
 if [[ $(check_desktop_mode) == "true" ]]; then
