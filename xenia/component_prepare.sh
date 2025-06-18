@@ -2,28 +2,17 @@
 
 # Setting component name and path based on the directory name
 component_name="$(basename "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")")"
-config="/app/retrodeck/components/$component_name/rd_config"
+component_config="/app/retrodeck/components/$component_name/rd_config"
 
 if [[ "$action" == "reset" ]]; then # Run reset-only commands
   log i "----------------------"
   log i "Preparing $component_name"
   log i "----------------------"
 
-  if [[ $multi_user_mode == "true" ]]; then # Multi-user actions
-  # Add Multiuser things and reset things
-
-    # if this section is empty the if will be invalid so we put a log message here
-    log d "TODO: Implement multi-user actions for $component_name"
-
-  else # Single-user actions
-    create_dir "$XDG_CONFIG_HOME/xenia"
-    dir_prep "$rd_home_saves_path/xbox360/content" "/app/retrodeck/components/xenia/content"
-  fi
-
-  # Shared actions
+  create_dir "$XDG_CONFIG_HOME/xenia"
+  dir_prep "$saves_path/xbox360/content" "/app/retrodeck/components/xenia/content"
 
   # Caches
-
   create_dir "$XDG_CACHE_HOME/xenia/cache"
   create_dir "$XDG_CACHE_HOME/xenia/cache0"
   create_dir "$XDG_CACHE_HOME/xenia/cache1"
@@ -33,8 +22,7 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
 
   # Storage
 
-  create_dir "$rd_home_storage_path/xenia/storage"
-  dir_prep "$rd_home_storage_path/xbox360/xenia/storage" "/app/retrodeck/components/xenia/storage"
-  create_dir "$rd_home_storage_path/xenia/fonts"
-
+  create_dir "$storage_path/xenia/storage"
+  dir_prep "$storage_path/xbox360/xenia/storage" "/app/retrodeck/components/xenia/storage"
+  create_dir "$storage_path/xenia/fonts"
 fi
