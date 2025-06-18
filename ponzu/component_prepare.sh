@@ -24,10 +24,6 @@ if [[ $(get_setting_value "$rd_conf" "akai_ponzu" "retrodeck" "options") == "tru
       dir_prep "$logs_path/citra" "$XDG_DATA_HOME/citra-emu/log"
       dir_prep "$mods_path/Citra" "$XDG_DATA_HOME/citra-emu/load/mods"
       dir_prep "$texture_packs_path/Citra" "$XDG_DATA_HOME/citra-emu/load/textures"
-
-      # Reset default preset settings
-      set_setting_value "$rd_conf" "citra" "$(get_setting_value "$rd_defaults" "citra" "retrodeck" "abxy_button_swap")" "retrodeck" "abxy_button_swap"
-      set_setting_value "$rd_conf" "citra" "$(get_setting_value "$rd_defaults" "citra" "retrodeck" "ask_to_exit")" "retrodeck" "ask_to_exit"
     fi
     if [[ "$action" == "postmove" ]]; then # Run only post-move commands
       dir_prep "$bios_path/citra/sysdata" "$XDG_DATA_HOME/citra-emu/sysdata"
@@ -66,10 +62,6 @@ if [[ $(get_setting_value "$rd_conf" "kiroi_ponzu" "retrodeck" "options") == "tr
         if [ -d "$bios_path/switch" ]; then
           find "$bios_path/switch" -xtype l -exec rm {} \;
         fi
-
-        # Reset default preset settings
-        set_setting_value "$rd_conf" "yuzu" "$(get_setting_value "$rd_defaults" "yuzu" "retrodeck" "abxy_button_swap")" "retrodeck" "abxy_button_swap"
-        set_setting_value "$rd_conf" "yuzu" "$(get_setting_value "$rd_defaults" "yuzu" "retrodeck" "ask_to_exit")" "retrodeck" "ask_to_exit"
       fi
       if [[ "$action" == "postmove" ]]; then # Run only post-move commands
         dir_prep "$bios_path/switch/keys" "$XDG_DATA_HOME/yuzu/keys"

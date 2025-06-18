@@ -29,12 +29,6 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
   create_dir "$saves_path/ps2/pcsx2/memcards"
   create_dir "$states_path/ps2/pcsx2"
   dir_prep "$texture_packs_path/pcsx2" "$XDG_CONFIG_HOME/pcsx2/textures"
-
-  # Reset default preset settings
-  set_setting_value "$rd_conf" "pcsx2" "$(get_setting_value "$rd_defaults" "pcsx2" "retrodeck" "cheevos")" "retrodeck" "cheevos"
-  set_setting_value "$rd_conf" "pcsx2" "$(get_setting_value "$rd_defaults" "pcsx2" "retrodeck" "cheevos_hardcore")" "retrodeck" "cheevos_hardcore"
-  set_setting_value "$rd_conf" "pcsx2" "$(get_setting_value "$rd_defaults" "pcsx2" "retrodeck" "savestate_auto_save")" "retrodeck" "savestate_auto_save"
-  set_setting_value "$rd_conf" "pcsx2" "$(get_setting_value "$rd_defaults" "pcsx2" "retrodeck" "ask_to_exit")" "retrodeck" "ask_to_exit"
 fi
 
 if [[ "$action" == "postmove" ]]; then # Run only post-move commands

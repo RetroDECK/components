@@ -22,9 +22,6 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
   dir_prep "$saves_path/wii/primehack" "$XDG_DATA_HOME/primehack/Wii"
   dir_prep "$mods_path/Primehack" "$XDG_DATA_HOME/primehack/Load/GraphicMods"
   dir_prep "$texture_packs_path/Primehack" "$XDG_DATA_HOME/primehack/Load/Textures"
-
-  # Reset default preset settings
-  set_setting_value "$rd_conf" "primehack" "$(get_setting_value "$rd_defaults" "primehack" "retrodeck" "ask_to_exit")" "retrodeck" "ask_to_exit"
 fi
 
 if [[ "$action" == "postmove" ]]; then # Run only post-move commands
