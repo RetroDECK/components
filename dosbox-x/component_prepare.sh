@@ -17,9 +17,13 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
 
   # Logs path
   create_dir "$logs_path/dosbox-x"
-  set_setting_value "$dosbox_x_config" "logfile" "$logs_path/dosbox-x" "dosbox-x"
+  set_setting_value "$dosbox_x_config" "logfile" "$logs_path/dosbox-x/dosbox-x.log" "dosbox-x"
 
-  #Mount C Drive as RetroDECK Roms
+  #Mount Drive as RetroDECK Roms Folders
+
   set_setting_value "$dosbox_x_config" "MOUNT C" "$roms_path/dos" "dosbox-x"
+  set_setting_value "$dosbox_x_config" "MOUNT D" "$roms_path/pc" "dosbox-x"
+  set_setting_value "$dosbox_x_config" "MOUNT E" "$roms_path/windows3x" "dosbox-x"
+  set_setting_value "$dosbox_x_config" "MOUNT F" "$roms_path/windows9x" "dosbox-x"
 
 fi
