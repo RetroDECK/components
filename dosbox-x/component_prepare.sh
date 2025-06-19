@@ -10,4 +10,16 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
   log i "----------------------"
   
   create_dir "$XDG_CONFIG_HOME/dosbox-x"
+
+  # Default General Storage
+  create_dir "$storage_path/dosbox-x"
+  set_setting_value "$dosbox_x_config" "working directory default" "$storage_path/dosbox-x" "dosbox-x"
+
+  # Logs path
+  create_dir "$logs_path/dosbox-x"
+  set_setting_value "$dosbox_x_config" "logfile" "$logs_path/dosbox-x" "dosbox-x"
+
+  #Mount C Drive as RetroDECK Roms
+  set_setting_value "$dosbox_x_config" "MOUNT C" "$roms_path/dos" "dosbox-x"
+
 fi
