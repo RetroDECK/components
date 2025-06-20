@@ -10,7 +10,7 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
   log i "----------------------"
 
   create_dir -d "$XDG_CONFIG_HOME/primehack/"
-  cp -fvr "$component_config/"* "$XDG_CONFIG_HOME/primehack/"
+  cp -fvr "$component_config/config/"* "$XDG_CONFIG_HOME/primehack/"
   set_setting_value "$primehack_config" "ISOPath0" "$roms_path/wii" "primehack" "General"
   set_setting_value "$primehack_config" "ISOPath1" "$roms_path/gc" "primehack" "General"
   dir_prep "$saves_path/gc/primehack/EU" "$XDG_DATA_HOME/primehack/GC/EUR"
