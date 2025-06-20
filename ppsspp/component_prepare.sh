@@ -24,6 +24,7 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
     tar -czf "$backup_file" -C "$cheats_path" PPSSPP
     log i "PPSSPP cheats backed up to $backup_file"
   fi
+  create_dir "$cheats_path/PPSSPP/"
   rsync "$ppsspp_cheats_db" "$cheats_path/PPSSPP/"
 fi
 
