@@ -92,8 +92,9 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
   cp -fv "$component_config/scummvm.ini" "$retroarch_config_scummvm"
   create_dir "$mods_path/RetroArch/ScummVM/icons"
   log i "Installing ScummVM assets"
-  unzip -o "$component_config/ScummVM.zip" 'scummvm/extra/*' -d /tmp
-  unzip -o "$component_config/ScummVM.zip" 'scummvm/theme/*' -d /tmp
+  unzip -o "$retroarch_extras_path/ScummVM.zip" 'scummvm/extra/*' -d /tmp
+  unzip -o "$retroarch_extras_path/ScummVM.zip" 'scummvm/theme/*' -d /tmp
+  create_dir "$storage_path/retroarch/ScummVM"
   mv -f /tmp/scummvm/extra "$storage_path/retroarch/ScummVM"
   mv -f /tmp/scummvm/theme "$storage_path/retroarch/ScummVM"
   rm -rf /tmp/extra /tmp/theme
