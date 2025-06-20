@@ -3,8 +3,7 @@
 # Setting component name and path based on the directory name
 component_name="$(basename "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")")"
 component_config="/app/retrodeck/components/$component_name/rd_config"
-
-xemu_conf="$XDG_CONFIG_HOME/xemu/xemu.toml"
+component_extras="/app/retrodeck/components/$component_name/rd_extras"
 
 if [[ "$action" == "reset" ]]; then # Run reset-only commands
 
@@ -25,7 +24,7 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
 
   # Preparing HD dummy Image if the image is not found
   if [ ! -f "$bios_path/xbox_hdd.qcow2" ];then
-    cp -f "/app/retrodeck/extras/XEMU/xbox_hdd.qcow2" "$bios_path/xbox_hdd.qcow2"
+    cp -f "$component_extras/xbox_hdd.qcow2" "$bios_path/xbox_hdd.qcow2"
   fi
 fi
 
