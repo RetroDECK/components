@@ -13,6 +13,7 @@ if [[ ("$action" == "reset") || ("$action" == "postmove") ]]; then
   fi
   dir_prep "$bios_path/pico-8" "$HOME/.lexaloffle/pico-8" # Store binary and config files together. The .lexaloffle directory is a hard-coded location for the PICO-8 config file, cannot be changed
   dir_prep "$saves_path/pico-8" "$bios_path/pico-8/cdata"  # PICO-8 saves folder
+  create_dir "$XDG_CONFIG_HOME/pico-8/"
   cp -fv "$component_config/config.txt" "$pico8_config"
   cp -fv "$component_config/sdl_controllers.txt" "$pico8_config_sdl_controllers"
 fi
