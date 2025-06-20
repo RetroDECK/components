@@ -1,10 +1,9 @@
 {
-    "azahar": {
-        "name": "Azahar",
-        "url": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/azahar/azahar-guide/",
-        "description": "Azahar is an open-source 3DS emulator project based on Citra.",
-        "system_friendly_name": "Nintendo 3DS",
-        "system": "n3ds"
-
-    }
+  "azahar": {
+    "name": "Azahar",
+    "url": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/azahar/azahar-guide/",
+    "description": "Azahar is an open-source 3DS emulator project based on Citra.",
+    "system_friendly_name": "Nintendo 3DS",
+    "system": "n3ds"
+  }
 }
