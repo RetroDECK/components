@@ -10,7 +10,7 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
   log i "----------------------"
 
   create_dir -d "$XDG_CONFIG_HOME/melonDS/"
-  cp -fv "$component_config/melonds/melonDS.ini" "$melonds_config"
+  cp -fv "$component_config/melonDS.ini" "$melonds_config"
   set_setting_value "$melonds_config" "BIOS9Path" "$bios_path/bios9.bin" "melonds"
   set_setting_value "$melonds_config" "BIOS7Path" "$bios_path/bios7.bin" "melonds"
   set_setting_value "$melonds_config" "FirmwarePath" "$bios_path/firmware.bin" "melonds"
