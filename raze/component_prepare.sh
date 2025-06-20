@@ -13,7 +13,7 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
   create_dir "$XDG_DATA_HOME/raze/audio/soundfonts"
   create_dir "$bios_path/raze"
 
-  cp -fvr "$component_config/"raze.ini" "$XDG_CONFIG_HOME/raze"
+  cp -fvr "$component_config/raze.ini" "$XDG_CONFIG_HOME/raze"
 
   sed -i "s#RETRODECKHOMEDIR#${rd_home_path}#g" "$XDG_CONFIG_HOME/raze/raze.ini" # This is an unfortunate one-off because set_setting_value does not currently support JSON
   sed -i "s#RETRODECKROMSDIR#${roms_path}#g" "$XDG_CONFIG_HOME/raze/raze.ini" # This is an unfortunate one-off because set_setting_value does not currently support JSON
