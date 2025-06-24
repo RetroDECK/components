@@ -11,8 +11,8 @@ assemble generic "https://buildbot.libretro.com/stable/*/linux/x86_64/RetroArch_
 assemble appimage "https://buildbot.libretro.com/stable/*/linux/x86_64/RetroArch.7z"
 
 # Custom Commands
-
-mkdir -p "$artifacts_dir/$extras"
+extras="$artifacts_dir/rd_extras"
+mkdir -p "$extras"
 
 # Unfortunately this is a one off as we need to extract even the assets from the same appimage
 rm -rf "$WORK_DIR/squashfs-root"
@@ -58,7 +58,7 @@ rm -rf "$WORK_DIR/cores_nightly"
 # RetroArch Cheats
 log i "Downloading RetroArch cheats..." "$logfile"
 git clone --depth 1 "https://github.com/libretro/libretro-database.git" "$WORK_DIR/libretro-database"
-tar -czf "$extras/cheats.tar.gz" -C "$WORK_DIR/libretro-database/cht" .
+tar -vczf "$extras/cheats.tar.gz" -C "$WORK_DIR/libretro-database/cht" .
 rm -rf "$WORK_DIR/libretro-database"
 
 # MSX BIOS
