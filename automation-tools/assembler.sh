@@ -34,7 +34,7 @@ if [[ "$GITHUB_REPO" == https://github.com/* ]]; then
   GITHUB_REPO="${GITHUB_REPO#https://github.com/}"
 fi
 REPO_ROOT=$(git rev-parse --show-toplevel 2>/dev/null || pwd)
-EXTRAS="rd_extras"      # Name of the extras folder used to place components extras such as free bioses, cheats files and such
+export extras="rd_extras"      # Name of the extras folder used to place components extras such as free bioses, cheats files and such
 components_version_list="components_version_list.md"
 export component="${args[2]:-$(basename "$(dirname "$(realpath "${BASH_SOURCE[1]}")")")}"
 export version_file="$component/component_version"

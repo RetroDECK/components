@@ -12,7 +12,7 @@ assemble appimage "https://buildbot.libretro.com/stable/*/linux/x86_64/RetroArch
 
 # Custom Commands
 
-mkdir -p "$artifacts_dir/$EXTRAS"
+mkdir -p "$artifacts_dir/$extras"
 
 # Unfortunately this is a one off as we need to extract even the assets from the same appimage
 rm -rf "$WORK_DIR/squashfs-root"
@@ -58,7 +58,7 @@ rm -rf "$WORK_DIR/cores_nightly"
 # RetroArch Cheats
 log i "Downloading RetroArch cheats..." "$logfile"
 git clone --depth 1 "https://github.com/libretro/libretro-database.git" "$WORK_DIR/libretro-database"
-tar -czf "$EXTRAS/cheats.tar.gz" -C "$WORK_DIR/libretro-database/cht" .
+tar -czf "$extras/cheats.tar.gz" -C "$WORK_DIR/libretro-database/cht" .
 rm -rf "$WORK_DIR/libretro-database"
 
 # MSX BIOS
@@ -66,9 +66,9 @@ log i "Downloading MSX BIOS..." "$logfile"
 wget "http://bluemsx.msxblue.com/rel_download/blueMSXv282full.zip" -O "$WORK_DIR/bluemsx.zip"
 unzip -o "$WORK_DIR/bluemsx.zip" -d "$WORK_DIR/bluemsx"
 rm -rf "$WORK_DIR/bluemsx.zip"
-mkdir -p "$artifacts_dir/$EXTRAS/MSX"
-cp -rf "$WORK_DIR/bluemsx/Machines" "$artifacts_dir/$EXTRAS/MSX/"
-cp -rf "$WORK_DIR/bluemsx/Databases" "$artifacts_dir/$EXTRAS/MSX/"
+mkdir -p "$artifacts_dir/$extras/MSX"
+cp -rf "$WORK_DIR/bluemsx/Machines" "$artifacts_dir/$extras/MSX/"
+cp -rf "$WORK_DIR/bluemsx/Databases" "$artifacts_dir/$extras/MSX/"
 rm -rf "$WORK_DIR/bluemsx"
 
 # Amiga BIOS
@@ -76,19 +76,19 @@ log i "Downloading Amiga BIOS..." "$logfile"
 wget "https://github.com/rsn8887/capsimg/releases/download/1.1/Capsimg_for_Retroarch.zip" -O "$WORK_DIR/capsimg.zip"
 unzip -o "$WORK_DIR/capsimg.zip" -d "$WORK_DIR/capsimg"
 rm -rf "$WORK_DIR/capsimg.zip"
-mkdir -p "$artifacts_dir/$EXTRAS/Amiga"
-cp -r "$WORK_DIR/capsimg/Linux/x86-64/capsimg.so" "$artifacts_dir/$EXTRAS/Amiga/capsimg.so"
+mkdir -p "$artifacts_dir/$extras/Amiga"
+cp -r "$WORK_DIR/capsimg/Linux/x86-64/capsimg.so" "$artifacts_dir/$extras/Amiga/capsimg.so"
 rm -rf "$WORK_DIR/capsimg"
 
 # These folders are not used from /app/components/retrodeck/retroarch
 # as RetroArch wants them to be placed in a rw filesystem (so userland)
 # else retroarch will not work properly or users cannot add their shaders and borders
 
-tar -czf "$artifacts_dir/$EXTRAS/shaders.tar.gz" -C "$WORK_DIR" "shaders"
+tar -czf "$artifacts_dir/$extras/shaders.tar.gz" -C "$WORK_DIR" "shaders"
 rm -rf "$WORK_DIR/shaders"
-tar -czf "$artifacts_dir/$EXTRAS/cores.tar.gz" -C "$WORK_DIR" "cores"
+tar -czf "$artifacts_dir/$extras/cores.tar.gz" -C "$WORK_DIR" "cores"
 rm -rf "$WORK_DIR/cores"
-tar -czf "$artifacts_dir/$EXTRAS/overlays.tar.gz" -C "$WORK_DIR" "overlays"
+tar -czf "$artifacts_dir/$extras/overlays.tar.gz" -C "$WORK_DIR" "overlays"
 rm -rf "$WORK_DIR/overlays"
 
 cp -rf "$WORK_DIR/"* "$artifacts_dir/"
