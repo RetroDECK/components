@@ -25,7 +25,7 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
     log i "PCSX2 cheats backed up to $backup_file"
   fi
   create_dir -d "$cheats_path/pcsx2"
-  tar --strip-components=1 -xzf "$component_extras/pcsx2.tar.gz" -C "$cheats_path/pcsx2" --overwrite
+  tar -xzf "$component_extras/pcsx2.tar.gz" -C "$cheats_path/pcsx2" --overwrite
   create_dir "$saves_path/ps2/pcsx2/memcards"
   create_dir "$states_path/ps2/pcsx2"
   dir_prep "$texture_packs_path/pcsx2" "$XDG_CONFIG_HOME/pcsx2/textures"
