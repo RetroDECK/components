@@ -66,13 +66,6 @@
           "target_file": "$ppssppconf",
           "defaults_file": "$config/ppssppsdl/ppsspp.ini"
         }
-      },
-      "test_preset": {
-        "test_files": {
-          "action": "install",
-          "source": "/app/retrodeck/test_files/",
-          "destination": "/home/deck/test_files/"
-        }
       }
     }
   }

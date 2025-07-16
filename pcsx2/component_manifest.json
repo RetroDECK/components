@@ -1,15 +1,22 @@
 {
-    "pcsx2": {
-      "name": "pcsx2",
-      "description": "PlayStation 2 Emulator",
-      "url": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/pcsx2/pcsx2-guide/",
-      "system": "ps2",
-      "cli-arg": "-version",
-      "properties": [
-        {
-          "ask_to_exit": true,
-          "cheevos": true
-        }
-      ]
+  "pcsx2": {
+    "name": "pcsx2",
+    "description": "PlayStation 2 Emulator",
+    "url": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/pcsx2/pcsx2-guide/",
+    "system_friendly_name": "#MOREINFONEEDED",
+    "system": "ps2",
+    "compatible_presets": {
+    "ask_to_exit": [ "false", "true" ],
+    "cheevos": [ "false", "true" ]
+    },
+    "preset_actions": {
+      "config_file_format": "duckstation",
+      "cheevos": {
+        #MOREINFONEEDED
+      },
+      "ask_to_exit": {
+        #MOREINFONEEDED
+      }
     }
+  }
 }

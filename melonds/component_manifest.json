@@ -1,9 +1,9 @@
 {
-    "melonds": {
-      "description": "Nintendo DS Emulator",
-      "name": "melonDS",
-      "url": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/melonds/melonds-guide/",
-      "system": "nds",
-      "cli-arg": "--help"
-    }
+  "melonds": {
+    "description": "Nintendo DS Emulator",
+    "name": "melonDS",
+    "url": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/melonds/melonds-guide/",
+    "system_friendly_name": "#MOREINFONEEDED",
+    "system": "nds"
+  }
 }

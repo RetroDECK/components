@@ -1,10 +1,9 @@
 {
-    "vita3k": {
-      "name": "Vita3k",
-      "description": "PSVita Emulator",
-      "url": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/vita3k/vita3k-guide/",
-      "system": "psvita",
-      "logs": "$XDG_CACHE_HOME/Vita3K/vita3k.log",
-      "cli-arg": ""
-    }
+  "vita3k": {
+    "name": "Vita3k",
+    "description": "PSVita Emulator",
+    "url": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/vita3k/vita3k-guide/",
+    "system_friendly_name": "#MOREINFONEEDED",
+    "system": "psvita"
+  }
 }

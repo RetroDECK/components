@@ -1,22 +1,37 @@
 {
-    "dolphin": {
-      "name": "Dolphin",
-      "description": "Wii and GameCube Emulator",
-      "url": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/dolphin-primehack/dolphin-primehack-guide/",
-      "cli-arg": "--version",
-      "logs": "$XDG_DATA_HOME/dolphin-emu/dolphin.log",
-      "system": [
-        "gc",
-        "wii"
-      ],
-      "properties": [
-        {
-          "abxy_button": true,
-          "ask_to_exit": true,
-          "cheevos": true,
-          "cheevos_hardcore": true,
-          "universal_dyn_input": true
-        }
-      ]
+  "dolphin": {
+    "name": "Dolphin",
+    "description": "Wii and GameCube Emulator",
+    "url": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/dolphin-primehack/dolphin-primehack-guide/",
+    "system": [
+      "gc",
+      "wii"
+    ],
+    "system_friendly_name": "#MOREINFONEEDED",
+    "compatible_presets": {
+      "abxy_button": [ "false", "true" ],
+      "ask_to_exit": [ "false", "true" ],
+      "cheevos": [ "false", "true" ],
+      "cheevos_hardcore": [ "false", "true" ],
+      "universal_dyn_input": [ "false", "true" ]
+    },
+    "preset_actions": {
+      "config_file_format": "dolphin",
+      "abxy_button": {
+        #MOREINFONEEDED
+      },
+      "ask_to_exit": {
+        #MOREINFONEEDED
+      },
+      "cheevos": {
+        #MOREINFONEEDED
+      },
+      "cheevos_hardcore": {
+        #MOREINFONEEDED
+      },
+      "universal_dyn_input": {
+        #MOREINFONEEDED
+      }
     }
+  }
 }

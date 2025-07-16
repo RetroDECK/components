@@ -1,9 +1,9 @@
 {
-    "xemu": {
-      "description": "Xbox Emulator",
-      "name": "xemu",
-      "url": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/xemu/xemu-guide/",
-      "system": "xbox",
-      "cli-arg": "--version"
-    }
+  "xemu": {
+    "description": "Xbox Emulator",
+    "name": "xemu",
+    "url": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/xemu/xemu-guide/",
+    "system_friendly_name": "#MOREINFONEEDED",
+    "system": "xbox"
+  }
 }

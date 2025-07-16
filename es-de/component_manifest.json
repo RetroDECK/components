@@ -1,8 +1,7 @@
 {
-    "es-de": {
-      "description": "Emulation Frontend",
-      "name": "ES-DE",
-      "url": "https://retrodeck.readthedocs.io/en/latest/wiki_es_de/esde-guide/.",
-      "cli-arg": "--version"
-    }
+  "es-de": {
+    "description": "Emulation Frontend",
+    "name": "ES-DE",
+    "url": "https://retrodeck.readthedocs.io/en/latest/wiki_es_de/esde-guide/."
+  }
 }
