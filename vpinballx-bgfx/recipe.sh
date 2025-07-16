@@ -17,7 +17,11 @@ mkdir $component/artifacts/plugins
 
 # PinMAME
 log i "Downloading PinMAME: libpinmame..." "$logfile"
-wget "https://github.com/vpinball/pinmame/releases/latest/download/libpinmame-3.6.0-1227-ecd032e-linux-x64.zip" -O "$WORK_DIR/libpinmame-3.6.0-1227-ecd032e-linux-x64.zip"
+wget "https://github.com/vpinball/pinmame/releases/latest/download/libpinmame-3.7.0-46-2b48173-linux-x64.zip " -O "$WORK_DIR/libpinmame-3.7.0-46-2b48173-linux-x64.zip"
 unzip -o "$WORK_DIR/libpinmame-*-linux-x64.zip" -d "$artifacts_path/pinmame/"
+
+log i "Downloading PinMAME: xpinmame..." "$logfile"
+wget "https://github.com/vpinball/pinmame/releases/latest/download/xpinmame-3.7.0-46-2b48173-linux-x64.zip" -O "$WORK_DIR/xpinmame-3.7.0-46-2b48173-linux-x64.zip"
+unzip -o "$WORK_DIR/xpinmame-*-linux-x64.zip" -d "$artifacts_path/pinmame/"
 
 finalize
