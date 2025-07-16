@@ -1,10 +1,9 @@
 {
-    "shadps4": {
-        "name": "shadPS4",
-        "url": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/shadps4/shadps4-guide/",
-        "description": "shadPS4 is an PlayStation 4 emulator written in C++",
-        "system_friendly_name": "Playstation 4",
-        "system": "ps4"
-
-    }
+  "shadps4": {
+    "name": "shadPS4",
+    "url": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/shadps4/shadps4-guide/",
+    "description": "shadPS4 is an PlayStation 4 emulator written in C++",
+    "system_friendly_name": "Playstation 4",
+    "system": "ps4"
+  }
 }
