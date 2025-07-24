@@ -6,16 +6,16 @@
     "system_friendly_name": "#MOREINFONEEDED",
     "system": "psx",
     "compatible_presets": {
-    "ask_to_exit": [ "false", "true" ],
-    "cheevos": [ "false", "true" ]
+      "ask_to_exit": [ "false", "true" ],
+      "cheevos": [ "false", "true" ]
     },
     "preset_actions": {
       "config_file_format": "duckstation",
       "cheevos": {
-        #MOREINFONEEDED
+        "#MOREINFONEEDED": "value"
       },
       "ask_to_exit": {
-        #MOREINFONEEDED
+        "#MOREINFONEEDED": "value"
       }
     }
   }
