@@ -1,9 +1,9 @@
 {
   "rpcs3": {
     "name": "RPCS3",
-    "url": "#MOREINFONEEDED",
-    "description": "#MOREINFONEEDED",
-    "system_friendly_name": "#MOREINFONEEDED",
-    "system": "#MOREINFONEEDED"
+    "url": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/rpcs3/rpcs3-guide/",
+    "description": "An open-source PlayStation 3 emulator and debugger.",
+    "system_friendly_name": "PlayStation 3",
+    "system": "ps3"
   }
 }

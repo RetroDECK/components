@@ -1,9 +1,9 @@
 {
   "dosbox-x": {
     "name": "DOSBox-X",
-    "url": "#MOREINFONEEDED",
-    "description": "#MOREINFONEEDED",
-    "system_friendly_name": "#MOREINFONEEDED",
-    "system": "#MOREINFONEEDED"
+    "url": "https://dosbox-x.com/",
+    "description": "An open-source DOS emulator for running DOS applications and games.",
+    "system_friendly_name": "DOS",
+    "system": "dos"
   }
 }

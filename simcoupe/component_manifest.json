@@ -1,9 +1,9 @@
 {
   "simcoupe": {
     "name": "SimCoupe",
-    "url": "#MOREINFONEEDED",
-    "description": "#MOREINFONEEDED",
-    "system_friendly_name": "#MOREINFONEEDED",
-    "system": "#MOREINFONEEDED"
+    "url": "http://simcoupe.org/",
+    "description": "An emulator for the SAM Coupé 8-bit computer.",
+    "system_friendly_name": "SAM Coupé",
+    "system": "samcoupe"
   }
 }

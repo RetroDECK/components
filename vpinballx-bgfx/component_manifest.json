@@ -1,9 +1,9 @@
 {
   "vpinballx-bgfx": {
     "name": "Visual Pinball X",
-    "url": "#MOREINFONEEDED",
+    "url": "https://www.vpforums.org/",
     "description": "Visual Pinball X (VPX) simulates pinball table physics and renders the table with bgfx",
-    "system_friendly_name": "#MOREINFONEEDED",
+    "system_friendly_name": "Visual Pinball X",
     "system": "vpinball"
   }
 }

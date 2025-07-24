@@ -1,9 +1,9 @@
 {
   "xroar": {
     "name": "XRoar",
-    "url": "#MOREINFONEEDED",
+    "url": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/xroar/xroar-guide/",
     "description": "Dragon and Tandy 8-bit Computer Emulator XRoar.",
-    "system_friendly_name": "#MOREINFONEEDED",
+    "system_friendly_name": "Dragon/Tandy 8-bit Computers",
     "system": [
       "coco",
       "dragon32",

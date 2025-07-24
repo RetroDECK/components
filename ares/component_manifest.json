@@ -3,7 +3,7 @@
     "name": "ares",
     "url": "https://ares-emu.net/",
     "description": "ares is a cross-platform, open source, multi-system emulator, focusing on accuracy and preservation",
-    "system_friendly_name": "ares",
+    "system_friendly_name": "Multiple Retro Systems",
     "system": "Multiple Retro Systems"
   }
 }

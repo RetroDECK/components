@@ -1,9 +1,9 @@
 {
   "gzdoom": {
     "name": "GZDoom",
-    "url": "#MOREINFONEEDED",
+    "url": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/gzdoom/gzdoom-guide/",
     "description": "A modern source port for Doom and other classic games.",
-    "system_friendly_name": "#MOREINFONEEDED",
+    "system_friendly_name": "Doom",
     "system": "doom"
   }
 }

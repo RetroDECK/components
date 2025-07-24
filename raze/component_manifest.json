@@ -1,9 +1,9 @@
 {
   "raze": {
     "name": "Raze",
-    "url": "#MOREINFONEEDED",
-    "description": "#MOREINFONEEDED",
-    "system_friendly_name": "#MOREINFONEEDED",
-    "system": "#MOREINFONEEDED"
+    "url": "https://raze.zdoom.org/",
+    "description": "A modern source port for classic Build engine games.",
+    "system_friendly_name": "Build Engine Games",
+    "system": "build"
   }
 }

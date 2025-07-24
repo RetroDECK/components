@@ -4,13 +4,13 @@
     "name": "Cemu",
     "url": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/cemu/cemu-guide/",
     "system": "wiiu",
-    "system_friendly_name": "#MOREINFONEEDED",
+    "system_friendly_name": "Wii U",
     "compatible_presets": {
       "abxy_button": [ "false", "true" ]
     },
     "preset_actions": {
       "config_file_format": "cemu",
-      #MOREINFONEEDED
+      "additional_info": "#MOREINFONEEDED"
     }
   }
 }

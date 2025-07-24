@@ -1,7 +1,7 @@
 {
   "steam-rom-manager": {
     "name": "Steam ROM Manager",
-    "url": "#MOREINFONEEDED",
+    "url": "https://retrodeck.readthedocs.io/en/latest/wiki_system_guides/srm/srm-guide/",
     "description": "Used to sync RetroDECK favorites and Launcher with Steam",
     "configurator_menus": {
       "steam_tools": {

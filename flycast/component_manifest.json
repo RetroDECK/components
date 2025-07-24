@@ -1,9 +1,9 @@
 {
   "flycast": {
     "name": "Flycast",
-    "url": "#MOREINFONEEDED",
-    "description": "#MOREINFONEEDED",
-    "system_friendly_name": "#MOREINFONEEDED",
-    "system": "#MOREINFONEEDED"
+    "url": "https://flycast.doos.io/",
+    "description": "A multi-platform Sega Dreamcast emulator.",
+    "system_friendly_name": "Dreamcast",
+    "system": "dreamcast"
   }
 }
