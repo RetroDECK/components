@@ -2,9 +2,13 @@
 
 source "automation-tools/assembler.sh"
 
+artifacts_dir="$component/artifacts"
+
 assemble appimage "https://github.com/xemu-project/xemu/releases/latest/download/xemu-*-x86_64.AppImage"
 
 # Custom Commands
+extras="$artifacts_dir/rd_extras"
+mkdir -p "$extras"
 
 # xemu Dummy Hdd
 log i "Downloading XEMU dummy HDD..." "$logfile"
