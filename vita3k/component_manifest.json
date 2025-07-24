@@ -1,9 +1,11 @@
 {
   "vita3k": {
-    "name": "Vita3k",
-    "description": "PSVita Emulator",
-    "url": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/vita3k/vita3k-guide/",
-    "system_friendly_name": "#MOREINFONEEDED",
+    "name": "Vita3K",
+    "description": "PlayStation Vita Emulator",
+    "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/vita3k/vita3k-guide/",
+    "url_webpage": "https://vita3k.org/",
+    "url_source": "https://github.com/Vita3K/Vita3K",
+    "system_friendly_name": "PlayStation Vita",
     "system": "psvita"
   }
 }

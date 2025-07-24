@@ -1,8 +1,10 @@
 {
   "xemu": {
-    "description": "Xbox Emulator",
+    "description": "A free and open-source emulator for the original Microsoft Xbox",
     "name": "xemu",
-    "url": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/xemu/xemu-guide/",
+    "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/xemu/xemu-guide/",
+    "url_webpage": "https://xemu.app/",
+    "url_source": "https://github.com/xemu-project/xemu",
     "system_friendly_name": "Xbox",
     "system": "xbox"
   }

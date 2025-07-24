@@ -1,8 +1,10 @@
 {
   "steam-rom-manager": {
     "name": "Steam ROM Manager",
-    "url": "https://retrodeck.readthedocs.io/en/latest/wiki_system_guides/srm/srm-guide/",
-    "description": "Used to sync RetroDECK favorites and Launcher with Steam",
+    "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_system_guides/srm/srm-guide/",
+    "url_webpage": "https://steamgriddb.github.io/steam-rom-manager/",
+    "url_source": "https://github.com/SteamGridDB/steam-rom-manager",
+    "description": "Bulk game importer and artwork manager for Steam with RetroDECK sync function",
     "configurator_menus": {
       "steam_tools": {
         "add_retrodeck_to_steam": {
