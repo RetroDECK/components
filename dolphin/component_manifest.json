@@ -2,12 +2,17 @@
   "dolphin": {
     "name": "Dolphin",
     "description": "Wii and GameCube Emulator",
-    "url": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/dolphin-primehack/dolphin-primehack-guide/",
+    "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/dolphin-primehack/dolphin-primehack-guide/",
+    "url_webpage": "https://dolphin-emu.org",
+    "url_source": "https://github.com/dolphin-emu/dolphin",
     "system": [
       "gc",
       "wii"
     ],
-    "system_friendly_name": "#MOREINFONEEDED",
+    "system_friendly_name":  [
+      "GameCube",
+      "Wii"
+    ],
     "compatible_presets": {
       "abxy_button": [ "false", "true" ],
       "ask_to_exit": [ "false", "true" ],

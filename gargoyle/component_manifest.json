@@ -1,8 +1,10 @@
 {
   "gargoyle": {
     "name": "Gargoyle",
-    "url": "https://ccxvii.net/gargoyle/",
-    "description": "An interactive fiction player supporting multiple formats",
+    "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/gargoyle/gargoyle-guide/.",
+    "url_webpage": "https://ccxvii.net/gargoyle/",
+    "url_source": "https://github.com/garglk/garglk/",
+    "description": "Gargoyle is an IF player supporting multiple formats",
     "system_friendly_name": "Interactive Fiction Player",
     "system": "gargoyle"
   }

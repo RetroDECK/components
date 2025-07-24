@@ -1,7 +1,9 @@
 {
   "pcsx2": {
     "name": "PCSX2",
-    "url": "https://pcsx2.net/",
+    "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/pcsx2/pcsx2-guide/",
+    "url_webpage": "https://pcsx2.net/",
+    "url_source": "https://github.com/PCSX2/pcsx2",
     "description": "An open-source PlayStation 2 (PS2) emulator",
     "system_friendly_name": "PlayStation 2",
     "system": "pcsx2",
@@ -10,7 +12,7 @@
       "cheevos": [ "false", "true" ]
     },
     "preset_actions": {
-      "config_file_format": "duckstation",
+      "config_file_format": "pcsx2",
       "cheevos": {},
       "ask_to_exit": {}
     }

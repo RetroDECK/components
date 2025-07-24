@@ -1,9 +1,10 @@
 {
   "ryubing": {
     "name": "Ryubing",
-    "description": "Ryubing a Nintendo Switch Emulator",
-    "url": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/ryujinx/ryujinx-guide/",
-    "system_friendly_name": "#MOREINFONEEDED",
+    "description": "Ryubing is an open-source Nintendo Switch emulator",
+    "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/ryubing/ryubing-guide/",
+    "url_source": "https://git.ryujinx.app/ryubing/ryujinx",
+    "system_friendly_name": "Nintendo Switch",
     "system": "switch"
   }
 }

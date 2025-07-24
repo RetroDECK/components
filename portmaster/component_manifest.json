@@ -1,8 +1,10 @@
 {
   "portmaster": {
-    "description": "Port Manager also available on various linux handheld devices that ease the managing of ports",
+    "description": "PortMaster ease the managing of various game ports",
     "name": "PortMaster",
-    "url": "https://retrodeck.readthedocs.io/en/latest/wiki_about/what-is-retrodeck/",
+    "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_port_guides/portmaster/portmaster-guide/",
+    "url_webpage": "https://portmaster.games/index.html",
+    "url_source": "https://github.com/PortsMaster/PortMaster-New",
     "system_friendly_name": "PortMaster",
     "system": "portmaster"
   }

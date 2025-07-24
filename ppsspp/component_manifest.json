@@ -2,7 +2,9 @@
   "ppsspp": {
     "name": "PPSSPP",
     "description": "PlayStation Portable Emulator",
-    "url": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/ppsspp/ppsspp-guide/",
+    "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/ppsspp/ppsspp-guide/",
+    "url_webpage": "https://www.ppsspp.org/",
+    "url_source": "https://github.com/hrydgard/ppsspp",
     "system": "psp",
     "system_friendly_name": "Sony Playstation Portable",
     "configurator_menus": {

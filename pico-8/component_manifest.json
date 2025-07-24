@@ -1,9 +1,10 @@
 {
   "pico-8": {
     "name": "PICO-8",
-    "url": "https://www.lexaloffle.com/pico-8.php",
-    "description": "A fantasy console for making, sharing, and playing tiny games",
-    "system_friendly_name": "Fantasy Console",
+    "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/melonds/melonds-guide/",
+    "url_webpage": "https://www.lexaloffle.com/pico-8.php",
+    "description": "PICO-8 a fantasy console for making, sharing, and playing tiny games",
+    "system_friendly_name": "PICO-8 Fantasy Console",
     "system": "pico-8"
   }
 }

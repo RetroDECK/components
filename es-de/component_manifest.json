@@ -1,7 +1,9 @@
 {
   "es-de": {
-    "description": "Emulation Frontend",
+    "description": "ES-DE Frontend",
     "name": "ES-DE",
-    "url": "https://retrodeck.readthedocs.io/en/latest/wiki_es_de/esde-guide/."
+    "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_system_guides/es-de/esde-guide/.",
+    "url_webpage": "https://es-de.org/",
+    "url_source": "https://gitlab.com/es-de/emulationstation-de"
   }
 }

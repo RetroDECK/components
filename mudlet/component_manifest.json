@@ -1,9 +1,11 @@
 {
   "mudlet": {
     "name": "Mudlet",
-    "url": "https://retrodeck.readthedocs.io/en/latest/wiki_engine_guides/mudlet/mudlet-guide/",
-    "description": "Mudlet is a platform for gaming and enhancing game-play with MUDs.",
-    "system_friendly_name": "Mudlet - Multi-User Dungeons Client",
+    "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_engine_guides/mudlet/mudlet-guide/",
+    "url_webpage": "https://www.mudlet.org/",
+    "url_source": "https://github.com/Mudlet/Mudlet",
+    "description": "Mudlet is a client for playing MUDs with enhancing game-play",
+    "system_friendly_name": "Multi-User Dungeons Client",
     "system": "muds"
   }
 }

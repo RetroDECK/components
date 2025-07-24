@@ -2,7 +2,9 @@
     "primehack": {
       "name": "PrimeHack",
       "description": "A fork of Dolphin to enhance Metroid Prime experience",
-      "url": "https://docs.google.com/document/d/1A2B3C4D5E6F7G8H9I0J/edit",
+      "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/dolphin-primehack/dolphin-primehack-guide/",
+      "url_webpage": "https://github.com/shiiion/dolphin/wiki/",
+      "url_source": "https://github.com/shiiion/dolphin",
       "cli-arg": "--version",
       "logs": "$XDG_DATA_HOME/primehack/Logs/dolphin.log",
       "system": "wii",
