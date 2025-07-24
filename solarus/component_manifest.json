@@ -1,9 +1,9 @@
 {
   "solarus": {
     "name": "Solarus",
-    "url": "#MOREINFONEEDED",
-    "description": "Solarus is a free and open-source game engine for creating 2D action-adventure games.",
-    "system_friendly_name": "#MOREINFONEEDED",
+    "url": "https://www.solarus-games.org/",
+    "description": "A lightweight, multiplatform, free and open-source 2D game engine",
+    "system_friendly_name": "2D Game Engine",
     "system": "solarus"
   }
 }

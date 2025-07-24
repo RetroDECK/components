@@ -1,9 +1,9 @@
 {
   "supermodel": {
-    "name": "#MOREINFONEEDED",
-    "url": "#MOREINFONEEDED",
-    "description": "#MOREINFONEEDED",
-    "system_friendly_name": "#MOREINFONEEDED",
-    "system": "#MOREINFONEEDED"
+    "name": "Supermodel",
+    "url": "https://www.supermodel3.com/",
+    "description": "A Sega Model 3 Arcade Emulator",
+    "system_friendly_name": "Sega Model 3",
+    "system": "supermodel"
   }
 }

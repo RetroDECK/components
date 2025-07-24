@@ -1,9 +1,9 @@
 {
   "ruffle": {
-    "description": "Flash Games emulator",
     "name": "Ruffle",
-    "url": "https://retrodeck.readthedocs.io/en/latest/wiki_about/what-is-retrodeck/",
-    "system_friendly_name": "#MOREINFONEEDED",
-    "system": "flash"
+    "url": "https://ruffle.rs/",
+    "description": "An open-source Flash Player emulator",
+    "system_friendly_name": "Flash Player Emulator",
+    "system": "ruffle"
   }
 }

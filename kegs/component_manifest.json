@@ -1,9 +1,9 @@
 {
   "kegs": {
-    "name": "Kegs",
-    "url": "#MOREINFONEEDED",
-    "description": "#MOREINFONEEDED",
-    "system_friendly_name": "#MOREINFONEEDED",
-    "system": "#MOREINFONEEDED"
+    "name": "KEGS",
+    "url": "http://kegs.sourceforge.net/",
+    "description": "An Apple IIgs emulator for Mac OS X, Linux/Unix, and Windows",
+    "system_friendly_name": "Apple IIgs",
+    "system": "kegs"
   }
 }

@@ -2,33 +2,33 @@
     "primehack": {
       "name": "PrimeHack",
       "description": "A fork of Dolphin to enhance Metroid Prime experience",
-      "url": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/dolphin-primehack/dolphin-primehack-guide/",
+      "url": "https://docs.google.com/document/d/1A2B3C4D5E6F7G8H9I0J/edit",
       "cli-arg": "--version",
       "logs": "$XDG_DATA_HOME/primehack/Logs/dolphin.log",
       "system": "wii",
       "compatible_presets": {
-      "abxy_button": [ "false", "true" ],
-      "ask_to_exit": [ "false", "true" ],
-      "cheevos": [ "false", "true" ],
-      "cheevos_hardcore": [ "false", "true" ],
-      "universal_dyn_input": [ "false", "true" ]
+        "abxy_button": [ "false", "true" ],
+        "ask_to_exit": [ "false", "true" ],
+        "cheevos": [ "false", "true" ],
+        "cheevos_hardcore": [ "false", "true" ],
+        "universal_dyn_input": [ "false", "true" ]
       },
       "preset_actions": {
         "config_file_format": "primehack",
         "abxy_button": {
-          #MOREINFONEEDED
+          "#MOREINFONEEDED": "value"
         },
         "ask_to_exit": {
-          #MOREINFONEEDED
+          "#MOREINFONEEDED": "value"
         },
         "cheevos": {
-          #MOREINFONEEDED
+          "#MOREINFONEEDED": "value"
         },
         "cheevos_hardcore": {
-          #MOREINFONEEDED
+          "#MOREINFONEEDED": "value"
         },
         "universal_dyn_input": {
-          #MOREINFONEEDED
+          "#MOREINFONEEDED": "value"
         }
       }
     }

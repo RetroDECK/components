@@ -1,9 +1,9 @@
 {
   "hypseus": {
     "name": "Hypseus",
-    "url": "#MOREINFONEEDED",
-    "description": "#MOREINFONEEDED",
-    "system_friendly_name": "#MOREINFONEEDED",
-    "system": "#MOREINFONEEDED"
+    "url": "https://github.com/btolab/hypseus",
+    "description": "A fork of Daphne, an arcade laserdisc emulator",
+    "system_friendly_name": "Arcade Laserdisc Emulator",
+    "system": "hypseus"
   }
 }

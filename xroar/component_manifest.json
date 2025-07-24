@@ -5,9 +5,9 @@
     "description": "Dragon and Tandy 8-bit Computer Emulator XRoar.",
     "system_friendly_name": "#MOREINFONEEDED",
     "system": [
-    "coco",
-    "dragon32",
-    "tanodragon"
+      "coco",
+      "dragon32",
+      "tanodragon"
     ]
   }
 }

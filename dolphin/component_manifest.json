@@ -18,19 +18,19 @@
     "preset_actions": {
       "config_file_format": "dolphin",
       "abxy_button": {
-        #MOREINFONEEDED
+        "#MOREINFONEEDED": "value"
       },
       "ask_to_exit": {
-        #MOREINFONEEDED
+        "#MOREINFONEEDED": "value"
       },
       "cheevos": {
-        #MOREINFONEEDED
+        "#MOREINFONEEDED": "value"
       },
       "cheevos_hardcore": {
-        #MOREINFONEEDED
+        "#MOREINFONEEDED": "value"
       },
       "universal_dyn_input": {
-        #MOREINFONEEDED
+        "#MOREINFONEEDED": "value"
       }
     }
   }
