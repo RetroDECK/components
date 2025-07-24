@@ -1,15 +1,16 @@
 {
-    "cemu": {
-        "description": "Wii U emulator",
-        "name": "Cemu",
-        "url": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/cemu/cemu-guide/",
-        "system": "wiiu",
-        "cli-arg": "--version",
-        "properties": [
-        {
-            "abxy_button": true,
-            "multi_user_config_dir": "Cemu"
-        }
-        ]
+  "cemu": {
+    "description": "Wii U emulator",
+    "name": "Cemu",
+    "url": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/cemu/cemu-guide/",
+    "system": "wiiu",
+    "system_friendly_name": "#MOREINFONEEDED",
+    "compatible_presets": {
+      "abxy_button": [ "false", "true" ]
+    },
+    "preset_actions": {
+      "config_file_format": "cemu",
+      #MOREINFONEEDED
     }
+  }
 }

@@ -1,0 +1,9 @@
+{
+  "lindbergh": {
+    "name": "Lindbergh",
+    "url": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/lindbergh/lindbergh-guide/",
+    "description": "Lindbergh-Loader is an advanced arcade hardware platform developed emulator for the by SEGA Lindbergh",
+    "system_friendly_name": "SEGA Lindbergh",
+    "system": "lindbergh"
+  }
+}

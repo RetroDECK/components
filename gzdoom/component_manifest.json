@@ -1,7 +1,9 @@
 {
-    "gzdoom": {
-        "name": "GZDoom",
-        "description": "A modern source port for Doom and other classic games.",
-        "system": "doom"
-    }
+  "gzdoom": {
+    "name": "GZDoom",
+    "url": "#MOREINFONEEDED",
+    "description": "A modern source port for Doom and other classic games.",
+    "system_friendly_name": "#MOREINFONEEDED",
+    "system": "doom"
+  }
 }

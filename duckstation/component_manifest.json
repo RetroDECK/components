@@ -1,15 +1,22 @@
 {
-    "duckstation": {
-      "name": "Duckstation (Legacy)",
-      "description": "PlayStation Emulator",
-      "url": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/duckstation/duckstation-guide/",
-      "cli-arg": "-version",
-      "system": "psx",
-      "properties": [
-        {
-          "ask_to_exit": true,
-          "cheevos": true
-        }
-      ]
+  "duckstation": {
+    "name": "Duckstation (Legacy)",
+    "description": "PlayStation Emulator",
+    "url": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/duckstation/duckstation-guide/",
+    "system_friendly_name": "#MOREINFONEEDED",
+    "system": "psx",
+    "compatible_presets": {
+    "ask_to_exit": [ "false", "true" ],
+    "cheevos": [ "false", "true" ]
+    },
+    "preset_actions": {
+      "config_file_format": "duckstation",
+      "cheevos": {
+        #MOREINFONEEDED
+      },
+      "ask_to_exit": {
+        #MOREINFONEEDED
+      }
     }
+  }
 }

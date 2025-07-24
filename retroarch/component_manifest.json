@@ -1,172 +1,126 @@
 {
-    "retroarch": {
-      "description": "Libretro Multi-emulator Frontend",
-      "name": "RetroArch",
-      "url": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/retroarch/retroarch-guide/",
-      "cli-arg": "--version",
-      "system": "retroarch",
-      "logs": "$rd_internal_logs_path/retroarch/retroarch.log",
-      "properties": [
-        {
-          "cheevos": true,
-          "cheevos_hardcore": true,
-          "quick_resume": true
+  "retroarch": {
+    "name": "RetroArch",
+    "description": "Libretro Multi-emulator Frontend",
+    "url": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/retroarch/retroarch-guide/",
+    "system": "retroarch",
+    "system_friendly_name": "Multiple Retro Systems",
+    "compatible_presets": {
+      "cheevos": [ "false", "true" ],
+      "cheevos_hardcore": [ "false", "true" ],
+      "snes9x-current_libretro": {
+        "borders": [ "false", "true" ],
+        "widescreen": [ "false", "true" ]
+      },
+      "gambatte_libretro": {
+        "borders": [ "false", "true" ],
+        "rewind": [ "false", "true" ]
+      }
+    },
+    "preset_actions": {
+      "config_file_format": "retroarch-all",
+      "cheevos": {
+        "cheevos_enable": {
+          "action": "change",
+          "new_setting_value": "True",
+          "section": "",
+          "target_file": "$ra_conf",
+          "defaults_file": "$config/retroarch/retroarch.cfg"
         }
-      ],
-      "cores": {
-        "citra_libretro": {
-          "description": "Nintendo 3DS Libretro Core",
-          "name": "Citra",
-          "system": "n3ds",
-          "properties": [
-            {
-              "abxy_button": true
-            }
-          ]
-        },
-        "mame_libretro": {
-          "description": "MAME: Multiple Arcade Machine Libretro Core",
-          "name": "MAME",
-          "system": "arcade",
-          "properties": [
-            {
-              "tate_mode": true
-            }
-          ]
-        },
-        "desmume_libretro": {
-          "description": "DeSmuME Nintendo DS Libretro Core",
-          "name": "desmume",
-          "system": "nds",
-          "properties": [
-            {
-              "abxy_button": true
-            }
-          ]
-        },
-        "melonds_libretro": {
-          "description": "MelonDS Nintendo DS Libretro Core",
-          "name": "melonds",
-          "system": "nds",
-          "properties": [
-            {
-              "abxy_button": true
-            }
-          ]
-        },
-        "swanstation_libretro": {
-          "name": "SwanStation",
-          "description": "Swanstation Libretro Core",
-          "system": "psx",
-          "properties": [
-            {
-              "widescreen": true,
-              "borders": true
-            }
-          ]
-        },
-        "picodrive_libretro": {
-          "name": "PicoDrive",
-          "description": "SEGA MS/MD/CD/32X Libretro Core",
-          "system": [
-            "ms",
-            "md",
-            "cd",
-            "32x"
-          ],
-          "properties": [
-            {
-              "widescreen": true,
-              "borders": true,
-              "rewind": true
-            }
-          ]
-        },
-        "genesisplusgx_libretro": {
-          "name": "Genesis Plus GX",
-          "description": "SEGA MS/GG/MD/CD Libretro Core",
-          "system": [
-            "ms",
-            "gg",
-            "mc",
-            "cd"
-          ],
-          "properties": [
-            {
-              "widescreen": true,
-              "borders": true,
-              "rewind": true
-            }
-          ]
-        },
-        "genesisplusgxwide_libretro": {
-          "name": "Genesis Plus GX Wide",
-          "description": "SEGA MS/GG/MD/CD Libretro Core for Wide Screen",
-          "system": [
-            "ms",
-            "gg",
-            "mc",
-            "cd"
-          ],
-          "properties": [
-            {
-              "widescreen": true,
-              "rewind": true
-            }
-          ]
-        },
-        "mupen64plus-next_libretro": {
-          "name": "Mupen64Plus-Next",
-          "description": "Nintendo 64 Libretro Core",
-          "system": "n64",
-          "properties": [
-            {
-              "widescreen": true,
-              "borders": true,
-              "abxy_button": true
-            }
-          ]
-        },
-        "snes9x-current_libretro": {
-          "name": "Snes9x - Current",
-          "description": "Super Nintendo Libretro Core",
-          "system": "snes",
-          "properties": [
-            {
-              "widescreen": true,
-              "borders": true,
-              "rewind": true,
-              "abxy_button": true
-            }
-          ]
-        },
-        "gambatte_libretro": {
-          "name": "Gambatte",
-          "description": "Game Boy/Color Libretro Core",
-          "system": [
-            "gb",
-            "gbc"
-          ],
-          "properties": [
-            {
-              "borders": true,
-              "rewind": true,
-              "abxy_button": true
-            }
-          ]
-        },
-        "mgba_libretro": {
-          "name": "mGBA",
-          "description": "Game Boy Advance Libretro Core",
-          "system": "gba",
-          "properties": [
-            {
-              "borders": true,
-              "rewind": true,
-              "abxy_button": true
-            }
-          ]
+      },
+      "snes9x-current_libretro": {
+        "config_file_format": "retroarch",
+        "borders": {
+          "input_overlay": {
+            "action": "change",
+            "new_setting_value": "/var/config/retroarch/overlays/borders/pegasus/snes87.cfg",
+            "section": "",
+            "target_file": "/var/config/retroarch/config/Snes9x/snes.cfg",
+            "defaults_file": "$config/retroarch/retroarch.cfg"
+          }
         }
       }
+    },
+    "cores": {
+      "citra_libretro": {
+        "description": "Nintendo 3DS Libretro Core",
+        "name": "Citra",
+        "system": "n3ds"
+      },
+      "mame_libretro": {
+        "description": "MAME: Multiple Arcade Machine Libretro Core",
+        "name": "MAME",
+        "system": "arcade"
+      },
+      "desmume_libretro": {
+        "description": "DeSmuME Nintendo DS Libretro Core",
+        "name": "desmume",
+        "system": "nds"
+      },
+      "melonds_libretro": {
+        "description": "MelonDS Nintendo DS Libretro Core",
+        "name": "melonds",
+        "system": "nds"
+      },
+      "swanstation_libretro": {
+        "name": "SwanStation",
+        "description": "Swanstation Libretro Core",
+        "system": "psx"
+      },
+      "picodrive_libretro": {
+        "name": "PicoDrive",
+        "description": "SEGA MS/MD/CD/32X Libretro Core",
+        "system": [
+          "ms",
+          "md",
+          "cd",
+          "32x"
+        ]
+      },
+      "genesisplusgx_libretro": {
+        "name": "Genesis Plus GX",
+        "description": "SEGA MS/GG/MD/CD Libretro Core",
+        "system": [
+          "ms",
+          "gg",
+          "mc",
+          "cd"
+        ]
+      },
+      "genesisplusgxwide_libretro": {
+        "name": "Genesis Plus GX Wide",
+        "description": "SEGA MS/GG/MD/CD Libretro Core for Wide Screen",
+        "system": [
+          "ms",
+          "gg",
+          "mc",
+          "cd"
+        ]
+      },
+      "mupen64plus-next_libretro": {
+        "name": "Mupen64Plus-Next",
+        "description": "Nintendo 64 Libretro Core",
+        "system": "n64"
+      },
+      "snes9x-current_libretro": {
+        "name": "Snes9x - Current",
+        "description": "Super Nintendo Libretro Core",
+        "system": "snes",
+        "system_friendly_name": "Nintendo SNES"
+      },
+      "gambatte_libretro": {
+        "name": "Gambatte",
+        "description": "Game Boy/Color Libretro Core",
+        "system": [
+          "gb",
+          "gbc"
+        ]
+      },
+      "mgba_libretro": {
+        "name": "mGBA",
+        "description": "Game Boy Advance Libretro Core",
+        "system": "gba"
+      }
     }
+  }
 }

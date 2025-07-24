@@ -1,7 +1,9 @@
 {
-    "xenia": {
-        "name": "Xenia",
-        "description": "Xenia is an experimental emulator for the Xbox 360.",
-        "system": "xbox360"
-    }
+  "xenia": {
+    "name": "Xenia",
+    "url": "#MOREINFONEEDED",
+    "description": "Xenia is an experimental emulator for the Xbox 360.",
+    "system_friendly_name": "#MOREINFONEEDED",
+    "system": "xbox360"
+  }
 }

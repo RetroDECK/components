@@ -3,10 +3,13 @@
       "description": "Multiple Arcade Machine Emulator",
       "name": "MAME",
       "url": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/mame/mame-guide/",
-      "system": [
+      "system_friendly_name": [
         "arcade",
         "mame"
       ],
-      "cli-arg": "-help"
+      "system": [
+        "arcade",
+        "mame"
+      ]
     }
 }

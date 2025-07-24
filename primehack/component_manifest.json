@@ -5,14 +5,31 @@
       "url": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/dolphin-primehack/dolphin-primehack-guide/",
       "cli-arg": "--version",
       "logs": "$XDG_DATA_HOME/primehack/Logs/dolphin.log",
-      "system": [
-        "wii"
-      ],
-      "properties": [
-        {
-          "ask_to_exit": true,
-          "universal_dyn_input": true
+      "system": "wii",
+      "compatible_presets": {
+      "abxy_button": [ "false", "true" ],
+      "ask_to_exit": [ "false", "true" ],
+      "cheevos": [ "false", "true" ],
+      "cheevos_hardcore": [ "false", "true" ],
+      "universal_dyn_input": [ "false", "true" ]
+      },
+      "preset_actions": {
+        "config_file_format": "primehack",
+        "abxy_button": {
+          #MOREINFONEEDED
+        },
+        "ask_to_exit": {
+          #MOREINFONEEDED
+        },
+        "cheevos": {
+          #MOREINFONEEDED
+        },
+        "cheevos_hardcore": {
+          #MOREINFONEEDED
+        },
+        "universal_dyn_input": {
+          #MOREINFONEEDED
         }
-      ]
+      }
     }
 }
