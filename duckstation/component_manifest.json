@@ -6,16 +6,68 @@
     "system_friendly_name": "Playstation 1 (PSX)",
     "system": "psx",
     "compatible_presets": {
+      "cheevos": [ "false", "true" ],
       "ask_to_exit": [ "false", "true" ],
-      "cheevos": [ "false", "true" ]
+      "savestate_auto_save": [ "false", "true" ]
     },
     "preset_actions": {
       "config_file_format": "duckstation",
       "cheevos": {
-        "#MOREINFONEEDED": "value"
+        "Enabled": {
+          "action": "change",
+          "new_setting_value": "true",
+          "section": "Cheevos",
+          "target_file": "$duckstation_config",
+          "defaults_file": "$config/duckstation/settings.ini"
+        },
+        "Username": {
+          "action": "change",
+          "new_setting_value": "$cheevos_username",
+          "section": "Cheevos",
+          "target_file": "$duckstation_config",
+          "defaults_file": "$config/duckstation/settings.ini"
+        },
+        "Token": {
+          "action": "change",
+          "new_setting_value": "$cheevos_token",
+          "section": "Cheevos",
+          "target_file": "$duckstation_config",
+          "defaults_file": "$config/duckstation/settings.ini"
+        },
+        "LoginTimestamp": {
+          "action": "change",
+          "new_setting_value": "$cheevos_login_timestamp",
+          "section": "Cheevos",
+          "target_file": "$duckstation_config",
+          "defaults_file": "$config/duckstation/settings.ini"
+          }
+        },
+      "cheevos_hardcore": {
+        "ChallengeMode": {
+          "action": "change",
+          "new_setting_value": "true",
+          "section": "Cheevos",
+          "target_file": "$duckstation_config",
+          "defaults_file": "$config/duckstation/settings.ini"
+            }
+          },
+      "savestate_auto_save": {
+        "SaveStateOnExit": {
+          "action": "change",
+          "new_setting_value": "true",
+          "section": "Main",
+          "target_file": "$duckstation_config",
+          "defaults_file": "$config/duckstation/settings.ini"
+        }
       },
       "ask_to_exit": {
-        "#MOREINFONEEDED": "value"
+        "ConfirmPowerOff": {
+          "action": "change",
+          "new_setting_value": "true",
+          "section": "Main",
+          "target_file": "$duckstation_config",
+          "defaults_file": "$config/duckstation/settings.ini"
+        }
       }
     }
   }

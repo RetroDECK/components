@@ -22,6 +22,7 @@
     },
     "preset_actions": {
       "config_file_format": "dolphin",
+
       "abxy_button": {
         "#MOREINFONEEDED": "value"
       },
@@ -66,6 +67,8 @@
       },
       "universal_dyn_input": {
         "#MOREINFONEEDED": "value"
+          }
+        }
       }
     }
   }
