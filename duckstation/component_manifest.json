@@ -8,7 +8,7 @@
     "compatible_presets": {
       "cheevos": [ "false", "true" ],
       "ask_to_exit": [ "false", "true" ],
-      "savestate_auto_save": [ "false", "true" ]
+      "savestate_on_exit": [ "false", "true" ]
     },
     "preset_actions": {
       "config_file_format": "duckstation",
@@ -51,7 +51,7 @@
           "defaults_file": "$config/duckstation/settings.ini"
             }
           },
-      "savestate_auto_save": {
+      "savestate_auto_save_exit": {
         "SaveStateOnExit": {
           "action": "change",
           "new_setting_value": "true",
