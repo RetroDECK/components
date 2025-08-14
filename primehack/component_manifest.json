@@ -8,30 +8,64 @@
       "cli-arg": "--version",
       "logs": "$XDG_DATA_HOME/primehack/Logs/dolphin.log",
       "system": "wii",
-      "compatible_presets": {
-        "abxy_button": [ "false", "true" ],
-        "ask_to_exit": [ "false", "true" ],
-        "cheevos": [ "false", "true" ],
-        "cheevos_hardcore": [ "false", "true" ],
-        "universal_dyn_input": [ "false", "true" ]
+    "compatible_presets": {
+      "abxy_button": [ "false", "true" ],
+      "ask_to_exit": [ "false", "true" ],
+      "cheevos": [ "false", "true" ],
+      "cheevos_hardcore": [ "false", "true" ],
+      "universal_dyn_input": [ "false", "true" ]
+    },
+    "preset_actions": {
+      "config_file_format": "dolphin",
+      "ask_to_exit": {
+        "ConfirmStop": {
+          "action": "change",
+          "new_setting_value": "True",
+          "section": "Interface",
+          "target_file": "$primehack_config",
+          "defaults_file": "$config/Primehack/Dolphin.ini"
+        }
       },
-      "preset_actions": {
-        "config_file_format": "primehack",
+      "cheevos": {
+        "Enabled": {
+          "action": "change",
+          "new_setting_value": "True",
+          "section": "Achievements",
+          "target_file": "$primehack_config_RetroAchievements",
+          "defaults_file": "$config/Primehack/RetroAchievements.ini"
+        },
+        "Username": {
+          "action": "change",
+          "new_setting_value": "$cheevos_username",
+          "section": "Achievements",
+          "target_file": "$primehack_config_RetroAchievements",
+          "defaults_file": "$config/Primehack/RetroAchievements.ini"
+        },
+        "ApiToken": {
+          "action": "change",
+          "new_setting_value": "$cheevos_token",
+          "section": "Achievements",
+          "target_file": "$primehack_config_RetroAchievements",
+          "defaults_file": "$config/Primehack/RetroAchievements.ini"
+        }
+      },
+      "cheevos_hardcore": {
+        "HardcoreEnabled": {
+          "action": "change",
+          "new_setting_value": "True",
+          "section": "Achievements",
+          "target_file": "$primehack_config_RetroAchievements",
+          "defaults_file": "$config/Primehack/RetroAchievements.ini"
+        }
+      },
+      "universal_dyn_input": {
+        "#MOREINFONEEDED": {
+        }
+      },
         "abxy_button": {
-          "#MOREINFONEEDED": "value"
-        },
-        "ask_to_exit": {
-          "#MOREINFONEEDED": "value"
-        },
-        "cheevos": {
-          "#MOREINFONEEDED": "value"
-        },
-        "cheevos_hardcore": {
-          "#MOREINFONEEDED": "value"
-        },
-        "universal_dyn_input": {
-          "#MOREINFONEEDED": "value"
+        "#MOREINFONEEDED": "value" {
         }
       }
     }
+  }
 }

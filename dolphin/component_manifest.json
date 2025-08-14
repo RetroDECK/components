@@ -22,10 +22,6 @@
     },
     "preset_actions": {
       "config_file_format": "dolphin",
-
-      "abxy_button": {
-        "#MOREINFONEEDED": "value"
-      },
       "ask_to_exit": {
         "ConfirmStop": {
           "action": "change",
@@ -33,6 +29,7 @@
           "section": "Interface",
           "target_file": "$dolphin_config",
           "defaults_file": "$config/Dolphin/Dolphin.ini"
+        }
       },
       "cheevos": {
         "Enabled": {
@@ -64,10 +61,14 @@
           "section": "Achievements",
           "target_file": "$dolphin_config_RetroAchievements",
           "defaults_file": "$config/Dolphin/RetroAchievements.ini"
+        }
       },
       "universal_dyn_input": {
-        "#MOREINFONEEDED": "value"
-          }
+        "#MOREINFONEEDED": {
+        }
+      },
+        "abxy_button": {
+        "#MOREINFONEEDED": "value" {
         }
       }
     }
