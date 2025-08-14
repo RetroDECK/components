@@ -26,13 +26,43 @@
         "#MOREINFONEEDED": "value"
       },
       "ask_to_exit": {
-        "#MOREINFONEEDED": "value"
+        "ConfirmStop": {
+          "action": "change",
+          "new_setting_value": "True",
+          "section": "Interface",
+          "target_file": "$dolphin_config",
+          "defaults_file": "$config/Dolphin/Dolphin.ini"
       },
       "cheevos": {
-        "#MOREINFONEEDED": "value"
+        "Enabled": {
+          "action": "change",
+          "new_setting_value": "True",
+          "section": "Achievements",
+          "target_file": "$dolphin_config_RetroAchievements",
+          "defaults_file": "$config/Dolphin/RetroAchievements.ini"
+        },
+        "Username": {
+          "action": "change",
+          "new_setting_value": "$cheevos_username",
+          "section": "Achievements",
+          "target_file": "$dolphin_config_RetroAchievements",
+          "defaults_file": "$config/Dolphin/RetroAchievements.ini"
+        },
+        "ApiToken": {
+          "action": "change",
+          "new_setting_value": "$cheevos_token",
+          "section": "Achievements",
+          "target_file": "$dolphin_config_RetroAchievements",
+          "defaults_file": "$config/Dolphin/RetroAchievements.ini"
+        }
       },
       "cheevos_hardcore": {
-        "#MOREINFONEEDED": "value"
+        "HardcoreEnabled": {
+          "action": "change",
+          "new_setting_value": "True",
+          "section": "Achievements",
+          "target_file": "$dolphin_config_RetroAchievements",
+          "defaults_file": "$config/Dolphin/RetroAchievements.ini"
       },
       "universal_dyn_input": {
         "#MOREINFONEEDED": "value"
