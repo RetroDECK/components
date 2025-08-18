@@ -67,10 +67,10 @@
         "#MOREINFONEEDED": {
         }
       },
-        "abxy_button_swap": {
-        "#MOREINFONEEDED": "value" {
-        }
+      "abxy_button_swap": {
+        "#MOREINFONEEDED": "value"
       }
     }
   }
 }
+
