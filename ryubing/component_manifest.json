@@ -8,7 +8,7 @@
     "system": "switch",
     "compatible_presets": {
       "abxy_button": [ "false", "true" ],
-      "ask_to_exit": [ "false", "true" ],
+      "ask_to_exit": [ "false", "true" ]
     },
     "preset_actions": {
       "config_file_format": "ryubing",
