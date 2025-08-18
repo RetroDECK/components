@@ -167,7 +167,7 @@
       "id": "0-f6790003-28de-0000-ff11-000001000000",
       "controller_type": "ProController",
       "player_index": "Player1"
-    },
+    }
   ],
   "graphics_backend": "Vulkan",
   "preferred_gpu": "0x1002_0x163F",
