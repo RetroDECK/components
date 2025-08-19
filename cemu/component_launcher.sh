@@ -11,4 +11,6 @@ log d "Loaded app run hooks in apprun-hooks/linuxdeploy-plugin-gtk.sh"
 
 log i "RetroDECK is now launching $component_name"
 
+export LD_LIBRARY_PATH="$component_path/lib:${LD_LIBRARY_PATH}"
+
 exec "$component_path/bin/Cemu" "$@"
