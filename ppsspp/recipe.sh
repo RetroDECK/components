@@ -7,7 +7,8 @@ assemble flatpak_id "org.ppsspp.PPSSPP"
 # Custom Commands
 
 # PPSSPP Assets
-mv "$WORK_DIR/share/ppsspp/assets" "$component/artifacts/"
+mkdir -p "$component/artifacts/assets"
+cp -rf "$WORK_DIR/share/ppsspp/assets/"* "$component/artifacts/assets/"
 
 # PPSSPP BIOS
 log i "Downloading PPSSPP BIOS..." "$logfile"
