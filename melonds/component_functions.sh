@@ -1,3 +1,3 @@
 #!/bin/bash
 
-melonds_config="$XDG_CONFIG_HOME/melonds/melonDS.ini"
+melonds_config="$XDG_CONFIG_HOME/melonDS/melonDS.ini"
