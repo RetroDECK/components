@@ -6,3 +6,4 @@ libicui18n.so.73
 libicuuc.so.73
 libzip.so.5
 libQt5DBus.so.5
+libqt5keychain.so.1
