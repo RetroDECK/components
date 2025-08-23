@@ -2,9 +2,7 @@
 
 source "automation-tools/assembler.sh"
 
-#assemble flatpak_id "https://github.com/flathub/org.solarus_games.solarus.Launcher"
-
-assemble flatpak_id "org.solarus_games.solarus.Launcher"
+assemble appimage "https://downloads.solarus-games.org/solarus/linux/solarus-launcher-v2.0.1-linux-amd64.zip"
 
 # Custom Commands
 
