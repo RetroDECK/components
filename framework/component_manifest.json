@@ -104,7 +104,7 @@
           "name": "Move: BIOS folder",
           "description": "Move the BIOS folder to a new location",
           "command": {
-            "zenity": "configurator_move_folder_dialog \"rd_home_bios_path\""
+            "zenity": "configurator_move_folder_dialog \"bios_path\""
           }
         },
         "move_media": {
