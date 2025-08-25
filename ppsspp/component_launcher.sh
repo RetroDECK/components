@@ -6,6 +6,10 @@ component_path="$(cd "$(dirname "${BASH_SOURCE[0]}" )" && pwd)"
 
 export LD_LIBRARY_PATH="$component_path/lib:${LD_LIBRARY_PATH}"
 
+# Workaround for vDSO issues in some environments
+export LD_PRELOAD=""
+unset LD_PRELOAD
+
 log i "RetroDECK is now launching $component_name"
 log d "Library path is: $LD_LIBRARY_PATH"
 
