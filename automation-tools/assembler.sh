@@ -41,6 +41,7 @@ export version_file="$component/component_version"
 safe_download_warning="false"
 
 parse_flags() {
+    local even_dirs=()
     while [[ "$1" =~ ^-- ]]; do
         case "$1" in
             --force)
@@ -49,6 +50,14 @@ parse_flags() {
             --dry-run)
                 DRY_RUN=1
                 ;;
+            --even)
+                shift
+                if [[ -z "$1" || "$1" =~ ^-- ]]; then
+                    echo "Error: --even requires a path argument"
+                    exit 1
+                fi
+                even_dirs+=("$1")
+                ;;
             *)
                 echo "Unknown option: $1"
                 exit 1
@@ -56,6 +65,7 @@ parse_flags() {
         esac
         shift
     done
+    export EVEN_DIRS=("${even_dirs[@]}")
     echo "$@"
 }
 
@@ -774,6 +784,27 @@ finalize() {
         log e "Artifact directory does not exist: $artifact_dir" "$logfile"
         ls -lah "$component"
         return 1
+    fi
+
+    # Process --even directories/files if provided
+    if [[ -n "${EVEN_DIRS[*]}" ]]; then
+        log i "Processing --even directories/files..." "$logfile"
+        for even_path in "${EVEN_DIRS[@]}"; do
+            if [[ -e "$even_path" ]]; then
+                log i "Adding --even path to artifacts: $even_path" "$logfile"
+                if [[ -d "$even_path" ]]; then
+                    cp -rL "$even_path" "$artifact_dir/" || {
+                        log w "Failed to copy --even directory: $even_path" "$logfile"
+                    }
+                elif [[ -f "$even_path" ]]; then
+                    cp -L "$even_path" "$artifact_dir/" || {
+                        log w "Failed to copy --even file: $even_path" "$logfile"
+                    }
+                fi
+            else
+                log w "--even path does not exist: $even_path" "$logfile"
+            fi
+        done
     fi
 
     # Remove existing $component.tar.gz if present to avoid conflicts

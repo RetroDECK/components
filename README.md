@@ -22,7 +22,10 @@ The `automation-tools/` directory contains scripts to automate tasks such as:
 
 ### Key Scripts
 
-- `assembler.sh`: Contains utility functions for managing components.
+- `assembler.sh`: Contains utility functions for managing components. Supports various flags:
+  - `--force`: Force download even if version is the same
+  - `--dry-run`: Show what would be done without executing
+  - `--even <path>`: Include additional directories/files in the artifact (can be used multiple times)
 - `grab_releases.sh`: Automates the process of fetching and updating components.
 
 ## CI/CD Workflows
@@ -47,6 +50,10 @@ bash ./automation_tools/grab_releases.sh
 
 1. Create a new directory for the component.
 2. Add a `recipe.sh` script to define how to fetch and prepare the component.
+   - Use `assemble <type> <url>` to download and process the component
+   - Supported types: `flatpak_id`, `flatpak_artifacts`, `appimage`, `generic`, `local`, `gh_latest_release`
+   - Optional flags: `--force`, `--dry-run`, `--even <path>` (to include extra files/directories)
+   - Example: `assemble flatpak_id "org.ppsspp.PPSSPP" --even /usr/share/artifacts`
 3. Add a `manifest.json` file with metadata for the component.
 
 ### Build RetroDECK Components
