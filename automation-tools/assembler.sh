@@ -327,7 +327,7 @@ filter_critical_system_libraries() {
     local target_dir="$1"
     local filter_type="${2:-lib}"  # 'lib' for directory filtering, 'list' for text file filtering
     
-    log i "�️  Filtering critical system libraries from: $target_dir (type: $filter_type)" "$logfile"
+    log i "🛡️ Filtering critical system libraries from: $target_dir (type: $filter_type)" "$logfile"
     
     # List of system-critical library patterns to exclude/remove
     local critical_patterns=(
@@ -1014,22 +1014,8 @@ process_required_libraries() {
     # Clean up
     rm -f "$temp_lib_file" "$filtered_lib_file"
 }
-    local temp_lib_file=$(mktemp)
-    process_library_file "$required_libs_file" "$temp_lib_file"
-    
-    # Use search_libs to copy libraries
-    if [[ -s "$temp_lib_file" ]]; then
-        log i "🔧 Using search_libs to copy component-specific libraries..." "$logfile"
-        search_libs "$temp_lib_file"
-    else
-        log i "No component-specific libraries to process after filtering" "$logfile"
-    fi
-    
-    # Clean up
-    rm -f "$temp_lib_file"
-}
 
-# Filter AppImage libraries to exclude system-critical ones
+# Process the library file to extract library names
 process_library_file() {
     local input_file="$1"
     local output_file="$2"
