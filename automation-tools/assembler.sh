@@ -10,9 +10,13 @@ then
     wget -q https://raw.githubusercontent.com/RetroDECK/RetroDECK/main/functions/logger.sh -O ".tmpfunc/logger.sh"
 fi
 
-export logfile="$(realpath assemble.log)"
+export logfile="$(realpath -m assemble.log)"
+export rd_logging_level="debug"
 
 if [[ -f ".tmpfunc/logger.sh" ]]; then
+    # Set up logging variables for the external logger BEFORE sourcing
+    export logging_level="$rd_logging_level"
+    export rd_logs_folder="$(dirname "$logfile")"
     source ".tmpfunc/logger.sh"
 else
     # Fallback logger function if logger.sh is not available
@@ -24,7 +28,6 @@ else
 
     log e "Logger script not found. Please ensure .tmpfunc/logger.sh exists." >&2
 fi
-export rd_logging_level="debug"
 
 FORCE=0                 # Force the download even if the version is the same, useful for local retention, enabled by default on CI/CD to avoid missing updates since the version files are present bu the artifacts are not
 DRY_RUN=0
@@ -36,7 +39,7 @@ fi
 REPO_ROOT=$(git rev-parse --show-toplevel 2>/dev/null || pwd)
 export extras="rd_extras"      # Name of the extras folder used to place components extras such as free bioses, cheats files and such
 components_version_list="components_version_list.md"
-export component="${args[2]:-$(basename "$(dirname "$(realpath "${BASH_SOURCE[1]}")")")}"
+export component="${args[2]:-$(basename "$(dirname "$(realpath "${BASH_SOURCE[1]:-${BASH_SOURCE[0]}}")")")}"
 export version_file="$component/component_version"
 safe_download_warning="false"
 
@@ -554,6 +557,10 @@ manage_flatpak_id() {
     # Clean up any now-empty directories left behind
     find "$WORK_DIR" -depth -type d -empty -delete
 
+    # Process required libraries for this component
+    log i "Processing component-specific required libraries..." "$logfile"
+    process_required_libraries
+
     # Uninstall the Flatpak if it was not previously installed
     if [[ "$was_installed" == "false" ]]; then
         log i "Uninstalling $flatpak_id as it was not previously installed." "$logfile"
@@ -598,9 +605,31 @@ manage_flatpak_artifacts() {
         exit 1
     }
 
-    mv "$WORK_DIR/files/bin/" "$component/artifacts/"
-    mv "$WORK_DIR/files/lib/" "$component/artifacts/"
-    mv "$WORK_DIR/files/share/" "$component/artifacts/"
+    # Copy directories and merge with existing content
+    if [[ -d "$WORK_DIR/files/bin" ]]; then
+        mkdir -p "$component/artifacts/bin"
+        cp -rL "$WORK_DIR/files/bin/"* "$component/artifacts/bin/" 2>/dev/null || true
+        log i "Copied bin directory contents to artifacts" "$logfile"
+    fi
+    
+    if [[ -d "$WORK_DIR/files/lib" ]]; then
+        mkdir -p "$component/artifacts/lib"
+        cp -rL "$WORK_DIR/files/lib/"* "$component/artifacts/lib/" 2>/dev/null || true
+        log i "Copied lib directory contents to artifacts" "$logfile"
+    fi
+    
+    if [[ -d "$WORK_DIR/files/share" ]]; then
+        mkdir -p "$component/artifacts/share"
+        cp -rL "$WORK_DIR/files/share/"* "$component/artifacts/share/" 2>/dev/null || true
+        log i "Copied share directory contents to artifacts" "$logfile"
+    fi
+    
+    # Process required libraries for this component
+    log i "Processing component-specific required libraries..." "$logfile"
+    process_required_libraries
+    
+    # Clean up temp directory
+    rm -rf "$temp_dir"
 }
 
 manage_gh_latest_release() {
@@ -768,6 +797,134 @@ manage_local() {
         log e "Failed to move extracted files to artifacts directory." "$logfile"
         exit 1
     }
+}
+
+# Process required libraries automatically
+process_required_libraries() {
+    local required_libs_file="$component/required_libraries.txt"
+
+    log i "🔍 Processing component-specific libraries for: $component" "$logfile"
+
+    if [[ ! -f "$required_libs_file" ]]; then
+        log d "No required_libraries.txt found for $component, skipping component-specific library processing" "$logfile"
+        return 0
+    fi
+    
+    log i "📖 Processing component-specific libraries from: $required_libs_file" "$logfile"
+    
+    # Source the search_libs function
+    if [[ -f "automation-tools/search_libs.sh" ]]; then
+        source "automation-tools/search_libs.sh"
+    else
+        log w "search_libs.sh not found, trying manual library processing" "$logfile"
+        process_libraries_manual "$required_libs_file"
+        return $?
+    fi
+    
+    # Set up environment for search_libs
+    export FLATPAK_DEST="$component/artifacts"
+    
+    # Create a temporary processed library file
+    local temp_lib_file=$(mktemp)
+    process_library_file "$required_libs_file" "$temp_lib_file"
+    
+    # Use search_libs to copy libraries
+    if [[ -s "$temp_lib_file" ]]; then
+        log i "🔧 Using search_libs to copy component-specific libraries..." "$logfile"
+        search_libs "$temp_lib_file"
+    else
+        log i "No component-specific libraries to process after filtering" "$logfile"
+    fi
+    
+    # Clean up
+    rm -f "$temp_lib_file"
+}
+
+# Process the library file to extract library names
+process_library_file() {
+    local input_file="$1"
+    local output_file="$2"
+    
+    log d "📋 Processing component library file: $input_file" "$logfile"
+    
+    # Clear output file
+    > "$output_file"
+    
+    while IFS= read -r line; do
+        # Skip empty lines and comments
+        [[ -z "$line" || "$line" =~ ^[[:space:]]*# ]] && continue
+        
+        # Check if line looks like ldd output
+        if [[ "$line" =~ ^[[:space:]]*([^[:space:]]+)[[:space:]]=\>[[:space:]]*(not\ found|/.*)[[:space:]]*(\(.*\))?$ ]]; then
+            # Extract library name from ldd output (standard format: name => path)
+            local lib_name="${BASH_REMATCH[1]}"
+            echo "$lib_name" >> "$output_file"
+            log i "📚 Found library from ldd: $lib_name" "$logfile"
+        elif [[ "$line" =~ ^[[:space:]]*(/[^[:space:]]+)[[:space:]]+(\(.*\))$ ]]; then
+            # Extract library name from ldd output (dynamic linker format: /path (address))
+            local lib_path="${BASH_REMATCH[1]}"
+            local lib_name=$(basename "$lib_path")
+            echo "$lib_name" >> "$output_file"
+            log i "🔗 Found dynamic linker from ldd: $lib_name" "$logfile"
+        elif [[ "$line" =~ ^[[:space:]]*([^[:space:]]+\.(so|so\.[0-9]+(\.[0-9]+)*)).*$ ]]; then
+            # Direct library name
+            local lib_name="${BASH_REMATCH[1]}"
+            echo "$lib_name" >> "$output_file"
+            log i "📚 Found library: $lib_name" "$logfile"
+        elif [[ "$line" =~ ^[[:space:]]*plugins/ ]]; then
+            # Plugin directory - pass through as is
+            echo "$line" >> "$output_file"
+            log i "🔌 Found plugin directory: $line" "$logfile"
+        else
+            # Unknown format, log warning but continue
+            log w "❓ Unrecognized library format: $line" "$logfile"
+        fi
+    done < "$input_file"
+    
+    log d "✅ Processed component library file, output written to: $output_file" "$logfile"
+}
+
+# Fallback manual library processing if search_libs is not available
+process_libraries_manual() {
+    local required_libs_file="$1"
+    local lib_dir="$component/artifacts/lib"
+    
+    log i "Performing manual library processing..." "$logfile"
+    mkdir -p "$lib_dir"
+    
+    local search_paths=("/app" "/usr/lib" "/usr/lib64" "/lib" "/lib64")
+    
+    while IFS= read -r line; do
+        # Skip empty lines and comments
+        [[ -z "$line" || "$line" =~ ^[[:space:]]*# ]] && continue
+        
+        # Extract library name
+        local lib_name=""
+        if [[ "$line" =~ ^[[:space:]]*([^[:space:]]+)[[:space:]]=\>[[:space:]]*not\ found ]]; then
+            lib_name="${BASH_REMATCH[1]}"
+        elif [[ "$line" =~ ^[[:space:]]*([^[:space:]]+\.(so|so\.[0-9]+(\.[0-9]+)*)).*$ ]]; then
+            lib_name="${BASH_REMATCH[1]}"
+        fi
+        
+        if [[ -n "$lib_name" ]]; then
+            log i "Searching for library: $lib_name" "$logfile"
+            local found=false
+            
+            for search_path in "${search_paths[@]}"; do
+                local found_lib=$(find "$search_path" -name "$lib_name" -type f 2>/dev/null | head -n 1)
+                if [[ -n "$found_lib" ]]; then
+                    cp -L "$found_lib" "$lib_dir/"
+                    log i "✅ Copied $lib_name from $found_lib" "$logfile"
+                    found=true
+                    break
+                fi
+            done
+            
+            if [[ "$found" == false ]]; then
+                log w "❌ Library not found: $lib_name" "$logfile"
+            fi
+        fi
+    done < "$required_libs_file"
 }
 
 finalize() {

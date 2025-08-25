@@ -178,47 +178,63 @@ fi
 
 ### 7. Managing Required Libraries
 
-Some components may require additional shared libraries that are not included in the standard freedesktop runtime or shared-libs. These libraries need to be manually identified, documented, and included in your component.
+Some components may require additional shared libraries that are not included in the standard freedesktop runtime or shared-libs. These libraries are now automatically processed during the build.
 
-#### Required Libraries Documentation
-Create a `required_libraries.txt` file in your component directory to document additional libraries needed by your component:
+#### Required Libraries File
+Create a `required_libraries.txt` file in your component directory to specify additional libraries needed by your component. The file supports multiple formats:
 
+**Format 1: Manual Library List**
 ```plaintext
-# This file lists libraries required by this component that are not in the freedesktop runtime
-# Some are symlinks back to the base library file, but all should be included for compatibility
+# This file lists libraries required by this component
+# Comments starting with # are ignored
 
-# For this component, these files can be grabbed from the org.kde.Platform version 6.8 runtime
-
-libicudata.so.73
-libicudata.so.73.2
-libicui18n.so.73
-libicui18n.so.73.2
-libQt6Core.so
+# Qt6 libraries
 libQt6Core.so.6
-libQt6Core.so.6.7.3
+libQt6Gui.so.6
+libQt6Widgets.so.6
+libQt6Network.so.6
+libQt6Multimedia.so.6
+
+# Other required libraries
+libslirp.so.0
+libSDL2-2.0.so.0
 
 # Qt plugins (directory structure)
 plugins/imageformats
-libqgif.so
-libqico.so
-libqjpeg.so
-
-plugins/platforms  
-libqxcb.so
+plugins/platforms
+plugins/xcbglintegrations
 ```
 
-**Important:** This file is primarily for documentation purposes. The libraries must be manually copied to your component during the build process.
+**Format 2: LDD Output (Recommended)**
+You can directly paste the output of `ldd` command - all libraries will be processed:
+```plaintext
+# Output from: ldd /app/retrodeck/components/melonds/bin/melonDS
+	linux-vdso.so.1 (0x00007562e4576000)
+	libX11.so.6 => /usr/lib/x86_64-linux-gnu/libX11.so.6 (0x00007562dccb4000)
+	libEGL.so.1 => /usr/lib/x86_64-linux-gnu/libEGL.so.1 (0x00007562e4553000)
+	libQt6Multimedia.so.6 => not found
+	libSDL2-2.0.so.0 => /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0 (0x00007562dcad2000)
+	/lib64/ld-linux-x86-64.so.2 (0x00007562e4578000)
+	libstdc++.so.6 => /usr/lib/x86_64-linux-gnu/libstdc++.so.6 (0x00007562dc600000)
+```
+*Note: Supports both standard format (`name => path`) and dynamic linker format (`/path`)*
 
-#### Manual Library Management Process
-1. **Identify Missing Libraries**: Use tools like `ldd` on the main executable to identify required shared libraries
-2. **Check Shared Libraries**: See if the library is already available in the `shared-libs` component (check `shared-libs/shared-libs-6.8.txt`)
-3. **Document in Required Libraries**: Add the library name to `required_libraries.txt` for documentation
-4. **Manual Copy in Recipe**: Add commands in your `recipe.sh` to manually copy required libraries to `artifacts/lib/`
-5. **Include Plugin Directories**: For Qt applications, manually copy necessary plugin directories
+#### Automatic Library Processing
+Libraries are now automatically processed during the build:
 
-#### Manual Library Integration in Recipe
-Update your `recipe.sh` to manually copy required libraries:
+1. **Detection**: The build system automatically detects `required_libraries.txt` in your component directory
+2. **Parsing**: Supports both manual lists and `ldd` output formats
+3. **Processing**: Extracts all library names from the file (no filtering applied)
+4. **Resolution**: Uses `search_libs.sh` to find and copy libraries from available runtimes
+5. **Integration**: Libraries are automatically included in the component artifact
 
+#### Library Management Process
+1. **Identify Missing Libraries**: Run `ldd` on your main executable to identify missing libraries
+2. **Check Shared Libraries**: Verify if libraries are available in `shared-libs` component
+3. **Create Required Libraries File**: Add either the `ldd` output or manual library list to `required_libraries.txt`
+4. **Automatic Processing**: Libraries are automatically copied during build via `finalize()` function
+
+#### Example Component with Libraries
 ```bash
 #!/bin/bash
 
@@ -227,22 +243,10 @@ source "automation-tools/assembler.sh"
 # Download and process the component
 assemble flatpak_id "org.example.Component"
 
-# Custom Commands - Manual library copying
-log i "Copying required libraries..."
+# Custom Commands (optional)
+# Any additional processing...
 
-# Create lib directory in artifacts
-mkdir -p "$component/artifacts/lib"
-
-# Copy specific required libraries (example paths)
-# These paths depend on your build environment
-cp /usr/lib/x86_64-linux-gnu/libicudata.so.73* "$component/artifacts/lib/"
-cp /usr/lib/x86_64-linux-gnu/libQt6Core.so* "$component/artifacts/lib/"
-
-# Copy Qt plugins if needed
-mkdir -p "$component/artifacts/lib/plugins"
-cp -r /usr/lib/plugins/imageformats "$component/artifacts/lib/plugins/"
-cp -r /usr/lib/plugins/platforms "$component/artifacts/lib/plugins/"
-
+# Finalize - this automatically processes required_libraries.txt
 finalize
 ```
 
@@ -265,33 +269,35 @@ export QT_PLUGIN_PATH="$rd_shared_libs/qt-6.7/lib/plugins:$component_path/lib/pl
 exec "$component_path/bin/executable_name" "$@"
 ```
 
-#### Using search_libs.sh Tool
-You can use the automation tool `search_libs.sh` to help copy libraries:
+#### Advanced Usage
+For more control over library processing, you can still manually handle libraries in your recipe:
 
 ```bash
 #!/bin/bash
 
 source "automation-tools/assembler.sh"
-source "automation-tools/search_libs.sh"
 
 # Download and process the component
 assemble flatpak_id "org.example.Component"
 
-# Use search_libs to copy libraries from required_libraries.txt
-if [[ -f "$component/required_libraries.txt" ]]; then
-    export FLATPAK_DEST="$component/artifacts"
-    search_libs "$component/required_libraries.txt"
-fi
+# Optional: Manual library handling before automatic processing
+mkdir -p "$component/artifacts/lib"
+cp /custom/path/special_library.so "$component/artifacts/lib/"
 
+# Finalize automatically processes required_libraries.txt
 finalize
 ```
 
 #### Notes
-- The `required_libraries.txt` file is primarily for documentation - libraries are NOT automatically copied
-- You must manually implement library copying in your `recipe.sh`
-- Always include both the base library and its versioned symlinks for maximum compatibility
+- Libraries in `required_libraries.txt` are **automatically processed** during `finalize()`
+- Both manual library lists and `ldd` output formats are supported
+- Comments starting with `#` are ignored in the file
+- Plugin directories can be specified with `plugins/` prefix
+- **All libraries from ldd output are processed** (no filtering for "not found")
+- The system automatically searches standard library paths for libraries
+- Deduplication occurs at the repository level, so all libraries are processed locally
+- Manual library copying can still be done before calling `finalize()` for special cases
 - Test your component thoroughly to ensure all required libraries are properly included
-- The `search_libs.sh` tool can help but must be explicitly called in your recipe
 
 ### 8. Best Practices
 - Use `log i "message"` for informational logging
@@ -314,15 +320,16 @@ Common libraries (like Qt frameworks) are managed centrally in the `shared-libs`
 These libraries are automatically available to all components through the `$rd_shared_libs` path.
 
 ### Component-Specific Libraries
-Additional libraries needed by individual components are documented in `required_libraries.txt` files within each component directory. These libraries must be manually:
-- Copied during the build process in the component's `recipe.sh`
-- Sourced from the specified runtime (e.g., org.kde.Platform)
-- Included in the component's artifact package via manual copying or using the `search_libs.sh` tool
+Additional libraries needed by individual components are specified in `required_libraries.txt` files within each component directory. These libraries are now:
+- **Automatically processed** during the build process via the `finalize()` function
+- Sourced from available runtime environments (searches /app, /usr/lib, /usr/lib64, etc.)
+- Included in the component's artifact package automatically
+- Support both manual library lists and `ldd` command output formats
 
 ### Library Resolution Process
 1. Check if library exists in shared-libs
-2. If not found, document in component's `required_libraries.txt`
-3. Manually copy library from specified runtime during build in `recipe.sh`
+2. If not found, create/update component's `required_libraries.txt`
+3. **Automatic library copying** during build when `finalize()` is called
 4. Set proper `LD_LIBRARY_PATH` in component launcher
 
 ## Build RetroDECK Components

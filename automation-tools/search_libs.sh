@@ -12,18 +12,19 @@ search_libs() {
     lib_list="$1"
 
     if [ ! -f "$lib_list" ]; then
-        echo "[ERROR] Library list file $lib_list not found. Please provide a valid library list file."
+        log e "Library list file $lib_list not found."
         return 1
     fi
 
-    mapfile -t unique_libs < <(grep -v '^\s*#' "$lib_list" | sort -u)
-    echo "Searching for shared libraries in ${SEARCH_PATHS[*]} from \"$lib_list\"..."
-    echo "[DEBUG] De-duplicated library list: ${unique_libs[*]}"
+    # Load libraries from the provided list
+    log d "🔍 Searching for libraries from: \"$lib_list\"..."
+    mapfile -t all_libs < <(grep -v '^\s*#' "$lib_list" | sort -u)
+    log i "📦 Loaded ${#all_libs[@]} libraries from list"
 
     need_to_debug=false
     not_found_libs=()
 
-    for lib in "${unique_libs[@]}"; do
+    for lib in "${all_libs[@]}"; do
         path=$(find "${SEARCH_PATHS[@]}" -type f -name "$lib" 2>/dev/null | head -n 1)
         if [ -z "$path" ]; then
             path=$(find "${SEARCH_PATHS[@]}" -type f -iname "*$lib*" 2>/dev/null | head -n 1)
