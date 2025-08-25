@@ -338,7 +338,7 @@ manage_appimage() {
     local appimage_path=""
 
     # Handle archives
-    if [[ "$output_path" =~ \.tar(\.(gz|xz|bz2))?$ || "$output_path" =~ \.7z$ ]]; then
+    if [[ "$output_path" =~ \.tar(\.(gz|xz|bz2))?$ || "$output_path" =~ \.7z$ || "$output_path" =~ \.zip$ ]]; then
         log i "Extracting archive to temp..." "$logfile"
         if [[ "$output_path" =~ \.7z$ ]]; then
             7z x -y "$output_path" -o"$temp_root" > /dev/null || {
@@ -911,7 +911,9 @@ process_libraries_manual() {
     log i "Performing manual library processing..." "$logfile"
     mkdir -p "$lib_dir"
     
-    local search_paths=("/app" "/usr/lib" "/usr/lib64" "/lib" "/lib64")
+    # Add local component paths first, then system paths (use absolute paths)
+    local component_lib_dir="$(realpath -m "$component/lib" 2>/dev/null)"
+    local search_paths=("$lib_dir" "$component_lib_dir" "/app" "/usr/lib" "/usr/lib64" "/lib" "/lib64")
     
     while IFS= read -r line; do
         # Skip empty lines and comments

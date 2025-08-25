@@ -6,7 +6,12 @@
 # ./search-libs.sh /shared-libs/retrodeck-shared-libs.6.8.txt
 
 search_libs() {
-    SEARCH_PATHS=(/app /usr/lib /usr/lib64)
+    # Add local component paths first, then system paths
+    # Use absolute paths to avoid confusion
+    local component_lib_dir="$(realpath -m "${FLATPAK_DEST}/../lib" 2>/dev/null)"
+    local artifacts_lib_dir="$(realpath -m "${FLATPAK_DEST}/lib")"
+    
+    SEARCH_PATHS=("$artifacts_lib_dir" "$component_lib_dir" /app /usr/lib /usr/lib64)
     mkdir -p "${FLATPAK_DEST}/lib/"
 
     lib_list="$1"
