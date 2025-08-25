@@ -46,3 +46,8 @@ libdav1d.so.6
 libopenh264.so.6
 libswscale.so.7
 libswresample.so.4
+libqxcb.so
+libqwayland-egl.so
+libqwayland-generic.so
+libqoffscreen.so
+libqminimal.so
