@@ -56,6 +56,133 @@ bash ./automation_tools/grab_releases.sh
    - Example: `assemble flatpak_id "org.ppsspp.PPSSPP" --even /usr/share/artifacts`
 3. Add a `manifest.json` file with metadata for the component.
 
+## Creating a Component - Step by Step Guide
+
+### 1. Directory Structure
+Create a new directory with the component name (e.g., `mycomponent/`):
+```
+mycomponent/
+├── recipe.sh                    # Required: Build script
+├── component_manifest.json      # Required: Component metadata
+├── component_launcher.sh        # Optional: Custom launcher script
+├── component_prepare.sh         # Optional: Preparation/configuration script
+├── component_functions.sh       # Optional: Component-specific functions
+└── rd_config/                   # Optional: Default configuration files
+    ├── config.yml
+    └── other_configs...
+```
+
+### 2. Create recipe.sh
+This is the main build script that fetches and prepares the component:
+
+```bash
+#!/bin/bash
+
+source "automation-tools/assembler.sh"
+
+# Download and process the component
+assemble <type> "<url>" [flags]
+
+# Optional: Add custom commands here
+# cp additional_files/* artifacts/
+
+# Finalize the component
+finalize
+```
+
+**Assembly Types:**
+- `flatpak_id`: Extract from installed Flatpak (e.g., `"org.ppsspp.PPSSPP"`)
+- `flatpak_artifacts`: Download pre-built Flatpak artifacts
+- `appimage`: Extract and process AppImage files
+- `generic`: Extract archives (tar.gz, zip, 7z, etc.)
+- `local`: Use local files/archives
+- `gh_latest_release`: Download from GitHub releases
+
+**Example recipes:**
+```bash
+# Flatpak component
+assemble flatpak_id "org.ppsspp.PPSSPP"
+
+# AppImage with extra files
+assemble appimage "https://github.com/example/app/releases/latest/download/App.AppImage" --even /usr/share/extra
+
+# GitHub release with pattern matching
+assemble gh_latest_release "owner/repo/*linux*.tar.gz"
+```
+
+### 3. Create component_manifest.json
+Define component metadata for the RetroDECK framework:
+
+```json
+{
+  "component_name": {
+    "name": "Component Display Name",
+    "url_rdwiki": "https://retrodeck.readthedocs.io/path/to/docs/",
+    "url_webpage": "https://component-website.com/",
+    "url_source": "https://github.com/component/source/",
+    "description": "Brief description of the component",
+    "system_friendly_name": "System Name",
+    "system": "system_id"
+  }
+}
+```
+
+### 4. Optional: component_launcher.sh
+Custom launcher script executed when the component is run:
+
+```bash
+#!/bin/bash
+
+# Setting component name and path
+component_name="$(basename "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")")"
+component_path="$(cd "$(dirname "${BASH_SOURCE[0]}" )" && pwd)"
+
+# Set library paths
+export LD_LIBRARY_PATH="$component_path/lib:${LD_LIBRARY_PATH}"
+
+# For Qt applications
+export QT_PLUGIN_PATH="$rd_shared_libs/qt-6.7/lib/plugins:${QT_PLUGIN_PATH}"
+
+# Launch the component
+exec "$component_path/bin/executable_name" "$@"
+```
+
+### 5. Optional: component_prepare.sh
+Setup script for initial configuration and file preparation:
+
+```bash
+#!/bin/bash
+
+component_name="$(basename "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")")"
+component_config="/app/retrodeck/components/$component_name/rd_config"
+
+if [[ "$action" == "reset" ]]; then
+  log i "Preparing $component_name"
+  
+  # Create config directories
+  create_dir "$XDG_CONFIG_HOME/$component_name"
+  
+  # Copy default configs
+  cp -fv "$component_config/config.yml" "$XDG_CONFIG_HOME/$component_name/"
+  
+  # Setup other initialization tasks
+fi
+```
+
+### 6. Testing Your Component
+1. Make recipe.sh executable: `chmod +x mycomponent/recipe.sh`
+2. Run the recipe: `cd mycomponent && ./recipe.sh`
+3. Check artifacts: `ls -la artifacts/`
+4. Test the generated archive works in RetroDECK
+
+### 7. Best Practices
+- Use `log i "message"` for informational logging
+- Handle version detection properly in your sources
+- Test with both `--force` and `--dry-run` flags
+- Include only necessary files to keep artifacts small
+- Document any special requirements in comments
+- Use `--even` to include additional required files/directories
+
 ### Build RetroDECK Components
 
 The GitHub Actions workflow automatically builds RetroDECK Components when changes are pushed to the repository. You can also trigger the workflow manually using the `workflow_dispatch` event.
