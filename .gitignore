@@ -1,7 +1,7 @@
 downloaded-artifacts
 */artifacts
 .tmpfunc
-assemble.log
+*.log
 _work
 .flatpak-builder
 component_version

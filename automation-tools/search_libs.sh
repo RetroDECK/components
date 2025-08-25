@@ -17,14 +17,20 @@ search_libs() {
     fi
 
     # Load libraries from the provided list
-    log d "🔍 Searching for libraries from: \"$lib_list\"..."
+    log d "🔍 Searching for libraries from: \"$lib_list\"..." "$logfile"
     mapfile -t all_libs < <(grep -v '^\s*#' "$lib_list" | sort -u)
-    log i "📦 Loaded ${#all_libs[@]} libraries from list"
+    log i "📦 Loaded ${#all_libs[@]} libraries from list" "$logfile"
 
     need_to_debug=false
     not_found_libs=()
 
     for lib in "${all_libs[@]}"; do
+        # Check if library is already present in artifacts (from AppImage extraction)
+        if [[ -f "${FLATPAK_DEST}/lib/$lib" ]]; then
+            echo "📦 Using native library from component: $lib (skipping external copy)"
+            continue
+        fi
+        
         path=$(find "${SEARCH_PATHS[@]}" -type f -name "$lib" 2>/dev/null | head -n 1)
         if [ -z "$path" ]; then
             path=$(find "${SEARCH_PATHS[@]}" -type f -iname "*$lib*" 2>/dev/null | head -n 1)

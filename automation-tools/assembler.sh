@@ -1,8 +1,8 @@
+#!/bin/bash
+
 # NOTE: be aware that WORK_DIR is a disposable directory, so you should not use it to store any data that you want to keep after the script ends, that is going in $component/artifacts
 
 # TODO: create a proper function to handle archives instead of repeating the same code in each component
-
-#!/bin/bash
 
 if [[ ! -f ".tmpfunc/logger.sh" ]]; 
 then
@@ -26,7 +26,7 @@ else
         echo "[$1] $2" >> "$logfile"
     }
 
-    log e "Logger script not found. Please ensure .tmpfunc/logger.sh exists." >&2
+    log e "Logger script not found. Please ensure .tmpfunc/logger.sh exists." "$logfile"
 fi
 
 FORCE=0                 # Force the download even if the version is the same, useful for local retention, enabled by default on CI/CD to avoid missing updates since the version files are present bu the artifacts are not
@@ -115,7 +115,7 @@ safe_download() {
                 return 1
             fi
             export safe_download_warning="true"
-            wget -qc "${url}.sha" -O "${dest}.sha" || log w "Could not fetch checksum file for $dest"
+            wget -qc "${url}.sha" -O "${dest}.sha" || log w "Could not fetch checksum file for $dest" "$logfile"
         else
             log e "No fallback asset found in $fallback_repo for $component_name" "$logfile"
             return 1
@@ -418,6 +418,10 @@ manage_appimage() {
 
     rm -rf "$temp_root" "$abs_appimage_path"
     log i "AppImage files moved to artifacts directory." "$logfile"
+    
+    # Process required libraries for this component
+    log i "Processing component-specific required libraries..." "$logfile"
+    process_required_libraries
 }
 
 manage_generic() {
@@ -442,6 +446,10 @@ manage_generic() {
         log e "Failed to move extracted files to artifacts." "$logfile"
         exit 1
     }
+    
+    # Process required libraries for this component
+    log i "Processing component-specific required libraries..." "$logfile"
+    process_required_libraries
 }
 
 # This function not compiling the flatpak, just downloading it and extracting it (+ runtimes and sdk)
@@ -760,6 +768,10 @@ manage_gh_latest_release() {
         log e "Failed to move extracted files to artifacts directory." "$logfile"
         exit 1
     }
+    
+    # Process required libraries for this component
+    log i "Processing component-specific required libraries..." "$logfile"
+    process_required_libraries
 }
 
 manage_local() {
@@ -788,6 +800,9 @@ manage_local() {
                 log e "Failed to copy local file to artifacts." "$logfile"
                 exit 1
             }
+            # Process required libraries for this component
+            log i "Processing component-specific required libraries..." "$logfile"
+            process_required_libraries
             return
             ;;
     esac
@@ -797,6 +812,10 @@ manage_local() {
         log e "Failed to move extracted files to artifacts directory." "$logfile"
         exit 1
     }
+    
+    # Process required libraries for this component
+    log i "Processing component-specific required libraries..." "$logfile"
+    process_required_libraries
 }
 
 # Process required libraries automatically
