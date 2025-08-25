@@ -322,6 +322,140 @@ assemble() {
     esac
 }
 
+# Universal library filter - removes system-critical libraries from any directory
+filter_critical_system_libraries() {
+    local target_dir="$1"
+    local filter_type="${2:-lib}"  # 'lib' for directory filtering, 'list' for text file filtering
+    
+    log i "�️  Filtering critical system libraries from: $target_dir (type: $filter_type)" "$logfile"
+    
+    # List of system-critical library patterns to exclude/remove
+    local critical_patterns=(
+        "libc.so*"
+        "libdl.so*"
+        "libpthread.so*"
+        "librt.so*"
+        "libm.so*"
+        "ld-linux*"
+        "linux-vdso*"
+        "libgcc_s.so*"
+        "libstdc++.so*"
+        "libresolv.so*"
+        "libnss_*"
+        "libutil.so*"
+        "libcrypt.so*"
+        "libelf.so*"
+        "libz.so*"
+        "libbz2.so*"
+        "liblzma.so*"
+        "libexpat.so*"
+        "libffi.so*"
+        "libpcre*"
+        "libselinux.so*"
+        "libcap.so*"
+        "libacl.so*"
+        "libattr.so*"
+    )
+    
+    if [[ "$filter_type" == "lib" ]]; then
+        # Filter actual library files in directories
+        if [[ -d "$target_dir" ]]; then
+            for lib_file in "$target_dir"/*.so* "$target_dir"/**/lib*.so*; do
+                if [[ -f "$lib_file" ]]; then
+                    local lib_name=$(basename "$lib_file")
+                    
+                    # Check if this library matches any critical pattern
+                    for pattern in "${critical_patterns[@]}"; do
+                        if [[ "$lib_name" == $pattern ]]; then
+                            log w "🚫 Removing critical system library: $lib_name" "$logfile"
+                            rm -f "$lib_file"
+                            break
+                        fi
+                    done
+                    
+                    # Set executable permissions for remaining libraries
+                    if [[ -f "$lib_file" ]]; then
+                        chmod +x "$lib_file"
+                        log d "✅ Kept and set permissions: $lib_name" "$logfile"
+                    fi
+                fi
+            done
+            
+            # Handle subdirectories recursively
+            find "$target_dir" -type d -mindepth 1 | while read -r subdir; do
+                filter_critical_system_libraries "$subdir" "lib"
+            done
+        fi
+        
+    elif [[ "$filter_type" == "list" ]]; then
+        # Filter text files (for required_libraries processing)
+        local input_file="$target_dir"
+        local output_file="$3"  # Third parameter is output file for list filtering
+        
+        if [[ ! -f "$input_file" ]]; then
+            log e "Input file not found: $input_file" "$logfile"
+            return 1
+        fi
+        
+        # Clear output file
+        > "$output_file"
+        
+        while IFS= read -r line; do
+            # Skip empty lines and comments
+            [[ -z "$line" || "$line" =~ ^[[:space:]]*# ]] && continue
+            
+            local skip_line=false
+            
+            # Check if line contains any critical library pattern
+            for pattern in "${critical_patterns[@]}"; do
+                if [[ "$line" == *"$pattern"* ]]; then
+                    log w "🚫 Filtering out critical library: $line" "$logfile"
+                    skip_line=true
+                    break
+                fi
+            done
+            
+            # Add to output if not critical
+            if [[ "$skip_line" == false ]]; then
+                echo "$line" >> "$output_file"
+                log d "✅ Keeping library: $line" "$logfile"
+            fi
+            
+        done < "$input_file"
+        
+        log i "✅ Library list filtering complete" "$logfile"
+    fi
+}
+
+# Filter AppImage libraries to exclude system-critical ones
+filter_appimage_libs() {
+    local source_dir="$1"
+    local dest_dir="$2"
+    
+    log i "🔍 Filtering AppImage libraries from: $source_dir" "$logfile"
+    
+    # Copy all non-lib directories first
+    for item in "$source_dir"/*; do
+        if [[ -d "$item" && "$(basename "$item")" != "lib" ]]; then
+            log d "📁 Copying directory: $(basename "$item")" "$logfile"
+            cp -rL "$item" "$dest_dir/"
+        elif [[ -f "$item" ]]; then
+            log d "📄 Copying file: $(basename "$item")" "$logfile"
+            cp -L "$item" "$dest_dir/"
+        fi
+    done
+    
+    # Handle lib directory - copy first, then filter
+    if [[ -d "$source_dir/lib" ]]; then
+        log i "🔧 Processing lib directory..." "$logfile"
+        mkdir -p "$dest_dir/lib"
+        cp -rL "$source_dir/lib/"* "$dest_dir/lib/" 2>/dev/null || true
+        
+        # Apply unified filtering
+        filter_critical_system_libraries "$dest_dir/lib" "lib"
+    fi
+}
+
 manage_appimage() {
     log d "Starting manage_appimage function" "$logfile"
 
@@ -408,8 +542,13 @@ manage_appimage() {
         rm -f "$file"
     done
 
-    # Move only if dirs exist
-    [[ -d "$WORK_DIR/squashfs-root/usr" ]] && mv "$WORK_DIR/squashfs-root/usr"/* "$component/artifacts/" || log w "No usr/ content found" "$logfile"
+    # Move only if dirs exist, but filter out system-critical libraries
+    if [[ -d "$WORK_DIR/squashfs-root/usr" ]]; then
+        log i "Filtering AppImage contents to exclude system-critical libraries..." "$logfile"
+        filter_appimage_libs "$WORK_DIR/squashfs-root/usr" "$component/artifacts/"
+    else
+        log w "No usr/ content found" "$logfile"
+    fi
     [[ -d "$WORK_DIR/squashfs-root/share" ]] && mv "$WORK_DIR/squashfs-root/share" "$component/artifacts/"
     [[ -d "$WORK_DIR/squashfs-root/apprun-hooks" ]] && mv "$WORK_DIR/squashfs-root/apprun-hooks" "$component/artifacts/"
 
@@ -526,10 +665,10 @@ manage_flatpak_id() {
                 log e "Failed to copy $target from $found_path" "$logfile"
                 exit 1
             }
-            # Set executable permissions for shared libraries if we copied lib directory
+            # Filter and set executable permissions for shared libraries if we copied lib directory
             if [[ "$target" == "lib" ]]; then
-                log i "Setting executable permissions for shared libraries..." "$logfile"
-                find "$component/artifacts/lib" -name "*.so*" -type f -exec chmod +x {} \;
+                log i "Filtering and setting permissions for Flatpak libraries..." "$logfile"
+                filter_critical_system_libraries "$component/artifacts/lib" "lib"
             fi
             local need_to_ls="true"
         else
@@ -628,9 +767,9 @@ manage_flatpak_artifacts() {
     if [[ -d "$WORK_DIR/files/lib" ]]; then
         mkdir -p "$component/artifacts/lib"
         cp -rL "$WORK_DIR/files/lib/"* "$component/artifacts/lib/" 2>/dev/null || true
-        # Set executable permissions for shared libraries
-        log i "Setting executable permissions for shared libraries..." "$logfile"
-        find "$component/artifacts/lib" -name "*.so*" -type f -exec chmod +x {} \;
+        # Filter and set executable permissions for shared libraries
+        log i "Filtering and setting permissions for Flatpak artifacts libraries..." "$logfile"
+        filter_critical_system_libraries "$component/artifacts/lib" "lib"
         log i "Copied lib directory contents to artifacts" "$logfile"
     fi
     
@@ -855,6 +994,29 @@ process_required_libraries() {
     local temp_lib_file=$(mktemp)
     process_library_file "$required_libs_file" "$temp_lib_file"
     
+    # Filter out critical system libraries before processing
+    local filtered_lib_file=$(mktemp)
+    filter_critical_system_libraries "$temp_lib_file" "list" "$filtered_lib_file"
+    
+    # Use search_libs to copy libraries
+    if [[ -s "$filtered_lib_file" ]]; then
+        log i "🔧 Using search_libs to copy component-specific libraries..." "$logfile"
+        search_libs "$filtered_lib_file"
+        
+        # Apply post-copy filtering to remove any critical libs that slipped through
+        if [[ -d "$component/artifacts/lib" ]]; then
+            filter_critical_system_libraries "$component/artifacts/lib" "lib"
+        fi
+    else
+        log i "No component-specific libraries to process after filtering" "$logfile"
+    fi
+    
+    # Clean up
+    rm -f "$temp_lib_file" "$filtered_lib_file"
+}
+    local temp_lib_file=$(mktemp)
+    process_library_file "$required_libs_file" "$temp_lib_file"
+    
     # Use search_libs to copy libraries
     if [[ -s "$temp_lib_file" ]]; then
         log i "🔧 Using search_libs to copy component-specific libraries..." "$logfile"
@@ -867,7 +1029,7 @@ process_required_libraries() {
     rm -f "$temp_lib_file"
 }
 
-# Process the library file to extract library names
+# Filter AppImage libraries to exclude system-critical ones
 process_library_file() {
     local input_file="$1"
     local output_file="$2"
@@ -956,6 +1118,11 @@ process_libraries_manual() {
             fi
         fi
     done < "$required_libs_file"
+    
+    # Apply filtering to remove any critical libraries that were copied
+    if [[ -d "$lib_dir" ]]; then
+        filter_critical_system_libraries "$lib_dir" "lib"
+    fi
 }
 
 finalize() {
