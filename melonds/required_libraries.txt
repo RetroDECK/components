@@ -1,60 +1,42 @@
-This file will list any libraries that have been identified as required by this component that are not otherwise included in the freedesktop runtime used by the core Flatpak. 
-Some are symlinks back to the base library file, but all should be included for compatibility.
+# Required libraries for melonds component
+# This file is automatically processed during build
+# Generated with: ldd /app/retrodeck/components/melonds/bin/melonDS
+# All libraries from ldd output will be processed (both found and not found)
 
-For this component, these files can be grabbed from the org.kde.Platform version 6.7 runtime.
-
-libicudata.so.73
-libicudata.so.73.2
-libicui18n.so.73
-libicui18n.so.73.2
-libicuuc.so.73
-libicuuc.so.73.2
-libQt6Core.so
-libQt6Core.so.6
-libQt6Core.so.6.7.3
-libQt6DBus.so
-libQt6DBus.so.6
-libQt6DBus.so.6.7.3
-libQt6Gui.so
-libQt6Gui.so.6
-libQt6Gui.so.6.7.3
-libQt6Multimedia.so
-libQt6Multimedia.so.6
-libQt6Multimedia.so.6.7.3
-libQt6Network.so
-libQt6Network.so.6
-libQt6Network.so.6.7.3
-libQt6Svg.so
-libQt6Svg.so.6
-libQt6Svg.so.6.7.3
-libQt6Widgets.so
-libQt6Widgets.so.6
-libQt6Widgets.so.6.7.3
-libQt6XcbQpa.so
-libQt6XcbQpa.so.6
-libQt6XcbQpa.so.6.7.3
-libSDL2-2.0.so.0
-libslirp.so
-libslirp.so.0
-libslirp.so.0.4.0
-
-plugins/imageformats
-libqgif.so
-libqico.so
-libqjpeg.so
-libqsvg.so
-
-plugins/platforminputcontexts
-libcomposeplatforminputcontextplugin.so
-libibusplatforminputcontextplugin.so
-
-plugins/platforms
-libqxcb.so
-
-plugins/tls
-libqcertonlybackend.so
-libqopensslbackend.so
-
-plugins/xcbglintegrations
-libqxcb-egl-integration.so
-libqxcb-glx-integration.so
+linux-vdso.so.1 (0x00007338b0125000)
+libX11.so.6 => /usr/lib/x86_64-linux-gnu/libX11.so.6 (0x00007338a88b4000)
+libEGL.so.1 => /usr/lib/x86_64-linux-gnu/libEGL.so.1 (0x00007338a88a2000)
+libQt6Multimedia.so.6 => not found
+libSDL2-2.0.so.0 => /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0 (0x00007338a86c0000)
+libslirp.so.0 => not found
+libarchive.so.13 => /usr/lib/x86_64-linux-gnu/libarchive.so.13 (0x00007338a85ee000)
+libQt6Network.so.6 => not found
+libQt6Widgets.so.6 => not found
+libQt6Gui.so.6 => not found
+libQt6Core.so.6 => not found
+libstdc++.so.6 => /usr/lib/x86_64-linux-gnu/libstdc++.so.6 (0x00007338a8200000)
+libm.so.6 => /usr/lib/x86_64-linux-gnu/libm.so.6 (0x00007338a84ff000)
+libgcc_s.so.1 => /usr/lib/x86_64-linux-gnu/libgcc_s.so.1 (0x00007338a84d1000)
+libc.so.6 => /usr/lib/x86_64-linux-gnu/libc.so.6 (0x00007338a8001000)
+libxcb.so.1 => /usr/lib/x86_64-linux-gnu/libxcb.so.1 (0x00007338a84a5000)
+libGLdispatch.so.0 => /usr/lib/x86_64-linux-gnu/libGLdispatch.so.0 (0x00007338a7f49000)
+libwayland-egl.so.1 => /usr/lib/x86_64-linux-gnu/libwayland-egl.so.1 (0x00007338a84a0000)
+libwayland-cursor.so.0 => /usr/lib/x86_64-linux-gnu/libwayland-cursor.so.0 (0x00007338a8496000)
+libwayland-client.so.0 => /usr/lib/x86_64-linux-gnu/libwayland-client.so.0 (0x00007338a7f36000)
+libxkbcommon.so.0 => /usr/lib/x86_64-linux-gnu/libxkbcommon.so.0 (0x00007338a7ede000)
+libdecor-0.so.0 => /usr/lib/x86_64-linux-gnu/libdecor-0.so.0 (0x00007338a7ed3000)
+libcrypto.so.3 => /usr/lib/x86_64-linux-gnu/libcrypto.so.3 (0x00007338a7800000)
+libacl.so.1 => /usr/lib/x86_64-linux-gnu/libacl.so.1 (0x00007338a7ec8000)
+liblzma.so.5 => /usr/lib/x86_64-linux-gnu/liblzma.so.5 (0x00007338a7e97000)
+libzstd.so.1 => /usr/lib/x86_64-linux-gnu/libzstd.so.1 (0x00007338a7dce000)
+liblz4.so.1 => /usr/lib/x86_64-linux-gnu/liblz4.so.1 (0x00007338a7da9000)
+libbz2.so.1 => /usr/lib/x86_64-linux-gnu/libbz2.so.1 (0x00007338a7d95000)
+libz.so.1 => /usr/lib/x86_64-linux-gnu/libz.so.1 (0x00007338a7d79000)
+libxml2.so.2 => /usr/lib/x86_64-linux-gnu/libxml2.so.2 (0x00007338a76a1000)
+/lib64/ld-linux-x86-64.so.2 (0x00007338b0127000)
+libXau.so.6 => /usr/lib/x86_64-linux-gnu/libXau.so.6 (0x00007338a7d73000)
+libffi.so.8 => /usr/lib/x86_64-linux-gnu/libffi.so.8 (0x00007338a7d63000)
+libattr.so.1 => /usr/lib/x86_64-linux-gnu/libattr.so.1 (0x00007338a7d5b000)
+libicui18n.so.75 => /usr/lib/x86_64-linux-gnu/libicui18n.so.75 (0x00007338a7200000)
+libicuuc.so.75 => /usr/lib/x86_64-linux-gnu/libicuuc.so.75 (0x00007338a6e00000)
+libicudata.so.75 => /usr/lib/x86_64-linux-gnu/libicudata.so.75 (0x00007338a5000000)
