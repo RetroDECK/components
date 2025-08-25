@@ -11,4 +11,4 @@ log i "RetroDECK is now launching $component_name"
 log d "Library path is: $LD_LIBRARY_PATH"
 log d "DOOM WADs directory is: $DOOMWADDIR"
 
-exec "$component_path/AppRun" --no-sandbox +fluid_patchset "$component_path/share/games/doom/soundfonts/gzdoom.sf2" "$@"
+APPDIR="$component_path" exec "$component_path/AppRun" --no-sandbox +fluid_patchset "$component_path/share/games/doom/soundfonts/gzdoom.sf2" "$@"
