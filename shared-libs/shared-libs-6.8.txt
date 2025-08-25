@@ -8,10 +8,13 @@ libdav1d.so.7
 libdav1d.so.7.0.0
 libicudata.so.75
 libicudata.so.75.1
+libicudata.so.74
 libicui18n.so.75
 libicui18n.so.75.1
+libicui18n.so.74
 libicuuc.so.75
 libicuuc.so.75.1
+libicuuc.so.74
 libopenh264.so.2.5.1
 libopenh264.so.7
 libQt6Core.so
