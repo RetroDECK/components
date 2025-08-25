@@ -525,8 +525,13 @@ manage_flatpak_id() {
             cp -rL "$found_path" "$component/artifacts/" || {
                 log e "Failed to copy $target from $found_path" "$logfile"
                 exit 1
-            local need_to_ls="true"
             }
+            # Set executable permissions for shared libraries if we copied lib directory
+            if [[ "$target" == "lib" ]]; then
+                log i "Setting executable permissions for shared libraries..." "$logfile"
+                find "$component/artifacts/lib" -name "*.so*" -type f -exec chmod +x {} \;
+            fi
+            local need_to_ls="true"
         else
             log w "No top-level '$target' found in $WORK_DIR" "$logfile"
             local need_to_ls="true"
@@ -623,6 +628,9 @@ manage_flatpak_artifacts() {
     if [[ -d "$WORK_DIR/files/lib" ]]; then
         mkdir -p "$component/artifacts/lib"
         cp -rL "$WORK_DIR/files/lib/"* "$component/artifacts/lib/" 2>/dev/null || true
+        # Set executable permissions for shared libraries
+        log i "Setting executable permissions for shared libraries..." "$logfile"
+        find "$component/artifacts/lib" -name "*.so*" -type f -exec chmod +x {} \;
         log i "Copied lib directory contents to artifacts" "$logfile"
     fi
     
@@ -935,7 +943,9 @@ process_libraries_manual() {
                 local found_lib=$(find "$search_path" -name "$lib_name" -type f 2>/dev/null | head -n 1)
                 if [[ -n "$found_lib" ]]; then
                     cp -L "$found_lib" "$lib_dir/"
-                    log i "✅ Copied $lib_name from $found_lib" "$logfile"
+                    # Set executable permissions for shared libraries
+                    chmod +x "$lib_dir/$(basename "$found_lib")"
+                    log i "✅ Copied $lib_name from $found_lib (with executable permissions)" "$logfile"
                     found=true
                     break
                 fi

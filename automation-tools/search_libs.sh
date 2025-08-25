@@ -55,8 +55,10 @@ search_libs() {
         dest="${FLATPAK_DEST}/lib/$(basename "$path")"
         if [ "$path" != "$dest" ]; then
             cp -fL "$path" "${FLATPAK_DEST}/lib/"
+            # Set executable permissions for shared libraries
+            chmod +x "${FLATPAK_DEST}/lib/$(basename "$path")"
             actual_name="$(basename "$path")"
-            echo "✅ Copied $lib to ${FLATPAK_DEST}/lib/$actual_name"
+            echo "✅ Copied $lib to ${FLATPAK_DEST}/lib/$actual_name (with executable permissions)"
         fi
     done
 
