@@ -9,3 +9,4 @@ libQt5DBus.so.5
 libqt5keychain.so.1
 libgssapi_krb5.so.2
 libbz2.so.1.0.8
+lib*.so*

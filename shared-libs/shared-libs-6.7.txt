@@ -52,3 +52,4 @@ libqwayland-generic.so
 libqoffscreen.so
 libqminimal.so
 libbz2.so.1.0.8
+lib*.so*
