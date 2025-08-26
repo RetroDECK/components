@@ -46,6 +46,17 @@ Run the following command to fetch the latest releases for all components:
 bash ./automation_tools/grab_releases.sh
 ```
 
+## Troubleshooting: Missing Libraries in Components
+
+Sometimes, certain components may keep failing due to missing libraries, even after initial attempts to fix the issue. This often happens with libraries such as Qt (e.g., `libQt5Widgets.so.5`, `libQt5Gui.so.5`, `libbz2.so.1.0` etc.).
+
+In these cases, make sure to add the required libraries to the `shared-libs` list (see `shared-libs-5.15.txt` for an example). This will help ensure that all necessary dependencies are available for the components to work correctly.
+
+If you continue to experience issues, double-check the library names and versions, and verify that they are present in your system or included in the shared-libs list.
+
+**Tip for Cleanliness:**
+For better cleanliness and organization, you can add only the correct version of a library (e.g., Qt5 or Qt6) to the shared-libs list. To determine which version is needed, check your component's `component_launcher.sh` script to see which Qt version is being used (for example, by inspecting the `LD_LIBRARY_PATH` or `QT_PLUGIN_PATH` variables). This helps avoid unnecessary duplicates and keeps the shared-libs list tidy.
+
 ### Add a New Component
 
 1. Create a new directory for the component.
