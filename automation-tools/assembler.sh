@@ -84,42 +84,50 @@ safe_download() {
         log w "Primary download failed for $component_name from $url" "$logfile"
         rm -f "$dest"
 
-        # Try fallback from RetroDECK/components release assets
+        # Try to recover component.zip from the "latest" release of the RetroDECK/components repo
         local fallback_repo="${FALLBACK_GITHUB_REPO:-RetroDECK/components}"
-        local fallback_pattern="${component_name}.*"
-
-        log i "Trying fallback from $fallback_repo releases for asset matching: $fallback_pattern" "$logfile"
-
-        local fallback_json
+        local zip_name="${component_name}.zip"
+        local latest_release_json
         if [[ -n "$GITHUB_TOKEN" ]]; then
-            fallback_json=$(curl -s -H "Authorization: token ${GITHUB_TOKEN}" "https://api.github.com/repos/$fallback_repo/releases")
+            latest_release_json=$(curl -s -H "Authorization: token ${GITHUB_TOKEN}" "https://api.github.com/repos/$fallback_repo/releases/latest")
         else
-            fallback_json=$(curl -s "https://api.github.com/repos/$fallback_repo/releases")
+            latest_release_json=$(curl -s "https://api.github.com/repos/$fallback_repo/releases/latest")
         fi
-
-        if echo "$fallback_json" | grep -q "API rate limit exceeded"; then
+        local latest_asset_url
+        latest_asset_url=$(echo "$latest_release_json" | jq -r --arg zip "$zip_name" '.assets[]? | select(.name == $zip) | .browser_download_url' | head -n 1)
+        if [[ -n "$latest_asset_url" ]]; then
+            log w "Recovering $zip_name from the 'latest' release of $fallback_repo" "$logfile"
+            wget -qc "$latest_asset_url" -O "$dest"
+            if [[ $? -eq 0 && -s "$dest" ]]; then
+                export safe_download_warning="true"
+                return 0
+            fi
+        fi
+        # If not found in the latest release, search all releases for the most recent containing component.zip
+        local all_releases_json
+        if [[ -n "$GITHUB_TOKEN" ]]; then
+            all_releases_json=$(curl -s -H "Authorization: token ${GITHUB_TOKEN}" "https://api.github.com/repos/$fallback_repo/releases")
+        else
+            all_releases_json=$(curl -s "https://api.github.com/repos/$fallback_repo/releases")
+        fi
+        if echo "$all_releases_json" | grep -q "API rate limit exceeded"; then
             log e "GitHub API rate limit exceeded while trying fallback." "$logfile"
             return 1
         fi
-
-        # Find first matching asset
+        # Sort releases by date and look for the most recent component.zip
         local fallback_asset_url
-        fallback_asset_url=$(echo "$fallback_json" | jq -r --arg pattern "$fallback_pattern" '
-            .[] | .assets[]? | select(.name | test($pattern)) | .browser_download_url' | head -n 1)
-
+        fallback_asset_url=$(echo "$all_releases_json" | jq -r --arg zip "$zip_name" '
+            sort_by(.published_at) | reverse | .[] | .assets[]? | select(.name == $zip) | .browser_download_url' | head -n 1)
         if [[ -n "$fallback_asset_url" ]]; then
-            log i "Found fallback asset: $fallback_asset_url" "$logfile"
+            log w "Recovering $zip_name from the most recent release containing it in $fallback_repo" "$logfile"
             wget -qc "$fallback_asset_url" -O "$dest"
-            if [[ $? -ne 0 || ! -s "$dest" ]]; then
-                log e "Fallback download also failed for $fallback_asset_url" "$logfile"
-                return 1
+            if [[ $? -eq 0 && -s "$dest" ]]; then
+                export safe_download_warning="true"
+                return 0
             fi
-            export safe_download_warning="true"
-            wget -qc "${url}.sha" -O "${dest}.sha" || log w "Could not fetch checksum file for $dest" "$logfile"
-        else
-            log e "No fallback asset found in $fallback_repo for $component_name" "$logfile"
-            return 1
         fi
+        log e "No asset $zip_name found in releases of $fallback_repo" "$logfile"
+        return 1
     fi
 
     log i "Download successful: $dest" "$logfile"
