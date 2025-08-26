@@ -1,0 +1,27 @@
+# List of system-critical library patterns to exclude/remove
+# You can add or remove patterns as needed. Lines starting with # are comments.
+
+#libc.so*
+#libdl.so*
+#libpthread.so*
+#librt.so*
+#libm.so*
+ld-linux*
+linux-vdso*
+#libgcc_s.so*
+#libstdc++.so*
+#libresolv.so*
+libnss_*
+#libutil.so*
+#libcrypt.so*
+libelf.so*
+libz.so*
+#libbz2.so*
+liblzma.so*
+libexpat.so*
+#libffi.so*
+libpcre*
+libselinux.so*
+#libcap.so*
+#libacl.so*
+#libattr.so*

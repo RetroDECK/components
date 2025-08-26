@@ -391,33 +391,17 @@ filter_critical_system_libraries() {
     
     log i "🛡️ Filtering critical system libraries from: $target_dir (type: $filter_type)" "$logfile"
     
-    # List of system-critical library patterns to exclude/remove
-    local critical_patterns=(
-        "libc.so*"
-        "libdl.so*"
-        "libpthread.so*"
-        "librt.so*"
-        "libm.so*"
-        "ld-linux*"
-        "linux-vdso*"
-        "libgcc_s.so*"
-        "libstdc++.so*"
-        "libresolv.so*"
-        "libnss_*"
-        "libutil.so*"
-        "libcrypt.so*"
-        "libelf.so*"
-        "libz.so*"
-        "libbz2.so*"
-        "liblzma.so*"
-        "libexpat.so*"
-        "libffi.so*"
-        "libpcre*"
-        "libselinux.so*"
-        "libcap.so*"
-        "libacl.so*"
-        "libattr.so*"
-    )
+    # Load critical patterns from filtered_libs.txt in project root
+    local filtered_libs_file="$(dirname "$0")/../filtered_libs.txt"
+    local critical_patterns=()
+    if [[ -f "$filtered_libs_file" ]]; then
+        while IFS= read -r line; do
+            [[ -z "$line" || "$line" =~ ^[[:space:]]*# ]] && continue
+            critical_patterns+=("$line")
+        done < "$filtered_libs_file"
+    else
+        log e "filtered_libs.txt not found, skipping the filtering. This may lead to issues." "$logfile"
+    fi
     
     if [[ "$filter_type" == "lib" ]]; then
         # Filter actual library files in directories
