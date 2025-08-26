@@ -496,9 +496,9 @@ filter_appimage_libs() {
     
     log i "🔍 Filtering AppImage libraries from: $source_dir" "$logfile"
     
-    # Copy all non-lib directories first
+    # Copy all directories and files, including lib
     for item in "$source_dir"/*; do
-        if [[ -d "$item" && "$(basename "$item")" != "lib" ]]; then
+        if [[ -d "$item" ]]; then
             log d "📁 Copying directory: $(basename "$item")" "$logfile"
             cp -rL "$item" "$dest_dir/"
         elif [[ -f "$item" ]]; then
@@ -506,14 +506,8 @@ filter_appimage_libs() {
             cp -L "$item" "$dest_dir/"
         fi
     done
-    
-    # Handle lib directory - copy first, then filter
-    if [[ -d "$source_dir/lib" ]]; then
-        log i "🔧 Processing lib directory..." "$logfile"
-        mkdir -p "$dest_dir/lib"
-        cp -rL "$source_dir/lib/"* "$dest_dir/lib/" 2>/dev/null || true
-        
-        # Apply unified filtering
+    # Apply unified filtering only if lib exists
+    if [[ -d "$dest_dir/lib" ]]; then
         filter_critical_system_libraries "$dest_dir/lib" "lib"
     fi
 }
