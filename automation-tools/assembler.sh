@@ -1067,9 +1067,10 @@ process_libraries_manual() {
     log i "Performing manual library processing..." "$logfile"
     mkdir -p "$lib_dir"
     
-    # Add local component paths first, then system paths (use absolute paths)
+    # Search only in local component and shared-libs directories, NOT on the host system
     local component_lib_dir="$(realpath -m "$component/lib" 2>/dev/null)"
-    local search_paths=("$lib_dir" "$component_lib_dir" "/app" "/usr/lib" "/usr/lib64" "/lib" "/lib64")
+    local shared_libs_dir="$(realpath -m "shared-libs" 2>/dev/null)"
+    local search_paths=("$lib_dir" "$component_lib_dir" "$shared_libs_dir")
     
     while IFS= read -r line; do
         # Skip empty lines and comments
