@@ -94,6 +94,3 @@ libtasn1.so.6 => /app/retrodeck/components/azahar/bin/../lib/libtasn1.so.6 (0x00
 libsasl2.so.2 => /app/retrodeck/components/azahar/bin/../lib/libsasl2.so.2 (0x00007ab9e747e000)
 libssl.so.3 => /app/retrodeck/components/azahar/bin/../lib/libssl.so.3 (0x00007ab9e6cea000)
 libblkid.so.1 => /app/retrodeck/components/azahar/bin/../lib/libblkid.so.1 (0x00007ab9e6c88000)
-
-# Manually inserted, not found by LDD
-libbz2.so.1.0
