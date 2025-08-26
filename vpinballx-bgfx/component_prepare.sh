@@ -9,5 +9,6 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
   log i "Preparing $component_name"
   log i "----------------------"
   
-  create_dir "$XDG_CONFIG_HOME/vpinball"
+  # Apparently vpinballx-bgfx cannot create the folder by itself
+  create_dir "$XDG_CONFIG_HOME/vpinballx-bgfx/.vpinball/user/"
 fi

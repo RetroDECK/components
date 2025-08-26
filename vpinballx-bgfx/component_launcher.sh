@@ -5,6 +5,7 @@ component_name="$(basename "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")")"
 component_path="$(cd "$(dirname "${BASH_SOURCE[0]}" )" && pwd)"
 
 export LD_LIBRARY_PATH="$component_path/:${LD_LIBRARY_PATH}"
+export HOME="$XDG_CONFIG_HOME/$component_name"
 
 log i "RetroDECK is now launching $component_name"
 log d "Library path is: $LD_LIBRARY_PATH"
