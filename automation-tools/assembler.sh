@@ -82,7 +82,12 @@ safe_download() {
 
     while [[ $attempt -le $max_retries ]]; do
         log i "Attempt $attempt: Downloading $url -> $dest" "$logfile"
-        wget -qc "$url" -O "$dest"
+        if [[ $attempt -eq 3 ]]; then
+            # Third attempt: use curl with browser user-agent and follow redirects
+            curl -L -A "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36" "$url" -o "$dest"
+        else
+            wget -qc "$url" -O "$dest"
+        fi
         if [[ $? -eq 0 && -s "$dest" ]]; then
             log i "Download successful: $dest" "$logfile"
             success=1
