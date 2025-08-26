@@ -75,18 +75,38 @@ parse_flags() {
 safe_download() {
     local url="$1"
     local dest="$2"
-    local component_name="${3:-$component}"  # Use provided or fallback to current
+    local component_name="${3:-$component}"
+    local max_retries=3
+    local attempt=1
+    local success=0
 
-    log i "Attempting to download: $url -> $dest" "$logfile"
-    wget -qc "$url" -O "$dest"
-
-    if [[ $? -ne 0 || ! -s "$dest" ]]; then
-        log w "Primary download failed for $component_name from $url" "$logfile"
+    while [[ $attempt -le $max_retries ]]; do
+        log i "Attempt $attempt: Downloading $url -> $dest" "$logfile"
+        wget -qc "$url" -O "$dest"
+        if [[ $? -eq 0 && -s "$dest" ]]; then
+            log i "Download successful: $dest" "$logfile"
+            success=1
+            break
+        fi
+        log w "Attempt $attempt failed for $component_name from $url" "$logfile"
         rm -f "$dest"
+        if [[ $attempt -lt $max_retries ]]; then
+            log i "Waiting 60 seconds before retry..." "$logfile"
+            sleep 60
+        fi
+        attempt=$((attempt+1))
+    done
 
-        # Try to recover component.zip from the "latest" release of the RetroDECK/components repo
-        local fallback_repo="${FALLBACK_GITHUB_REPO:-RetroDECK/components}"
-        local zip_name="${component_name}.zip"
+    if [[ $success -eq 1 ]]; then
+        return 0
+    fi
+
+    # Fallback GitHub logic with retry
+    local fallback_repo="${FALLBACK_GITHUB_REPO:-RetroDECK/components}"
+    local zip_name="${component_name}.zip"
+    attempt=1
+    success=0
+    while [[ $attempt -le $max_retries ]]; do
         local latest_release_json
         if [[ -n "$GITHUB_TOKEN" ]]; then
             latest_release_json=$(curl -s -H "Authorization: token ${GITHUB_TOKEN}" "https://api.github.com/repos/$fallback_repo/releases/latest")
@@ -96,14 +116,29 @@ safe_download() {
         local latest_asset_url
         latest_asset_url=$(echo "$latest_release_json" | jq -r --arg zip "$zip_name" '.assets[]? | select(.name == $zip) | .browser_download_url' | head -n 1)
         if [[ -n "$latest_asset_url" ]]; then
-            log w "Recovering $zip_name from the 'latest' release of $fallback_repo" "$logfile"
+            log w "Attempt $attempt: Recovering $zip_name from the 'latest' release of $fallback_repo" "$logfile"
             wget -qc "$latest_asset_url" -O "$dest"
             if [[ $? -eq 0 && -s "$dest" ]]; then
                 export safe_download_warning="true"
-                return 0
+                log i "Download successful from fallback: $dest" "$logfile"
+                success=1
+                break
             fi
         fi
-        # If not found in the latest release, search all releases for the most recent containing component.zip
+        if [[ $attempt -lt $max_retries ]]; then
+            log i "Waiting 60 seconds before retry fallback..." "$logfile"
+            sleep 60
+        fi
+        attempt=$((attempt+1))
+    done
+    if [[ $success -eq 1 ]]; then
+        return 0
+    fi
+
+    # Search all releases for the most recent containing component.zip, with retry and rate limit handling
+    attempt=1
+    success=0
+    while [[ $attempt -le $max_retries ]]; do
         local all_releases_json
         if [[ -n "$GITHUB_TOKEN" ]]; then
             all_releases_json=$(curl -s -H "Authorization: token ${GITHUB_TOKEN}" "https://api.github.com/repos/$fallback_repo/releases")
@@ -111,27 +146,41 @@ safe_download() {
             all_releases_json=$(curl -s "https://api.github.com/repos/$fallback_repo/releases")
         fi
         if echo "$all_releases_json" | grep -q "API rate limit exceeded"; then
-            log e "GitHub API rate limit exceeded while trying fallback." "$logfile"
-            return 1
+            log e "GitHub API rate limit exceeded while trying fallback (attempt $attempt)." "$logfile"
+            if [[ $attempt -lt $max_retries ]]; then
+                log i "Waiting 60 seconds before retry after rate limit..." "$logfile"
+                sleep 60
+                attempt=$((attempt+1))
+                continue
+            else
+                return 1
+            fi
         fi
-        # Sort releases by date and look for the most recent component.zip
         local fallback_asset_url
         fallback_asset_url=$(echo "$all_releases_json" | jq -r --arg zip "$zip_name" '
             sort_by(.published_at) | reverse | .[] | .assets[]? | select(.name == $zip) | .browser_download_url' | head -n 1)
         if [[ -n "$fallback_asset_url" ]]; then
-            log w "Recovering $zip_name from the most recent release containing it in $fallback_repo" "$logfile"
+            log w "Attempt $attempt: Recovering $zip_name from the most recent release containing it in $fallback_repo" "$logfile"
             wget -qc "$fallback_asset_url" -O "$dest"
             if [[ $? -eq 0 && -s "$dest" ]]; then
                 export safe_download_warning="true"
-                return 0
+                log i "Download successful from fallback: $dest" "$logfile"
+                success=1
+                break
             fi
         fi
-        log e "No asset $zip_name found in releases of $fallback_repo" "$logfile"
-        return 1
+        if [[ $attempt -lt $max_retries ]]; then
+            log i "Waiting 60 seconds before retry fallback..." "$logfile"
+            sleep 60
+        fi
+        attempt=$((attempt+1))
+    done
+    if [[ $success -eq 1 ]]; then
+        return 0
     fi
 
-    log i "Download successful: $dest" "$logfile"
-    return 0
+    log e "No asset $zip_name found in releases of $fallback_repo after $max_retries attempts" "$logfile"
+    return 1
 }
 
 assemble() {
