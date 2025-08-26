@@ -209,13 +209,13 @@ plugins/xcbglintegrations
 You can directly paste the output of `ldd` command - all libraries will be processed:
 ```plaintext
 # Output from: ldd /app/retrodeck/components/melonds/bin/melonDS
-	linux-vdso.so.1 (0x00007562e4576000)
-	libX11.so.6 => /usr/lib/x86_64-linux-gnu/libX11.so.6 (0x00007562dccb4000)
-	libEGL.so.1 => /usr/lib/x86_64-linux-gnu/libEGL.so.1 (0x00007562e4553000)
-	libQt6Multimedia.so.6 => not found
-	libSDL2-2.0.so.0 => /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0 (0x00007562dcad2000)
-	/lib64/ld-linux-x86-64.so.2 (0x00007562e4578000)
-	libstdc++.so.6 => /usr/lib/x86_64-linux-gnu/libstdc++.so.6 (0x00007562dc600000)
+  linux-vdso.so.1 (0x00007562e4576000)
+  libX11.so.6 => /usr/lib/x86_64-linux-gnu/libX11.so.6 (0x00007562dccb4000)
+  libEGL.so.1 => /usr/lib/x86_64-linux-gnu/libEGL.so.1 (0x00007562e4553000)
+  libQt6Multimedia.so.6 => not found
+  libSDL2-2.0.so.0 => /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0 (0x00007562dcad2000)
+  /lib64/ld-linux-x86-64.so.2 (0x00007562e4578000)
+  libstdc++.so.6 => /usr/lib/x86_64-linux-gnu/libstdc++.so.6 (0x00007562dc600000)
 ```
 *Note: Supports both standard format (`name => path`) and dynamic linker format (`/path`)*
 
@@ -313,11 +313,39 @@ RetroDECK uses a two-tier library system:
 
 ### Shared Libraries
 Common libraries (like Qt frameworks) are managed centrally in the `shared-libs` component:
-- `shared-libs-5.15.txt`: Qt 5.15 libraries
-- `shared-libs-6.7.txt`: Qt 6.7 libraries  
-- `shared-libs-6.8.txt`: Qt 6.8 libraries
 
 These libraries are automatically available to all components through the `$rd_shared_libs` path.
+
+## How to add and manage component libraries
+
+Once you have added a new component and it builds correctly, you can test its integration in RetroDECK by opening the shell and running:
+
+    retrodeck --open component
+
+If the component fails to start, it's often due to missing libraries. Check the error message to see which library is missing.
+
+To see the full list of libraries required by the component, use:
+
+    ldd /app/retrodeck/components/component/bin/component
+
+Note: Sometimes ldd does not show all required libraries. Some components (like es-de) have a section with manually inserted libraries in addition to the ldd dump. Check the component's `required_libraries.txt` file for both the ldd output and manually added libraries.
+
+This process may require several attempts: try running, compiling, or injecting the component. If ldd can't find a library, the component may break each time with a different missing library. Be patient and keep adding missing dependencies as you discover them, but don't worry, once the component is stabilized the work is done.
+Future updates might break it again but usually is a minor issue.
+
+Update the component's `required_libraries.txt` file by adding any missing libraries, whether found via ldd or manually.
+
+### Example required_libraries.txt
+
+```
+libfoo.so.1 => /usr/lib/x86_64-linux-gnu/libfoo.so.1
+libbar.so.2 => not found
+
+# Manually inserted, not found by LDD
+libbaz.so.3
+```
+
+See existing component files for more examples.
 
 ### Component-Specific Libraries
 Additional libraries needed by individual components are specified in `required_libraries.txt` files within each component directory. These libraries are now:
