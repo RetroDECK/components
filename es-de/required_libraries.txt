@@ -43,5 +43,6 @@ libffi.so.8 => /usr/lib/x86_64-linux-gnu/libffi.so.8 (0x00007c79a2f58000)
 libbrotlicommon.so.1 => /usr/lib/x86_64-linux-gnu/libbrotlicommon.so.1 (0x00007c79a25f8000)
 libpcre2-8.so.0 => /usr/lib/x86_64-linux-gnu/libpcre2-8.so.0 (0x00007c79a2557000)
 
-# not found by ldd
+# Manually inserted, not found by LDD
 librtmp.so.1
+libssh.so.4
