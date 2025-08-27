@@ -53,3 +53,10 @@ libqoffscreen.so
 libqminimal.so
 libbz2.so.1.0.8
 lib*.so*
+libgssapi_krb5.so.2
+libpcre.so.3
+libpulsecommon-16.1.so
+libicuuc.so.74
+libzip.so.5
+librtmp.so.1
+libjpeg.so.8

@@ -51,3 +51,9 @@ libQt6Concurrent.so.6
 libQt6Multimedia.so.6
 libbz2.so.1.0.8
 lib*.so*
+libgssapi_krb5.so.2
+libpcre.so.3
+libpulsecommon-16.1.so
+libzip.so.5
+librtmp.so.1
+libjpeg.so.8

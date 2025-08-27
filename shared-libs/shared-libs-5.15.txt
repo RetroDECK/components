@@ -10,3 +10,8 @@ libqt5keychain.so.1
 libgssapi_krb5.so.2
 libbz2.so.1.0.8
 lib*.so*
+libpcre.so.3
+libpulsecommon-16.1.so
+libicuuc.so.74
+librtmp.so.1
+libjpeg.so.8
