@@ -43,6 +43,11 @@ wget "https://buildbot.libretro.com/nightly/linux/x86_64/latest/sameduck_libretr
 unzip -o "$WORK_DIR/sameduck_libretro.so.zip" -d "$WORK_DIR/cores/"
 rm -rf "$WORK_DIR/sameduck_libretro.so.zip"
 
+# Genesis Plus GX [Expanded Rom Size] (Paprium) Libretro Core
+# This core is needed for Paprium and is not available in the main Libretro Cores
+log i "Downloading Genesis Plus GX [Expanded Rom Size] (Paprium) Libretro Core..." "$logfile"
+wget "https://github.com/RapidEdwin08/Genesis-Plus-GX-Expanded-Rom-Size/raw/refs/heads/master/builds/Linux_so64/genesis_plus_gx_libretro.so" -O "$WORK_DIR/cores/genesis-plus-gx-expanded-rom-size-paprium_libretro.so"
+
 # Nightly Cores
 # As some comres are not available in the stable version, we need to download the nightly cores
 # must be earlier than retroarch-cores as it will overwrite this cores with the stable ones
