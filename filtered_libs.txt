@@ -20,7 +20,7 @@ libbz2.so*
 liblzma.so*
 libexpat.so*
 libffi.so*
-libpcre*
+#libpcre*
 libselinux.so*
 #libcap.so*
 #libacl.so*
