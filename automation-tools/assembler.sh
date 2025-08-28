@@ -413,7 +413,7 @@ filter_critical_system_libraries() {
                     # Check if this library matches any critical pattern
                     for pattern in "${critical_patterns[@]}"; do
                         if [[ "$lib_name" == $pattern ]]; then
-                            log w "🚫 Removing critical system library: $lib_name" "$logfile"
+                            log w "⏭️ Skipping $lib_name as it's filtered in filtered_libs.txt" "$logfile"
                             rm -f "$lib_file"
                             break
                         fi
