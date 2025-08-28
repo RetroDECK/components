@@ -22,3 +22,19 @@ libvorbisenc.so.2 => /usr/lib/x86_64-linux-gnu/libvorbisenc.so.2 (0x00007f37a731
 libFLAC.so.12 => /usr/lib/x86_64-linux-gnu/libFLAC.so.12 (0x00007f37a72ac000)
 libopus.so.0 => /usr/lib/x86_64-linux-gnu/libopus.so.0 (0x00007f37a723f000)
 libvorbis.so.0 => /usr/lib/x86_64-linux-gnu/libvorbis.so.0 (0x00007f37a82a9000)
+
+# Manually inserted, not found by LDD
+librtmp.so.1
+libssh.so.4
+libgssapi_krb5.so.2
+libldap.so.2
+liblber.so.2
+libpulsecommon-16.1.so
+libkrb5.so.3
+libk5crypto.so.3
+libkrb5support.so.0
+libsasl2.so.2
+libasyncns.so.0
+libapparmor.so.1
+libkeyutils.so.1
+
