@@ -78,3 +78,4 @@ liblz4.so.1 => /app/retrodeck/components/cemu/bin/../lib/liblz4.so.1 (0x000076db
 libcap.so.2 => /usr/lib/x86_64-linux-gnu/libcap.so.2 (0x000076db9b2e7000)
 libgcrypt.so.20 => /app/retrodeck/components/cemu/bin/../lib/libgcrypt.so.20 (0x000076db9b1a7000)
 libgpg-error.so.0 => /usr/lib/x86_64-linux-gnu/libgpg-error.so.0 (0x000076db9b17a000)
+
