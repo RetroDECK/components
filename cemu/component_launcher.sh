@@ -10,6 +10,8 @@ source "$component_path/apprun-hooks/linuxdeploy-plugin-gtk.sh"
 log d "Loaded app run hooks in apprun-hooks/linuxdeploy-plugin-gtk.sh"
 
 log i "RetroDECK is now launching $component_name"
+log d "Library path is: $LD_LIBRARY_PATH"
+log d "AppDir is: $component_path"
 
 export LD_LIBRARY_PATH="$component_path/lib:${LD_LIBRARY_PATH}"
 
