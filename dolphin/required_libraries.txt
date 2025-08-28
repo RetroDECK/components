@@ -138,3 +138,11 @@ libeconf.so.0 => /usr/lib/x86_64-linux-gnu/libeconf.so.0 (0x000073b3289aa000)
 
 # Manually inserted, not found by LDD
 libpulsecommon-16.1.so
+librtmp.so.1
+libssh.so.4
+libgssapi_krb5.so.2
+libldap.so.2
+liblber.so.2
+libasyncns.so.0
+libapparmor.so.1
+libicuuc.so.74
