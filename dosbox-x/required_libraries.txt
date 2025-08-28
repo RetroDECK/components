@@ -114,3 +114,4 @@ libeconf.so.0 => /usr/lib/x86_64-linux-gnu/libeconf.so.0 (0x00007d6790229000)
 
 # Manually inserted, not found by LDD
 libbz2.so.1.0
+libicuuc.so.74
