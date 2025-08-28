@@ -46,3 +46,12 @@ libpcre2-8.so.0 => /usr/lib/x86_64-linux-gnu/libpcre2-8.so.0 (0x00007c79a2557000
 # Manually inserted, not found by LDD
 librtmp.so.1
 libssh.so.4
+libgssapi_krb5.so.2
+libldap.so.2
+liblber.so.2
+libzvbi.so.0
+libsnappy.so.1
+libcodec2.so.1.2
+libgsm.so.1
+libjxl.so.0.7
+
