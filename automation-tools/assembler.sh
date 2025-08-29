@@ -1065,35 +1065,59 @@ process_library_file() {
     # Clear output file
     > "$output_file"
     
+    # Load filtered patterns from filtered_libs.txt
+    local filtered_libs_file="$(dirname "$0")/../filtered_libs.txt"
+    local filtered_patterns=()
+    if [[ -f "$filtered_libs_file" ]]; then
+        while IFS= read -r fline; do
+            [[ -z "$fline" || "$fline" =~ ^[[:space:]]*# ]] && continue
+            filtered_patterns+=("$fline")
+        done < "$filtered_libs_file"
+    fi
+
     while IFS= read -r line; do
         # Skip empty lines and comments
         [[ -z "$line" || "$line" =~ ^[[:space:]]*# ]] && continue
-        
-        # Check if line looks like ldd output
-        if [[ "$line" =~ ^[[:space:]]*([^[:space:]]+)[[:space:]]=\>[[:space:]]*(not\ found|/.*)[[:space:]]*(\(.*\))?$ ]]; then
-            # Extract library name from ldd output (standard format: name => path)
-            local lib_name="${BASH_REMATCH[1]}"
-            echo "$lib_name" >> "$output_file"
-            log i "📚 Found library from ldd: $lib_name" "$logfile"
+
+        local lib_name=""
+        # Migliorata: estrai nome completo con versione (es: libzip.so.5)
+        if [[ "$line" =~ ^[[:space:]]*([a-zA-Z0-9_\-]+\.so(\.[0-9]+)*)([[:space:]]|=\u003e).* ]]; then
+            lib_name="${BASH_REMATCH[1]}"
+            extracted_from_ldd=true
         elif [[ "$line" =~ ^[[:space:]]*(/[^[:space:]]+)[[:space:]]+(\(.*\))$ ]]; then
-            # Extract library name from ldd output (dynamic linker format: /path (address))
-            local lib_path="${BASH_REMATCH[1]}"
-            local lib_name=$(basename "$lib_path")
-            echo "$lib_name" >> "$output_file"
-            log i "🔗 Found dynamic linker from ldd: $lib_name" "$logfile"
-        elif [[ "$line" =~ ^[[:space:]]*([^[:space:]]+\.(so|so\.[0-9]+(\.[0-9]+)*)).*$ ]]; then
-            # Direct library name
-            local lib_name="${BASH_REMATCH[1]}"
-            echo "$lib_name" >> "$output_file"
-            log i "📚 Found library: $lib_name" "$logfile"
+            lib_path="${BASH_REMATCH[1]}"
+            lib_name=$(basename "$lib_path")
+        elif [[ "$line" =~ ^[[:space:]]*([a-zA-Z0-9_\-]+\.so(\.[0-9]+)*).*$ ]]; then
+            lib_name="${BASH_REMATCH[1]}"
         elif [[ "$line" =~ ^[[:space:]]*plugins/ ]]; then
-            # Plugin directory - pass through as is
             echo "$line" >> "$output_file"
-            log i "🔌 Found plugin directory: $line" "$logfile"
+            log i "� Found plugin directory: $line" "$logfile"
+            continue
         else
-            # Unknown format, log warning but continue
             log w "❓ Unrecognized library format: $line" "$logfile"
+            continue
         fi
+
+        # Check if library is filtered
+        local is_filtered=false
+        for pattern in "${filtered_patterns[@]}"; do
+            if [[ "$lib_name" == $pattern ]]; then
+                log w "⏭️  Skipping $lib_name as it's filtered in filtered_libs.txt" "$logfile"
+                is_filtered=true
+                break
+            fi
+        done
+        if [[ "$is_filtered" == true ]]; then
+            continue
+        fi
+
+        echo "$lib_name" >> "$output_file"
+        if [[ "$extracted_from_ldd" == true ]]; then
+            log i "📚 Extracted library from ldd dump: $lib_name" "$logfile"
+        else
+            log i "📚 Found library: $lib_name" "$logfile"
+        fi
+        extracted_from_ldd=false
     done < "$input_file"
     
     log d "✅ Processed component library file, output written to: $output_file" "$logfile"
