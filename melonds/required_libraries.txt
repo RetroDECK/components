@@ -43,3 +43,4 @@ libicudata.so.75 => /usr/lib/x86_64-linux-gnu/libicudata.so.75 (0x0000729ed32000
 
 # Manually inserted, not found by LDD
 libbz2.so.1.0
+libicuuc.so.74

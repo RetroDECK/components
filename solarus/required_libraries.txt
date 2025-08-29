@@ -97,3 +97,7 @@ libgcc_s.so.1 => /usr/lib/x86_64-linux-gnu/libgcc_s.so.1 (0x000073fb27ca5000)
 libc.so.6 => /usr/lib/x86_64-linux-gnu/libc.so.6 (0x000073fb27801000)
 libm.so.6 => /usr/lib/x86_64-linux-gnu/libm.so.6 (0x000073fb27712000)
 /lib64/ld-linux-x86-64.so.2 (0x000073fb27cec000)
+
+# Manually inserted, not found by LDD
+libkrb5.so.3
+

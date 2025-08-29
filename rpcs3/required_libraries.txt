@@ -99,3 +99,5 @@ libcrypt.so.1 => not found
 
 # Manually inserted, not found by LDD
 libbz2.so.1.0
+libcrypt.so.1
+

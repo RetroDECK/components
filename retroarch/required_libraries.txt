@@ -70,3 +70,4 @@ libgpg-error.so.0 => /app/retrodeck/components/retroarch/bin/../lib/libgpg-error
 libogg.so.0 => /app/retrodeck/components/retroarch/bin/../lib/libogg.so.0 (0x0000785ce0800000)
 libvorbis.so.0 => /app/retrodeck/components/retroarch/bin/../lib/libvorbis.so.0 (0x0000785ce0400000)
 
+libbz2.so.1.0

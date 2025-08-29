@@ -155,3 +155,6 @@ libblkid.so.1 => /app/retrodeck/components/pcsx2/bin/../lib/libblkid.so.1 (0x000
 libpcre2-8.so.0 => /usr/lib/x86_64-linux-gnu/libpcre2-8.so.0 (0x00007ade55b08000)
 libdatrie.so.1 => /app/retrodeck/components/pcsx2/bin/../lib/libdatrie.so.1 (0x00007ade55afe000)
 
+# Manually inserted, not found by LDD
+libpcre.so.3
+

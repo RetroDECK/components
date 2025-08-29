@@ -132,3 +132,4 @@ libeconf.so.0 => /usr/lib/x86_64-linux-gnu/libeconf.so.0 (0x00007fb75f1aa000)
 
 # Manually inserted, not found by LDD
 libpulsecommon-16.1.so
+librtmp.so.1
