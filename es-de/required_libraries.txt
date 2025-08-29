@@ -1,47 +1,203 @@
 # These are needed libraries for ES-DE that are added to Runtime 6.8 list
 
-linux-vdso.so.1 (0x00007fe268983000)
-libcurl.so.4 => /usr/lib/x86_64-linux-gnu/libcurl.so.4 (0x00007fe26889e000)
-libfreeimage.so.3 => not found
-libgit2.so.1.6 => not found
-libpugixml.so.1 => not found
-libSDL2-2.0.so.0 => /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0 (0x00007c79a3a1e000)
-libasound.so.2 => /usr/lib/x86_64-linux-gnu/libasound.so.2 (0x00007c79a3905000)
-libbluetooth.so.3 => /usr/lib/x86_64-linux-gnu/libbluetooth.so.3 (0x00007c79a4310000)
-libavcodec.so.60 => not found
-libavfilter.so.9 => not found
-libavformat.so.60 => not found
-libavutil.so.58 => not found
-libfreetype.so.6 => /usr/lib/x86_64-linux-gnu/libfreetype.so.6 (0x00007c79a4248000)
-libharfbuzz.so.0 => /usr/lib/x86_64-linux-gnu/libharfbuzz.so.0 (0x00007c79a37e5000)
-libicuuc.so.73 => not found
-libOpenGL.so.0 => /usr/lib/x86_64-linux-gnu/libOpenGL.so.0 (0x00007c79a37b8000)
-libstdc++.so.6 => /usr/lib/x86_64-linux-gnu/libstdc++.so.6 (0x00007c79a3400000)
-libm.so.6 => /usr/lib/x86_64-linux-gnu/libm.so.6 (0x00007c79a36c9000)
-libgcc_s.so.1 => /usr/lib/x86_64-linux-gnu/libgcc_s.so.1 (0x00007c79a369b000)
-libc.so.6 => /usr/lib/x86_64-linux-gnu/libc.so.6 (0x00007c79a3201000)
-libnghttp2.so.14 => /usr/lib/x86_64-linux-gnu/libnghttp2.so.14 (0x00007c79a31d2000)
-libidn2.so.0 => /usr/lib/x86_64-linux-gnu/libidn2.so.0 (0x00007c79a3177000)
-libpsl.so.5 => /usr/lib/x86_64-linux-gnu/libpsl.so.5 (0x00007c79a3162000)
-libssl.so.3 => /usr/lib/x86_64-linux-gnu/libssl.so.3 (0x00007c79a3066000)
-libcrypto.so.3 => /usr/lib/x86_64-linux-gnu/libcrypto.so.3 (0x00007c79a2a00000)
-libz.so.1 => /usr/lib/x86_64-linux-gnu/libz.so.1 (0x00007c79a304c000)
-libwayland-egl.so.1 => /usr/lib/x86_64-linux-gnu/libwayland-egl.so.1 (0x00007c79a3047000)
-libwayland-cursor.so.0 => /usr/lib/x86_64-linux-gnu/libwayland-cursor.so.0 (0x00007c79a303d000)
-libwayland-client.so.0 => /usr/lib/x86_64-linux-gnu/libwayland-client.so.0 (0x00007c79a302a000)
-libxkbcommon.so.0 => /usr/lib/x86_64-linux-gnu/libxkbcommon.so.0 (0x00007c79a2fd2000)
-libdecor-0.so.0 => /usr/lib/x86_64-linux-gnu/libdecor-0.so.0 (0x00007c79a2fc7000)
-/lib64/ld-linux-x86-64.so.2 (0x00007c79a442a000)
-libbz2.so.1 => /usr/lib/x86_64-linux-gnu/libbz2.so.1 (0x00007c79a2fb3000)
-libpng16.so.16 => /usr/lib/x86_64-linux-gnu/libpng16.so.16 (0x00007c79a2f78000)
-libbrotlidec.so.1 => /usr/lib/x86_64-linux-gnu/libbrotlidec.so.1 (0x00007c79a2f6a000)
-libglib-2.0.so.0 => /usr/lib/x86_64-linux-gnu/libglib-2.0.so.0 (0x00007c79a28b0000)
-libgraphite2.so.3 => /usr/lib/x86_64-linux-gnu/libgraphite2.so.3 (0x00007c79a288d000)
-libGLdispatch.so.0 => /usr/lib/x86_64-linux-gnu/libGLdispatch.so.0 (0x00007c79a27d5000)
-libunistring.so.5 => /usr/lib/x86_64-linux-gnu/libunistring.so.5 (0x00007c79a261b000)
-libffi.so.8 => /usr/lib/x86_64-linux-gnu/libffi.so.8 (0x00007c79a2f58000)
-libbrotlicommon.so.1 => /usr/lib/x86_64-linux-gnu/libbrotlicommon.so.1 (0x00007c79a25f8000)
-libpcre2-8.so.0 => /usr/lib/x86_64-linux-gnu/libpcre2-8.so.0 (0x00007c79a2557000)
+linux-vdso.so.1 (0x0000734d32d91000)
+libcurl.so.4 => /app/retrodeck/components/es-de/lib/libcurl.so.4 (0x0000734d32cca000)
+libfreeimage.so.3 => /app/retrodeck/components/es-de/lib/libfreeimage.so.3 (0x0000734d31e00000)
+libgit2.so.1.6 => /app/retrodeck/components/es-de/lib/libgit2.so.1.6 (0x0000734d31c91000)
+libpugixml.so.1 => /app/retrodeck/components/es-de/lib/libpugixml.so.1 (0x0000734d32c8a000)
+libSDL2-2.0.so.0 => /app/retrodeck/components/shared-libs/qt-6.7/lib/libSDL2-2.0.so.0 (0x0000734d31ab9000)
+libasound.so.2 => /app/retrodeck/components/es-de/lib/libasound.so.2 (0x0000734d319af000)
+libbluetooth.so.3 => /app/retrodeck/components/es-de/lib/libbluetooth.so.3 (0x0000734d32c57000)
+libavcodec.so.60 => /app/retrodeck/components/es-de/lib/libavcodec.so.60 (0x0000734d30400000)
+libavfilter.so.9 => /app/retrodeck/components/es-de/lib/libavfilter.so.9 (0x0000734d2f600000)
+libavformat.so.60 => /app/retrodeck/components/es-de/lib/libavformat.so.60 (0x0000734d2f200000)
+libavutil.so.58 => /app/retrodeck/components/es-de/lib/libavutil.so.58 (0x0000734d2e000000)
+libfreetype.so.6 => /app/retrodeck/components/es-de/lib/libfreetype.so.6 (0x0000734d32534000)
+libharfbuzz.so.0 => /app/retrodeck/components/es-de/lib/libharfbuzz.so.0 (0x0000734d2f4f3000)
+libicuuc.so.73 => /app/retrodeck/components/shared-libs/qt-6.7/lib/libicuuc.so.73 (0x0000734d2dc00000)
+libOpenGL.so.0 => /usr/lib/x86_64-linux-gnu/libOpenGL.so.0 (0x0000734d31982000)
+libstdc++.so.6 => /usr/lib/x86_64-linux-gnu/libstdc++.so.6 (0x0000734d2d800000)
+libm.so.6 => /usr/lib/x86_64-linux-gnu/libm.so.6 (0x0000734d30311000)
+libgcc_s.so.1 => /usr/lib/x86_64-linux-gnu/libgcc_s.so.1 (0x0000734d31954000)
+libc.so.6 => /usr/lib/x86_64-linux-gnu/libc.so.6 (0x0000734d2d601000)
+libnghttp2.so.14 => /app/retrodeck/components/es-de/lib/libnghttp2.so.14 (0x0000734d31929000)
+libidn2.so.0 => /app/retrodeck/components/es-de/lib/libidn2.so.0 (0x0000734d2f4d1000)
+librtmp.so.1 => /app/retrodeck/components/es-de/lib/librtmp.so.1 (0x0000734d2f1e2000)
+libssh.so.4 => /app/retrodeck/components/es-de/lib/libssh.so.4 (0x0000734d2f171000)
+libpsl.so.5 => /app/retrodeck/components/es-de/lib/libpsl.so.5 (0x0000734d2f4bd000)
+libssl.so.3 => /app/retrodeck/components/es-de/lib/libssl.so.3 (0x0000734d2df56000)
+libcrypto.so.3 => /app/retrodeck/components/es-de/lib/libcrypto.so.3 (0x0000734d2d000000)
+libgssapi_krb5.so.2 => /app/retrodeck/components/es-de/lib/libgssapi_krb5.so.2 (0x0000734d2f11d000)
+libldap.so.2 => /app/retrodeck/components/es-de/lib/libldap.so.2 (0x0000734d2def8000)
+liblber.so.2 => /app/retrodeck/components/es-de/lib/liblber.so.2 (0x0000734d2dee8000)
+libzstd.so.1 => /usr/lib/x86_64-linux-gnu/libzstd.so.1 (0x0000734d2de1f000)
+libbrotlidec.so.1 => /app/retrodeck/components/es-de/lib/libbrotlidec.so.1 (0x0000734d30303000)
+libz.so.1 => /usr/lib/x86_64-linux-gnu/libz.so.1 (0x0000734d2dbe6000)
+libwayland-egl.so.1 => /app/retrodeck/components/es-de/lib/libwayland-egl.so.1 (0x0000734d31924000)
+libwayland-cursor.so.0 => /app/retrodeck/components/es-de/lib/libwayland-cursor.so.0 (0x0000734d2de15000)
+libwayland-client.so.0 => /app/retrodeck/components/es-de/lib/libwayland-client.so.0 (0x0000734d2dbd6000)
+libxkbcommon.so.0 => /app/retrodeck/components/es-de/lib/libxkbcommon.so.0 (0x0000734d2db8d000)
+libdecor-0.so.0 => /app/retrodeck/components/es-de/lib/libdecor-0.so.0 (0x0000734d2db82000)
+/lib64/ld-linux-x86-64.so.2 (0x0000734d32d93000)
+libswresample.so.4 => /app/retrodeck/components/shared-libs/qt-6.7/lib/libswresample.so.4 (0x0000734d2db62000)
+libvpx.so.9 => /app/retrodeck/components/es-de/lib/libvpx.so.9 (0x0000734d2cc00000)
+libwebpmux.so.3 => /usr/lib/x86_64-linux-gnu/libwebpmux.so.3 (0x0000734d2db55000)
+liblzma.so.5 => /usr/lib/x86_64-linux-gnu/liblzma.so.5 (0x0000734d2db24000)
+libdav1d.so.7 => /app/retrodeck/components/es-de/lib/libdav1d.so.7 (0x0000734d2ca22000)
+librsvg-2.so.2 => /usr/lib/x86_64-linux-gnu/librsvg-2.so.2 (0x0000734d2c200000)
+libgobject-2.0.so.0 => /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0 (0x0000734d2dac0000)
+libglib-2.0.so.0 => /usr/lib/x86_64-linux-gnu/libglib-2.0.so.0 (0x0000734d2c8d2000)
+libcairo.so.2 => /usr/lib/x86_64-linux-gnu/libcairo.so.2 (0x0000734d2c0c1000)
+libzvbi.so.0 => /app/retrodeck/components/es-de/lib/libzvbi.so.0 (0x0000734d2d574000)
+libsnappy.so.1 => /app/retrodeck/components/es-de/lib/libsnappy.so.1 (0x0000734d2dab5000)
+libaom.so.3 => /usr/lib/x86_64-linux-gnu/libaom.so.3 (0x0000734d2ba00000)
+libcodec2.so.1.2 => /app/retrodeck/components/es-de/lib/libcodec2.so.1.2 (0x0000734d2a800000)
+libgsm.so.1 => /app/retrodeck/components/es-de/lib/libgsm.so.1 (0x0000734d2daa6000)
+libjxl.so.0.7 => /app/retrodeck/components/es-de/lib/libjxl.so.0.7 (0x0000734d2a400000)
+libjxl_threads.so.0.7 => /app/retrodeck/components/es-de/lib/libjxl_threads.so.0.7 (0x0000734d2f4b7000)
+libmp3lame.so.0 => /usr/lib/x86_64-linux-gnu/libmp3lame.so.0 (0x0000734d2cf85000)
+libopenjp2.so.7 => /usr/lib/x86_64-linux-gnu/libopenjp2.so.7 (0x0000734d2c86b000)
+libopus.so.0 => /usr/lib/x86_64-linux-gnu/libopus.so.0 (0x0000734d2c054000)
+librav1e.so.0 => /app/retrodeck/components/es-de/lib/librav1e.so.0 (0x0000734d2a000000)
+libshine.so.3 => /app/retrodeck/components/es-de/lib/libshine.so.3 (0x0000734d2da99000)
+libspeex.so.1 => /usr/lib/x86_64-linux-gnu/libspeex.so.1 (0x0000734d2d555000)
+libSvtAv1Enc.so.1 => /app/retrodeck/components/es-de/lib/libSvtAv1Enc.so.1 (0x0000734d29600000)
+libtheoraenc.so.1 => /usr/lib/x86_64-linux-gnu/libtheoraenc.so.1 (0x0000734d2d51a000)
+libtheoradec.so.1 => /usr/lib/x86_64-linux-gnu/libtheoradec.so.1 (0x0000734d2cf6c000)
+libtwolame.so.0 => /app/retrodeck/components/es-de/lib/libtwolame.so.0 (0x0000734d2c02d000)
+libvorbis.so.0 => /usr/lib/x86_64-linux-gnu/libvorbis.so.0 (0x0000734d2bffd000)
+libvorbisenc.so.2 => /usr/lib/x86_64-linux-gnu/libvorbisenc.so.2 (0x0000734d2b955000)
+libwebp.so.7 => /usr/lib/x86_64-linux-gnu/libwebp.so.7 (0x0000734d2bf8a000)
+libx264.so.164 => /app/lib/ffmpeg/./libx264.so.164 (0x0000734d29200000)
+libx265.so.199 => /app/retrodeck/components/es-de/lib/libx265.so.199 (0x0000734d28200000)
+libxvidcore.so.4 => /app/retrodeck/components/es-de/lib/libxvidcore.so.4 (0x0000734d2b841000)
+libva.so.2 => /usr/lib/x86_64-linux-gnu/libva.so.2 (0x0000734d2a7c9000)
+libvpl.so.2 => /app/retrodeck/components/es-de/lib/libvpl.so.2 (0x0000734d2a39a000)
+libswscale.so.7 => /app/retrodeck/components/shared-libs/qt-6.7/lib/libswscale.so.7 (0x0000734d29f6f000)
+libpostproc.so.57 => /app/retrodeck/components/es-de/lib/libpostproc.so.57 (0x0000734d2cf56000)
+libpocketsphinx.so.3 => /app/retrodeck/components/es-de/lib/libpocketsphinx.so.3 (0x0000734d2a780000)
+libsphinxbase.so.3 => /app/retrodeck/components/es-de/lib/libsphinxbase.so.3 (0x0000734d2a359000)
+libbs2b.so.0 => /app/retrodeck/components/es-de/lib/libbs2b.so.0 (0x0000734d2d513000)
+liblilv-0.so.0 => /app/retrodeck/components/es-de/lib/liblilv-0.so.0 (0x0000734d2bf71000)
+librubberband.so.2 => /app/retrodeck/components/es-de/lib/librubberband.so.2 (0x0000734d29f1f000)
+libmysofa.so.1 => /app/retrodeck/components/es-de/lib/libmysofa.so.1 (0x0000734d2b830000)
+libflite_cmu_us_awb.so.1 => /app/retrodeck/components/es-de/lib/libflite_cmu_us_awb.so.1 (0x0000734d27e00000)
+libflite_cmu_us_kal.so.1 => /app/retrodeck/components/es-de/lib/libflite_cmu_us_kal.so.1 (0x0000734d27c9b000)
+libflite_cmu_us_kal16.so.1 => /app/retrodeck/components/es-de/lib/libflite_cmu_us_kal16.so.1 (0x0000734d27800000)
+libflite_cmu_us_rms.so.1 => /app/retrodeck/components/es-de/lib/libflite_cmu_us_rms.so.1 (0x0000734d27200000)
+libflite_cmu_us_slt.so.1 => /app/retrodeck/components/es-de/lib/libflite_cmu_us_slt.so.1 (0x0000734d26e00000)
+libflite.so.1 => /app/retrodeck/components/es-de/lib/libflite.so.1 (0x0000734d29ee5000)
+libfribidi.so.0 => /usr/lib/x86_64-linux-gnu/libfribidi.so.0 (0x0000734d2b810000)
+libplacebo.so.338 => /app/retrodeck/components/es-de/lib/libplacebo.so.338 (0x0000734d26400000)
+libass.so.9 => /app/retrodeck/components/es-de/lib/libass.so.9 (0x0000734d29eac000)
+libvidstab.so.1.1 => /app/retrodeck/components/es-de/lib/libvidstab.so.1.1 (0x0000734d2a344000)
+libzmq.so.5 => /app/retrodeck/components/es-de/lib/libzmq.so.5 (0x0000734d2955e000)
+libzimg.so.2 => /app/retrodeck/components/es-de/lib/libzimg.so.2 (0x0000734d27735000)
+libOpenCL.so.1 => /usr/lib/x86_64-linux-gnu/libOpenCL.so.1 (0x0000734d29e76000)
+libfontconfig.so.1 => /usr/lib/x86_64-linux-gnu/libfontconfig.so.1 (0x0000734d29e24000)
+libxml2.so.2 => /usr/lib/x86_64-linux-gnu/libxml2.so.2 (0x0000734d26ca1000)
+libbz2.so.1.0 => /app/retrodeck/components/shared-libs/qt-6.7/lib/libbz2.so.1.0 (0x0000734d2a330000)
+libgme.so.0 => /app/retrodeck/components/es-de/lib/libgme.so.0 (0x0000734d29512000)
+libopenmpt.so.0 => /app/retrodeck/components/es-de/lib/libopenmpt.so.0 (0x0000734d26227000)
+libchromaprint.so.1 => /app/retrodeck/components/es-de/lib/libchromaprint.so.1 (0x0000734d29502000)
+libbluray.so.2 => /app/retrodeck/components/es-de/lib/libbluray.so.2 (0x0000734d291a8000)
+libgnutls.so.30 => /usr/lib/x86_64-linux-gnu/libgnutls.so.30 (0x0000734d25e00000)
+librabbitmq.so.4 => /app/retrodeck/components/es-de/lib/librabbitmq.so.4 (0x0000734d294ea000)
+librist.so.4 => /app/retrodeck/components/es-de/lib/librist.so.4 (0x0000734d27c68000)
+libsrt-gnutls.so.1.5 => /app/retrodeck/components/es-de/lib/libsrt-gnutls.so.1.5 (0x0000734d2615e000)
+libssh-gcrypt.so.4 => /app/retrodeck/components/es-de/lib/libssh-gcrypt.so.4 (0x0000734d27bdb000)
+libva-drm.so.2 => /usr/lib/x86_64-linux-gnu/libva-drm.so.2 (0x0000734d2c866000)
+libva-x11.so.2 => /usr/lib/x86_64-linux-gnu/libva-x11.so.2 (0x0000734d2c85e000)
+libvdpau.so.1 => /usr/lib/x86_64-linux-gnu/libvdpau.so.1 (0x0000734d2a32a000)
+libX11.so.6 => /usr/lib/x86_64-linux-gnu/libX11.so.6 (0x0000734d25cb4000)
+libdrm.so.2 => /usr/lib/x86_64-linux-gnu/GL/default/lib/libdrm.so.2 (0x0000734d2918f000)
+libpng16.so.16 => /app/retrodeck/components/es-de/lib/libpng16.so.16 (0x0000734d276fd000)
+libgraphite2.so.3 => /app/retrodeck/components/es-de/lib/libgraphite2.so.3 (0x0000734d276d7000)
+libicudata.so.73 => /app/retrodeck/components/shared-libs/qt-6.7/lib/libicudata.so.73 (0x0000734d23e00000)
+libGLdispatch.so.0 => /app/retrodeck/components/es-de/lib/libGLdispatch.so.0 (0x0000734d260a6000)
+libunistring.so.5 => /app/retrodeck/components/es-de/lib/libunistring.so.5 (0x0000734d23c53000)
+libhogweed.so.6 => /usr/lib/x86_64-linux-gnu/libhogweed.so.6 (0x0000734d2605a000)
+libnettle.so.8 => /usr/lib/x86_64-linux-gnu/libnettle.so.8 (0x0000734d23bfc000)
+libgmp.so.10 => /usr/lib/x86_64-linux-gnu/libgmp.so.10 (0x0000734d23b79000)
+libkrb5.so.3 => /app/retrodeck/components/es-de/lib/libkrb5.so.3 (0x0000734d23ab0000)
+libk5crypto.so.3 => /app/retrodeck/components/es-de/lib/libk5crypto.so.3 (0x0000734d276ab000)
+libcom_err.so.2 => /usr/lib/x86_64-linux-gnu/libcom_err.so.2 (0x0000734d294e3000)
+libkrb5support.so.0 => /app/retrodeck/components/es-de/lib/libkrb5support.so.0 (0x0000734d294d6000)
+libsasl2.so.2 => /app/retrodeck/components/es-de/lib/libsasl2.so.2 (0x0000734d26c87000)
+libbrotlicommon.so.1 => /app/retrodeck/components/es-de/lib/libbrotlicommon.so.1 (0x0000734d26037000)
+libffi.so.8 => /usr/lib/x86_64-linux-gnu/libffi.so.8 (0x0000734d2769b000)
+libsharpyuv.so.0 => /usr/lib/x86_64-linux-gnu/libsharpyuv.so.0 (0x0000734d281f7000)
+libcairo-gobject.so.2 => /usr/lib/x86_64-linux-gnu/libcairo-gobject.so.2 (0x0000734d25ca8000)
+libgdk_pixbuf-2.0.so.0 => /usr/lib/x86_64-linux-gnu/libgdk_pixbuf-2.0.so.0 (0x0000734d23a81000)
+libpangocairo-1.0.so.0 => /usr/lib/x86_64-linux-gnu/libpangocairo-1.0.so.0 (0x0000734d25c97000)
+libpango-1.0.so.0 => /usr/lib/x86_64-linux-gnu/libpango-1.0.so.0 (0x0000734d23a11000)
+libgio-2.0.so.0 => /usr/lib/x86_64-linux-gnu/libgio-2.0.so.0 (0x0000734d23836000)
+libpcre2-8.so.0 => /app/retrodeck/components/es-de/lib/libpcre2-8.so.0 (0x0000734d2379c000)
+libXext.so.6 => /usr/lib/x86_64-linux-gnu/libXext.so.6 (0x0000734d23788000)
+libXrender.so.1 => /usr/lib/x86_64-linux-gnu/libXrender.so.1 (0x0000734d2377c000)
+libxcb.so.1 => /usr/lib/x86_64-linux-gnu/libxcb.so.1 (0x0000734d23750000)
+libxcb-render.so.0 => /usr/lib/x86_64-linux-gnu/libxcb-render.so.0 (0x0000734d2373f000)
+libxcb-shm.so.0 => /usr/lib/x86_64-linux-gnu/libxcb-shm.so.0 (0x0000734d2918a000)
+libpixman-1.so.0 => /usr/lib/x86_64-linux-gnu/libpixman-1.so.0 (0x0000734d23691000)
+libhwy.so.1 => /usr/lib/x86_64-linux-gnu/libhwy.so.1 (0x0000734d23684000)
+libbrotlienc.so.1 => /usr/lib/x86_64-linux-gnu/libbrotlienc.so.1 (0x0000734d235e1000)
+liblcms2.so.2 => /usr/lib/x86_64-linux-gnu/liblcms2.so.2 (0x0000734d23578000)
+libogg.so.0 => /usr/lib/x86_64-linux-gnu/libogg.so.0 (0x0000734d26c7d000)
+libnuma.so.1 => /app/retrodeck/components/es-de/lib/libnuma.so.1 (0x0000734d2356a000)
+libpthread.so.0 => /usr/lib/x86_64-linux-gnu/libpthread.so.0 (0x0000734d271fb000)
+libblas.so.3 => /app/retrodeck/components/es-de/lib/libblas.so.3 (0x0000734d234c3000)
+liblapack.so.3 => /app/retrodeck/components/es-de/lib/liblapack.so.3 (0x0000734d22c00000)
+libserd-0.so.0 => /app/retrodeck/components/es-de/lib/libserd-0.so.0 (0x0000734d234ab000)
+libsord-0.so.0 => /app/retrodeck/components/es-de/lib/libsord-0.so.0 (0x0000734d234a2000)
+libsratom-0.so.0 => /app/retrodeck/components/es-de/lib/libsratom-0.so.0 (0x0000734d23497000)
+libzix-0.so.0 => /app/retrodeck/components/es-de/lib/libzix-0.so.0 (0x0000734d23489000)
+libfftw3.so.3 => /usr/lib/x86_64-linux-gnu/libfftw3.so.3 (0x0000734d22a00000)
+libsamplerate.so.0 => /usr/lib/x86_64-linux-gnu/libsamplerate.so.0 (0x0000734d2331a000)
+libflite_usenglish.so.1 => not found
+libflite_cmulex.so.1 => not found
+libflite_usenglish.so.1 => not found
+libflite_cmulex.so.1 => not found
+libflite_usenglish.so.1 => not found
+libflite_cmulex.so.1 => not found
+libflite_usenglish.so.1 => not found
+libflite_cmulex.so.1 => not found
+libflite_usenglish.so.1 => not found
+libflite_cmulex.so.1 => not found
+libvulkan.so.1 => /usr/lib/x86_64-linux-gnu/libvulkan.so.1 (0x0000734d22984000)
+libunibreak.so.5 => not found
+libgomp.so.1 => /usr/lib/x86_64-linux-gnu/libgomp.so.1 (0x0000734d2292f000)
+libbsd.so.0 => not found
+libsodium.so.23 => not found
+libpgm-5.3.so.0 => not found
+libnorm.so.1 => not found
+libexpat.so.1 => /usr/lib/x86_64-linux-gnu/libexpat.so.1 (0x0000734d22903000)
+libicui18n.so.75 => /usr/lib/x86_64-linux-gnu/libicui18n.so.75 (0x0000734d22400000)
+libicuuc.so.75 => /usr/lib/x86_64-linux-gnu/libicuuc.so.75 (0x0000734d22000000)
+libicudata.so.75 => /usr/lib/x86_64-linux-gnu/libicudata.so.75 (0x0000734d20200000)
+libmpg123.so.0 => /usr/lib/x86_64-linux-gnu/libmpg123.so.0 (0x0000734d228a4000)
+libvorbisfile.so.3 => /usr/lib/x86_64-linux-gnu/libvorbisfile.so.3 (0x0000734d2330f000)
+libudfread.so.0 => not found
+libp11-kit.so.0 => /usr/lib/x86_64-linux-gnu/libp11-kit.so.0 (0x0000734d2226d000)
+libtasn1.so.6 => /usr/lib/x86_64-linux-gnu/libtasn1.so.6 (0x0000734d232f8000)
+libmbedcrypto.so.7 => not found
+libcjson.so.1 => not found
+libgcrypt.so.20 => /usr/lib/x86_64-linux-gnu/libgcrypt.so.20 (0x0000734d2005f000)
+libgpg-error.so.0 => /usr/lib/x86_64-linux-gnu/libgpg-error.so.0 (0x0000734d22879000)
+libXfixes.so.3 => /usr/lib/x86_64-linux-gnu/libXfixes.so.3 (0x0000734d232f0000)
+libX11-xcb.so.1 => /usr/lib/x86_64-linux-gnu/libX11-xcb.so.1 (0x0000734d22874000)
+libxcb-dri3.so.0 => /usr/lib/x86_64-linux-gnu/libxcb-dri3.so.0 (0x0000734d2286d000)
+libkeyutils.so.1 => not found
+libresolv.so.2 => /usr/lib/x86_64-linux-gnu/libresolv.so.2 (0x0000734d2285b000)
+libgmodule-2.0.so.0 => /usr/lib/x86_64-linux-gnu/libgmodule-2.0.so.0 (0x0000734d22854000)
+libjpeg.so.62 => /usr/lib/x86_64-linux-gnu/libjpeg.so.62 (0x0000734d21f5e000)
+libpangoft2-1.0.so.0 => /usr/lib/x86_64-linux-gnu/libpangoft2-1.0.so.0 (0x0000734d22837000)
+libthai.so.0 => /usr/lib/x86_64-linux-gnu/libthai.so.0 (0x0000734d2282a000)
+libmount.so.1 => /usr/lib/x86_64-linux-gnu/libmount.so.1 (0x0000734d227d8000)
+libXau.so.6 => /usr/lib/x86_64-linux-gnu/libXau.so.6 (0x0000734d227d2000)
+libgfortran.so.5 => /usr/lib/x86_64-linux-gnu/libgfortran.so.5 (0x0000734d1fc00000)
+libdatrie.so.1 => /usr/lib/x86_64-linux-gnu/libdatrie.so.1 (0x0000734d227c6000)
+libblkid.so.1 => /usr/lib/x86_64-linux-gnu/libblkid.so.1 (0x0000734d2222f000)
+libeconf.so.0 => /usr/lib/x86_64-linux-gnu/libeconf.so.0 (0x0000734d2004f000)
 
 # Manually inserted, not found by LDD
 librtmp.so.1
@@ -55,4 +211,48 @@ libcodec2.so.1.2
 libgsm.so.1
 libjxl.so.0.7
 libjxl_threads.so.0.7
+librav1e.so.0
+libshine.so.3
+libSvtAv1Enc.so.1
+libtwolame.so.0
+libx265.so.199
+libxvidcore.so.4
+libvpl.so.2
+libpostproc.so.57
+libpocketsphinx.so.3
+libsphinxbase.so.3
+libbs2b.so.0
+liblilv-0.so.0
+librubberband.so.2
+libmysofa.so.1
+libflite_cmu_us_awb.so.1
+libflite_cmu_us_kal.so.1
+libflite_cmu_us_kal16.so.1
+libflite_cmu_us_rms.so.1
+libflite_cmu_us_slt.so.1
+libflite.so.1
+libplacebo.so.338
+libass.so.9
+libvidstab.so.1.1
+libzmq.so.5
+libzimg.so.2
+libgme.so.0
+libopenmpt.so.0
+libchromaprint.so.1
+libbluray.so.2
+librabbitmq.so.4
+librist.so.4
+libsrt-gnutls.so.1.5
+libssh-gcrypt.so.4
+libkrb5.so.3
+libk5crypto.so.3
+libkrb5support.so.0
+libsasl2.so.2
+libnuma.so.1
+libblas.so.3
+liblapack.so.3
+libserd-0.so.0
+libsord-0.so.0
+libsratom-0.so.0
+libzix-0.so.0
 

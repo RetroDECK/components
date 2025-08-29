@@ -57,3 +57,4 @@ libpulsecommon-16.1.so
 libzip.so.5
 librtmp.so.1
 libjpeg.so.8
+libdb-5.3.so

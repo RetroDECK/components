@@ -1,5 +1,6 @@
 # List of system-critical library patterns to exclude/remove
 # You can add or remove patterns as needed. Lines starting with # are comments.
+# if you comment a library it will be INCLUDED
 
 libc.so*
 #libdl.so*
@@ -16,7 +17,7 @@ libutil.so*
 #libcrypt.so*
 libelf.so*
 libz.so*
-libbz2.so*
+#libbz2.so*
 liblzma.so*
 libexpat.so*
 libffi.so*

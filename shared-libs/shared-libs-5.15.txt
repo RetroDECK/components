@@ -15,3 +15,4 @@ libpulsecommon-16.1.so
 libicuuc.so.74
 librtmp.so.1
 libjpeg.so.8
+libdb-5.3.so
