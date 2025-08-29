@@ -13,7 +13,7 @@ libstdc++.so*
 #libresolv.so*
 libnss_*
 libutil.so*
-libcrypt.so*
+#libcrypt.so*
 libelf.so*
 libz.so*
 libbz2.so*
