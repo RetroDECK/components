@@ -78,3 +78,4 @@ libbrotlicommon.so.1 => /usr/lib/x86_64-linux-gnu/libbrotlicommon.so.1 (0x000071
 
 # Manually inserted, not found by LDD
 libgssapi_krb5.so.2
+libavahi-common.so.3
