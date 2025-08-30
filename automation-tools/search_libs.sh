@@ -1,4 +1,18 @@
+
 #!/bin/bash
+
+if [[ ! -f ".tmpfunc/logger.sh" ]]; 
+then
+    mkdir -p ".tmpfunc"
+    wget -q https://raw.githubusercontent.com/RetroDECK/RetroDECK/main/functions/logger.sh -O ".tmpfunc/logger.sh"
+fi
+
+# Ensure logfile is set and exported for all log calls
+if [ -z "$logfile" ]; then
+    export logfile="assemble.log"
+else
+    export logfile
+fi
 
 # This script searches for shared libraries in specified paths and copies them to a destination directory.
 # Usage: search_libs <library_list_file>
@@ -48,13 +62,21 @@ search_libs() {
     not_found_libs=()
 
     for lib in "${all_libs[@]}"; do
-        # Salta la ricerca se la libreria è filtrata
+        # Skip search if the library is filtered (wildcard only if pattern contains * or ?)
         local is_filtered=false
         for pattern in "${filtered_patterns[@]}"; do
-            if [[ "$lib" == $pattern ]]; then
-                echo "⏭️  Skipping $lib as it's filtered in filtered_libs.txt"
-                is_filtered=true
-                break
+            if [[ "$pattern" == *"*"* || "$pattern" == *"?"* ]]; then
+                if [[ "$lib" == $pattern ]]; then
+                    log i "⏭️  Skipping $lib as it's filtered in filtered_libs.txt (wildcard match)"
+                    is_filtered=true
+                    break
+                fi
+            else
+                if [[ "$lib" == "$pattern" ]]; then
+                    log i "⏭️  Skipping $lib as it's filtered in filtered_libs.txt (exact match)"
+                    is_filtered=true
+                    break
+                fi
             fi
         done
         if [[ "$is_filtered" == true ]]; then
@@ -62,19 +84,19 @@ search_libs() {
         fi
         # Check if library is already present in artifacts (from AppImage extraction)
         if [[ -f "${FLATPAK_DEST}/lib/$lib" ]]; then
-            echo "📦 Using native library from component: $lib (skipping external copy)"
+            log i "📦 Using native library from component: $lib (skipping external copy)"
             continue
         fi
-        echo "[DEBUG] Searching for $lib in paths:"
+        log d "[DEBUG] Searching for $lib in paths:"
         for search_path in "${SEARCH_PATHS[@]}"; do
-            echo "  - $search_path"
+            log d "  - $search_path"
         done
         path=$(find "${SEARCH_PATHS[@]}" -type f -name "$lib" \
             ! -path "/run/*" \
             ! -path "/home/*" \
             ! -path "/tmp/*" 2>/dev/null | tee /tmp/search_libs_debug.log | head -n 1)
         if [ -n "$path" ]; then
-            echo "[DEBUG] Found $lib at: $path"
+            log d "[DEBUG] Found $lib at: $path"
         fi
         if [ -z "$path" ]; then
             path=$(find "${SEARCH_PATHS[@]}" -type f -iname "*$lib*" \
@@ -82,7 +104,7 @@ search_libs() {
                 ! -path "/home/*" \
                 ! -path "/tmp/*" 2>/dev/null | tee -a /tmp/search_libs_debug.log | head -n 1)
             if [ -n "$path" ]; then
-                echo "[DEBUG] Found $lib (variant) at: $path"
+                log d "[DEBUG] Found $lib (variant) at: $path"
             fi
             if [ -z "$path" ]; then
                 # Special handling: if libopenh264.so.7 is requested, create symlink from .2.5.1 if available
@@ -90,7 +112,7 @@ search_libs() {
                     give_libopenh264_warning=true
                     continue
                 fi
-                echo "❌ Library not found: $lib"
+                log w "❌ Library not found: $lib"
                 not_found_libs+=("$lib")
                 need_to_debug=true
                 continue
@@ -102,27 +124,14 @@ search_libs() {
             # Set executable permissions for shared libraries
             chmod +x "${FLATPAK_DEST}/lib/$(basename "$path")"
             actual_name="$(basename "$path")"
-            echo "✅ Copied $lib to ${FLATPAK_DEST}/lib/$actual_name (with executable permissions)"
+            log i "✅ Copied $lib to ${FLATPAK_DEST}/lib/$actual_name (with executable permissions)"
         fi
     done
 
-    echo ""
+    log d ""
 
     if [ "$need_to_debug" = true ]; then
-        echo "Some libraries were not found. Searching for them..."
-
-        for not_found_lib in "${not_found_libs[@]}"; do
-            echo "Searching for: \"$not_found_lib\" in ${SEARCH_PATHS[*]}"
-            result=$(find "${SEARCH_PATHS[@]}" -type f -iname "*$not_found_lib*" 2>/dev/null | head -n 10)
-            if [ -n "$result" ]; then
-                echo "Found (in SEARCH_PATHS):"
-                echo "$result"
-            else
-                echo "Not found in SEARCH_PATHS, searching from root / (this may take a while)..."
-                find / -type f -iname "*$not_found_lib*" 2>/dev/null | head -n 10
-            fi
-            echo ""
-        done
+        log w "Some libraries were not found in SEARCH_PATHS. Skipping root search for performance."
     fi
 
     # Copy all Qt plugins from the runtime
@@ -130,19 +139,29 @@ search_libs() {
     qt_plugin_dest="${FLATPAK_DEST}/usr/lib/plugins"
 
     if [ -d "$qt_plugin_root" ]; then
-        echo "🔁 Copying all Qt plugins from $qt_plugin_root to $qt_plugin_dest"
+        log i "🔁 Copying all Qt plugins from $qt_plugin_root to $qt_plugin_dest"
         mkdir -p "$qt_plugin_dest"
         cp -r "$qt_plugin_root/"* "$qt_plugin_dest/"
-        echo "✅ Qt plugins copied to $qt_plugin_dest"
+        log i "✅ Qt plugins copied to $qt_plugin_dest"
     else
-        echo "❌ Qt plugin directory not found: $qt_plugin_root"
+        log w "❌ Qt plugin directory not found: $qt_plugin_root"
     fi
 
     if [ "$give_libopenh264_warning" = true ]; then
-        echo "⚠️  Warning: You included libopenh264.so.2.5.1, but you also requested libopenh264.so.7."
-        echo "You may need to create a symlink manually if the application requires it."
-        echo "We do this because libopenh264.so.7 is usually just a symlink to libopenh264.so.2.5.1 and not a separate library."
-        echo "LibMan is already instructed to create this symlink, so it should be fine."
-        echo ""
+        log w "⚠️  Warning: You included libopenh264.so.2.5.1, but you also requested libopenh264.so.7."
+        log w "You may need to create a symlink manually if the application requires it."
+        log w "This is because libopenh264.so.7 is usually just a symlink to libopenh264.so.2.5.1 and not a separate library."
+        log w "LibMan is already instructed to create this symlink, so it should be fine."
+        log d ""
+    fi
+
+    # Final summary of not found libraries
+    if [ "${#not_found_libs[@]}" -gt 0 ]; then
+        log w ""
+        log w "====== SUMMARY: Libraries not found ======"
+        for lib in "${not_found_libs[@]}"; do
+            log w "❌ $lib"
+        done
+        log w "=========================================="
     fi
 }
