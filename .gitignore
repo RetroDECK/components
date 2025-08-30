@@ -6,3 +6,4 @@ _work
 .flatpak-builder
 component_version
 components_version_list.md
+squashfs-root
