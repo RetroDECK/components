@@ -39,7 +39,7 @@ search_libs() {
     lib_list="$1"
 
     if [ ! -f "$lib_list" ]; then
-        log e "Library list file $lib_list not found."
+        log e "Library list file $lib_list not found." "$logfile"
         return 1
     fi
 
@@ -67,13 +67,13 @@ search_libs() {
         for pattern in "${filtered_patterns[@]}"; do
             if [[ "$pattern" == *"*"* || "$pattern" == *"?"* ]]; then
                 if [[ "$lib" == $pattern ]]; then
-                    log i "⏭️  Skipping $lib as it's filtered in filtered_libs.txt (wildcard match)"
+                    log i "⏭️  Skipping $lib as it's filtered in filtered_libs.txt (wildcard match)" "$logfile"
                     is_filtered=true
                     break
                 fi
             else
                 if [[ "$lib" == "$pattern" ]]; then
-                    log i "⏭️  Skipping $lib as it's filtered in filtered_libs.txt (exact match)"
+                    log i "⏭️  Skipping $lib as it's filtered in filtered_libs.txt (exact match)" "$logfile"
                     is_filtered=true
                     break
                 fi
@@ -84,19 +84,19 @@ search_libs() {
         fi
         # Check if library is already present in artifacts (from AppImage extraction)
         if [[ -f "${FLATPAK_DEST}/lib/$lib" ]]; then
-            log i "📦 Using native library from component: $lib (skipping external copy)"
+            log i "📦 Using native library from component: $lib (skipping external copy)" "$logfile"
             continue
         fi
-        log d "[DEBUG] Searching for $lib in paths:"
+        log d "[DEBUG] Searching for $lib in paths:" "$logfile"
         for search_path in "${SEARCH_PATHS[@]}"; do
-            log d "  - $search_path"
+            log d "  - $search_path" "$logfile"
         done
         path=$(find "${SEARCH_PATHS[@]}" -type f -name "$lib" \
             ! -path "/run/*" \
             ! -path "/home/*" \
             ! -path "/tmp/*" 2>/dev/null | tee /tmp/search_libs_debug.log | head -n 1)
         if [ -n "$path" ]; then
-            log d "[DEBUG] Found $lib at: $path"
+            log d "[DEBUG] Found $lib at: $path" "$logfile"
         fi
         if [ -z "$path" ]; then
             path=$(find "${SEARCH_PATHS[@]}" -type f -iname "*$lib*" \
@@ -104,7 +104,7 @@ search_libs() {
                 ! -path "/home/*" \
                 ! -path "/tmp/*" 2>/dev/null | tee -a /tmp/search_libs_debug.log | head -n 1)
             if [ -n "$path" ]; then
-                log d "[DEBUG] Found $lib (variant) at: $path"
+                log d "[DEBUG] Found $lib (variant) at: $path" "$logfile"
             fi
             if [ -z "$path" ]; then
                 # Special handling: if libopenh264.so.7 is requested, create symlink from .2.5.1 if available
@@ -112,7 +112,7 @@ search_libs() {
                     give_libopenh264_warning=true
                     continue
                 fi
-                log w "❌ Library not found: $lib"
+                log w "❌ Library not found: $lib" "$logfile"
                 not_found_libs+=("$lib")
                 need_to_debug=true
                 continue
@@ -124,14 +124,14 @@ search_libs() {
             # Set executable permissions for shared libraries
             chmod +x "${FLATPAK_DEST}/lib/$(basename "$path")"
             actual_name="$(basename "$path")"
-            log i "✅ Copied $lib to ${FLATPAK_DEST}/lib/$actual_name (with executable permissions)"
+            log i "✅ Copied $lib to ${FLATPAK_DEST}/lib/$actual_name (with executable permissions)" "$logfile"
         fi
     done
 
-    log d ""
+    log d "" "$logfile"
 
     if [ "$need_to_debug" = true ]; then
-        log w "Some libraries were not found in SEARCH_PATHS. Skipping root search for performance."
+        log w "Some libraries were not found in SEARCH_PATHS. Skipping root search for performance." "$logfile"
     fi
 
     # Copy all Qt plugins from the runtime
@@ -139,29 +139,29 @@ search_libs() {
     qt_plugin_dest="${FLATPAK_DEST}/usr/lib/plugins"
 
     if [ -d "$qt_plugin_root" ]; then
-        log i "🔁 Copying all Qt plugins from $qt_plugin_root to $qt_plugin_dest"
+        log i "🔁 Copying all Qt plugins from $qt_plugin_root to $qt_plugin_dest" "$logfile"
         mkdir -p "$qt_plugin_dest"
         cp -r "$qt_plugin_root/"* "$qt_plugin_dest/"
-        log i "✅ Qt plugins copied to $qt_plugin_dest"
+        log i "✅ Qt plugins copied to $qt_plugin_dest" "$logfile"
     else
-        log w "❌ Qt plugin directory not found: $qt_plugin_root"
+        log w "❌ Qt plugin directory not found: $qt_plugin_root" "$logfile"
     fi
 
     if [ "$give_libopenh264_warning" = true ]; then
-        log w "⚠️  Warning: You included libopenh264.so.2.5.1, but you also requested libopenh264.so.7."
-        log w "You may need to create a symlink manually if the application requires it."
-        log w "This is because libopenh264.so.7 is usually just a symlink to libopenh264.so.2.5.1 and not a separate library."
-        log w "LibMan is already instructed to create this symlink, so it should be fine."
-        log d ""
+        log w "⚠️  Warning: You included libopenh264.so.2.5.1, but you also requested libopenh264.so.7." "$logfile"
+        log w "You may need to create a symlink manually if the application requires it." "$logfile"
+        log w "This is because libopenh264.so.7 is usually just a symlink to libopenh264.so.2.5.1 and not a separate library." "$logfile"
+        log w "LibMan is already instructed to create this symlink, so it should be fine." "$logfile"
+        log d "" "$logfile"
     fi
 
     # Final summary of not found libraries
     if [ "${#not_found_libs[@]}" -gt 0 ]; then
-        log w ""
-        log w "====== SUMMARY: Libraries not found ======"
+        log w "" "$logfile"
+        log w "====== SUMMARY: Libraries not found ======" "$logfile"
         for lib in "${not_found_libs[@]}"; do
-            log w "❌ $lib"
+            log w "❌ $lib" "$logfile"
         done
-        log w "=========================================="
+        log w "==========================================" "$logfile"
     fi
 }
