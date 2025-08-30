@@ -58,3 +58,4 @@ libzip.so.5
 librtmp.so.1
 libjpeg.so.8
 libdb-5.3.so
+libflite_cmu_us_awb.so.1
