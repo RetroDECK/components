@@ -1080,8 +1080,8 @@ process_library_file() {
         [[ -z "$line" || "$line" =~ ^[[:space:]]*# ]] && continue
 
         local lib_name=""
-        # Improved: extract full library name including version (e.g., libzip.so.5)
-        if [[ "$line" =~ ^[[:space:]]*([a-zA-Z0-9_\-]+\.so(\.[0-9]+)*)([[:space:]]|=\u003e).* ]]; then
+        # Extract library name before '=>' and ignore everything after
+        if [[ "$line" =~ ^[[:space:]]*([^[:space:]]+\.so(\.[0-9]+)*)([[:space:]]*=>.*)?$ ]]; then
             lib_name="${BASH_REMATCH[1]}"
             extracted_from_ldd=true
         elif [[ "$line" =~ ^[[:space:]]*(/[^[:space:]]+)[[:space:]]+(\(.*\))$ ]]; then
@@ -1091,7 +1091,7 @@ process_library_file() {
             lib_name="${BASH_REMATCH[1]}"
         elif [[ "$line" =~ ^[[:space:]]*plugins/ ]]; then
             echo "$line" >> "$output_file"
-            log i "� Found plugin directory: $line" "$logfile"
+            log i "Found plugin directory: $line" "$logfile"
             continue
         else
             log w "❓ Unrecognized library format: $line" "$logfile"
