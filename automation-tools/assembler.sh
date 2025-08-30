@@ -1080,7 +1080,7 @@ process_library_file() {
         [[ -z "$line" || "$line" =~ ^[[:space:]]*# ]] && continue
 
         local lib_name=""
-        # Migliorata: estrai nome completo con versione (es: libzip.so.5)
+        # Improved: extract full library name including version (e.g., libzip.so.5)
         if [[ "$line" =~ ^[[:space:]]*([a-zA-Z0-9_\-]+\.so(\.[0-9]+)*)([[:space:]]|=\u003e).* ]]; then
             lib_name="${BASH_REMATCH[1]}"
             extracted_from_ldd=true
