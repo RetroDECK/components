@@ -1030,6 +1030,26 @@ process_required_libraries() {
     # Set up environment for search_libs
     export FLATPAK_DEST="$component/artifacts"
     
+    # Copy lib folder from artifact root if exists
+    local lib_source=""
+    if [[ "$type" == "appimage" ]]; then
+        lib_source="$WORK_DIR/squashfs-root/lib"
+    else
+        lib_source="$WORK_DIR/lib"
+    fi
+    if [[ -d "$lib_source" ]]; then
+        log i "📁 Copying lib folder from artifact root to artifacts..." "$logfile"
+        cp -r "$lib_source" "$component/artifacts/"
+    fi
+    
+    # For AppImage, skip search_libs for testing purposes
+    if [[ "$type" == "appimage" ]]; then
+        log w "For testing purposes, on AppImage, the search_libs is skipped" "$logfile"
+        # Clean up
+        rm -f "$temp_lib_file" "$filtered_lib_file"
+        return # for AppImages we skip all the rest
+    fi
+
     # Create a temporary processed library file
     local temp_lib_file=$(mktemp)
     process_library_file "$required_libs_file" "$temp_lib_file"
