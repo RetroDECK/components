@@ -4,9 +4,9 @@
 component_name="$(basename "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")")"
 component_path="$(cd "$(dirname "${BASH_SOURCE[0]}" )" && pwd)"
 
-export LD_LIBRARY_PATH="$component_path/lib:$rd_shared_libs/qt-5.15/lib:${LD_LIBRARY_PATH}"
-export QT_PLUGIN_PATH="$rd_shared_libs/qt-5.15/lib/plugins:${QT_PLUGIN_PATH}"
-export QT_QPA_PLATFORM_PLUGIN_PATH="$rd_shared_libs/qt-5.15/lib/plugins/platforms"
+export LD_LIBRARY_PATH="$component_path/lib:$rd_shared_libs/qt-6.8/lib:$rd_shared_libs/lib64/solarus:${LD_LIBRARY_PATH}"
+export QT_PLUGIN_PATH="$rd_shared_libs/qt-6.8/lib/plugins:${QT_PLUGIN_PATH}"
+export QT_QPA_PLATFORM_PLUGIN_PATH="$rd_shared_libs/qt-6.8/lib/plugins/platforms"
 
 log i "RetroDECK is now launching $component_name"
 log d "Library path is: $LD_LIBRARY_PATH"
