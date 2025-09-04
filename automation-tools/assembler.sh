@@ -522,10 +522,10 @@ manage_appimage() {
             }
         else
             extract_archive "$output_path" "$temp_root" || {
-            log e "Failed to extract archive for AppImage." "$logfile"
-            rm -rf "$temp_root"
-            return 1
-        }
+                log e "Failed to extract archive for AppImage." "$logfile"
+                rm -rf "$temp_root"
+                return 1
+            }
         fi
         rm -f "$output_path" # Remove the original archive to save space
 
@@ -563,40 +563,51 @@ manage_appimage() {
         return 1
     fi
 
-    # Cleanup
-    [[ -d "$WORK_DIR/squashfs-root/share/metainfo" ]] && rm -rf "$WORK_DIR/squashfs-root/share/metainfo"
-    [[ -d "$WORK_DIR/squashfs-root/usr/share/metainfo" ]] && rm -rf "$WORK_DIR/squashfs-root/usr/share/metainfo"
-    [[ -d "$WORK_DIR/squashfs-root/usr/lib/debug" ]] && rm -rf "$WORK_DIR/squashfs-root/usr/lib/debug"
-    # Remove any .desktop files and .DirIcon from the extracted AppImage
-    # Define a list of filenames to search for and delete
-    files_to_remove=(".DirIcon" "*.desktop" "*.metainfo.xml")
+    local extracted_dir="$WORK_DIR/squashfs-root"
 
-    files_to_delete=()
-    for pattern in "${files_to_remove[@]}"; do
-        while IFS= read -r file; do
-            files_to_delete+=("$file")
-        done < <(find "$WORK_DIR/squashfs-root" -type f -name "$pattern")
-    done
+    # Cleanup common unwanted directories from the extracted tree
+    [[ -d "$extracted_dir/share/metainfo" ]] && rm -rf "$extracted_dir/share/metainfo"
+    [[ -d "$extracted_dir/usr/share/metainfo" ]] && rm -rf "$extracted_dir/usr/share/metainfo"
+    [[ -d "$extracted_dir/usr/lib/debug" ]] && rm -rf "$extracted_dir/usr/lib/debug"
 
-    for file in "${files_to_delete[@]}"; do
-        rm -f "$file"
-    done
+    # Remove .desktop, .DirIcon, metainfo xml files from extracted tree
+    find "$extracted_dir" -type f \( -name "*.desktop" -o -name ".DirIcon" -o -name "*.metainfo.xml" -o -name "*.appdata.xml" \) -exec rm -f {} + || true
 
-    # Move only if dirs exist, but filter out system-critical libraries
-    if [[ -d "$WORK_DIR/squashfs-root/usr" ]]; then
-        log i "Filtering AppImage contents to exclude system-critical libraries..." "$logfile"
-        filter_appimage_libs "$WORK_DIR/squashfs-root/usr" "$component/artifacts/"
-    else
-        log w "No usr/ content found" "$logfile"
-    fi
-    [[ -d "$WORK_DIR/squashfs-root/share" ]] && mv "$WORK_DIR/squashfs-root/share" "$component/artifacts/"
-    [[ -d "$WORK_DIR/squashfs-root/apprun-hooks" ]] && mv "$WORK_DIR/squashfs-root/apprun-hooks" "$component/artifacts/"
+    # Ensure artifacts directory exists
+    mkdir -p "$component/artifacts"
 
-    # Move any other top-level files (e.g. binaries, .pak, etc.)
-    find "$WORK_DIR/squashfs-root" -maxdepth 1 -type f -exec mv {} "$component/artifacts/" \;
+    log i "Copying ALL extracted AppImage contents into artifacts (preserving structure)" "$logfile"
+    # Use cp -aL to preserve structure and dereference symlinks
+    cp -aL "$extracted_dir/." "$component/artifacts/" || {
+        log e "Failed to copy extracted AppImage contents to artifacts." "$logfile"
+        rm -rf "$temp_root" "$abs_appimage_path"
+        return 1
+    }
+
+    # Set executable permissions for common binary locations
+    find "$component/artifacts" -type f \( -path "*/bin/*" -o -path "*/sbin/*" -o -path "*/usr/bin/*" -o -path "*/usr/sbin/*" \) -exec chmod +x {} + || true
+
+    # Apply library filtering to every lib directory found under artifacts
+    while IFS= read -r libdir; do
+        if [[ -n "$libdir" ]]; then
+            log i "Filtering libraries in: $libdir" "$logfile"
+            filter_critical_system_libraries "$libdir" "lib"
+        fi
+    done < <(find "$component/artifacts" -type d -name "lib")
+
+    # Also handle lib64 directories if present
+    while IFS= read -r libdir; do
+        if [[ -n "$libdir" ]]; then
+            log i "Filtering libraries in: $libdir" "$logfile"
+            filter_critical_system_libraries "$libdir" "lib"
+        fi
+    done < <(find "$component/artifacts" -type d -name "lib64")
+
+    # Remove the extracted AppImage binary if it was copied
+    [[ -f "$component/artifacts/$(basename "$abs_appimage_path")" ]] && rm -f "$component/artifacts/$(basename "$abs_appimage_path")"
 
     rm -rf "$temp_root" "$abs_appimage_path"
-    log i "AppImage files moved to artifacts directory." "$logfile"
+    log i "All AppImage files moved to artifacts directory." "$logfile"
     
     # Process required libraries for this component
     log i "Processing component-specific required libraries..." "$logfile"
