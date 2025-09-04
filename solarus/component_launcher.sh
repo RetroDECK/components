@@ -4,7 +4,7 @@
 component_name="$(basename "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")")"
 component_path="$(cd "$(dirname "${BASH_SOURCE[0]}" )" && pwd)"
 
-export LD_LIBRARY_PATH="$component_path/lib:$rd_shared_libs/qt-6.8/lib:$rd_shared_libs/lib64/solarus:${LD_LIBRARY_PATH}"
+export LD_LIBRARY_PATH="$component_path/lib:$rd_shared_libs/qt-6.8/lib:$component_path/lib64/solarus:${LD_LIBRARY_PATH}"
 export QT_PLUGIN_PATH="$rd_shared_libs/qt-6.8/lib/plugins:${QT_PLUGIN_PATH}"
 export QT_QPA_PLATFORM_PLUGIN_PATH="$rd_shared_libs/qt-6.8/lib/plugins/platforms"
 
