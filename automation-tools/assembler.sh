@@ -1251,7 +1251,7 @@ finalize() {
         rm -f "$tar_file"
     fi
 
-        # Remove existing $component.tar.gz if present to avoid conflicts
+    # Remove existing $component.tar.gz if present to avoid conflicts
     local sha_file="$artifact_dir/$component.tar.gz.sha"
     if [[ -f "$sha_file" ]]; then
         log w "Existing sha $sha_file found, deleting before creating new one." "$logfile"
@@ -1272,7 +1272,16 @@ finalize() {
     done
     # Copy version_file separately since it is already a full path
     if [[ -f "$version_file" ]]; then
+        log i "Copying version file to artifact directory..." "$logfile"
         cp "$version_file" "$artifact_dir"
+    fi
+    # If an 'include' directory exists inside artifacts, copy its CONTENTS into the artifact root
+    if [[ -d "$component/include" ]]; then
+        log i "Found 'include' directory. Copying its contents into artifact root..." "$logfile"
+        # Copy all files (including hidden) from include into artifact root
+        cp -a "$component/include/." "$artifact_dir/" || log w "Failed to copy contents of include into artifact root" "$logfile"
+    else
+        log d "No 'include' directory found, skipping." "$logfile"
     fi
 
     # Package artifact directory
