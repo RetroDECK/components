@@ -8,4 +8,4 @@ export LD_LIBRARY_PATH="$component_path/lib:${LD_LIBRARY_PATH}"
 
 log i "RetroDECK is now launching $component_name"
 
-exec "$component_path/bin/retroarch" "$@"
+exec "$component_path/usr/bin/retroarch" "$@"

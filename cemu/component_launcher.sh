@@ -15,4 +15,4 @@ log d "AppDir is: $component_path"
 
 export LD_LIBRARY_PATH="$component_path/lib:${LD_LIBRARY_PATH}"
 
-exec "$component_path/bin/Cemu" "$@"
+exec "$component_path/usr/bin/Cemu" "$@"

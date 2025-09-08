@@ -13,4 +13,4 @@ log i "RetroDECK is now launching $component_name"
 log d "Loaded app run hooks in apprun-hooks/linuxdeploy-plugin-qt-hook.sh"
 log d "Loaded app run hooks in apprun-hooks/default-to-x11.sh"
 
-exec "$component_path/bin/pcsx2-qt" "$@"
+exec "$component_path/usr/bin/pcsx2-qt" "$@"

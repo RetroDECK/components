@@ -11,4 +11,4 @@ log d "Library path is: $LD_LIBRARY_PATH"
 log d "AppDir is: $component_path"
 
 # NOTE: AppRun is not working for RPCS3
-exec "$component_path/bin/rpcs3" "$@"
+exec "$component_path/usr/bin/rpcs3" "$@"
