@@ -1,0 +1,75 @@
+[
+  {
+    "library": "libQt6Widgets.so.6",
+    "qt_version": "6.9"
+  },
+  {
+    "library": "libQt6Multimedia.so.6",
+    "qt_version": "6.9"
+  },
+  {
+    "library": "libQt6Gui.so.6",
+    "qt_version": "6.9"
+  },
+  {
+    "library": "libQt6DBus.so.6",
+    "qt_version": "6.9"
+  },
+  {
+    "library": "libQt6Network.so.6",
+    "qt_version": "6.9"
+  },
+  {
+    "library": "libQt6Concurrent.so.6",
+    "qt_version": "6.9"
+  },
+  {
+    "library": "libQt6Core.so.6",
+    "qt_version": "6.9"
+  },
+  {
+    "library": "imageformats",
+    "qt_version": "6.9",
+    "type": "qt_plugin"
+  },
+  {
+    "library": "multimedia",
+    "qt_version": "6.9",
+    "type": "qt_plugin"
+  },
+  {
+    "library": "platforminputcontexts",
+    "qt_version": "6.9",
+    "type": "qt_plugin"
+  },
+  {
+    "library": "platforms",
+    "qt_version": "6.9",
+    "type": "qt_plugin"
+  },
+  {
+    "library": "tls",
+    "qt_version": "6.9",
+    "type": "qt_plugin"
+  },
+  {
+    "library": "wayland-decoration-client",
+    "qt_version": "6.9",
+    "type": "qt_plugin"
+  },
+  {
+    "library": "wayland-graphics-integration-client",
+    "qt_version": "6.9",
+    "type": "qt_plugin"
+  },
+  {
+    "library": "wayland-shell-integration",
+    "qt_version": "6.9",
+    "type": "qt_plugin"
+  },
+  {
+    "library": "xcbglintegrations",
+    "qt_version": "6.9",
+    "type": "qt_plugin"
+  }
+]
