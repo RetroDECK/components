@@ -16,4 +16,5 @@ log d "Library path is: $LD_LIBRARY_PATH"
 log d "QT plugin path is: $QT_PLUGIN_PATH"
 log d "QT QPA PLATFORM plugin path is: $QT_QPA_PLATFORM_PLUGIN_PATH"
 
-exec "$component_path/bin/hypseus.bin" "$@"
+# Launch
+exec "$component_path/bin/flycast" "$@"

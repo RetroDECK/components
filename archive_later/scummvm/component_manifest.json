@@ -1,0 +1,26 @@
+{
+  "scummvm": {
+    "name": "ScummVM",
+    "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_engine_guides/scummvm/scummvm-guide/",
+    "url_webpage": "https://ruffle.rs/",
+    "url_source": "https://www.scummvm.org/",
+    "description": "ScummVM allows you to play classic graphic point-and-click adventure games, text adventure games, and RPGs.",
+    "system_friendly_name": "ScummVM",
+    "system": "scummvm",
+    "compatible_presets": {
+      "ask_to_exit": [ "false", "true" ]
+    },
+    "preset_actions": {
+      "config_file_format": "scummvm",
+      "ask_to_exit": {
+        "confirm_exit": {
+          "action": "change",
+          "new_setting_value": "true",
+          "section": "",
+          "target_file": "$scummvm_config",
+          "defaults_file": "$config/scummvm/scummvm.ini"
+        }
+      }
+    }
+  }
+}
