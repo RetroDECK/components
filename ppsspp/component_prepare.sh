@@ -18,7 +18,7 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
   dir_prep "$shaders_path/PPSSPP-SA" "$XDG_CONFIG_HOME/ppsspp/assets/shaders"
   create_dir -d "$cheats_path/PPSSPP-SA"
   dir_prep "$cheats_path/PPSSPP-SA" "$XDG_CONFIG_HOME/ppsspp/PSP/Cheats"
-  if [[ -d "$cheats_path/PPSSPP-SA" && "$(ls -A "$cheats_path"/PPSSPP)" ]]; then
+  if [[ -d "$cheats_path/PPSSPP-SA" && "$(ls -A "$cheats_path"/PPSSPP-SA)" ]]; then
     backup_file="$backups_path/cheats/PPSSPP-SA-$(date +%y%m%d).tar.gz"
     create_dir "$(dirname "$backup_file")"
     tar -czf "$backup_file" -C "$cheats_path" PPSSPP
