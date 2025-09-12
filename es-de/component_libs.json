@@ -1,0 +1,34 @@
+[
+  {
+    "library": "libfreeimage.so.3",
+    "qt_version": "6.7"
+  },
+  {
+    "library": "libgit2.so.1.6",
+    "qt_version": "6.7"
+  },
+  {
+    "library": "libpugixml.so.1",
+    "qt_version": "6.7"
+  },
+  {
+    "library": "libavcodec.so.60",
+    "qt_version": "6.7"
+  },
+  {
+    "library": "libavfilter.so.9",
+    "qt_version": "6.7"
+  },
+  {
+    "library": "libavformat.so.60",
+    "qt_version": "6.7"
+  },
+  {
+    "library": "libavutil.so.58",
+    "qt_version": "6.7"
+  },
+  {
+    "library": "libicuuc.so.73",
+    "qt_version": "6.7"
+  }
+]
