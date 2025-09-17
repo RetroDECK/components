@@ -813,6 +813,15 @@ manage_flatpak_artifacts() {
         log i "Copied lib directory contents to artifacts" "$logfile"
     fi
     
+    if [[ -d "$WORK_DIR/files/lib64" ]]; then
+        mkdir -p "$component/artifacts/lib64"
+        cp -rL "$WORK_DIR/files/lib64/"* "$component/artifacts/lib64/" 2>/dev/null || true
+        # Filter and set executable permissions for shared libraries
+        log i "Filtering and setting permissions for Flatpak artifacts libraries..." "$logfile"
+        filter_critical_system_libraries "$component/artifacts/lib64" "lib"
+        log i "Copied lib64 directory contents to artifacts" "$logfile"
+    fi
+    
     if [[ -d "$WORK_DIR/files/share" ]]; then
         mkdir -p "$component/artifacts/share"
         cp -rL "$WORK_DIR/files/share/"* "$component/artifacts/share/" 2>/dev/null || true
