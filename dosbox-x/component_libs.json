@@ -1,0 +1,10 @@
+[
+  {
+    "library": "libslirp.so.0",
+    "subfolder": "UNKNOWN"
+  },
+  {
+    "library": "libfluidsynth.so.3",
+    "subfolder": "UNKNOWN"
+  }
+]
