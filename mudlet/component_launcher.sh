@@ -4,8 +4,8 @@
 component_name="$(basename "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")")"
 component_path="$(cd "$(dirname "${BASH_SOURCE[0]}" )" && pwd)"
 
-export LD_LIBRARY_PATH="$component_path/lib:$rd_shared_libs/qt-5.15/lib:${LD_LIBRARY_PATH}"
-export QT_PLUGIN_PATH="$rd_shared_libs/qt-5.15/lib/plugins:${QT_PLUGIN_PATH}"
+export LD_LIBRARY_PATH="$component_path/lib:$rd_shared_libs/qt-5.15-24.08:${LD_LIBRARY_PATH}"
+export QT_PLUGIN_PATH="$rd_shared_libs/qt-5.15-24.08/plugins:${QT_PLUGIN_PATH}"
 
 log i "RetroDECK is now launching $component_name"
 log d "Library path is: $LD_LIBRARY_PATH"
@@ -13,3 +13,4 @@ log d "AppDir is: $component_path"
 
 # NOTE: AppRun is not working for Mudlet
 exec "$component_path/mudlet" "$@"
+
