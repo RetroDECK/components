@@ -1,10 +1,10 @@
 [
   {
     "library": "libslirp.so.0",
-    "subfolder": "UNKNOWN"
+    "source": "dosbox-x/lib"
   },
   {
     "library": "libfluidsynth.so.3",
-    "subfolder": "UNKNOWN"
+    "source": "dosbox-x/lib"
   }
 ]
