@@ -30,6 +30,6 @@
   },
   {
     "library": "libusb-1.0.so.0",
-    "qt_version": "dolphin/lib"
+    "source": "dolphin/lib"
   }
 ]

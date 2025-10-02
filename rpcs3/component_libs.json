@@ -6,11 +6,11 @@
   },
   {
     "library": "libtinfo.so.5",
-    "subfolder": "rpcs3/usr/lib"
+    "source": "rpcs3/usr/lib"
   },
   {
     "library": "libGLEW.so.2.2",
-    "subfolder": "rpcs3/usr/lib"
+    "source": "rpcs3/usr/lib"
   },
   {
     "library": "libQt5Widgets.so.5",

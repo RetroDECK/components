@@ -1,6 +1,6 @@
 [
   {
     "library": "libGLEW.so",
-    "subfolder": "ppsspp/lib"
+    "source": "ppsspp/lib"
   }
 ]
