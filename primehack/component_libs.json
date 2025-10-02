@@ -1,0 +1,35 @@
+[
+  {
+    "library": "libQt6Widgets.so.6",
+    "qt_version": "6.9",
+    "subfolder": "qt6"
+  },
+  {
+    "library": "libQt6Gui.so.6",
+    "qt_version": "6.9",
+    "subfolder": "qt6"
+  },
+  {
+    "library": "libQt6Core.so.6",
+    "qt_version": "6.9",
+    "subfolder": "qt6"
+  },
+  {
+    "library": "libevdev.so.2",
+    "runtime_name": "org.gnome.Platform",
+    "subfolder": "48"
+  },
+  {
+    "library": "libusb-1.0.so.0",
+    "runtime_name": "org.freedesktop.Platform",
+    "subfolder": "25.08"
+  },
+  {
+    "library": "libevdev.so.2",
+    "source": "primehack/lib"
+  },
+  {
+    "library": "libusb-1.0.so.0",
+    "qt_version": "primehack/lib"
+  }
+]

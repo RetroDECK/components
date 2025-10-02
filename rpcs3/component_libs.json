@@ -1,0 +1,40 @@
+[
+  {
+    "library": "libevdev.so.2",
+    "runtime_name": "org.gnome.Platform",
+    "subfolder": "49"
+  },
+  {
+    "library": "libtinfo.so.5",
+    "subfolder": "rpcs3/usr/lib"
+  },
+  {
+    "library": "libGLEW.so.2.2",
+    "subfolder": "rpcs3/usr/lib"
+  },
+  {
+    "library": "libQt5Widgets.so.5",
+    "qt_version": "5.15-24.08",
+    "subfolder": "qt5"
+  },
+  {
+    "library": "libQt5Gui.so.5",
+    "qt_version": "5.15-24.08",
+    "subfolder": "qt5"
+  },
+  {
+    "library": "libQt5Core.so.5",
+    "qt_version": "5.15-24.08",
+    "subfolder": "qt5"
+  },
+  {
+    "library": "libQt5DBus.so.5",
+    "qt_version": "5.15-24.08",
+    "subfolder": "qt5"
+  },
+  {
+    "library": "libQt5Concurrent.so.5",
+    "qt_version": "5.15-24.08",
+    "subfolder": "qt5"
+  }
+]
