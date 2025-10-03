@@ -1242,6 +1242,19 @@ finalize() {
     else
         log d "No 'include' directory found, skipping." "$logfile"
     fi
+    
+    # Include lib and lib64 directories if they exist in the component root
+    if [[ -d "$component/lib" ]]; then
+        log i "Found 'lib' directory in component root. Copying to artifacts..." "$logfile"
+        mkdir -p "$artifact_dir/lib"
+        cp -a "$component/lib/." "$artifact_dir/lib/" || log w "Failed to copy lib directory to artifacts" "$logfile"
+    fi
+    
+    if [[ -d "$component/lib64" ]]; then
+        log i "Found 'lib64' directory in component root. Copying to artifacts..." "$logfile"
+        mkdir -p "$artifact_dir/lib64"
+        cp -a "$component/lib64/." "$artifact_dir/lib64/" || log w "Failed to copy lib64 directory to artifacts" "$logfile"
+    fi
 
     # Package artifact directory
     local tar_output_path="${component}/${component}.tar.gz"
