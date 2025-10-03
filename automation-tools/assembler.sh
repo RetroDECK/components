@@ -1027,15 +1027,6 @@ process_required_libraries() {
     
     log i "📖 Processing component-specific libraries from: $required_libs_file" "$logfile"
     
-    # Source the search_libs function
-    if [[ -f "automation-tools/search_libs.sh" ]]; then
-        source "automation-tools/search_libs.sh"
-    else
-        log w "search_libs.sh not found, trying manual library processing" "$logfile"
-        process_libraries_manual "$required_libs_file"
-        return $?
-    fi
-    
     # Set up environment for search_libs
     export FLATPAK_DEST="$component/artifacts"
     
@@ -1050,14 +1041,6 @@ process_required_libraries() {
         log i "📁 Copying lib folder from artifact root to artifacts..." "$logfile"
         cp -r "$lib_source" "$component/artifacts/"
     fi
-    
-    # For AppImage, skip search_libs for testing purposes
-    if [[ "$type" == "appimage" ]]; then
-        log w "For testing purposes, on AppImage, the search_libs is skipped" "$logfile"
-        # Clean up
-        rm -f "$temp_lib_file" "$filtered_lib_file"
-        return # for AppImages we skip all the rest
-    fi
 
     # Create a temporary processed library file
     local temp_lib_file=$(mktemp)
@@ -1066,19 +1049,6 @@ process_required_libraries() {
     # Filter out critical system libraries before processing
     local filtered_lib_file=$(mktemp)
     filter_critical_system_libraries "$temp_lib_file" "list" "$filtered_lib_file"
-    
-    # Use search_libs to copy libraries
-    if [[ -s "$filtered_lib_file" ]]; then
-        log i "🔧 Using search_libs to copy component-specific libraries..." "$logfile"
-        search_libs "$filtered_lib_file"
-        
-        # Apply post-copy filtering to remove any critical libs that slipped through
-        if [[ -d "$component/artifacts/lib" ]]; then
-            filter_critical_system_libraries "$component/artifacts/lib" "lib"
-        fi
-    else
-        log i "No component-specific libraries to process after filtering" "$logfile"
-    fi
     
     # Clean up
     rm -f "$temp_lib_file" "$filtered_lib_file"
@@ -1150,59 +1120,6 @@ process_library_file() {
     done < "$input_file"
     
     log d "✅ Processed component library file, output written to: $output_file" "$logfile"
-}
-
-# Fallback manual library processing if search_libs is not available
-process_libraries_manual() {
-    local required_libs_file="$1"
-    local lib_dir="$component/artifacts/lib"
-    
-    log i "Performing manual library processing..." "$logfile"
-    mkdir -p "$lib_dir"
-    
-    # Search only in local component and shared-libs directories, NOT on the host system
-    local component_lib_dir="$(realpath -m "$component/lib" 2>/dev/null)"
-    local shared_libs_dir="$(realpath -m "shared-libs" 2>/dev/null)"
-    local search_paths=("$lib_dir" "$component_lib_dir" "$shared_libs_dir")
-    
-    while IFS= read -r line; do
-        # Skip empty lines and comments
-        [[ -z "$line" || "$line" =~ ^[[:space:]]*# ]] && continue
-        
-        # Extract library name
-        local lib_name=""
-        if [[ "$line" =~ ^[[:space:]]*([^[:space:]]+)[[:space:]]=\>[[:space:]]*not\ found ]]; then
-            lib_name="${BASH_REMATCH[1]}"
-        elif [[ "$line" =~ ^[[:space:]]*([^[:space:]]+\.(so|so\.[0-9]+(\.[0-9]+)*)).*$ ]]; then
-            lib_name="${BASH_REMATCH[1]}"
-        fi
-        
-        if [[ -n "$lib_name" ]]; then
-            log i "Searching for library: $lib_name" "$logfile"
-            local found=false
-            
-            for search_path in "${search_paths[@]}"; do
-                local found_lib=$(find "$search_path" -name "$lib_name" -type f 2>/dev/null | head -n 1)
-                if [[ -n "$found_lib" ]]; then
-                    cp -L "$found_lib" "$lib_dir/"
-                    # Set executable permissions for shared libraries
-                    chmod +x "$lib_dir/$(basename "$found_lib")"
-                    log i "✅ Copied $lib_name from $found_lib (with executable permissions)" "$logfile"
-                    found=true
-                    break
-                fi
-            done
-            
-            if [[ "$found" == false ]]; then
-                log w "❌ Library not found: $lib_name" "$logfile"
-            fi
-        fi
-    done < "$required_libs_file"
-    
-    # Apply filtering to remove any critical libraries that were copied
-    if [[ -d "$lib_dir" ]]; then
-        filter_critical_system_libraries "$lib_dir" "lib"
-    fi
 }
 
 finalize() {
