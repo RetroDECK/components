@@ -23,7 +23,7 @@ modules:
     build-commands:
       - |
         source ./gather_plugins.sh
-        ./gather_plugins.sh "org.kde.Platform""6.9"
+        ./gather_plugins.sh "org.kde.Platform" "6.9"
     sources:
       - type: dir
         path: .
