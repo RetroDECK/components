@@ -85,17 +85,39 @@ gather_libraries() {
   while IFS= read -r component_libs_file; do
     component_libs_file=$(realpath $component_libs_file)
     log i  "Found $component_libs_file"
+    
+    # Extract component name from the component_libs.json file path
+    # The component name is the parent directory of the component_libs.json file
+    local component_name=$(basename "$(dirname "$component_libs_file")")
+    log i  "Processing libraries for component: $component_name"
+    
     while read -r lib; do
       qt_version=$(jq -r --arg lib "$lib" '.[] | select(.library == $lib) | .qt_version // empty' "$component_libs_file")
       lib_type=$(jq -r --arg lib "$lib" '.[] | select(.library == $lib) | .type // empty' "$component_libs_file")
       lib_src=$(jq -r --arg lib "$lib" '.[] | select(.library == $lib) | .source // empty' "$component_libs_file")
       lib_dest=$(jq -r --arg lib "$lib" '.[] | select(.library == $lib) | .dest // empty' "$component_libs_file")
+      lib_subfolder=$(jq -r --arg lib "$lib" '.[] | select(.library == $lib) | .subfolder // empty' "$component_libs_file")
+      
+      # Expand $component variable in source and subfolder paths
+      if [[ -n "$lib_src" ]]; then
+        lib_src=${lib_src//\$component/$component_name}
+      fi
+      if [[ -n "$lib_subfolder" ]]; then
+        lib_subfolder=${lib_subfolder//\$component/$component_name}
+      fi
+      if [[ -n "$lib_dest" ]]; then
+        lib_dest=${lib_dest//\$component/$component_name}
+      fi
       if [[ -n $qt_version ]]; then
         if [[ $lib_type == "qt_plugin" ]]; then
           log i  "Looking for Qt plugin at $flatpak_runtime_dir/org.kde.Platform/x86_64/$qt_version/active/files/lib/plugins/$lib"
           if [[ -e "$flatpak_runtime_dir/org.kde.Platform/x86_64/$qt_version/active/files/lib/plugins/$lib" ]]; then
             if [[ ! -n "$lib_dest" ]]; then
-                lib_dest="$gathered_libs_dest_root/qt-$qt_version/plugins/$lib/"
+                if [[ -n "$lib_subfolder" ]]; then
+                  lib_dest="$gathered_libs_dest_root/$lib_subfolder/plugins/$lib/"
+                else
+                  lib_dest="$gathered_libs_dest_root/qt-$qt_version/plugins/$lib/"
+                fi
             fi
             if [[ -e "$lib_dest" ]]; then
               log i  "Qt plugin folder already found in destination location $lib_dest, skipping..."
@@ -113,7 +135,11 @@ gather_libraries() {
           log i  "Looking for Qt lib at $flatpak_runtime_dir/org.kde.Platform/x86_64/$qt_version/active/files/lib/x86_64-linux-gnu/$lib"
           if [[ -e "$flatpak_runtime_dir/org.kde.Platform/x86_64/$qt_version/active/files/lib/x86_64-linux-gnu/$lib" ]]; then
             if [[ ! -n "$lib_dest" ]]; then
-                lib_dest="$gathered_libs_dest_root/qt-$qt_version"
+                if [[ -n "$lib_subfolder" ]]; then
+                  lib_dest="$gathered_libs_dest_root/$lib_subfolder"
+                else
+                  lib_dest="$gathered_libs_dest_root/qt-$qt_version"
+                fi
             fi
             if [[ -e "$lib_dest/$lib" ]]; then
               log i  "Lib already found in destination location $lib_dest/$lib, skipping..."
@@ -130,13 +156,29 @@ gather_libraries() {
         fi
         continue
       fi
-      if [[ ! -n "$lib_src" ]]; then
+      # Handle custom source paths (e.g., from WORK_DIR or component-specific paths)
+      if [[ -n "$lib_src" ]]; then
+        # If lib_src is relative or contains $WORK_DIR reference, resolve it
+        if [[ "$lib_src" =~ ^\$WORK_DIR || "$lib_src" =~ ^\$component ]]; then
+          lib_src=${lib_src//\$WORK_DIR/$work_dir_override}
+          lib_src=${lib_src//\$component/$component_name}
+        fi
+        # If path is not absolute and WORK_DIR is available, make it relative to WORK_DIR
+        if [[ ! "$lib_src" =~ ^/ && -n "$work_dir_override" ]]; then
+          lib_src="$work_dir_override/$lib_src"
+        fi
+      else
         lib_src="$flatpak_runtime_dir/$current_rd_runtime/active/files/lib/x86_64-linux-gnu"
       fi
+      
       log i  "Looking for lib at $lib_src/$lib"
       if [[ -e "$lib_src/$lib" ]]; then
         if [[ ! -n "$lib_dest" ]]; then
-          lib_dest="$gathered_libs_dest_root"
+          if [[ -n "$lib_subfolder" ]]; then
+            lib_dest="$gathered_libs_dest_root/$lib_subfolder"
+          else
+            lib_dest="$gathered_libs_dest_root"
+          fi
         fi
         if [[ -e "$lib_dest/$lib" ]]; then
             log i  "Lib already found in destination location $lib_dest, skipping..."
