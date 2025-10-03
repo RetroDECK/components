@@ -1,6 +1,7 @@
 [
   {
     "library": "libffmpeg.so",
-    "source": "gzdoom/usr/lib"
+    "source": "gzdoom/usr/lib",
+    "subfolder": "gzdoom-libs"
   }
 ]

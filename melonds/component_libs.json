@@ -26,7 +26,8 @@
   },
   {
     "library": "libslirp.so.0",
-    "source": "melonds/lib/"
+    "source": "melonds/lib/",
+    "subfolder": "melonds-libs"
   },
   {
     "library": "libQt6Widgets.so.6",
