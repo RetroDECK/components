@@ -1,6 +1,6 @@
 app-id: net.retrodeck.shared-libs
 runtime: org.kde.Platform
-runtime-version: &runtime-version '6.8'
+runtime-version: &runtime-version '6.9'
 sdk: org.kde.Sdk
 
 add-extensions:
@@ -18,14 +18,14 @@ cleanup:
 
 modules:
 
-  - name: shared-libs.6.8
+  - name: shared-libs.6.9
     buildsystem: simple
     build-commands:
       - |
-        source ./search_libs.sh
-        search_libs "shared-libs-6.8.txt"
+        source ./gather_plugins.sh
+        ./gather_plugins.sh "org.kde.Platform""6.9"
     sources:
       - type: dir
         path: .
       - type: file
-        path: ../automation-tools/search_libs.sh
+        path: ../automation-tools/gather_plugins.sh

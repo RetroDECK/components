@@ -16,10 +16,12 @@ modules:
     buildsystem: simple
     build-commands:
       - |
-        source ./search_libs.sh
-        search_libs "shared-libs-5.15.txt"
+        source ./gather_plugins.sh
+        ./gather_plugins.sh "org.kde.Platform" "5.15"
     sources:
       - type: dir
         path: .
       - type: file
-        path: ../automation-tools/search_libs.sh
+        path: ../automation-tools/gather_plugins.sh
+
+
