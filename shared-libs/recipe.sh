@@ -24,12 +24,12 @@ version=""                  # Needed for finalize function
 rm -rf "$component/artifacts"
 mkdir -p "$component/artifacts"
 
-echo "Using WORK_DIR: $WORK_DIR"
-echo "Artifacts will be stored in: $component/artifacts"
+log i "Using WORK_DIR: $WORK_DIR"
+log i "Artifacts will be stored in: $component/artifacts"
 
 for yml_file in $component/shared-libs.*.yml; do
     qt_version=$(basename "$yml_file" | sed -E 's/shared-libs\.([0-9]+\.[0-9]+)\.yml/\1/')
-    echo "Processing $yml_file for Qt version $qt_version"
+    log i "Processing $yml_file for Qt version $qt_version"
 
     build_dir="$WORK_DIR/shared-libs-$qt_version-build-dir"
     repo_dir="$WORK_DIR/shared-libs-$qt_version-repo"
@@ -38,9 +38,9 @@ for yml_file in $component/shared-libs.*.yml; do
     mkdir -p "$artifact_dir"
     flatpak-builder --user --force-clean --install-deps-from=flathub --install-deps-from=flathub-beta --repo="$repo_dir" --state-dir="$WORK_DIR/.flatpak-builder" "$build_dir" "$yml_file"
 
-    echo "Listing /lib folder:"
+    log i "Listing /lib folder:"
     ls -lah "$build_dir/files/lib" # DEBUG
-    echo "Listing /usr/lib/plugins folder:"
+    log i "Listing /usr/lib/plugins folder:"
     ls -lah "$build_dir/files/usr/lib/plugins" # DEBUG
 
     cp -rL "$build_dir/files/lib/"* "$artifact_dir"
