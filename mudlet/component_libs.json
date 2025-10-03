@@ -1,0 +1,67 @@
+[
+  {
+    "library": "libzip.so.5",
+    "source": "mudlet/lib/"
+  },
+  {
+    "library": "libQt5Concurrent.so.5",
+    "qt_version": "5.15-24.08",
+    "subfolder": "qt5"
+  },
+  {
+    "library": "libQt5Core.so.5",
+    "qt_version": "5.15-24.08",
+    "subfolder": "qt5"
+  },
+  {
+    "library": "libQt5Multimedia.so.5",
+    "qt_version": "5.15-24.08",
+    "subfolder": "qt5"
+  },
+  {
+    "library": "libQt5Network.so.5",
+    "qt_version": "5.15-24.08",
+    "subfolder": "qt5"
+  },
+  {
+    "library": "libQt5Gui.so.5",
+    "qt_version": "5.15-24.08",
+    "subfolder": "qt5"
+  },
+  {
+    "library": "libQt5Widgets.so.5",
+    "qt_version": "5.15-24.08",
+    "subfolder": "qt5"
+  },
+  {
+    "library": "libqt5keychain.so.1",
+    "source": "mudlet/lib/"
+  },
+  {
+    "library": "libQt5TextToSpeech.so.5",
+    "qt_version": "5.15-24.08",
+    "subfolder": "qt5"
+  },
+  {
+    "library": "libGLU.so.1",
+    "runtime_name": "org.freedesktop.Platform.VulkanLayer.MangoHud",
+    "subfolder": "23.08"
+  },
+  {
+    "library": "libQsLog.so",
+    "source": "mudlet/lib/"
+  },
+  {
+    "library": "libbz2.so.1.0",
+    "source": "mudlet/lib/"
+  },
+  {
+    "library": "libcrypto.so.1.1",
+    "source": "mudlet/lib/"
+  },
+  {
+    "library": "libQt5DBus.so.5",
+    "qt_version": "5.15-24.08",
+    "subfolder": "qt5"
+  }
+]

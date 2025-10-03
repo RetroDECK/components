@@ -1,34 +1,418 @@
 [
   {
-    "library": "libfreeimage.so.3",
-    "qt_version": "6.7"
-  },
-  {
-    "library": "libgit2.so.1.6",
-    "qt_version": "6.7"
-  },
-  {
-    "library": "libpugixml.so.1",
-    "qt_version": "6.7"
-  },
-  {
     "library": "libavcodec.so.60",
-    "qt_version": "6.7"
+    "runtime_name": "org.freedesktop.Platform",
+    "subfolder": "23.08"
   },
   {
-    "library": "libavfilter.so.9",
-    "qt_version": "6.7"
-  },
-  {
-    "library": "libavformat.so.60",
-    "qt_version": "6.7"
+    "library": "libswresample.so.4",
+    "runtime_name": "org.freedesktop.Platform",
+    "subfolder": "23.08"
   },
   {
     "library": "libavutil.so.58",
-    "qt_version": "6.7"
+    "runtime_name": "org.freedesktop.Platform",
+    "subfolder": "23.08"
+  },
+  {
+    "library": "libvpx.so.8",
+    "runtime_name": "org.freedesktop.Platform",
+    "subfolder": "23.08"
+  },
+  {
+    "library": "libdav1d.so.6",
+    "runtime_name": "org.freedesktop.Platform",
+    "subfolder": "23.08"
+  },
+  {
+    "library": "libopenh264.so.6",
+    "runtime_name": "org.freedesktop.Platform",
+    "subfolder": "23.08"
+  },
+  {
+    "library": "libavfilter.so.9",
+    "runtime_name": "org.freedesktop.Platform",
+    "subfolder": "23.08"
+  },
+  {
+    "library": "libswscale.so.7",
+    "runtime_name": "org.freedesktop.Platform",
+    "subfolder": "23.08"
+  },
+  {
+    "library": "libavformat.so.60",
+    "runtime_name": "org.freedesktop.Platform",
+    "subfolder": "23.08"
   },
   {
     "library": "libicuuc.so.73",
-    "qt_version": "6.7"
+    "runtime_name": "org.freedesktop.Platform",
+    "subfolder": "23.08"
+  },
+  {
+    "library": "libicudata.so.73",
+    "runtime_name": "org.freedesktop.Platform",
+    "subfolder": "23.08"
+  },
+  {
+    "library": "libflite_cmu_us_awb.so.1",
+    "runtime_name": "org.freedesktop.Platform",
+    "subfolder": "23.08"
+  },
+  {
+    "library": "libflite_cmu_us_kal.so.1",
+    "runtime_name": "org.freedesktop.Platform",
+    "subfolder": "23.08"
+  },
+  {
+    "library": "libflite_cmu_us_kal16.so.1",
+    "runtime_name": "org.freedesktop.Platform",
+    "subfolder": "23.08"
+  },
+  {
+    "library": "libicudata.so.73",
+    "runtime_name": "org.freedesktop.Platform",
+    "subfolder": "23.08"
+  },
+  {
+    "library": "libsoxr.so.0",
+    "runtime_name": "org.freedesktop.Platform",
+    "subfolder": "23.08"
+  },
+  {
+    "library": "libflite_usenglish.so.1",
+    "runtime_name": "org.freedesktop.Platform",
+    "subfolder": "23.08"
+  },
+  {
+    "library": "libmbedcrypto.so.7",
+    "runtime_name": "org.freedesktop.Platform",
+    "subfolder": "23.08"
+  },
+  {
+    "library": "libmd.so.0",
+    "runtime_name": "org.freedesktop.Platform",
+    "subfolder": "23.08"
+  },
+  {
+    "library": "libflite.so.1",
+    "runtime_name": "org.freedesktop.Platform",
+    "subfolder": "23.08"
+  },
+  {
+    "library": "libflite_cmu_us_rms.so.1",
+    "runtime_name": "org.freedesktop.Platform",
+    "subfolder": "23.08"
+  },
+  {
+    "library": "libflite_cmu_us_slt.so.1",
+    "runtime_name": "org.freedesktop.Platform",
+    "subfolder": "23.08"
+  },
+  {
+    "library": "libflite_cmulex.so.1",
+    "runtime_name": "org.freedesktop.Platform",
+    "subfolder": "23.08"
+  },
+  {
+    "library": "libsoxr.so.0",
+    "runtime_name": "org.freedesktop.Platform",
+    "subfolder": "23.08"
+  },
+  {
+    "library": "libfreeimage.so.3",
+    "source": "es-de/lib"
+  },
+  {
+    "library": "libgit2.so.1.6",
+    "source": "es-de/lib"
+  },
+  {
+    "library": "libpugixml.so.1",
+    "source": "es-de/lib"
+  },
+  {
+    "library": "libass.so.9",
+    "source": "es-de/lib"
+  },
+  {
+    "library": "libavcodec.so.60",
+    "source": "es-de/lib"
+  },
+  {
+    "library": "libavfilter.so.9",
+    "source": "es-de/lib"
+  },
+  {
+    "library": "libavfilter.so.9",
+    "source": "es-de/lib"
+  },
+  {
+    "library": "libcjson.so.1",
+    "source": "es-de/lib"
+  },
+  {
+    "library": "liblapack.so.3",
+    "source": "es-de/lib"
+  },
+  {
+    "library": "librabbitmq.so.4",
+    "source": "es-de/lib"
+  },
+  {
+    "library": "libswresample.so.4",
+    "source": "es-de/lib"
+  },
+  {
+    "library": "libcodec2.so.1.2",
+    "source": "es-de/lib"
+  },
+  {
+    "library": "liblilv-0.so.0",
+    "source": "es-de/lib"
+  },
+  {
+    "library": "librav1e.so.0",
+    "source": "es-de/lib"
+  },
+  {
+    "library": "libswscale.so.7",
+    "source": "es-de/lib"
+  },
+  {
+    "library": "libfreeimage.so.3",
+    "source": "es-de/lib"
+  },
+  {
+    "library": "libmbedcrypto.so.7",
+    "source": "es-de/lib"
+  },
+  {
+    "library": "librist.so.4",
+    "source": "es-de/lib"
+  },
+  {
+    "library": "libtwolame.so.0",
+    "source": "es-de/lib"
+  },
+  {
+    "library": "libass.so.9",
+    "source": "es-de/lib"
+  },
+  {
+    "library": "libgit2.so",
+    "source": "es-de/lib"
+  },
+  {
+    "library": "libmd.so.0",
+    "source": "es-de/lib"
+  },
+  {
+    "library": "librubberband.so.2",
+    "source": "es-de/lib"
+  },
+  {
+    "library": "libudfread.so.0",
+    "source": "es-de/lib"
+  },
+  {
+    "library": "libavcodec.so.60",
+    "source": "es-de/lib"
+  },
+  {
+    "library": "libgit2.so.1.6",
+    "source": "es-de/lib"
+  },
+  {
+    "library": "libmysofa.so.1",
+    "source": "es-de/lib"
+  },
+  {
+    "library": "libserd-0.so.0",
+    "source": "es-de/lib"
+  },
+  {
+    "library": "libunibreak.so.5",
+    "source": "es-de/lib"
+  },
+  {
+    "library": "libavfilter.so.9",
+    "source": "es-de/lib"
+  },
+  {
+    "library": "libgme.so.0",
+    "source": "es-de/lib"
+  },
+  {
+    "library": "libnorm.so.1",
+    "source": "es-de/lib"
+  },
+  {
+    "library": "libshine.so.3",
+    "source": "es-de/lib"
+  },
+  {
+    "library": "libvidstab.so.1.1",
+    "source": "es-de/lib"
+  },
+  {
+    "library": "libavformat.so.60",
+    "source": "es-de/lib"
+  },
+  {
+    "library": "libgsm.so.1",
+    "source": "es-de/lib"
+  },
+  {
+    "library": "libnuma.so.1",
+    "source": "es-de/lib"
+  },
+  {
+    "library": "libsnappy.so.1",
+    "source": "es-de/lib"
+  },
+  {
+    "library": "libvpl.so.2",
+    "source": "es-de/lib"
+  },
+  {
+    "library": "libavutil.so.58",
+    "source": "es-de/lib"
+  },
+  {
+    "library": "libgssapi_krb5.so.2",
+    "source": "es-de/lib"
+  },
+  {
+    "library": "libopenmpt.so.0",
+    "source": "es-de/lib"
+  },
+  {
+    "library": "libsodium.so.23",
+    "source": "es-de/lib"
+  },
+  {
+    "library": "libx264.so.164",
+    "source": "es-de/lib"
+  },
+  {
+    "library": "libblas.so.3",
+    "source": "es-de/lib"
+  },
+  {
+    "library": "libjxl.so.0.7",
+    "source": "es-de/lib"
+  },
+  {
+    "library": "libpgm-5.3.so.0",
+    "source": "es-de/lib"
+  },
+  {
+    "library": "libsord-0.so.0",
+    "source": "es-de/lib"
+  },
+  {
+    "library": "libx265.so.199",
+    "source": "es-de/lib"
+  },
+  {
+    "library": "libbluray.so.2",
+    "source": "es-de/lib"
+  },
+  {
+    "library": "libjxl_threads.so.0.7",
+    "source": "es-de/lib"
+  },
+  {
+    "library": "libplacebo.so.338",
+    "source": "es-de/lib"
+  },
+  {
+    "library": "libsphinxbase.so.3",
+    "source": "es-de/lib"
+  },
+  {
+    "library": "libxvidcore.so.4",
+    "source": "es-de/lib"
+  },
+  {
+    "library": "libbs2b.so.0",
+    "source": "es-de/lib"
+  },
+  {
+    "library": "libk5crypto.so.3",
+    "source": "es-de/lib"
+  },
+  {
+    "library": "libpocketsphinx.so.3",
+    "source": "es-de/lib"
+  },
+  {
+    "library": "libsratom-0.so.0",
+    "source": "es-de/lib"
+  },
+  {
+    "library": "libzimg.so.2",
+    "source": "es-de/lib"
+  },
+  {
+    "library": "libbsd.so.0",
+    "source": "es-de/lib"
+  },
+  {
+    "library": "libkeyutils.so.1",
+    "source": "es-de/lib"
+  },
+  {
+    "library": "libpostproc.so.57",
+    "source": "es-de/lib"
+  },
+  {
+    "library": "libsrt-gnutls.so.1.5",
+    "source": "es-de/lib"
+  },
+  {
+    "library": "libzix-0.so.0",
+    "source": "es-de/lib"
+  },
+  {
+    "library": "libbz2.so.1.0",
+    "source": "es-de/lib"
+  },
+  {
+    "library": "libkrb5.so.3",
+    "source": "es-de/lib"
+  },
+  {
+    "library": "libpugixml.so",
+    "source": "es-de/lib"
+  },
+  {
+    "library": "libssh-gcrypt.so.4",
+    "source": "es-de/lib"
+  },
+  {
+    "library": "libzmq.so.5",
+    "source": "es-de/lib"
+  },
+  {
+    "library": "libchromaprint.so.1",
+    "source": "es-de/lib"
+  },
+  {
+    "library": "libkrb5support.so.0",
+    "source": "es-de/lib"
+  },
+  {
+    "library": "libpugixml.so.1",
+    "source": "es-de/lib"
+  },
+  {
+    "library": "libSvtAv1Enc.so.1",
+    "source": "es-de/lib"
+  },
+  {
+    "library": "libzvbi.so.0",
+    "source": "es-de/lib"
   }
 ]
