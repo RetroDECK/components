@@ -17,7 +17,7 @@ modules:
     build-commands:
       - |
         source ./gather_plugins.sh
-        ./gather_plugins.sh "org.kde.Platform" "5.15"
+        gather_plugins "org.kde.Platform" "5.15"
     sources:
       - type: dir
         path: .

@@ -5,10 +5,6 @@
 # The script checks for the existence of the plugins directory in both system-wide and user-specific Flatpak installations.
 # If found, it copies the plugins and extensions to a designated build directory for inclusion in the Flatpak package.
 
-extension_name="$1"
-qt_version="$2"
-arch="x86_64"
-
 if [[ ! -f ".tmpfunc/logger.sh" ]]; 
 then
     mkdir -p ".tmpfunc"
@@ -26,6 +22,13 @@ fi
 source ".tmpfunc/logger.sh"
 
 gather_plugins(){    
+
+    local extension_name="$1"
+    local qt_version="$2"
+    local arch="x86_64"
+
+    log i "Gathering plugins and extensions for $extension_name Qt version $qt_version"
+
     # Check for system-wide installation
     if [ -d "/var/lib/flatpak/runtime/$extension_name/$arch/$qt_version/active/files/" ]; then
         local extension_path="/var/lib/flatpak/runtime/$extension_name/$arch/$qt_version/active/files/"
@@ -33,9 +36,11 @@ gather_plugins(){
     elif [ -d "$HOME/.local/share/flatpak/runtime/$extension_name/$arch/$qt_version/active/files/" ]; then
         local extension_path="$HOME/.local/share/flatpak/runtime/$extension_name/$arch/$qt_version/active/files/"
     else
-        log w "Could not find extension $extension_name for Qt version $qt_version"
+        log e "Could not find extension $extension_name for Qt version $qt_version"
         return 1
     fi
+
+    log i "Using extension path: $extension_path"
     
     local extension_dest="$WORK_DIR/shared-libs-$qt_version-build-dir/files/"
     mkdir -p "$extension_dest"
