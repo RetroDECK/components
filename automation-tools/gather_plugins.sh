@@ -22,6 +22,9 @@ else
     export logfile
 fi
 
+# Source logger functions
+source ".tmpfunc/logger.sh"
+
 gather_plugins(){    
     # Check for system-wide installation
     if [ -d "/var/lib/flatpak/runtime/$extension_name/$arch/$qt_version/active/files/" ]; then
@@ -40,10 +43,23 @@ gather_plugins(){
     cp -r "$extension_path/"* "$extension_dest/"
     log i "Extensions of $extension_name//$arch//$qt_version copied successfully"
 
-    local plugin_dest="$WORK_DIR/shared-libs-$qt_version-build-dir/files/usr/lib/plugins/"
-    mkdir -p "$plugin_dest"
-    log i "Copying plugins of $extension_name from $plugins_path to $plugin_dest"
-    cp -r "$plugins_path/"* "$plugin_dest/"
-    log i "Plugins of $extension_name//$arch//$qt_version copied successfully"
+    # Determine plugins path - typically in /usr/lib/x86_64-linux-gnu/qt5/plugins or similar
+    local plugins_path=""
+    if [ -d "$extension_path/usr/lib/x86_64-linux-gnu/qt${qt_version/./}/plugins" ]; then
+        plugins_path="$extension_path/usr/lib/x86_64-linux-gnu/qt${qt_version/./}/plugins"
+    elif [ -d "$extension_path/usr/lib/x86_64-linux-gnu/plugins" ]; then
+        plugins_path="$extension_path/usr/lib/x86_64-linux-gnu/plugins"
+    elif [ -d "$extension_path/usr/lib/plugins" ]; then
+        plugins_path="$extension_path/usr/lib/plugins"
+    fi
 
+    if [ -n "$plugins_path" ] && [ -d "$plugins_path" ]; then
+        local plugin_dest="$WORK_DIR/shared-libs-$qt_version-build-dir/files/usr/lib/plugins/"
+        mkdir -p "$plugin_dest"
+        log i "Copying plugins of $extension_name from $plugins_path to $plugin_dest"
+        cp -r "$plugins_path/"* "$plugin_dest/"
+        log i "Plugins of $extension_name//$arch//$qt_version copied successfully"
+    else
+        log w "Could not find plugins directory for $extension_name Qt version $qt_version"
+    fi
 }
