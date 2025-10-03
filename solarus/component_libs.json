@@ -1,19 +1,23 @@
 [
   {
     "library": "libsolarus.so.2",
-    "source": "solarus/usr/lib"
+    "source": "solarus/usr/lib",
+    "subfolder": "solarus-libs"
   },
   {
     "library": "libluajit-5.1.so.2",
-    "source": "libphysfs.so.1"
+    "source": "solarus/usr/lib",
+    "subfolder": "solarus-libs"
   },
   {
     "library": "libmodplug.so.1",
-    "source": "libphysfs.so.1"
+    "source": "solarus/usr/lib",
+    "subfolder": "solarus-libs"
   },
   {
     "library": "libphysfs.so.1",
-    "source": "libphysfs.so.1"
+    "source": "solarus/usr/lib",
+    "subfolder": "solarus-libs"
   },
   {
     "library": "libQt6Widgets.so.6",
@@ -46,7 +50,3 @@
     "subfolder": "qt6"
   }
 ]
-
-
-
-
