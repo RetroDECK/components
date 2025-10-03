@@ -1,27 +1,33 @@
 [
   {
     "library": "libslirp.so.0",
-    "source": "xemu/usr/lib"
+    "source": "xemu/usr/lib",
+    "subfolder": "scummvm-libs"
   },
   {
     "library": "libpcap.so.0.8",
-    "source": "xemu/usr/lib"
+    "source": "xemu/usr/lib",
+    "subfolder": "scummvm-libs"
   },
   {
     "library": "libcurl-gnutls.so.4",
-    "source": "xemu/usr/lib"
+    "source": "xemu/usr/lib",
+    "subfolder": "scummvm-libs"
   },
   {
     "library": "libkrb5.so.3",
-    "source": "xemu/usr/lib"
+    "source": "xemu/usr/lib",
+    "subfolder": "scummvm-libs"
   },
   {
     "library": "libgssapi_krb5.so.2",
-    "source": "xemu/usr/lib"
+    "source": "xemu/usr/lib",
+    "subfolder": "scummvm-libs"
   },
   {
     "library": "libkrb5support.so.0",
-    "source": "xemu/usr/lib"
+    "source": "xemu/usr/lib",
+    "subfolder": "scummvm-libs"
   },
   {
     "library": "librtmp.so.1",
@@ -29,27 +35,33 @@
   },
   {
     "library": "libssh.so.4",
-    "source": "xemu/usr/lib"
+    "source": "xemu/usr/lib",
+    "subfolder": "scummvm-libs"
   },
   {
     "library": "libk5crypto.so.3",
-    "source": "xemu/usr/lib"
+    "source": "xemu/usr/lib",
+    "subfolder": "scummvm-libs"
   },
   {
     "library": "liblber-2.5.so.0",
-    "source": "xemu/usr/lib"
+    "source": "xemu/usr/lib",
+    "subfolder": "scummvm-libs"
   },
   {
     "library": "libsasl2.so.2",
-    "source": "xemu/usr/lib"
+    "source": "xemu/usr/lib",
+    "subfolder": "scummvm-libs"
   },
   {
     "library": "libkeyutils.so.1",
-    "source": "xemu/usr/lib"
+    "source": "xemu/usr/lib",
+    "subfolder": "scummvm-libs"
   },
   {
     "library": "libldap-2.5.so.0",
-    "source": "xemu/usr/lib"
+    "source": "xemu/usr/lib",
+    "subfolder": "scummvm-libs"
   }
 ]
 

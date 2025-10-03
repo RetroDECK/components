@@ -1,10 +1,12 @@
 [
   {
     "library": "libslirp.so.0",
-    "source": "dosbox-x/lib"
+    "source": "dosbox-x/lib",
+    "subfolder": "dosbox-x-libs"
   },
   {
     "library": "libfluidsynth.so.3",
-    "source": "dosbox-x/lib"
+    "source": "dosbox-x/lib",
+    "subfolder": "dosbox-x-libs"
   }
 ]

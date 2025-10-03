@@ -1,7 +1,8 @@
 [
   {
     "library": "libzip.so.5",
-    "source": "mudlet/lib/"
+    "source": "mudlet/lib/",
+    "subfolder": "mudlet-libs"
   },
   {
     "library": "libQt5Concurrent.so.5",
@@ -35,7 +36,8 @@
   },
   {
     "library": "libqt5keychain.so.1",
-    "source": "mudlet/lib/"
+    "source": "mudlet/lib/",
+    "subfolder": "mudlet-libs"
   },
   {
     "library": "libQt5TextToSpeech.so.5",
@@ -49,15 +51,18 @@
   },
   {
     "library": "libQsLog.so",
-    "source": "mudlet/lib/"
+    "source": "mudlet/lib/",
+    "subfolder": "mudlet-libs"
   },
   {
     "library": "libbz2.so.1.0",
-    "source": "mudlet/lib/"
+    "source": "mudlet/lib/",
+    "subfolder": "mudlet-libs"
   },
   {
     "library": "libcrypto.so.1.1",
-    "source": "mudlet/lib/"
+    "source": "mudlet/lib/",
+    "subfolder": "mudlet-libs"
   },
   {
     "library": "libQt5DBus.so.5",

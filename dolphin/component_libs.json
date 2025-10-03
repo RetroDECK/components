@@ -26,10 +26,12 @@
   },
   {
     "library": "libevdev.so.2",
-    "source": "dolphin/lib"
+    "source": "dolphin/lib",
+    "subfolder": "dolphin-libs"
   },
   {
     "library": "libusb-1.0.so.0",
-    "source": "dolphin/lib"
+    "source": "dolphin/lib",
+    "subfolder": "dolphin-libs"
   }
 ]
