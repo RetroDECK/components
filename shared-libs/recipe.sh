@@ -1,5 +1,18 @@
 #!/bin/bash
 
+if [[ ! -f ".tmpfunc/logger.sh" ]]; 
+then
+    mkdir -p ".tmpfunc"
+    wget -q https://raw.githubusercontent.com/RetroDECK/RetroDECK/main/functions/logger.sh -O ".tmpfunc/logger.sh"
+fi
+
+# Ensure logfile is set and exported for all log calls
+if [ -z "$logfile" ]; then
+    export logfile="assemble.log"
+else
+    export logfile
+fi
+
 # This is out of standard, so utils are not used here. Maybe we can refactor this later.
 
 source "automation-tools/assembler.sh"
@@ -14,59 +27,26 @@ mkdir -p "$component/artifacts"
 echo "Using WORK_DIR: $WORK_DIR"
 echo "Artifacts will be stored in: $component/artifacts"
 
-mkdir -p "$component/artifacts/qt-5.15/lib"
-flatpak-builder --user --force-clean --install-deps-from=flathub --install-deps-from=flathub-beta --repo=$WORK_DIR/shared-libs-5.15-repo --state-dir="$WORK_DIR/.flatpak-builder" "$WORK_DIR/shared-libs-5.15-build-dir" "$component/shared-libs.5.15.yml"
-echo "Listing /lib folder:"
-ls -lah $WORK_DIR/shared-libs-5.15-build-dir/files/lib # DEBUG
-echo "Listing /usr/lib/plugins folder:"
-ls -lah $WORK_DIR/shared-libs-5.15-build-dir/files/usr/lib/plugins # DEBUG
+for yml_file in $component/shared-libs.*.yml; do
+    qt_version=$(basename "$yml_file" | sed -E 's/shared-libs\.([0-9]+\.[0-9]+)\.yml/\1/')
+    echo "Processing $yml_file for Qt version $qt_version"
 
-# Bulk copy the common library dirs
-cp -rL $WORK_DIR/shared-libs-5.15-build-dir/files/lib/* $component/artifacts/qt-5.15/lib
-cp -rL $WORK_DIR/shared-libs-5.15-build-dir/files/usr/lib/plugins $component/artifacts/qt-5.15/lib/
+    build_dir="$WORK_DIR/shared-libs-$qt_version-build-dir"
+    repo_dir="$WORK_DIR/shared-libs-$qt_version-repo"
+    artifact_dir="$component/artifacts/qt-$qt_version/lib"
 
-# Additionally, use search_libs to process the list and copy only the requested libraries
-echo "Running search_libs for shared-libs-5.15.txt..."
-automation-tools/search_libs.sh "$component/shared-libs-5.15.txt" "$WORK_DIR/shared-libs-5.15-build-dir/files/lib" "$component/artifacts/qt-5.15/lib"
+    mkdir -p "$artifact_dir"
+    flatpak-builder --user --force-clean --install-deps-from=flathub --install-deps-from=flathub-beta --repo="$repo_dir" --state-dir="$WORK_DIR/.flatpak-builder" "$build_dir" "$yml_file"
 
-version="5.15"
+    echo "Listing /lib folder:"
+    ls -lah "$build_dir/files/lib" # DEBUG
+    echo "Listing /usr/lib/plugins folder:"
+    ls -lah "$build_dir/files/usr/lib/plugins" # DEBUG
 
-mkdir -p "$component/artifacts/qt-6.7/lib"
-flatpak-builder --user --force-clean --install-deps-from=flathub --install-deps-from=flathub-beta --repo=$WORK_DIR/shared-libs-6.7-repo --state-dir="$WORK_DIR/.flatpak-builder" "$WORK_DIR/shared-libs-6.7-build-dir" "$component/shared-libs.6.7.yml"
+    cp -rL "$build_dir/files/lib/"* "$artifact_dir"
+    cp -rL "$build_dir/files/usr/lib/plugins" "$artifact_dir/"
 
-echo "Listing /lib folder:"
-ls -lah $WORK_DIR/shared-libs-6.7-build-dir/files/lib # DEBUG
-echo "Listing /usr/lib/plugins folder:"
-ls -lah $WORK_DIR/shared-libs-6.7-build-dir/files/usr/lib/plugins # DEBUG
-
-
-# Bulk copy the common library dirs
-cp -rL $WORK_DIR/shared-libs-6.7-build-dir/files/lib/* $component/artifacts/qt-6.7/lib
-cp -rL $WORK_DIR/shared-libs-6.7-build-dir/files/usr/lib/plugins $component/artifacts/qt-6.7/lib/
-
-# Additionally, use search_libs to process the list and copy only the requested libraries
-echo "Running search_libs for shared-libs-6.7.txt..."
-automation-tools/search_libs.sh "$component/shared-libs-6.7.txt" "$WORK_DIR/shared-libs-6.7-build-dir/files/lib" "$component/artifacts/qt-6.7/lib"
-
-version="$version, 6.7"
-
-mkdir -p "$component/artifacts/qt-6.8/lib"
-flatpak-builder --user --force-clean --install-deps-from=flathub --install-deps-from=flathub-beta --repo=$WORK_DIR/shared-libs-6.8-repo --state-dir="$WORK_DIR/.flatpak-builder" "$WORK_DIR/shared-libs-6.8-build-dir" "$component/shared-libs.6.8.yml"
-
-echo "Listing /lib folder:"
-ls -lah $WORK_DIR/shared-libs-6.8-build-dir/files/lib # DEBUG
-echo "Listing /usr/lib/plugins folder:"
-ls -lah $WORK_DIR/shared-libs-6.8-build-dir/files/usr/lib/plugins # DEBUG
-
-
-# Bulk copy the common library dirs
-cp -rL $WORK_DIR/shared-libs-6.8-build-dir/files/lib/* $component/artifacts/qt-6.8/lib
-cp -rL $WORK_DIR/shared-libs-6.8-build-dir/files/usr/lib/plugins $component/artifacts/qt-6.8/lib/
-
-# Additionally, use search_libs to process the list and copy only the requested libraries
-echo "Running search_libs for shared-libs-6.8.txt..."
-automation-tools/search_libs.sh "$component/shared-libs-6.8.txt" "$WORK_DIR/shared-libs-6.8-build-dir/files/lib" "$component/artifacts/qt-6.8/lib"
-
-version="$version, 6.8"
+    version="$version, $qt_version"
+done
 
 finalize
