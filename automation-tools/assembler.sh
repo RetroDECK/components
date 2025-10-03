@@ -29,6 +29,14 @@ else
     log e "Logger script not found. Please ensure .tmpfunc/logger.sh exists." "$logfile"
 fi
 
+# Source gather_libraries function for component-specific library gathering
+if [[ -f "$(dirname "${BASH_SOURCE[0]}")/gather_libraries.sh" ]]; then
+    source "$(dirname "${BASH_SOURCE[0]}")/gather_libraries.sh"
+    log d "gather_libraries.sh sourced successfully" "$logfile"
+else
+    log w "gather_libraries.sh not found, library gathering will be skipped" "$logfile"
+fi
+
 FORCE=0                 # Force the download even if the version is the same, useful for local retention, enabled by default on CI/CD to avoid missing updates since the version files are present bu the artifacts are not
 DRY_RUN=0
 GITHUB_REPO=$(git config --get remote.origin.url | sed -E 's|.*github.com[:/](.*)\.git|\1|')
@@ -595,6 +603,12 @@ manage_appimage() {
     # Move any other top-level files (e.g. binaries, .pak, etc.)
     find "$WORK_DIR/squashfs-root" -maxdepth 1 -type f -exec mv {} "$component/artifacts/" \;
 
+    # Gather component-specific libraries before cleanup
+    if declare -f gather_libraries > /dev/null; then
+        log i "Gathering component-specific libraries from WORK_DIR..." "$logfile"
+        gather_libraries -w "$WORK_DIR" -d "$component/artifacts/lib"
+    fi
+
     rm -rf "$temp_root" "$abs_appimage_path"
     log i "AppImage files moved to artifacts directory." "$logfile"
     
@@ -619,6 +633,12 @@ manage_generic() {
     fi
 
     extract_archive "$output_path" "$WORK_DIR"
+
+    # Gather component-specific libraries before moving files
+    if declare -f gather_libraries > /dev/null; then
+        log i "Gathering component-specific libraries from WORK_DIR..." "$logfile"
+        gather_libraries -w "$WORK_DIR" -d "$component/artifacts/lib"
+    fi
 
     log d "Moving extracted contents to $component/artifacts/" "$logfile"
     cp -rL "$WORK_DIR"/* "$component/artifacts/" || {
@@ -749,6 +769,12 @@ manage_flatpak_id() {
     # Clean up any now-empty directories left behind
     find "$WORK_DIR" -depth -type d -empty -delete
 
+    # Gather component-specific libraries before cleanup
+    if declare -f gather_libraries > /dev/null; then
+        log i "Gathering component-specific libraries from WORK_DIR..." "$logfile"
+        gather_libraries -w "$WORK_DIR" -d "$component/artifacts/lib"
+    fi
+
     # Process required libraries for this component
     log i "Processing component-specific required libraries..." "$logfile"
     process_required_libraries
@@ -826,6 +852,12 @@ manage_flatpak_artifacts() {
         mkdir -p "$component/artifacts/share"
         cp -rL "$WORK_DIR/files/share/"* "$component/artifacts/share/" 2>/dev/null || true
         log i "Copied share directory contents to artifacts" "$logfile"
+    fi
+    
+    # Gather component-specific libraries before cleanup
+    if declare -f gather_libraries > /dev/null; then
+        log i "Gathering component-specific libraries from WORK_DIR..." "$logfile"
+        gather_libraries -w "$WORK_DIR" -d "$component/artifacts/lib"
     fi
     
     # Process required libraries for this component
@@ -959,6 +991,12 @@ manage_gh_latest_release() {
         exit 1
     }
 
+    # Gather component-specific libraries before moving files
+    if declare -f gather_libraries > /dev/null; then
+        log i "Gathering component-specific libraries from WORK_DIR..." "$logfile"
+        gather_libraries -w "$WORK_DIR" -d "$component/artifacts/lib"
+    fi
+
     rm -f "$asset_download_path"
     mv "$WORK_DIR/"* "$component/artifacts/" || {
         log e "Failed to move extracted files to artifacts directory." "$logfile"
@@ -1002,6 +1040,12 @@ manage_local() {
             return
             ;;
     esac
+
+    # Gather component-specific libraries before moving files
+    if declare -f gather_libraries > /dev/null; then
+        log i "Gathering component-specific libraries from WORK_DIR..." "$logfile"
+        gather_libraries -w "$WORK_DIR" -d "$component/artifacts/lib"
+    fi
 
     log d "Moving extracted contents to $component/artifacts/" "$logfile"
     cp -rL "$WORK_DIR"/* "$component/artifacts/" || {
