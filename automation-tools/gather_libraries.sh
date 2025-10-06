@@ -48,21 +48,7 @@ gather_libraries() {
         return 1
       ;;
     esac
-    done
-  
-  # If WORK_DIR is set from assembler.sh and no override, search there first
-  if [[ -n "$WORK_DIR" && -z "$work_dir_override" ]]; then
-    work_dir_override="$WORK_DIR"
-    log i  "Using WORK_DIR from assembler: $work_dir_override"
-  fi
-  
-  # If work_dir_override is set, prioritize searching there
-  if [[ -n "$work_dir_override" && -d "$work_dir_override" ]]; then
-    log i  "Searching for component_libs.json in work directory: $work_dir_override"
-    root_to_search="$work_dir_override"
-  fi
-
-    done
+  done
   
   # If WORK_DIR is set from assembler.sh and no override, search there first
   if [[ -n "$WORK_DIR" && -z "$work_dir_override" ]]; then
