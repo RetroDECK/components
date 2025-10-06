@@ -48,23 +48,30 @@ gather_plugins(){
     cp -r "$extension_path/"* "$extension_dest/"
     log i "Extensions of $extension_name//$arch//$qt_version copied successfully"
 
-    # Determine plugins path - typically in /usr/lib/x86_64-linux-gnu/qt5/plugins or similar
+    # Determine plugins path - check multiple possible locations
     local plugins_path=""
-    if [ -d "$extension_path/usr/lib/x86_64-linux-gnu/qt${qt_version/./}/plugins" ]; then
+    if [ -d "$extension_path/lib/plugins" ]; then
+        # Direct lib/plugins (common in modern Qt runtimes like 6.9)
+        plugins_path="$extension_path/lib/plugins"
+    elif [ -d "$extension_path/usr/lib/x86_64-linux-gnu/qt${qt_version/./}/plugins" ]; then
+        # Debian-style path with Qt version
         plugins_path="$extension_path/usr/lib/x86_64-linux-gnu/qt${qt_version/./}/plugins"
     elif [ -d "$extension_path/usr/lib/x86_64-linux-gnu/plugins" ]; then
+        # Debian-style path without Qt version
         plugins_path="$extension_path/usr/lib/x86_64-linux-gnu/plugins"
     elif [ -d "$extension_path/usr/lib/plugins" ]; then
+        # Standard /usr/lib/plugins
         plugins_path="$extension_path/usr/lib/plugins"
     fi
 
     if [ -n "$plugins_path" ] && [ -d "$plugins_path" ]; then
-        local plugin_dest="$WORK_DIR/shared-libs-$qt_version-build-dir/files/usr/lib/plugins/"
+        local plugin_dest="$WORK_DIR/shared-libs-$qt_version-build-dir/files/lib/plugins/"
         mkdir -p "$plugin_dest"
         log i "Copying plugins of $extension_name from $plugins_path to $plugin_dest"
         cp -r "$plugins_path/"* "$plugin_dest/"
         log i "Plugins of $extension_name//$arch//$qt_version copied successfully"
     else
         log w "Could not find plugins directory for $extension_name Qt version $qt_version"
+        log d "Searched paths: lib/plugins, usr/lib/x86_64-linux-gnu/qt*/plugins, usr/lib/x86_64-linux-gnu/plugins, usr/lib/plugins" "$logfile"
     fi
 }
