@@ -1,5 +1,13 @@
 #!/bin/bash
 
+source "automation-tools/assembler.sh"
+
+# Create working directory for temporary files
+export WORK_DIR=$(mktemp -d)
+log d "Created working directory: $WORK_DIR" "$logfile"
+
+component="shared-libs"
+
 # Recipe for shared-libs component
 # This script installs Qt runtime plugins from Flatpak runtimes and their extensions
 # Configuration is read from component_libs.json
@@ -55,11 +63,7 @@ if ! command -v jq &> /dev/null; then
     exit 1
 fi
 
-log i "Starting shared-libs recipe for Qt runtime plugins" "$logfile"
-
-# Create working directory for temporary files
-export WORK_DIR=$(mktemp -d)
-log d "Created working directory: $WORK_DIR" "$logfile"
+log i "Starting shared-libs recipe for Qt runtime plugins" "$logfile" 
 
 # Ensure cleanup on exit
 cleanup() {
@@ -131,9 +135,6 @@ manage_extensions() {
         return 0
     fi
     
-    local artifacts_dir="$SCRIPT_DIR/artifacts"
-    mkdir -p "$artifacts_dir"
-    
     log i "Processing $ext_count extension(s)..." "$logfile"
     
     for ((j=0; j<ext_count; j++)); do
@@ -168,7 +169,7 @@ manage_extensions() {
             continue
         }
         
-        # Copy extension files to artifacts
+        # Copy extension files to WORK_DIR
         local extension_path=""
         if [ -d "/var/lib/flatpak/runtime/$extension_name/$ARCH/$extension_version/active/files/" ]; then
             extension_path="/var/lib/flatpak/runtime/$extension_name/$ARCH/$extension_version/active/files/"
@@ -177,7 +178,7 @@ manage_extensions() {
         fi
         
         if [[ -n "$extension_path" && -d "$extension_path" ]]; then
-            local extension_dest="$artifacts_dir/extensions/$(basename $extension_name)-${extension_version}"
+            local extension_dest="$WORK_DIR/$extension_name/$extension_version"
             mkdir -p "$extension_dest"
             log i "Copying extension files from $extension_path to $extension_dest" "$logfile"
             cp -rL "$extension_path"/* "$extension_dest/" || log w "Failed to copy extension files" "$logfile"
@@ -231,6 +232,25 @@ manage_runtime() {
     log i "Gathering plugins for runtime version $runtime_version..." "$logfile"
     gather_plugins "$runtime_name" "$runtime_version"
     
+    # Copy only the plugins from build-dir to WORK_DIR with versioned structure
+    local build_dir="$WORK_DIR/shared-libs-$runtime_version-build-dir/files"
+    if [[ -d "$build_dir/lib/plugins" ]]; then
+        local plugins_dest="$WORK_DIR/$runtime_name/$runtime_version/lib/plugins"
+        mkdir -p "$plugins_dest"
+        
+        log i "Copying plugins from $build_dir/lib/plugins to $plugins_dest" "$logfile"
+        
+        # Copy plugin directories, merging if necessary
+        cp -rL "$build_dir/lib/plugins"/* "$plugins_dest/" 2>/dev/null || log w "Some plugin files may not have been copied" "$logfile"
+        
+        log i "Plugins copied successfully" "$logfile"
+    else
+        log w "No plugins found in $build_dir/lib/plugins" "$logfile"
+    fi
+    
+    # Clean up the temporary build directory
+    rm -rf "$WORK_DIR/shared-libs-$runtime_version-build-dir"
+    
     # Uninstall the runtime if it was not previously installed
     if [[ "$was_installed" == "false" ]]; then
         log i "Uninstalling runtime $runtime_id as it was not previously installed." "$logfile"
@@ -242,6 +262,11 @@ manage_runtime() {
 
 # Main processing loop - read from JSON
 
+# Initialize version tracking file
+VERSION_FILE="$SCRIPT_DIR/component_version"
+> "$VERSION_FILE"  # Clear/create the file
+log d "Initialized version tracking file: $VERSION_FILE" "$logfile"
+
 # Step 1: Process all plugins
 log i "Reading plugins configuration from component_libs.json..." "$logfile"
 plugin_count=$(jq '.plugins | length' "$COMPONENT_LIBS_JSON")
@@ -252,6 +277,14 @@ for ((i=0; i<plugin_count; i++)); do
     minor_version=$(jq -r ".plugins[$i].minor_version // empty" "$COMPONENT_LIBS_JSON")
     
     log i "Processing plugin runtime: $runtime_name (major: ${major_version:-latest}, minor: ${minor_version:-latest})..." "$logfile"
+    
+    # Resolve version first to track it
+    resolved_version=$(resolve_version "$runtime_name" "$major_version" "$minor_version")
+    if [[ $? -eq 0 && -n "$resolved_version" ]]; then
+        # Record the resolved version
+        echo "$runtime_name: $resolved_version" >> "$VERSION_FILE"
+        log d "Recorded version: $runtime_name: $resolved_version" "$logfile"
+    fi
     
     # Manage the runtime (install, extract plugins, cleanup)
     manage_runtime "$runtime_name" "$major_version" "$minor_version"
@@ -267,12 +300,42 @@ log i "Reading extensions configuration from component_libs.json..." "$logfile"
 extensions_json=$(jq -c '.extensions' "$COMPONENT_LIBS_JSON")
 
 if [[ -n "$extensions_json" && "$extensions_json" != "null" ]]; then
+    # Track extension versions
+    ext_count=$(echo "$extensions_json" | jq 'length' 2>/dev/null || echo "0")
+    for ((j=0; j<ext_count; j++)); do
+        extension_name=$(echo "$extensions_json" | jq -r ".[$j].name")
+        major_version=$(echo "$extensions_json" | jq -r ".[$j].major_version // empty")
+        minor_version=$(echo "$extensions_json" | jq -r ".[$j].minor_version // empty")
+        
+        # Resolve and record version
+        resolved_version=$(resolve_version "$extension_name" "$major_version" "$minor_version")
+        if [[ $? -eq 0 && -n "$resolved_version" ]]; then
+            echo "$extension_name: $resolved_version" >> "$VERSION_FILE"
+            log d "Recorded version: $extension_name: $resolved_version" "$logfile"
+        fi
+    done
+    
     manage_extensions "$extensions_json"
 else
     log d "No extensions defined in configuration" "$logfile"
 fi
 
+log i "Version information saved to $VERSION_FILE" "$logfile"
 log i "Shared-libs recipe completed successfully" "$logfile"
 
-source ../automation-tools/assembler.sh
+# Copy component_version to artifacts
+cp "$VERSION_FILE" "$WORK_DIR/"
+
+# Move everything from WORK_DIR to artifacts directory
+log i "Moving files from WORK_DIR to artifacts directory..." "$logfile"
+ARTIFACTS_DIR="$SCRIPT_DIR/artifacts"
+mkdir -p "$ARTIFACTS_DIR"
+
+# Copy all contents from WORK_DIR to artifacts
+cp -rL "$WORK_DIR"/* "$ARTIFACTS_DIR/" 2>/dev/null || log w "Some files may not have been copied" "$logfile"
+
+log i "Files moved to artifacts successfully" "$logfile"
+
+version="$(cat $VERSION_FILE)"
+
 finalize
