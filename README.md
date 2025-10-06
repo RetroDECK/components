@@ -46,16 +46,173 @@ Run the following command to fetch the latest releases for all components:
 bash ./automation_tools/grab_releases.sh
 ```
 
-## Troubleshooting: Missing Libraries in Components
+## Shared Libraries Component
 
-Sometimes, certain components may keep failing due to missing libraries, even after initial attempts to fix the issue. This often happens with libraries such as Qt (e.g., `libQt5Widgets.so.5`, `libQt5Gui.so.5`, `libbz2.so.1.0` etc.).
+RetroDECK uses a centralized `shared-libs` component to manage common runtime dependencies like Qt frameworks and platform extensions. This component automatically installs and extracts plugins from Flatpak runtimes.
 
-In these cases, make sure to add the required libraries to the `shared-libs` list (see `shared-libs-5.15.txt` for an example). This will help ensure that all necessary dependencies are available for the components to work correctly.
+### Configuration
 
-If you continue to experience issues, double-check the library names and versions, and verify that they are present in your system or included in the shared-libs list.
+The `shared-libs` component is configured via `component_libs.json` which defines:
 
-**Tip for Cleanliness:**
-For better cleanliness and organization, you can add only the correct version of a library (e.g., Qt5 or Qt6) to the shared-libs list. To determine which version is needed, check your component's `component_launcher.sh` script to see which Qt version is being used (for example, by inspecting the `LD_LIBRARY_PATH` or `QT_PLUGIN_PATH` variables). This helps avoid unnecessary duplicates and keeps the shared-libs list tidy.
+1. **Plugins**: Flatpak runtime platforms to install and extract plugins from (e.g., Qt runtimes)
+2. **Extensions**: Additional Flatpak runtime extensions (like ffmpeg, codecs, etc.)
+
+### component_libs.json Structure
+
+```json
+{
+  "plugins": [
+    {
+      "name": "org.kde.Platform",
+      "major_version": "5",
+      "minor_version": "latest"
+    },
+    {
+      "name": "org.kde.Platform",
+      "major_version": "6",
+      "minor_version": "latest"
+    }
+  ],
+  "extensions": [
+    {
+      "name": "org.freedesktop.Platform.ffmpeg-full",
+      "major_version": "24",
+      "minor_version": "latest"
+    }
+  ]
+}
+```
+
+#### Plugins Section
+
+Each plugin entry requires:
+- **name**: Flatpak runtime name (e.g., "org.kde.Platform", "org.gnome.Platform")
+- **major_version**: Major version number (e.g., "5", "6") or "latest" for absolute latest
+- **minor_version**: Minor version number (e.g., "15", "9") or "latest" to auto-resolve the latest minor version, or omit entirely (defaults to "latest")
+
+The script automatically resolves version numbers:
+- If `major_version` is "latest" or omitted: finds the absolute latest version
+- If `minor_version` is "latest" or omitted: finds the latest minor version for the specified major version
+- If both are specified: uses the exact version
+
+**Examples:**
+```json
+// Latest Qt 6.x (will find 6.9, 6.10, etc.)
+{"name": "org.kde.Platform", "major_version": "6", "minor_version": "latest"}
+
+// Specific version Qt 5.15
+{"name": "org.kde.Platform", "major_version": "5", "minor_version": "15"}
+
+// Absolute latest available
+{"name": "org.kde.Platform", "major_version": "latest"}
+
+// Omit minor_version (same as "latest")
+{"name": "org.kde.Platform", "major_version": "6"}
+```
+
+#### Extensions Section
+
+Each extension entry requires:
+- **name**: Full Flatpak extension name
+- **major_version**: Major version number or "latest"
+- **minor_version**: Minor version number or "latest" (can be omitted)
+
+Extensions are independent from runtimes and have their own versioning system.
+
+**Examples:**
+```json
+// Latest 24.x version
+{"name": "org.freedesktop.Platform.ffmpeg-full", "major_version": "24", "minor_version": "latest"}
+
+// Specific version
+{"name": "org.freedesktop.Platform.ffmpeg-full", "major_version": "24", "minor_version": "08"}
+
+// Absolute latest
+{"name": "org.freedesktop.Platform.ffmpeg-full", "major_version": "latest"}
+```
+
+### Finding Available Runtimes and Extensions
+
+To discover available runtimes and extensions on your system, use these Flatpak commands:
+
+**List all available Qt runtimes (for plugins):**
+```bash
+flatpak remote-ls --runtime flathub | grep -i "org.kde.Platform"
+```
+
+**List all available extensions:**
+```bash
+flatpak remote-ls --runtime flathub | grep -i "extension\|ffmpeg\|codec"
+```
+
+**Get detailed information about a specific runtime/extension:**
+```bash
+flatpak info --user org.kde.Platform/x86_64/6.9
+flatpak info --user org.freedesktop.Platform.ffmpeg-full/x86_64/24.08
+```
+
+**List installed runtimes on your system:**
+```bash
+flatpak list --runtime --user
+flatpak list --runtime --system
+```
+
+### Adding Custom Plugins or Extensions
+
+To add a new plugin or extension to shared-libs:
+
+1. **For a new plugin runtime**, add to the `plugins` array:
+```json
+{
+  "name": "org.kde.Platform",
+  "major_version": "7",
+  "minor_version": "latest"
+}
+```
+
+Or with a specific version:
+```json
+{
+  "name": "org.gnome.Platform",
+  "major_version": "46",
+  "minor_version": "2"
+}
+```
+
+2. **For a new extension**, add to the `extensions` array:
+```json
+{
+  "name": "org.freedesktop.Platform.GL.mesa-git",
+  "major_version": "latest"
+}
+```
+
+Or with specific versions:
+```json
+{
+  "name": "org.freedesktop.Platform.GL.nvidia",
+  "major_version": "24",
+  "minor_version": "08"
+}
+```
+
+### How It Works
+
+The shared-libs recipe:
+1. Reads configuration from `component_libs.json`
+2. Resolves "latest" versions to actual version numbers
+3. **Processes plugins**: Installs each runtime temporarily (if not already installed), extracts plugins and libraries
+4. **Processes extensions**: Installs extensions and copies their files to artifacts
+5. Cleans up by removing temporarily installed runtimes/extensions
+6. Packages everything into the `shared-libs` artifact
+
+### Troubleshooting
+
+If a component is missing libraries:
+1. Check which Qt version the component uses (inspect `component_launcher.sh`)
+2. Ensure the corresponding runtime is listed in `shared-libs/component_libs.json` under `plugins`
+3. If the component needs special extensions (like ffmpeg), add them to the extensions list
+4. Rebuild the shared-libs component
 
 ### Add a New Component
 
@@ -78,7 +235,7 @@ mycomponent/
 ├── component_launcher.sh        # Optional: Custom launcher script
 ├── component_prepare.sh         # Optional: Preparation/configuration script
 ├── component_functions.sh       # Optional: Component-specific functions
-├── required_libraries.txt       # Optional: Additional required libraries
+├── component_libs.json          # Optional: Component-specific library requirements
 └── rd_config/                   # Optional: Default configuration files
     ├── config.yml
     └── other_configs...
@@ -187,82 +344,47 @@ fi
 3. Check artifacts: `ls -la artifacts/`
 4. Test the generated archive works in RetroDECK
 
-### 7. Managing Required Libraries
+### 7. Managing Component-Specific Libraries
 
-Some components may require additional shared libraries that are not included in the standard freedesktop runtime or shared-libs. These libraries are now automatically processed during the build.
+Most common libraries (Qt frameworks, standard system libraries) are provided by the `shared-libs` component. However, some components may require additional specific libraries.
 
-#### Required Libraries File
-Create a `required_libraries.txt` file in your component directory to specify additional libraries needed by your component. The file supports multiple formats:
+#### Using component_libs.json
 
-**Format 1: Manual Library List**
-```plaintext
-# This file lists libraries required by this component
-# Comments starting with # are ignored
+If your component needs specific library versions from Flatpak runtimes, create a `component_libs.json` file:
 
-# Qt6 libraries
-libQt6Core.so.6
-libQt6Gui.so.6
-libQt6Widgets.so.6
-libQt6Network.so.6
-libQt6Multimedia.so.6
-
-# Other required libraries
-libslirp.so.0
-libSDL2-2.0.so.0
-
-# Qt plugins (directory structure)
-plugins/imageformats
-plugins/platforms
-plugins/xcbglintegrations
+```json
+[
+  {
+    "library": "libQt6Widgets.so.6",
+    "qt_version": "6.9",
+    "subfolder": "qt6"
+  },
+  {
+    "library": "libevdev.so.2",
+    "runtime_name": "org.gnome.Platform",
+    "subfolder": "48"
+  },
+  {
+    "library": "libusb-1.0.so.0",
+    "runtime_name": "org.freedesktop.Platform",
+    "subfolder": "25.08"
+  },
+  {
+    "library": "libcustom.so.1",
+    "source": "mycomponent/lib",
+    "subfolder": "component-libs"
+  }
+]
 ```
 
-**Format 2: LDD Output (Recommended)**
-You can directly paste the output of `ldd` command - all libraries will be processed:
-```plaintext
-# Output from: ldd /app/retrodeck/components/melonds/bin/melonDS
-  linux-vdso.so.1 (0x00007562e4576000)
-  libX11.so.6 => /usr/lib/x86_64-linux-gnu/libX11.so.6 (0x00007562dccb4000)
-  libEGL.so.1 => /usr/lib/x86_64-linux-gnu/libEGL.so.1 (0x00007562e4553000)
-  libQt6Multimedia.so.6 => not found
-  libSDL2-2.0.so.0 => /usr/lib/x86_64-linux-gnu/libSDL2-2.0.so.0 (0x00007562dcad2000)
-  /lib64/ld-linux-x86-64.so.2 (0x00007562e4578000)
-  libstdc++.so.6 => /usr/lib/x86_64-linux-gnu/libstdc++.so.6 (0x00007562dc600000)
-```
-*Note: Supports both standard format (`name => path`) and dynamic linker format (`/path`)*
-
-#### Automatic Library Processing
-Libraries are now automatically processed during the build:
-
-1. **Detection**: The build system automatically detects `required_libraries.txt` in your component directory
-2. **Parsing**: Supports both manual lists and `ldd` output formats
-3. **Processing**: Extracts all library names from the file (no filtering applied)
-4. **Resolution**: Uses `search_libs.sh` to find and copy libraries from available runtimes
-5. **Integration**: Libraries are automatically included in the component artifact
-
-#### Library Management Process
-1. **Identify Missing Libraries**: Run `ldd` on your main executable to identify missing libraries
-2. **Check Shared Libraries**: Verify if libraries are available in `shared-libs` component
-3. **Create Required Libraries File**: Add either the `ldd` output or manual library list to `required_libraries.txt`
-4. **Automatic Processing**: Libraries are automatically copied during build via `finalize()` function
-
-#### Example Component with Libraries
-```bash
-#!/bin/bash
-
-source "automation-tools/assembler.sh"
-
-# Download and process the component
-assemble flatpak_id "org.example.Component"
-
-# Custom Commands (optional)
-# Any additional processing...
-
-# Finalize - this automatically processes required_libraries.txt
-finalize
-```
+**Library source types:**
+- **qt_version**: Extract from Qt runtime (managed by shared-libs)
+- **runtime_name**: Extract from specific Flatpak runtime
+- **source**: Copy from local component directory
 
 #### Library Integration in Launcher
-Update your `component_launcher.sh` to properly set library paths:
+
+Update your `component_launcher.sh` to include component-specific libraries:
 
 ```bash
 #!/bin/bash
@@ -280,36 +402,6 @@ export QT_PLUGIN_PATH="$rd_shared_libs/qt-6.7/lib/plugins:$component_path/lib/pl
 exec "$component_path/bin/executable_name" "$@"
 ```
 
-#### Advanced Usage
-For more control over library processing, you can still manually handle libraries in your recipe:
-
-```bash
-#!/bin/bash
-
-source "automation-tools/assembler.sh"
-
-# Download and process the component
-assemble flatpak_id "org.example.Component"
-
-# Optional: Manual library handling before automatic processing
-mkdir -p "$component/artifacts/lib"
-cp /custom/path/special_library.so "$component/artifacts/lib/"
-
-# Finalize automatically processes required_libraries.txt
-finalize
-```
-
-#### Notes
-- Libraries in `required_libraries.txt` are **automatically processed** during `finalize()`
-- Both manual library lists and `ldd` output formats are supported
-- Comments starting with `#` are ignored in the file
-- Plugin directories can be specified with `plugins/` prefix
-- **All libraries from ldd output are processed** (no filtering for "not found")
-- The system automatically searches standard library paths for libraries
-- Deduplication occurs at the repository level, so all libraries are processed locally
-- Manual library copying can still be done before calling `finalize()` for special cases
-- Test your component thoroughly to ensure all required libraries are properly included
-
 ### 8. Best Practices
 - Use `log i "message"` for informational logging
 - Handle version detection properly in your sources
@@ -320,56 +412,78 @@ finalize
 
 ### Component Libraries Management
 
-RetroDECK uses a two-tier library system:
+RetroDECK uses a centralized library management system:
 
-### Shared Libraries
-Common libraries (like Qt frameworks) are managed centrally in the `shared-libs` component:
+#### Shared Libraries
+Common libraries (Qt frameworks, standard system libraries) are managed centrally in the `shared-libs` component. These libraries are automatically available to all components through the `$rd_shared_libs` path.
 
-These libraries are automatically available to all components through the `$rd_shared_libs` path.
+The shared-libs component handles:
+- Qt 5 and Qt 6 runtime libraries and plugins
+- Common Flatpak extensions (ffmpeg, codecs, etc.)
+- Platform-specific libraries
 
-## How to add and manage component libraries
+#### Component-Specific Libraries
+Individual components may require additional libraries not provided by shared-libs. These are managed through `component_libs.json` files in each component directory.
 
-Once you have added a new component and it builds correctly, you can test its integration in RetroDECK by opening the shell and running:
+## Troubleshooting Component Library Issues
 
-    retrodeck --open component
+Once you have added a new component and it builds correctly, test its integration in RetroDECK by opening the shell and running:
 
-If the component fails to start, it's often due to missing libraries. Check the error message to see which library is missing.
-
-To see the full list of libraries required by the component, use:
-
-    ldd /app/retrodeck/components/component/bin/component
-
-Note: Sometimes ldd does not show all required libraries. Some components (like es-de) have a section with manually inserted libraries in addition to the ldd dump. Check the component's `required_libraries.txt` file for both the ldd output and manually added libraries.
-
-This process may require several attempts: try running, compiling, or injecting the component. If ldd can't find a library, the component may break each time with a different missing library. Be patient and keep adding missing dependencies as you discover them, but don't worry, once the component is stabilized the work is done.
-Future updates might break it again but usually is a minor issue.
-
-Update the component's `required_libraries.txt` file by adding any missing libraries, whether found via ldd or manually.
-
-### Example required_libraries.txt
-
-```
-libfoo.so.1 => /usr/lib/x86_64-linux-gnu/libfoo.so.1
-libbar.so.2 => not found
-
-# Manually inserted, not found by LDD
-libbaz.so.3
+```bash
+retrodeck --open component
 ```
 
-See existing component files for more examples.
+If the component fails to start, check the error message to identify missing libraries.
 
-### Component-Specific Libraries
-Additional libraries needed by individual components are specified in `required_libraries.txt` files within each component directory. These libraries are now:
-- **Automatically processed** during the build process via the `finalize()` function
-- Sourced from available runtime environments (searches /app, /usr/lib, /usr/lib64, etc.)
-- Included in the component's artifact package automatically
-- Support both manual library lists and `ldd` command output formats
+### Diagnosing Missing Libraries
 
-### Library Resolution Process
-1. Check if library exists in shared-libs
-2. If not found, create/update component's `required_libraries.txt`
-3. **Automatic library copying** during build when `finalize()` is called
-4. Set proper `LD_LIBRARY_PATH` in component launcher
+Use `ldd` to see all libraries required by the component:
+
+```bash
+ldd /app/retrodeck/components/component_name/bin/executable_name
+```
+
+**Example output:**
+```
+libQt6Core.so.6 => /app/lib/libQt6Core.so.6 (0x00007f...)
+libfoo.so.1 => not found
+libbar.so.2 => /usr/lib/x86_64-linux-gnu/libbar.so.2 (0x00007f...)
+```
+
+Libraries marked as "not found" need to be added.
+
+### Resolution Steps
+
+1. **Check if library is in shared-libs**: Most Qt and common libraries are already provided
+2. **For missing libraries**: Add them to your component's `component_libs.json`
+3. **Rebuild the component**: Run the recipe script again
+4. **Test**: Try running the component again
+
+### Creating component_libs.json
+
+Based on the `ldd` output, create a `component_libs.json` file:
+
+```json
+[
+  {
+    "library": "libQt6Core.so.6",
+    "qt_version": "6.9",
+    "subfolder": "qt6"
+  },
+  {
+    "library": "libfoo.so.1",
+    "runtime_name": "org.freedesktop.Platform",
+    "subfolder": "24.08"
+  }
+]
+```
+
+### Notes
+
+- This process may require several iterations
+- Each missing library error must be resolved individually
+- Once stabilized, components rarely break with updates
+- Check existing component `component_libs.json` files for examples
 
 ## Build RetroDECK Components
 
