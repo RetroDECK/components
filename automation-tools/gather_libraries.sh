@@ -1,17 +1,22 @@
 #!/bin/bash
 
-if [[ ! -f ".tmpfunc/logger.sh" ]]; 
-then
+# Only download logger if not already sourced (e.g., when called from assembler.sh)
+if [[ ! -f ".tmpfunc/logger.sh" ]] && ! declare -f log > /dev/null; then
     mkdir -p ".tmpfunc"
     wget -q https://raw.githubusercontent.com/RetroDECK/RetroDECK/main/functions/logger.sh -O ".tmpfunc/logger.sh"
 fi
 
-# Ensure logfile is set and exported for all log calls
-if [ -z "$logfile" ]; then
-    export logfile="assemble.log"
-else
-    export logfile
+# Source logger if available and not already sourced
+if [[ -f ".tmpfunc/logger.sh" ]] && ! declare -f log > /dev/null; then
+    # Set up logging variables for the external logger BEFORE sourcing
+    export logging_level="${logging_level:-debug}"
+    if [[ -z "$rd_logs_folder" ]]; then
+        export rd_logs_folder="$(dirname "${logfile:-assemble.log}")"
+    fi
+    source ".tmpfunc/logger.sh"
 fi
+
+logfile="assemble.log"
 
 # This script is meant to process component_libs.json files created by the build_missing_libs_json.sh script.
 # It will iterate all the objects in the output JSON files, search for the defined libraries and copy them to the specified locations if they do not already exist there.
@@ -53,12 +58,12 @@ gather_libraries() {
   # If WORK_DIR is set from assembler.sh and no override, search there first
   if [[ -n "$WORK_DIR" && -z "$work_dir_override" ]]; then
     work_dir_override="$WORK_DIR"
-    log i  "Using WORK_DIR from assembler: $work_dir_override"
+    log i  "Using WORK_DIR from assembler: $work_dir_override" "$logfile"
   fi
   
   # If work_dir_override is set, prioritize searching there
   if [[ -n "$work_dir_override" && -d "$work_dir_override" ]]; then
-    log i  "Searching for component_libs.json in work directory: $work_dir_override"
+    log i  "Searching for component_libs.json in work directory: $work_dir_override" "$logfile"
     root_to_search="$work_dir_override"
   fi
 
@@ -68,16 +73,35 @@ gather_libraries() {
     mkdir -p "$gathered_libs_dest_root"
   fi
 
-  while IFS= read -r component_libs_file; do
+  # Also search in component directory if $component is set
+  local search_paths=("$root_to_search")
+  if [[ -n "$component" && -d "$component" ]]; then
+    search_paths+=("$component")
+    log i  "Also searching in component directory: $component" "$logfile"
+  fi
+
+  for search_path in "${search_paths[@]}"; do
+    while IFS= read -r component_libs_file; do
     component_libs_file=$(realpath $component_libs_file)
-    log i  "Found $component_libs_file"
+    log i  "Found $component_libs_file" "$logfile"
     
     # Extract component name from the component_libs.json file path
     # The component name is the parent directory of the component_libs.json file
     local component_name=$(basename "$(dirname "$component_libs_file")")
-    log i  "Processing libraries for component: $component_name"
+    log i  "Processing libraries for component: $component_name" "$logfile"
+    
+    # Initialize counters for reporting
+    local total_libs=0
+    local copied_libs=0
+    local skipped_libs=0
+    local failed_libs=0
+    local copied_list=""
+    local skipped_list=""
+    local failed_list=""
     
     while read -r lib; do
+      ((total_libs++))
+      log d "📚 Processing library: $lib" "$logfile"
       qt_version=$(jq -r --arg lib "$lib" '.[] | select(.library == $lib) | .qt_version // empty' "$component_libs_file")
       lib_type=$(jq -r --arg lib "$lib" '.[] | select(.library == $lib) | .type // empty' "$component_libs_file")
       lib_src=$(jq -r --arg lib "$lib" '.[] | select(.library == $lib) | .source // empty' "$component_libs_file")
@@ -96,7 +120,7 @@ gather_libraries() {
       fi
       if [[ -n $qt_version ]]; then
         if [[ $lib_type == "qt_plugin" ]]; then
-          log i  "Looking for Qt plugin at $flatpak_runtime_dir/org.kde.Platform/x86_64/$qt_version/active/files/lib/plugins/$lib"
+          log i  "Looking for Qt plugin at $flatpak_runtime_dir/org.kde.Platform/x86_64/$qt_version/active/files/lib/plugins/$lib" "$logfile"
           if [[ -e "$flatpak_runtime_dir/org.kde.Platform/x86_64/$qt_version/active/files/lib/plugins/$lib" ]]; then
             if [[ ! -n "$lib_dest" ]]; then
                 if [[ -n "$lib_subfolder" ]]; then
@@ -106,19 +130,25 @@ gather_libraries() {
                 fi
             fi
             if [[ -e "$lib_dest" ]]; then
-              log i  "Qt plugin folder already found in destination location $lib_dest, skipping..."
+              log i  "Qt plugin folder already found in destination location $lib_dest, skipping..." "$logfile"
+              ((skipped_libs++))
+              skipped_list="$skipped_list$lib (Qt plugin already exists at $lib_dest)\n"
             else
               if [[ ! -e "$lib_dest" ]]; then
                 mkdir -p "$lib_dest"
               fi
-              log i  "Qt plugin not found in destination location $lib_dest, copying..."
+              log i  "Qt plugin not found in destination location $lib_dest, copying..." "$logfile"
               cp -ar "$flatpak_runtime_dir/org.kde.Platform/x86_64/$qt_version/active/files/lib/plugins/$lib/"* "$lib_dest"
+              ((copied_libs++))
+              copied_list="$copied_list$lib (Qt plugin copied to $lib_dest)\n"
             fi
           else
-            log i  "ERROR: Qt plugin folder not found at expected location."
+            log w  "ERROR: Qt plugin folder not found at expected location." "$logfile"
+            ((failed_libs++))
+            failed_list="$failed_list$lib (Qt plugin not found at $flatpak_runtime_dir/org.kde.Platform/x86_64/$qt_version/active/files/lib/plugins/$lib)\n"
           fi
         else
-          log i  "Looking for Qt lib at $flatpak_runtime_dir/org.kde.Platform/x86_64/$qt_version/active/files/lib/x86_64-linux-gnu/$lib"
+          log i  "Looking for Qt lib at $flatpak_runtime_dir/org.kde.Platform/x86_64/$qt_version/active/files/lib/x86_64-linux-gnu/$lib" "$logfile"
           if [[ -e "$flatpak_runtime_dir/org.kde.Platform/x86_64/$qt_version/active/files/lib/x86_64-linux-gnu/$lib" ]]; then
             if [[ ! -n "$lib_dest" ]]; then
                 if [[ -n "$lib_subfolder" ]]; then
@@ -128,16 +158,22 @@ gather_libraries() {
                 fi
             fi
             if [[ -e "$lib_dest/$lib" ]]; then
-              log i  "Lib already found in destination location $lib_dest/$lib, skipping..."
+              log i  "Lib already found in destination location $lib_dest/$lib, skipping..." "$logfile"
+              ((skipped_libs++))
+              skipped_list="$skipped_list$lib (Qt lib already exists at $lib_dest/$lib)\n"
             else
               if [[ ! -e "$lib_dest" ]]; then
                 mkdir -p "$lib_dest"
               fi
               log i  "Library not found in destination location $lib_dest, copying..."
-              cp -a "$flatpak_runtime_dir/org.kde.Platform/x86_64/$qt_version/active/files/lib/x86_64-linux-gnu/$lib"* "$lib_dest/"
+              cp -a "$flatpak_runtime_dir/org.kde.Platform/x86_64/$qt_version/active/files/lib/x86_64-linux-gnu/$lib"* "$lib_dest/" "$logfile"
+              ((copied_libs++))
+              copied_list="$copied_list$lib (Qt lib copied to $lib_dest)\n"
             fi
           else
-            log i  "ERROR: Lib not found at expected location."
+            log w  "\"$lib\" not found at expected location." "$logfile"
+            ((failed_libs++))
+            failed_list="$failed_list$lib (Qt lib not found at $flatpak_runtime_dir/org.kde.Platform/x86_64/$qt_version/active/files/lib/x86_64-linux-gnu/$lib)\n"
           fi
         fi
         continue
@@ -157,7 +193,7 @@ gather_libraries() {
         lib_src="$flatpak_runtime_dir/$current_rd_runtime/active/files/lib/x86_64-linux-gnu"
       fi
       
-      log i  "Looking for lib at $lib_src/$lib"
+      log i  "Looking for lib at $lib_src/$lib" "$logfile"
       if [[ -e "$lib_src/$lib" ]]; then
         if [[ ! -n "$lib_dest" ]]; then
           if [[ -n "$lib_subfolder" ]]; then
@@ -167,29 +203,124 @@ gather_libraries() {
           fi
         fi
         if [[ -e "$lib_dest/$lib" ]]; then
-            log i  "Lib already found in destination location $lib_dest, skipping..."
+            log i  "Lib already found in destination location $lib_dest, skipping..." "$logfile"
+            ((skipped_libs++))
+            skipped_list="$skipped_list$lib (already exists at $lib_dest)\n"
           else
             if [[ ! -e "$lib_dest" ]]; then
               mkdir -p "$lib_dest"
             fi
-            log i  "Library not found in destination location $lib_dest, copying..."
+            log i  "Library not found in destination location $lib_dest, copying..." "$logfile"
             cp -a "$lib_src/$lib"* "$lib_dest/"
+            ((copied_libs++))
+            copied_list="$copied_list$lib (copied to $lib_dest)\n"
           fi
       else
-        log i  "ERROR: Lib not found at expected location."
+        # Fallback for AppImage: check in squashfs-root if lib_src is under component dir
+        local fallback_src=""
+        if [[ -d "$work_dir_override/squashfs-root" && "$lib_src" =~ ^$work_dir_override/$component_name/ ]]; then
+          fallback_src="$work_dir_override/squashfs-root/${lib_src#$work_dir_override/$component_name/}"
+          log i  "Lib not found at $lib_src/$lib, trying AppImage fallback at $fallback_src/$lib" "$logfile"
+          if [[ -e "$fallback_src/$lib" ]]; then
+            lib_src="$fallback_src"
+            # Retry the copy logic with fallback_src
+            if [[ ! -n "$lib_dest" ]]; then
+              if [[ -n "$lib_subfolder" ]]; then
+                lib_dest="$gathered_libs_dest_root/$lib_subfolder"
+              else
+                lib_dest="$gathered_libs_dest_root"
+              fi
+            fi
+            if [[ -e "$lib_dest/$lib" ]]; then
+                log i  "Lib already found in destination location $lib_dest, skipping..." "$logfile"
+                ((skipped_libs++))
+                skipped_list="$skipped_list$lib (already exists at $lib_dest)\n"
+              else
+                if [[ ! -e "$lib_dest" ]]; then
+                  mkdir -p "$lib_dest"
+                fi
+                log i  "Library not found in destination location $lib_dest, copying..." "$logfile"
+                cp -a "$lib_src/$lib"* "$lib_dest/"
+                ((copied_libs++))
+                copied_list="$copied_list$lib (copied to $lib_dest)\n"
+              fi
+            continue
+          fi
+        fi
+        log w  "ERROR: Lib not found at expected location." "$logfile"
+        ((failed_libs++))
+        failed_list="$failed_list$lib (not found at $lib_src/$lib)\n"
       fi
     done <<< "$(jq -r '.[].library' "$component_libs_file")"
-  done < <(find "$root_to_search" -maxdepth 2 -type f -name "component_libs.json")
-}
+    
+    # Generate detailed report
+    log i "📊 Library gathering report for $component_name:" "$logfile"
+    log i "  Total libraries processed: $total_libs" "$logfile"
+    log i "  Libraries copied: $copied_libs" "$logfile"
+    log i "  Libraries skipped: $skipped_libs" "$logfile"
+    log i "  Libraries failed: $failed_libs" "$logfile"
 
-# Wrapper function for logging compatibility with assembler.sh
-log_wrapper() {
-  local message="$1"
-  if declare -f log > /dev/null && [[ -n "$logfile" ]]; then
-    log i "$message" "$logfile"
-  else
-    echo "$message"
-  fi
+    if [[ $copied_libs -gt 0 ]]; then
+      log i "  📋 Copied libraries:"  "$logfile"
+      echo -e "$copied_list" | while read -r line; do
+        [[ -n "$line" ]] && log i "    ✅ $line" "$logfile"
+      done
+    fi
+    
+    if [[ $skipped_libs -gt 0 ]]; then
+      log i "  📋 Skipped libraries:" "$logfile"
+      echo -e "$skipped_list" | while read -r line; do
+        [[ -n "$line" ]] && log i "    ⏭️  $line" "$logfile"
+      done
+    fi
+    
+    if [[ $failed_libs -gt 0 ]]; then
+      log w "  📋 Failed libraries:" "$logfile"
+      echo -e "$failed_list" | while read -r line; do
+        [[ -n "$line" ]] && log w "    ❌ $line" "$logfile"
+      done
+    fi
+    
+    # If in CI/CD, append to build report
+    if [[ -n "$CI" || -n "$GITHUB_ACTIONS" || -n "$GITLAB_CI" ]]; then
+      local build_report_file="${BUILD_REPORT_FILE:-build_report.md}"
+      {
+        echo "## Library Gathering Report for $component_name"
+        echo ""
+        echo "- **Total libraries processed:** $total_libs"
+        echo "- **Libraries copied:** $copied_libs"
+        echo "- **Libraries skipped:** $skipped_libs"
+        echo "- **Libraries failed:** $failed_libs"
+        echo ""
+        if [[ $copied_libs -gt 0 ]]; then
+          echo "### Copied Libraries"
+          echo -e "$copied_list" | while read -r line; do
+            [[ -n "$line" ]] && echo "- ✅ $line"
+          done
+          echo ""
+        fi
+        if [[ $skipped_libs -gt 0 ]]; then
+          echo "### Skipped Libraries"
+          echo -e "$skipped_list" | while read -r line; do
+            [[ -n "$line" ]] && echo "- ⏭️  $line"
+          done
+          echo ""
+        fi
+        if [[ $failed_libs -gt 0 ]]; then
+          echo "### Failed Libraries"
+          echo -e "$failed_list" | while read -r line; do
+            [[ -n "$line" ]] && echo "- ❌ $line"
+          done
+          echo ""
+        fi
+        echo "---"
+        echo ""
+      } >> "$build_report_file"
+      log i "📄 Build report updated: $build_report_file" "$logfile"
+    fi
+    
+    done < <(find "$search_path" -maxdepth 2 -type f -name "component_libs.json")
+  done
 }
 
 # If script is executed directly (not sourced), call the function with all arguments
