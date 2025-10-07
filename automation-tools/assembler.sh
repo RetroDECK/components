@@ -488,20 +488,31 @@ filter_appimage_libs() {
     
     log i "🔍 Filtering AppImage libraries from: $source_dir" "$logfile"
     
-    # Copy all directories and files, including lib
+    # Copy all directories and files, including lib conditionally
     for item in "$source_dir"/*; do
         if [[ -d "$item" ]]; then
-            log d "📁 Copying directory: $(basename "$item")" "$logfile"
-            cp -rL "$item" "$dest_dir/"
+            local dirname
+            dirname=$(basename "$item")
+            if [[ "$dirname" == "lib" ]]; then
+                # Check if component requires libs
+                local libs_json="$component/component_libs.json"
+                if [[ -f "$libs_json" ]] && jq -e '. | length > 0' "$libs_json" >/dev/null 2>&1; then
+                    log d "� Copying directory: lib (required by component)" "$logfile"
+                    cp -rL "$item" "$dest_dir/"
+                    # Apply unified filtering only if lib exists
+                    filter_critical_system_libraries "$dest_dir/lib" "lib"
+                else
+                    log d "📁 Skipping directory: lib (not required by component)" "$logfile"
+                fi
+            else
+                log d "📁 Copying directory: $dirname" "$logfile"
+                cp -rL "$item" "$dest_dir/"
+            fi
         elif [[ -f "$item" ]]; then
             log d "📄 Copying file: $(basename "$item")" "$logfile"
             cp -L "$item" "$dest_dir/"
         fi
     done
-    # Apply unified filtering only if lib exists
-    if [[ -d "$dest_dir/lib" ]]; then
-        filter_critical_system_libraries "$dest_dir/lib" "lib"
-    fi
 }
 
 manage_appimage() {
@@ -611,10 +622,6 @@ manage_appimage() {
 
     rm -rf "$temp_root" "$abs_appimage_path"
     log i "AppImage files moved to artifacts directory." "$logfile"
-    
-    # Process required libraries for this component
-    log i "Processing component-specific required libraries..." "$logfile"
-    process_required_libraries
 }
 
 manage_generic() {
@@ -645,10 +652,6 @@ manage_generic() {
         log e "Failed to move extracted files to artifacts." "$logfile"
         exit 1
     }
-    
-    # Process required libraries for this component
-    log i "Processing component-specific required libraries..." "$logfile"
-    process_required_libraries
 }
 
 # This function not compiling the flatpak, just downloading it and extracting it (+ runtimes and sdk)
@@ -775,10 +778,6 @@ manage_flatpak_id() {
         gather_libraries -w "$WORK_DIR" -d "$component/artifacts/lib"
     fi
 
-    # Process required libraries for this component
-    log i "Processing component-specific required libraries..." "$logfile"
-    process_required_libraries
-
     # Uninstall the Flatpak if it was not previously installed
     if [[ "$was_installed" == "false" ]]; then
         log i "Uninstalling $flatpak_id as it was not previously installed." "$logfile"
@@ -859,10 +858,6 @@ manage_flatpak_artifacts() {
         log i "Gathering component-specific libraries from WORK_DIR..." "$logfile"
         gather_libraries -w "$WORK_DIR" -d "$component/artifacts/lib"
     fi
-    
-    # Process required libraries for this component
-    log i "Processing component-specific required libraries..." "$logfile"
-    process_required_libraries
     
     # Clean up temp directory
     rm -rf "$temp_dir"
@@ -1034,9 +1029,6 @@ manage_local() {
                 log e "Failed to copy local file to artifacts." "$logfile"
                 exit 1
             }
-            # Process required libraries for this component
-            log i "Processing component-specific required libraries..." "$logfile"
-            process_required_libraries
             return
             ;;
     esac
@@ -1052,50 +1044,6 @@ manage_local() {
         log e "Failed to move extracted files to artifacts directory." "$logfile"
         exit 1
     }
-    
-    # Process required libraries for this component
-    log i "Processing component-specific required libraries..." "$logfile"
-    process_required_libraries
-}
-
-# Process required libraries automatically
-process_required_libraries() {
-    local required_libs_file="$component/required_libraries.txt"
-
-    log i "🔍 Processing component-specific libraries for: $component" "$logfile"
-
-    if [[ ! -f "$required_libs_file" ]]; then
-        log d "No required_libraries.txt found for $component, skipping component-specific library processing" "$logfile"
-        return 0
-    fi
-    
-    log i "📖 Processing component-specific libraries from: $required_libs_file" "$logfile"
-    
-    # Set up environment for search_libs
-    export FLATPAK_DEST="$component/artifacts"
-    
-    # Copy lib folder from artifact root if exists
-    local lib_source=""
-    if [[ "$type" == "appimage" ]]; then
-        lib_source="$WORK_DIR/squashfs-root/lib"
-    else
-        lib_source="$WORK_DIR/lib"
-    fi
-    if [[ -d "$lib_source" ]]; then
-        log i "📁 Copying lib folder from artifact root to artifacts..." "$logfile"
-        cp -r "$lib_source" "$component/artifacts/"
-    fi
-
-    # Create a temporary processed library file
-    local temp_lib_file=$(mktemp)
-    process_library_file "$required_libs_file" "$temp_lib_file"
-    
-    # Filter out critical system libraries before processing
-    local filtered_lib_file=$(mktemp)
-    filter_critical_system_libraries "$temp_lib_file" "list" "$filtered_lib_file"
-    
-    # Clean up
-    rm -f "$temp_lib_file" "$filtered_lib_file"
 }
 
 # Process the library file to extract library names
@@ -1254,6 +1202,16 @@ finalize() {
         log i "Found 'lib64' directory in component root. Copying to artifacts..." "$logfile"
         mkdir -p "$artifact_dir/lib64"
         cp -a "$component/lib64/." "$artifact_dir/lib64/" || log w "Failed to copy lib64 directory to artifacts" "$logfile"
+    fi
+
+    # Remove empty lib directories
+    if [[ -d "$artifact_dir/lib" ]] && [[ -z "$(find "$artifact_dir/lib" -type f)" ]]; then
+        log i "Removing empty lib directory from artifacts..." "$logfile"
+        rm -rf "$artifact_dir/lib"
+    fi
+    if [[ -d "$artifact_dir/lib64" ]] && [[ -z "$(find "$artifact_dir/lib64" -type f)" ]]; then
+        log i "Removing empty lib64 directory from artifacts..." "$logfile"
+        rm -rf "$artifact_dir/lib64"
     fi
 
     # Package artifact directory
