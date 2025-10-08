@@ -6,8 +6,7 @@
   },
   {
     "library": "libmad.so.0",
-    "source": "scummvm/lib",
-    "subfolder": "scummvm-libs"
+    "source": "scummvm/lib"
   },
   {
     "library": "libtheoradec.so.2",
@@ -21,18 +20,15 @@
   },
   {
     "library": "libfaad.so.2",
-    "source": "scummvm/lib",
-    "subfolder": "scummvm-libs"
+    "source": "scummvm/lib"
   },
   {
     "library": "libmpeg2.so.0",
-    "source": "scummvm/lib",
-    "subfolder": "scummvm-libs"
+    "source": "scummvm/lib"
   },
   {
     "library": "libfluidsynth.so.3",
-    "source": "scummvm/lib",
-    "subfolder": "scummvm-libs"
+    "source": "scummvm/lib"
   }
 ]
 

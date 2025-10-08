@@ -1,12 +1,10 @@
 [
   {
     "library": "libSDL2_gfx-1.0.so.0",
-    "source": "openbor/usr/lib/",
-    "subfolder": "openbor-libs"
+    "source": "openbor/usr/lib/"
   },
   {
     "library": "libvpx.so.5",
-    "source": "openbor/usr/lib/",
-    "subfolder": "openbor-libs"
+    "source": "openbor/usr/lib/"
   }
 ]

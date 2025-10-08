@@ -1,7 +1,6 @@
 [
   {
     "library": "libGLU.so.1",
-    "source": "cemu/usr/lib",
-    "subfolder": "cemu-libs"
+    "source": "cemu/usr/lib"
   }
 ]

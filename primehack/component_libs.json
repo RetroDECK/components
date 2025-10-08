@@ -26,12 +26,10 @@
   },
   {
     "library": "libevdev.so.2",
-    "source": "primehack/lib",
-    "subfolder": "primehack-libs"
+    "source": "primehack/lib"
   },
   {
     "library": "libusb-1.0.so.0",
-    "source": "primehack/lib",
-    "subfolder": "primehack-libs"
+    "source": "primehack/lib"
   }
 ]

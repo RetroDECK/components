@@ -1,23 +1,19 @@
 [
   {
     "library": "libsolarus.so.2",
-    "source": "$component/usr/lib",
-    "subfolder": "$component"
+    "source": "$component/usr/lib"
   },
   {
     "library": "libluajit-5.1.so.2",
-    "source": "$component/usr/lib",
-    "subfolder": "$component"
+    "source": "$component/usr/lib"
   },
   {
     "library": "libmodplug.so.1",
-    "source": "$component/usr/lib",
-    "subfolder": "$component"
+    "source": "$component/usr/lib"
   },
   {
     "library": "libphysfs.so.1",
-    "source": "$component/usr/lib",
-    "subfolder": "$component"
+    "source": "$component/usr/lib"
   },
   {
     "library": "libQt6Widgets.so.6",

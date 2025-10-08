@@ -5,7 +5,7 @@ component_name="$(basename "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")")"
 component_path="$(cd "$(dirname "${BASH_SOURCE[0]}" )" && pwd)"
 IN_FLATPAK=1
 
-export LD_LIBRARY_PATH="$component_path/lib:${LD_LIBRARY_PATH}"
+export LD_LIBRARY_PATH="$component_path/lib:$ffmpeg_path/24.08:${LD_LIBRARY_PATH}"
 
 log i "RetroDECK is now launching $component_name"
 log d "Library path is: $LD_LIBRARY_PATH"

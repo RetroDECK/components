@@ -21,72 +21,58 @@
   },
   {
     "library": "liblunasvg.so",
-    "source": "duckstation/usr/lib",
-    "subfolder": "duckstation-libs"
+    "source": "duckstation/usr/lib"
   },
   {
     "library": "libsoundtouch.so.2",
-    "source": "duckstation/usr/lib",
-    "subfolder": "duckstation-libs"
+    "source": "duckstation/usr/lib"
   },
   {
     "library": "libcpuinfo.so",
-    "source": "duckstation/usr/lib",
-    "subfolder": "duckstation-libs"
+    "source": "duckstation/usr/lib"
   },
   {
     "library": "libcurl.so.4",
-    "source": "duckstation/usr/lib",
-    "subfolder": "duckstation-libs"
+    "source": "duckstation/usr/lib"
   },
   {
     "library": "libk5crypto.so.3",
-    "source": "duckstation/usr/lib",
-    "subfolder": "duckstation-libs"
+    "source": "duckstation/usr/lib"
   },
   {
     "library": "libkrb5support.so.0",
-    "source": "duckstation/usr/lib",
-    "subfolder": "duckstation-libs"
+    "source": "duckstation/usr/lib"
   },
   {
     "library": "libkeyutils.so.1",
-    "source": "duckstation/usr/lib",
-    "subfolder": "duckstation-libs"
+    "source": "duckstation/usr/lib"
   },
   {
     "library": "liblber-2.5.so.0",
-    "source": "duckstation/usr/lib",
-    "subfolder": "duckstation-libs"
+    "source": "duckstation/usr/lib"
   },
   {
     "library": "librtmp.so.1",
-    "source": "duckstation/usr/lib",
-    "subfolder": "duckstation-libs"
+    "source": "duckstation/usr/lib"
   },
   {
     "library": "libssh.so.4",
-    "source": "duckstation/usr/lib",
-    "subfolder": "duckstation-libs"
+    "source": "duckstation/usr/lib"
   },
   {
     "library": "libgssapi_krb5.so.2",
-    "source": "duckstation/usr/lib",
-    "subfolder": "duckstation-libs"
+    "source": "duckstation/usr/lib"
   },
   {
     "library": "  libkrb5.so.3",
-    "source": "duckstation/usr/lib",
-    "subfolder": "duckstation-libs"
+    "source": "duckstation/usr/lib"
   },
   {
     "library": "  libldap-2.5.so.0",
-    "source": "duckstation/usr/lib",
-    "subfolder": "duckstation-libs"
+    "source": "duckstation/usr/lib"
   },
   {
     "library": "libsasl2.so.2",
-    "source": "duckstation/usr/lib",
-    "subfolder": "duckstation-libs"
+    "source": "duckstation/usr/lib"
   }
 ]

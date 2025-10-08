@@ -26,7 +26,6 @@
   },
   {
     "library": "libbz2.so.1.0",
-    "source": "eka2l1/usr/lib/",
-    "subfolder": "eka2l1-libs"
+    "source": "eka2l1/usr/lib/"
   }
 ]

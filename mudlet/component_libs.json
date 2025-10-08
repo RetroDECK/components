@@ -51,18 +51,15 @@
   },
   {
     "library": "libQsLog.so",
-    "source": "mudlet/lib/",
-    "subfolder": "mudlet-libs"
+    "source": "mudlet/lib/"
   },
   {
     "library": "libbz2.so.1.0",
-    "source": "mudlet/lib/",
-    "subfolder": "mudlet-libs"
+    "source": "mudlet/lib/"
   },
   {
     "library": "libcrypto.so.1.1",
-    "source": "mudlet/lib/",
-    "subfolder": "mudlet-libs"
+    "source": "mudlet/lib/"
   },
   {
     "library": "libQt5DBus.so.5",
