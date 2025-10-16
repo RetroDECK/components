@@ -2,7 +2,7 @@
 
 source "automation-tools/assembler.sh"
 
-assemble flatpak_artifacts "https://github.com/RetroDECK/ES-DE/releases/latest/download/RetroDECK-ES-DE-Artifact.tar.gz"
+assemble appimage "https://github.com/RetroDECK/ES-DE/releases/latest/download/ES-DE_x64_RetroDECK.AppImage "
 
 # Custom Commands
 
