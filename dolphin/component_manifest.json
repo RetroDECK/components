@@ -2,6 +2,10 @@
   "dolphin": {
     "name": "Dolphin",
     "description": "Wii and GameCube Emulator",
+    "exec": "bin/dolphin-emu",
+    "args": "",
+    "framework": ["qt6"],
+    "run_extras": true,
     "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/dolphin-primehack/dolphin-primehack-guide/",
     "url_webpage": "https://dolphin-emu.org",
     "url_source": "https://github.com/dolphin-emu/dolphin",
