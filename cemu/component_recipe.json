@@ -1,0 +1,29 @@
+{
+  "cemu": {
+    "source_url": "https://github.com/cemu-project/Cemu/releases/latest/download/{VERSION}/Cemu-*-x86_64.AppImage",
+    "source_type": "github-release",
+    "version": "$CEMU_DESIRED_VERSION",
+    "extraction_type": "appimage",
+    "assets": [
+      {
+        "type": "dir",
+        "source": "usr/bin",
+        "dest": "bin"
+      }
+    ],
+    "libs":  [
+      {
+        "library": "libGLU.so.1",
+        "source": "usr/lib",
+        "dest": "lib"
+      }
+    ],
+    "extras": [
+      {
+        "type": "dir",
+        "source": "$REPO_ROOT/$COMPONENT_NAME",
+        "dest": "$COMPONENT_ARTIFACT_ROOT"
+      }
+    ]
+  }
+}

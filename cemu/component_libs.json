@@ -1,6 +1,0 @@
-[
-  {
-    "library": "libGLU.so.1",
-    "source": "cemu/usr/lib"
-  }
-]
