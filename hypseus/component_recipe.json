@@ -1,10 +1,9 @@
 {
-  "dolphin": {
-    "source_url": "org.DolphinEmu.dolphin-emu",
-    "source_type": "flatpak_id",
-    "version": "$DOLPHIN_DESIRED_VERSION",
-    "dest": "user",
-    "extraction_type": "flatpak",
+  "hypseus": {
+    "source_url": "https://github.com/DirtBagXon/hypseus-singe/releases/download/{VERSION}/*_SteamOS_ES-DE.tar.gz",
+    "source_type": "github-release",
+    "version": "$HYPSEUS_DESIRED_VERSION",
+    "extraction_type": "appimage",
     "assets": [
       {
         "type": "dir",
@@ -12,7 +11,7 @@
         "dest": "bin"
       }
     ],
-    "libs":  [
+    "libs": [
       {
         "library": "libQt6Widgets.so.6",
         "runtime_name": "org.kde.Platform",
@@ -54,26 +53,6 @@
         "runtime_name": "org.kde.Platform",
         "runtime_version": "6.9",
         "dest": "shared-libs"
-      }
-      {
-        "library": "libusb-1.0.so.0",
-        "source": "usr/lib",
-        "dest": "lib"
-      },
-      {
-        "library": "libevdev.so.2",
-        "source": "usr/lib",
-        "dest": "lib"
-      },
-      {
-        "library": "libslirp.so.0",
-        "source": "usr/lib",
-        "dest": "lib"
-      },
-      {
-        "library": "libfluidsynth.so.3",
-        "source": "usr/lib",
-        "dest": "lib"
       }
     ],
     "extras": [

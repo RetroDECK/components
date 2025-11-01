@@ -1,0 +1,49 @@
+{
+  "mame": {
+    "source_url": "org.mamedev.MAME",
+    "source_type": "flatpak_id",
+    "version": "$MAME_DESIRED_VERSION",
+    "dest": "user",
+    "extraction_type": "flatpak",
+    "assets": [
+      {
+        "type": "dir",
+        "source": "usr/bin",
+        "dest": "bin"
+      }
+    ],
+    "libs": [
+      {
+        "library": "libQt6Widgets.so.6",
+        "runtime_name": "org.kde.Platform",
+        "runtime_version": "6.9",
+        "dest": "shared-libs"
+      },
+      {
+        "library": "libQt6Gui.so.6",
+        "runtime_name": "org.kde.Platform",
+        "runtime_version": "6.9",
+        "dest": "shared-libs"
+      },
+      {
+        "library": "libQt6Core.so.6",
+        "runtime_name": "org.kde.Platform",
+        "runtime_version": "6.9",
+        "dest": "shared-libs"
+      },
+      {
+        "library": "libQt6DBus.so.6",
+        "runtime_name": "org.kde.Platform",
+        "runtime_version": "6.9",
+        "dest": "shared-libs"
+      }
+    ],
+    "extras": [
+      {
+        "type": "dir",
+        "source": "$REPO_ROOT/$COMPONENT_NAME",
+        "dest": "$COMPONENT_ARTIFACT_ROOT"
+      }
+    ]
+  }
+}

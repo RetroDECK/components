@@ -1,8 +1,8 @@
 {
-  "dolphin": {
-    "source_url": "org.DolphinEmu.dolphin-emu",
+  "primehack": {
+    "source_url": "io.github.shiiion.primehack",
     "source_type": "flatpak_id",
-    "version": "$DOLPHIN_DESIRED_VERSION",
+    "version": "$PRIMEHACK_DESIRED_VERSION",
     "dest": "user",
     "extraction_type": "flatpak",
     "assets": [
