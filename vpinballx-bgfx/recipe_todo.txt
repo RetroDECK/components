@@ -1,11 +1,6 @@
-#!/bin/bash
+It's an archive in an archive
 
-source "automation-tools/assembler.sh"
-
-assemble gh_latest_release "vpinball/vpinball/VPinballX_BGFX-*-linux-x64-Release.zip"
-
-# Right now they are only on pre-release for BGFX
-# gh_latest_release is instructed to fallback to the latest pre-release if no latest tag is found.
+VPinballX_BGFX-10.8.1-3788-2151290-linux-x64-Release.zip -> VPinballX_BGFX-10.8.1-3788-2151290-linux-x64-Release.tar.gz -> Structure
 
 # Custom Commands
 

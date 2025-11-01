@@ -35,7 +35,7 @@
         "runtime_name": "org.kde.Platform",
         "runtime_version": "6.9",
         "dest": "shared-libs"
-      }
+      },
       {
         "library": "libQt6Network.so.6",
         "runtime_name": "org.kde.Platform",

@@ -1,0 +1,12 @@
+It needs to resolve the URL from the website
+
+The appimage on our repo needs to be removed
+
+# Custom Commands
+
+# Creating a symlink to be used later
+ln -s "$XDG_CONFIG_HOME/mudlet" "$component/artifacts/portable"
+
+touch "$component/artifacts/portable.txt"
+
+finalize

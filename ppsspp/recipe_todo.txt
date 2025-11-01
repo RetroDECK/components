@@ -1,11 +1,3 @@
-#!/bin/bash
-
-source "automation-tools/assembler.sh"
-
-assemble flatpak_id "org.ppsspp.PPSSPP"
-
-# Custom Commands
-
 # PPSSPP Assets
 mv "$component/artifacts/share/ppsspp/assets/" "$component/artifacts/bin/assets/"
 

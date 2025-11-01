@@ -1,9 +1,3 @@
-#!/bin/bash
-
-source "automation-tools/assembler.sh"
-
-assemble gh_latest_release "RetroDECK/XRoar"
-
 # Custom Commands
 
 mv "$component/artifacts/bin/xroar" "$component/artifacts/xroar"
