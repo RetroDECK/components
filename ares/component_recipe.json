@@ -1,8 +1,8 @@
 {
-  "cemu": {
-    "source_url": "info.cemu.Cemu",
+  "ares": {
+    "source_url": "dev.ares.ares",
     "source_type": "flatpak_id",
-    "version": "$CEMU_DESIRED_VERSION",
+    "version": "$ARES_DESIRED_VERSION",
     "dest": "user",
     "extraction_type": "flatpak",
     "assets": [
@@ -12,13 +12,7 @@
         "dest": "bin"
       }
     ],
-    "libs":  [
-      {
-        "library": "libGLU.so.1",
-        "source": "usr/lib",
-        "dest": "lib"
-      }
-    ],
+    "libs":  [],
     "extras": [
       {
         "type": "dir",

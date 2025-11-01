@@ -1,0 +1,23 @@
+{
+  "kegs": {
+     "source_url": "https://kegs.sourceforge.net/kegs.1.38.zip",
+     "source_type": "http",
+     "version": "latest",
+     "extraction_type": "archive",
+      "assets": [
+        {
+          "type": "dir",
+          "source": "usr/bin",
+          "dest": "bin"
+        }
+      ],
+      "libs": [],
+      "extras": [
+        {
+          "type": "dir",
+          "source": "$REPO_ROOT/$COMPONENT_NAME",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        }
+      ]
+    }
+  }

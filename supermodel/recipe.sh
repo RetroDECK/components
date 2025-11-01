@@ -1,8 +1,8 @@
 {
-  "cemu": {
-    "source_url": "info.cemu.Cemu",
+  "supermodel": {
+    "source_url": "com.supermodel3.Supermodel",
     "source_type": "flatpak_id",
-    "version": "$CEMU_DESIRED_VERSION",
+    "version": "$SUPERMODEL_DESIRED_VERSION",
     "dest": "user",
     "extraction_type": "flatpak",
     "assets": [
@@ -12,13 +12,7 @@
         "dest": "bin"
       }
     ],
-    "libs":  [
-      {
-        "library": "libGLU.so.1",
-        "source": "usr/lib",
-        "dest": "lib"
-      }
-    ],
+    "libs": [],
     "extras": [
       {
         "type": "dir",

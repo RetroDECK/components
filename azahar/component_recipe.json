@@ -1,9 +1,10 @@
 {
   "azahar": {
-    "source_url": "https://github.com/azahar-emu/azahar/releases/download/{VERSION}/*.AppImage",
-    "source_type": "github-release",
+    "source_url": "org.azahar_emu.Azahar",
+    "source_type": "flatpak_id",
     "version": "$AZAHAR_DESIRED_VERSION",
-    "extraction_type": "appimage",
+    "dest": "user",
+    "extraction_type": "flatpak",
     "assets": [
       {
         "type": "dir",
