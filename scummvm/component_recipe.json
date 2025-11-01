@@ -1,0 +1,60 @@
+{
+  "scummvm": {
+    "source_url": "org.scummvm.ScummVM",
+    "source_type": "flatpak_id",
+    "version": "$RPCS3_DESIRED_VERSION",
+    "dest": "user",
+    "extraction_type": "flatpak",
+    "assets": [
+      {
+        "type": "dir",
+        "source": "usr/bin",
+        "dest": "bin"
+      }
+    ],
+    "libs":  [
+      {
+        "library": "libFLAC.so.14",
+        "source": "usr/lib",
+        "dest": "lib"
+      },
+      {
+        "library": "libmad.so.0",
+        "source": "usr/lib",
+        "dest": "lib"
+      },
+      {
+        "library": "libtheoradec.so.2",
+        "source": "usr/lib",
+        "dest": "lib"
+      },
+      {
+        "library": "libSDL3.so.0",
+        "source": "usr/lib",
+        "dest": "lib"
+      },
+      {
+        "library": "libfaad.so.2",
+        "source": "usr/lib",
+        "dest": "lib"
+      },
+      {
+        "library": "libmpeg2.so.0",
+        "source": "usr/lib",
+        "dest": "lib"
+      },
+      {
+        "library": "libfluidsynth.so.3",
+        "source": "usr/lib",
+        "dest": "lib"
+      }
+    ],
+    "extras": [
+      {
+        "type": "dir",
+        "source": "$REPO_ROOT/$COMPONENT_NAME",
+        "dest": "$COMPONENT_ARTIFACT_ROOT"
+      }
+    ]
+  }
+}
