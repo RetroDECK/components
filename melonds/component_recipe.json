@@ -1,9 +1,10 @@
 {
   "melonds": {
-    "source_url": "https://melonds.kuribo64.net/downloads/melonDS-appimage-x86_64(1).zip",
-    "source_type": "http",
+    "source_url": "net.kuribo64.melonDS",
+    "source_type": "flatpak_id",
     "version": "$MELONDS_DESIRED_VERSION",
-    "extraction_type": "appimage",
+    "dest": "user",
+    "extraction_type": "flatpak",
     "assets": [
       {
         "type": "dir",
