@@ -1,8 +1,8 @@
 {
-  "dolphin": {
-    "source_url": "org.DolphinEmu.dolphin-emu",
+  "dosbox-x": {
+    "source_url": "com.dosbox_x.DOSBox-X",
     "source_type": "flatpak_id",
-    "version": "$DOLPHIN_DESIRED_VERSION",
+    "version": "$DOSBOX-X_DESIRED_VERSION",
     "dest": "user",
     "extraction_type": "flatpak",
     "assets": [
@@ -33,3 +33,5 @@
     ]
   }
 }
+
+

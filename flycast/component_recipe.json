@@ -1,8 +1,8 @@
 {
-  "dolphin": {
-    "source_url": "org.DolphinEmu.dolphin-emu",
+  "flycast": {
+    "source_url": "org.flycast.Flycast",
     "source_type": "flatpak_id",
-    "version": "$DOLPHIN_DESIRED_VERSION",
+    "version": "$FLYCAST_DESIRED_VERSION",
     "dest": "user",
     "extraction_type": "flatpak",
     "assets": [
@@ -12,18 +12,7 @@
         "dest": "bin"
       }
     ],
-    "libs":  [
-      {
-        "library": "libslirp.so.0",
-        "source": "usr/lib",
-        "dest": "lib"
-      },
-      {
-        "library": "libfluidsynth.so.3",
-        "source": "usr/lib",
-        "dest": "lib"
-      }
-    ],
+    "libs":  [],
     "extras": [
       {
         "type": "dir",
