@@ -1,9 +1,9 @@
 {
   "xemu": {
-    "source_url": "https://github.com/xemu-project/xemu/releases/download/{VERSION}/*-x86_64.AppImage",
-    "source_type": "github-release",
+    "source_url": "app.xemu.xemu",
+    "source_type": "flatpak_id",
     "version": "$XEMU_DESIRED_VERSION",
-    "extraction_type": "appimage",
+    "extraction_type": "flatpak",
     "assets": [
       {
         "type": "dir",

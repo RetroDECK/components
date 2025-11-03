@@ -1,5 +1,7 @@
 Libs might not be totaly right
 
+AppImage version is correct, flathub is not updated. 
+
 # Custom Commands
 extras_path="$component/artifacts/$extras"
 mkdir -p "$extras_path"
