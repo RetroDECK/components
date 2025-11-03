@@ -4,7 +4,9 @@
     "description": "Wii and GameCube Emulator",
     "exec": "bin/dolphin-emu",
     "args": "",
-    "framework": ["qt6"],
+    "framework": [
+      "qt6"
+    ],
     "run_extras": true,
     "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/dolphin-primehack/dolphin-primehack-guide/",
     "url_webpage": "https://dolphin-emu.org",
@@ -13,16 +15,31 @@
       "gc",
       "wii"
     ],
-    "system_friendly_name":  [
+    "system_friendly_name": [
       "GameCube",
       "Wii"
     ],
     "compatible_presets": {
-      "abxy_button": [ "false", "true" ],
-      "ask_to_exit": [ "false", "true" ],
-      "cheevos": [ "false", "true" ],
-      "cheevos_hardcore": [ "false", "true" ],
-      "universal_dyn_input": [ "false", "true" ]
+      "abxy_button": [
+        "false",
+        "true"
+      ],
+      "ask_to_exit": [
+        "false",
+        "true"
+      ],
+      "cheevos": [
+        "false",
+        "true"
+      ],
+      "cheevos_hardcore": [
+        "false",
+        "true"
+      ],
+      "universal_dyn_input": [
+        "false",
+        "true"
+      ]
     },
     "preset_actions": {
       "config_file_format": "dolphin",
@@ -68,8 +85,7 @@
         }
       },
       "universal_dyn_input": {
-        "#MOREINFONEEDED": {
-        }
+        "#MOREINFONEEDED": {}
       },
       "abxy_button_swap": {
         "#MOREINFONEEDED": "value"
@@ -77,4 +93,3 @@
     }
   }
 }
-

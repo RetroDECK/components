@@ -7,8 +7,14 @@
     "system_friendly_name": "Nintendo Switch",
     "system": "switch",
     "compatible_presets": {
-      "abxy_button": [ "false", "true" ],
-      "ask_to_exit": [ "false", "true" ]
+      "abxy_button": [
+        "false",
+        "true"
+      ],
+      "ask_to_exit": [
+        "false",
+        "true"
+      ]
     },
     "preset_actions": {
       "config_file_format": "ryubing",
@@ -21,37 +27,36 @@
           "defaults_file": "$config/Ryubing/Config.json"
         }
       },
-        "abxy_button": {
-          "button_x": {
-            "action": "change",
-            "new_setting_value": "Y",
-            "section": "right_joycon",
-            "target_file": "$ryubing_config",
-            "defaults_file": "$config/Ryubing/Config.json"
-          },
-          "button_y": {
-            "action": "change",
-            "new_setting_value": "X",
-            "section": "right_joycon",
-            "target_file": "$ryubing_config",
-            "defaults_file": "$config/Ryubing/Config.json"
-          },
-          "button_b": {
-            "action": "change",
-            "new_setting_value": "A",
-            "section": "right_joycon",
-            "target_file": "$ryubing_config",
-            "defaults_file": "$config/Ryubing/Config.json"
-          },
-          "button_a": {
-            "action": "change",
-            "new_setting_value": "B",
-            "section": "right_joycon",
-            "target_file": "$ryubing_config",
-            "defaults_file": "$config/Ryubing/Config.json"
-          }
+      "abxy_button": {
+        "button_x": {
+          "action": "change",
+          "new_setting_value": "Y",
+          "section": "right_joycon",
+          "target_file": "$ryubing_config",
+          "defaults_file": "$config/Ryubing/Config.json"
+        },
+        "button_y": {
+          "action": "change",
+          "new_setting_value": "X",
+          "section": "right_joycon",
+          "target_file": "$ryubing_config",
+          "defaults_file": "$config/Ryubing/Config.json"
+        },
+        "button_b": {
+          "action": "change",
+          "new_setting_value": "A",
+          "section": "right_joycon",
+          "target_file": "$ryubing_config",
+          "defaults_file": "$config/Ryubing/Config.json"
+        },
+        "button_a": {
+          "action": "change",
+          "new_setting_value": "B",
+          "section": "right_joycon",
+          "target_file": "$ryubing_config",
+          "defaults_file": "$config/Ryubing/Config.json"
         }
+      }
     }
   }
 }
-

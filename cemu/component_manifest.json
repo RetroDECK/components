@@ -8,7 +8,10 @@
     "system": "wiiu",
     "system_friendly_name": "Wii U",
     "compatible_presets": {
-      "abxy_button": [ "false", "true" ]
+      "abxy_button": [
+        "false",
+        "true"
+      ]
     },
     "preset_actions": {
       "config_file_format": "cemu",

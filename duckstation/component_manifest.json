@@ -6,9 +6,18 @@
     "system_friendly_name": "Playstation 1 (PSX)",
     "system": "psx",
     "compatible_presets": {
-      "cheevos": [ "false", "true" ],
-      "ask_to_exit": [ "false", "true" ],
-      "savestate_on_exit": [ "false", "true" ]
+      "cheevos": [
+        "false",
+        "true"
+      ],
+      "ask_to_exit": [
+        "false",
+        "true"
+      ],
+      "savestate_on_exit": [
+        "false",
+        "true"
+      ]
     },
     "preset_actions": {
       "config_file_format": "duckstation",
@@ -40,8 +49,8 @@
           "section": "Cheevos",
           "target_file": "$duckstation_config",
           "defaults_file": "$config/duckstation/settings.ini"
-          }
-        },
+        }
+      },
       "cheevos_hardcore": {
         "ChallengeMode": {
           "action": "change",
@@ -49,8 +58,8 @@
           "section": "Cheevos",
           "target_file": "$duckstation_config",
           "defaults_file": "$config/duckstation/settings.ini"
-            }
-          },
+        }
+      },
       "savestate_auto_save_exit": {
         "SaveStateOnExit": {
           "action": "change",

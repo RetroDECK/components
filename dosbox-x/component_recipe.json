@@ -12,7 +12,7 @@
         "dest": "bin"
       }
     ],
-    "libs":  [
+    "libs": [
       {
         "library": "libslirp.so.0",
         "source": "usr/lib",
@@ -33,5 +33,3 @@
     ]
   }
 }
-
-

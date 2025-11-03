@@ -12,7 +12,7 @@
         "dest": "bin"
       }
     ],
-    "libs":  [
+    "libs": [
       {
         "library": "libGLEW.so",
         "source": "usr/lib",

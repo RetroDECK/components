@@ -8,8 +8,14 @@
     "system_friendly_name": "PlayStation 2",
     "system": "pcsx2",
     "compatible_presets": {
-      "ask_to_exit": [ "false", "true" ],
-      "cheevos": [ "false", "true" ]
+      "ask_to_exit": [
+        "false",
+        "true"
+      ],
+      "cheevos": [
+        "false",
+        "true"
+      ]
     },
     "preset_actions": {
       "config_file_format": "pcsx2",
@@ -41,8 +47,8 @@
           "section": "Achievements",
           "target_file": "$pcsx2_config",
           "defaults_file": "$config/pcsx2/PCSX2.ini"
-          }
-        },
+        }
+      },
       "cheevos_hardcore": {
         "ChallengeMode": {
           "action": "change",
@@ -50,8 +56,8 @@
           "section": "Achievements",
           "target_file": "$pcsx2_config",
           "defaults_file": "$config/pcsx2/PCSX2.ini"
-            }
-          },
+        }
+      },
       "savestate_auto_save": {
         "SaveStateOnShutdown": {
           "action": "change",

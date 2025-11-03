@@ -12,7 +12,7 @@
         "dest": "bin"
       }
     ],
-    "libs":  [],
+    "libs": [],
     "extras": [
       {
         "type": "dir",

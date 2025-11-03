@@ -12,7 +12,7 @@
         "dest": "bin"
       }
     ],
-    "libs":  [
+    "libs": [
       {
         "library": "libQt5Widgets.so.5",
         "runtime_name": "org.kde.Platform",

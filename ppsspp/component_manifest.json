@@ -22,9 +22,18 @@
       }
     },
     "compatible_presets": {
-      "cheevos": [ "false", "true" ],
-      "cheevos_hardcore": [ "false", "true" ],
-      "test_preset": [ "false", "true" ]
+      "cheevos": [
+        "false",
+        "true"
+      ],
+      "cheevos_hardcore": [
+        "false",
+        "true"
+      ],
+      "test_preset": [
+        "false",
+        "true"
+      ]
     },
     "preset_actions": {
       "config_file_format": "ppsspp",

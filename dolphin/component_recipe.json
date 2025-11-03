@@ -12,7 +12,7 @@
         "dest": "bin"
       }
     ],
-    "libs":  [
+    "libs": [
       {
         "library": "libQt6Widgets.so.6",
         "runtime_name": "org.kde.Platform",

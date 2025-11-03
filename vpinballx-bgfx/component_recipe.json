@@ -1,49 +1,49 @@
 {
-    "vpinballx-bgfx": {
-      "source_url": "https://github.com/vpinball/vpinball//releases/download/{VERSION}/VPinballX_BGFX-*-linux-x64-Release.zip",
-      "source_type": "github-release",
-      "version": "$VPINBALLX-BGFX_DESIRED_VERSION",
-      "extraction_type": "archive",
-      "assets": [
-        {
-          "type": "dir",
-          "source": "usr/bin",
-          "dest": "bin"
-        }
-      ],
-      "libs": [
-          {
-            "library": "libSDL3.so.0",
-            "source": "usr/lib",
-            "dest": "lib"
-          },
-          {
-            "library": "libSDL3_image.so.",
-            "source": "usr/lib",
-            "dest": "lib"
-          },
-          {
-            "library": "libjxl.so.0.11",
-            "source": "usr/lib",
-            "dest": "lib"
-          },
-          {
-            "library": "libSDL3_ttf.so.0",
-            "source": "usr/lib",
-            "dest": "lib"
-          },
-          {
-            "library": "libhidapi-hidraw.so.0",
-            "source": "usr/lib",
-            "dest": "lib"
-          }                         
-      ],
-      "extras": [
-        {
-          "type": "dir",
-          "source": "$REPO_ROOT/$COMPONENT_NAME",
-          "dest": "$COMPONENT_ARTIFACT_ROOT"
-        }
-      ]
-    }
+  "vpinballx-bgfx": {
+    "source_url": "https://github.com/vpinball/vpinball//releases/download/{VERSION}/VPinballX_BGFX-*-linux-x64-Release.zip",
+    "source_type": "github-release",
+    "version": "$VPINBALLX-BGFX_DESIRED_VERSION",
+    "extraction_type": "archive",
+    "assets": [
+      {
+        "type": "dir",
+        "source": "usr/bin",
+        "dest": "bin"
+      }
+    ],
+    "libs": [
+      {
+        "library": "libSDL3.so.0",
+        "source": "usr/lib",
+        "dest": "lib"
+      },
+      {
+        "library": "libSDL3_image.so.",
+        "source": "usr/lib",
+        "dest": "lib"
+      },
+      {
+        "library": "libjxl.so.0.11",
+        "source": "usr/lib",
+        "dest": "lib"
+      },
+      {
+        "library": "libSDL3_ttf.so.0",
+        "source": "usr/lib",
+        "dest": "lib"
+      },
+      {
+        "library": "libhidapi-hidraw.so.0",
+        "source": "usr/lib",
+        "dest": "lib"
+      }
+    ],
+    "extras": [
+      {
+        "type": "dir",
+        "source": "$REPO_ROOT/$COMPONENT_NAME",
+        "dest": "$COMPONENT_ARTIFACT_ROOT"
+      }
+    ]
   }
+}

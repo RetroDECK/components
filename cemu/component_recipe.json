@@ -12,7 +12,7 @@
         "dest": "bin"
       }
     ],
-    "libs":  [
+    "libs": [
       {
         "library": "libGLU.so.1",
         "source": "usr/lib",

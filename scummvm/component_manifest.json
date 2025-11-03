@@ -8,7 +8,10 @@
     "system_friendly_name": "ScummVM",
     "system": "scummvm",
     "compatible_presets": {
-      "ask_to_exit": [ "false", "true" ]
+      "ask_to_exit": [
+        "false",
+        "true"
+      ]
     },
     "preset_actions": {
       "config_file_format": "scummvm",

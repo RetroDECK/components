@@ -1,98 +1,98 @@
 {
-    "<component name>": {
-      "source_url": "https://www.mudlet.org/download/42/*-linux-x64.AppImage.tar",
-      "source_type": "http",
-      "version": "$COMPONENT_DESIRED_VERSION",
-      "extraction_type": "archive",
-      "assets": [
-        {
-          "type": "dir",
-          "source": "usr/bin",
-          "dest": "bin"
-        }
-      ],
-      "libs": [
-        {
-          "library": "libQt5Concurrent.so.5",
-          "runtime_name": "org.kde.Platform",
-          "runtime_version": "5.15",
-          "dest": "shared-libs"
-        },
-        {
-          "library": "libQt5Core.so.5",
-          "runtime_name": "org.kde.Platform",
-          "runtime_version": "5.15",
-          "dest": "shared-libs"
-        },
-        {
-            "library": "libQt5Multimedia.so.5",
-            "runtime_name": "org.kde.Platform",
-            "runtime_version": "5.15",
-            "dest": "shared-libs"
-        },
-        {
-            "library": "libQt5Network.so.5",
-            "runtime_name": "org.kde.Platform",
-            "runtime_version": "5.15",
-            "dest": "shared-libs"
-        },
-        {
-            "library": "libQt5Gui.so.5",
-            "runtime_name": "org.kde.Platform",
-            "runtime_version": "5.15",
-            "dest": "shared-libs"
-        },   
-        {
-            "library": "libQt5Widgets.so.5",
-            "runtime_name": "org.kde.Platform",
-            "runtime_version": "5.15",
-            "dest": "shared-libs"
-        },   
-        {
-            "library": "libQt5TextToSpeech.so.5",
-            "runtime_name": "org.kde.Platform",
-            "runtime_version": "5.15",
-            "dest": "shared-libs"
-        },
-        {
-            "library": "libqt5keychain.so.1",
-            "runtime_name": "org.kde.Platform",
-            "runtime_version": "5.15",
-            "dest": "shared-libs"
-        },
-        {
-            "library": "libQt5DBus.so.5",
-            "runtime_name": "org.kde.Platform",
-            "runtime_version": "5.15",
-            "dest": "shared-libs"
-        },                                                                   
-        {
-          "library": "libzip.so.5",
-          "source": "usr/lib",
-          "dest": "lib"
-        },
-        {
-            "library": "libQsLog.so",
-            "source": "usr/lib",
-            "dest": "lib"
-        },
-        {
-            "library": "libbz2.so.1.0",
-            "source": "usr/lib",
-            "dest": "lib"
-        },
-        {
-            "library": "libcrypto.so.1.1",
-            "source": "usr/lib",
-            "dest": "lib"
-        }        
-      ],
-      "extras": [
-        {
-          "type": "dir",
-          "source": "$REPO_ROOT/$component_name",
-          "dest": "$COMPONENT_ARTIFACT_ROOT"
-        }
-      ]
-    }
+  "<component name>": {
+    "source_url": "https://www.mudlet.org/download/42/*-linux-x64.AppImage.tar",
+    "source_type": "http",
+    "version": "$COMPONENT_DESIRED_VERSION",
+    "extraction_type": "archive",
+    "assets": [
+      {
+        "type": "dir",
+        "source": "usr/bin",
+        "dest": "bin"
+      }
+    ],
+    "libs": [
+      {
+        "library": "libQt5Concurrent.so.5",
+        "runtime_name": "org.kde.Platform",
+        "runtime_version": "5.15",
+        "dest": "shared-libs"
+      },
+      {
+        "library": "libQt5Core.so.5",
+        "runtime_name": "org.kde.Platform",
+        "runtime_version": "5.15",
+        "dest": "shared-libs"
+      },
+      {
+        "library": "libQt5Multimedia.so.5",
+        "runtime_name": "org.kde.Platform",
+        "runtime_version": "5.15",
+        "dest": "shared-libs"
+      },
+      {
+        "library": "libQt5Network.so.5",
+        "runtime_name": "org.kde.Platform",
+        "runtime_version": "5.15",
+        "dest": "shared-libs"
+      },
+      {
+        "library": "libQt5Gui.so.5",
+        "runtime_name": "org.kde.Platform",
+        "runtime_version": "5.15",
+        "dest": "shared-libs"
+      },
+      {
+        "library": "libQt5Widgets.so.5",
+        "runtime_name": "org.kde.Platform",
+        "runtime_version": "5.15",
+        "dest": "shared-libs"
+      },
+      {
+        "library": "libQt5TextToSpeech.so.5",
+        "runtime_name": "org.kde.Platform",
+        "runtime_version": "5.15",
+        "dest": "shared-libs"
+      },
+      {
+        "library": "libqt5keychain.so.1",
+        "runtime_name": "org.kde.Platform",
+        "runtime_version": "5.15",
+        "dest": "shared-libs"
+      },
+      {
+        "library": "libQt5DBus.so.5",
+        "runtime_name": "org.kde.Platform",
+        "runtime_version": "5.15",
+        "dest": "shared-libs"
+      },
+      {
+        "library": "libzip.so.5",
+        "source": "usr/lib",
+        "dest": "lib"
+      },
+      {
+        "library": "libQsLog.so",
+        "source": "usr/lib",
+        "dest": "lib"
+      },
+      {
+        "library": "libbz2.so.1.0",
+        "source": "usr/lib",
+        "dest": "lib"
+      },
+      {
+        "library": "libcrypto.so.1.1",
+        "source": "usr/lib",
+        "dest": "lib"
+      }
+    ],
+    "extras": [
+      {
+        "type": "dir",
+        "source": "$REPO_ROOT/$component_name",
+        "dest": "$COMPONENT_ARTIFACT_ROOT"
+      }
+    ]
   }
+}

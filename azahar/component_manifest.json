@@ -8,8 +8,14 @@
     "system_friendly_name": "Nintendo 3DS",
     "system": "n3ds",
     "compatible_presets": {
-      "abxy_button_swap": [ "false", "true" ],
-      "ask_to_exit": [ "false", "true" ]
+      "abxy_button_swap": [
+        "false",
+        "true"
+      ],
+      "ask_to_exit": [
+        "false",
+        "true"
+      ]
     },
     "preset_actions": {
       "config_file_format": "azahar",
@@ -21,7 +27,7 @@
           "target_file": "$azahar_config",
           "defaults_file": "$config/azahar/qt-config.ini"
         },
-          "confirmClose\\default": {
+        "confirmClose\\default": {
           "action": "change",
           "new_setting_value": "true",
           "section": "UI",
@@ -51,7 +57,7 @@
           "target_file": "$azahar_config",
           "defaults_file": "$config/ppssppsdl/qt-config.ini"
         },
-          "profiles\\1\\button_d": {
+        "profiles\\1\\button_d": {
           "action": "change",
           "new_setting_value": "button:2,engine:sdl,guid:030079f6de280000ff11000001000000,port:0",
           "section": "Controls",

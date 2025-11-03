@@ -8,15 +8,33 @@
     "system": "retroarch",
     "system_friendly_name": "Multiple Retro Systems",
     "compatible_presets": {
-      "cheevos": [ "false", "true" ],
-      "cheevos_hardcore": [ "false", "true" ],
+      "cheevos": [
+        "false",
+        "true"
+      ],
+      "cheevos_hardcore": [
+        "false",
+        "true"
+      ],
       "snes9x-current_libretro": {
-        "borders": [ "false", "true" ],
-        "widescreen": [ "false", "true" ]
+        "borders": [
+          "false",
+          "true"
+        ],
+        "widescreen": [
+          "false",
+          "true"
+        ]
       },
       "gambatte_libretro": {
-        "borders": [ "false", "true" ],
-        "rewind": [ "false", "true" ]
+        "borders": [
+          "false",
+          "true"
+        ],
+        "rewind": [
+          "false",
+          "true"
+        ]
       }
     },
     "preset_actions": {
