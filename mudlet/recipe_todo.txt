@@ -1,6 +1,6 @@
 It needs to resolve the URL from the website
 
-The appimage on our repo needs to be removed
+The appimage on our repo needs to be removed, if the URL can't be resolved we need to store the appimage somewhere again and manually update
 
 # Custom Commands
 
