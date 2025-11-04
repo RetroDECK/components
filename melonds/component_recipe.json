@@ -1,66 +1,68 @@
 {
-  "melonds": {
-    "source_url": "net.kuribo64.melonDS",
-    "source_type": "flatpak_id",
-    "version": "$MELONDS_DESIRED_VERSION",
-    "dest": "user",
-    "extraction_type": "flatpak",
-    "assets": [
-      {
-        "type": "dir",
-        "source": "usr/bin",
-        "dest": "bin"
-      }
-    ],
-    "libs": [
-      {
-        "library": "libQt6Gui.so.6",
-        "runtime_name": "org.kde.Platform",
-        "runtime_version": "6.9",
-        "dest": "shared-libs"
-      },
-      {
-        "library": "libQt6Core.so.6",
-        "runtime_name": "org.kde.Platform",
-        "runtime_version": "6.9",
-        "dest": "shared-libs"
-      },
-      {
-        "library": "libQt6Multimedia.so.6",
-        "runtime_name": "org.kde.Platform",
-        "runtime_version": "6.9",
-        "dest": "shared-libs"
-      },
-      {
-        "library": "libQt6Network.so.6",
-        "runtime_name": "org.kde.Platform",
-        "runtime_version": "6.9",
-        "dest": "shared-libs"
-      },
-      {
-        "library": "libQt6DBus.so.6",
-        "runtime_name": "org.kde.Platform",
-        "runtime_version": "6.9",
-        "dest": "shared-libs"
-      },
-      {
-        "library": "libQt6Widgets.so.6",
-        "runtime_name": "org.kde.Platform",
-        "runtime_version": "6.9",
-        "dest": "shared-libs"
-      },
-      {
-        "library": "libslirp.so.0",
-        "source": "usr/lib",
-        "dest": "lib"
-      }
-    ],
-    "extras": [
-      {
-        "type": "dir",
-        "source": "$REPO_ROOT/$component_name",
-        "dest": "$COMPONENT_ARTIFACT_ROOT"
-      }
-    ]
-  }
+  "melonds": [
+    {
+      "source_url": "net.kuribo64.melonDS",
+      "source_type": "flatpak_id",
+      "version": "$MELONDS_DESIRED_VERSION",
+      "dest": "user",
+      "extraction_type": "flatpak",
+      "assets": [
+        {
+          "type": "dir",
+          "source": "usr/bin",
+          "dest": "bin"
+        }
+      ],
+      "libs": [
+        {
+          "library": "libQt6Gui.so.6",
+          "runtime_name": "org.kde.Platform",
+          "runtime_version": "6.9",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libQt6Core.so.6",
+          "runtime_name": "org.kde.Platform",
+          "runtime_version": "6.9",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libQt6Multimedia.so.6",
+          "runtime_name": "org.kde.Platform",
+          "runtime_version": "6.9",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libQt6Network.so.6",
+          "runtime_name": "org.kde.Platform",
+          "runtime_version": "6.9",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libQt6DBus.so.6",
+          "runtime_name": "org.kde.Platform",
+          "runtime_version": "6.9",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libQt6Widgets.so.6",
+          "runtime_name": "org.kde.Platform",
+          "runtime_version": "6.9",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libslirp.so.0",
+          "source": "usr/lib",
+          "dest": "lib"
+        }
+      ],
+      "extras": [
+        {
+          "type": "dir",
+          "source": "$REPO_ROOT/$component_name",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        }
+      ]
+    }
+  ]
 }

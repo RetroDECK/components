@@ -1,24 +1,26 @@
 {
-    "raze": {
-        "source_url": "org.zdoom.Raze",
-        "source_type": "flatpak_id",
-        "version": "$RAZE_DESIRED_VERSION",
-        "dest": "user",
-        "extraction_type": "flatpak",
-        "assets": [
-            {
-                "type": "dir",
-                "source": "usr/bin",
-                "dest": "bin"
-            }
-        ],
-        "libs": [],
-        "extras": [
-            {
-                "type": "dir",
-                "source": "$REPO_ROOT/$COMPONENT_NAME",
-                "dest": "$COMPONENT_ARTIFACT_ROOT"
-            }
-        ]
-    }
+    "raze": [
+        {
+            "source_url": "org.zdoom.Raze",
+            "source_type": "flatpak_id",
+            "version": "$RAZE_DESIRED_VERSION",
+            "dest": "user",
+            "extraction_type": "flatpak",
+            "assets": [
+                {
+                    "type": "dir",
+                    "source": "usr/bin",
+                    "dest": "bin"
+                }
+            ],
+            "libs": [],
+            "extras": [
+                {
+                    "type": "dir",
+                    "source": "$REPO_ROOT/$COMPONENT_NAME",
+                    "dest": "$COMPONENT_ARTIFACT_ROOT"
+                }
+            ]
+        }
+    ]
 }

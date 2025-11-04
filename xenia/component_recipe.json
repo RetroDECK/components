@@ -1,23 +1,25 @@
 {
-  "xenia": {
-    "source_url": "https://github.com/xenia-canary/xenia-canary-releases/releases/{VERSION}/xenia_canary_linux.tar.gz ",
-    "source_type": "github-release",
-    "version": "$XENIA_DESIRED_VERSION",
-    "extraction_type": "archive",
-    "assets": [
-      {
-        "type": "file",
-        "source": "xenia_canary",
-        "dest": "bin"
-      }
-    ],
-    "libs": [],
-    "extras": [
-      {
-        "type": "dir",
-        "source": "$REPO_ROOT/$COMPONENT_NAME",
-        "dest": "$COMPONENT_ARTIFACT_ROOT"
-      }
-    ]
-  }
+  "xenia": [
+    {
+      "source_url": "https://github.com/xenia-canary/xenia-canary-releases/releases/{VERSION}/xenia_canary_linux.tar.gz ",
+      "source_type": "github-release",
+      "version": "$XENIA_DESIRED_VERSION",
+      "extraction_type": "archive",
+      "assets": [
+        {
+          "type": "file",
+          "source": "xenia_canary",
+          "dest": "bin"
+        }
+      ],
+      "libs": [],
+      "extras": [
+        {
+          "type": "dir",
+          "source": "$REPO_ROOT/$COMPONENT_NAME",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        }
+      ]
+    }
+  ]
 }

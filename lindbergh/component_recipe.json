@@ -1,23 +1,25 @@
 {
-  "lindbergh": {
-    "source_url": "https://github.com/lindbergh-loader/lindbergh-loader/releases/{VERSION}/*.AppImage",
-    "source_type": "github-release",
-    "version": "$LINDBERGH_DESIRED_VERSION",
-    "extraction_type": "appimage",
-    "assets": [
-      {
-        "type": "dir",
-        "source": "usr/bin",
-        "dest": "bin"
-      }
-    ],
-    "libs": [],
-    "extras": [
-      {
-        "type": "dir",
-        "source": "$REPO_ROOT/$COMPONENT_NAME",
-        "dest": "$COMPONENT_ARTIFACT_ROOT"
-      }
-    ]
-  }
+  "lindbergh": [
+    {
+      "source_url": "https://github.com/lindbergh-loader/lindbergh-loader/releases/{VERSION}/*.AppImage",
+      "source_type": "github-release",
+      "version": "$LINDBERGH_DESIRED_VERSION",
+      "extraction_type": "appimage",
+      "assets": [
+        {
+          "type": "dir",
+          "source": "usr/bin",
+          "dest": "bin"
+        }
+      ],
+      "libs": [],
+      "extras": [
+        {
+          "type": "dir",
+          "source": "$REPO_ROOT/$COMPONENT_NAME",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        }
+      ]
+    }
+  ]
 }

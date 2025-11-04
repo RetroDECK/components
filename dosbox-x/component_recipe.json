@@ -1,35 +1,37 @@
 {
-  "dosbox-x": {
-    "source_url": "com.dosbox_x.DOSBox-X",
-    "source_type": "flatpak_id",
-    "version": "$DOSBOX-X_DESIRED_VERSION",
-    "dest": "user",
-    "extraction_type": "flatpak",
-    "assets": [
-      {
-        "type": "dir",
-        "source": "usr/bin",
-        "dest": "bin"
-      }
-    ],
-    "libs": [
-      {
-        "library": "libslirp.so.0",
-        "source": "usr/lib",
-        "dest": "lib"
-      },
-      {
-        "library": "libfluidsynth.so.3",
-        "source": "usr/lib",
-        "dest": "lib"
-      }
-    ],
-    "extras": [
-      {
-        "type": "dir",
-        "source": "$REPO_ROOT/$COMPONENT_NAME",
-        "dest": "$COMPONENT_ARTIFACT_ROOT"
-      }
-    ]
-  }
+  "dosbox-x": [
+    {
+      "source_url": "com.dosbox_x.DOSBox-X",
+      "source_type": "flatpak_id",
+      "version": "$DOSBOX-X_DESIRED_VERSION",
+      "dest": "user",
+      "extraction_type": "flatpak",
+      "assets": [
+        {
+          "type": "dir",
+          "source": "usr/bin",
+          "dest": "bin"
+        }
+      ],
+      "libs": [
+        {
+          "library": "libslirp.so.0",
+          "source": "usr/lib",
+          "dest": "lib"
+        },
+        {
+          "library": "libfluidsynth.so.3",
+          "source": "usr/lib",
+          "dest": "lib"
+        }
+      ],
+      "extras": [
+        {
+          "type": "dir",
+          "source": "$REPO_ROOT/$COMPONENT_NAME",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        }
+      ]
+    }
+  ]
 }

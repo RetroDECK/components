@@ -1,70 +1,72 @@
 {
-  "rpcs3": {
-    "source_url": "net.rpcs3.RPCS3",
-    "source_type": "flatpak_id",
-    "version": "$RPCS3_DESIRED_VERSION",
-    "dest": "user",
-    "extraction_type": "flatpak",
-    "assets": [
-      {
-        "type": "dir",
-        "source": "usr/bin",
-        "dest": "bin"
-      }
-    ],
-    "libs": [
-      {
-        "library": "libQt5Widgets.so.5",
-        "runtime_name": "org.kde.Platform",
-        "runtime_version": "5.15",
-        "dest": "shared-libs"
-      },
-      {
-        "library": "libQt5Gui.so.5",
-        "runtime_name": "org.kde.Platform",
-        "runtime_version": "5.15",
-        "dest": "shared-libs"
-      },
-      {
-        "library": "libQt5Core.so.5",
-        "runtime_name": "org.kde.Platform",
-        "runtime_version": "5.15",
-        "dest": "shared-libs"
-      },
-      {
-        "library": "libQt5DBus.so.5",
-        "runtime_name": "org.kde.Platform",
-        "runtime_version": "5.15",
-        "dest": "shared-libs"
-      },
-      {
-        "library": "libQt5Concurrent.so.5",
-        "runtime_name": "org.kde.Platform",
-        "runtime_version": "5.15",
-        "dest": "shared-libs"
-      },
-      {
-        "library": "libevdev.so.2",
-        "source": "usr/lib",
-        "dest": "lib"
-      },
-      {
-        "library": "libtinfo.so.5",
-        "source": "usr/lib",
-        "dest": "lib"
-      },
-      {
-        "library": "libGLEW.so.2.2",
-        "source": "usr/lib",
-        "dest": "lib"
-      }
-    ],
-    "extras": [
-      {
-        "type": "dir",
-        "source": "$REPO_ROOT/$COMPONENT_NAME",
-        "dest": "$COMPONENT_ARTIFACT_ROOT"
-      }
-    ]
-  }
+  "rpcs3": [
+    {
+      "source_url": "net.rpcs3.RPCS3",
+      "source_type": "flatpak_id",
+      "version": "$RPCS3_DESIRED_VERSION",
+      "dest": "user",
+      "extraction_type": "flatpak",
+      "assets": [
+        {
+          "type": "dir",
+          "source": "usr/bin",
+          "dest": "bin"
+        }
+      ],
+      "libs": [
+        {
+          "library": "libQt5Widgets.so.5",
+          "runtime_name": "org.kde.Platform",
+          "runtime_version": "5.15",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libQt5Gui.so.5",
+          "runtime_name": "org.kde.Platform",
+          "runtime_version": "5.15",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libQt5Core.so.5",
+          "runtime_name": "org.kde.Platform",
+          "runtime_version": "5.15",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libQt5DBus.so.5",
+          "runtime_name": "org.kde.Platform",
+          "runtime_version": "5.15",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libQt5Concurrent.so.5",
+          "runtime_name": "org.kde.Platform",
+          "runtime_version": "5.15",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libevdev.so.2",
+          "source": "usr/lib",
+          "dest": "lib"
+        },
+        {
+          "library": "libtinfo.so.5",
+          "source": "usr/lib",
+          "dest": "lib"
+        },
+        {
+          "library": "libGLEW.so.2.2",
+          "source": "usr/lib",
+          "dest": "lib"
+        }
+      ],
+      "extras": [
+        {
+          "type": "dir",
+          "source": "$REPO_ROOT/$COMPONENT_NAME",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        }
+      ]
+    }
+  ]
 }

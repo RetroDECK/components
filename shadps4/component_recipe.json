@@ -1,24 +1,26 @@
 {
-  "shadps4": {
-    "source_url": "net.shadps4.shadPS4",
-    "source_type": "flatpak_id",
-    "version": "$SHADPS4_DESIRED_VERSION",
-    "dest": "user",
-    "extraction_type": "flatpak",
-    "assets": [
-      {
-        "type": "dir",
-        "source": "usr/bin",
-        "dest": "bin"
-      }
-    ],
-    "libs": [],
-    "extras": [
-      {
-        "type": "dir",
-        "source": "$REPO_ROOT/$COMPONENT_NAME",
-        "dest": "$COMPONENT_ARTIFACT_ROOT"
-      }
-    ]
-  }
+  "shadps4": [
+    {
+      "source_url": "net.shadps4.shadPS4",
+      "source_type": "flatpak_id",
+      "version": "$SHADPS4_DESIRED_VERSION",
+      "dest": "user",
+      "extraction_type": "flatpak",
+      "assets": [
+        {
+          "type": "dir",
+          "source": "usr/bin",
+          "dest": "bin"
+        }
+      ],
+      "libs": [],
+      "extras": [
+        {
+          "type": "dir",
+          "source": "$REPO_ROOT/$COMPONENT_NAME",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        }
+      ]
+    }
+  ]
 }

@@ -1,86 +1,88 @@
 {
-  "solarus": {
-    "source_url": "https://downloads.solarus-games.org/solarus/linux/solarus-launcher-v2.0.1-linux-amd64.zip",
-    "source_type": "http",
-    "version": "$SOLARUS_DESIRED_VERSION",
-    "extraction_type": "appimage",
-    "assets": [
-      {
-        "type": "dir",
-        "source": "usr/bin",
-        "dest": "bin"
-      }
-    ],
-    "libs": [
-      {
-        "library": "libQt6Gui.so.6",
-        "runtime_name": "org.kde.Platform",
-        "runtime_version": "6.9",
-        "dest": "shared-libs"
-      },
-      {
-        "library": "libQt6Core.so.6",
-        "runtime_name": "org.kde.Platform",
-        "runtime_version": "6.9",
-        "dest": "shared-libs"
-      },
-      {
-        "library": "libQt6Multimedia.so.6",
-        "runtime_name": "org.kde.Platform",
-        "runtime_version": "6.9",
-        "dest": "shared-libs"
-      },
-      {
-        "library": "libQt6Svg.so.6",
-        "runtime_name": "org.kde.Platform",
-        "runtime_version": "6.9",
-        "dest": "shared-libs"
-      },
-      {
-        "library": "libQt6Network.so.6",
-        "runtime_name": "org.kde.Platform",
-        "runtime_version": "6.9",
-        "dest": "shared-libs"
-      },
-      {
-        "library": "libQt6DBus.so.6",
-        "runtime_name": "org.kde.Platform",
-        "runtime_version": "6.9",
-        "dest": "shared-libs"
-      },
-      {
-        "library": "libQt6Widgets.so.6",
-        "runtime_name": "org.kde.Platform",
-        "runtime_version": "6.9",
-        "dest": "shared-libs"
-      },
-      {
-        "library": "libphysfs.so.1",
-        "source": "usr/lib",
-        "dest": "lib"
-      },
-      {
-        "library": "libmodplug.so.1",
-        "source": "usr/lib",
-        "dest": "lib"
-      },
-      {
-        "library": "libluajit-5.1.so.2",
-        "source": "usr/lib",
-        "dest": "lib"
-      },
-      {
-        "library": "libsolarus.so.2",
-        "source": "usr/lib",
-        "dest": "lib"
-      }
-    ],
-    "extras": [
-      {
-        "type": "dir",
-        "source": "$REPO_ROOT/$component_name",
-        "dest": "$COMPONENT_ARTIFACT_ROOT"
-      }
-    ]
-  }
+  "solarus": [
+    {
+      "source_url": "https://downloads.solarus-games.org/solarus/linux/solarus-launcher-v2.0.1-linux-amd64.zip",
+      "source_type": "http",
+      "version": "$SOLARUS_DESIRED_VERSION",
+      "extraction_type": "archive",
+      "assets": [
+        {
+          "type": "dir",
+          "source": "usr/bin",
+          "dest": "bin"
+        }
+      ],
+      "libs": [
+        {
+          "library": "libQt6Gui.so.6",
+          "runtime_name": "org.kde.Platform",
+          "runtime_version": "6.9",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libQt6Core.so.6",
+          "runtime_name": "org.kde.Platform",
+          "runtime_version": "6.9",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libQt6Multimedia.so.6",
+          "runtime_name": "org.kde.Platform",
+          "runtime_version": "6.9",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libQt6Svg.so.6",
+          "runtime_name": "org.kde.Platform",
+          "runtime_version": "6.9",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libQt6Network.so.6",
+          "runtime_name": "org.kde.Platform",
+          "runtime_version": "6.9",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libQt6DBus.so.6",
+          "runtime_name": "org.kde.Platform",
+          "runtime_version": "6.9",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libQt6Widgets.so.6",
+          "runtime_name": "org.kde.Platform",
+          "runtime_version": "6.9",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libphysfs.so.1",
+          "source": "usr/lib",
+          "dest": "lib"
+        },
+        {
+          "library": "libmodplug.so.1",
+          "source": "usr/lib",
+          "dest": "lib"
+        },
+        {
+          "library": "libluajit-5.1.so.2",
+          "source": "usr/lib",
+          "dest": "lib"
+        },
+        {
+          "library": "libsolarus.so.2",
+          "source": "usr/lib",
+          "dest": "lib"
+        }
+      ],
+      "extras": [
+        {
+          "type": "dir",
+          "source": "$REPO_ROOT/$component_name",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        }
+      ]
+    }
+  ]
 }

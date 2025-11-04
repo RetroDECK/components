@@ -1,89 +1,91 @@
 {
-  "xemu": {
-    "source_url": "app.xemu.xemu",
-    "source_type": "flatpak_id",
-    "version": "$XEMU_DESIRED_VERSION",
-    "extraction_type": "flatpak",
-    "assets": [
-      {
-        "type": "dir",
-        "source": "usr/bin",
-        "dest": "bin"
-      }
-    ],
-    "libs": [
-      {
-        "library": "libslirp.so.0",
-        "source": "usr/lib",
-        "dest": "lib"
-      },
-      {
-        "library": "libpcap.so.0.8",
-        "source": "usr/lib",
-        "dest": "lib"
-      },
-      {
-        "library": "libcurl-gnutls.so.4",
-        "source": "usr/lib",
-        "dest": "lib"
-      },
-      {
-        "library": "libkrb5.so.3",
-        "source": "usr/lib",
-        "dest": "lib"
-      },
-      {
-        "library": "libgssapi_krb5.so.2",
-        "source": "usr/lib",
-        "dest": "lib"
-      },
-      {
-        "library": "libkrb5support.so.0",
-        "source": "usr/lib",
-        "dest": "lib"
-      },
-      {
-        "library": "librtmp.so.1",
-        "source": "usr/lib",
-        "dest": "lib"
-      },
-      {
-        "library": "libssh.so.4",
-        "source": "usr/lib",
-        "dest": "lib"
-      },
-      {
-        "library": "libk5crypto.so.3",
-        "source": "usr/lib",
-        "dest": "lib"
-      },
-      {
-        "library": "liblber-2.5.so.0",
-        "source": "usr/lib",
-        "dest": "lib"
-      },
-      {
-        "library": "libsasl2.so.2",
-        "source": "usr/lib",
-        "dest": "lib"
-      },
-      {
-        "library": "libkeyutils.so.1",
-        "source": "usr/lib",
-        "dest": "lib"
-      },
-      {
-        "library": "libldap-2.5.so.0",
-        "source": "usr/lib",
-        "dest": "lib"
-      }
-    ],
-    "extras": [
-      {
-        "type": "dir",
-        "source": "$REPO_ROOT/$COMPONENT_NAME",
-        "dest": "$COMPONENT_ARTIFACT_ROOT"
-      }
-    ]
-  }
+  "xemu": [
+    {
+      "source_url": "app.xemu.xemu",
+      "source_type": "flatpak_id",
+      "version": "$XEMU_DESIRED_VERSION",
+      "extraction_type": "flatpak",
+      "assets": [
+        {
+          "type": "dir",
+          "source": "usr/bin",
+          "dest": "bin"
+        }
+      ],
+      "libs": [
+        {
+          "library": "libslirp.so.0",
+          "source": "usr/lib",
+          "dest": "lib"
+        },
+        {
+          "library": "libpcap.so.0.8",
+          "source": "usr/lib",
+          "dest": "lib"
+        },
+        {
+          "library": "libcurl-gnutls.so.4",
+          "source": "usr/lib",
+          "dest": "lib"
+        },
+        {
+          "library": "libkrb5.so.3",
+          "source": "usr/lib",
+          "dest": "lib"
+        },
+        {
+          "library": "libgssapi_krb5.so.2",
+          "source": "usr/lib",
+          "dest": "lib"
+        },
+        {
+          "library": "libkrb5support.so.0",
+          "source": "usr/lib",
+          "dest": "lib"
+        },
+        {
+          "library": "librtmp.so.1",
+          "source": "usr/lib",
+          "dest": "lib"
+        },
+        {
+          "library": "libssh.so.4",
+          "source": "usr/lib",
+          "dest": "lib"
+        },
+        {
+          "library": "libk5crypto.so.3",
+          "source": "usr/lib",
+          "dest": "lib"
+        },
+        {
+          "library": "liblber-2.5.so.0",
+          "source": "usr/lib",
+          "dest": "lib"
+        },
+        {
+          "library": "libsasl2.so.2",
+          "source": "usr/lib",
+          "dest": "lib"
+        },
+        {
+          "library": "libkeyutils.so.1",
+          "source": "usr/lib",
+          "dest": "lib"
+        },
+        {
+          "library": "libldap-2.5.so.0",
+          "source": "usr/lib",
+          "dest": "lib"
+        }
+      ],
+      "extras": [
+        {
+          "type": "dir",
+          "source": "$REPO_ROOT/$COMPONENT_NAME",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        }
+      ]
+    }
+  ]
 }
