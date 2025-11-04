@@ -1,9 +1,9 @@
 {
-  "duckstation": [
+  "gzdoom": [
     {
       "source_url": "https://github.com/flegald/GZDeck/releases/latest/download/GZDeck*.AppImage",
       "source_type": "github-release",
-      "version": "$AZAHAR_DESIRED_VERSION",
+      "version": "$GZDOOM_DESIRED_VERSION",
       "extraction_type": "appimage",
       "assets": [
         {
