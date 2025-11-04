@@ -1,6 +1,0 @@
-[
-  {
-    "library": "libffmpeg.so",
-    "source": "gzdoom/usr/lib"
-  }
-]

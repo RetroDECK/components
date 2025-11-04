@@ -1,8 +1,4 @@
-#!/bin/bash
-
-source "automation-tools/assembler.sh"
-
-assemble appimage "https://github.com/RetroDECK/ES-DE/releases/latest/download/ES-DE_x64_RetroDECK.AppImage "
+Libs will needs to be rechecked
 
 # Custom Commands
 

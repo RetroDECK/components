@@ -1,0 +1,26 @@
+{
+    "retroarch": [
+        {
+            "source_url": "org.libretro.RetroArch",
+            "source_type": "flatpak_id",
+            "version": "$RETROARCH_DESIRED_VERSION",
+            "dest": "user",
+            "extraction_type": "flatpak",
+            "assets": [
+                {
+                    "type": "dir",
+                    "source": "usr/bin",
+                    "dest": "bin"
+                }
+            ],
+            "libs": [],
+            "extras": [
+                {
+                    "type": "dir",
+                    "source": "$REPO_ROOT/$COMPONENT_NAME",
+                    "dest": "$COMPONENT_ARTIFACT_ROOT"
+                }
+            ]
+        }
+    ]
+}

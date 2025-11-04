@@ -1,3 +1,6 @@
+Migrate to the Flatpak version.
+Check what cores, cheats etc are included and migrate the script:
+
 #!/bin/bash
 
 source "automation-tools/assembler.sh"
