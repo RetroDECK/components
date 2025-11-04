@@ -1,10 +1,10 @@
 {
   "gzdoom": [
     {
-      "source_url": "https://github.com/flegald/GZDeck/releases/latest/download/GZDeck*.AppImage",
-      "source_type": "github-release",
+      "source_url": "org.zdoom.GZDoom",
+      "source_type": "flatpak_id",
       "version": "$GZDOOM_DESIRED_VERSION",
-      "extraction_type": "appimage",
+      "extraction_type": "flatpak",
       "assets": [
         {
           "type": "dir",
