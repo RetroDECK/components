@@ -9,15 +9,55 @@
       "assets": [
         {
           "type": "dir",
-          "source": "usr/bin",
+          "source": "bin",
           "dest": "bin"
         }
       ],
       "libs": [
         {
-          "library": "libGLU.so.1",
-          "source": "usr/lib",
-          "dest": "lib"
+          "library": "libusb-1.0.so.0",
+          "source": "lib",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libzip.so.5",
+          "source": "lib",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libwx_gtk3u_gl-3.2.so.0",
+          "source": "lib",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libwx_gtk3u_core-3.2.so.0",
+          "source": "lib",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libwx_baseu-3.2.so.0",
+          "source": "lib",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libwx_gtk3u_propgrid-3.2.so.0",
+          "source": "lib",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libpugixml.so.1",
+          "source": "lib",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libboost_program_options.so.1.88.0",
+          "source": "lib",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libhidapi-hidraw.so.0",
+          "source": "lib",
+          "dest": "shared-libs"
         }
       ],
       "extras": [
