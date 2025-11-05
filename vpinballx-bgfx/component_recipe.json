@@ -2,7 +2,7 @@
   "vpinballx-bgfx": [
     {
       "source_url": "https://github.com/vpinball/vpinball/releases/download/{VERSION}/VPinballX_BGFX-*-linux-x64-Release.zip",
-      "source_type": "github-release",
+      "source_type": "github_release",
       "version": "latest",
       "extraction_type": "archive"
     },

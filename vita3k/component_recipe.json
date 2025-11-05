@@ -2,7 +2,7 @@
   "vita3k": [
     {
       "source_url": "https://github.com/Vita3K/Vita3K/releases/releases/download/{VERSION}/*.x86_64.AppImage",
-      "source_type": "github-release",
+      "source_type": "github_release",
       "version": "latest",
       "extraction_type": "appimage",
       "assets": [

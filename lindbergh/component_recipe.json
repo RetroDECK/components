@@ -2,7 +2,7 @@
   "lindbergh": [
     {
       "source_url": "https://github.com/lindbergh-loader/lindbergh-loader/releases/{VERSION}/*.AppImage",
-      "source_type": "github-release",
+      "source_type": "github_release",
       "version": "$LINDBERGH_DESIRED_VERSION",
       "extraction_type": "appimage",
       "assets": [

@@ -2,7 +2,7 @@
   "xroar": [
     {
       "source_url": "https://github.com/RetroDECK/XRoar/releases/download/{VERSION}/xroar.tar.gz",
-      "source_type": "github-release",
+      "source_type": "github_release",
       "version": "latest",
       "extraction_type": "archive",
       "assets": [
