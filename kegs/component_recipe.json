@@ -8,7 +8,7 @@
       "assets": [
         {
           "type": "dir",
-          "source": "usr/bin",
+          "source": "kegs.1.38",
           "dest": "bin"
         }
       ],
