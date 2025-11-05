@@ -16,6 +16,11 @@
           "type": "dir",
           "source": "libexec",
           "dest": "libexec"
+        },
+        {
+          "type": "file",
+          "source": "lib/libgarglkmain.a",
+          "dest": "lib"
         }
       ],
       "libs": [
@@ -38,12 +43,13 @@
           "dest": "shared-libs"
         },
         {
-          "library": "libgarglk.so",
-          "source": "lib",
-          "dest": "lib"
+          "library": "libQt5DBus.so.5",
+          "runtime_name": "org.kde.Platform",
+          "runtime_version": "5.15-24.08",
+          "dest": "shared-libs"
         },
         {
-          "library": "libgarglkmain.a",
+          "library": "libgarglk.so",
           "source": "lib",
           "dest": "lib"
         }
