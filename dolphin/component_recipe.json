@@ -9,7 +9,7 @@
       "assets": [
         {
           "type": "dir",
-          "source": "usr/bin",
+          "source": "bin",
           "dest": "bin"
         }
       ],
@@ -55,26 +55,6 @@
           "runtime_name": "org.kde.Platform",
           "runtime_version": "6.9",
           "dest": "shared-libs"
-        },
-        {
-          "library": "libusb-1.0.so.0",
-          "source": "usr/lib",
-          "dest": "lib"
-        },
-        {
-          "library": "libevdev.so.2",
-          "source": "usr/lib",
-          "dest": "lib"
-        },
-        {
-          "library": "libslirp.so.0",
-          "source": "usr/lib",
-          "dest": "lib"
-        },
-        {
-          "library": "libfluidsynth.so.3",
-          "source": "usr/lib",
-          "dest": "lib"
         }
       ],
       "extras": [
