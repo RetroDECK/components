@@ -3,7 +3,7 @@
     {
       "source_url": "https://github.com/lindbergh-loader/lindbergh-loader/releases/{VERSION}/*.AppImage",
       "source_type": "github_release",
-      "version": "$LINDBERGH_DESIRED_VERSION",
+      "version": "latest",
       "extraction_type": "appimage",
       "assets": [
         {
@@ -12,13 +12,15 @@
           "dest": "bin"
         }
       ],
-      "libs": [],
-      "extras": [
+      "libs": [
         {
-          "type": "dir",
-          "source": "$REPO_ROOT/$COMPONENT_NAME",
-          "dest": "$COMPONENT_ARTIFACT_ROOT"
-        },
+          "library": "libSDL3.so.0",
+          "runtime_name": "org.freedesktop.Platform",
+          "runtime_version": "25.08",
+          "dest": "shared-libs"
+        }
+      ],
+      "extras": [
         {
           "type": "create",
           "dest": "component_version",
