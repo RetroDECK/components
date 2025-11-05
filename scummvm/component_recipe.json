@@ -3,7 +3,7 @@
     {
       "source_url": "org.scummvm.ScummVM",
       "source_type": "flatpak_id",
-      "version": "$RPCS3_DESIRED_VERSION",
+      "version": "latest",
       "dest": "user",
       "extraction_type": "flatpak",
       "assets": [

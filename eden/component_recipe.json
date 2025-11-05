@@ -3,7 +3,7 @@
     {
       "source_url": "https://github.com/eden-emulator/Releases/releases/{VERSION}/*-amd64.AppImage",
       "source_type": "github-release",
-      "version": "$EDEN_DESIRED_VERSION",
+      "version": "latest",
       "extraction_type": "appimage",
       "assets": [
         {

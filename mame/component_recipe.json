@@ -9,7 +9,7 @@
       "assets": [
         {
           "type": "dir",
-          "source": "usr/bin",
+          "source": "bin",
           "dest": "bin"
         }
       ],

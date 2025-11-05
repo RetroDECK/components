@@ -3,7 +3,7 @@
     {
       "source_url": "com.dosbox_x.DOSBox-X",
       "source_type": "flatpak_id",
-      "version": "$DOSBOX-X_DESIRED_VERSION",
+      "version": "latest",
       "dest": "user",
       "extraction_type": "flatpak",
       "assets": [
@@ -37,13 +37,7 @@
           "dest": "shared-libs"
         }
       ],
-      "extras": [
-        {
-          "type": "dir",
-          "source": "$REPO_ROOT/$COMPONENT_NAME",
-          "dest": "$COMPONENT_ARTIFACT_ROOT"
-        }
-      ]
+      "extras": []
     }
   ]
 }

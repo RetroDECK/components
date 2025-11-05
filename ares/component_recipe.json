@@ -3,7 +3,7 @@
     {
       "source_url": "dev.ares.ares",
       "source_type": "flatpak_id",
-      "version": "$ARES_DESIRED_VERSION",
+      "version": "latest",
       "dest": "user",
       "extraction_type": "flatpak",
       "assets": [
@@ -26,13 +26,7 @@
           "dest": "lib"
         }
       ],
-      "extras": [
-        {
-          "type": "dir",
-          "source": "$REPO_ROOT/$COMPONENT_NAME",
-          "dest": "$COMPONENT_ARTIFACT_ROOT"
-        }
-      ]
+      "extras": []
     }
   ]
 }

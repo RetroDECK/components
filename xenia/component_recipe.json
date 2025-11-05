@@ -3,7 +3,7 @@
     {
       "source_url": "https://github.com/xenia-canary/xenia-canary-releases/releases/{VERSION}/xenia_canary_linux.tar.gz ",
       "source_type": "github-release",
-      "version": "$XENIA_DESIRED_VERSION",
+      "version": "latest",
       "extraction_type": "archive",
       "assets": [
         {
