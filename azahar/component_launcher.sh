@@ -4,7 +4,7 @@
 component_name="$(basename "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")")"
 component_path="$(cd "$(dirname "${BASH_SOURCE[0]}" )" && pwd)"
 
-export LD_LIBRARY_PATH=export LD_LIBRARY_PATH="$component_path/lib:$rd_shared_libs:${LD_LIBRARY_PATH}"
+export LD_LIBRARY_PATH="$component_path/lib:$rd_shared_libs:${LD_LIBRARY_PATH}"
 export QT_PLUGIN_PATH="$rd_shared_libs:${QT_PLUGIN_PATH}"
 
 log i "RetroDECK is now launching $component_name"
