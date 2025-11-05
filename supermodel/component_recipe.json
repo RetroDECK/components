@@ -3,7 +3,7 @@
     {
       "source_url": "com.supermodel3.Supermodel",
       "source_type": "flatpak_id",
-      "version": "$SUPERMODEL_DESIRED_VERSION",
+      "version": "latest",
       "dest": "user",
       "extraction_type": "flatpak",
       "assets": [
@@ -14,13 +14,7 @@
         }
       ],
       "libs": [],
-      "extras": [
-        {
-          "type": "dir",
-          "source": "$REPO_ROOT/$COMPONENT_NAME",
-          "dest": "$COMPONENT_ARTIFACT_ROOT"
-        }
-      ]
+      "extras": []
     }
   ]
 }

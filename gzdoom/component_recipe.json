@@ -3,7 +3,7 @@
     {
       "source_url": "org.zdoom.GZDoom",
       "source_type": "flatpak_id",
-      "version": "$GZDOOM_DESIRED_VERSION",
+      "version": "latest",
       "extraction_type": "flatpak",
       "assets": [
         {

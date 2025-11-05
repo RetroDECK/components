@@ -3,7 +3,7 @@
     {
       "source_url": "app.xemu.xemu",
       "source_type": "flatpak_id",
-      "version": "$XEMU_DESIRED_VERSION",
+      "version": "latest",
       "extraction_type": "flatpak",
       "assets": [
         {

@@ -3,7 +3,7 @@
     {
       "source_url": "rs.ruffle.Ruffle",
       "source_type": "flatpak_id",
-      "version": "$RUFFLE_DESIRED_VERSION",
+      "version": "latest",
       "dest": "user",
       "extraction_type": "flatpak",
       "assets": [
