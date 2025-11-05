@@ -1,0 +1,5 @@
+[error] Library flatpak/app/io.github.garglk.Gargoyle/current/1b893e57a510dae59d89999a28d0dd13653c99a8982a48d5a228b5151a8fa04e/files/lib/libgarglk.so.so.* could not be copied to /tmp/tmp.roHdPwvci1/gargoyle-artifact/lib/
+
+It fails to grab the: ibgarglk.so
+
+it makes it ibgarglk.so.so
