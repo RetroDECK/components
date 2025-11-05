@@ -73,17 +73,17 @@
         },
         {
           "library": "liblunasvg.so",
-          "source": "lib",
+          "source": "usr/lib",
           "dest": "lib"
         },
         {
           "library": "libsoundtouch.so.2",
-          "source": "lib",
+          "source": "usr/lib",
           "dest": "lib"
         },
         {
           "library": "libcpuinfo.so",
-          "source": "lib",
+          "source": "usr/lib",
           "dest": "lib"
         }
       ],
