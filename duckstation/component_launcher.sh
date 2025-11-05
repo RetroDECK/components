@@ -11,4 +11,4 @@ source "$component_path/apprun-hooks/linuxdeploy-plugin-qt-hook.sh"
 log i "RetroDECK is now launching $component_name"
 log d "Loaded app run hooks in apprun-hooks/linuxdeploy-plugin-qt-hook.sh"
 
-exec "$component_path/usr/bin/duckstation-qt" "$@"
+exec "$component_path/bin/duckstation-qt" "$@"
