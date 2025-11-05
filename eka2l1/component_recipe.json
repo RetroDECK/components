@@ -47,6 +47,11 @@
           "library": "libbz2.so.1.0",
           "source": "usr/lib",
           "dest": "lib"
+        },
+        {
+          "library": "libssl.so.1.1",
+          "source": "usr/lib",
+          "dest": "lib"
         }
       ],
       "extras": [
