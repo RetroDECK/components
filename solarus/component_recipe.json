@@ -81,6 +81,11 @@
           "type": "dir",
           "source": "$REPO_ROOT/$component_name",
           "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "create",
+          "dest": "component_version",
+          "contents": "$SOURCE_VERSION"
         }
       ]
     }

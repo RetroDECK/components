@@ -13,7 +13,13 @@
         }
       ],
       "libs": [],
-      "extras": []
+      "extras": [
+        {
+          "type": "create",
+          "dest": "component_version",
+          "contents": "$SOURCE_VERSION"
+        }
+      ]
     }
   ]
 }

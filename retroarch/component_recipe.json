@@ -1,26 +1,31 @@
 {
-    "retroarch": [
+  "retroarch": [
+    {
+      "source_url": "org.libretro.RetroArch",
+      "source_type": "flatpak_id",
+      "version": "latest",
+      "dest": "user",
+      "extraction_type": "flatpak",
+      "assets": [
         {
-            "source_url": "org.libretro.RetroArch",
-            "source_type": "flatpak_id",
-            "version": "latest",
-            "dest": "user",
-            "extraction_type": "flatpak",
-            "assets": [
-                {
-                    "type": "dir",
-                    "source": "usr/bin",
-                    "dest": "bin"
-                }
-            ],
-            "libs": [],
-            "extras": [
-                {
-                    "type": "dir",
-                    "source": "$REPO_ROOT/$COMPONENT_NAME",
-                    "dest": "$COMPONENT_ARTIFACT_ROOT"
-                }
-            ]
+          "type": "dir",
+          "source": "usr/bin",
+          "dest": "bin"
         }
-    ]
+      ],
+      "libs": [],
+      "extras": [
+        {
+          "type": "dir",
+          "source": "$REPO_ROOT/$COMPONENT_NAME",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "create",
+          "dest": "component_version",
+          "contents": "$SOURCE_VERSION"
+        }
+      ]
+    }
+  ]
 }
