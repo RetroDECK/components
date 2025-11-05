@@ -1,7 +1,23 @@
+Update to UZDOOM
+
+---
+
+FFMMPEG error during buiild precc
+
+[error] Library libffmpeg.so could not be found at /home/laz/.local/share/flatpak/runtime/org.freedesktop.Platform/x86_64/25.08/active/files
+
+
+
+
+----
+
+Check if GZDECK is supported, not updated in a while:
+
 https://github.com/flegald/GZDeck
 
       "source_url": "https://github.com/flegald/GZDeck/releases/latest/download/GZDeck*.AppImage",
 
+---
 
 
 #!/bin/bash
