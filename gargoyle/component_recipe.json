@@ -41,6 +41,11 @@
           "library": "libgarglk.so",
           "source": "lib",
           "dest": "lib"
+        },
+        {
+          "library": "libgarglkmain.a",
+          "source": "lib",
+          "dest": "lib"
         }
       ],
       "extras": [
