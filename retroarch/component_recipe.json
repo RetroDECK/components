@@ -46,6 +46,11 @@
           "type": "dir",
           "source": "lib/retroarch",
           "dest": "lib/retroarch"
+        },
+        {
+          "type": "create",
+          "dest": "component_version",
+          "contents": "$SOURCE_VERSION"
         }
       ],
       "libs": [
