@@ -10,6 +10,16 @@
                     "type": "dir",
                     "source": "usr/bin",
                     "dest": "bin"
+                },
+                {
+                    "type": "dir",
+                    "source": "usr/share",
+                    "dest": "share"
+                },
+                {
+                    "type": "dir",
+                    "source": "usr/lib",
+                    "dest": "lib"
                 }
             ],
             "libs": [],
