@@ -8,17 +8,12 @@
       "assets": [
         {
           "type": "dir",
-          "source": "usr/bin",
+          "source": "bin",
           "dest": "bin"
         }
       ],
       "libs": [],
       "extras": [
-        {
-          "type": "dir",
-          "source": "$REPO_ROOT/$COMPONENT_NAME",
-          "dest": "$COMPONENT_ARTIFACT_ROOT"
-        },
         {
           "type": "create",
           "dest": "component_version",

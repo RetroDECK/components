@@ -4,11 +4,10 @@
 component_name="$(basename "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")")"
 component_path="$(cd "$(dirname "${BASH_SOURCE[0]}" )" && pwd)"
 
-export LD_LIBRARY_PATH="$component_path/lib:$rd_shared_libs/qt-6.8/lib:${LD_LIBRARY_PATH}"
-export QT_PLUGIN_PATH="$rd_shared_libs/qt-6.8/lib/plugins:${QT_PLUGIN_PATH}"
+export LD_LIBRARY_PATH="$component_path/lib:${LD_LIBRARY_PATH}"
 
 log i "RetroDECK is now launching $component_name"
 log d "Library path is: $LD_LIBRARY_PATH"
 log d "AppDir is: $component_path"
 
-exec "$component_path/xroar" "$@"
+exec "$component_path/bin/xroar" "$@"
