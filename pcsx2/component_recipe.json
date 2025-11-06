@@ -20,6 +20,16 @@
           "type": "dir",
           "source": "apprun-hooks",
           "dest": "apprun-hooks"
+        },
+        {
+          "type": "dir",
+          "source": "$REPO_ROOT/$COMPONENT_NAME",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "create",
+          "dest": "component_version",
+          "contents": "$SOURCE_VERSION"
         }
       ],
       "libs": [
@@ -294,18 +304,6 @@
           "library": "libkeyutils.so.1",
           "source": "usr/lib",
           "dest": "shared-libs"
-        }
-      ],
-      "extras": [
-        {
-          "type": "dir",
-          "source": "$REPO_ROOT/$COMPONENT_NAME",
-          "dest": "$COMPONENT_ARTIFACT_ROOT"
-        },
-        {
-          "type": "create",
-          "dest": "component_version",
-          "contents": "$SOURCE_VERSION"
         }
       ]
     }

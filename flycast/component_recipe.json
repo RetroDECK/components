@@ -11,16 +11,14 @@
           "type": "dir",
           "source": "usr/bin",
           "dest": "bin"
-        }
-      ],
-      "libs": [],
-      "extras": [
+        },
         {
           "type": "create",
           "dest": "component_version",
           "contents": "$SOURCE_VERSION"
         }
-      ]
+      ],
+      "libs": []
     }
   ]
 }

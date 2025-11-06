@@ -21,6 +21,11 @@
           "type": "file",
           "source": "lib/libgarglkmain.a",
           "dest": "lib"
+        },
+        {
+          "type": "create",
+          "dest": "component_version",
+          "contents": "$SOURCE_VERSION"
         }
       ],
       "libs": [
@@ -52,13 +57,6 @@
           "library": "libgarglk.so",
           "source": "lib",
           "dest": "lib"
-        }
-      ],
-      "extras": [
-        {
-          "type": "create",
-          "dest": "component_version",
-          "contents": "$SOURCE_VERSION"
         }
       ]
     }

@@ -20,10 +20,7 @@
           "type": "dir",
           "source": "usr/share/doc/",
           "dest": "doc"
-        }
-      ],
-      "libs": [],
-      "extras": [
+        },
         {
           "type": "dir",
           "source": "$REPO_ROOT/$COMPONENT_NAME",
@@ -34,7 +31,8 @@
           "dest": "component_version",
           "contents": "$SOURCE_VERSION"
         }
-      ]
+      ],
+      "libs": []
     }
   ]
 }

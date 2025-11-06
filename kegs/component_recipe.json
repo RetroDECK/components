@@ -10,16 +10,14 @@
           "type": "dir",
           "source": "kegs.1.38",
           "dest": "bin"
-        }
-      ],
-      "libs": [],
-      "extras": [
+        },
         {
           "type": "create",
           "dest": "component_version",
           "contents": "$SOURCE_VERSION"
         }
-      ]
+      ],
+      "libs": []
     }
   ]
 }

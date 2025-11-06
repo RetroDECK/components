@@ -21,6 +21,11 @@
           "type": "dir",
           "source": "share/games/raze/soundfonts/",
           "dest": "soundfonts"
+        },
+        {
+          "type": "create",
+          "dest": "component_version",
+          "contents": "$SOURCE_VERSION"
         }
       ],
       "libs": [
@@ -34,13 +39,6 @@
           "library": "libzmusiclite.so.1",
           "source": "lib",
           "dest": "lib"
-        }
-      ],
-      "extras": [
-        {
-          "type": "create",
-          "dest": "component_version",
-          "contents": "$SOURCE_VERSION"
         }
       ]
     }

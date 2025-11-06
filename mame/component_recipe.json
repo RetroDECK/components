@@ -11,6 +11,11 @@
           "type": "dir",
           "source": "bin",
           "dest": "bin"
+        },
+        {
+          "type": "create",
+          "dest": "component_version",
+          "contents": "$SOURCE_VERSION"
         }
       ],
       "libs": [
@@ -37,13 +42,6 @@
           "runtime_name": "org.kde.Platform",
           "runtime_version": "6.9",
           "dest": "shared-libs"
-        }
-      ],
-      "extras": [
-        {
-          "type": "create",
-          "dest": "component_version",
-          "contents": "$SOURCE_VERSION"
         }
       ]
     }

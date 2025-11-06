@@ -11,6 +11,11 @@
           "type": "dir",
           "source": "bin",
           "dest": "bin"
+        },
+        {
+          "type": "create",
+          "dest": "component_version",
+          "contents": "$SOURCE_VERSION"
         }
       ],
       "libs": [
@@ -24,13 +29,6 @@
           "library": "librashader.so",
           "source": "lib",
           "dest": "lib"
-        }
-      ],
-      "extras": [
-        {
-          "type": "create",
-          "dest": "component_version",
-          "contents": "$SOURCE_VERSION"
         }
       ]
     }

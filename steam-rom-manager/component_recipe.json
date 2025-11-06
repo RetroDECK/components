@@ -21,6 +21,11 @@
           "type": "dir",
           "source": "share/locale",
           "dest": "share/locale"
+        },
+        {
+          "type": "create",
+          "dest": "component_version",
+          "contents": "$SOURCE_VERSION"
         }
       ],
       "libs": [
@@ -29,13 +34,6 @@
           "runtime_name": "org.freedesktop.Platform",
           "runtime_version": "25.08",
           "dest": "shared-libs"
-        }
-      ],
-      "extras": [
-        {
-          "type": "create",
-          "dest": "component_version",
-          "contents": "$SOURCE_VERSION"
         }
       ]
     }

@@ -16,6 +16,11 @@
           "type": "dir",
           "source": "share/ppsspp/assets/",
           "dest": "bin/assets/"
+        },
+        {
+          "type": "create",
+          "dest": "component_version",
+          "contents": "$SOURCE_VERSION"
         }
       ],
       "libs": [
@@ -23,13 +28,6 @@
           "library": "libGLEW.so",
           "source": "lib",
           "dest": "lib"
-        }
-      ],
-      "extras": [
-        {
-          "type": "create",
-          "dest": "component_version",
-          "contents": "$SOURCE_VERSION"
         }
       ]
     }

@@ -10,10 +10,7 @@
           "type": "dir",
           "source": "simcoupe_1.2.15_amd64",
           "dest": ""
-        }
-      ],
-      "libs": [],
-      "extras": [
+        },
         {
           "type": "dir",
           "source": "$REPO_ROOT/$COMPONENT_NAME",
@@ -24,7 +21,8 @@
           "dest": "component_version",
           "contents": "$SOURCE_VERSION"
         }
-      ]
+      ],
+      "libs": []
     }
   ]
 }
