@@ -1,35 +1,40 @@
 {
-    "es-de": [
+  "es-de": [
+    {
+      "source_url": "https://github.com/RetroDECK/ES-DE/releases/latest/download/ES-DE_x64_RetroDECK.AppImage",
+      "source_type": "github_release",
+      "version": "latest",
+      "extraction_type": "appimage",
+      "assets": [
         {
-            "source_url": "https://github.com/RetroDECK/ES-DE/releases/latest/download/ES-DE_x64_RetroDECK.AppImage",
-            "source_type": "github_release",
-            "version": "latest",
-            "extraction_type": "appimage",
-            "assets": [
-                {
-                    "type": "dir",
-                    "source": "usr/bin",
-                    "dest": "bin"
-                },
-                {
-                    "type": "dir",
-                    "source": "usr/share",
-                    "dest": "share"
-                },
-                {
-                    "type": "dir",
-                    "source": "usr/lib",
-                    "dest": "lib"
-                }
-            ],
-            "libs": [],
-            "extras": [
-                {
-                    "type": "dir",
-                    "source": "$REPO_ROOT/$COMPONENT_NAME",
-                    "dest": "$COMPONENT_ARTIFACT_ROOT"
-                }
-            ]
+          "type": "dir",
+          "source": "usr/bin",
+          "dest": "bin"
+        },
+        {
+          "type": "dir",
+          "source": "usr/share",
+          "dest": "share"
+        },
+        {
+          "type": "dir",
+          "source": "usr/lib",
+          "dest": "lib"
+        },
+        {
+          "type": "create",
+          "dest": "component_version",
+          "contents": "$SOURCE_VERSION"
         }
-    ]
+      ],
+      "libs": [],
+      "extras": [
+        {
+          "type": "dir",
+          "source": "$REPO_ROOT/$COMPONENT_NAME",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        }
+      ]
+    }
+  ]
 }
