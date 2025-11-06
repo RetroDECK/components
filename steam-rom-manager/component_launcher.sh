@@ -11,4 +11,6 @@ log i "RetroDECK is now launching $component_name"
 log d "Library path is: $LD_LIBRARY_PATH"
 log d "AppDir is: $APPDIR"
 
-APPDIR="$component_path" exec "$component_path/AppRun" --no-sandbox "$@"
+APPDIR="$component_path"
+
+exec "$component_path/srm/steam-rom-manager" --no-sandbox "$@"
