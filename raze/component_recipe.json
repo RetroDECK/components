@@ -9,17 +9,34 @@
       "assets": [
         {
           "type": "dir",
-          "source": "usr/bin",
+          "source": "bin",
           "dest": "bin"
-        }
-      ],
-      "libs": [],
-      "extras": [
+        },
+        {
+          "type": "file",
+          "source": "share/raze/raze.pk3",
+          "dest": "bin"
+        },
         {
           "type": "dir",
-          "source": "$REPO_ROOT/$COMPONENT_NAME",
-          "dest": "$COMPONENT_ARTIFACT_ROOT"
+          "source": "share/games/raze/soundfonts/",
+          "dest": "soundfonts"
+        }
+      ],
+      "libs": [
+        {
+          "library": "libvpx.so.8",
+          "runtime_name": "org.freedesktop.Platform",
+          "runtime_version": "23.08",
+          "dest": "shared-libs"
         },
+        {
+          "library": "libzmusiclite.so.1",
+          "source": "lib",
+          "dest": "lib"
+        }
+      ],
+      "extras": [
         {
           "type": "create",
           "dest": "component_version",
