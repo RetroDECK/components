@@ -37,6 +37,12 @@
                     "dest": "shared-libs"
                 },
                 {
+                    "library": "libavutil.so.57",
+                    "runtime_name": "org.kde.Platform",
+                    "runtime_version": "5.15-23.08",
+                    "dest": "shared-libs"
+                },
+                {
                     "library": "libvpx.so.8",
                     "runtime_name": "org.kde.Platform",
                     "runtime_version": "5.15-23.08",
@@ -116,7 +122,62 @@
                     "library": "libIex-3_1.so.30",
                     "source": "usr/lib",
                     "dest": "lib"
-                }           
+                },
+                {
+                    "library": "libImath-3_1.so.29",
+                    "source": "usr/lib",
+                    "dest": "lib"
+                },
+                {
+                    "library": "libgssapi_krb5.so.2",
+                    "source": "usr/lib",
+                    "dest": "lib"
+                },
+                {
+                    "library": "libhttp_parser.so.2.9",
+                    "source": "usr/lib",
+                    "dest": "lib"
+                },
+                {
+                    "library": "libssh2.so.1",
+                    "source": "usr/lib",
+                    "dest": "lib"
+                },
+                {
+                    "library": "libicudata.so.74",
+                    "source": "usr/lib",
+                    "dest": "lib"
+                },
+                {
+                    "library": "libjpegxr.so.0",
+                    "source": "usr/lib",
+                    "dest": "lib"
+                },
+                {
+                    "library": "libIlmThread-3_1.so.30",
+                    "source": "usr/lib",
+                    "dest": "lib"
+                },
+                {
+                    "library": "libkrb5.so.3",
+                    "source": "usr/lib",
+                    "dest": "lib"
+                },
+                {
+                    "library": "libk5crypto.so.3",
+                    "source": "usr/lib",
+                    "dest": "lib"
+                },
+                {
+                    "library": "libkrb5support.so.0",
+                    "source": "usr/lib",
+                    "dest": "lib"
+                },
+                {
+                    "library": "libvpl.so.2",
+                    "source": "usr/lib",
+                    "dest": "lib"
+                }
             ],
             "extras": [
                 {
