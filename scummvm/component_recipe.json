@@ -9,53 +9,71 @@
       "assets": [
         {
           "type": "dir",
-          "source": "usr/bin",
+          "source": "bin",
           "dest": "bin"
+        },
+        {
+          "type": "dir",
+          "source": "share/scummvm/",
+          "dest": "scummvm"
+        },
+        {
+          "type": "dir",
+          "source": "share/soundfonts/",
+          "dest": "soundfonts"
+        },
+        {
+          "type": "dir",
+          "source": "share/doc/",
+          "dest": "doc"
+        },
+        {
+          "type": "dir",
+          "source": "share/licenses/org.scummvm.ScummVM/",
+          "dest": "doc/licenses"
         }
       ],
       "libs": [
         {
           "library": "libFLAC.so.14",
-          "source": "usr/lib",
-          "dest": "lib"
-        },
-        {
-          "library": "libmad.so.0",
-          "source": "usr/lib",
-          "dest": "lib"
+          "runtime_name": "org.freedesktop.Platform",
+          "runtime_version": "25.08",
+          "dest": "shared-libs"
         },
         {
           "library": "libtheoradec.so.2",
-          "source": "usr/lib",
-          "dest": "lib"
+          "runtime_name": "org.freedesktop.Platform",
+          "runtime_version": "25.08",
+          "dest": "shared-libs"
         },
         {
           "library": "libSDL3.so.0",
-          "source": "usr/lib",
-          "dest": "lib"
+          "runtime_name": "org.freedesktop.Platform",
+          "runtime_version": "25.08",
+          "dest": "shared-libs"
         },
         {
           "library": "libfaad.so.2",
-          "source": "usr/lib",
+          "source": "lib",
           "dest": "lib"
         },
         {
           "library": "libmpeg2.so.0",
-          "source": "usr/lib",
+          "source": "lib",
+          "dest": "lib"
+        },
+        {
+          "library": "libmad.so.0",
+          "source": "lib",
           "dest": "lib"
         },
         {
           "library": "libfluidsynth.so.3",
-          "source": "usr/lib",
+          "source": "lib",
           "dest": "lib"
         }
       ],
       "extras": [
-        {
-          "type": "dir",
-          "source": "$REPO_ROOT/$COMPONENT_NAME",
-          "dest": "$COMPONENT_ARTIFACT_ROOT"
-        },
         {
           "type": "create",
           "dest": "component_version",
