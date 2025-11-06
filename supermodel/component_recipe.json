@@ -9,11 +9,17 @@
       "assets": [
         {
           "type": "dir",
-          "source": "usr/bin",
+          "source": "bin",
           "dest": "bin"
         }
       ],
-      "libs": [],
+      "libs": [
+        {
+          "library": "libGLU.so.1",
+          "source": "lib",
+          "dest": "lib"
+        }
+      ],
       "extras": [
         {
           "type": "create",
