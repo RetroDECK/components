@@ -1,6 +1,6 @@
-It needs to resolve the URL from the website
+[error] Gathering component library libicui18n.so.67 failed
 
-The appimage on our repo needs to be removed, if the URL can't be resolved we need to store the appimage somewhere again and manually update
+I have tried QT, Local and Freedesktop but the lib can't be found
 
 # Custom Commands
 

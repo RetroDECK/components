@@ -12,5 +12,5 @@ log d "Library path is: $LD_LIBRARY_PATH"
 log d "AppDir is: $component_path"
 
 # NOTE: AppRun is not working for Mudlet
-exec "$component_path/mudlet" "$@"
+exec "$component_path/bin/mudlet" "$@"
 

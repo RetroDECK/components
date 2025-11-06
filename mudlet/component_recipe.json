@@ -1,7 +1,7 @@
 {
   "mudlet": [
     {
-      "source_url": "Mudlet-{VERSION}-linux-x64.AppImage.tar",
+      "source_url": "https://www.mudlet.org/download/42/",
       "source_type": "http",
       "version": "$MUDLET_DESIRED_VERSION",
       "extraction_type": "archive"
@@ -13,84 +13,118 @@
       "extraction_type": "appimage",
       "assets": [
         {
-          "type": "dir",
-          "source": "usr/bin",
+          "type": "file",
+          "source": "mudlet",
           "dest": "bin"
+        },
+        {
+          "type": "dir",
+          "source": "doc",
+          "dest": "doc"
+        },
+        {
+          "type": "dir",
+          "source": "lcf",
+          "dest": "lcf"
+        },
+        {
+          "type": "dir",
+          "source": "mudlet-lua",
+          "dest": "mudlet-lua"
+        },
+        {
+          "type": "dir",
+          "source": "plugins",
+          "dest": "plugins"
+        },
+        {
+          "type": "dir",
+          "source": "translations",
+          "dest": "translations"
         }
       ],
       "libs": [
         {
           "library": "libQt5Concurrent.so.5",
           "runtime_name": "org.kde.Platform",
-          "runtime_version": "5.15",
+          "runtime_version": "5.15-24.08",
           "dest": "shared-libs"
         },
         {
           "library": "libQt5Core.so.5",
           "runtime_name": "org.kde.Platform",
-          "runtime_version": "5.15",
+          "runtime_version": "5.15-24.08",
           "dest": "shared-libs"
         },
         {
           "library": "libQt5Multimedia.so.5",
           "runtime_name": "org.kde.Platform",
-          "runtime_version": "5.15",
+          "runtime_version": "5.15-24.08",
           "dest": "shared-libs"
         },
         {
           "library": "libQt5Network.so.5",
           "runtime_name": "org.kde.Platform",
-          "runtime_version": "5.15",
+          "runtime_version": "5.15-24.08",
           "dest": "shared-libs"
         },
         {
           "library": "libQt5Gui.so.5",
           "runtime_name": "org.kde.Platform",
-          "runtime_version": "5.15",
+          "runtime_version": "5.15-24.08",
           "dest": "shared-libs"
         },
         {
           "library": "libQt5Widgets.so.5",
           "runtime_name": "org.kde.Platform",
-          "runtime_version": "5.15",
+          "runtime_version": "5.15-24.08",
           "dest": "shared-libs"
         },
         {
           "library": "libQt5TextToSpeech.so.5",
           "runtime_name": "org.kde.Platform",
-          "runtime_version": "5.15",
+          "runtime_version": "5.15-24.08",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libGLU.so.1",
+          "source": "lib",
+          "dest": "lib"
+        },
+        {
+          "library": "libssl.so.1.1",
+          "source": "lib",
+          "dest": "lib"
+        },
+                {
+          "library": "libicui18n.so.67",
+          "runtime_name": "org.kde.Platform",
+          "runtime_version": "5.15-24.08",
           "dest": "shared-libs"
         },
         {
           "library": "libqt5keychain.so.1",
-          "runtime_name": "org.kde.Platform",
-          "runtime_version": "5.15",
-          "dest": "shared-libs"
-        },
-        {
-          "library": "libQt5DBus.so.5",
-          "runtime_name": "org.kde.Platform",
-          "runtime_version": "5.15",
-          "dest": "shared-libs"
+          "source": "lib",
+          "dest": "lib"
         },
         {
           "library": "libzip.so.5",
-          "source": "usr/lib",
+          "source": "lib",
           "dest": "lib"
         },
         {
           "library": "libQsLog.so",
-          "source": "usr/lib",
+          "source": "lib",
           "dest": "lib"
         },
         {
           "library": "libbz2.so.1.0",
-          "source": "usr/lib",
+          "source": "lib",
           "dest": "lib"
         },
         {
           "library": "libcrypto.so.1.1",
-          "source": "usr/lib",
+          "source": "lib",
           "dest": "lib"
         }
       ],
