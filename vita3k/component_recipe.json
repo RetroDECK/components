@@ -10,6 +10,16 @@
           "type": "dir",
           "source": "usr/bin",
           "dest": "bin"
+        },
+        {
+          "type": "dir",
+          "source": "usr/share/Vita3K/",
+          "dest": "share/Vita3K/"
+        },
+        {
+          "type": "dir",
+          "source": "usr/share/doc/",
+          "dest": "doc"
         }
       ],
       "libs": [],

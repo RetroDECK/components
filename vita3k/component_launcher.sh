@@ -13,4 +13,4 @@ export XDG_DATA_DIRS="$component_path/share:${XDG_DATA_DIRS}"
 log i "RetroDECK is now launching $component_name"
 log d "Library path is: $LD_LIBRARY_PATH"
 
-exec "$component_path/usr/bin/Vita3K" "$@"
+exec "$component_path/bin/Vita3K" "$@"
