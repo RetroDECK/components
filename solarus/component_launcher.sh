@@ -12,4 +12,4 @@ log i "RetroDECK is now launching $component_name"
 log d "Library path is: $LD_LIBRARY_PATH"
 log d "QT plugin path is: $QT_PLUGIN_PATH"
 
-exec "$component_path/usr/bin/solarus-launcher" "$@"
+exec "$component_path/bin/solarus-launcher" "$@"
