@@ -14,8 +14,8 @@
       "assets": [
         {
           "type": "file",
-          "source": "",
-          "dest": "VPinballX_BGFX"
+          "source": "VPinballX_BGFX",
+          "dest": "bin/VPinballX_BGFX"
         },
         {
           "type": "dir",
