@@ -107,6 +107,38 @@
           "contents": "$SOURCE_VERSION"
         }
       ]
+    },
+    {
+      "source_url": "https://github.com/vpinball/pinmame/releases/download/{VERSION}/libpinmame-*-linux-x64.zip",
+      "source_type": "github_release",
+      "version": "newest",
+      "extraction_type": "archive"
+    },
+    {
+      "source_url": "$EXTRACTED_PATH/libpinmame-*-linux-x64.tar.gz",
+      "source_type": "local",
+      "version": "latest",
+      "extraction_type": "archive",
+      "assets": [
+        {
+          "type": "dir",
+          "source": "",
+          "dest": "libpinmame"
+        }
+      ]
+    },
+    {
+      "source_url": "https://github.com/vpinball/pinmame/releases/download/{VERSION}/xpinmame-*-linux-x64.zip",
+      "source_type": "github_release",
+      "version": "newest",
+      "extraction_type": "archive",
+      "assets": [
+        {
+          "type": "dir",
+          "source": "",
+          "dest": "xpinmame"
+        }
+      ]
     }
   ]
 }
