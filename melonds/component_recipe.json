@@ -3,29 +3,17 @@
     {
       "source_url": "net.kuribo64.melonDS",
       "source_type": "flatpak_id",
-      "version": "$MELONDS_DESIRED_VERSION",
+      "version": "latest",
       "dest": "user",
       "extraction_type": "flatpak",
       "assets": [
         {
           "type": "dir",
-          "source": "usr/bin",
+          "source": "bin",
           "dest": "bin"
         }
       ],
       "libs": [
-        {
-          "library": "libQt6Gui.so.6",
-          "runtime_name": "org.kde.Platform",
-          "runtime_version": "6.9",
-          "dest": "shared-libs"
-        },
-        {
-          "library": "libQt6Core.so.6",
-          "runtime_name": "org.kde.Platform",
-          "runtime_version": "6.9",
-          "dest": "shared-libs"
-        },
         {
           "library": "libQt6Multimedia.so.6",
           "runtime_name": "org.kde.Platform",
@@ -39,7 +27,19 @@
           "dest": "shared-libs"
         },
         {
+          "library": "libQt6Gui.so.6",
+          "runtime_name": "org.kde.Platform",
+          "runtime_version": "6.9",
+          "dest": "shared-libs"
+        },
+        {
           "library": "libQt6DBus.so.6",
+          "runtime_name": "org.kde.Platform",
+          "runtime_version": "6.9",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libQt6Core.so.6",
           "runtime_name": "org.kde.Platform",
           "runtime_version": "6.9",
           "dest": "shared-libs"
@@ -51,17 +51,12 @@
           "dest": "shared-libs"
         },
         {
-          "library": "libslirp.so.0",
-          "source": "usr/lib",
+          "library": "libenet.so.7",
+          "source": "lib",
           "dest": "lib"
         }
       ],
       "extras": [
-        {
-          "type": "dir",
-          "source": "$REPO_ROOT/$component_name",
-          "dest": "$COMPONENT_ARTIFACT_ROOT"
-        },
         {
           "type": "create",
           "dest": "component_version",
