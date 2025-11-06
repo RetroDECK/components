@@ -15,7 +15,7 @@
         {
           "type": "file",
           "source": "share/raze/raze.pk3",
-          "dest": "bin"
+          "dest": ""
         },
         {
           "type": "dir",
