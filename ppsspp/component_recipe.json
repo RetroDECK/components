@@ -3,29 +3,24 @@
     {
       "source_url": "org.ppsspp.PPSSPP",
       "source_type": "flatpak_id",
-      "version": "$RYUBING_DESIRED_VERSION",
+      "version": "latest",
       "dest": "user",
       "extraction_type": "flatpak",
       "assets": [
         {
           "type": "dir",
-          "source": "usr/bin",
+          "source": "bin",
           "dest": "bin"
         }
       ],
       "libs": [
         {
           "library": "libGLEW.so",
-          "source": "usr/lib",
+          "source": "lib",
           "dest": "lib"
         }
       ],
       "extras": [
-        {
-          "type": "dir",
-          "source": "$REPO_ROOT/$COMPONENT_NAME",
-          "dest": "$COMPONENT_ARTIFACT_ROOT"
-        },
         {
           "type": "create",
           "dest": "component_version",
