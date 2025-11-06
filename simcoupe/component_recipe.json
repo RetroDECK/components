@@ -8,8 +8,8 @@
       "assets": [
         {
           "type": "dir",
-          "source": "usr/bin",
-          "dest": "bin"
+          "source": "simcoupe_1.2.15_amd64",
+          "dest": ""
         }
       ],
       "libs": [],
