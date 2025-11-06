@@ -10,6 +10,11 @@
           "type": "dir",
           "source": "usr/bin",
           "dest": "bin"
+        },
+        {
+          "type": "dir",
+          "source": "share/ppsspp/assets/",
+          "dest": "bin"
         }
       ],
       "libs": [
