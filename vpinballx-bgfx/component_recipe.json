@@ -3,45 +3,95 @@
     {
       "source_url": "https://github.com/vpinball/vpinball/releases/download/{VERSION}/VPinballX_BGFX-*-linux-x64-Release.zip",
       "source_type": "github_release",
-      "version": "latest",
+      "version": "newest",
       "extraction_type": "archive"
     },
     {
-      "source_url": "$EXTRACTED_PATH/VPinballX_BGFX-{VERSION}-linux-x64-Release.tar.gz",
+      "source_url": "$EXTRACTED_PATH/VPinballX_BGFX-*-linux-x64-Release.tar.gz",
       "source_type": "local",
-      "version": "latest",
+      "version": "newest",
       "extraction_type": "archive",
       "assets": [
         {
+          "type": "file",
+          "source": "",
+          "dest": "VPinballX_BGFX"
+        },
+        {
           "type": "dir",
-          "source": "usr/bin",
-          "dest": "bin"
+          "source": "assets",
+          "dest": "assets"
+        },
+        {
+          "type": "dir",
+          "source": "docs",
+          "dest": "docs"
+        },
+        {
+          "type": "dir",
+          "source": "plugins",
+          "dest": "plugins"
+        },
+        {
+          "type": "dir",
+          "source": "scripts",
+          "dest": "scripts"
+        },
+        {
+          "type": "dir",
+          "source": "tables",
+          "dest": "tables"
         }
       ],
       "libs": [
         {
           "library": "libSDL3.so.0",
-          "source": "usr/lib",
-          "dest": "lib"
+          "runtime_name": "org.freedesktop.Platform",
+          "runtime_version": "25.08",
+          "dest": "shared-libs"
         },
         {
-          "library": "libSDL3_image.so.",
-          "source": "usr/lib",
-          "dest": "lib"
+          "library": "libSDL3_image.so.0",
+          "runtime_name": "org.freedesktop.Platform",
+          "runtime_version": "25.08",
+          "dest": "shared-libs"
         },
         {
           "library": "libjxl.so.0.11",
-          "source": "usr/lib",
-          "dest": "lib"
+          "runtime_name": "org.freedesktop.Platform",
+          "runtime_version": "25.08",
+          "dest": "shared-libs"
         },
         {
           "library": "libSDL3_ttf.so.0",
-          "source": "usr/lib",
+          "runtime_name": "org.freedesktop.Platform",
+          "runtime_version": "25.08",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libhidapi-hidraw.so.0",
+          "runtime_name": "org.gnome.Platform",
+          "runtime_version": "49",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libfreeimage.so.3.19.0",
+          "source": "",
           "dest": "lib"
         },
         {
           "library": "libhidapi-hidraw.so.0",
-          "source": "usr/lib",
+          "source": "",
+          "dest": "lib"
+        },
+        {
+          "library": "libbgfx.so",
+          "source": "",
+          "dest": "lib"
+        },
+        {
+          "library": "libserialport.so",
+          "source": "",
           "dest": "lib"
         }
       ],
