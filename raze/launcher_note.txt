@@ -1,0 +1,1 @@
+It's complaining it can't find the pk3 file, but its next to the binary I guess we need some launcher script for raze to launch with the pk3 file
