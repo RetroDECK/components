@@ -45,6 +45,18 @@
           "dest": "shared-libs"
         },
         {
+          "library": "libevdev.so.2",
+          "runtime_name": "org.gnome.Platform",
+          "runtime_version": "49",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libusb-1.0.so.0",
+          "runtime_name": "org.freedesktop.Platform",
+          "runtime_version": "25.08",
+          "dest": "shared-libs"
+        },
+        {
           "library": "libQt6DBus.so.6",
           "runtime_name": "org.kde.Platform",
           "runtime_version": "6.9",
@@ -55,34 +67,9 @@
           "runtime_name": "org.kde.Platform",
           "runtime_version": "6.9",
           "dest": "shared-libs"
-        },
-        {
-          "library": "libusb-1.0.so.0",
-          "source": "usr/lib",
-          "dest": "lib"
-        },
-        {
-          "library": "libevdev.so.2",
-          "source": "usr/lib",
-          "dest": "lib"
-        },
-        {
-          "library": "libslirp.so.0",
-          "source": "usr/lib",
-          "dest": "lib"
-        },
-        {
-          "library": "libfluidsynth.so.3",
-          "source": "usr/lib",
-          "dest": "lib"
         }
       ],
       "extras": [
-        {
-          "type": "dir",
-          "source": "$REPO_ROOT/$COMPONENT_NAME",
-          "dest": "$COMPONENT_ARTIFACT_ROOT"
-        },
         {
           "type": "create",
           "dest": "component_version",

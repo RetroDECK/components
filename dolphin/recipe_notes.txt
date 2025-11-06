@@ -1,0 +1,5 @@
+./component_launcher.sh: rad 11: log: kommandot finns inte
+./component_launcher.sh: rad 12: log: kommandot finns inte
+./component_launcher.sh: rad 13: log: kommandot finns inte
+qt.qpa.plugin: Could not find the Qt platform plugin "xcb" in "/org.kde.Platform/6.9/plugins/platforms/:"
+This application failed to start because no Qt platform plugin could be initialized. Reinstalling the application may fix this problem.
