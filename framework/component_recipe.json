@@ -1,0 +1,37 @@
+{
+    "framework": [
+        {
+        "source_url": "$REPO_ROOT/$COMPONENT_NAME",
+        "source_type": "local",
+        "extraction_type": "local",
+        "version": "$FRAMEWORK_DESIRED_VERSION",
+        "assets": [
+            {
+                "type": "create",
+                "dest": "component_version",
+                "contents": "$FRAMEWORK_DESIRED_VERSION"
+            },
+            {
+                "type": "file",
+                "source": "$REPO_ROOT/$COMPONENT_NAME/component_functions.sh",
+                "dest": "."
+            },            
+            {
+                "type": "file",
+                "source": "$REPO_ROOT/$COMPONENT_NAME/component_launcher.sh",
+                "dest": "."
+            },
+            {
+                "type": "file",
+                "source": "$REPO_ROOT/$COMPONENT_NAME/component_manifest.json",
+                "dest": "."
+            },
+            {
+                "type": "file",
+                "source": "$REPO_ROOT/$COMPONENT_NAME/component_prepare.sh",
+                "dest": "."
+            }
+        ]
+        }
+    ]
+}
