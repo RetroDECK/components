@@ -1,0 +1,5 @@
+Flips main repo has been archive and might be deleted.
+The flatpak is years outdated.
+
+There is a fork of it on Gitlab, but so far no new releases has come out.
+We switch to a fork after it stablizes.
