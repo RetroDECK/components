@@ -1,0 +1,35 @@
+{
+  "<component name>": [
+      {
+      "source_url": "https://url.to.source/{VERSION}/archive.zip",
+      "source_type": "http",
+      "version": "$COMPONENT_DESIRED_VERSION",
+      "extraction_type": "archive",
+      "assets": [
+        {
+          "type": "dir",
+          "source": "usr/bin",
+          "dest": "bin"
+        },
+        {
+          "type": "dir",
+          "source": "$REPO_ROOT/$component_name",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        }
+      ],
+      "libs": [
+        {
+          "library": "runtimeLib.so.6",
+          "runtime_name": "org.kde.Platform",
+          "runtime_version": "6.9",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "specificComponentLib.so.6",
+          "source": "usr/lib",
+          "dest": "lib"
+        }
+      ]
+    }
+  ]
+}
