@@ -14,22 +14,22 @@
             {
                 "type": "file",
                 "source": "$REPO_ROOT/$COMPONENT_NAME/component_functions.sh",
-                "dest": "."
+                 "dest": "$COMPONENT_ARTIFACT_ROOT"
             },            
             {
                 "type": "file",
                 "source": "$REPO_ROOT/$COMPONENT_NAME/component_launcher.sh",
-                "dest": "."
+                 "dest": "$COMPONENT_ARTIFACT_ROOT"
             },
             {
                 "type": "file",
                 "source": "$REPO_ROOT/$COMPONENT_NAME/component_manifest.json",
-                "dest": "."
+                 "dest": "$COMPONENT_ARTIFACT_ROOT"
             },
             {
                 "type": "file",
                 "source": "$REPO_ROOT/$COMPONENT_NAME/component_prepare.sh",
-                "dest": "."
+                 "dest": "$COMPONENT_ARTIFACT_ROOT"
             }
         ]
         }
