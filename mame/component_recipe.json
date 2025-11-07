@@ -66,10 +66,9 @@
       ]
     },
     {
-      "source_url": "https://www.mamecheat.co.uk/download/cheat0279.zip",
-      "source_type": "http",
-      "version": "latest",
-      "dest": "user",
+      "source_url": "$REPO_ROOT/$COMPONENT_NAME/tmp_assets/cheat*.zip",
+      "source_type": "local",
+      "version": "local",
       "extraction_type": "archive",
       "assets": [
         {
