@@ -28,6 +28,8 @@ fi
 write_components_version() {
     log d "Starting write_components_version function" "$logfile"
 
+    components_version_list="components_version_list.md"
+
     log d "Initializing components version list file: $components_version_list" "$logfile"
     echo "# Components Version Summary" > "$components_version_list"
     echo "" >> "$components_version_list"
