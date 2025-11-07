@@ -19,7 +19,6 @@ source "$SCRIPT_DIR/lib/download.sh"
 source "$SCRIPT_DIR/lib/extract.sh"
 source "$SCRIPT_DIR/lib/assemble.sh"
 source "$SCRIPT_DIR/lib/libs.sh"
-source "$SCRIPT_DIR/lib/archive.sh"
 
 log() {
   echo "[$1] $2" >&2
