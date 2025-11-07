@@ -4,9 +4,36 @@
       "source_url": "https://downloads.solarus-games.org/solarus/linux/solarus-launcher-v2.0.1-linux-amd64.zip",
       "source_type": "http",
       "version": "latest",
-      "extraction_type": "archive"
-              },
-      {
+      "extraction_type": "archive",
+      "assets": [
+        {
+          "type": "create",
+          "dest": "component_version",
+          "contents": "$FRAMEWORK_DESIRED_VERSION"
+        },
+        {
+          "type": "file",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/component_functions.sh",
+          "dest": "."
+        },
+        {
+          "type": "file",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/component_launcher.sh",
+          "dest": "."
+        },
+        {
+          "type": "file",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/component_manifest.json",
+          "dest": "."
+        },
+        {
+          "type": "file",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/component_prepare.sh",
+          "dest": "."
+        }
+      ]
+    },
+    {
       "source_url": "$EXTRACTED_PATH/solarus-launcher.AppImage",
       "source_type": "local",
       "version": "latest",
@@ -17,7 +44,7 @@
           "source": "usr/bin",
           "dest": "bin"
         },
-           {
+        {
           "type": "dir",
           "source": "usr/plugins/",
           "dest": "plugins"
