@@ -1,15 +1,15 @@
 {
   "eden": [
     {
-      "source_url": "https://github.com/eden-emulator/Releases/releases/{VERSION}/*-amd64.AppImage",
+      "source_url": "https://github.com/eden-emulator/Releases/releases/download/v{VERSION}/*steamdeck-gcc-standard.AppImage",
       "source_type": "github_release",
       "version": "latest",
       "extraction_type": "appimage",
       "assets": [
         {
-          "type": "dir",
-          "source": "usr/bin",
-          "dest": "bin"
+            "type": "dir",
+            "source": "$WORKDIR/AppDir/bin",
+            "dest": "bin"
         },
         {
           "type": "dir",
