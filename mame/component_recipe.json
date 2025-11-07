@@ -68,7 +68,6 @@
     {
       "source_url": "$REPO_ROOT/$COMPONENT_NAME/tmp_assets/cheat*.zip",
       "source_type": "local",
-      "version": "local",
       "extraction_type": "archive",
       "assets": [
         {

@@ -242,7 +242,6 @@
     {
       "source_url": "cores",
       "source_type": "local",
-      "version": "local",
       "extraction_type": "local",
       "assets": [
         {

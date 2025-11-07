@@ -36,7 +36,6 @@
     {
       "source_url": "$EXTRACTED_PATH/solarus-launcher.AppImage",
       "source_type": "local",
-      "version": "latest",
       "extraction_type": "appimage",
       "assets": [
         {
