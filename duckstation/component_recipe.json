@@ -1,9 +1,9 @@
 {
   "duckstation": [
     {
-      "source_url": "https://github.com/RetroDECK/Duckstation/releases/download/preview/DuckStation-x64.AppImage",
+      "source_url": "https://github.com/RetroDECK/Duckstation/releases/download/{VERSION}/DuckStation-x64.AppImage",
       "source_type": "github_release",
-      "version": "latest",
+      "version": "preview",
       "extraction_type": "appimage",
       "assets": [
         {
