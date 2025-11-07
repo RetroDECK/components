@@ -1,4 +1,4 @@
-name: "Build RetroDECK Components"
+name: "Alchemic Circle: Build RetroDECK Components"
 
 on:
   push:
@@ -9,8 +9,8 @@ on:
 
   workflow_dispatch:
 
-  schedule:
-    - cron: '00 17 * * *' # 2:00 AM JST (JST is UTC+9, so 17:00 UTC)
+  # schedule:
+  #   - cron: '00 17 * * *' # 2:00 AM JST (JST is UTC+9, so 17:00 UTC)
 
 permissions:
   contents: write
@@ -31,18 +31,42 @@ jobs:
         run: |
           heavy=()
           light=()
-      
-          for recipe in */recipe.sh; do
-            if grep -q "flatpak_id_CULO" "$recipe"; then  #TODO: we might not need this anymore
-              heavy+=("$recipe")
+
+          # define here all the "source_url" that must be built on the "heavy" runner
+          heavy_list=()
+
+          for recipe in */component_recipe.json; do
+            # Skip if the glob didn't match any real file
+            [ -f "$recipe" ] || continue
+
+            # Extract the first source_url present in the recipe file (if any)
+            source_url=$(jq -r '..|objects|.source_url? // empty' "$recipe" | head -n1 || echo "")
+
+            # If heavy_list is defined and we have a source_url, check if the source_url is in the heavy_list
+            if [[ ${#heavy_list[@]} -gt 0 && -n "$source_url" ]]; then
+              matched=0
+              for h in "${heavy_list[@]}"; do
+                if [[ "$source_url" == "$h" ]]; then
+                  # assign directly to heavy and stop searching
+                  heavy+=("$recipe")
+                  matched=1
+                  break
+                fi
+              done
+
+              # if no match found, go to light
+              if [[ $matched -eq 0 ]]; then
+                light+=("$recipe")
+              fi
             else
+              # no heavy_list or no source_url -> default to light
               light+=("$recipe")
             fi
           done
-      
+
           heavy_json=$(printf '%s\n' "${heavy[@]}" | jq -R . | jq -s -c .)
           light_json=$(printf '%s\n' "${light[@]}" | jq -R . | jq -s -c .)
-      
+
           echo "heavy=$heavy_json" >> $GITHUB_OUTPUT
           echo "light=$light_json" >> $GITHUB_OUTPUT
 
@@ -95,20 +119,24 @@ jobs:
           }
           git log -1 --oneline
 
-      # Run Build
-      - name: Run Build Artifacts
+      # Clone Alchemist Repo: note this will not be needed once the repo will be integrated here
+      - name: Cloning Alchemist Repo
         run: |
-          source automation-tools/assembler.sh
+          git clone --depth 1 https://github.com/icenine451/Alchemist.git automation-tools/Alchemist-temp
+
+      # Run Build
+      - name: 'Alchemist: Run Build Artifacts'
+        run: |
           artifact_name=$(basename $(dirname "${{ matrix.recipe }}"))
           echo "artifact_name=$artifact_name" >> $GITHUB_ENV
-          bash "${{ matrix.recipe }}"
+          automation-tools/Alchemist-temp/alchemist.sh -f "${{ matrix.recipe }}"
 
       - name: Upload Artifacts
         uses: actions/upload-artifact@v4
         with:
           name: ${{ env.artifact_name }}
           path: ${{ env.artifact_name }}/artifacts/*
-        
+
   build-heavy:
     needs: setup-recipes
     runs-on: retrodeck
@@ -155,13 +183,23 @@ jobs:
           }
           git log -1 --oneline
 
-      # Run Build
-      - name: Run Build Artifacts
+      # Clone Alchemist Repo: note this will not be needed once the repo will be integrated here
+      - name: Cloning Alchemist Repo
         run: |
-          source automation-tools/assembler.sh
+          git clone --depth 1 https://github.com/icenine451/Alchemist.git automation-tools/Alchemist-temp
+
+      # Run Build
+      - name: 'Alchemist: Run Build Artifacts'
+        run: |
           artifact_name=$(basename $(dirname "${{ matrix.recipe }}"))
           echo "artifact_name=$artifact_name" >> $GITHUB_ENV
-          bash "${{ matrix.recipe }}"
+          automation-tools/Alchemist-temp/alchemist.sh -f "${{ matrix.recipe }}"
+
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ env.artifact_name }}
+          path: ${{ env.artifact_name }}/artifacts/*
 
   Release_RetroDECK_Components:
     needs: [build-light, build-heavy]

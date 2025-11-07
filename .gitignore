@@ -7,3 +7,6 @@ _work
 component_version
 components_version_list.md
 squashfs-root
+
+#just temporary until Alchemist is integrated here
+automation-tools/Alchemist-temp 
