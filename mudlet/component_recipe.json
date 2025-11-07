@@ -1,15 +1,9 @@
 {
   "mudlet": [
     {
-      "source_url": "$REPO_ROOT/$COMPONENT_NAME/assets/Mudlet-*-linux-x64.AppImage.tar",
+      "source_url": "$REPO_ROOT/$COMPONENT_NAME/assets/Mudlet-4.19.1-linux-x64.AppImage",
       "source_type": "local",
       "version": "local",
-      "extraction_type": "archive"
-    },
-    {
-      "source_url": "$EXTRACTED_PATH/Mudlet.AppImage",
-      "source_type": "local",
-      "version": "4.19.1",
       "extraction_type": "appimage",
       "assets": [
         {
@@ -94,6 +88,12 @@
           "library": "libQt5TextToSpeech.so.5",
           "runtime_name": "org.kde.Platform",
           "runtime_version": "5.15-24.08",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libicui18n.so.67",
+          "runtime_name": "org.freedesktop.Platform",
+          "runtime_version": "20.08",
           "dest": "shared-libs"
         },
         {
