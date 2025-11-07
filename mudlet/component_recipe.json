@@ -1,15 +1,15 @@
 {
   "mudlet": [
     {
-      "source_url": "https://www.mudlet.org/download/42/",
-      "source_type": "http",
-      "version": "$MUDLET_DESIRED_VERSION",
+      "source_url": "$REPO_ROOT/$COMPONENT_NAME/assets/Mudlet-*-linux-x64.AppImage.tar",
+      "source_type": "local",
+      "version": "local",
       "extraction_type": "archive"
     },
     {
       "source_url": "$EXTRACTED_PATH/Mudlet.AppImage",
       "source_type": "local",
-      "version": "$MUDLET_DESIRED_VERSION",
+      "version": "4.19.1",
       "extraction_type": "appimage",
       "assets": [
         {
@@ -107,10 +107,9 @@
           "dest": "lib"
         },
                 {
-          "library": "libicui18n.so.67",
-          "runtime_name": "org.kde.Platform",
-          "runtime_version": "5.15-24.08",
-          "dest": "shared-libs"
+          "library": "libicui18n.so.56",
+          "source": "lib",
+          "dest": "lib"
         },
         {
           "library": "libqt5keychain.so.1",
