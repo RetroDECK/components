@@ -8,7 +8,7 @@
       "assets": [
         {
           "type": "file",
-          "source": "xenia_canary",
+          "source": "build/bin/Linux/Release/xenia_canary",
           "dest": "bin"
         },
         {
