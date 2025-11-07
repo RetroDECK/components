@@ -285,7 +285,7 @@ jobs:
           done
 
           # Source the write function and call it
-          source automation-tools/assembler.sh
+          source automation-tools/write_components_version.sh
           write_components_version
 
           # Show the resulting components_version_list.md file
