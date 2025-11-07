@@ -60,8 +60,9 @@
         },
         {
           "library": "libssl.so.1.1",
-          "source": "usr/lib",
-          "dest": "lib"
+          "runtime_name": "org.kde.Platform",
+          "runtime_version": "5.15",
+          "dest": "shared-libs"
         }
       ]
     }
