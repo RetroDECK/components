@@ -9,17 +9,17 @@
       "assets": [
         {
           "type": "file",
-          "source": "flips",
+          "source": "flips-linux/flips",
           "dest": "bin"
         },
         {
           "type": "file",
-          "source": "COPYING",
+          "source": "flips-linux/COPYING",
           "dest": "doc"
         },
         {
           "type": "file",
-          "source": "COPYING.gpl3",
+          "source": "flips-linux/COPYING.gpl3",
           "dest": "doc"
         }
       ],
