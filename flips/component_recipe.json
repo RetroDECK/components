@@ -1,10 +1,9 @@
 {
   "flips": [
     {
-      "source_url": "tmp_assets/flips-linux.tar.gz", 
+      "source_url": "tmp_assets/flips-linux.zip", 
       "source_type": "local",
       "version": "latest",
-      "dest": "user",
       "extraction_type": "archive",
       "assets": [
         {
