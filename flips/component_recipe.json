@@ -1,7 +1,7 @@
 {
   "flips": [
     {
-      "source_url": "tmp_assets/flips-linux.zip", 
+      "source_url": "$REPO_ROOT/$COMPONENT_NAME/tmp_assets/flips-linux.zip", 
       "source_type": "local",
       "version": "latest",
       "extraction_type": "archive",
