@@ -64,6 +64,25 @@
           "dest": "shared-libs"
         }
       ]
+    },
+    {
+      "source_url": "https://www.mamecheat.co.uk/download/cheat0279.zip",
+      "source_type": "http",
+      "version": "latest",
+      "dest": "user",
+      "extraction_type": "archive",
+      "assets": [
+        {
+          "type": "file",
+          "source": "cheat.7z",
+          "dest": "cheat"
+        },
+        {
+          "type": "file",
+          "source": "cheat.txt",
+          "dest": "cheat"
+        }
+      ]
     }
   ]
 }
