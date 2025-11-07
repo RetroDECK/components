@@ -1,9 +1,9 @@
 {
   "kegs": [
     {
-      "source_url": "https://kegs.sourceforge.net/kegs.1.38.zip",
+      "source_url": "https://kegs.sourceforge.net/kegs.{VERSION}.zip",
       "source_type": "http",
-      "version": "latest",
+      "version": "1.38",
       "extraction_type": "archive",
       "assets": [
         {

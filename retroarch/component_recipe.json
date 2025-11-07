@@ -209,9 +209,9 @@
       ]
     },
     {
-      "source_url": "http://bluemsx.msxblue.com/rel_download/blueMSXv282full.zip",
+      "source_url": "http://bluemsx.msxblue.com/rel_download/blueMSXv{VERSION}full.zip",
       "source_type": "http",
-      "version": "latest",
+      "version": "282",
       "extraction_type": "archive",
       "assets": [
         {
