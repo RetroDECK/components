@@ -14,21 +14,22 @@ extract() {
     return 1
   fi
 
-  local final_dest="$dest/$(basename $archive)-extracted/squashfs-root"
+  local final_dest="$dest/$(basename $archive)-extracted"
 
   extract_cmd() {
+    mkdir -p "$final_dest"
     chmod +x "$archive"
-    cd "$dest" && "$archive" --appimage-extract
-    mkdir -p "$dest/$(basename $archive)-extracted"
-    mv "$dest/squashfs-root" "$final_dest"
+    cd "$final_dest" && "$archive" --appimage-extract
   }
 
   extract_cmd "$archive"
 
-  if [[ ! -d "$final_dest" ]]; then
+  if [[ ! -e "$final_dest/squashfs-root" ]]; then
     log error "AppImage $archive could not be extracted"
     return 1
   fi
+
+  final_dest="$final_dest/squashfs-root"
 
   if [[ ! "$DRYRUN" == "true" ]]; then
     log info "Extraction successful, removing downloaded archive $archive"
