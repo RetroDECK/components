@@ -12,7 +12,7 @@ get_latest_git_commit_version() {
   local curl_exit=$?
 
   if [[ "$curl_exit" -ne 0 ]]; then
-    log_error "Failed to fetch latest release for https://api.github.com/repos/$owner/$repo/commits/HEAD"
+    log error "Failed to fetch latest release for https://api.github.com/repos/$owner/$repo/commits/HEAD"
     return 1
   fi
 
@@ -20,7 +20,7 @@ get_latest_git_commit_version() {
   version=$(echo "$response" | jq -r '.sha')
 
   if [[ -z "$version" ]]; then
-    log_error "Could not parse latest version git command"
+    log error "Could not parse latest version git command"
     return 1
   fi
 

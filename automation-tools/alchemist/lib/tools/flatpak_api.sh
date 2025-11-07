@@ -11,7 +11,7 @@ get_latest_flatpak_release_version() {
   local flatpak_cmd_exit=$?
 
   if [[ "$flatpak_cmd_exit" -ne 0 ]]; then
-    log_error "Failed to fetch latest release for $flatpak_id"
+    log error "Failed to fetch latest release for $flatpak_id"
     return 1
   fi
 
@@ -19,7 +19,7 @@ get_latest_flatpak_release_version() {
   version=$(echo "$response" | grep -E 'Commit:|Incheckning:' | awk '{print $2}')
 
   if [[ -z "$version" ]]; then
-    log_error "Could not parse latest version flatpak remote-info command"
+    log error "Could not parse latest version flatpak remote-info command"
     return 1
   fi
 

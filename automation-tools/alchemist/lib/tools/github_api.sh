@@ -69,7 +69,7 @@ get_latest_github_release_version() {
   rm -f "$headers_file"
 
   if [[ "$curl_exit" -ne 0 ]]; then
-    log_error "Failed to fetch latest release for $owner/$repo"
+    log error "Failed to fetch latest release for $owner/$repo"
     return 1
   fi
 
@@ -78,7 +78,7 @@ get_latest_github_release_version() {
   version=$(echo "$response" | jq -r '.tag_name')
 
   if [[ -z "$version" ]]; then
-    log_error "Could not parse latest version from GitHub API response"
+    log error "Could not parse latest version from GitHub API response"
     return 1
   fi
 
@@ -104,7 +104,7 @@ get_newest_github_release_version() {
   rm -f "$headers_file"
 
   if [[ "$curl_exit" -ne 0 ]]; then
-    log_error "Failed to fetch newest release for $owner/$repo"
+    log error "Failed to fetch newest release for $owner/$repo"
     return 1
   fi
 
@@ -113,7 +113,7 @@ get_newest_github_release_version() {
   version=$(echo "$response" | jq -r 'sort_by(.published_at) | reverse | .[0].tag_name')
 
   if [[ -z "$version" ]]; then
-    log_error "Could not parse newest version from GitHub API response"
+    log error "Could not parse newest version from GitHub API response"
     return 1
   fi
 
