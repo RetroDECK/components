@@ -48,7 +48,7 @@ jobs:
               for h in "${heavy_list[@]}"; do
                 if [[ "$source_url" == "$h" ]]; then
                   # assign directly to heavy and stop searching
-                  heavy+=("$recipe")
+                  heavy+=("$(jq -n --arg r "$recipe" --arg c "$(basename "$(dirname "$recipe")")" '{recipe:$r,component:$c}')")
                   matched=1
                   break
                 fi
@@ -56,21 +56,23 @@ jobs:
 
               # if no match found, go to light
               if [[ $matched -eq 0 ]]; then
-                light+=("$recipe")
+                light+=("$(jq -n --arg r "$recipe" --arg c "$(basename "$(dirname "$recipe")")" '{recipe:$r,component:$c}')")
               fi
             else
               # no heavy_list or no source_url -> default to light
-              light+=("$recipe")
+              light+=("$(jq -n --arg r "$recipe" --arg c "$(basename "$(dirname "$recipe")")" '{recipe:$r,component:$c}')")
             fi
           done
 
-          heavy_json=$(printf '%s\n' "${heavy[@]}" | jq -R . | jq -s -c .)
-          light_json=$(printf '%s\n' "${light[@]}" | jq -R . | jq -s -c .)
+          # Each entry in heavy/light is a raw JSON object string; combine them into a JSON array
+          heavy_json=$(printf '%s\n' "${heavy[@]}" | jq -s -c .)
+          light_json=$(printf '%s\n' "${light[@]}" | jq -s -c .)
 
           echo "heavy=$heavy_json" >> $GITHUB_OUTPUT
           echo "light=$light_json" >> $GITHUB_OUTPUT
 
   build-light:
+    name: "Build ${{ matrix.recipe.component }}"
     needs: setup-recipes
     runs-on: ubuntu-latest
     if: github.event_name != 'schedule' || github.ref == 'refs/heads/update/components'
@@ -127,9 +129,9 @@ jobs:
       # Run Build
       - name: 'Alchemist: Run Build Artifacts'
         run: |
-          artifact_name=$(basename $(dirname "${{ matrix.recipe }}"))
-          echo "artifact_name=$artifact_name" >> $GITHUB_ENV
-          automation-tools/Alchemist-temp/alchemist.sh -f "${{ matrix.recipe }}"
+          # Use the component name provided in the matrix entry
+          echo "artifact_name=${{ matrix.recipe.component }}" >> $GITHUB_ENV
+          automation-tools/Alchemist-temp/alchemist.sh -f "${{ matrix.recipe.recipe }}"
 
       - name: Upload Artifacts
         uses: actions/upload-artifact@v4
@@ -138,6 +140,7 @@ jobs:
           path: ${{ env.artifact_name }}/artifacts/*
 
   build-heavy:
+    name: "Build ${{ matrix.recipe.component }}"
     needs: setup-recipes
     runs-on: retrodeck
     if: (github.event_name != 'schedule' || github.ref == 'refs/heads/update/components') && fromJSON(needs.setup-recipes.outputs.heavy-matrix).length > 0
@@ -191,9 +194,9 @@ jobs:
       # Run Build
       - name: 'Alchemist: Run Build Artifacts'
         run: |
-          artifact_name=$(basename $(dirname "${{ matrix.recipe }}"))
-          echo "artifact_name=$artifact_name" >> $GITHUB_ENV
-          automation-tools/Alchemist-temp/alchemist.sh -f "${{ matrix.recipe }}"
+          # Use the component name provided in the matrix entry
+          echo "artifact_name=${{ matrix.recipe.component }}" >> $GITHUB_ENV
+          automation-tools/Alchemist-temp/alchemist.sh -f "${{ matrix.recipe.recipe }}"
 
       - name: Upload Artifacts
         uses: actions/upload-artifact@v4
