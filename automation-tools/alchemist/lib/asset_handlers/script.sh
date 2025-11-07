@@ -27,7 +27,7 @@ handle_asset() {
   case "$type" in
     source)
       process_asset_cmd() {
-        bash "$1"
+        source "$1"
       }
     ;;
     execute)
