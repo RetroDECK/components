@@ -8,7 +8,7 @@
       "assets": [
         {
           "type": "dir",
-          "source": "$WORKDIR/AppDir/bin",
+          "source": "bin",
           "dest": "bin"
         },
         {
