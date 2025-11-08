@@ -3,7 +3,7 @@
     {
       "source_url": "https://kegs.sourceforge.net/kegs.{VERSION}.zip",
       "source_type": "http",
-      "version": "1.38",
+      "version": "$KEGS_DESIRED_VERSION",
       "extraction_type": "archive",
       "assets": [
         {

@@ -3,7 +3,7 @@
     {
       "source_url": "https://github.com/DirtBagXon/hypseus-singe/releases/download/{VERSION}/*_AppImage.tar.gz",
       "source_type": "github_release",
-      "version": "latest",
+      "version": "$HYPSEUS_DESIRED_VERSION",
       "extraction_type": "zip",
       "assets": [
         {

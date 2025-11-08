@@ -3,7 +3,7 @@
     {
       "source_url": "org.libretro.RetroArch",
       "source_type": "flatpak_id",
-      "version": "latest",
+      "version": "$RETROARCH_DESIRED_VERSION",
       "dest": "user",
       "extraction_type": "flatpak",
       "assets": [

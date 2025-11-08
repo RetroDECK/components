@@ -3,7 +3,7 @@
     {
       "source_url": "https://github.com/lindbergh-loader/lindbergh-loader/releases/{VERSION}/*.AppImage",
       "source_type": "github_release",
-      "version": "latest",
+      "version": "$LINDBURGH_DESIRED_VERSION",
       "extraction_type": "appimage",
       "assets": [
         {

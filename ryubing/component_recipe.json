@@ -3,7 +3,7 @@
     {
       "source_url": "io.github.ryubing.Ryujinx",
       "source_type": "flatpak_id",
-      "version": "latest",
+      "version": "$RYUBING_DESIRED_VERSION",
       "dest": "user",
       "extraction_type": "flatpak",
       "assets": [

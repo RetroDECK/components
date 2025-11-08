@@ -3,7 +3,7 @@
     {
       "source_url": "https://downloads.solarus-games.org/solarus/linux/solarus-launcher-v{VERSION}-linux-amd64.zip",
       "source_type": "http",
-      "version": "2.0.1",
+      "version": "$SOLARUS_DESIRED_VERSION",
       "extraction_type": "archive",
       "assets": [
         {

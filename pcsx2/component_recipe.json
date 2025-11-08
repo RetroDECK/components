@@ -3,7 +3,7 @@
     {
       "source_url": "https://github.com/PCSX2/pcsx2/releases/download/{VERSION}/*.AppImage",
       "source_type": "github_release",
-      "version": "latest",
+      "version": "$PCSX2_DESIRED_VERSION",
       "extraction_type": "appimage",
       "assets": [
         {

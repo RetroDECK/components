@@ -3,7 +3,7 @@
     {
       "source_url": "io.github.garglk.Gargoyle",
       "source_type": "flatpak_id",
-      "version": "latest",
+      "version": "$GARGOYLE_DESIRED_VERSION",
       "dest": "user",
       "extraction_type": "flatpak",
       "assets": [

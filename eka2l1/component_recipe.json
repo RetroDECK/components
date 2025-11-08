@@ -3,7 +3,7 @@
     {
       "source_url": "https://github.com/EKA2L1/EKA2L1/releases/download/{VERSION}/*.AppImage",
       "source_type": "github_release",
-      "version": "latest",
+      "version": "$EKA2L1_DESIRED_VERSION",
       "extraction_type": "appimage",
       "assets": [
         {

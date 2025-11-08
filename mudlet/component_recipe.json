@@ -3,7 +3,7 @@
     {
       "source_url": "$REPO_ROOT/$COMPONENT_NAME/tmp_assets/Mudlet-{VERSION}-linux-x64.AppImage",
       "source_type": "local",
-      "version": "4.19.1",
+      "version": "$MUDLET_DESIRED_VERSION",
       "extraction_type": "appimage",
       "assets": [
         {
