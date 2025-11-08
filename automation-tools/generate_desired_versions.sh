@@ -134,7 +134,7 @@ generate_desired_versions() {
     local component_name="$(basename $(dirname "$file"))"
     local component_source_url="$(jq -r '.[].[0].source_url' "$file")"
     local component_source_type="$(jq -r '.[].[0].source_type' "$file")"
-    local component_version="$(jq -r '.[].[0].version//empty' "$file")"
+    local component_version="$(jq -r '.[].[0].version//empty' "$file" | envsubst)"
 
     if [[ ! -n "$component_version" ]]; then
       echo "Component \"$component_name\" does not have a version key, skipping..."
@@ -210,4 +210,31 @@ generate_desired_versions() {
   echo 'fi' >> "$desired_version_file"
 }
 
-generate_desired_versions
+parse_args() {
+  local version_file=""
+
+  while [[ $# -gt 0 ]]; do
+    case "$1" in
+      -f|--file)
+        version_file="$2"
+        shift 2
+        ;;
+      *)
+        echo "Unknown option: $1"
+        return 1
+        ;;
+    esac
+  done
+
+  # Validate required arguments
+  if [[ ! -n "$version_file" ]]; then
+    log error "Missing required arguments: -f <versions file>"
+    return 1
+  fi
+
+  source "$version_file"
+
+  generate_desired_versions
+}
+
+parse_args "$@"
