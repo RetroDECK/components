@@ -88,6 +88,11 @@
           "dest": "lib"
         },
         {
+          "library": "libmpeg2convert.so.0",
+          "source": "lib",
+          "dest": "lib"
+        },
+        {
           "library": "libmad.so.0",
           "source": "lib",
           "dest": "lib"
