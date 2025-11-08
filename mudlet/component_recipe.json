@@ -71,49 +71,49 @@
         {
           "library": "libQt5Concurrent.so.5",
           "runtime_name": "org.kde.Platform",
-          "runtime_version": "5.15-24.08",
+          "runtime_version": "$DESIRED_QT5_RUNTIME_VERSION",
           "dest": "shared-libs"
         },
         {
           "library": "libQt5Core.so.5",
           "runtime_name": "org.kde.Platform",
-          "runtime_version": "5.15-24.08",
+          "runtime_version": "$DESIRED_QT5_RUNTIME_VERSION",
           "dest": "shared-libs"
         },
         {
           "library": "libQt5Multimedia.so.5",
           "runtime_name": "org.kde.Platform",
-          "runtime_version": "5.15-24.08",
+          "runtime_version": "$DESIRED_QT5_RUNTIME_VERSION",
           "dest": "shared-libs"
         },
         {
           "library": "libQt5Network.so.5",
           "runtime_name": "org.kde.Platform",
-          "runtime_version": "5.15-24.08",
+          "runtime_version": "$DESIRED_QT5_RUNTIME_VERSION",
           "dest": "shared-libs"
         },
         {
           "library": "libQt5Gui.so.5",
           "runtime_name": "org.kde.Platform",
-          "runtime_version": "5.15-24.08",
+          "runtime_version": "$DESIRED_QT5_RUNTIME_VERSION",
           "dest": "shared-libs"
         },
         {
           "library": "libQt5Widgets.so.5",
           "runtime_name": "org.kde.Platform",
-          "runtime_version": "5.15-24.08",
+          "runtime_version": "$DESIRED_QT5_RUNTIME_VERSION",
           "dest": "shared-libs"
         },
         {
           "library": "libQt5TextToSpeech.so.5",
           "runtime_name": "org.kde.Platform",
-          "runtime_version": "5.15-24.08",
+          "runtime_version": "$DESIRED_QT5_RUNTIME_VERSION",
           "dest": "shared-libs"
         },
         {
           "library": "libQt5DBus.so.5",
           "runtime_name": "org.kde.Platform",
-          "runtime_version": "5.15-24.08",
+          "runtime_version": "$DESIRED_QT5_RUNTIME_VERSION",
           "dest": "shared-libs"
         },
         {
