@@ -96,11 +96,6 @@
           "dest": "lib"
         },
         {
-          "library": "libkddockwidgets-qt6.so",
-          "source": "usr/lib",
-          "dest": "lib"
-        },
-        {
           "library": "libSDL3.so.0",
           "source": "usr/lib",
           "dest": "lib"
@@ -347,6 +342,11 @@
         },
         {
           "library": "libsasl2.so.2",
+          "source": "usr/lib",
+          "dest": "lib"
+        },
+        {
+          "library": "libkddockwidgets-qt6.so.3",
           "source": "usr/lib",
           "dest": "lib"
         }
