@@ -6,7 +6,13 @@ component_path="$(cd "$(dirname "${BASH_SOURCE[0]}" )" && pwd)"
 
 source "$component_path/apprun-hooks/linuxdeploy-plugin-qt-hook.sh"
 
-export LD_LIBRARY_PATH="$component_path/lib:${LD_LIBRARY_PATH}"
+export LD_LIBRARY_PATH="$component_path/lib:$component_path/lib/org.kde.Platform/6.10/:$component_path/lib/org.gnome.Platform/49/:$component_path/lib/org.freedesktop.Platform/25.08/:${LD_LIBRARY_PATH}"
+export QT_PLUGIN_PATH="$component_path/lib/org.kde.Platform/6.10/plugins/:${QT_PLUGIN_PATH}"
+export QT_QPA_PLATFORM_PLUGIN_PATH="$component_path/lib/org.kde.Platform/6.10/plugins/platforms/:${QT_QPA_PLATFORM_PLUGIN_PATH}"
+
+log i "RetroDECK is now launching $component_name"
+log d "Library path is: $LD_LIBRARY_PATH"
+log d "QT plugin path is: $QT_PLUGIN_PATH"
 
 log i "RetroDECK is now launching $component_name"
 log d "Loaded app run hooks in apprun-hooks/linuxdeploy-plugin-qt-hook.sh"
