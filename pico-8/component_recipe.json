@@ -3,7 +3,7 @@
     {
       "source_url": "$REPO_ROOT/$COMPONENT_NAME",
       "source_type": "local",
-      "dest": "user",
+      "extraction_type": "local",
       "assets": [
         {
           "type": "create",
