@@ -40,6 +40,36 @@
       ],
       "libs": [
         {
+          "library": "libusb-1.0.so.0",
+          "runtime_name": "org.freedesktop.Platform",
+          "runtime_version": "25.08",
+          "dest": "lib"
+        },
+        {
+          "library": "libicui18n.so.77",
+          "runtime_name": "org.freedesktop.Platform",
+          "runtime_version": "25.08",
+          "dest": "lib"
+        },
+        {
+          "library": "libicudata.so.77",
+          "runtime_name": "org.freedesktop.Platform",
+          "runtime_version": "25.08",
+          "dest": "lib"
+        },
+        {
+          "library": "libicuuc.so.77",
+          "runtime_name": "org.freedesktop.Platform",
+          "runtime_version": "25.08",
+          "dest": "lib"
+        },
+        {
+          "library": "libevdev.so.2",
+          "runtime_name": "org.gnome.Platform",
+          "runtime_version": "49",
+          "dest": "lib"
+        },
+        {
           "library": "libQt6Widgets.so.6",
           "runtime_name": "org.kde.Platform",
           "runtime_version": "$DESIRED_QT6_RUNTIME_VERSION",
@@ -67,18 +97,6 @@
           "library": "libQt6Network.so.6",
           "runtime_name": "org.kde.Platform",
           "runtime_version": "$DESIRED_QT6_RUNTIME_VERSION",
-          "dest": "lib"
-        },
-        {
-          "library": "libevdev.so.2",
-          "runtime_name": "org.gnome.Platform",
-          "runtime_version": "49",
-          "dest": "lib"
-        },
-        {
-          "library": "libusb-1.0.so.0",
-          "runtime_name": "org.freedesktop.Platform",
-          "runtime_version": "25.08",
           "dest": "lib"
         },
         {
