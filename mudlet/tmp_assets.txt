@@ -1,2 +1,0 @@
-Mudlet is working on a flatpak and we switch sources when that is out.
-We can't grab the file directly from their website as cloudflare blocks the resolve.
