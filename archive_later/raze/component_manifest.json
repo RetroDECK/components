@@ -1,0 +1,11 @@
+{
+  "raze": {
+    "name": "Raze",
+    "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/raze/raze-guide/",
+    "url_webpage": "https://raze.zdoom.org/",
+    "url_source": "https://github.com/ZDoom/Raze",
+    "description": "A modern engine for Duke Nukem 3D and other classic Build engine games.",
+    "system_friendly_name": "Raze",
+    "system": "raze"
+  }
+}

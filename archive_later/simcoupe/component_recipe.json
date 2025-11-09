@@ -1,0 +1,48 @@
+{
+  "simcoupe": [
+    {
+      "source_url": "https://github.com/simonowen/simcoupe/releases/download/{VERSION}/simcoupe_*_amd64.tar.gz",
+      "source_type": "github_release",
+      "version": "$SIMCOUPE_DESIRED_VERSION",
+      "extraction_type": "archive",
+      "assets": [
+        {
+          "type": "dir",
+          "source": "simcoupe_1.2.15_amd64",
+          "dest": ""
+        },
+        {
+          "type": "dir",
+          "source": "$REPO_ROOT/$COMPONENT_NAME",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "create",
+          "dest": "component_version",
+          "contents": "$SOURCE_VERSION"
+        },
+        {
+          "type": "file",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/component_functions.sh",
+           "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/component_launcher.sh",
+           "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/component_manifest.json",
+           "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/component_prepare.sh",
+           "dest": "$COMPONENT_ARTIFACT_ROOT"
+        }
+      ],
+      "libs": []
+    }
+  ]
+}

@@ -1,0 +1,5 @@
+Can't get it to start, unkown error or depedency.
+
+Even when extracting the entire appimage over the component it still refuses to start.
+
+Something missing in the flatpak env?

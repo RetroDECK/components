@@ -1,0 +1,27 @@
+{
+  "flips": [
+    {
+      "source_url": "$REPO_ROOT/$COMPONENT_NAME/tmp_assets/flips-linux.zip", 
+      "source_type": "local",
+      "extraction_type": "archive",
+      "assets": [
+        {
+          "type": "file",
+          "source": "flips",
+          "dest": "bin"
+        },
+        {
+          "type": "file",
+          "source": "COPYING",
+          "dest": "doc"
+        },
+        {
+          "type": "file",
+          "source": "COPYING.gpl3",
+          "dest": "doc"
+        }
+      ],
+      "libs": []
+    }
+  ]
+}

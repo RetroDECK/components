@@ -1,0 +1,12 @@
+[error] Gathering component library libicui18n.so.67 failed
+
+I have tried QT, Local and Freedesktop but the lib can't be found
+
+# Custom Commands
+
+# Creating a symlink to be used later
+ln -s "$XDG_CONFIG_HOME/mudlet" "$component/artifacts/portable"
+
+touch "$component/artifacts/portable.txt"
+
+finalize

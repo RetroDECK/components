@@ -1,0 +1,15 @@
+    {
+      "source_url": "https://github.com/DirtBagXon/hypseus-singe/releases/download/{VERSION}/*_AppImage.tar.gz",
+      "source_type": "github_release",
+      "version": "latest",
+      "extraction_type": "archive"
+    },
+    {
+      "source_url": "$EXTRACTED_PATH/*_ES-DE.tar.gz",
+      "source_type": "local",
+      "extraction_type": "archive"
+    },
+    {
+      "source_url": "$EXTRACTED_PATH/Hypseus_Singe-x86_64.AppImage",
+      "source_type": "local",
+      "extraction_type": "appimage",

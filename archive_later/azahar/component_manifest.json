@@ -1,0 +1,70 @@
+{
+  "azahar": {
+    "name": "Azahar",
+    "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/azahar/azahar-guide/",
+    "url_webpage": "https://azahar-emulator.org/",
+    "url_source": "https://github.com/azahar-emu/azahar",
+    "description": "Azahar is an open-source 3DS emulator project based on Citra.",
+    "system_friendly_name": "Nintendo 3DS",
+    "system": "n3ds",
+    "compatible_presets": {
+      "abxy_button_swap": [
+        "false",
+        "true"
+      ],
+      "ask_to_exit": [
+        "false",
+        "true"
+      ]
+    },
+    "preset_actions": {
+      "config_file_format": "azahar",
+      "ask_to_exit": {
+        "confirmClose": {
+          "action": "change",
+          "new_setting_value": "true",
+          "section": "UI",
+          "target_file": "$azahar_config",
+          "defaults_file": "$config/azahar/qt-config.ini"
+        },
+        "confirmClose\\default": {
+          "action": "change",
+          "new_setting_value": "true",
+          "section": "UI",
+          "target_file": "$azahar_config",
+          "defaults_file": "$config/azahar/qt-config.ini"
+        }
+      },
+      "abxy_button_swap": {
+        "profiles\\1\\button_a": {
+          "action": "change",
+          "new_setting_value": "button:1,engine:sdl,guid:030079f6de280000ff11000001000000,port:0",
+          "section": "Controls",
+          "target_file": "$azahar_config",
+          "defaults_file": "$config/ppssppsdl/qt-config.ini"
+        },
+        "profiles\\1\\button_b": {
+          "action": "change",
+          "new_setting_value": "button:0,engine:sdl,guid:030079f6de280000ff11000001000000,port:0",
+          "section": "Controls",
+          "target_file": "$azahar_config",
+          "defaults_file": "$config/ppssppsdl/qt-config.ini"
+        },
+        "profiles\\1\\button_c": {
+          "action": "change",
+          "new_setting_value": "button:3,engine:sdl,guid:030079f6de280000ff11000001000000,port:0",
+          "section": "Controls",
+          "target_file": "$azahar_config",
+          "defaults_file": "$config/ppssppsdl/qt-config.ini"
+        },
+        "profiles\\1\\button_d": {
+          "action": "change",
+          "new_setting_value": "button:2,engine:sdl,guid:030079f6de280000ff11000001000000,port:0",
+          "section": "Controls",
+          "target_file": "$azahar_config",
+          "defaults_file": "$config/ppssppsdl/qt-config.ini"
+        }
+      }
+    }
+  }
+}

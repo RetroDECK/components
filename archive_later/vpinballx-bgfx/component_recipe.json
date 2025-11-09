@@ -1,0 +1,167 @@
+{
+  "vpinballx-bgfx": [
+    {
+      "source_url": "https://github.com/vpinball/vpinball/releases/download/{VERSION}/VPinballX_BGFX-*-linux-x64-Release.zip",
+      "source_type": "github_release",
+      "version": "$VPINBALL_DESIRED_VERSION",
+      "extraction_type": "archive",
+      "assets": [
+        {
+          "type": "create",
+          "dest": "component_version",
+          "contents": "$FRAMEWORK_DESIRED_VERSION"
+        },
+        {
+          "type": "file",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/component_functions.sh",
+           "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/component_launcher.sh",
+           "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/component_manifest.json",
+           "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/component_prepare.sh",
+           "dest": "$COMPONENT_ARTIFACT_ROOT"
+        }
+      ]
+    },
+    {
+      "source_url": "$EXTRACTED_PATH/VPinballX_BGFX-*-linux-x64-Release.tar.gz",
+      "source_type": "local",
+      "extraction_type": "archive",
+      "assets": [
+        {
+          "type": "file",
+          "source": "VPinballX_BGFX",
+          "dest": "bin/VPinballX_BGFX"
+        },
+        {
+          "type": "dir",
+          "source": "assets",
+          "dest": "assets"
+        },
+        {
+          "type": "dir",
+          "source": "docs",
+          "dest": "docs"
+        },
+        {
+          "type": "dir",
+          "source": "plugins",
+          "dest": "plugins"
+        },
+        {
+          "type": "dir",
+          "source": "scripts",
+          "dest": "scripts"
+        },
+        {
+          "type": "dir",
+          "source": "tables",
+          "dest": "tables"
+        },
+        {
+          "type": "dir",
+          "source": "$REPO_ROOT/$COMPONENT_NAME",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "create",
+          "dest": "component_version",
+          "contents": "$SOURCE_VERSION"
+        }
+      ],
+      "libs": [
+        {
+          "library": "libSDL3.so.0",
+          "runtime_name": "org.freedesktop.Platform",
+          "runtime_version": "25.08",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libSDL3_image.so.0",
+          "runtime_name": "org.freedesktop.Platform",
+          "runtime_version": "25.08",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libjxl.so.0.11",
+          "runtime_name": "org.freedesktop.Platform",
+          "runtime_version": "25.08",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libSDL3_ttf.so.0",
+          "runtime_name": "org.freedesktop.Platform",
+          "runtime_version": "25.08",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libhidapi-hidraw.so.0",
+          "runtime_name": "org.gnome.Platform",
+          "runtime_version": "49",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libfreeimage.so.3.19.0",
+          "source": "",
+          "dest": "lib"
+        },
+        {
+          "library": "libhidapi-hidraw.so.0",
+          "source": "",
+          "dest": "lib"
+        },
+        {
+          "library": "libbgfx.so",
+          "source": "",
+          "dest": "lib"
+        },
+        {
+          "library": "libserialport.so",
+          "source": "",
+          "dest": "lib"
+        }
+      ]
+    },
+    {
+      "source_url": "https://github.com/vpinball/pinmame/releases/download/{VERSION}/libpinmame-*-linux-x64.zip",
+      "source_type": "github_release",
+      "version": "newest",
+      "extraction_type": "archive"
+    },
+    {
+      "source_url": "$EXTRACTED_PATH/libpinmame-*-linux-x64.tar.gz",
+      "source_type": "local",
+      "extraction_type": "archive",
+      "assets": [
+        {
+          "type": "dir",
+          "source": "",
+          "dest": "libpinmame"
+        }
+      ]
+    },
+    {
+      "source_url": "https://github.com/vpinball/pinmame/releases/download/{VERSION}/xpinmame-*-linux-x64.zip",
+      "source_type": "github_release",
+      "version": "newest",
+      "extraction_type": "archive",
+      "assets": [
+        {
+          "type": "dir",
+          "source": "",
+          "dest": "xpinmame"
+        }
+      ]
+    }
+  ]
+}

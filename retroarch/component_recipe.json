@@ -48,6 +48,26 @@
           "dest": "lib/retroarch"
         },
         {
+          "type": "dir",
+          "source": "lib/libdecor",
+          "dest": "lib/libdecor"
+        },
+        {
+          "type": "file",
+          "source": "lib/libespeak.a",
+          "dest": "lib"
+        },
+        {
+          "type": "file",
+          "source": "lib/libespeak-ng.a",
+          "dest": "lib"
+        },
+        {
+          "type": "file",
+          "source": "lib/libpcaudio.a",
+          "dest": "lib"
+        },
+        {
           "type": "create",
           "dest": "component_version",
           "contents": "$SOURCE_VERSION"
@@ -107,11 +127,23 @@
         {
           "library": "libCg.so",
           "source": "lib",
-          "dest": "shared-libs"
+          "dest": "lib"
         },
         {
           "library": "libCgGL.so",
           "source": "lib",
+          "dest": "lib"
+        },
+        {
+          "library": "libicui18n.so.77",
+          "runtime_name": "org.freedesktop.Platform",
+          "runtime_version": "25.08",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libicudata.so.77",
+          "runtime_name": "org.freedesktop.Platform",
+          "runtime_version": "25.08",
           "dest": "shared-libs"
         }
       ],

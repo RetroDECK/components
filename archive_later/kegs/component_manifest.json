@@ -1,0 +1,10 @@
+{
+  "kegs": {
+    "name": "KEGS",
+    "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/kegs/kegs-guide/.",
+    "url_source": "http://kegs.sourceforge.net/",
+    "description": "An Apple IIgs emulator for Mac OS X, Linux/Unix, and Windows",
+    "system_friendly_name": "Apple IIgs",
+    "system": "apple2gs"
+  }
+}

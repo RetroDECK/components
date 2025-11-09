@@ -1,0 +1,9 @@
+        {
+          "library": "libssl.so.1.1",
+          "source": "usr/lib",
+          "dest": "lib"
+        }
+
+        This does not exist in in freedesktop nor the local libs
+
+        openssl
