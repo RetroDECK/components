@@ -1,7 +1,7 @@
 {
   "pcsx2": [
     {
-      "source_url": "https://github.com/PCSX2/pcsx2/releases/download/{VERSION}/*.AppImage",
+      "source_url": "https://github.com/PCSX2/pcsx2/releases/download/{VERSION}/pcsx2-{VERSION}-linux-appimage-x64-Qt.AppImage",
       "source_type": "github_release",
       "version": "$PCSX2_DESIRED_VERSION",
       "extraction_type": "appimage",
@@ -56,299 +56,115 @@
         {
           "library": "libQt6Widgets.so.6",
           "runtime_name": "org.kde.Platform",
-          "runtime_version": "$DESIRED_QT6_RUNTIME_VERSION",
-          "dest": "lib"
+          "runtime_version": "6.10",
+          "dest": "shared-libs"
         },
         {
           "library": "libQt6Gui.so.6",
           "runtime_name": "org.kde.Platform",
-          "runtime_version": "$DESIRED_QT6_RUNTIME_VERSION",
-          "dest": "lib"
+          "runtime_version": "6.10",
+          "dest": "shared-libs"
         },
         {
           "library": "libQt6Core.so.6",
           "runtime_name": "org.kde.Platform",
-          "runtime_version": "$DESIRED_QT6_RUNTIME_VERSION",
-          "dest": "lib"
+          "runtime_version": "6.10",
+          "dest": "shared-libs"
         },
         {
-          "library": "libQt6Multimedia.so.6",
-          "runtime_name": "org.kde.Platform",
-          "runtime_version": "$DESIRED_QT6_RUNTIME_VERSION",
-          "dest": "lib"
-        },
-        {
-          "library": "libQt6Network.so.6",
-          "runtime_name": "org.kde.Platform",
-          "runtime_version": "$DESIRED_QT6_RUNTIME_VERSION",
-          "dest": "lib"
-        },
-        {
-          "library": "libQt6DBus.so.6",
-          "runtime_name": "org.kde.Platform",
-          "runtime_version": "$DESIRED_QT6_RUNTIME_VERSION",
-          "dest": "lib"
-        },
-        {
-          "library": "libQt6Concurrent.so.6",
-          "runtime_name": "org.kde.Platform",
-          "runtime_version": "$DESIRED_QT6_RUNTIME_VERSION",
-          "dest": "lib"
-        },
-        {
-          "library": "libSDL3.so.0",
+          "library": "libkddockwidgets-qt6.so.2.2",
           "source": "usr/lib",
-          "dest": "lib"
-        },
-        {
-          "library": "libcurl.so.4",
-          "source": "usr/lib",
-          "dest": "lib"
-        },
-        {
-          "library": "libplutosvg.so.0",
-          "source": "usr/lib",
-          "dest": "lib"
-        },
-        {
-          "library": "libplutovg.so.0",
-          "source": "usr/lib",
-          "dest": "lib"
-        },
-        {
-          "library": "libcap.so.2",
-          "source": "usr/lib",
-          "dest": "lib"
+          "dest": "shared-libs"
         },
         {
           "library": "libavformat.so.58",
           "source": "usr/lib",
-          "dest": "lib"
+          "dest": "shared-libs"
         },
         {
           "library": "libavcodec.so.58",
           "source": "usr/lib",
-          "dest": "lib"
-        },
-        {
-          "library": "libswscale.so.5",
-          "source": "usr/lib",
-          "dest": "lib"
-        },
-        {
-          "library": "libswresample.so.3",
-          "source": "usr/lib",
-          "dest": "lib"
-        },
-        {
-          "library": "libbz2.so.1.0",
-          "source": "usr/lib",
-          "dest": "lib"
-        },
-        {
-          "library": "libgme.so.0",
-          "source": "usr/lib",
-          "dest": "lib"
-        },
-        {
-          "library": "libopenmpt.so.0",
-          "source": "usr/lib",
-          "dest": "lib"
-        },
-        {
-          "library": "libchromaprint.so.1",
-          "source": "usr/lib",
-          "dest": "lib"
-        },
-        {
-          "library": "libbluray.so.2",
-          "source": "usr/lib",
-          "dest": "lib"
-        },
-        {
-          "library": "librabbitmq.so.4",
-          "source": "usr/lib",
-          "dest": "lib"
-        },
-        {
-          "library": "libsrt-gnutls.so.1.4",
-          "source": "usr/lib",
-          "dest": "lib"
-        },
-        {
-          "library": "libssh-gcrypt.so.4",
-          "source": "usr/lib",
-          "dest": "lib"
-        },
-        {
-          "library": "libzmq.so.5",
-          "source": "usr/lib",
-          "dest": "lib"
-        },
-        {
-          "library": "libvpx.so.7",
-          "source": "usr/lib",
-          "dest": "lib"
-        },
-        {
-          "library": "libdav1d.so.5",
-          "source": "usr/lib",
-          "dest": "lib"
-        },
-        {
-          "library": "libzvbi.so.0",
-          "source": "usr/lib",
-          "dest": "lib"
-        },
-        {
-          "library": "libsnappy.so.1",
-          "source": "usr/lib",
-          "dest": "lib"
-        },
-        {
-          "library": "libcodec2.so.1.0",
-          "source": "usr/lib",
-          "dest": "lib"
-        },
-        {
-          "library": "libgsm.so.1",
-          "source": "usr/lib",
-          "dest": "lib"
-        },
-        {
-          "library": "libshine.so.3",
-          "source": "usr/lib",
-          "dest": "lib"
-        },
-        {
-          "library": "libtwolame.so.0",
-          "source": "usr/lib",
-          "dest": "lib"
-        },
-        {
-          "library": "libx264.so.163",
-          "source": "usr/lib",
-          "dest": "lib"
-        },
-        {
-          "library": "libx265.so.199",
-          "source": "usr/lib",
-          "dest": "lib"
-        },
-        {
-          "library": "libxvidcore.so.4",
-          "source": "usr/lib",
-          "dest": "lib"
-        },
-        {
-          "library": "libmfx.so.1",
-          "source": "usr/lib",
-          "dest": "lib"
-        },
-        {
-          "library": "libsoxr.so.0",
-          "source": "usr/lib",
-          "dest": "lib"
+          "dest": "shared-libs"
         },
         {
           "library": "libavutil.so.56",
           "source": "usr/lib",
-          "dest": "lib"
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libbz2.so.1.0",
+          "source": "usr/lib",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libgme.so.0",
+          "source": "usr/lib",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libopenmpt.so.0",
+          "source": "usr/lib",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libchromaprint.so.1",
+          "source": "usr/lib",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libbluray.so.2",
+          "source": "usr/lib",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "librabbitmq.so.4",
+          "source": "usr/lib",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libsrt-gnutls.so.1.4",
+          "source": "usr/lib",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libssh-gcrypt.so.4",
+          "source": "usr/lib",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libzmq.so.5",
+          "source": "usr/lib",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libswscale.so.5",
+          "source": "usr/lib",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libswresample.so.3",
+          "source": "usr/lib",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libsoxr.so.0",
+          "source": "usr/lib",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libplutosvg.so.0",
+          "source": "usr/lib",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libplutovg.so.0",
+          "source": "usr/lib",
+          "dest": "shared-libs"
         },
         {
           "library": "libpcap.so.0.8",
           "source": "usr/lib",
-          "dest": "lib"
-        },
-        {
-          "library": "libudfread.so.0",
-          "source": "usr/lib",
-          "dest": "lib"
-        },
-        {
-          "library": "libgssapi_krb5.so.2",
-          "source": "usr/lib",
-          "dest": "lib"
-        },
-        {
-          "library": "libbsd.so.0",
-          "source": "usr/lib",
-          "dest": "lib"
-        },
-        {
-          "library": "libsodium.so.23",
-          "source": "usr/lib",
-          "dest": "lib"
-        },
-        {
-          "library": "libpgm-5.3.so.0",
-          "source": "usr/lib",
-          "dest": "lib"
-        },
-        {
-          "library": "libnorm.so.1",
-          "source": "usr/lib",
-          "dest": "lib"
-        },
-        {
-          "library": "libnuma.so.1",
-          "source": "usr/lib",
-          "dest": "lib"
-        },
-        {
-          "library": "libkrb5.so.3",
-          "source": "usr/lib",
-          "dest": "lib"
-        },
-        {
-          "library": "libk5crypto.so.3",
-          "source": "usr/lib",
-          "dest": "lib"
-        },
-        {
-          "library": "libkrb5support.so.0",
-          "source": "usr/lib",
-          "dest": "lib"
-        },
-        {
-          "library": "libmd.so.0",
-          "source": "usr/lib",
-          "dest": "lib"
-        },
-        {
-          "library": "libkeyutils.so.1",
-          "source": "usr/lib",
-          "dest": "lib"
-        },
-        {
-          "library": "librtmp.so.1",
-          "source": "usr/lib",
-          "dest": "lib"
-        },
-        {
-          "library": "libssh.so.4",
-          "source": "usr/lib",
-          "dest": "lib"
-        },
-        {
-          "library": "libldap-2.5.so.0",
-          "source": "usr/lib",
-          "dest": "lib"
-        },
-        {
-          "library": "liblber-2.5.so.0",
-          "source": "usr/lib",
-          "dest": "lib"
-        },
-        {
-          "library": "libsasl2.so.2",
-          "source": "usr/lib",
-          "dest": "lib"
-        },
-        {
-          "library": "libkddockwidgets-qt6.so.3",
-          "source": "usr/lib",
-          "dest": "lib"
+          "dest": "shared-libs"
         }
       ]
     }
