@@ -44,27 +44,7 @@
         },
         {
           "type": "dir",
-          "source": "lib/retroarch",
-          "dest": "lib/retroarch"
-        },
-        {
-          "type": "dir",
-          "source": "lib/libdecor",
-          "dest": "lib/libdecor"
-        },
-        {
-          "type": "file",
-          "source": "lib/libespeak.a",
-          "dest": "lib"
-        },
-        {
-          "type": "file",
-          "source": "lib/libespeak-ng.a",
-          "dest": "lib"
-        },
-        {
-          "type": "file",
-          "source": "lib/libpcaudio.a",
+          "source": "lib",
           "dest": "lib"
         },
         {
@@ -97,42 +77,50 @@
         {
           "library": "libQt6Core.so.6",
           "runtime_name": "org.kde.Platform",
-          "runtime_version": "$DESIRED_QT6_RUNTIME_VERSION",
+          "runtime_version": "$RETROARCH_DESIRED_QT6_RUNTIME_VERSION",
           "dest": "shared-libs"
         },
         {
           "library": "libQt6Gui.so.6",
           "runtime_name": "org.kde.Platform",
-          "runtime_version": "$DESIRED_QT6_RUNTIME_VERSION",
+          "runtime_version": "$RETROARCH_DESIRED_QT6_RUNTIME_VERSION",
           "dest": "shared-libs"
         },
         {
           "library": "libQt6Widgets.so.6",
           "runtime_name": "org.kde.Platform",
-          "runtime_version": "$DESIRED_QT6_RUNTIME_VERSION",
+          "runtime_version": "$RETROARCH_DESIRED_QT6_RUNTIME_VERSION",
           "dest": "shared-libs"
         },
         {
           "library": "libQt6Concurrent.so.6",
           "runtime_name": "org.kde.Platform",
-          "runtime_version": "$DESIRED_QT6_RUNTIME_VERSION",
+          "runtime_version": "$RETROARCH_DESIRED_QT6_RUNTIME_VERSION",
           "dest": "shared-libs"
         },
         {
           "library": "libQt6Network.so.6",
           "runtime_name": "org.kde.Platform",
-          "runtime_version": "$DESIRED_QT6_RUNTIME_VERSION",
+          "runtime_version": "$RETROARCH_DESIRED_QT6_RUNTIME_VERSION",
           "dest": "shared-libs"
         },
         {
-          "library": "libCg.so",
-          "source": "lib",
-          "dest": "lib"
+          "library": "libQt6DBus.so.6",
+          "runtime_name": "org.kde.Platform",
+          "runtime_version": "$RETROARCH_DESIRED_QT6_RUNTIME_VERSION",
+          "dest": "shared-libs"
         },
         {
-          "library": "libCgGL.so",
-          "source": "lib",
-          "dest": "lib"
+          "library": "libQt6Network.so.6",
+          "runtime_name": "org.kde.Platform",
+          "runtime_version": "$RETROARCH_DESIRED_QT6_RUNTIME_VERSION",
+          "dest": "shared-libs"
+        },
+              {
+          "library": "libQt6Multimedia.so.6",
+          "runtime_name": "org.kde.Platform",
+          "runtime_version": "$RETROARCH_DESIRED_QT6_RUNTIME_VERSION",
+          "dest": "shared-libs"
         },
         {
           "library": "libicui18n.so.77",
@@ -145,7 +133,13 @@
           "runtime_name": "org.freedesktop.Platform",
           "runtime_version": "25.08",
           "dest": "shared-libs"
-        }
+        },
+        {
+          "library": "libicuuc.so.77",
+          "runtime_name": "org.freedesktop.Platform",
+          "runtime_version": "25.08",
+          "dest": "shared-libs"
+        } 
       ],
       "extras": [
         {
