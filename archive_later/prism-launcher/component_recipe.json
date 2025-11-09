@@ -1,0 +1,88 @@
+{
+  "prism-launcher": [
+    {
+      "source_url": "org.prismlauncher.PrismLauncher",
+      "source_type": "flatpak_id",
+      "version": "latest",
+      "dest": "user",
+      "extraction_type": "flatpak",
+      "assets": [
+        {
+          "type": "dir",
+          "source": "bin",
+          "dest": "bin"
+        },
+        {
+          "type": "dir",
+          "source": "share/PrismLauncher",
+          "dest": "share/PrismLauncher"
+        },
+        {
+          "type": "dir",
+          "source": "include",
+          "dest": "include"
+        },
+        {
+          "type": "dir",
+          "source": "libexec",
+          "dest": "libexec"
+        },
+        {
+          "type": "create",
+          "dest": "component_version",
+          "contents": "$SOURCE_VERSION"
+        }
+      ],
+      "libs": [
+        {
+          "library": "libQt6Widgets.so.6",
+          "runtime_name": "org.kde.Platform",
+          "runtime_version": "6.9",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libQt6Gui.so.6",
+          "runtime_name": "org.kde.Platform",
+          "runtime_version": "6.9",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libQt6Core.so.6",
+          "runtime_name": "org.kde.Platform",
+          "runtime_version": "6.9",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libQt6Xml.so.6",
+          "runtime_name": "org.kde.Platform",
+          "runtime_version": "6.9",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libQt6NetworkAuth.so.6",
+          "runtime_name": "org.kde.Platform",
+          "runtime_version": "6.9",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libQt6Network.so.6",
+          "runtime_name": "org.kde.Platform",
+          "runtime_version": "6.9",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libQt6Core5Compat.so.6",
+          "runtime_name": "org.kde.Platform",
+          "runtime_version": "6.9",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libQt6DBus.so.6",
+          "runtime_name": "org.kde.Platform",
+          "runtime_version": "6.9",
+          "dest": "shared-libs"
+        }
+      ]
+    }
+  ]
+}

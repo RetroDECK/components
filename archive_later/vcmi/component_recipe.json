@@ -1,0 +1,160 @@
+{
+  "vcmi": [
+    {
+      "source_url": "eu.vcmi.VCMI",
+      "source_type": "flatpak_id",
+      "version": "latest",
+      "dest": "user",
+      "extraction_type": "flatpak",
+      "assets": [
+        {
+          "type": "dir",
+          "source": "bin",
+          "dest": "bin"
+        },
+        {
+          "type": "dir",
+          "source": "lib/AI",
+          "dest": "lib/AI"
+        },
+        {
+          "type": "dir",
+          "source": "sbin",
+          "dest": "sbin"
+        },
+        {
+          "type": "dir",
+          "source": "share/vcmi",
+          "dest": "share/vcmi"
+        },
+        {
+          "type": "dir",
+          "source": "share/hwloc",
+          "dest": "share/hwloc"
+        },
+        {
+          "type": "dir",
+          "source": "share/licenses",
+          "dest": "share/licenses"
+        }
+      ],
+      "libs": [
+        {
+          "library": "libQt6Widgets.so.6",
+          "runtime_name": "org.kde.Platform",
+          "runtime_version": "6.9",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libQt6Gui.so.6",
+          "runtime_name": "org.kde.Platform",
+          "runtime_version": "6.9",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libQt6Core.so.6",
+          "runtime_name": "org.kde.Platform",
+          "runtime_version": "6.9",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libQt6Network.so.6",
+          "runtime_name": "org.kde.Platform",
+          "runtime_version": "6.9",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libQt6DBus.so.6",
+          "runtime_name": "org.kde.Platform",
+          "runtime_version": "6.9",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libvcmiqt.so",
+          "source": "lib",
+          "dest": "lib"
+        },
+        {
+          "library": "libvcmi.so",
+          "source": "lib",
+          "dest": "lib"
+        },
+        {
+          "library": "libhwloc.so.15",
+          "source": "lib",
+          "dest": "lib"
+        },
+        {
+          "library": "libminizip.so.1",
+          "source": "lib",
+          "dest": "lib"
+        },
+        {
+          "library": "libtbb.so.12",
+          "source": "lib",
+          "dest": "lib"
+        },
+        {
+          "library": "libboost_locale.so.1.89.0",
+          "source": "lib",
+          "dest": "lib"
+        },
+        {
+          "library": "libboost_random.so.1.89.0",
+          "source": "lib",
+          "dest": "lib"
+        },
+        {
+          "library": "libboost_atomic.so.1.89.0",
+          "source": "lib",
+          "dest": "lib"
+        },
+        {
+          "library": "libboost_container.so.1.89.0",
+          "source": "lib",
+          "dest": "lib"
+        },
+        {
+          "library": "libboost_iostreams.so.1.89.0",
+          "source": "lib",
+          "dest": "lib"
+        },
+        {
+          "library": "libboost_charconv.so.1.89.0",
+          "source": "lib",
+          "dest": "lib"
+        },
+        {
+          "library": "libboost_date_time.so.1.89.0",
+          "source": "lib",
+          "dest": "lib"
+        },
+        {
+          "library": "libboost_regex.so.1.89.0",
+          "source": "lib",
+          "dest": "lib"
+        },
+        {
+          "library": "libboost_chrono.so.1.89.0",
+          "source": "lib",
+          "dest": "lib"
+        },
+        {
+          "library": "libboost_filesystem.so.1.89.0",
+          "source": "lib",
+          "dest": "lib"
+        },
+        {
+          "library": "libboost_program_options.so.1.89.0",
+          "source": "lib",
+          "dest": "lib"
+        },
+        {
+          "library": "libboost_thread.so.1.89.0",
+          "source": "lib",
+          "dest": "lib"
+        }
+      ]
+    }
+  ]
+}
