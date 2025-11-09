@@ -16,7 +16,7 @@
         {
           "library": "runtimeLib1.so.6",
           "source": "libs",
-          "dest": "shared-libs"
+          "dest": "lib"
         }
       ]
     },
@@ -36,7 +36,7 @@
         {
           "library": "runtimeLib2.so.6",
           "source": "libs",
-          "dest": "shared-libs"
+          "dest": "lib"
         }
       ]
     }

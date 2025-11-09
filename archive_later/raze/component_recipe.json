@@ -48,7 +48,7 @@
           "library": "libvpx.so.8",
           "runtime_name": "org.freedesktop.Platform",
           "runtime_version": "23.08",
-          "dest": "shared-libs"
+          "dest": "lib"
         },
         {
           "library": "libzmusiclite.so.1",

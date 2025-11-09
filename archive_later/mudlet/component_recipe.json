@@ -72,55 +72,55 @@
           "library": "libQt5Concurrent.so.5",
           "runtime_name": "org.kde.Platform",
           "runtime_version": "$DESIRED_QT5_RUNTIME_VERSION",
-          "dest": "shared-libs"
+          "dest": "lib"
         },
         {
           "library": "libQt5Core.so.5",
           "runtime_name": "org.kde.Platform",
           "runtime_version": "$DESIRED_QT5_RUNTIME_VERSION",
-          "dest": "shared-libs"
+          "dest": "lib"
         },
         {
           "library": "libQt5Multimedia.so.5",
           "runtime_name": "org.kde.Platform",
           "runtime_version": "$DESIRED_QT5_RUNTIME_VERSION",
-          "dest": "shared-libs"
+          "dest": "lib"
         },
         {
           "library": "libQt5Network.so.5",
           "runtime_name": "org.kde.Platform",
           "runtime_version": "$DESIRED_QT5_RUNTIME_VERSION",
-          "dest": "shared-libs"
+          "dest": "lib"
         },
         {
           "library": "libQt5Gui.so.5",
           "runtime_name": "org.kde.Platform",
           "runtime_version": "$DESIRED_QT5_RUNTIME_VERSION",
-          "dest": "shared-libs"
+          "dest": "lib"
         },
         {
           "library": "libQt5Widgets.so.5",
           "runtime_name": "org.kde.Platform",
           "runtime_version": "$DESIRED_QT5_RUNTIME_VERSION",
-          "dest": "shared-libs"
+          "dest": "lib"
         },
         {
           "library": "libQt5TextToSpeech.so.5",
           "runtime_name": "org.kde.Platform",
           "runtime_version": "$DESIRED_QT5_RUNTIME_VERSION",
-          "dest": "shared-libs"
+          "dest": "lib"
         },
         {
           "library": "libQt5DBus.so.5",
           "runtime_name": "org.kde.Platform",
           "runtime_version": "$DESIRED_QT5_RUNTIME_VERSION",
-          "dest": "shared-libs"
+          "dest": "lib"
         },
         {
           "library": "libicui18n.so.67",
           "runtime_name": "org.freedesktop.Platform",
           "runtime_version": "20.08",
-          "dest": "shared-libs"
+          "dest": "lib"
         },
         {
           "library": "libGLU.so.1",

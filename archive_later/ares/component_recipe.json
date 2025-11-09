@@ -43,7 +43,7 @@
           "library": "libSDL3.so.0",
           "runtime_name": "org.freedesktop.Platform",
           "runtime_version": "25.08",
-          "dest": "shared-libs"
+          "dest": "lib"
         },
         {
           "library": "librashader.so",
