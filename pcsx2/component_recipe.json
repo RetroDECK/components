@@ -34,137 +34,227 @@
         {
           "type": "file",
           "source": "$REPO_ROOT/$COMPONENT_NAME/component_functions.sh",
-           "dest": "$COMPONENT_ARTIFACT_ROOT"
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
         },
         {
           "type": "file",
           "source": "$REPO_ROOT/$COMPONENT_NAME/component_launcher.sh",
-           "dest": "$COMPONENT_ARTIFACT_ROOT"
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
         },
         {
           "type": "file",
           "source": "$REPO_ROOT/$COMPONENT_NAME/component_manifest.json",
-           "dest": "$COMPONENT_ARTIFACT_ROOT"
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
         },
         {
           "type": "file",
           "source": "$REPO_ROOT/$COMPONENT_NAME/component_prepare.sh",
-           "dest": "$COMPONENT_ARTIFACT_ROOT"
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
         }
       ],
       "libs": [
         {
           "library": "libQt6Widgets.so.6",
           "runtime_name": "org.kde.Platform",
-          "runtime_version": "6.10",
-          "dest": "shared-libs"
+          "runtime_version": "$DESIRED_QT6_RUNTIME_VERSION",
+          "dest": "lib"
         },
         {
           "library": "libQt6Gui.so.6",
           "runtime_name": "org.kde.Platform",
-          "runtime_version": "6.10",
-          "dest": "shared-libs"
+          "runtime_version": "$DESIRED_QT6_RUNTIME_VERSION",
+          "dest": "lib"
         },
         {
           "library": "libQt6Core.so.6",
           "runtime_name": "org.kde.Platform",
-          "runtime_version": "6.10",
-          "dest": "shared-libs"
+          "runtime_version": "$DESIRED_QT6_RUNTIME_VERSION",
+          "dest": "lib"
+        },
+        {
+          "library": "libQt6Multimedia.so.6",
+          "runtime_name": "org.kde.Platform",
+          "runtime_version": "$DESIRED_QT6_RUNTIME_VERSION",
+          "dest": "lib"
+        },
+        {
+          "library": "libQt6Network.so.6",
+          "runtime_name": "org.kde.Platform",
+          "runtime_version": "$DESIRED_QT6_RUNTIME_VERSION",
+          "dest": "lib"
+        },
+        {
+          "library": "libQt6DBus.so.6",
+          "runtime_name": "org.kde.Platform",
+          "runtime_version": "$DESIRED_QT6_RUNTIME_VERSION",
+          "dest": "lib"
+        },
+        {
+          "library": "libQt6Concurrent.so.6",
+          "runtime_name": "org.kde.Platform",
+          "runtime_version": "$DESIRED_QT6_RUNTIME_VERSION",
+          "dest": "lib"
+        },
+        {
+          "library": "libKF6Plotting.so.6",
+          "runtime_name": "org.kde.Platform",
+          "runtime_version": "$DESIRED_QT6_RUNTIME_VERSION",
+          "dest": "lib"
+        },
+        {
+          "library": "libQt63DQuickScene2D.so.6",
+          "runtime_name": "org.kde.Platform",
+          "runtime_version": "$DESIRED_QT6_RUNTIME_VERSION",
+          "dest": "lib"
+        },
+        {
+          "library": "libQt63DRender.so.6",
+          "runtime_name": "org.kde.Platform",
+          "runtime_version": "$DESIRED_QT6_RUNTIME_VERSION",
+          "dest": "lib"
+        },
+        {
+          "library": "libQt63DCore.so.6",
+          "runtime_name": "org.kde.Platform",
+          "runtime_version": "$DESIRED_QT6_RUNTIME_VERSION",
+          "dest": "lib"
+        },
+        {
+          "library": "libQt6Scxml.so.6",
+          "runtime_name": "org.kde.Platform",
+          "runtime_version": "$DESIRED_QT6_RUNTIME_VERSION",
+          "dest": "lib"
+        },
+        {
+          "library": "libxml2.so.16",
+          "runtime_name": "org.kde.Platform",
+          "runtime_version": "$DESIRED_QT6_RUNTIME_VERSION",
+          "dest": "lib"
+        },
+        {
+          "library": "libaspell.so.15",
+          "runtime_name": "org.kde.Platform",
+          "runtime_version": "$DESIRED_QT6_RUNTIME_VERSION",
+          "dest": "lib"
+        },
+        {
+          "library": "libkuriikwsfiltereng_private.so",
+          "runtime_name": "org.kde.Platform",
+          "runtime_version": "$DESIRED_QT6_RUNTIME_VERSION",
+          "dest": "lib"
+        },
+        {
+          "library": "libtag.so.2",
+          "runtime_name": "org.kde.Platform",
+          "runtime_version": "$DESIRED_QT6_RUNTIME_VERSION",
+          "dest": "lib"
+        },
+        {
+          "library": "libQt63DAnimation.so.6",
+          "runtime_name": "org.kde.Platform",
+          "runtime_version": "$DESIRED_QT6_RUNTIME_VERSION",
+          "dest": "lib"
+        },
+        {
+          "library": "libQt63DExtras.so.6",
+          "runtime_name": "org.kde.Platform",
+          "runtime_version": "$DESIRED_QT6_RUNTIME_VERSION",
+          "dest": "lib"
         },
         {
           "library": "libkddockwidgets-qt6.so.2.2",
           "source": "usr/lib",
-          "dest": "shared-libs"
+          "dest": "lib"
         },
         {
           "library": "libavformat.so.58",
           "source": "usr/lib",
-          "dest": "shared-libs"
+          "dest": "lib"
         },
         {
           "library": "libavcodec.so.58",
           "source": "usr/lib",
-          "dest": "shared-libs"
+          "dest": "lib"
         },
         {
           "library": "libavutil.so.56",
           "source": "usr/lib",
-          "dest": "shared-libs"
+          "dest": "lib"
         },
         {
           "library": "libbz2.so.1.0",
           "source": "usr/lib",
-          "dest": "shared-libs"
+          "dest": "lib"
         },
         {
           "library": "libgme.so.0",
           "source": "usr/lib",
-          "dest": "shared-libs"
+          "dest": "lib"
         },
         {
           "library": "libopenmpt.so.0",
           "source": "usr/lib",
-          "dest": "shared-libs"
+          "dest": "lib"
         },
         {
           "library": "libchromaprint.so.1",
           "source": "usr/lib",
-          "dest": "shared-libs"
+          "dest": "lib"
         },
         {
           "library": "libbluray.so.2",
           "source": "usr/lib",
-          "dest": "shared-libs"
+          "dest": "lib"
         },
         {
           "library": "librabbitmq.so.4",
           "source": "usr/lib",
-          "dest": "shared-libs"
+          "dest": "lib"
         },
         {
           "library": "libsrt-gnutls.so.1.4",
           "source": "usr/lib",
-          "dest": "shared-libs"
+          "dest": "lib"
         },
         {
           "library": "libssh-gcrypt.so.4",
           "source": "usr/lib",
-          "dest": "shared-libs"
+          "dest": "lib"
         },
         {
           "library": "libzmq.so.5",
           "source": "usr/lib",
-          "dest": "shared-libs"
+          "dest": "lib"
         },
         {
           "library": "libswscale.so.5",
           "source": "usr/lib",
-          "dest": "shared-libs"
+          "dest": "lib"
         },
         {
           "library": "libswresample.so.3",
           "source": "usr/lib",
-          "dest": "shared-libs"
+          "dest": "lib"
         },
         {
           "library": "libsoxr.so.0",
           "source": "usr/lib",
-          "dest": "shared-libs"
+          "dest": "lib"
         },
         {
           "library": "libplutosvg.so.0",
           "source": "usr/lib",
-          "dest": "shared-libs"
+          "dest": "lib"
         },
         {
           "library": "libplutovg.so.0",
           "source": "usr/lib",
-          "dest": "shared-libs"
+          "dest": "lib"
         },
         {
           "library": "libpcap.so.0.8",
           "source": "usr/lib",
-          "dest": "shared-libs"
+          "dest": "lib"
         }
       ]
     }
