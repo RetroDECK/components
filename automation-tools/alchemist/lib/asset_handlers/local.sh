@@ -1,7 +1,7 @@
 #!/bin/bash
 
 asset_handler_info() {
-  echo "type:dir,file,merge"
+  echo "type:dir,file,merge,file-rename"
 }
 
 handle_asset() {
@@ -28,13 +28,18 @@ handle_asset() {
   if [[ "$type" == "file" ]]; then
     final_dest="$final_dest/$(basename $final_source)"
     if [[ ! -d "$(dirname $final_dest)" ]]; then # If destination dir does not already exist
-      log info "Destination dir $(dirname $final_dest) does not exist, creating"
+      log info "Destination dir $(dirname $final_dest) does not exist, creating..."
       mkdir -p "$(dirname $final_dest)"
     fi
   elif [[ "$type" == "dir" ]]; then
     if [[ ! -d "$final_dest" ]]; then # If destination dir does not already exist
-      log info "Destination dir $final_dest does not exist, creating"
+      log info "Destination dir $final_dest does not exist, creating..."
       mkdir -p "$final_dest"
+    fi
+  elif [[ "$type" == "file-rename" ]]; then
+    if [[ ! -d "$(dirname "$final_dest")"]]; then
+      log info "Destination dir $(basename $(dirname $final_dest)) does not exist, creating..."
+      mkdir -p "$(dirname "$final_dest")"
     fi
   fi
 
@@ -52,6 +57,11 @@ handle_asset() {
     merge)
       process_asset_cmd() {
         cp -nr "$1/"* "$2"
+      }
+    ;;
+    file-rename)
+      process_asset_cmd() {
+        mv "$1" "$2"
       }
     ;;
     *)
