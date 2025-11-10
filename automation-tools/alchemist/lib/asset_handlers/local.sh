@@ -37,8 +37,8 @@ handle_asset() {
       mkdir -p "$final_dest"
     fi
   elif [[ "$type" == "file-rename" ]]; then
-    if [[ ! -d "$(dirname "$final_dest")"]]; then
-      log info "Destination dir $(basename $(dirname $final_dest)) does not exist, creating..."
+    if [[ ! -d "$(dirname "$final_dest")" ]]; then
+      log info "Destination dir $(basename "$(dirname "$final_dest")") does not exist, creating..."
       mkdir -p "$(dirname "$final_dest")"
     fi
   fi
