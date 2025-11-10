@@ -9,7 +9,7 @@ It's also complaning about it can't find:
         {
           "library": "libslirp.so.0",
           "source": "lib",
-          "dest": "lib"
+          "dest": "shared-libs"
         },
 
 But it is the repo

@@ -72,87 +72,87 @@
         {
           "library": "libvcmiqt.so",
           "source": "lib",
-          "dest": "lib"
+          "dest": "shared-libs"
         },
         {
           "library": "libvcmi.so",
           "source": "lib",
-          "dest": "lib"
+          "dest": "shared-libs"
         },
         {
           "library": "libhwloc.so.15",
           "source": "lib",
-          "dest": "lib"
+          "dest": "shared-libs"
         },
         {
           "library": "libminizip.so.1",
           "source": "lib",
-          "dest": "lib"
+          "dest": "shared-libs"
         },
         {
           "library": "libtbb.so.12",
           "source": "lib",
-          "dest": "lib"
+          "dest": "shared-libs"
         },
         {
           "library": "libboost_locale.so.1.89.0",
           "source": "lib",
-          "dest": "lib"
+          "dest": "shared-libs"
         },
         {
           "library": "libboost_random.so.1.89.0",
           "source": "lib",
-          "dest": "lib"
+          "dest": "shared-libs"
         },
         {
           "library": "libboost_atomic.so.1.89.0",
           "source": "lib",
-          "dest": "lib"
+          "dest": "shared-libs"
         },
         {
           "library": "libboost_container.so.1.89.0",
           "source": "lib",
-          "dest": "lib"
+          "dest": "shared-libs"
         },
         {
           "library": "libboost_iostreams.so.1.89.0",
           "source": "lib",
-          "dest": "lib"
+          "dest": "shared-libs"
         },
         {
           "library": "libboost_charconv.so.1.89.0",
           "source": "lib",
-          "dest": "lib"
+          "dest": "shared-libs"
         },
         {
           "library": "libboost_date_time.so.1.89.0",
           "source": "lib",
-          "dest": "lib"
+          "dest": "shared-libs"
         },
         {
           "library": "libboost_regex.so.1.89.0",
           "source": "lib",
-          "dest": "lib"
+          "dest": "shared-libs"
         },
         {
           "library": "libboost_chrono.so.1.89.0",
           "source": "lib",
-          "dest": "lib"
+          "dest": "shared-libs"
         },
         {
           "library": "libboost_filesystem.so.1.89.0",
           "source": "lib",
-          "dest": "lib"
+          "dest": "shared-libs"
         },
         {
           "library": "libboost_program_options.so.1.89.0",
           "source": "lib",
-          "dest": "lib"
+          "dest": "shared-libs"
         },
         {
           "library": "libboost_thread.so.1.89.0",
           "source": "lib",
-          "dest": "lib"
+          "dest": "shared-libs"
         }
       ]
     }

@@ -53,7 +53,7 @@
         {
           "library": "libzmusiclite.so.1",
           "source": "lib",
-          "dest": "lib"
+          "dest": "shared-libs"
         }
       ]
     }

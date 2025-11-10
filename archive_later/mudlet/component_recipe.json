@@ -125,42 +125,42 @@
         {
           "library": "libGLU.so.1",
           "source": "lib",
-          "dest": "lib"
+          "dest": "shared-libs"
         },
         {
           "library": "libssl.so.1.1",
           "source": "lib",
-          "dest": "lib"
+          "dest": "shared-libs"
         },
         {
           "library": "libicui18n.so.56",
           "source": "lib",
-          "dest": "lib"
+          "dest": "shared-libs"
         },
         {
           "library": "libqt5keychain.so.1",
           "source": "lib",
-          "dest": "lib"
+          "dest": "shared-libs"
         },
         {
           "library": "libzip.so.5",
           "source": "lib",
-          "dest": "lib"
+          "dest": "shared-libs"
         },
         {
           "library": "libQsLog.so",
           "source": "lib",
-          "dest": "lib"
+          "dest": "shared-libs"
         },
         {
           "library": "libbz2.so.1.0",
           "source": "lib",
-          "dest": "lib"
+          "dest": "shared-libs"
         },
         {
           "library": "libcrypto.so.1.1",
           "source": "lib",
-          "dest": "lib"
+          "dest": "shared-libs"
         }
       ]
     }

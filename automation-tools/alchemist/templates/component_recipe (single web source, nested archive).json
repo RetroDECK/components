@@ -22,7 +22,7 @@
           "library": "runtimeLib.so.6",
           "runtime_name": "org.kde.Platform",
           "runtime_version": "$DESIRED_QT6_RUNTIME_VERSION",
-          "dest": "lib"
+          "dest": "shared-libs"
         }
       ]
     },

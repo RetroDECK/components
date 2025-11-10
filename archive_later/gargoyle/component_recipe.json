@@ -76,7 +76,7 @@
         {
           "library": "libgarglk.so",
           "source": "lib",
-          "dest": "lib"
+          "dest": "shared-libs"
         }
       ]
     }
