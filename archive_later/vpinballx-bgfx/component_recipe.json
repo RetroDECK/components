@@ -84,31 +84,31 @@
           "library": "libSDL3.so.0",
           "runtime_name": "org.freedesktop.Platform",
           "runtime_version": "25.08",
-          "dest": "lib"
+          "dest": "shared-libs"
         },
         {
           "library": "libSDL3_image.so.0",
           "runtime_name": "org.freedesktop.Platform",
           "runtime_version": "25.08",
-          "dest": "lib"
+          "dest": "shared-libs"
         },
         {
           "library": "libjxl.so.0.11",
           "runtime_name": "org.freedesktop.Platform",
           "runtime_version": "25.08",
-          "dest": "lib"
+          "dest": "shared-libs"
         },
         {
           "library": "libSDL3_ttf.so.0",
           "runtime_name": "org.freedesktop.Platform",
           "runtime_version": "25.08",
-          "dest": "lib"
+          "dest": "shared-libs"
         },
         {
           "library": "libhidapi-hidraw.so.0",
           "runtime_name": "org.gnome.Platform",
           "runtime_version": "49",
-          "dest": "lib"
+          "dest": "shared-libs"
         },
         {
           "library": "libfreeimage.so.3.19.0",

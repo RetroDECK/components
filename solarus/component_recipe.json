@@ -105,22 +105,22 @@
         {
           "library": "libphysfs.so.1",
           "source": "usr/lib",
-          "dest": "lib"
+          "dest": "shared-libs"
         },
         {
           "library": "libmodplug.so.1",
           "source": "usr/lib",
-          "dest": "lib"
+          "dest": "shared-libs"
         },
         {
           "library": "libluajit-5.1.so.2",
           "source": "usr/lib",
-          "dest": "lib"
+          "dest": "shared-libs"
         },
         {
           "library": "libsolarus.so.2",
           "source": "usr/lib",
-          "dest": "lib"
+          "dest": "shared-libs"
         }
       ]
     }

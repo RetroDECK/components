@@ -63,44 +63,44 @@
           "library": "libFLAC.so.14",
           "runtime_name": "org.freedesktop.Platform",
           "runtime_version": "25.08",
-          "dest": "lib"
+          "dest": "shared-libs"
         },
         {
           "library": "libtheoradec.so.2",
           "runtime_name": "org.freedesktop.Platform",
           "runtime_version": "25.08",
-          "dest": "lib"
+          "dest": "shared-libs"
         },
         {
           "library": "libSDL3.so.0",
           "runtime_name": "org.freedesktop.Platform",
           "runtime_version": "25.08",
-          "dest": "lib"
+          "dest": "shared-libs"
         },
         {
           "library": "libfaad.so.2",
           "source": "lib",
-          "dest": "lib"
+          "dest": "shared-libs"
         },
         {
           "library": "libmpeg2.so.0",
           "source": "lib",
-          "dest": "lib"
+          "dest": "shared-libs"
         },
         {
           "library": "libmpeg2convert.so.0",
           "source": "lib",
-          "dest": "lib"
+          "dest": "shared-libs"
         },
         {
           "library": "libmad.so.0",
           "source": "lib",
-          "dest": "lib"
+          "dest": "shared-libs"
         },
         {
           "library": "libfluidsynth.so.3",
           "source": "lib",
-          "dest": "lib"
+          "dest": "shared-libs"
         }
       ]
     }

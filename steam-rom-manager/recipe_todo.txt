@@ -2,7 +2,7 @@
           "library": "libffmpeg.so",
           "runtime_name": "org.freedesktop.Platform",
           "runtime_version": "25.08",
-          "dest": "lib"
+          "dest": "shared-libs"
         }
 
         Can't be found, need ffmpeg

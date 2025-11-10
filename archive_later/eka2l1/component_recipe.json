@@ -76,7 +76,7 @@
         {
           "library": "libbz2.so.1.0",
           "source": "usr/lib",
-          "dest": "lib"
+          "dest": "shared-libs"
         },
         {
           "library": "libssl.so.1.1",

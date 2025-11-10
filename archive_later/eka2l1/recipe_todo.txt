@@ -1,7 +1,7 @@
         {
           "library": "libssl.so.1.1",
           "source": "usr/lib",
-          "dest": "lib"
+          "dest": "shared-libs"
         }
 
         This does not exist in in freedesktop nor the local libs

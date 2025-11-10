@@ -46,23 +46,23 @@
         {
           "library": "libslirp.so.0",
           "source": "lib",
-          "dest": "lib"
+          "dest": "shared-libs"
         },
         {
           "library": "libc.so.6",
           "runtime_name": "org.freedesktop.Platform",
           "runtime_version": "25.08",
-          "dest": "lib"
+          "dest": "shared-libs"
         },
         {
           "library": "libpcap.so.1",
           "source": "lib",
-          "dest": "lib"
+          "dest": "shared-libs"
         },
         {
           "library": "libxxhash.so",
           "source": "lib",
-          "dest": "lib"
+          "dest": "shared-libs"
         }
       ]
     }

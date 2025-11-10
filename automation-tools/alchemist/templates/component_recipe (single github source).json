@@ -36,7 +36,7 @@
         {
           "library": "specificComponentLib.so.6",
           "source": "usr/lib",
-          "dest": "lib"
+          "dest": "shared-libs"
         }
       ]
     }

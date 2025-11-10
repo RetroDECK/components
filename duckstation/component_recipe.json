@@ -104,17 +104,17 @@
         {
           "library": "liblunasvg.so",
           "source": "usr/lib",
-          "dest": "lib"
+          "dest": "shared-libs"
         },
         {
           "library": "libsoundtouch.so.2",
           "source": "usr/lib",
-          "dest": "lib"
+          "dest": "shared-libs"
         },
         {
           "library": "libcpuinfo.so",
           "source": "usr/lib",
-          "dest": "lib"
+          "dest": "shared-libs"
         }
       ]
     }
