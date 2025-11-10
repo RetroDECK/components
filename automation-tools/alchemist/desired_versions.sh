@@ -89,6 +89,9 @@ export OPENBOR_DESIRED_VERSION="latest"
 # PCSX2 – PlayStation 2 emulator
 export PCSX2_DESIRED_VERSION="latest"
 
+# PortMaster – Multi‑system game launcher and manager
+export PORTMASTER_DESIRED_VERSION="latest"
+
 # PPSSPP – PSP emulator
 export PPSSPP_DESIRED_VERSION="latest"
 
