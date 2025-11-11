@@ -55,22 +55,27 @@
         {
           "type": "file",
           "source": "$REPO_ROOT/$COMPONENT_NAME/component_functions.sh",
-           "dest": "$COMPONENT_ARTIFACT_ROOT"
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
         },
         {
           "type": "file",
           "source": "$REPO_ROOT/$COMPONENT_NAME/component_launcher.sh",
-           "dest": "$COMPONENT_ARTIFACT_ROOT"
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
         },
         {
           "type": "file",
           "source": "$REPO_ROOT/$COMPONENT_NAME/component_manifest.json",
-           "dest": "$COMPONENT_ARTIFACT_ROOT"
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/component_recipe.json",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
         },
         {
           "type": "file",
           "source": "$REPO_ROOT/$COMPONENT_NAME/component_prepare.sh",
-           "dest": "$COMPONENT_ARTIFACT_ROOT"
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
         }
       ],
       "libs": [
@@ -116,7 +121,7 @@
           "runtime_version": "$RETROARCH_DESIRED_QT6_RUNTIME_VERSION",
           "dest": "shared-libs"
         },
-              {
+        {
           "library": "libQt6Multimedia.so.6",
           "runtime_name": "org.kde.Platform",
           "runtime_version": "$RETROARCH_DESIRED_QT6_RUNTIME_VERSION",
@@ -139,7 +144,7 @@
           "runtime_name": "org.freedesktop.Platform",
           "runtime_version": "25.08",
           "dest": "shared-libs"
-        } 
+        }
       ],
       "extras": [
         {

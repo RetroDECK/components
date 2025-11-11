@@ -27,6 +27,11 @@
         },
         {
           "type": "file",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/component_recipe.json",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
           "source": "$REPO_ROOT/$COMPONENT_NAME/component_prepare.sh",
           "dest": "$COMPONENT_ARTIFACT_ROOT"
         }

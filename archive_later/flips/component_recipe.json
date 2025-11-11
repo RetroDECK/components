@@ -1,7 +1,7 @@
 {
   "flips": [
     {
-      "source_url": "$REPO_ROOT/$COMPONENT_NAME/tmp_assets/flips-linux.zip", 
+      "source_url": "$REPO_ROOT/$COMPONENT_NAME/tmp_assets/flips-linux.zip",
       "source_type": "local",
       "extraction_type": "archive",
       "assets": [
@@ -19,6 +19,31 @@
           "type": "file",
           "source": "COPYING.gpl3",
           "dest": "doc"
+        },
+        {
+          "type": "file",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/component_functions.sh",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/component_launcher.sh",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/component_manifest.json",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/component_recipe.json",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/component_prepare.sh",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
         }
       ],
       "libs": []
