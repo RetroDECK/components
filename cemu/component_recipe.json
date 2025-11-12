@@ -50,6 +50,12 @@
       ],
       "libs": [
         {
+          "library": "libSPIRV.so.14",
+          "runtime_name": "org.freedesktop.Platform",
+          "runtime_version": "24.08",
+          "dest": "shared-libs"
+        },
+        {
           "library": "libusb-1.0.so.0",
           "source": "lib",
           "dest": "shared-libs"
