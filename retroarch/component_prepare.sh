@@ -46,7 +46,7 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
   create_dir "$bios_path/quasi88"
 
   retroarch_updater
-
+  
   # FBNEO
   log i "--------------------------------"
   log i "Preparing FBNEO_LIBRETRO"
@@ -94,10 +94,11 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
   log i "Installing ScummVM assets"
   unzip -o "$retroarch_extras_path/ScummVM.zip" 'scummvm/extra/*' -d /tmp
   unzip -o "$retroarch_extras_path/ScummVM.zip" 'scummvm/theme/*' -d /tmp
-  create_dir "$storage_path/retroarch/ScummVM"
-  mv -f /tmp/scummvm/extra "$storage_path/retroarch/ScummVM"
-  mv -f /tmp/scummvm/theme "$storage_path/retroarch/ScummVM"
-  rm -rf /tmp/extra /tmp/theme
+  create_dir "$storage_path/retroarch/ScummVM/extra"
+  create_dir "$storage_path/retroarch/ScummVM/theme"
+  mv -f /tmp/scummvm/extra/* "$storage_path/retroarch/ScummVM/extra"
+  mv -f /tmp/scummvm/theme/* "$storage_path/retroarch/ScummVM/theme"
+  rm -rf /tmp/extra /tmp/theme /tmp/scummvm/extra /tmp/scummvm/theme
   set_setting_value "$retroarch_config_scummvm" "iconspath" "$storage_path/retroarch/ScummVM/icons" "libretro_scummvm" "scummvm"
   set_setting_value "$retroarch_config_scummvm" "extrapath" "$storage_path/retroarch/ScummVM/extra" "libretro_scummvm" "scummvm"
   set_setting_value "$retroarch_config_scummvm" "themepath" "$storage_path/retroarch/ScummVM/theme" "libretro_scummvm" "scummvm"

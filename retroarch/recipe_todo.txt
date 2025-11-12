@@ -102,3 +102,9 @@ rm -rf "$WORK_DIR/overlays"
 cp -rf "$WORK_DIR/"* "$artifacts_dir/"
 
 finalize
+
+
+----
+
+
+we need a step to compress the cores so the preparation can find them and extract them

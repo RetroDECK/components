@@ -35,17 +35,27 @@
         {
           "type": "tar.gz",
           "source": "share/libretro/shaders",
-          "dest": "extras/shaders"
+          "dest": "rd_extras/shaders"
         },
         {
           "type": "tar.gz",
           "source": "share/libretro/overlays",
-          "dest": "extras/overlays"
+          "dest": "rd_extras/overlays"
         },
         {
           "type": "dir",
           "source": "lib",
           "dest": "shared-libs"
+        },
+        {
+          "type": "dir",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/assets/rd_config",
+          "dest": "rd_config"
+        },
+        {
+          "type": "dir",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/assets/rd_extras",
+          "dest": "rd_extras"
         },
         {
           "type": "create",
@@ -248,12 +258,12 @@
         {
           "type": "dir",
           "source": "Machines",
-          "dest": "extras/MSX/Machines"
+          "dest": "rd_extras/MSX/Machines"
         },
         {
           "type": "dir",
           "source": "Databases",
-          "dest": "extras/MSX/Databases"
+          "dest": "rd_extras/MSX/Databases"
         }
       ]
     },
@@ -266,19 +276,19 @@
         {
           "type": "file",
           "source": "Linux/x86-64/capsimg.so",
-          "dest": "extras/Amiga"
+          "dest": "rd_extras/Amiga"
         }
       ]
     },
     {
-      "source_url": "cores",
-      "source_type": "local",
+      "source_url": "https://github.com/libretro/libretro-database/archive/refs/heads/master.zip",
+      "source_type": "http",
       "extraction_type": "local",
       "assets": [
         {
-          "type": "tar.gz",
-          "source": "",
-          "dest": "extras/cores"
+          "type": "file-rename",
+          "source": "$DOWNLOADED_FILE",
+          "dest": "rd_extras/cheats.zip"
         }
       ]
     }
