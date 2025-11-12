@@ -22,9 +22,5 @@ retroarch_updater() {
   tar -xzf "$retroarch_extras_path/shaders.tar.gz" -C "$XDG_CONFIG_HOME/retroarch/" --overwrite && log d "RetroArch shaders updated correctly"
 
   log i "Updating cheats..."
-  temp_dir=$(mktemp -d)
-  unzip "$retroarch_extras_path/cheats.zip" -d "$temp_dir" && \
-  mv "$temp_dir/libretro-database-master/cht"/* "$cheats_path/retroarch" && \
-  rm -rf "$temp_dir" && \
-  log d "RetroArch cheats updated correctly"
+  tar -xzf "$retroarch_extras_path/cheats.tar.gz" -C "$cheats_path/retroarch" --overwrite && log d "RetroArch cheats updated correctly"
 }
