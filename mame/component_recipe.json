@@ -67,6 +67,24 @@
           "runtime_name": "org.kde.Platform",
           "runtime_version": "$DESIRED_QT6_RUNTIME_VERSION",
           "dest": "shared-libs"
+        },
+        {
+          "library": "libFLAC.so.12",
+          "runtime_name": "org.freedesktop.Platform",
+          "runtime_version": "24.08",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libFLAC.so.12",
+          "runtime_name": "org.freedesktop.Platform",
+          "runtime_version": "24.08",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libSDL2_ttf-2.0.so.0",
+          "runtime_name": "org.freedesktop.Platform",
+          "runtime_version": "24.08",
+          "dest": "shared-libs"
         }
       ]
     },
