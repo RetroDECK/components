@@ -50,8 +50,19 @@
       ],
       "libs": [
         {
-          "library": "libGLEW.so",
+          "library": "libGLEW.so.2.2",
           "source": "lib",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libGLU.so.1",
+          "source": "lib",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libSDL2_ttf-2.0.so.0",
+          "runtime_name": "org.freedesktop.Platform",
+          "runtime_version": "24.08",
           "dest": "shared-libs"
         }
       ]
