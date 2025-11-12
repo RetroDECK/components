@@ -42,7 +42,13 @@
           "dest": "$COMPONENT_ARTIFACT_ROOT"
         }
       ],
-      "libs": []
+      "libs": [
+        {
+          "library": "libzmusic.so",
+          "source": "lib",
+          "dest": "shared-libs"
+        }
+      ]
     }
   ]
 }
