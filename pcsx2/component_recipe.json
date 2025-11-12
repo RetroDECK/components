@@ -421,6 +421,31 @@
           "library": "libkeyutils.so.1",
           "source": "usr/lib",
           "dest": "shared-libs"
+        },
+        {
+          "library": "libxml2.so.2",
+          "source": "usr/lib",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libtheoraenc.so.1",
+          "source": "usr/lib",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libtheoradec.so.1",
+          "source": "usr/lib",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libicuuc.so.70",
+          "source": "usr/lib",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libicudata.so.70",
+          "source": "usr/lib",
+          "dest": "shared-libs"
         }
       ]
     }
