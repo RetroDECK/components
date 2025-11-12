@@ -1,56 +1,55 @@
 {
   "retroarch": [
     {
-      "source_url": "org.libretro.RetroArch",
-      "source_type": "flatpak_id",
-      "version": "$RETROARCH_DESIRED_VERSION",
-      "dest": "user",
-      "extraction_type": "flatpak",
+      "source_url": "https://buildbot.libretro.com/stable/{VERSION}/linux/x86_64/RetroArch.7z",
+      "source_type": "http",
+      "version": "1.21.0",
+      "extraction_type": "archive",
       "assets": [
         {
           "type": "dir",
-          "source": "bin",
-          "dest": "bin"
+          "source": "RetroArch-Linux-x86_64/RetroArch-Linux-x86_64.AppImage.home/.config/retroarch/cores",
+          "dest": "$WORKDIR/cores"
         },
         {
           "type": "dir",
-          "source": "share/libretro/assets",
-          "dest": "share/libretro/assets"
+          "source": "RetroArch-Linux-x86_64/RetroArch-Linux-x86_64.AppImage.home/.config/retroarch/overlays",
+          "dest": "$WORKDIR/overlays"
+        },
+        {
+          "type": "merge",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/assets/rd_extras/borders",
+          "dest": "$WORKDIR/overlays/borders"
         },
         {
           "type": "dir",
-          "source": "share/libretro/autoconfig",
-          "dest": "share/libretro/autoconfig"
+          "source": "RetroArch-Linux-x86_64/RetroArch-Linux-x86_64.AppImage.home/.config/retroarch/assets",
+          "dest": "assets"
         },
         {
           "type": "dir",
-          "source": "share/libretro/database/cursors",
-          "dest": "share/libretro/database/cursors"
+          "source": "RetroArch-Linux-x86_64/RetroArch-Linux-x86_64.AppImage.home/.config/retroarch/autoconfig",
+          "dest": "autoconfig"
         },
         {
           "type": "dir",
-          "source": "share/libretro/database/rdb",
-          "dest": "share/libretro/database/rdb"
+          "source": "RetroArch-Linux-x86_64/RetroArch-Linux-x86_64.AppImage.home/.config/retroarch/database/cursors",
+          "dest": "database/cursors"
         },
         {
           "type": "dir",
-          "source": "share/libretro/info",
-          "dest": "share/libretro/info"
+          "source": "RetroArch-Linux-x86_64/RetroArch-Linux-x86_64.AppImage.home/.config/retroarch/database/rdb",
+          "dest": "database/rdb"
+        },
+        {
+          "type": "dir",
+          "source": "RetroArch-Linux-x86_64/RetroArch-Linux-x86_64.AppImage.home/.config/retroarch/filters",
+          "dest": "filters"
         },
         {
           "type": "tar.gz",
-          "source": "share/libretro/shaders",
+          "source": "RetroArch-Linux-x86_64/RetroArch-Linux-x86_64.AppImage.home/.config/retroarch/shaders",
           "dest": "rd_extras/shaders"
-        },
-        {
-          "type": "tar.gz",
-          "source": "share/libretro/overlays",
-          "dest": "rd_extras/overlays"
-        },
-        {
-          "type": "dir",
-          "source": "lib",
-          "dest": "shared-libs"
         },
         {
           "type": "dir",
@@ -58,8 +57,8 @@
           "dest": "rd_config"
         },
         {
-          "type": "dir",
-          "source": "$REPO_ROOT/$COMPONENT_NAME/assets/rd_extras",
+          "type": "file",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/assets/rd_extras/ScummVM.zip",
           "dest": "rd_extras"
         },
         {
@@ -95,95 +94,52 @@
       ],
       "libs": [
         {
-          "library": "libQt6Core.so.6",
+          "library": "libSDL2-2.0.so.0",
           "runtime_name": "org.kde.Platform",
-          "runtime_version": "$RETROARCH_DESIRED_QT6_RUNTIME_VERSION",
+          "runtime_version": "6.8",
           "dest": "shared-libs"
         },
         {
-          "library": "libQt6Gui.so.6",
+          "library": "libpng16.so.16",
           "runtime_name": "org.kde.Platform",
-          "runtime_version": "$RETROARCH_DESIRED_QT6_RUNTIME_VERSION",
+          "runtime_version": "6.8",
           "dest": "shared-libs"
         },
         {
-          "library": "libQt6Widgets.so.6",
+          "library": "libjpeg.so.62",
           "runtime_name": "org.kde.Platform",
-          "runtime_version": "$RETROARCH_DESIRED_QT6_RUNTIME_VERSION",
+          "runtime_version": "6.8",
           "dest": "shared-libs"
         },
         {
-          "library": "libQt6Concurrent.so.6",
+          "library": "libogg.so.0",
           "runtime_name": "org.kde.Platform",
-          "runtime_version": "$RETROARCH_DESIRED_QT6_RUNTIME_VERSION",
+          "runtime_version": "6.8",
           "dest": "shared-libs"
         },
         {
-          "library": "libQt6Network.so.6",
+          "library": "libvorbis.so.0",
           "runtime_name": "org.kde.Platform",
-          "runtime_version": "$RETROARCH_DESIRED_QT6_RUNTIME_VERSION",
+          "runtime_version": "6.8",
           "dest": "shared-libs"
         },
         {
-          "library": "libQt6DBus.so.6",
-          "runtime_name": "org.kde.Platform",
-          "runtime_version": "$RETROARCH_DESIRED_QT6_RUNTIME_VERSION",
-          "dest": "shared-libs"
-        },
-        {
-          "library": "libQt6Network.so.6",
-          "runtime_name": "org.kde.Platform",
-          "runtime_version": "$RETROARCH_DESIRED_QT6_RUNTIME_VERSION",
-          "dest": "shared-libs"
-        },
-        {
-          "library": "libQt6Multimedia.so.6",
-          "runtime_name": "org.kde.Platform",
-          "runtime_version": "$RETROARCH_DESIRED_QT6_RUNTIME_VERSION",
-          "dest": "shared-libs"
-        },
-        {
-          "library": "libicui18n.so.75",
+          "library": "libc.so.6",
           "runtime_name": "org.freedesktop.Platform",
-          "runtime_version": "24.08",
+          "runtime_version": "25.08",
           "dest": "shared-libs"
-        },
-        {
-          "library": "libicudata.so.75",
-          "runtime_name": "org.freedesktop.Platform",
-          "runtime_version": "24.08",
-          "dest": "shared-libs"
-        },
-        {
-          "library": "libicuuc.so.75",
-          "runtime_name": "org.freedesktop.Platform",
-          "runtime_version": "24.08",
-          "dest": "shared-libs"
-        }
-      ],
-      "extras": [
-        {
-          "type": "dir",
-          "source": "$REPO_ROOT/$COMPONENT_NAME",
-          "dest": "$COMPONENT_ARTIFACT_ROOT"
-        },
-        {
-          "type": "create",
-          "dest": "component_version",
-          "contents": "$SOURCE_VERSION"
         }
       ]
     },
     {
-      "source_url": "https://buildbot.libretro.com/stable/{VERSION}/linux/x86_64/RetroArch_cores.7z",
-      "source_type": "http",
-      "version": "1.21.0",
-      "extraction_type": "archive",
+      "source_url": "$EXTRACTED_PATH/RetroArch-Linux-x86_64/RetroArch-Linux-x86_64.AppImage",
+      "source_type": "local",
+      "extraction_type": "appimage",
       "assets": [
         {
           "type": "dir",
-          "source": "RetroArch-Linux-x86_64/RetroArch-Linux-x86_64.AppImage.home/.config/retroarch/cores",
-          "dest": "$WORKDIR/cores"
+          "source": "usr/bin",
+          "dest": "bin"
         }
       ]
     },
@@ -294,6 +250,18 @@
           "type": "tar.gz",
           "source": "cores",
           "dest": "rd_extras/cores"
+        }
+      ]
+    },
+    {
+      "source_url": "$WORKDIR",
+      "source_type": "local",
+      "extraction_type": "local",
+      "assets": [
+        {
+          "type": "tar.gz",
+          "source": "overlays",
+          "dest": "rd_extras/overlays"
         }
       ]
     }
