@@ -74,6 +74,9 @@ handle_asset() {
       ;;
   esac
 
+  cd "$(dirname $final_source)"
+  final_source="$(basename $final_source)"
+
   if ! process_asset_cmd "$final_source" "$final_dest"; then
     log error "Archive $final_dest could not be created"
     return 1
