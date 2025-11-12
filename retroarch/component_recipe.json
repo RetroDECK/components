@@ -143,21 +143,21 @@
           "dest": "shared-libs"
         },
         {
-          "library": "libicui18n.so.77",
+          "library": "libicui18n.so.75",
           "runtime_name": "org.freedesktop.Platform",
-          "runtime_version": "25.08",
+          "runtime_version": "24.08",
           "dest": "shared-libs"
         },
         {
-          "library": "libicudata.so.77",
+          "library": "libicudata.so.75",
           "runtime_name": "org.freedesktop.Platform",
-          "runtime_version": "25.08",
+          "runtime_version": "24.08",
           "dest": "shared-libs"
         },
         {
-          "library": "libicuuc.so.77",
+          "library": "libicuuc.so.75",
           "runtime_name": "org.freedesktop.Platform",
-          "runtime_version": "25.08",
+          "runtime_version": "24.08",
           "dest": "shared-libs"
         }
       ],
