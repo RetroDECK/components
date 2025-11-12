@@ -24,8 +24,13 @@
         },
         {
           "type": "dir",
-          "source": "share/libretro/database",
-          "dest": "share/libretro/database"
+          "source": "share/libretro/database/cursors",
+          "dest": "share/libretro/database/cursors"
+        },
+        {
+          "type": "dir",
+          "source": "share/libretro/database/rdb",
+          "dest": "share/libretro/database/rdb"
         },
         {
           "type": "dir",
@@ -243,9 +248,9 @@
       "extraction_type": "local",
       "assets": [
         {
-          "type": "merge",
-          "source": "cht",
-          "dest": "share/libretro/database/cht"
+          "type": "tar.gz",
+          "source": "cht/.",
+          "dest": "rd_extras/cheats"
         }
       ]
     },
@@ -281,14 +286,14 @@
       ]
     },
     {
-      "source_url": "https://github.com/libretro/libretro-database/archive/refs/heads/master.zip",
-      "source_type": "http",
+      "source_url": "$WORKDIR",
+      "source_type": "local",
       "extraction_type": "local",
       "assets": [
         {
-          "type": "file-rename",
-          "source": "$DOWNLOADED_FILE",
-          "dest": "rd_extras/cheats.zip"
+          "type": "tar.gz",
+          "source": "cores",
+          "dest": "rd_extras/cores"
         }
       ]
     }
