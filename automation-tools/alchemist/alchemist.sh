@@ -33,7 +33,7 @@ transmute() {
   export EXTRACTED_PATH=""
 
   if [[ ! -e "$desired_versions" ]]; then
-    echo "Desired version file could not be found at $desired_versions, cannot continue."
+    log error "Desired version file could not be found at $desired_versions, cannot continue."
     exit 1
   fi
 

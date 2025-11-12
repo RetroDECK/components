@@ -19,11 +19,11 @@ try() {
     local exit_code=$?
 
     if [ "$attempt" -eq "$max_retries" ]; then
-      echo "ERROR: Command failed after $max_retries attempts" >&2
+      log error "ERROR: Command failed after $max_retries attempts" >&2
       return "$exit_code"
     fi
 
-    echo "WARNING: Attempt $attempt/$max_retries failed. Retrying in ${delay}s..." >&2
+    log warn "WARNING: Attempt $attempt/$max_retries failed. Retrying in ${delay}s..." >&2
     sleep "$delay"
 
     delay=$((delay * 2))

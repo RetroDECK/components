@@ -41,7 +41,7 @@ handle_github_rate_limit() {
       local wait_time=$((reset_time - current_time + 5))
 
       if [[ "$wait_time" -gt 0 ]]; then
-        echo "GitHub API rate limit hit. Waiting ${wait_time}s..."
+        log warn "GitHub API rate limit hit. Waiting ${wait_time}s..."
         sleep "$wait_time"
         return 0
       fi
@@ -141,7 +141,7 @@ get_github_release_asset_url() {
   rm -f "$headers_file"
 
   if [[ "$curl_exit" -ne 0 ]]; then
-    echo "Failed to fetch release $version for $owner/$repo"
+    log error "Failed to fetch release $version for $owner/$repo"
     return 1
   fi
 
@@ -164,7 +164,7 @@ get_github_release_asset_url() {
   done <<< "$assets"
 
   if [[ -z "$matched_url" ]]; then
-    echo "No asset matching pattern '$pattern' found in release $version"
+    log error "No asset matching pattern '$pattern' found in release $version"
     return 1
   fi
 

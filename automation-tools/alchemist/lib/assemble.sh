@@ -28,7 +28,7 @@ load_asset_handlers() {
 
     # Check if asset_handler_info function exists
     if ! declare -f asset_handler_info > /dev/null; then
-      log w "Asset handler $filename does not implement asset_handler_info()"
+      log warn "Asset handler $filename does not implement asset_handler_info()"
       continue
     fi
 
