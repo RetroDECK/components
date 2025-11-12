@@ -57,12 +57,23 @@
           "dest": "$COMPONENT_ARTIFACT_ROOT/rd_config"
         }
       ],
-      "libs": [],
       "extras": [
         {
           "type": "dir",
           "source": "$REPO_ROOT/$COMPONENT_NAME",
           "dest": "$COMPONENT_ARTIFACT_ROOT"
+        }
+      ]
+    },
+    {
+      "source_url": "https://github.com/RetroDECK/RetroDECK-theme/archive/refs/heads/main.zip",
+      "source_type": "http",
+      "extraction_type": "archive",
+      "assets": [
+        {
+          "type": "dir",
+          "source": "$EXTRACTED_PATH",
+          "dest": "$COMPONENT_ARTIFACT_ROOT/share/es-de/themes"
         }
       ]
     }
