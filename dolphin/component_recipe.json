@@ -14,6 +14,11 @@
         },
         {
           "type": "dir",
+          "source": "share/dolphin-emu",
+          "dest": "share/dolphin-emu"
+        },
+        {
+          "type": "dir",
           "source": "$REPO_ROOT/$COMPONENT_NAME",
           "dest": "$COMPONENT_ARTIFACT_ROOT"
         },
