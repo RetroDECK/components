@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Source the global.sh script if not already sourced
 if [ -z "${GLOBAL_SOURCED+x}" ]; then
     source /app/libexec/global.sh
@@ -10,6 +12,12 @@ IWAD_FILES=("DOOM1.WAD" "DOOM.WAD" "DOOM2.WAD" "DOOM2F.WAD" "DOOM64.WAD" "TNT.WA
             "CHEX3.WAD" "HACX.WAD" "freedoom1.wad" "freedoom2.wad" "freedm.wad"
             "doom_complete.pk3"
 )
+
+# Get the directory where this script is located
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+log d "Running from script dir: $SCRIPT_DIR"
+
+gzdoom="$SCRIPT_DIR/gzdoom"
 
 # Function to check if a file is an IWAD
 is_iwad() {
@@ -61,9 +69,9 @@ fi
 if [[ "${1##*.}" != "doom" ]]; then
     # Check if the file is in the IWAD list
     if [[ $(is_iwad "$1") == "true" ]]; then
-        command="gzdoom -config /var/config/gzdoom/gzdoom.ini -iwad $1"
+        command="$gzdoom -config /var/config/gzdoom/gzdoom.ini -iwad $1"
     else
-        command="gzdoom -config /var/config/gzdoom/gzdoom.ini -file $1"
+        command="$gzdoom -config /var/config/gzdoom/gzdoom.ini -file $1"
     fi
 
     # Log the command
@@ -89,7 +97,7 @@ else
     fi
 
     # Read the .doom file and compose the command
-    command="gzdoom -config /var/config/gzdoom/gzdoom.ini"
+    command="$gzdoom -config /var/config/gzdoom/gzdoom.ini"
 
     while IFS= read -r line; do
         # Check if the line contains a single quote
