@@ -12,24 +12,19 @@
           "dest": "bin"
         },
         {
-          "type": "dir",
-          "source": "share/games",
-          "dest": "share/games"
+          "type": "create",
+          "dest": "component_version",
+          "contents": "$SOURCE_VERSION"
         },
         {
           "type": "dir",
-          "source": "$REPO_ROOT/$COMPONENT_NAME/assets/rd_config",
-          "dest": "$COMPONENT_ARTIFACT_ROOT/rd_config"
+          "source": "$REPO_ROOT/$COMPONENT_NAME/rd_config",
+          "dest": "rd_config"
         },
         {
           "type": "file",
           "source": "$REPO_ROOT/$COMPONENT_NAME/assets/gzdoom.sh",
-          "dest": "$COMPONENT_ARTIFACT_ROOT/bin"
-        },
-        {
-          "type": "create",
-          "dest": "component_version",
-          "contents": "$SOURCE_VERSION"
+          "dest": "bin"
         },
         {
           "type": "file",
