@@ -6,10 +6,10 @@
 #  These define which Qt libraries the framework will link against.
 # ------------------------------------------------------------------
 
-# Qt 6 runtime (modern UI toolkit)
+# Qt 6 runtime
 export DESIRED_QT6_RUNTIME_VERSION="6.10"
 
-# Qt 5 runtime (legacy support)
+# Qt 5 runtime (legacy)
 export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 
 
@@ -31,6 +31,7 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 
 # Azhar – N3DS emulator
 export AZAHAR_DESIRED_VERSION="latest"
+export AZAHAR_DESIRED_QT6_RUNTIME_VERSION="6.9"
 
 # Cemu – Wii U emulator
 export CEMU_DESIRED_VERSION="latest"
