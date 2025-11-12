@@ -17,8 +17,13 @@
           "contents": "$SOURCE_VERSION"
         },
         {
+          "type": "dir",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/assets/rd_config",
+          "dest": "$COMPONENT_ARTIFACT_ROOT/rd_config"
+        },
+        {
           "type": "file",
-          "source": "$REPO_ROOT/$COMPONENT_NAME/component_functions.sh",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/assets/harbourmaster",
           "dest": "$COMPONENT_ARTIFACT_ROOT"
         },
         {
