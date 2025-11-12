@@ -35,7 +35,12 @@
         {
           "type": "dir",
           "source": "share/licenses",
-          "dest": "share/licenses"
+          "dest": "doc/licenses"
+        },
+        {
+          "type": "dir",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/rd_config",
+          "dest": "rd_config"
         },
         {
           "type": "file",
