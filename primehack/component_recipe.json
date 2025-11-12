@@ -13,6 +13,11 @@
           "dest": "bin"
         },
         {
+          "type": "dir",
+          "source": "share/dolphin-emu",
+          "dest": "share/dolphin-emu"
+        },
+        {
           "type": "create",
           "dest": "component_version",
           "contents": "$SOURCE_VERSION"
