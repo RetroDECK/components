@@ -51,13 +51,18 @@
           "type": "file",
           "source": "$REPO_ROOT/$COMPONENT_NAME/component_prepare.sh",
           "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/assets/libdeflate.so.0",
+          "dest": "lib"
         }
       ],
       "libs": [
         {
           "library": "libSPIRV.so.14",
           "runtime_name": "org.freedesktop.Platform",
-          "runtime_version": "24.08",
+          "runtime_version": "$DESIRED_FREEDESKTOP_RUNTIME_VERSION",
           "dest": "shared-libs"
         },
         {
