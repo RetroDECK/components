@@ -95,6 +95,24 @@
           "runtime_name": "org.kde.Platform",
           "runtime_version": "$AZAHAR_DESIRED_QT6_RUNTIME_VERSION",
           "dest": "shared-libs"
+        },
+        {
+          "library": "libicui18n.so.75",
+          "runtime_name": "org.kde.Platform",
+          "runtime_version": "$AZAHAR_DESIRED_QT6_RUNTIME_VERSION",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libicuuc.so.75",
+          "runtime_name": "org.kde.Platform",
+          "runtime_version": "$AZAHAR_DESIRED_QT6_RUNTIME_VERSION",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libicudata.so.75",
+          "runtime_name": "org.kde.Platform",
+          "runtime_version": "$AZAHAR_DESIRED_QT6_RUNTIME_VERSION",
+          "dest": "shared-libs"
         }
       ]
     }
