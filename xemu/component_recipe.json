@@ -59,12 +59,6 @@
           "dest": "shared-libs"
         },
         {
-          "library": "libc.so.6",
-          "runtime_name": "org.freedesktop.Platform",
-          "runtime_version": "25.08",
-          "dest": "shared-libs"
-        },
-        {
           "library": "libpcap.so.1",
           "source": "lib",
           "dest": "shared-libs"

@@ -18,11 +18,6 @@
         },
         {
           "type": "dir",
-          "source": "usr/share/doc/",
-          "dest": "doc"
-        },
-        {
-          "type": "dir",
           "source": "$REPO_ROOT/$COMPONENT_NAME",
           "dest": "$COMPONENT_ARTIFACT_ROOT"
         },

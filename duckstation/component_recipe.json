@@ -13,13 +13,18 @@
         },
         {
           "type": "dir",
-          "source": "apprun-hooks",
-          "dest": "apprun-hooks"
+          "source": "usr/lib",
+          "dest": "lib"
         },
         {
           "type": "dir",
-          "source": "usr/share/doc/",
-          "dest": "doc"
+          "source": "usr/plugins",
+          "dest": "plugins"
+        },
+        {
+          "type": "dir",
+          "source": "apprun-hooks",
+          "dest": "apprun-hooks"
         },
         {
           "type": "dir",
@@ -62,101 +67,7 @@
           "dest": "$COMPONENT_ARTIFACT_ROOT"
         }
       ],
-      "libs": [
-        {
-          "library": "libQt6Widgets.so.6",
-          "runtime_name": "org.kde.Platform",
-          "runtime_version": "$DESIRED_QT6_RUNTIME_VERSION",
-          "dest": "shared-libs"
-        },
-        {
-          "library": "libQt6Gui.so.6",
-          "runtime_name": "org.kde.Platform",
-          "runtime_version": "$DESIRED_QT6_RUNTIME_VERSION",
-          "dest": "shared-libs"
-        },
-        {
-          "library": "libQt6Core.so.6",
-          "runtime_name": "org.kde.Platform",
-          "runtime_version": "$DESIRED_QT6_RUNTIME_VERSION",
-          "dest": "shared-libs"
-        },
-        {
-          "library": "libQt6Multimedia.so.6",
-          "runtime_name": "org.kde.Platform",
-          "runtime_version": "$DESIRED_QT6_RUNTIME_VERSION",
-          "dest": "shared-libs"
-        },
-        {
-          "library": "libQt6Network.so.6",
-          "runtime_name": "org.kde.Platform",
-          "runtime_version": "$DESIRED_QT6_RUNTIME_VERSION",
-          "dest": "shared-libs"
-        },
-        {
-          "library": "libQt6DBus.so.6",
-          "runtime_name": "org.kde.Platform",
-          "runtime_version": "$DESIRED_QT6_RUNTIME_VERSION",
-          "dest": "shared-libs"
-        },
-        {
-          "library": "libQt6XcbQpa.so.6",
-          "runtime_name": "org.kde.Platform",
-          "runtime_version": "$DESIRED_QT6_RUNTIME_VERSION",
-          "dest": "shared-libs"
-        },
-        {
-          "library": "libQt6Concurrent.so.6",
-          "runtime_name": "org.kde.Platform",
-          "runtime_version": "$DESIRED_QT6_RUNTIME_VERSION",
-          "dest": "shared-libs"
-        },
-        {
-          "library": "liblunasvg.so",
-          "source": "usr/lib",
-          "dest": "shared-libs"
-        },
-        {
-          "library": "libsoundtouch.so.2",
-          "source": "usr/lib",
-          "dest": "shared-libs"
-        },
-        {
-          "library": "libcpuinfo.so",
-          "source": "usr/lib",
-          "dest": "shared-libs"
-        },
-        {
-          "library": "libcurl.so.4",
-          "source": "usr/lib",
-          "dest": "shared-libs"
-        },
-        {
-          "library": "librtmp.so.1",
-          "source": "usr/lib",
-          "dest": "shared-libs"
-        },
-        {
-          "library": "libssh.so.4",
-          "source": "usr/lib",
-          "dest": "shared-libs"
-        },
-        {
-          "library": "libldap-2.5.so.0",
-          "source": "usr/lib",
-          "dest": "shared-libs"
-        },
-        {
-          "library": "liblber-2.5.so.0",
-          "source": "usr/lib",
-          "dest": "shared-libs"
-        },
-        {
-          "library": "libsasl2.so.2",
-          "source": "usr/lib",
-          "dest": "shared-libs"
-        }
-      ]
+      "libs": []
     }
   ]
 }

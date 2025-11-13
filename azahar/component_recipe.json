@@ -53,68 +53,7 @@
           "dest": "$COMPONENT_ARTIFACT_ROOT"
         }
       ],
-      "libs": [
-        {
-          "library": "libQt6Widgets.so.6",
-          "runtime_name": "org.kde.Platform",
-          "runtime_version": "$AZAHAR_DESIRED_QT6_RUNTIME_VERSION",
-          "dest": "shared-libs"
-        },
-        {
-          "library": "libQt6Gui.so.6",
-          "runtime_name": "org.kde.Platform",
-          "runtime_version": "$AZAHAR_DESIRED_QT6_RUNTIME_VERSION",
-          "dest": "shared-libs"
-        },
-        {
-          "library": "libQt6Core.so.6",
-          "runtime_name": "org.kde.Platform",
-          "runtime_version": "$AZAHAR_DESIRED_QT6_RUNTIME_VERSION",
-          "dest": "shared-libs"
-        },
-        {
-          "library": "libQt6Multimedia.so.6",
-          "runtime_name": "org.kde.Platform",
-          "runtime_version": "$AZAHAR_DESIRED_QT6_RUNTIME_VERSION",
-          "dest": "shared-libs"
-        },
-        {
-          "library": "libQt6Network.so.6",
-          "runtime_name": "org.kde.Platform",
-          "runtime_version": "$AZAHAR_DESIRED_QT6_RUNTIME_VERSION",
-          "dest": "shared-libs"
-        },
-        {
-          "library": "libQt6DBus.so.6",
-          "runtime_name": "org.kde.Platform",
-          "runtime_version": "$AZAHAR_DESIRED_QT6_RUNTIME_VERSION",
-          "dest": "shared-libs"
-        },
-        {
-          "library": "libQt6Concurrent.so.6",
-          "runtime_name": "org.kde.Platform",
-          "runtime_version": "$AZAHAR_DESIRED_QT6_RUNTIME_VERSION",
-          "dest": "shared-libs"
-        },
-        {
-          "library": "libicui18n.so.75",
-          "runtime_name": "org.kde.Platform",
-          "runtime_version": "$AZAHAR_DESIRED_QT6_RUNTIME_VERSION",
-          "dest": "shared-libs"
-        },
-        {
-          "library": "libicuuc.so.75",
-          "runtime_name": "org.kde.Platform",
-          "runtime_version": "$AZAHAR_DESIRED_QT6_RUNTIME_VERSION",
-          "dest": "shared-libs"
-        },
-        {
-          "library": "libicudata.so.75",
-          "runtime_name": "org.kde.Platform",
-          "runtime_version": "$AZAHAR_DESIRED_QT6_RUNTIME_VERSION",
-          "dest": "shared-libs"
-        }
-      ]
+      "libs": []
     }
   ]
 }
