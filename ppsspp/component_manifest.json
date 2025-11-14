@@ -39,7 +39,7 @@
       "config_file_format": "ppsspp",
       "savestate_auto_load": [
         {
-          "enabled_by_states": [ "true" ],
+          "enabled_states": [ "true" ],
           "setting_name": "AutoLoadSaveState",
           "action": "change",
           "new_setting_value": "2",
@@ -50,7 +50,7 @@
       ],
       "cheevos": [
         {
-          "enabled_by_states": [ "true" ],
+          "enabled_states": [ "true" ],
           "setting_name": "AchievementsEnable",
           "action": "change",
           "new_setting_value": "True",
@@ -59,7 +59,7 @@
           "defaults_file": "$config/ppssppsdl/ppsspp.ini"
         },
         {
-          "enabled_by_states": [ "true" ],
+          "enabled_states": [ "true" ],
           "setting_name": "AchievementsUserName",
           "action": "change",
           "new_setting_value": "$cheevos_username",
@@ -68,7 +68,7 @@
           "defaults_file": "$config/ppssppsdl/ppsspp.ini"
         },
         {
-          "enabled_by_states": [ "true" ],
+          "enabled_states": [ "true" ],
           "setting_name": "cheevos_token",
           "action": "change",
           "new_setting_value": "$cheevos_token",
@@ -79,7 +79,7 @@
       ],
       "cheevos_hardcore": [
         {
-          "enabled_by_states": [ "true" ],
+          "enabled_states": [ "true" ],
           "setting_name": "AchievementsChallengeMode",
           "action": "change",
           "new_setting_value": "True",

@@ -20,7 +20,7 @@
       "config_file_format": "ryubing",
       "ask_to_exit": [
         {
-          "enabled_by_states": [ "true" ],
+          "enabled_states": [ "true" ],
           "setting_name": "show_confirm_exit",
           "action": "change",
           "new_setting_value": "false",
@@ -31,7 +31,7 @@
       ],
       "abxy_button": [
         {
-          "enabled_by_states": [ "true" ],
+          "enabled_states": [ "true" ],
           "setting_name": "button_x",
           "action": "change",
           "new_setting_value": "Y",
@@ -40,7 +40,7 @@
           "defaults_file": "$config/Ryubing/Config.json"
         },
         {
-          "enabled_by_states": [ "true" ],
+          "enabled_states": [ "true" ],
           "setting_name": "button_y",
           "action": "change",
           "new_setting_value": "X",
@@ -49,7 +49,7 @@
           "defaults_file": "$config/Ryubing/Config.json"
         },
         {
-          "enabled_by_states": [ "true" ],
+          "enabled_states": [ "true" ],
           "setting_name": "button_b",
           "action": "change",
           "new_setting_value": "A",
@@ -58,7 +58,7 @@
           "defaults_file": "$config/Ryubing/Config.json"
         },
         {
-          "enabled_by_states": [ "true" ],
+          "enabled_states": [ "true" ],
           "setting_name": "button_a",
           "action": "change",
           "new_setting_value": "B",

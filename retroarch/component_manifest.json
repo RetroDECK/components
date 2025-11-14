@@ -41,7 +41,7 @@
       "config_file_format": "retroarch-all",
       "cheevos": [
         {
-          "enabled_by_states": [ "true" ],
+          "enabled_states": [ "true" ],
           "setting_name": "cheevos_enable",
           "action": "change",
           "new_setting_value": "True",
@@ -54,7 +54,7 @@
         "config_file_format": "retroarch",
         "borders": [
           {
-            "enabled_by_states": [ "true" ],
+            "enabled_states": [ "true" ],
             "setting_name": "input_overlay",
             "action": "change",
             "new_setting_value": "/var/config/retroarch/overlays/borders/pegasus/snes87.cfg",

@@ -23,7 +23,7 @@
       "config_file_format": "duckstation",
       "cheevos": [
         {
-          "enabled_by_states": [ "true" ],
+          "enabled_states": [ "true" ],
           "setting_name": "Enabled",
           "action": "change",
           "new_setting_value": "true",
@@ -32,7 +32,7 @@
           "defaults_file": "$config/duckstation/settings.ini"
         },
         {
-          "enabled_by_states": [ "true" ],
+          "enabled_states": [ "true" ],
           "setting_name": "Username",
           "action": "change",
           "new_setting_value": "$cheevos_username",
@@ -41,7 +41,7 @@
           "defaults_file": "$config/duckstation/settings.ini"
         },
         {
-          "enabled_by_states": [ "true" ],
+          "enabled_states": [ "true" ],
           "setting_name": "Token",
           "action": "change",
           "new_setting_value": "$cheevos_token",
@@ -50,7 +50,7 @@
           "defaults_file": "$config/duckstation/settings.ini"
         },
         {
-          "enabled_by_states": [ "true" ],
+          "enabled_states": [ "true" ],
           "setting_name": "LoginTimestamp",
           "action": "change",
           "new_setting_value": "$cheevos_login_timestamp",
@@ -61,7 +61,7 @@
       ],
       "cheevos_hardcore": [
         {
-          "enabled_by_states": [ "true" ],
+          "enabled_states": [ "true" ],
           "setting_name": "ChallengeMode",
           "action": "change",
           "new_setting_value": "true",
@@ -72,7 +72,7 @@
       ],
       "savestate_auto_save_exit": [
         {
-          "enabled_by_states": [ "true" ],
+          "enabled_states": [ "true" ],
           "setting_name": "SaveStateOnExit",
           "action": "change",
           "new_setting_value": "true",
@@ -83,7 +83,7 @@
       ],
       "ask_to_exit": [
         {
-          "enabled_by_states": [ "true" ],
+          "enabled_states": [ "true" ],
           "setting_name": "ConfirmPowerOff",
           "action": "change",
           "new_setting_value": "true",

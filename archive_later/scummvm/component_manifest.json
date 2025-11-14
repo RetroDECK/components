@@ -17,7 +17,7 @@
       "config_file_format": "scummvm",
       "ask_to_exit": [
         {
-          "enabled_by_states": [ "true" ],
+          "enabled_states": [ "true" ],
           "setting_name": "confirm_exit",
           "action": "change",
           "new_setting_value": "true",
