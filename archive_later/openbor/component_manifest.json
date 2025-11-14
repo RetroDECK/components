@@ -1,0 +1,11 @@
+{
+  "openbor": {
+    "name": "OpenBOR",
+    "description": "OpenBOR is a royalty free sprite-based side scrolling gaming engine.",
+    "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_engine_guides/openbor/openbor-guide/",
+    "url_webpage": "https://www.chronocrash.com/",
+    "url_source": "https://github.com/DCurrent/openbor",
+    "system_friendly_name": "OpenBOR",
+    "system": "openbor"
+  }
+}
