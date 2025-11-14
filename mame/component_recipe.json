@@ -23,6 +23,11 @@
           "dest": "rd_config"
         },
         {
+          "type": "dir",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/assets/rd_extras",
+          "dest": "rd_extras"
+        },
+        {
           "type": "file",
           "source": "$REPO_ROOT/$COMPONENT_NAME/component_functions.sh",
           "dest": "$COMPONENT_ARTIFACT_ROOT"
@@ -70,7 +75,7 @@
       ]
     },
     {
-      "source_url": "$REPO_ROOT/$COMPONENT_NAME/tmp_assets/cheat*.zip",
+      "source_url": "$REPO_ROOT/$COMPONENT_NAME/assets/rd_extras/cheat*.zip",
       "source_type": "local",
       "extraction_type": "archive",
       "assets": [

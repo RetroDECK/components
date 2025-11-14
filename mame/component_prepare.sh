@@ -3,6 +3,7 @@
 # Setting component name and path based on the directory name
 component_name="$(basename "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")")"
 component_config="/app/retrodeck/components/$component_name/rd_config"
+component_extras="/app/retrodeck/components/$component_name/rd_extras"
 
 # TODO: do a proper script
 # This is just a placeholder script to test the emulator's flow
