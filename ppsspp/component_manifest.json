@@ -22,15 +22,15 @@
       }
     },
     "compatible_presets": {
+      "savestate_auto_load": [
+        "false",
+        "true"
+      ],
       "cheevos": [
         "false",
         "true"
       ],
       "cheevos_hardcore": [
-        "false",
-        "true"
-      ],
-      "test_preset": [
         "false",
         "true"
       ]
