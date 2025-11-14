@@ -61,13 +61,6 @@
           "source": "$REPO_ROOT/$COMPONENT_NAME/assets/rd_config",
           "dest": "$COMPONENT_ARTIFACT_ROOT/rd_config"
         }
-      ],
-      "extras": [
-        {
-          "type": "dir",
-          "source": "$REPO_ROOT/$COMPONENT_NAME",
-          "dest": "$COMPONENT_ARTIFACT_ROOT"
-        }
       ]
     },
     {
