@@ -13,6 +13,11 @@
           "dest": "bin"
         },
         {
+          "type": "dir",
+          "source": "share/mame",
+          "dest": "share/mame"
+        },
+        {
           "type": "create",
           "dest": "component_version",
           "contents": "$SOURCE_VERSION"
