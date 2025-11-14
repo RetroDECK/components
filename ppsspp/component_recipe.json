@@ -76,7 +76,7 @@
       "source_url": "https://github.com/Zaykus/PSPemu/releases/download/{VERSION}/CWCheat-Database-Plus--master.zip",
       "version": "latest",
       "source_type": "github-release",
-      "extraction_type": "archive",
+      "extraction_type": "local",
       "assets": [
         {
           "type": "file",
