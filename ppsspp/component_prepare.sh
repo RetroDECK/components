@@ -3,6 +3,7 @@
 # Setting component name and path based on the directory name
 component_name="$(basename "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")")"
 component_config="/app/retrodeck/components/$component_name/rd_config"
+component_extras="/app/retrodeck/components/$component_name/rd_extras"
 
 if [[ "$action" == "reset" ]]; then # Run reset-only commands
   log i "------------------------"
@@ -16,6 +17,8 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
   dir_prep "$states_path/PSP/PPSSPP-SA" "$XDG_CONFIG_HOME/ppsspp/PSP/PPSSPP_STATE"
   dir_prep "$texture_packs_path/PPSSPP-SA" "$XDG_CONFIG_HOME/ppsspp/PSP/TEXTURES"
   dir_prep "$shaders_path/PPSSPP-SA" "$XDG_CONFIG_HOME/ppsspp/assets/shaders"
+
+  log i "Preparing PPSSPP cheats"
   create_dir -d "$cheats_path/PPSSPP-SA"
   dir_prep "$cheats_path/PPSSPP-SA" "$XDG_CONFIG_HOME/ppsspp/PSP/Cheats"
   if [[ -d "$cheats_path/PPSSPP-SA" && "$(ls -A "$cheats_path"/PPSSPP-SA)" ]]; then
@@ -25,7 +28,7 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
     log i "PPSSPP cheats backed up to $backup_file"
   fi
   create_dir "$cheats_path/PPSSPP/"
-  rsync "$ppsspp_cheats_db" "$cheats_path/PPSSPP/"
+  unzip -o -j "$component_extras/CWCheat-Database-Plus--master.zip" "*/cheat.db" -d "$cheats_path/PPSSPP/"
 fi
 
 if [[ "$action" == "postmove" ]]; then # Run only post-move commands
