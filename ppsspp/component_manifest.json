@@ -37,47 +37,57 @@
     },
     "preset_actions": {
       "config_file_format": "ppsspp",
-      "savestate_auto_load": {
-        "AutoLoadSaveState": {
+      "savestate_auto_load": [
+        {
+          "enabled_by_states": [ "true" ],
+          "setting_name": "AutoLoadSaveState",
           "action": "change",
           "new_setting_value": "2",
           "section": "General",
           "target_file": "$ppssppconf",
           "defaults_file": "$config/ppssppsdl/ppsspp.ini"
         }
-      },
-      "cheevos": {
-        "AchievementsEnable": {
+      ],
+      "cheevos": [
+        {
+          "enabled_by_states": [ "true" ],
+          "setting_name": "AchievementsEnable",
           "action": "change",
           "new_setting_value": "True",
           "section": "Achievements",
           "target_file": "$ppssppconf",
           "defaults_file": "$config/ppssppsdl/ppsspp.ini"
         },
-        "AchievementsUserName": {
+        {
+          "enabled_by_states": [ "true" ],
+          "setting_name": "AchievementsUserName",
           "action": "change",
           "new_setting_value": "$cheevos_username",
           "section": "Achievements",
           "target_file": "$ppssppconf",
           "defaults_file": "$config/ppssppsdl/ppsspp.ini"
         },
-        "cheevos_token": {
+        {
+          "enabled_by_states": [ "true" ],
+          "setting_name": "cheevos_token",
           "action": "change",
           "new_setting_value": "$cheevos_token",
           "section": "",
           "target_file": "$ppssppcheevosconf",
           "defaults_file": "$ppssppcheevosconf"
         }
-      },
-      "cheevos_hardcore": {
-        "AchievementsChallengeMode": {
+      ],
+      "cheevos_hardcore": [
+        {
+          "enabled_by_states": [ "true" ],
+          "setting_name": "AchievementsChallengeMode",
           "action": "change",
           "new_setting_value": "True",
           "section": "Achievements",
           "target_file": "$ppssppconf",
           "defaults_file": "$config/ppssppsdl/ppsspp.ini"
         }
-      }
+      ]
     }
   }
 }

@@ -19,63 +19,77 @@
     },
     "preset_actions": {
       "config_file_format": "pcsx2",
-      "cheevos": {
-        "Enabled": {
+      "cheevos": [
+        {
+          "enabled_by_states": [ "true" ],
+          "setting_name": "Enabled",
           "action": "change",
           "new_setting_value": "true",
           "section": "Achievements",
           "target_file": "$pcsx2_config",
           "defaults_file": "$config/pcsx2/PCSX2.ini"
         },
-        "Username": {
+        {
+          "enabled_by_states": [ "true" ],
+          "setting_name": "Username",
           "action": "change",
           "new_setting_value": "$cheevos_username",
           "section": "Achievements",
           "target_file": "$pcsx2_config",
           "defaults_file": "$config/pcsx2/PCSX2.ini"
         },
-        "Token": {
+        {
+          "enabled_by_states": [ "true" ],
+          "setting_name": "Token",
           "action": "change",
           "new_setting_value": "$cheevos_token",
           "section": "Achievements",
           "target_file": "$pcsx2_config",
           "defaults_file": "$config/pcsx2/PCSX2.ini"
         },
-        "LoginTimestamp": {
+        {
+          "enabled_by_states": [ "true" ],
+          "setting_name": "LoginTimestamp",
           "action": "change",
           "new_setting_value": "$cheevos_login_timestamp",
           "section": "Achievements",
           "target_file": "$pcsx2_config",
           "defaults_file": "$config/pcsx2/PCSX2.ini"
         }
-      },
-      "cheevos_hardcore": {
-        "ChallengeMode": {
+      ],
+      "cheevos_hardcore": [
+        {
+          "enabled_by_states": [ "true" ],
+          "setting_name": "ChallengeMode",
           "action": "change",
           "new_setting_value": "true",
           "section": "Achievements",
           "target_file": "$pcsx2_config",
           "defaults_file": "$config/pcsx2/PCSX2.ini"
         }
-      },
-      "savestate_auto_save": {
-        "SaveStateOnShutdown": {
+      ],
+      "savestate_auto_save": [
+        {
+          "enabled_by_states": [ "true" ],
+          "setting_name": "SaveStateOnShutdown",
           "action": "change",
           "new_setting_value": "true",
           "section": "EmuCore",
           "target_file": "$pcsx2_config",
           "defaults_file": "$config/pcsx2/PCSX2.ini"
         }
-      },
-      "ask_to_exit": {
-        "ConfirmShutdown": {
+      ],
+      "ask_to_exit": [
+        {
+          "enabled_by_states": [ "true" ],
+          "setting_name": "ConfirmShutdown",
           "action": "change",
           "new_setting_value": "true",
           "section": "UI",
           "target_file": "$pcsx2_config",
           "defaults_file": "$config/pcsx2/PCSX2.ini"
         }
-      }
+      ]
     }
   }
 }

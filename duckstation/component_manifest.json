@@ -21,63 +21,77 @@
     },
     "preset_actions": {
       "config_file_format": "duckstation",
-      "cheevos": {
-        "Enabled": {
+      "cheevos": [
+        {
+          "enabled_by_states": [ "true" ],
+          "setting_name": "Enabled",
           "action": "change",
           "new_setting_value": "true",
           "section": "Cheevos",
           "target_file": "$duckstation_config",
           "defaults_file": "$config/duckstation/settings.ini"
         },
-        "Username": {
+        {
+          "enabled_by_states": [ "true" ],
+          "setting_name": "Username",
           "action": "change",
           "new_setting_value": "$cheevos_username",
           "section": "Cheevos",
           "target_file": "$duckstation_config",
           "defaults_file": "$config/duckstation/settings.ini"
         },
-        "Token": {
+        {
+          "enabled_by_states": [ "true" ],
+          "setting_name": "Token",
           "action": "change",
           "new_setting_value": "$cheevos_token",
           "section": "Cheevos",
           "target_file": "$duckstation_config",
           "defaults_file": "$config/duckstation/settings.ini"
         },
-        "LoginTimestamp": {
+        {
+          "enabled_by_states": [ "true" ],
+          "setting_name": "LoginTimestamp",
           "action": "change",
           "new_setting_value": "$cheevos_login_timestamp",
           "section": "Cheevos",
           "target_file": "$duckstation_config",
           "defaults_file": "$config/duckstation/settings.ini"
         }
-      },
-      "cheevos_hardcore": {
-        "ChallengeMode": {
+      ],
+      "cheevos_hardcore": [
+        {
+          "enabled_by_states": [ "true" ],
+          "setting_name": "ChallengeMode",
           "action": "change",
           "new_setting_value": "true",
           "section": "Cheevos",
           "target_file": "$duckstation_config",
           "defaults_file": "$config/duckstation/settings.ini"
         }
-      },
-      "savestate_auto_save_exit": {
-        "SaveStateOnExit": {
+      ],
+      "savestate_auto_save_exit": [
+        {
+          "enabled_by_states": [ "true" ],
+          "setting_name": "SaveStateOnExit",
           "action": "change",
           "new_setting_value": "true",
           "section": "Main",
           "target_file": "$duckstation_config",
           "defaults_file": "$config/duckstation/settings.ini"
         }
-      },
-      "ask_to_exit": {
-        "ConfirmPowerOff": {
+      ],
+      "ask_to_exit": [
+        {
+          "enabled_by_states": [ "true" ],
+          "setting_name": "ConfirmPowerOff",
           "action": "change",
           "new_setting_value": "true",
           "section": "Main",
           "target_file": "$duckstation_config",
           "defaults_file": "$config/duckstation/settings.ini"
         }
-      }
+      ]
     }
   }
 }

@@ -18,45 +18,55 @@
     },
     "preset_actions": {
       "config_file_format": "ryubing",
-      "ask_to_exit": {
-        "show_confirm_exit": {
+      "ask_to_exit": [
+        {
+          "enabled_by_states": [ "true" ],
+          "setting_name": "show_confirm_exit",
           "action": "change",
           "new_setting_value": "false",
           "section": "UI",
           "target_file": "$ryubing_config",
           "defaults_file": "$config/Ryubing/Config.json"
         }
-      },
-      "abxy_button": {
-        "button_x": {
+      ],
+      "abxy_button": [
+        {
+          "enabled_by_states": [ "true" ],
+          "setting_name": "button_x",
           "action": "change",
           "new_setting_value": "Y",
           "section": "right_joycon",
           "target_file": "$ryubing_config",
           "defaults_file": "$config/Ryubing/Config.json"
         },
-        "button_y": {
+        {
+          "enabled_by_states": [ "true" ],
+          "setting_name": "button_y",
           "action": "change",
           "new_setting_value": "X",
           "section": "right_joycon",
           "target_file": "$ryubing_config",
           "defaults_file": "$config/Ryubing/Config.json"
         },
-        "button_b": {
+        {
+          "enabled_by_states": [ "true" ],
+          "setting_name": "button_b",
           "action": "change",
           "new_setting_value": "A",
           "section": "right_joycon",
           "target_file": "$ryubing_config",
           "defaults_file": "$config/Ryubing/Config.json"
         },
-        "button_a": {
+        {
+          "enabled_by_states": [ "true" ],
+          "setting_name": "button_a",
           "action": "change",
           "new_setting_value": "B",
           "section": "right_joycon",
           "target_file": "$ryubing_config",
           "defaults_file": "$config/Ryubing/Config.json"
         }
-      }
+      ]
     }
   }
 }

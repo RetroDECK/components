@@ -39,26 +39,30 @@
     },
     "preset_actions": {
       "config_file_format": "retroarch-all",
-      "cheevos": {
-        "cheevos_enable": {
+      "cheevos": [
+        {
+          "enabled_by_states": [ "true" ],
+          "setting_name": "cheevos_enable",
           "action": "change",
           "new_setting_value": "True",
           "section": "",
           "target_file": "$ra_conf",
           "defaults_file": "$config/retroarch/retroarch.cfg"
         }
-      },
+      ],
       "snes9x-current_libretro": {
         "config_file_format": "retroarch",
-        "borders": {
-          "input_overlay": {
+        "borders": [
+          {
+            "enabled_by_states": [ "true" ],
+            "setting_name": "input_overlay",
             "action": "change",
             "new_setting_value": "/var/config/retroarch/overlays/borders/pegasus/snes87.cfg",
             "section": "",
             "target_file": "/var/config/retroarch/config/Snes9x/snes.cfg",
             "defaults_file": "$config/retroarch/retroarch.cfg"
           }
-        }
+        ]
       }
     },
     "cores": {
