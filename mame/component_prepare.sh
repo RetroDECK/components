@@ -15,7 +15,7 @@ log i "----------------------"
 create_dir "$saves_path/mame-sa"
 create_dir "$saves_path/mame-sa/nvram"
 create_dir "$states_path/mame-sa"
-create_dir "$screenhots_path/mame-sa"
+create_dir "$screenshots_path/mame-sa"
 create_dir "$saves_path/mame-sa/diff"
 
 create_dir "$XDG_CONFIG_HOME/mame/ctrlr"
@@ -85,7 +85,7 @@ create_dir "$XDG_DATA_HOME/mame/assets/select"
 create_dir "$XDG_DATA_HOME/mame/assets/icons"
 create_dir "$XDG_DATA_HOME/mame/assets/covers"
 create_dir "$XDG_DATA_HOME/mame/assets/ui"
-create_dir "$cheats_path/mame/cheat"
+create_dir "$cheats_path/mame"
 
 dir_prep "$saves_path/mame-sa/hiscore" "$XDG_CONFIG_HOME/mame/hiscore"
 
