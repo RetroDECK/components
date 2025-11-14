@@ -104,4 +104,5 @@ set_setting_value "$mame_config" "cheatpath" "$cheats_path/mame" "mame"
 set_setting_value "$mame_config" "bgfx_path" "$shaders_path/mame/bgfx/" "mame"
 
 log i "Placing cheats in \"$cheats_path/mame\""
-unzip -j -o "$component_config/cheat0264.zip" 'cheat.7z' -d "$cheats_path/mame"
+cheat_zip=$(find "$component_extras" -type f -iname cheat*.zip)
+unzip -j -o "$cheat_zip" 'cheat.7z' -d "$cheats_path/mame"
