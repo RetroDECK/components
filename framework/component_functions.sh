@@ -1,10 +1,10 @@
 #!/bin/bash
 
 # Static variables
-rd_conf="$XDG_CONFIG_HOME/retrodeck/retrodeck.cfg"                                                            # RetroDECK config file path
+rd_conf="$XDG_CONFIG_HOME/retrodeck/retrodeck.json"                                                            # RetroDECK config file path
 rd_conf_backup="$XDG_CONFIG_HOME/retrodeck/retrodeck.bak"                                                     # Backup of RetroDECK config file from update
 rd_core_files="/app/retrodeck/config/retrodeck"                                                                           # Folder with RetroDECK reference and helper files
-rd_defaults="$rd_core_files/retrodeck.cfg"                                                            # A default RetroDECK config file
+rd_defaults="$rd_core_files/retrodeck.json"                                                            # A default RetroDECK config file
 rd_update_patch="$XDG_CONFIG_HOME/retrodeck/rd_update.patch"                                                  # A static location for the temporary patch file used during retrodeck.cfg updates
 bios_checklist="$rd_core_files/reference_lists/bios.json"                                    # A config file listing BIOS file information that can be verified
 input_validation="$rd_core_files/reference_lists/input_validation.cfg"                                # A config file listing valid CLI inputs
