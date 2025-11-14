@@ -29,6 +29,10 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
   fi
   create_dir "$cheats_path/PPSSPP/"
   unzip -o -j "$component_extras/CWCheat-Database-Plus--master.zip" "*/cheat.db" -d "$cheats_path/PPSSPP/"
+
+  log i "Preparing PPSSPP BIOS"
+  create_dir -d "$bios_path/PPSSPP"
+  tar -xzf "$component_extras/ppsspp_foss_bios.tar.gz" -C "$bios_path/PPSSPP" --strip-components=1 assets/ && log i "PPSSPP BIOS files extracted to $bios_path/PPSSPP" || log e "Failed to extract PPSSPP BIOS files."
 fi
 
 if [[ "$action" == "postmove" ]]; then # Run only post-move commands

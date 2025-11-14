@@ -84,6 +84,18 @@
           "dest": "rd_extras"
         }
       ]
+    },
+    {
+      "source_url": "https://github.com/hrydgard/ppsspp/archive/refs/heads/master.zip",
+      "source_type": "http",
+      "extraction_type": "archive",
+      "assets": [
+        {
+          "type": "archive",
+          "source": "ppsspp-master/assets",
+          "dest": "rd_extras/ppsspp_foss_bios"
+        }
+      ]
     }
   ]
 }
