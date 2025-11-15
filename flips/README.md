@@ -1,4 +1,6 @@
-# Flips Component
+# Flips
+
+Floating IPS (or Flips) is a patcher for IPS and BPS files, aiming for a simple interface yet plenty of power under the hood.
 
 ## Status
 
