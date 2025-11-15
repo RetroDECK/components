@@ -47,7 +47,7 @@
           "new_setting_value": "True",
           "section": "",
           "target_file": "$ra_conf",
-          "defaults_file": "$config/retroarch/retroarch.cfg"
+          "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
         }
       ],
       "snes9x-current_libretro": {
@@ -60,7 +60,7 @@
             "new_setting_value": "/var/config/retroarch/overlays/borders/pegasus/snes87.cfg",
             "section": "",
             "target_file": "/var/config/retroarch/config/Snes9x/snes.cfg",
-            "defaults_file": "$config/retroarch/retroarch.cfg"
+            "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           }
         ]
       }

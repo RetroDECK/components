@@ -45,7 +45,7 @@
           "new_setting_value": "True",
           "section": "Interface",
           "target_file": "$dolphin_config",
-          "defaults_file": "$config/Dolphin/Dolphin.ini"
+          "defaults_file": "$dolphin_rd_config_dir/Dolphin.ini"
         }
       ],
       "cheevos": [
@@ -56,7 +56,7 @@
           "new_setting_value": "True",
           "section": "Achievements",
           "target_file": "$dolphin_config_RetroAchievements",
-          "defaults_file": "$config/Dolphin/RetroAchievements.ini"
+          "defaults_file": "$dolphin_rd_config_dir/RetroAchievements.ini"
         },
         {
           "enabled_states": [ "true" ],
@@ -65,7 +65,7 @@
           "new_setting_value": "$cheevos_username",
           "section": "Achievements",
           "target_file": "$dolphin_config_RetroAchievements",
-          "defaults_file": "$config/Dolphin/RetroAchievements.ini"
+          "defaults_file": "$dolphin_rd_config_dir/RetroAchievements.ini"
         },
         {
           "enabled_states": [ "true" ],
@@ -74,7 +74,7 @@
           "new_setting_value": "$cheevos_token",
           "section": "Achievements",
           "target_file": "$dolphin_config_RetroAchievements",
-          "defaults_file": "$config/Dolphin/RetroAchievements.ini"
+          "defaults_file": "$dolphin_rd_config_dir/RetroAchievements.ini"
         }
       ],
       "cheevos_hardcore": [
@@ -85,7 +85,7 @@
           "new_setting_value": "True",
           "section": "Achievements",
           "target_file": "$dolphin_config_RetroAchievements",
-          "defaults_file": "$config/Dolphin/RetroAchievements.ini"
+          "defaults_file": "$dolphin_rd_config_dir/RetroAchievements.ini"
         }
       ]
     }

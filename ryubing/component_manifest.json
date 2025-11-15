@@ -26,7 +26,7 @@
           "new_setting_value": "false",
           "section": "UI",
           "target_file": "$ryubing_config",
-          "defaults_file": "$config/Ryubing/Config.json"
+          "defaults_file": "$ryubing_rd_config_dir/Config.json"
         }
       ],
       "abxy_button": [
@@ -37,7 +37,7 @@
           "new_setting_value": "Y",
           "section": "right_joycon",
           "target_file": "$ryubing_config",
-          "defaults_file": "$config/Ryubing/Config.json"
+          "defaults_file": "$ryubing_rd_config_dir/Config.json"
         },
         {
           "enabled_states": [ "true" ],
@@ -46,7 +46,7 @@
           "new_setting_value": "X",
           "section": "right_joycon",
           "target_file": "$ryubing_config",
-          "defaults_file": "$config/Ryubing/Config.json"
+          "defaults_file": "$ryubing_rd_config_dir/Config.json"
         },
         {
           "enabled_states": [ "true" ],
@@ -55,7 +55,7 @@
           "new_setting_value": "A",
           "section": "right_joycon",
           "target_file": "$ryubing_config",
-          "defaults_file": "$config/Ryubing/Config.json"
+          "defaults_file": "$ryubing_rd_config_dir/Config.json"
         },
         {
           "enabled_states": [ "true" ],
@@ -64,7 +64,7 @@
           "new_setting_value": "B",
           "section": "right_joycon",
           "target_file": "$ryubing_config",
-          "defaults_file": "$config/Ryubing/Config.json"
+          "defaults_file": "$ryubing_rd_config_dir/Config.json"
         }
       ]
     }
