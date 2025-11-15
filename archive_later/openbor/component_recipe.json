@@ -1,9 +1,9 @@
 {
-  "duckstation": [
+  "openbor": [
     {
-      "source_url": "https://github.com/RetroDECK/Duckstation/releases/download/{VERSION}/DuckStation-x64.AppImage",
+      "source_url": "https://github.com/DCurrent/openbor/releases/download/{VERSION}/OpenBOR-Linux-x64-v4.0.Build.*.AppImage",
       "source_type": "github_release",
-      "version": "$DUCKSTATION_DESIRED_VERSION",
+      "version": "$OPENBOR_DESIRED_VERSION",
       "extraction_type": "appimage",
       "assets": [
         {
@@ -12,29 +12,9 @@
           "dest": "bin"
         },
         {
-          "type": "dir",
-          "source": "usr/lib",
-          "dest": "lib"
-        },
-        {
-          "type": "dir",
-          "source": "usr/plugins",
-          "dest": "plugins"
-        },
-        {
-          "type": "dir",
-          "source": "apprun-hooks",
-          "dest": "apprun-hooks"
-        },
-        {
           "type": "create",
           "dest": "component_version",
           "contents": "$SOURCE_VERSION"
-        },
-        {
-          "type": "dir",
-          "source": "$REPO_ROOT/$COMPONENT_NAME/assets/rd_config",
-          "dest": "rd_config"
         },
         {
           "type": "file",
@@ -62,7 +42,18 @@
           "dest": "$COMPONENT_ARTIFACT_ROOT"
         }
       ],
-      "libs": []
+      "libs": [
+        {
+          "library": "libSDL2_gfx-1.0.so.0",
+          "source": "usr/lib",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libvpx.so.5",
+          "source": "usr/lib",
+          "dest": "shared-libs"
+        }
+      ]
     }
   ]
 }

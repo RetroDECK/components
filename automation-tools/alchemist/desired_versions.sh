@@ -72,6 +72,9 @@ export GZDOOM_DESIRED_VERSION="latest"
 # Hypseus – Laser Disc Arcade emulator
 export HYPSEUS_DESIRED_VERSION="latest"
 
+# Ikeman Go – Fighting engine
+export IKEMANGO_DESIRED_VERSION="latest"
+
 # KEGS – Apple IIgs emulator
 export KEGS_DESIRED_VERSION="1.38"
 

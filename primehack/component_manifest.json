@@ -32,53 +32,57 @@
     },
     "preset_actions": {
       "config_file_format": "dolphin",
-      "ask_to_exit": {
-        "ConfirmStop": {
+      "ask_to_exit": [
+        {
+          "enabled_states": [ "true" ],
+          "setting_name": "ConfirmStop",
           "action": "change",
           "new_setting_value": "True",
           "section": "Interface",
           "target_file": "$primehack_config",
           "defaults_file": "$config/Primehack/Dolphin.ini"
         }
-      },
-      "cheevos": {
-        "Enabled": {
+      ],
+      "cheevos": [
+        {
+          "enabled_states": [ "true" ],
+          "setting_name": "Enabled",
           "action": "change",
           "new_setting_value": "True",
           "section": "Achievements",
           "target_file": "$primehack_config_RetroAchievements",
           "defaults_file": "$config/Primehack/RetroAchievements.ini"
         },
-        "Username": {
+        {
+          "enabled_states": [ "true" ],
+          "setting_name": "Username",
           "action": "change",
           "new_setting_value": "$cheevos_username",
           "section": "Achievements",
           "target_file": "$primehack_config_RetroAchievements",
           "defaults_file": "$config/Primehack/RetroAchievements.ini"
         },
-        "ApiToken": {
+        {
+          "enabled_states": [ "true" ],
+          "setting_name": "ApiToken",
           "action": "change",
           "new_setting_value": "$cheevos_token",
           "section": "Achievements",
           "target_file": "$primehack_config_RetroAchievements",
           "defaults_file": "$config/Primehack/RetroAchievements.ini"
         }
-      },
-      "cheevos_hardcore": {
-        "HardcoreEnabled": {
+      ],
+      "cheevos_hardcore": [
+        {
+          "enabled_states": [ "true" ],
+          "setting_name": "HardcoreEnabled",
           "action": "change",
           "new_setting_value": "True",
           "section": "Achievements",
           "target_file": "$primehack_config_RetroAchievements",
           "defaults_file": "$config/Primehack/RetroAchievements.ini"
         }
-      },
-      "universal_dyn_input": {
-        "#MOREINFONEEDED": {}
-      },
-      "abxy_button_swap": {
-        "#MOREINFONEEDED": "value"
-      }
+      ]
     }
   }
 }

@@ -57,18 +57,6 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
   create_dir "$bios_path/fbneo/blend"
   dir_prep "$mods_path/FBNeo" "$bios_path/fbneo/patched"
 
-  # PPSSPP
-  log i "--------------------------------"
-  log i "Preparing PPSSPP_LIBRETRO"
-  log i "--------------------------------"
-  if [ -d "$bios_path/PPSSPP/flash0/font" ]; then
-    mv -fv "$bios_path/PPSSPP/flash0/font" "$bios_path/PPSSPP/flash0/font.bak"
-  fi
-  cp -rf "$retroarch_extras_path/PPSSPP" "$bios_path/PPSSPP"
-  if [ -d "$bios_path/PPSSPP/flash0/font.bak" ]; then
-    mv -f "$bios_path/PPSSPP/flash0/font.bak" "$bios_path/PPSSPP/flash0/font"
-  fi
-
   # MSX / SVI / ColecoVision / SG-1000
   log i "-----------------------------------------------------------"
   log i "Preparing MSX / SVI / ColecoVision / SG-1000 LIBRETRO"
