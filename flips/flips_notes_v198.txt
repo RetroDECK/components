@@ -1,7 +1,0 @@
-Flips was archived on the repo, this is the last version.
-
-Some forks are out, but nothing have come of them yet.
-
-This is the last version v198
-
-Flathub version have not been updated for a long time.
