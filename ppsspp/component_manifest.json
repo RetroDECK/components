@@ -73,8 +73,8 @@
           "action": "change",
           "new_setting_value": "$cheevos_token",
           "section": "",
-          "target_file": "$ppssppcheevosconf",
-          "defaults_file": "$ppssppcheevosconf"
+          "target_file": "$ppsspp_retroachievements_dat",
+          "defaults_file": "$ppsspp_rd_config_dir/ppsspp_retroachievements.dat"
         }
       ],
       "cheevos_hardcore": [
