@@ -17,10 +17,10 @@ retroarch_updater() {
   tar -xzf "$retroarch_extras_path/cores.tar.gz" -C "$XDG_CONFIG_HOME/retroarch/" --overwrite && log d "RetroArch cores updated correctly"
 
   log i "Updating overlays/borders..."
-  tar -xzf "$retroarch_extras_path/overlays.tar.gz" -C "$XDG_CONFIG_HOME/retroarch/" --overwrite && log d "RetroArch overlays and borders updated correctly"
+  tar -xzf "$retroarch_extras_path/overlays.tar.gz" -C "$XDG_CONFIG_HOME/retroarch/overlays" --overwrite && log d "RetroArch overlays and borders updated correctly"
 
   log i "Updating shaders..."
-  tar -xzf "$retroarch_extras_path/shaders.tar.gz" -C "$XDG_CONFIG_HOME/retroarch/" --overwrite && log d "RetroArch shaders updated correctly"
+  tar -xzf "$retroarch_extras_path/shaders.tar.gz" -C "$XDG_CONFIG_HOME/retroarch/shaders" --overwrite && log d "RetroArch shaders updated correctly"
 
   log i "Updating cheats..."
   tar -xzf "$retroarch_extras_path/cheats.tar.gz" -C "$cheats_path/retroarch" --overwrite && log d "RetroArch cheats updated correctly"
