@@ -46,7 +46,7 @@
           "action": "change",
           "new_setting_value": "True",
           "section": "",
-          "target_file": "$ra_conf",
+          "target_file": "$retroarch_config",
           "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
         }
       ],
