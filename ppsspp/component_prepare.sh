@@ -28,7 +28,7 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
     log i "PPSSPP cheats backed up to $backup_file"
   fi
   create_dir "$cheats_path/PPSSPP/"
-  unzip -o -j "$component_extras/CWCheat-Database-Plus--master.zip" "*/cheat.db" -d "$cheats_path/PPSSPP/"
+  unzip -q -o -j "$component_extras/CWCheat-Database-Plus--master.zip" "*/cheat.db" -d "$cheats_path/PPSSPP/"
 
   log i "Preparing PPSSPP BIOS"
   create_dir -d "$bios_path/PPSSPP"
