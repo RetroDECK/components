@@ -18,7 +18,6 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
   dir_prep "$saves_path/gc/primehack/JP" "$XDG_DATA_HOME/primehack/GC/JAP"
   dir_prep "$screenshots_path" "$XDG_DATA_HOME/primehack/ScreenShots"
   dir_prep "$states_path/primehack" "$XDG_DATA_HOME/primehack/StateSaves"
-  create_dir "$XDG_DATA_HOME/primehack/Wii/"
   dir_prep "$saves_path/wii/primehack" "$XDG_DATA_HOME/primehack/Wii"
   dir_prep "$mods_path/Primehack" "$XDG_DATA_HOME/primehack/Load/GraphicMods"
   dir_prep "$texture_packs_path/Primehack" "$XDG_DATA_HOME/primehack/Load/Textures"
