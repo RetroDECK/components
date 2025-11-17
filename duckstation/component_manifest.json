@@ -10,6 +10,10 @@
         "false",
         "true"
       ],
+      "cheevos_hardcore" : [
+        "false",
+        "true"
+      ],
       "ask_to_exit": [
         "false",
         "true"
@@ -70,7 +74,7 @@
           "defaults_file": "$duckstation_rd_config_dir/settings.ini"
         }
       ],
-      "savestate_auto_save_exit": [
+      "savestate_on_exit": [
         {
           "enabled_states": [ "true" ],
           "setting_name": "SaveStateOnExit",
