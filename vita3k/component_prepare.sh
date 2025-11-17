@@ -14,6 +14,7 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
   rm -rf "$XDG_CONFIG_HOME/Vita3K"
   create_dir "$XDG_CONFIG_HOME/Vita3K"
   cp -fv "$component_config/config.yml" "$vita3k_config" # component config
+  create_dir "$storage_path/psvita/Vita3K/"
   cp -frv "$component_config/ux0" "$storage_path/psvita/Vita3K/" # User config
   set_setting_value "$vita3k_config" "pref-path" "$storage_path/psvita/Vita3K/" "vita3k"
   dir_prep "$saves_path/psvita/vita3k" "$storage_path/psvita/Vita3K/ux0/user/00/savedata" # Multi-user safe?
