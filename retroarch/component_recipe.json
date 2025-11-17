@@ -48,7 +48,7 @@
         },
         {
           "type": "tar.gz",
-          "source": "RetroArch-Linux-x86_64/RetroArch-Linux-x86_64.AppImage.home/.config/retroarch/shaders",
+          "source": "RetroArch-Linux-x86_64/RetroArch-Linux-x86_64.AppImage.home/.config/retroarch/shaders/.",
           "dest": "rd_extras/shaders"
         },
         {
@@ -103,6 +103,19 @@
           "type": "dir",
           "source": "usr/bin",
           "dest": "bin"
+        }
+      ]
+    },
+    {
+      "source_url": "https://buildbot.libretro.com/stable/{VERSION}/linux/x86_64/RetroArch_cores.7z",
+      "source_type": "http",
+      "version": "1.22.1",
+      "extraction_type": "archive",
+      "assets": [
+        {
+          "type": "merge",
+          "source": "RetroArch-Linux-x86_64/RetroArch-Linux-x86_64.AppImage.home/.config/retroarch/cores",
+          "dest": "$WORKDIR/cores"
         }
       ]
     },
@@ -223,7 +236,7 @@
       "assets": [
         {
           "type": "tar.gz",
-          "source": "overlays",
+          "source": "overlays/.",
           "dest": "rd_extras/overlays"
         }
       ]
