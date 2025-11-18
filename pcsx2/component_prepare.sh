@@ -10,8 +10,8 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
   log i "Preparing $component_name"
   log i "----------------------"
 
-  create_dir -d "$XDG_CONFIG_HOME/pcsx2/inis"
-  cp -fvr "$component_config/"* "$XDG_CONFIG_HOME/pcsx2/inis/"
+  create_dir -d "$XDG_CONFIG_HOME/PCSX2/inis"
+  cp -fvr "$component_config/"* "$XDG_CONFIG_HOME/PCSX2/inis/"
   set_setting_value "$pcsx2_config" "Bios" "$bios_path" "pcsx2" "Folders"
   set_setting_value "$pcsx2_config" "Snapshots" "$screenshots_path" "pcsx2" "Folders"
   set_setting_value "$pcsx2_config" "SaveStates" "$states_path/ps2/pcsx2" "pcsx2" "Folders"
@@ -28,7 +28,7 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
   tar -xzf "$component_extras/pcsx2.tar.gz" -C "$cheats_path/pcsx2" --overwrite
   create_dir "$saves_path/ps2/pcsx2/memcards"
   create_dir "$states_path/ps2/pcsx2"
-  dir_prep "$texture_packs_path/pcsx2" "$XDG_CONFIG_HOME/pcsx2/textures"
+  dir_prep "$texture_packs_path/pcsx2" "$XDG_CONFIG_HOME/PCSX2/textures"
 fi
 
 if [[ "$action" == "postmove" ]]; then # Run only post-move commands
@@ -38,5 +38,5 @@ if [[ "$action" == "postmove" ]]; then # Run only post-move commands
   set_setting_value "$pcsx2_config" "MemoryCards" "$saves_path/ps2/pcsx2/memcards" "pcsx2" "Folders"
   set_setting_value "$pcsx2_config" "RecursivePaths" "$roms_path/ps2" "pcsx2" "GameList"
   set_setting_value "$pcsx2_config" "Cheats" "$cheats_path/pcsx2" "Folders"
-  dir_prep "$texture_packs_path/pcsx2" "$XDG_CONFIG_HOME/pcsx2/textures"
+  dir_prep "$texture_packs_path/pcsx2" "$XDG_CONFIG_HOME/PCSX2/textures"
 fi
