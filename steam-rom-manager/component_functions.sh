@@ -10,8 +10,8 @@ retrodeck_removed_favorites="$steamsync_folder/retrodeck_removed_favorites.json"
 configurator_add_retrodeck_to_steam_dialog() {
   (
   # Add RetroDECK launcher to Steam
-  steam-rom-manager enable --names "RetroDECK Launcher" >> "$srm_log" 2>&1
-  steam-rom-manager add >> "$srm_log" 2>&1
+  rd_srm enable --names "RetroDECK Launcher" >> "$srm_log" 2>&1
+  rd_srm add >> "$srm_log" 2>&1
   ) |
   rd_zenity --progress \
   --title="RetroDECK Configurator: Add RetroDECK to Steam" \
@@ -60,9 +60,9 @@ configurator_disable_steam_sync() {
   set_setting_value "$rd_conf" "steam_sync" "false" retrodeck "options"
   # Remove only synced favorites, leave RetroDECK shortcut if it exists
   (
-  steam-rom-manager enable --names "RetroDECK Steam Sync" >> "$srm_log" 2>&1
-  steam-rom-manager disable --names "RetroDECK Launcher" >> "$srm_log" 2>&1
-  steam-rom-manager remove >> "$srm_log" 2>&1
+  rd_srm enable --names "RetroDECK Steam Sync" >> "$srm_log" 2>&1
+  rd_srm disable --names "RetroDECK Launcher" >> "$srm_log" 2>&1
+  rd_srm remove >> "$srm_log" 2>&1
   ) |
   rd_zenity --progress \
   --title="Removing RetroDECK Sync from Steam" \
@@ -88,7 +88,7 @@ configurator_manual_steam_sync_dialog() {
 configurator_purge_steam_sync_dialog() {
   if [[ $(configurator_generic_question_dialog "RetroDECK Configurator - Steam Sync" "Are you sure you want to remove all Steam ROM Manager changes, including all RetroDECK shortcuts from Steam?" ) == "true" ]]; then
     (
-    steam-rom-manager nuke
+    rd_srm nuke
     rm -f "$retrodeck_favorites_file"
     ) |
     rd_zenity --progress \
@@ -98,4 +98,9 @@ configurator_purge_steam_sync_dialog() {
     --pulsate --width=500 --height=150 --auto-close --no-cancel
   fi
   configurator_steam_tools_dialog
+}
+
+rd_srm() {
+  log d "Starting SRM"
+  /bin/bash /app/retrodeck/components/steam-rom-manager/component_launcher.sh "$@"
 }
