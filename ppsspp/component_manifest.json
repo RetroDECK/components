@@ -7,20 +7,6 @@
     "url_source": "https://github.com/hrydgard/ppsspp",
     "system": "psp",
     "system_friendly_name": "Sony Playstation Portable",
-    "configurator_menus": {
-      "tools": {
-        "test_function": {
-          "name": "PPSSPP Test Function",
-          "description": "A test function",
-          "command": "ppsspp_test arg"
-        },
-        "test_function2": {
-          "name": "PPSSPP Test Function2",
-          "description": "A test function 2",
-          "command": "ppsspp_test2"
-        }
-      }
-    },
     "compatible_presets": {
       "savestate_auto_load": [
         "false",
