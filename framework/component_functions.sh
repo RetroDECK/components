@@ -267,38 +267,40 @@ configurator_compress_single_game_dialog() {
 configurator_compress_multiple_games_dialog() {
   log d "Starting to compress \"$1\""
 
+  compressible_games_list_file="$(mktemp)"
+
   (
-    parse_json_to_array checklist_entries api_get_compressible_games "$1"
+    api_get_compressible_games "$1" | jq -c '.[]' > "$compressible_games_list_file"
   ) |
   rd_zenity --icon-name=net.retrodeck.retrodeck --progress --no-cancel --auto-close \
   --window-icon="/app/share/icons/hicolor/scalable/apps/net.retrodeck.retrodeck.svg" \
   --title "RetroDECK Configurator - RetroDECK: Compression Tool" --text "RetroDECK is searching for compressible games, please wait..."
 
-  if [[ -s "$compressible_games_list_file" ]]; then
-    mapfile -t all_compressible_games < "$compressible_games_list_file"
+  if [[ -n "$(cat "$compressible_games_list_file")" ]]; then
     log d "Found the following games to compress: ${all_compressible_games[*]}"
   else
     configurator_generic_dialog "RetroDECK Configurator - Compression Tool" "No compressible files were found."
-    configurator_compression_tool_dialog
+    rm "$compressible_games_list_file"
+    return 1
   fi
 
   local games_to_compress=()
   if [[ "$1" != "everything" ]]; then
     local checklist_entries=()
-    for line in "${all_compressible_games[@]}"; do
-      IFS="^" read -r game comp <<< "$line"
-      local short_game="${game#$roms_path}"
-      checklist_entries+=( "TRUE" "$short_game" "$line" )
-    done
+    while read -r obj; do # Iterate through all returned menu objects
+      local game=$(jq -r '.game' <<< "$obj")
+      local format=$(jq -r '.format' <<< "$obj")
+      checklist_entries+=( "FALSE" "$game" "$format" )
+    done < <(cat "$compressible_games_list_file")
 
     local choice=$(rd_zenity \
       --list --width=1200 --height=720 --title "RetroDECK Configurator - Compression Tool" \
       --checklist --hide-column=3 --ok-label="Compress Selected" --extra-button="Compress All" \
-      --separator="^" --print-column=3 \
+      --separator="^" --print-column=2,3 \
       --text="Choose which games to compress:" \
       --column "Compress?" \
       --column "Game" \
-      --column "Game Full Path and Compression Format" \
+      --column "Compression Format" \
       "${checklist_entries[@]}")
 
     local rc=$?
@@ -310,13 +312,24 @@ configurator_compress_multiple_games_dialog() {
         games_to_compress+=("${temp_array[i]}^${temp_array[i+1]}")
       done
     elif [[ "$choice" == "Compress All" ]]; then
-      games_to_compress=("${all_compressible_games[@]}")
+      while read -r obj; do # Iterate through all returned menu objects
+        local game=$(jq -r '.game' <<< "$obj")
+        local format=$(jq -r '.format' <<< "$obj")
+        games_to_compress+=( "$game^$format" )
+      done < <(cat "$compressible_games_list_file")
     else
-      configurator_compression_tool_dialog
+      rm "$compressible_games_list_file"
+      return 0
     fi
   else
-    games_to_compress=("${all_compressible_games[@]}")
+    while read -r obj; do # Iterate through all returned menu objects
+      local game=$(jq -r '.game' <<< "$obj")
+      local format=$(jq -r '.format' <<< "$obj")
+      games_to_compress+=( "$game^$format" )
+    done < <(cat "$compressible_games_list_file")
   fi
+
+  rm "$compressible_games_list_file"
 
   local post_compression_cleanup=$(configurator_compression_cleanup_dialog)
 
@@ -325,7 +338,7 @@ configurator_compress_multiple_games_dialog() {
 
   (
   for game_line in "${games_to_compress[@]}"; do
-    while (( $(jobs -p | wc -l) >= $max_threads )); do
+    while (( $(jobs -p | wc -l) >=  $system_cpu_max_threads )); do
     sleep 0.1
     done
     (
@@ -353,7 +366,6 @@ configurator_compress_multiple_games_dialog() {
     --title "RetroDECK Configurator Utility - Compression in Progress"
 
   configurator_generic_dialog "RetroDECK Configurator - Compression Tool" "The compression process is complete!"
-  configurator_compression_tool_dialog
 }
 
 configurator_compression_cleanup_dialog() {
