@@ -106,62 +106,57 @@ configurator_bios_checker_dialog() {
 
     bios_checked_list=()
 
-     while IFS=$'\t' read -r bios_file bios_systems bios_desc required bios_md5 bios_paths; do
+    while read -r bios_obj; do
 
-      # Expand any embedded shell variables (e.g. $saves_path or $bios_path) with their actual values
-      bios_paths=$(echo "$bios_paths" | envsubst)
+    local bios_file=$(jq -r '.filename // "Unknown"' <<< "$bios_obj")
+    local bios_systems=$(jq -r '.system // "Unknown"' <<< "$bios_obj")
+    local bios_required=$(jq -r '.required // "No"' <<< "$bios_obj")
+    local bios_paths=$(jq -r '.paths // "'"$bios_path"'" | if type=="array" then join(", ") else . end' <<< "$bios_obj")
+    local bios_desc=$(jq -r '.description // "No description provided"' <<< "$bios_obj")
+    local bios_md5=$(jq -r '.md5 | if type=="array" then join(", ") else . end // "Unknown"' <<< "$obj")
 
-      bios_file_found="No"
-      bios_md5_matched="No"
+    # Expand any embedded shell variables (e.g. $saves_path or $bios_path) with their actual values
+    bios_paths=$(echo "$bios_paths" | envsubst)
 
-      IFS=', ' read -r -a paths_array <<< "$bios_paths"
-      for path in "${paths_array[@]}"; do
-        log d "Looking for $path/$bios_file"
-        if [[ ! -f "$path/$bios_file" ]]; then
-          log d "File $path/$bios_file not found"
-          break
-        else
-          bios_file_found="Yes"
-          computed_md5=$(md5sum "$path/$bios_file" | awk '{print $1}')
+    bios_file_found="No"
+    bios_md5_matched="No"
 
-          IFS=', ' read -ra expected_md5_array <<< "$bios_md5"
-          for expected in "${expected_md5_array[@]}"; do
-            expected=$(echo "$expected" | xargs)
-            if [ "$computed_md5" == "$expected" ]; then
-              bios_md5_matched="Yes"
-              break
-            fi
-          done
-          log d "BIOS file found: $bios_file_found, Hash matched: $bios_md5_matched"
-          log d "Expected path: $path/$bios_file"
-          log d "Expected MD5: $bios_md5"
-        fi
-      done
+    IFS=', ' read -r -a paths_array <<< "$bios_paths"
+    for path in "${paths_array[@]}"; do
+      log d "Looking for $path/$bios_file"
+      if [[ ! -f "$path/$bios_file" ]]; then
+        log d "File $path/$bios_file not found"
+        break
+      else
+        bios_file_found="Yes"
+        computed_md5=$(md5sum "$path/$bios_file" | awk '{print $1}')
 
-        log d "Adding BIOS entry: \"$bios_file $bios_systems $bios_file_found $bios_md5_matched $bios_desc $bios_paths $bios_md5\" to the bios_checked_list"
+        IFS=', ' read -ra expected_md5_array <<< "$bios_md5"
+        for expected in "${expected_md5_array[@]}"; do
+          expected=$(echo "$expected" | xargs)
+          if [ "$computed_md5" == "$expected" ]; then
+            bios_md5_matched="Yes"
+            break
+          fi
+        done
+        log d "BIOS file found: $bios_file_found, Hash matched: $bios_md5_matched"
+        log d "Expected path: $path/$bios_file"
+        log d "Expected MD5: $bios_md5"
+      fi
+    done
 
-        bios_checked_list=("${bios_checked_list[@]}" "$bios_file" "$bios_systems" "$bios_file_found" "$bios_md5_matched" "$required" "$bios_paths" "$bios_desc" "$bios_md5")
+    log d "Adding BIOS entry: \"$bios_file $bios_systems $bios_file_found $bios_md5_matched $bios_required $bios_desc $bios_paths $bios_md5\" to the bios_checked_list"
 
-        current_bios=$((current_bios + 1))
-        echo "$((current_bios * 100 / total_bios))"
+    bios_checked_list=("${bios_checked_list[@]}" "$bios_file" "$bios_systems" "$bios_file_found" "$bios_md5_matched" "$bios_required" "$bios_paths" "$bios_desc" "$bios_md5")
 
-    done < <(jq -r '
-          .bios
-          | to_entries[]
-          | [
-              .key,
-              (.value.system | if type=="array" then join(", ") elif type=="string" then . else "Unknown" end),
-              (.value.description // "No description provided"),
-              (.value.required // "No"),
-              (.value.md5 | if type=="array" then join(", ") elif type=="string" then . else "Unknown" end),
-              (.value.paths | if type=="array" then join(", ") elif type=="string" then . else "$bios_path" end)
-            ]
-          | @tsv
-        ' "$bios_checklist")
+    current_bios=$((current_bios + 1))
+    echo "$((current_bios * 100 / total_bios))"
+
+    done < <(jq -c '.bios | map(.system |= (if type=="array" then join(", ") else . end // "Unknown")) | sort_by(.system) | .[]' "$bios_checklist")
 
     log d "Finished checking BIOS files"
 
-    rd_zenity --list --title="RetroDECK Configurator Utility - BIOS Checker" --no-cancel \
+    rd_zenity --list --title="RetroDECK Configurator Utility - BIOS Checker" \
       --window-icon="/app/share/icons/hicolor/scalable/apps/net.retrodeck.retrodeck.svg" --width=1200 --height=720 \
       --column "BIOS File Name" \
       --column "Systems" \
