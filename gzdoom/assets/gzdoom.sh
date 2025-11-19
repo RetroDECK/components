@@ -35,7 +35,7 @@ is_iwad() {
     echo "false"
 }
 
-# Function to search for files recursively
+# Function to search for files recursively and resolve symlinks
 search_file_recursive() {
     local file="$1"
     local directory="$2"
@@ -43,11 +43,16 @@ search_file_recursive() {
     
     # Check if the file exists in the current directory
     if [[ -e "$directory/$file" ]]; then
-        found_file="$directory/$file"
+        # Resolve symlinks if the file is a symlink
+        found_file=$(readlink -f "$directory/$file")
     else
         # Search recursively
         local lowercase_file="$(echo "$file" | tr '[:upper:]' '[:lower:]')"
         found_file=$(find "$directory" -type f -iname "$lowercase_file" | head -n 1)
+        if [[ -n "$found_file" ]]; then
+            # Resolve symlinks if the file is a symlink
+            found_file=$(readlink -f "$found_file")
+        fi
     fi
     echo "$found_file"
 }
@@ -69,9 +74,9 @@ fi
 if [[ "${1##*.}" != "doom" ]]; then
     # Check if the file is in the IWAD list
     if [[ $(is_iwad "$1") == "true" ]]; then
-        command="$gzdoom -config /var/config/gzdoom/gzdoom.ini -iwad $1"
+        command="$gzdoom -config /var/config/gzdoom/gzdoom.ini -iwad \"$1\""
     else
-        command="$gzdoom -config /var/config/gzdoom/gzdoom.ini -file $1"
+        command="$gzdoom -config /var/config/gzdoom/gzdoom.ini -file \"$1\""
     fi
 
     # Log the command
@@ -102,11 +107,11 @@ else
     while IFS= read -r line; do
         # Check if the line contains a single quote
         if [[ "$line" == *"'"* ]]; then
-            log e "Invalid filename: A file containined in \"$1\" contains a single quote"
+            log e "Invalid filename: A file contained in \"$1\" contains a single quote"
             rd_zenity --error --no-wrap \
                 --window-icon="/app/share/icons/hicolor/scalable/apps/net.retrodeck.retrodeck.svg" \
                 --title "RetroDECK" \
-                --text="<span foreground='$purple'><b>Invalid filename\n\n</b></span>A file containined in \"$1\" contains a single quote.\nPlease rename the file and fix its name in the .doom file."
+                --text="<span foreground='$purple'><b>Invalid filename\n\n</b></span>A file contained in \"$1\" contains a single quote.\nPlease rename the file and fix its name in the .doom file."
             exit 1
         fi
 
@@ -115,20 +120,20 @@ else
 
         # If the file is not found, exit with an error
         if [[ -z "$found_file" ]]; then
-            log "[ERROR] File not found in \"$line\""
+            log "[ERROR] File not found: $line"
             rd_zenity --error --no-wrap \
                 --window-icon="/app/share/icons/hicolor/scalable/apps/net.retrodeck.retrodeck.svg" \
                 --title "RetroDECK" \
-                --text="File \"$doom_file\" not found. Quitting."
+                --text="File \"$line\" not found. Quitting."
             exit 1
         fi
 
         # Check if the file is an IWAD
         if [[ $(is_iwad "$found_file") == "true" ]]; then
-            command+=" -iwad $found_file"
+            command+=" -iwad \"$found_file\""
             log i "Appending the param \"-iwad $found_file\""
         else
-            command+=" -file $found_file"
+            command+=" -file \"$found_file\""
             log i "Appending the param \"-file $found_file\""
         fi
     done < "$doom_file"
