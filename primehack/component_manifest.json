@@ -35,12 +35,9 @@
       "universal_dyn_input": [
         {
           "enabled_states": [ "true" ],
-          "setting_name": "",
           "action": "install",
-          "new_setting_value": "",
-          "section": "",
-          "target_file": "$XDG_DATA_HOME/primehack/Load/DynamicInputTextures/",
-          "defaults_file": "/app/retrodeck/extras/DynamicInputTextures/"
+          "source": "/app/retrodeck/extras/DynamicInputTextures/",
+          "destination": "$XDG_DATA_HOME/primehack/Load/DynamicInputTextures/"
         }
       ]
     }
