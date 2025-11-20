@@ -6,16 +6,6 @@
     "url_webpage": "https://cemu.info/",
     "url_source": "https://github.com/cemu-project/Cemu",
     "system": "wiiu",
-    "system_friendly_name": "Wii U",
-    "compatible_presets": {
-      "abxy_button": [
-        "false",
-        "true"
-      ]
-    },
-    "preset_actions": {
-      "config_file_format": "cemu",
-      "additional_info": "#MOREINFONEEDED"
-    }
+    "system_friendly_name": "Wii U"
   }
 }
