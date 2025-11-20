@@ -11,8 +11,10 @@ Core:
   Thread Scheduler Mode: Operating System
   Set DAZ and FTZ: false
   SPU Decoder: Recompiler (LLVM)
-  SPU Reservation Busy Waiting Percentage: 0
+  SPU Reservation Busy Waiting Percentage 1: 100
+  SPU Reservation Busy Waiting Enabled: false
   SPU GETLLAR Busy Waiting Percentage: 100
+  Disable SPU GETLLAR Spin Optimization: false
   SPU Debug: false
   MFC Debug: false
   Preferred SPU Threads: 1
@@ -35,7 +37,7 @@ Core:
   XFloat Accuracy: Approximate
   Accurate PPU 128-byte Reservation Op Max Length: 0
   Stub PPU Traps: 0
-  Full Width AVX-512: false
+  Precise SPU Verification: false
   PPU LLVM Java Mode Handling: true
   Use Accurate DFMA: true
   PPU Set Saturation Bit: false
@@ -104,6 +106,7 @@ Video:
   Multithreaded RSX: false
   Relaxed ZCULL Sync: false
   Force Hardware MSAA Resolve: false
+  3D Display Enabled: false
   3D Display Mode: Disabled
   Debug Program Analyser: false
   Accurate ZCULL stats: true
@@ -123,6 +126,7 @@ Video:
   Disable MSL Fast Math: false
   Disable Asynchronous Memory Manager: false
   Output Scaling Mode: Bilinear
+  Record With Overlays: true
   Vulkan:
     Adapter: AMD Custom GPU 0405 (RADV VANGOGH)
     Force FIFO present mode: false
@@ -132,6 +136,7 @@ Video:
     FidelityFX CAS Sharpening Intensity: 50
     Asynchronous Queue Scheduler: Fast
     VRAM allocation limit (MB): 65536
+    Use Re-BAR for GPU uploads: true
   Performance Overlay:
     Enabled: false
     Enable Framerate Graph: false
@@ -199,6 +204,7 @@ Input/Output:
   Emulated Midi devices: Keyboardßßß@@@Keyboardßßß@@@Keyboardßßß@@@
   Load SDL GameController Mappings: true
   IO Debug overlay: false
+  Mouse Debug overlay: false
   Fake Move Rotation Cone: 10
   Fake Move Rotation Cone (Vertical): 10
 System:
@@ -206,12 +212,14 @@ System:
   Language: English (US)
   Keyboard Type: English keyboard (US standard)
   Enter button assignment: Enter with cross
+  Date Format: ddmmyyyy
+  Time Format: clock24
   Console time offset (s): 0
   System Name: RPCS3-960
-  PSID high: 0
-  PSID low: 0
+  Console PSID: 
   HDD Model Name: ""
   HDD Serial Number: ""
+  Process ARGV: {}
 Net:
   Internet enabled: Disconnected
   IP address: 0.0.0.0
@@ -227,6 +235,8 @@ Savestate:
   Compatible Savestate Mode: false
   Inspection Mode Savestates: false
   Save Disc Game Data: false
+  Maximum SaveState Files: 4
+  Maximum SaveState Files Space (MiB): 4096
 Miscellaneous:
   Automatically start games after boot: true
   Exit RPCS3 when process finishes: true
@@ -241,9 +251,11 @@ Miscellaneous:
   Show pressure intensity toggle hint: true
   Show analog limiter toggle hint: true
   Show mouse and keyboard toggle hint: true
+  Show capture hints: true
   Use native user interface: true
   GDB Server: 127.0.0.1:2345
   Silence All Logs: false
   Window Title Format: "FPS: %F | %R | %V | %T [%t]"
   Pause Emulation During Home Menu: true
+  Enable GameMode: false
 Log: {}
