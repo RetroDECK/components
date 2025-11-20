@@ -10,19 +10,7 @@
       "wii"
     ],
     "compatible_presets": {
-      "abxy_button": [
-        "false",
-        "true"
-      ],
       "ask_to_exit": [
-        "false",
-        "true"
-      ],
-      "cheevos": [
-        "false",
-        "true"
-      ],
-      "cheevos_hardcore": [
         "false",
         "true"
       ],
@@ -44,44 +32,15 @@
           "defaults_file": "$primehack_rd_config_dir/config/Dolphin.ini"
         }
       ],
-      "cheevos": [
+      "universal_dyn_input": [
         {
           "enabled_states": [ "true" ],
-          "setting_name": "Enabled",
-          "action": "change",
-          "new_setting_value": "True",
-          "section": "Achievements",
-          "target_file": "$primehack_config_RetroAchievements",
-          "defaults_file": "$primehack_rd_config_dir/config/RetroAchievements.ini"
-        },
-        {
-          "enabled_states": [ "true" ],
-          "setting_name": "Username",
-          "action": "change",
-          "new_setting_value": "$cheevos_username",
-          "section": "Achievements",
-          "target_file": "$primehack_config_RetroAchievements",
-          "defaults_file": "$primehack_rd_config_dir/config/RetroAchievements.ini"
-        },
-        {
-          "enabled_states": [ "true" ],
-          "setting_name": "ApiToken",
-          "action": "change",
-          "new_setting_value": "$cheevos_token",
-          "section": "Achievements",
-          "target_file": "$primehack_config_RetroAchievements",
-          "defaults_file": "$primehack_rd_config_dir/config/RetroAchievements.ini"
-        }
-      ],
-      "cheevos_hardcore": [
-        {
-          "enabled_states": [ "true" ],
-          "setting_name": "HardcoreEnabled",
-          "action": "change",
-          "new_setting_value": "True",
-          "section": "Achievements",
-          "target_file": "$primehack_config_RetroAchievements",
-          "defaults_file": "$primehack_rd_config_dir/config/RetroAchievements.ini"
+          "setting_name": "",
+          "action": "install",
+          "new_setting_value": "",
+          "section": "",
+          "target_file": "$XDG_DATA_HOME/primehack/Load/DynamicInputTextures/",
+          "defaults_file": "/app/retrodeck/extras/DynamicInputTextures/"
         }
       ]
     }

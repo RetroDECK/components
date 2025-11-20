@@ -14,10 +14,6 @@
       "Wii"
     ],
     "compatible_presets": {
-      "abxy_button_swap": [
-        "false",
-        "true"
-      ],
       "ask_to_exit": [
         "false",
         "true"
@@ -86,6 +82,17 @@
           "section": "Achievements",
           "target_file": "$dolphin_config_RetroAchievements",
           "defaults_file": "$dolphin_rd_config_dir/RetroAchievements.ini"
+        }
+      ],
+      "universal_dyn_input": [
+        {
+          "enabled_states": [ "true" ],
+          "setting_name": "",
+          "action": "install",
+          "new_setting_value": "",
+          "section": "",
+          "target_file": "$XDG_DATA_HOME/dolphin-emu/Load/DynamicInputTextures/",
+          "defaults_file": "/app/retrodeck/extras/DynamicInputTextures/"
         }
       ]
     }

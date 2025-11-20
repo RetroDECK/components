@@ -19,6 +19,10 @@
       "cheevos_hardcore": [
         "false",
         "true"
+      ],
+      "savestate_on_exit": [
+        "false",
+        "true"
       ]
     },
     "preset_actions": {
@@ -72,7 +76,7 @@
           "defaults_file": "$pcsx2_rd_config_dir/PCSX2.ini"
         }
       ],
-      "savestate_auto_save": [
+      "savestate_on_exit": [
         {
           "enabled_states": [ "true" ],
           "setting_name": "SaveStateOnShutdown",
