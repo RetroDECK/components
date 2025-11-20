@@ -5,9 +5,10 @@
     "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/dolphin-primehack/dolphin-primehack-guide/",
     "url_webpage": "https://github.com/shiiion/dolphin/wiki/",
     "url_source": "https://github.com/shiiion/dolphin",
-    "cli-arg": "--version",
-    "logs": "$XDG_DATA_HOME/primehack/Logs/dolphin.log",
-    "system": "wii",
+    "system": [
+      "gc",
+      "wii"
+    ],
     "compatible_presets": {
       "abxy_button": [
         "false",
