@@ -12,8 +12,12 @@ install_flatpak() {
   fi
 
   if [[ ! -n "$flatpak_version" ]]; then
-    log error "Flatpak version not defined"
-    return 1
+    if [[ "$flatpak_source_type" == "bundle" ]]; then
+      flatpak_version="$flatpak_source_type"
+    else
+      log error "Flatpak version not defined"
+      return 1
+    fi
   fi
 
   if [[ "$flatpak_source_type" == "app" ]]; then
@@ -24,6 +28,10 @@ install_flatpak() {
   elif [[ "$flatpak_source_type" == "runtime" ]]; then # Is a flatpak runtime
     flatpak_install_cmd() {
       flatpak install --"$1" -y --or-update --noninteractive flathub "$2//$3"
+    }
+  elif [[ "$flatpak_source_type" == "bundle" ]]; then # Is a standalone bundle file
+    flatpak_install_cmd() {
+      flatpak install --"$1" --bundle -y --noninteractive "$2"
     }
   else
     log error "Flatpak source type \"$flatpak_source_type\" is invalid"
