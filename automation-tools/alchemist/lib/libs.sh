@@ -122,6 +122,9 @@ gather_lib() {
       if [[ -d "$flatpak_current_root/runtime/$runtime_name/x86_64/$runtime_version/active/files/lib/plugins" ]]; then
         mkdir -p "$COMPONENT_ARTIFACT_ROOT/$dest/$runtime_name/$runtime_version/plugins"
         cp -r "$flatpak_current_root/runtime/$runtime_name/x86_64/$runtime_version/active/files/lib/plugins/"* "$COMPONENT_ARTIFACT_ROOT/$dest/$runtime_name/$runtime_version/plugins"
+      elif [[ -d "$flatpak_current_root/runtime/$runtime_name/x86_64/$runtime_version/active/files/plugins" ]]; then
+        mkdir -p "$COMPONENT_ARTIFACT_ROOT/$dest/$runtime_name/$runtime_version/plugins"
+        cp -r "$flatpak_current_root/runtime/$runtime_name/x86_64/$runtime_version/active/files/plugins/"* "$COMPONENT_ARTIFACT_ROOT/$dest/$runtime_name/$runtime_version/plugins"
       else
         log error "Qt plugins for version $runtime_version could not be found at $flatpak_current_root/runtime/$runtime_name/x86_64/$runtime_version/active/files/lib/plugins"
         return 1
