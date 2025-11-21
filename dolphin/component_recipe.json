@@ -66,6 +66,19 @@
           "dest": "shared-libs"
         }
       ]
+    },
+    {
+      "source_url": "https://github.com/Venomalia/UniversalDynamicInput",
+      "source_type": "git",
+      "version": "latest",
+      "extraction_type": "local",
+      "assets": [
+        {
+          "type": "dir",
+          "source": ".",
+          "dest": "shared-data/DynamicInputTextures"
+        }
+      ]
     }
   ]
 }
