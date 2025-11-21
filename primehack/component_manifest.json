@@ -36,7 +36,7 @@
         {
           "enabled_states": [ "true" ],
           "action": "install",
-          "source": "/app/retrodeck/extras/DynamicInputTextures/",
+          "source": "/app/retrodeck/components/shared-data/DynamicInputTextures/",
           "destination": "$XDG_DATA_HOME/primehack/Load/DynamicInputTextures/"
         }
       ]
