@@ -25,15 +25,12 @@ remote_network_target_2="$rd_repo"                                              
 remote_network_target_3="https://one.one.one.one"                                                        # The URL of a common internet target for testing network access
 helper_files_path="$rd_core_files/helper_files"                                                     # The parent folder of RetroDECK documentation files for deployment
 rd_metainfo="/app/share/metainfo/net.retrodeck.retrodeck.metainfo.xml"                                   # The shipped metainfo XML file for this version
-rpcs3_firmware_url="http://dus01.ps3.update.playstation.net/update/ps3/image/us/2024_0227_3694eb3fb8d9915c112e6ab41a60c69f/PS3UPDAT.PUP" # RPCS3 Firmware download location
 ra_cheevos_api_url="https://retroachievements.org/dorequest.php"                                                 # API URL for RetroAchievements.org
 presets_dir="$rd_core_files/presets"                                                                  # Repository for all system preset config files
 git_organization_name="RetroDECK"                                                                        # The name of the organization in our git repository such as GitHub
 cooker_repository_name="Cooker"                                                                          # The name of the cooker repository under RetroDECK organization
 main_repository_name="RetroDECK"                                                                         # The name of the main repository under RetroDECK organization
 features="$rd_core_files/reference_lists/features.json"                                               # A file where all the RetroDECK and component capabilities are kept for querying
-es_systems="/app/share/es-de/resources/systems/linux/es_systems.xml"                                     # ES-DE supported system list
-es_find_rules="/app/share/es-de/resources/systems/linux/es_find_rules.xml"                               # ES-DE emulator find rules
 
 # API-related file locations
 
