@@ -25,4 +25,5 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
   sed -i "s#RETRODECKHOMEDIR#${rd_home_path}#g" "$gzdoom_config"
   sed -i "s#RETRODECKROMSDIR#${roms_path}#g" "$gzdoom_config"
   sed -i "s#RETRODECKSAVESDIR#${saves_path}#g" "$gzdoom_config"
+  sed -i "s#RETRODECKSTORAGESDIR#${storage_path}#g" "$gzdoom_config"
 fi
