@@ -62,6 +62,19 @@
           "dest": "$COMPONENT_ARTIFACT_ROOT"
         }
       ]
+    },
+    {
+      "source_url": "https://github.com/xs1l3n7x/pcsx2_cheats_collection",
+      "source_type": "git",
+      "version": "latest",
+      "extraction_type": "local",
+      "assets": [
+        {
+          "type": "tar.gz",
+          "source": "cheats/.",
+          "dest": "rd_extras/pcsx2-cheats"
+        }
+      ]
     }
   ]
 }
