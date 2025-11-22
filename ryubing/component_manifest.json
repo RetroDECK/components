@@ -7,7 +7,7 @@
     "system_friendly_name": "Nintendo Switch",
     "system": "switch",
     "compatible_presets": {
-      "abxy_button": [
+      "abxy_button_swap": [
         "false",
         "true"
       ],
@@ -29,7 +29,7 @@
           "defaults_file": "$ryubing_rd_config_dir/Config.json"
         }
       ],
-      "abxy_button": [
+      "abxy_button_swap": [
         {
           "enabled_states": [ "true" ],
           "setting_name": "button_x",
