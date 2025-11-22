@@ -1,0 +1,10 @@
+{
+  "ags": {
+    "name": "ags",
+    "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_engine_guides/ags/ags-guide/",
+    "url_source": "https://github.com/adventuregamestudio/",
+    "description": "Adventure Game Studio (AGS) is open-source software for creating graphical point-and-click adventure games.",
+    "system_friendly_name": "Adventure Game Studio ",
+    "system": "ags"
+  }
+}
