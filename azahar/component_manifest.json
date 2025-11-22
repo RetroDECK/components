@@ -27,7 +27,7 @@
           "new_setting_value": "true",
           "section": "UI",
           "target_file": "$azahar_config",
-          "defaults_file": "$config/azahar/qt-config.ini"
+          "defaults_file": "$rd_components/azahar/rd_config/qt-config.ini"
         },
         {
           "enabled_states": [ "true" ],
@@ -36,7 +36,7 @@
           "new_setting_value": "true",
           "section": "UI",
           "target_file": "$azahar_config",
-          "defaults_file": "$config/azahar/qt-config.ini"
+          "defaults_file": "$rd_components/azahar/rd_config/qt-config.ini"
         }
       ],
       "abxy_button_swap": [
@@ -47,7 +47,7 @@
           "new_setting_value": "button:1,engine:sdl,guid:030079f6de280000ff11000001000000,port:0",
           "section": "Controls",
           "target_file": "$azahar_config",
-          "defaults_file": "$config/ppssppsdl/qt-config.ini"
+          "defaults_file": "$rd_components/azahar/rd_config/qt-config.ini"
         },
         {
           "enabled_states": [ "true" ],
@@ -56,7 +56,7 @@
           "new_setting_value": "button:0,engine:sdl,guid:030079f6de280000ff11000001000000,port:0",
           "section": "Controls",
           "target_file": "$azahar_config",
-          "defaults_file": "$config/ppssppsdl/qt-config.ini"
+          "defaults_file": "$rd_components/azahar/rd_config/qt-config.ini"
         },
         {
           "enabled_states": [ "true" ],
@@ -65,7 +65,7 @@
           "new_setting_value": "button:3,engine:sdl,guid:030079f6de280000ff11000001000000,port:0",
           "section": "Controls",
           "target_file": "$azahar_config",
-          "defaults_file": "$config/ppssppsdl/qt-config.ini"
+          "defaults_file": "$rd_components/azahar/rd_config/qt-config.ini"
         },
         {
           "enabled_states": [ "true" ],
@@ -74,7 +74,7 @@
           "new_setting_value": "button:2,engine:sdl,guid:030079f6de280000ff11000001000000,port:0",
           "section": "Controls",
           "target_file": "$azahar_config",
-          "defaults_file": "$config/ppssppsdl/qt-config.ini"
+          "defaults_file": "$rd_components/azahar/rd_config/qt-config.ini"
         }
       ]
     }

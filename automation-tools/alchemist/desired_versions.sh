@@ -103,7 +103,7 @@ export PORTMASTER_DESIRED_VERSION="latest"
 export PPSSPP_DESIRED_VERSION="latest"
 
 # PrimeHack – Metroid Prime mod for Dolphin
-export PRIMEHACK_DESIRED_VERSION="latest"
+export PRIMEHACK_DESIRED_VERSION="master-230724.27"
 
 # Raze – Duke Nukem GZDoom based engine
 export RAZE_DESIRED_VERSION="latest"

@@ -5,23 +5,12 @@
     "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/dolphin-primehack/dolphin-primehack-guide/",
     "url_webpage": "https://github.com/shiiion/dolphin/wiki/",
     "url_source": "https://github.com/shiiion/dolphin",
-    "cli-arg": "--version",
-    "logs": "$XDG_DATA_HOME/primehack/Logs/dolphin.log",
-    "system": "wii",
+    "system": [
+      "gc",
+      "wii"
+    ],
     "compatible_presets": {
-      "abxy_button": [
-        "false",
-        "true"
-      ],
       "ask_to_exit": [
-        "false",
-        "true"
-      ],
-      "cheevos": [
-        "false",
-        "true"
-      ],
-      "cheevos_hardcore": [
         "false",
         "true"
       ],
@@ -43,44 +32,12 @@
           "defaults_file": "$primehack_rd_config_dir/config/Dolphin.ini"
         }
       ],
-      "cheevos": [
+      "universal_dyn_input": [
         {
           "enabled_states": [ "true" ],
-          "setting_name": "Enabled",
-          "action": "change",
-          "new_setting_value": "True",
-          "section": "Achievements",
-          "target_file": "$primehack_config_RetroAchievements",
-          "defaults_file": "$primehack_rd_config_dir/config/RetroAchievements.ini"
-        },
-        {
-          "enabled_states": [ "true" ],
-          "setting_name": "Username",
-          "action": "change",
-          "new_setting_value": "$cheevos_username",
-          "section": "Achievements",
-          "target_file": "$primehack_config_RetroAchievements",
-          "defaults_file": "$primehack_rd_config_dir/config/RetroAchievements.ini"
-        },
-        {
-          "enabled_states": [ "true" ],
-          "setting_name": "ApiToken",
-          "action": "change",
-          "new_setting_value": "$cheevos_token",
-          "section": "Achievements",
-          "target_file": "$primehack_config_RetroAchievements",
-          "defaults_file": "$primehack_rd_config_dir/config/RetroAchievements.ini"
-        }
-      ],
-      "cheevos_hardcore": [
-        {
-          "enabled_states": [ "true" ],
-          "setting_name": "HardcoreEnabled",
-          "action": "change",
-          "new_setting_value": "True",
-          "section": "Achievements",
-          "target_file": "$primehack_config_RetroAchievements",
-          "defaults_file": "$primehack_rd_config_dir/config/RetroAchievements.ini"
+          "action": "install",
+          "source": "/app/retrodeck/components/shared-data/DynamicInputTextures/",
+          "destination": "$XDG_DATA_HOME/primehack/Load/DynamicInputTextures/"
         }
       ]
     }

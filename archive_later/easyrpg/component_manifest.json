@@ -1,0 +1,11 @@
+{
+  "easyrpg": {
+    "name": "EasyRPG Player",
+    "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_engine_guides/easyrpg/easyrpg-guide/",
+    "url_webpage": "https://easyrpg.org/",
+    "url_source": "https://github.com/ZDoom/Raze",
+    "description": "EasyRPG is a community project to create a free, open source, role playing game creation tool, compatible with RPG Maker 2000/2003 games.",
+    "system_friendly_name": "EasyRPG Player",
+    "system": "easyrpg"
+  }
+}

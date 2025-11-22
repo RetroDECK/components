@@ -21,14 +21,10 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
     tar -czf "$backup_file" -C "$cheats_path" retroarch
     log i "RetroArch cheats backed up to $backup_file"
   fi
-  create_dir -d "$cheats_path/retroarch"
-  log d "Linking shaders folder to ensure retroarch can find it $XDG_CONFIG_HOME/retroarch/shaders to $shaders_path/retroarch"
-  dir_prep "$shaders_path/retroarch" "$XDG_CONFIG_HOME/retroarch/shaders"
   cp -fv "$component_config/retroarch.cfg" "$retroarch_config"
   cp -fv "$component_config/retroarch-core-options.cfg" "$retroarch_config_core_options"
   rsync -rlD --mkpath "$component_config/core-overrides/" "$XDG_CONFIG_HOME/retroarch/config/"
   rsync -rlD --mkpath "$component_config/remaps/" "$XDG_CONFIG_HOME/retroarch/config/remaps/"
-  dir_prep "$borders_path" "$XDG_CONFIG_HOME/retroarch/overlays/borders"
   set_setting_value "$retroarch_config" "savefile_directory" "$saves_path" "retroarch"
   set_setting_value "$retroarch_config" "savestate_directory" "$states_path" "retroarch"
   set_setting_value "$retroarch_config" "screenshot_directory" "$screenshots_path" "retroarch"
@@ -45,6 +41,11 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
   create_dir "$bios_path/quasi88"
 
   retroarch_updater
+
+  # Avoid these paths being clobbered by the updater
+  dir_prep "$borders_path" "$XDG_CONFIG_HOME/retroarch/overlays/borders"
+  log d "Linking shaders folder to ensure retroarch can find it $XDG_CONFIG_HOME/retroarch/shaders to $shaders_path/retroarch"
+  dir_prep "$shaders_path/retroarch" "$XDG_CONFIG_HOME/retroarch/shaders"
   
   # FBNEO
   log i "--------------------------------"

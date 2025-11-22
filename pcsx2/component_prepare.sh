@@ -3,7 +3,7 @@
 # Setting component name and path based on the directory name
 component_name="$(basename "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")")"
 component_config="/app/retrodeck/components/$component_name/rd_config"
-component_extras="/app/retrodeck/config/$component_name/rd_extras"
+component_extras="/app/retrodeck/components/$component_name/rd_extras"
 
 if [[ "$action" == "reset" ]]; then # Run reset-only commands
   log i "----------------------"
@@ -25,7 +25,7 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
     log i "PCSX2 cheats backed up to $backup_file"
   fi
   create_dir -d "$cheats_path/pcsx2"
-  tar -xzf "$component_extras/pcsx2.tar.gz" -C "$cheats_path/pcsx2" --overwrite
+  tar -xzf "$component_extras/pcsx2-cheats.tar.gz" -C "$cheats_path/pcsx2" --overwrite
   create_dir "$saves_path/ps2/pcsx2/memcards"
   create_dir "$states_path/ps2/pcsx2"
   dir_prep "$texture_packs_path/pcsx2" "$XDG_CONFIG_HOME/PCSX2/textures"

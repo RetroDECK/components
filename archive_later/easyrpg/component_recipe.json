@@ -1,9 +1,9 @@
 {
-  "shadps4": [
+  "easyrpg": [
     {
-      "source_url": "net.shadps4.shadPS4",
+      "source_url": "org.easyrpg.player",
       "source_type": "flatpak_id",
-      "version": "$SHADPS4_DESIRED_VERSION",
+      "version": "EASYRPG_DESIRED_VERSION",
       "dest": "user",
       "extraction_type": "flatpak",
       "assets": [
