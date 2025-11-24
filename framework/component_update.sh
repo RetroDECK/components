@@ -4,14 +4,6 @@
 # These actions happen conditionally based on the version being upgraded
 #########################################################################
 
-if [[ $(check_version_is_older_than "$version_being_updated" "0.6.2b") == "true" ]]; then
-  # In version 0.6.2b, the following changes were made that required config file updates/reset:
-  # - Duckstation save and state locations were dir_prep'd to the rdhome/save and /state folders, which was not previously done. Much safer now!
-
-  dir_prep "$rdhome/saves/duckstation" "$XDG_DATA_HOME/duckstation/memcards"
-  dir_prep "$rdhome/states/duckstation" "$XDG_DATA_HOME/duckstation/savestates"
-fi
-
 if [[ $(check_version_is_older_than "$version_being_updated" "0.6.3b") == "true" ]]; then
   # In version 0.6.3b, the following changes were made that required config file updates/reset:
   # - Overwrite Citra and Yuzu configs, as controller mapping was broken due to emulator updates.
@@ -44,12 +36,8 @@ fi
 if [[ $(check_version_is_older_than "$version_being_updated" "0.7.0b") == "true" ]]; then
   # In version 0.7.0b, the following changes were made that required config file updates/reset or other changes to the filesystem:
   # - Update retrodeck.cfg and set new paths to $rdhome by default
-  # - Update Duckstation configs to latest templates (to accomadate RetroAchievements feature) and move Duckstation config folder from $XDG_DATA_HOME to $XDG_CONFIG_HOME
   # - New ~/retrodeck/mods and ~/retrodeck/texture_packs directories are added and symlinked to multiple different emulators (where supported)
-  # - Move Duckstation saves and states to new locations
   # - Clean up legacy tools files (Configurator is now accessible through the main ES-DE menu)
-  # - Disable auto-save/load in existing Duckstation installs for proper preset functionality
-  # - Disable ask-on-exit in existing Duckstation installs for proper preset functionality
 
   update_rd_conf # Expand retrodeck.cfg to latest template
   set_setting_value "$rd_conf" "screenshots_folder" "$rdhome/screenshots"
@@ -57,12 +45,6 @@ if [[ $(check_version_is_older_than "$version_being_updated" "0.7.0b") == "true"
   set_setting_value "$rd_conf" "texture_packs_folder" "$rdhome/texture_packs"
   set_setting_value "$rd_conf" "borders_folder" "$rdhome/borders"
   conf_read
-
-  dir_prep "$XDG_CONFIG_HOME/duckstation" "$XDG_DATA_HOME/duckstation"
-  mv -f "$duckstationconf" "$duckstationconf.bak"
-  generate_single_patch "$config/duckstation/settings.ini" "$duckstationconf.bak" "$XDG_CONFIG_HOME/duckstation/duckstation-cheevos-upgrade.patch" pcsx2
-  deploy_single_patch "$config/duckstation/settings.ini" "$XDG_CONFIG_HOME/duckstation/duckstation-cheevos-upgrade.patch" "$duckstationconf"
-  rm -f "$XDG_CONFIG_HOME/duckstation/duckstation-cheevos-upgrade.patch"
 
   create_dir "$mods_folder"
   create_dir "$texture_packs_folder"
@@ -73,26 +55,7 @@ if [[ $(check_version_is_older_than "$version_being_updated" "0.7.0b") == "true"
   dir_prep "$mods_folder/Yuzu" "$XDG_DATA_HOME/yuzu/load"
   dir_prep "$texture_packs_folder/Duckstation" "$XDG_CONFIG_HOME/duckstation/textures"
 
-  if [[ -f "$saves_folder/duckstation/shared_card_1.mcd" || -f "$saves_folder/duckstation/shared_card_2.mcd" ]]; then
-    configurator_generic_dialog "RetroDECK 0.7.0b Upgrade" "As part of this update, the location of saves and states for Duckstation has been changed.\n\nYour files will be moved automatically, and can now be found at\n\n~.../saves/psx/duckstation/memcards/\nand\n~.../states/psx/duckstation/"
-  fi
-  create_dir "$saves_folder/psx/duckstation/memcards"
-  mv "$saves_folder/duckstation/"* "$saves_folder/psx/duckstation/memcards/"
-  rmdir "$saves_folder/duckstation" # File-safe folder cleanup
-  unlink "$XDG_CONFIG_HOME/duckstation/memcards"
-  set_setting_value "$duckstationconf" "Card1Path" "$saves_folder/psx/duckstation/memcards/shared_card_1.mcd" "duckstation" "MemoryCards"
-  set_setting_value "$duckstationconf" "Card2Path" "$saves_folder/psx/duckstation/memcards/shared_card_2.mcd" "duckstation" "MemoryCards"
-  set_setting_value "$duckstationconf" "Directory" "$saves_folder/psx/duckstation/memcards" "duckstation" "MemoryCards"
-  set_setting_value "$duckstationconf" "RecursivePaths" "$roms_folder/psx" "duckstation" "GameList"
-  create_dir "$states_folder/psx"
-  mv -t "$states_folder/psx/" "$states_folder/duckstation"
-  unlink "$XDG_CONFIG_HOME/duckstation/savestates"
-  dir_prep "$states_folder/psx/duckstation" "$XDG_CONFIG_HOME/duckstation/savestates"
-
   rm -rf "$XDG_CONFIG_HOME/retrodeck/tools"
-
-  set_setting_value "$duckstationconf" "SaveStateOnExit" "false" "duckstation" "Main"
-  set_setting_value "$duckstationconf" "Enabled" "false" "duckstation" "Cheevos"
 
   set_setting_value "$citraconf" "confirmClose" "false" "citra" "UI"
   set_setting_value "$citraconf" "confirmClose\default" "false" "citra" "UI"

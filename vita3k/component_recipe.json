@@ -55,6 +55,11 @@
           "type": "file",
           "source": "$REPO_ROOT/$COMPONENT_NAME/component_prepare.sh",
           "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/component_update.sh",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
         }
       ],
       "libs": []
