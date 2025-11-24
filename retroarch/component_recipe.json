@@ -3,7 +3,7 @@
     {
       "source_url": "https://buildbot.libretro.com/stable/{VERSION}/linux/x86_64/RetroArch.7z",
       "source_type": "http",
-      "version": "1.22.1",
+      "version": "1.22.2",
       "extraction_type": "archive",
       "assets": [
         {
@@ -114,7 +114,7 @@
     {
       "source_url": "https://buildbot.libretro.com/stable/{VERSION}/linux/x86_64/RetroArch_cores.7z",
       "source_type": "http",
-      "version": "1.22.1",
+      "version": "1.22.2",
       "extraction_type": "archive",
       "assets": [
         {
