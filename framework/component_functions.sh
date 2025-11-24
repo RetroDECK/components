@@ -31,6 +31,7 @@ git_organization_name="RetroDECK"                                               
 cooker_repository_name="Cooker"                                                                          # The name of the cooker repository under RetroDECK organization
 main_repository_name="RetroDECK"                                                                         # The name of the main repository under RetroDECK organization
 features="$rd_core_files/reference_lists/features.json"                                               # A file where all the RetroDECK and component capabilities are kept for querying
+folder_iconsets_dir="$XDG_CONFIG_HOME/retrodeck/graphics/folder-iconsets"
 
 # API-related file locations
 
@@ -764,4 +765,74 @@ configurator_usb_import_dialog() {
     configurator_developer_dialog
   ;;
   esac
+}
+
+configurator_iconset_toggle_dialog () {
+  if [[ ! $(get_setting_value "$rd_conf" "folder_iconset" "retrodeck" "options") == "false" ]]; then
+    rd_zenity --question \
+    --no-wrap --window-icon="/app/share/icons/hicolor/scalable/apps/net.retrodeck.retrodeck.svg" \
+    --title "RetroDECK Configurator - Toggle RetroDECK Folder Iconsets" \
+    --text="RetroDECK folder icons are currently <span foreground='$purple'><b>enabled</b></span>. Do you want to remove them?"
+
+    if [ $? == 0 ] # User clicked "Yes"
+    then
+      (
+      handle_folder_iconsets "false"
+      ) |
+      rd_zenity --icon-name=net.retrodeck.retrodeck --progress --no-cancel --auto-close \
+            --window-icon="/app/share/icons/hicolor/scalable/apps/net.retrodeck.retrodeck.svg" \
+            --title "RetroDECK Configurator Utility - Toggle RetroDECK Folder Iconsets In Progress"
+      rd_zenity --info \
+      --no-wrap --window-icon="/app/share/icons/hicolor/scalable/apps/net.retrodeck.retrodeck.svg" \
+      --title "RetroDECK Configurator - Toggle RetroDECK Folder Iconsets" \
+      --text="RetroDECK folder icons are now <span foreground='$purple'><b>disabled</b></span>."
+    fi
+  else
+    rd_zenity --question \
+    --no-wrap --window-icon="/app/share/icons/hicolor/scalable/apps/net.retrodeck.retrodeck.svg" \
+    --title "RetroDECK Configurator - Toggle RetroDECK Folder Iconsets" \
+    --text="RetroDECK folder icons are currently <span foreground='$purple'><b>disabled</b></span>. Do you want to enable them?"
+
+    if [ $? == 0 ] # User clicked "Yes"
+    then
+      (
+      handle_folder_iconsets "lahrs-main"
+      ) |
+      rd_zenity --icon-name=net.retrodeck.retrodeck --progress --no-cancel --auto-close \
+            --window-icon="/app/share/icons/hicolor/scalable/apps/net.retrodeck.retrodeck.svg" \
+            --title "RetroDECK Configurator Utility - Toggle RetroDECK Folder Iconsets In Progress"
+      rd_zenity --info \
+      --no-wrap --window-icon="/app/share/icons/hicolor/scalable/apps/net.retrodeck.retrodeck.svg" \
+      --title "RetroDECK Configurator - Toggle RetroDECK Folder Iconsets" \
+      --text="RetroDECK folder icons are now <span foreground='$purple'><b>enabled</b></span>."
+    fi
+  fi
+
+  configurator_global_presets_and_settings_dialog
+}
+
+handle_folder_iconsets() {
+  local iconset="$1"
+
+  if [[ ! "$iconset" == "false" ]]; then
+    if [[ -d "$folder_iconsets_dir/$iconset" ]]; then
+      while read -r icon; do
+        local icon_folder_name=$(basename ${icon%.ico})
+        if [[ -d "$roms_path/$icon_folder_name" ]]; then
+          echo '[Desktop Entry]' > "$roms_path/$icon_folder_name/.directory"
+          echo "Icon=$iconsets_dir/$iconset/$icon_folder_name.ico" >> "$roms_path/$icon_folder_name/.directory"
+        elif [[ -d "$rd_home_path/$icon_folder_name" ]]; then
+          echo '[Desktop Entry]' > "$rd_home_path/$icon_folder_name/.directory"
+          echo "Icon=$iconsets_dir/$iconset/$icon_folder_name.ico" >> "$rd_home_path/$icon_folder_name/.directory"
+        fi
+      done < <(find "$folder_iconsets_dir/$iconset" -maxdepth 1 -type f -iname "*.ico")
+      set_setting_value "$rd_conf" "folder_iconset" "$iconset" retrodeck "options"
+    else
+      configurator_generic_dialog "RetroDeck Configurator - Toggle RetroDECK Folder Icons" "The chosen iconset could not be found in the RetroDECK assets."
+      return 1
+    fi
+  else
+    find "$rd_home_path" "$roms_path" -maxdepth 1 -type f -iname '.directory' -exec rm {} \;
+    set_setting_value "$rd_conf" "folder_iconset" "false" retrodeck "options"
+  fi
 }
