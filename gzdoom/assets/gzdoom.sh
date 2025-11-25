@@ -1,5 +1,7 @@
 #!/bin/bash
 
+log d "RetroDECK Doom Parser booting..."
+
 # Source the global.sh script if not already sourced
 if [ -z "${GLOBAL_SOURCED+x}" ]; then
     source /app/libexec/global.sh
@@ -23,7 +25,7 @@ gzdoom="$SCRIPT_DIR/gzdoom"
 is_iwad() {
     local file="$1"
     local lowercase_file="$(basename "${file,,}")"
-    
+
     # Loop through the list of IWAD files
     for iwad in "${IWAD_FILES[@]}"; do
         # Check if the lowercase version of the IWAD file matches the input file
@@ -40,7 +42,7 @@ search_file_recursive() {
     local file="$1"
     local directory="$2"
     local found_file=""
-    
+
     # Check if the file exists in the current directory
     if [[ -e "$directory/$file" ]]; then
         # Resolve symlinks if the file is a symlink
@@ -60,36 +62,74 @@ search_file_recursive() {
 # Main script
 log d "RetroDECK GZDOOM wrapper init"
 
-# Check if the filename contains a single quote
-if [[ "$1" == *"'"* ]]; then
-    log e "Invalid filename: \"$1\" contains a single quote.\nPlease rename the file in a proper way before continuing."
-    rd_zenity --error --no-wrap \
+# Check non-option arguments for a filename containing a single quote
+for a in "$@"; do
+    case "$a" in
+        +*|-) continue ;;
+    esac
+    if [[ "$a" == *"'"* ]]; then
+        log e "Invalid filename: \"$a\" contains a single quote.\nPlease rename the file in a proper way before continuing."
+        rd_zenity --error --no-wrap \
         --window-icon="/app/share/icons/hicolor/scalable/apps/net.retrodeck.retrodeck.svg" \
         --title "RetroDECK" \
-        --text="<span foreground='$purple'><b>Invalid filename\n\n</b></span>\"$1\" contains a single quote.\nPlease rename the file in a proper way before continuing."
+            --text="<span foreground='$purple'><b>Invalid filename\n\n</b></span>\"$a\" contains a single quote.\nPlease rename the file in a proper way before continuing."
     exit 1
+    fi
+done
+
+# Determine if one of the arguments is a .doom file (we might be launched with +options first)
+doom_file=""
+for a in "$@"; do
+    # ignore option entries that start with '+' or '-'
+    case "$a" in
+        +*|-) continue ;;
+    esac
+    if [[ "${a##*.}" == "doom" ]]; then
+        doom_file="$a"
+        break
+    fi
+done
+
+# If a .doom file wasn't found yet, try to detect any provided candidate file arg (first non-option)
+target_arg=""
+for a in "$@"; do
+    case "$a" in
+        +*|-) continue ;;
+    esac
+    target_arg="$a"
+done
+
+# If no target was found, fall back to $1 to preserve legacy behavior
+if [[ -z "$target_arg" ]]; then
+    target_arg="$1"
 fi
 
-# Check if $1 is not a .doom file
-if [[ "${1##*.}" != "doom" ]]; then
+# If the chosen target arg doesn't have the .doom extension, we take the non-doom path
+log d "Selected target: '$target_arg' (doom_file='$doom_file')"
+
+if [[ "${doom_file}" == "" && "${target_arg##*.}" != "doom" ]]; then
     # Check if the file is in the IWAD list
-    if [[ $(is_iwad "$1") == "true" ]]; then
-        command="$gzdoom -config /var/config/gzdoom/gzdoom.ini -iwad \"$1\""
+    if [[ $(is_iwad "$target_arg") == "true" ]]; then
+        log d "iWAD found"
+        command="$gzdoom -config /var/config/gzdoom/gzdoom.ini -iwad \"$target_arg\""
     else
-        command="$gzdoom -config /var/config/gzdoom/gzdoom.ini -file \"$1\""
+        log d "WAD or PK3 file found"
+        command="$gzdoom -config /var/config/gzdoom/gzdoom.ini -file \"$target_arg\""
     fi
 
     # Log the command
-    log i "Loading: \"$1\""
+    log i "Loading: \"$target_arg\""
     log i "Executing command \"$command\""
 
     # Execute the command with double quotes
     eval "$command"
 
-# Check if $1 is a .doom file
-else
-    doom_file="$1"
-    log i "Found a doom file: \"$1\""
+# Check if a .doom file was found in arguments
+elif [[ -n "$doom_file" || "${target_arg##*.}" == "doom" ]]; then
+    if [[ -z "$doom_file" ]]; then
+        doom_file="$target_arg"
+    fi
+    log i "Found a doom file: \"$doom_file\""
 
     # Check if the .doom file exists
     if [[ ! -e "$doom_file" ]]; then
@@ -107,15 +147,13 @@ else
     while IFS= read -r line; do
         # Check if the line contains a single quote
         if [[ "$line" == *"'"* ]]; then
-            log e "Invalid filename: A file contained in \"$1\" contains a single quote"
+            log e "Invalid filename: A file contained in \"$doom_file\" contains a single quote"
             rd_zenity --error --no-wrap \
                 --window-icon="/app/share/icons/hicolor/scalable/apps/net.retrodeck.retrodeck.svg" \
                 --title "RetroDECK" \
-                --text="<span foreground='$purple'><b>Invalid filename\n\n</b></span>A file contained in \"$1\" contains a single quote.\nPlease rename the file and fix its name in the .doom file."
+                    --text="<span foreground='$purple'><b>Invalid filename\n\n</b></span>A file contained in \"$doom_file\" contains a single quote.\nPlease rename the file and fix its name in the .doom file."
             exit 1
         fi
-
-        # Search for the file recursively
         found_file=$(search_file_recursive "$line" "$(dirname "$doom_file")")
 
         # If the file is not found, exit with an error
