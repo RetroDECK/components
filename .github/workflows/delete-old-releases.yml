@@ -114,7 +114,7 @@ jobs:
         GITHUB_TOKEN: ${{ steps.generate-rekku-token.outputs.token }}
 
     - name: Upload deleted releases log
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: deleted-releases-log
         path: deleted-releases.log
