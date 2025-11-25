@@ -1,10 +1,7 @@
 #!/bin/bash
 
-# Warning Xargons work with light edits, we need to redo several aspects. Variables should be defined in component_functions.sh //Laz
-
-# NOTE: for technical reasons the system folder of Ryujinx IS NOT a symlink of the bios/switch/keys as not only the keys are located there
-
-# When RetroDECK starts there is a "manage_ryujinx_keys" function that symlinks the keys only in Rryujinx/system.
+# NOTE: Ryubing config folder is still called Ryujinx, not ryubing
+# However the RetroDECK saves folder is ryubing to avoid confusion with older Ryujinx installs, so the users can move their saves easily
 
 # Setting component name and path based on the directory name
 component_name="$(basename "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")")"
@@ -17,24 +14,29 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
   log i "------------------------"
   
   # removing config directory to wipe legacy files
-  log d "Removing \"$XDG_CONFIG_HOME/ryubing\""
-  rm -rf "$XDG_CONFIG_HOME/ryubing"
-  create_dir "$XDG_CONFIG_HOME/ryubing/system"
+  log d "Removing \"$XDG_CONFIG_HOME/Ryujinx\""
+  rm -rf "$XDG_CONFIG_HOME/Ryujinx"
+  create_dir "$XDG_CONFIG_HOME/Ryujinx/system"
   create_dir "$ryubing_profiles_path"
   cp -fv "$component_config/Config.json" "$ryubing_config"
   cp -fvr "$component_config/profiles/controller/"* "$ryubing_profiles_path/"
   log d "Replacing placeholders in \"$ryubing_config\""
   sed -i 's#RETRODECKHOMEDIR#'"$rd_home_path"'#g' "$ryubing_config"
-  create_dir "$logs_path/switch/ryubing"
-  create_dir "$mods_path/switch/ryubing"
-  create_dir "$screenshots_path/switch/ryubing"
-fi
+  sed -i 's#RETRODECKSTORAGEDIR#'"$storage_path"'#g' "$ryubing_config"
+  sed -i 's#RETRODECKROMSDIR#'"$roms_path"'#g' "$ryubing_config"
+  create_dir "$logs_path/switch/Ryujinx"
+  create_dir "$mods_path/switch/Ryujinx"
+  create_dir "$screenshots_path/switch/Ryujinx"
 
-# if [[ "$action" == "reset" ]] || [[ "$action" == "postmove" ]]; then # Run commands that apply to both resets and moves
-#   dir_prep "$bios_path/switch/keys" "$XDG_CONFIG_HOME/ryubing/system"
-# fi
+  dir_prep "$bios_path/switch/keys" "$XDG_CONFIG_HOME/Ryujinx/system"
+  dir_prep "$bios_path/switch/firmware" "$XDG_CONFIG_HOME/Ryujinx/bis/system/Contents"
+  dir_prep "$saves_path/switch/ryubing" "$XDG_CONFIG_HOME/Ryujinx/bis/system/save"
+fi
 
 if [[ "$action" == "postmove" ]]; then # Run only post-move commands
     log d "Replacing placeholders in \"$ryubing_config\""
-    sed -i 's#RETRODECKHOMEDIR#'"$rd_home_path"'#g' "$ryubing_config" # This is an unfortunate one-off because set_setting_value does not currently support JSON
+    # This is an unfortunate one-off because set_setting_value does not currently support JSON
+    sed -i 's#RETRODECKHOMEDIR#'"$rd_home_path"'#g' "$ryubing_config"
+    sed -i 's#RETRODECKSTORAGEDIR#'"$storage_path"'#g' "$ryubing_config"
+    sed -i 's#RETRODECKROMSDIR#'"$roms_path"'#g' "$ryubing_config"
 fi
