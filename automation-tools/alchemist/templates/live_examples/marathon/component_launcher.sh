@@ -4,7 +4,7 @@
 component_name="$(basename "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")")"
 component_path="$(cd "$(dirname "${BASH_SOURCE[0]}" )" && pwd)"
 
-export LD_LIBRARY_PATH="$component_path/lib:$rd_shared_libs/org.kde.Platform/6.7:${LD_DEFAULT_LIBRARY_PATH}"
+export LD_LIBRARY_PATH="$component_path/lib:$rd_shared_libs/org.kde.Platform/6.7:${LD_LIBRARY_PATH}"
 export QT_PLUGIN_PATH="${QT_PLUGIN_PATH}"
 export QT_QPA_PLATFORM_PLUGIN_PATH="${QT_QPA_PLATFORM_PLUGIN_PATH}"
 
