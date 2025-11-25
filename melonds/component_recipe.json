@@ -59,6 +59,11 @@
           "library": "libenet.so.7",
           "source": "lib",
           "dest": "shared-libs"
+        },
+        {
+          "library": "libfaad.so.2",
+          "source": "lib",
+          "dest": "shared-libs"
         }
       ]
     }
