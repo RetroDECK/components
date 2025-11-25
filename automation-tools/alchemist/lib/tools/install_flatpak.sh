@@ -22,7 +22,7 @@ install_flatpak() {
 
   if [[ "$flatpak_source_type" == "app" ]]; then
     flatpak_install_cmd() {
-      flatpak install --"$1" -y --noninteractive flathub "$2"
+      flatpak install --"$1" -y --noninteractive --reinstall flathub "$2"
       flatpak update --"$1" -y --noninteractive --commit="$3" "$2"
     }
   elif [[ "$flatpak_source_type" == "runtime" ]]; then # Is a flatpak runtime
