@@ -1,7 +1,7 @@
 {
   "uzdoom": [
     {
-      "source_url": "https://github.com/UZDoom/UZDoom/releases/download/{VERSION}/ Linux-UZDoom-*.AppImage ",
+      "source_url": "https://github.com/UZDoom/UZDoom/releases/download/{VERSION}/Linux-UZDoom-*.AppImage ",
       "source_type": "github_release",
       "version": "$UZDOOM_DESIRED_VERSION",
       "extraction_type": "appimage",
