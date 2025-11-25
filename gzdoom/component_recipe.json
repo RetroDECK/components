@@ -107,11 +107,6 @@
           "library": "libzmusiclite.so.1",
           "source": "lib",
           "dest": "shared-libs"
-        },
-        {
-          "library": "libzmusiclite.so.1",
-          "source": "lib",
-          "dest": "shared-libs"
         }
       ]
     }
