@@ -2,7 +2,7 @@ name: Clean Old Components Releases
 
 on:
   schedule:
-    - cron: '0 0 * * *' # Run daily at midnight
+    - cron: '0 15 1,15 * *' # Run at midnight JST (15:00 UTC) on the 1st and 15th of each month
   workflow_dispatch:
 
 jobs:
