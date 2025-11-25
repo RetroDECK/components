@@ -4,9 +4,6 @@
 component_name="$(basename "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")")"
 component_config="/app/retrodeck/components/$component_name/rd_config"
 
-azahar_config_path="$XDG_CONFIG_HOME/azahar-emu"
-azahar_qtconfig="$azahar_config_path/qtconfig.ini"
-
 if [[ "$action" == "reset" ]]; then # Run reset-only commands
 
   log i "----------------------"
