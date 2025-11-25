@@ -42,19 +42,48 @@ search_file_recursive() {
     local file="$1"
     local directory="$2"
     local found_file=""
+    # We'll try several places so this works when the DOOM folder is symlinked
+    # 1) $directory/$file
+    # 2) recursive find under $directory
+    # 3) script-level doom dir (relative to assets) recursive
 
-    # Check if the file exists in the current directory
+    # 0. normalize file name for case-insensitive search
+    local lowercase_file="$(echo "$file" | tr '[:upper:]' '[:lower:]')"
+
+    # Resolve directory symlinks (if the DOOM folder itself was symlinked)
+    if [[ -L "$directory" ]]; then
+        directory=$(readlink -f "$directory")
+    fi
+
+    # Try direct path first
     if [[ -e "$directory/$file" ]]; then
-        # Resolve symlinks if the file is a symlink
         found_file=$(readlink -f "$directory/$file")
-    else
-        # Search recursively
-        local lowercase_file="$(echo "$file" | tr '[:upper:]' '[:lower:]')"
-        found_file=$(find "$directory" -type f -iname "$lowercase_file" | head -n 1)
-        if [[ -n "$found_file" ]]; then
-            # Resolve symlinks if the file is a symlink
-            found_file=$(readlink -f "$found_file")
+        echo "$found_file"
+        return
+    fi
+
+    # Try recursive find under provided directory (case-insensitive)
+    # Use the basename for recursive search, so entries listed as "subdir/name.wad"
+    # will still match files located below the given directory.
+    local base="$(basename "$file")"
+    # Collect all case-insensitive matches, prefer one whose basename equals requested basename exactly
+    mapfile -t matches < <(find "$directory" -type f -iname "$base" 2>/dev/null || true)
+    if [[ ${#matches[@]} -gt 0 ]]; then
+        # First try to find a case-sensitive basename match
+        found_file=""
+        for m in "${matches[@]}"; do
+            if [[ "$(basename "$m")" == "$base" ]]; then
+                found_file="$m"
+                break
+            fi
+        done
+        # Fallback to the first match if no exact-case match found
+        if [[ -z "$found_file" ]]; then
+            found_file="${matches[0]}"
         fi
+        found_file=$(readlink -f "$found_file")
+        echo "$found_file"
+        return
     fi
     echo "$found_file"
 }
@@ -145,15 +174,30 @@ elif [[ -n "$doom_file" || "${target_arg##*.}" == "doom" ]]; then
     command="$gzdoom -config /var/config/gzdoom/gzdoom.ini"
 
     while IFS= read -r line; do
+        # Trim leading/trailing whitespace
+        line="$(echo "$line" | sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//')"
+
+        # Ignore empty lines and comment lines
+        if [[ -z "$line" || "${line:0:1}" == "#" ]]; then
+            continue
+        fi
+
+        # Remove surrounding quotes if present
+        if [[ "$line" =~ ^\".*\"$ ]]; then
+            line="${line:1:${#line}-2}"
+        fi
+
         # Check if the line contains a single quote
         if [[ "$line" == *"'"* ]]; then
             log e "Invalid filename: A file contained in \"$doom_file\" contains a single quote"
             rd_zenity --error --no-wrap \
                 --window-icon="/app/share/icons/hicolor/scalable/apps/net.retrodeck.retrodeck.svg" \
                 --title "RetroDECK" \
-                    --text="<span foreground='$purple'><b>Invalid filename\n\n</b></span>A file contained in \"$doom_file\" contains a single quote.\nPlease rename the file and fix its name in the .doom file."
+                --text="<span foreground='$purple'><b>Invalid filename\n\n</b></span>A file contained in \"$doom_file\" contains a single quote.\nPlease rename the file and fix its name in the .doom file."
             exit 1
         fi
+
+        # Search for the file recursively
         found_file=$(search_file_recursive "$line" "$(dirname "$doom_file")")
 
         # If the file is not found, exit with an error
@@ -166,14 +210,28 @@ elif [[ -n "$doom_file" || "${target_arg##*.}" == "doom" ]]; then
             exit 1
         fi
 
-        # Check if the file is an IWAD
-        if [[ $(is_iwad "$found_file") == "true" ]]; then
-            command+=" -iwad \"$found_file\""
-            log i "Appending the param \"-iwad $found_file\""
-        else
-            command+=" -file \"$found_file\""
-            log i "Appending the param \"-file $found_file\""
-        fi
+        # Add param depending on file extension (.ini -> -cfg, iwads -> -iwad, others -> -file)
+        ext="${found_file##*.}"
+        ext_lc="${ext,,}"
+        case "$ext_lc" in
+            ini)
+                command+=" -cfg \"$found_file\""
+                log i "Appending the param \"-cfg $found_file\""
+                ;;
+            wad|pk3|ipk3)
+                if [[ $(is_iwad "$found_file") == "true" ]]; then
+                    command+=" -iwad \"$found_file\""
+                    log i "Appending the param \"-iwad $found_file\""
+                else
+                    command+=" -file \"$found_file\""
+                    log i "Appending the param \"-file $found_file\""
+                fi
+                ;;
+            *)
+                command+=" -file \"$found_file\""
+                log i "Appending the param \"-file $found_file\""
+                ;;
+        esac
     done < "$doom_file"
 
     # Log the command
