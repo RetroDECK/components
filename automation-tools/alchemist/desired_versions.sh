@@ -139,6 +139,9 @@ export STEAM_ROM_MANAGER_DESIRED_VERSION="latest"
 # SuperModel – SEGA Model 3 arcade emulator
 export SUPERMODEL_DESIRED_VERSION="latest"
 
+# UZDoom – Modern Doom engine
+export UZDOOM_DESIRED_VERSION="latest"
+
 # Vita3K – PlayStation Vita emulator
 export VITA3K_DESIRED_VERSION="latest"
 

@@ -1,14 +1,14 @@
 {
-  "gzdoom": [
+  "uzdoom": [
     {
-      "source_url": "org.zdoom.GZDoom",
-      "source_type": "flatpak_id",
-      "version": "$GZDOOM_DESIRED_VERSION",
-      "extraction_type": "flatpak",
+      "source_url": "https://github.com/UZDoom/UZDoom/releases/download/{VERSION}/Linux-UZDoom-*.AppImage ",
+      "source_type": "github_release",
+      "version": "$UZDOOM_DESIRED_VERSION",
+      "extraction_type": "appimage",
       "assets": [
         {
           "type": "dir",
-          "source": "bin",
+          "source": "usr/bin",
           "dest": "bin"
         },
         {
@@ -23,7 +23,7 @@
         },
         {
           "type": "file",
-          "source": "$REPO_ROOT/$COMPONENT_NAME/assets/gzdoom.sh",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/assets/uzdoom.sh",
           "dest": "bin"
         },
         {
@@ -58,54 +58,29 @@
         },
         {
           "type": "file",
-          "source": "lib/libgme.a",
+          "source": "lib/x86_64-linux-gnu/libgme.a",
           "dest": "lib"
         },
         {
           "type": "file",
-          "source": "lib/libsndfile.a",
+          "source": "lib/x86_64-linux-gnu/libsndfile.a",
           "dest": "lib"
         },
         {
           "type": "dir",
-          "source": "lib/pkgconfig",
-          "dest": "lib/pkgconfig"
-        },
-        {
-          "type": "dir",
-          "source": "lib/cmake",
-          "dest": "lib/cmake"
-        },
-        {
-          "type": "dir",
-          "source": "share/games/doom/",
+          "source": "usr/share/games/doom/",
           "dest": "share/games/doom/"
         },
         {
           "type": "dir",
-          "source": "share/licenses/org.zdoom.GZDoom/",
+          "source": "share/licenses/org.zdoom.uzdoom/",
           "dest": "doc"
         }
       ],
       "libs": [
         {
           "library": "libzmusic.so.1",
-          "source": "lib",
-          "dest": "shared-libs"
-        },
-        {
-          "library": "libfluidsynth.so.3",
-          "source": "lib",
-          "dest": "shared-libs"
-        },
-        {
-          "library": "libinstpatch-1.0.so.2",
-          "source": "lib",
-          "dest": "shared-libs"
-        },
-        {
-          "library": "libzmusiclite.so.1",
-          "source": "lib",
+          "source": "usr/lib/x86_64-linux-gnu/lib",
           "dest": "shared-libs"
         }
       ]

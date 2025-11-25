@@ -37,7 +37,7 @@ is_iwad() {
     echo "false"
 }
 
-# Function to search for files recursively and resolve symlinks
+# Function to search for files recursively
 search_file_recursive() {
     local file="$1"
     local directory="$2"
@@ -202,11 +202,11 @@ elif [[ -n "$doom_file" || "${target_arg##*.}" == "doom" ]]; then
 
         # If the file is not found, exit with an error
         if [[ -z "$found_file" ]]; then
-            log "[ERROR] File not found: $line"
+            log "[ERROR] File not found in \"$line\""
             rd_zenity --error --no-wrap \
                 --window-icon="/app/share/icons/hicolor/scalable/apps/net.retrodeck.retrodeck.svg" \
                 --title "RetroDECK" \
-                --text="File \"$line\" not found. Quitting."
+                --text="File \"$doom_file\" not found. Quitting."
             exit 1
         fi
 
