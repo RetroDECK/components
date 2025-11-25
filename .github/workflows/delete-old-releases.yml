@@ -19,9 +19,8 @@ jobs:
       with:
         app-id: ${{ vars.REKKU_APP_ID }}
         private-key: ${{ secrets.REKKU_PRIVATE_KEY }}
-        repositories: "RetroDECK,Cooker,Artifacts"
+        repositories: "components"
         owner: "RetroDECK"
-
     - name: Clean Old Releases
       run: |
         set -euo pipefail
@@ -94,12 +93,18 @@ jobs:
               log_line="$(date -u +%Y-%m-%dT%H:%M:%SZ) | DELETING release id=$release_id tag=$tag_name name=$name published_at=$published_at"
               echo "$log_line" | tee -a "$LOGFILE"
 
-              # Delete release
-              del_resp=$(curl -s -o /dev/null -w "%{http_code}" -X DELETE -H "Authorization: token $GITHUB_TOKEN" "https://api.github.com/repos/$GITHUB_REPOSITORY/releases/$release_id")
-              if [ "$del_resp" = "204" ]; then
+              # Delete release (capture body + http code so we can diagnose permission failures)
+              del_output=$(curl -s -w "\n%{http_code}" -X DELETE -H "Authorization: token $GITHUB_TOKEN" "https://api.github.com/repos/$GITHUB_REPOSITORY/releases/$release_id")
+              del_http_code=$(echo "$del_output" | tail -n1)
+              del_body=$(echo "$del_output" | sed '$d')
+              if [ "$del_http_code" = "204" ]; then
                 echo "Delete succeeded: release id=$release_id" | tee -a "$LOGFILE"
               else
-                echo "Delete failed (HTTP $del_resp): release id=$release_id" | tee -a "$LOGFILE"
+                echo "Delete failed (HTTP $del_http_code): release id=$release_id" | tee -a "$LOGFILE"
+                if [ -n "$del_body" ]; then
+                  # Response bodies can contain JSON error messages which help explain 403 reasons
+                  echo "Response body: $del_body" | tee -a "$LOGFILE"
+                fi
               fi
             else
               echo "Keeping release id=$release_id (tag=$tag_name name=$name published_at=$published_at) — not older than threshold"
