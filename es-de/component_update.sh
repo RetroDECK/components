@@ -66,3 +66,14 @@ if [[ $(check_version_is_older_than "$version_being_updated" "0.9.4b") == "true"
   rsync -rlD --mkpath "/app/retrodeck/graphics/" "/var/config/ES-DE/resources/graphics/"
   dir_prep "$rdhome/ES-DE/gamelists" "$XDG_CONFIG_HOME/ES-DE/gamelists" # Fix broken symlink in case user had moved an ES-DE folder after they were consolidated into ~/retrodeck/ES-DE
 fi
+
+if [[ $(check_version_is_older_than "$version_being_updated" "0.10.0b") == "true" ]]; then
+
+  # With the RetroDECK Neo the theme folder is changed, so if the user set the RetroDECK Theme we need to fix the name in the config
+
+    if [[ $(get_setting_value "$es_de_config" "Theme" "retrodeck") == "retrodeck" ]]; then
+      log i "Default RetroDECK theme is set, fixing theme name in ES-DE config."
+      set_setting_value "$es_de_config" "Theme" "RetroDECK-theme-main"
+    fi
+
+fi
