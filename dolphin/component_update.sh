@@ -34,6 +34,13 @@ if [[ $(check_version_is_older_than "$version_being_updated" "0.9.1b") == "true"
   cp -vn "$config/dolphin/"* "$XDG_CONFIG_HOME/dolphin-emu/"
 fi
 
+if [[ $(check_version_is_older_than "$version_being_updated" "0.10.0b") == "true" ]]; then
+  log i "Dolphin team suggest to run Dolphin in single core, setting it"
+  set_setting_value "$dolphinconf" "CPUThread" "False" "dolphin" "Core"
+  set_setting_value "$dolphinconf" "LanguageCode" " " "dolphin" "Interface"
+
+fi
+
 #######################################
 # These actions happen at every update
 #######################################
