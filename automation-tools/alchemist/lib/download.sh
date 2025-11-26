@@ -6,6 +6,7 @@ set -euo pipefail
 source "$SCRIPT_DIR/lib/tools/download_retry.sh"
 source "$SCRIPT_DIR/lib/tools/url_resolver.sh"
 source "$SCRIPT_DIR/lib/tools/github_api.sh"
+source "$SCRIPT_DIR/lib/tools/gitlab_api.sh"
 source "$SCRIPT_DIR/lib/tools/flatpak_api.sh"
 source "$SCRIPT_DIR/lib/tools/git_api.sh"
 source "$SCRIPT_DIR/lib/tools/install_flatpak.sh"
