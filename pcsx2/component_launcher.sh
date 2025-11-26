@@ -6,10 +6,6 @@ component_path="$(cd "$(dirname "${BASH_SOURCE[0]}" )" && pwd)"
 
 source "$component_path/apprun-hooks/linuxdeploy-plugin-qt-hook.sh"
 
-export LD_LIBRARY_PATH="$component_path/lib:${DEFAULT_LD_LIBRARY_PATH}"
-export QT_PLUGIN_PATH="$component_path/plugins/:${QT_PLUGIN_PATH}"
-export QT_QPA_PLATFORM_PLUGIN_PATH="$component_path/lib/plugins/platforms/:${QT_QPA_PLATFORM_PLUGIN_PATH}"
-
 log i "RetroDECK is now launching $component_name"
 log d "Library path is: $LD_LIBRARY_PATH"
 log d "QT plugin path is: $QT_PLUGIN_PATH"
