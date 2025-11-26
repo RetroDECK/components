@@ -104,7 +104,7 @@
   "grid_size": 2,
   "application_sort": 0,
   "is_ascending_order": true,
-  "start_fullscreen": false,
+  "start_fullscreen": true,
   "start_no_ui": false,
   "show_console": true,
   "enable_keyboard": false,
