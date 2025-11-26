@@ -8,12 +8,35 @@ if [ -z "${GLOBAL_SOURCED+x}" ]; then
 fi
 
 # Define the IWAD files list
-IWAD_FILES=("DOOM1.WAD" "DOOM.WAD" "DOOM2.WAD" "DOOM2F.WAD" "DOOM64.WAD" "TNT.WAD"
-            "PLUTONIA.WAD" "HERETIC1.WAD" "HERETIC.WAD" "HEXEN.WAD" "HEXDD.WAD"
-            "STRIFE0.WAD" "STRIFE1.WAD" "VOICES.WAD" "CHEX.WAD"
-            "CHEX3.WAD" "HACX.WAD" "freedoom1.wad" "freedoom2.wad" "freedm.wad"
-            "doom_complete.pk3"
-)
+IWAD_FILES=(
+        "ACTION2.WAD"       # Action Doom 2: Urban Brawl
+        "BLASPHEM.WAD"      # Blasphemer
+        "CHEX.WAD"          # Chex Quest
+        "CHEX3.WAD"         # Chex Quest 3
+        "DELAWEARE.WAD"     # Delaweare 
+        "DOOM.WAD"          # Doom shareware
+        "DOOM1.WAD"         # Doom 
+        "DOOM2.WAD"         # Doom II: Hell on Earth
+        "DOOM2F.WAD"        # Doom II French
+        "DOOM64.WAD"        # Doom 64 IWAD (Nintendo 64 version)
+        "DOOM_COMPLETE.PK3" # WadSmoosh merged Doom
+        "FREEDOOM1.WAD"     # Freedoom Phase 1
+        "FREEDOOM2.WAD"     # Freedoom Phase 2 
+        "FREEDM.WAD"        # Freedoom Deathmatch
+        "HEXDD.WAD"         # Hexen: Deathkings of the Dark Citadel
+        "HEXEN.WAD"         # Hexen: Beyond Heretic
+        "HACX.WAD"          # HACX
+        "HARM1.WAD"         # Harmony
+        "HERETIC.WAD"       # Heretic: Shadow of the Serpent Riders
+        "HERETIC1.WAD"      # Heretic shareware
+        "PLUTONIA.WAD"      # Plutonia Experiment
+        "ROTWB.WAD"         # Rise Of The Wool Ball
+        "SQUARE1.PK3"       # The Adventures of Square
+        "STRIFE0.WAD"       # Strife shareware
+        "STRIFE1.WAD"       # Strife
+        "TNT.WAD"           # TNT: Evilution
+        "VOICES.WAD"        # Strife Voices                                                                              
+                                                )
 
 # Get the directory where this script is located
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
