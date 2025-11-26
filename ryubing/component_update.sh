@@ -6,6 +6,30 @@
 
 if [[ $(check_version_is_older_than "$version_being_updated" "0.10.0b") == "true" ]]; then
   # In version 0.10.0b, the following changes were made that required config file updates/reset or other changes to the filesystem:
+  # - Init Ryubing as it is a new emulator
+  # - Migrate legacy Ryujinx and Yuzu saves to Ryubing saves dir
 
-  log d "Put Ryubing post_update commands here"
+  prepare_component "reset" "ryubing"
+
+  log i "Checking for Ryujinx and Yuzu saves to move into Ryubing folder."
+  switch_saves_moved=false
+
+  for old_saves_folder in "$saves_path/switch/ryujinx/nand/system/save" \
+                          "$XDG_HOME_CONFIG/Ryujinx/bis/system/save" \
+                          "$saves_path/switch/yuzu/nand/system/save" \
+                          "$XDG_HOME_CONFIG/Yuzu/bis/system/save" ; do
+
+    if [[ -d "$old_saves_folder" ]]; then
+      log i "Found Switch saves in $old_saves_folder to move."
+      rsync -a --ignore-existing --mkpath "$old_saves_folder/" "$saves_path/switch/ryubing/"
+      switch_saves_moved=true
+    fi
+
+  done
+
+  if [[ $switch_saves_moved == true ]]; then
+    log i "Ryujinx and Yuzu saves have been moved into Ryubing folder."
+    configurator_generic_dialog "RetroDECK - Post Update" "<span foreground='$purple'><b>Ryujinx</b></span> and <span foreground='$purple'><b>Yuzu</b></span> saves have been moved into the <span foreground='$purple'><b>Ryubing</b></span> folder.\nThe old Ryujinx save location can now be safely manually deleted to free up space.\n\n<span foreground='$purple'><b>RetroDECK will not delete any save files automatically.</b></span>"
+  fi
+
 fi
