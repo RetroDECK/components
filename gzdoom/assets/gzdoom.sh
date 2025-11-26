@@ -18,7 +18,7 @@ IWAD_FILES=(
         "DOOM1.WAD"         # Doom 
         "DOOM2.WAD"         # Doom II: Hell on Earth
         "DOOM2F.WAD"        # Doom II French
-        "DOOM64.WAD"        # Doom 64 IWAD (Nintendo 64 version)
+        "DOOM64.WAD"        # Doom 64
         "DOOM_COMPLETE.PK3" # WadSmoosh merged Doom
         "FREEDOOM1.WAD"     # Freedoom Phase 1
         "FREEDOOM2.WAD"     # Freedoom Phase 2 
