@@ -6,10 +6,16 @@
 get_latest_git_commit_version() {
   local owner="$1"
   local repo="$2"
+  local GITHUB_TOKEN="${GITHUB_TOKEN:-}"
 
   local response
-  response=$(curl -s "https://api.github.com/repos/$owner/$repo/commits/HEAD" 2>&1)
-  local curl_exit=$?
+  if [[ -n "$GITHUB_TOKEN" ]]; then
+    response=$(curl -s -H "Authorization: token $GITHUB_TOKEN" "https://api.github.com/repos/$owner/$repo/commits/HEAD" 2>&1)
+    local curl_exit=$?
+  else
+    response=$(curl -s "https://api.github.com/repos/$owner/$repo/commits/HEAD" 2>&1)
+    local curl_exit=$?
+  fi
 
   if [[ "$curl_exit" -ne 0 ]]; then
     log error "Failed to fetch latest release for https://api.github.com/repos/$owner/$repo/commits/HEAD"

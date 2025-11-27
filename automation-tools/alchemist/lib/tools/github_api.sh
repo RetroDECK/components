@@ -57,13 +57,19 @@ handle_github_rate_limit() {
 get_latest_github_release_version() {
   local owner="$1"
   local repo="$2"
+  local GITHUB_TOKEN="${GITHUB_TOKEN:-}"
   local headers_file
   headers_file=$(mktemp)
 
   local api_url="https://api.github.com/repos/$owner/$repo/releases/latest"
   local response
-  response=$(curl -sS -D "$headers_file" "$api_url" 2>&1)
-  local curl_exit=$?
+  if [[ -n "$GITHUB_TOKEN" ]]; then
+    response=$(curl -sS -D "$headers_file" -H "Authorization: token $GITHUB_TOKEN" "$api_url" 2>&1)
+    local curl_exit=$?
+  else
+    response=$(curl -sS -D "$headers_file" "$api_url" 2>&1)
+    local curl_exit=$?
+  fi
 
   handle_github_rate_limit "$headers_file"
   rm -f "$headers_file"
@@ -92,13 +98,19 @@ get_latest_github_release_version() {
 get_newest_github_release_version() {
   local owner="$1"
   local repo="$2"
+  local GITHUB_TOKEN="${GITHUB_TOKEN:-}"
   local headers_file
   headers_file=$(mktemp)
 
   local api_url="https://api.github.com/repos/$owner/$repo/releases"
   local response
-  response=$(curl -sS -D "$headers_file" "$api_url" 2>&1)
-  local curl_exit=$?
+  if [[ -n "$GITHUB_TOKEN" ]]; then
+    response=$(curl -sS -D "$headers_file" -H "Authorization: token $GITHUB_TOKEN" "$api_url" 2>&1)
+    local curl_exit=$?
+  else
+    response=$(curl -sS -D "$headers_file" "$api_url" 2>&1)
+    local curl_exit=$?
+  fi
 
   handle_github_rate_limit "$headers_file"
   rm -f "$headers_file"
@@ -129,13 +141,19 @@ get_github_release_asset_url() {
   local repo="$2"
   local version="$3"
   local pattern="$4"
+  local GITHUB_TOKEN="${GITHUB_TOKEN:-}"
   local headers_file
   headers_file=$(mktemp)
 
   local api_url="https://api.github.com/repos/$owner/$repo/releases/tags/$version"
   local response
-  response=$(curl -sS -D "$headers_file" "$api_url" 2>&1)
-  local curl_exit=$?
+  if [[ -n "$GITHUB_TOKEN" ]]; then
+    response=$(curl -sS -D "$headers_file" -H "Authorization: token $GITHUB_TOKEN" "$api_url" 2>&1)
+    local curl_exit=$?
+  else
+    response=$(curl -sS -D "$headers_file" "$api_url" 2>&1)
+    local curl_exit=$?
+  fi
 
   handle_github_rate_limit "$headers_file" # Make sure we aren't in GitHub API timeout
   rm -f "$headers_file"
