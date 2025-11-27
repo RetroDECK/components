@@ -1,60 +1,127 @@
-name: Clean Old Componenets Releases
+name: Clean Old Components Releases
 
 on:
   schedule:
-    - cron: '0 0 * * *' # Run daily at midnight
+    - cron: '0 15 1,15 * *' # Run at midnight JST (15:00 UTC) on the 1st and 15th of each month
   workflow_dispatch:
 
 jobs:
   clean-releases:
+    # Require write permissions so the job can delete releases via the API
+    permissions:
+      contents: write
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout Repository
-      uses: actions/checkout@v2
-
-    - name: Set up Git
-      run: |
-        git config user.email "${{ secrets.GIT_MAIL }}"
-        git config user.name "${{ secrets.GIT_USERNAME }}"
-
+    - name: Generate a token for Rekku
+      id: generate-rekku-token
+      uses: actions/create-github-app-token@v1
+      with:
+        app-id: ${{ vars.REKKU_APP_ID }}
+        private-key: ${{ secrets.REKKU_PRIVATE_KEY }}
+        repositories: "components"
+        owner: "RetroDECK"
     - name: Clean Old Releases
       run: |
-        # Define the threshold date (1 month ago)
-        THRESHOLD_DATE=$(date -d "1 month ago" +%Y-%m-%dT%H:%M:%SZ)
+        set -euo pipefail
+
+        # Create / reset log file for deleted releases
+        LOGFILE=deleted-releases.log
+        : > "$LOGFILE"
+
+        # Define the threshold date (1 month ago, UTC)
+        THRESHOLD_DATE=$(date -u -d "1 month ago" +%Y-%m-%dT%H:%M:%SZ)
 
         # Define the list of tags to be excluded
         EXCLUDE_TAGS=("cooker-0.9.0b-ShoujoMonster")
-        
-        # Get all releases (handle pagination)
-        ALL_RELEASES=$(curl -s -H "Authorization: token $GITHUB_TOKEN" "https://api.github.com/repos/$GITHUB_REPOSITORY/releases?per_page=100&page=1")
-        PAGE_COUNT=$(echo "$ALL_RELEASES" | jq '. | length')
-        
-        # Get the latest release ID
-        LATEST_RELEASE=$(echo "$ALL_RELEASES" | jq -r '.[0].id')
-        
-        # Loop through pages and get releases older than 1 month (excluding the latest)
-        for ((i=0; i<$PAGE_COUNT; i++)); do
-          RELEASE_ID=$(echo "$ALL_RELEASES" | jq -r ".[$i].id")
-        
-          # Skip the latest release
-          if [ "$RELEASE_ID" == "$LATEST_RELEASE" ]; then
-            continue
+
+        # Get latest release ID (so we don't delete the very latest release)
+        LATEST_RELEASE_ID=$(curl -s -H "Authorization: token ${{ steps.generate-rekku-token.outputs.token }}" "https://api.github.com/repos/$GITHUB_REPOSITORY/releases/latest" | jq -r '.id // empty')
+
+        # Pagination: iterate pages until none returned
+        per_page=100
+        page=1
+        while :; do
+          echo "Fetching releases page $page"
+          RESP=$(curl -s -H "Authorization: token ${{ steps.generate-rekku-token.outputs.token }}" "https://api.github.com/repos/$GITHUB_REPOSITORY/releases?per_page=$per_page&page=$page")
+          COUNT=$(echo "$RESP" | jq 'length')
+          if [ "$COUNT" -eq 0 ]; then
+            break
           fi
 
-          # Skip releases with tags in the exclude list
-          if [[ " ${EXCLUDE_TAGS[@]} " =~ " ${TAG_NAME} " ]]; then
-            continue
-          fi
-        
-          # Check if the release is older than 1 month
-          OLD_RELEASES=$(echo "$ALL_RELEASES" | jq --arg threshold "$THRESHOLD_DATE" ".[$i] | select(.published_at < \$threshold) | .id")
-        
-          # Delete old releases
-          for release_id in $OLD_RELEASES; do
-            curl -X DELETE -H "Authorization: token $GITHUB_TOKEN" "https://api.github.com/repos/$GITHUB_REPOSITORY/releases/$release_id"
+          for idx in $(seq 0 $((COUNT - 1))); do
+            release=$(echo "$RESP" | jq ".[$idx]")
+            release_id=$(echo "$release" | jq -r '.id')
+            tag_name=$(echo "$release" | jq -r '.tag_name // empty')
+            name=$(echo "$release" | jq -r '.name // empty')
+            published_at=$(echo "$release" | jq -r '.published_at // empty')
+
+            # Skip the latest release
+            if [ -n "$LATEST_RELEASE_ID" ] && [ "$release_id" = "$LATEST_RELEASE_ID" ]; then
+              echo "Skipping latest release: id=$release_id tag=$tag_name name=$name"
+              continue
+            fi
+
+            # Skip excluded tags
+            if [ -n "$tag_name" ]; then
+              for ex in "${EXCLUDE_TAGS[@]}"; do
+                if [ "$tag_name" = "$ex" ]; then
+                  echo "Skipping excluded tag: $tag_name (id=$release_id name=$name)"
+                  skip=1
+                  break
+                else
+                  skip=0
+                fi
+              done
+              if [ "$skip" -eq 1 ]; then
+                continue
+              fi
+            fi
+
+            # If there's no published_at (draft?), skip
+            if [ -z "$published_at" ] || [ "$published_at" = "null" ]; then
+              echo "Skipping release without published_at: id=$release_id tag=$tag_name name=$name"
+              continue
+            fi
+
+            # Compare dates in epoch seconds for safety
+            published_epoch=$(date -d "$published_at" +%s)
+            threshold_epoch=$(date -d "$THRESHOLD_DATE" +%s)
+
+            if [ "$published_epoch" -lt "$threshold_epoch" ]; then
+              # Log details before deleting
+              log_line="$(date -u +%Y-%m-%dT%H:%M:%SZ) | DELETING release id=$release_id tag=$tag_name name=$name published_at=$published_at"
+              echo "$log_line" | tee -a "$LOGFILE"
+
+              # Delete release (capture body + http code so we can diagnose permission failures)
+              del_output=$(curl -s -w "\n%{http_code}" -X DELETE -H "Authorization: token $GITHUB_TOKEN" "https://api.github.com/repos/$GITHUB_REPOSITORY/releases/$release_id")
+              del_http_code=$(echo "$del_output" | tail -n1)
+              del_body=$(echo "$del_output" | sed '$d')
+              if [ "$del_http_code" = "204" ]; then
+                echo "Delete succeeded: release id=$release_id" | tee -a "$LOGFILE"
+              else
+                echo "Delete failed (HTTP $del_http_code): release id=$release_id" | tee -a "$LOGFILE"
+                if [ -n "$del_body" ]; then
+                  # Response bodies can contain JSON error messages which help explain 403 reasons
+                  echo "Response body: $del_body" | tee -a "$LOGFILE"
+                fi
+              fi
+            else
+              echo "Keeping release id=$release_id (tag=$tag_name name=$name published_at=$published_at) — not older than threshold"
+            fi
           done
+
+          page=$((page + 1))
         done
 
+        echo "Finished cleanup. Deleted/releases log: $LOGFILE"
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ steps.generate-rekku-token.outputs.token }}
+
+    - name: Upload deleted releases log
+      uses: actions/upload-artifact@v4
+      with:
+        name: deleted-releases-log
+        path: deleted-releases.log
+      env:
+        GITHUB_TOKEN: ${{ steps.generate-rekku-token.outputs.token }}
