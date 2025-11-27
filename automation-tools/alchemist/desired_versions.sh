@@ -124,7 +124,7 @@ export SHADPS4_DESIRED_VERSION="latest"
 export SIMCOUPE_DESIRED_VERSION="latest"
 
 # Solarus – Action‑RPG engine 
-export SOLARUS_DESIRED_VERSION="2.0.1"
+export SOLARUS_DESIRED_VERSION="latest"
 
 # Steam ROM Manager – Organises ROM collections for Steam
 export STEAM_ROM_MANAGER_DESIRED_VERSION="latest"

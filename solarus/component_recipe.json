@@ -1,8 +1,8 @@
 {
   "solarus": [
     {
-      "source_url": "https://downloads.solarus-games.org/solarus/linux/solarus-launcher-v{VERSION}-linux-x64.tar.gz",
-      "source_type": "http",
+      "source_url": "https://gitlab.com/solarus-games/solarus/-/releases/solarus-launcher-*-linux-x64.tar.gz",
+      "source_type": "gitlab-release",
       "version": "$SOLARUS_DESIRED_VERSION",
       "extraction_type": "archive",
       "assets": [
