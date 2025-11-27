@@ -1,0 +1,101 @@
+{
+  "duckstation": {
+    "name": "Duckstation (Legacy)",
+    "description": "PlayStation Emulator",
+    "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/duckstation/duckstation-guide/",
+    "system_friendly_name": "Playstation 1 (PSX)",
+    "system": "psx",
+    "compatible_presets": {
+      "cheevos": [
+        "false",
+        "true"
+      ],
+      "cheevos_hardcore" : [
+        "false",
+        "true"
+      ],
+      "ask_to_exit": [
+        "false",
+        "true"
+      ],
+      "savestate_on_exit": [
+        "false",
+        "true"
+      ]
+    },
+    "preset_actions": {
+      "config_file_format": "duckstation",
+      "cheevos": [
+        {
+          "enabled_states": [ "true" ],
+          "setting_name": "Enabled",
+          "action": "change",
+          "new_setting_value": "true",
+          "section": "Cheevos",
+          "target_file": "$duckstation_config",
+          "defaults_file": "$duckstation_rd_config_dir/settings.ini"
+        },
+        {
+          "enabled_states": [ "true" ],
+          "setting_name": "Username",
+          "action": "change",
+          "new_setting_value": "$cheevos_username",
+          "section": "Cheevos",
+          "target_file": "$duckstation_config",
+          "defaults_file": "$duckstation_rd_config_dir/settings.ini"
+        },
+        {
+          "enabled_states": [ "true" ],
+          "setting_name": "Token",
+          "action": "change",
+          "new_setting_value": "$cheevos_token",
+          "section": "Cheevos",
+          "target_file": "$duckstation_config",
+          "defaults_file": "$duckstation_rd_config_dir/settings.ini"
+        },
+        {
+          "enabled_states": [ "true" ],
+          "setting_name": "LoginTimestamp",
+          "action": "change",
+          "new_setting_value": "$cheevos_login_timestamp",
+          "section": "Cheevos",
+          "target_file": "$duckstation_config",
+          "defaults_file": "$duckstation_rd_config_dir/settings.ini"
+        }
+      ],
+      "cheevos_hardcore": [
+        {
+          "enabled_states": [ "true" ],
+          "setting_name": "ChallengeMode",
+          "action": "change",
+          "new_setting_value": "true",
+          "section": "Cheevos",
+          "target_file": "$duckstation_config",
+          "defaults_file": "$duckstation_rd_config_dir/settings.ini"
+        }
+      ],
+      "savestate_on_exit": [
+        {
+          "enabled_states": [ "true" ],
+          "setting_name": "SaveStateOnExit",
+          "action": "change",
+          "new_setting_value": "true",
+          "section": "Main",
+          "target_file": "$duckstation_config",
+          "defaults_file": "$duckstation_rd_config_dir/settings.ini"
+        }
+      ],
+      "ask_to_exit": [
+        {
+          "enabled_states": [ "true" ],
+          "setting_name": "ConfirmPowerOff",
+          "action": "change",
+          "new_setting_value": "true",
+          "section": "Main",
+          "target_file": "$duckstation_config",
+          "defaults_file": "$duckstation_rd_config_dir/settings.ini"
+        }
+      ]
+    }
+  }
+}

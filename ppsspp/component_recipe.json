@@ -1,0 +1,106 @@
+{
+  "ppsspp": [
+    {
+      "source_url": "org.ppsspp.PPSSPP",
+      "source_type": "flatpak_id",
+      "version": "$PPSSPP_DESIRED_VERSION",
+      "dest": "user",
+      "extraction_type": "flatpak",
+      "assets": [
+        {
+          "type": "dir",
+          "source": "bin",
+          "dest": "bin"
+        },
+        {
+          "type": "dir",
+          "source": "share/ppsspp/assets/",
+          "dest": "bin/assets/"
+        },
+        {
+          "type": "create",
+          "dest": "component_version",
+          "contents": "$SOURCE_VERSION"
+        },
+        {
+          "type": "dir",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/assets/rd_config",
+          "dest": "rd_config"
+        },
+        {
+          "type": "file",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/component_functions.sh",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/component_launcher.sh",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/component_manifest.json",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/component_recipe.json",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/component_prepare.sh",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/component_update.sh",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        }
+      ],
+      "libs": [
+        {
+          "library": "libGLEW.so.2.2",
+          "source": "lib",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libGLU.so.1",
+          "source": "lib",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libSDL2_ttf-2.0.so.0",
+          "runtime_name": "org.freedesktop.Platform",
+          "runtime_version": "24.08",
+          "dest": "shared-libs"
+        }
+      ]
+    },
+    {
+      "source_url": "https://github.com/Zaykus/PSPemu/releases/download/{VERSION}/CWCheat-Database-Plus--master.zip",
+      "version": "latest",
+      "source_type": "github-release",
+      "extraction_type": "local",
+      "assets": [
+        {
+          "type": "file",
+          "source": "$WORKDIR/CWCheat-Database-Plus--master.zip",
+          "dest": "rd_extras"
+        }
+      ]
+    },
+    {
+      "source_url": "https://github.com/hrydgard/ppsspp/archive/refs/heads/master.zip",
+      "source_type": "http",
+      "extraction_type": "archive",
+      "assets": [
+        {
+          "type": "archive",
+          "source": "ppsspp-master/assets",
+          "dest": "rd_extras/ppsspp_foss_bios"
+        }
+      ]
+    }
+  ]
+}

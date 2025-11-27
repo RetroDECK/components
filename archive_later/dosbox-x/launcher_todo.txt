@@ -1,0 +1,6 @@
+Added libc but and the error went away, but It might need a specific version as it does not launch.
+
+/app/retrodeck/components/dosbox-x/bin/dosbox-x: /usr/lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.42' not found (required by /app/retrodeck/components/dosbox-x/bin/dosbox-x)
+
+Segmenteringsfel (minnesutskrift skapad)
+

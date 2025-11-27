@@ -1,0 +1,11 @@
+{
+  "gzdoom": {
+    "name": "GZDoom",
+    "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/gzdoom/gzdoom-guide/",
+    "url_webpage": "https://zdoom.org/index",
+    "url_source": "https://github.com/ZDoom/gzdoom",
+    "description": "A modern engine for Doom and other Doom Engine games.",
+    "system_friendly_name": "Doom",
+    "system": "doom"
+  }
+}

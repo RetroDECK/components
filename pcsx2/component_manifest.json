@@ -1,0 +1,103 @@
+{
+  "pcsx2": {
+    "name": "PCSX2",
+    "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/pcsx2/pcsx2-guide/",
+    "url_webpage": "https://pcsx2.net/",
+    "url_source": "https://github.com/PCSX2/pcsx2",
+    "description": "An open-source PlayStation 2 (PS2) emulator",
+    "system_friendly_name": "PlayStation 2",
+    "system": "pcsx2",
+    "compatible_presets": {
+      "ask_to_exit": [
+        "false",
+        "true"
+      ],
+      "cheevos": [
+        "false",
+        "true"
+      ],
+      "cheevos_hardcore": [
+        "false",
+        "true"
+      ],
+      "savestate_on_exit": [
+        "false",
+        "true"
+      ]
+    },
+    "preset_actions": {
+      "config_file_format": "pcsx2",
+      "cheevos": [
+        {
+          "enabled_states": [ "true" ],
+          "setting_name": "Enabled",
+          "action": "change",
+          "new_setting_value": "true",
+          "section": "Achievements",
+          "target_file": "$pcsx2_config",
+          "defaults_file": "$pcsx2_rd_config_dir/PCSX2.ini"
+        },
+        {
+          "enabled_states": [ "true" ],
+          "setting_name": "Username",
+          "action": "change",
+          "new_setting_value": "$cheevos_username",
+          "section": "Achievements",
+          "target_file": "$pcsx2_config",
+          "defaults_file": "$pcsx2_rd_config_dir/PCSX2.ini"
+        },
+        {
+          "enabled_states": [ "true" ],
+          "setting_name": "Token",
+          "action": "change",
+          "new_setting_value": "$cheevos_token",
+          "section": "Achievements",
+          "target_file": "$pcsx2_config",
+          "defaults_file": "$pcsx2_rd_config_dir/PCSX2.ini"
+        },
+        {
+          "enabled_states": [ "true" ],
+          "setting_name": "LoginTimestamp",
+          "action": "change",
+          "new_setting_value": "$cheevos_login_timestamp",
+          "section": "Achievements",
+          "target_file": "$pcsx2_config",
+          "defaults_file": "$pcsx2_rd_config_dir/PCSX2.ini"
+        }
+      ],
+      "cheevos_hardcore": [
+        {
+          "enabled_states": [ "true" ],
+          "setting_name": "ChallengeMode",
+          "action": "change",
+          "new_setting_value": "true",
+          "section": "Achievements",
+          "target_file": "$pcsx2_config",
+          "defaults_file": "$pcsx2_rd_config_dir/PCSX2.ini"
+        }
+      ],
+      "savestate_on_exit": [
+        {
+          "enabled_states": [ "true" ],
+          "setting_name": "SaveStateOnShutdown",
+          "action": "change",
+          "new_setting_value": "true",
+          "section": "EmuCore",
+          "target_file": "$pcsx2_config",
+          "defaults_file": "$pcsx2_rd_config_dir/PCSX2.ini"
+        }
+      ],
+      "ask_to_exit": [
+        {
+          "enabled_states": [ "true" ],
+          "setting_name": "ConfirmShutdown",
+          "action": "change",
+          "new_setting_value": "true",
+          "section": "UI",
+          "target_file": "$pcsx2_config",
+          "defaults_file": "$pcsx2_rd_config_dir/PCSX2.ini"
+        }
+      ]
+    }
+  }
+}

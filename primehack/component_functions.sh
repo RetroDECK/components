@@ -1,0 +1,17 @@
+#!/bin/bash
+
+primehack_config="$XDG_CONFIG_HOME/primehack/Dolphin.ini"
+primehack_config_DSUClient="$XDG_CONFIG_HOME/primehack/DSUClient.ini"
+primehack_config_FreeLookController="$XDG_CONFIG_HOME/primehack/FreeLookController.ini"
+primehack_config_GBA="$XDG_CONFIG_HOME/primehack/GBA.ini"
+primehack_config_GCKeyNew="$XDG_CONFIG_HOME/primehack/GCKeyNew.ini"
+primehack_config_GCPadNew="$XDG_CONFIG_HOME/primehack/GCPadNew.ini"
+primehack_config_GFX="$XDG_CONFIG_HOME/primehack/GFX.ini"
+primehack_config_Hotkeys="$XDG_CONFIG_HOME/primehack/Hotkeys.ini"
+primehack_config_Logger="$XDG_CONFIG_HOME/primehack/Logger.ini"
+primehack_config_GCKeyNew="$XDG_CONFIG_HOME/primehack/GCKeyNew.ini"
+primehack_config_Qt="$XDG_CONFIG_HOME/primehack/Qt.ini"
+primehack_config_RetroAchievements="$XDG_CONFIG_HOME/primehack/RetroAchievements.ini"
+primehack_config_WiimoteNew="$XDG_CONFIG_HOME/primehack/WiimoteNew.ini"
+primehack_dynamic_input_textures_path="$XDG_DATA_HOME/primehack-emu/Load/DynamicInputTextures"
+primehack_rd_config_dir="$rd_components/primehack/rd_config"

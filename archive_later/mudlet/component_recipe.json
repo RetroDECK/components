@@ -1,0 +1,173 @@
+{
+  "mudlet": [
+    {
+      "source_url": "$REPO_ROOT/$COMPONENT_NAME/tmp_assets/Mudlet-{VERSION}-linux-x64.AppImage",
+      "source_type": "local",
+      "version": "$MUDLET_DESIRED_VERSION",
+      "extraction_type": "appimage",
+      "assets": [
+        {
+          "type": "file",
+          "source": "mudlet",
+          "dest": "bin"
+        },
+        {
+          "type": "dir",
+          "source": "doc",
+          "dest": "doc"
+        },
+        {
+          "type": "dir",
+          "source": "lcf",
+          "dest": "lcf"
+        },
+        {
+          "type": "dir",
+          "source": "mudlet-lua",
+          "dest": "mudlet-lua"
+        },
+        {
+          "type": "dir",
+          "source": "plugins",
+          "dest": "plugins"
+        },
+        {
+          "type": "dir",
+          "source": "translations",
+          "dest": "translations"
+        },
+        {
+          "type": "dir",
+          "source": "$REPO_ROOT/$COMPONENT_NAME",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "create",
+          "dest": "component_version",
+          "contents": "$SOURCE_VERSION"
+        },
+        {
+          "type": "file",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/component_functions.sh",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/component_launcher.sh",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/component_manifest.json",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/component_recipe.json",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/component_prepare.sh",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        }
+      ],
+      "libs": [
+        {
+          "library": "libQt5Concurrent.so.5",
+          "runtime_name": "org.kde.Platform",
+          "runtime_version": "$DESIRED_QT5_RUNTIME_VERSION",
+          "dest": "lib"
+        },
+        {
+          "library": "libQt5Core.so.5",
+          "runtime_name": "org.kde.Platform",
+          "runtime_version": "$DESIRED_QT5_RUNTIME_VERSION",
+          "dest": "lib"
+        },
+        {
+          "library": "libQt5Multimedia.so.5",
+          "runtime_name": "org.kde.Platform",
+          "runtime_version": "$DESIRED_QT5_RUNTIME_VERSION",
+          "dest": "lib"
+        },
+        {
+          "library": "libQt5Network.so.5",
+          "runtime_name": "org.kde.Platform",
+          "runtime_version": "$DESIRED_QT5_RUNTIME_VERSION",
+          "dest": "lib"
+        },
+        {
+          "library": "libQt5Gui.so.5",
+          "runtime_name": "org.kde.Platform",
+          "runtime_version": "$DESIRED_QT5_RUNTIME_VERSION",
+          "dest": "lib"
+        },
+        {
+          "library": "libQt5Widgets.so.5",
+          "runtime_name": "org.kde.Platform",
+          "runtime_version": "$DESIRED_QT5_RUNTIME_VERSION",
+          "dest": "lib"
+        },
+        {
+          "library": "libQt5TextToSpeech.so.5",
+          "runtime_name": "org.kde.Platform",
+          "runtime_version": "$DESIRED_QT5_RUNTIME_VERSION",
+          "dest": "lib"
+        },
+        {
+          "library": "libQt5DBus.so.5",
+          "runtime_name": "org.kde.Platform",
+          "runtime_version": "$DESIRED_QT5_RUNTIME_VERSION",
+          "dest": "lib"
+        },
+        {
+          "library": "libicui18n.so.67",
+          "runtime_name": "org.freedesktop.Platform",
+          "runtime_version": "20.08",
+          "dest": "lib"
+        },
+        {
+          "library": "libGLU.so.1",
+          "source": "lib",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libssl.so.1.1",
+          "source": "lib",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libicui18n.so.56",
+          "source": "lib",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libqt5keychain.so.1",
+          "source": "lib",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libzip.so.5",
+          "source": "lib",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libQsLog.so",
+          "source": "lib",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libbz2.so.1.0",
+          "source": "lib",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libcrypto.so.1.1",
+          "source": "lib",
+          "dest": "shared-libs"
+        }
+      ]
+    }
+  ]
+}

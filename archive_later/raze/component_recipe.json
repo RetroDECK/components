@@ -1,0 +1,76 @@
+{
+  "raze": [
+    {
+      "source_url": "org.zdoom.Raze",
+      "source_type": "flatpak_id",
+      "version": "RAZE_DESIRED_VERSION",
+      "dest": "user",
+      "extraction_type": "flatpak",
+      "assets": [
+        {
+          "type": "dir",
+          "source": "bin",
+          "dest": "bin"
+        },
+        {
+          "type": "file",
+          "source": "share/raze/raze.pk3",
+          "dest": ""
+        },
+        {
+          "type": "dir",
+          "source": "share/games/raze/soundfonts/",
+          "dest": "soundfonts"
+        },
+        {
+          "type": "create",
+          "dest": "component_version",
+          "contents": "$SOURCE_VERSION"
+        },
+        {
+          "type": "dir",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/rd_config",
+          "dest": "rd_config"
+        },
+        {
+          "type": "file",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/component_functions.sh",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/component_launcher.sh",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/component_manifest.json",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/component_recipe.json",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/component_prepare.sh",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        }
+      ],
+      "libs": [
+        {
+          "library": "libvpx.so.8",
+          "runtime_name": "org.freedesktop.Platform",
+          "runtime_version": "23.08",
+          "dest": "lib"
+        },
+        {
+          "library": "libzmusiclite.so.1",
+          "source": "lib",
+          "dest": "shared-libs"
+        }
+      ]
+    }
+  ]
+}

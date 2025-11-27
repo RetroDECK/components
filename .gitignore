@@ -1,4 +1,12 @@
 downloaded-artifacts
 */artifacts
 .tmpfunc
-grab.log
+*.log
+_work
+.flatpak-builder
+component_version
+components_version_list.md
+squashfs-root
+
+#just temporary until Alchemist is integrated here
+automation-tools/Alchemist-temp 

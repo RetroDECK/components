@@ -1,0 +1,10 @@
+{
+  "eka2l1": {
+    "name": "EKA2L1",
+    "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/EKA2L1/EKA2L1-guide/",
+    "url_source": "https://github.com/EKA2L1/EKA2L1",
+    "description": "An experimental Symbian OS emulator.",
+    "system_friendly_name": "Symbian",
+    "system": "symbian"
+  }
+}

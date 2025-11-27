@@ -1,0 +1,11 @@
+{
+  "melonds": {
+    "description": "Nintendo DS Emulator",
+    "name": "melonDS",
+    "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/melonds/melonds-guide/",
+    "url_webpage": "https://melonds.kuribo64.net/",
+    "url_source": "https://github.com/melonDS-emu/melonDS",
+    "system_friendly_name": "Nintendo DS",
+    "system": "nds"
+  }
+}

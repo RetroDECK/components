@@ -1,0 +1,45 @@
+{
+  "primehack": {
+    "name": "PrimeHack",
+    "description": "A fork of Dolphin to enhance Metroid Prime experience",
+    "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/dolphin-primehack/dolphin-primehack-guide/",
+    "url_webpage": "https://github.com/shiiion/dolphin/wiki/",
+    "url_source": "https://github.com/shiiion/dolphin",
+    "system": [
+      "gc",
+      "wii"
+    ],
+    "compatible_presets": {
+      "ask_to_exit": [
+        "false",
+        "true"
+      ],
+      "universal_dyn_input": [
+        "false",
+        "true"
+      ]
+    },
+    "preset_actions": {
+      "config_file_format": "dolphin",
+      "ask_to_exit": [
+        {
+          "enabled_states": [ "true" ],
+          "setting_name": "ConfirmStop",
+          "action": "change",
+          "new_setting_value": "True",
+          "section": "Interface",
+          "target_file": "$primehack_config",
+          "defaults_file": "$primehack_rd_config_dir/config/Dolphin.ini"
+        }
+      ],
+      "universal_dyn_input": [
+        {
+          "enabled_states": [ "true" ],
+          "action": "install",
+          "source": "/app/retrodeck/components/shared-data/DynamicInputTextures/",
+          "destination": "$XDG_DATA_HOME/primehack/Load/DynamicInputTextures/"
+        }
+      ]
+    }
+  }
+}

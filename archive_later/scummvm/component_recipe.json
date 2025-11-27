@@ -1,0 +1,118 @@
+{
+  "scummvm": [
+    {
+      "source_url": "org.scummvm.ScummVM",
+      "source_type": "flatpak_id",
+      "version": "$SCUMMVM_DESIRED_VERSION",
+      "dest": "user",
+      "extraction_type": "flatpak",
+      "assets": [
+        {
+          "type": "dir",
+          "source": "bin",
+          "dest": "bin"
+        },
+        {
+          "type": "dir",
+          "source": "share/scummvm/",
+          "dest": "scummvm"
+        },
+        {
+          "type": "dir",
+          "source": "share/soundfonts/",
+          "dest": "soundfonts"
+        },
+        {
+          "type": "dir",
+          "source": "share/doc/",
+          "dest": "doc"
+        },
+        {
+          "type": "dir",
+          "source": "share/licenses/org.scummvm.ScummVM/",
+          "dest": "doc/licenses"
+        },
+        {
+          "type": "dir",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/rd_config",
+          "dest": "rd_config"
+        },
+        {
+          "type": "create",
+          "dest": "component_version",
+          "contents": "$SOURCE_VERSION"
+        },
+        {
+          "type": "file",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/component_functions.sh",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/component_launcher.sh",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/component_manifest.json",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/component_recipe.json",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/component_prepare.sh",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        }
+      ],
+      "libs": [
+        {
+          "library": "libFLAC.so.14",
+          "runtime_name": "org.freedesktop.Platform",
+          "runtime_version": "25.08",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libtheoradec.so.2",
+          "runtime_name": "org.freedesktop.Platform",
+          "runtime_version": "25.08",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libSDL3.so.0",
+          "runtime_name": "org.freedesktop.Platform",
+          "runtime_version": "25.08",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libfaad.so.2",
+          "source": "lib",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libmpeg2.so.0",
+          "source": "lib",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libmpeg2convert.so.0",
+          "source": "lib",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libmad.so.0",
+          "source": "lib",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libfluidsynth.so.3",
+          "source": "lib",
+          "dest": "shared-libs"
+        }
+      ]
+    }
+  ]
+}

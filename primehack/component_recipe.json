@@ -1,0 +1,173 @@
+{
+  "primehack": [
+    {
+      "source_url": "https://github.com/RetroDECK/io.github.shiiion.primehack/releases/download/{VERSION}/RetroDECK-primehack-Artifact.tar.gz",
+      "source_type": "github_release",
+      "version": "$PRIMEHACK_DESIRED_VERSION",
+      "extraction_type": "archive",
+      "assets": [
+        {
+          "type": "dir",
+          "source": "files/bin",
+          "dest": "bin"
+        },
+        {
+          "type": "dir",
+          "source": "files/share/primehack",
+          "dest": "share/primehack"
+        },
+        {
+          "type": "dir",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/assets/rd_config",
+          "dest": "rd_config"
+        },
+        {
+          "type": "create",
+          "dest": "component_version",
+          "contents": "$SOURCE_VERSION"
+        },
+        {
+          "type": "file",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/component_functions.sh",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/component_launcher.sh",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/component_manifest.json",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/component_recipe.json",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/component_prepare.sh",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/component_update.sh",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        }
+      ],
+      "libs": [
+        {
+          "library": "libevdev.so.2",
+          "runtime_name": "org.gnome.Platform",
+          "runtime_version": "49",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libxml2.so.2",
+          "runtime_name": "org.kde.Platform",
+          "runtime_version": "6.9",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libavcodec.so.60",
+          "runtime_name": "org.kde.Platform",
+          "runtime_version": "6.7",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libavformat.so.60",
+          "runtime_name": "org.kde.Platform",
+          "runtime_version": "6.7",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libavutil.so.58",
+          "runtime_name": "org.kde.Platform",
+          "runtime_version": "6.7",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libdav1d.so.6",
+          "runtime_name": "org.kde.Platform",
+          "runtime_version": "6.7",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libfdk-aac.so.2",
+          "runtime_name": "org.kde.Platform",
+          "runtime_version": "6.7",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libopenh264.so.6",
+          "runtime_name": "org.kde.Platform",
+          "runtime_version": "6.7",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libswresample.so.4",
+          "runtime_name": "org.kde.Platform",
+          "runtime_version": "6.7",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libswscale.so.7",
+          "runtime_name": "org.kde.Platform",
+          "runtime_version": "6.7",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libtheoradec.so.1",
+          "runtime_name": "org.kde.Platform",
+          "runtime_version": "6.7",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libtheoraenc.so.1",
+          "runtime_name": "org.kde.Platform",
+          "runtime_version": "6.7",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libvpx.so.8",
+          "runtime_name": "org.kde.Platform",
+          "runtime_version": "6.7",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libicudata.so.75",
+          "runtime_name": "org.kde.Platform",
+          "runtime_version": "6.9",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libicui18n.so.75",
+          "runtime_name": "org.kde.Platform",
+          "runtime_version": "6.9",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libicuuc.so.75",
+          "runtime_name": "org.kde.Platform",
+          "runtime_version": "6.9",
+          "dest": "shared-libs"
+        }
+      ]
+    },
+    {
+      "source_url": "https://github.com/Venomalia/UniversalDynamicInput",
+      "source_type": "git",
+      "version": "latest",
+      "extraction_type": "local",
+      "assets": [
+        {
+          "type": "dir",
+          "source": ".",
+          "dest": "shared-data/DynamicInputTextures"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+#!/bin/bash
+
+dolphin_config="$XDG_CONFIG_HOME/dolphin-emu/Dolphin.ini"
+dolphin_config_DSUClient="$XDG_CONFIG_HOME/dolphin-emu/DSUClient.ini"
+dolphin_config_FreeLookControlle="$XDG_CONFIG_HOME/dolphin-emu/FreeLookController.ini"
+dolphin_config_GBA="$XDG_CONFIG_HOME/dolphin-emu/GBA.ini"
+dolphin_config_GCKeyNew="$XDG_CONFIG_HOME/dolphin-emu/GCKeyNew.ini"
+dolphin_config_GCPadNew="$XDG_CONFIG_HOME/dolphin-emu/GCPadNew.ini"
+dolphin_config_GFX="$XDG_CONFIG_HOME/dolphin-emu/GFX.ini"
+dolphin_config_Hotkeys="$XDG_CONFIG_HOME/dolphin-emu/Hotkeys.ini"
+dolphin_config_Logger="$XDG_CONFIG_HOME/dolphin-emu/Logger.ini"
+dolphin_config_GCKeyNew="$XDG_CONFIG_HOME/dolphin-emu/GCKeyNew.ini"
+dolphin_config_Qt="$XDG_CONFIG_HOME/dolphin-emu/Qt.ini"
+dolphin_config_RetroAchievements="$XDG_CONFIG_HOME/dolphin-emu/RetroAchievements.ini"
+dolphin_config_WiimoteNew="$XDG_CONFIG_HOME/dolphin-emu/WiimoteNew.ini"
+dolphin_dynamic_input_textures_path="$XDG_DATA_HOME/dolphin-emu/Load/DynamicInputTextures"
+dolphin_rd_config_dir="$rd_components/dolphin/rd_config"

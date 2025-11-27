@@ -1,0 +1,41 @@
+{
+  "steam-rom-manager": {
+    "name": "Steam ROM Manager",
+    "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_system_guides/srm/srm-guide/",
+    "url_webpage": "https://steamgriddb.github.io/steam-rom-manager/",
+    "url_source": "https://github.com/SteamGridDB/steam-rom-manager",
+    "description": "Bulk game importer and artwork manager for Steam with RetroDECK sync function",
+    "configurator_menus": {
+      "steam_tools": {
+        "add_retrodeck_to_steam": {
+          "name": "Add RetroDECK to Steam",
+          "description": "Add RetroDECK to Steam.",
+          "command": {
+            "zenity": "configurator_add_retrodeck_to_steam_dialog"
+          }
+        },
+        "automatic_steam_sync": {
+          "name": "Automatic Steam Sync",
+          "description": "Enable / Disable: Automatic Steam Sync (ES-DE favorites will be synced to Steam when RetroDECK quits).",
+          "command": {
+            "zenity": "configurator_automatic_steam_sync_dialog"
+          }
+        },
+        "manual_steam_sync": {
+          "name": "Manual Steam Sync",
+          "description": "Perform a one-time manual sync of ES-DE favorites to Steam.",
+          "command": {
+            "zenity": "configurator_manual_steam_sync_dialog"
+          }
+        },
+        "purge_steam_sync": {
+          "name": "Purge Steam Sync Shortcuts",
+          "description": "Performs a full Steam ROM Manager purge of all synced shortcuts in Steam (in case things have gotten messed up).",
+          "command": {
+            "zenity": "configurator_purge_steam_sync_dialog"
+          }
+        }
+      }
+    }
+  }
+}

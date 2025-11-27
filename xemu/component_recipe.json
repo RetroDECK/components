@@ -1,0 +1,87 @@
+{
+  "xemu": [
+    {
+      "source_url": "app.xemu.xemu",
+      "source_type": "flatpak_id",
+      "version": "$XEMU_DESIRED_VERSION",
+      "extraction_type": "flatpak",
+      "assets": [
+        {
+          "type": "dir",
+          "source": "bin",
+          "dest": "bin"
+        },
+        {
+          "type": "file",
+          "source": "lib/libxxhash.a",
+          "dest": "lib"
+        },
+        {
+          "type": "create",
+          "dest": "component_version",
+          "contents": "$SOURCE_VERSION"
+        },
+        {
+          "type": "dir",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/assets/rd_config",
+          "dest": "rd_config"
+        },
+        {
+          "type": "file",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/component_functions.sh",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/component_launcher.sh",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/component_manifest.json",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/component_recipe.json",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/component_prepare.sh",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        }
+      ],
+      "libs": [
+        {
+          "library": "libslirp.so.0",
+          "source": "lib",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libpcap.so.1",
+          "source": "lib",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libxxhash.so",
+          "source": "lib",
+          "dest": "shared-libs"
+        }
+      ]
+    },
+    {
+      "source_url": "https://github.com/mborgerson/xemu-hdd-image/releases/{VERSION}/download/xbox_hdd.qcow2.zip",
+      "source_type": "http",
+      "version": "latest",
+      "extraction_type": "archive",
+      "assets": [
+        {
+          "type": "file",
+          "source": "xbox_hdd.qcow2",
+          "dest": "rd_extras"
+        }
+      ]
+    }
+  ]
+}

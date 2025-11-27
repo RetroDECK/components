@@ -1,0 +1,79 @@
+{
+  "ppsspp": {
+    "name": "PPSSPP",
+    "description": "PlayStation Portable Emulator",
+    "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/ppsspp/ppsspp-guide/",
+    "url_webpage": "https://www.ppsspp.org/",
+    "url_source": "https://github.com/hrydgard/ppsspp",
+    "system": "psp",
+    "system_friendly_name": "Sony Playstation Portable",
+    "compatible_presets": {
+      "savestate_auto_load": [
+        "false",
+        "true"
+      ],
+      "cheevos": [
+        "false",
+        "true"
+      ],
+      "cheevos_hardcore": [
+        "false",
+        "true"
+      ]
+    },
+    "preset_actions": {
+      "config_file_format": "ppsspp",
+      "savestate_auto_load": [
+        {
+          "enabled_states": [ "true" ],
+          "setting_name": "AutoLoadSaveState",
+          "action": "change",
+          "new_setting_value": "2",
+          "section": "General",
+          "target_file": "$ppssppconf",
+          "defaults_file": "$ppsspp_rd_config_dir/ppsspp.ini"
+        }
+      ],
+      "cheevos": [
+        {
+          "enabled_states": [ "true" ],
+          "setting_name": "AchievementsEnable",
+          "action": "change",
+          "new_setting_value": "True",
+          "section": "Achievements",
+          "target_file": "$ppssppconf",
+          "defaults_file": "$ppsspp_rd_config_dir/ppsspp.ini"
+        },
+        {
+          "enabled_states": [ "true" ],
+          "setting_name": "AchievementsUserName",
+          "action": "change",
+          "new_setting_value": "$cheevos_username",
+          "section": "Achievements",
+          "target_file": "$ppssppconf",
+          "defaults_file": "$ppsspp_rd_config_dir/ppsspp.ini"
+        },
+        {
+          "enabled_states": [ "true" ],
+          "setting_name": "cheevos_token",
+          "action": "change",
+          "new_setting_value": "$cheevos_token",
+          "section": "",
+          "target_file": "$ppsspp_retroachievements_dat",
+          "defaults_file": "$ppsspp_rd_config_dir/ppsspp_retroachievements.dat"
+        }
+      ],
+      "cheevos_hardcore": [
+        {
+          "enabled_states": [ "true" ],
+          "setting_name": "AchievementsChallengeMode",
+          "action": "change",
+          "new_setting_value": "True",
+          "section": "Achievements",
+          "target_file": "$ppssppconf",
+          "defaults_file": "$ppsspp_rd_config_dir/ppsspp.ini"
+        }
+      ]
+    }
+  }
+}

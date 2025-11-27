@@ -1,0 +1,11 @@
+{
+  "ruffle": {
+    "name": "Ruffle",
+    "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/ruffle/ruffle-guide/",
+    "url_webpage": "https://ruffle.rs/",
+    "url_source": "https://github.com/ruffle-rs/ruffle/",
+    "description": "An open-source Flash Player emulator",
+    "system_friendly_name": "Flash Player Emulator",
+    "system": "ruffle"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "rpcs3": {
+    "name": "RPCS3",
+    "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/rpcs3/rpcs3-guide/",
+    "url_webpage": "https://rpcs3.net/",
+    "url_source": "https://github.com/RPCS3/rpcs3",
+    "description": "An open-source PlayStation 3 emulator and debugger.",
+    "system_friendly_name": "PlayStation 3",
+    "system": "ps3",
+    "configurator_menus": {
+      "tools": {
+        "update_rpcs3_firmware": {
+          "name": "Install: PS3 Firmware",
+          "description": "Download and Install: Playstation 3 firmware for the RPCS3 emulator.",
+          "command": {
+            "zenity": "update_rpcs3_firmware"
+          }
+        }
+      }
+    }
+  }
+}

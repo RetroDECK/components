@@ -1,0 +1,105 @@
+{
+  "mame": [
+    {
+      "source_url": "org.mamedev.MAME",
+      "source_type": "flatpak_id",
+      "version": "$MAME_DESIRED_VERSION",
+      "dest": "user",
+      "extraction_type": "flatpak",
+      "assets": [
+        {
+          "type": "dir",
+          "source": "bin",
+          "dest": "bin"
+        },
+        {
+          "type": "dir",
+          "source": "share/mame",
+          "dest": "share/mame"
+        },
+        {
+          "type": "create",
+          "dest": "component_version",
+          "contents": "$SOURCE_VERSION"
+        },
+        {
+          "type": "dir",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/assets/rd_config",
+          "dest": "rd_config"
+        },
+        {
+          "type": "dir",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/assets/rd_extras",
+          "dest": "rd_extras"
+        },
+        {
+          "type": "file",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/component_functions.sh",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/component_launcher.sh",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/component_manifest.json",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/component_recipe.json",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/component_prepare.sh",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/component_update.sh",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        }
+      ],
+      "libs": [
+        {
+          "library": "libFLAC.so.12",
+          "runtime_name": "org.freedesktop.Platform",
+          "runtime_version": "24.08",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libFLAC.so.12",
+          "runtime_name": "org.freedesktop.Platform",
+          "runtime_version": "24.08",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libSDL2_ttf-2.0.so.0",
+          "runtime_name": "org.freedesktop.Platform",
+          "runtime_version": "24.08",
+          "dest": "shared-libs"
+        }
+      ]
+    },
+    {
+      "source_url": "$REPO_ROOT/$COMPONENT_NAME/assets/rd_extras/cheat*.zip",
+      "source_type": "local",
+      "extraction_type": "archive",
+      "assets": [
+        {
+          "type": "file",
+          "source": "cheat.7z",
+          "dest": "cheat"
+        },
+        {
+          "type": "file",
+          "source": "cheat.txt",
+          "dest": "cheat"
+        }
+      ]
+    }
+  ]
+}

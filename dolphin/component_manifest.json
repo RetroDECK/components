@@ -1,0 +1,97 @@
+{
+  "dolphin": {
+    "name": "Dolphin",
+    "description": "Wii and GameCube Emulator",
+    "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/dolphin-primehack/dolphin-primehack-guide/",
+    "url_webpage": "https://dolphin-emu.org",
+    "url_source": "https://github.com/dolphin-emu/dolphin",
+    "system": [
+      "gc",
+      "wii"
+    ],
+    "system_friendly_name": [
+      "GameCube",
+      "Wii"
+    ],
+    "compatible_presets": {
+      "ask_to_exit": [
+        "false",
+        "true"
+      ],
+      "cheevos": [
+        "false",
+        "true"
+      ],
+      "cheevos_hardcore": [
+        "false",
+        "true"
+      ],
+      "universal_dyn_input": [
+        "false",
+        "true"
+      ]
+    },
+    "preset_actions": {
+      "config_file_format": "dolphin",
+      "ask_to_exit": [
+         {
+          "enabled_states": [ "true" ],
+          "setting_name": "ConfirmStop",
+          "action": "change",
+          "new_setting_value": "True",
+          "section": "Interface",
+          "target_file": "$dolphin_config",
+          "defaults_file": "$dolphin_rd_config_dir/Dolphin.ini"
+        }
+      ],
+      "cheevos": [
+        {
+          "enabled_states": [ "true" ],
+          "setting_name": "Enabled",
+          "action": "change",
+          "new_setting_value": "True",
+          "section": "Achievements",
+          "target_file": "$dolphin_config_RetroAchievements",
+          "defaults_file": "$dolphin_rd_config_dir/RetroAchievements.ini"
+        },
+        {
+          "enabled_states": [ "true" ],
+          "setting_name": "Username",
+          "action": "change",
+          "new_setting_value": "$cheevos_username",
+          "section": "Achievements",
+          "target_file": "$dolphin_config_RetroAchievements",
+          "defaults_file": "$dolphin_rd_config_dir/RetroAchievements.ini"
+        },
+        {
+          "enabled_states": [ "true" ],
+          "setting_name": "ApiToken",
+          "action": "change",
+          "new_setting_value": "$cheevos_token",
+          "section": "Achievements",
+          "target_file": "$dolphin_config_RetroAchievements",
+          "defaults_file": "$dolphin_rd_config_dir/RetroAchievements.ini"
+        }
+      ],
+      "cheevos_hardcore": [
+        {
+          "enabled_states": [ "true" ],
+          "setting_name": "HardcoreEnabled",
+          "action": "change",
+          "new_setting_value": "True",
+          "section": "Achievements",
+          "target_file": "$dolphin_config_RetroAchievements",
+          "defaults_file": "$dolphin_rd_config_dir/RetroAchievements.ini"
+        }
+      ],
+      "universal_dyn_input": [
+        {
+          "enabled_states": [ "true" ],
+          "action": "install",
+          "source": "/app/retrodeck/components/shared-data/DynamicInputTextures/",
+          "destination": "$XDG_DATA_HOME/dolphin-emu/Load/DynamicInputTextures/"
+        }
+      ]
+    }
+  }
+}

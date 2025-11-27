@@ -1,0 +1,44 @@
+{
+"<component name>": [
+    {
+      "source_url": "https://url.to.source/{VERSION}/archive1.zip",
+      "source_type": "http",
+      "version": "$COMPONENT_DESIRED_VERSION",
+      "extraction_type": "archive",
+      "assets": [
+        {
+          "type": "dir",
+          "source": "usr/bin",
+          "dest": "bin"
+        }
+      ],
+      "libs": [
+        {
+          "library": "runtimeLib1.so.6",
+          "source": "libs",
+          "dest": "lib"
+        }
+      ]
+    },
+    {
+      "source_url": "https://url.to.other.source/{VERSION}/archive2.zip",
+      "source_type": "http",
+      "version": "$COMPONENT_OTHER_DESIRED_VERSION",
+      "extraction_type": "archive",
+      "assets": [
+        {
+          "type": "dir",
+          "source": "share/cores",
+          "dest": "cores"
+        }
+      ],
+      "libs": [
+        {
+          "library": "runtimeLib2.so.6",
+          "source": "libs",
+          "dest": "lib"
+        }
+      ]
+    }
+  ]
+}

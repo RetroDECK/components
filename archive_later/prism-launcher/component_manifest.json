@@ -1,0 +1,11 @@
+{
+  "prism-launcher": {
+    "name": "prism-launcher",
+    "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_engine_guides/prism/prism-guide/",
+    "url_webpage": "https://prismlauncher.org/",
+    "url_source": "https://github.com/PrismLauncher/PrismLauncher",
+    "description": "An open source Minecraft launcher with the ability to manage multiple instances, accounts and mods.",
+    "system_friendly_name": "Minecraft - Prism Launcher",
+    "system": "minecraft"
+  }
+}

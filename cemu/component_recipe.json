@@ -1,0 +1,116 @@
+{
+  "cemu": [
+    {
+      "source_url": "info.cemu.Cemu",
+      "source_type": "flatpak_id",
+      "version": "$CEMU_DESIRED_VERSION",
+      "dest": "user",
+      "extraction_type": "flatpak",
+      "assets": [
+        {
+          "type": "dir",
+          "source": "bin",
+          "dest": "bin"
+        },
+        {
+          "type": "create",
+          "dest": "component_version",
+          "contents": "$SOURCE_VERSION"
+        },
+        {
+          "type": "dir",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/assets/rd_config",
+          "dest": "rd_config"
+        },
+        {
+          "type": "file",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/component_functions.sh",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/component_launcher.sh",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/component_manifest.json",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/component_recipe.json",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/component_prepare.sh",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/component_update.sh",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/assets/libdeflate.so.0",
+          "dest": "shared-libs"
+        }
+      ],
+      "libs": [
+        {
+          "library": "libSPIRV.so.14",
+          "runtime_name": "org.freedesktop.Platform",
+          "runtime_version": "$DESIRED_FREEDESKTOP_RUNTIME_VERSION",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libusb-1.0.so.0",
+          "source": "lib",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libzip.so.5",
+          "source": "lib",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libwx_gtk3u_gl-3.2.so.0",
+          "source": "lib",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libwx_gtk3u_core-3.2.so.0",
+          "source": "lib",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libwx_baseu-3.2.so.0",
+          "source": "lib",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libwx_gtk3u_propgrid-3.2.so.0",
+          "source": "lib",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libpugixml.so.1",
+          "source": "lib",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libboost_program_options.so.1.88.0",
+          "source": "lib",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libhidapi-hidraw.so.0",
+          "source": "lib",
+          "dest": "shared-libs"
+        }
+      ]
+    }
+  ]
+}

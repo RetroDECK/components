@@ -1,0 +1,11 @@
+{
+  "vpinballx-bgfx": {
+    "name": "Visual Pinball X",
+    "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_engine_guides/vpinball-x/vpinball-x-guide/",
+    "url_webpage": "https://www.vpforums.org/",
+    "url_source": "https://github.com/vpinball/vpinball",
+    "description": "Visual Pinball X (VPX) simulates pinball tables",
+    "system_friendly_name": "Visual Pinball X",
+    "system": "vpinball"
+  }
+}

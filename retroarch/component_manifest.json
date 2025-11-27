@@ -1,0 +1,1120 @@
+{
+  "retroarch": {
+    "name": "RetroArch",
+    "description": "Libretro Multi-emulator Frontend",
+    "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/retroarch/retroarch-guide/",
+    "url_webpage": "https://www.libretro.com/",
+    "url_source": "https://github.com/libretro/RetroArch",
+    "system": "retroarch",
+    "system_friendly_name": "Multiple Retro Systems",
+    "compatible_presets": {
+      "cheevos": [
+        "false",
+        "true"
+      ],
+      "cheevos_hardcore": [
+        "false",
+        "true"
+      ],
+      "quick_resume": [
+        "false",
+        "true"
+      ],
+      "snes9x-current_libretro": {
+        "borders": [
+          "false",
+          "true"
+        ],
+        "widescreen": [
+          "false",
+          "true"
+        ],
+        "abxy_button_swap": [
+          "false",
+          "true"
+        ],
+        "rewind": [
+          "false",
+          "true"
+        ]
+      },
+      "genesisplusgx_libretro_MS": {
+        "borders": [
+          "false",
+          "true"
+        ],
+        "widescreen": [
+          "false",
+          "true"
+        ],
+        "rewind": [
+          "false",
+          "true"
+        ]
+      },
+      "genesisplusgx_libretro_GG": {
+        "borders": [
+          "false",
+          "true"
+        ],
+        "rewind": [
+          "false",
+          "true"
+        ]
+      },
+      "gambatte_libretro_GB": {
+        "borders": [
+          "false",
+          "true"
+        ],
+        "rewind": [
+          "false",
+          "true"
+        ],
+        "abxy_button_swap": [
+          "false",
+          "true"
+        ]
+      },
+      "gambatte_libretro_GBC": {
+        "borders": [
+          "false",
+          "true"
+        ],
+        "rewind": [
+          "false",
+          "true"
+        ],
+        "abxy_button_swap": [
+          "false",
+          "true"
+        ]
+      },
+      "mgba_libretro": {
+        "borders": [
+          "false",
+          "true"
+        ],
+        "rewind": [
+          "false",
+          "true"
+        ],
+        "abxy_button_swap": [
+          "false",
+          "true"
+        ]
+      },
+      "mupen64plus-next_libretro": {
+        "borders": [
+          "false",
+          "true"
+        ],
+        "widescreen": [
+          "false",
+          "true"
+        ],
+        "abxy_button_swap": [
+          "false",
+          "true"
+        ]
+      },
+      "mesen_libretro": {
+        "abxy_button_swap": [
+          "false",
+          "true"
+        ]
+      },
+      "swanstation_libretro": {
+        "borders": [
+          "false",
+          "true"
+        ],
+        "widescreen": [
+          "false",
+          "true"
+        ]
+      }
+    },
+    "preset_actions": {
+      "config_file_format": "retroarch-all",
+      "cheevos": [
+        {
+          "enabled_states": [ "true" ],
+          "setting_name": "cheevos_enable",
+          "action": "change",
+          "new_setting_value": "True",
+          "section": "",
+          "target_file": "$retroarch_config",
+          "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
+        },
+        {
+          "enabled_states": [ "true" ],
+          "setting_name": "cheevos_token",
+          "action": "change",
+          "new_setting_value": "$cheevos_token",
+          "section": "",
+          "target_file": "$retroarch_config",
+          "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
+        },
+        {
+          "enabled_states": [ "true" ],
+          "setting_name": "cheevos_username",
+          "action": "change",
+          "new_setting_value": "$cheevos_username",
+          "section": "",
+          "target_file": "$retroarch_config",
+          "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
+        }
+      ],
+      "cheevos_hardcore": [
+        {
+          "enabled_states": [ "true" ],
+          "setting_name": "cheevos_hardcore_mode_enable",
+          "action": "change",
+          "new_setting_value": "true",
+          "section": "",
+          "target_file": "$retroarch_config",
+          "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
+        }
+      ],
+      "quick_resume": [
+        {
+          "enabled_states": [ "true" ],
+          "setting_name": "savestate_auto_save",
+          "action": "change",
+          "new_setting_value": "true",
+          "section": "",
+          "target_file": "$retroarch_config",
+          "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
+        }
+      ],
+      "snes9x-current_libretro": {
+        "config_file_format": "retroarch",
+        "borders": [
+          {
+            "enabled_states": [ "true" ],
+            "setting_name": "input_overlay",
+            "action": "change",
+            "new_setting_value": "/var/config/retroarch/overlays/borders/pegasus/snes87.cfg",
+            "section": "",
+            "target_file": "/var/config/retroarch/config/Snes9x/snes.cfg",
+            "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
+          },
+          {
+            "enabled_states": [ "true" ],
+            "setting_name": "input_overlay_aspect_adjust_landscape",
+            "action": "change",
+            "new_setting_value": "0.305000",
+            "section": "",
+            "target_file": "/var/config/retroarch/config/Snes9x/snes.cfg",
+            "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
+          },
+          {
+            "enabled_states": [ "true" ],
+            "setting_name": "input_overlay_scale_landscape",
+            "action": "change",
+            "new_setting_value": "1.050000",
+            "section": "",
+            "target_file": "/var/config/retroarch/config/Snes9x/snes.cfg",
+            "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
+          },
+          {
+            "enabled_states": [ "true" ],
+            "setting_name": "input_overlay_enable",
+            "action": "change",
+            "new_setting_value": "true",
+            "section": "",
+            "target_file": "/var/config/retroarch/config/Snes9x/snes.cfg",
+            "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
+          }
+        ],
+        "widescreen": [
+          {
+            "enabled_states": [ "true" ],
+            "setting_name": "aspect_ratio_index",
+            "action": "change",
+            "new_setting_value": "24",
+            "section": "",
+            "target_file": "/var/config/retroarch/config/Snes9x/snes.cfg",
+            "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
+          }
+        ],
+        "rewind": [
+          {
+            "enabled_states": [ "true" ],
+            "setting_name": "rewind_enable",
+            "action": "change",
+            "new_setting_value": "true",
+            "section": "",
+            "target_file": "/var/config/retroarch/config/Snes9x/snes.cfg",
+            "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
+          }
+        ],
+        "abxy_button_swap": [
+          {
+            "enabled_states": [ "true" ],
+            "setting_name": "input_player1_a_btn",
+            "action": "change",
+            "new_setting_value": "0",
+            "section": "",
+            "target_file": "/var/config/retroarch/config/remaps/Snes9x/snes.rmp",
+            "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
+          },
+          {
+            "enabled_states": [ "true" ],
+            "setting_name": "input_player1_b_btn",
+            "action": "change",
+            "new_setting_value": "8",
+            "section": "",
+            "target_file": "/var/config/retroarch/config/remaps/Snes9x/snes.rmp",
+            "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
+          },
+          {
+            "enabled_states": [ "true" ],
+            "setting_name": "input_player1_x_btn",
+            "action": "change",
+            "new_setting_value": "1",
+            "section": "",
+            "target_file": "/var/config/retroarch/config/remaps/Snes9x/snes.rmp",
+            "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
+          },
+          {
+            "enabled_states": [ "true" ],
+            "setting_name": "input_player1_y_btn",
+            "action": "change",
+            "new_setting_value": "9",
+            "section": "",
+            "target_file": "/var/config/retroarch/config/remaps/Snes9x/snes.rmp",
+            "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
+          }
+        ]
+      },
+      "mupen64plus-next_libretro": {
+        "config_file_format": "retroarch",
+        "borders": [
+          {
+            "enabled_states": [ "true" ],
+            "setting_name": "input_overlay",
+            "action": "change",
+            "new_setting_value": "/var/config/retroarch/overlays/borders/pegasus/N64.cfg",
+            "section": "",
+            "target_file": "/var/config/retroarch/config/Mupen64Plus-Next/n64.cfg",
+            "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
+          },
+          {
+            "enabled_states": [ "true" ],
+            "setting_name": "input_overlay_aspect_adjust_landscape",
+            "action": "change",
+            "new_setting_value": "0.145000",
+            "section": "",
+            "target_file": "/var/config/retroarch/config/Mupen64Plus-Next/n64.cfg",
+            "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
+          },
+          {
+            "enabled_states": [ "true" ],
+            "setting_name": "input_overlay_enable",
+            "action": "change",
+            "new_setting_value": "true",
+            "section": "",
+            "target_file": "/var/config/retroarch/config/Mupen64Plus-Next/n64.cfg",
+            "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
+          }
+        ],
+        "widescreen": [
+          {
+            "enabled_states": [ "true" ],
+            "setting_name": "aspect_ratio_index",
+            "action": "change",
+            "new_setting_value": "24",
+            "section": "",
+            "target_file": "/var/config/retroarch/config/Mupen64Plus-Next/n64.cfg",
+            "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
+          }
+        ],
+        "abxy_button_swap": [
+          {
+            "enabled_states": [ "true" ],
+            "setting_name": "input_player1_a_btn",
+            "action": "change",
+            "new_setting_value": "0",
+            "section": "",
+            "target_file": "/var/config/retroarch/config/remaps/Mupen64Plus-Next/n64.rmp",
+            "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
+          },
+          {
+            "enabled_states": [ "true" ],
+            "setting_name": "input_player1_b_btn",
+            "action": "change",
+            "new_setting_value": "8",
+            "section": "",
+            "target_file": "/var/config/retroarch/config/remaps/Mupen64Plus-Next/n64.rmp",
+            "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
+          },
+          {
+            "enabled_states": [ "true" ],
+            "setting_name": "input_player1_x_btn",
+            "action": "change",
+            "new_setting_value": "1",
+            "section": "",
+            "target_file": "/var/config/retroarch/config/remaps/Mupen64Plus-Next/n64.rmp",
+            "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
+          },
+          {
+            "enabled_states": [ "true" ],
+            "setting_name": "input_player1_y_btn",
+            "action": "change",
+            "new_setting_value": "9",
+            "section": "",
+            "target_file": "/var/config/retroarch/config/remaps/Mupen64Plus-Next/n64.rmp",
+            "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
+          }
+        ]
+      },
+      "genesisplusgx_libretro_MS": {
+        "config_file_format": "retroarch",
+        "borders": [
+          {
+            "enabled_states": [ "true" ],
+            "setting_name": "input_overlay",
+            "action": "change",
+            "new_setting_value": "/var/config/retroarch/overlays/borders/pegasus/genesis.cfg",
+            "section": "",
+            "target_file": "/var/config/retroarch/config/Genesis Plus GX/genesis.cfg",
+            "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
+          },
+          {
+            "enabled_states": [ "true" ],
+            "setting_name": "input_overlay_aspect_adjust_landscape",
+            "action": "change",
+            "new_setting_value": "0.100000",
+            "section": "",
+            "target_file": "/var/config/retroarch/config/Genesis Plus GX/genesis.cfg",
+            "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
+          },
+          {
+            "enabled_states": [ "true" ],
+            "setting_name": "input_overlay_enable",
+            "action": "change",
+            "new_setting_value": "true",
+            "section": "",
+            "target_file": "/var/config/retroarch/config/Genesis Plus GX/genesis.cfg",
+            "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
+          },
+          {
+            "enabled_states": [ "true" ],
+            "setting_name": "input_overlay_scale_landscape",
+            "action": "change",
+            "new_setting_value": "1.040000",
+            "section": "",
+            "target_file": "/var/config/retroarch/config/Genesis Plus GX/genesis.cfg",
+            "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
+          }
+        ],
+        "widescreen": [
+          {
+            "enabled_states": [ "true" ],
+            "setting_name": "aspect_ratio_index",
+            "action": "change",
+            "new_setting_value": "24",
+            "section": "",
+            "target_file": "/var/config/retroarch/config/Genesis Plus GX/genesis.cfg",
+            "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
+          }
+        ],
+        "rewind": [
+          {
+            "enabled_states": [ "true" ],
+            "setting_name": "rewind_enable",
+            "action": "change",
+            "new_setting_value": "true",
+            "section": "",
+            "target_file": "/var/config/retroarch/config/Genesis Plus GX/genesis.cfg",
+            "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
+          }
+        ]
+      },
+      "genesisplusgx_libretro_GG": {
+        "config_file_format": "retroarch",
+        "borders": [
+          {
+            "enabled_states": [ "true" ],
+            "setting_name": "aspect_ratio_index",
+            "action": "change",
+            "new_setting_value": "23",
+            "section": "",
+            "target_file": "/var/config/retroarch/config/Genesis Plus GX/gg.cfg",
+            "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
+          },
+          {
+            "enabled_states": [ "true" ],
+            "setting_name": "custom_viewport_height",
+            "action": "change",
+            "new_setting_value": "960",
+            "section": "",
+            "target_file": "/var/config/retroarch/config/Genesis Plus GX/gg.cfg",
+            "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
+          },
+          {
+            "enabled_states": [ "true" ],
+            "setting_name": "custom_viewport_width",
+            "action": "change",
+            "new_setting_value": "720",
+            "section": "",
+            "target_file": "/var/config/retroarch/config/Genesis Plus GX/gg.cfg",
+            "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
+          },
+          {
+            "enabled_states": [ "true" ],
+            "setting_name": "custom_viewport_x",
+            "action": "change",
+            "new_setting_value": "160",
+            "section": "",
+            "target_file": "/var/config/retroarch/config/Genesis Plus GX/gg.cfg",
+            "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
+          },
+          {
+            "enabled_states": [ "true" ],
+            "setting_name": "custom_viewport_y",
+            "action": "change",
+            "new_setting_value": "24",
+            "section": "",
+            "target_file": "/var/config/retroarch/config/Genesis Plus GX/gg.cfg",
+            "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
+          },
+          {
+            "enabled_states": [ "true" ],
+            "setting_name": "input_overlay",
+            "action": "change",
+            "new_setting_value": "/var/config/retroarch/overlays/borders/pegasus/gg.cfg",
+            "section": "",
+            "target_file": "/var/config/retroarch/config/Genesis Plus GX/gg.cfg",
+            "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
+          },
+          {
+            "enabled_states": [ "true" ],
+            "setting_name": "input_overlay_aspect_adjust_landscape",
+            "action": "change",
+            "new_setting_value": "0.110000",
+            "section": "",
+            "target_file": "/var/config/retroarch/config/Genesis Plus GX/gg.cfg",
+            "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
+          },
+          {
+            "enabled_states": [ "true" ],
+            "setting_name": "input_overlay_enable",
+            "action": "change",
+            "new_setting_value": "true",
+            "section": "",
+            "target_file": "/var/config/retroarch/config/Genesis Plus GX/gg.cfg",
+            "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
+          },
+          {
+            "enabled_states": [ "true" ],
+            "setting_name": "input_overlay_scale_landscape",
+            "action": "change",
+            "new_setting_value": "1.350000",
+            "section": "",
+            "target_file": "/var/config/retroarch/config/Genesis Plus GX/gg.cfg",
+            "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
+          },
+          {
+            "enabled_states": [ "true" ],
+            "setting_name": "input_overlay_y_offset_landscape",
+            "action": "change",
+            "new_setting_value": "0.020000",
+            "section": "",
+            "target_file": "/var/config/retroarch/config/Genesis Plus GX/gg.cfg",
+            "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
+          }
+        ],
+        "rewind": [
+          {
+            "enabled_states": [ "true" ],
+            "setting_name": "rewind_enable",
+            "action": "change",
+            "new_setting_value": "true",
+            "section": "",
+            "target_file": "/var/config/retroarch/config/Genesis Plus GX/gg.cfg",
+            "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
+          }
+        ]
+      },
+      "gambatte_libretro_GB": {
+        "config_file_format": "retroarch",
+        "borders": [
+          {
+            "enabled_states": [ "true" ],
+            "setting_name": "aspect_ratio_index",
+            "action": "change",
+            "new_setting_value": "23",
+            "section": "",
+            "target_file": "/var/config/retroarch/config/Gambatte/gb.cfg",
+            "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
+          },
+          {
+            "enabled_states": [ "true" ],
+            "setting_name": "custom_viewport_height",
+            "action": "change",
+            "new_setting_value": "576",
+            "section": "",
+            "target_file": "/var/config/retroarch/config/Gambatte/gb.cfg",
+            "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
+          },
+          {
+            "enabled_states": [ "true" ],
+            "setting_name": "custom_viewport_width",
+            "action": "change",
+            "new_setting_value": "640",
+            "section": "",
+            "target_file": "/var/config/retroarch/config/Gambatte/gb.cfg",
+            "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
+          },
+          {
+            "enabled_states": [ "true" ],
+            "setting_name": "custom_viewport_x",
+            "action": "change",
+            "new_setting_value": "320",
+            "section": "",
+            "target_file": "/var/config/retroarch/config/Gambatte/gb.cfg",
+            "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
+          },
+          {
+            "enabled_states": [ "true" ],
+            "setting_name": "custom_viewport_y",
+            "action": "change",
+            "new_setting_value": "20",
+            "section": "",
+            "target_file": "/var/config/retroarch/config/Gambatte/gb.cfg",
+            "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
+          },
+          {
+            "enabled_states": [ "true" ],
+            "setting_name": "input_overlay",
+            "action": "change",
+            "new_setting_value": "/var/config/retroarch/overlays/borders/pegasus/gb.cfg",
+            "section": "",
+            "target_file": "/var/config/retroarch/config/Gambatte/gb.cfg",
+            "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
+          },
+          {
+            "enabled_states": [ "true" ],
+            "setting_name": "input_overlay_aspect_adjust_landscape",
+            "action": "change",
+            "new_setting_value": "0.110000",
+            "section": "",
+            "target_file": "/var/config/retroarch/config/Gambatte/gb.cfg",
+            "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
+          },
+          {
+            "enabled_states": [ "true" ],
+            "setting_name": "input_overlay_scale_landscape",
+            "action": "change",
+            "new_setting_value": "1.205000",
+            "section": "",
+            "target_file": "/var/config/retroarch/config/Gambatte/gb.cfg",
+            "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
+          },
+          {
+            "enabled_states": [ "true" ],
+            "setting_name": "input_overlay_enable",
+            "action": "change",
+            "new_setting_value": "true",
+            "section": "",
+            "target_file": "/var/config/retroarch/config/Gambatte/gb.cfg",
+            "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
+          },
+          {
+            "enabled_states": [ "true" ],
+            "setting_name": "input_overlay_y_offset_landscape",
+            "action": "change",
+            "new_setting_value": "0.005000",
+            "section": "",
+            "target_file": "/var/config/retroarch/config/Gambatte/gb.cfg",
+            "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
+          }
+        ],
+        "rewind": [
+          {
+            "enabled_states": [ "true" ],
+            "setting_name": "rewind_enable",
+            "action": "change",
+            "new_setting_value": "true",
+            "section": "",
+            "target_file": "/var/config/retroarch/config/Gambatte/gb.cfg",
+            "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
+          }
+        ],
+        "abxy_button_swap": [
+          {
+            "enabled_states": [ "true" ],
+            "setting_name": "input_player1_a_btn",
+            "action": "change",
+            "new_setting_value": "0",
+            "section": "",
+            "target_file": "/var/config/retroarch/config/remaps/Gambatte/gb.rmp",
+            "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
+          },
+          {
+            "enabled_states": [ "true" ],
+            "setting_name": "input_player1_b_btn",
+            "action": "change",
+            "new_setting_value": "8",
+            "section": "",
+            "target_file": "/var/config/retroarch/config/remaps/Gambatte/gb.rmp",
+            "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
+          },
+          {
+            "enabled_states": [ "true" ],
+            "setting_name": "input_player1_x_btn",
+            "action": "change",
+            "new_setting_value": "1",
+            "section": "",
+            "target_file": "/var/config/retroarch/config/remaps/Gambatte/gb.rmp",
+            "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
+          },
+          {
+            "enabled_states": [ "true" ],
+            "setting_name": "input_player1_y_btn",
+            "action": "change",
+            "new_setting_value": "9",
+            "section": "",
+            "target_file": "/var/config/retroarch/config/remaps/Gambatte/gb.rmp",
+            "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
+          }
+        ]
+      },
+      "gambatte_libretro_GBC": {
+        "config_file_format": "retroarch",
+        "borders": [
+          {
+            "enabled_states": [ "true" ],
+            "setting_name": "aspect_ratio_index",
+            "action": "change",
+            "new_setting_value": "23",
+            "section": "",
+            "target_file": "/var/config/retroarch/config/Gambatte/gbc.cfg",
+            "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
+          },
+          {
+            "enabled_states": [ "true" ],
+            "setting_name": "custom_viewport_height",
+            "action": "change",
+            "new_setting_value": "576",
+            "section": "",
+            "target_file": "/var/config/retroarch/config/Gambatte/gbc.cfg",
+            "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
+          },
+          {
+            "enabled_states": [ "true" ],
+            "setting_name": "custom_viewport_width",
+            "action": "change",
+            "new_setting_value": "640",
+            "section": "",
+            "target_file": "/var/config/retroarch/config/Gambatte/gbc.cfg",
+            "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
+          },
+          {
+            "enabled_states": [ "true" ],
+            "setting_name": "custom_viewport_x",
+            "action": "change",
+            "new_setting_value": "320",
+            "section": "",
+            "target_file": "/var/config/retroarch/config/Gambatte/gbc.cfg",
+            "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
+          },
+          {
+            "enabled_states": [ "true" ],
+            "setting_name": "custom_viewport_y",
+            "action": "change",
+            "new_setting_value": "20",
+            "section": "",
+            "target_file": "/var/config/retroarch/config/Gambatte/gbc.cfg",
+            "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
+          },
+          {
+            "enabled_states": [ "true" ],
+            "setting_name": "input_overlay",
+            "action": "change",
+            "new_setting_value": "/var/config/retroarch/overlays/borders/pegasus/gbc.cfg",
+            "section": "",
+            "target_file": "/var/config/retroarch/config/Gambatte/gbc.cfg",
+            "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
+          },
+          {
+            "enabled_states": [ "true" ],
+            "setting_name": "input_overlay_aspect_adjust_landscape",
+            "action": "change",
+            "new_setting_value": "0.110000",
+            "section": "",
+            "target_file": "/var/config/retroarch/config/Gambatte/gbc.cfg",
+            "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
+          },
+          {
+            "enabled_states": [ "true" ],
+            "setting_name": "input_overlay_scale_landscape",
+            "action": "change",
+            "new_setting_value": "1.205000",
+            "section": "",
+            "target_file": "/var/config/retroarch/config/Gambatte/gbc.cfg",
+            "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
+          },
+          {
+            "enabled_states": [ "true" ],
+            "setting_name": "input_overlay_enable",
+            "action": "change",
+            "new_setting_value": "true",
+            "section": "",
+            "target_file": "/var/config/retroarch/config/Gambatte/gbc.cfg",
+            "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
+          },
+          {
+            "enabled_states": [ "true" ],
+            "setting_name": "input_overlay_y_offset_landscape",
+            "action": "change",
+            "new_setting_value": "-0.040000",
+            "section": "",
+            "target_file": "/var/config/retroarch/config/Gambatte/gbc.cfg",
+            "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
+          }
+        ],
+        "rewind": [
+          {
+            "enabled_states": [ "true" ],
+            "setting_name": "rewind_enable",
+            "action": "change",
+            "new_setting_value": "true",
+            "section": "",
+            "target_file": "/var/config/retroarch/config/Gambatte/gbc.cfg",
+            "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
+          }
+        ],
+        "abxy_button_swap": [
+          {
+            "enabled_states": [ "true" ],
+            "setting_name": "input_player1_a_btn",
+            "action": "change",
+            "new_setting_value": "0",
+            "section": "",
+            "target_file": "/var/config/retroarch/config/remaps/Gambatte/gbc.rmp",
+            "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
+          },
+          {
+            "enabled_states": [ "true" ],
+            "setting_name": "input_player1_b_btn",
+            "action": "change",
+            "new_setting_value": "8",
+            "section": "",
+            "target_file": "/var/config/retroarch/config/remaps/Gambatte/gbc.rmp",
+            "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
+          },
+          {
+            "enabled_states": [ "true" ],
+            "setting_name": "input_player1_x_btn",
+            "action": "change",
+            "new_setting_value": "1",
+            "section": "",
+            "target_file": "/var/config/retroarch/config/remaps/Gambatte/gbc.rmp",
+            "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
+          },
+          {
+            "enabled_states": [ "true" ],
+            "setting_name": "input_player1_y_btn",
+            "action": "change",
+            "new_setting_value": "9",
+            "section": "",
+            "target_file": "/var/config/retroarch/config/remaps/Gambatte/gbc.rmp",
+            "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
+          }
+        ]
+      },
+      "mgba_libretro": {
+        "config_file_format": "retroarch",
+        "borders": [
+          {
+            "enabled_states": [ "true" ],
+            "setting_name": "aspect_ratio_index",
+            "action": "change",
+            "new_setting_value": "23",
+            "section": "",
+            "target_file": "/var/config/retroarch/config/mGBA/gba.cfg",
+            "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
+          },
+          {
+            "enabled_states": [ "true" ],
+            "setting_name": "custom_viewport_height",
+            "action": "change",
+            "new_setting_value": "640",
+            "section": "",
+            "target_file": "/var/config/retroarch/config/mGBA/gba.cfg",
+            "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
+          },
+          {
+            "enabled_states": [ "true" ],
+            "setting_name": "custom_viewport_width",
+            "action": "change",
+            "new_setting_value": "960",
+            "section": "",
+            "target_file": "/var/config/retroarch/config/mGBA/gba.cfg",
+            "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
+          },
+          {
+            "enabled_states": [ "true" ],
+            "setting_name": "custom_viewport_x",
+            "action": "change",
+            "new_setting_value": "160",
+            "section": "",
+            "target_file": "/var/config/retroarch/config/mGBA/gba.cfg",
+            "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
+          },
+          {
+            "enabled_states": [ "true" ],
+            "setting_name": "custom_viewport_y",
+            "action": "change",
+            "new_setting_value": "0",
+            "section": "",
+            "target_file": "/var/config/retroarch/config/mGBA/gba.cfg",
+            "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
+          },
+          {
+            "enabled_states": [ "true" ],
+            "setting_name": "input_overlay",
+            "action": "change",
+            "new_setting_value": "/var/config/retroarch/overlays/borders/pegasus/gba.cfg",
+            "section": "",
+            "target_file": "/var/config/retroarch/config/mGBA/gba.cfg",
+            "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
+          },
+          {
+            "enabled_states": [ "true" ],
+            "setting_name": "input_overlay_aspect_adjust_landscape",
+            "action": "change",
+            "new_setting_value": "0.110000",
+            "section": "",
+            "target_file": "/var/config/retroarch/config/mGBA/gba.cfg",
+            "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
+          },
+          {
+            "enabled_states": [ "true" ],
+            "setting_name": "input_overlay_scale_landscape",
+            "action": "change",
+            "new_setting_value": "1.2150000",
+            "section": "",
+            "target_file": "/var/config/retroarch/config/mGBA/gba.cfg",
+            "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
+          },
+          {
+            "enabled_states": [ "true" ],
+            "setting_name": "input_overlay_enable",
+            "action": "change",
+            "new_setting_value": "true",
+            "section": "",
+            "target_file": "/var/config/retroarch/config/mGBA/gba.cfg",
+            "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
+          },
+          {
+            "enabled_states": [ "true" ],
+            "setting_name": "input_overlay_y_offset_landscape",
+            "action": "change",
+            "new_setting_value": "0.020000",
+            "section": "",
+            "target_file": "/var/config/retroarch/config/mGBA/gba.cfg",
+            "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
+          }
+        ],
+        "rewind": [
+          {
+            "enabled_states": [ "true" ],
+            "setting_name": "rewind_enable",
+            "action": "change",
+            "new_setting_value": "true",
+            "section": "",
+            "target_file": "/var/config/retroarch/config/mGBA/gba.cfg",
+            "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
+          }
+        ],
+        "abxy_button_swap": [
+          {
+            "enabled_states": [ "true" ],
+            "setting_name": "input_player1_a_btn",
+            "action": "change",
+            "new_setting_value": "0",
+            "section": "",
+            "target_file": "/var/config/retroarch/config/remaps/mGBA/gba.rmp",
+            "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
+          },
+          {
+            "enabled_states": [ "true" ],
+            "setting_name": "input_player1_b_btn",
+            "action": "change",
+            "new_setting_value": "8",
+            "section": "",
+            "target_file": "/var/config/retroarch/config/remaps/mGBA/gba.rmp",
+            "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
+          },
+          {
+            "enabled_states": [ "true" ],
+            "setting_name": "input_player1_x_btn",
+            "action": "change",
+            "new_setting_value": "1",
+            "section": "",
+            "target_file": "/var/config/retroarch/config/remaps/mGBA/gba.rmp",
+            "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
+          },
+          {
+            "enabled_states": [ "true" ],
+            "setting_name": "input_player1_y_btn",
+            "action": "change",
+            "new_setting_value": "9",
+            "section": "",
+            "target_file": "/var/config/retroarch/config/remaps/mGBA/gba.rmp",
+            "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
+          }
+        ]
+      },
+      "swanstation_libretro": {
+        "config_file_format": "retroarch",
+        "borders": [
+          {
+            "enabled_states": [ "true" ],
+            "setting_name": "input_overlay",
+            "action": "change",
+            "new_setting_value": "/var/config/retroarch/overlays/borders/pegasus/psx.cfg",
+            "section": "",
+            "target_file": "/var/config/retroarch/config/SwanStation/psx.cfg",
+            "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
+          },
+          {
+            "enabled_states": [ "true" ],
+            "setting_name": "input_overlay_aspect_adjust_landscape",
+            "action": "change",
+            "new_setting_value": "0.120000",
+            "section": "",
+            "target_file": "/var/config/retroarch/config/SwanStation/psx.cfg",
+            "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
+          },
+          {
+            "enabled_states": [ "true" ],
+            "setting_name": "input_overlay_scale_landscape",
+            "action": "change",
+            "new_setting_value": "1.040000",
+            "section": "",
+            "target_file": "/var/config/retroarch/config/SwanStation/psx.cfg",
+            "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
+          },
+          {
+            "enabled_states": [ "true" ],
+            "setting_name": "input_overlay_enable",
+            "action": "change",
+            "new_setting_value": "true",
+            "section": "",
+            "target_file": "/var/config/retroarch/config/SwanStation/psx.cfg",
+            "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
+          }
+        ],
+        "widescreen": [
+          {
+            "enabled_states": [ "true" ],
+            "setting_name": "aspect_ratio_index",
+            "action": "change",
+            "new_setting_value": "24",
+            "section": "",
+            "target_file": "/var/config/retroarch/config/SwanStation/psx.cfg",
+            "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
+          }
+        ]
+      }
+    },
+    "cores": {
+      "citra_libretro": {
+        "description": "Nintendo 3DS Libretro Core",
+        "name": "Citra",
+        "system": "n3ds"
+      },
+      "mame_libretro": {
+        "description": "MAME: Multiple Arcade Machine Libretro Core",
+        "name": "MAME",
+        "system": "arcade"
+      },
+      "desmume_libretro": {
+        "description": "DeSmuME Nintendo DS Libretro Core",
+        "name": "desmume",
+        "system": "nds"
+      },
+      "melonds_libretro": {
+        "description": "MelonDS Nintendo DS Libretro Core",
+        "name": "melonds",
+        "system": "nds"
+      },
+      "swanstation_libretro": {
+        "name": "SwanStation",
+        "description": "Swanstation Libretro Core",
+        "system": "psx"
+      },
+      "picodrive_libretro": {
+        "name": "PicoDrive",
+        "description": "SEGA MS/MD/CD/32X Libretro Core",
+        "system": [
+          "ms",
+          "md",
+          "cd",
+          "32x"
+        ]
+      },
+      "genesisplusgx_libretro_MS": {
+        "name": "Genesis Plus GX",
+        "description": "SEGA MS/GG/MD/CD Libretro Core",
+        "system": [
+          "ms",
+          "mc",
+          "cd"
+        ]
+      },
+      "genesisplusgx_libretro_GG": {
+        "name": "Genesis Plus GX",
+        "description": "SEGA MS/GG/MD/CD Libretro Core",
+        "system": "gg"
+      },
+      "genesisplusgxwide_libretro": {
+        "name": "Genesis Plus GX Wide",
+        "description": "SEGA MS/GG/MD/CD Libretro Core for Wide Screen",
+        "system": [
+          "ms",
+          "gg",
+          "mc",
+          "cd"
+        ]
+      },
+      "mupen64plus-next_libretro": {
+        "name": "Mupen64Plus-Next",
+        "description": "Nintendo 64 Libretro Core",
+        "system": "n64"
+      },
+      "snes9x-current_libretro": {
+        "name": "Snes9x - Current",
+        "description": "Super Nintendo Libretro Core",
+        "system": "snes",
+        "system_friendly_name": "Nintendo SNES"
+      },
+      "gambatte_libretro_GB": {
+        "name": "Gambatte",
+        "description": "Game Boy Libretro Core",
+        "system": "gb"
+      },
+      "gambatte_libretro_GBC": {
+        "name": "Gambatte",
+        "description": "Game Boy Color Libretro Core",
+        "system": "gbc"
+      },
+      "mgba_libretro": {
+        "name": "mGBA",
+        "description": "Game Boy Advance Libretro Core",
+        "system": "gba"
+      },
+      "mesen_libretro": {
+        "name": "Mesen",
+        "description": "Nintendo Entertainment System Libretro Core",
+        "system": "nes"
+      }
+    }
+  }
+}
