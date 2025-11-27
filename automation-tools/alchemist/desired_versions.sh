@@ -6,15 +6,8 @@
 #  These define which Qt libraries the framework will link against.
 # ------------------------------------------------------------------
 
-# Qt 6 runtime
-export DESIRED_QT6_RUNTIME_VERSION="6.10"
-
 # Qt 5 runtime (legacy)
 export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
-
-# FreeDesktop runtime
-export DESIRED_FREEDESKTOP_RUNTIME_VERSION="24.08"
-
 
 # ------------------------------------------------------------------
 #  Component Source Desired Versions
