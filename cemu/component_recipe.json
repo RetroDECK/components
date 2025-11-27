@@ -62,7 +62,7 @@
         {
           "library": "libSPIRV.so.14",
           "runtime_name": "org.freedesktop.Platform",
-          "runtime_version": "$DESIRED_FREEDESKTOP_RUNTIME_VERSION",
+          "runtime_version": "24.08",
           "dest": "shared-libs"
         },
         {
