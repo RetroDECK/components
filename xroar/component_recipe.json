@@ -18,8 +18,13 @@
         },
         {
           "type": "dir",
-          "source": "$REPO_ROOT/$COMPONENT_NAME/rd_config",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/assets/rd_config",
           "dest": "rd_config"
+        },
+        {
+          "type": "file",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/assets/gamecontrollerdb.txt",
+          "dest": "bin"
         },
         {
           "type": "file",
