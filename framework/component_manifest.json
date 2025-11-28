@@ -90,84 +90,84 @@
           "name": "Move: All of RetroDECK",
           "description": "Move the entire RetroDECK folder to a new location",
           "command": {
-            "zenity": "configurator_move_folder_dialog \"rd_home_path\""
+            "zenity": "configurator_move_folder_dialog rd_home_path"
           }
         },
         "move_roms": {
           "name": "Move: ROMS folder",
           "description": "Move the ROMS folder to a new location",
           "command": {
-            "zenity": "configurator_move_folder_dialog \"rd_home_roms_path\""
+            "zenity": "configurator_move_folder_dialog rd_home_roms_path"
           }
         },
         "move_bios": {
           "name": "Move: BIOS folder",
           "description": "Move the BIOS folder to a new location",
           "command": {
-            "zenity": "configurator_move_folder_dialog \"bios_path\""
+            "zenity": "configurator_move_folder_dialog bios_path"
           }
         },
         "move_media": {
           "name": "Move: Downloaded Media folder",
           "description": "Move the Downloaded Media folder to a new location",
           "command": {
-            "zenity": "configurator_move_folder_dialog \"rd_home_downloaded_media_path\""
+            "zenity": "configurator_move_folder_dialog rd_home_downloaded_media_path"
           }
         },
         "move_saves": {
           "name": "Move: Saves folder",
           "description": "Move the Saves folder to a new location",
           "command": {
-            "zenity": "configurator_move_folder_dialog \"rd_home_saves_path\""
+            "zenity": "configurator_move_folder_dialog rd_home_saves_path"
           }
         },
         "move_states": {
           "name": "Move: States folder",
           "description": "Move the States folder to a new location",
           "command": {
-            "zenity": "configurator_move_folder_dialog \"rd_home_states_path\""
+            "zenity": "configurator_move_folder_dialog rd_home_states_path"
           }
         },
         "move_themes": {
           "name": "Move: Themes folder",
           "description": "Move the Themes folder to a new location",
           "command": {
-            "zenity": "configurator_move_folder_dialog \"rd_home_themes_path\""
+            "zenity": "configurator_move_folder_dialog rd_home_themes_path"
           }
         },
         "move_screenshots": {
           "name": "Move: Screenshots folder",
           "description": "Move the Screenshots folder to a new location",
           "command": {
-            "zenity": "configurator_move_folder_dialog \"rd_home_screenshots_path\""
+            "zenity": "configurator_move_folder_dialog rd_home_screenshots_path"
           }
         },
         "move_mods": {
           "name": "Move: Mods folder",
           "description": "Move the Mods folder to a new location",
           "command": {
-            "zenity": "configurator_move_folder_dialog \"rd_home_mods_path\""
+            "zenity": "configurator_move_folder_dialog rd_home_mods_path"
           }
         },
         "move_texture_packs": {
           "name": "Move: Texture Packs folder",
           "description": "Move the Texture Packs folder to a new location",
           "command": {
-            "zenity": "configurator_move_folder_dialog \"rd_home_texture_packs_path\""
+            "zenity": "configurator_move_folder_dialog rd_home_texture_packs_path"
           }
         },
         "move_cheats": {
           "name": "Move: Cheats folder",
           "description": "Move the Cheats folder to a new location",
           "command": {
-            "zenity": "configurator_move_folder_dialog \"rd_home_cheats_path\""
+            "zenity": "configurator_move_folder_dialog rd_home_cheats_path"
           }
         },
         "move_shaders": {
           "name": "Move: Shaders folder",
           "description": "Move the Shaders folder to a new location",
           "command": {
-            "zenity": "configurator_move_folder_dialog \"rd_home_shaders_path\""
+            "zenity": "configurator_move_folder_dialog rd_home_shaders_path"
           }
         }
       },
