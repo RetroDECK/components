@@ -26,7 +26,7 @@ if [[ $(check_version_is_older_than "$version_being_updated" "0.7.0b") == "true"
   dir_prep "$saves_folder/gc/dolphin/US" "$XDG_DATA_HOME/dolphin-emu/GC/USA"
   dir_prep "$saves_folder/gc/dolphin/JP" "$XDG_DATA_HOME/dolphin-emu/GC/JAP"
 
-  set_setting_value "$dolphinconf" "ConfirmStop" "False" "dolphin" "Interface"
+  set_setting_value "$dolphin_config" "ConfirmStop" "False" "dolphin" "Interface"
 fi
 
 if [[ $(check_version_is_older_than "$version_being_updated" "0.9.1b") == "true" ]]; then
@@ -36,8 +36,8 @@ fi
 
 if [[ $(check_version_is_older_than "$version_being_updated" "0.10.0b") == "true" ]]; then
   log i "Dolphin team suggest to run Dolphin in single core, setting it"
-  set_setting_value "$dolphinconf" "CPUThread" "False" "dolphin" "Core"
-  set_setting_value "$dolphinconf" "LanguageCode" " " "dolphin" "Interface"
+  set_setting_value "$dolphin_config" "CPUThread" "False" "dolphin" "Core"
+  set_setting_value "$dolphin_config" "LanguageCode" " " "dolphin" "Interface"
 
 fi
 
