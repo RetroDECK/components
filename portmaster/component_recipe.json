@@ -52,6 +52,21 @@
           "dest": "$COMPONENT_ARTIFACT_ROOT"
         }
       ]
+      ,
+      "libs": [
+        {
+          "library": "libSDL2_ttf-2.0.so.0",
+          "runtime_name": "org.kde.Platform",
+          "runtime_version": "6.9",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "liblzma.so.5",
+          "runtime_name": "org.freedesktop.Platform",
+          "runtime_version": "25.08",
+          "dest": "shared-libs"
+        }
+      ]
     }
   ]
 }
