@@ -309,24 +309,6 @@
             "section": "",
             "target_file": "/var/config/retroarch/config/remaps/Mesen/nes.rmp",
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
-          },
-          {
-            "enabled_states": [ "true" ],
-            "setting_name": "input_player1_x_btn",
-            "action": "change",
-            "new_setting_value": "1",
-            "section": "",
-            "target_file": "/var/config/retroarch/config/remaps/Mesen/nes.rmp",
-            "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
-          },
-          {
-            "enabled_states": [ "true" ],
-            "setting_name": "input_player1_y_btn",
-            "action": "change",
-            "new_setting_value": "9",
-            "section": "",
-            "target_file": "/var/config/retroarch/config/remaps/Mesen/nes.rmp",
-            "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           }
         ]
       },
