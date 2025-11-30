@@ -289,6 +289,47 @@
           }
         ]
       },
+      "mesen_libretro": {
+        "config_file_format": "retroarch",
+        "abxy_button_swap": [
+          {
+            "enabled_states": [ "true" ],
+            "setting_name": "input_player1_a_btn",
+            "action": "change",
+            "new_setting_value": "0",
+            "section": "",
+            "target_file": "/var/config/retroarch/config/remaps/Mesen/nes.rmp",
+            "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
+          },
+          {
+            "enabled_states": [ "true" ],
+            "setting_name": "input_player1_b_btn",
+            "action": "change",
+            "new_setting_value": "8",
+            "section": "",
+            "target_file": "/var/config/retroarch/config/remaps/Mesen/nes.rmp",
+            "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
+          },
+          {
+            "enabled_states": [ "true" ],
+            "setting_name": "input_player1_x_btn",
+            "action": "change",
+            "new_setting_value": "1",
+            "section": "",
+            "target_file": "/var/config/retroarch/config/remaps/Mesen/nes.rmp",
+            "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
+          },
+          {
+            "enabled_states": [ "true" ],
+            "setting_name": "input_player1_y_btn",
+            "action": "change",
+            "new_setting_value": "9",
+            "section": "",
+            "target_file": "/var/config/retroarch/config/remaps/Mesen/nes.rmp",
+            "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
+          }
+        ]
+      },
       "mupen64plus-next_libretro": {
         "config_file_format": "retroarch",
         "borders": [
@@ -1028,27 +1069,32 @@
       "citra_libretro": {
         "description": "Nintendo 3DS Libretro Core",
         "name": "Citra",
-        "system": "n3ds"
+        "system": "n3ds",
+        "system_friendly_name": "Nintendo 3DS"
       },
       "mame_libretro": {
         "description": "MAME: Multiple Arcade Machine Libretro Core",
         "name": "MAME",
-        "system": "arcade"
+        "system": "arcade",
+        "system_friendly_name": "MAME"
       },
       "desmume_libretro": {
         "description": "DeSmuME Nintendo DS Libretro Core",
         "name": "desmume",
-        "system": "nds"
+        "system": "nds",
+        "system_friendly_name": "Nintendo DS"
       },
       "melonds_libretro": {
         "description": "MelonDS Nintendo DS Libretro Core",
         "name": "melonds",
-        "system": "nds"
+        "system": "nds",
+        "system_friendly_name": "Nintendo DS"
       },
       "swanstation_libretro": {
         "name": "SwanStation",
         "description": "Swanstation Libretro Core",
-        "system": "psx"
+        "system": "psx",
+        "system_friendly_name": "Sony Playstation"
       },
       "picodrive_libretro": {
         "name": "PicoDrive",
@@ -1058,21 +1104,24 @@
           "md",
           "cd",
           "32x"
-        ]
+        ],
+        "system_friendly_name": "Sega Genesis"
       },
       "genesisplusgx_libretro_MS": {
         "name": "Genesis Plus GX",
-        "description": "SEGA MS/GG/MD/CD Libretro Core",
+        "description": "SEGA MS/GG/MD/CD Libretro Core (Genesis games)",
         "system": [
           "ms",
           "mc",
           "cd"
-        ]
+        ],
+        "system_friendly_name": "Sega Genesis"
       },
       "genesisplusgx_libretro_GG": {
         "name": "Genesis Plus GX",
-        "description": "SEGA MS/GG/MD/CD Libretro Core",
-        "system": "gg"
+        "description": "SEGA MS/GG/MD/CD Libretro Core (GameGear games)",
+        "system": "gg",
+        "system_friendly_name": "Sega GameGear"
       },
       "genesisplusgxwide_libretro": {
         "name": "Genesis Plus GX Wide",
@@ -1082,12 +1131,14 @@
           "gg",
           "mc",
           "cd"
-        ]
+        ],
+        "system_friendly_name": "Sega Genesis"
       },
       "mupen64plus-next_libretro": {
         "name": "Mupen64Plus-Next",
         "description": "Nintendo 64 Libretro Core",
-        "system": "n64"
+        "system": "n64",
+        "system_friendly_name": "Nintendo N64"
       },
       "snes9x-current_libretro": {
         "name": "Snes9x - Current",
@@ -1096,24 +1147,28 @@
         "system_friendly_name": "Nintendo SNES"
       },
       "gambatte_libretro_GB": {
-        "name": "Gambatte",
-        "description": "Game Boy Libretro Core",
-        "system": "gb"
+        "name": "Gambatte (GameBoy games)",
+        "description": "Game Boy Libretro Core (GameBoy games)",
+        "system": "gb",
+        "system_friendly_name": "Nintendo GameBoy"
       },
       "gambatte_libretro_GBC": {
-        "name": "Gambatte",
-        "description": "Game Boy Color Libretro Core",
-        "system": "gbc"
+        "name": "Gambatte (GameBoy Color games)",
+        "description": "Game Boy Color Libretro Core (GameBoy Color games)",
+        "system": "gbc",
+        "system_friendly_name": "Nintendo GameBoy Color"
       },
       "mgba_libretro": {
         "name": "mGBA",
         "description": "Game Boy Advance Libretro Core",
-        "system": "gba"
+        "system": "gba",
+        "system_friendly_name": "Nintendo GameBoy Advance"
       },
       "mesen_libretro": {
         "name": "Mesen",
         "description": "Nintendo Entertainment System Libretro Core",
-        "system": "nes"
+        "system": "nes",
+        "system_friendly_name": "Nintendo NES"
       }
     }
   }
