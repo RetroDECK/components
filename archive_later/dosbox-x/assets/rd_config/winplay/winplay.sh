@@ -94,8 +94,8 @@ mkdir -p "$LAUNCHER_DIR"
 {
     echo -e "@echo off\r"
     echo -e "D:\r"
-    echo -e "$GAME_EXE\r"
-    echo -e "exit\r"
+    echo -e "START /wait $GAME_EXE\r"
+    echo -e "RUNDLL32.EXE USER.EXE,ExitWindows\r"
 } > "$LAUNCHER_BAT"
 
 cat <<EOF >> "$TMP_CONF"
