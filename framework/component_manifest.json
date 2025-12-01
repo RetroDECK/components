@@ -231,6 +231,17 @@
           }
         }
       }
-    }
+    },
+    "finit_options":
+    [
+      {
+        "dialog": "finit_install_controller_profile_dialog",
+        "action": "install_retrodeck_controller_profile"
+      },
+      {
+        "dialog": "finit_add_rd_to_steam_dialog",
+        "action": "add_retrodeck_to_steam"
+      }
+    ]
   }
 }

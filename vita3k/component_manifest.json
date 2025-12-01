@@ -17,6 +17,13 @@
           }
         }
       }
-    }
+    },
+    "finit_options":
+    [
+      {
+        "dialog": "finit_install_vita3k_firmware_dialog",
+        "action": "update_vita3k_firmware"
+      }
+    ]
   }
 }

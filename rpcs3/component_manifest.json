@@ -17,6 +17,13 @@
           }
         }
       }
-    }
+    },
+    "finit_options":
+    [
+      {
+        "dialog": "finit_install_rpcs3_firmware_dialog",
+        "action": "update_rpcs3_firmware"
+      }
+    ]
   }
 }
