@@ -92,21 +92,24 @@ log d "Sanitized game path: $GAME_EXE"
 mkdir -p "$LAUNCHER_DIR"
 # Write BAT file with Windows CRLF line endings
 {
-    echo -e "@echo off\r"
-    echo -e "D:\r"
+    echo -e "E:\r"
     echo -e "START /wait $GAME_EXE\r"
     echo -e "RUNDLL32.EXE USER.EXE,ExitWindows\r"
 } > "$LAUNCHER_BAT"
 
+# C: - the Windows 98 image
+# D: - the game direcotry mounted as CD-ROM (useful for games that check for CD)
+# E: - the game directory
+# F: - the launcher directory containing the run_game.bat
+
 cat <<EOF >> "$TMP_CONF"
 
 [autoexec]
-IMGMOUNT C "$bios_path/$WIN_VERSION.img" -t hdd
-MOUNT D "$GAME_DIR"
-MOUNT E "$LAUNCHER_DIR"
-C:
-D:
-COPY E:\run_game.bat "C:\WINDOWS\STARTM~1\PROGRAMS\STARTUP\run_game.bat"
+IMGMOUNT C "/home/xargon/Games/.dosbox-x/win98.img" -t hdd
+MOUNT D "$GAME_DIR" -t cdrom
+MOUNT E "$GAME_DIR"
+MOUNT F "$LAUNCHER_DIR"
+COPY F:\run_game.bat "C:\WINDOWS\STARTM~1\PROGRAMS\STARTUP\run_game.bat"
 BOOT C:
 EOF
 
