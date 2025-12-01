@@ -33,5 +33,5 @@ update_rpcs3_firmware() {
 
 finit_install_rpcs3_firmware_dialog() {
   rd_zenity --question --no-wrap --window-icon="/app/share/icons/hicolor/scalable/apps/net.retrodeck.retrodeck.svg" --title "RetroDECK Initial Install" --cancel-label="No" --ok-label "Yes" \
-  --text="Would you like to install the Vita3K firmware during the RetroDECK first setup?\n\nThis process will take several minutes and requires network access.\n\nRPCS3 will be launched automatically at the end of the RetroDECK setup process.\nOnce the firmware is installed, please close the emulator to finish the process."
+  --text="Would you like to install the RPCS3 firmware as part of the initial RetroDECK setup?\n\nThis process may take several minutes and requires an active internet connection.\n\nRPCS3 will launch automatically at the end of the RetroDECK setup.\n\After the firmware installation is complete, please close the emulator window to finish the process."
 }
