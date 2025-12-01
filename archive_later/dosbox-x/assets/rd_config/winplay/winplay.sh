@@ -90,12 +90,13 @@ log d "Sanitized game path: $GAME_EXE"
 
 # Create launcher BAT on host → mounted as D:
 mkdir -p "$LAUNCHER_DIR"
-cat <<EOF > "$LAUNCHER_BAT"
-#@echo off
-D:
-"$GAME_EXE"
-exit
-EOF
+# Write BAT file with Windows CRLF line endings
+{
+    echo -e "@echo off\r"
+    echo -e "D:\r"
+    echo -e "$GAME_EXE\r"
+    echo -e "exit\r"
+} > "$LAUNCHER_BAT"
 
 cat <<EOF >> "$TMP_CONF"
 
