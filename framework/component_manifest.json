@@ -244,6 +244,10 @@
       {
         "dialog": "finit_install_controller_profile_dialog",
         "action": "install_retrodeck_controller_profile_and_add_to_steam"
+      },
+      {
+        "dialog": "finit_default_yes handle_folder_iconsets",
+        "action": "handle_folder_iconsets lahrs-main"
       }
     ]
   }

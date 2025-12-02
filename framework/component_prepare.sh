@@ -34,7 +34,6 @@ if [[ "$action" == "reset" ]]; then # Update the paths of all folders in retrode
 
   create_dir -d "$XDG_CONFIG_HOME/retrodeck/graphics"
   cp -rf "/app/retrodeck/graphics/folder-iconsets" "$XDG_CONFIG_HOME/retrodeck/graphics/"
-  handle_folder_iconsets "$(get_setting_value "$rd_conf" "roms_iconset" "retrodeck" "options")"
 fi
 
 if [[ "$action" == "postmove" ]]; then # Update the paths of any folders that came with the retrodeck folder during a move
