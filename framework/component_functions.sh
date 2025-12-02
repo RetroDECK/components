@@ -817,22 +817,41 @@ handle_folder_iconsets() {
   if [[ ! "$iconset" == "false" ]]; then
     if [[ -d "$folder_iconsets_dir/$iconset" ]]; then
       while read -r icon; do
-        local icon_folder_name=$(basename ${icon%.ico})
-        if [[ -d "$roms_path/$icon_folder_name" ]]; then
-          echo '[Desktop Entry]' > "$roms_path/$icon_folder_name/.directory"
-          echo "Icon=$iconsets_dir/$iconset/$icon_folder_name.ico" >> "$roms_path/$icon_folder_name/.directory"
-        elif [[ -d "$rd_home_path/$icon_folder_name" ]]; then
-          echo '[Desktop Entry]' > "$rd_home_path/$icon_folder_name/.directory"
-          echo "Icon=$iconsets_dir/$iconset/$icon_folder_name.ico" >> "$rd_home_path/$icon_folder_name/.directory"
+        local icon_relative_path="${icon#$folder_iconsets_dir/$iconset/}"
+        local icon_relative_path="${icon_relative_path%.ico}"
+        local icon_relative_root="${icon_relative_path%%/*}"
+        local path_var_name="${icon_relative_root}_path"
+        local path_name=""
+
+        if [[ -v "$path_var_name" ]]; then
+          path_name="${!path_var_name}"
+          if [[ ! "$icon_relative_path" == "$icon_relative_root" ]]; then
+            path_name="$path_name/${icon_relative_path#$icon_relative_root/}"
+          fi
+          if [[ ! -d "$path_name" ]]; then
+            log w "Path for icon $icon could not be found, skipping..."
+            continue
+          fi
+        elif [[ -d "$rd_home_path/$icon_relative_path" ]]; then
+          path_name="$rd_home_path/$icon_relative_path"
+        else
+          log w "Path for icon $icon could not be found, skipping..."
+          continue
         fi
-      done < <(find "$folder_iconsets_dir/$iconset" -maxdepth 1 -type f -iname "*.ico")
+
+        log d "Creating file $path_name/.directory"
+        echo '[Desktop Entry]' > "$path_name/.directory"
+        echo "Icon=$folder_iconsets_dir/$iconset/$icon_relative_path.ico" >> "$path_name/.directory"
+      done < <(find "$folder_iconsets_dir/$iconset" -maxdepth 2 -type f -iname "*.ico")
       set_setting_value "$rd_conf" "folder_iconset" "$iconset" retrodeck "options"
     else
       configurator_generic_dialog "RetroDeck Configurator - Toggle RetroDECK Folder Icons" "The chosen iconset could not be found in the RetroDECK assets."
       return 1
     fi
   else
-    find "$rd_home_path" "$roms_path" -maxdepth 1 -type f -iname '.directory' -exec rm {} \;
+    while read -r path; do
+      find -L "$path" -maxdepth 2 -type f -iname '.directory' -exec rm {} \;
+    done < <(jq -r 'del(.paths.downloaded_media_path, .paths.themes_path, .paths.sdcard) | .paths[]' "$rd_conf")
     set_setting_value "$rd_conf" "folder_iconset" "false" retrodeck "options"
   fi
 }
