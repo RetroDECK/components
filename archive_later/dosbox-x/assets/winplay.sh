@@ -52,14 +52,26 @@ if [[ -z "$GAME_PATH" && $INSTALL_MODE -eq 0 ]]; then
     exec "$component_path/bin/dosbox-x"
 fi
 
-DOXBOX_CONF="$dosbox_x_os_configs_dir/$WIN_VERSION.conf"
+# Prefer component-local os-configs directory (per user request)
+log d "Looking for OS config files in component path first: $component_path/rd_config/os-configs"
+OS_CONFIG_DIR="${component_path:-}/rd_config/os-configs"
+if [[ ! -d "$OS_CONFIG_DIR" ]]; then
+    # fallback to old variable if present
+    OS_CONFIG_DIR="${dosbox_x_os_configs_dir:-$OS_CONFIG_DIR}"
+fi
+
+DOXBOX_CONF="$OS_CONFIG_DIR/$WIN_VERSION.conf"
 if [[ ! -f "$DOXBOX_CONF" ]]; then
     log e "Windows version '$WIN_VERSION' not recognized (missing config: $DOXBOX_CONF)"
-    log i "Supported versions are:"
-    for cfg in "$dosbox_x_os_configs_dir"/*.conf; do
-        base_cfg="$(basename "$cfg")"
-        echo " - ${base_cfg%.conf}"
-    done
+    log i "Supported versions are (from: $OS_CONFIG_DIR):"
+    if [[ -d "$OS_CONFIG_DIR" ]]; then
+        for cfg in "$OS_CONFIG_DIR"/*.conf; do
+            base_cfg="$(basename "$cfg")"
+            echo " - ${base_cfg%.conf}"
+        done
+    else
+        echo " (no os-configs directory found at $OS_CONFIG_DIR)"
+    fi
     exit 1
 fi
 
@@ -163,12 +175,12 @@ fi
 cat <<EOF >> "$TMP_CONF"
 
 [autoexec]
-IMGMOUNT C "/home/xargon/Games/.dosbox-x/win98.img" -t hdd
+IMGMOUNT C "$bios_path/$WIN_VERSION.img" -t hdd
 
 EOF
 
 if [[ $INSTALL_MODE -eq 1 ]]; then
-    # In install mode, ensure any existing auto-start launcher is removed inside Windows so the installer can run
+    # In install mode, just clean up old launcher; placeholder cleanup will be done by host after DOSBox-X exits
     cat <<EOF >> "$TMP_CONF"
 # If an old launcher is present, remove it so it doesn't auto-run
 DEL "C:\\WINDOWS\\STARTM~1\\PROGRAMS\\STARTUP\\run_game.bat"
@@ -177,15 +189,68 @@ else
     # Temporary mounting launcher dir as A:, just to copy the BAT to startup
     cat <<EOF >> "$TMP_CONF"
 MOUNT A "$LAUNCHER_DIR"
+REM remove any existing files from Startup so we don't leave stale launchers
+DEL "C:\\WINDOWS\\STARTM~1\\PROGRAMS\\STARTUP\\*"
 COPY A:\\run_game.bat "C:\\WINDOWS\\STARTM~1\\PROGRAMS\\STARTUP\\run_game.bat"
 MOUNT -u A
 EOF
 fi
 
 # Mounting the game directory as D: (Hard Disk)
-cat <<EOF >> "$TMP_CONF"
-MOUNT D "$GAME_DIR" -freesize 2048
+# In install mode we create temporary sparse placeholder files (DELETE_ME_BEFORE_INSTALL_*.img)
+# inside the installation directory so that when DOSBox-X mounts the directory,
+# it sees large files and reports the available space as much larger.
+if [[ $INSTALL_MODE -eq 1 ]]; then
+    # create placeholder sparse files under INSTALL_DIR so when mounted, Windows sees more space
+    IMG_PREFIX="$INSTALL_DIR/DELETE_ME_BEFORE_INSTALL"
+    CHUNK_MB=512   # per-image chunk
+    MAX_TOTAL_MB=4096
+    total_mb=0
+    created_images=()
+
+    while [[ $total_mb -lt $MAX_TOTAL_MB ]]; do
+        idx=$(( total_mb / CHUNK_MB + 1 ))
+        size_mb=$CHUNK_MB
+        img_file="${IMG_PREFIX}_${idx}.img"
+
+        # quick available space check (KB) — stop if host doesn't have at least 1MB free
+        avail_kb=$(df --output=avail -k "$INSTALL_DIR" 2>/dev/null | tail -n1 || echo 0)
+        if [[ -z "$avail_kb" || $avail_kb -lt 1024 ]]; then
+            log d "Not enough disk space available, stopping placeholder creation at ${total_mb}MB"
+            break
+        fi
+
+        # try to create sparse image; if that fails stop
+        if ! truncate -s "${size_mb}M" "$img_file" 2>/dev/null; then
+            log d "Failed to create sparse file, stopping at ${total_mb}MB"
+            break
+        fi
+
+        # verify image exists
+        if [[ -f "$img_file" ]]; then
+            created_images+=("$img_file")
+            total_mb=$(( total_mb + size_mb ))
+            log d "Created placeholder file $idx: ${size_mb}MB"
+        else
+            break
+        fi
+    done
+
+    # Mount the directory containing the placeholder files
+    cat <<EOF >> "$TMP_CONF"
+MOUNT D "$GAME_DIR" -freesize 4096
 EOF
+    
+    if [[ ${#created_images[@]} -gt 0 ]]; then
+        log i "Created ${#created_images[@]} placeholder files (total ${total_mb}MB) in $GAME_DIR"
+    else
+        log w "No placeholder files created, mounting directory as-is"
+    fi
+else
+    cat <<EOF >> "$TMP_CONF"
+MOUNT D "$GAME_DIR" -freesize 4096
+EOF
+fi
 
 # Mount any provided CD-ROMs from E onward
 if [[ ${#CDROMS[@]} -gt 0 ]]; then
@@ -206,9 +271,9 @@ BOOT C:
 EOF
 
 if [[ $INSTALL_MODE -eq 1 ]]; then
-    log i "Launching Windows 98 (install mode) — created/using: $GAME_DIR"
+    log i "Launching $WIN_VERSION (install mode) — created/using: $GAME_DIR"
 else
-    log i "Launching Windows 98 and autostarting game..."
+    log i "Launching $WIN_VERSION and autostarting game..."
     # Sanity check: ensure the launcher exists and is readable before launching.
     if [[ ! -f "$LAUNCHER_BAT" ]]; then
         log e "launcher not found at '$LAUNCHER_BAT' — aborting"
@@ -224,7 +289,7 @@ if [[ $INSTALL_MODE -eq 0 ]]; then
 fi
 log d "Launching DOSBox-X with the following config:"
 log d "-----------------------------------"
-cat "$TMP_CONF"
+awk '/^\[autoexec\]/ {print_flag=1; print; next} /^\[/ {print_flag=0} print_flag' "$TMP_CONF"
 log d "-----------------------------------"
 
 echo ""
@@ -232,4 +297,4 @@ echo ""
 echo ""
 
 # Launch DOSBox-X using the generated config
-dosbox-x -conf "$TMP_CONF"
+"$component_path/bin/dosbox-x" -conf "$TMP_CONF"
