@@ -2,12 +2,53 @@
 
 # This script launches DOSBox-X with a Windows 98 image and autostarts a specified game.
 # It prepares a temporary configuration and BAT file to mount the game directory and run the game executable.
-# Usage: winplay.sh <windows_version> <path_to_game_executable>
+# Usage:
+#   winplay.sh <windows_version> <path_to_game_executable>
+#   winplay.sh --install "<Game Name>" [--cd-rom /path/to/cd1.iso] [--cd-rom /path/to/cd2.iso ...]
 
-WIN_VERSION="${1:-win98}"
-GAME_PATH="$2"
-if [[ -z "$GAME_PATH" ]]; then
-    log i "No game path provided, opening DOSBox-X directly."
+# parse args
+INSTALL_MODE=0
+INSTALL_NAME=""
+CDROMS=()
+WIN_VERSION=""
+GAME_PATH=""
+
+while [[ $# -gt 0 ]]; do
+    case "$1" in
+        --install)
+            INSTALL_MODE=1
+            INSTALL_NAME="$2"
+            shift 2
+            ;;
+        --cd-rom|--cdrom)
+            CDROMS+=("$2")
+            shift 2
+            ;;
+        --help|-h)
+            echo "Usage: $0 [<windows_version> <path_to_game_executable>] | --install \"<Game Name>\" [--cd-rom /path/to/cd.iso ...]"
+            exit 0
+            ;;
+        --*)
+            log e "Unknown option: $1"
+            exit 1
+            ;;
+        *)
+            if [[ -z "$WIN_VERSION" ]]; then
+                WIN_VERSION="$1"
+            elif [[ -z "$GAME_PATH" ]]; then
+                GAME_PATH="$1"
+            fi
+            shift
+            ;;
+    esac
+done
+
+# default windows version if not provided
+WIN_VERSION="${WIN_VERSION:-win98}"
+
+# if no GAME_PATH and not installing, open DOSBox-X directly
+if [[ -z "$GAME_PATH" && $INSTALL_MODE -eq 0 ]]; then
+    log i "No game path provided and --install not used; opening DOSBox-X directly."
     exec "$component_path/bin/dosbox-x"
 fi
 
@@ -53,8 +94,22 @@ cp "$dosbox_x_config" "$TMP_CONF"
 # Strip old autoexec content
 sed -i '/^\[autoexec\]/q' "$TMP_CONF"
 
-GAME_DIR="$(dirname "$GAME_PATH")"
-ORIG_GAME_EXE="$(basename "$GAME_PATH")"
+if [[ $INSTALL_MODE -eq 1 ]]; then
+    if [[ -z "$INSTALL_NAME" ]]; then
+        log e "--install mode requires a game name."
+        exit 1
+    fi
+    # create install dir under roms_path/windows9x/<game name>
+    INSTALL_DIR="$roms_path/windows9x/$INSTALL_NAME"
+    mkdir -p "$INSTALL_DIR"
+    GAME_DIR="$INSTALL_DIR"
+    # In install mode we don't create a launcher BAT — we expect the user to run installer inside Windows
+    ORIG_GAME_EXE=""
+else
+    GAME_DIR="$(dirname "$GAME_PATH")"
+    ORIG_GAME_EXE="$(basename "$GAME_PATH")"
+fi
+
 # Best-effort conversion to DOS 8.3 filename (uppercase, allowed chars, truncated to 8.3)
 # Note: this is a best-effort translation — if the real shortname on the filesystem
 # differs (e.g. Windows adds a ~1 suffix), this script does not query filesystem
@@ -83,19 +138,22 @@ LAUNCHER_DIR="$(dirname "$LAUNCHER_BAT")"
 
 log i "Launching game: \"$GAME_EXE\" from directory: \"$GAME_DIR\""
 log d "Using temporary config: $TMP_CONF"
-log d "Using launcher BAT: $LAUNCHER_BAT" 
+log d "Launcher BAT: $LAUNCHER_BAT"
 log d "D drive will mount game directory: $GAME_DIR"
-log d "E drive will mount launcher directory: $LAUNCHER_DIR"
 log d "Sanitized game path: $GAME_EXE"
 
 # Create launcher BAT on host → mounted as D:
-mkdir -p "$LAUNCHER_DIR"
-# Write BAT file with Windows CRLF line endings
-{
-    echo -e "E:\r"
-    echo -e "START /wait $GAME_EXE\r"
-    echo -e "RUNDLL32.EXE USER.EXE,ExitWindows\r"
-} > "$LAUNCHER_BAT"
+if [[ $INSTALL_MODE -eq 0 ]]; then
+    mkdir -p "$LAUNCHER_DIR"
+    # Write BAT file with Windows CRLF line endings
+    {
+        echo -e "E:\r"
+        echo -e "START /wait $GAME_EXE\r"
+        echo -e "RUNDLL32.EXE USER.EXE,ExitWindows\r"
+    } > "$LAUNCHER_BAT"
+else
+    log i "Install mode active — not creating launcher BAT."
+fi
 
 # C: - the Windows 98 image
 # D: - the game direcotry mounted as CD-ROM (useful for games that check for CD)
@@ -106,24 +164,64 @@ cat <<EOF >> "$TMP_CONF"
 
 [autoexec]
 IMGMOUNT C "/home/xargon/Games/.dosbox-x/win98.img" -t hdd
-MOUNT D "$GAME_DIR" -t cdrom
-MOUNT E "$GAME_DIR"
-MOUNT F "$LAUNCHER_DIR"
-COPY F:\run_game.bat "C:\WINDOWS\STARTM~1\PROGRAMS\STARTUP\run_game.bat"
+
+EOF
+
+if [[ $INSTALL_MODE -eq 1 ]]; then
+    # In install mode, ensure any existing auto-start launcher is removed inside Windows so the installer can run
+    cat <<EOF >> "$TMP_CONF"
+# If an old launcher is present, remove it so it doesn't auto-run
+DEL "C:\\WINDOWS\\STARTM~1\\PROGRAMS\\STARTUP\\run_game.bat"
+EOF
+else
+    # Temporary mounting launcher dir as A:, just to copy the BAT to startup
+    cat <<EOF >> "$TMP_CONF"
+MOUNT A "$LAUNCHER_DIR"
+COPY A:\\run_game.bat "C:\\WINDOWS\\STARTM~1\\PROGRAMS\\STARTUP\\run_game.bat"
+MOUNT -u A
+EOF
+fi
+
+# Mounting the game directory as D: (Hard Disk)
+cat <<EOF >> "$TMP_CONF"
+MOUNT D "$GAME_DIR" -freesize 2048
+EOF
+
+# Mount any provided CD-ROMs from E onward
+if [[ ${#CDROMS[@]} -gt 0 ]]; then
+    # ASCII 'E' == 69
+    for i in "${!CDROMS[@]}"; do
+        iso_path="${CDROMS[$i]}"
+        drive_letter=$(printf "\\$(printf '%03o' $((69 + i)) )")
+        cat <<EOF >> "$TMP_CONF"
+IMGMOUNT $drive_letter "$iso_path" -t iso
+EOF
+        log d "Added CD-ROM mount: $drive_letter -> $iso_path"
+    done
+fi
+
+# Booting Windows
+cat <<EOF >> "$TMP_CONF"
 BOOT C:
 EOF
 
-log i "Launching Windows 98 and autostarting game..."
-# Sanity check: ensure the launcher exists and is readable before launching.
-if [[ ! -f "$LAUNCHER_BAT" ]]; then
-    log e "launcher not found at '$LAUNCHER_BAT' — aborting"
-    exit 2
+if [[ $INSTALL_MODE -eq 1 ]]; then
+    log i "Launching Windows 98 (install mode) — created/using: $GAME_DIR"
+else
+    log i "Launching Windows 98 and autostarting game..."
+    # Sanity check: ensure the launcher exists and is readable before launching.
+    if [[ ! -f "$LAUNCHER_BAT" ]]; then
+        log e "launcher not found at '$LAUNCHER_BAT' — aborting"
+        exit 2
+    fi
 fi
 
-log d "Launcher BAT content:"
-log d "-----------------------------------"
-cat "$LAUNCHER_BAT"
-log d "-----------------------------------"
+if [[ $INSTALL_MODE -eq 0 ]]; then
+    log d "Launcher BAT content:"
+    log d "-----------------------------------"
+    cat "$LAUNCHER_BAT"
+    log d "-----------------------------------"
+fi
 log d "Launching DOSBox-X with the following config:"
 log d "-----------------------------------"
 cat "$TMP_CONF"
@@ -134,4 +232,4 @@ echo ""
 echo ""
 
 # Launch DOSBox-X using the generated config
-flatpak run com.dosbox_x.DOSBox-X -conf "$TMP_CONF"
+dosbox-x -conf "$TMP_CONF"
