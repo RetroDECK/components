@@ -13,11 +13,6 @@
         },
         {
           "type": "file",
-          "source": "component_functions.sh",
-          "dest": "$COMPONENT_ARTIFACT_ROOT"
-        },
-        {
-          "type": "file",
           "source": "component_manifest.json",
           "dest": "$COMPONENT_ARTIFACT_ROOT"
         },
