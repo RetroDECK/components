@@ -767,7 +767,7 @@ configurator_usb_import_dialog() {
   esac
 }
 
-configurator_iconset_toggle_dialog () {
+configurator_iconset_toggle_dialog() {
   if [[ ! $(get_setting_value "$rd_conf" "folder_iconset" "retrodeck" "options") == "false" ]]; then
     rd_zenity --question \
     --no-wrap --window-icon="/app/share/icons/hicolor/scalable/apps/net.retrodeck.retrodeck.svg" \

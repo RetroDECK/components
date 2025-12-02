@@ -11,6 +11,13 @@
           "command": {
             "zenity": "configurator_portmaster_toggle_dialog"
           }
+        },
+        "iconset_show_hide": {
+          "name": "RetroDECK Folder Icons: Show / Hide",
+          "description": "Enable / Disable: RetroDECK Folder Icons",
+          "command": {
+            "zenity": "configurator_iconset_toggle_dialog"
+          }
         }
       },
       "tools": {
