@@ -498,9 +498,6 @@ fi
 
 if [[ $(check_version_is_older_than "$version_being_updated" "0.10.0b") == "true" ]]; then
   ponzu_remove
-  # TODO: strip away "akai_ponzu": false, and "kiroi_ponzu": false, from retrodeck.json
-  delete_setting "$rd_conf" "akai_ponzu" "retrodeck" "options"
-  delete_setting "$rd_conf" "kiroi_ponzu" "retrodeck" "options"
 fi
 
 #######################################
