@@ -496,6 +496,10 @@ if [[ $(check_version_is_older_than "$version_being_updated" "0.9.2b") == "true"
   fi
 fi
 
+if [[ $(check_version_is_older_than "$version_being_updated" "0.10.0b") == "true" ]]; then
+  ponzu_remove
+fi
+
 #######################################
 # These actions happen at every update
 #######################################

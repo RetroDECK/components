@@ -28,6 +28,6 @@ update_vita3k_firmware() {
 }
 
 finit_install_rpcs3_firmware_dialog() {
-  rd_zenity --question --no-wrap --window-icon="/app/share/icons/hicolor/scalable/apps/net.retrodeck.retrodeck.svg" --title "RetroDECK Initial Install" --cancel-label="No" --ok-label "Yes" \
+  rd_zenity --question --no-wrap --window-icon="/app/share/icons/hicolor/scalable/apps/net.retrodeck.retrodeck.svg" --title "RetroDECK Initial Install" --cancel-label="No 🟥 " --ok-label "Yes 🟢" \
   --text="Would you like to install the Vita3K firmware as part of the initial RetroDECK setup?\n\nThis process may take several minutes and requires an active internet connection.\n\nVita3K will launch automatically at the end of the RetroDECK setup.\n\After the firmware installation is complete, please close the emulator window to finish the process."
 }
