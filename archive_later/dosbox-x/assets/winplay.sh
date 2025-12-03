@@ -1,300 +1,779 @@
 #!/bin/bash
 
-# This script launches DOSBox-X with a Windows 98 image and autostarts a specified game.
-# It prepares a temporary configuration and BAT file to mount the game directory and run the game executable.
-# Usage:
-#   winplay.sh <windows_version> <path_to_game_executable>
-#   winplay.sh --install "<Game Name>" [--cd-rom /path/to/cd1.iso] [--cd-rom /path/to/cd2.iso ...]
+# This script launches DOSBox-X with a Windows 98/3.1 image and autostarts games
+# It prepares a temporary configuration and BAT file for game installation and launching
 
-# parse args
-INSTALL_MODE=0
-INSTALL_NAME=""
-CDROMS=()
-WIN_VERSION=""
-GAME_PATH=""
+# ============================================================================
+# LOGGING FUNCTIONS
+# ============================================================================
 
-while [[ $# -gt 0 ]]; do
-    case "$1" in
-        --install)
-            INSTALL_MODE=1
-            INSTALL_NAME="$2"
-            shift 2
-            ;;
-        --cd-rom|--cdrom)
-            CDROMS+=("$2")
-            shift 2
-            ;;
-        --help|-h)
-            echo "Usage: $0 [<windows_version> <path_to_game_executable>] | --install \"<Game Name>\" [--cd-rom /path/to/cd.iso ...]"
-            exit 0
-            ;;
-        --*)
-            log e "Unknown option: $1"
-            exit 1
-            ;;
-        *)
-            if [[ -z "$WIN_VERSION" ]]; then
-                WIN_VERSION="$1"
-            elif [[ -z "$GAME_PATH" ]]; then
-                GAME_PATH="$1"
-            fi
-            shift
-            ;;
+log() {
+    local level="$1"
+    shift
+    local message="$@"
+    
+    case "$level" in
+        i) echo "[INFO] $message" ;;
+        e) echo "[ERROR] $message" >&2 ;;
+        w) echo "[WARN] $message" ;;
+        d) [[ "${DEBUG:-0}" == "1" ]] && echo "[DEBUG] $message" ;;
     esac
-done
-
-# default windows version if not provided
-WIN_VERSION="${WIN_VERSION:-win98}"
-
-# if no GAME_PATH and not installing, open DOSBox-X directly
-if [[ -z "$GAME_PATH" && $INSTALL_MODE -eq 0 ]]; then
-    log i "No game path provided and --install not used; opening DOSBox-X directly."
-    exec "$component_path/bin/dosbox-x"
-fi
-
-# Prefer component-local os-configs directory (per user request)
-log d "Looking for OS config files in component path first: $component_path/rd_config/os-configs"
-OS_CONFIG_DIR="${component_path:-}/rd_config/os-configs"
-if [[ ! -d "$OS_CONFIG_DIR" ]]; then
-    # fallback to old variable if present
-    OS_CONFIG_DIR="${dosbox_x_os_configs_dir:-$OS_CONFIG_DIR}"
-fi
-
-DOXBOX_CONF="$OS_CONFIG_DIR/$WIN_VERSION.conf"
-if [[ ! -f "$DOXBOX_CONF" ]]; then
-    log e "Windows version '$WIN_VERSION' not recognized (missing config: $DOXBOX_CONF)"
-    log i "Supported versions are (from: $OS_CONFIG_DIR):"
-    if [[ -d "$OS_CONFIG_DIR" ]]; then
-        for cfg in "$OS_CONFIG_DIR"/*.conf; do
-            base_cfg="$(basename "$cfg")"
-            echo " - ${base_cfg%.conf}"
-        done
-    else
-        echo " (no os-configs directory found at $OS_CONFIG_DIR)"
-    fi
-    exit 1
-fi
-
-if [[ ! -f "$bios_path/$WIN_VERSION.img" ]]; then
-    log e "Windows image for version '$WIN_VERSION' not found at: $bios_path/$WIN_VERSION.img"
-    log e "Please ensure the image is present to proceed, check the wiki to learn how to create a Windows image for DOSBox-X."
-    exit 1
-fi
-
-TMP_CONF="$XDG_CACHE_HOME/dosbox-x/winplay.conf"
-# Create a temporary working dir for the launcher inside the cache folder
-# Prefer XDG_CACHE_HOME to place temporary files where the flatpak sandbox can access
-LAUNCHER_BASE_DIR="$XDG_CACHE_HOME/dosbox-x"
-mkdir -p "$LAUNCHER_BASE_DIR"
-
-# Create a temp directory under $XDG_CACHE_HOME/dosbox-x so DOSBox launched inside
-# flatpak can mount it and see the files.
-LAUNCHER_TMP_DIR=$(mktemp -d "${LAUNCHER_BASE_DIR}/tmp.XXXX")
-LAUNCHER_BAT="$LAUNCHER_TMP_DIR/launcher/run_game.bat"
-
-# Ensure temporary launcher dir is removed when the script exits
-cleanup_tmpdir() {
-    rm -rf "$LAUNCHER_TMP_DIR" || true
 }
-trap cleanup_tmpdir EXIT
 
-rm -f "$TMP_CONF" "$LAUNCHER_BAT"
+# ============================================================================
+# INITIALIZATION FUNCTIONS
+# ============================================================================
 
-# Copy base config
-cp "$dosbox_x_config" "$TMP_CONF"
+init_globals() {
+    # VHD layer paths - save_path should be provided by RetroDECK framework
+    SAVES_PATH="${save_path:-${XDG_DATA_HOME:-$HOME/.local/share}/retrodeck/saves}"
+    VHD_SAVEDATA_DIR="$SAVES_PATH/windows9x/dosbox-x"
+    
+    # Initialize mode flags
+    INSTALL_MODE=0
+    INSTALL_NAME=""
+    MAKEFS_MODE=0
+    MAKEFS_VERSION=""
+    DESKTOP_MODE=0
+    DESKTOP_VERSION=""
+    CDROMS=()
+    WIN_VERSION=""
+    GAME_PATH=""
+    
+    # Initialize runtime variables
+    IS_OS_INSTALL=0
+    GAME_NAME_FOR_DIR=""
+    VHD_GAME_LAYER=""
+    VHD_SAVEDATA=""
+    OS_CONFIG_DIR=""
+    VHD_BASE_PATH=""
+    TMP_CONF=""
+    LAUNCHER_DIR=""
+}
 
-# Strip old autoexec content
-sed -i '/^\[autoexec\]/q' "$TMP_CONF"
+setup_paths() {
+    log d "Looking for OS config files in component path first: $component_path/rd_config/os_configs"
+    OS_CONFIG_DIR="${component_path:-}/rd_config/os_configs"
+    if [[ ! -d "$OS_CONFIG_DIR" ]]; then
+        OS_CONFIG_DIR="${dosbox_x_os_configs_dir:-$OS_CONFIG_DIR}"
+    fi
+    
+    VHD_BASE_PATH="$bios_path/$WIN_VERSION.vhd"
+    TMP_CONF="$XDG_CACHE_HOME/dosbox-x/winplay.conf"
+    mkdir -p "$XDG_CACHE_HOME/dosbox-x"
+}
 
-if [[ $INSTALL_MODE -eq 1 ]]; then
-    if [[ -z "$INSTALL_NAME" ]]; then
-        log e "--install mode requires a game name."
+setup_launcher_dir() {
+    local launcher_base_dir="$XDG_CACHE_HOME/dosbox-x"
+    local launcher_tmp_dir=$(mktemp -d "${launcher_base_dir}/tmp.XXXX")
+    LAUNCHER_DIR="$launcher_tmp_dir/launcher"
+    
+    # Cleanup on exit
+    trap "rm -rf '$launcher_tmp_dir' 2>/dev/null || true" EXIT
+}
+
+# ============================================================================
+# ARGUMENT PARSING
+# ============================================================================
+
+parse_arguments() {
+    while [[ $# -gt 0 ]]; do
+        case "$1" in
+            --desktop)
+                DESKTOP_MODE=1
+                if [[ -z "$2" || "$2" == --* ]]; then
+                    log e "--desktop requires an argument (win98 or win31)"
+                    exit 1
+                fi
+                DESKTOP_VERSION="$2"
+                shift 2
+                ;;
+            --makefs)
+                MAKEFS_MODE=1
+                if [[ -z "$2" || "$2" == --* ]]; then
+                    log e "--makefs requires an argument (win98 or win31)"
+                    exit 1
+                fi
+                MAKEFS_VERSION="$2"
+                shift 2
+                ;;
+            --install)
+                INSTALL_MODE=1
+                if [[ -z "$2" || "$2" == --* ]]; then
+                    log e "--install requires an argument (Windows version or game name)"
+                    echo "Usage: $0 --install <windows_version|game_name> [--cd-rom /path/to/cd.iso ...]"
+                    exit 1
+                fi
+                INSTALL_NAME="$2"
+                shift 2
+                ;;
+            --cd-rom)
+                if [[ -z "$2" ]]; then
+                    log e "--cd-rom requires an argument (path to ISO)"
+                    exit 1
+                fi
+                CDROMS+=("$2")
+                shift 2
+                ;;
+            --cdrom)
+                if [[ -z "$2" ]]; then
+                    log e "--cdrom requires an argument (path to ISO)"
+                    exit 1
+                fi
+                CDROMS+=("$2")
+                shift 2
+                ;;
+            --help|-h)
+                show_help
+                exit 0
+                ;;
+            --*)
+                log e "Unknown option: $1"
+                exit 1
+                ;;
+            *)
+                if [[ -z "$WIN_VERSION" ]]; then
+                    WIN_VERSION="$1"
+                elif [[ -z "$GAME_PATH" ]]; then
+                    GAME_PATH="$1"
+                fi
+                shift
+                ;;
+        esac
+    done
+}
+
+validate_arguments() {
+    # Set default Windows version
+    WIN_VERSION="${WIN_VERSION:-win98}"
+    
+    # Validate required arguments
+    if [[ $INSTALL_MODE -eq 0 && $DESKTOP_MODE -eq 0 && -z "$GAME_PATH" ]]; then
+        log e "No game path provided, --install, or --desktop specified!"
+        log i "Usage:"
+        log i "  $0 win98 GameName              (launch game)"
+        log i "  $0 --install GameName          (install game)"
+        log i "  $0 --desktop win98             (desktop mode)"
+        log i "Use '$0 --help' for more information."
         exit 1
     fi
-    # create install dir under roms_path/windows9x/<game name>
-    INSTALL_DIR="$roms_path/windows9x/$INSTALL_NAME"
-    mkdir -p "$INSTALL_DIR"
-    GAME_DIR="$INSTALL_DIR"
-    # In install mode we don't create a launcher BAT — we expect the user to run installer inside Windows
-    ORIG_GAME_EXE=""
-else
-    GAME_DIR="$(dirname "$GAME_PATH")"
-    ORIG_GAME_EXE="$(basename "$GAME_PATH")"
-fi
+}
 
-# Best-effort conversion to DOS 8.3 filename (uppercase, allowed chars, truncated to 8.3)
-# Note: this is a best-effort translation — if the real shortname on the filesystem
-# differs (e.g. Windows adds a ~1 suffix), this script does not query filesystem
-# shortnames. This keeps the launcher within DOS filename limits for legacy apps.
-GAME_NAME="${ORIG_GAME_EXE%.*}"
-GAME_EXT="${ORIG_GAME_EXE##*.}"
-if [[ "${GAME_NAME}" == "${ORIG_GAME_EXE}" ]]; then
-    # no extension found
-    GAME_EXT=""
-fi
+show_help() {
+    cat <<'HELP'
+winplay.sh - Windows 98/3.1 game launcher with VHD layering for DOSBox-X
 
-# sanitize: uppercase, allow only A-Z0-9, replace other chars with _
-GAME_NAME_CLEAN=$(echo "${GAME_NAME}" | tr '[:lower:]' '[:upper:]' | sed 's/[^A-Z0-9]/_/g')
-GAME_EXT_CLEAN=$(echo "${GAME_EXT}" | tr '[:lower:]' '[:upper:]' | sed 's/[^A-Z0-9]//g')
+USAGE:
+  winplay.sh --makefs win98                                    (Create Windows 98 VHD)
+  winplay.sh --makefs win31                                    (Create Windows 3.1 VHD)
+  winplay.sh --desktop win98                                   (Launch Windows 98 desktop)
+  winplay.sh --desktop win31                                   (Launch Windows 3.1 desktop)
+  winplay.sh --install win98 --cd-rom /path/to/WIN98SE.iso    (Install Windows 98)
+  winplay.sh --install GameName --cd-rom /path/to/game.iso    (Install game)
+  winplay.sh win98 GameName                                    (Launch game)
+  winplay.sh --help                                            (Show this help)
 
-# truncate to 8.3
-GAME_NAME_TRUNC=${GAME_NAME_CLEAN:0:8}
-GAME_EXT_TRUNC=${GAME_EXT_CLEAN:0:3}
+CREATE FILESYSTEM IMAGES:
+  --makefs win98          Create 4GB FAT32 sparse VHD for Windows 98 at $bios_path/win98.vhd
+  --makefs win31          Create 512MB FAT16 sparse VHD for Windows 3.1 at $bios_path/win31.vhd
 
-if [[ -n "$GAME_EXT_TRUNC" ]]; then
-    GAME_EXE="${GAME_NAME_TRUNC}.${GAME_EXT_TRUNC}"
-else
-    GAME_EXE="${GAME_NAME_TRUNC}"
-fi
-LAUNCHER_DIR="$(dirname "$LAUNCHER_BAT")"
+DESKTOP MODE (WARNING):
+  --desktop win98         Launch Windows 98 base OS desktop (NO GAME)
+  --desktop win31         Launch Windows 3.1 base OS desktop (NO GAME)
+  
+      ALL CHANGES MADE IN DESKTOP MODE ARE PERMANENT AND AFFECT THE BASE IMAGE!
+      Any modifications, installations, or configurations will persist across all games.
+      Use only for system setup or troubleshooting.
+      NOT recommended for normal use - use --install for games instead.
 
-log i "Launching game: \"$GAME_EXE\" from directory: \"$GAME_DIR\""
-log d "Using temporary config: $TMP_CONF"
-log d "Launcher BAT: $LAUNCHER_BAT"
-log d "D drive will mount game directory: $GAME_DIR"
-log d "Sanitized game path: $GAME_EXE"
+PARAMETERS:
+  --makefs <win98|win31>   Create pre-formatted VHD images
+  --desktop <win98|win31>  Launch OS desktop (changes are permanent!)
+  --install <name>         Install Windows version or game
+  --cd-rom <path>          Mount ISO/CD-ROM image (multiple allowed)
+  --cdrom <path>           Alias for --cd-rom
+  --help, -h               Show this help
 
-# Create launcher BAT on host → mounted as D:
-if [[ $INSTALL_MODE -eq 0 ]]; then
-    mkdir -p "$LAUNCHER_DIR"
-    # Write BAT file with Windows CRLF line endings
-    {
-        echo -e "E:\r"
-        echo -e "START /wait $GAME_EXE\r"
-        echo -e "RUNDLL32.EXE USER.EXE,ExitWindows\r"
-    } > "$LAUNCHER_BAT"
-else
-    log i "Install mode active — not creating launcher BAT."
-fi
+EXAMPLES:
+  ./winplay.sh --makefs win98
+  ./winplay.sh --install win98 --cd-rom ~/images/WIN98SE.iso
+  ./winplay.sh --install "Doom" --cd-rom ~/images/doom-cd.iso
+  ./winplay.sh win98 Doom
+  ./winplay.sh --desktop win98
 
-# C: - the Windows 98 image
-# D: - the game direcotry mounted as CD-ROM (useful for games that check for CD)
-# E: - the game directory
-# F: - the launcher directory containing the run_game.bat
+HELP
+}
 
-cat <<EOF >> "$TMP_CONF"
+# ============================================================================
+# ENVIRONMENT VARIABLE PROCESSING (for framework integration)
+# ============================================================================
 
-[autoexec]
-IMGMOUNT C "$bios_path/$WIN_VERSION.img" -t hdd
+extract_args_from_environment() {
+    # If no CLI arguments provided, check for framework-provided environment variables
+    if [[ $# -eq 0 ]]; then
+        local env_args=()
+        
+        # Check for action environment variables
+        if [[ -n "${DOSBOX_ACTION:-}" ]]; then
+            env_args+=("--${DOSBOX_ACTION}")
+            [[ -n "${DOSBOX_ACTION_VALUE:-}" ]] && env_args+=("${DOSBOX_ACTION_VALUE}")
+        fi
+        
+        # Check for CD-ROM environment variables
+        if [[ -n "${DOSBOX_CDROM:-}" ]]; then
+            env_args+=("--cdrom" "${DOSBOX_CDROM}")
+        fi
+        
+        if [[ ${#env_args[@]} -gt 0 ]]; then
+            log d "Extracted arguments from environment: ${env_args[@]}"
+            printf '%s\n' "${env_args[@]}"
+            return 0
+        fi
+    fi
+    
+    # Return CLI arguments as-is
+    printf '%s\n' "$@"
+    return 0
+}
 
+
+# ============================================================================
+# MODE HANDLERS: --makefs
+# ============================================================================
+
+mkfs_win98() {
+    local target_path="${1:-$bios_path/win98.vhd}"
+    local size_mb=4096
+    
+    mkdir -p "$(dirname "$target_path")"
+    
+    if [[ -f "$target_path" ]]; then
+        log w "VHD already exists: $target_path (skipping)"
+        return 0
+    fi
+    
+    log i "Creating Windows 98 VHD: $target_path (${size_mb}MB, FAT32)"
+    
+    # Create sparse file
+    if ! truncate -s $((size_mb * 1024 * 1024)) "$target_path" 2>/dev/null; then
+        > "$target_path"
+        dd if=/dev/zero of="$target_path" bs=1 count=0 seek=$((size_mb * 1024 * 1024)) 2>/dev/null || {
+            log e "Failed to create sparse file: $target_path"
+            return 1
+        }
+    fi
+    
+    if ! "$component_path/bin/mkfs.fat" --mbr=y -F 32 "$target_path" > /dev/null 2>&1; then
+        log e "mkfs.fat failed to format $target_path"
+        return 1
+    fi
+    
+    local disk_blocks=$(stat -c%b "$target_path" 2>/dev/null || echo 0)
+    local disk_usage_kb=$((disk_blocks * 512 / 1024))
+    local size_str=$([[ $disk_usage_kb -lt 1024 ]] && echo "${disk_usage_kb}KB" || echo "$((disk_usage_kb / 1024))MB")
+    
+    log i "✓ Windows 98 VHD created (sparse: ~${size_str} on disk)"
+    return 0
+}
+
+mkfs_win31() {
+    local target_path="${1:-$bios_path/win31.vhd}"
+    local size_mb=512
+    
+    mkdir -p "$(dirname "$target_path")"
+    
+    if [[ -f "$target_path" ]]; then
+        log w "VHD already exists: $target_path (skipping)"
+        return 0
+    fi
+    
+    log i "Creating Windows 3.1 VHD: $target_path (${size_mb}MB, FAT16)"
+    
+    if ! truncate -s $((size_mb * 1024 * 1024)) "$target_path" 2>/dev/null; then
+        > "$target_path"
+        dd if=/dev/zero of="$target_path" bs=1 count=0 seek=$((size_mb * 1024 * 1024)) 2>/dev/null || {
+            log e "Failed to create sparse file: $target_path"
+            return 1
+        }
+    fi
+    
+    if ! "$component_path/bin/mkfs.fat" --mbr=y -F 16 "$target_path" > /dev/null 2>&1; then
+        log e "mkfs.fat failed to format $target_path"
+        return 1
+    fi
+    
+    local disk_blocks=$(stat -c%b "$target_path" 2>/dev/null || echo 0)
+    local disk_usage_kb=$((disk_blocks * 512 / 1024))
+    local size_str=$([[ $disk_usage_kb -lt 1024 ]] && echo "${disk_usage_kb}KB" || echo "$((disk_usage_kb / 1024))MB")
+    
+    log i "✓ Windows 3.1 VHD created (sparse: ~${size_str} on disk)"
+    return 0
+}
+
+handle_makefs_mode() {
+    case "$MAKEFS_VERSION" in
+        win98)
+            mkfs_win98 "$bios_path/win98.vhd"
+            exit $?
+            ;;
+        win31)
+            mkfs_win31 "$bios_path/win31.vhd"
+            exit $?
+            ;;
+        *)
+            log e "Unknown version for --makefs: $MAKEFS_VERSION (must be win98 or win31)"
+            exit 1
+            ;;
+    esac
+}
+
+# ============================================================================
+# VHD MANAGEMENT
+# ============================================================================
+
+verify_os_config() {
+    local config_file="$OS_CONFIG_DIR/$WIN_VERSION.conf"
+    if [[ ! -f "$config_file" ]]; then
+        log e "Windows version '$WIN_VERSION' not recognized (missing config: $config_file)"
+        log i "Supported versions are (from: $OS_CONFIG_DIR):"
+        if [[ -d "$OS_CONFIG_DIR" ]]; then
+            for cfg in "$OS_CONFIG_DIR"/*.conf; do
+                echo " - $(basename "$cfg" .conf)"
+            done
+        else
+            echo " (no os_configs directory found at $OS_CONFIG_DIR)"
+        fi
+        exit 1
+    fi
+}
+
+copy_base_vhd_from_template() {
+    local os_version="$1"
+    local target_path="$2"
+    
+    if [[ ! -f "$target_path" ]]; then
+        log i "Windows $os_version VHD not found at: $target_path"
+        log i "Creating VHD automatically..."
+        
+        case "$os_version" in
+            win98)
+                mkfs_win98 "$target_path" || exit 1
+                ;;
+            win31)
+                mkfs_win31 "$target_path" || exit 1
+                ;;
+            *)
+                log e "Unknown Windows version: $os_version"
+                exit 1
+                ;;
+        esac
+    else
+        log i "VHD base already exists: $target_path"
+    fi
+}
+
+create_game_layer_vhd() {
+    local game_name="$1"
+    local game_dir="$roms_path/windows9x/$game_name"
+    local game_layer="$game_dir/game-layer.vhd"
+    
+    mkdir -p "$game_dir"
+    
+    if [[ ! -f "$game_layer" ]]; then
+        log i "Creating game layer VHD: $game_layer"
+        if ! "$component_path/bin/qemu-img/qemu-img" create -f vpc -b "$VHD_BASE_PATH" "$game_layer" -o subformat=fixed 2>/dev/null; then
+            log e "Failed to create game layer VHD at: $game_layer"
+            exit 1
+        fi
+    fi
+    
+    echo "$game_layer"
+}
+
+create_savedata_vhd() {
+    local game_name="$1"
+    local savedata="$VHD_SAVEDATA_DIR/$game_name.sav.vhd"
+    
+    mkdir -p "$VHD_SAVEDATA_DIR"
+    
+    if [[ ! -f "$savedata" ]]; then
+        log i "Creating savedata VHD: $savedata"
+        if ! "$component_path/bin/qemu-img/qemu-img" create -f vpc "$savedata" 512M -o subformat=fixed 2>/dev/null; then
+            log e "Failed to create savedata VHD at: $savedata"
+            exit 1
+        fi
+    fi
+    
+    echo "$savedata"
+}
+
+# ============================================================================
+# AUTOEXEC GENERATION
+# ============================================================================
+
+generate_autoexec_install_os() {
+    local conf_file="$1"
+    
+    log i "Windows OS Installation Mode"
+    log i "VHD is pre-formatted and ready for Setup"
+    
+    if [[ ${#CDROMS[@]} -eq 0 ]]; then
+        log e "Installation requires a CD-ROM image!"
+        log e "Usage: $0 --install $WIN_VERSION --cd-rom /path/to/setup.iso"
+        exit 1
+    fi
+    
+    local imgmount_cmd="IMGMOUNT D"
+    for iso_path in "${CDROMS[@]}"; do
+        imgmount_cmd="$imgmount_cmd \"$iso_path\""
+    done
+    imgmount_cmd="$imgmount_cmd -t cdrom"
+    
+    cat <<EOF >> "$conf_file"
+REM Mount the pre-formatted VHD as C:
+IMGMOUNT C "$VHD_BASE_PATH" -t hdd -geometry 512 63 255 -size 512,63,255,65
+REM Mount CD-ROM
+$imgmount_cmd
+REM Boot from C: and run Setup from CD
+ECHO C: drive mounted successfully
+ECHO D: drive contains Setup
+D:
+SETUP.EXE
+EXIT
 EOF
+    log i "Setup: VHD and CD-ROM mounted, ready for installation"
+}
 
-if [[ $INSTALL_MODE -eq 1 ]]; then
-    # In install mode, just clean up old launcher; placeholder cleanup will be done by host after DOSBox-X exits
-    cat <<EOF >> "$TMP_CONF"
-# If an old launcher is present, remove it so it doesn't auto-run
+generate_autoexec_install_game() {
+    local conf_file="$1"
+    local game_layer="$2"
+    
+    log i "Mounting base OS and game layer VHD for installation"
+    
+    cat <<EOF >> "$conf_file"
+IMGMOUNT C "$VHD_BASE_PATH" -b "$game_layer" -t hdd -geometry 512 63 255 -size 512,63,255,65
 DEL "C:\\WINDOWS\\STARTM~1\\PROGRAMS\\STARTUP\\run_game.bat"
+BOOT C:
 EOF
-else
-    # Temporary mounting launcher dir as A:, just to copy the BAT to startup
-    cat <<EOF >> "$TMP_CONF"
-MOUNT A "$LAUNCHER_DIR"
-REM remove any existing files from Startup so we don't leave stale launchers
+    
+    log i "Mounted base OS + game layer as C: (layered VHD)"
+}
+
+generate_autoexec_launch() {
+    local conf_file="$1"
+    local game_layer="$2"
+    local savedata="$3"
+    local launcher_dir="$4"
+    
+    log i "Mounting all VHD layers for game launch"
+    
+    cat <<EOF >> "$conf_file"
+IMGMOUNT C "$VHD_BASE_PATH" -b "$game_layer" -b "$savedata" -t hdd -geometry 512 63 255 -size 512,63,255,65
+MOUNT A "$launcher_dir"
 DEL "C:\\WINDOWS\\STARTM~1\\PROGRAMS\\STARTUP\\*"
 COPY A:\\run_game.bat "C:\\WINDOWS\\STARTM~1\\PROGRAMS\\STARTUP\\run_game.bat"
 MOUNT -u A
-EOF
-fi
-
-# Mounting the game directory as D: (Hard Disk)
-# In install mode we create temporary sparse placeholder files (DELETE_ME_BEFORE_INSTALL_*.img)
-# inside the installation directory so that when DOSBox-X mounts the directory,
-# it sees large files and reports the available space as much larger.
-if [[ $INSTALL_MODE -eq 1 ]]; then
-    # create placeholder sparse files under INSTALL_DIR so when mounted, Windows sees more space
-    IMG_PREFIX="$INSTALL_DIR/DELETE_ME_BEFORE_INSTALL"
-    CHUNK_MB=512   # per-image chunk
-    MAX_TOTAL_MB=4096
-    total_mb=0
-    created_images=()
-
-    while [[ $total_mb -lt $MAX_TOTAL_MB ]]; do
-        idx=$(( total_mb / CHUNK_MB + 1 ))
-        size_mb=$CHUNK_MB
-        img_file="${IMG_PREFIX}_${idx}.img"
-
-        # quick available space check (KB) — stop if host doesn't have at least 1MB free
-        avail_kb=$(df --output=avail -k "$INSTALL_DIR" 2>/dev/null | tail -n1 || echo 0)
-        if [[ -z "$avail_kb" || $avail_kb -lt 1024 ]]; then
-            log d "Not enough disk space available, stopping placeholder creation at ${total_mb}MB"
-            break
-        fi
-
-        # try to create sparse image; if that fails stop
-        if ! truncate -s "${size_mb}M" "$img_file" 2>/dev/null; then
-            log d "Failed to create sparse file, stopping at ${total_mb}MB"
-            break
-        fi
-
-        # verify image exists
-        if [[ -f "$img_file" ]]; then
-            created_images+=("$img_file")
-            total_mb=$(( total_mb + size_mb ))
-            log d "Created placeholder file $idx: ${size_mb}MB"
-        else
-            break
-        fi
-    done
-
-    # Mount the directory containing the placeholder files
-    cat <<EOF >> "$TMP_CONF"
-MOUNT D "$GAME_DIR" -freesize 4096
-EOF
-    
-    if [[ ${#created_images[@]} -gt 0 ]]; then
-        log i "Created ${#created_images[@]} placeholder files (total ${total_mb}MB) in $GAME_DIR"
-    else
-        log w "No placeholder files created, mounting directory as-is"
-    fi
-else
-    cat <<EOF >> "$TMP_CONF"
-MOUNT D "$GAME_DIR" -freesize 4096
-EOF
-fi
-
-# Mount any provided CD-ROMs from E onward
-if [[ ${#CDROMS[@]} -gt 0 ]]; then
-    # ASCII 'E' == 69
-    for i in "${!CDROMS[@]}"; do
-        iso_path="${CDROMS[$i]}"
-        drive_letter=$(printf "\\$(printf '%03o' $((69 + i)) )")
-        cat <<EOF >> "$TMP_CONF"
-IMGMOUNT $drive_letter "$iso_path" -t iso
-EOF
-        log d "Added CD-ROM mount: $drive_letter -> $iso_path"
-    done
-fi
-
-# Booting Windows
-cat <<EOF >> "$TMP_CONF"
 BOOT C:
 EOF
+    
+    log i "Mounted OS base + game layer + savedata as C: (layered VHD)"
+}
 
-if [[ $INSTALL_MODE -eq 1 ]]; then
-    log i "Launching $WIN_VERSION (install mode) — created/using: $GAME_DIR"
-else
-    log i "Launching $WIN_VERSION and autostarting game..."
-    # Sanity check: ensure the launcher exists and is readable before launching.
-    if [[ ! -f "$LAUNCHER_BAT" ]]; then
-        log e "launcher not found at '$LAUNCHER_BAT' — aborting"
-        exit 2
+generate_autoexec_desktop() {
+    local conf_file="$1"
+    local vhd_base_path="$2"
+    
+    log i "Mounting base OS for desktop mode"
+    
+    cat <<EOF >> "$conf_file"
+IMGMOUNT C "$vhd_base_path" -t hdd -geometry 512 63 255 -size 512,63,255,65
+BOOT C:
+EOF
+    
+    log i "Mounted base OS as C: (desktop mode)"
+}
+
+mount_cdroms() {
+    local conf_file="$1"
+    
+    if [[ ${#CDROMS[@]} -eq 0 ]]; then
+        return
     fi
-fi
+    
+    local imgmount_cmd="IMGMOUNT D"
+    for iso_path in "${CDROMS[@]}"; do
+        imgmount_cmd="$imgmount_cmd \"$iso_path\""
+    done
+    imgmount_cmd="$imgmount_cmd -t cdrom"
+    
+    cat <<EOF >> "$conf_file"
+REM Mount CD-ROMs
+$imgmount_cmd
+EOF
+    
+    log i "Added CD-ROM mount: D: (${#CDROMS[@]} image(s))"
+}
 
-if [[ $INSTALL_MODE -eq 0 ]]; then
-    log d "Launcher BAT content:"
+# ============================================================================
+# CONFIG GENERATION
+# ============================================================================
+
+create_launcher_bat() {
+    local launcher_dir="$1"
+    local launcher_bat="$launcher_dir/run_game.bat"
+    
+    mkdir -p "$launcher_dir"
+    
+    local game_filename=$(basename "$GAME_PATH")
+    local game_filename_dos=$(echo "$game_filename" | tr '[:lower:]' '[:upper:]')
+    
+    {
+        echo -e "REM Launcher for game\r"
+        echo -e "@ECHO OFF\r"
+        echo -e "CLS\r"
+        echo -e "D:\r"
+        echo -e "DIR\r"
+        echo -e "REM Starting game...\r"
+        echo -e "START /WAIT $game_filename_dos\r"
+        echo -e "REM Game finished\r"
+        echo -e "RUNDLL32.EXE USER.EXE,ExitWindows\r"
+    } > "$launcher_bat"
+    
+    log d "Created launcher BAT at: $launcher_bat"
+}
+
+prepare_config() {
+    rm -f "$TMP_CONF"
+    cp "$dosbox_x_config" "$TMP_CONF"
+    sed -i '/^\[autoexec\]/q' "$TMP_CONF"
+    
+    # Enable turbo mode for install
+    if [[ $INSTALL_MODE -eq 1 ]]; then
+        log i "Enabling TURBO mode for faster installation..."
+        set_setting_value "$TMP_CONF" "turbo" "on" "dosbox-x" "cpu"
+    fi
+    
+    cat <<EOF >> "$TMP_CONF"
+
+[autoexec]
+EOF
+}
+
+generate_autoexec() {
+    if [[ $DESKTOP_MODE -eq 1 ]]; then
+        generate_autoexec_desktop "$TMP_CONF" "$VHD_BASE_PATH"
+    elif [[ $INSTALL_MODE -eq 1 ]]; then
+        if [[ $IS_OS_INSTALL -eq 1 ]]; then
+            generate_autoexec_install_os "$TMP_CONF"
+        else
+            generate_autoexec_install_game "$TMP_CONF" "$VHD_GAME_LAYER"
+            mount_cdroms "$TMP_CONF"
+        fi
+    else
+        create_launcher_bat "$LAUNCHER_DIR"
+        generate_autoexec_launch "$TMP_CONF" "$VHD_GAME_LAYER" "$VHD_SAVEDATA" "$LAUNCHER_DIR"
+        mount_cdroms "$TMP_CONF"
+    fi
+}
+
+log_config() {
+    log d "Launching DOSBox-X with the following config:"
     log d "-----------------------------------"
-    cat "$LAUNCHER_BAT"
+    awk '/^\[autoexec\]/ {print_flag=1; print; next} /^\[/ {print_flag=0} print_flag' "$TMP_CONF"
     log d "-----------------------------------"
-fi
-log d "Launching DOSBox-X with the following config:"
-log d "-----------------------------------"
-awk '/^\[autoexec\]/ {print_flag=1; print; next} /^\[/ {print_flag=0} print_flag' "$TMP_CONF"
-log d "-----------------------------------"
+    echo ""
+}
 
-echo ""
-echo ""
-echo ""
+# ============================================================================
+# MODE HANDLERS: --install
+# ============================================================================
 
-# Launch DOSBox-X using the generated config
-"$component_path/bin/dosbox-x" -conf "$TMP_CONF"
+handle_install_os() {
+    local os_config_dir="$1"
+    local vhd_base_path="$2"
+    
+    IS_OS_INSTALL=1
+    WIN_VERSION="$INSTALL_NAME"
+    log i "OS install mode: Installing $WIN_VERSION"
+    copy_base_vhd_from_template "$WIN_VERSION" "$vhd_base_path"
+    
+    # Update VHD_BASE_PATH after WIN_VERSION change
+    VHD_BASE_PATH="$bios_path/$WIN_VERSION.vhd"
+}
+
+handle_install_game() {
+    local vhd_base_path="$1"
+    
+    GAME_NAME_FOR_DIR="$INSTALL_NAME"
+    log i "Game install mode: Installing $GAME_NAME_FOR_DIR"
+    
+    if [[ ! -f "$vhd_base_path" ]]; then
+        log e "Windows VHD not found at: $vhd_base_path"
+        log e "Please install the Windows image first using: $0 --install $WIN_VERSION"
+        exit 1
+    fi
+    
+    VHD_GAME_LAYER=$(create_game_layer_vhd "$GAME_NAME_FOR_DIR")
+    VHD_SAVEDATA=$(create_savedata_vhd "$GAME_NAME_FOR_DIR")
+}
+
+handle_install_mode() {
+    local os_config_dir="$1"
+    local vhd_base_path="$2"
+    
+    if [[ -f "$os_config_dir/$INSTALL_NAME.conf" ]]; then
+        handle_install_os "$os_config_dir" "$vhd_base_path"
+    else
+        handle_install_game "$vhd_base_path"
+    fi
+}
+
+# ============================================================================
+# MODE HANDLERS: --desktop
+# ============================================================================
+
+handle_desktop_mode() {
+    log w "⚠️  DESKTOP MODE - ALL CHANGES ARE PERMANENT TO BASE IMAGE!"
+    log w "⚠️  Any modifications will persist across all games."
+    log w "⚠️  Use only for troubleshooting/configuration."
+    
+    WIN_VERSION="$DESKTOP_VERSION"
+    log i "Desktop mode: Launching base OS"
+}
+
+# ============================================================================
+# MODE HANDLERS: normal launch
+# ============================================================================
+
+handle_launch_mode() {
+    local game_path="$1"
+    local roms_path_base="$2"
+    
+    GAME_NAME_FOR_DIR="$game_path"
+    log i "Launch mode: Launching $GAME_NAME_FOR_DIR"
+    
+    local game_layer_path="$roms_path_base/windows9x/$GAME_NAME_FOR_DIR/game-layer.vhd"
+    if [[ ! -f "$game_layer_path" ]]; then
+        log e "Game layer VHD not found at: $game_layer_path"
+        log e "Please install the game first using: $0 --install $GAME_NAME_FOR_DIR"
+        exit 1
+    fi
+    
+    VHD_GAME_LAYER="$game_layer_path"
+    VHD_SAVEDATA=$(create_savedata_vhd "$GAME_NAME_FOR_DIR")
+}
+
+# ============================================================================
+# MAIN SCRIPT
+# ============================================================================
+
+main() {
+    init_globals
+    
+    # Extract arguments from either CLI or environment
+    local final_args
+    mapfile -t final_args < <(extract_args_from_environment "$@")
+    
+    # Route based on first argument
+    case "${final_args[0]}" in
+        --help|-h)
+            show_help
+            exit 0
+            ;;
+        --desktop)
+            DESKTOP_MODE=1
+            DESKTOP_VERSION="${final_args[1]}"
+            if [[ -z "$DESKTOP_VERSION" || "$DESKTOP_VERSION" == --* ]]; then
+                log e "--desktop requires an argument (win98 or win31)"
+                exit 1
+            fi
+            WIN_VERSION="$DESKTOP_VERSION"
+            ;;
+        --makefs)
+            MAKEFS_MODE=1
+            MAKEFS_VERSION="${final_args[1]}"
+            if [[ -z "$MAKEFS_VERSION" || "$MAKEFS_VERSION" == --* ]]; then
+                log e "--makefs requires an argument (win98 or win31)"
+                exit 1
+            fi
+            handle_makefs_mode
+            ;;
+        --install)
+            INSTALL_MODE=1
+            INSTALL_NAME="${final_args[1]}"
+            if [[ -z "$INSTALL_NAME" || "$INSTALL_NAME" == --* ]]; then
+                log e "--install requires an argument"
+                exit 1
+            fi
+            # Check if it's a Windows version or a game
+            if [[ -f "$OS_CONFIG_DIR/$INSTALL_NAME.conf" ]]; then
+                WIN_VERSION="$INSTALL_NAME"
+            else
+                WIN_VERSION="${WIN_VERSION:-win98}"
+            fi
+            # Parse remaining args for --cdrom/--cd-rom
+            for ((i=2; i<${#final_args[@]}; i++)); do
+                if [[ "${final_args[$i]}" == "--cd-rom" || "${final_args[$i]}" == "--cdrom" ]]; then
+                    ((i++))
+                    CDROMS+=("${final_args[$i]}")
+                fi
+            done
+            ;;
+        *)
+            # Game launch mode
+            if [[ -z "${final_args[0]}" ]]; then
+                log e "No game path provided, --install, or --desktop specified!"
+                log i "Usage:"
+                log i "  $0 win98 GameName              (launch game)"
+                log i "  $0 --install GameName          (install game)"
+                log i "  $0 --desktop win98             (desktop mode)"
+                log i "Use '$0 --help' for more information."
+                exit 1
+            fi
+            WIN_VERSION="${final_args[0]}"
+            GAME_PATH="${final_args[1]}"
+            ;;
+    esac
+    
+    # Common setup
+    setup_paths
+    setup_launcher_dir
+    verify_os_config
+    
+    # Execute mode
+    case 1 in
+        $DESKTOP_MODE)
+            handle_desktop_mode
+            ;;
+        $MAKEFS_MODE)
+            exit 0
+            ;;
+        $INSTALL_MODE)
+            handle_install_mode "$OS_CONFIG_DIR" "$VHD_BASE_PATH"
+            ;;
+        *)
+            handle_launch_mode "$GAME_PATH" "$roms_path"
+            ;;
+    esac
+    
+    # Prepare and launch
+    prepare_config
+    generate_autoexec
+    log_config
+    
+    # Final messages
+    if [[ $INSTALL_MODE -eq 1 && $IS_OS_INSTALL -eq 1 ]]; then
+        log i "Windows installation environment ready!"
+        log i "Once complete, install games with: $0 --install <game_name>"
+    fi
+    
+    echo ""
+    "$component_path/bin/dosbox-x" -conf "$TMP_CONF"
+    
+    # After DOSBox exits
+    if [[ $INSTALL_MODE -eq 1 && $IS_OS_INSTALL -eq 1 ]]; then
+        log i "Setup: please start \"$0 --desktop $WIN_VERSION\" argument to finalize installation."
+    fi
+}
+
+main "$@"
