@@ -8,7 +8,7 @@ vita3k_component_dir="$rd_components/vita3k"
 
 update_vita3k_firmware() {
   if [[ $(check_network_connectivity) == "true" ]]; then
-    configurator_generic_dialog "RetroDECK Configurator - Install: PS Vita firmware" "This tool will download firmware required by Vita3K to emulate PS Vita games.\n\nThe process will take several minutes, and the emulator will launch to finish the installation.\nPlease close Vita3K manually once the installation is complete."
+    configurator_generic_dialog "RetroDECK Configurator - Install: Vita3K firmware" "This tool will download the <span foreground="$purple"><b>firmware required by Vita3K</b></span>.\n\n ⏳ The process may take several minutes ⏳"
     (
       download_file "$vita3k_vu_firmware_url" "/tmp/PSVUPDAT.PUP" "Vita3K Firmware file: PSVUPDAT.PUP"
       download_file "$vita3k_2u_firmware_url" "/tmp/PSP2UPDAT.PUP" "Vita3K Firmware file: PSP2UPDAT.PUP"
@@ -22,7 +22,7 @@ update_vita3k_firmware() {
     --no-cancel \
     --auto-close
   else
-    configurator_generic_dialog "RetroDECK Configurator - Install: Vita3K Firmware" "You do not appear to currently have Internet access, which is required by this tool. Please try again when network access has been restored."
+    configurator_generic_dialog "RetroDECK Configurator - 🛑 Warning: Install Vita3K Firmware - No Internet 🛑" "🛑 Warning 🛑 You do not appear to currently have Internet access, which is required by this tool.\n\nPlease try again when network access has been restored."
   fi
   configurator_tools_dialog
 }
