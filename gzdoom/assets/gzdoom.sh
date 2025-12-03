@@ -120,10 +120,10 @@ for a in "$@"; do
         +*|-) continue ;;
     esac
     if [[ "$a" == *"'"* ]]; then
-        log e "Invalid filename: \"$a\" contains a single quote.\nPlease rename the file in a proper way before continuing."
+        log e "DOOM Invalid filename: \"$a\" contains a single quote.\nPlease rename the file in a proper way before continuing."
         rd_zenity --error --no-wrap \
         --window-icon="/app/share/icons/hicolor/scalable/apps/net.retrodeck.retrodeck.svg" \
-        --title "RetroDECK" \
+        --title "RetroDECK: DOOM - 🛑 Warning: Invalid Filename 🛑" \
             --text="<span foreground="$purple"><b>Invalid filename\n\n</b></span>\"$1\" contains a single quote.\nPlease rename the file properly before continuing."
     exit 1
     fi
@@ -188,7 +188,7 @@ elif [[ -n "$doom_file" || "${target_arg##*.}" == "doom" ]]; then
         log e "doom file not found in \"$doom_file\""
         rd_zenity --error --no-wrap \
 	    --window-icon="/app/share/icons/hicolor/scalable/apps/net.retrodeck.retrodeck.svg" \
-	    --title "RetroDECK" \
+	    --title "RetroDECK: DOOM - 🛑 Warning: File not found 🛑" \
 	    --text="File \"$doom_file\" not found. Quitting."
         exit 1
     fi
@@ -215,7 +215,7 @@ elif [[ -n "$doom_file" || "${target_arg##*.}" == "doom" ]]; then
             log e "Invalid filename: A file contained in \"$doom_file\" contains a single quote"
             rd_zenity --error --no-wrap \
                 --window-icon="/app/share/icons/hicolor/scalable/apps/net.retrodeck.retrodeck.svg" \
-                --title "RetroDECK" \
+                --title "RetroDECK: DOOM - 🛑 Warning: .doom file error 🛑" \
                 --text="<span foreground="$purple"><b>Invalid filename\n\n</b></span>\"$1\" contains a single quote.\nPlease rename the file properly in the .doom file before continuing."
             exit 1
         fi
@@ -228,7 +228,7 @@ elif [[ -n "$doom_file" || "${target_arg##*.}" == "doom" ]]; then
             log "[ERROR] File not found in \"$line\""
             rd_zenity --error --no-wrap \
                 --window-icon="/app/share/icons/hicolor/scalable/apps/net.retrodeck.retrodeck.svg" \
-                --title "RetroDECK" \
+                --title "RetroDECK: DOOM - 🛑 Warning: Not found 🛑" \
                 --text="File \"$line\" not found. Quitting."
             exit 1
         fi

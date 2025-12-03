@@ -22,7 +22,7 @@ update_rpcs3_firmware() {
     rd_zenity --progress --no-cancel --pulsate --auto-close \
     --icon-name=net.retrodeck.retrodeck \
     --window-icon="/app/share/icons/hicolor/scalable/apps/net.retrodeck.retrodeck.svg" \
-    --title="Downloading RPCS3 Firmware" \
+    --title="Downloading: RPCS3 Firmware" \
     --width=400 --height=200 \
     --text="Downloading and installing RPCS3 Firmware, please be patient.\n\n<span foreground="$purple" size="larger"><b>NOTICE - If the process is taking too long:</b></span>\n\nSome windows may be running in the background that require your attention, such as popups from emulators or the upgrade itself that needs user input to continue.\n\n<span foreground="$purple"><b>Please finish these processes and close the windows to continue.</b></span>>"
   else

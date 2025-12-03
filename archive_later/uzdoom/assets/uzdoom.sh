@@ -124,7 +124,7 @@ else
             rd_zenity --error --no-wrap \
                 --window-icon="/app/share/icons/hicolor/scalable/apps/net.retrodeck.retrodeck.svg" \
                 --title "RetroDECK" \
-                --text="File \"$line\" not found. Quitting."
+                --text="File <span foreground="$purple"><b>\"$line\"</b></span> not found. Quitting."
             exit 1
         fi
 

@@ -18,7 +18,7 @@ update_vita3k_firmware() {
     rd_zenity --progress --pulsate \
     --icon-name=net.retrodeck.retrodeck \
     --window-icon="/app/share/icons/hicolor/scalable/apps/net.retrodeck.retrodeck.svg" \
-    --title="Downloading Vita3K Firmware" \
+    --title="Downloading: Vita3K Firmware" \
     --no-cancel \
     --auto-close
   else
