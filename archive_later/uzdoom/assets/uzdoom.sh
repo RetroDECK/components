@@ -66,7 +66,7 @@ if [[ "$1" == *"'"* ]]; then
     rd_zenity --error --no-wrap \
         --window-icon="/app/share/icons/hicolor/scalable/apps/net.retrodeck.retrodeck.svg" \
         --title "RetroDECK" \
-        --text="<span foreground="$purple"><b>Invalid filename\n\n</b></span>\"$1\" contains a single quote.\nPlease rename the file properly before continuing."
+        --text="<span foreground='$purple'><b>Invalid filename\n\n</b></span>\"$1\" contains a single quote.\nPlease rename the file properly before continuing."
     exit 1
 fi
 
@@ -111,7 +111,7 @@ else
             rd_zenity --error --no-wrap \
                 --window-icon="/app/share/icons/hicolor/scalable/apps/net.retrodeck.retrodeck.svg" \
                 --title "RetroDECK" \
-                --text="<span foreground="$purple"><b>Invalid filename\n\n</b></span>\"$1\" contains a single quote.\nPlease rename the file properly before continuing in the .doom file."
+                --text="<span foreground='$purple'><b>Invalid filename\n\n</b></span>\"$1\" contains a single quote.\nPlease rename the file properly before continuing in the .doom file."
             exit 1
         fi
 
@@ -124,7 +124,7 @@ else
             rd_zenity --error --no-wrap \
                 --window-icon="/app/share/icons/hicolor/scalable/apps/net.retrodeck.retrodeck.svg" \
                 --title "RetroDECK" \
-                --text="File <span foreground="$purple"><b>\"$line\"</b></span> not found. Quitting."
+                --text="File <span foreground='$purple'><b>\"$line\"</b></span> not found. Quitting."
             exit 1
         fi
 

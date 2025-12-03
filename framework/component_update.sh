@@ -203,7 +203,7 @@ if [[ $(check_version_is_older_than "$version_being_updated" "0.9.0b") == "true"
   while true; do
     choices=$(rd_zenity --list --checklist --title="RetroDECK - Reset Options" \
     --window-icon="/app/share/icons/hicolor/scalable/apps/net.retrodeck.retrodeck.svg" \
-    --text="The following components have been updated and need to be reset or fixed to ensure compatibility with the new version. Please select the components you want to reset.\n\n\<span foreground="$purple"><b>Not resetting them may cause serious issues with your installation.</b></span>\n\You can also reset them manually later via: Configurator -> Troubleshooting -> Reset Component.\n\n\<span foreground="$purple"><b>Note: Your games, saves, collections, and scraped data will not be affected.</b></span>" \
+    --text="The following components have been updated and need to be reset or fixed to ensure compatibility with the new version. Please select the components you want to reset.\n\n\<span foreground='$purple'><b>Not resetting them may cause serious issues with your installation.</b></span>\n\You can also reset them manually later via: Configurator -> Troubleshooting -> Reset Component.\n\n\<span foreground='$purple'><b>Note: Your games, saves, collections, and scraped data will not be affected.</b></span>" \
     --column="Select" --column="Component" --column="Description" --width="1100" --height="700" \
     TRUE "ES-DE" "Needs to be reset to accommodate new paths, theme settings, and general configurations" \
     TRUE "Duckstation" "Configuration reset to RetroDECK defaults to ensure compatibility" \
@@ -229,7 +229,7 @@ if [[ $(check_version_is_older_than "$version_being_updated" "0.9.0b") == "true"
     fi
 
     if [[ $? -eq 0 && -n "$choices" ]]; then
-      if ! rd_zenity --question --title="RetroDECK - Reset Confirmation" --text="Are you sure you want to proceed with only the selected options?\n\n\<span foreground="$purple"><b>Warning: This might cause issues in RetroDECK.</b></span>"; then
+      if ! rd_zenity --question --title="RetroDECK - Reset Confirmation" --text="Are you sure you want to proceed with only the selected options?\n\n\<span foreground='$purple'><b>Warning: This might cause issues in RetroDECK.</b></span>"; then
         log i "User is not sure, showing the checklist window again."
         continue
       else
@@ -239,7 +239,7 @@ if [[ $(check_version_is_older_than "$version_being_updated" "0.9.0b") == "true"
     fi
 
     if [[ $? == 0 ]]; then
-    if ! rd_zenity --question --title="RetroDECK - Reset Confirmation" --text="Are you sure you want to proceed with only the selected options?\n\n\<span foreground="$purple"><b>Warning: This might cause issues in RetroDECK.</b></span>"; then
+    if ! rd_zenity --question --title="RetroDECK - Reset Confirmation" --text="Are you sure you want to proceed with only the selected options?\n\n\<span foreground='$purple'><b>Warning: This might cause issues in RetroDECK.</b></span>"; then
       log i "User is not sure, showing the checklist window again."
       continue
     else
@@ -326,7 +326,7 @@ if [[ $(check_version_is_older_than "$version_being_updated" "0.9.1b") == "true"
   while true; do
     choices=$(rd_zenity --list --checklist --title="RetroDECK - Reset Options" \
     --window-icon="/app/share/icons/hicolor/scalable/apps/net.retrodeck.retrodeck.svg" \
-    --text="The following components have been updated and need to be reset or fixed to ensure compatibility with the new version. Please select the components you want to reset.\n\n\<span foreground="$purple"><b>Not resetting them may cause serious issues with your installation.</b></span>\n\You can also reset them manually later via: Configurator -> Troubleshooting -> Reset Component.\n\n\<span foreground="$purple"><b>Note: Your games, saves, collections, and scraped data will not be affected.</b></span>" \
+    --text="The following components have been updated and need to be reset or fixed to ensure compatibility with the new version. Please select the components you want to reset.\n\n\<span foreground='$purple'><b>Not resetting them may cause serious issues with your installation.</b></span>\n\You can also reset them manually later via: Configurator -> Troubleshooting -> Reset Component.\n\n\<span foreground='$purple'><b>Note: Your games, saves, collections, and scraped data will not be affected.</b></span>" \
     --column="Select" --column="Component" --column="Description" --width="1100" --height="700" \
     TRUE "Dolphin - GameCube Controller" "The GameCube controller configuration needs to be reset to fix a trigger issue" \
     TRUE "RetroArch" "Needs to be reset to fix the borders issue on some sytems such as psx" \
@@ -350,7 +350,7 @@ if [[ $(check_version_is_older_than "$version_being_updated" "0.9.1b") == "true"
     fi
 
     if [[ $? -eq 0 && -n "$choices" ]]; then
-      if ! rd_zenity --question --title="Confirmation" --text="Are you sure you want to proceed with only the selected options?\n\n\<span foreground="$purple"><b>Warning: This might cause issues in RetroDECK.</b></span>"; then
+      if ! rd_zenity --question --title="Confirmation" --text="Are you sure you want to proceed with only the selected options?\n\n\<span foreground='$purple'><b>Warning: This might cause issues in RetroDECK.</b></span>"; then
         log i "User is not sure, showing the checklist window again."
         continue
       else
@@ -360,7 +360,7 @@ if [[ $(check_version_is_older_than "$version_being_updated" "0.9.1b") == "true"
     fi
 
     if [[ $? == 0 ]]; then
-    if ! rd_zenity --question --title="Confirmation" --text="Are you sure you want to proceed with only the selected options?\n\n\<span foreground="$purple"><b>Warning: This might cause issues in RetroDECK.</b></span>"; then
+    if ! rd_zenity --question --title="Confirmation" --text="Are you sure you want to proceed with only the selected options?\n\n\<span foreground='$purple'><b>Warning: This might cause issues in RetroDECK.</b></span>"; then
       log i "User is not sure, showing the checklist window again."
       continue
     else
@@ -443,7 +443,7 @@ if [[ $(check_version_is_older_than "$version_being_updated" "0.9.2b") == "true"
     fi
 
     if [[ $? -eq 0 && -n "$choices" ]]; then
-      if ! rd_zenity --question --title="Confirmation" --text="Are you sure you want to proceed with only the selected options?\n\n\<span foreground="$purple"><b>Warning: This might cause issues in RetroDECK.</b></span>"; then
+      if ! rd_zenity --question --title="Confirmation" --text="Are you sure you want to proceed with only the selected options?\n\n\<span foreground='$purple'><b>Warning: This might cause issues in RetroDECK.</b></span>"; then
         log i "User is not sure, showing the checklist window again."
         continue
       else
@@ -453,7 +453,7 @@ if [[ $(check_version_is_older_than "$version_being_updated" "0.9.2b") == "true"
     fi
 
     if [[ $? == 0 ]]; then
-      if ! rd_zenity --question --title="Confirmation" --text="Are you sure you want to proceed with only the selected options?\n\n\<span foreground="$purple"><b>Warning: This might cause issues in RetroDECK.</b></span>"; then
+      if ! rd_zenity --question --title="Confirmation" --text="Are you sure you want to proceed with only the selected options?\n\n\<span foreground='$purple'><b>Warning: This might cause issues in RetroDECK.</b></span>"; then
         log i "User is not sure, showing the checklist window again."
         continue
       else
@@ -485,7 +485,7 @@ if [[ $(check_version_is_older_than "$version_being_updated" "0.9.2b") == "true"
     rd_zenity --progress \
     --title="RetroDECK Configurator - Add RetroDECK to Steam" \
     --window-icon="/app/share/icons/hicolor/scalable/apps/net.retrodeck.retrodeck.svg" \
-    --text="Adding RetroDECK to Steam...\n\n<span foreground="$purple">Please wait until the operation is finished and you need to restart Steam afterwards.</span>" \
+    --text="Adding RetroDECK to Steam...\n\n<span foreground='$purple'>Please wait until the operation is finished and you need to restart Steam afterwards.</span>" \
     --pulsate --width=500 --height=150 --auto-close --no-cancel
   fi
 
