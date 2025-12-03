@@ -229,7 +229,7 @@ if [[ $(check_version_is_older_than "$version_being_updated" "0.9.0b") == "true"
     fi
 
     if [[ $? -eq 0 && -n "$choices" ]]; then
-      if ! rd_zenity --question --title="Confirmation" --text="Are you sure you want to proceed with only the selected options?\n\n\<span foreground='$purple'><b>Warning: This might cause issues in RetroDECK.</b></span>"; then
+      if ! rd_zenity --question --title="RetroDECK - Reset Confirmation" --text="Are you sure you want to proceed with only the selected options?\n\n\<span foreground='$purple'><b>Warning: This might cause issues in RetroDECK.</b></span>"; then
         log i "User is not sure, showing the checklist window again."
         continue
       else
@@ -239,7 +239,7 @@ if [[ $(check_version_is_older_than "$version_being_updated" "0.9.0b") == "true"
     fi
 
     if [[ $? == 0 ]]; then
-    if ! rd_zenity --question --title="Confirmation" --text="Are you sure you want to proceed with only the selected options?\n\n\<span foreground='$purple'><b>Warning: This might cause issues in RetroDECK.</b></span>"; then
+    if ! rd_zenity --question --title="RetroDECK - Reset Confirmation" --text="Are you sure you want to proceed with only the selected options?\n\n\<span foreground='$purple'><b>Warning: This might cause issues in RetroDECK.</b></span>"; then
       log i "User is not sure, showing the checklist window again."
       continue
     else

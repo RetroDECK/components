@@ -94,7 +94,7 @@ configurator_purge_steam_sync_dialog() {
     rd_zenity --progress \
     --title="Removing all RetroDECK Steam Sync information" \
     --window-icon="/app/share/icons/hicolor/scalable/apps/net.retrodeck.retrodeck.svg" \
-    --text="<span foreground='$purple'><b>\t\t\t\tRemoving all RetroDECK-related data from Steam</b></span>\n\nPlease wait..." \
+    --text="<span foreground='$purple'><b>Removing all RetroDECK-related data from Steam</b></span>\n\n\The more data you have synchronized, the longer this process may take.\n\n\⏳Please wait...⏳" \
     --pulsate --width=500 --height=150 --auto-close --no-cancel
   fi
   configurator_steam_tools_dialog
