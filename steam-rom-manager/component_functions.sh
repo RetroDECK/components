@@ -16,7 +16,7 @@ configurator_add_retrodeck_to_steam_dialog() {
   rd_zenity --progress \
   --title="RetroDECK Configurator - 🚂 Add RetroDECK to Steam 🚂" \
   --window-icon="/app/share/icons/hicolor/scalable/apps/net.retrodeck.retrodeck.svg" \
-  --text="Adding RetroDECK to Steam...\n\n<span foreground='$purple'>Please wait until the operation is finished and you need to restart Steam afterwards.</span>" \
+  --text="Adding RetroDECK to Steam...\n\n<span foreground="$purple">Please wait until the operation is finished and you need to restart Steam afterwards.</span>" \
   --pulsate --width=500 --height=150 --auto-close --no-cancel
   configurator_steam_tools_dialog
 }
@@ -26,7 +26,7 @@ configurator_automatic_steam_sync_dialog() {
     zenity --question \
     --no-wrap --window-icon="/app/share/icons/hicolor/scalable/apps/net.retrodeck.retrodeck.svg" \
     --title "RetroDECK Configurator - RetroDECK 🚂 Steam Syncronization 🚂" \
-    --text="Steam syncronization is <span foreground='$purple'><b>Currently: Enabled</b></span>.\nDisabling Steam Sync will remove all of your favorites from Steam at the next Steam startup.\n\nDo you want to continue?\n\nTo re-add them, just reenable Steam Sync then and restart Steam."
+    --text="Steam syncronization is <span foreground="$purple"><b>Currently: Enabled</b></span>.\nDisabling Steam Sync will remove all of your favorites from Steam at the next Steam startup.\n\nDo you want to continue?\n\nTo re-add them, just reenable Steam Sync then and restart Steam."
 
     if [ $? == 0 ] # User clicked "Yes"
     then
@@ -36,7 +36,7 @@ configurator_automatic_steam_sync_dialog() {
     zenity --question \
     --no-wrap --window-icon="/app/share/icons/hicolor/scalable/apps/net.retrodeck.retrodeck.svg" \
     --title "RetroDECK Configurator - RetroDECK 🚂 Steam Syncronization 🚂" \
-    --text="Steam synchronization is <span foreground='$purple'><b>Currently: Disabled</b></span>. Do you want to enable it?\n\n\All favorited games will be immediately synced with Steam ROM Manager.\n\While this setting is enabled, RetroDECK will check your ES-DE favorites when you quit the program and update Steam using Steam ROM Manager if there are any changes.\n\n\Remember to restart Steam to see the changes.\n\n\<span foreground='$purple'><b>NOTE: Games with unusual characters in their names like &apos;/\\{}&lt;&gt;* might break the sync. Check the RetroDECK Wiki for more information.</b></span>"
+    --text="Steam synchronization is <span foreground="$purple"><b>Currently: Disabled</b></span>. Do you want to enable it?\n\n\All favorited games will be immediately synced with Steam ROM Manager.\n\While this setting is enabled, RetroDECK will check your ES-DE favorites when you quit the program and update Steam using Steam ROM Manager if there are any changes.\n\n\Remember to restart Steam to see the changes.\n\n\<span foreground="$purple"><b>NOTE: Games with unusual characters in their names like &apos;/\\{}&lt;&gt;* might break the sync. Check the RetroDECK Wiki for more information.</b></span>"
 
     if [ $? == 0 ]
     then
@@ -53,7 +53,7 @@ configurator_enable_steam_sync() {
   zenity --icon-name=net.retrodeck.retrodeck --info --no-wrap --ok-label="OK 🟢"  \
       --window-icon="/app/share/icons/hicolor/scalable/apps/net.retrodeck.retrodeck.svg" \
       --title "RetroDECK Configurator - 🚂 Steam Syncronization 🚂" \
-      --text="Steam synchronization is <span foreground='$purple'><b>Enabled</b></span>."
+      --text="Steam synchronization is <span foreground="$purple"><b>Enabled</b></span>."
 }
 
 configurator_disable_steam_sync() {
@@ -75,7 +75,7 @@ configurator_disable_steam_sync() {
   zenity --icon-name=net.retrodeck.retrodeck --info --no-wrap --ok-label="OK 🟢"  \
       --window-icon="/app/share/icons/hicolor/scalable/apps/net.retrodeck.retrodeck.svg" \
       --title "RetroDECK Configurator - 🚂 Steam Syncronization: Manual 🚂" \
-      --text="Steam synchronization is <span foreground='$purple'><b>Disabled</b></span> and shortcuts have been removed.\nPlease restart Steam to apply the changes."
+      --text="Steam synchronization is <span foreground="$purple"><b>Disabled</b></span> and shortcuts have been removed.\nPlease restart Steam to apply the changes."
 }
 
 configurator_manual_steam_sync_dialog() {
@@ -94,7 +94,7 @@ configurator_purge_steam_sync_dialog() {
     rd_zenity --progress \
     --title="RetroDECK Configurator - 🛑 Steam Syncronization: Removing all RetroDECK data 🛑" \
     --window-icon="/app/share/icons/hicolor/scalable/apps/net.retrodeck.retrodeck.svg" \
-    --text="<span foreground='$purple'><b>Removing all RetroDECK-related data from Steam</b></span>\n\n\The more data you have synchronized, the longer this process may take.\n\n\⏳Please wait...⏳" \
+    --text="<span foreground="$purple"><b>Removing all RetroDECK-related data from Steam</b></span>\n\n\The more data you have synchronized, the longer this process may take.\n\n\⏳Please wait...⏳" \
     --pulsate --width=500 --height=150 --auto-close --no-cancel
   fi
   configurator_steam_tools_dialog

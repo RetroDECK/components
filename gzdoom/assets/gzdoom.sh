@@ -124,7 +124,7 @@ for a in "$@"; do
         rd_zenity --error --no-wrap \
         --window-icon="/app/share/icons/hicolor/scalable/apps/net.retrodeck.retrodeck.svg" \
         --title "RetroDECK" \
-            --text="<span foreground='$purple'><b>Invalid filename\n\n</b></span>\"$1\" contains a single quote.\nPlease rename the file properly before continuing."
+            --text="<span foreground="$purple"><b>Invalid filename\n\n</b></span>\"$1\" contains a single quote.\nPlease rename the file properly before continuing."
     exit 1
     fi
 done
@@ -216,7 +216,7 @@ elif [[ -n "$doom_file" || "${target_arg##*.}" == "doom" ]]; then
             rd_zenity --error --no-wrap \
                 --window-icon="/app/share/icons/hicolor/scalable/apps/net.retrodeck.retrodeck.svg" \
                 --title "RetroDECK" \
-                --text="<span foreground='$purple'><b>Invalid filename\n\n</b></span>\"$1\" contains a single quote.\nPlease rename the file properly in the .doom file before continuing."
+                --text="<span foreground="$purple"><b>Invalid filename\n\n</b></span>\"$1\" contains a single quote.\nPlease rename the file properly in the .doom file before continuing."
             exit 1
         fi
 
