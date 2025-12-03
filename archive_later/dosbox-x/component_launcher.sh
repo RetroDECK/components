@@ -14,5 +14,5 @@ log d "Library path is: $LD_LIBRARY_PATH"
 log d "QT plugin path is: $QT_PLUGIN_PATH"
 log d "QT QPA PLATFORM plugin path is: $QT_QPA_PLATFORM_PLUGIN_PATH"
 
-# Launch
-exec "$component_path/bin/winplay.sh" "$@"
+# Launch - we use source instead of exec to keep the environment variables and use set_setting_value function
+source "$component_path/bin/winplay.sh" "$@"
