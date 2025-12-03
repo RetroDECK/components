@@ -14,7 +14,7 @@ configurator_add_retrodeck_to_steam_dialog() {
   rd_srm add >> "$srm_log" 2>&1
   ) |
   rd_zenity --progress \
-  --title="RetroDECK Configurator: Add RetroDECK to Steam" \
+  --title="RetroDECK Configurator - Add RetroDECK to Steam" \
   --window-icon="/app/share/icons/hicolor/scalable/apps/net.retrodeck.retrodeck.svg" \
   --text="Adding RetroDECK to Steam...\n\n<span foreground='$purple'>Please wait until the operation is finished and you need to restart Steam afterwards.</span>" \
   --pulsate --width=500 --height=150 --auto-close --no-cancel
@@ -92,7 +92,7 @@ configurator_purge_steam_sync_dialog() {
     rm -f "$retrodeck_favorites_file"
     ) |
     rd_zenity --progress \
-    --title="Removing all RetroDECK Steam Sync information" \
+    --title="RetroDECK Configurator - Steam Sync: Removing all RetroDECK data" \
     --window-icon="/app/share/icons/hicolor/scalable/apps/net.retrodeck.retrodeck.svg" \
     --text="<span foreground='$purple'><b>Removing all RetroDECK-related data from Steam</b></span>\n\n\The more data you have synchronized, the longer this process may take.\n\n\⏳Please wait...⏳" \
     --pulsate --width=500 --height=150 --auto-close --no-cancel

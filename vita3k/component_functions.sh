@@ -18,11 +18,11 @@ update_vita3k_firmware() {
     rd_zenity --progress --pulsate \
     --icon-name=net.retrodeck.retrodeck \
     --window-icon="/app/share/icons/hicolor/scalable/apps/net.retrodeck.retrodeck.svg" \
-    --title="Downloading PS Vita Firmware" \
+    --title="Downloading Vita3K Firmware" \
     --no-cancel \
     --auto-close
   else
-    configurator_generic_dialog "RetroDECK Configurator - Install: PS Vita Firmware" "You do not appear to currently have Internet access, which is required by this tool. Please try again when network access has been restored."
+    configurator_generic_dialog "RetroDECK Configurator - Install: Vita3K Firmware" "You do not appear to currently have Internet access, which is required by this tool. Please try again when network access has been restored."
   fi
   configurator_tools_dialog
 }
