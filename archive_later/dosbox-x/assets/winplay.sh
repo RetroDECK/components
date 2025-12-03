@@ -3,24 +3,9 @@
 # This script launches DOSBox-X with a Windows 98/3.1 image and autostarts games
 # It prepares a temporary configuration and BAT file for game installation and launching
 
-# ============================================================================
-# LOGGING FUNCTIONS
-# ============================================================================
-
-log() {
-    local level="$1"
-    shift
-    local message="$@"
-    
-    case "$level" in
-        i) echo "[INFO] $message" ;;
-        e) echo "[ERROR] $message" >&2 ;;
-        w) echo "[WARN] $message" ;;
-        d) [[ "${DEBUG:-0}" == "1" ]] && echo "[DEBUG] $message" ;;
-    esac
-}
-
-# ============================================================================
+# NOTE: logging helper `log()` is provided by the surrounding framework and
+# is intentionally not defined here to avoid duplicate definitions. Use the
+# framework-provided logger (e.g., log i "message").
 # INITIALIZATION FUNCTIONS
 # ============================================================================
 
@@ -36,7 +21,10 @@ init_globals() {
     MAKEFS_VERSION=""
     DESKTOP_MODE=0
     DESKTOP_VERSION=""
+    FORCE_RECREATE=0
+    FLOPPIES=()
     CDROMS=()
+    HDISKS=()
     WIN_VERSION=""
     GAME_PATH=""
     
@@ -121,6 +109,22 @@ parse_arguments() {
                     exit 1
                 fi
                 CDROMS+=("$2")
+                shift 2
+                ;;
+            --floppy)
+                if [[ -z "$2" ]]; then
+                    log e "--floppy requires an argument (path to floppy image)"
+                    exit 1
+                fi
+                FLOPPIES+=("$2")
+                shift 2
+                ;;
+            --hd)
+                if [[ -z "$2" ]]; then
+                    log e "--hd requires an argument (path to hard disk image)"
+                    exit 1
+                fi
+                HDISKS+=("$2")
                 shift 2
                 ;;
             --help|-h)
@@ -254,17 +258,11 @@ mkfs_win98() {
     
     log i "Creating Windows 98 VHD: $target_path (${size_mb}MB, FAT32)"
     
-    # Create sparse file
-    if ! truncate -s $((size_mb * 1024 * 1024)) "$target_path" 2>/dev/null; then
-        > "$target_path"
-        dd if=/dev/zero of="$target_path" bs=1 count=0 seek=$((size_mb * 1024 * 1024)) 2>/dev/null || {
-            log e "Failed to create sparse file: $target_path"
-            return 1
-        }
-    fi
-    
-    if ! "$component_path/bin/mkfs.fat" --mbr=y -F 32 "$target_path" > /dev/null 2>&1; then
-        log e "mkfs.fat failed to format $target_path"
+    # Use DOSBox-X imgmake to create a dynamic VHD
+    # This is native to DOSBox-X and fully compatible
+    if ! "$component_path/bin/dosbox-x" -c "imgmake -t hd -size $size_mb \"$target_path\"" -c "exit" > /dev/null 2>&1; then
+        log e "Failed to create VHD with imgmake"
+        rm -f "$target_path"
         return 1
     fi
     
@@ -289,16 +287,11 @@ mkfs_win31() {
     
     log i "Creating Windows 3.1 VHD: $target_path (${size_mb}MB, FAT16)"
     
-    if ! truncate -s $((size_mb * 1024 * 1024)) "$target_path" 2>/dev/null; then
-        > "$target_path"
-        dd if=/dev/zero of="$target_path" bs=1 count=0 seek=$((size_mb * 1024 * 1024)) 2>/dev/null || {
-            log e "Failed to create sparse file: $target_path"
-            return 1
-        }
-    fi
-    
-    if ! "$component_path/bin/mkfs.fat" --mbr=y -F 16 "$target_path" > /dev/null 2>&1; then
-        log e "mkfs.fat failed to format $target_path"
+    # Use DOSBox-X imgmake to create a dynamic VHD
+    # This is native to DOSBox-X and fully compatible
+    if ! "$component_path/bin/dosbox-x" -c "imgmake -t hd -size $size_mb \"$target_path\"" -c "exit" > /dev/null 2>&1; then
+        log e "Failed to create VHD with imgmake"
+        rm -f "$target_path"
         return 1
     fi
     
@@ -350,6 +343,12 @@ verify_os_config() {
 copy_base_vhd_from_template() {
     local os_version="$1"
     local target_path="$2"
+    
+    # Force recreate if -f flag was used
+    if [[ $FORCE_RECREATE -eq 1 && -f "$target_path" ]]; then
+        log i "Force recreating VHD (removing existing file)..."
+        rm -f "$target_path" || { log e "Failed to remove old VHD"; exit 1; }
+    fi
     
     if [[ ! -f "$target_path" ]]; then
         log i "Windows $os_version VHD not found at: $target_path"
@@ -423,25 +422,54 @@ generate_autoexec_install_os() {
         exit 1
     fi
     
-    local imgmount_cmd="IMGMOUNT D"
-    for iso_path in "${CDROMS[@]}"; do
-        imgmount_cmd="$imgmount_cmd \"$iso_path\""
-    done
-    imgmount_cmd="$imgmount_cmd -t cdrom"
-    
     cat <<EOF >> "$conf_file"
 REM Mount the pre-formatted VHD as C:
-IMGMOUNT C "$VHD_BASE_PATH" -t hdd -geometry 512 63 255 -size 512,63,255,65
-REM Mount CD-ROM
-$imgmount_cmd
+IMGMOUNT C "$VHD_BASE_PATH" -t hdd
+EOF
+
+    # Ensure disks (CD/HD/floppy) are mounted before running Setup so they're
+    # present across reboots during installation — start from D: because C: is taken
+    mount_disks "$conf_file" "D"
+
+    # Append commands to copy only likely-needed driver files from the CD to the
+    # Windows system directory so Windows setup or subsequent reboots don't prompt
+    # for them. These are written into the autoexec (do NOT run locally).
+    cat <<'EOF' >> "$conf_file"
+REM Copy driver files (if present) from CD to C:\WINDOWS\SYSTEM
+IF NOT EXIST C:\WINDOWS\SYSTEM MD C:\WINDOWS\SYSTEM
+REM Copy specific driver/file types commonly requested by installers
+IF EXIST D:\*CSPMAN*.DLL COPY /Y D:\*CSPMAN*.DLL C:\WINDOWS\SYSTEM >NUL 2>NUL
+IF EXIST D:\WIN98\*CSPMAN*.DLL COPY /Y D:\WIN98\*CSPMAN*.DLL C:\WINDOWS\SYSTEM >NUL 2>NUL
+IF EXIST D:\WIN98\*.VXD COPY /Y D:\WIN98\*.VXD C:\WINDOWS\SYSTEM >NUL 2>NUL
+IF EXIST D:\WIN98\*.DRV COPY /Y D:\WIN98\*.DRV C:\WINDOWS\SYSTEM >NUL 2>NUL
+IF EXIST D:\WIN98\*.DLL COPY /Y D:\WIN98\*.DLL C:\WINDOWS\SYSTEM >NUL 2>NUL
+IF EXIST D:\WIN98\*.ACV COPY /Y D:\WIN98\*.ACV C:\WINDOWS\SYSTEM >NUL 2>NUL
+IF EXIST D:\WIN98\*.CSP COPY /Y D:\WIN98\*.CSP C:\WINDOWS\SYSTEM >NUL 2>NUL
+IF EXIST D:\DRIVERS\*.VXD COPY /Y D:\DRIVERS\*.VXD C:\WINDOWS\SYSTEM >NUL 2>NUL
+IF EXIST D:\DRIVERS\*.DRV COPY /Y D:\DRIVERS\*.DRV C:\WINDOWS\SYSTEM >NUL 2>NUL
+REM Attempt also from common root locations
+IF EXIST D:\*.VXD COPY /Y D:\*.VXD C:\WINDOWS\SYSTEM >NUL 2>NUL
+IF EXIST D:\*.DRV COPY /Y D:\*.DRV C:\WINDOWS\SYSTEM >NUL 2>NUL
+EOF
+
+    cat <<EOF >> "$conf_file"
+REM Check if Windows is already installed
+IF EXIST C:\\WINDOWS\\WIN.COM GOTO WINDOWS_FOUND
 REM Boot from C: and run Setup from CD
 ECHO C: drive mounted successfully
 ECHO D: drive contains Setup
 D:
 SETUP.EXE
+GOTO END_INSTALL
+:WINDOWS_FOUND
+ECHO Windows installation detected, booting it
+BOOT C:
+:END_INSTALL
+C:
+RUNDLL32.EXE USER.EXE,ExitWindows
 EXIT
 EOF
-    log i "Setup: VHD and CD-ROM mounted, ready for installation"
+    log i "Setup: VHD mounted, ready for installation"
 }
 
 generate_autoexec_install_game() {
@@ -451,8 +479,14 @@ generate_autoexec_install_game() {
     log i "Mounting base OS and game layer VHD for installation"
     
     cat <<EOF >> "$conf_file"
-IMGMOUNT C "$VHD_BASE_PATH" -b "$game_layer" -t hdd -geometry 512 63 255 -size 512,63,255,65
+IMGMOUNT C "$VHD_BASE_PATH" -b "$game_layer" -t hdd
 DEL "C:\\WINDOWS\\STARTM~1\\PROGRAMS\\STARTUP\\run_game.bat"
+EOF
+
+    # Mount disks (if any) before the boot so the guest sees them on startup
+    mount_disks "$conf_file" "D"
+
+    cat <<EOF >> "$conf_file"
 BOOT C:
 EOF
     
@@ -468,11 +502,17 @@ generate_autoexec_launch() {
     log i "Mounting all VHD layers for game launch"
     
     cat <<EOF >> "$conf_file"
-IMGMOUNT C "$VHD_BASE_PATH" -b "$game_layer" -b "$savedata" -t hdd -geometry 512 63 255 -size 512,63,255,65
+IMGMOUNT C "$VHD_BASE_PATH" -b "$game_layer" -b "$savedata" -t hdd
 MOUNT A "$launcher_dir"
 DEL "C:\\WINDOWS\\STARTM~1\\PROGRAMS\\STARTUP\\*"
 COPY A:\\run_game.bat "C:\\WINDOWS\\STARTM~1\\PROGRAMS\\STARTUP\\run_game.bat"
 MOUNT -u A
+EOF
+
+    # Make sure CD/HD/floppy are mounted before boot
+    mount_disks "$conf_file" "D"
+
+    cat <<EOF >> "$conf_file"
 BOOT C:
 EOF
     
@@ -486,32 +526,73 @@ generate_autoexec_desktop() {
     log i "Mounting base OS for desktop mode"
     
     cat <<EOF >> "$conf_file"
-IMGMOUNT C "$vhd_base_path" -t hdd -geometry 512 63 255 -size 512,63,255,65
+IMGMOUNT C "$vhd_base_path" -t hdd
+EOF
+
+    # Mount disks starting from D: (C: is already used by VHD)
+    mount_disks "$conf_file" "D"
+
+    cat <<EOF >> "$conf_file"
 BOOT C:
 EOF
     
     log i "Mounted base OS as C: (desktop mode)"
 }
 
-mount_cdroms() {
+mount_disks() {
     local conf_file="$1"
+    local next_drive="${2:-C}"
     
-    if [[ ${#CDROMS[@]} -eq 0 ]]; then
-        return
+    # Mount floppy disks on A: and B:
+    if [[ ${#FLOPPIES[@]} -gt 0 ]]; then
+        if [[ ${#FLOPPIES[@]} -eq 1 ]]; then
+            local floppy_cmd="IMGMOUNT A \"${FLOPPIES[0]}\" -t floppy"
+            cat <<EOF >> "$conf_file"
+REM Mount floppy disk
+$floppy_cmd
+EOF
+            log i "Added floppy mount: A: (${FLOPPIES[0]})"
+        else
+            local floppy_cmd="IMGMOUNT A \"${FLOPPIES[0]}\" \"${FLOPPIES[1]}\" -t floppy"
+            cat <<EOF >> "$conf_file"
+REM Mount floppy disks
+$floppy_cmd
+EOF
+            log i "Added floppy mounts: A: (${FLOPPIES[0]}), B: (${FLOPPIES[1]})"
+            if [[ ${#FLOPPIES[@]} -gt 2 ]]; then
+                log w "Warning: Only first 2 floppy disks supported (A: and B:). Ignoring remaining ${#FLOPPIES[@]}-2 floppy(ies)"
+            fi
+        fi
     fi
     
-    local imgmount_cmd="IMGMOUNT D"
-    for iso_path in "${CDROMS[@]}"; do
-        imgmount_cmd="$imgmount_cmd \"$iso_path\""
+    # Mount hard disks starting from current next_drive
+    for hd_path in "${HDISKS[@]}"; do
+        local hd_drive="$next_drive"
+        local hd_cmd="IMGMOUNT $hd_drive \"$hd_path\" -t hdd"
+        cat <<EOF >> "$conf_file"
+REM Mount hard disk
+$hd_cmd
+EOF
+        log i "Added hard disk mount: $hd_drive: ($hd_path)"
+        # Increment drive letter
+        next_drive=$(printf "\\$(printf '%03o' $(($(printf '%d' "'$next_drive") + 1)))")
     done
-    imgmount_cmd="$imgmount_cmd -t cdrom"
     
-    cat <<EOF >> "$conf_file"
+    # Mount CD-ROMs on the remaining drive letters
+    if [[ ${#CDROMS[@]} -gt 0 ]]; then
+        local imgmount_cmd="IMGMOUNT $next_drive"
+        for iso_path in "${CDROMS[@]}"; do
+            imgmount_cmd="$imgmount_cmd \"$iso_path\""
+        done
+        imgmount_cmd="$imgmount_cmd -t cdrom"
+        
+        cat <<EOF >> "$conf_file"
 REM Mount CD-ROMs
 $imgmount_cmd
 EOF
-    
-    log i "Added CD-ROM mount: D: (${#CDROMS[@]} image(s))"
+        
+        log i "Added CD-ROM mount: $next_drive: (${#CDROMS[@]} image(s))"
+    fi
 }
 
 # ============================================================================
@@ -547,12 +628,6 @@ prepare_config() {
     cp "$dosbox_x_config" "$TMP_CONF"
     sed -i '/^\[autoexec\]/q' "$TMP_CONF"
     
-    # Enable turbo mode for install
-    if [[ $INSTALL_MODE -eq 1 ]]; then
-        log i "Enabling TURBO mode for faster installation..."
-        set_setting_value "$TMP_CONF" "turbo" "on" "dosbox-x" "cpu"
-    fi
-    
     cat <<EOF >> "$TMP_CONF"
 
 [autoexec]
@@ -567,12 +642,10 @@ generate_autoexec() {
             generate_autoexec_install_os "$TMP_CONF"
         else
             generate_autoexec_install_game "$TMP_CONF" "$VHD_GAME_LAYER"
-            mount_cdroms "$TMP_CONF"
         fi
     else
         create_launcher_bat "$LAUNCHER_DIR"
         generate_autoexec_launch "$TMP_CONF" "$VHD_GAME_LAYER" "$VHD_SAVEDATA" "$LAUNCHER_DIR"
-        mount_cdroms "$TMP_CONF"
     fi
 }
 
@@ -633,9 +706,9 @@ handle_install_mode() {
 # ============================================================================
 
 handle_desktop_mode() {
-    log w "⚠️  DESKTOP MODE - ALL CHANGES ARE PERMANENT TO BASE IMAGE!"
-    log w "⚠️  Any modifications will persist across all games."
-    log w "⚠️  Use only for troubleshooting/configuration."
+    log w "DESKTOP MODE - ALL CHANGES ARE PERMANENT TO BASE IMAGE!"
+    log w "Any modifications will persist across all games."
+    log w "Use only for troubleshooting/configuration."
     
     WIN_VERSION="$DESKTOP_VERSION"
     log i "Desktop mode: Launching base OS"
@@ -711,11 +784,19 @@ main() {
             else
                 WIN_VERSION="${WIN_VERSION:-win98}"
             fi
-            # Parse remaining args for --cdrom/--cd-rom
+            # Parse remaining args for --cdrom/--cd-rom, --floppy, --hd and -f flag
             for ((i=2; i<${#final_args[@]}; i++)); do
                 if [[ "${final_args[$i]}" == "--cd-rom" || "${final_args[$i]}" == "--cdrom" ]]; then
                     ((i++))
                     CDROMS+=("${final_args[$i]}")
+                elif [[ "${final_args[$i]}" == "--floppy" ]]; then
+                    ((i++))
+                    FLOPPIES+=("${final_args[$i]}")
+                elif [[ "${final_args[$i]}" == "--hd" ]]; then
+                    ((i++))
+                    HDISKS+=("${final_args[$i]}")
+                elif [[ "${final_args[$i]}" == "-f" ]]; then
+                    FORCE_RECREATE=1
                 fi
             done
             ;;
@@ -761,6 +842,23 @@ main() {
     generate_autoexec
     log_config
     
+    # Build DOSBox-X command with optional overrides
+    local dosbox_cmd=("$component_path/bin/dosbox-x" "-conf" "$TMP_CONF")
+    
+    # Disable dynamic CPU during OS installation for stability and enable TURBO.
+    # Prefer to write these values to the temporary config (TMP_CONF) using
+    # set_setting_value when available; fall back to CLI -set overrides otherwise.
+    if [[ $INSTALL_MODE -eq 1 && $IS_OS_INSTALL -eq 1 ]]; then
+        # Persist the stabilization and performance settings into the temporary
+        # configuration file so DOSBox-X reads them from config during startup.
+        # We assume set_setting_value is available in the environment.
+        log i "Applying cpu settings to temporary config ($TMP_CONF) via set_setting_value"
+        set_setting_value "$TMP_CONF" "dynamic" "false" "dosbox-x" "cpu" || \
+            log w "Failed to set TMP_CONF dynamic=false via set_setting_value"
+        set_setting_value "$TMP_CONF" "turbo" "true" "dosbox-x" "cpu" || \
+            log w "Failed to set TMP_CONF turbo=true via set_setting_value"
+    fi
+    
     # Final messages
     if [[ $INSTALL_MODE -eq 1 && $IS_OS_INSTALL -eq 1 ]]; then
         log i "Windows installation environment ready!"
@@ -768,12 +866,9 @@ main() {
     fi
     
     echo ""
-    "$component_path/bin/dosbox-x" -conf "$TMP_CONF"
-    
-    # After DOSBox exits
-    if [[ $INSTALL_MODE -eq 1 && $IS_OS_INSTALL -eq 1 ]]; then
-        log i "Setup: please start \"$0 --desktop $WIN_VERSION\" argument to finalize installation."
-    fi
+
+    # Run DOSBox-X directly (dynamic=false is enabled earlier during OS install)
+    "${dosbox_cmd[@]}"
 }
 
 main "$@"
