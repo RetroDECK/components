@@ -50,7 +50,7 @@ configurator_enable_steam_sync() {
   set_setting_value "$rd_conf" "steam_sync" "true" retrodeck "options"
   export CONFIGURATOR_GUI="zenity"
   steam_sync
-  zenity --icon-name=net.retrodeck.retrodeck --info --no-wrap --ok-label="OK" \
+  zenity --icon-name=net.retrodeck.retrodeck --info --no-wrap --ok-label="OK 🟢"  \
       --window-icon="/app/share/icons/hicolor/scalable/apps/net.retrodeck.retrodeck.svg" \
       --title "RetroDECK Configurator - RetroDECK Steam Syncronization" \
       --text="Steam syncronization enabled."
@@ -72,7 +72,7 @@ configurator_disable_steam_sync() {
   if [[ -f "$retrodeck_favorites_file" ]]; then
     rm -f "$retrodeck_favorites_file"
   fi
-  zenity --icon-name=net.retrodeck.retrodeck --info --no-wrap --ok-label="OK" \
+  zenity --icon-name=net.retrodeck.retrodeck --info --no-wrap --ok-label="OK 🟢"  \
       --window-icon="/app/share/icons/hicolor/scalable/apps/net.retrodeck.retrodeck.svg" \
       --title "RetroDECK Configurator - RetroDECK Steam Syncronization" \
       --text="Steam syncronization disabled and shortcuts removed, restart Steam to apply the changes."

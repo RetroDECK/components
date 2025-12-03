@@ -203,7 +203,7 @@ if [[ $(check_version_is_older_than "$version_being_updated" "0.9.0b") == "true"
   while true; do
     choices=$(rd_zenity --list --checklist --title="RetroDECK Reset Options" \
     --window-icon="/app/share/icons/hicolor/scalable/apps/net.retrodeck.retrodeck.svg" \
-    --text="The following components have been updated and need to be reset or fixed to ensure compatibility with the new version: select the components you want to reset.\n\nNot resetting them may cause serious issues with your installation.\nYou can also reset them manually later via Configurator -> Troubleshooting -> Reset Component.\n\nNote: Your games, saves, game collections and scraped data will not be affected." \
+    --text="The following components have been updated and need to be reset or fixed to ensure compatibility with the new version. Please select the components you want to reset.\n\n\<span foreground='$purple'><b>Not resetting them may cause serious issues with your installation.</b></span>\n\You can also reset them manually later via: Configurator -> Troubleshooting -> Reset Component.\n\n\<span foreground='$purple'><b>Note: Your games, saves, collections, and scraped data will not be affected.</b></span>" \
     --column="Select" --column="Component" --column="Description" --width="1100" --height="700" \
     TRUE "ES-DE" "Needs to be reset to accommodate new paths, theme settings, and general configurations" \
     TRUE "Duckstation" "Configuration reset to RetroDECK defaults to ensure compatibility" \
@@ -211,15 +211,15 @@ if [[ $(check_version_is_older_than "$version_being_updated" "0.9.0b") == "true"
     TRUE "Dolphin" "Setting screen size to 'Auto' instead of 'Widescreen' to ensure better game compatibility" \
     TRUE "Primehack" "Setting screen size to 'Auto' instead of 'Widescreen' to ensure better game compatibility" \
     --separator=":" \
-    --extra-button="Execute All" \
-    --ok-label="Execute Selected Only" \
-    --cancel-label="Execute None")
+    --extra-button="Execute All 🟢" \
+    --ok-label="Execute Selected Only 🟡" \
+    --cancel-label="Execute None 🟥")
 
     log d "User selected: $choices"
     log d "User pressed: $?"
 
     # Check if "Execute All" button was pressed
-    if [[ "$choices" == "Execute All" ]]; then
+    if [[ "$choices" == "Execute All 🟢" ]]; then
       execute_all=true
       break
     else
@@ -229,7 +229,7 @@ if [[ $(check_version_is_older_than "$version_being_updated" "0.9.0b") == "true"
     fi
 
     if [[ $? -eq 0 && -n "$choices" ]]; then
-      if ! rd_zenity --question --title="Confirmation" --text="Are you sure you want to proceed with only the selected options?\n\nThis might cause issues in RetroDECK"; then
+      if ! rd_zenity --question --title="Confirmation" --text="Are you sure you want to proceed with only the selected options?\n\n\<span foreground='$purple'><b>Warning: This might cause issues in RetroDECK.</b></span>"; then
         log i "User is not sure, showing the checklist window again."
         continue
       else
@@ -239,7 +239,7 @@ if [[ $(check_version_is_older_than "$version_being_updated" "0.9.0b") == "true"
     fi
 
     if [[ $? == 0 ]]; then
-    if ! rd_zenity --question --title="Confirmation" --text="Are you sure you want to skip the reset process?\n\nThis might cause issues in RetroDECK"; then
+    if ! rd_zenity --question --title="Confirmation" --text="Are you sure you want to proceed with only the selected options?\n\n\<span foreground='$purple'><b>Warning: This might cause issues in RetroDECK.</b></span>"; then
       log i "User is not sure, showing the checklist window again."
       continue
     else
@@ -326,21 +326,21 @@ if [[ $(check_version_is_older_than "$version_being_updated" "0.9.1b") == "true"
   while true; do
     choices=$(rd_zenity --list --checklist --title="RetroDECK Reset Options" \
     --window-icon="/app/share/icons/hicolor/scalable/apps/net.retrodeck.retrodeck.svg" \
-    --text="The following components have been updated and need to be reset or fixed to ensure compatibility with the new version: select the components you want to reset.\n\nNot resetting them may cause serious issues with your installation.\nYou can also reset them manually later via Configurator -> Troubleshooting -> Reset Component.\n\nNote: Your games, saves, game collections and scraped data will not be affected." \
+    --text="The following components have been updated and need to be reset or fixed to ensure compatibility with the new version. Please select the components you want to reset.\n\n\<span foreground='$purple'><b>Not resetting them may cause serious issues with your installation.</b></span>\n\You can also reset them manually later via: Configurator -> Troubleshooting -> Reset Component.\n\n\<span foreground='$purple'><b>Note: Your games, saves, collections, and scraped data will not be affected.</b></span>" \
     --column="Select" --column="Component" --column="Description" --width="1100" --height="700" \
     TRUE "Dolphin - GameCube Controller" "The GameCube controller configuration needs to be reset to fix a trigger issue" \
     TRUE "RetroArch" "Needs to be reset to fix the borders issue on some sytems such as psx" \
     TRUE "Steam ROM Manager" "Needs to add the \"Add RetroDECk to Steam\" functionality" \
     --separator=":" \
-    --extra-button="Execute All" \
-    --ok-label="Execute Selected Only" \
-    --cancel-label="Execute None")
+    --extra-button="Execute All 🟢" \
+    --ok-label="Execute Selected Only 🟡" \
+    --cancel-label="Execute None 🟥")
 
     log d "User selected: $choices"
     log d "User pressed: $?"
 
     # Check if "Execute All" button was pressed
-    if [[ "$choices" == "Execute All" ]]; then
+    if [[ "$choices" == "Execute All 🟢" ]]; then
       execute_all=true
       break
     else
@@ -350,7 +350,7 @@ if [[ $(check_version_is_older_than "$version_being_updated" "0.9.1b") == "true"
     fi
 
     if [[ $? -eq 0 && -n "$choices" ]]; then
-      if ! rd_zenity --question --title="Confirmation" --text="Are you sure you want to proceed with only the selected options?\n\nThis might cause issues in RetroDECK"; then
+      if ! rd_zenity --question --title="Confirmation" --text="Are you sure you want to proceed with only the selected options?\n\n\<span foreground='$purple'><b>Warning: This might cause issues in RetroDECK.</b></span>"; then
         log i "User is not sure, showing the checklist window again."
         continue
       else
@@ -360,7 +360,7 @@ if [[ $(check_version_is_older_than "$version_being_updated" "0.9.1b") == "true"
     fi
 
     if [[ $? == 0 ]]; then
-    if ! rd_zenity --question --title="Confirmation" --text="Are you sure you want to skip the reset process?\n\nThis might cause issues in RetroDECK"; then
+    if ! rd_zenity --question --title="Confirmation" --text="Are you sure you want to proceed with only the selected options?\n\n\<span foreground='$purple'><b>Warning: This might cause issues in RetroDECK.</b></span>"; then
       log i "User is not sure, showing the checklist window again."
       continue
     else
@@ -425,15 +425,15 @@ if [[ $(check_version_is_older_than "$version_being_updated" "0.9.2b") == "true"
     TRUE "Add RetroDECK Shortcut to Steam" "Add the RetroDECK launcher back to Steam after refreshing Steam Sync" \
     TRUE "Regenerate ES-DE Folders" "Recreate the ES-DE system folders to ensure proper structure and functionality" \
     --separator=":" \
-    --extra-button="Execute All" \
-    --ok-label="Execute Selected Only" \
-    --cancel-label="Execute None")
+    --extra-button="Execute All 🟢" \
+    --ok-label="Execute Selected Only 🟡" \
+    --cancel-label="Execute None 🟥")
 
     log d "User selected: $choices"
     log d "User pressed: $?"
 
     # Check if "Execute All" button was pressed
-    if [[ "$choices" == "Execute All" ]]; then
+    if [[ "$choices" == "Execute All 🟢" ]]; then
       execute_all=true
       break
     else
@@ -443,7 +443,7 @@ if [[ $(check_version_is_older_than "$version_being_updated" "0.9.2b") == "true"
     fi
 
     if [[ $? -eq 0 && -n "$choices" ]]; then
-      if ! rd_zenity --question --title="Confirmation" --text="Are you sure you want to proceed with only the selected options?\n\nThis might cause issues in RetroDECK"; then
+      if ! rd_zenity --question --title="Confirmation" --text="Are you sure you want to proceed with only the selected options?\n\n\<span foreground='$purple'><b>Warning: This might cause issues in RetroDECK.</b></span>"; then
         log i "User is not sure, showing the checklist window again."
         continue
       else
@@ -453,7 +453,7 @@ if [[ $(check_version_is_older_than "$version_being_updated" "0.9.2b") == "true"
     fi
 
     if [[ $? == 0 ]]; then
-      if ! rd_zenity --question --title="Confirmation" --text="Are you sure you want to skip the Steam Sync reset process?\n\nThis might cause issues in RetroDECK"; then
+      if ! rd_zenity --question --title="Confirmation" --text="Are you sure you want to proceed with only the selected options?\n\n\<span foreground='$purple'><b>Warning: This might cause issues in RetroDECK.</b></span>"; then
         log i "User is not sure, showing the checklist window again."
         continue
       else
