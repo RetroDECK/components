@@ -88,9 +88,11 @@
       "universal_dyn_input": [
         {
           "enabled_states": [ "true" ],
+          "setting_name": "Universal Dynamic Input",
           "action": "install",
           "source": "/app/retrodeck/components/shared-data/DynamicInputTextures/",
-          "destination": "$XDG_DATA_HOME/dolphin-emu/Load/DynamicInputTextures/"
+          "destination": "$XDG_DATA_HOME/dolphin-emu/Load/DynamicInputTextures/",
+          "cleanup_type": "purge"
         }
       ]
     }
