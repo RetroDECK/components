@@ -3,7 +3,7 @@
     "name": "Lindbergh",
     "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/lindbergh/lindbergh-guide/",
     "url_source": "https://github.com/lindbergh-loader/lindbergh-loader",
-    "description": "Lindbergh-Loader is an open-source SEGA Lindbergh arcade emulator.",
+    "description": "Lindbergh-Loader is an open-source SEGA Lindbergh (lindbergh) arcade emulator.",
     "component_type": "Emulator",
     "system_friendly_name": "SEGA Lindbergh",
     "system": "lindbergh"
