@@ -87,7 +87,7 @@
           }
         },
         "rebuild_esde_systems": {
-          "name": "ROMS Folder: Rebuild Systems 🏗️",
+          "name": "ROMs Folder: Rebuild Systems 🏗️",
           "description": "<span foreground='$purple'><b>Recreate</b></span> any missing system folders in the roms directory.",
           "command": {
             "zenity": "configurator_rebuild_esde_systems"
