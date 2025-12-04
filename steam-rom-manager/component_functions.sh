@@ -112,7 +112,7 @@ rd_srm() {
 get_steam_user() {
   # This function populates environment variables with the actual logged Steam user data
   local current_steam_sync_setting="$(get_setting_value "$rd_conf" "steam_sync" "retrodeck" "options")"
-  if [[ "$current_steam_sync_setting" != "false" ]]; then # Only grab Steam information if Steam Sync is enabled
+  if [[ "$current_steam_sync_setting" != "false" || "$1" == "finit" ]]; then # Only grab Steam information if Steam Sync is enabled
     if [[ "$current_steam_sync_setting" == "native" ]]; then
       steam_userdata_current="$steam_userdata_native"
     elif [[ "$current_steam_sync_setting" == "flatpak" ]]; then
@@ -120,15 +120,18 @@ get_steam_user() {
     else
       if [[ -d "$steam_userdata_native" && -d "$steam_userdata_flatpak" ]]; then
         log w "Multiple Steam installs detected, need to choose which one to use for Steam Sync."
-        choice=$(rd_zenity --title "RetroDECK - Steam Sync" --question --no-wrap --cancel-label="Native" --ok-label="Flatpak" \
+        choice=$(rd_zenity --title "RetroDECK - Steam Sync" --question --no-wrap --cancel-label="Flatpak" --ok-label="Native" --extra-button="None" \
         --window-icon="/app/share/icons/hicolor/scalable/apps/net.retrodeck.retrodeck.svg" \
         --text="RetroDECK has detected data from both Native and Flatpak versions of Steam. Which type would you like Steam Sync to be enabled for?")
         if [[ $? == "0" ]]; then
+          steam_userdata_current="$steam_userdata_native"
+          set_setting_value "$rd_conf" "steam_sync" "native" "retrodeck" "options"
+        elif [[ $? == "1" ]]; then
           steam_userdata_current="$steam_userdata_flatpak"
           set_setting_value "$rd_conf" "steam_sync" "flatpak" "retrodeck" "options"
         else
-          steam_userdata_current="$steam_userdata_native"
-          set_setting_value "$rd_conf" "steam_sync" "native" "retrodeck" "options"
+          log i "User opted to not pull any Steam Information, Steam Sync will not be enabled and controller profiles will not be installed."
+          return 1
         fi
       elif [[ -d "$steam_userdata_native" ]]; then
         steam_userdata_current="$steam_userdata_native"
@@ -137,7 +140,7 @@ get_steam_user() {
         steam_userdata_current="$steam_userdata_flatpak"
         set_setting_value "$rd_conf" "steam_sync" "flatpak" "retrodeck" "options"
       else
-        log d "Steam Sync is enabled but no Steam userdata information could be found."
+        log d "Steam Sync is enabled or this check was forced, but no Steam userdata information could be found."
         return 1
       fi
       prepare_component "reset" "steam-rom-manager"
