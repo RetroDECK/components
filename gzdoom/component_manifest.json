@@ -5,7 +5,7 @@
     "url_webpage": "https://zdoom.org/index",
     "url_source": "https://github.com/ZDoom/gzdoom",
     "component_type": "Engine",
-    "description": "GZDoom is a modern, enhanced source port engine of classic Doom games.",
+    "description": "GZDoom is a modern, enhanced source port engine of classic DOOM and DOOM engine games.",
     "system_friendly_name": "Doom",
     "system": "doom"
   }

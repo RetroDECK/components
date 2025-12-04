@@ -4,8 +4,9 @@
     "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_engine_guides/raze/raze-guide/",
     "url_webpage": "https://raze.zdoom.org/",
     "url_source": "https://github.com/ZDoom/Raze",
-    "description": "A modern engine for Duke Nukem 3D and other classic Build engine games.",
-    "system_friendly_name": "Raze",
-    "system": "raze"
+    "component_type": "Engine",
+    "description": "Raze is a modern, enhanced source port engine of Duke Nukem 3D (duke) and Build engine games.",
+    "system_friendly_name": "Raze - Build Engine",
+    "system": "duke"
   }
 }
