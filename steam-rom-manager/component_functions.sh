@@ -7,6 +7,10 @@ srm_log="$logs_path/srm_log.log"                                                
 retrodeck_added_favorites="$steamsync_folder/retrodeck_added_favorites.json"                                            # Temporary manifest of any games that were newly added to the ES-DE favorites and should be added to Steam
 retrodeck_removed_favorites="$steamsync_folder/retrodeck_removed_favorites.json"                                        # Temporary manifest of any games that were removed from the ES-DE favorites and should be removed from Steam
 
+steam_userdata_native="$HOME/.steam/steam"
+steam_userdata_flatpak="$HOME/.var/app/com.valvesoftware.Steam/.steam/steam"
+steam_userdata_current=""
+
 configurator_add_retrodeck_to_steam_dialog() {
   (
   # Add RetroDECK launcher to Steam
@@ -103,4 +107,108 @@ configurator_purge_steam_sync_dialog() {
 rd_srm() {
   log d "Starting SRM"
   /bin/bash /app/retrodeck/components/steam-rom-manager/component_launcher.sh "$@"
+}
+
+get_steam_user() {
+  # This function populates environment variables with the actual logged Steam user data
+  local current_steam_sync_setting="$(get_setting_value "$rd_conf" "steam_sync" "retrodeck" "options")"
+  if [[ "$current_steam_sync_setting" != "false" ]]; then # Only grab Steam information if Steam Sync is enabled
+    if [[ "$current_steam_sync_setting" == "native" ]]; then
+      steam_userdata_current="$steam_userdata_native"
+    elif [[ "$current_steam_sync_setting" == "flatpak" ]]; then
+      steam_userdata_current="$steam_userdata_flatpak"
+    else
+      if [[ -d "$steam_userdata_native" && -d "$steam_userdata_flatpak" ]]; then
+        log w "Multiple Steam installs detected, need to choose which one to use for Steam Sync."
+        choice=$(rd_zenity --title "RetroDECK - Steam Sync" --question --no-wrap --cancel-label="Native" --ok-label="Flatpak" \
+        --window-icon="/app/share/icons/hicolor/scalable/apps/net.retrodeck.retrodeck.svg" \
+        --text="RetroDECK has detected data from both Native and Flatpak versions of Steam. Which type would you like Steam Sync to be enabled for?")
+        if [[ $? == "0" ]]; then
+          steam_userdata_current="$steam_userdata_flatpak"
+          set_setting_value "$rd_conf" "steam_sync" "flatpak" "retrodeck" "options"
+        else
+          steam_userdata_current="$steam_userdata_native"
+          set_setting_value "$rd_conf" "steam_sync" "native" "retrodeck" "options"
+        fi
+      elif [[ -d "$steam_userdata_native" ]]; then
+        steam_userdata_current="$steam_userdata_native"
+        set_setting_value "$rd_conf" "steam_sync" "native" "retrodeck" "options"
+      elif [[ -d "$steam_userdata_flatpak" ]]; then
+        steam_userdata_current="$steam_userdata_flatpak"
+        set_setting_value "$rd_conf" "steam_sync" "flatpak" "retrodeck" "options"
+      else
+        log d "Steam Sync is enabled but no Steam userdata information could be found."
+        return 1
+      fi
+      prepare_component "reset" "steam-rom-manager"
+    fi
+
+    if [ -f "$steam_userdata_current/config/loginusers.vdf" ]; then
+      # Extract the Steam ID of the most recent user
+      export steam_id=$(awk '
+        /"users"/ {flag=1}
+        flag && /^[ \t]*"[0-9]+"/ {id=$1}
+        flag && /"MostRecent".*"1"/ {print id; exit}' "$steam_userdata_current/config/loginusers.vdf" | tr -d '"')
+
+      # Extract the Steam username (AccountName)
+      export steam_username=$(awk -v steam_id="$steam_id" '
+        $0 ~ steam_id {flag=1}
+        flag && /"AccountName"/ {gsub(/"/, "", $2); print $2; exit}' "$steam_userdata_current/config/loginusers.vdf")
+
+      # Extract the Steam pretty name (PersonaName)
+      export steam_prettyname=$(awk -v steam_id="$steam_id" '
+        $0 ~ steam_id {flag=1}
+        flag && /"PersonaName"/ {gsub(/"/, "", $2); print $2; exit}' "$steam_userdata_current/config/loginusers.vdf")
+
+      # Log success
+      log i "Steam user found:"
+      log i "SteamID: $steam_id"
+      log i "Username: $steam_username"
+      log i "Name: $steam_prettyname"
+
+      if [[ -d "$srm_userdata" ]]; then
+        populate_steamuser_srm
+      fi
+
+    else
+      # Log warning if file not found
+      log w "No Steam user found, proceeding" >&2
+    fi
+  fi
+}
+
+populate_steamuser_srm() {
+  config_file="$XDG_CONFIG_HOME/steam-rom-manager/userData/userConfigurations.json"
+  temp_file="${config_file}.tmp"
+
+  if [[ ! -f "$config_file" ]]; then
+    log e "Config file not found: $config_file"
+    return 1
+  fi
+
+  log d "Validating $config_file..."
+  if ! jq empty "$config_file" >/dev/null 2>&1; then
+    log e "File is not valid JSON: $config_file"
+    return 1
+  fi
+
+  log d "Applying jq transformation with username: $steam_username"
+  jq --arg username "$steam_username" '
+    map(
+      if .userAccounts.specifiedAccounts then
+        .userAccounts.specifiedAccounts = [$username]
+      else
+        .
+      end
+    )
+  ' "$config_file" > "$temp_file"
+
+  if [[ $? -eq 0 ]]; then
+    mv "$temp_file" "$config_file"
+    log i "Successfully updated $config_file"
+  else
+    log e "jq failed to write output"
+    rm -f "$temp_file"
+    return 1
+  fi
 }
