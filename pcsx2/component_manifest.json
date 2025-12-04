@@ -4,9 +4,10 @@
     "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/pcsx2/pcsx2-guide/",
     "url_webpage": "https://pcsx2.net/",
     "url_source": "https://github.com/PCSX2/pcsx2",
-    "description": "An open-source PlayStation 2 (PS2) emulator",
+    "description": "MelonDS is an open-source PlayStation 2 (ps2) emulator.",
+    "component_type": "Emulator",
     "system_friendly_name": "PlayStation 2",
-    "system": "pcsx2",
+    "system": "ps2",
     "compatible_presets": {
       "ask_to_exit": [
         "false",

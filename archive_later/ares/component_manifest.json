@@ -4,8 +4,9 @@
     "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/ares/ares-guide/",
     "url_webpage": "https://ares-emu.net/",
     "url_source": "https://github.com/ares-emulator/ares",
-    "description": "ares is a cross-platform, open source, multi-system emulator, focusing on accuracy and preservation",
+    "description": "ares is an open-source multi-emulator.",
     "system_friendly_name": "Multiple Retro Systems",
+    "component_type": "Multi-Emulator",
     "system": "Multiple Retro Systems"
   }
 }

@@ -1,11 +1,12 @@
 {
   "portmaster": {
-    "description": "PortMaster ease the managing of various game ports",
+    "description": "PortMaster a port manager that simplifies installing and updating ports.",
     "name": "PortMaster",
     "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_port_guides/portmaster/portmaster-guide/",
     "url_webpage": "https://portmaster.games/index.html",
     "url_source": "https://github.com/PortsMaster/PortMaster-New",
     "system_friendly_name": "PortMaster",
+    "component_type": "System",
     "system": "portmaster"
   }
 }

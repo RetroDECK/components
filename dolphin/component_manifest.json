@@ -1,7 +1,8 @@
 {
   "dolphin": {
     "name": "Dolphin",
-    "description": "Wii and GameCube Emulator",
+    "description": "Dolphin is an open-source Nintendo Wii (wii) and Gamecube (gc) emulator.",
+    "component_type": "Emulator",
     "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/dolphin-primehack/dolphin-primehack-guide/",
     "url_webpage": "https://dolphin-emu.org",
     "url_source": "https://github.com/dolphin-emu/dolphin",

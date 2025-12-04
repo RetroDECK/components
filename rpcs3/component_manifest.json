@@ -4,8 +4,9 @@
     "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/rpcs3/rpcs3-guide/",
     "url_webpage": "https://rpcs3.net/",
     "url_source": "https://github.com/RPCS3/rpcs3",
-    "description": "An open-source PlayStation 3 emulator and debugger.",
+    "description": "RPCS3 is an open-source Playstation 3 (ps3) emulator.",
     "system_friendly_name": "PlayStation 3",
+    "component_type": "Emulator",
     "system": "ps3",
     "configurator_menus": {
       "tools": {
