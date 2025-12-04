@@ -36,9 +36,11 @@
       "universal_dyn_input": [
         {
           "enabled_states": [ "true" ],
+          "setting_name": "Universal Dynamic Input",
           "action": "install",
           "source": "/app/retrodeck/components/shared-data/DynamicInputTextures/",
-          "destination": "$XDG_DATA_HOME/primehack/Load/DynamicInputTextures/"
+          "destination": "$primehack_dynamic_input_textures_path/",
+          "cleanup_type": "purge"
         }
       ]
     }
