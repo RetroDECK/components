@@ -10,7 +10,7 @@
       "steam_tools": {
         "automatic_steam_sync": {
           "name": "Automatic Steam Synchronization 🔁",
-          "description": "Enable or disable: Automatically synchronize all marked 🌟 Favorites 🌟 from ES-DE to your Steam library, whenever RetroDECK exits.",
+          "description": "Enable or disable: Automatically synchronize all marked 🌟 Favorites 🌟 from ES-DE to your Steam library.",
           "command": {
             "zenity": "configurator_automatic_steam_sync_dialog"
           }
