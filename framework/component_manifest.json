@@ -197,20 +197,20 @@
       "developer_options": {
         "browse_wiki": {
           "name": "Browse the RetroDECK Wiki 🌍",
-          "description": "Access and browse the RetroDECK wiki online.",
+          "description": "Access and browse the RetroDECK wiki online for guides, tips, and documentation.",
           "command": {
             "zenity": "configurator_browse_retrodeck_wiki_dialog"
           }
         },
         "godot_configurator": {
-          "name": "Open Godot Configurator",
-          "description": "Open Godot Configurator.",
+          "name": "Open Godot Configurator ⚙️",
+          "description": "Launch the Godot Configurator for advanced settings and modifications.",
           "command": {
             "zenity": "godot-configurator.sh"
           }
         },
         "install_retrodeck_starter_pack": {
-          "name": "Install: RetroDECK Starter Pack",
+          "name": "Install: RetroDECK Starter Pack 📦",
           "description": "Install the optional RetroDECK starter pack.",
           "command": {
             "zenity": "configurator_version_history_dialog"
@@ -224,14 +224,14 @@
           }
         },
         "multi_user_mode": {
-          "name": "Change Multi-User Mode",
-          "description": "Enable/Disable: Multi-user support.",
+          "name": "Change Multi-User Mode 👥",
+          "description": "Enable or disable: multi-user support in RetroDECK.",
           "command": {
             "zenity": "configurator_retrodeck_multiuser_dialog"
           }
         },
         "usb_import": {
-          "name": "Tool: USB Import",
+          "name": "Tool: USB Import 💾",
           "description": "Import or export RetroDECK data using a USB storage device.",
           "command": {
             "zenity": "configurator_version_history_dialog"
