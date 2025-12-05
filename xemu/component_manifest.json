@@ -1,6 +1,6 @@
 {
   "xemu": {
-    "description": "xemu is an open-source Microsoft Xbox (xbox) emulator.",
+    "description": "xemu is a Microsoft Xbox (xbox) emulator.",
     "name": "xemu",
     "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/xemu/xemu-guide/",
     "url_webpage": "https://xemu.app/",
