@@ -1,5 +1,8 @@
 #!/bin/bash
 
+source /app/libexec/dialogs.sh
+source /app/libexec/zenity_processing.sh
+
 # This script launches DOSBox-X with a Windows 98/3.1 image and autostarts games
 # It prepares a temporary configuration and BAT file for game installation and launching
 
@@ -11,8 +14,12 @@
 
 init_globals() {
     # VHD layer paths - save_path should be provided by RetroDECK framework
+    # - OS Layer: $bios_path/$WIN_VERSION.vhd
+    # - Game Layer: $roms_path/<ESDE_SYSTEM_NAME>/<game name>.vhd
+    # - Saves Layer: $save_path/<ESDE_SYSTEM_NAME>/dosbox-x/<game name>.sav.vhd
     SAVES_PATH="${save_path:-${XDG_DATA_HOME:-$HOME/.local/share}/retrodeck/saves}"
-    VHD_SAVEDATA_DIR="$SAVES_PATH/windows9x/dosbox-x"
+    VHD_SAVEDATA_DIR=""
+    ESDE_SYSTEM_NAME=""
     
     # Initialize mode flags
     INSTALL_MODE=0
@@ -22,6 +29,8 @@ init_globals() {
     DESKTOP_MODE=0
     DESKTOP_VERSION=""
     FORCE_RECREATE=0
+    PACK_MODE=0
+    PACK_GAME_NAME=""
     FLOPPIES=()
     CDROMS=()
     HDISKS=()
@@ -37,6 +46,14 @@ init_globals() {
     VHD_BASE_PATH=""
     TMP_CONF=""
     LAUNCHER_DIR=""
+    # Virtual size (MB) used for per-OS game layers and save overlays. This
+    # will be set later (usually in setup_paths) based on WIN_VERSION.
+    VHD_OS_SIZE_MB=""
+    # Driver-copy behaviour during OS installs: minimal|all|none
+    DRIVER_COPY_MODE="minimal"
+    # This script runs inside the Flatpak runtime — do not attempt to use
+    # host-only tools (qemu-img) here. All VHD creation/fallbacks must rely
+    # on the bundled DOSBox-X imgmake invocation.
 }
 
 setup_paths() {
@@ -48,6 +65,27 @@ setup_paths() {
     
     VHD_BASE_PATH="$bios_path/$WIN_VERSION.vhd"
     TMP_CONF="$XDG_CACHE_HOME/dosbox-x/winplay.conf"
+    # Choose the default virtual size for layers and per-system path name based on WIN_VERSION.
+    case "${WIN_VERSION,,}" in
+        win98*) VHD_OS_SIZE_MB=4096 ;;
+        win31*) VHD_OS_SIZE_MB=512  ;;
+        *)       VHD_OS_SIZE_MB=4096 ;;
+    esac
+
+    case "${WIN_VERSION,,}" in
+        win98*) ESDE_SYSTEM_NAME="windows9x" ;;
+        win31*) ESDE_SYSTEM_NAME="windows3x" ;;
+        *)       ESDE_SYSTEM_NAME="windows9x" ;;
+    esac
+
+    VHD_SAVEDATA_DIR="$SAVES_PATH/$ESDE_SYSTEM_NAME/dosbox-x"
+
+    # If roms_path is not supplied by the framework, default to a sane location
+    # in the user's home to avoid creating files at the root (e.g. /windows9x/...)
+    if [[ -z "${roms_path:-}" ]]; then
+        roms_path="${XDG_DATA_HOME:-$HOME/.local/share}/retrodeck/roms"
+        log w "roms_path not set — defaulting to: $roms_path"
+    fi
     mkdir -p "$XDG_CACHE_HOME/dosbox-x"
 }
 
@@ -74,6 +112,15 @@ parse_arguments() {
                     exit 1
                 fi
                 DESKTOP_VERSION="$2"
+                shift 2
+                ;;
+            --package-game)
+                PACK_MODE=1
+                if [[ -z "$2" || "$2" == --* ]]; then
+                    log e "--package-game requires a game name argument"
+                    exit 1
+                fi
+                PACK_GAME_NAME="$2"
                 shift 2
                 ;;
             --makefs)
@@ -168,18 +215,31 @@ show_help() {
 winplay.sh - Windows 98/3.1 game launcher with VHD layering for DOSBox-X
 
 USAGE:
-  winplay.sh --makefs win98                                    (Create Windows 98 VHD)
-  winplay.sh --makefs win31                                    (Create Windows 3.1 VHD)
-  winplay.sh --desktop win98                                   (Launch Windows 98 desktop)
-  winplay.sh --desktop win31                                   (Launch Windows 3.1 desktop)
-  winplay.sh --install win98 --cd-rom /path/to/WIN98SE.iso    (Install Windows 98)
-  winplay.sh --install GameName --cd-rom /path/to/game.iso    (Install game)
-  winplay.sh win98 GameName                                    (Launch game)
-  winplay.sh --help                                            (Show this help)
+  winplay.sh --makefs win98                                         (Create Windows 98 VHD)
+  winplay.sh --makefs win31                                         (Create Windows 3.1 VHD)
+  winplay.sh --desktop win98                                        (Launch Windows 98 desktop)
+  winplay.sh --desktop win31                                        (Launch Windows 3.1 desktop)
+  winplay.sh --install win98 --cd-rom /path/to/WIN98SE.iso         (Install Windows 98)
+  winplay.sh --install GameName --cd-rom /path/to/game.iso         (Install game to base OS)
+  winplay.sh --game GameName --os win98 --cd-rom /path/to/game.iso (Play/install game)
+  winplay.sh --game GameName --cd-rom /path/to/game.iso             (Play/install game with default win98)
+  winplay.sh --help                                                  (Show this help)
 
-CREATE FILESYSTEM IMAGES:
-  --makefs win98          Create 4GB FAT32 sparse VHD for Windows 98 at $bios_path/win98.vhd
-  --makefs win31          Create 512MB FAT16 sparse VHD for Windows 3.1 at $bios_path/win31.vhd
+UNIFIED GAME MODE:
+  --game <name>            Launch or install a game (creates per-game VHD layer)
+                          First run: installs the game; subsequent runs: plays the game
+  --os <version>          Windows version for the game (default: win98)
+  --cd-rom <path>         Mount ISO/CD-ROM image (multiple allowed)
+  --cdrom <path>          Alias for --cd-rom
+
+CREATE FILESYSTEM IMAGES / LAYER NAMING:
+    OS Layer:  --makefs win98          Create 4GB FAT32 sparse VHD for Windows 98 at $bios_path/win98.vhd
+                         --makefs win31          Create 512MB FAT16 sparse VHD for Windows 3.1 at $bios_path/win31.vhd
+
+    Naming conventions:
+        - OS Layer:   $bios_path/$WIN_VERSION.vhd
+        - Game Layer: $roms_path/<ESDE_SYSTEM_NAME>/<game name>.vhd
+        - Saves Layer: $save_path/<ESDE_SYSTEM_NAME>/dosbox-x/<game name>.sav.vhd
 
 DESKTOP MODE (WARNING):
   --desktop win98         Launch Windows 98 base OS desktop (NO GAME)
@@ -188,21 +248,26 @@ DESKTOP MODE (WARNING):
       ALL CHANGES MADE IN DESKTOP MODE ARE PERMANENT AND AFFECT THE BASE IMAGE!
       Any modifications, installations, or configurations will persist across all games.
       Use only for system setup or troubleshooting.
-      NOT recommended for normal use - use --install for games instead.
+      NOT recommended for normal use - use --game for games instead.
 
 PARAMETERS:
-  --makefs <win98|win31>   Create pre-formatted VHD images
-  --desktop <win98|win31>  Launch OS desktop (changes are permanent!)
-  --install <name>         Install Windows version or game
-  --cd-rom <path>          Mount ISO/CD-ROM image (multiple allowed)
-  --cdrom <path>           Alias for --cd-rom
-  --help, -h               Show this help
+  --makefs <win98|win31>         Create pre-formatted VHD images
+  --desktop <win98|win31>        Launch OS desktop (changes are permanent!)
+  --game <name>                  Launch/install game (unified mode)
+    --os <version>                 Windows version (default: win98)
+    --cd-rom <path>                Mount ISO/CD-ROM image (multiple allowed)
+    --cdrom <path>                 Alias for --cd-rom
+  --install <name>               Install Windows version or game (legacy)
+    --package-game <name>          Packaging-mode: create differencing VHD for <name> (host only)
+    --drivers <minimal|all|none>   Control driver-copy during OS install (default: minimal)
+  --help, -h                      Show this help
 
 EXAMPLES:
   ./winplay.sh --makefs win98
   ./winplay.sh --install win98 --cd-rom ~/images/WIN98SE.iso
-  ./winplay.sh --install "Doom" --cd-rom ~/images/doom-cd.iso
-  ./winplay.sh win98 Doom
+  ./winplay.sh --game "Doom" --cd-rom ~/images/doom-cd.iso
+  ./winplay.sh --game "Doom"                    (replay, CD-ROM not needed)
+  ./winplay.sh --game "SimCity" --os win95 --cd-rom ~/images/simcity.iso
   ./winplay.sh --desktop win98
 
 HELP
@@ -373,37 +438,100 @@ copy_base_vhd_from_template() {
 
 create_game_layer_vhd() {
     local game_name="$1"
-    local game_dir="$roms_path/windows9x/$game_name"
-    local game_layer="$game_dir/game-layer.vhd"
+    # Prepare the path for the per-game VHD layer (game + saves unified).
+    # This file is created as a differencing VHD backed by base.vhd.
+    # All game files and saves go into this single layer.
+    local game_layer="$roms_path/$ESDE_SYSTEM_NAME/${game_name}.vhd"
+    mkdir -p "$(dirname "$game_layer")"
     
-    mkdir -p "$game_dir"
-    
+    # VHD creation happens inside autoexec via vhdmake (vhdmake is DOSBox-X internal command, not external)
+    # Just return the path; vhdmake in autoexec will create it on first launch
     if [[ ! -f "$game_layer" ]]; then
-        log i "Creating game layer VHD: $game_layer"
-        if ! "$component_path/bin/qemu-img/qemu-img" create -f vpc -b "$VHD_BASE_PATH" "$game_layer" -o subformat=fixed 2>/dev/null; then
-            log e "Failed to create game layer VHD at: $game_layer"
-            exit 1
-        fi
+        log i "Game-layer VHD path prepared (will be created by vhdmake in autoexec): $game_layer"
+    else
+        log i "Game-layer VHD already exists: $game_layer"
     fi
     
     echo "$game_layer"
 }
 
-create_savedata_vhd() {
+# Packaging-time helper: create a differencing VHD for game_name using qemu-img
+# This is intended to run during build/packaging on the host (not in Flatpak runtime)
+create_packaged_game_layer_vhd() {
     local game_name="$1"
-    local savedata="$VHD_SAVEDATA_DIR/$game_name.sav.vhd"
-    
-    mkdir -p "$VHD_SAVEDATA_DIR"
-    
-    if [[ ! -f "$savedata" ]]; then
-        log i "Creating savedata VHD: $savedata"
-        if ! "$component_path/bin/qemu-img/qemu-img" create -f vpc "$savedata" 512M -o subformat=fixed 2>/dev/null; then
-            log e "Failed to create savedata VHD at: $savedata"
-            exit 1
+    local game_layer="$roms_path/$ESDE_SYSTEM_NAME/${game_name}.vhd"
+
+    if [[ -z "$VHD_BASE_PATH" || ! -f "$VHD_BASE_PATH" ]]; then
+        log e "Base VHD not found at: $VHD_BASE_PATH — cannot package game layer"
+        return 1
+    fi
+
+    mkdir -p "$(dirname "$game_layer")"
+
+    if [[ -f "$game_layer" && $FORCE_RECREATE -ne 1 ]]; then
+        log w "Game-layer already exists: $game_layer (use -f/--force to recreate)"
+        echo "$game_layer"
+        return 0
+    fi
+
+    # Prefer the DOSBox-X vhdmake / imgmake tooling to create linked images
+    # as that's the native implementation known to produce chains compatible
+    # with DOSBox-X. Try component_path/bin/dosbox-x first, then PATH dosbox-x,
+    # then fall back to qemu-img (some formats don't support backing-file).
+    local dosbox_exec=""
+    if [[ -x "${component_path:-}/bin/dosbox-x" ]]; then
+        dosbox_exec="${component_path}/bin/dosbox-x"
+    elif command -v dosbox-x >/dev/null 2>&1; then
+        dosbox_exec="dosbox-x"
+    fi
+
+    if [[ -n "$dosbox_exec" ]]; then
+        log i "Packaging: creating differencing VHD via DOSBox-X vhdmake: $game_layer -> backing $VHD_BASE_PATH"
+        rm -f "$game_layer" 2>/dev/null || true
+        local outtmp
+        outtmp=$(mktemp)
+        # Use vhdmake with '-l base child' to create a linked VHD
+        "$dosbox_exec" -c "vhdmake -l \"$VHD_BASE_PATH\" \"$game_layer\"" -c "exit" >"$outtmp" 2>&1
+        local vhdmake_ec=$?
+        if [[ $vhdmake_ec -eq 0 && -s "$game_layer" ]]; then
+            log i "Packaged game-layer created via DOSBox-X: $game_layer"
+            rm -f "$outtmp" 2>/dev/null || true
+            echo "$game_layer"
+            return 0
+        else
+            log w "DOSBox-X vhdmake failed (exit=$vhdmake_ec) — output (first 4k):"
+            head -c 4096 "$outtmp" | sed 's/^/    /'
+            rm -f "$outtmp" 2>/dev/null || true
+            # fallthrough to try qemu-img if available
         fi
     fi
-    
-    echo "$savedata"
+
+    if command -v qemu-img >/dev/null 2>&1; then
+        log i "Packaging: attempting fallback via qemu-img: $game_layer -> backing $VHD_BASE_PATH"
+        rm -f "$game_layer" 2>/dev/null || true
+        # Some formats don't allow backing_file on create (vpc), so try a qcow2
+        # child (good for packing) and, if necessary, convert to vpc.
+        local tmp_child_qcow="$game_layer.qcow2"
+        if qemu-img create -f qcow2 -o backing_file="$VHD_BASE_PATH" "$tmp_child_qcow" >/dev/null 2>&1; then
+            # Convert to vpc format if DOSBox-X requires vhd/vpc
+            if qemu-img convert -O vpc "$tmp_child_qcow" "$game_layer" >/dev/null 2>&1; then
+                rm -f "$tmp_child_qcow" 2>/dev/null || true
+                log i "Packaged game-layer created via qemu-img (qcow2->vpc): $game_layer"
+                echo "$game_layer"
+                return 0
+            else
+                log w "qemu-img convert -> vpc failed; leaving qcow2 child at: $tmp_child_qcow"
+                echo "$tmp_child_qcow"
+                return 0
+            fi
+        else
+            log e "qemu-img create (qcow2 backing) failed — cannot create differencing child for: $game_layer"
+            return 1
+        fi
+    fi
+
+    log e "No supported host tool found to create reliable differencing VHD (tried DOSBox-X vhdmake and qemu-img)"
+    return 1
 }
 
 # ============================================================================
@@ -431,10 +559,23 @@ EOF
     # present across reboots during installation — start from D: because C: is taken
     mount_disks "$conf_file" "D"
 
-    # Append commands to copy only likely-needed driver files from the CD to the
-    # Windows system directory so Windows setup or subsequent reboots don't prompt
-    # for them. These are written into the autoexec (do NOT run locally).
-    cat <<'EOF' >> "$conf_file"
+    # Optionally copy drivers from the CD to the Windows system directory to
+    # reduce prompts during installation. Controlled by --drivers {minimal|all|none}
+    if [[ "${DRIVER_COPY_MODE}" != "none" ]]; then
+        if [[ "${DRIVER_COPY_MODE}" == "all" ]]; then
+            cat <<'EOF' >> "$conf_file"
+REM Copy as many files as possible from the CD to C:\WINDOWS\SYSTEM
+IF NOT EXIST C:\WINDOWS\SYSTEM MD C:\WINDOWS\SYSTEM
+REM Copy full WIN98 and DRIVERS directories (recursive copy where available)
+IF EXIST D:\WIN98 XCOPY D:\WIN98 C:\WINDOWS\SYSTEM /E /Y >NUL 2>NUL
+IF EXIST D:\DRIVERS XCOPY D:\DRIVERS C:\WINDOWS\SYSTEM /E /Y >NUL 2>NUL
+REM Also copy any root-level device files that might be directly requested
+IF EXIST D:\*.VXD COPY /Y D:\*.VXD C:\WINDOWS\SYSTEM >NUL 2>NUL
+IF EXIST D:\*.DRV COPY /Y D:\*.DRV C:\WINDOWS\SYSTEM >NUL 2>NUL
+EOF
+        else
+            # 'minimal' behaviour (copy specific likely-needed files only)
+            cat <<'EOF' >> "$conf_file"
 REM Copy driver files (if present) from CD to C:\WINDOWS\SYSTEM
 IF NOT EXIST C:\WINDOWS\SYSTEM MD C:\WINDOWS\SYSTEM
 REM Copy specific driver/file types commonly requested by installers
@@ -451,6 +592,8 @@ REM Attempt also from common root locations
 IF EXIST D:\*.VXD COPY /Y D:\*.VXD C:\WINDOWS\SYSTEM >NUL 2>NUL
 IF EXIST D:\*.DRV COPY /Y D:\*.DRV C:\WINDOWS\SYSTEM >NUL 2>NUL
 EOF
+        fi
+    fi
 
     cat <<EOF >> "$conf_file"
 REM Check if Windows is already installed
@@ -472,51 +615,34 @@ EOF
     log i "Setup: VHD mounted, ready for installation"
 }
 
-generate_autoexec_install_game() {
-    local conf_file="$1"
-    local game_layer="$2"
-    
-    log i "Mounting base OS and game layer VHD for installation"
-    
-    cat <<EOF >> "$conf_file"
-IMGMOUNT C "$VHD_BASE_PATH" -b "$game_layer" -t hdd
-DEL "C:\\WINDOWS\\STARTM~1\\PROGRAMS\\STARTUP\\run_game.bat"
-EOF
-
-    # Mount disks (if any) before the boot so the guest sees them on startup
-    mount_disks "$conf_file" "D"
-
-    cat <<EOF >> "$conf_file"
-BOOT C:
-EOF
-    
-    log i "Mounted base OS + game layer as C: (layered VHD)"
-}
-
 generate_autoexec_launch() {
     local conf_file="$1"
     local game_layer="$2"
     local savedata="$3"
     local launcher_dir="$4"
     
-    log i "Mounting all VHD layers for game launch"
+    log i "Creating autoexec for game launch (eXoWin9x-style: C=write-layer, D=game)"
     
-    cat <<EOF >> "$conf_file"
-IMGMOUNT C "$VHD_BASE_PATH" -b "$game_layer" -b "$savedata" -t hdd
+    # C: = differencing VHD for Windows/saves (write layer, backed by base.vhd)
+    # D: = game VHD or directory
+    cat >> "$conf_file" <<EOF
+vhdmake -f -l "$VHD_BASE_PATH" "$VHD_WRITE_LAYER"
+IMGMOUNT C "$VHD_WRITE_LAYER" -t hdd
+IMGMOUNT D "$GAME_VHD_PATH" -t hdd
 MOUNT A "$launcher_dir"
 DEL "C:\\WINDOWS\\STARTM~1\\PROGRAMS\\STARTUP\\*"
 COPY A:\\run_game.bat "C:\\WINDOWS\\STARTM~1\\PROGRAMS\\STARTUP\\run_game.bat"
 MOUNT -u A
 EOF
 
-    # Make sure CD/HD/floppy are mounted before boot
-    mount_disks "$conf_file" "D"
+    # Mount CD-ROMs (starting from E: since C: and D: are taken)
+    mount_disks "$conf_file" "E"
 
     cat <<EOF >> "$conf_file"
-BOOT C:
+BOOT -l C:
 EOF
     
-    log i "Mounted OS base + game layer + savedata as C: (layered VHD)"
+    log i "Autoexec ready: C=write-layer, D=game, E+=CD/HD/floppy"
 }
 
 generate_autoexec_desktop() {
@@ -626,10 +752,10 @@ create_launcher_bat() {
 prepare_config() {
     rm -f "$TMP_CONF"
     cp "$dosbox_x_config" "$TMP_CONF"
-    sed -i '/^\[autoexec\]/q' "$TMP_CONF"
+    # Remove [autoexec] section and everything after it, then add fresh [autoexec]
+    sed -i '/^\[autoexec\]/,$d' "$TMP_CONF"
     
     cat <<EOF >> "$TMP_CONF"
-
 [autoexec]
 EOF
 }
@@ -640,8 +766,6 @@ generate_autoexec() {
     elif [[ $INSTALL_MODE -eq 1 ]]; then
         if [[ $IS_OS_INSTALL -eq 1 ]]; then
             generate_autoexec_install_os "$TMP_CONF"
-        else
-            generate_autoexec_install_game "$TMP_CONF" "$VHD_GAME_LAYER"
         fi
     else
         create_launcher_bat "$LAUNCHER_DIR"
@@ -677,7 +801,23 @@ handle_install_os() {
 handle_install_game() {
     local vhd_base_path="$1"
     
+    # Treat the install name exactly as provided by the user. The only
+    # special-case: if the name ends with .vhd (any case) strip that suffix
+    # because we will append ".vhd" ourselves when creating the game layer
+    # file. This keeps behaviour simple and predictable for callers.
     GAME_NAME_FOR_DIR="$INSTALL_NAME"
+    # If the user passed a path, use only the basename so we always create the
+    # layer VHD under roms_path/<ESDE_SYSTEM_NAME>/<basename>.vhd rather than creating
+    # nested directories under the roms path.
+    if [[ "$GAME_NAME_FOR_DIR" == */* ]]; then
+        GAME_NAME_FOR_DIR="$(basename "$GAME_NAME_FOR_DIR")"
+    fi
+
+    # Strip trailing .vhd if present so callers can pass either "name" or
+    # "name.vhd" — we still always create <name>.vhd later.
+    if [[ "${GAME_NAME_FOR_DIR,,}" == *.vhd ]]; then
+        GAME_NAME_FOR_DIR="${GAME_NAME_FOR_DIR%.[vV][hH][dD]}"
+    fi
     log i "Game install mode: Installing $GAME_NAME_FOR_DIR"
     
     if [[ ! -f "$vhd_base_path" ]]; then
@@ -686,8 +826,35 @@ handle_install_game() {
         exit 1
     fi
     
-    VHD_GAME_LAYER=$(create_game_layer_vhd "$GAME_NAME_FOR_DIR")
-    VHD_SAVEDATA=$(create_savedata_vhd "$GAME_NAME_FOR_DIR")
+    # Try to create a game-layer using the explicit install name
+    log d "Attempting game-layer creation with requested install name: '$GAME_NAME_FOR_DIR'"
+
+    # If VHD wasn't created and a CD-ROM was provided, fall back to deriving the
+    # game name from the first CD-ROM image's basename (strip extension). This is
+    # convenient when callers pass an install name that differs from the CD's
+    # filename — e.g. user typed 'Rages of Mages II' but ISO is 'Rage of Mages II...'.
+    if [[ -z "$VHD_GAME_LAYER" || ! -f "$VHD_GAME_LAYER" ]]; then
+        if [[ ${#CDROMS[@]} -gt 0 ]]; then
+            local iso_basename
+            iso_basename="$(basename "${CDROMS[0]}")"
+            iso_basename="${iso_basename%.*}"
+            # Strip trailing .vhd if someone used weird filenames like name.vhd.iso
+            if [[ "${iso_basename,,}" == *.vhd ]]; then
+                iso_basename="${iso_basename%.[vV][hH][dD]}"
+            fi
+
+            # Only try fallback if the name differs from the supplied name
+            if [[ "$iso_basename" != "$GAME_NAME_FOR_DIR" ]]; then
+                log i "Primary game-layer creation did not succeed; falling back to ISO-derived name: '$iso_basename'"
+                GAME_NAME_FOR_DIR="$iso_basename"
+                VHD_GAME_LAYER=$(create_game_layer_vhd "$GAME_NAME_FOR_DIR")
+            else
+                log w "Game-layer not created by either requested name or ISO basename; no VHD prepared."
+            fi
+        else
+            log w "Game-layer creation failed and no CD-ROM provided to derive a name from."
+        fi
+    fi
 }
 
 handle_install_mode() {
@@ -724,16 +891,36 @@ handle_launch_mode() {
     
     GAME_NAME_FOR_DIR="$game_path"
     log i "Launch mode: Launching $GAME_NAME_FOR_DIR"
+
+
     
-    local game_layer_path="$roms_path_base/windows9x/$GAME_NAME_FOR_DIR/game-layer.vhd"
-    if [[ ! -f "$game_layer_path" ]]; then
-        log e "Game layer VHD not found at: $game_layer_path"
-        log e "Please install the game first using: $0 --install $GAME_NAME_FOR_DIR"
-        exit 1
+    # Following eXoWin9x architecture:
+    # C: = write-layer VHD (differencing VHD for Windows/saves, stored in savedata_dir with .sav.vhd suffix)
+    # D: = game VHD (the actual game, stored in roms_path)
+    
+    # C: write-layer (differencing VHD backed by base.vhd)
+    VHD_WRITE_LAYER="$VHD_SAVEDATA_DIR/$GAME_NAME_FOR_DIR.sav.vhd"
+    mkdir -p "$(dirname "$VHD_WRITE_LAYER")"
+    log i "Write-layer VHD (C:): $VHD_WRITE_LAYER"
+    
+    # D: game layer - check both new and old layouts for compatibility
+    local alt_game_vhd="$roms_path_base/$ESDE_SYSTEM_NAME/$GAME_NAME_FOR_DIR.vhd"
+    local old_game_vhd="$roms_path_base/$ESDE_SYSTEM_NAME/$GAME_NAME_FOR_DIR/game-layer.vhd"
+    
+    if [[ -f "$old_game_vhd" ]]; then
+        GAME_VHD_PATH="$old_game_vhd"
+        log i "Using existing game VHD (old layout): $old_game_vhd"
+    else
+        GAME_VHD_PATH="$alt_game_vhd"
+        log i "Game VHD path (D:): $alt_game_vhd"
+        mkdir -p "$(dirname "$alt_game_vhd")"
     fi
-    
-    VHD_GAME_LAYER="$game_layer_path"
-    VHD_SAVEDATA=$(create_savedata_vhd "$GAME_NAME_FOR_DIR")
+
+    if [ ! -f "$GAME_VHD_PATH" ]; then
+        log i "Game VHD not found, showing dialog"
+        configurator_generic_dialog "RetroDECK - Game Install" "The game drive $(basename "$GAME_VHD_PATH") should be now created.\n\nPlease install your game to D:\\ inside Windows environmnet to make sure that OS and Game will be separated.\n\n\NOTE: diffrentely on how usually RetroDECK works, with this emulator the saves are split both inside the game vhd file\nand in the saves file that will be created.\nUnfortunately this is a limitation of $WIN_VERSION.\n\nSo be aware that you will need to backup both the game and the saves files."
+        log i "First-time game launch: user instructed to install game on D:\\"
+    fi
 }
 
 # ============================================================================
@@ -762,6 +949,14 @@ main() {
             fi
             WIN_VERSION="$DESKTOP_VERSION"
             ;;
+        --package-game)
+            PACK_MODE=1
+            PACK_GAME_NAME="${final_args[1]}"
+            if [[ -z "$PACK_GAME_NAME" || "$PACK_GAME_NAME" == --* ]]; then
+                log e "--package-game requires a game name"
+                exit 1
+            fi
+            ;;
         --makefs)
             MAKEFS_MODE=1
             MAKEFS_VERSION="${final_args[1]}"
@@ -784,7 +979,7 @@ main() {
             else
                 WIN_VERSION="${WIN_VERSION:-win98}"
             fi
-            # Parse remaining args for --cdrom/--cd-rom, --floppy, --hd and -f flag
+            # Parse remaining args for --cdrom/--cd-rom, --floppy, --hd, -f flag and --drivers
             for ((i=2; i<${#final_args[@]}; i++)); do
                 if [[ "${final_args[$i]}" == "--cd-rom" || "${final_args[$i]}" == "--cdrom" ]]; then
                     ((i++))
@@ -797,29 +992,92 @@ main() {
                     HDISKS+=("${final_args[$i]}")
                 elif [[ "${final_args[$i]}" == "-f" ]]; then
                     FORCE_RECREATE=1
+                elif [[ "${final_args[$i]}" == "--drivers" ]]; then
+                    ((i++))
+                    DRIVER_COPY_MODE="${final_args[$i]}"
+                    if [[ ! "${DRIVER_COPY_MODE}" =~ ^(minimal|all|none)$ ]]; then
+                        log e "Invalid --drivers option: ${DRIVER_COPY_MODE} (must be minimal|all|none)"
+                        exit 1
+                    fi
+                fi
+            done
+            ;;
+        --game)
+            # Game launch/install mode (unified)
+            GAME_PATH="${final_args[1]}"
+            if [[ -z "$GAME_PATH" || "$GAME_PATH" == --* ]]; then
+                log e "--game requires a game name argument"
+                exit 1
+            fi
+            WIN_VERSION="${WIN_VERSION:-win98}"
+            # Parse remaining args for --os, --cdrom, --floppy, --hd, etc.
+            for ((i=2; i<${#final_args[@]}; i++)); do
+                if [[ "${final_args[$i]}" == "--os" ]]; then
+                    ((i++))
+                    WIN_VERSION="${final_args[$i]}"
+                elif [[ "${final_args[$i]}" == "--cd-rom" || "${final_args[$i]}" == "--cdrom" ]]; then
+                    ((i++))
+                    CDROMS+=("${final_args[$i]}")
+                elif [[ "${final_args[$i]}" == "--floppy" ]]; then
+                    ((i++))
+                    FLOPPIES+=("${final_args[$i]}")
+                elif [[ "${final_args[$i]}" == "--hd" ]]; then
+                    ((i++))
+                    HDISKS+=("${final_args[$i]}")
+                elif [[ "${final_args[$i]}" == "--drivers" ]]; then
+                    ((i++))
+                    DRIVER_COPY_MODE="${final_args[$i]}"
+                    if [[ ! "${DRIVER_COPY_MODE}" =~ ^(minimal|all|none)$ ]]; then
+                        log e "Invalid --drivers option: ${DRIVER_COPY_MODE} (must be minimal|all|none)"
+                        exit 1
+                    fi
                 fi
             done
             ;;
         *)
-            # Game launch mode
+            # Game launch mode (legacy: first arg is game name, default win98)
             if [[ -z "${final_args[0]}" ]]; then
-                log e "No game path provided, --install, or --desktop specified!"
+                log e "No game path provided, --install, --game, or --desktop specified!"
                 log i "Usage:"
-                log i "  $0 win98 GameName              (launch game)"
-                log i "  $0 --install GameName          (install game)"
-                log i "  $0 --desktop win98             (desktop mode)"
+                log i "  $0 --game GameName --cdrom '...iso'  (launch/install game)"
+                log i "  $0 --install GameName                (install OS or game)"
+                log i "  $0 --desktop win98                   (desktop mode)"
                 log i "Use '$0 --help' for more information."
                 exit 1
             fi
-            WIN_VERSION="${final_args[0]}"
-            GAME_PATH="${final_args[1]}"
+            WIN_VERSION="${WIN_VERSION:-win98}"
+            GAME_PATH="${final_args[0]}"
             ;;
     esac
     
+    # Ensure a default WIN_VERSION when not supplied
+    WIN_VERSION="${WIN_VERSION:-win98}"
+
     # Common setup
     setup_paths
     setup_launcher_dir
+    # If packaging-only mode was requested, skip runtime verification and run the
+    # host packaging helper (must be executed during develop/packaging).
+    if [[ $PACK_MODE -eq 1 ]]; then
+        if [[ -z "$PACK_GAME_NAME" ]]; then
+            log e "--package-game requires a game name"
+            exit 1
+        fi
+        create_packaged_game_layer_vhd "$PACK_GAME_NAME"
+        exit $?
+    fi
+
     verify_os_config
+
+    # Packaging-only flow (run on host during packaging).
+    if [[ $PACK_MODE -eq 1 ]]; then
+        if [[ -z "$PACK_GAME_NAME" ]]; then
+            log e "--package-game requires a game name"
+            exit 1
+        fi
+        create_packaged_game_layer_vhd "$PACK_GAME_NAME"
+        exit $?
+    fi
     
     # Execute mode
     case 1 in
