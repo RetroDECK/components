@@ -11,8 +11,8 @@
     "configurator_menus": {
       "tools": {
         "update_rpcs3_firmware": {
-          "name": "Install: PS3 Firmware",
-          "description": "Download and Install: Playstation 3 firmware for the RPCS3 emulator.",
+          "name": "Install: RPCS3 Firmware 📥",
+          "description": "Download and install: Playstation 3 firmware for the RPCS3 emulator.",
           "command": {
             "zenity": "update_rpcs3_firmware"
           }

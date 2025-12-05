@@ -7,14 +7,14 @@
       "settings": {
         "portmaster_show_hide": {
           "name": "Show / Hide: PortMaster ES-DE 🛶",
-          "description": "Enable or disable PortMaster entry in ES-DE.",
+          "description": "Enable or disable: PortMaster entry in ES-DE.",
           "command": {
             "zenity": "configurator_portmaster_toggle_dialog"
           }
         },
         "iconset_show_hide": {
           "name": "Show / Hide: RetroDECK Folder Icons 🎨",
-          "description": "Enable or disable RetroDECK folder icons.",
+          "description": "Enable or disable: RetroDECK folder icons.",
           "command": {
             "zenity": "configurator_iconset_toggle_dialog"
           }
@@ -44,7 +44,7 @@
         },
         "update_notification": {
           "name": "Update Notification 🌐",
-          "description": "Enable or disable notifications for new RetroDECK versions.",
+          "description": "Enable or disable: notifications for new RetroDECK versions.",
           "command": {
             "zenity": "configurator_update_notify_dialog"
           }
