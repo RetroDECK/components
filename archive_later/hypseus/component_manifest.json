@@ -3,8 +3,9 @@
     "name": "Hypseus",
     "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/hypseus/hypseus-guide/",
     "url_source": "https://github.com/btolab/hypseus",
-    "description": "Hypseus an arcade laserdisc emulator.",
+    "description": "Hypseus is an open-source an Arcade Laserdisc (laserdisc) emulator.",
     "system_friendly_name": "Arcade Laserdisc",
-    "system": "hypseus"
+    "component_type": "Emulator",
+    "system": "laserdisc"
   }
 }

@@ -4,7 +4,8 @@
     "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_engine_guides/solarus/solarus-guide/",
     "url_webpage": "https://www.solarus-games.org/",
     "url_source": "https://gitlab.com/solarus-games/",
-    "description": "A lightweight, multiplatform, free and open-source 2D game engine",
+    "description": "Solarus is an open-source game engine for playing 2D action-RPGs, inspired by classic Zelda-style games.",
+    "component_type": "Engine",
     "system_friendly_name": "Solarus Game Engine",
     "system": "solarus"
   }

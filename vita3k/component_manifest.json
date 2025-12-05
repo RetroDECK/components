@@ -1,10 +1,11 @@
 {
   "vita3k": {
     "name": "Vita3K",
-    "description": "PlayStation Vita Emulator",
+    "description": "Vita3K is an open-source PlayStation Vita (psvita) emulator.",
     "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/vita3k/vita3k-guide/",
     "url_webpage": "https://vita3k.org/",
     "url_source": "https://github.com/Vita3K/Vita3K",
+    "component_type": "Emulator",
     "system_friendly_name": "PlayStation Vita",
     "system": "psvita",
     "configurator_menus": {

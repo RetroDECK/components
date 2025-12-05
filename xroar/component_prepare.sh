@@ -12,5 +12,6 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
   create_dir -d "$XDG_CONFIG_HOME/xroar"
   cp -f "$component_config/xroar.conf" "$xroar_config" && log i "Copied default xroar.conf to $xroar_config"
   sed -i "s#RETRODECKROMSDIR#${roms_path}#g" "$xroar_config" && log i "Set ROMs directory in xroar.conf"
+  sed -i "s#RETRODECKBIOSDIR#${bios_path}#g" "$xroar_config" && log i "Set BIOS directory in xroar.conf"
 
 fi

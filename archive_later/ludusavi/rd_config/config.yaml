@@ -1,0 +1,81 @@
+---
+runtime:
+  threads: ~
+release:
+  check: false
+manifest:
+  enable: false
+language: en-US
+theme: dark
+roots: []
+redirects: []
+backup:
+  path: /home/deck/ludusavi-backup
+  ignoredGames: []
+  filter:
+    excludeStoreScreenshots: false
+    cloud:
+      exclude: true
+      epic: true
+      gog: true
+      origin: true
+      steam: true
+      uplay: true
+    ignoredPaths: []
+    ignoredRegistry: []
+  toggledPaths: {}
+  toggledRegistry: {}
+  sort:
+    key: status
+    reversed: false
+  retention:
+    full: 1
+    differential: 0
+  format:
+    chosen: simple
+    zip:
+      compression: deflate
+    compression:
+      deflate:
+        level: 6
+      bzip2:
+        level: 6
+      zstd:
+        level: 10
+  onlyConstructive: false
+restore:
+  path: /home/deck/ludusavi-backup
+  ignoredGames: []
+  toggledPaths: {}
+  toggledRegistry: {}
+  sort:
+    key: status
+    reversed: false
+  reverseRedirects: false
+scan:
+  showDeselectedGames: true
+  showUnchangedGames: true
+  showUnscannedGames: true
+cloud:
+  remote: ~
+  path: ludusavi-backup
+  synchronize: true
+apps:
+  rclone:
+    path: /app/retrodeck/components/ludusavi/bin/rclone
+    arguments: "--fast-list --ignore-checksum"
+customGames:
+  - name: RetroDECK Saves
+    integration: override
+    files:
+      - "<home>/retrodeck/saves/*"
+    registry: []
+    installDir: []
+    winePrefix: []
+  - name: RetroDECK States
+    integration: override
+    files:
+      - "<home>/retrodeck/states/*"
+    registry: []
+    installDir: []
+    winePrefix: []

@@ -201,7 +201,7 @@ fi
 if [[ $(check_version_is_older_than "$version_being_updated" "0.9.0b") == "true" ]]; then
   # Create a Zenity window with checkboxes for each reset option and two buttons
   while true; do
-    choices=$(rd_zenity --list --checklist --title="RetroDECK Reset Options" \
+    choices=$(rd_zenity --list --checklist --title="RetroDECK - Reset Options" \
     --window-icon="/app/share/icons/hicolor/scalable/apps/net.retrodeck.retrodeck.svg" \
     --text="The following components have been updated and need to be reset or fixed to ensure compatibility with the new version. Please select the components you want to reset.\n\n\<span foreground='$purple'><b>Not resetting them may cause serious issues with your installation.</b></span>\n\You can also reset them manually later via: Configurator -> Troubleshooting -> Reset Component.\n\n\<span foreground='$purple'><b>Note: Your games, saves, collections, and scraped data will not be affected.</b></span>" \
     --column="Select" --column="Component" --column="Description" --width="1100" --height="700" \
@@ -229,7 +229,7 @@ if [[ $(check_version_is_older_than "$version_being_updated" "0.9.0b") == "true"
     fi
 
     if [[ $? -eq 0 && -n "$choices" ]]; then
-      if ! rd_zenity --question --title="Confirmation" --text="Are you sure you want to proceed with only the selected options?\n\n\<span foreground='$purple'><b>Warning: This might cause issues in RetroDECK.</b></span>"; then
+      if ! rd_zenity --question --title="RetroDECK - Reset Confirmation" --text="Are you sure you want to proceed with only the selected options?\n\n\<span foreground='$purple'><b>Warning: This might cause issues in RetroDECK.</b></span>"; then
         log i "User is not sure, showing the checklist window again."
         continue
       else
@@ -239,7 +239,7 @@ if [[ $(check_version_is_older_than "$version_being_updated" "0.9.0b") == "true"
     fi
 
     if [[ $? == 0 ]]; then
-    if ! rd_zenity --question --title="Confirmation" --text="Are you sure you want to proceed with only the selected options?\n\n\<span foreground='$purple'><b>Warning: This might cause issues in RetroDECK.</b></span>"; then
+    if ! rd_zenity --question --title="RetroDECK - Reset Confirmation" --text="Are you sure you want to proceed with only the selected options?\n\n\<span foreground='$purple'><b>Warning: This might cause issues in RetroDECK.</b></span>"; then
       log i "User is not sure, showing the checklist window again."
       continue
     else
@@ -324,7 +324,7 @@ if [[ $(check_version_is_older_than "$version_being_updated" "0.9.1b") == "true"
 
   # Create a Zenity window with checkboxes for each reset option and two buttons
   while true; do
-    choices=$(rd_zenity --list --checklist --title="RetroDECK Reset Options" \
+    choices=$(rd_zenity --list --checklist --title="RetroDECK - Reset Options" \
     --window-icon="/app/share/icons/hicolor/scalable/apps/net.retrodeck.retrodeck.svg" \
     --text="The following components have been updated and need to be reset or fixed to ensure compatibility with the new version. Please select the components you want to reset.\n\n\<span foreground='$purple'><b>Not resetting them may cause serious issues with your installation.</b></span>\n\You can also reset them manually later via: Configurator -> Troubleshooting -> Reset Component.\n\n\<span foreground='$purple'><b>Note: Your games, saves, collections, and scraped data will not be affected.</b></span>" \
     --column="Select" --column="Component" --column="Description" --width="1100" --height="700" \
@@ -417,7 +417,7 @@ if [[ $(check_version_is_older_than "$version_being_updated" "0.9.2b") == "true"
   prepare_component "reset" "steam-rom-manager"
 
   while true; do
-    choices=$(rd_zenity --list --checklist --title="RetroDECK Steam Sync Reset Options" \
+    choices=$(rd_zenity --list --checklist --title="RetroDECK - Steam Sync: Reset Options" \
     --window-icon="/app/share/icons/hicolor/scalable/apps/net.retrodeck.retrodeck.svg" \
     --text="In RetroDECK 0.9.2b, we upgraded our Steam Sync feature, which may require <span foreground='$purple' size='larger'><b>rebuilding the shortcuts</b></span> in Steam.\nYour ES-DE favorites will remain unchanged. Any games you have favorited will be recreated, but <span foreground='$purple' size='larger'><b>last-played information and custom artwork changes may be lost</b></span>.\nIf you added RetroDECK to Steam through our Configurator, it will also be re-added during this process.\n\nSelect the actions you want to perform:" \
     --column="Select" --column="Action" --column="Description" --width="1100" --height="700" \
@@ -483,7 +483,7 @@ if [[ $(check_version_is_older_than "$version_being_updated" "0.9.2b") == "true"
     steam-rom-manager add >> "$srm_log" 2>&1
     ) |
     rd_zenity --progress \
-    --title="RetroDECK Configurator: Add RetroDECK to Steam" \
+    --title="RetroDECK Configurator - Add RetroDECK to Steam" \
     --window-icon="/app/share/icons/hicolor/scalable/apps/net.retrodeck.retrodeck.svg" \
     --text="Adding RetroDECK to Steam...\n\n<span foreground='$purple'>Please wait until the operation is finished and you need to restart Steam afterwards.</span>" \
     --pulsate --width=500 --height=150 --auto-close --no-cancel

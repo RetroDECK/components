@@ -1,11 +1,12 @@
 {
   "retroarch": {
     "name": "RetroArch",
-    "description": "Libretro Multi-emulator Frontend",
+    "description": "RetroArch is an open-source multi-emulator frontend (Libretro).",
     "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/retroarch/retroarch-guide/",
     "url_webpage": "https://www.libretro.com/",
     "url_source": "https://github.com/libretro/RetroArch",
     "system": "retroarch",
+    "component_type": "Multi-Emulator",
     "system_friendly_name": "Multiple Retro Systems",
     "compatible_presets": {
       "cheevos": [
