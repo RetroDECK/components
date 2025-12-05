@@ -31,7 +31,7 @@
           "action": "change",
           "new_setting_value": "2",
           "section": "General",
-          "target_file": "$ppssppconf",
+          "target_file": "$ppsspp_config",
           "defaults_file": "$ppsspp_rd_config_dir/ppsspp.ini"
         }
       ],
@@ -42,7 +42,7 @@
           "action": "change",
           "new_setting_value": "True",
           "section": "Achievements",
-          "target_file": "$ppssppconf",
+          "target_file": "$ppsspp_config",
           "defaults_file": "$ppsspp_rd_config_dir/ppsspp.ini"
         },
         {
@@ -51,7 +51,7 @@
           "action": "change",
           "new_setting_value": "$cheevos_username",
           "section": "Achievements",
-          "target_file": "$ppssppconf",
+          "target_file": "$ppsspp_config",
           "defaults_file": "$ppsspp_rd_config_dir/ppsspp.ini"
         },
         {
@@ -71,7 +71,7 @@
           "action": "change",
           "new_setting_value": "True",
           "section": "Achievements",
-          "target_file": "$ppssppconf",
+          "target_file": "$ppsspp_config",
           "defaults_file": "$ppsspp_rd_config_dir/ppsspp.ini"
         }
       ]
