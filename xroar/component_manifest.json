@@ -4,7 +4,7 @@
     "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/xroar/xroar-guide/",
     "url_webpage": "https://www.6809.org.uk/xroar/",
     "url_source": "https://www.6809.org.uk/git/xroar.git/",
-    "description": "XRoar is an open-source Dragon/Tandy 8-bit Computer emulator.",
+    "description": "XRoar is a Dragon/Tandy 8-bit Computer emulator.",
     "component_type": "Emulator",
     "system_friendly_name": [
     "Dragon 32",

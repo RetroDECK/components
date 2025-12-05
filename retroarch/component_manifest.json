@@ -1,7 +1,7 @@
 {
   "retroarch": {
     "name": "RetroArch",
-    "description": "RetroArch is an open-source multi-emulator frontend (Libretro).",
+    "description": "RetroArch is a multi-emulator frontend (Libretro).",
     "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/retroarch/retroarch-guide/",
     "url_webpage": "https://www.libretro.com/",
     "url_source": "https://github.com/libretro/RetroArch",

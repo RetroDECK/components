@@ -1,7 +1,7 @@
 {
   "ppsspp": {
     "name": "PPSSPP",
-    "description": "PPSSPP is an open-source PlayStation Portable (psp) emulator.",
+    "description": "PPSSPP is a PlayStation Portable (psp) emulator.",
     "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/ppsspp/ppsspp-guide/",
     "url_webpage": "https://www.ppsspp.org/",
     "url_source": "https://github.com/hrydgard/ppsspp",

@@ -3,7 +3,7 @@
     "name": "EKA2L1",
     "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/EKA2L1/EKA2L1-guide/",
     "url_source": "https://github.com/EKA2L1/EKA2L1",
-    "description": "EKA2L1 is an open-source Symbian OS (symbian) and N‑Gage (ngage) emulator.",
+    "description": "EKA2L1 is a Symbian OS (symbian) and N‑Gage (ngage) emulator.",
     "component_type": "Emulator",
     "system_friendly_name": [
       "Nokia N-Gage",
