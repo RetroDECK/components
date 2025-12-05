@@ -1,3 +1,112 @@
+# DOSBox‑X Windows 98/3.1 Launcher — Current Design & Usage
+
+This component contains `winplay.sh` — the DOSBox‑X based Windows 9x launcher used by RetroDECK. The README below documents the current, tested implementation and recommended workflows.
+
+Summary of the current approach
+- The launcher uses DOSBox‑X's IMGMAKE/imgmake tooling to create *linked differencing children* (recommended) for per-run write layers.
+- The launcher builds a temporary config file (TMP_CONF) **per run** which is passed last to DOSBox‑X so it overrides the base config when needed.
+- Filenames used for per-game layers and saves are sanitized to avoid spaces and problematic characters.
+
+Why this README changed
+- Previous flows attempted `vhdmake -diff` for differencing children inside DOSBox‑X. That exposed a bug/instability in some DOSBox‑X builds (double-free / mount failures). We now use IMGMAKE -link which is the robust and supported path.
+
+---
+
+Table of contents
+- Key concepts
+- Image layering and recommended commands
+- Config merging & precedence
+- Autoexec sequence created by the launcher
+- Troubleshooting and common failures
+- Examples
+
+---
+
+Key concepts
+- Base image — `win98.vhd` (or `win31.vhd`) shared by all games for that OS.
+- Differencing child — a per-run/per-game image that stores only writes relative to the base (created with IMGMAKE -link). Keeps base pristine.
+- Save layer — optional per-game save overlay.
+
+Image layering and recommended commands
+-------------------------------------
+The approach used by the launcher is layered and lightweight:
+
+1) Base OS: `win98.vhd` created once (sparse file, preformatted). Created using `imgmake -t hd -size` (via `winplay.sh --makefs`).
+2) Per-run write-layer / differencing child: created with `IMGMAKE <child> -link <parent>` and then mounted as C:
+
+Inside the generated autoexec you will typically see (these lines are written to TMP_CONF — not executed by the host shell):
+
+```
+IMGMAKE "C:/path/to/save_layer.uhd" -link "C:/path/to/base.uhd"
+IMGMOUNT C "/path/to/save_layer.uhd" -t hdd
+IMGMOUNT D "/path/to/game_layer.vhd" -t hdd   # optional
+IMGMOUNT E "/path/to/game.iso" -t cdrom      # optional
+BOOT -l C:
+```
+
+Notes:
+- Using `IMGMAKE -link` keeps the base image unchanged and stores only new writes in the child.
+- Using `vhdmake -diff` in runtime autoexec is not recommended (it caused crashes in some DOSBox‑X builds).
+- The child can use any extension recognized by the DOSBox‑X binary in your runtime (`.uhd`, `.vhd`). This script historically uses `.vhd` for compatibility but `.uhd` as an extension is also used; consider consistent extension conventions if you want to change it.
+
+Config merging & precedence
+--------------------------
+`winplay.sh` constructs a temporary config (`TMP_CONF`) for each run. Current logic:
+
+- If `os_configs/$WIN_VERSION.conf` exists (eg `os_configs/win98.conf`), `TMP_CONF` is created from that file. Otherwise it is created by copying the base config (`$dosbox_x_config`).
+- The launcher then removes comments and rewrites an empty `[autoexec]` section in `TMP_CONF` ready to be populated.
+- DOSBox‑X is invoked with multiple `-conf` arguments. Order matters — later config files override earlier ones: 
+
+  `dosbox-x -conf /path/to/dosbox-x.conf -conf /path/to/winplay.conf`
+
+Where `winplay.conf` (TMP_CONF) is the last config — its settings will win in case of duplicates.
+
+Autoexec generation and content
+------------------------------
+`generate_autoexec()` in the script writes a fresh `[autoexec]` block into `TMP_CONF`. The launcher writes the differencing IMGMAKE and the IMGMOUNT commands, the launcher BAT copy (the AutoRun), mounts extra devices (CDs, floppies), then writes `BOOT -l C:`. All these commands are written into the config (not run by the host shell).
+
+Filename sanitization
+---------------------
+To avoid issues caused by spaces and special characters when creating or referencing VHDs, `winplay.sh` sanitizes filenames used for per-game layers and save files. Sanitisation replaces path separators and runs of non-alphanumeric characters with underscores and falls back to `unnamed` if the input is empty.
+
+Troubleshooting
+---------------
+- double-free / crash during `vhdmake -diff` — use `IMGMAKE -link` instead; the script uses IMGMAKE now.
+- IMGMOUNT cannot create drive from file / sanity check failure — verify the image was created with `imgmake` and that the boot sector and partition table are valid.
+- If DOSBox‑X cannot open a logfile or complains about missing logs it may be due to file path variables inside the environment or sandboxing (Flatpak). Not critical for launch but helpful to investigate for debugging.
+
+Examples & quick checks
+-----------------------
+Example local test to validate config merging (no DOSBox launch required):
+
+```bash
+export dosbox_x_config=/tmp/base.conf
+export OS_CONFIG_DIR=/tmp/os_configs
+export WIN_VERSION=win98
+export XDG_CACHE_HOME=/tmp/winplay-test
+mkdir -p $XDG_CACHE_HOME/dosbox-x /tmp/os_configs
+printf 'dynamic=false
+cpu=auto
+' > /tmp/base.conf
+printf 'dynamic=true
+' > /tmp/os_configs/win98.conf
+# Launch with a dummy game to trigger config creation (script will write TMP_CONF)
+bash ./winplay.sh --game Dummy
+# Inspect the generated TMP_CONF; it should contain 'dynamic=true' (OS override wins)
+sed -n '1,200p' /tmp/winplay-test/dosbox-x/winplay.conf
+```
+
+Contributing & maintainers
+--------------------------
+If you intend to modify the runtime VHD creation behaviour or change the layering approach, keep these points in mind:
+
+- Prefer `IMGMAKE -link` for runtime differencing children. `vhdmake -diff` remains problematic on some DOSBox‑X builds.
+- Any change to TMP_CONF construction will impact how runtime overrides behave — ordering of `-conf` is important.
+- Keep filename sanitisation behaviour consistent if you add alternate storage locations or extensions.
+
+---
+
+If you want, I can add a diagram showing the final `-conf` order, the `[autoexec]` sequence and an example of how C:/ D:/ E:/ get assigned. Want that as an additional section? 
 # DOSBox-X Windows 98/3.1 Game Launcher Setup Guide
 
 This directory contains tools and scripts to set up Windows 98/3.1 environments for DOS gaming in DOSBox-X within RetroDECK.
@@ -162,8 +271,8 @@ Layer 3 (Save Data):   gamename.sav.vhd   ← Save data isolation
 | Layer | Location | Purpose | Size | Distribution |
 |---|---|---|---|---|
 | Base OS | `$bios_path/win98.vhd` | Shared Windows 98 OS | 4GB sparse | Included with RetroDECK |
-| Game Layer | `$roms_path/windows9x/<game>/` | Game-specific files | Variable | Per-game package |
-| Save Data | `$save_path/windows9x/dosbox-x/` | User save files | <100MB | User-specific |
+| Game Layer | `$roms_path/<ESDE_SYSTEM_NAME>/<game>.vhd` | Game-specific files (layered VHD) | Variable | Per-game package |
+| Saves Layer | `$save_path/<ESDE_SYSTEM_NAME>/dosbox-x/<game>.sav.vhd` | User save files (stackable overlay on C:) | <100MB | User-specific |
 
 ### IMGMOUNT Configuration
 
@@ -306,8 +415,8 @@ These parameters help DOSBox-X properly detect the disk.
 | Component | Path | Purpose |
 |---|---|---|
 | Base OS VHD | `$bios_path/win98.vhd` | Shared Windows 98 OS |
-| Game layer | `$roms_path/windows9x/<game>/` | Game-specific files |
-| Save data | `$save_path/windows9x/dosbox-x/<game>/` | User save files |
+| Game Layer | `$roms_path/<ESDE_SYSTEM_NAME>/<game>.vhd` | Game-specific files (layered VHD) |
+| Saves Layer | `$save_path/<ESDE_SYSTEM_NAME>/dosbox-x/<game>.sav.vhd` | User save files (overlay) |
 
 ## Technical Details
 
