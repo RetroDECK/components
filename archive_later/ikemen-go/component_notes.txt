@@ -7,3 +7,5 @@ Ikeman‑go isn’t executed directly for games. Instead, the binary must be pla
 Future enhancement: expose the ikeman-go directory at storage/ikeman-go. This would let users copy the specific files they need from that location into their own game folders.
 
 Because each game has its own set of required files, the exact contents will vary from one title to another (M.U.G.E.N vs Ikeman).
+
+NICE
