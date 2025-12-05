@@ -7,7 +7,7 @@
     "url_source": "https://github.com/hrydgard/ppsspp",
     "component_type": "Emulator",
     "system": "psp",
-    "system_friendly_name": "Sony Playstation Portable",
+    "system_friendly_name": "Playstation Portable",
     "compatible_presets": {
       "savestate_auto_load": [
         "false",
