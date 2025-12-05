@@ -81,28 +81,28 @@
         },
         "clean_empty_systems": {
           "name": "ROMs Folder: Clean Empty Systems 🧹",
-          "description": "Remove empty system folders from the ROMs directory.",
+          "description": "Remove empty system folders from the roms directory.",
           "command": {
             "zenity": "configurator_clean_empty_systems_dialog"
           }
         },
         "rebuild_esde_systems": {
           "name": "ROMs Folder: Rebuild Systems 🏗️",
-          "description": "Recreate any missing system folders in the ROMs directory.",
+          "description": "Recreate any missing system folders in the roms directory.",
           "command": {
             "zenity": "configurator_rebuild_esde_systems"
           }
         },
         "move_all": {
           "name": "Move: All of RetroDECK 🚚",
-          "description": "Move the entire RetroDECK data folder to a new location.",
+          "description": "Move the entire RetroDECK data folder: retrodeck to a new location.",
           "command": {
             "zenity": "configurator_move_folder_dialog rd_home_path"
           }
         },
         "move_bios": {
           "name": "Move: BIOS folder 🚚",
-          "description": "Move the BIOS folder to a new location.",
+          "description": "Move the bios folder to a new location.",
           "command": {
             "zenity": "configurator_move_folder_dialog bios_path"
           }
@@ -116,7 +116,7 @@
         },
         "move_media": {
           "name": "Move: Downloaded Media folder 🚚",
-          "description": "Move the ES-DE downloaded_media folder to a new location.",
+          "description": "Move the ES-DE: downloaded_media folder to a new location.",
           "command": {
             "zenity": "configurator_move_folder_dialog downloaded_media_path"
           }
@@ -130,7 +130,7 @@
         },
         "move_roms": {
           "name": "Move: ROMs folder 🚚",
-          "description": "Move the ROMs folder to a new location.",
+          "description": "Move the roms folder to a new location.",
           "command": {
             "zenity": "configurator_move_folder_dialog roms_path"
           }
@@ -165,7 +165,7 @@
         },
         "move_themes": {
           "name": "Move: Themes folder 🚚",
-          "description": "Move the ES-DE themes folder to a new location.",
+          "description": "Move the ES-DE: themes folder to a new location.",
           "command": {
             "zenity": "configurator_move_folder_dialog themes_path"
           }
