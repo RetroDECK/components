@@ -98,6 +98,30 @@ setup_launcher_dir() {
     trap "rm -rf '$launcher_tmp_dir' 2>/dev/null || true" EXIT
 }
 
+# Sanitize a game/whatever name so it is safe to use as a filename for VHDs
+# Replaces path separators and runs of non-alphanumeric/.-_ with a single '_'
+# Keeps the basename readable but removes spaces and other problematic characters
+sanitize_vhd_basename() {
+    local name="$1"
+    # Ensure there is a value
+    if [[ -z "$name" ]]; then
+        echo "unnamed"
+        return 0
+    fi
+
+    # Replace path separators with underscores and collapse any sequence of
+    # characters that are not a-zA-Z0-9, dot, underscore or hyphen into a single '_'
+    local safe
+    safe=$(printf '%s' "$name" | sed -E 's|/|_|g' | sed -E 's/[^A-Za-z0-9._-]+/_/g' | sed -E 's/^_+|_+$//g')
+
+    # Fallback when sanitization strips everything
+    if [[ -z "$safe" ]]; then
+        safe="unnamed"
+    fi
+
+    echo "$safe"
+}
+
 # ============================================================================
 # ARGUMENT PARSING
 # ============================================================================
@@ -273,6 +297,17 @@ EXAMPLES:
 HELP
 }
 
+# Self-test mode (disabled by default). Set WINPLAY_SELFTEST=1 to run a few
+# quick checks for sanitize_vhd_basename without launching DOSBox-X.
+if [[ "${WINPLAY_SELFTEST:-0}" == "1" ]]; then
+    echo "Running winplay.sh self-tests (sanitize_vhd_basename)"
+    test_inputs=("Rages of Mages II" "a/../weird*name" "   " "game.name.vhd")
+    for t in "${test_inputs[@]}"; do
+        printf '%-30s -> %s\n' "$t" "$(sanitize_vhd_basename "$t")"
+    done
+    exit 0
+fi
+
 # ============================================================================
 # ENVIRONMENT VARIABLE PROCESSING (for framework integration)
 # ============================================================================
@@ -441,7 +476,21 @@ create_game_layer_vhd() {
     # Prepare the path for the per-game VHD layer (game + saves unified).
     # This file is created as a differencing VHD backed by base.vhd.
     # All game files and saves go into this single layer.
-    local game_layer="$roms_path/$ESDE_SYSTEM_NAME/${game_name}.vhd"
+    # Build both the raw filename and a sanitized filename. If a file already
+    # exists using the original (possibly spaced) name, prefer it to remain
+    # backwards-compatible. Otherwise use the sanitized version to avoid
+    # problematic characters causing downstream issues (vhdmake/creation).
+    local sanitized_name
+    sanitized_name=$(sanitize_vhd_basename "$game_name")
+    local game_layer_orig="$roms_path/$ESDE_SYSTEM_NAME/${game_name}.vhd"
+    local game_layer_safe="$roms_path/$ESDE_SYSTEM_NAME/${sanitized_name}.vhd"
+
+    local game_layer
+    if [[ -f "$game_layer_orig" ]]; then
+        game_layer="$game_layer_orig"
+    else
+        game_layer="$game_layer_safe"
+    fi
     mkdir -p "$(dirname "$game_layer")"
     
     # VHD creation happens inside autoexec via vhdmake (vhdmake is DOSBox-X internal command, not external)
@@ -459,7 +508,20 @@ create_game_layer_vhd() {
 # This is intended to run during build/packaging on the host (not in Flatpak runtime)
 create_packaged_game_layer_vhd() {
     local game_name="$1"
-    local game_layer="$roms_path/$ESDE_SYSTEM_NAME/${game_name}.vhd"
+    # Prefer sanitized filenames but preserve existing files with the original
+    # name (backwards compatibility). This avoids packaging/creation issues with
+    # strange characters or spaces in filenames.
+    local sanitized_name
+    sanitized_name=$(sanitize_vhd_basename "$game_name")
+    local game_layer_orig="$roms_path/$ESDE_SYSTEM_NAME/${game_name}.vhd"
+    local game_layer_safe="$roms_path/$ESDE_SYSTEM_NAME/${sanitized_name}.vhd"
+
+    local game_layer
+    if [[ -f "$game_layer_orig" ]]; then
+        game_layer="$game_layer_orig"
+    else
+        game_layer="$game_layer_safe"
+    fi
 
     if [[ -z "$VHD_BASE_PATH" || ! -f "$VHD_BASE_PATH" ]]; then
         log e "Base VHD not found at: $VHD_BASE_PATH — cannot package game layer"
@@ -622,13 +684,24 @@ generate_autoexec_launch() {
     local launcher_dir="$4"
     
     log i "Creating autoexec for game launch (eXoWin9x-style: C=write-layer, D=game)"
-    
+
+    # Prefer explicit parameters from the caller, but fall back to global
+    # variables for compatibility with older flows.
+    local game_layer="${game_layer:-$GAME_VHD_PATH}"
+    local savedata="${savedata:-$VHD_WRITE_LAYER}"
+
     # C: = differencing VHD for Windows/saves (write layer, backed by base.vhd)
     # D: = game VHD or directory
+    # New sequence (safer): mount base read-only, create differencing child with
+    # vhdmake -diff, then mount the child. This avoids race/lock issues on
+    # certain DOSBox-X builds when creating/writing difference images directly.
+    # Use IMGMAKE -link to create a differencing child backed by the base
+    # image and mount it as C:. This avoids vhdmake differencing issues on
+    # some DOSBox-X builds.
     cat >> "$conf_file" <<EOF
-vhdmake -f -l "$VHD_BASE_PATH" "$VHD_WRITE_LAYER"
-IMGMOUNT C "$VHD_WRITE_LAYER" -t hdd
-IMGMOUNT D "$GAME_VHD_PATH" -t hdd
+IMGMAKE "$savedata" -link "$VHD_BASE_PATH"
+IMGMOUNT C "$savedata" -t hdd
+IMGMOUNT D "$game_layer" -t hdd
 MOUNT A "$launcher_dir"
 DEL "C:\\WINDOWS\\STARTM~1\\PROGRAMS\\STARTUP\\*"
 COPY A:\\run_game.bat "C:\\WINDOWS\\STARTM~1\\PROGRAMS\\STARTUP\\run_game.bat"
@@ -751,7 +824,29 @@ create_launcher_bat() {
 
 prepare_config() {
     rm -f "$TMP_CONF"
-    cp "$dosbox_x_config" "$TMP_CONF"
+    # Create TMP_CONF from the OS-specific config (if available). The launch
+    # order will be: -conf $dosbox_x_config -conf $TMP_CONF so that entries in
+    # the OS-specific config override the base. If no OS config is available,
+    # fall back to copying the base config so runtime writers (eg set_setting_value)
+    # can operate on TMP_CONF.
+    if [[ -n "$OS_CONFIG_DIR" && -n "$WIN_VERSION" && -f "$OS_CONFIG_DIR/$WIN_VERSION.conf" ]]; then
+        log d "Preparing TMP_CONF from OS config: $OS_CONFIG_DIR/$WIN_VERSION.conf"
+        cp "$OS_CONFIG_DIR/$WIN_VERSION.conf" "$TMP_CONF"
+    elif [[ -f "$dosbox_x_config" ]]; then
+        log d "No OS config found; using base dosbox config as TMP_CONF: $dosbox_x_config"
+        cp "$dosbox_x_config" "$TMP_CONF"
+    else
+        > "$TMP_CONF"
+    fi
+
+    # Strip all comments (full-line and inline '#' comments) from the temporary
+    # config so the runtime-only TMP_CONF is clean and doesn't contain commented
+    # configuration values. This removes the '#' and everything after it on a
+    # line then drops blank lines.
+    if [[ -f "$TMP_CONF" ]]; then
+        awk '{ sub(/#.*/, ""); if (match($0,/[^[:space:]]/)) print }' "$TMP_CONF" > "${TMP_CONF}.no_comments" && mv "${TMP_CONF}.no_comments" "$TMP_CONF"
+        log d "Stripped comments from temporary config: $TMP_CONF"
+    fi
     # Remove [autoexec] section and everything after it, then add fresh [autoexec]
     sed -i '/^\[autoexec\]/,$d' "$TMP_CONF"
     
@@ -769,7 +864,9 @@ generate_autoexec() {
         fi
     else
         create_launcher_bat "$LAUNCHER_DIR"
-        generate_autoexec_launch "$TMP_CONF" "$VHD_GAME_LAYER" "$VHD_SAVEDATA" "$LAUNCHER_DIR"
+        # Pass the prepared game-layer and write-layer into the autoexec generator.
+        # The generator will fall back to globals if either is empty.
+        generate_autoexec_launch "$TMP_CONF" "$VHD_GAME_LAYER" "$VHD_WRITE_LAYER" "$LAUNCHER_DIR"
     fi
 }
 
@@ -899,21 +996,36 @@ handle_launch_mode() {
     # D: = game VHD (the actual game, stored in roms_path)
     
     # C: write-layer (differencing VHD backed by base.vhd)
-    VHD_WRITE_LAYER="$VHD_SAVEDATA_DIR/$GAME_NAME_FOR_DIR.sav.vhd"
+    local sanitized_game_name
+    sanitized_game_name=$(sanitize_vhd_basename "$GAME_NAME_FOR_DIR")
+
+    local write_layer_orig="$VHD_SAVEDATA_DIR/$GAME_NAME_FOR_DIR.sav.vhd"
+    local write_layer_safe="$VHD_SAVEDATA_DIR/$sanitized_game_name.sav.vhd"
+
+    if [[ -f "$write_layer_orig" ]]; then
+        VHD_WRITE_LAYER="$write_layer_orig"
+    else
+        VHD_WRITE_LAYER="$write_layer_safe"
+    fi
+
     mkdir -p "$(dirname "$VHD_WRITE_LAYER")"
     log i "Write-layer VHD (C:): $VHD_WRITE_LAYER"
     
     # D: game layer - check both new and old layouts for compatibility
     local alt_game_vhd="$roms_path_base/$ESDE_SYSTEM_NAME/$GAME_NAME_FOR_DIR.vhd"
+    local alt_game_vhd_safe="$roms_path_base/$ESDE_SYSTEM_NAME/$sanitized_game_name.vhd"
     local old_game_vhd="$roms_path_base/$ESDE_SYSTEM_NAME/$GAME_NAME_FOR_DIR/game-layer.vhd"
     
     if [[ -f "$old_game_vhd" ]]; then
         GAME_VHD_PATH="$old_game_vhd"
         log i "Using existing game VHD (old layout): $old_game_vhd"
-    else
+    elif [[ -f "$alt_game_vhd" ]]; then
         GAME_VHD_PATH="$alt_game_vhd"
-        log i "Game VHD path (D:): $alt_game_vhd"
-        mkdir -p "$(dirname "$alt_game_vhd")"
+        log i "Using existing game VHD (D: - original name): $alt_game_vhd"
+    else
+        GAME_VHD_PATH="$alt_game_vhd_safe"
+        log i "Game VHD path (D:): $GAME_VHD_PATH"
+        mkdir -p "$(dirname "$GAME_VHD_PATH")"
     fi
 
     if [ ! -f "$GAME_VHD_PATH" ]; then
@@ -1100,8 +1212,14 @@ main() {
     generate_autoexec
     log_config
     
-    # Build DOSBox-X command with optional overrides
-    local dosbox_cmd=("$component_path/bin/dosbox-x" "-conf" "$TMP_CONF")
+    # Build DOSBox-X command with optional overrides; pass base config first
+    # then the OS-specific TMP_CONF so the last file wins for duplicate settings.
+    local dosbox_cmd=("$component_path/bin/dosbox-x")
+    if [[ -f "$dosbox_x_config" ]]; then
+        dosbox_cmd+=("-conf" "$dosbox_x_config")
+    fi
+    # TMP_CONF is created from OS config (or from base when OS config missing)
+    dosbox_cmd+=("-conf" "$TMP_CONF")
     
     # Disable dynamic CPU during OS installation for stability and enable TURBO.
     # Prefer to write these values to the temporary config (TMP_CONF) using
@@ -1130,3 +1248,5 @@ main() {
 }
 
 main "$@"
+
+log d "Config file used:\n$(cat "$TMP_CONF")"
