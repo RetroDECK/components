@@ -1,7 +1,12 @@
 #!/bin/bash
 
-source /app/libexec/dialogs.sh
-source /app/libexec/zenity_processing.sh
+# When run directly, source runtime helpers. When the file is sourced (eg. unit
+# tests) we avoid sourcing runtime files which may not be available in the test
+# environment. This keeps functions testable when the script is sourced.
+if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
+    source /app/libexec/dialogs.sh
+    source /app/libexec/zenity_processing.sh
+fi
 
 # This script launches DOSBox-X with a Windows 98/3.1 image and autostarts games
 # It prepares a temporary configuration and BAT file for game installation and launching
@@ -807,16 +812,18 @@ create_launcher_bat() {
     local game_filename=$(basename "$GAME_PATH")
     local game_filename_dos=$(echo "$game_filename" | tr '[:lower:]' '[:upper:]')
     
+    # Create launcher BAT with proper Windows CRLF line endings using printf.
+    # Use printf instead of echo -e to avoid shell-dependent escapes and ensure \r\n.
     {
-        echo -e "REM Launcher for game\r"
-        echo -e "@ECHO OFF\r"
-        echo -e "CLS\r"
-        echo -e "D:\r"
-        echo -e "DIR\r"
-        echo -e "REM Starting game...\r"
-        echo -e "START /WAIT $game_filename_dos\r"
-        echo -e "REM Game finished\r"
-        echo -e "RUNDLL32.EXE USER.EXE,ExitWindows\r"
+        printf '%s\r\n' "REM Launcher for game"
+        printf '%s\r\n' "@ECHO OFF"
+        printf '%s\r\n' "CLS"
+        printf '%s\r\n' "D:"
+        printf '%s\r\n' "DIR"
+        printf '%s\r\n' "REM Starting game..."
+        printf '%s\r\n' "START /WAIT $game_filename_dos"
+        printf '%s\r\n' "REM Game finished"
+        printf '%s\r\n' "RUNDLL32.EXE USER.EXE,ExitWindows"
     } > "$launcher_bat"
     
     log d "Created launcher BAT at: $launcher_bat"
@@ -1247,6 +1254,8 @@ main() {
     "${dosbox_cmd[@]}"
 }
 
-main "$@"
+if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
+    main "$@"
+fi
 
 log d "Config file used:\n$(cat "$TMP_CONF")"
