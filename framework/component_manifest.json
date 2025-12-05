@@ -74,105 +74,105 @@
       "data_management": {
         "backup_retrodeck": {
           "name": "Backup RetroDECK 🗄️",
-          "description": "Backup and compress RetroDECK userdata into a .zip file.",
+          "description": "Backup and compress RetroDECK userdata into a .tar file.",
           "command": {
             "zenity": "configurator_retrodeck_backup_dialog"
           }
         },
         "clean_empty_systems": {
           "name": "ROMs Folder: Clean Empty Systems 🧹",
-          "description": "<span foreground='$purple'><b>Remove</b></span> empty system folders from the roms directory.",
+          "description": "Remove empty system folders from the roms directory.",
           "command": {
             "zenity": "configurator_clean_empty_systems_dialog"
           }
         },
         "rebuild_esde_systems": {
           "name": "ROMs Folder: Rebuild Systems 🏗️",
-          "description": "<span foreground='$purple'><b>Recreate</b></span> any missing system folders in the roms directory.",
+          "description": "Recreate any missing system folders in the roms directory.",
           "command": {
             "zenity": "configurator_rebuild_esde_systems"
           }
         },
         "move_all": {
-          "name": "Move: All of RetroDECK",
-          "description": "Move the entire RetroDECK data folder <span foreground='$purple'><b>retrodeck</b></span> to a new location.",
+          "name": "Move: All of RetroDECK 🚚",
+          "description": "Move the entire RetroDECK data folder: retrodeck to a new location.",
           "command": {
             "zenity": "configurator_move_folder_dialog rd_home_path"
           }
         },
         "move_roms": {
-          "name": "Move: ROMS folder",
-          "description": "Move the <span foreground='$purple'><b>roms</b></span> folder to a new location.",
+          "name": "Move: ROMS folder 🚚",
+          "description": "Move the roms folder to a new location.",
           "command": {
             "zenity": "configurator_move_folder_dialog roms_path"
           }
         },
         "move_bios": {
-          "name": "Move: BIOS folder",
-          "description": "Move the <span foreground='$purple'><b>bios</b></span> folder to a new location",
+          "name": "Move: BIOS folder 🚚",
+          "description": "Move the bios folder to a new location",
           "command": {
             "zenity": "configurator_move_folder_dialog bios_path"
           }
         },
         "move_media": {
-          "name": "Move: Downloaded Media folder",
-          "description": "Move the ES-DE <span foreground='$purple'><b>downloaded_media</b></span> folder to a new location",
+          "name": "Move: Downloaded Media folder 🚚",
+          "description": "Move the ES-DE downloaded_media folder to a new location",
           "command": {
             "zenity": "configurator_move_folder_dialog downloaded_media_path"
           }
         },
         "move_saves": {
-          "name": "Move: Saves folder",
-          "description": "Move the <span foreground='$purple'><b>saves</b></span> folder to a new location",
+          "name": "Move: Saves folder 🚚",
+          "description": "Move the saves folder to a new location",
           "command": {
             "zenity": "configurator_move_folder_dialog saves_path"
           }
         },
         "move_states": {
-          "name": "Move: States folder",
-          "description": "Move the <span foreground='$purple'><b>states</b></span> folder to a new location",
+          "name": "Move: States folder 🚚",
+          "description": "Move the states folder to a new location",
           "command": {
             "zenity": "configurator_move_folder_dialog states_path"
           }
         },
         "move_themes": {
-          "name": "Move: Themes folder",
-          "description": "Move the ES-DE <span foreground='$purple'><b>themes</b></span> folder to a new location",
+          "name": "Move: Themes folder 🚚",
+          "description": "Move the ES-DE themes folder to a new location",
           "command": {
             "zenity": "configurator_move_folder_dialog themes_path"
           }
         },
         "move_screenshots": {
-          "name": "Move: Screenshots folder",
-          "description": "Move the <span foreground='$purple'><b>screenshots</b></span> folder to a new location",
+          "name": "Move: Screenshots folder 🚚",
+          "description": "Move the screenshots folder to a new location",
           "command": {
             "zenity": "configurator_move_folder_dialog screenshots_path"
           }
         },
         "move_mods": {
-          "name": "Move: Mods folder",
-          "description": "Move the <span foreground='$purple'><b>mods</b></span> folder to a new location",
+          "name": "Move: Mods folder 🚚",
+          "description": "Move the mods folder to a new location",
           "command": {
             "zenity": "configurator_move_folder_dialog mods_path"
           }
         },
         "move_texture_packs": {
-          "name": "Move: Texture Packs folder",
-          "description": "Move the <span foreground='$purple'><b>texture_packs</b></span> folder to a new location",
+          "name": "Move: Texture Packs folder 🚚",
+          "description": "Move the texture_packs folder to a new location",
           "command": {
             "zenity": "configurator_move_folder_dialog texture_packs_path"
           }
         },
         "move_cheats": {
-          "name": "Move: Cheats folder",
-          "description": "Move the <span foreground='$purple'><b>cheats</b></span> folder to a new location",
+          "name": "Move: Cheats folder 🚚",
+          "description": "Move the cheats folder to a new location",
           "command": {
             "zenity": "configurator_move_folder_dialog cheats_path"
           }
         },
         "move_shaders": {
-          "name": "Move: Shaders folder",
-          "description": "Move the <span foreground='$purple'><b>shaders</b></span> folder to a new location",
+          "name": "Move: Shaders folder 🚚",
+          "description": "Move the shaders folder to a new location",
           "command": {
             "zenity": "configurator_move_folder_dialog shaders_path"
           }
