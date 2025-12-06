@@ -41,8 +41,8 @@ if [[ "$action" == "postmove" ]]; then # Update the paths of any folders that ca
     local current_setting_name=$(get_setting_name "$config_line" "retrodeck")
     if [[ ! $current_setting_name =~ (rd_home_path|sdcard) ]]; then # Ignore these locations
       local current_setting_value=$(get_setting_value "$rd_conf" "$current_setting_name" "retrodeck" "paths")
-      if [[ -d "$path/${current_setting_value#*retrodeck/}" ]]; then # If the folder exists at the new ~/retrodeck location
-          declare -g "$current_setting_name=$path/${current_setting_value#*retrodeck/}"
+      if [[ -d "$rd_home_path/${current_setting_value#*retrodeck/}" ]]; then # If the folder exists at the new ~/retrodeck location
+          declare -g "$current_setting_name=$rd_home_path/${current_setting_value#*retrodeck/}"
       fi
     fi
   done < <(grep -v '^\s*$' "$rd_conf" | awk '/^\[paths\]/{f=1;next} /^\[/{f=0} f')

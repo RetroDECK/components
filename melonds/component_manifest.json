@@ -1,6 +1,6 @@
 {
   "melonds": {
-    "description": "MelonDS is an open-source Nintendo DS (nds) emulator.",
+    "description": "MelonDS is a Nintendo DS (nds) emulator.",
     "name": "melonDS",
     "component_type": "Emulator",
     "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/melonds/melonds-guide/",

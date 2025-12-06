@@ -14,4 +14,10 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
   sed -i "s#RETRODECKROMSDIR#${roms_path}#g" "$xroar_config" && log i "Set ROMs directory in xroar.conf"
   sed -i "s#RETRODECKBIOSDIR#${bios_path}#g" "$xroar_config" && log i "Set BIOS directory in xroar.conf"
 
+# XRoar does not provide a default directory for state files in the config, so you must choose a folder each time you save or load.
+
+  create_dir "$states_path/xroar/coco/"
+  create_dir "$states_path/xroar/dragon32/"
+  create_dir "$states_path/xroar/tanodragon/"
+
 fi

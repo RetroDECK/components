@@ -1,6 +1,6 @@
 {
   "mame": {
-    "description": "MAME is an open-source arcade machines multi-emulator.",
+    "description": "MAME is a arcade machine multi-emulator.",
     "name": "MAME",
     "component_type": "Multi-Emulator",
     "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/mame/mame-guide/",

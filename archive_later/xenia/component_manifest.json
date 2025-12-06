@@ -5,7 +5,7 @@
     "url_webpage": "https://xenia.jp/",
     "url_source": "https://github.com/xenia-project/xenia",
     "component_type": "Emulator",
-    "description": "Xenia is an open-source Microsoft Xbox 360 (xbox360) emulator.",
+    "description": "Xenia is a Microsoft Xbox 360 (xbox360) emulator.",
     "system_friendly_name": "Xbox 360",
     "system": "xbox360"
   }
