@@ -1,12 +1,6 @@
 #!/bin/bash
 
-# When run directly, source runtime helpers. When the file is sourced (eg. unit
-# tests) we avoid sourcing runtime files which may not be available in the test
-# environment. This keeps functions testable when the script is sourced.
-if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
-    source /app/libexec/dialogs.sh
-    source /app/libexec/zenity_processing.sh
-fi
+source /app/libexec/global.sh
 
 # This script launches DOSBox-X with a Windows 98/3.1 image and autostarts games
 # It prepares a temporary configuration and BAT file for game installation and launching
@@ -25,7 +19,7 @@ init_globals() {
     SAVES_PATH="${save_path:-${XDG_DATA_HOME:-$HOME/.local/share}/retrodeck/saves}"
     VHD_SAVEDATA_DIR=""
     ESDE_SYSTEM_NAME=""
-    
+
     # Initialize mode flags
     INSTALL_MODE=0
     INSTALL_NAME=""
@@ -41,7 +35,7 @@ init_globals() {
     HDISKS=()
     WIN_VERSION=""
     GAME_PATH=""
-    
+
     # Initialize runtime variables
     IS_OS_INSTALL=0
     GAME_NAME_FOR_DIR=""
@@ -67,7 +61,7 @@ setup_paths() {
     if [[ ! -d "$OS_CONFIG_DIR" ]]; then
         OS_CONFIG_DIR="${dosbox_x_os_configs_dir:-$OS_CONFIG_DIR}"
     fi
-    
+
     VHD_BASE_PATH="$bios_path/$WIN_VERSION.vhd"
     TMP_CONF="$XDG_CACHE_HOME/dosbox-x/winplay.conf"
     # Choose the default virtual size for layers and per-system path name based on WIN_VERSION.
@@ -98,7 +92,7 @@ setup_launcher_dir() {
     local launcher_base_dir="$XDG_CACHE_HOME/dosbox-x"
     local launcher_tmp_dir=$(mktemp -d "${launcher_base_dir}/tmp.XXXX")
     LAUNCHER_DIR="$launcher_tmp_dir/launcher"
-    
+
     # Cleanup on exit
     trap "rm -rf '$launcher_tmp_dir' 2>/dev/null || true" EXIT
 }
@@ -226,7 +220,7 @@ parse_arguments() {
 validate_arguments() {
     # Set default Windows version
     WIN_VERSION="${WIN_VERSION:-win98}"
-    
+
     # Validate required arguments
     if [[ $INSTALL_MODE -eq 0 && $DESKTOP_MODE -eq 0 && -z "$GAME_PATH" ]]; then
         log e "No game path provided, --install, or --desktop specified!"
@@ -273,7 +267,7 @@ CREATE FILESYSTEM IMAGES / LAYER NAMING:
 DESKTOP MODE (WARNING):
   --desktop win98         Launch Windows 98 base OS desktop (NO GAME)
   --desktop win31         Launch Windows 3.1 base OS desktop (NO GAME)
-  
+
       ALL CHANGES MADE IN DESKTOP MODE ARE PERMANENT AND AFFECT THE BASE IMAGE!
       Any modifications, installations, or configurations will persist across all games.
       Use only for system setup or troubleshooting.
@@ -321,25 +315,25 @@ extract_args_from_environment() {
     # If no CLI arguments provided, check for framework-provided environment variables
     if [[ $# -eq 0 ]]; then
         local env_args=()
-        
+
         # Check for action environment variables
         if [[ -n "${DOSBOX_ACTION:-}" ]]; then
             env_args+=("--${DOSBOX_ACTION}")
             [[ -n "${DOSBOX_ACTION_VALUE:-}" ]] && env_args+=("${DOSBOX_ACTION_VALUE}")
         fi
-        
+
         # Check for CD-ROM environment variables
         if [[ -n "${DOSBOX_CDROM:-}" ]]; then
             env_args+=("--cdrom" "${DOSBOX_CDROM}")
         fi
-        
+
         if [[ ${#env_args[@]} -gt 0 ]]; then
             log d "Extracted arguments from environment: ${env_args[@]}"
             printf '%s\n' "${env_args[@]}"
             return 0
         fi
     fi
-    
+
     # Return CLI arguments as-is
     printf '%s\n' "$@"
     return 0
@@ -353,16 +347,16 @@ extract_args_from_environment() {
 mkfs_win98() {
     local target_path="${1:-$bios_path/win98.vhd}"
     local size_mb=4096
-    
+
     mkdir -p "$(dirname "$target_path")"
-    
+
     if [[ -f "$target_path" ]]; then
         log w "VHD already exists: $target_path (skipping)"
         return 0
     fi
-    
+
     log i "Creating Windows 98 VHD: $target_path (${size_mb}MB, FAT32)"
-    
+
     # Use DOSBox-X imgmake to create a dynamic VHD
     # This is native to DOSBox-X and fully compatible
     if ! "$component_path/bin/dosbox-x" -c "imgmake -t hd -size $size_mb \"$target_path\"" -c "exit" > /dev/null 2>&1; then
@@ -370,11 +364,11 @@ mkfs_win98() {
         rm -f "$target_path"
         return 1
     fi
-    
+
     local disk_blocks=$(stat -c%b "$target_path" 2>/dev/null || echo 0)
     local disk_usage_kb=$((disk_blocks * 512 / 1024))
     local size_str=$([[ $disk_usage_kb -lt 1024 ]] && echo "${disk_usage_kb}KB" || echo "$((disk_usage_kb / 1024))MB")
-    
+
     log i "✓ Windows 98 VHD created (sparse: ~${size_str} on disk)"
     return 0
 }
@@ -382,16 +376,16 @@ mkfs_win98() {
 mkfs_win31() {
     local target_path="${1:-$bios_path/win31.vhd}"
     local size_mb=512
-    
+
     mkdir -p "$(dirname "$target_path")"
-    
+
     if [[ -f "$target_path" ]]; then
         log w "VHD already exists: $target_path (skipping)"
         return 0
     fi
-    
+
     log i "Creating Windows 3.1 VHD: $target_path (${size_mb}MB, FAT16)"
-    
+
     # Use DOSBox-X imgmake to create a dynamic VHD
     # This is native to DOSBox-X and fully compatible
     if ! "$component_path/bin/dosbox-x" -c "imgmake -t hd -size $size_mb \"$target_path\"" -c "exit" > /dev/null 2>&1; then
@@ -399,11 +393,11 @@ mkfs_win31() {
         rm -f "$target_path"
         return 1
     fi
-    
+
     local disk_blocks=$(stat -c%b "$target_path" 2>/dev/null || echo 0)
     local disk_usage_kb=$((disk_blocks * 512 / 1024))
     local size_str=$([[ $disk_usage_kb -lt 1024 ]] && echo "${disk_usage_kb}KB" || echo "$((disk_usage_kb / 1024))MB")
-    
+
     log i "✓ Windows 3.1 VHD created (sparse: ~${size_str} on disk)"
     return 0
 }
@@ -448,17 +442,17 @@ verify_os_config() {
 copy_base_vhd_from_template() {
     local os_version="$1"
     local target_path="$2"
-    
+
     # Force recreate if -f flag was used
     if [[ $FORCE_RECREATE -eq 1 && -f "$target_path" ]]; then
         log i "Force recreating VHD (removing existing file)..."
         rm -f "$target_path" || { log e "Failed to remove old VHD"; exit 1; }
     fi
-    
+
     if [[ ! -f "$target_path" ]]; then
         log i "Windows $os_version VHD not found at: $target_path"
         log i "Creating VHD automatically..."
-        
+
         case "$os_version" in
             win98)
                 mkfs_win98 "$target_path" || exit 1
@@ -497,7 +491,7 @@ create_game_layer_vhd() {
         game_layer="$game_layer_safe"
     fi
     mkdir -p "$(dirname "$game_layer")"
-    
+
     # VHD creation happens inside autoexec via vhdmake (vhdmake is DOSBox-X internal command, not external)
     # Just return the path; vhdmake in autoexec will create it on first launch
     if [[ ! -f "$game_layer" ]]; then
@@ -505,7 +499,7 @@ create_game_layer_vhd() {
     else
         log i "Game-layer VHD already exists: $game_layer"
     fi
-    
+
     echo "$game_layer"
 }
 
@@ -607,16 +601,16 @@ create_packaged_game_layer_vhd() {
 
 generate_autoexec_install_os() {
     local conf_file="$1"
-    
+
     log i "Windows OS Installation Mode"
     log i "VHD is pre-formatted and ready for Setup"
-    
+
     if [[ ${#CDROMS[@]} -eq 0 ]]; then
         log e "Installation requires a CD-ROM image!"
         log e "Usage: $0 --install $WIN_VERSION --cd-rom /path/to/setup.iso"
         exit 1
     fi
-    
+
     cat <<EOF >> "$conf_file"
 REM Mount the pre-formatted VHD as C:
 IMGMOUNT C "$VHD_BASE_PATH" -t hdd
@@ -677,7 +671,6 @@ BOOT C:
 :END_INSTALL
 C:
 RUNDLL32.EXE USER.EXE,ExitWindows
-EXIT
 EOF
     log i "Setup: VHD mounted, ready for installation"
 }
@@ -687,7 +680,7 @@ generate_autoexec_launch() {
     local game_layer="$2"
     local savedata="$3"
     local launcher_dir="$4"
-    
+
     log i "Creating autoexec for game launch (eXoWin9x-style: C=write-layer, D=game)"
 
     # Prefer explicit parameters from the caller, but fall back to global
@@ -719,16 +712,16 @@ EOF
     cat <<EOF >> "$conf_file"
 BOOT -l C:
 EOF
-    
+
     log i "Autoexec ready: C=write-layer, D=game, E+=CD/HD/floppy"
 }
 
 generate_autoexec_desktop() {
     local conf_file="$1"
     local vhd_base_path="$2"
-    
+
     log i "Mounting base OS for desktop mode"
-    
+
     cat <<EOF >> "$conf_file"
 IMGMOUNT C "$vhd_base_path" -t hdd
 EOF
@@ -739,14 +732,14 @@ EOF
     cat <<EOF >> "$conf_file"
 BOOT C:
 EOF
-    
+
     log i "Mounted base OS as C: (desktop mode)"
 }
 
 mount_disks() {
     local conf_file="$1"
     local next_drive="${2:-C}"
-    
+
     # Mount floppy disks on A: and B:
     if [[ ${#FLOPPIES[@]} -gt 0 ]]; then
         if [[ ${#FLOPPIES[@]} -eq 1 ]]; then
@@ -768,7 +761,7 @@ EOF
             fi
         fi
     fi
-    
+
     # Mount hard disks starting from current next_drive
     for hd_path in "${HDISKS[@]}"; do
         local hd_drive="$next_drive"
@@ -781,7 +774,7 @@ EOF
         # Increment drive letter
         next_drive=$(printf "\\$(printf '%03o' $(($(printf '%d' "'$next_drive") + 1)))")
     done
-    
+
     # Mount CD-ROMs on the remaining drive letters
     if [[ ${#CDROMS[@]} -gt 0 ]]; then
         local imgmount_cmd="IMGMOUNT $next_drive"
@@ -789,12 +782,12 @@ EOF
             imgmount_cmd="$imgmount_cmd \"$iso_path\""
         done
         imgmount_cmd="$imgmount_cmd -t cdrom"
-        
+
         cat <<EOF >> "$conf_file"
 REM Mount CD-ROMs
 $imgmount_cmd
 EOF
-        
+
         log i "Added CD-ROM mount: $next_drive: (${#CDROMS[@]} image(s))"
     fi
 }
@@ -806,12 +799,12 @@ EOF
 create_launcher_bat() {
     local launcher_dir="$1"
     local launcher_bat="$launcher_dir/run_game.bat"
-    
+
     mkdir -p "$launcher_dir"
-    
+
     local game_filename=$(basename "$GAME_PATH")
     local game_filename_dos=$(echo "$game_filename" | tr '[:lower:]' '[:upper:]')
-    
+
     # Create launcher BAT with proper Windows CRLF line endings using printf.
     # Use printf instead of echo -e to avoid shell-dependent escapes and ensure \r\n.
     {
@@ -825,7 +818,7 @@ create_launcher_bat() {
         printf '%s\r\n' "REM Game finished"
         printf '%s\r\n' "RUNDLL32.EXE USER.EXE,ExitWindows"
     } > "$launcher_bat"
-    
+
     log d "Created launcher BAT at: $launcher_bat"
 }
 
@@ -856,7 +849,7 @@ prepare_config() {
     fi
     # Remove [autoexec] section and everything after it, then add fresh [autoexec]
     sed -i '/^\[autoexec\]/,$d' "$TMP_CONF"
-    
+
     cat <<EOF >> "$TMP_CONF"
 [autoexec]
 EOF
@@ -892,19 +885,20 @@ log_config() {
 handle_install_os() {
     local os_config_dir="$1"
     local vhd_base_path="$2"
-    
+
     IS_OS_INSTALL=1
     WIN_VERSION="$INSTALL_NAME"
     log i "OS install mode: Installing $WIN_VERSION"
+    configurator_generic_dialog "RetroDECK - Installing $WIN_VERSION" "Please follow the Windows Setup prompts to install the operating system and set it up for your needings.\nYou might want to change the desktop resolution and the colors.\n\nThe installation will start in TURBO mode, but any key input will disable it, please re-enable it during the loading bars to speed them up."
     copy_base_vhd_from_template "$WIN_VERSION" "$vhd_base_path"
-    
+
     # Update VHD_BASE_PATH after WIN_VERSION change
     VHD_BASE_PATH="$bios_path/$WIN_VERSION.vhd"
 }
 
 handle_install_game() {
     local vhd_base_path="$1"
-    
+
     # Treat the install name exactly as provided by the user. The only
     # special-case: if the name ends with .vhd (any case) strip that suffix
     # because we will append ".vhd" ourselves when creating the game layer
@@ -923,13 +917,13 @@ handle_install_game() {
         GAME_NAME_FOR_DIR="${GAME_NAME_FOR_DIR%.[vV][hH][dD]}"
     fi
     log i "Game install mode: Installing $GAME_NAME_FOR_DIR"
-    
+
     if [[ ! -f "$vhd_base_path" ]]; then
         log e "Windows VHD not found at: $vhd_base_path"
         log e "Please install the Windows image first using: $0 --install $WIN_VERSION"
         exit 1
     fi
-    
+
     # Try to create a game-layer using the explicit install name
     log d "Attempting game-layer creation with requested install name: '$GAME_NAME_FOR_DIR'"
 
@@ -964,7 +958,7 @@ handle_install_game() {
 handle_install_mode() {
     local os_config_dir="$1"
     local vhd_base_path="$2"
-    
+
     if [[ -f "$os_config_dir/$INSTALL_NAME.conf" ]]; then
         handle_install_os "$os_config_dir" "$vhd_base_path"
     else
@@ -980,7 +974,7 @@ handle_desktop_mode() {
     log w "DESKTOP MODE - ALL CHANGES ARE PERMANENT TO BASE IMAGE!"
     log w "Any modifications will persist across all games."
     log w "Use only for troubleshooting/configuration."
-    
+
     WIN_VERSION="$DESKTOP_VERSION"
     log i "Desktop mode: Launching base OS"
 }
@@ -992,16 +986,16 @@ handle_desktop_mode() {
 handle_launch_mode() {
     local game_path="$1"
     local roms_path_base="$2"
-    
+
     GAME_NAME_FOR_DIR="$game_path"
     log i "Launch mode: Launching $GAME_NAME_FOR_DIR"
 
 
-    
+
     # Following eXoWin9x architecture:
     # C: = write-layer VHD (differencing VHD for Windows/saves, stored in savedata_dir with .sav.vhd suffix)
     # D: = game VHD (the actual game, stored in roms_path)
-    
+
     # C: write-layer (differencing VHD backed by base.vhd)
     local sanitized_game_name
     sanitized_game_name=$(sanitize_vhd_basename "$GAME_NAME_FOR_DIR")
@@ -1017,12 +1011,12 @@ handle_launch_mode() {
 
     mkdir -p "$(dirname "$VHD_WRITE_LAYER")"
     log i "Write-layer VHD (C:): $VHD_WRITE_LAYER"
-    
+
     # D: game layer - check both new and old layouts for compatibility
     local alt_game_vhd="$roms_path_base/$ESDE_SYSTEM_NAME/$GAME_NAME_FOR_DIR.vhd"
     local alt_game_vhd_safe="$roms_path_base/$ESDE_SYSTEM_NAME/$sanitized_game_name.vhd"
     local old_game_vhd="$roms_path_base/$ESDE_SYSTEM_NAME/$GAME_NAME_FOR_DIR/game-layer.vhd"
-    
+
     if [[ -f "$old_game_vhd" ]]; then
         GAME_VHD_PATH="$old_game_vhd"
         log i "Using existing game VHD (old layout): $old_game_vhd"
@@ -1048,11 +1042,11 @@ handle_launch_mode() {
 
 main() {
     init_globals
-    
+
     # Extract arguments from either CLI or environment
     local final_args
     mapfile -t final_args < <(extract_args_from_environment "$@")
-    
+
     # Route based on first argument
     case "${final_args[0]}" in
         --help|-h)
@@ -1168,7 +1162,7 @@ main() {
             GAME_PATH="${final_args[0]}"
             ;;
     esac
-    
+
     # Ensure a default WIN_VERSION when not supplied
     WIN_VERSION="${WIN_VERSION:-win98}"
 
@@ -1197,7 +1191,7 @@ main() {
         create_packaged_game_layer_vhd "$PACK_GAME_NAME"
         exit $?
     fi
-    
+
     # Execute mode
     case 1 in
         $DESKTOP_MODE)
@@ -1213,12 +1207,12 @@ main() {
             handle_launch_mode "$GAME_PATH" "$roms_path"
             ;;
     esac
-    
+
     # Prepare and launch
     prepare_config
     generate_autoexec
     log_config
-    
+
     # Build DOSBox-X command with optional overrides; pass base config first
     # then the OS-specific TMP_CONF so the last file wins for duplicate settings.
     local dosbox_cmd=("$component_path/bin/dosbox-x")
@@ -1227,7 +1221,7 @@ main() {
     fi
     # TMP_CONF is created from OS config (or from base when OS config missing)
     dosbox_cmd+=("-conf" "$TMP_CONF")
-    
+
     # Disable dynamic CPU during OS installation for stability and enable TURBO.
     # Prefer to write these values to the temporary config (TMP_CONF) using
     # set_setting_value when available; fall back to CLI -set overrides otherwise.
@@ -1241,21 +1235,19 @@ main() {
         set_setting_value "$TMP_CONF" "turbo" "true" "dosbox-x" "cpu" || \
             log w "Failed to set TMP_CONF turbo=true via set_setting_value"
     fi
-    
+
     # Final messages
     if [[ $INSTALL_MODE -eq 1 && $IS_OS_INSTALL -eq 1 ]]; then
         log i "Windows installation environment ready!"
         log i "Once complete, install games with: $0 --install <game_name>"
     fi
-    
+
     echo ""
 
     # Run DOSBox-X directly (dynamic=false is enabled earlier during OS install)
     "${dosbox_cmd[@]}"
 }
 
-if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
-    main "$@"
-fi
+main "$@"
 
 log d "Config file used:\n$(cat "$TMP_CONF")"
