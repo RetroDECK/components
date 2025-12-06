@@ -15,9 +15,8 @@ init_globals() {
     # VHD layer paths - save_path should be provided by RetroDECK framework
     # - OS Layer: $bios_path/$WIN_VERSION.vhd
     # - Game Layer: $roms_path/<ESDE_SYSTEM_NAME>/<game name>.vhd
-    # - Saves Layer: $save_path/<ESDE_SYSTEM_NAME>/dosbox-x/<game name>.sav.vhd
-    SAVES_PATH="${save_path:-${XDG_DATA_HOME:-$HOME/.local/share}/retrodeck/saves}"
-    VHD_SAVEDATA_DIR=""
+    # (Per-game VHD is the single writable layer for the game — it contains
+    #  the game files and any save files created by the title.)
     ESDE_SYSTEM_NAME=""
 
     # Initialize mode flags
@@ -35,6 +34,10 @@ init_globals() {
     HDISKS=()
     WIN_VERSION=""
     GAME_PATH=""
+    # When set, do not create/copy the run_game launcher into the guest's
+    # startup. Useful for performing installations / maintenance (we still
+    # delete existing Startup items so the environment is clean).
+    NO_LAUNCH=0
 
     # Files / folders which should be scanned last when searching C:\ in
     # generated launcher BATs. Items here are considered "low priority" and
@@ -50,7 +53,8 @@ init_globals() {
     IS_OS_INSTALL=0
     GAME_NAME_FOR_DIR=""
     VHD_GAME_LAYER=""
-    VHD_SAVEDATA=""
+    # (No separate savedata/write-layer variable — per-game VHD stores both
+    #  game files and save files.)
     OS_CONFIG_DIR=""
     VHD_BASE_PATH=""
     TMP_CONF=""
@@ -87,7 +91,8 @@ setup_paths() {
         *)       ESDE_SYSTEM_NAME="windows9x" ;;
     esac
 
-    VHD_SAVEDATA_DIR="$SAVES_PATH/$ESDE_SYSTEM_NAME/dosbox-x"
+    # Two-layer model in effect: per-game VHD contains both the installed
+    # game and its save files (no separate saves directory or VHD).
 
     # If roms_path is not supplied by the framework, default to a sane location
     # in the user's home to avoid creating files at the root (e.g. /windows9x/...)
@@ -219,6 +224,10 @@ parse_arguments() {
                 EXEC_ARG="$2"
                 shift 2
                 ;;
+            --nolaunch)
+                NO_LAUNCH=1
+                shift
+                ;;
             --*)
                 log e "Unknown option: $1"
                 exit 1
@@ -280,7 +289,7 @@ CREATE FILESYSTEM IMAGES / LAYER NAMING:
     Naming conventions:
         - OS Layer:   $bios_path/$WIN_VERSION.vhd
         - Game Layer: $roms_path/<ESDE_SYSTEM_NAME>/<game name>.vhd
-        - Saves Layer: $save_path/<ESDE_SYSTEM_NAME>/dosbox-x/<game name>.sav.vhd
+        - (No separate saves layer — save files will be stored inside the Game Layer VHD)
 
 DESKTOP MODE (WARNING):
   --desktop win98         Launch Windows 98 base OS desktop (NO GAME)
@@ -301,7 +310,8 @@ PARAMETERS:
   --install <name>               Install Windows version or game (legacy)
     --package-game <name>          Packaging-mode: create differencing VHD for <name> (host only)
     --drivers <minimal|all|none>   Control driver-copy during OS install (default: minimal)
-  --help, -h                      Show this help
+    --help, -h                      Show this help
+    --nolaunch                      Do not create/copy run_game launcher into guest Startup (still deletes existing Startup files)
         --exec <name|C:\\path\\to\\exe>  Search C: (or run full path) and execute found file inside guest
 
 EXAMPLES:
@@ -573,7 +583,10 @@ create_packaged_game_layer_vhd() {
         local outtmp
         outtmp=$(mktemp)
         # Use vhdmake with '-l base child' to create a linked VHD
-        "$dosbox_exec" -c "vhdmake -l \"$VHD_BASE_PATH\" \"$game_layer\"" -c "exit" >"$outtmp" 2>&1
+        # Use -f (force/create) to ensure a child is created if missing and
+        # inherits geometry from the parent VHD. This helps avoid "cannot
+        # extract geometry" errors at runtime.
+        "$dosbox_exec" -c "vhdmake -f -l \"$VHD_BASE_PATH\" \"$game_layer\"" -c "exit" >"$outtmp" 2>&1
         local vhdmake_ec=$?
         if [[ $vhdmake_ec -eq 0 && -s "$game_layer" ]]; then
             log i "Packaged game-layer created via DOSBox-X: $game_layer"
@@ -699,36 +712,56 @@ EOF
 generate_autoexec_launch() {
     local conf_file="$1"
     local game_layer="$2"
-    local savedata="$3"
-    local launcher_dir="$4"
+    local launcher_dir="$3"
 
     log i "Creating autoexec for game launch (eXoWin9x-style: C=write-layer, D=game)"
 
     # Prefer explicit parameters from the caller, but fall back to global
     # variables for compatibility with older flows.
     local game_layer="${game_layer:-$GAME_VHD_PATH}"
-    local savedata="${savedata:-$VHD_WRITE_LAYER}"
 
-    # C: = differencing VHD for Windows/saves (write layer, backed by base.vhd)
+    # C: = differencing VHD for Windows/save files (write layer, backed by base.vhd)
     # D: = game VHD or directory
-    # New sequence (safer): mount base read-only, create differencing child with
-    # vhdmake -diff, then mount the child. This avoids race/lock issues on
-    # certain DOSBox-X builds when creating/writing difference images directly.
-    # Use IMGMAKE -link to create a differencing child backed by the base
-    # image and mount it as C:. This avoids vhdmake differencing issues on
-    # some DOSBox-X builds.
+    # New sequence (safer): prefer creating the differencing child *outside*
+    # the booting DOSBox-X instance (host-side packaging via create_packaged_game_layer_vhd)
+    # because creating differencing children in-guest has been observed to
+    # crash some DOSBox-X builds. If host-side creation is not possible the
+    # autoexec uses VHDMAKE -f -l as an in-guest fallback (less safe on some builds).
+    # If the per-game child VHD already exists (for example created by the
+    # host-side packaging helper) avoid creating it in-guest — creating
+    # differencing images inside a running DOSBox-X instance can be unstable
+    # for some builds. Only call VHDMAKE in-guest if the child does not exist.
+    if [[ ! -f "$game_layer" ]]; then
+        cat >> "$conf_file" <<EOF
+REM Create per-game differencing child (inherits geometry) and mount C: as stacked base+child
+VHDMAKE -f -l "$VHD_BASE_PATH" "$game_layer"
+EOF
+    fi
     cat >> "$conf_file" <<EOF
-IMGMAKE "$savedata" -link "$VHD_BASE_PATH"
-IMGMOUNT C "$savedata" -t hdd
-IMGMOUNT D "$game_layer" -t hdd
+IMGMOUNT C "$VHD_BASE_PATH" -b "$game_layer" -t hdd
 MOUNT A "$launcher_dir"
-DEL "C:\\WINDOWS\\STARTM~1\\PROGRAMS\\STARTUP\\*"
-COPY A:\\run_game.bat "C:\\WINDOWS\\STARTM~1\\PROGRAMS\\STARTUP\\run_game.bat"
-MOUNT -u A
+# Remove any previous startup items forcefully and quietly (no Y/N prompts).
+# Use DEL for files and RD /S /Q to remove directories recursively (equivalent
+# to rm -rf on Linux). Suppress errors to avoid noisy startup if paths missing.
+DEL /F /Q "C:\\WINDOWS\\STARTM~1\\PROGRAMS\\STARTUP\\*" 2>NUL
+for /D %%D in ("C:\\WINDOWS\\STARTM~1\\PROGRAMS\\STARTUP\\*") do rd /S /Q "%%D" 2>NUL
 EOF
 
-    # Mount CD-ROMs (starting from E: since C: and D: are taken)
-    mount_disks "$conf_file" "E"
+    # Copy the launcher into Startup only when not running in NO_LAUNCH mode
+    if [[ "$NO_LAUNCH" -eq 0 ]]; then
+        cat >> "$conf_file" <<'EOF'
+COPY A:\run_game.bat "C:\WINDOWS\STARTM~1\PROGRAMS\STARTUP\run_game.bat"
+MOUNT -u A
+EOF
+    else
+        cat >> "$conf_file" <<'EOF'
+REM --nolaunch: skipping copy of run_game.bat into guest Startup (maintenance mode)
+MOUNT -u A
+EOF
+    fi
+
+    # Mount CD-ROMs/hard disks starting from D: (C: is taken by stacked OS+game)
+    mount_disks "$conf_file" "D"
 
     cat <<EOF >> "$conf_file"
 BOOT -l C:
@@ -955,10 +988,14 @@ generate_autoexec() {
             generate_autoexec_install_os "$TMP_CONF"
         fi
     else
-        create_launcher_bat "$LAUNCHER_DIR" "$EXEC_ARG"
+        if [[ "$NO_LAUNCH" -eq 0 ]]; then
+            create_launcher_bat "$LAUNCHER_DIR" "$EXEC_ARG"
+        else
+            log i "--nolaunch active: skipping creation of run_game.bat (maintenance mode)"
+        fi
         # Pass the prepared game-layer and write-layer into the autoexec generator.
         # The generator will fall back to globals if either is empty.
-        generate_autoexec_launch "$TMP_CONF" "$VHD_GAME_LAYER" "$VHD_WRITE_LAYER" "$LAUNCHER_DIR"
+        generate_autoexec_launch "$TMP_CONF" "$VHD_GAME_LAYER" "$LAUNCHER_DIR"
     fi
 }
 
@@ -982,15 +1019,7 @@ handle_install_os() {
     WIN_VERSION="$INSTALL_NAME"
     log i "OS install mode: Installing $WIN_VERSION"
     configurator_generic_dialog "RetroDECK - Installing $WIN_VERSION" "Please follow the Windows Setup prompts to install the operating system and set it up for your needings.\nYou might want to change the desktop resolution and the colors.\n\nThe installation will start in TURBO mode, but any key input will disable it, please re-enable it during the loading bars to speed them up."
-    copy_base_vhd_from_template "$WIN_VERSION" "$vhd_base_path"
-
-    # Update VHD_BASE_PATH after WIN_VERSION change
-    VHD_BASE_PATH="$bios_path/$WIN_VERSION.vhd"
-}
-
-handle_install_game() {
-    local vhd_base_path="$1"
-
+        configurator_generic_dialog "RetroDECK - Game Install" "A per-game VHD $(basename \"$GAME_VHD_PATH\") will be created and used for the game and its save files.\n\nThis per-game VHD will be mounted as C:\\ (a writable child that contains the OS, the installed game and any save files).\nPlease install your game into C:\\ inside the Windows environment (the VHD will be mounted as C:).\n\nThere is no separate saves VHD in the two-layer model — the per-game VHD contains both game data and save files.\nBack up the per-game VHD if you want to preserve both game and saves."
     # Treat the install name exactly as provided by the user. The only
     # special-case: if the name ends with .vhd (any case) strip that suffix
     # because we will append ".vhd" ourselves when creating the game layer
@@ -1085,24 +1114,15 @@ handle_launch_mode() {
 
 
     # Following eXoWin9x architecture:
-    # C: = write-layer VHD (differencing VHD for Windows/saves, stored in savedata_dir with .sav.vhd suffix)
-    # D: = game VHD (the actual game, stored in roms_path)
+    # Two-layer layout for this component:
+    #  - C: = per-game writeable child mounted stacked on the OS base (contains OS, game files and save files)
+    #  - D: reserved for additional devices (CD-ROMs, extra HDs provided to the launcher)
 
-    # C: write-layer (differencing VHD backed by base.vhd)
+    # Two-layer model: per-game VHD is the single writeable layer (contains
+    # installed game and save files). We store per-game VHD under roms_path so
+    # GAME_VHD_PATH is used both for game files and save files.
     local sanitized_game_name
     sanitized_game_name=$(sanitize_vhd_basename "$GAME_NAME_FOR_DIR")
-
-    local write_layer_orig="$VHD_SAVEDATA_DIR/$GAME_NAME_FOR_DIR.sav.vhd"
-    local write_layer_safe="$VHD_SAVEDATA_DIR/$sanitized_game_name.sav.vhd"
-
-    if [[ -f "$write_layer_orig" ]]; then
-        VHD_WRITE_LAYER="$write_layer_orig"
-    else
-        VHD_WRITE_LAYER="$write_layer_safe"
-    fi
-
-    mkdir -p "$(dirname "$VHD_WRITE_LAYER")"
-    log i "Write-layer VHD (C:): $VHD_WRITE_LAYER"
 
     # D: game layer - check both new and old layouts for compatibility
     local alt_game_vhd="$roms_path_base/$ESDE_SYSTEM_NAME/$GAME_NAME_FOR_DIR.vhd"
@@ -1122,9 +1142,23 @@ handle_launch_mode() {
     fi
 
     if [ ! -f "$GAME_VHD_PATH" ]; then
-        log i "Game VHD not found, showing dialog"
-        configurator_generic_dialog "RetroDECK - Game Install" "The game drive $(basename "$GAME_VHD_PATH") should be now created.\n\nPlease install your game to D:\\ inside Windows environmnet to make sure that OS and Game will be separated.\n\n\NOTE: diffrentely on how usually RetroDECK works, with this emulator the saves are split both inside the game vhd file\nand in the saves file that will be created.\nUnfortunately this is a limitation of $WIN_VERSION.\n\nSo be aware that you will need to backup both the game and the saves files."
-        log i "First-time game launch: user instructed to install game on D:\\"
+        log i "Game VHD not found — attempting host-side creation (safer than in-guest)"
+
+        # Try to create the differencing child on the host (invoking dosbox-x
+        # or qemu-img externally). Creating the VHD outside the booting
+        # instance avoids known crashes in some DOSBox-X builds when the
+        # create happens in-guest.
+        local created_vhd
+        created_vhd=$(create_packaged_game_layer_vhd "$GAME_NAME_FOR_DIR" 2>/dev/null || true)
+
+        if [[ -n "$created_vhd" && -f "$created_vhd" ]]; then
+            GAME_VHD_PATH="$created_vhd"
+            log i "Game VHD successfully created on host: $GAME_VHD_PATH"
+        else
+            log w "Host-side creation attempt failed — falling back to in-guest auto-creation (may be unstable on some DOSBox-X builds)"
+            configurator_generic_dialog "RetroDECK - Game Install" "A per-game VHD $(basename \"$GAME_VHD_PATH\") will be created and used as the single writable game image.\n\nPlease install your game into C:\\ inside the Windows environment — the per-game VHD will be mounted as C: and contains the OS, the game and any save files the game creates.\n\nIf you want to preserve install and save data, backup the per-game VHD file after installation."
+            log i "First-time game launch: user instructed to install game in C:\\ (in-guest create fallback)"
+        fi
     fi
 }
 
