@@ -11,6 +11,8 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
   log i "----------------------"
 
   create_dir -d "$azahar_config_path"
+  create_dir -d "$azahar_mods_path"
+  create_dir -d "$azahar_textures_path"
 
   cp -fT "$component_config/qt-config.ini" "$azahar_config_path/qt-config.ini"
 
@@ -23,4 +25,9 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
   create_dir "$screenshots_path/n3ds/azahar"
   create_dir "$saves_path/n3ds/azahar/nand/"
   create_dir "$saves_path/n3ds/azahar/sdmc/"
+  create_dir "$texture_packs_path/n3ds/azahar/"
+  create_dir "$mods_path/n3ds/azahar/"
+
+  dir_prep "$mods_path/n3ds/azahar/" "$azahar_mods_path"
+  dir_prep "$texture_packs_path/n3ds/azahar/" "$azahar_textures_path"
 fi
