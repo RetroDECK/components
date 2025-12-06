@@ -36,6 +36,16 @@ init_globals() {
     WIN_VERSION=""
     GAME_PATH=""
 
+    # Files / folders which should be scanned last when searching C:\ in
+    # generated launcher BATs. Items here are considered "low priority" and
+    # skipped in the first search pass (scanned in the second pass). The
+    # user asked to keep "My Documents" / "Documenti" for the late pass so
+    # they are included by default.
+    EXEC_SEARCH_LATE=("WINDOWS" "PROGRAM FILES" "MY DOCUMENTS" "DOCUMENTI")
+    # Optional exec target (filename or full C:\ path) — if set the launcher
+    # will attempt to find and execute this program in the guest.
+    EXEC_ARG=""
+
     # Initialize runtime variables
     IS_OS_INSTALL=0
     GAME_NAME_FOR_DIR=""
@@ -201,6 +211,14 @@ parse_arguments() {
                 show_help
                 exit 0
                 ;;
+            --exec)
+                if [[ -z "$2" || "$2" == --* ]]; then
+                    log e "--exec requires an argument (file name or full path like C:\\PATH\\EXE)"
+                    exit 1
+                fi
+                EXEC_ARG="$2"
+                shift 2
+                ;;
             --*)
                 log e "Unknown option: $1"
                 exit 1
@@ -284,6 +302,7 @@ PARAMETERS:
     --package-game <name>          Packaging-mode: create differencing VHD for <name> (host only)
     --drivers <minimal|all|none>   Control driver-copy during OS install (default: minimal)
   --help, -h                      Show this help
+        --exec <name|C:\\path\\to\\exe>  Search C: (or run full path) and execute found file inside guest
 
 EXAMPLES:
   ./winplay.sh --makefs win98
@@ -292,6 +311,8 @@ EXAMPLES:
   ./winplay.sh --game "Doom"                    (replay, CD-ROM not needed)
   ./winplay.sh --game "SimCity" --os win95 --cd-rom ~/images/simcity.iso
   ./winplay.sh --desktop win98
+        ./winplay.sh --exec "DOOM.EXE"            (search C: and run DOOM.EXE)
+        ./winplay.sh --exec "C:\\ROM2\\ROM2.EXE" (directly run provided full path)
 
 HELP
 }
@@ -798,6 +819,7 @@ EOF
 
 create_launcher_bat() {
     local launcher_dir="$1"
+    local exec_arg="${2:-}"
     local launcher_bat="$launcher_dir/run_game.bat"
 
     mkdir -p "$launcher_dir"
@@ -806,18 +828,88 @@ create_launcher_bat() {
     local game_filename_dos=$(echo "$game_filename" | tr '[:lower:]' '[:upper:]')
 
     # Create launcher BAT with proper Windows CRLF line endings using printf.
-    # Use printf instead of echo -e to avoid shell-dependent escapes and ensure \r\n.
-    {
-        printf '%s\r\n' "REM Launcher for game"
-        printf '%s\r\n' "@ECHO OFF"
-        printf '%s\r\n' "CLS"
-        printf '%s\r\n' "D:"
-        printf '%s\r\n' "DIR"
-        printf '%s\r\n' "REM Starting game..."
-        printf '%s\r\n' "START /WAIT $game_filename_dos"
-        printf '%s\r\n' "REM Game finished"
-        printf '%s\r\n' "RUNDLL32.EXE USER.EXE,ExitWindows"
-    } > "$launcher_bat"
+    # If an exec target was supplied, produce a search-and-run BAT that uses
+    # the bash-side EXEC_SEARCH_LATE array to keep low-priority directories for
+    # the second pass.
+    if [[ -n "$exec_arg" ]]; then
+        {
+            printf '%s\r\n' "REM Launcher for --exec target"
+            printf '%s\r\n' "@ECHO OFF"
+            printf '%s\r\n' "CLS"
+            printf '%s\r\n' "SET TARGET=%s" "$exec_arg"
+
+            # Direct path check
+            printf '%s\r\n' 'echo %TARGET% | find ":" >NUL'
+            printf '%s\r\n' 'if NOT ERRORLEVEL 1 ('
+            printf '%s\r\n' '    if exist "%TARGET%" ('
+            printf '%s\r\n' '        START /WAIT "" "%TARGET%"'
+            printf '%s\r\n' '        goto :END_EXEC'
+            printf '%s\r\n' '    ) else ('
+            printf '%s\r\n' '        ECHO Could not find "%TARGET%" — aborting'
+            printf '%s\r\n' '        goto :END_EXEC'
+            printf '%s\r\n' '    )'
+            printf '%s\r\n' ')'
+
+            # First pass: search C:\ and avoid low-priority locations
+            printf '%s\r\n' ''
+            printf '%s\r\n' 'REM First pass: search C:\\ and skip low-priority directories'
+            printf '%s\r\n' 'set FOUND='
+            printf '%s\r\n' 'for /r C:\\ %%F in (%TARGET%) do ('
+
+            # nested checks created from bash-side EXEC_SEARCH_LATE
+            for pat in "${EXEC_SEARCH_LATE[@]}"; do
+                printf '%s\r\n' "    echo %%F | find /i '\\${pat}\\' >NUL" >> "$launcher_bat"
+                printf '%s\r\n' "    if errorlevel 1 (" >> "$launcher_bat"
+            done
+
+            printf '%s\r\n' '        set FOUND=%%F'
+            printf '%s\r\n' '        goto :RUN_FOUND'
+
+            # Close nested ifs
+            for _ in "${EXEC_SEARCH_LATE[@]}"; do
+                printf '%s\r\n' '    )' >> "$launcher_bat"
+            done
+
+            printf '%s\r\n' ')'
+
+            # Second pass: accept low-priority locations
+            printf '%s\r\n' ''
+            printf '%s\r\n' 'REM Second pass: accept any locations (including low-priority dirs)'
+            printf '%s\r\n' 'for /r C:\\ %%F in (%TARGET%) do (' >> "$launcher_bat"
+            printf '%s\r\n' '    set FOUND=%%F' >> "$launcher_bat"
+            printf '%s\r\n' '    goto :RUN_FOUND' >> "$launcher_bat"
+            printf '%s\r\n' ')' >> "$launcher_bat"
+
+            printf '%s\r\n' '' >> "$launcher_bat"
+            printf '%s\r\n' 'ECHO Could not find %TARGET% on C:\\' >> "$launcher_bat"
+            printf '%s\r\n' 'goto :END_EXEC' >> "$launcher_bat"
+            printf '%s\r\n' '' >> "$launcher_bat"
+            printf '%s\r\n' ':RUN_FOUND' >> "$launcher_bat"
+            printf '%s\r\n' 'ECHO Found %FOUND%' >> "$launcher_bat"
+            printf '%s\r\n' 'START /WAIT "" "%FOUND%"' >> "$launcher_bat"
+            printf '%s\r\n' '' >> "$launcher_bat"
+            printf '%s\r\n' ':END_EXEC' >> "$launcher_bat"
+            printf '%s\r\n' '' >> "$launcher_bat"
+            printf '%s\r\n' 'REM Program finished' >> "$launcher_bat"
+            printf '%s\r\n' 'RUNDLL32.EXE USER.EXE,ExitWindows' >> "$launcher_bat"
+        } > "$launcher_bat"
+    else
+        # Default behaviour: run main game in C:\
+        {
+            printf '%s\r\n' "REM Launcher for game"
+            printf '%s\r\n' "@ECHO OFF"
+            printf '%s\r\n' "CLS"
+            printf '%s\r\n' "REM Execute the game from C: (per-game child). No fallback — C: must contain the game." \
+                "IF EXIST C:\\$game_filename_dos (" \
+                "    C:" \
+                "    START /WAIT $game_filename_dos" \
+                ") ELSE (" \
+                "    ECHO Could not find $game_filename_dos on C: — aborting" \
+                ")"
+            printf '%s\r\n' "REM Game finished"
+            printf '%s\r\n' "RUNDLL32.EXE USER.EXE,ExitWindows"
+        } > "$launcher_bat"
+    fi
 
     log d "Created launcher BAT at: $launcher_bat"
 }
@@ -863,7 +955,7 @@ generate_autoexec() {
             generate_autoexec_install_os "$TMP_CONF"
         fi
     else
-        create_launcher_bat "$LAUNCHER_DIR"
+        create_launcher_bat "$LAUNCHER_DIR" "$EXEC_ARG"
         # Pass the prepared game-layer and write-layer into the autoexec generator.
         # The generator will fall back to globals if either is empty.
         generate_autoexec_launch "$TMP_CONF" "$VHD_GAME_LAYER" "$VHD_WRITE_LAYER" "$LAUNCHER_DIR"

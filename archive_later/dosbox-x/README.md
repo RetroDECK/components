@@ -1,14 +1,15 @@
+
 # DOSBox‑X Windows 98/3.1 Launcher — Current Design & Usage
 
 This component contains `winplay.sh` — the DOSBox‑X based Windows 9x launcher used by RetroDECK. The README below documents the current, tested implementation and recommended workflows.
 
 Summary of the current approach
-- The launcher uses DOSBox‑X's IMGMAKE/imgmake tooling to create *linked differencing children* (recommended) for per-run write layers.
+- The launcher uses DOSBox‑X's cvhdmake tooling to create *linked differencing children* in the guest runtime (recommended) for per-game write layers. Base image creation / formatting (mkfs) still uses DOSBox‑X's imgmake where required.
 - The launcher builds a temporary config file (TMP_CONF) **per run** which is passed last to DOSBox‑X so it overrides the base config when needed.
 - Filenames used for per-game layers and saves are sanitized to avoid spaces and problematic characters.
 
 Why this README changed
-- Previous flows attempted `vhdmake -diff` for differencing children inside DOSBox‑X. That exposed a bug/instability in some DOSBox‑X builds (double-free / mount failures). We now use IMGMAKE -link which is the robust and supported path.
+- Previous flows attempted `vhdmake -diff` for differencing children inside DOSBox‑X; that exposed instabilities in some DOSBox‑X builds (double-free / mount failures). The current, supported runtime approach is to create per-game differencing children from inside DOSBox‑X using `cvhdmake -f -l <parent> <child>` (written into the generated `[autoexec]`). Packaging on the host also uses `cvhdmake` as the single supported host-side packaging tool for differencing children. Base image creation/formatting is still done using `imgmake` / `mkfs` where appropriate.
 
 ---
 
@@ -24,7 +25,7 @@ Table of contents
 
 Key concepts
 - Base image — `win98.vhd` (or `win31.vhd`) shared by all games for that OS.
-- Differencing child — a per-run/per-game image that stores only writes relative to the base (created with IMGMAKE -link). Keeps base pristine.
+ - Differencing child — a per-game image that stores only writes relative to the base. The child is created in the guest runtime using `cvhdmake -f -l <parent> <child>` as part of the autoexec; the child is then mounted as C: (so it holds both game files and savedata), keeping the base pristine.
 - Save layer — optional per-game save overlay.
 
 Image layering and recommended commands
@@ -32,21 +33,27 @@ Image layering and recommended commands
 The approach used by the launcher is layered and lightweight:
 
 1) Base OS: `win98.vhd` created once (sparse file, preformatted). Created using `imgmake -t hd -size` (via `winplay.sh --makefs`).
-2) Per-run write-layer / differencing child: created with `IMGMAKE <child> -link <parent>` and then mounted as C:
+2) Per-run write-layer / differencing child: created inside DOSBox‑X using `cvhdmake -f -l <parent> <child>` (written into the generated `[autoexec]`) and then mounted as C: — this keeps the base image pristine and stores all game data/saves inside the per-game child.
 
 Inside the generated autoexec you will typically see (these lines are written to TMP_CONF — not executed by the host shell):
 
 ```
-IMGMAKE "C:/path/to/save_layer.uhd" -link "C:/path/to/base.uhd"
-IMGMOUNT C "/path/to/save_layer.uhd" -t hdd
-IMGMOUNT D "/path/to/game_layer.vhd" -t hdd   # optional
-IMGMOUNT E "/path/to/game.iso" -t cdrom      # optional
+cvhdmake -f -l "/path/to/base.vhd" "/path/to/game_child.vhd"
+IMGMOUNT C "/path/to/base.vhd" -b "/path/to/game_child.vhd" -t hdd
+IMGMOUNT D "/path/to/game.iso" -t cdrom      # optional
 BOOT -l C:
 ```
 
-Notes:
-- Using `IMGMAKE -link` keeps the base image unchanged and stores only new writes in the child.
-- Using `vhdmake -diff` in runtime autoexec is not recommended (it caused crashes in some DOSBox‑X builds).
+- Notes:
+- The runtime per-game child is created with `cvhdmake -f -l <parent> <child>` inside the generated `[autoexec]`. This keeps the base image unchanged and stores all writes in the per-game child which is mounted on C: (so it contains both game files and savedata).
+- Using `vhdmake -diff` in runtime autoexec is not recommended (it caused crashes in some DOSBox‑X builds) and therefore is avoided.
+ - Some DOSBox‑X builds have shown instability when `cvhdmake` or other differencing creation commands run inside the guest (e.g. double‑free in CreateDifferencing). To avoid runtime crashes, `winplay.sh` will attempt to create the per‑game child on the host (using `cvhdmake` invoked from the host DOSBox‑X) before falling back to in‑guest creation. You can also explicitly pre-create the per‑game child on the host with:
+
+```bash
+./winplay.sh --package-game "GameName"
+```
+
+This is the recommended workaround when the DOSBox‑X runtime in your environment has unreliable in‑guest VHD creation support.
 - The child can use any extension recognized by the DOSBox‑X binary in your runtime (`.uhd`, `.vhd`). This script historically uses `.vhd` for compatibility but `.uhd` as an extension is also used; consider consistent extension conventions if you want to change it.
 
 Config merging & precedence
@@ -63,7 +70,7 @@ Where `winplay.conf` (TMP_CONF) is the last config — its settings will win in 
 
 Autoexec generation and content
 ------------------------------
-`generate_autoexec()` in the script writes a fresh `[autoexec]` block into `TMP_CONF`. The launcher writes the differencing IMGMAKE and the IMGMOUNT commands, the launcher BAT copy (the AutoRun), mounts extra devices (CDs, floppies), then writes `BOOT -l C:`. All these commands are written into the config (not run by the host shell).
+`generate_autoexec()` in the script writes a fresh `[autoexec]` block into `TMP_CONF`. The launcher writes the differencing `cvhdmake -f -l <parent> <child>` call into `[autoexec]` and the IMGMOUNT command that mounts the per-game child on C:. The per-game child references the base image internally so the base does not require an explicit drive letter; the launcher then copies the BAT (AutoRun), mounts extra devices (CDs, floppies) and finally writes `BOOT -l C:`. All these commands are written into the config (not run by the host shell).
 
 Filename sanitization
 ---------------------
@@ -71,7 +78,7 @@ To avoid issues caused by spaces and special characters when creating or referen
 
 Troubleshooting
 ---------------
-- double-free / crash during `vhdmake -diff` — use `IMGMAKE -link` instead; the script uses IMGMAKE now.
+ - double-free / crash during `vhdmake -diff` — do not use `vhdmake -diff` inside autoexec; create differencing children with `cvhdmake -f -l <parent> <child>` instead. The runtime and packaging flows use `cvhdmake` as the single supported path for differencing children.
 - IMGMOUNT cannot create drive from file / sanity check failure — verify the image was created with `imgmake` and that the boot sector and partition table are valid.
 - If DOSBox‑X cannot open a logfile or complains about missing logs it may be due to file path variables inside the environment or sandboxing (Flatpak). Not critical for launch but helpful to investigate for debugging.
 
@@ -100,7 +107,7 @@ Contributing & maintainers
 --------------------------
 If you intend to modify the runtime VHD creation behaviour or change the layering approach, keep these points in mind:
 
-- Prefer `IMGMAKE -link` for runtime differencing children. `vhdmake -diff` remains problematic on some DOSBox‑X builds.
+- Prefer `cvhdmake -f -l` for runtime and packaging differencing children. `vhdmake -diff` remains problematic on some DOSBox‑X builds.
 - Any change to TMP_CONF construction will impact how runtime overrides behave — ordering of `-conf` is important.
 - Keep filename sanitisation behaviour consistent if you add alternate storage locations or extensions.
 
@@ -237,13 +244,9 @@ Layer 2 (Game):        gamename.vhd       ← Game-specific layer
                                            ← Game files and settings
                                            ← Size: Variable per game
        ↓
-Layer 3 (Save Data):   gamename.sav.vhd   ← Save data isolation
-                                           ← Game saves, configurations
-                                           ← Size: Small (typically <100MB)
-       ↓
-   IMGMOUNT C: drive (mounted in DOSBox-X)
-   ↓
-   Unified C: drive filesystem
+(Two-layer model) The design uses only:
+ - Base OS (win98.vhd) and
+ - Per‑game child image (gamename.vhd) which holds both game files and user data
 ```
 
 ### How Layering Works
@@ -260,11 +263,7 @@ Layer 3 (Save Data):   gamename.sav.vhd   ← Save data isolation
    - Mounted on top of the base OS
    - Size: Variable based on game files
 
-3. **Layer 3 (Save Data)** - `gamename.sav.vhd`
-   - Contains game save files and profile data
-   - Isolated from the game layer
-   - Changes don't affect game files
-   - Size: Small (typically <100MB)
+3. **(Removed)** - Separate save data layer is not used. Saves are stored inside the per-game VHD.
 
 ### Storage & Distribution
 
@@ -272,7 +271,7 @@ Layer 3 (Save Data):   gamename.sav.vhd   ← Save data isolation
 |---|---|---|---|---|
 | Base OS | `$bios_path/win98.vhd` | Shared Windows 98 OS | 4GB sparse | Included with RetroDECK |
 | Game Layer | `$roms_path/<ESDE_SYSTEM_NAME>/<game>.vhd` | Game-specific files (layered VHD) | Variable | Per-game package |
-| Saves Layer | `$save_path/<ESDE_SYSTEM_NAME>/dosbox-x/<game>.sav.vhd` | User save files (stackable overlay on C:) | <100MB | User-specific |
+| (No separate saves layer) | `N/A` | User save files live inside the per-game VHD | variable | User-specific |
 
 ### IMGMOUNT Configuration
 
@@ -285,8 +284,8 @@ IMGMOUNT C "$VHD_BASE_PATH" -t hdd -geometry 512 63 255 -size 512,63,255,65
 # During game installation (with game layer)
 IMGMOUNT C "$VHD_BASE_PATH" -b "$game_layer" -t hdd -geometry 512 63 255 -size 512,63,255,65
 
-# During game launch (with game + save layers)
-IMGMOUNT C "$VHD_BASE_PATH" -b "$game_layer" -b "$savedata" -t hdd -geometry 512 63 255 -size 512,63,255,65
+# During game launch (base + per-game child)
+IMGMOUNT C "$VHD_BASE_PATH" -b "$game_layer" -t hdd -geometry 512 63 255 -size 512,63,255,65
 ```
 
 **Parameters:**
@@ -335,28 +334,24 @@ The result is a pre-formatted disk image that DOSBox-X and Windows recognize imm
 
 The `winplay.sh` script orchestrates the entire workflow:
 
-**Three modes of operation:**
+**Modes of operation (how drives map):**
 
 1. **Install OS** (`--install win98`)
-   - Mounts base VHD (Layer 1)
-   - Mounts Windows 98 CD-ROM as D:
+   - Mounts base VHD (Layer 1) as C: for installation
+   - Mounts Windows 98 CD-ROM as D: during the install
    - Runs Windows Setup
    - Creates formatted OS installation
 
 2. **Install Game** (`--install GameName`)
-   - Mounts base VHD (Layer 1: OS)
-   - Mounts game layer VHD (Layer 2: Game files)
-   - Mounts Windows 98 CD-ROM as D:
-   - Runs game installer
-   - Game files are isolated in Layer 2
+   - Ensures base VHD (Layer 1) is present
+   - Prepares the per-game child VHD path (Layer 2) but the actual child is created in the guest runtime when first launched
+   - Mounts CD-ROM(s) on D: (or the next available drive) to run the installer inside Windows
+   - Installer should be run with the per-game child mounted as C: (the child contains OS+game during runtime)
 
 3. **Launch Game** (`win98 GameName`)
-   - Mounts base VHD (Layer 1: OS)
-   - Mounts game layer VHD (Layer 2: Game files)
-   - Mounts save data VHD (Layer 3: Save files)
-   - Boots into Windows 98
-   - Launches game executable
-   - Saves are isolated in Layer 3
+   - Runtime will ensure a per-game writeable child exists and mount that child as C: (C: holds OS+game+saves)
+   - Additional hard disks and CD-ROM images supplied to the launcher will be mounted starting at D: (D, E, F ...)
+   - Boots into Windows and runs the launcher BAT from C:
 
 ## Troubleshooting
 
@@ -416,7 +411,7 @@ These parameters help DOSBox-X properly detect the disk.
 |---|---|---|
 | Base OS VHD | `$bios_path/win98.vhd` | Shared Windows 98 OS |
 | Game Layer | `$roms_path/<ESDE_SYSTEM_NAME>/<game>.vhd` | Game-specific files (layered VHD) |
-| Saves Layer | `$save_path/<ESDE_SYSTEM_NAME>/dosbox-x/<game>.sav.vhd` | User save files (overlay) |
+| (No separate saves layer) | `N/A` | User save files live inside the per-game VHD |
 
 ## Technical Details
 
