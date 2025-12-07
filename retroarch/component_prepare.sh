@@ -39,6 +39,7 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
   create_dir "$bios_path/dc"
   create_dir "$bios_path/Mupen64plus"
   create_dir "$bios_path/quasi88"
+  create_dir "$bios_path/np2kai"
 
   retroarch_updater
 
@@ -93,9 +94,12 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
   set_setting_value "$retroarch_config_scummvm" "savepath" "$saves_path/scummvm" "libretro_scummvm" "scummvm"
   set_setting_value "$retroarch_config_scummvm" "browser_lastpath" "$roms_path/scummvm" "libretro_scummvm" "scummvm"
 
+  # Textures and Mods
   dir_prep "$texture_packs_path/retroarch/Mesen" "$XDG_CONFIG_HOME/retroarch/system/HdPacks"
   dir_prep "$texture_packs_path/retroarch/Mupen64Plus/cache" "$XDG_CONFIG_HOME/retroarch/system/Mupen64plus/cache"
   dir_prep "$texture_packs_path/retroarch/Mupen64Plus/hires_texture" "$XDG_CONFIG_HOME/retroarch/system/Mupen64plus/hires_texture"
+  dir_prep "$texture_packs_path/retroarch/Citra/textures" "$XDG_CONFIG_HOME/retroarch/saves/Citra/load/textures"
+  dir_prep "$texture_packs_path/retroarch/Citra/mods" "$XDG_CONFIG_HOME/retroarch/saves/Citra/load/mods"
 fi
 
 if [[ "$action" == "postmove" ]]; then # Run only post-move commands
@@ -105,6 +109,8 @@ if [[ "$action" == "postmove" ]]; then # Run only post-move commands
   dir_prep "$texture_packs_path/retroarch/Mesen" "$XDG_CONFIG_HOME/retroarch/system/HdPacks"
   dir_prep "$texture_packs_path/retroarch/Mupen64Plus/cache" "$XDG_CONFIG_HOME/retroarch/system/Mupen64plus/cache"
   dir_prep "$texture_packs_path/retroarch/Mupen64Plus/hires_texture" "$XDG_CONFIG_HOME/retroarch/system/Mupen64plus/hires_texture"
+  dir_prep "$texture_packs_path/retroarch/Citra/textures" "$XDG_CONFIG_HOME/retroarch/saves/Citra/load/textures"
+  dir_prep "$texture_packs_path/retroarch/Citra/mods" "$XDG_CONFIG_HOME/retroarch/saves/Citra/load/mods"
   set_setting_value "$retroarch_config" "savefile_directory" "$saves_path" "retroarch"
   set_setting_value "$retroarch_config" "savestate_directory" "$states_path" "retroarch"
   set_setting_value "$retroarch_config" "screenshot_directory" "$screenshots_path" "retroarch"
