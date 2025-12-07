@@ -99,7 +99,7 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
   dir_prep "$texture_packs_path/retroarch/Mupen64Plus/cache" "$XDG_CONFIG_HOME/retroarch/system/Mupen64plus/cache"
   dir_prep "$texture_packs_path/retroarch/Mupen64Plus/hires_texture" "$XDG_CONFIG_HOME/retroarch/system/Mupen64plus/hires_texture"
   dir_prep "$texture_packs_path/retroarch/Citra/textures" "$XDG_CONFIG_HOME/retroarch/saves/Citra/load/textures"
-  dir_prep "$texture_packs_path/retroarch/Citra/mods" "$XDG_CONFIG_HOME/retroarch/saves/Citra/load/mods"
+  dir_prep "$mods_path/retroarch/Citra/mods" "$XDG_CONFIG_HOME/retroarch/saves/Citra/load/mods"
 fi
 
 if [[ "$action" == "postmove" ]]; then # Run only post-move commands
@@ -110,7 +110,7 @@ if [[ "$action" == "postmove" ]]; then # Run only post-move commands
   dir_prep "$texture_packs_path/retroarch/Mupen64Plus/cache" "$XDG_CONFIG_HOME/retroarch/system/Mupen64plus/cache"
   dir_prep "$texture_packs_path/retroarch/Mupen64Plus/hires_texture" "$XDG_CONFIG_HOME/retroarch/system/Mupen64plus/hires_texture"
   dir_prep "$texture_packs_path/retroarch/Citra/textures" "$XDG_CONFIG_HOME/retroarch/saves/Citra/load/textures"
-  dir_prep "$texture_packs_path/retroarch/Citra/mods" "$XDG_CONFIG_HOME/retroarch/saves/Citra/load/mods"
+  dir_prep "$mods_path/retroarch/Citra/mods" "$XDG_CONFIG_HOME/retroarch/saves/Citra/load/mods"
   set_setting_value "$retroarch_config" "savefile_directory" "$saves_path" "retroarch"
   set_setting_value "$retroarch_config" "savestate_directory" "$states_path" "retroarch"
   set_setting_value "$retroarch_config" "screenshot_directory" "$screenshots_path" "retroarch"
