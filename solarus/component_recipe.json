@@ -83,7 +83,7 @@
           "dest": "shared-libs"
         },
         {
-          "library": "libsolarus.so.2.0.1",
+          "library": "libsolarus.so.2.0.2",
           "source": "usr/lib",
           "dest": "shared-libs"
         },

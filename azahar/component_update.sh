@@ -13,4 +13,7 @@ if [[ $(check_version_is_older_than "$version_being_updated" "0.10.0b") == "true
   move "$XDG_DATA_HOME/citra-emu/nand" "$saves_path/n3ds/azahar/"
   move "$XDG_DATA_HOME/citra-emu/sdmc" "$saves_path/n3ds/azahar/"
   move "$saves_path/n3ds/citra/" "$saves_path/n3ds/azahar/"
+  move "$mods_path/citra/" "$mods_path/n3ds/azahar/"
+  move "$texture_packs_path/citra/" "$texture_packs_path/n3ds/azahar/"
+  
 fi
