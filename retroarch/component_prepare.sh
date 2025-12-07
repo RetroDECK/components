@@ -101,6 +101,7 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
   dir_prep "$texture_packs_path/retroarch/Citra/textures" "$XDG_CONFIG_HOME/retroarch/saves/Citra/load/textures"
   dir_prep "$texture_packs_path/retroarch/Dolphin/Textures" "$XDG_CONFIG_HOME/retroarch/saves/dolphin-emu/User/Load/Textures/"
   dir_prep "$texture_packs_path/retroarch/PPSSPP/TEXTURES" "$XDG_CONFIG_HOME/retroarch/saves/PPSSPP/PSP/TEXTURES"
+  dir_prep "$texture_packs_path/retroarch/Flycast/textures" "$bios_path/dc/.textures"
 
   # Mods
   dir_prep "$mods_path/retroarch/Citra/mods" "$XDG_CONFIG_HOME/retroarch/saves/Citra/load/mods"
@@ -117,6 +118,7 @@ if [[ "$action" == "postmove" ]]; then # Run only post-move commands
   dir_prep "$texture_packs_path/retroarch/Citra/textures" "$XDG_CONFIG_HOME/retroarch/saves/Citra/load/textures"
   dir_prep "$texture_packs_path/retroarch/PPSSPP/TEXTURES" "$XDG_CONFIG_HOME/retroarch/saves/PPSSPP/PSP/TEXTURES"
   dir_prep "$texture_packs_path/retroarch/Dolphin/Textures" "$XDG_CONFIG_HOME/retroarch/saves/dolphin-emu/User/Load/Textures/"
+  dir_prep "$texture_packs_path/retroarch/Flycast/textures" "$bios_path/dc/.textures"
   dir_prep "$mods_path/retroarch/Citra/mods" "$XDG_CONFIG_HOME/retroarch/saves/Citra/load/mods"
   set_setting_value "$retroarch_config" "savefile_directory" "$saves_path" "retroarch"
   set_setting_value "$retroarch_config" "savestate_directory" "$states_path" "retroarch"
