@@ -95,7 +95,7 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
   set_setting_value "$retroarch_config_scummvm" "browser_lastpath" "$roms_path/scummvm" "libretro_scummvm" "scummvm"
 
   # Textures 
-  dir_prep "$texture_packs_path/retroarch/Mesen" "$XDG_CONFIG_HOME/retroarch/system/HdPacks"
+  dir_prep "$texture_packs_path/retroarch/Mesen/HdPacks" "$XDG_CONFIG_HOME/retroarch/system/HdPacks"
   dir_prep "$texture_packs_path/retroarch/Mupen64Plus/cache" "$XDG_CONFIG_HOME/retroarch/system/Mupen64plus/cache"
   dir_prep "$texture_packs_path/retroarch/Mupen64Plus/hires_texture" "$XDG_CONFIG_HOME/retroarch/system/Mupen64plus/hires_texture"
   dir_prep "$texture_packs_path/retroarch/Citra/textures" "$XDG_CONFIG_HOME/retroarch/saves/Citra/load/textures"
@@ -112,7 +112,7 @@ if [[ "$action" == "postmove" ]]; then # Run only post-move commands
   dir_prep "$bios_path" "$XDG_CONFIG_HOME/retroarch/system"
   dir_prep "$logs_path/retroarch" "$XDG_CONFIG_HOME/retroarch/logs"
   dir_prep "$shaders_path/retroarch" "$XDG_CONFIG_HOME/retroarch/shaders"
-  dir_prep "$texture_packs_path/retroarch/Mesen" "$XDG_CONFIG_HOME/retroarch/system/HdPacks"
+  dir_prep "$texture_packs_path/retroarch/Mesen/HdPacks" "$XDG_CONFIG_HOME/retroarch/system/HdPacks"
   dir_prep "$texture_packs_path/retroarch/Mupen64Plus/cache" "$XDG_CONFIG_HOME/retroarch/system/Mupen64plus/cache"
   dir_prep "$texture_packs_path/retroarch/Mupen64Plus/hires_texture" "$XDG_CONFIG_HOME/retroarch/system/Mupen64plus/hires_texture"
   dir_prep "$texture_packs_path/retroarch/Citra/textures" "$XDG_CONFIG_HOME/retroarch/saves/Citra/load/textures"
