@@ -23,11 +23,6 @@
           "dest": "bin"
         },
         {
-          "type": "file",
-          "source": "$REPO_ROOT/$COMPONENT_NAME/assets/mkfs.fat",
-          "dest": "bin"
-        },
-        {
           "type": "dir",
           "source": "$REPO_ROOT/$COMPONENT_NAME/assets/rd_config",
           "dest": "rd_config"
