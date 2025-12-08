@@ -13,9 +13,6 @@ retroarch_updater() {
 
   log i "Running RetroArch updater"
 
-  log i "Updating cores..."
-  tar -xzf "$retroarch_extras_path/cores.tar.gz" -C "$XDG_CONFIG_HOME/retroarch/" --overwrite && log d "RetroArch cores updated correctly"
-
   log i "Updating overlays/borders..."
   create_dir -d "$XDG_CONFIG_HOME/retroarch/overlays"
   tar -xzf "$retroarch_extras_path/overlays.tar.gz" -C "$XDG_CONFIG_HOME/retroarch/overlays" --overwrite && log d "RetroArch overlays and borders updated correctly"

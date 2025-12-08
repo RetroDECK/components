@@ -35,6 +35,8 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
   set_setting_value "$retroarch_config" "joypad_autoconfig_dir" "$component_path/autoconfig" "retroarch"
   set_setting_value "$retroarch_config" "cursor_directory" "$component_path/database/cursors" "retroarch"
   set_setting_value "$retroarch_config" "content_database_path" "$component_path/database/rdb" "retroarch"
+  set_setting_value "$retroarch_config" "libretro_directory" "$retroarch_extras_path/cores" "retroarch"
+  set_setting_value "$retroarch_config" "libretro_info_path" "$retroarch_extras_path/cores" "retroarch"
   create_dir "$bios_path/np2kai"
   create_dir "$bios_path/dc"
   create_dir "$bios_path/Mupen64plus"
