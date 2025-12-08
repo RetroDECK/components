@@ -32,6 +32,6 @@ update_rpcs3_firmware() {
 }
 
 finit_install_rpcs3_firmware_dialog() {
-  rd_zenity --question --no-wrap --window-icon="/app/share/icons/hicolor/scalable/apps/net.retrodeck.retrodeck.svg" --title "RetroDECK Initial Install - RPCS3 Firmware" --cancel-label="No 🟥 " --ok-label "Yes 🟢" \
+  rd_zenity --question --no-wrap --window-icon="/app/share/icons/hicolor/scalable/apps/net.retrodeck.retrodeck.svg" --title "RetroDECK Initial Install - RPCS3 Firmware" --cancel-label="No " --ok-label "Yes" \
   --text="Would you like to install the RPCS3 firmware as part of the initial RetroDECK setup?\n\nThis process may take several minutes and requires an active Internet connection.\n\n<span foreground='$purple'><b>RPCS3 will launch automatically</b></span> at the end of the RetroDECK setup.\nAfter the firmware installation is complete,<span foreground='$purple'><b> please close the emulator window</b></span> to finish the process."
 }

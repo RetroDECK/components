@@ -211,15 +211,15 @@ if [[ $(check_version_is_older_than "$version_being_updated" "0.9.0b") == "true"
     TRUE "Dolphin" "Setting screen size to 'Auto' instead of 'Widescreen' to ensure better game compatibility" \
     TRUE "Primehack" "Setting screen size to 'Auto' instead of 'Widescreen' to ensure better game compatibility" \
     --separator=":" \
-    --extra-button="Execute All 🟢" \
-    --ok-label="Execute Selected Only 🟡" \
-    --cancel-label="Execute None 🟥")
+    --extra-button="Execute All" \
+    --ok-label="Execute Selected Only" \
+    --cancel-label="Execute None")
 
     log d "User selected: $choices"
     log d "User pressed: $?"
 
     # Check if "Execute All" button was pressed
-    if [[ "$choices" == "Execute All 🟢" ]]; then
+    if [[ "$choices" == "Execute All" ]]; then
       execute_all=true
       break
     else
@@ -332,15 +332,15 @@ if [[ $(check_version_is_older_than "$version_being_updated" "0.9.1b") == "true"
     TRUE "RetroArch" "Needs to be reset to fix the borders issue on some sytems such as psx" \
     TRUE "Steam ROM Manager" "Needs to add the \"Add RetroDECk to Steam\" functionality" \
     --separator=":" \
-    --extra-button="Execute All 🟢" \
-    --ok-label="Execute Selected Only 🟡" \
-    --cancel-label="Execute None 🟥")
+    --extra-button="Execute All" \
+    --ok-label="Execute Selected Only" \
+    --cancel-label="Execute None")
 
     log d "User selected: $choices"
     log d "User pressed: $?"
 
     # Check if "Execute All" button was pressed
-    if [[ "$choices" == "Execute All 🟢" ]]; then
+    if [[ "$choices" == "Execute All" ]]; then
       execute_all=true
       break
     else
@@ -425,15 +425,15 @@ if [[ $(check_version_is_older_than "$version_being_updated" "0.9.2b") == "true"
     TRUE "Add RetroDECK Shortcut to Steam" "Add the RetroDECK launcher back to Steam after refreshing Steam Sync" \
     TRUE "Regenerate ES-DE Folders" "Recreate the ES-DE system folders to ensure proper structure and functionality" \
     --separator=":" \
-    --extra-button="Execute All 🟢" \
-    --ok-label="Execute Selected Only 🟡" \
-    --cancel-label="Execute None 🟥")
+    --extra-button="Execute All" \
+    --ok-label="Execute Selected Only" \
+    --cancel-label="Execute None")
 
     log d "User selected: $choices"
     log d "User pressed: $?"
 
     # Check if "Execute All" button was pressed
-    if [[ "$choices" == "Execute All 🟢" ]]; then
+    if [[ "$choices" == "Execute All" ]]; then
       execute_all=true
       break
     else
