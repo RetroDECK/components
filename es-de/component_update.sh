@@ -68,12 +68,10 @@ if [[ $(check_version_is_older_than "$version_being_updated" "0.9.4b") == "true"
 fi
 
 if [[ $(check_version_is_older_than "$version_being_updated" "0.10.0b") == "true" ]]; then
-
   # With the RetroDECK Neo the theme folder is changed, so if the user set the RetroDECK Theme we need to fix the name in the config
 
-    if [[ $(get_setting_value "$es_de_config" "Theme" "retrodeck") == "retrodeck" ]]; then
-      log i "Default RetroDECK theme is set, fixing theme name in ES-DE config."
-      set_setting_value "$es_de_config" "Theme" "RetroDECK-theme-main"
-    fi
-
+  if [[ $(get_setting_value "$es_de_config" "Theme" "es_settings") == "retrodeck" ]]; then
+    log i "Default RetroDECK theme is set, fixing theme name in ES-DE config."
+    set_setting_value "$es_de_config" "Theme" "RetroDECK-theme-main" "es_settings"
+  fi
 fi
