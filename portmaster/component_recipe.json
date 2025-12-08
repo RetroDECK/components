@@ -55,9 +55,15 @@
       ,
       "libs": [
         {
+          "library": "libSDL2.so",
+          "runtime_name": "org.kde.Sdk",
+          "runtime_version": "6.7",
+          "dest": "shared-libs"
+        },
+        {
           "library": "libSDL2_ttf-2.0.so.0",
           "runtime_name": "org.kde.Platform",
-          "runtime_version": "6.9",
+          "runtime_version": "6.7",
           "dest": "shared-libs"
         },
         {
