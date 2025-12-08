@@ -497,9 +497,10 @@ if [[ $(check_version_is_older_than "$version_being_updated" "0.9.2b") == "true"
 fi
 
 if [[ $(check_version_is_older_than "$version_being_updated" "0.10.0b") == "true" ]]; then
+  create_dir -d "$XDG_CONFIG_HOME/retrodeck/graphics"
+  cp -rf "/app/retrodeck/graphics/folder-iconsets" "$XDG_CONFIG_HOME/retrodeck/graphics/"
   set_setting_value "$rd_conf" "iconset" "lahrs-main" "retrodeck" "options"
   handle_folder_iconsets "lahrs-main"
-  ponzu_remove
 fi
 
 #######################################
