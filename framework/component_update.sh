@@ -502,15 +502,3 @@ if [[ $(check_version_is_older_than "$version_being_updated" "0.10.0b") == "true
   set_setting_value "$rd_conf" "iconset" "lahrs-main" "retrodeck" "options"
   handle_folder_iconsets "lahrs-main"
 fi
-
-#######################################
-# These actions happen at every update
-#######################################
-
-if [[ ! -z $(find "$HOME/.steam/steam/controller_base/templates/" -maxdepth 1 -type f -iname "RetroDECK*.vdf") || ! -z $(find "$HOME/.var/app/com.valvesoftware.Steam/.steam/steam/controller_base/templates/" -maxdepth 1 -type f -iname "RetroDECK*.vdf") ]]; then # If RetroDECK controller profile has been previously installed
-  install_retrodeck_controller_profile
-fi
-
-update_splashscreens
-deploy_helper_files
-build_retrodeck_current_presets
