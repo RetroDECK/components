@@ -39,6 +39,7 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
   create_dir "$bios_path/dc"
   create_dir "$bios_path/Mupen64plus"
   create_dir "$bios_path/quasi88"
+  create_dir "$bios_path/np2kai"
 
   retroarch_updater
 
@@ -93,18 +94,34 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
   set_setting_value "$retroarch_config_scummvm" "savepath" "$saves_path/scummvm" "libretro_scummvm" "scummvm"
   set_setting_value "$retroarch_config_scummvm" "browser_lastpath" "$roms_path/scummvm" "libretro_scummvm" "scummvm"
 
-  dir_prep "$texture_packs_path/retroarch/Mesen" "$XDG_CONFIG_HOME/retroarch/system/HdPacks"
+  # Textures 
+  dir_prep "$texture_packs_path/retroarch/Mesen/HdPacks" "$XDG_CONFIG_HOME/retroarch/system/HdPacks"
   dir_prep "$texture_packs_path/retroarch/Mupen64Plus/cache" "$XDG_CONFIG_HOME/retroarch/system/Mupen64plus/cache"
   dir_prep "$texture_packs_path/retroarch/Mupen64Plus/hires_texture" "$XDG_CONFIG_HOME/retroarch/system/Mupen64plus/hires_texture"
+  dir_prep "$texture_packs_path/retroarch/Citra/textures" "$XDG_CONFIG_HOME/retroarch/saves/Citra/load/textures"
+  dir_prep "$texture_packs_path/retroarch/Dolphin/Textures" "$XDG_CONFIG_HOME/retroarch/saves/dolphin-emu/User/Load/Textures/"
+  dir_prep "$texture_packs_path/retroarch/PPSSPP/TEXTURES" "$XDG_CONFIG_HOME/retroarch/saves/PPSSPP/PSP/TEXTURES"
+  dir_prep "$texture_packs_path/retroarch/Flycast/textures" "$bios_path/dc/.textures"
+
+  # Mods
+  dir_prep "$mods_path/retroarch/Citra/mods" "$XDG_CONFIG_HOME/retroarch/saves/Citra/load/mods"
+  dir_prep "$mods_path/retroarch/Dolphin/GraphicMods" "$XDG_CONFIG_HOME/retroarch/saves/dolphin-emu/User/Load/GraphicMods"
+
 fi
 
 if [[ "$action" == "postmove" ]]; then # Run only post-move commands
   dir_prep "$bios_path" "$XDG_CONFIG_HOME/retroarch/system"
   dir_prep "$logs_path/retroarch" "$XDG_CONFIG_HOME/retroarch/logs"
   dir_prep "$shaders_path/retroarch" "$XDG_CONFIG_HOME/retroarch/shaders"
-  dir_prep "$texture_packs_path/retroarch/Mesen" "$XDG_CONFIG_HOME/retroarch/system/HdPacks"
+  dir_prep "$texture_packs_path/retroarch/Mesen/HdPacks" "$XDG_CONFIG_HOME/retroarch/system/HdPacks"
   dir_prep "$texture_packs_path/retroarch/Mupen64Plus/cache" "$XDG_CONFIG_HOME/retroarch/system/Mupen64plus/cache"
   dir_prep "$texture_packs_path/retroarch/Mupen64Plus/hires_texture" "$XDG_CONFIG_HOME/retroarch/system/Mupen64plus/hires_texture"
+  dir_prep "$texture_packs_path/retroarch/Citra/textures" "$XDG_CONFIG_HOME/retroarch/saves/Citra/load/textures"
+  dir_prep "$texture_packs_path/retroarch/PPSSPP/TEXTURES" "$XDG_CONFIG_HOME/retroarch/saves/PPSSPP/PSP/TEXTURES"
+  dir_prep "$texture_packs_path/retroarch/Dolphin/Textures" "$XDG_CONFIG_HOME/retroarch/saves/dolphin-emu/User/Load/Textures/"
+  dir_prep "$texture_packs_path/retroarch/Flycast/textures" "$bios_path/dc/.textures"
+  dir_prep "$mods_path/retroarch/Citra/mods" "$XDG_CONFIG_HOME/retroarch/saves/Citra/load/mods"
+  dir_prep "$mods_path/retroarch/Dolphin/GraphicMods" "$XDG_CONFIG_HOME/retroarch/saves/dolphin-emu/User/Load/GraphicMods"
   set_setting_value "$retroarch_config" "savefile_directory" "$saves_path" "retroarch"
   set_setting_value "$retroarch_config" "savestate_directory" "$states_path" "retroarch"
   set_setting_value "$retroarch_config" "screenshot_directory" "$screenshots_path" "retroarch"
