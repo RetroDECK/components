@@ -16,7 +16,7 @@ if [[ $(check_version_is_older_than "$version_being_updated" "0.10.0b") == "true
   if [[ -d "$XDG_DATA_HOME/citra-emu/sdmc" ]]; then
     move "$XDG_DATA_HOME/citra-emu/sdmc" "$saves_path/n3ds/azahar/"
   fi
-  if [[ -d "$saves_path/n3ds/citra/"]]; then
+  if [[ -d "$saves_path/n3ds/citra/" ]]; then
     move "$saves_path/n3ds/citra/" "$saves_path/n3ds/azahar/"
   fi
   if [[ -d "$mods_path/citra/" ]]; then
