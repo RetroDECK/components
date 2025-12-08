@@ -111,29 +111,15 @@ rd_srm() {
 
 get_steam_user() {
   # This function populates environment variables with the actual logged Steam user data
+  local mode="${1:-}"
   local current_steam_sync_setting="$(get_setting_value "$rd_conf" "steam_sync" "retrodeck" "options")"
-  if [[ "$current_steam_sync_setting" != "false" || "$1" == "finit" ]]; then # Only grab Steam information if Steam Sync is enabled
+  if [[ "$current_steam_sync_setting" != "false" || "$mode" == "finit" ]]; then # Only grab Steam information if Steam Sync is enabled
     if [[ "$current_steam_sync_setting" == "native" ]]; then
       steam_userdata_current="$steam_userdata_native"
     elif [[ "$current_steam_sync_setting" == "flatpak" ]]; then
       steam_userdata_current="$steam_userdata_flatpak"
     else
-      if [[ -d "$steam_userdata_native" && -d "$steam_userdata_flatpak" ]]; then
-        log w "Multiple Steam installs detected, need to choose which one to use for Steam Sync."
-        choice=$(rd_zenity --title "RetroDECK - Steam Sync" --question --no-wrap --cancel-label="Flatpak" --ok-label="Native" --extra-button="None" \
-        --window-icon="/app/share/icons/hicolor/scalable/apps/net.retrodeck.retrodeck.svg" \
-        --text="RetroDECK has detected data from both Native and Flatpak versions of Steam. Which type would you like Steam Sync to be enabled for?")
-        if [[ $? == "0" ]]; then
-          steam_userdata_current="$steam_userdata_native"
-          set_setting_value "$rd_conf" "steam_sync" "native" "retrodeck" "options"
-        elif [[ $? == "1" ]]; then
-          steam_userdata_current="$steam_userdata_flatpak"
-          set_setting_value "$rd_conf" "steam_sync" "flatpak" "retrodeck" "options"
-        else
-          log i "User opted to not pull any Steam Information, Steam Sync will not be enabled and controller profiles will not be installed."
-          return 1
-        fi
-      elif [[ -d "$steam_userdata_native" ]]; then
+      if [[ -d "$steam_userdata_native" ]]; then
         steam_userdata_current="$steam_userdata_native"
         set_setting_value "$rd_conf" "steam_sync" "native" "retrodeck" "options"
       elif [[ -d "$steam_userdata_flatpak" ]]; then
