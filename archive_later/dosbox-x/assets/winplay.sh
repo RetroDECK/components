@@ -37,7 +37,9 @@ init_globals() {
     # When set, do not create/copy the run_game launcher into the guest's
     # startup. Useful for performing installations / maintenance (we still
     # delete existing Startup items so the environment is clean).
-    NO_LAUNCH=0
+    NO_LAUNCHER=0
+    # If set, generate the TMP_CONF and print it, but do not launch DOSBox-X
+    DUMP_CONF=0
 
     # Files / folders which should be scanned last when searching C:\ in
     # generated launcher BATs. Items here are considered "low priority" and
@@ -216,6 +218,10 @@ parse_arguments() {
                 show_help
                 exit 0
                 ;;
+            --dump-conf)
+                DUMP_CONF=1
+                shift
+                ;;
             --exec)
                 if [[ -z "$2" || "$2" == --* ]]; then
                     log e "--exec requires an argument (file name or full path like C:\\PATH\\EXE)"
@@ -224,8 +230,8 @@ parse_arguments() {
                 EXEC_ARG="$2"
                 shift 2
                 ;;
-            --nolaunch)
-                NO_LAUNCH=1
+            --nolauncher)
+                NO_LAUNCHER=1
                 shift
                 ;;
             --*)
@@ -311,8 +317,9 @@ PARAMETERS:
     --package-game <name>          Packaging-mode: create differencing VHD for <name> (host only)
     --drivers <minimal|all|none>   Control driver-copy during OS install (default: minimal)
     --help, -h                      Show this help
-    --nolaunch                      Do not create/copy run_game launcher into guest Startup (still deletes existing Startup files)
+    --nolauncher                    Do not create/copy run_game launcher into guest Startup (still deletes existing Startup files)
         --exec <name|C:\\path\\to\\exe>  Search C: (or run full path) and execute found file inside guest
+    --dump-conf                   Generate and print TMP_CONF then exit (no DOSBox-X launch)
 
 EXAMPLES:
   ./winplay.sh --makefs win98
@@ -645,12 +652,9 @@ generate_autoexec_install_os() {
         exit 1
     fi
 
-    cat <<EOF >> "$conf_file"
-REM Mount the pre-formatted VHD as C:
-IMGMOUNT C "$VHD_BASE_PATH" -t hdd
-EOF
-
-    # Ensure disks (CD/HD/floppy) are mounted before running Setup so they're
+    # Defer startup cleanup to the later install phase to avoid duplicate
+    # operations; a consolidated cleanup is emitted closer to the actual
+    # installation step below.
     # present across reboots during installation — start from D: because C: is taken
     mount_disks "$conf_file" "D"
 
@@ -691,10 +695,15 @@ EOF
     fi
 
     cat <<EOF >> "$conf_file"
-REM Check if Windows is already installed
-IF EXIST C:\\WINDOWS\\WIN.COM GOTO WINDOWS_FOUND
-REM Boot from C: and run Setup from CD
-ECHO C: drive mounted successfully
+ECHO --nolauncher: Startup cleanup performed; run_game.bat will NOT be installed
+REM --nolauncher: debug list BEFORE removal (shows if file exists)
+DIR "C:\\WINDOWS\\STARTM~1\\PROGRAMS\\STARTUP\\run_game.bat"
+DIR "C:\\WINDOWS\\Start Menu\\Programs\\Startup\\run_game.bat"
+DEL /F /Q "C:\\WINDOWS\\STARTM~1\\PROGRAMS\\STARTUP\\run_game.bat" 2>NUL
+DEL /F /Q "C:\\WINDOWS\\Start Menu\\Programs\\Startup\\run_game.bat" 2>NUL
+REM --nolauncher: debug list AFTER removal (verify gone)
+DIR "C:\\WINDOWS\\STARTM~1\\PROGRAMS\\STARTUP\\run_game.bat"
+DIR "C:\\WINDOWS\\Start Menu\\Programs\\Startup\\run_game.bat"
 ECHO D: drive contains Setup
 D:
 SETUP.EXE
@@ -737,25 +746,90 @@ REM Create per-game differencing child (inherits geometry) and mount C: as stack
 VHDMAKE -f -l "$VHD_BASE_PATH" "$game_layer"
 EOF
     fi
+
+    # If maintenance mode (no launcher) is active, attempt to mount each
+    # layer separately and remove run_game.bat from both the base and child
+    # images before remounting them stacked on C:. This avoids leaving
+    # leftover launchers in any layer while keeping deletion scoped only
+    # to those VHD images.
+    if [[ "$NO_LAUNCHER" -eq 1 ]]; then
+        # If the child exists, mount base as C: and child as D: (with backing)
+        # so we can remove the launcher file from both layers independently.
+        cat >> "$conf_file" <<EOF
+REM --nolauncher: mount layers separately and remove run_game.bat from each
+IF EXIST "$game_layer" (
+    REM Mount base as C: and child as D: (child mounted with backing to base)
+    IMGMOUNT C "$VHD_BASE_PATH" -t hdd
+    IMGMOUNT D "$game_layer" -b "$VHD_BASE_PATH" -t hdd
+    REM Delete launcher from both layers' Startup folders (8.3 and long-name variants)
+    REM --nolauncher: debug list BEFORE removal (C:)
+    DIR "C:\\WINDOWS\\STARTM~1\\PROGRAMS\\STARTUP\\run_game.bat"
+    DIR "C:\\WINDOWS\\Start Menu\\Programs\\Startup\\run_game.bat"
+    DEL /F /Q "C:\\WINDOWS\\STARTM~1\\PROGRAMS\\STARTUP\\run_game.bat" 2>NUL
+    DEL /F /Q "C:\\WINDOWS\\Start Menu\\Programs\\Startup\\run_game.bat" 2>NUL
+    REM --nolauncher: debug list AFTER removal (C:)
+    DIR "C:\\WINDOWS\\STARTM~1\\PROGRAMS\\STARTUP\\run_game.bat"
+    DIR "C:\\WINDOWS\\Start Menu\\Programs\\Startup\\run_game.bat"
+    REM --nolauncher: debug list BEFORE removal (D:)
+    DIR "D:\\WINDOWS\\STARTM~1\\PROGRAMS\\STARTUP\\run_game.bat"
+    DIR "D:\\WINDOWS\\Start Menu\\Programs\\Startup\\run_game.bat"
+    DEL /F /Q "D:\\WINDOWS\\STARTM~1\\PROGRAMS\\STARTUP\\run_game.bat" 2>NUL
+    DEL /F /Q "D:\\WINDOWS\\Start Menu\\Programs\\Startup\\run_game.bat" 2>NUL
+    REM --nolauncher: debug list AFTER removal (D:)
+    DIR "D:\\WINDOWS\\STARTM~1\\PROGRAMS\\STARTUP\\run_game.bat"
+    DIR "D:\\WINDOWS\\Start Menu\\Programs\\Startup\\run_game.bat"
+    REM Unmount temporary mounts
+    MOUNT -u D
+    MOUNT -u C
+) ELSE (
+    REM Child missing: mount base only and clean its Startup
+    IMGMOUNT C "$VHD_BASE_PATH" -t hdd
+    REM --nolauncher: debug list BEFORE removal (C: child-missing)
+    DIR "C:\\WINDOWS\\STARTM~1\\PROGRAMS\\STARTUP\\run_game.bat"
+    DIR "C:\\WINDOWS\\Start Menu\\Programs\\Startup\\run_game.bat"
+    DEL /F /Q "C:\\WINDOWS\\STARTM~1\\PROGRAMS\\STARTUP\\run_game.bat" 2>NUL
+    DEL /F /Q "C:\\WINDOWS\\Start Menu\\Programs\\Startup\\run_game.bat" 2>NUL
+    REM --nolauncher: debug list AFTER removal (C: child-missing)
+    DIR "C:\\WINDOWS\\STARTM~1\\PROGRAMS\\STARTUP\\run_game.bat"
+    DIR "C:\\WINDOWS\\Start Menu\\Programs\\Startup\\run_game.bat"
+    MOUNT -u C
+)
+EOF
+    fi
+
     cat >> "$conf_file" <<EOF
 IMGMOUNT C "$VHD_BASE_PATH" -b "$game_layer" -t hdd
 MOUNT A "$launcher_dir"
-# Remove any previous startup items forcefully and quietly (no Y/N prompts).
-# Use DEL for files and RD /S /Q to remove directories recursively (equivalent
-# to rm -rf on Linux). Suppress errors to avoid noisy startup if paths missing.
-DEL /F /Q "C:\\WINDOWS\\STARTM~1\\PROGRAMS\\STARTUP\\*" 2>NUL
-for /D %%D in ("C:\\WINDOWS\\STARTM~1\\PROGRAMS\\STARTUP\\*") do rd /S /Q "%%D" 2>NUL
 EOF
 
-    # Copy the launcher into Startup only when not running in NO_LAUNCH mode
-    if [[ "$NO_LAUNCH" -eq 0 ]]; then
+    # If not in maintenance (no-launcher) mode, remove any previous startup
+    # items and then copy the launcher into Startup. When NO_LAUNCHER is set
+    # we have already mounted & cleaned layers separately above.
+    # When not in maintenance (NO_LAUNCHER==0), remove any previous startup
+    # item and copy the launcher into Startup. When NO_LAUNCHER==1 the
+    # layered cleanup above already removed launcher files; skip the copy.
+    if [[ "$NO_LAUNCHER" -eq 0 ]]; then
+        cat <<'EOF' >> "$conf_file"
+    REM Remove previous startup items (8.3 + long name variants)
+    REM debug list BEFORE removal
+    DIR "C:\\WINDOWS\\STARTM~1\\PROGRAMS\\STARTUP\\run_game.bat"
+    DIR "C:\\WINDOWS\\Start Menu\\Programs\\Startup\\run_game.bat"
+    DEL /F /Q "C:\\WINDOWS\\STARTM~1\\PROGRAMS\\STARTUP\\run_game.bat" 2>NUL
+    DEL /F /Q "C:\\WINDOWS\\Start Menu\\Programs\\Startup\\run_game.bat" 2>NUL
+    REM debug list AFTER removal
+    DIR "C:\\WINDOWS\\STARTM~1\\PROGRAMS\\STARTUP\\run_game.bat"
+    DIR "C:\\WINDOWS\\Start Menu\\Programs\\Startup\\run_game.bat"
+    EOF
+
+        # Copy the launcher into Startup
         cat >> "$conf_file" <<'EOF'
-COPY A:\run_game.bat "C:\WINDOWS\STARTM~1\PROGRAMS\STARTUP\run_game.bat"
+COPY A:\run_game.bat "C:\\WINDOWS\\STARTM~1\\PROGRAMS\\STARTUP\\run_game.bat"
 MOUNT -u A
 EOF
     else
         cat >> "$conf_file" <<'EOF'
-REM --nolaunch: skipping copy of run_game.bat into guest Startup (maintenance mode)
+REM --nolauncher: skipping copy of run_game.bat into guest Startup (maintenance mode)
+ECHO --nolauncher: Startup cleanup performed; run_game.bat will NOT be installed
 MOUNT -u A
 EOF
     fi
@@ -776,9 +850,48 @@ generate_autoexec_desktop() {
 
     log i "Mounting base OS for desktop mode"
 
+    # Mount the base VHD as C:
     cat <<EOF >> "$conf_file"
 IMGMOUNT C "$vhd_base_path" -t hdd
 EOF
+
+    # If maintenance mode is active, remove any leftover launcher from
+    # the base image's Startup folder and print a visible confirmation.
+    if [[ "$NO_LAUNCHER" -eq 1 ]]; then
+        cat <<'EOF' >> "$conf_file"
+REM Remove previous startup items when --nolauncher is active (8.3 + long-name)
+DEL /F /Q "C:\\WINDOWS\\STARTM~1\\PROGRAMS\\STARTUP\\run_game.bat" 2>NUL
+DEL /F /Q "C:\\WINDOWS\\Start Menu\\Programs\\Startup\\run_game.bat" 2>NUL
+ECHO --nolauncher: Startup cleanup performed; run_game.bat will NOT be installed
+EOF
+    else
+        # When not in maintenance mode, copy the freshly-created launcher into
+        # the base image so Desktop mode sees an updated run_game.bat.
+        # Only attempt to mount/copy the launcher into the base image when the
+        # temporary launcher actually exists on the host. This avoids creating a
+        # benign placeholder and ensures we only overwrite when we have real data.
+        if [[ -f "$LAUNCHER_DIR/run_game.bat" ]]; then
+            cat >> "$conf_file" <<EOF
+    MOUNT A "$LAUNCHER_DIR"
+    REM Update Startup in base image (8.3 + long-name)
+    REM debug list BEFORE removal
+    DIR "C:\\WINDOWS\\STARTM~1\\PROGRAMS\\STARTUP\\run_game.bat"
+    DIR "C:\\WINDOWS\\Start Menu\\Programs\\Startup\\run_game.bat"
+    DEL /F /Q "C:\\WINDOWS\\STARTM~1\\PROGRAMS\\STARTUP\\run_game.bat" 2>NUL
+    DEL /F /Q "C:\\WINDOWS\\Start Menu\\Programs\\Startup\\run_game.bat" 2>NUL
+    REM debug list AFTER removal
+    DIR "C:\\WINDOWS\\STARTM~1\\PROGRAMS\\STARTUP\\run_game.bat"
+    DIR "C:\\WINDOWS\\Start Menu\\Programs\\Startup\\run_game.bat"
+    IF EXIST A:\run_game.bat ( COPY A:\run_game.bat "C:\\WINDOWS\\STARTM~1\\PROGRAMS\\STARTUP\\run_game.bat" )
+    MOUNT -u A
+ECHO --nolauncher: Startup updated with new run_game.bat
+EOF
+        else
+            # Nothing to copy — ensure we don't perform any change when no
+            # launcher was generated for desktop mode.
+            log d "No launcher present at: $LAUNCHER_DIR/run_game.bat — skipping desktop Startup update"
+        fi
+    fi
 
     # Mount disks starting from D: (C: is already used by VHD)
     mount_disks "$conf_file" "D"
@@ -859,6 +972,14 @@ create_launcher_bat() {
 
     local game_filename=$(basename "$GAME_PATH")
     local game_filename_dos=$(echo "$game_filename" | tr '[:lower:]' '[:upper:]')
+
+    # If no exec_arg and no GAME_PATH (desktop mode) do NOT create a
+    # placeholder launcher — the user requested removal of the placeholder
+    # behavior. Simply return and leave launcher_dir empty (nothing to copy).
+    if [[ -z "$exec_arg" && -z "${GAME_PATH:-}" ]]; then
+        log d "No exec target and no GAME_PATH: skipping launcher creation (desktop placeholder removed)"
+        return 0
+    fi
 
     # Create launcher BAT with proper Windows CRLF line endings using printf.
     # If an exec target was supplied, produce a search-and-run BAT that uses
@@ -982,16 +1103,26 @@ EOF
 
 generate_autoexec() {
     if [[ $DESKTOP_MODE -eq 1 ]]; then
+        # In desktop mode we want to update the base image's Startup with
+        # a fresh launcher unless NO_LAUNCHER is active. Previously the
+        # script skipped creating the launcher in desktop mode which left
+        # stale run_game.bat files in the base VHD. Create it here so the
+        # subsequent autoexec can copy it into C:\Startup.
+        if [[ "$NO_LAUNCHER" -eq 0 ]]; then
+            create_launcher_bat "$LAUNCHER_DIR" "$EXEC_ARG"
+        else
+            log i "--nolauncher active: skipping creation of run_game.bat for desktop mode"
+        fi
         generate_autoexec_desktop "$TMP_CONF" "$VHD_BASE_PATH"
     elif [[ $INSTALL_MODE -eq 1 ]]; then
         if [[ $IS_OS_INSTALL -eq 1 ]]; then
             generate_autoexec_install_os "$TMP_CONF"
         fi
     else
-        if [[ "$NO_LAUNCH" -eq 0 ]]; then
+        if [[ "$NO_LAUNCHER" -eq 0 ]]; then
             create_launcher_bat "$LAUNCHER_DIR" "$EXEC_ARG"
         else
-            log i "--nolaunch active: skipping creation of run_game.bat (maintenance mode)"
+            log i "--nolauncher active: skipping creation of run_game.bat (maintenance mode)"
         fi
         # Pass the prepared game-layer and write-layer into the autoexec generator.
         # The generator will fall back to globals if either is empty.
@@ -1173,6 +1304,26 @@ main() {
     local final_args
     mapfile -t final_args < <(extract_args_from_environment "$@")
 
+    # Pre-filter flags that should not be interpreted as positional
+    # arguments (e.g. --nolauncher). Remove them from final_args so the
+    # subsequent dispatch logic doesn't treat them as game names.
+    local filtered_args=()
+    for ((i=0; i<${#final_args[@]}; i++)); do
+        case "${final_args[$i]}" in
+            --nolauncher)
+                NO_LAUNCHER=1
+                ;;
+            --dump-conf)
+                DUMP_CONF=1
+                ;;
+            *)
+                filtered_args+=("${final_args[$i]}")
+                ;;
+        esac
+    done
+    # Replace final_args with the filtered list
+    final_args=("${filtered_args[@]:-}")
+
     # Route based on first argument
     case "${final_args[0]}" in
         --help|-h)
@@ -1338,6 +1489,13 @@ main() {
     prepare_config
     generate_autoexec
     log_config
+
+    # If requested, dump the temporary config and exit (useful for debugging)
+    if [[ "$DUMP_CONF" -eq 1 ]]; then
+        log i "--dump-conf active: printing generated TMP_CONF and exiting"
+        cat "$TMP_CONF"
+        exit 0
+    fi
 
     # Build DOSBox-X command with optional overrides; pass base config first
     # then the OS-specific TMP_CONF so the last file wins for duplicate settings.
