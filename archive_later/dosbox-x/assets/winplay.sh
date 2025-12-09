@@ -756,40 +756,40 @@ EOF
         # If the child exists, mount base as C: and child as D: (with backing)
         # so we can remove the launcher file from both layers independently.
         cat >> "$conf_file" <<EOF
-REM --nolauncher: mount layers separately and remove run_game.bat from each
+# --nolauncher: mount layers separately and remove run_game.bat from each
 IF EXIST "$game_layer" (
-    REM Mount base as C: and child as D: (child mounted with backing to base)
+    # Mount base as C: and child as D: (child mounted with backing to base)
     IMGMOUNT C "$VHD_BASE_PATH" -t hdd
     IMGMOUNT D "$game_layer" -b "$VHD_BASE_PATH" -t hdd
-    REM Delete launcher from both layers' Startup folders (8.3 and long-name variants)
-    REM --nolauncher: debug list BEFORE removal (C:)
+    # Delete launcher from both layers' Startup folders (8.3 and long-name variants)
+    # --nolauncher: debug list BEFORE removal (C:)
     DIR "C:\\WINDOWS\\STARTM~1\\PROGRAMS\\STARTUP\\run_game.bat"
     DIR "C:\\WINDOWS\\Start Menu\\Programs\\Startup\\run_game.bat"
     DEL /F /Q "C:\\WINDOWS\\STARTM~1\\PROGRAMS\\STARTUP\\run_game.bat" 2>NUL
     DEL /F /Q "C:\\WINDOWS\\Start Menu\\Programs\\Startup\\run_game.bat" 2>NUL
-    REM --nolauncher: debug list AFTER removal (C:)
+    # --nolauncher: debug list AFTER removal (C:)
     DIR "C:\\WINDOWS\\STARTM~1\\PROGRAMS\\STARTUP\\run_game.bat"
     DIR "C:\\WINDOWS\\Start Menu\\Programs\\Startup\\run_game.bat"
-    REM --nolauncher: debug list BEFORE removal (D:)
+    # --nolauncher: debug list BEFORE removal (D:)
     DIR "D:\\WINDOWS\\STARTM~1\\PROGRAMS\\STARTUP\\run_game.bat"
     DIR "D:\\WINDOWS\\Start Menu\\Programs\\Startup\\run_game.bat"
     DEL /F /Q "D:\\WINDOWS\\STARTM~1\\PROGRAMS\\STARTUP\\run_game.bat" 2>NUL
     DEL /F /Q "D:\\WINDOWS\\Start Menu\\Programs\\Startup\\run_game.bat" 2>NUL
-    REM --nolauncher: debug list AFTER removal (D:)
+    # --nolauncher: debug list AFTER removal (D:)
     DIR "D:\\WINDOWS\\STARTM~1\\PROGRAMS\\STARTUP\\run_game.bat"
     DIR "D:\\WINDOWS\\Start Menu\\Programs\\Startup\\run_game.bat"
-    REM Unmount temporary mounts
+    # Unmount temporary mounts
     MOUNT -u D
     MOUNT -u C
 ) ELSE (
-    REM Child missing: mount base only and clean its Startup
+    # Child missing: mount base only and clean its Startup
     IMGMOUNT C "$VHD_BASE_PATH" -t hdd
-    REM --nolauncher: debug list BEFORE removal (C: child-missing)
+    # --nolauncher: debug list BEFORE removal (C: child-missing)
     DIR "C:\\WINDOWS\\STARTM~1\\PROGRAMS\\STARTUP\\run_game.bat"
     DIR "C:\\WINDOWS\\Start Menu\\Programs\\Startup\\run_game.bat"
     DEL /F /Q "C:\\WINDOWS\\STARTM~1\\PROGRAMS\\STARTUP\\run_game.bat" 2>NUL
     DEL /F /Q "C:\\WINDOWS\\Start Menu\\Programs\\Startup\\run_game.bat" 2>NUL
-    REM --nolauncher: debug list AFTER removal (C: child-missing)
+    # --nolauncher: debug list AFTER removal (C: child-missing)
     DIR "C:\\WINDOWS\\STARTM~1\\PROGRAMS\\STARTUP\\run_game.bat"
     DIR "C:\\WINDOWS\\Start Menu\\Programs\\Startup\\run_game.bat"
     MOUNT -u C
@@ -810,16 +810,13 @@ EOF
     # layered cleanup above already removed launcher files; skip the copy.
     if [[ "$NO_LAUNCHER" -eq 0 ]]; then
         cat <<'EOF' >> "$conf_file"
-    REM Remove previous startup items (8.3 + long name variants)
-    REM debug list BEFORE removal
+    # Remove previous startup items (8.3 + long name variants)
+    # debug list BEFORE removal
+    DIR "C:\\WINDOWS\\STARTM~1\\PROGRAMS\\STARTUP\\"
+    DEL /F /Q "C:\\WINDOWS\\STARTM~1\\PROGRAMS\\STARTUP\\run_game.bat
+    # debug list AFTER removal
     DIR "C:\\WINDOWS\\STARTM~1\\PROGRAMS\\STARTUP\\run_game.bat"
-    DIR "C:\\WINDOWS\\Start Menu\\Programs\\Startup\\run_game.bat"
-    DEL /F /Q "C:\\WINDOWS\\STARTM~1\\PROGRAMS\\STARTUP\\run_game.bat" 2>NUL
-    DEL /F /Q "C:\\WINDOWS\\Start Menu\\Programs\\Startup\\run_game.bat" 2>NUL
-    REM debug list AFTER removal
-    DIR "C:\\WINDOWS\\STARTM~1\\PROGRAMS\\STARTUP\\run_game.bat"
-    DIR "C:\\WINDOWS\\Start Menu\\Programs\\Startup\\run_game.bat"
-    EOF
+EOF
 
         # Copy the launcher into Startup
         cat >> "$conf_file" <<'EOF'
@@ -828,8 +825,8 @@ MOUNT -u A
 EOF
     else
         cat >> "$conf_file" <<'EOF'
-REM --nolauncher: skipping copy of run_game.bat into guest Startup (maintenance mode)
-ECHO --nolauncher: Startup cleanup performed; run_game.bat will NOT be installed
+# --nolauncher: skipping copy of run_game.bat into guest Startup (maintenance mode)
+# --nolauncher: Startup cleanup performed; run_game.bat will NOT be installed
 MOUNT -u A
 EOF
     fi
@@ -838,7 +835,7 @@ EOF
     mount_disks "$conf_file" "D"
 
     cat <<EOF >> "$conf_file"
-BOOT -l C:
+#BOOT -l C:
 EOF
 
     log i "Autoexec ready: C=write-layer, D=game, E+=CD/HD/floppy"
