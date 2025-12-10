@@ -14,5 +14,8 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
 
 fi
 
+  dir_prep "$texture_packs_path/Flycast/TEXDUMP" "$XDG_CONFIG_HOME/Flycast/TEXDUMP"
+  dir_prep "$texture_packs_path/Flycast/TEXTURES" "$XDG_CONFIG_HOME/Flycast/TEXTURES"
+
 # Dreamcast.AutoLoadState = no, Dreamcast.AutoSaveState = no | add to autoresume
 # rend.WideScreen = no, rend.WidescreenGameHacks = no | add to widescreen
