@@ -26,7 +26,7 @@ configurator_add_retrodeck_to_steam_dialog() {
 }
 
 configurator_automatic_steam_sync_dialog() {
-  if [[ $(get_setting_value "$rd_conf" "steam_sync" retrodeck "options") == "true" ]]; then
+  if [[ $(get_setting_value "$rd_conf" "steam_sync" retrodeck "options") =~ (true|native|flatpak) ]]; then
     zenity --question \
     --no-wrap --window-icon="/app/share/icons/hicolor/scalable/apps/net.retrodeck.retrodeck.svg" \
     --title "RetroDECK Configurator - 🚂 Steam Syncronization 🚂" \
@@ -51,13 +51,20 @@ configurator_automatic_steam_sync_dialog() {
 }
 
 configurator_enable_steam_sync() {
-  set_setting_value "$rd_conf" "steam_sync" "true" retrodeck "options"
-  export CONFIGURATOR_GUI="zenity"
-  steam_sync
-  zenity --icon-name=net.retrodeck.retrodeck --info --no-wrap --ok-label="OK"  \
-      --window-icon="/app/share/icons/hicolor/scalable/apps/net.retrodeck.retrodeck.svg" \
-      --title "RetroDECK Configurator - 🚂 Steam Syncronization 🚂" \
-      --text="Steam synchronization is <span foreground='$purple'><b>Enabled</b></span>."
+  if steam_type=$(get_steam_user "get_type"); then
+    set_setting_value "$rd_conf" "steam_sync" "$steam_type" retrodeck "options"
+    export CONFIGURATOR_GUI="zenity"
+    steam_sync
+    zenity --icon-name=net.retrodeck.retrodeck --info --no-wrap --ok-label="OK"  \
+        --window-icon="/app/share/icons/hicolor/scalable/apps/net.retrodeck.retrodeck.svg" \
+        --title "RetroDECK Configurator - 🚂 Steam Syncronization 🚂" \
+        --text="Steam synchronization is <span foreground='$purple'><b>Enabled</b></span>."
+  else
+    zenity --icon-name=net.retrodeck.retrodeck --info --no-wrap --ok-label="OK"  \
+        --window-icon="/app/share/icons/hicolor/scalable/apps/net.retrodeck.retrodeck.svg" \
+        --title "RetroDECK Configurator - 🚂 Steam Syncronization 🚂" \
+        --text="Steam synchronization could not be enabled, because your Steam install type could not be determined."
+  fi
 }
 
 configurator_disable_steam_sync() {
@@ -113,18 +120,34 @@ get_steam_user() {
   # This function populates environment variables with the actual logged Steam user data
   local mode="${1:-}"
   local current_steam_sync_setting="$(get_setting_value "$rd_conf" "steam_sync" "retrodeck" "options")"
-  if [[ "$current_steam_sync_setting" != "false" || "$mode" == "finit" ]]; then # Only grab Steam information if Steam Sync is enabled
+  if [[ "$current_steam_sync_setting" != "false" || "$mode" =~ (finit|get_type) ]]; then # Only grab Steam information if Steam Sync is enabled
     if [[ "$current_steam_sync_setting" == "native" ]]; then
       steam_userdata_current="$steam_userdata_native"
+      if [[ "$mode" == "get_type" ]]; then
+        echo "$current_steam_sync_setting"
+        return 0
+      fi
     elif [[ "$current_steam_sync_setting" == "flatpak" ]]; then
       steam_userdata_current="$steam_userdata_flatpak"
+      if [[ "$mode" == "get_type" ]]; then
+        echo "$current_steam_sync_setting"
+        return 0
+      fi
     else
       if [[ -d "$steam_userdata_native" ]]; then
         steam_userdata_current="$steam_userdata_native"
         set_setting_value "$rd_conf" "steam_sync" "native" "retrodeck" "options"
+        if [[ "$mode" == "get_type" ]]; then
+          echo "native"
+          return 0
+        fi
       elif [[ -d "$steam_userdata_flatpak" ]]; then
         steam_userdata_current="$steam_userdata_flatpak"
         set_setting_value "$rd_conf" "steam_sync" "flatpak" "retrodeck" "options"
+        if [[ "$mode" == "get_type" ]]; then
+          echo "flatpak"
+          return 0
+        fi
       else
         log d "Steam Sync is enabled or this check was forced, but no Steam userdata information could be found."
         return 1
