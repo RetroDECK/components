@@ -22,7 +22,9 @@
       "config_file_format": "azahar",
       "ask_to_exit": [
         {
-          "enabled_states": [ "true" ],
+          "enabled_states": [
+            "true"
+          ],
           "setting_name": "confirmClose",
           "action": "change",
           "new_setting_value": "true",
@@ -31,7 +33,9 @@
           "defaults_file": "$rd_components/azahar/rd_config/qt-config.ini"
         },
         {
-          "enabled_states": [ "true" ],
+          "enabled_states": [
+            "true"
+          ],
           "setting_name": "confirmClose\\default",
           "action": "change",
           "new_setting_value": "true",
@@ -42,7 +46,9 @@
       ],
       "abxy_button_swap": [
         {
-          "enabled_states": [ "true" ],
+          "enabled_states": [
+            "true"
+          ],
           "setting_name": "profiles\\1\\button_a",
           "action": "change",
           "new_setting_value": "button:1,engine:sdl,guid:030079f6de280000ff11000001000000,port:0",
@@ -51,7 +57,9 @@
           "defaults_file": "$rd_components/azahar/rd_config/qt-config.ini"
         },
         {
-          "enabled_states": [ "true" ],
+          "enabled_states": [
+            "true"
+          ],
           "setting_name": "profiles\\1\\button_b",
           "action": "change",
           "new_setting_value": "button:0,engine:sdl,guid:030079f6de280000ff11000001000000,port:0",
@@ -60,8 +68,21 @@
           "defaults_file": "$rd_components/azahar/rd_config/qt-config.ini"
         },
         {
-          "enabled_states": [ "true" ],
-          "setting_name": "profiles\\1\\button_c",
+          "enabled_states": [
+            "true"
+          ],
+          "setting_name": "profiles\\1\\button_y",
+          "action": "change",
+          "new_setting_value": "button:2,engine:sdl,guid:030079f6de280000ff11000001000000,port:0",
+          "section": "Controls",
+          "target_file": "$azahar_qtconfig",
+          "defaults_file": "$rd_components/azahar/rd_config/qt-config.ini"
+        },
+        {
+          "enabled_states": [
+            "true"
+          ],
+          "setting_name": "profiles\\1\\button_x",
           "action": "change",
           "new_setting_value": "button:3,engine:sdl,guid:030079f6de280000ff11000001000000,port:0",
           "section": "Controls",
@@ -69,14 +90,49 @@
           "defaults_file": "$rd_components/azahar/rd_config/qt-config.ini"
         },
         {
-          "enabled_states": [ "true" ],
-          "setting_name": "profiles\\1\\button_d",
+          "enabled_states": [
+            "true"
+          ],
+          "setting_name": "profiles\\2\\button_a",
+          "action": "change",
+          "new_setting_value": "button:1,engine:sdl,guid:030079f6de280000ff11000001000000,port:0",
+          "section": "Controls",
+          "target_file": "$azahar_qtconfig",
+          "defaults_file": "$rd_components/azahar/rd_config/qt-config.ini"
+        },
+        {
+          "enabled_states": [
+            "true"
+          ],
+          "setting_name": "profiles\\2\\button_b",
+          "action": "change",
+          "new_setting_value": "button:0,engine:sdl,guid:030079f6de280000ff11000001000000,port:0",
+          "section": "Controls",
+          "target_file": "$azahar_qtconfig",
+          "defaults_file": "$rd_components/azahar/rd_config/qt-config.ini"
+        },
+        {
+          "enabled_states": [
+            "true"
+          ],
+          "setting_name": "profiles\\2\\button_y",
           "action": "change",
           "new_setting_value": "button:2,engine:sdl,guid:030079f6de280000ff11000001000000,port:0",
           "section": "Controls",
           "target_file": "$azahar_qtconfig",
           "defaults_file": "$rd_components/azahar/rd_config/qt-config.ini"
-        }
+        },
+        {
+          "enabled_states": [
+            "true"
+          ],
+          "setting_name": "profiles\\2\\button_x",
+          "action": "change",
+          "new_setting_value": "button:3,engine:sdl,guid:030079f6de280000ff11000001000000,port:0",
+          "section": "Controls",
+          "target_file": "$azahar_qtconfig",
+          "defaults_file": "$rd_components/azahar/rd_config/qt-config.ini"
+        }        
       ]
     }
   }
