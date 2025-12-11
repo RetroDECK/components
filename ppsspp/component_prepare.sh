@@ -40,6 +40,6 @@ if [[ "$action" == "postmove" ]]; then # Run only post-move commands
   dir_prep "$saves_path/PSP/PPSSPP-SA" "$XDG_CONFIG_HOME/ppsspp/PSP/SAVEDATA"
   dir_prep "$states_path/PSP/PPSSPP-SA" "$XDG_CONFIG_HOME/ppsspp/PSP/PPSSPP_STATE"
   dir_prep "$texture_packs_path/PPSSPP-SA/TEXTURES" "$ppsspp_textures_path"
-  dir_prep "$shaders_path/PPSSPP-SA" "$$ppsspp_shaders_path"
+  dir_prep "$shaders_path/PPSSPP-SA" "$ppsspp_shaders_path"
   dir_prep "$cheats_path/PPSSPP-SA" "$ppsspp_cheats_path"
 fi
