@@ -26,6 +26,6 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
   create_dir "$saves_path/n3ds/azahar/nand/"
   create_dir "$saves_path/n3ds/azahar/sdmc/"
 
-  dir_prep "$mods_path/azahar/" "$azahar_mods_path"
-  dir_prep "$texture_packs_path/azahar/" "$azahar_textures_path"
+  dir_prep "$mods_path/azahar/mods" "$azahar_mods_path"
+  dir_prep "$texture_packs_path/azahar/textures" "$azahar_textures_path"
 fi

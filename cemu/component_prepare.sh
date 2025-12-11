@@ -16,12 +16,12 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
     rm -rf "$XDG_DATA_HOME/Cemu/keys.txt" && ln -s "$bios_path/cemu/keys.txt" "$XDG_DATA_HOME/Cemu/keys.txt" && log d "Linked $bios_path/cemu/keys.txt to $XDG_DATA_HOME/Cemu/keys.txt"
   fi
   dir_prep "$saves_path/wiiu/cemu" "$bios_path/cemu/usr/save"
-  dir_prep "$texture_packs_path/Cemu/graphicPacks" "$XDG_CONFIG_HOME/Cemu/graphicPacks"
+  dir_prep "$texture_packs_path/Cemu/graphicPacks" "$cemu_textures_path"
   
 fi
 if [[ "$action" == "postmove" ]]; then # Run commands that apply to both resets and moves
   set_setting_value "$cemu_config" "mlc_path" "$bios_path/cemu" "cemu"
   set_setting_value "$cemu_config" "Entry" "$roms_path/wiiu" "cemu" "GamePaths"
   dir_prep "$saves_path/wiiu/cemu" "$bios_path/cemu/usr/save"
-  dir_prep "$texture_packs_path/Cemu/graphicPacks" "$XDG_DATA_HOME/Cemu/graphicPacks"
+  dir_prep "$texture_packs_path/Cemu/graphicPacks" "$cemu_textures_path"
 fi

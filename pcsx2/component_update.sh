@@ -14,7 +14,7 @@ if [[ $(check_version_is_older_than "$version_being_updated" "0.7.0b") == "true"
   deploy_single_patch "$config/PCSX2/PCSX2.ini" "$XDG_CONFIG_HOME/PCSX2/inis/PCSX2-cheevos-upgrade.patch" "$pcsx2conf"
   rm -f "$XDG_CONFIG_HOME/PCSX2/inis/PCSX2-cheevos-upgrade.patch"
 
-  dir_prep "$texture_packs_folder/PCSX2" "$XDG_CONFIG_HOME/PCSX2/textures"
+  dir_prep "$texture_packs_path/pcsx2/textures" "$pcsx2_textures_path"
 
   set_setting_value "$pcsx2conf" "SaveStateOnShutdown" "false" "pcsx2" "EmuCore"
 fi
