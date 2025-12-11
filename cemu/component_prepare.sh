@@ -23,5 +23,5 @@ if [[ "$action" == "postmove" ]]; then # Run commands that apply to both resets 
   set_setting_value "$cemu_config" "mlc_path" "$bios_path/cemu" "cemu"
   set_setting_value "$cemu_config" "Entry" "$roms_path/wiiu" "cemu" "GamePaths"
   dir_prep "$saves_path/wiiu/cemu" "$bios_path/cemu/usr/save"
-  dir_prep "$texture_packs_path/Cemu/graphicPacks" "$XDG_CONFIG_HOME/Cemu/graphicPacks"
+  dir_prep "$texture_packs_path/Cemu/graphicPacks" "$XDG_DATA_HOME/Cemu/graphicPacks"
 fi
