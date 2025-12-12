@@ -28,7 +28,7 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
   dir_prep "$bios_path/switch/keys" "$XDG_CONFIG_HOME/Ryujinx/system"
   dir_prep "$bios_path/switch/firmware" "$XDG_CONFIG_HOME/Ryujinx/bis/system/Contents"
   dir_prep "$saves_path/switch/ryubing" "$XDG_CONFIG_HOME/Ryujinx/bis/system/save"
-  dir_prep "$mods_path/switch/Ryubing/contents" "$XDG_CONFIG_HOME/Ryujinx/mods/contents/"
+  dir_prep "$mods_path/Ryubing/contents" "$XDG_CONFIG_HOME/Ryujinx/mods/contents/"
   dir_prep "$logs_path/switch/Ryubing" "$XDG_CONFIG_HOME/Ryujinx/Logs"
 fi
 
@@ -41,6 +41,6 @@ if [[ "$action" == "postmove" ]]; then # Run only post-move commands
   dir_prep "$bios_path/switch/keys" "$XDG_CONFIG_HOME/Ryujinx/system"
   dir_prep "$bios_path/switch/firmware" "$XDG_CONFIG_HOME/Ryujinx/bis/system/Contents"
   dir_prep "$saves_path/switch/ryubing" "$XDG_CONFIG_HOME/Ryujinx/bis/system/save"
-  dir_prep "$mods_path/switch/Ryubing/contents" "$XDG_CONFIG_HOME/Ryujinx/mods/contents/"
+  dir_prep "$mods_path/Ryubing/contents" "$XDG_CONFIG_HOME/Ryujinx/mods/contents/"
   dir_prep "$logs_path/switch/Ryubing" "$XDG_CONFIG_HOME/Ryujinx/Logs"
 fi
