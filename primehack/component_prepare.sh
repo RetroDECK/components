@@ -21,6 +21,9 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
   dir_prep "$saves_path/wii/primehack" "$XDG_DATA_HOME/primehack/Wii"
   dir_prep "$mods_path/Primehack" "$XDG_DATA_HOME/primehack/Load/GraphicMods"
   dir_prep "$texture_packs_path/Primehack" "$XDG_DATA_HOME/primehack/Load/Textures"
+  dir_prep "$shaders_path/Primehack" "$XDG_DATA_HOME/primehack/Shaders"
+  dir_prep "$logs_path/Primehack" "$XDG_DATA_HOME/primehack/Logs"
+  dir_prep "$storage_path/Primehack/Dump" "$XDG_DATA_HOME/Primehack/Dump"
 fi
 
 if [[ "$action" == "postmove" ]]; then # Run only post-move commands
@@ -32,5 +35,8 @@ if [[ "$action" == "postmove" ]]; then # Run only post-move commands
   dir_prep "$saves_path/wii/primehack" "$XDG_DATA_HOME/primehack/Wii/"
   dir_prep "$mods_path/Primehack" "$XDG_DATA_HOME/primehack/Load/GraphicMods"
   dir_prep "$texture_packs_path/Primehack" "$XDG_DATA_HOME/primehack/Load/Textures"
+  dir_prep "$shaders_path/Primehack" "$XDG_DATA_HOME/primehack/Shaders"
+  dir_prep "$logs_path/Primehack" "$XDG_DATA_HOME/primehack/Logs"
+  dir_prep "$storage_path/Primehack/Dump" "$XDG_DATA_HOME/Primehack/Dump"
   set_setting_value "$primehack_config" "ISOPath0" "$roms_path/gc" "primehack" "General"
 fi
