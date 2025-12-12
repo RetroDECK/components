@@ -8,6 +8,7 @@ vita3k_component_dir="$rd_components/vita3k"
 vita3k_textures_path="$storage_path/Vita3K/ux0/textures/import"
 vita3k_lang_path="$XDG_DATA_HOME/Vita3K/lang"
 vita3k_patch_path="$XDG_DATA_HOME/Vita3K/patch"
+vita3k_shaders_path="$XDG_CACHE_HOME/Vita3K/shaders"
 
 update_vita3k_firmware() {
   if [[ $(check_network_connectivity) == "true" ]]; then

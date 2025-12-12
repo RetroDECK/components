@@ -21,6 +21,7 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
   dir_prep "$texture_packs_path/Vita3K/import" "$vita3k_textures_path" # Textures
   dir_prep "$storage_path/Vita3K/lang"  "$vita3k_lang_path"
   dir_prep "$storage_path/Vita3K/patch"  "$vita3k_patch_path"
+  dir_prep "$shaders_path/Vita3K/"  "$vita3k_shaders_path"
 fi
 
 if [[ "$action" == "postmove" ]]; then # Run only post-move commands
@@ -28,5 +29,6 @@ if [[ "$action" == "postmove" ]]; then # Run only post-move commands
   dir_prep "$texture_packs_path/Vita3K/import" "$vita3k_textures_path" # Textures
   dir_prep "$storage_path/Vita3K/lang"  "$vita3k_lang_path"
   dir_prep "$storage_path/Vita3K/patch"  "$vita3k_patch_path"
+  dir_prep "$shaders_path/Vita3K/"  "$vita3k_shaders_path"
   set_setting_value "$vita3k_config" "pref-path" "$storage_path/psvita/Vita3K/" "vita3k"
 fi
