@@ -19,6 +19,10 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
   set_setting_value "$duckstation_config" "RecursivePaths" "$roms_path/psx" "duckstation" "GameList"
   dir_prep "$states_path/psx/duckstation" "$XDG_CONFIG_HOME/duckstation/savestates" # This is hard-coded in Duckstation, always needed
   dir_prep "$texture_packs_path/Duckstation/textures" "$duckstation_textures_path"
+  dir_prep "$screenshots_path/Duckstation/" "$duckstation_screenshots_path"
+  dir_prep "$shaders_path/Duckstation/" "$duckstation_shaders_path"
+  dir_prep "$storage_path/Duckstation/dump/textures" "$duckstation_dump_textures_path"
+  dir_prep "$storage_path/Duckstation/dump/audio" "$duckstation_dump_audio_path"
 fi
 
 if [[ "$action" == "postmove" ]]; then # Run only post-move commands
@@ -29,4 +33,8 @@ if [[ "$action" == "postmove" ]]; then # Run only post-move commands
   set_setting_value "$duckstation_config" "RecursivePaths" "$roms_path/psx" "duckstation" "GameList"
   dir_prep "$states_path/psx/duckstation" "$XDG_CONFIG_HOME/duckstation/savestates" # This is hard-coded in Duckstation, always needed
   dir_prep "$texture_packs_path/Duckstation/textures" "$duckstation_textures_path"
+  dir_prep "$screenshots_path/Duckstation/" "$duckstation_screenshots_path"
+  dir_prep "$shaders_path/Duckstation/" "$duckstation_shaders_path"
+  dir_prep "$storage_path/Duckstation/dump/textures" "$duckstation_dump_textures_path"
+  dir_prep "$storage_path/Duckstation/dump/audio" "$duckstation_dump_audio_path"
 fi
