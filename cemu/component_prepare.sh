@@ -17,6 +17,7 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
   fi
   dir_prep "$saves_path/wiiu/cemu" "$bios_path/cemu/usr/save"
   dir_prep "$texture_packs_path/Cemu/graphicPacks" "$cemu_textures_path"
+  dir_prep "$shaders_path/Cemu/transferable" "$cemu_shadercache_transferable_path"
   
 fi
 if [[ "$action" == "postmove" ]]; then # Run commands that apply to both resets and moves
@@ -24,4 +25,5 @@ if [[ "$action" == "postmove" ]]; then # Run commands that apply to both resets 
   set_setting_value "$cemu_config" "Entry" "$roms_path/wiiu" "cemu" "GamePaths"
   dir_prep "$saves_path/wiiu/cemu" "$bios_path/cemu/usr/save"
   dir_prep "$texture_packs_path/Cemu/graphicPacks" "$cemu_textures_path"
+  dir_prep "$shaders_path/Cemu/transferable" "$cemu_shadercache_transferable_path"
 fi
