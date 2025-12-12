@@ -28,7 +28,11 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
   tar -xzf "$component_extras/pcsx2-cheats.tar.gz" -C "$cheats_path/pcsx2" --overwrite
   create_dir "$saves_path/ps2/pcsx2/memcards"
   create_dir "$states_path/ps2/pcsx2"
-  dir_prep "$texture_packs_path/pcsx2/textures" "$pcsx2_textures_path"
+  dir_prep "$texture_packs_path/PCSX2/textures" "$pcsx2_textures_path"
+  dir_prep "$storage_path/PCSX2/patches" "$pcsx2_patches_path"
+  dir_prep "$logs_path/PCSX2/" "$pcsx2_logs_path"
+  dir_prep "$cheats_path/PCSX2/" "$pcsx2_cheats_path"
+
 fi
 
 if [[ "$action" == "postmove" ]]; then # Run only post-move commands
@@ -38,5 +42,8 @@ if [[ "$action" == "postmove" ]]; then # Run only post-move commands
   set_setting_value "$pcsx2_config" "MemoryCards" "$saves_path/ps2/pcsx2/memcards" "pcsx2" "Folders"
   set_setting_value "$pcsx2_config" "RecursivePaths" "$roms_path/ps2" "pcsx2" "GameList"
   set_setting_value "$pcsx2_config" "Cheats" "$cheats_path/pcsx2" "Folders"
-  dir_prep "$texture_packs_path/pcsx2/textures" "$XDG_CONFIG_HOME/PCSX2/textures"
+  dir_prep "$texture_packs_path/PCSX2/textures" "$pcsx2_textures_path"
+  dir_prep "$storage_path/PCSX2/patches" "$pcsx2_patches_path"
+  dir_prep "$logs_path/PCSX2/" "$pcsx2_logs_path"
+  dir_prep "$cheats_path/PCSX2/" "$pcsx2_cheats_path"
 fi
