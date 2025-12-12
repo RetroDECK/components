@@ -18,15 +18,15 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
   cp -frv "$component_config/ux0" "$storage_path/Vita3K/" # User config
   set_setting_value "$vita3k_config" "pref-path" "$storage_path/Vita3K/" "vita3k"
   dir_prep "$saves_path/psvita/vita3k" "$storage_path/Vita3K/ux0/user/00/savedata" # Multi-user safe?
-  dir_prep "$texture_packs_path/Vita3K/import" "$storage_path/Vita3K/ux0/textures/import" # Textures 
-  dir_prep "$storage_path/Vita3K/lang"  "$XDG_DATA_HOME/Vita3K/lang"
-  dir_prep "$storage_path/Vita3K/patch"  "$XDG_DATA_HOME/Vita3K/patch"
+  dir_prep "$texture_packs_path/Vita3K/import" "$vita3k_textures_path" # Textures
+  dir_prep "$storage_path/Vita3K/lang"  "$vita3k_lang_path"
+  dir_prep "$storage_path/Vita3K/patch"  "$vita3k_patch_path"
 fi
 
 if [[ "$action" == "postmove" ]]; then # Run only post-move commands
   dir_prep "$saves_path/psvita/vita3k" "$storage_path/Vita3K/ux0/user/00/savedata" # Multi-user safe?
-  dir_prep "$texture_packs_path/Vita3K/import" "$storage_path/Vita3K/ux0/textures/import" # Textures 
-  dir_prep "$storage_path/Vita3K/lang"  "$XDG_DATA_HOME/Vita3K/lang"
-  dir_prep "$storage_path/Vita3K/patch"  "$XDG_DATA_HOME/Vita3K/patch"
+  dir_prep "$texture_packs_path/Vita3K/import" "$vita3k_textures_path" # Textures
+  dir_prep "$storage_path/Vita3K/lang"  "$vita3k_lang_path"
+  dir_prep "$storage_path/Vita3K/patch"  "$vita3k_patch_path"
   set_setting_value "$vita3k_config" "pref-path" "$storage_path/psvita/Vita3K/" "vita3k"
 fi
