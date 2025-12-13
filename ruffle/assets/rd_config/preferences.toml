@@ -1,0 +1,5 @@
+graphics_backend = "vulkan"
+log = { filename_pattern = "single_file" }
+theme = "dark"
+open_url_mode = "deny"
+ime = { enabled = true }

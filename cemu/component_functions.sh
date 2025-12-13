@@ -5,3 +5,6 @@ cemu_config_controller0="$XDG_CONFIG_HOME/Cemu/controllerProfiles/controller0.xm
 cemu_config_controller1="$XDG_CONFIG_HOME/Cemu/controllerProfiles/controller1.xml"
 cemu_config_controller2="$XDG_CONFIG_HOME/Cemu/controllerProfiles/controller2.xml"
 cemu_config_controller3="$XDG_CONFIG_HOME/Cemu/controllerProfiles/controller3.xml"
+cemu_textures_path="$XDG_DATA_HOME/Cemu/graphicPacks"
+cemu_shadercache_path="$XDG_CACHE_HOME/Cemu/shaderCache"
+cemu_shadercache_transferable_path="$XDG_CACHE_HOME/Cemu/shaderCache/transferable"

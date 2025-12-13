@@ -22,8 +22,11 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
   dir_prep "$screenshots_path" "$XDG_DATA_HOME/dolphin-emu/ScreenShots"
   dir_prep "$states_path/dolphin" "$XDG_DATA_HOME/dolphin-emu/StateSaves"
   dir_prep "$saves_path/wii/dolphin" "$XDG_DATA_HOME/dolphin-emu/Wii"
-  dir_prep "$mods_path/Dolphin" "$XDG_DATA_HOME/dolphin-emu/Load/GraphicMods"
-  dir_prep "$texture_packs_path/Dolphin" "$XDG_DATA_HOME/dolphin-emu/Load/Textures"
+  dir_prep "$mods_path/Dolphin/GraphicMods" "$dolphin_mods_path"
+  dir_prep "$texture_packs_path/Dolphin/Textures" "$dolphin_textures_path"
+  dir_prep "$shaders_path/Dolphin" "$XDG_DATA_HOME/dolphin-emu/Shaders"
+  dir_prep "$logs_path/Dolphin" "$XDG_DATA_HOME/dolphin-emu/Logs"
+  dir_prep "$storage_path/Dolphin/Dump" "$XDG_DATA_HOME/dolphin-emu/Dump"
 fi
 
 if [[ "$action" == "postmove" ]]; then # Run only post-move commands
@@ -33,8 +36,11 @@ if [[ "$action" == "postmove" ]]; then # Run only post-move commands
   dir_prep "$screenshots_path" "$XDG_DATA_HOME/dolphin-emu/ScreenShots"
   dir_prep "$states_path/dolphin" "$XDG_DATA_HOME/dolphin-emu/StateSaves"
   dir_prep "$saves_path/wii/dolphin" "$XDG_DATA_HOME/dolphin-emu/Wii"
-  dir_prep "$mods_path/Dolphin" "$XDG_DATA_HOME/dolphin-emu/Load/GraphicMods"
-  dir_prep "$texture_packs_path/Dolphin" "$XDG_DATA_HOME/dolphin-emu/Load/Textures"
+  dir_prep "$mods_path/Dolphin/GraphicMods" "$dolphin_mods_path"
+  dir_prep "$texture_packs_path/Dolphin/Textures" "$dolphin_textures_path"
+  dir_prep "$shaders_path/Dolphin" "$XDG_DATA_HOME/dolphin-emu/Shaders"
+  dir_prep "$logs_path/Dolphin" "$XDG_DATA_HOME/dolphin-emu/Logs"
+  dir_prep "$storage_path/Dolphin/Dump" "$XDG_DATA_HOME/dolphin-emu/Dump"
   set_setting_value "$dolphin_config" "BIOS" "$bios_path" "dolphin" "GBA"
   set_setting_value "$dolphin_config" "SavesPath" "$saves_path/gba" "dolphin" "GBA"
   set_setting_value "$dolphin_config" "ISOPath0" "$roms_path/wii" "dolphin" "General"

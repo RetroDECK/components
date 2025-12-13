@@ -143,7 +143,7 @@
           "enabled_states": [ "true" ],
           "setting_name": "cheevos_enable",
           "action": "change",
-          "new_setting_value": "True",
+          "new_setting_value": "true",
           "section": "",
           "target_file": "$retroarch_config",
           "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"

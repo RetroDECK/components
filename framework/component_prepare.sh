@@ -21,7 +21,8 @@ if [[ "$action" == "reset" ]]; then # Update the paths of all folders in retrode
       log d "New setting: $current_setting_name=$new_setting_value"
       # Declare the global variable with the new setting value
       declare -g "$current_setting_name=$new_setting_value"
-      log d "Setting: $current_setting_name=$current_setting_value"
+      export "$current_setting_name"
+      log d "Setting: $current_setting_name=$new_setting_value"
       if [[ ! $current_setting_name == "logs_path" ]]; then # Don't create a logs folder normally, this will be a symlink to the internal logs folder in /var/config/retrodeck/logs
         create_dir "$new_setting_value"
       else # Log folder-specific actions
@@ -42,7 +43,8 @@ if [[ "$action" == "postmove" ]]; then # Update the paths of any folders that ca
     if [[ ! $current_setting_name =~ (rd_home_path|sdcard) ]]; then # Ignore these locations
       local current_setting_value=$(get_setting_value "$rd_conf" "$current_setting_name" "retrodeck" "paths")
       if [[ -d "$rd_home_path/${current_setting_value#*retrodeck/}" ]]; then # If the folder exists at the new ~/retrodeck location
-          declare -g "$current_setting_name=$rd_home_path/${current_setting_value#*retrodeck/}"
+        declare -g "$current_setting_name=$rd_home_path/${current_setting_value#*retrodeck/}"
+        export "$current_setting_name"
       fi
     fi
   done < <(grep -v '^\s*$' "$rd_conf" | awk '/^\[paths\]/{f=1;next} /^\[/{f=0} f')

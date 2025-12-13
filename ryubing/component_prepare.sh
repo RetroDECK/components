@@ -24,13 +24,12 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
   sed -i 's#RETRODECKHOMEDIR#'"$rd_home_path"'#g' "$ryubing_config"
   sed -i 's#RETRODECKSTORAGEDIR#'"$storage_path"'#g' "$ryubing_config"
   sed -i 's#RETRODECKROMSDIR#'"$roms_path"'#g' "$ryubing_config"
-  create_dir "$logs_path/switch/Ryujinx"
-  create_dir "$mods_path/switch/Ryujinx"
-  create_dir "$screenshots_path/switch/Ryujinx"
 
   dir_prep "$bios_path/switch/keys" "$XDG_CONFIG_HOME/Ryujinx/system"
   dir_prep "$bios_path/switch/firmware" "$XDG_CONFIG_HOME/Ryujinx/bis/system/Contents"
   dir_prep "$saves_path/switch/ryubing" "$XDG_CONFIG_HOME/Ryujinx/bis/system/save"
+  dir_prep "$mods_path/Ryubing/contents" "$XDG_CONFIG_HOME/Ryujinx/mods/contents/"
+  dir_prep "$logs_path/switch/Ryubing" "$XDG_CONFIG_HOME/Ryujinx/Logs"
 fi
 
 if [[ "$action" == "postmove" ]]; then # Run only post-move commands
@@ -39,4 +38,9 @@ if [[ "$action" == "postmove" ]]; then # Run only post-move commands
     sed -i 's#RETRODECKHOMEDIR#'"$rd_home_path"'#g' "$ryubing_config"
     sed -i 's#RETRODECKSTORAGEDIR#'"$storage_path"'#g' "$ryubing_config"
     sed -i 's#RETRODECKROMSDIR#'"$roms_path"'#g' "$ryubing_config"
+  dir_prep "$bios_path/switch/keys" "$XDG_CONFIG_HOME/Ryujinx/system"
+  dir_prep "$bios_path/switch/firmware" "$XDG_CONFIG_HOME/Ryujinx/bis/system/Contents"
+  dir_prep "$saves_path/switch/ryubing" "$XDG_CONFIG_HOME/Ryujinx/bis/system/save"
+  dir_prep "$mods_path/Ryubing/contents" "$XDG_CONFIG_HOME/Ryujinx/mods/contents/"
+  dir_prep "$logs_path/switch/Ryubing" "$XDG_CONFIG_HOME/Ryujinx/Logs"
 fi

@@ -35,6 +35,8 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
   set_setting_value "$retroarch_config" "joypad_autoconfig_dir" "$component_path/autoconfig" "retroarch"
   set_setting_value "$retroarch_config" "cursor_directory" "$component_path/database/cursors" "retroarch"
   set_setting_value "$retroarch_config" "content_database_path" "$component_path/database/rdb" "retroarch"
+  set_setting_value "$retroarch_config" "libretro_directory" "$retroarch_extras_path/cores" "retroarch"
+  set_setting_value "$retroarch_config" "libretro_info_path" "$retroarch_extras_path/cores" "retroarch"
   create_dir "$bios_path/np2kai"
   create_dir "$bios_path/dc"
   create_dir "$bios_path/Mupen64plus"
@@ -47,6 +49,7 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
   dir_prep "$borders_path" "$XDG_CONFIG_HOME/retroarch/overlays/borders"
   log d "Linking shaders folder to ensure retroarch can find it $XDG_CONFIG_HOME/retroarch/shaders to $shaders_path/retroarch"
   dir_prep "$shaders_path/retroarch" "$XDG_CONFIG_HOME/retroarch/shaders"
+  ln -s "$retroarch_extras_path/cores" "$XDG_CONFIG_HOME/retroarch/cores" # Link RO cores to RA config dir so ES-DE can find it
   
   # FBNEO
   log i "--------------------------------"
