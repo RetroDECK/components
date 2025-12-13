@@ -27,7 +27,8 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
   rsync -rlD --mkpath "$component_config/remaps/" "$XDG_CONFIG_HOME/retroarch/config/remaps/"
   set_setting_value "$retroarch_config" "savefile_directory" "$saves_path" "retroarch"
   set_setting_value "$retroarch_config" "savestate_directory" "$states_path" "retroarch"
-  set_setting_value "$retroarch_config" "screenshot_directory" "$screenshots_path" "retroarch"
+  set_setting_value "$retroarch_config" "screenshot_directory" "$screenshots_path/retroarch" "retroarch"
+  set_setting_value "$retroarch_config" "recording_output_directory" "$videos_path/retroarch" "retroarch"
   set_setting_value "$retroarch_config" "log_dir" "$logs_path" "retroarch"
   set_setting_value "$retroarch_config" "rgui_browser_directory" "$roms_path" "retroarch"
   set_setting_value "$retroarch_config" "cheat_database_path" "$cheats_path/retroarch" "retroarch"
@@ -127,6 +128,7 @@ if [[ "$action" == "postmove" ]]; then # Run only post-move commands
   dir_prep "$mods_path/retroarch/Dolphin/GraphicMods" "$XDG_CONFIG_HOME/retroarch/saves/dolphin-emu/User/Load/GraphicMods"
   set_setting_value "$retroarch_config" "savefile_directory" "$saves_path" "retroarch"
   set_setting_value "$retroarch_config" "savestate_directory" "$states_path" "retroarch"
-  set_setting_value "$retroarch_config" "screenshot_directory" "$screenshots_path" "retroarch"
+  set_setting_value "$retroarch_config" "screenshot_directory" "$screenshots_path/retroarch" "retroarch"
   set_setting_value "$retroarch_config" "log_dir" "$logs_path" "retroarch"
+  set_setting_value "$retroarch_config" "recording_output_directory" "$videos_path/retroarch" "retroarch"
 fi
