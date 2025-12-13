@@ -176,6 +176,13 @@
           "command": {
             "zenity": "configurator_move_folder_dialog texture_packs_path"
           }
+        },
+        "move_videos": {
+          "name": "Move: Videos folder 🚚",
+          "description": "Move the videos folder to a new location.",
+          "command": {
+            "zenity": "configurator_move_folder_dialog videos_path"
+          }
         }
       },
       "about_retrodeck": {
