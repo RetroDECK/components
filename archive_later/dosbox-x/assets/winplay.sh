@@ -799,7 +799,6 @@ EOF
 
     cat >> "$conf_file" <<EOF
 IMGMOUNT C "$VHD_BASE_PATH" -b "$game_layer" -t hdd
-MOUNT A "$launcher_dir"
 EOF
 
     # If not in maintenance (no-launcher) mode, remove any previous startup
@@ -813,21 +812,30 @@ EOF
     # Remove previous startup items (8.3 + long name variants)
     # debug list BEFORE removal
     DIR "C:\\WINDOWS\\STARTM~1\\PROGRAMS\\STARTUP\\"
-    DEL /F /Q "C:\\WINDOWS\\STARTM~1\\PROGRAMS\\STARTUP\\run_game.bat
+    DEL /F /Q "C:\\WINDOWS\\STARTM~1\\PROGRAMS\\STARTUP\\run_game.bat" 2>NUL
     # debug list AFTER removal
     DIR "C:\\WINDOWS\\STARTM~1\\PROGRAMS\\STARTUP\\run_game.bat"
 EOF
 
-        # Copy the launcher into Startup
-        cat >> "$conf_file" <<'EOF'
+        # Only copy the launcher into Startup when this invocation is a
+        # game launch (GAME_PATH) or an explicit --exec target (EXEC_ARG).
+        # Desktop-mode without a target should not copy anything.
+        if [[ -n "$EXEC_ARG" || -n "$GAME_PATH" ]]; then
+            cat >> "$conf_file" <<'EOF'
+MOUNT A "$launcher_dir"
 COPY A:\run_game.bat "C:\\WINDOWS\\STARTM~1\\PROGRAMS\\STARTUP\\run_game.bat"
 MOUNT -u A
 EOF
+        else
+            # No game or exec target present — do not copy the launcher.
+                    cat >> "$conf_file" <<'EOF'
+REM No --game or --exec provided: skipping copy into guest Startup
+EOF
+        fi
     else
-        cat >> "$conf_file" <<'EOF'
+          cat >> "$conf_file" <<'EOF'
 # --nolauncher: skipping copy of run_game.bat into guest Startup (maintenance mode)
 # --nolauncher: Startup cleanup performed; run_game.bat will NOT be installed
-MOUNT -u A
 EOF
     fi
 
@@ -867,7 +875,10 @@ EOF
         # Only attempt to mount/copy the launcher into the base image when the
         # temporary launcher actually exists on the host. This avoids creating a
         # benign placeholder and ensures we only overwrite when we have real data.
-        if [[ -f "$LAUNCHER_DIR/run_game.bat" ]]; then
+        # Only update base Startup when we have an actual launcher and
+        # the invocation supplied a game or an --exec target. Desktop-mode
+        # without a target must not write launchers into the base image.
+        if [[ ( -n "$EXEC_ARG" || -n "$GAME_PATH" ) && -f "$LAUNCHER_DIR/run_game.bat" ]]; then
             cat >> "$conf_file" <<EOF
     MOUNT A "$LAUNCHER_DIR"
     REM Update Startup in base image (8.3 + long-name)
@@ -1105,7 +1116,11 @@ generate_autoexec() {
         # script skipped creating the launcher in desktop mode which left
         # stale run_game.bat files in the base VHD. Create it here so the
         # subsequent autoexec can copy it into C:\Startup.
-        if [[ "$NO_LAUNCHER" -eq 0 ]]; then
+        # Only create a launcher when not in maintenance mode AND the
+        # invocation actually requests a launcher (either --exec or a
+        # positional GAME_PATH). This prevents creating empty launcher
+        # directories during desktop-only invocations.
+        if [[ "$NO_LAUNCHER" -eq 0 && ( -n "$EXEC_ARG" || -n "$GAME_PATH" ) ]]; then
             create_launcher_bat "$LAUNCHER_DIR" "$EXEC_ARG"
         else
             log i "--nolauncher active: skipping creation of run_game.bat for desktop mode"
@@ -1116,7 +1131,10 @@ generate_autoexec() {
             generate_autoexec_install_os "$TMP_CONF"
         fi
     else
-        if [[ "$NO_LAUNCHER" -eq 0 ]]; then
+        # Only create a launcher when not in maintenance mode and when we
+        # have either an explicit exec target or a game path (normal game
+        # launch). Avoid creating launcher artifacts otherwise.
+        if [[ "$NO_LAUNCHER" -eq 0 && ( -n "$EXEC_ARG" || -n "$GAME_PATH" ) ]]; then
             create_launcher_bat "$LAUNCHER_DIR" "$EXEC_ARG"
         else
             log i "--nolauncher active: skipping creation of run_game.bat (maintenance mode)"
