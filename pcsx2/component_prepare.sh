@@ -17,15 +17,15 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
   set_setting_value "$pcsx2_config" "SaveStates" "$states_path/ps2/pcsx2" "pcsx2" "Folders"
   set_setting_value "$pcsx2_config" "MemoryCards" "$saves_path/ps2/pcsx2/memcards" "pcsx2" "Folders"
   set_setting_value "$pcsx2_config" "RecursivePaths" "$roms_path/ps2" "pcsx2" "GameList"
-  set_setting_value "$pcsx2_config" "Cheats" "$cheats_path/pcsx2" "Folders"
-  if [[ -d "$cheats_path/pcsx2" && "$(ls -A "$cheats_path/pcsx2")" ]]; then
-    backup_file="$backups_path/cheats/pcsx2-$(date +%y%m%d).tar.gz"
+  set_setting_value "$pcsx2_config" "Cheats" "$cheats_path/PCSX2" "Folders"
+  if [[ -d "$cheats_path/PCSX2" && "$(ls -A "$cheats_path/PCSX2")" ]]; then
+    backup_file="$backups_path/cheats/PCSX2-$(date +%y%m%d).tar.gz"
     create_dir "$(dirname "$backup_file")"
-    tar -czf "$backup_file" -C "$cheats_path" pcsx2
+    tar -czf "$backup_file" -C "$cheats_path" PCSX2
     log i "PCSX2 cheats backed up to $backup_file"
   fi
-  create_dir -d "$cheats_path/pcsx2"
-  tar -xzf "$component_extras/pcsx2-cheats.tar.gz" -C "$cheats_path/pcsx2" --overwrite
+  create_dir -d "$cheats_path/PCSX2"
+  tar -xzf "$component_extras/pcsx2-cheats.tar.gz" -C "$cheats_path/PCSX2" --overwrite
   create_dir "$saves_path/ps2/pcsx2/memcards"
   create_dir "$states_path/ps2/pcsx2"
   dir_prep "$texture_packs_path/PCSX2/textures" "$pcsx2_textures_path"
