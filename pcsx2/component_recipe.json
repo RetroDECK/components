@@ -80,6 +80,19 @@
           "dest": "rd_extras/pcsx2-cheats"
         }
       ]
+    },
+    {
+      "source_url": "https://github.com/PCSX2/pcsx2_patches",
+      "source_type": "git",
+      "version": "latest",
+      "extraction_type": "local",
+      "assets": [
+        {
+          "type": "tar.gz",
+          "source": "patches/.",
+          "dest": "rd_extras/pcsx2-patches"
+        }
+      ]
     }
   ]
 }
