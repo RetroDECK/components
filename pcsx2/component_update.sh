@@ -14,14 +14,14 @@ if [[ $(check_version_is_older_than "$version_being_updated" "0.7.0b") == "true"
   deploy_single_patch "$config/PCSX2/PCSX2.ini" "$XDG_CONFIG_HOME/PCSX2/inis/PCSX2-cheevos-upgrade.patch" "$pcsx2conf"
   rm -f "$XDG_CONFIG_HOME/PCSX2/inis/PCSX2-cheevos-upgrade.patch"
 
-  dir_prep "$texture_packs_path/pcsx2/textures" "$pcsx2_textures_path"
+  dir_prep "$texture_packs_path/PCSX2/textures" "$pcsx2_textures_path"
 
   set_setting_value "$pcsx2conf" "SaveStateOnShutdown" "false" "pcsx2" "EmuCore"
 fi
 
 if [[ $(check_version_is_older_than "$version_being_updated" "0.9.1b") == "true" ]]; then
   log i "Preparing the cheats for PCSX2..."
-  create_dir "$cheats_folder/pcsx2"
+  create_dir "$cheats_folder/PCSX2"
   set_setting_value "$pcsx2conf" "Cheats" "$cheats_folder/PCSX2" "Folders"
   tar --strip-components=1 -xzf "/app/retrodeck/cheats/pcsx2.tar.gz" -C "$cheats_folder/PCSX2" --overwrite && log i "Cheats for PCSX2 installed"
 fi

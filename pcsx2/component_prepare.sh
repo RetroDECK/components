@@ -32,6 +32,8 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
   dir_prep "$storage_path/PCSX2/patches" "$pcsx2_patches_path"
   dir_prep "$logs_path/PCSX2/" "$pcsx2_logs_path"
   dir_prep "$cheats_path/PCSX2/" "$pcsx2_cheats_path"
+  dir_prep "$videos_path/PCSX2/" "$pcsx2_vidoes_path"
+
 
 fi
 
@@ -46,4 +48,5 @@ if [[ "$action" == "postmove" ]]; then # Run only post-move commands
   dir_prep "$storage_path/PCSX2/patches" "$pcsx2_patches_path"
   dir_prep "$logs_path/PCSX2/" "$pcsx2_logs_path"
   dir_prep "$cheats_path/PCSX2/" "$pcsx2_cheats_path"
+  dir_prep "$videos_path/PCSX2/" "$pcsx2_vidoes_path"
 fi
