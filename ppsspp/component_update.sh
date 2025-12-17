@@ -23,9 +23,9 @@ fi
 
 if [[ $(check_version_is_older_than "$version_being_updated" "0.9.1b") == "true" ]]; then
   log i "Preparing the cheats for PPSSPP-SA..."
-  create_dir -d "$cheats_path/PPSSPP-SA"
-  dir_prep "$cheats_path/PPSSPP-SA" "$ppsspp_cheats_path"
-  tar -xzf "/app/retrodeck/cheats/ppsspp.tar.gz" -C "$cheats_path/PPSSPP-SA" --overwrite && log i "Cheats for PPSSPP installed"
+  create_dir -d "$cheats_path/PPSSPP"
+  dir_prep "$cheats_path/PPSSPP" "$ppsspp_cheats_path"
+  tar -xzf "/app/retrodeck/cheats/ppsspp.tar.gz" -C "$cheats_path/PPSSPP" --overwrite && log i "Cheats for PPSSPP installed"
 
   set_setting_value "$rd_conf" "ppsspp" "$(get_setting_value "$rd_defaults" "ppsspp" "retrodeck" "cheevos")" "retrodeck" "cheevos"
   set_setting_value "$rd_conf" "ppsspp" "$(get_setting_value "$rd_defaults" "ppsspp" "retrodeck" "cheevos_hardcore")" "retrodeck" "cheevos_hardcore"
