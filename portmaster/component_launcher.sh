@@ -8,4 +8,10 @@ log i "RetroDECK is now launching $component_name"
 log d "Library path is: $LD_LIBRARY_PATH"
 log d "QT plugin path is: $QT_PLUGIN_PATH"
 
-exec "/var/data/PortMaster/PortMaster.sh" "$@"
+if [[ "$1" =~ "$roms_path/portmaster" ]]; then
+  log i "Portmaster port script detected, launching..."
+  exec "$1"
+else
+  log i "Opening PortMaster..."
+  exec "/var/data/PortMaster/PortMaster.sh" "$@"
+fi
