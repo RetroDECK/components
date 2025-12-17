@@ -5,32 +5,47 @@ component_name="$(basename "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")")"
 component_config="/app/retrodeck/components/$component_name/rd_config"
 component_extras="/app/retrodeck/components/$component_name/rd_extras"
 
-# TODO: do a proper script
-# This is just a placeholder script to test the emulator's flow
 log i "----------------------"
 log i "Preparing $component_name"
 log i "----------------------"
 
-# TODO: probably some of these needs to be put elsewhere
+# Saves and States
+
 create_dir "$saves_path/mame-sa"
 create_dir "$saves_path/mame-sa/nvram"
 create_dir "$states_path/mame-sa"
-create_dir "$screenshots_path/mame"
 create_dir "$saves_path/mame-sa/diff"
+dir_prep "$saves_path/mame-sa/hiscore" "$XDG_CONFIG_HOME/mame/hiscore"
+
+# Screenshots
+
+create_dir "$screenshots_path/mame"
+
+# Configs
 
 create_dir "$XDG_CONFIG_HOME/mame/ctrlr"
 create_dir "$XDG_CONFIG_HOME/mame/ini"
 create_dir "$XDG_CONFIG_HOME/mame/cfg"
 create_dir "$XDG_CONFIG_HOME/mame/inp"
 
+# Mods
+
 create_dir "$mods_path/mame/plugin-data"
 create_dir "$mods_path/mame/plugins"
 
+# BIOS
+
 create_dir "$bios_path/mame-sa/samples"
+
+# Shaders
 
 create_dir "$shaders_path/mame/bgfx/"
 
+# Cheats
+
 create_dir "$cheats_path/mame"
+
+# Storage assets
 
 create_dir "$storage_path/mame/hash"
 create_dir "$storage_path/mame/artwork"
@@ -61,12 +76,14 @@ create_dir "$storage_path/mame/icons"
 create_dir "$storage_path/mame/covers"
 create_dir "$storage_path/mame/ui"
 
-dir_prep "$saves_path/mame-sa/hiscore" "$XDG_CONFIG_HOME/mame/hiscore"
+# Copy configs
 
 cp -fv "$component_config/mame.ini" "$mame_config"
 cp -fv "$component_config/ui.ini" "$mame_config_ui"
 cp -fv "$component_config/default.cfg" "$mame_config_default"
 cp -fvr "$rd_components/mame/share/mame/bgfx/"* "$shaders_path/mame/bgfx/"
+
+# Set config values
 
 sed -i 's#RETRODECKROMSDIR#'"$roms_path"'#g' "$mame_config" # one-off as roms folders are a lot
 set_setting_value "$mame_config" "nvram_directory" "$saves_path/mame-sa/nvram" "mame"
