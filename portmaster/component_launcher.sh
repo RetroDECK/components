@@ -10,6 +10,10 @@ log d "QT plugin path is: $QT_PLUGIN_PATH"
 
 if [[ "$1" =~ "$roms_path/portmaster" ]]; then
   log i "Portmaster port script detected, launching..."
+  if [[ ! -x "$1" ]]; then
+    log w "Portmaster script $1 is not executable, repairing..."
+    chmod +x "$1"
+  fi
   exec "$1"
 else
   log i "Opening PortMaster..."
