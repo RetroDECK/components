@@ -47,7 +47,7 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
   retroarch_updater
 
   # Avoid these paths being clobbered by the updater
-  dir_prep "$borders_path" "$XDG_CONFIG_HOME/retroarch/overlays/borders"
+  dir_prep "$borders_path/retroarch/" "$XDG_CONFIG_HOME/retroarch/overlays/borders"
   log d "Linking shaders folder to ensure retroarch can find it $XDG_CONFIG_HOME/retroarch/shaders to $shaders_path/retroarch"
   dir_prep "$shaders_path/retroarch" "$XDG_CONFIG_HOME/retroarch/shaders"
   ln -s "$retroarch_extras_path/cores" "$XDG_CONFIG_HOME/retroarch/cores" # Link RO cores to RA config dir so ES-DE can find it

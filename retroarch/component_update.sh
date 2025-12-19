@@ -11,11 +11,17 @@ if [[ $(check_version_is_older_than "$version_being_updated" "0.7.0b") == "true"
   # - Add shipped Amiga bios if it doesn't already exist
   # - Disable auto-save/load in existing RA / PCSX2 / Duckstation installs for proper preset functionality
 
+<<<<<<< HEAD
   dir_prep "$texture_packs_path/RetroArch-Mesen" "$XDG_CONFIG_HOME/retroarch/system/HdPacks"
   dir_prep "$texture_packs_path/RetroArch-Mupen64Plus/cache" "$XDG_CONFIG_HOME/retroarch/system/Mupen64plus/cache"
   dir_prep "$texture_packs_path/RetroArch-Mupen64Plus/hires_texture" "$XDG_CONFIG_HOME/retroarch/system/Mupen64plus/hires_texture"
+=======
+  dir_prep "$texture_packs_path/retroarch/Mesen/HdPacks" "$XDG_CONFIG_HOME/retroarch/system/HdPacks"
+  dir_prep "$texture_packs_path/retroarch/Mupen64Plus/cache" "$XDG_CONFIG_HOME/retroarch/system/Mupen64plus/cache"
+  dir_prep "$texture_packs_path/retroarch/Mupen64Plus/hires_texture" "$XDG_CONFIG_HOME/retroarch/system/Mupen64plus/hires_texture"
+>>>>>>> f54abb422ccadab714e30e6aedcbfc5701c1b33d
 
-  dir_prep "$borders_folder" "$XDG_CONFIG_HOME/retroarch/overlays/borders"
+  dir_prep "$borders_path/retroarch/" "$XDG_CONFIG_HOME/retroarch/overlays/borders"
   rsync -rlD --mkpath "/app/retrodeck/config/retroarch/borders/" "$XDG_CONFIG_HOME/retroarch/overlays/borders/"
 
   rsync -rlD --mkpath "$config/retrodeck/presets/remaps/" "$XDG_CONFIG_HOME/retroarch/config/remaps/"
@@ -39,12 +45,21 @@ fi
 if [[ $(check_version_is_older_than "$version_being_updated" "0.8.1b") == "true" ]]; then
   log i "In version 0.8.1b, the following changes were made that required config file updates/reset or other changes to the filesystem:"
 
+<<<<<<< HEAD
   log i "Installing the missing ScummVM assets and renaming \"$mods_path/RetroArch/ScummVM/themes\" into \"theme\""
   mv -f "$mods_path/RetroArch/ScummVM/themes" "$mods_path/RetroArch/ScummVM/theme"
   unzip -o "$config/retroarch/ScummVM.zip" 'scummvm/extra/*' -d /tmp
   unzip -o "$config/retroarch/ScummVM.zip" 'scummvm/theme/*' -d /tmp
   mv -f "/tmp/scummvm/extra" "$mods_path/RetroArch/ScummVM"
   mv -f "/tmp/scummvm/theme" "$mods_path/RetroArch/ScummVM"
+=======
+  log i "Installing the missing ScummVM assets and renaming \"$storage_path/retroarch/ScummVM/themes\" into \"theme\""
+  mv -f "$storage_path/retroarch/ScummVM/themes" "$s/retroarch/ScummVM/themes"
+  unzip -o "$config/retroarch/ScummVM.zip" 'scummvm/extra/*' -d /tmp
+  unzip -o "$config/retroarch/ScummVM.zip" 'scummvm/theme/*' -d /tmp
+  mv -f "/tmp/scummvm/extra" "$storage_path/retroarch/ScummVM/extra"
+  mv -f "/tmp/scummvm/theme" "$storage_path/retroarch/ScummVM/theme"
+>>>>>>> f54abb422ccadab714e30e6aedcbfc5701c1b33d
   rm -rf "/tmp/extra /tmp/theme"
 fi
 
