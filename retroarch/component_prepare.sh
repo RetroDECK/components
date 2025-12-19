@@ -21,6 +21,8 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
     tar -czf "$backup_file" -C "$cheats_path" retroarch
     log i "RetroArch cheats backed up to $backup_file"
   fi
+
+  # Configure the Config
   cp -fv "$component_config/retroarch.cfg" "$retroarch_config"
   cp -fv "$component_config/retroarch-core-options.cfg" "$retroarch_config_core_options"
   rsync -rlD --mkpath "$component_config/core-overrides/" "$XDG_CONFIG_HOME/retroarch/config/"
@@ -38,7 +40,12 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
   set_setting_value "$retroarch_config" "content_database_path" "$component_path/database/rdb" "retroarch"
   set_setting_value "$retroarch_config" "libretro_directory" "$retroarch_extras_path/cores" "retroarch"
   set_setting_value "$retroarch_config" "libretro_info_path" "$retroarch_extras_path/cores" "retroarch"
+
+
+  # Video
   create_dir "$videos_path/retroarch"
+
+  # BIOS Directories
   create_dir "$bios_path/np2kai"
   create_dir "$bios_path/dc"
   create_dir "$bios_path/Mupen64plus"
@@ -65,8 +72,6 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
   log i "Preparing FBNEO_LIBRETRO"
   log i "--------------------------------"
   create_dir "$bios_path/fbneo/samples"
-  # TODO: cheats support
-
   dir_prep "$cheats_path/retroarch-core/fbneo" "$bios_path/fbneo/cheats"
   dir_prep "$shaders_path/retroarch-core/fbneo/blend" "$bios_path/fbneo/blend"
   dir_prep "$mods_path/retroarch-core/fbneo/patched" "$bios_path/fbneo/patched"
