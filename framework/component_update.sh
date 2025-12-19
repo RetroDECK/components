@@ -48,7 +48,7 @@ if [[ $(check_version_is_older_than "$version_being_updated" "0.7.0b") == "true"
 
   create_dir "$mods_path"
   create_dir "$texture_packs_path"
-  create_dir "$borders_folder"
+  create_dir "$borders_path"
 
   dir_prep "$mods_path/Citra" "$XDG_DATA_HOME/citra-emu/load/mods"
   dir_prep "$texture_packs_path/Citra" "$XDG_DATA_HOME/citra-emu/load/textures"
