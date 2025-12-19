@@ -41,19 +41,19 @@ if [[ $(check_version_is_older_than "$version_being_updated" "0.7.0b") == "true"
 
   update_rd_conf # Expand retrodeck.cfg to latest template
   set_setting_value "$rd_conf" "screenshots_folder" "$rdhome/screenshots"
-  set_setting_value "$rd_conf" "mods_folder" "$rdhome/mods"
-  set_setting_value "$rd_conf" "texture_packs_folder" "$rdhome/texture_packs"
+  set_setting_value "$rd_conf" "mods_path" "$rdhome/mods"
+  set_setting_value "$rd_conf" "texture_packs_path" "$rdhome/texture_packs"
   set_setting_value "$rd_conf" "borders_folder" "$rdhome/borders"
   conf_read
 
-  create_dir "$mods_folder"
-  create_dir "$texture_packs_folder"
+  create_dir "$mods_path"
+  create_dir "$texture_packs_path"
   create_dir "$borders_folder"
 
-  dir_prep "$mods_folder/Citra" "$XDG_DATA_HOME/citra-emu/load/mods"
-  dir_prep "$texture_packs_folder/Citra" "$XDG_DATA_HOME/citra-emu/load/textures"
-  dir_prep "$mods_folder/Yuzu" "$XDG_DATA_HOME/yuzu/load"
-  dir_prep "$texture_packs_folder/Duckstation" "$XDG_CONFIG_HOME/duckstation/textures"
+  dir_prep "$mods_path/Citra" "$XDG_DATA_HOME/citra-emu/load/mods"
+  dir_prep "$texture_packs_path/Citra" "$XDG_DATA_HOME/citra-emu/load/textures"
+  dir_prep "$mods_path/Yuzu" "$XDG_DATA_HOME/yuzu/load"
+  dir_prep "$texture_packs_path/Duckstation" "$XDG_CONFIG_HOME/duckstation/textures"
 
   rm -rf "$XDG_CONFIG_HOME/retrodeck/tools"
 
@@ -99,12 +99,12 @@ if [[ $(check_version_is_older_than "$version_being_updated" "0.8.0b") == "true"
   sed -i 's^nintendo_button_layout^abxy_button_swap^' "$rd_conf" # This is a one-off sed statement as there are no functions for replacing section names
 
   if [ -d "$rdhome/.logs" ]; then
-    mv "$rdhome/.logs" "$logs_folder"
-    log i "Old log folder \"$rdhome/.logs\" found. Renamed it as \"$logs_folder\""
+    mv "$rdhome/.logs" "$logs_path"
+    log i "Old log folder \"$rdhome/.logs\" found. Renamed it as \"$logs_path\""
   fi
 
-  log i "Switch firmware folder should be moved in \"$bios_folder/switch/firmware\" from \"$bios_folder/switch/registered\""
-  mv "$bios_folder/switch/registered" "$bios_folder/switch/firmware"
+  log i "Switch firmware folder should be moved in \"$bios_path/switch/firmware\" from \"$bios_path/switch/registered\""
+  mv "$bios_path/switch/registered" "$bios_path/switch/firmware"
 fi
 
 if [[ $(check_version_is_older_than "$version_being_updated" "0.8.1b") == "true" ]]; then
@@ -263,9 +263,9 @@ if [[ $(check_version_is_older_than "$version_being_updated" "0.9.0b") == "true"
 
   # Cemu key file migration
   if [[ -f "$XDG_DATA_HOME/Cemu/keys.txt" ]]; then
-    log i "Found Cemu keys.txt in \"$XDG_DATA_HOME/Cemu/keys.txt\", moving it to \"$bios_folder/cemu/keys.txt\""
-    mv -f "$XDG_DATA_HOME/Cemu/keys.txt" "$bios_folder/cemu/keys.txt"
-    ln -s "$bios_folder/cemu/keys.txt" "$XDG_DATA_HOME/Cemu/keys.txt"
+    log i "Found Cemu keys.txt in \"$XDG_DATA_HOME/Cemu/keys.txt\", moving it to \"$bios_path/cemu/keys.txt\""
+    mv -f "$XDG_DATA_HOME/Cemu/keys.txt" "$bios_path/cemu/keys.txt"
+    ln -s "$bios_path/cemu/keys.txt" "$XDG_DATA_HOME/Cemu/keys.txt"
   fi
 
   # Duckstation reset
@@ -279,9 +279,9 @@ if [[ $(check_version_is_older_than "$version_being_updated" "0.9.0b") == "true"
     log i "User agreed to Ryujinx reset"
     prepare_component "reset" "ryujinx"
   else
-    create_dir "$logs_folder/ryujinx"
-    create_dir "$mods_folder/ryujinx"
-    create_dir "$screenshots_folder/ryujinx"
+    create_dir "$logs_path/ryujinx"
+    create_dir "$mods_path/ryujinx"
+    create_dir "$screenshots_path/ryujinx"
   fi
 
   # Dolphin reset: Setting screen size to 'Auto' instead of 'Widescreen' to ensure better game compatibility
@@ -300,22 +300,22 @@ if [[ $(check_version_is_older_than "$version_being_updated" "0.9.0b") == "true"
 
   log i "Moving Ryujinx data to the new locations"
   if [[ -d "$XDG_CONFIG_HOME/Ryujinx/bis" ]]; then
-    mv -f "$XDG_CONFIG_HOME/Ryujinx/bis"/* "$saves_folder/switch/ryujinx/nand" && rm -rf "$XDG_CONFIG_HOME/Ryujinx/bis" && log i "Migrated Ryujinx nand data to the new location"
+    mv -f "$XDG_CONFIG_HOME/Ryujinx/bis"/* "$saves_path/switch/ryujinx/nand" && rm -rf "$XDG_CONFIG_HOME/Ryujinx/bis" && log i "Migrated Ryujinx nand data to the new location"
   fi
   if [[ -d "$XDG_CONFIG_HOME/Ryujinx/sdcard" ]]; then
-    mv -f "$XDG_CONFIG_HOME/Ryujinx/sdcard"/* "$saves_folder/switch/ryujinx/sdcard" && rm -rf "$XDG_CONFIG_HOME/Ryujinx/sdcard" && log i "Migrated Ryujinx sdcard data to the new location"
+    mv -f "$XDG_CONFIG_HOME/Ryujinx/sdcard"/* "$saves_path/switch/ryujinx/sdcard" && rm -rf "$XDG_CONFIG_HOME/Ryujinx/sdcard" && log i "Migrated Ryujinx sdcard data to the new location"
   fi
   if [[ -d "$XDG_CONFIG_HOME/Ryujinx/bis/system/Contents/registered" ]]; then
-    mv -f "$XDG_CONFIG_HOME/Ryujinx/bis/system/Contents/registered"/* "$bios_folder/switch/firmware" && rm -rf "$XDG_CONFIG_HOME/Ryujinx/bis/system/Contents/registered" && log i "Migration of Ryujinx firmware data to the new location"
+    mv -f "$XDG_CONFIG_HOME/Ryujinx/bis/system/Contents/registered"/* "$bios_path/switch/firmware" && rm -rf "$XDG_CONFIG_HOME/Ryujinx/bis/system/Contents/registered" && log i "Migration of Ryujinx firmware data to the new location"
   fi
   if [[ -d "$XDG_CONFIG_HOME/Ryujinx/system" ]]; then
-    mv -f "$XDG_CONFIG_HOME/Ryujinx/system"/* "$bios_folder/switch/keys" && rm -rf "$XDG_CONFIG_HOME/Ryujinx/system" && log i "Migrated Ryujinx keys data to the new location"
+    mv -f "$XDG_CONFIG_HOME/Ryujinx/system"/* "$bios_path/switch/keys" && rm -rf "$XDG_CONFIG_HOME/Ryujinx/system" && log i "Migrated Ryujinx keys data to the new location"
   fi
   if [[ -d "$XDG_CONFIG_HOME/Ryujinx/mods" ]]; then
-    mv -f "$XDG_CONFIG_HOME/Ryujinx/mods"/* "$mods_folder/ryujinx" && rm -rf "$XDG_CONFIG_HOME/Ryujinx/mods" && log i "Migrated Ryujinx mods data to the new location"
+    mv -f "$XDG_CONFIG_HOME/Ryujinx/mods"/* "$mods_path/ryujinx" && rm -rf "$XDG_CONFIG_HOME/Ryujinx/mods" && log i "Migrated Ryujinx mods data to the new location"
   fi
   if [[ -d "$XDG_CONFIG_HOME/Ryujinx/screenshots" ]]; then
-    mv -f "$XDG_CONFIG_HOME/Ryujinx/screenshots"/* "$screenshots_folder/ryujinx" && rm -rf "$XDG_CONFIG_HOME/Ryujinx/screenshots" && log i "Migrated Ryujinx screenshots to the new location"
+    mv -f "$XDG_CONFIG_HOME/Ryujinx/screenshots"/* "$screenshots_path/ryujinx" && rm -rf "$XDG_CONFIG_HOME/Ryujinx/screenshots" && log i "Migrated Ryujinx screenshots to the new location"
   fi
 fi
 

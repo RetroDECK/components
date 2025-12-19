@@ -8,8 +8,8 @@ if [[ $(check_version_is_older_than "$version_being_updated" "0.7.0b") == "true"
   # In version 0.7.0b, the following changes were made that required config file updates/reset or other changes to the filesystem:
   # - Move PPSSPP saves/states to appropriate folders
 
-  dir_prep "$saves_folder/PSP/PPSSPP-SA" "$XDG_CONFIG_HOME/ppsspp/PSP/SAVEDATA"
-  dir_prep "$states_folder/PSP/PPSSPP-SA" "$XDG_CONFIG_HOME/ppsspp/PSP/PPSSPP_STATE"
+  dir_prep "$saves_path/PSP/PPSSPP-SA" "$XDG_CONFIG_HOME/ppsspp/PSP/SAVEDATA"
+  dir_prep "$states_path/PSP/PPSSPP-SA" "$XDG_CONFIG_HOME/ppsspp/PSP/PPSSPP_STATE"
 
   set_setting_value "$ppssppconf" "AutoLoadSaveState" "0" "ppsspp" "General"
 fi

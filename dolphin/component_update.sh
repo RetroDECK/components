@@ -16,15 +16,15 @@ if [[ $(check_version_is_older_than "$version_being_updated" "0.7.0b") == "true"
   # - Move Dolphin and Primehack save folder names
   # - Disable ask-on-exit in existing Citra / Dolphin / Duckstation / Primehack installs for proper preset functionality
 
-  dir_prep "$mods_folder/Dolphin" "$XDG_DATA_HOME/dolphin-emu/Load/GraphicMods"
-  dir_prep "$texture_packs_folder/Dolphin" "$XDG_DATA_HOME/dolphin-emu/Load/Textures"
+  dir_prep "$mods_path/Dolphin" "$XDG_DATA_HOME/dolphin-emu/Load/GraphicMods"
+  dir_prep "$texture_packs_path/Dolphin" "$XDG_DATA_HOME/dolphin-emu/Load/Textures"
 
-  mv "$saves_folder/gc/dolphin/EUR" "$saves_folder/gc/dolphin/EU"
-  mv "$saves_folder/gc/dolphin/USA" "$saves_folder/gc/dolphin/US"
-  mv "$saves_folder/gc/dolphin/JAP" "$saves_folder/gc/dolphin/JP"
-  dir_prep "$saves_folder/gc/dolphin/EU" "$XDG_DATA_HOME/dolphin-emu/GC/EUR"
-  dir_prep "$saves_folder/gc/dolphin/US" "$XDG_DATA_HOME/dolphin-emu/GC/USA"
-  dir_prep "$saves_folder/gc/dolphin/JP" "$XDG_DATA_HOME/dolphin-emu/GC/JAP"
+  mv "$saves_path/gc/dolphin/EUR" "$saves_path/gc/dolphin/EU"
+  mv "$saves_path/gc/dolphin/USA" "$saves_path/gc/dolphin/US"
+  mv "$saves_path/gc/dolphin/JAP" "$saves_path/gc/dolphin/JP"
+  dir_prep "$saves_path/gc/dolphin/EU" "$XDG_DATA_HOME/dolphin-emu/GC/EUR"
+  dir_prep "$saves_path/gc/dolphin/US" "$XDG_DATA_HOME/dolphin-emu/GC/USA"
+  dir_prep "$saves_path/gc/dolphin/JP" "$XDG_DATA_HOME/dolphin-emu/GC/JAP"
 
   set_setting_value "$dolphin_config" "ConfirmStop" "False" "dolphin" "Interface"
 fi

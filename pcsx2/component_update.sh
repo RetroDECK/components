@@ -21,7 +21,7 @@ fi
 
 if [[ $(check_version_is_older_than "$version_being_updated" "0.9.1b") == "true" ]]; then
   log i "Preparing the cheats for PCSX2..."
-  create_dir "$cheats_folder/PCSX2"
-  set_setting_value "$pcsx2conf" "Cheats" "$cheats_folder/PCSX2" "Folders"
-  tar --strip-components=1 -xzf "/app/retrodeck/cheats/pcsx2.tar.gz" -C "$cheats_folder/PCSX2" --overwrite && log i "Cheats for PCSX2 installed"
+  create_dir "$cheats_path/PCSX2"
+  set_setting_value "$pcsx2conf" "Cheats" "$cheats_path/PCSX2" "Folders"
+  tar --strip-components=1 -xzf "/app/retrodeck/cheats/pcsx2.tar.gz" -C "$cheats_path/PCSX2" --overwrite && log i "Cheats for PCSX2 installed"
 fi
