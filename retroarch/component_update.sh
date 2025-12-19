@@ -45,21 +45,13 @@ fi
 if [[ $(check_version_is_older_than "$version_being_updated" "0.8.1b") == "true" ]]; then
   log i "In version 0.8.1b, the following changes were made that required config file updates/reset or other changes to the filesystem:"
 
-<<<<<<< HEAD
-  log i "Installing the missing ScummVM assets and renaming \"$mods_path/RetroArch/ScummVM/themes\" into \"theme\""
-  mv -f "$mods_path/RetroArch/ScummVM/themes" "$mods_path/RetroArch/ScummVM/theme"
-  unzip -o "$config/retroarch/ScummVM.zip" 'scummvm/extra/*' -d /tmp
-  unzip -o "$config/retroarch/ScummVM.zip" 'scummvm/theme/*' -d /tmp
-  mv -f "/tmp/scummvm/extra" "$mods_path/RetroArch/ScummVM"
-  mv -f "/tmp/scummvm/theme" "$mods_path/RetroArch/ScummVM"
-=======
   log i "Installing the missing ScummVM assets and renaming \"$storage_path/retroarch/ScummVM/themes\" into \"theme\""
   mv -f "$storage_path/retroarch/ScummVM/themes" "$s/retroarch/ScummVM/themes"
   unzip -o "$config/retroarch/ScummVM.zip" 'scummvm/extra/*' -d /tmp
   unzip -o "$config/retroarch/ScummVM.zip" 'scummvm/theme/*' -d /tmp
   mv -f "/tmp/scummvm/extra" "$storage_path/retroarch/ScummVM/extra"
   mv -f "/tmp/scummvm/theme" "$storage_path/retroarch/ScummVM/theme"
->>>>>>> f54abb422ccadab714e30e6aedcbfc5701c1b33d
+
   rm -rf "/tmp/extra /tmp/theme"
 fi
 

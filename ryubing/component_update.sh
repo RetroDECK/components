@@ -29,7 +29,7 @@ if [[ $(check_version_is_older_than "$version_being_updated" "0.10.0b") == "true
 
   if [[ $switch_saves_moved == true ]]; then
     log i "Ryujinx and Yuzu saves have been moved into Ryubing folder."
-    configurator_generic_dialog "RetroDECK - Post Update" "<span foreground='$purple'><b>Ryujinx</b></span> and <span foreground='$purple'><b>Yuzu</b></span> saves have been moved into the <span foreground='$purple'><b>Ryubing</b></span> folder.\nThe old Ryujinx save location can now be safely manually deleted to free up space.\n\n<span foreground='$purple'><b>RetroDECK will not delete any save files automatically.</b></span>"
+    configurator_generic_dialog "RetroDECK - Ryubing Post Update" "<span foreground='$purple'><b>Ryujinx</b></span> and <span foreground='$purple'><b>Yuzu</b></span> save files have been consolidated into the <span foreground='$purple'><b>Ryubing</b></span> directory.\nThe previous Ryujinx save location is no longer in use and may be safely removed manually to reclaim disk space.\n\n<span foreground='$purple'><b>RetroDECK does not automatically delete any save data.</b></span>"
   fi
 
 fi
