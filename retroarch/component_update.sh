@@ -11,9 +11,9 @@ if [[ $(check_version_is_older_than "$version_being_updated" "0.7.0b") == "true"
   # - Add shipped Amiga bios if it doesn't already exist
   # - Disable auto-save/load in existing RA / PCSX2 / Duckstation installs for proper preset functionality
 
-  dir_prep "$texture_packs_path/retroarch/Mesen/HdPacks" "$XDG_CONFIG_HOME/retroarch/system/HdPacks"
-  dir_prep "$texture_packs_path/retroarch/Mupen64Plus/cache" "$XDG_CONFIG_HOME/retroarch/system/Mupen64plus/cache"
-  dir_prep "$texture_packs_path/retroarch/Mupen64Plus/hires_texture" "$XDG_CONFIG_HOME/retroarch/system/Mupen64plus/hires_texture"
+  dir_prep "$texture_packs_path/retroarch-core/Mesen/HdPacks" "$XDG_CONFIG_HOME/retroarch/system/HdPacks"
+  dir_prep "$texture_packs_path/retroarch-core/Mupen64Plus/cache" "$XDG_CONFIG_HOME/retroarch/system/Mupen64plus/cache"
+  dir_prep "$texture_packs_path/retroarch-core/Mupen64Plus/hires_texture" "$XDG_CONFIG_HOME/retroarch/system/Mupen64plus/hires_texture"
 
   dir_prep "$borders_path/retroarch/" "$XDG_CONFIG_HOME/retroarch/overlays/borders"
   rsync -rlD --mkpath "/app/retrodeck/config/retroarch/borders/" "$XDG_CONFIG_HOME/retroarch/overlays/borders/"
