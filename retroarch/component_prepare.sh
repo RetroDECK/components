@@ -83,10 +83,10 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
   log i "Prepearing ScummVM LIBRETRO"
   log i "-----------------------------------------------------------"
   cp -fv "$component_config/scummvm.ini" "$retroarch_config_scummvm"
-  create_dir "$mods_path/RetroArch/ScummVM/icons"
   log i "Installing ScummVM assets"
   unzip -o "$retroarch_extras_path/ScummVM.zip" 'scummvm/extra/*' -d /tmp
   unzip -o "$retroarch_extras_path/ScummVM.zip" 'scummvm/theme/*' -d /tmp
+  create_dir "$storage_path/retroarch/ScummVM/icons"
   create_dir "$storage_path/retroarch/ScummVM/extra"
   create_dir "$storage_path/retroarch/ScummVM/theme"
   mv -f /tmp/scummvm/extra/* "$storage_path/retroarch/ScummVM/extra"
