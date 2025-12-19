@@ -43,6 +43,14 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
   create_dir "$bios_path/dc"
   create_dir "$bios_path/Mupen64plus"
   create_dir "$bios_path/quasi88"
+  create_dir "$bios_path/mame2003/samples"
+  create_dir "$bios_path/mame2003/artwork"
+  create_dir "$bios_path/mame2003-plus/samples"
+  create_dir "$bios_path/mame2003-plus/artwork"
+  create_dir "$bios_path/mame2010/samples"
+  create_dir "$bios_path/mame2010/artwork"
+  create_dir "$bios_path/mame2010/crosshairs"
+  create_dir "$bios_path/mame2010/fonts"
 
   retroarch_updater
 
