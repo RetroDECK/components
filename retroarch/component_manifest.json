@@ -140,7 +140,9 @@
       "config_file_format": "retroarch-all",
       "cheevos": [
         {
-          "enabled_states": [ "true" ],
+          "enabled_states": [
+            "true"
+          ],
           "setting_name": "cheevos_enable",
           "action": "change",
           "new_setting_value": "true",
@@ -149,7 +151,9 @@
           "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
         },
         {
-          "enabled_states": [ "true" ],
+          "enabled_states": [
+            "true"
+          ],
           "setting_name": "cheevos_token",
           "action": "change",
           "new_setting_value": "$cheevos_token",
@@ -158,7 +162,9 @@
           "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
         },
         {
-          "enabled_states": [ "true" ],
+          "enabled_states": [
+            "true"
+          ],
           "setting_name": "cheevos_username",
           "action": "change",
           "new_setting_value": "$cheevos_username",
@@ -169,7 +175,9 @@
       ],
       "cheevos_hardcore": [
         {
-          "enabled_states": [ "true" ],
+          "enabled_states": [
+            "true"
+          ],
           "setting_name": "cheevos_hardcore_mode_enable",
           "action": "change",
           "new_setting_value": "true",
@@ -180,7 +188,9 @@
       ],
       "quick_resume": [
         {
-          "enabled_states": [ "true" ],
+          "enabled_states": [
+            "true"
+          ],
           "setting_name": "savestate_auto_save",
           "action": "change",
           "new_setting_value": "true",
@@ -193,7 +203,9 @@
         "config_file_format": "retroarch",
         "borders": [
           {
-            "enabled_states": [ "true" ],
+            "enabled_states": [
+              "true"
+            ],
             "setting_name": "input_overlay",
             "action": "change",
             "new_setting_value": "/var/config/retroarch/overlays/borders/pegasus/snes87.cfg",
@@ -202,7 +214,9 @@
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           },
           {
-            "enabled_states": [ "true" ],
+            "enabled_states": [
+              "true"
+            ],
             "setting_name": "input_overlay_aspect_adjust_landscape",
             "action": "change",
             "new_setting_value": "0.305000",
@@ -211,7 +225,9 @@
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           },
           {
-            "enabled_states": [ "true" ],
+            "enabled_states": [
+              "true"
+            ],
             "setting_name": "input_overlay_scale_landscape",
             "action": "change",
             "new_setting_value": "1.050000",
@@ -220,7 +236,9 @@
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           },
           {
-            "enabled_states": [ "true" ],
+            "enabled_states": [
+              "true"
+            ],
             "setting_name": "input_overlay_enable",
             "action": "change",
             "new_setting_value": "true",
@@ -231,7 +249,9 @@
         ],
         "widescreen": [
           {
-            "enabled_states": [ "true" ],
+            "enabled_states": [
+              "true"
+            ],
             "setting_name": "aspect_ratio_index",
             "action": "change",
             "new_setting_value": "24",
@@ -242,7 +262,9 @@
         ],
         "rewind": [
           {
-            "enabled_states": [ "true" ],
+            "enabled_states": [
+              "true"
+            ],
             "setting_name": "rewind_enable",
             "action": "change",
             "new_setting_value": "true",
@@ -253,7 +275,9 @@
         ],
         "abxy_button_swap": [
           {
-            "enabled_states": [ "true" ],
+            "enabled_states": [
+              "true"
+            ],
             "setting_name": "input_player1_a_btn",
             "action": "change",
             "new_setting_value": "0",
@@ -262,7 +286,9 @@
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           },
           {
-            "enabled_states": [ "true" ],
+            "enabled_states": [
+              "true"
+            ],
             "setting_name": "input_player1_b_btn",
             "action": "change",
             "new_setting_value": "8",
@@ -271,7 +297,9 @@
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           },
           {
-            "enabled_states": [ "true" ],
+            "enabled_states": [
+              "true"
+            ],
             "setting_name": "input_player1_x_btn",
             "action": "change",
             "new_setting_value": "1",
@@ -280,7 +308,9 @@
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           },
           {
-            "enabled_states": [ "true" ],
+            "enabled_states": [
+              "true"
+            ],
             "setting_name": "input_player1_y_btn",
             "action": "change",
             "new_setting_value": "9",
@@ -294,7 +324,9 @@
         "config_file_format": "retroarch",
         "abxy_button_swap": [
           {
-            "enabled_states": [ "true" ],
+            "enabled_states": [
+              "true"
+            ],
             "setting_name": "input_player1_a_btn",
             "action": "change",
             "new_setting_value": "0",
@@ -303,7 +335,9 @@
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           },
           {
-            "enabled_states": [ "true" ],
+            "enabled_states": [
+              "true"
+            ],
             "setting_name": "input_player1_b_btn",
             "action": "change",
             "new_setting_value": "8",
@@ -317,7 +351,9 @@
         "config_file_format": "retroarch",
         "borders": [
           {
-            "enabled_states": [ "true" ],
+            "enabled_states": [
+              "true"
+            ],
             "setting_name": "input_overlay",
             "action": "change",
             "new_setting_value": "/var/config/retroarch/overlays/borders/pegasus/N64.cfg",
@@ -326,7 +362,9 @@
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           },
           {
-            "enabled_states": [ "true" ],
+            "enabled_states": [
+              "true"
+            ],
             "setting_name": "input_overlay_aspect_adjust_landscape",
             "action": "change",
             "new_setting_value": "0.145000",
@@ -335,7 +373,9 @@
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           },
           {
-            "enabled_states": [ "true" ],
+            "enabled_states": [
+              "true"
+            ],
             "setting_name": "input_overlay_enable",
             "action": "change",
             "new_setting_value": "true",
@@ -346,7 +386,9 @@
         ],
         "widescreen": [
           {
-            "enabled_states": [ "true" ],
+            "enabled_states": [
+              "true"
+            ],
             "setting_name": "aspect_ratio_index",
             "action": "change",
             "new_setting_value": "24",
@@ -357,7 +399,9 @@
         ],
         "abxy_button_swap": [
           {
-            "enabled_states": [ "true" ],
+            "enabled_states": [
+              "true"
+            ],
             "setting_name": "input_player1_a_btn",
             "action": "change",
             "new_setting_value": "0",
@@ -366,7 +410,9 @@
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           },
           {
-            "enabled_states": [ "true" ],
+            "enabled_states": [
+              "true"
+            ],
             "setting_name": "input_player1_b_btn",
             "action": "change",
             "new_setting_value": "8",
@@ -375,7 +421,9 @@
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           },
           {
-            "enabled_states": [ "true" ],
+            "enabled_states": [
+              "true"
+            ],
             "setting_name": "input_player1_x_btn",
             "action": "change",
             "new_setting_value": "1",
@@ -384,7 +432,9 @@
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           },
           {
-            "enabled_states": [ "true" ],
+            "enabled_states": [
+              "true"
+            ],
             "setting_name": "input_player1_y_btn",
             "action": "change",
             "new_setting_value": "9",
@@ -398,7 +448,9 @@
         "config_file_format": "retroarch",
         "borders": [
           {
-            "enabled_states": [ "true" ],
+            "enabled_states": [
+              "true"
+            ],
             "setting_name": "input_overlay",
             "action": "change",
             "new_setting_value": "/var/config/retroarch/overlays/borders/pegasus/genesis.cfg",
@@ -407,7 +459,9 @@
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           },
           {
-            "enabled_states": [ "true" ],
+            "enabled_states": [
+              "true"
+            ],
             "setting_name": "input_overlay_aspect_adjust_landscape",
             "action": "change",
             "new_setting_value": "0.100000",
@@ -416,7 +470,9 @@
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           },
           {
-            "enabled_states": [ "true" ],
+            "enabled_states": [
+              "true"
+            ],
             "setting_name": "input_overlay_enable",
             "action": "change",
             "new_setting_value": "true",
@@ -425,7 +481,9 @@
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           },
           {
-            "enabled_states": [ "true" ],
+            "enabled_states": [
+              "true"
+            ],
             "setting_name": "input_overlay_scale_landscape",
             "action": "change",
             "new_setting_value": "1.040000",
@@ -436,7 +494,9 @@
         ],
         "widescreen": [
           {
-            "enabled_states": [ "true" ],
+            "enabled_states": [
+              "true"
+            ],
             "setting_name": "aspect_ratio_index",
             "action": "change",
             "new_setting_value": "24",
@@ -447,7 +507,9 @@
         ],
         "rewind": [
           {
-            "enabled_states": [ "true" ],
+            "enabled_states": [
+              "true"
+            ],
             "setting_name": "rewind_enable",
             "action": "change",
             "new_setting_value": "true",
@@ -461,7 +523,9 @@
         "config_file_format": "retroarch",
         "borders": [
           {
-            "enabled_states": [ "true" ],
+            "enabled_states": [
+              "true"
+            ],
             "setting_name": "aspect_ratio_index",
             "action": "change",
             "new_setting_value": "23",
@@ -470,7 +534,9 @@
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           },
           {
-            "enabled_states": [ "true" ],
+            "enabled_states": [
+              "true"
+            ],
             "setting_name": "custom_viewport_height",
             "action": "change",
             "new_setting_value": "960",
@@ -479,7 +545,9 @@
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           },
           {
-            "enabled_states": [ "true" ],
+            "enabled_states": [
+              "true"
+            ],
             "setting_name": "custom_viewport_width",
             "action": "change",
             "new_setting_value": "720",
@@ -488,7 +556,9 @@
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           },
           {
-            "enabled_states": [ "true" ],
+            "enabled_states": [
+              "true"
+            ],
             "setting_name": "custom_viewport_x",
             "action": "change",
             "new_setting_value": "160",
@@ -497,7 +567,9 @@
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           },
           {
-            "enabled_states": [ "true" ],
+            "enabled_states": [
+              "true"
+            ],
             "setting_name": "custom_viewport_y",
             "action": "change",
             "new_setting_value": "24",
@@ -506,7 +578,9 @@
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           },
           {
-            "enabled_states": [ "true" ],
+            "enabled_states": [
+              "true"
+            ],
             "setting_name": "input_overlay",
             "action": "change",
             "new_setting_value": "/var/config/retroarch/overlays/borders/pegasus/gg.cfg",
@@ -515,7 +589,9 @@
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           },
           {
-            "enabled_states": [ "true" ],
+            "enabled_states": [
+              "true"
+            ],
             "setting_name": "input_overlay_aspect_adjust_landscape",
             "action": "change",
             "new_setting_value": "0.110000",
@@ -524,7 +600,9 @@
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           },
           {
-            "enabled_states": [ "true" ],
+            "enabled_states": [
+              "true"
+            ],
             "setting_name": "input_overlay_enable",
             "action": "change",
             "new_setting_value": "true",
@@ -533,7 +611,9 @@
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           },
           {
-            "enabled_states": [ "true" ],
+            "enabled_states": [
+              "true"
+            ],
             "setting_name": "input_overlay_scale_landscape",
             "action": "change",
             "new_setting_value": "1.350000",
@@ -542,7 +622,9 @@
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           },
           {
-            "enabled_states": [ "true" ],
+            "enabled_states": [
+              "true"
+            ],
             "setting_name": "input_overlay_y_offset_landscape",
             "action": "change",
             "new_setting_value": "0.020000",
@@ -553,7 +635,9 @@
         ],
         "rewind": [
           {
-            "enabled_states": [ "true" ],
+            "enabled_states": [
+              "true"
+            ],
             "setting_name": "rewind_enable",
             "action": "change",
             "new_setting_value": "true",
@@ -567,7 +651,9 @@
         "config_file_format": "retroarch",
         "borders": [
           {
-            "enabled_states": [ "true" ],
+            "enabled_states": [
+              "true"
+            ],
             "setting_name": "aspect_ratio_index",
             "action": "change",
             "new_setting_value": "23",
@@ -576,7 +662,9 @@
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           },
           {
-            "enabled_states": [ "true" ],
+            "enabled_states": [
+              "true"
+            ],
             "setting_name": "custom_viewport_height",
             "action": "change",
             "new_setting_value": "576",
@@ -585,7 +673,9 @@
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           },
           {
-            "enabled_states": [ "true" ],
+            "enabled_states": [
+              "true"
+            ],
             "setting_name": "custom_viewport_width",
             "action": "change",
             "new_setting_value": "640",
@@ -594,7 +684,9 @@
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           },
           {
-            "enabled_states": [ "true" ],
+            "enabled_states": [
+              "true"
+            ],
             "setting_name": "custom_viewport_x",
             "action": "change",
             "new_setting_value": "320",
@@ -603,7 +695,9 @@
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           },
           {
-            "enabled_states": [ "true" ],
+            "enabled_states": [
+              "true"
+            ],
             "setting_name": "custom_viewport_y",
             "action": "change",
             "new_setting_value": "20",
@@ -612,7 +706,9 @@
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           },
           {
-            "enabled_states": [ "true" ],
+            "enabled_states": [
+              "true"
+            ],
             "setting_name": "input_overlay",
             "action": "change",
             "new_setting_value": "/var/config/retroarch/overlays/borders/pegasus/gb.cfg",
@@ -621,7 +717,9 @@
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           },
           {
-            "enabled_states": [ "true" ],
+            "enabled_states": [
+              "true"
+            ],
             "setting_name": "input_overlay_aspect_adjust_landscape",
             "action": "change",
             "new_setting_value": "0.110000",
@@ -630,7 +728,9 @@
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           },
           {
-            "enabled_states": [ "true" ],
+            "enabled_states": [
+              "true"
+            ],
             "setting_name": "input_overlay_scale_landscape",
             "action": "change",
             "new_setting_value": "1.205000",
@@ -639,7 +739,9 @@
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           },
           {
-            "enabled_states": [ "true" ],
+            "enabled_states": [
+              "true"
+            ],
             "setting_name": "input_overlay_enable",
             "action": "change",
             "new_setting_value": "true",
@@ -648,7 +750,9 @@
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           },
           {
-            "enabled_states": [ "true" ],
+            "enabled_states": [
+              "true"
+            ],
             "setting_name": "input_overlay_y_offset_landscape",
             "action": "change",
             "new_setting_value": "0.005000",
@@ -659,7 +763,9 @@
         ],
         "rewind": [
           {
-            "enabled_states": [ "true" ],
+            "enabled_states": [
+              "true"
+            ],
             "setting_name": "rewind_enable",
             "action": "change",
             "new_setting_value": "true",
@@ -670,7 +776,9 @@
         ],
         "abxy_button_swap": [
           {
-            "enabled_states": [ "true" ],
+            "enabled_states": [
+              "true"
+            ],
             "setting_name": "input_player1_a_btn",
             "action": "change",
             "new_setting_value": "0",
@@ -679,7 +787,9 @@
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           },
           {
-            "enabled_states": [ "true" ],
+            "enabled_states": [
+              "true"
+            ],
             "setting_name": "input_player1_b_btn",
             "action": "change",
             "new_setting_value": "8",
@@ -688,7 +798,9 @@
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           },
           {
-            "enabled_states": [ "true" ],
+            "enabled_states": [
+              "true"
+            ],
             "setting_name": "input_player1_x_btn",
             "action": "change",
             "new_setting_value": "1",
@@ -697,7 +809,9 @@
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           },
           {
-            "enabled_states": [ "true" ],
+            "enabled_states": [
+              "true"
+            ],
             "setting_name": "input_player1_y_btn",
             "action": "change",
             "new_setting_value": "9",
@@ -711,7 +825,9 @@
         "config_file_format": "retroarch",
         "borders": [
           {
-            "enabled_states": [ "true" ],
+            "enabled_states": [
+              "true"
+            ],
             "setting_name": "aspect_ratio_index",
             "action": "change",
             "new_setting_value": "23",
@@ -720,7 +836,9 @@
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           },
           {
-            "enabled_states": [ "true" ],
+            "enabled_states": [
+              "true"
+            ],
             "setting_name": "custom_viewport_height",
             "action": "change",
             "new_setting_value": "576",
@@ -729,7 +847,9 @@
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           },
           {
-            "enabled_states": [ "true" ],
+            "enabled_states": [
+              "true"
+            ],
             "setting_name": "custom_viewport_width",
             "action": "change",
             "new_setting_value": "640",
@@ -738,7 +858,9 @@
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           },
           {
-            "enabled_states": [ "true" ],
+            "enabled_states": [
+              "true"
+            ],
             "setting_name": "custom_viewport_x",
             "action": "change",
             "new_setting_value": "320",
@@ -747,7 +869,9 @@
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           },
           {
-            "enabled_states": [ "true" ],
+            "enabled_states": [
+              "true"
+            ],
             "setting_name": "custom_viewport_y",
             "action": "change",
             "new_setting_value": "20",
@@ -756,7 +880,9 @@
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           },
           {
-            "enabled_states": [ "true" ],
+            "enabled_states": [
+              "true"
+            ],
             "setting_name": "input_overlay",
             "action": "change",
             "new_setting_value": "/var/config/retroarch/overlays/borders/pegasus/gbc.cfg",
@@ -765,7 +891,9 @@
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           },
           {
-            "enabled_states": [ "true" ],
+            "enabled_states": [
+              "true"
+            ],
             "setting_name": "input_overlay_aspect_adjust_landscape",
             "action": "change",
             "new_setting_value": "0.110000",
@@ -774,7 +902,9 @@
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           },
           {
-            "enabled_states": [ "true" ],
+            "enabled_states": [
+              "true"
+            ],
             "setting_name": "input_overlay_scale_landscape",
             "action": "change",
             "new_setting_value": "1.205000",
@@ -783,7 +913,9 @@
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           },
           {
-            "enabled_states": [ "true" ],
+            "enabled_states": [
+              "true"
+            ],
             "setting_name": "input_overlay_enable",
             "action": "change",
             "new_setting_value": "true",
@@ -792,7 +924,9 @@
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           },
           {
-            "enabled_states": [ "true" ],
+            "enabled_states": [
+              "true"
+            ],
             "setting_name": "input_overlay_y_offset_landscape",
             "action": "change",
             "new_setting_value": "-0.040000",
@@ -803,7 +937,9 @@
         ],
         "rewind": [
           {
-            "enabled_states": [ "true" ],
+            "enabled_states": [
+              "true"
+            ],
             "setting_name": "rewind_enable",
             "action": "change",
             "new_setting_value": "true",
@@ -814,7 +950,9 @@
         ],
         "abxy_button_swap": [
           {
-            "enabled_states": [ "true" ],
+            "enabled_states": [
+              "true"
+            ],
             "setting_name": "input_player1_a_btn",
             "action": "change",
             "new_setting_value": "0",
@@ -823,7 +961,9 @@
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           },
           {
-            "enabled_states": [ "true" ],
+            "enabled_states": [
+              "true"
+            ],
             "setting_name": "input_player1_b_btn",
             "action": "change",
             "new_setting_value": "8",
@@ -832,7 +972,9 @@
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           },
           {
-            "enabled_states": [ "true" ],
+            "enabled_states": [
+              "true"
+            ],
             "setting_name": "input_player1_x_btn",
             "action": "change",
             "new_setting_value": "1",
@@ -841,7 +983,9 @@
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           },
           {
-            "enabled_states": [ "true" ],
+            "enabled_states": [
+              "true"
+            ],
             "setting_name": "input_player1_y_btn",
             "action": "change",
             "new_setting_value": "9",
@@ -855,7 +999,9 @@
         "config_file_format": "retroarch",
         "borders": [
           {
-            "enabled_states": [ "true" ],
+            "enabled_states": [
+              "true"
+            ],
             "setting_name": "aspect_ratio_index",
             "action": "change",
             "new_setting_value": "23",
@@ -864,7 +1010,9 @@
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           },
           {
-            "enabled_states": [ "true" ],
+            "enabled_states": [
+              "true"
+            ],
             "setting_name": "custom_viewport_height",
             "action": "change",
             "new_setting_value": "640",
@@ -873,7 +1021,9 @@
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           },
           {
-            "enabled_states": [ "true" ],
+            "enabled_states": [
+              "true"
+            ],
             "setting_name": "custom_viewport_width",
             "action": "change",
             "new_setting_value": "960",
@@ -882,7 +1032,9 @@
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           },
           {
-            "enabled_states": [ "true" ],
+            "enabled_states": [
+              "true"
+            ],
             "setting_name": "custom_viewport_x",
             "action": "change",
             "new_setting_value": "160",
@@ -891,7 +1043,9 @@
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           },
           {
-            "enabled_states": [ "true" ],
+            "enabled_states": [
+              "true"
+            ],
             "setting_name": "custom_viewport_y",
             "action": "change",
             "new_setting_value": "0",
@@ -900,7 +1054,9 @@
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           },
           {
-            "enabled_states": [ "true" ],
+            "enabled_states": [
+              "true"
+            ],
             "setting_name": "input_overlay",
             "action": "change",
             "new_setting_value": "/var/config/retroarch/overlays/borders/pegasus/gba.cfg",
@@ -909,7 +1065,9 @@
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           },
           {
-            "enabled_states": [ "true" ],
+            "enabled_states": [
+              "true"
+            ],
             "setting_name": "input_overlay_aspect_adjust_landscape",
             "action": "change",
             "new_setting_value": "0.110000",
@@ -918,7 +1076,9 @@
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           },
           {
-            "enabled_states": [ "true" ],
+            "enabled_states": [
+              "true"
+            ],
             "setting_name": "input_overlay_scale_landscape",
             "action": "change",
             "new_setting_value": "1.2150000",
@@ -927,7 +1087,9 @@
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           },
           {
-            "enabled_states": [ "true" ],
+            "enabled_states": [
+              "true"
+            ],
             "setting_name": "input_overlay_enable",
             "action": "change",
             "new_setting_value": "true",
@@ -936,7 +1098,9 @@
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           },
           {
-            "enabled_states": [ "true" ],
+            "enabled_states": [
+              "true"
+            ],
             "setting_name": "input_overlay_y_offset_landscape",
             "action": "change",
             "new_setting_value": "0.020000",
@@ -947,7 +1111,9 @@
         ],
         "rewind": [
           {
-            "enabled_states": [ "true" ],
+            "enabled_states": [
+              "true"
+            ],
             "setting_name": "rewind_enable",
             "action": "change",
             "new_setting_value": "true",
@@ -958,7 +1124,9 @@
         ],
         "abxy_button_swap": [
           {
-            "enabled_states": [ "true" ],
+            "enabled_states": [
+              "true"
+            ],
             "setting_name": "input_player1_a_btn",
             "action": "change",
             "new_setting_value": "0",
@@ -967,7 +1135,9 @@
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           },
           {
-            "enabled_states": [ "true" ],
+            "enabled_states": [
+              "true"
+            ],
             "setting_name": "input_player1_b_btn",
             "action": "change",
             "new_setting_value": "8",
@@ -976,7 +1146,9 @@
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           },
           {
-            "enabled_states": [ "true" ],
+            "enabled_states": [
+              "true"
+            ],
             "setting_name": "input_player1_x_btn",
             "action": "change",
             "new_setting_value": "1",
@@ -985,7 +1157,9 @@
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           },
           {
-            "enabled_states": [ "true" ],
+            "enabled_states": [
+              "true"
+            ],
             "setting_name": "input_player1_y_btn",
             "action": "change",
             "new_setting_value": "9",
@@ -999,7 +1173,9 @@
         "config_file_format": "retroarch",
         "borders": [
           {
-            "enabled_states": [ "true" ],
+            "enabled_states": [
+              "true"
+            ],
             "setting_name": "input_overlay",
             "action": "change",
             "new_setting_value": "/var/config/retroarch/overlays/borders/pegasus/psx.cfg",
@@ -1008,7 +1184,9 @@
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           },
           {
-            "enabled_states": [ "true" ],
+            "enabled_states": [
+              "true"
+            ],
             "setting_name": "input_overlay_aspect_adjust_landscape",
             "action": "change",
             "new_setting_value": "0.120000",
@@ -1017,7 +1195,9 @@
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           },
           {
-            "enabled_states": [ "true" ],
+            "enabled_states": [
+              "true"
+            ],
             "setting_name": "input_overlay_scale_landscape",
             "action": "change",
             "new_setting_value": "1.040000",
@@ -1026,7 +1206,9 @@
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           },
           {
-            "enabled_states": [ "true" ],
+            "enabled_states": [
+              "true"
+            ],
             "setting_name": "input_overlay_enable",
             "action": "change",
             "new_setting_value": "true",
@@ -1037,7 +1219,9 @@
         ],
         "widescreen": [
           {
-            "enabled_states": [ "true" ],
+            "enabled_states": [
+              "true"
+            ],
             "setting_name": "aspect_ratio_index",
             "action": "change",
             "new_setting_value": "24",
