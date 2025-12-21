@@ -13,7 +13,7 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
   create_dir -d "$XDG_CONFIG_HOME/PCSX2/inis"
   cp -fvr "$component_config/"* "$XDG_CONFIG_HOME/PCSX2/inis/"
   set_setting_value "$pcsx2_config" "Bios" "$bios_path" "pcsx2" "Folders"
-  set_setting_value "$pcsx2_config" "Snapshots" "$screenshots_path/pcsx2" "pcsx2" "Folders"
+  set_setting_value "$pcsx2_config" "Snapshots" "$screenshots_path/PCSX2" "pcsx2" "Folders"
   set_setting_value "$pcsx2_config" "SaveStates" "$states_path/ps2/pcsx2" "pcsx2" "Folders"
   set_setting_value "$pcsx2_config" "MemoryCards" "$saves_path/ps2/pcsx2/memcards" "pcsx2" "Folders"
   set_setting_value "$pcsx2_config" "RecursivePaths" "$roms_path/ps2" "pcsx2" "GameList"
@@ -50,11 +50,11 @@ fi
 
 if [[ "$action" == "postmove" ]]; then # Run only post-move commands
   set_setting_value "$pcsx2_config" "Bios" "$bios_path" "pcsx2" "Folders"
-  set_setting_value "$pcsx2_config" "Snapshots" "$screenshots_path/pcsx2" "pcsx2" "Folders"
+  set_setting_value "$pcsx2_config" "Snapshots" "$screenshots_path/PCSX2" "pcsx2" "Folders"
   set_setting_value "$pcsx2_config" "SaveStates" "$states_path/ps2/pcsx2" "pcsx2" "Folders"
   set_setting_value "$pcsx2_config" "MemoryCards" "$saves_path/ps2/pcsx2/memcards" "pcsx2" "Folders"
   set_setting_value "$pcsx2_config" "RecursivePaths" "$roms_path/ps2" "pcsx2" "GameList"
-  set_setting_value "$pcsx2_config" "Cheats" "$cheats_path/pcsx2" "Folders"
+  set_setting_value "$pcsx2_config" "Cheats" "$cheats_path/PCSX2" "Folders"
   dir_prep "$texture_packs_path/PCSX2/textures" "$pcsx2_textures_path"
   dir_prep "$mods_path/PCSX2/patches" "$pcsx2_patches_path"
   dir_prep "$logs_path/PCSX2/" "$pcsx2_logs_path"
