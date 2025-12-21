@@ -1,0 +1,144 @@
+{
+  "moonlight": [
+    {
+      "source_url": "com.moonlight_stream.Moonlight",
+      "source_type": "flatpak_id",
+      "version": "latest",
+      "dest": "user",
+      "extraction_type": "flatpak",
+      "assets": [
+        {
+          "type": "dir",
+          "source": "bin",
+          "dest": "bin"
+        },
+        {
+          "type": "create",
+          "dest": "component_version",
+          "contents": "$SOURCE_VERSION"
+        },
+        {
+          "type": "file",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/component_functions.sh",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/component_launcher.sh",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/component_manifest.json",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/component_recipe.json",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/component_prepare.sh",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "dir",
+          "source": "lib/libdecor",
+          "dest": "lib/libdecor"
+        },
+        {
+          "type": "dir",
+          "source": "share/licenses",
+          "dest": "share/licenses"
+        },
+        {
+          "type": "dir",
+          "source": "share/vulkan",
+          "dest": "share/vulkan"
+        },
+        {
+          "type": "dir",
+          "source": "share/aclocal",
+          "dest": "share/aclocal"
+        }
+      ],
+      "libs": [
+        {
+          "library": "libSDL2_ttf-2.0.so.0",
+          "runtime_name": "org.kde.Platform",
+          "runtime_version": "5.15-24.08",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libavcodec.so.62",
+          "source": "lib",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libavutil.so.60",
+          "source": "lib",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libswscale.so.9",
+          "source": "lib",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libplacebo.so.358",
+          "source": "lib",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libQt6QuickControls2.so.6",
+          "runtime_name": "org.kde.Platform",
+          "runtime_version": "6.10",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libQt6QuickTemplates2.so.6",
+          "runtime_name": "org.kde.Platform",
+          "runtime_version": "6.10",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libQt6Quick.so.6",
+          "runtime_name": "org.kde.Platform",
+          "runtime_version": "6.10",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libQt6Gui.so.6",
+          "runtime_name": "org.kde.Platform",
+          "runtime_version": "6.10",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libQt6Qml.so.6",
+          "runtime_name": "org.kde.Platform",
+          "runtime_version": "6.10",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libQt6Core.so.6",
+          "runtime_name": "org.kde.Platform",
+          "runtime_version": "6.10",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libQt6Svg.so.6",
+          "runtime_name": "org.kde.Platform",
+          "runtime_version": "6.10",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libQt6Network.so.6",
+          "runtime_name": "org.kde.Platform",
+          "runtime_version": "6.10",
+          "dest": "shared-libs"
+        }
+      ]
+    }
+  ]
+}
