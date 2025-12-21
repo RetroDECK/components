@@ -13,7 +13,11 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
 
   rm -rf "$XDG_CONFIG_HOME/xemu"
   rm -rf "$XDG_DATA_HOME/xemu"
-  dir_prep "$XDG_CONFIG_HOME/xemu" "$XDG_DATA_HOME/xemu/xemu" # Creating config folder in $XDG_CONFIG_HOME for consistentcy and linking back to original location where component will look
+
+  # Creating config folder in $XDG_CONFIG_HOME for consistentcy and linking back to original location where component will look
+  dir_prep "$XDG_CONFIG_HOME/xemu" "$XDG_DATA_HOME/xemu/xemu"
+  dir_prep "$shaders_path/xemu" "$XDG_DATA_HOME/xemu/xemu/shaders"
+
   cp -fv "$component_config/xemu.toml" "$xemu_conf"
   set_setting_value "$xemu_conf" "screenshot_dir" "'$screenshots_path'" "xemu" "General"
   set_setting_value "$xemu_conf" "bootrom_path" "'$bios_path/mcpx_1.0.bin'" "xemu" "sys.files"
@@ -29,6 +33,7 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
 fi
 
 if [[ "$action" == "postmove" ]]; then # Run only post-move commands
+  dir_prep "$shaders_path/xemu" "$XDG_DATA_HOME/xemu/xemu/shaders"
   set_setting_value "$xemu_conf" "screenshot_dir" "'$screenshots_path'" "xemu" "General"
   set_setting_value "$xemu_conf" "bootrom_path" "'$bios_path/mcpx_1.0.bin'" "xemu" "sys.files"
   set_setting_value "$xemu_conf" "flashrom_path" "'$bios_path/Complex.bin'" "xemu" "sys.files"
