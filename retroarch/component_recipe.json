@@ -23,11 +23,6 @@
         },
         {
           "type": "dir",
-          "source": "$REPO_ROOT/$COMPONENT_NAME/assets/rd_extras/applewin_libretro",
-          "dest": "$WORKDIR/cores"
-        },
-        {
-          "type": "dir",
           "source": "RetroArch-Linux-x86_64/RetroArch-Linux-x86_64.AppImage.home/.config/retroarch/assets",
           "dest": "assets"
         },
