@@ -50,6 +50,9 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
   create_dir "$bios_path/dc"
   create_dir "$bios_path/Mupen64plus"
   create_dir "$bios_path/quasi88"
+
+
+  # BIOS MAME Directories
   create_dir "$bios_path/mame2003/samples"
   create_dir "$bios_path/mame2003/artwork"
   create_dir "$bios_path/mame2003-plus/samples"
@@ -58,6 +61,16 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
   create_dir "$bios_path/mame2010/artwork"
   create_dir "$bios_path/mame2010/crosshairs"
   create_dir "$bios_path/mame2010/fonts"
+
+  # MAME 2003 Plus BIOS Files
+
+  if [[ -d "$bios_path/mame2003-plus" && "$(ls -A "$bios_path/mame2003-plus")" ]]; then
+    backup_file="$backups_path/bios/mame2003-plus-$(date +%y%m%d).tar.gz"
+    create_dir "$(dirname "$backup_file")"
+    tar -czf "$backup_file" -C "$bios_path/mame2003-plus" retroarch
+    log i "MAME 2003-Plus BIOS data backed up to $backup_file"
+  fi
+  tar -xzf "$component_extras/mame2003-plus" -C "$bios_path/mame2003-plus" --overwrite
 
   retroarch_updater
 

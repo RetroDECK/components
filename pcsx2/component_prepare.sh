@@ -41,7 +41,7 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
   if [[ -d "$mods_path/PCSX2" && "$(ls -A "$mods_path/PCSX2")" ]]; then
     backup_file="$backups_path/mods/PCSX2-$(date +%y%m%d).tar.gz"
     create_dir "$(dirname "$backup_file")"
-    tar -czf "$backup_file" -C "$mods_path" PCSX2
+    tar -czf "$backup_file" -C "$mods_path/PCSX2" PCSX2
     log i "PCSX2 patches backed up to $backup_file"
   fi
   tar -xzf "$component_extras/pcsx2-patches.tar.gz" -C "$mods_path/PCSX2/patches" --overwrite
