@@ -6,14 +6,14 @@
     "configurator_menus": {
       "settings": {
         "iconset_show_hide": {
-          "name": "RetroDECK Folder Iconset 🎨",
+          "name": "RetroDECK Folder Iconset",
           "description": "Enable or disable: RetroDECK folder iconset.",
           "command": {
             "zenity": "configurator_iconset_toggle_dialog"
           }
         },
         "portmaster_show_hide": {
-          "name": "PortMaster in ES-DE 🛶",
+          "name": "PortMaster in ES-DE",
           "description": "Enable or disable: PortMaster entry in ES-DE.",
           "command": {
             "zenity": "configurator_portmaster_toggle_dialog"
@@ -22,49 +22,49 @@
       },
       "tools": {
         "bios_checker": {
-          "name": "BIOS Checker 🔎",
+          "name": "BIOS Checker",
           "description": "Checks BIOS and firmware availability and displays key details.",
           "command": {
             "zenity": "configurator_bios_checker_dialog"
           }
         },
         "change_rd_logging_level": {
-          "name": "Change Logging Level 📒",
+          "name": "Change Logging Level",
           "description": "Adjust RetroDECK logging level for debugging purposes.",
           "command": {
             "zenity": "configurator_change_rd_logging_level_dialog"
           }
         },
         "games_compressor": {
-          "name": "Games Compressor 🗜️",
+          "name": "Games Compressor",
           "description": "Compresses games into various formats for supported systems.",
           "command": {
             "zenity": "configurator_compression_tool_dialog"
           }
         },
         "install_retrodeck_controller_layouts": {
-          "name": "Install: Steam Controller Templates 🎮",
+          "name": "Install: Steam Controller Templates",
           "description": "Installs RetroDECK controller templates to Steam.",
           "command": {
             "zenity": "configurator_install_retrodeck_controller_profile_dialog"
           }
         },
         "m3u_multi_file_validator": {
-          "name": "M3U Multi-File Validator 🔍",
+          "name": "M3U Multi-File Validator",
           "description": "Validates the structure of multi-file or multi-disc games.",
           "command": {
             "zenity": "configurator_check_multifile_game_structure_dialog"
           }
         },
         "repair_retrodeck_paths": {
-          "name": "Repair RetroDECK Paths ♻️",
+          "name": "Repair RetroDECK Paths",
           "description": "Fix RetroDECK folder paths for missing or misconfigured directories.",
           "command": {
             "zenity": "configurator_repair_paths_dialog"
           }
         },
         "update_notification": {
-          "name": "Update Notification 🌐",
+          "name": "Update Notification",
           "description": "Enable or disable: notifications for new RetroDECK versions.",
           "command": {
             "zenity": "configurator_update_notify_dialog"
@@ -73,112 +73,112 @@
       },
       "data_management": {
         "backup_retrodeck": {
-          "name": "Backup RetroDECK 🗄️",
+          "name": "Backup RetroDECK",
           "description": "Backup and compress RetroDECK userdata into a .tar file.",
           "command": {
             "zenity": "configurator_retrodeck_backup_dialog"
           }
         },
         "clean_empty_systems": {
-          "name": "ROMs Folder: Clean Empty Systems 🧹",
+          "name": "ROMs Folder: Clean Empty Systems",
           "description": "Remove empty system folders from the roms directory.",
           "command": {
             "zenity": "configurator_clean_empty_systems_dialog"
           }
         },
         "rebuild_esde_systems": {
-          "name": "ROMs Folder: Rebuild Systems 🏗️",
+          "name": "ROMs Folder: Rebuild Systems",
           "description": "Recreate any missing system folders in the roms directory.",
           "command": {
             "zenity": "configurator_rebuild_esde_systems"
           }
         },
         "move_all": {
-          "name": "Move: All of RetroDECK 🚚",
+          "name": "Move: All of RetroDECK",
           "description": "Move the entire RetroDECK data folder: retrodeck to a new location.",
           "command": {
             "zenity": "configurator_move_folder_dialog rd_home_path"
           }
         },
         "move_bios": {
-          "name": "Move: BIOS folder 🚚",
+          "name": "Move: BIOS folder",
           "description": "Move the bios folder to a new location.",
           "command": {
             "zenity": "configurator_move_folder_dialog bios_path"
           }
         },
         "move_cheats": {
-          "name": "Move: Cheats folder 🚚",
+          "name": "Move: Cheats folder",
           "description": "Move the cheats folder to a new location.",
           "command": {
             "zenity": "configurator_move_folder_dialog cheats_path"
           }
         },
         "move_media": {
-          "name": "Move: Downloaded Media folder 🚚",
+          "name": "Move: Downloaded Media folder",
           "description": "Move the ES-DE: downloaded_media folder to a new location.",
           "command": {
             "zenity": "configurator_move_folder_dialog downloaded_media_path"
           }
         },
         "move_mods": {
-          "name": "Move: Mods folder 🚚",
+          "name": "Move: Mods folder",
           "description": "Move the mods folder to a new location.",
           "command": {
             "zenity": "configurator_move_folder_dialog mods_path"
           }
         },
         "move_roms": {
-          "name": "Move: ROMs folder 🚚",
+          "name": "Move: ROMs folder",
           "description": "Move the roms folder to a new location.",
           "command": {
             "zenity": "configurator_move_folder_dialog roms_path"
           }
         },
         "move_saves": {
-          "name": "Move: Saves folder 🚚",
+          "name": "Move: Saves folder",
           "description": "Move the saves folder to a new location.",
           "command": {
             "zenity": "configurator_move_folder_dialog saves_path"
           }
         },
         "move_screenshots": {
-          "name": "Move: Screenshots folder 🚚",
+          "name": "Move: Screenshots folder",
           "description": "Move the screenshots folder to a new location.",
           "command": {
             "zenity": "configurator_move_folder_dialog screenshots_path"
           }
         },
         "move_shaders": {
-          "name": "Move: Shaders folder 🚚",
+          "name": "Move: Shaders folder",
           "description": "Move the shaders folder to a new location.",
           "command": {
             "zenity": "configurator_move_folder_dialog shaders_path"
           }
         },
         "move_states": {
-          "name": "Move: States folder 🚚",
+          "name": "Move: States folder",
           "description": "Move the states folder to a new location.",
           "command": {
             "zenity": "configurator_move_folder_dialog states_path"
           }
         },
         "move_themes": {
-          "name": "Move: Themes folder 🚚",
+          "name": "Move: Themes folder",
           "description": "Move the ES-DE: themes folder to a new location.",
           "command": {
             "zenity": "configurator_move_folder_dialog themes_path"
           }
         },
         "move_texture_packs": {
-          "name": "Move: Texture Packs folder 🚚",
+          "name": "Move: Texture Packs folder",
           "description": "Move the texture_packs folder to a new location.",
           "command": {
             "zenity": "configurator_move_folder_dialog texture_packs_path"
           }
         },
         "move_videos": {
-          "name": "Move: Videos folder 🚚",
+          "name": "Move: Videos folder",
           "description": "Move the videos folder to a new location.",
           "command": {
             "zenity": "configurator_move_folder_dialog videos_path"
@@ -187,14 +187,14 @@
       },
       "about_retrodeck": {
         "retrodeck_credits": {
-          "name": "RetroDECK: Team Credits 🏆",
+          "name": "RetroDECK: Team Credits",
           "description": "View contributor credits for RetroDECK.",
           "command": {
             "zenity": "configurator_retrodeck_credits_dialog"
           }
         },
         "version_history": {
-          "name": "RetroDECK: Version History 📖",
+          "name": "RetroDECK: Version History",
           "description": "View the changelog and version history of RetroDECK.",
           "command": {
             "zenity": "configurator_version_history_dialog"
@@ -203,42 +203,42 @@
       },
       "developer_options": {
         "browse_wiki": {
-          "name": "Browse the RetroDECK Wiki 🌍",
+          "name": "Browse the RetroDECK Wiki",
           "description": "Access and browse the RetroDECK wiki online for guides, tips, and documentation.",
           "command": {
             "zenity": "configurator_browse_retrodeck_wiki_dialog"
           }
         },
         "godot_configurator": {
-          "name": "Open Godot Configurator ⚙️",
+          "name": "Open Godot Configurator",
           "description": "Launch the Godot Configurator for advanced settings and modifications.",
           "command": {
             "zenity": "godot-configurator.sh"
           }
         },
         "install_retrodeck_starter_pack": {
-          "name": "Install: RetroDECK Starter Pack 📦",
+          "name": "Install: RetroDECK Starter Pack",
           "description": "Install the optional RetroDECK starter pack.",
           "command": {
             "zenity": "configurator_version_history_dialog"
           }
         },
         "install_specific_release": {
-          "name": "RetroDECK: Install Specific Release 🍲",
+          "name": "RetroDECK: Install Specific Release",
           "description": "Install a specific cooker release or the latest main version of RetroDECK.",
           "command": {
             "zenity": "configurator_online_update_channel_dialog"
           }
         },
         "multi_user_mode": {
-          "name": "Change Multi-User Mode 👥",
+          "name": "Change Multi-User Mode",
           "description": "Enable or disable: multi-user support in RetroDECK.",
           "command": {
             "zenity": "configurator_retrodeck_multiuser_dialog"
           }
         },
         "usb_import": {
-          "name": "Tool: USB Import 💾",
+          "name": "Tool: USB Import",
           "description": "Import or export RetroDECK data using a USB storage device.",
           "command": {
             "zenity": "configurator_version_history_dialog"
