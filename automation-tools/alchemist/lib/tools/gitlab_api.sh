@@ -37,6 +37,8 @@ get_latest_gitlab_release_version() {
 
   if [[ "$curl_exit" -ne 0 ]]; then
     log error "Failed to fetch latest release for $owner/$repo from $instance"
+    log debug "GitLab API response:"
+    log debug "$response"
     return 1
   fi
 
@@ -45,6 +47,8 @@ get_latest_gitlab_release_version() {
 
   if [[ -z "$version" ]]; then
     log error "Could not parse version from GitLab API response"
+    log debug "GitLab API response parsed version:"
+    log debug "$version"
     return 1
   fi
 
@@ -67,6 +71,8 @@ get_newest_gitlab_release_version() {
 
   if [[ "$curl_exit" -ne 0 ]]; then
     log error "Failed to fetch latest release for $owner/$repo from $instance"
+    log debug "GitLab API response:"
+    log debug "$response"
     return 1
   fi
 
@@ -75,6 +81,8 @@ get_newest_gitlab_release_version() {
 
   if [[ -z "$version" ]]; then
     log error "Could not parse version from GitLab API response"
+    log debug "GitLab API response parsed version:"
+    log debug "$version"
     return 1
   fi
 
@@ -99,6 +107,8 @@ get_gitlab_release_asset_url() {
 
   if [[ "$curl_exit" -ne 0 ]]; then
     log error "Failed to fetch release $version for $owner/$repo from $instance"
+    log debug "GitLab API response:"
+    log debug "$response"
     return 1
   fi
 
@@ -111,6 +121,7 @@ get_gitlab_release_asset_url() {
   while IFS= read -r url; do
     local filename
     filename=$(basename "$url" | sed 's/[?#].*//')
+    log debug "Checking release url: $url"
     if [[ "$filename" =~ ^${grep_pattern}$ ]]; then
       matched_url="$url"
       break

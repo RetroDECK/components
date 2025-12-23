@@ -19,6 +19,8 @@ get_latest_git_commit_version() {
 
   if [[ "$curl_exit" -ne 0 ]]; then
     log error "Failed to fetch latest release for https://api.github.com/repos/$owner/$repo/commits/HEAD"
+    log debug "GitHub API response:"
+    log debug "$response"
     return 1
   fi
 
@@ -27,6 +29,8 @@ get_latest_git_commit_version() {
 
   if [[ -z "$version" ]]; then
     log error "Could not parse latest version git command"
+    log debug "GitHub API response parsed version:"
+    log debug "$version"
     return 1
   fi
 
