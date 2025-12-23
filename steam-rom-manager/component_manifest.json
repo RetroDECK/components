@@ -9,29 +9,29 @@
     "configurator_menus": {
       "steam_tools": {
         "automatic_steam_sync": {
-          "name": "Automatic Steam Synchronization 🔁",
-          "description": "Enable or disable: Automatically synchronize all marked 🌟 Favorites 🌟 from ES-DE to your Steam library.",
+          "name": "Automatic Steam Synchronization",
+          "description": "Enable or disable: Automatically synchronize all marked Favorites from ES-DE to your Steam library.",
           "command": {
             "zenity": "configurator_automatic_steam_sync_dialog"
           }
         },
         "add_retrodeck_to_steam": {
-          "name": "Add RetroDECK to Steam ➕",
+          "name": "Add RetroDECK to Steam",
           "description": "Integrate RetroDECK itself into your Steam library and Steam Input support.",
           "command": {
             "zenity": "configurator_add_retrodeck_to_steam_dialog"
           }
         },
         "manual_steam_sync": {
-          "name": "Manual Steam Synchronization 🖱️",
-          "description": "Manually synchronize all marked 🌟 Favorites 🌟 from ES-DE to your Steam library.",
+          "name": "Manual Steam Synchronization",
+          "description": "Manually synchronize all marked Favorites from ES-DE to your Steam library.",
           "command": {
             "zenity": "configurator_manual_steam_sync_dialog"
           }
         },
         "purge_steam_sync": {
-          "name": "Remove Synchronized Favorites 🗑️",
-          "description": "Completely remove all previously synchronized 🌟 Favorites 🌟 from your Steam library.",
+          "name": "Remove Synchronized Favorites",
+          "description": "Completely remove all previously synchronized Favorites from your Steam library.",
           "command": {
             "zenity": "configurator_purge_steam_sync_dialog"
           }

@@ -11,7 +11,7 @@
     "configurator_menus": {
       "tools": {
         "update_vita3k_firmware": {
-          "name": "Install: Vita3K Firmware 📥",
+          "name": "Install: Vita3K Firmware",
           "description": "Download and install: PlayStation Vita firmware for the Vita3K emulator.",
           "command": {
             "zenity": "update_vita3k_firmware"
