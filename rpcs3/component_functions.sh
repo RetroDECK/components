@@ -27,7 +27,7 @@ update_rpcs3_firmware() {
     --width=400 --height=200 \
     --text="Downloading and installing RPCS3 Firmware, please be patient.\n\n<span foreground='$purple' size="larger"><b>NOTICE - If the process is taking too long:</b></span>\n\nSome windows may be running in the background that require your attention, such as popups from emulators or the upgrade itself that needs user input to continue.\n\n<span foreground='$purple'><b>Please finish these processes and close the windows to continue.</b></span>>"
   else
-    configurator_generic_dialog "RetroDECK Configurator - 🛑 Warning: Install RPCS3 Firmware - No Internet 🛑" "🛑 Warning 🛑 You do not appear to currently have Internet access, which is required by this tool.\n\nPlease try again when network access has been restored."
+    configurator_generic_dialog "RetroDECK Configurator - Warning: Install RPCS3 Firmware - No Internet" "Warning: You do not appear to currently have Internet access, which is required by this tool.\n\nPlease try again when network access has been restored."
   fi
   configurator_tools_dialog
 }

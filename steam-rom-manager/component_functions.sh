@@ -18,13 +18,13 @@ configurator_add_retrodeck_to_steam_dialog() {
   rd_srm add >> "$srm_log" 2>&1
   ) |
   rd_zenity --progress \
-  --title="RetroDECK Configurator - 🚂 Add RetroDECK to Steam 🚂" \
+  --title="RetroDECK Configurator - Add RetroDECK to Steam" \
   --window-icon="/app/share/icons/hicolor/scalable/apps/net.retrodeck.retrodeck.svg" \
   --text="Adding RetroDECK to Steam...\n\n<span foreground='$purple'>Please wait until the operation is finished and you need to restart Steam afterwards.</span>" \
   --pulsate --width=500 --height=150 --auto-close --no-cancel
   
   if [[ $(get_setting_value "$rd_conf" "steam_sync" retrodeck "options") =~ (flatpak) ]]; then # If Flatpak Steam, warn about permission
-    configurator_generic_dialog "RetroDeck Configurator - ⚠️ Steam Flatpak Warning ⚠️" "You are using the <span foreground='purple'><b>Flatpak Version of Steam</b></span>.\n\n\To allow RetroDECK to launch, Steam must be granted the following permission:\n<span foreground='purple'><b>org.freedesktop.Flatpak</b></span>\n\n\Please read the RetroDECK wiki for instructions."
+    configurator_generic_dialog "RetroDeck Configurator - Steam Flatpak Warning" "You are using the <span foreground='purple'><b>Flatpak Version of Steam</b></span>.\n\n\To allow RetroDECK to launch, Steam must be granted the following permission:\n<span foreground='purple'><b>org.freedesktop.Flatpak</b></span>\n\n\Please read the RetroDECK wiki for instructions."
   fi
   configurator_steam_tools_dialog
 }
@@ -33,8 +33,8 @@ configurator_automatic_steam_sync_dialog() {
   if [[ $(get_setting_value "$rd_conf" "steam_sync" retrodeck "options") =~ (true|native|flatpak) ]]; then
     zenity --question \
     --no-wrap --window-icon="/app/share/icons/hicolor/scalable/apps/net.retrodeck.retrodeck.svg" \
-    --title "RetroDECK Configurator - 🚂 Steam Syncronization 🚂" \
-    --text="Steam syncronization is <span foreground='$purple'><b>Currently: Enabled</b></span>.\nDisabling Steam Sync will remove all of your 🌟 <span foreground='$purple'><b>Favorited</b></span> 🌟 games from Steam at the next Steam startup.\n\nDo you want to continue?\n\nTo re-add them, just reenable Steam Sync then and restart Steam."
+    --title "RetroDECK Configurator - Steam Syncronization" \
+    --text="Steam syncronization is <span foreground='$purple'><b>Currently: Enabled</b></span>.\nDisabling Steam Sync will remove all of your <span foreground='$purple'><b>Favorited</b></span> games from Steam at the next Steam startup.\n\nDo you want to continue?\n\nTo re-add them, just reenable Steam Sync then and restart Steam."
 
     if [ $? == 0 ] # User clicked "Yes"
     then
@@ -61,12 +61,12 @@ configurator_enable_steam_sync() {
     steam_sync
     zenity --icon-name=net.retrodeck.retrodeck --info --no-wrap --ok-label="OK"  \
         --window-icon="/app/share/icons/hicolor/scalable/apps/net.retrodeck.retrodeck.svg" \
-        --title "RetroDECK Configurator - 🚂 Steam Syncronization 🚂" \
+        --title "RetroDECK Configurator - Steam Syncronization" \
         --text="Steam synchronization is <span foreground='$purple'><b>Enabled</b></span>."
   else
     zenity --icon-name=net.retrodeck.retrodeck --info --no-wrap --ok-label="OK"  \
         --window-icon="/app/share/icons/hicolor/scalable/apps/net.retrodeck.retrodeck.svg" \
-        --title "RetroDECK Configurator - 🚂 Steam Syncronization 🚂" \
+        --title "RetroDECK Configurator - Steam Syncronization" \
         --text="Steam synchronization could not be enabled, because your Steam install type could not be determined."
   fi
 }
@@ -89,27 +89,27 @@ configurator_disable_steam_sync() {
   fi
   zenity --icon-name=net.retrodeck.retrodeck --info --no-wrap --ok-label="OK"  \
       --window-icon="/app/share/icons/hicolor/scalable/apps/net.retrodeck.retrodeck.svg" \
-      --title "RetroDECK Configurator - 🚂 Steam Syncronization: Manual 🚂" \
-      --text="Steam synchronization is <span foreground='$purple'><b>Disabled</b></span> and 🌟 <span foreground='$purple'><b>Favorited</b></span> 🌟 games have been removed from Steam.\nPlease restart Steam to apply the changes."
+      --title "RetroDECK Configurator - Steam Syncronization: Manual" \
+      --text="Steam synchronization is <span foreground='$purple'><b>Disabled</b></span> and <span foreground='$purple'><b>Favorited</b></span> games have been removed from Steam.\nPlease restart Steam to apply the changes."
 }
 
 configurator_manual_steam_sync_dialog() {
-  configurator_generic_dialog "RetroDeck Configurator - 🚂 Steam Syncronization: Manual 🚂" "RetroDECK will now look for any 🌟 <span foreground='$purple'><b>Favorited</b></span> 🌟 games and sync them to your Steam library as individual entries if needed.\n\nIf Steam Sync has been run before and no favorites have been added or removed, you will be returned to the Steam Tools menu.\nIf changes are needed, you will see a progress dialog during the process."
+  configurator_generic_dialog "RetroDeck Configurator - Steam Syncronization: Manual" "RetroDECK will now look for any <span foreground='$purple'><b>Favorited</b></span> games and sync them to your Steam library as individual entries if needed.\n\nIf Steam Sync has been run before and no favorites have been added or removed, you will be returned to the Steam Tools menu.\nIf changes are needed, you will see a progress dialog during the process."
   export CONFIGURATOR_GUI="zenity"
   steam_sync
   configurator_steam_tools_dialog
 }
 
 configurator_purge_steam_sync_dialog() {
-  if [[ $(configurator_generic_question_dialog "RetroDECK Configurator - 🚂 Steam Syncronization: Removal 🚂" "🛑 Warning 🛑\n\nAre you sure you want to remove all Steam changes, including all ES-DE 🌟 <span foreground='$purple'><b>Favorited</b></span> 🌟 games from Steam?" ) == "true" ]]; then
+  if [[ $(configurator_generic_question_dialog "RetroDECK Configurator - Steam Syncronization: Removal" "Warning: Are you sure you want to remove all Steam changes, including all ES-DE <span foreground='$purple'><b>Favorited</b></span> games from Steam?" ) == "true" ]]; then
     (
     rd_srm nuke
     rm -f "$retrodeck_favorites_file"
     ) |
     rd_zenity --progress \
-    --title="RetroDECK Configurator - 🛑 Steam Syncronization: Removing all RetroDECK data 🛑" \
+    --title="RetroDECK Configurator - Steam Syncronization: Removing all RetroDECK data" \
     --window-icon="/app/share/icons/hicolor/scalable/apps/net.retrodeck.retrodeck.svg" \
-    --text="<span foreground='$purple'><b>Removing all RetroDECK-related data from Steam</b></span>\n\n\The more data you have synchronized, the longer this process may take.\n\n\⏳Please wait...⏳" \
+    --text="<span foreground='$purple'><b>Removing all RetroDECK-related data from Steam</b></span>\n\n\The more data you have synchronized, the longer this process may take.\n\nPlease wait..." \
     --pulsate --width=500 --height=150 --auto-close --no-cancel
   fi
   configurator_steam_tools_dialog
@@ -359,7 +359,7 @@ steam_sync_add() {
     rd_srm add >> "$srm_log" 2>&1
     ) |
     rd_zenity --progress \
-    --title="RetroDECK Configurator - ⏳ Syncronizing with Steam ⏳" \
+    --title="RetroDECK Configurator - Syncronizing with Steam" \
     --window-icon="/app/share/icons/hicolor/scalable/apps/net.retrodeck.retrodeck.svg" \
     --text="<span foreground='$purple'><b>Adding new favorited games to Steam</b></span>\n\n\<b>NOTE:</b> This may take a while depending on your library size.\n\Feel free to leave it running in the background and use another app." \
     --pulsate --width=500 --height=150 --auto-close --no-cancel
@@ -378,7 +378,7 @@ steam_sync_remove() {
     rd_srm remove >> "$srm_log" 2>&1
     ) |
     rd_zenity --progress \
-    --title="RetroDECK Configurator - ⏳ Syncronizing with Steam ⏳" \
+    --title="RetroDECK Configurator - Syncronizing with Steam" \
     --window-icon="/app/share/icons/hicolor/scalable/apps/net.retrodeck.retrodeck.svg" \
     --text="<span foreground='$purple'><b>Removing unfavorited games from Steam</b></span>\n\n\<b>NOTE:</b> This may take a while depending on your library size.\n\Feel free to leave it running in the background and use another app." \
     --pulsate --width=500 --height=150 --auto-close --no-cancel
