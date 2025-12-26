@@ -23,7 +23,8 @@ generate_desired_versions() {
   while read -r file; do
     local response=""
     local extracted_version=""
-    local component_name="$(basename $(dirname "$file"))"
+    local component_dir_name="$(basename $(dirname "$file"))"
+    local component_name="$component_dir_name"
     local component_source_url="$(jq -r '.[].[0].source_url' "$file")"
     local component_source_type="$(jq -r '.[].[0].source_type' "$file")"
     local component_version="$(jq -r '.[].[0].version//empty' "$file" | envsubst)"
@@ -37,6 +38,20 @@ generate_desired_versions() {
     component_name="${component_name//-/_}"
     # Uppercase component_name
     component_name="${component_name^^}"
+
+    # If the current build already produced a component_version file for this component,
+    # prefer it as the source of truth (this pins versions even when the original was "latest").
+    local built_version_file="$REPO_ROOT/$component_dir_name/component_version"
+    if [[ -f "$built_version_file" ]]; then
+      local built_version
+      built_version=$(tr -d '\r' < "$built_version_file" | head -n 1)
+      if [[ -n "$built_version" ]]; then
+        log info "Using built component_version '$built_version' for component '$component_name'"
+        extracted_version="$built_version"
+        sed -i "s/^export ${component_name}_DESIRED_VERSION=.*/export ${component_name}_DESIRED_VERSION=\"${extracted_version}\"/" "$generated_desired_version_file"
+        continue
+      fi
+    fi
 
     case "$component_source_type" in
       "http" )

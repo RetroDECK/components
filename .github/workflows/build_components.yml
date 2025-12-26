@@ -240,21 +240,6 @@ jobs:
           repositories: "components"
           owner: "RetroDECK"
 
-      # This will generate desired_versions.sh based on the current state of the components
-      # Useful to "lock" the versions in future builds or to bring it to main (manually)
-      - name: Generate desired_versions.sh (snapshot)
-        env:
-          GITHUB_TOKEN: ${{ steps.generate-rekku-token.outputs.token }}
-        run: |
-          set -e
-          automation-tools/alchemist/generate_desired_versions.sh -f automation-tools/alchemist/desired_versions.sh
-          latest_generated="$(ls -1t automation-tools/alchemist/desired_versions_*.sh | head -n 1)"
-          if [ -z "$latest_generated" ] || [ ! -f "$latest_generated" ]; then
-            echo "[ERROR] desired_versions generator did not produce an output file" >&2
-            exit 1
-          fi
-          cp -f "$latest_generated" desired_versions.sh
-
       - name: Fallback missing component artifacts from releases (non-main)
         if: github.ref != 'refs/heads/main'
         env:
@@ -338,6 +323,21 @@ jobs:
 
           # Show the resulting components_version_list.md file
           cat components_version_list.md
+
+      # This will generate desired_versions.sh pinned to the versions used by the current build
+      # (it prefers extracted ./<component>/component_version values when available).
+      - name: Generate desired_versions.sh (snapshot)
+        env:
+          GITHUB_TOKEN: ${{ steps.generate-rekku-token.outputs.token }}
+        run: |
+          set -e
+          automation-tools/alchemist/generate_desired_versions.sh -f automation-tools/alchemist/desired_versions.sh
+          latest_generated="$(ls -1t automation-tools/alchemist/desired_versions_*.sh | head -n 1)"
+          if [ -z "$latest_generated" ] || [ ! -f "$latest_generated" ]; then
+            echo "[ERROR] desired_versions generator did not produce an output file" >&2
+            exit 1
+          fi
+          cp -f "$latest_generated" desired_versions.sh
       - name: Get Branch Name
         run: |
           if [[ "$GITHUB_EVENT_NAME" == "pull_request" || "$GITHUB_EVENT_NAME" == "pull_request_target" ]]; then
