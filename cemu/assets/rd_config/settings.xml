@@ -58,14 +58,14 @@
     <GameCache/>
     <GraphicPack/>
     <Graphic>
-        <api>0</api>
+        <api>1</api>
         <device>00000000000000000000000000000000</device>
         <VSync>0</VSync>
         <GX2DrawdoneSync>true</GX2DrawdoneSync>
         <UpscaleFilter>1</UpscaleFilter>
         <DownscaleFilter>0</DownscaleFilter>
         <FullscreenScaling>0</FullscreenScaling>
-        <AsyncCompile>false</AsyncCompile>
+        <AsyncCompile>true</AsyncCompile>
         <vkAccurateBarriers>true</vkAccurateBarriers>
         <Overlay>
             <Position>0</Position>
