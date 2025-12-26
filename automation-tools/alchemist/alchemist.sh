@@ -63,18 +63,8 @@ transmute() {
 
     # Download stage for this object
     download_result=$(process_download -t "$source_type" -u "$source_url" -d "$source_dest" -v "$SOURCE_VERSION")
-    downloaded_file=$(echo "$download_result" | grep "^DOWNLOADED_FILE=" | cut -d= -f2)
-    downloaded_version=$(echo "$download_result" | grep "^DOWNLOADED_VERSION=" | cut -d= -f2)
-
-    if [[ -n "${downloaded_file:-}" ]]; then
-      export DOWNLOADED_FILE="$downloaded_file"
-    fi
-
-    # Some downloaders (e.g. local/http) don't emit DOWNLOADED_VERSION.
-    # In that case, keep the recipe-provided SOURCE_VERSION instead of clobbering it.
-    if [[ -n "${downloaded_version:-}" ]]; then
-      export SOURCE_VERSION="$downloaded_version"
-    fi
+    export DOWNLOADED_FILE=$(echo "$download_result" | grep "^DOWNLOADED_FILE=" | cut -d= -f2)
+    export SOURCE_VERSION=$(echo "$download_result" | grep "^DOWNLOADED_VERSION=" | cut -d= -f2)
 
     # Extraction stage for this object
     extraction_result=$(process_extract -f "$DOWNLOADED_FILE" -d "$source_dest" -t "$extraction_type")
