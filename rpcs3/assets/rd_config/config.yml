@@ -72,7 +72,7 @@ Video:
   Renderer: Vulkan
   Resolution: 1280x720
   Aspect ratio: 16:9
-  Frame limit: 30
+  Frame limit: Auto
   Second Frame Limit: 0
   MSAA: Auto
   Shader Mode: Async Shader Recompiler
@@ -132,7 +132,7 @@ Video:
     Exclusive Fullscreen Mode: Automatic
     Asynchronous Texture Streaming 2: false
     FidelityFX CAS Sharpening Intensity: 50
-    Asynchronous Queue Scheduler: Fast
+    Asynchronous Queue Scheduler: Safe
     VRAM allocation limit (MB): 65536
     Use Re-BAR for GPU uploads: true
   Performance Overlay:
@@ -174,7 +174,7 @@ Audio:
   Master Volume: 100
   Enable Buffering: true
   Desired Audio Buffer Duration: 100
-  Enable Time Stretching: true
+  Enable Time Stretching: false
   Disable Sampling Skip: false
   Time Stretching Threshold: 75
   Microphone Type: "Null"
@@ -213,23 +213,25 @@ System:
   Date Format: ddmmyyyy
   Time Format: clock24
   Console time offset (s): 0
-  System Name: RPCS3-960
+  System Name: RPCS3-RD999
   Console PSID: 
   HDD Model Name: ""
   HDD Serial Number: ""
-  Process ARGV: {}
+  Process ARGV:
+    {}
 Net:
-  Internet enabled: Connected
+  Internet enabled: Disconnected
   IP address: 0.0.0.0
   Bind address: 0.0.0.0
   DNS address: 8.8.8.8
   IP swap list: ""
   UPNP Enabled: false
-  PSN status: RPCN
-  PSN Country: eu
+  PSN status: Disconnected
+  PSN Country: us
+  Clans Enabled: false
 Savestate:
   Start Paused: false
-  Suspend Emulation Savestate Mode: true
+  Suspend Emulation Savestate Mode: false
   Compatible Savestate Mode: false
   Inspection Mode Savestates: false
   Save Disc Game Data: false
@@ -256,4 +258,5 @@ Miscellaneous:
   Window Title Format: "FPS: %F | %R | %V | %T [%t]"
   Pause Emulation During Home Menu: true
   Enable GameMode: false
-Log: {}
+Log:
+  {}
