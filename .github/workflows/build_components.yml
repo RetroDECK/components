@@ -8,6 +8,12 @@ on:
     types: [opened, synchronize, reopened]
 
   workflow_dispatch:
+    inputs:
+      force_rebuild:
+        description: 'Force rebuilding ALL components (true/false)'
+        required: false
+        default: false
+        type: boolean
 
   # schedule:
   #   - cron: '00 17 * * *' # 2:00 AM JST (JST is UTC+9, so 17:00 UTC)
@@ -162,11 +168,29 @@ jobs:
         id: reuse-check
         env:
           GITHUB_REPOSITORY: ${{ github.repository }}
+          FORCE_REBUILD_INPUT: ${{ github.event.inputs.force_rebuild || 'false' }}
         run: |
           set -e
           echo "artifact_name=${{ matrix.recipe.component }}" >> $GITHUB_ENV
 
           reuse=false
+
+          # Honor global force-rebuild (env) or workflow input
+          if [[ "${FORCE_REBUILD:-}" == "true" || "${FORCE_REBUILD_INPUT:-}" == "true" ]]; then
+            echo "[INFO] Global force rebuild requested (env/input)"
+            reuse=false
+            echo "reuse=$reuse" >> $GITHUB_OUTPUT
+            exit 0
+          fi
+
+          # Per-component repo-local changes detection: force rebuild for this component if files changed
+          component="${{ matrix.recipe.component }}"
+          if automation-tools/detect_component_changes.sh "$component" >/dev/null 2>&1; then
+            echo "[INFO] Detected local changes in $component; forcing rebuild"
+            reuse=false
+            echo "reuse=$reuse" >> $GITHUB_OUTPUT
+            exit 0
+          fi
 
           if [[ "$GITHUB_REF" == "refs/heads/cooker" ]] && [[ "$GITHUB_EVENT_NAME" != "pull_request" ]] && [[ "$GITHUB_EVENT_NAME" != "pull_request_target" ]]; then
             ref_tag="$(cat reference/reference_tag.txt 2>/dev/null || true)"
@@ -285,11 +309,29 @@ jobs:
         id: reuse-check
         env:
           GITHUB_REPOSITORY: ${{ github.repository }}
+          FORCE_REBUILD_INPUT: ${{ github.event.inputs.force_rebuild || 'false' }}
         run: |
           set -e
           echo "artifact_name=${{ matrix.recipe.component }}" >> $GITHUB_ENV
 
           reuse=false
+
+          # Honor global force-rebuild (env) or workflow input
+          if [[ "${FORCE_REBUILD:-}" == "true" || "${FORCE_REBUILD_INPUT:-}" == "true" ]]; then
+            echo "[INFO] Global force rebuild requested (env/input)"
+            reuse=false
+            echo "reuse=$reuse" >> $GITHUB_OUTPUT
+            exit 0
+          fi
+
+          # Per-component repo-local changes detection: force rebuild for this component if files changed
+          component="${{ matrix.recipe.component }}"
+          if automation-tools/detect_component_changes.sh "$component" >/dev/null 2>&1; then
+            echo "[INFO] Detected local changes in $component; forcing rebuild"
+            reuse=false
+            echo "reuse=$reuse" >> $GITHUB_OUTPUT
+            exit 0
+          fi
 
           if [[ "$GITHUB_REF" == "refs/heads/cooker" ]] && [[ "$GITHUB_EVENT_NAME" != "pull_request" ]] && [[ "$GITHUB_EVENT_NAME" != "pull_request_target" ]]; then
             ref_tag="$(cat reference/reference_tag.txt 2>/dev/null || true)"
