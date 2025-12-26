@@ -198,7 +198,7 @@ jobs:
     needs: [build-light, build-heavy]
     runs-on: ubuntu-latest
     if: always() && (github.event_name != 'schedule' || github.ref == 'refs/heads/update/components')
-    continue-on-error: true
+    continue-on-error: ${{ github.ref != 'refs/heads/main' }}
     steps:
 
       # Clone Repository (pull_request_target)
@@ -231,12 +231,70 @@ jobs:
             fi
           done
 
+      - name: Generate a token for Rekku
+        id: generate-rekku-token
+        uses: actions/create-github-app-token@v1
+        with:
+          app-id: ${{ vars.REKKU_APP_ID }}
+          private-key: ${{ secrets.REKKU_PRIVATE_KEY }}
+          repositories: "components"
+          owner: "RetroDECK"
+
+      # This will generate desired_versions.sh based on the current state of the components
+      # Useful to "lock" the versions in future builds or to bring it to main (manually)
+      - name: Generate desired_versions.sh (snapshot)
+        env:
+          GITHUB_TOKEN: ${{ steps.generate-rekku-token.outputs.token }}
+        run: |
+          set -e
+          automation-tools/alchemist/generate_desired_versions.sh -f automation-tools/alchemist/desired_versions.sh
+          latest_generated="$(ls -1t automation-tools/alchemist/desired_versions_*.sh | head -n 1)"
+          if [ -z "$latest_generated" ] || [ ! -f "$latest_generated" ]; then
+            echo "[ERROR] desired_versions generator did not produce an output file" >&2
+            exit 1
+          fi
+          cp -f "$latest_generated" desired_versions.sh
+
+      - name: Fallback missing component artifacts from releases (non-main)
+        if: github.ref != 'refs/heads/main'
+        env:
+          GITHUB_TOKEN: ${{ steps.generate-rekku-token.outputs.token }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          MATCH_LABEL: cooker
+          FALLBACK_COMPONENTS_FILE: fallback_components.txt
+          MISSING_COMPONENTS_FILE: missing_components.txt
+        run: |
+          bash automation-tools/fallback_release_artifacts.sh
+
+      - name: Fail on missing artifacts (main only)
+        if: github.ref == 'refs/heads/main'
+        run: |
+          set -e
+          MISSING_ARTIFACTS=()
+          for folder in $(find . -maxdepth 2 -mindepth 2 -type f \( -name 'component_recipe.json' -o -name 'component_manifest.json' \) -printf '%h\n' | sed 's|^\./||' | sort -u); do
+            if [ ! -d "$folder/artifacts" ] || ! find "$folder/artifacts" -maxdepth 1 -type f \( -name "*.tar.gz" -o -name "*.zip" -o -name "*.gz" -o -name "*.tar" -o -name "*.7z" -o -name "*.appimage" \) | grep -q .; then
+              MISSING_ARTIFACTS+=("$folder")
+            fi
+          done
+          if [ ${#MISSING_ARTIFACTS[@]} -ne 0 ]; then
+            echo "[ERROR] Missing artifacts on main; failing build. Missing:" >&2
+            printf '%s\n' "${MISSING_ARTIFACTS[@]}" >&2
+            exit 1
+          fi
+
       - name: Generate components_version_list.md
+        env:
+          FALLBACK_COMPONENTS_FILE: fallback_components.txt
         run: |
           # Loop through each <component_name> folder
           for component_dir in */; do
             # Skip automation-tools and other non-component directories
             if [[ "$component_dir" == "automation-tools/" ]] || [[ "$component_dir" == "downloaded-artifacts/" ]]; then
+              continue
+            fi
+
+            # Only process real components
+            if [[ ! -f "${component_dir}component_recipe.json" && ! -f "${component_dir}component_manifest.json" ]]; then
               continue
             fi
 
@@ -280,15 +338,6 @@ jobs:
 
           # Show the resulting components_version_list.md file
           cat components_version_list.md
-      - name: Generate a token for Rekku
-        id: generate-rekku-token
-        uses: actions/create-github-app-token@v1
-        with:
-          app-id: ${{ vars.REKKU_APP_ID }}
-          private-key: ${{ secrets.REKKU_PRIVATE_KEY }}
-          repositories: "components"
-          owner: "RetroDECK"
-
       - name: Get Branch Name
         run: |
           if [[ "$GITHUB_EVENT_NAME" == "pull_request" || "$GITHUB_EVENT_NAME" == "pull_request_target" ]]; then
@@ -348,6 +397,16 @@ jobs:
           echo "This is a RetroDECK Components Artifacts release from [this commit](https://github.com/${{ github.repository }}/commit/${{ github.sha }}), from branch [${{ env.BRANCH_NAME }}](https://github.com/RetroDECK/RetroDECK/tree/feat/${{ env.BRANCH_NAME }})." >> "$RELEASE_BODY_FILE"
           echo "" >> "$RELEASE_BODY_FILE"
 
+          # Fallback warnings (if any)
+          if [ -f "fallback_components.txt" ] && [ -s "fallback_components.txt" ]; then
+            echo "[WARNING] Fallback artifacts were used for the following components:" >> "$RELEASE_BODY_FILE"
+            while IFS='|' read -r comp tag; do
+              [ -z "$comp" ] && continue
+              echo "- $comp (from release $tag)" >> "$RELEASE_BODY_FILE"
+            done < fallback_components.txt
+            echo "" >> "$RELEASE_BODY_FILE"
+          fi
+
           # Append the contents of components_version_list.md to the release body
           cat components_version_list.md >> "$RELEASE_BODY_FILE"
           echo "" >> "$RELEASE_BODY_FILE"
@@ -356,7 +415,7 @@ jobs:
           MISSING_ARTIFACTS=()
 
           # Iterate through folders in the repo root
-          for folder in $(find . -maxdepth 1 -mindepth 1 -type d -not -name '.*' -not -name 'automation-tools' -not -name 'downloaded-artifacts' -exec basename {} \;); do
+          for folder in $(find . -maxdepth 2 -mindepth 2 -type f \( -name 'component_recipe.json' -o -name 'component_manifest.json' \) -printf '%h\n' | sed 's|^\./||' | sort -u); do
             if [ ! -d "$folder/artifacts" ] || ! find "$folder/artifacts" -maxdepth 1 -type f \( -name "*.tar.gz" -o -name "*.zip" -o -name "*.gz" -o -name "*.tar" -o -name "*.7z" -o -name "*.appimage" \) | grep -q .; then
               MISSING_ARTIFACTS+=("$folder")
             fi
@@ -420,7 +479,7 @@ jobs:
           tag: "${{ env.TAG }}"
           name: "RetroDECK Components ${{ env.TAG }}"
           body: ${{ steps.generate-body.outputs.RELEASE_BODY }}
-          artifacts: "*/artifacts/*,!*/artifacts/component_version,components_version_list.md"
+          artifacts: "*/artifacts/*,!*/artifacts/component_version,components_version_list.md,desired_versions.sh"
           allowUpdates: true
           omitBodyDuringUpdate: true
           makeLatest: ${{ env.MAKE_LATEST }}
@@ -456,6 +515,16 @@ jobs:
           echo "## RetroDECK Components Artifacts" > pr_body.md
           echo "" >> pr_body.md
           echo "This pull request updates the RetroDECK components artifacts to version ${{ env.TAG }}." >> pr_body.md
+          echo "" >> pr_body.md
+
+          if [ -f "fallback_components.txt" ] && [ -s "fallback_components.txt" ]; then
+            echo "### WARNING: Fallback artifacts used" >> pr_body.md
+            while IFS='|' read -r comp tag; do
+              [ -z "$comp" ] && continue
+              echo "- $comp (from release $tag)" >> pr_body.md
+            done < fallback_components.txt
+            echo "" >> pr_body.md
+          fi
 
           echo "## Changes:" >> pr_body.md
           echo "$(cat commits_list.txt)" >> pr_body.md
