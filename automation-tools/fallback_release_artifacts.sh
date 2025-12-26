@@ -153,6 +153,9 @@ main() {
       download_asset "$url_sha" "$REPO_ROOT/$component/artifacts/$local_sha_name"
     fi
 
+    # Mark this component as reused so reporting can show built vs reused.
+    echo "$found_tag" >"$REPO_ROOT/$component/artifacts/reused_from_release.txt"
+
     echo "${component}|${found_tag}" >>"$FALLBACK_OUT_FILE"
   done
 

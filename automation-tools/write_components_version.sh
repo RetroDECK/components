@@ -60,22 +60,48 @@ write_components_version() {
         local version_file="$component_dir/component_version"
         log d "Checking component directory: $component_dir (version file: $version_file)" "$logfile"
 
+        local component_name
+        component_name=$(basename "$component_dir")
+
+        local mode="built"
+        if [[ -f "$component_dir/artifacts/reused_from_release.txt" ]]; then
+            mode="reused"
+        fi
+
         local current_version
+        local update_date
         if [[ -f "$version_file" ]]; then
             current_version=$(< "$version_file")
             log d "Version file contents: $current_version" "$logfile"
             # Use the mtime from the extracted file; tar should preserve original timestamp.
             update_date=$(TZ=UTC date -r "$version_file" +"%Y-%m-%d %H:%M:%S UTC")
         else
-            # Default to "unknown" when the component_version file is absent
+            # If component_version wasn't extracted to the workspace, try reading it from the artifact.
             current_version="unknown"
-            log w "Version file not found for component at: $component_dir, using default: $current_version" "$logfile"
-            # Fall back to directory modification time if available
-            update_date=$(TZ=UTC date -r "$component_dir" +"%Y-%m-%d %H:%M:%S UTC" 2>/dev/null || echo "N/A")
-        fi
+            update_date="N/A"
 
-        local component_name
-        component_name=$(basename "$component_dir")
+            local archive
+            archive=$(ls -1 "$component_dir"/artifacts/*.tar.gz 2>/dev/null | head -n 1 || true)
+            if [[ -n "$archive" && -f "$archive" ]]; then
+                local fullpath
+                fullpath=$(tar -tzf "$archive" | grep 'component_version' | head -n 1 || true)
+                if [[ -n "$fullpath" ]]; then
+                    current_version=$(tar -xOf "$archive" "$fullpath" 2>/dev/null | head -n 1 || echo "unknown")
+                    local tline
+                    tline=$(tar -tvzf "$archive" --full-time "$fullpath" 2>/dev/null | head -n 1 || true)
+                    if [[ -n "$tline" ]]; then
+                        local d t
+                        d=$(awk '{print $4}' <<<"$tline")
+                        t=$(awk '{print $5}' <<<"$tline")
+                        if [[ -n "$d" && -n "$t" ]]; then
+                            update_date="${d} ${t} UTC"
+                        fi
+                    fi
+                fi
+            fi
+
+            log w "Version file not found for component at: $component_dir, using default: $current_version" "$logfile"
+        fi
 
         log d "Processing component: $component_name, version: $current_version, last updated: $update_date" "$logfile"
 
@@ -137,20 +163,21 @@ write_components_version() {
             fallback_tag=$(awk -F'|' -v c="$component_name" '$1==c {print $2; exit}' "$fallback_file" 2>/dev/null || true)
             if [[ -n "$fallback_tag" ]]; then
                 component_display="⚠️ $component_name"
+                mode="reused"
             fi
         fi
 
-        # Collect sortable rows first: <sortkey>\t<display>\t<version>\t<built_at>
+        # Collect sortable rows first: <sortkey>\t<display>\t<version>\t<built_at>\t<mode>
         # sortkey must ignore emoji/prefix.
-        printf '%s\t%s\t%s\t%s\n' "$component_name" "$component_display" "$current_version" "$update_date" >>"$rows_tmp"
+        printf '%s\t%s\t%s\t%s\t%s\n' "$component_name" "$component_display" "$current_version" "$update_date" "$mode" >>"$rows_tmp"
     done < <(find "$REPO_ROOT" -mindepth 1 -maxdepth 1 -type d -print0)
 
     # Sort rows alphabetically by component name, then render the table.
-    echo "| Component | Version | Built at |" >> "$components_version_list"
-    echo "|---|---|---|" >> "$components_version_list"
-    LC_ALL=C sort -f -t $'\t' -k1,1 "$rows_tmp" | while IFS=$'\t' read -r sortkey display version built_at; do
+    echo "| Component | Version | Built at | Mode |" >> "$components_version_list"
+    echo "|---|---|---|---|" >> "$components_version_list"
+    LC_ALL=C sort -f -t $'\t' -k1,1 "$rows_tmp" | while IFS=$'\t' read -r sortkey display version built_at mode; do
         [[ -z "${sortkey:-}" ]] && continue
-        echo "| $display | $version | $built_at |" >> "$components_version_list"
+        echo "| $display | $version | $built_at | $mode |" >> "$components_version_list"
     done
 
     rm -f "$rows_tmp"
