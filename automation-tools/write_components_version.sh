@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Ensure REPO_ROOT exists when called from CI steps that don't export it.
+export REPO_ROOT="${REPO_ROOT:-$(git rev-parse --show-toplevel 2>/dev/null || pwd)}"
+
 if [[ ! -f ".tmpfunc/logger.sh" ]]; 
 then
     mkdir -p ".tmpfunc"
@@ -30,11 +33,13 @@ write_components_version() {
 
     components_version_list="components_version_list.md"
 
+    local rows_tmp
+    rows_tmp="$(mktemp)"
+    : >"$rows_tmp"
+
     log d "Initializing components version list file: $components_version_list" "$logfile"
     echo "# Components Version Summary" > "$components_version_list"
     echo "" >> "$components_version_list"
-    echo "| Component | Version | Built at |" >> "$components_version_list"
-    echo "|---|---|---|" >> "$components_version_list"
 
     local skip_api_requests=0
 
@@ -125,7 +130,6 @@ write_components_version() {
             log w "Previous version for $component_name not found in releases matching '$match_label' or skipped." "$logfile"
         fi
 
-        local fallback_note=""
         local component_display="$component_name"
         if [[ -n "$fallback_file" && -f "$fallback_file" ]]; then
             # format: component|tag
@@ -133,12 +137,21 @@ write_components_version() {
             fallback_tag=$(awk -F'|' -v c="$component_name" '$1==c {print $2; exit}' "$fallback_file" 2>/dev/null || true)
             if [[ -n "$fallback_tag" ]]; then
                 component_display="⚠️ $component_name"
-                fallback_note=" (FALLBACK from release $fallback_tag)"
             fi
         fi
 
-        # Keep old_version fetch logic for now, but render a stable table as requested.
-        # Fallback details remain available via the global warning section in the release body.
-        echo "| $component_display | $current_version | $update_date |" >> "$components_version_list"
+        # Collect sortable rows first: <sortkey>\t<display>\t<version>\t<built_at>
+        # sortkey must ignore emoji/prefix.
+        printf '%s\t%s\t%s\t%s\n' "$component_name" "$component_display" "$current_version" "$update_date" >>"$rows_tmp"
     done < <(find "$REPO_ROOT" -mindepth 1 -maxdepth 1 -type d -print0)
+
+    # Sort rows alphabetically by component name, then render the table.
+    echo "| Component | Version | Built at |" >> "$components_version_list"
+    echo "|---|---|---|" >> "$components_version_list"
+    LC_ALL=C sort -f -t $'\t' -k1,1 "$rows_tmp" | while IFS=$'\t' read -r sortkey display version built_at; do
+        [[ -z "${sortkey:-}" ]] && continue
+        echo "| $display | $version | $built_at |" >> "$components_version_list"
+    done
+
+    rm -f "$rows_tmp"
 }
