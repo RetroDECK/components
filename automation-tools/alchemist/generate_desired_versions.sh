@@ -20,6 +20,19 @@ generate_desired_versions() {
   cp -f "$1" "$generated_desired_version_file"
   source "$1"
 
+  declare -A valid_components=()
+  local component_dir
+  for component_dir in "$REPO_ROOT"/*/; do
+    local component_base
+    component_base="$(basename "${component_dir%/}")"
+    [[ "$component_base" == archive_* ]] && continue
+    [[ -f "$component_dir/component_recipe.json" || -f "$component_dir/component_manifest.json" ]] || continue
+    component_base="${component_base//-/_}"
+    component_base="${component_base^^}"
+    valid_components["$component_base"]=1
+  done
+  valid_components["FRAMEWORK"]=1
+
   while read -r file; do
     local response=""
     local extracted_version=""
@@ -46,10 +59,14 @@ generate_desired_versions() {
       local built_version
       built_version=$(tr -d '\r' < "$built_version_file" | head -n 1)
       if [[ -n "$built_version" ]]; then
-        log info "Using built component_version '$built_version' for component '$component_name'"
-        extracted_version="$built_version"
-        sed -i "s/^export ${component_name}_DESIRED_VERSION=.*/export ${component_name}_DESIRED_VERSION=\"${extracted_version}\"/" "$generated_desired_version_file"
-        continue
+        if [[ "$built_version" =~ ^(latest|newest|preview)(\ on\ .*)?$ ]]; then
+          log warn "Built component_version '$built_version' for component '$component_name' is not pinned; resolving instead"
+        else
+          log info "Using built component_version '$built_version' for component '$component_name'"
+          extracted_version="$built_version"
+          sed -i "s/^export ${component_name}_DESIRED_VERSION=.*/export ${component_name}_DESIRED_VERSION=\"${extracted_version}\"/" "$generated_desired_version_file"
+          continue
+        fi
       fi
     fi
 
@@ -66,6 +83,7 @@ generate_desired_versions() {
         if [[ "$component_version" == "latest" ]]; then
           response=$(get_latest_flatpak_release_version "$component_source_url")
         fi
+        [[ "$response" == "null" ]] && response=""
         if [[ -n "$response" ]]; then
           log info "Flatpak source version \"$response\" found for component \"$component_name\""
           extracted_version="$response"
@@ -83,6 +101,7 @@ generate_desired_versions() {
         elif [[ "$component_version" == "newest" ]]; then
           response=$(get_newest_github_release_version "$owner" "$repo")
         fi
+        [[ "$response" == "null" ]] && response=""
         if [[ -n "$response" ]]; then
           log info "GitHub release source version \"$response\" found for component \"$component_name\""
           extracted_version="$response"
@@ -96,12 +115,13 @@ generate_desired_versions() {
         read -r instance owner repo <<< "$(parse_gitlab_url "$component_source_url")"
 
         if [[ "$component_version" == "latest" ]]; then
-          response=$(get_latest_github_release_version "$instance" "$owner" "$repo")
+          response=$(get_latest_gitlab_release_version "$instance" "$owner" "$repo")
         elif [[ "$component_version" == "newest" ]]; then
-          response=$(get_newest_github_release_version "$instance" "$owner" "$repo")
+          response=$(get_newest_gitlab_release_version "$instance" "$owner" "$repo")
         fi
+        [[ "$response" == "null" ]] && response=""
         if [[ -n "$response" ]]; then
-          log info "GitHub release source version \"$response\" found for component \"$component_name\""
+          log info "GitLab release source version \"$response\" found for component \"$component_name\""
           extracted_version="$response"
         else
           log info "Component \"$component_name\" not using \"latest\" or \"newest\" version, retaining current value \"$component_version\"."
@@ -115,6 +135,7 @@ generate_desired_versions() {
         if [[ "$component_version" == "latest" ]]; then
           response=$(get_latest_git_commit_version "$owner" "$repo")
         fi
+        [[ "$response" == "null" ]] && response=""
         if [[ -n "$response" ]]; then
           log info "Git source version \"$response\" found for component \"$component_name\""
           extracted_version="$response"
@@ -130,7 +151,22 @@ generate_desired_versions() {
 
     sed -i "s/^export ${component_name}_DESIRED_VERSION=.*/export ${component_name}_DESIRED_VERSION=\"${extracted_version}\"/" "$generated_desired_version_file"
 
-  done < <(find "$PWD" -maxdepth 2 -type f -name "component_recipe.json" -not -path "$PWD/framework/component_recipe.json")
+  done < <(
+    find "$REPO_ROOT" -mindepth 2 -maxdepth 2 -type f -name "component_recipe.json" \
+      -not -path "$REPO_ROOT/framework/component_recipe.json" \
+      -not -path "$REPO_ROOT/archive_*/*"
+  )
+
+  local valid_regex
+  valid_regex=$(printf '%s|' "${!valid_components[@]}")
+  valid_regex="${valid_regex%|}"
+  if [[ -n "$valid_regex" ]]; then
+    awk -v re="^export ("$valid_regex")_DESIRED_VERSION=" '
+      /^export [A-Z0-9_]+_DESIRED_VERSION=/ { if ($0 ~ re) print; next }
+      { print }
+    ' "$generated_desired_version_file" > "${generated_desired_version_file}.tmp"
+    mv -f "${generated_desired_version_file}.tmp" "$generated_desired_version_file"
+  fi
 }
 
 parse_args() {
