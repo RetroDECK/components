@@ -80,7 +80,7 @@
   ],
   "autoload_dirs": [
     "RETRODECKSTORAGEDIR/switch/dlc",
-    "RETRODECKSTORAGEDIR/switch/upd"
+    "RETRODECKSTORAGEDIR/switch/updates"
   ],
   "shown_file_types": {
     "nsp": true,

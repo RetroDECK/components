@@ -25,6 +25,8 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
   sed -i 's#RETRODECKSTORAGEDIR#'"$storage_path"'#g' "$ryubing_config"
   sed -i 's#RETRODECKROMSDIR#'"$roms_path"'#g' "$ryubing_config"
 
+  create_dir "$storage_path/switch/dlc"
+  create_dir "$storage_path/switch/updates"
   dir_prep "$bios_path/switch/keys" "$XDG_CONFIG_HOME/Ryujinx/system"
   dir_prep "$bios_path/switch/firmware" "$XDG_CONFIG_HOME/Ryujinx/bis/system/Contents"
   dir_prep "$saves_path/switch/ryubing" "$XDG_CONFIG_HOME/Ryujinx/bis/system/save"
