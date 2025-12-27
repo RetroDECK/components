@@ -17,14 +17,15 @@ if [[ $(check_version_is_older_than "$version_being_updated" "0.7.0b") == "true"
     rm "$roms_path/ps3/emudir"
     configurator_generic_dialog "RetroDECK 0.7.0b Upgrade" "As part of this update and due to a RPCS3 config upgrade, the files that used to exist at\n\n~/retrodeck/roms/ps3/emudir\n\nare now located at\n\n~/retrodeck/bios/rpcs3.\nYour existing files have been moved automatically."
   fi
-  create_dir "$bios_path/rpcs3/dev_hdd0"
-  create_dir "$bios_path/rpcs3/dev_hdd1"
-  create_dir "$bios_path/rpcs3/dev_flash"
-  create_dir "$bios_path/rpcs3/dev_flash2"
-  create_dir "$bios_path/rpcs3/dev_flash3"
-  create_dir "$bios_path/rpcs3/dev_bdvd"
-  create_dir "$bios_path/rpcs3/dev_usb000"
-  dir_prep "$bios_path/rpcs3/dev_hdd0/home/00000001/savedata" "$saves_path/ps3/rpcs3"
+  create_dir "$storage_path/rpcs3/dev_hdd0"
+  create_dir "$storage_path/rpcs3/dev_hdd1"
+  create_dir "$storage_path/rpcs3/dev_flash"
+  create_dir "$storage_path/rpcs3/dev_flash2"
+  create_dir "$storage_path/rpcs3/dev_flash3"
+  create_dir "$storage_path/rpcs3/dev_bdvd"
+  create_dir "$storage_path/rpcs3/dev_usb000"
+  dir_prep "$saves_path/ps3/rpcs3" "$storage_path/rpcs3/dev_hdd0/home/00000001/savedata"
+  dir_prep "$states_path/ps3/rpcs3" "$XDG_CONFIG_HOME/rpcs3/savestates"
 fi
 
 if [[ $(check_version_is_older_than "$version_being_updated" "0.8.0b") == "true" ]]; then

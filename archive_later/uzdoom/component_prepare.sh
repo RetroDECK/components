@@ -18,6 +18,7 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
   create_dir "$bios_path/uzdoom"
   create_dir "$storage_path/uzdoom/audio/soundfonts"
   create_dir "$storage_path/uzdoom/audio/fm_banks"
+  create_dir "$storage_path/uzdoom/audio/midi"
 
   cp -fv "$component_config/uzdoom.ini" "$uzdoom_config"
 
@@ -25,5 +26,6 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
   sed -i "s#RETRODECKHOMEDIR#${rd_home_path}#g" "$uzdoom_config"
   sed -i "s#RETRODECKROMSDIR#${roms_path}#g" "$uzdoom_config"
   sed -i "s#RETRODECKSAVESDIR#${saves_path}#g" "$uzdoom_config"
+  sed -i "s#RETRODECKSBIOSSDIR#${bios_path}#g" "$uzdoom_config"
   sed -i "s#RETRODECKSTORAGESDIR#${storage_path}#g" "$uzdoom_config"
 fi
