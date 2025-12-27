@@ -11,4 +11,6 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
   log i "----------------------"
 
   create_dir -d "$XDG_CONFIG_HOME/eden/"
+  create_dir "$storage_path/switch/dlc"
+  create_dir "$storage_path/switch/updates"
 fi
