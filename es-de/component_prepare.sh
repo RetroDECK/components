@@ -18,7 +18,10 @@ if [[ "$action" == "reset" ]]; then
   set_setting_value "$es_de_config" "UserThemeDirectory" "$themes_path" "es_settings"
   dir_prep "$rd_home_path/ES-DE/gamelists" "$XDG_CONFIG_HOME/ES-DE/gamelists"
   dir_prep "$rd_home_path/ES-DE/collections" "$XDG_CONFIG_HOME/ES-DE/collections"
+  dir_prep "$rd_home_path/ES-DE/scripts" "$XDG_CONFIG_HOME/ES-DE/scripts"
+  dir_prep "$rd_home_path/ES-DE/screensavers" "$XDG_CONFIG_HOME/ES-DE/screensavers"
   dir_prep "$rd_home_path/ES-DE/custom_systems" "$XDG_CONFIG_HOME/ES-DE/custom_systems"
+  dir_prep "$logs_path/ES-DE" "$XDG_CONFIG_HOME/ES-DE/logs"
   log d "Generating roms system folders"
   start_esde --create-system-dirs
   update_splashscreens
