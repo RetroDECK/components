@@ -7,7 +7,7 @@ component_extras="/app/retrodeck/components/$component_name/rd_extras"
 
 if [[ "$action" == "reset" ]]; then # Run reset-only commands
   log i "------------------------"
-  log i "Preparing $component_name"
+  log i "Resetting $component_name"
   log i "------------------------"
 
   create_dir -d "$XDG_CONFIG_HOME/ppsspp/PSP/SYSTEM/"
@@ -38,6 +38,10 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
 fi
 
 if [[ "$action" == "postmove" ]]; then # Run only post-move commands
+  log i "------------------------"
+  log i "Post-moving $component_name"
+  log i "------------------------"
+
   set_setting_value "$ppsspp_config" "CurrentDirectory" "$roms_path/psp" "ppsspp" "General"
   dir_prep "$saves_path/PSP/PPSSPP-SA" "$XDG_CONFIG_HOME/ppsspp/PSP/SAVEDATA"
   dir_prep "$states_path/PSP/PPSSPP-SA" "$XDG_CONFIG_HOME/ppsspp/PSP/PPSSPP_STATE"

@@ -6,7 +6,7 @@ component_config="/app/retrodeck/components/$component_name/rd_config"
 
 if [[ "$action" == "reset" ]]; then # Run reset-only commands
   log i "-----------------------------"
-  log i "Preparing Steam ROM Manager"
+  log i "Resetting Steam ROM Manager"
   log i "-----------------------------"
 
   create_dir -d "$srm_userdata"

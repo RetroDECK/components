@@ -6,9 +6,8 @@ component_config="/app/retrodeck/components/$component_name/rd_config"
 component_extras="/app/retrodeck/components/$component_name/rd_extras"
 
 if [[ "$action" == "reset" ]]; then # Run reset-only commands
-
   log i "------------------------"
-  log i "Preparing $component_name"
+  log i "Resetting $component_name"
   log i "------------------------"
 
   rm -rf "$XDG_CONFIG_HOME/xemu"
@@ -33,6 +32,10 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
 fi
 
 if [[ "$action" == "postmove" ]]; then # Run only post-move commands
+  log i "------------------------"
+  log i "Post-moving $component_name"
+  log i "------------------------"
+
   dir_prep "$shaders_path/xemu" "$XDG_DATA_HOME/xemu/xemu/shaders"
   set_setting_value "$xemu_conf" "screenshot_dir" "'$screenshots_path'" "xemu" "General"
   set_setting_value "$xemu_conf" "bootrom_path" "'$bios_path/mcpx_1.0.bin'" "xemu" "sys.files"

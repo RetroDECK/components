@@ -6,7 +6,7 @@ component_config="/app/retrodeck/components/$component_name/rd_config"
 
 if [[ "$action" == "reset" ]]; then # Run reset-only commands
   log i "----------------------"
-  log i "Preparing $component_name"
+  log i "Resetting $component_name"
   log i "----------------------"
 
   create_dir -d "$XDG_CONFIG_HOME/primehack/"
@@ -27,6 +27,10 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
 fi
 
 if [[ "$action" == "postmove" ]]; then # Run only post-move commands
+  log i "----------------------"
+  log i "Post-moving $component_name"
+  log i "----------------------"
+
   dir_prep "$saves_path/gc/primehack/EU" "$XDG_DATA_HOME/primehack/GC/EUR"
   dir_prep "$saves_path/gc/primehack/US" "$XDG_DATA_HOME/primehack/GC/USA"
   dir_prep "$saves_path/gc/primehack/JP" "$XDG_DATA_HOME/primehack/GC/JAP"

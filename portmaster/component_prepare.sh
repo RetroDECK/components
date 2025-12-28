@@ -6,7 +6,7 @@ component_config="/app/retrodeck/components/$component_name/rd_config"
 
 if [[ "$action" == "reset" ]]; then # Run reset-only commands
   log i "----------------------"
-  log i "Preparing $component_name"
+  log i "Resetting $component_name"
   log i "----------------------"
 
   rm -rf "$XDG_DATA_HOME/PortMaster"

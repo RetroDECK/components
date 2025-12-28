@@ -5,9 +5,8 @@ component_name="$(basename "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")")"
 component_config="/app/retrodeck/components/$component_name/rd_config"
 
 if [[ "$action" == "reset" ]]; then # Run reset-only commands
-
   log i "----------------------"
-  log i "Preparing $component_name"
+  log i "Resetting $component_name"
   log i "----------------------"
 
   # NOTE: the component is writing in "." so it must be placed in the rw filesystem. A symlink of the binary is already placed in /app/bin/Vita3K
@@ -25,6 +24,10 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
 fi
 
 if [[ "$action" == "postmove" ]]; then # Run only post-move commands
+  log i "----------------------"
+  log i "Post-moving $component_name"
+  log i "----------------------"
+
   dir_prep "$saves_path/psvita/vita3k" "$storage_path/Vita3K/ux0/user/00/savedata" # Multi-user safe?
   dir_prep "$texture_packs_path/Vita3K/import" "$vita3k_textures_path" # Textures
   dir_prep "$storage_path/Vita3K/lang"  "$vita3k_lang_path"

@@ -7,7 +7,7 @@ component_extras="/app/retrodeck/components/$component_name/rd_extras"
 
 if [[ "$action" == "reset" ]]; then # Run reset-only commands
   log i "----------------------"
-  log i "Preparing $component_name"
+  log i "Resetting $component_name"
   log i "----------------------"
 
   create_dir -d "$XDG_CONFIG_HOME/PCSX2/inis"
@@ -49,6 +49,10 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
 fi
 
 if [[ "$action" == "postmove" ]]; then # Run only post-move commands
+  log i "----------------------"
+  log i "Post-moving $component_name"
+  log i "----------------------"
+
   set_setting_value "$pcsx2_config" "Bios" "$bios_path" "pcsx2" "Folders"
   set_setting_value "$pcsx2_config" "Snapshots" "$screenshots_path/PCSX2" "pcsx2" "Folders"
   set_setting_value "$pcsx2_config" "SaveStates" "$states_path/ps2/pcsx2" "pcsx2" "Folders"

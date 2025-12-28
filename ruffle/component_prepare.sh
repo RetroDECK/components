@@ -6,7 +6,7 @@ component_config="/app/retrodeck/components/$component_name/rd_config"
 
 if [[ "$action" == "reset" ]]; then # Run reset-only commands
   log i "----------------------"
-  log i "Preparing $component_name"
+  log i "Resetting $component_name"
   log i "----------------------"
 
   create_dir -d "$XDG_CONFIG_HOME/ruffle/"
@@ -16,6 +16,10 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
 fi
 
 if [[ "$action" == "postmove" ]]; then # Run only post-move commands
+  log i "----------------------"
+  log i "Post-moving $component_name"
+  log i "----------------------"
+
   dir_prep "$saves_path/flash/ruffle" "$ruffle_saves_path"
   dir_prep "$logs_path/ruffle" "$ruffle_logs_path"
 fi

@@ -6,8 +6,9 @@ component_config="/app/retrodeck/components/$component_name/rd_config"
 
 if [[ "$action" == "reset" ]]; then # Run reset-only commands
   log i "----------------------"
-  log i "Preparing $component_name"
+  log i "Resetting $component_name"
   log i "----------------------"
+
   create_dir -d "$XDG_CONFIG_HOME/Cemu/"
   cp -fr "$component_config/"* "$XDG_CONFIG_HOME/Cemu/"
   set_setting_value "$cemu_config" "mlc_path" "$bios_path/cemu" "cemu"
@@ -21,6 +22,10 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
   
 fi
 if [[ "$action" == "postmove" ]]; then # Run commands that apply to both resets and moves
+  log i "----------------------"
+  log i "Post-moving $component_name"
+  log i "----------------------"
+  
   set_setting_value "$cemu_config" "mlc_path" "$bios_path/cemu" "cemu"
   set_setting_value "$cemu_config" "Entry" "$roms_path/wiiu" "cemu" "GamePaths"
   dir_prep "$saves_path/wiiu/cemu" "$bios_path/cemu/usr/save"

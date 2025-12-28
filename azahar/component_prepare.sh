@@ -5,9 +5,8 @@ component_name="$(basename "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")")"
 component_config="/app/retrodeck/components/$component_name/rd_config"
 
 if [[ "$action" == "reset" ]]; then # Run reset-only commands
-
   log i "----------------------"
-  log i "Preparing $component_name"
+  log i "Resetting $component_name"
   log i "----------------------"
 
   create_dir -d "$azahar_config_path"
@@ -31,5 +30,4 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
   dir_prep "$shaders_path/Azahar/" "$azahar_shaders_path"
   dir_prep "$logs_path/Azahar/" "$azahar_logs_path"
   dir_prep "$cheats/Azahar/" "$azahar_cheats_path"
-
 fi

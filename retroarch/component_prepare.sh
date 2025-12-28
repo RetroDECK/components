@@ -5,13 +5,11 @@ component_name="$(basename "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")")"
 component_path="$(cd "$(dirname "${BASH_SOURCE[0]}" )" && pwd)"
 component_config="$component_path/rd_config"
 
-log i "--------------------------------"
-log i "Preparing $component_name"
-log i "--------------------------------"
-
-log d "RetroArch config path: $component_config/retroarch.cfg"
-
 if [[ "$action" == "reset" ]]; then # Run reset-only commands
+  log i "--------------------------------"
+  log i "Resetting $component_name"
+  log i "--------------------------------"
+
   create_dir -d "$XDG_CONFIG_HOME/retroarch"
   dir_prep "$bios_path" "$XDG_CONFIG_HOME/retroarch/system"
   dir_prep "$logs_path/retroarch" "$XDG_CONFIG_HOME/retroarch/logs"
@@ -41,7 +39,6 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
   set_setting_value "$retroarch_config" "libretro_directory" "$retroarch_extras_path/cores" "retroarch"
   set_setting_value "$retroarch_config" "libretro_info_path" "$retroarch_extras_path/cores" "retroarch"
 
-
   # Video
   create_dir "$videos_path/retroarch"
 
@@ -50,7 +47,6 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
   create_dir "$bios_path/dc"
   create_dir "$bios_path/Mupen64plus"
   create_dir "$bios_path/quasi88"
-
 
   # BIOS MAME Directories
   create_dir "$bios_path/mame2003/samples"
@@ -90,7 +86,6 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
   dir_prep "$mods_path/retroarch-core/fbneo/patched" "$bios_path/fbneo/patched"
   dir_prep "$mods_path/retroarch-core/fbneo/ips" "$bios_path/fbneo/ips"
   dir_prep "$mods_path/retroarch-core/fbneo/romdata" "$bios_path/fbneo/romdata"
-
 
   # MSX / SVI / ColecoVision / SG-1000
   log i "-----------------------------------------------------------"
@@ -140,10 +135,12 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
   # Mods
   dir_prep "$mods_path/retroarch-core/Citra/mods" "$XDG_CONFIG_HOME/retroarch/saves/Citra/load/mods"
   dir_prep "$mods_path/retroarch-core/Dolphin/GraphicMods" "$XDG_CONFIG_HOME/retroarch/saves/dolphin-emu/User/Load/GraphicMods"
-
 fi
 
 if [[ "$action" == "postmove" ]]; then # Run only post-move commands
+  log i "--------------------------------"
+  log i "Post-moving $component_name"
+  log i "--------------------------------"
 
   # BIOS
   dir_prep "$bios_path" "$XDG_CONFIG_HOME/retroarch/system"

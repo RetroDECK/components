@@ -6,7 +6,7 @@ component_config="/app/retrodeck/components/$component_name/rd_config"
 
 if [[ "$action" == "reset" ]]; then # Run reset-only commands
   log i "------------------------"
-  log i "Preparing $component_name"
+  log i "Resetting $component_name"
   log i "------------------------"
 
   create_dir -d "$XDG_CONFIG_HOME/rpcs3/"
@@ -28,6 +28,10 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
 fi
 
 if [[ "$action" == "postmove" ]]; then # Run only post-move commands
+  log i "------------------------"
+  log i "Post-moving $component_name"
+  log i "------------------------"
+
   # This is an unfortunate one-off because set_setting_value does not currently support settings with $ in the name.
   sed -i 's^\^$(EmulatorDir): .*^$(EmulatorDir): '"$storage_path/rpcs3/"'^' "$rpcs3_config_vfs"
   set_setting_value "$rpcs3_config_vfs" "/games/" "$roms_path/ps3" "rpcs3"
@@ -37,6 +41,9 @@ if [[ "$action" == "postmove" ]]; then # Run only post-move commands
 fi
 
 if [[ "$action" == "startup" ]]; then # Run only startup commands
-  log d "Performing RPCS3 startup actions"
+  log i "------------------------"
+  log i "Performing $component_name startup actions"
+  log i "------------------------"
+
   correct_rpcs3_desktop_files
 fi

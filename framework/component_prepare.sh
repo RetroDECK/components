@@ -4,11 +4,11 @@
 component_name="$(basename "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")")"
 component_config="/app/retrodeck/components/$component_name/rd_config"
 
-log i "--------------------------------"
-log i "Preparing RetroDECK Framework"
-log i "--------------------------------"
-
 if [[ "$action" == "reset" ]]; then # Update the paths of all folders in retrodeck.cfg and create them
+  log i "--------------------------------"
+  log i "Resetting RetroDECK Framework"
+  log i "--------------------------------"
+
   while read -r config_line; do
     local current_setting_name=$(get_setting_name "$config_line" "retrodeck")
     if [[ ! $current_setting_name =~ (rd_home_path|sdcard) ]]; then # Ignore these locations
@@ -38,6 +38,10 @@ if [[ "$action" == "reset" ]]; then # Update the paths of all folders in retrode
 fi
 
 if [[ "$action" == "postmove" ]]; then # Update the paths of any folders that came with the retrodeck folder during a move
+  log i "--------------------------------"
+  log i "Post-moving RetroDECK Framework"
+  log i "--------------------------------"
+  
   while read -r config_line; do
     local current_setting_name=$(get_setting_name "$config_line" "retrodeck")
     if [[ ! $current_setting_name =~ (rd_home_path|sdcard) ]]; then # Ignore these locations

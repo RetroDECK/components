@@ -6,7 +6,7 @@ component_config="/app/retrodeck/components/$component_name/rd_config"
 
 if [[ "$action" == "reset" ]]; then # Run reset-only commands
   log i "------------------------"
-  log i "Preparing $component_name"
+  log i "Resetting $component_name"
   log i "------------------------"
   
   create_dir -d "$XDG_CONFIG_HOME/duckstation/"
@@ -26,6 +26,10 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
 fi
 
 if [[ "$action" == "postmove" ]]; then # Run only post-move commands
+  log i "------------------------"
+  log i "Post-moving $component_name"
+  log i "------------------------"
+
   set_setting_value "$duckstation_config" "SearchDirectory" "$bios_path" "duckstation" "BIOS"
   set_setting_value "$duckstation_config" "Card1Path" "$saves_path/psx/duckstation/memcards/shared_card_1.mcd" "duckstation" "MemoryCards"
   set_setting_value "$duckstation_config" "Card2Path" "$saves_path/psx/duckstation/memcards/shared_card_2.mcd" "duckstation" "MemoryCards"
