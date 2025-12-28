@@ -101,3 +101,22 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
   cheat_zip=$(find "$component_extras" -type f -iname cheat*.zip)
   unzip -j -o "$cheat_zip" 'cheat.7z' -d "$cheats_path/mame"
 fi
+
+if [[ "$action" == "postmove" ]]; then # Run reset-only commands
+  log i "----------------------"
+  log i "Post-moving $component_name"
+  log i "----------------------"
+
+  dir_prep "$saves_path/mame-sa/hiscore" "$XDG_CONFIG_HOME/mame/hiscore"
+
+  sed -i 's#RETRODECKROMSDIR#'"$roms_path"'#g' "$mame_config" # one-off as roms folders are a lot
+  set_setting_value "$mame_config" "nvram_directory" "$saves_path/mame-sa/nvram" "mame"
+  set_setting_value "$mame_config" "state_directory" "$states_path/mame-sa" "mame"
+  set_setting_value "$mame_config" "snapshot_directory" "$screenshots_path/mame" "mame"
+  set_setting_value "$mame_config" "diff_directory" "$saves_path/mame-sa/diff" "mame"
+  set_setting_value "$mame_config" "samplepath" "$bios_path/mame-sa/samples" "mame"
+  set_setting_value "$mame_config" "cheatpath" "$cheats_path/mame" "mame"
+  set_setting_value "$mame_config" "bgfx_path" "$shaders_path/mame/bgfx/" "mame"
+  set_setting_value "$mame_config" "homepath" "$mods_path/mame/plugin-data" "mame"
+  set_setting_value "$mame_config" "pluginspath" "$mods_path/mame/plugins" "mame"
+fi
