@@ -37,5 +37,6 @@ if [[ "$action" == "postmove" ]]; then # Run only post-move commands
 fi
 
 if [[ "$action" == "startup" ]]; then # Run only startup commands
+  log d "Performing RPCS3 startup actions"
   correct_rpcs3_desktop_files
 fi
