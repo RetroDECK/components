@@ -35,3 +35,7 @@ if [[ "$action" == "postmove" ]]; then # Run only post-move commands
   dir_prep "$states_path/ps3/rpcs3" "$XDG_CONFIG_HOME/rpcs3/savestates"
   dir_prep "$storage_path/rpcs3/captures" "$XDG_CONFIG_HOME/rpcs3/captures"
 fi
+
+if [[ "$action" == "startup" ]]; then # Run only startup commands
+  correct_rpcs3_desktop_files
+fi

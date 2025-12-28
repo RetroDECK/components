@@ -36,3 +36,11 @@ finit_install_rpcs3_firmware_dialog() {
   rd_zenity --question --no-wrap --window-icon="/app/share/icons/hicolor/scalable/apps/net.retrodeck.retrodeck.svg" --title "RetroDECK Initial Install - RPCS3 Firmware" --cancel-label="No " --ok-label "Yes" \
   --text="Would you like to install the RPCS3 firmware as part of the initial RetroDECK setup?\n\nThis process may take several minutes and requires an active Internet connection.\n\n<span foreground='$purple'><b>RPCS3 will launch automatically</b></span> at the end of the RetroDECK setup.\nAfter the firmware installation is complete,<span foreground='$purple'><b> please close the emulator window</b></span> to finish the process."
 }
+
+correct_rpcs3_desktop_files() {
+  rpcs3_component_path="$rd_component_dir/component_launcher.sh"
+
+  while IFS= read -r file; do
+    sed -i "s|^Exec=\"[^\"]*\"\(.*\)|Exec=\"${rpcs3_component_path}\"\1|" "$file"
+  done < <(find "$roms_path/ps3" -mindepth 1 -type f -iname "*.desktop")
+}
