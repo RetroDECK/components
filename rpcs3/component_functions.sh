@@ -38,7 +38,7 @@ finit_install_rpcs3_firmware_dialog() {
 }
 
 correct_rpcs3_desktop_files() {
-  rpcs3_component_path="$rd_component_dir/component_launcher.sh"
+  rpcs3_component_path="$rpcs3_component_dir/component_launcher.sh"
 
   while IFS= read -r file; do
     sed -i "s|^Exec=\"[^\"]*\"\(.*\)|Exec=\"${rpcs3_component_path}\"\1|" "$file"
