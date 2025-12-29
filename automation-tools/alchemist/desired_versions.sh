@@ -46,6 +46,7 @@ export AZAHAR_DESIRED_VERSION="2123.2"
 export CEMU_DESIRED_VERSION="2.6"
 
 # Dolphin – GameCube/Wii Emulator
+# Flatpak
 export DOLPHIN_DESIRED_VERSION="2512"
 
 # GZDoom – Modern Doom Engine
