@@ -9,6 +9,17 @@
 # Qt 5 runtime (legacy)
 export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 
+
+
+# ------------------------------------------------------------------
+#  Component Specific Runtime Versions
+#  --------------------------------
+#  These define which Qt libraries the framework will link against.
+#  If the globals above can't be used.
+# ------------------------------------------------------------------
+
+
+
 # ------------------------------------------------------------------
 #  Component Source Desired Versions
 #  --------------------------------
@@ -17,12 +28,8 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 #  release, “preview” follows pre‑release builds, “local” builds from
 #  the repository checkout, and explicit numbers pin a specific tag.
 # ------------------------------------------------------------------
-# ------------------------------------------------------------------
-#  Component Specific Runtime Versions
-#  --------------------------------
-#  These define which Qt libraries the framework will link against.
-#  If the globals above can't be used.
-# ------------------------------------------------------------------
+
+
 
 # ------------------------------------------------------------------
 #  Component Desired Versions - Stable
@@ -99,6 +106,9 @@ export XEMU_DESIRED_VERSION="latest"
 # XRoar – Tano Dragon emulator
 export XROAR_DESIRED_VERSION="latest"
 
+
+
+
 # ------------------------------------------------------------------
 #  Component Desired Versions - Cooker
 #  --------------------------------
@@ -159,11 +169,14 @@ export VPINBALL_DESIRED_VERSION="newest"
 # Xenia – Xbox 360 emulator (newest build)
 export XENIA_DESIRED_VERSION="newest"
 
+
+
 # ------------------------------------------------------------------
 #  Framework Component Desired Version
 #  -----------------------------------
 #  Determines which framework branch to pull based on the Git ref.
 # ------------------------------------------------------------------
+
 if [[ "${GITHUB_REF_NAME:-}" != "main" ]]; then
     # Non‑main branches use the “cooker‑latest” build tag
     export FRAMEWORK_DESIRED_VERSION="cooker-latest on $(date +%Y-%m-%d)"
