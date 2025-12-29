@@ -99,7 +99,7 @@ export SOLARUS_DESIRED_VERSION="v2.0.2"
 export STEAM_ROM_MANAGER_DESIRED_VERSION="2.5.33"
 
 # Vita3K – PlayStation Vita emulator
-export VITA3K_DESIRED_VERSION="3846"
+export VITA3K_DESIRED_VERSION="latest"
 
 # Xemu – Original Xbox emulator
 export XEMU_DESIRED_VERSION="0.8.124"
