@@ -49,10 +49,10 @@ export DOLPHIN_DESIRED_VERSION="2512"
 # DuckStation (Legacy) – PlayStation  1 Emulator (Our own legacy version)
 export DUCKSTATION_DESIRED_VERSION="preview"
 
-# ES‑DE – ES‑DE Front‑End (Our own version)
+# ES‑DE – ES‑DE Front‑End (Our own built version)
 export ES_DE_DESIRED_VERSION="latest"
 
-# Flips – IPS Patcher (Our own version)
+# Flips – IPS Patcher (Our own shipped version)
 export FLIPS_DESIRED_VERSION="v198"
 
 # GZDoom – Modern Doom engine (The last version)
@@ -103,7 +103,7 @@ export VITA3K_DESIRED_VERSION="3846"
 # Xemu – Original Xbox emulator
 export XEMU_DESIRED_VERSION="0.8.124"
 
-# XRoar – Tano Dragon emulator
+# XRoar – Tano Dragon emulator (Our own built version)
 export XROAR_DESIRED_VERSION="1.10"
 
 
