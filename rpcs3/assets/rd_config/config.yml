@@ -17,11 +17,11 @@ Core:
   Disable SPU GETLLAR Spin Optimization: false
   SPU Debug: false
   MFC Debug: false
-  Preferred SPU Threads: 1
+  Preferred SPU Threads: 2
   SPU delay penalty: 3
   SPU loop detection: false
   Max SPURS Threads: 6
-  SPU Block Size: Mega
+  SPU Block Size: Safe
   Accurate SPU DMA: false
   Accurate SPU Reservations: true
   Accurate Cache Line Stores: false
@@ -62,6 +62,10 @@ Core:
   Performance Report Threshold: 500
   Enable Performance Report: false
   Assume External Debugger: false
+  Accurate GETLLAR: false
+  Full Width AVX-512: true
+  TSX Transaction First Limit: 800
+  TSX Transaction Second Limit: 2000
 VFS:
   Enable /host_root/: false
   Initialize Directories: true
@@ -76,7 +80,7 @@ Video:
   Second Frame Limit: 0
   MSAA: Auto
   Shader Mode: Async Shader Recompiler
-  Shader Precision: Auto
+  Shader Precision: High
   Write Color Buffers: false
   Write Depth Buffer: false
   Read Color Buffers: false
@@ -218,6 +222,8 @@ System:
   HDD Model Name: ""
   HDD Serial Number: ""
   Process ARGV: {}
+  PSID high: 0
+  PSID low: 0
 Net:
   Internet enabled: Disconnected
   IP address: 0.0.0.0
