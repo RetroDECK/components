@@ -1,7 +1,7 @@
 {
   "openbor": [
     {
-      "source_url": "https://github.com/DCurrent/openbor/releases/download/{VERSION}/OpenBOR-Linux-x64-v4.0.Build.*.AppImage",
+      "source_url": "https://github.com/DCurrent/openbor/releases/download/v{VERSION}/OpenBOR-Linux-x64-v4.0.Build.*.AppImage",
       "source_type": "github_release",
       "version": "$OPENBOR_DESIRED_VERSION",
       "extraction_type": "appimage",

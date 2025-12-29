@@ -68,7 +68,7 @@ export MELONDS_DESIRED_VERSION="1.1"
 export OPENBOR_DESIRED_VERSION="7533"
 
 # PCSX2 – PlayStation 2 emulator
-export PCSX2_DESIRED_VERSION="v2.5.404"
+export PCSX2_DESIRED_VERSION="2.5.404"
 
 # PortMaster – Multi‑system game launcher and manager
 export PORTMASTER_DESIRED_VERSION="latest"
