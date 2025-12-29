@@ -38,60 +38,78 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # ------------------------------------------------------------------
 
 # Azhar – N3DS Emulator
+# Flatpak
 export AZAHAR_DESIRED_VERSION="2123.2"
 
 # Cemu – Wii U Emulator
+# Flatpak
 export CEMU_DESIRED_VERSION="2.6"
 
 # Dolphin – GameCube/Wii Emulator
 export DOLPHIN_DESIRED_VERSION="2512"
 
 # GZDoom – Modern Doom Engine
-# (The last version)
+# Flatpak (The last version)
 export GZDOOM_DESIRED_VERSION="latest"
 
 # MAME – Multiple Arcade Machine Emulator
+# Flatpak
 export MAME_DESIRED_VERSION="0.283"
 
 # MelonDS – Nintendo DS Emulator
+# Flatpak
 export MELONDS_DESIRED_VERSION="1.1"
 
 # OpenBOR – Open Beat 'em up Engine
+# AppImage
 export OPENBOR_DESIRED_VERSION="v7533"
 export OPENBOR_DESIRED_DLVERSION="7533"
 
 # PCSX2 – PlayStation 2 Emulator
+# AppImage
 export PCSX2_DESIRED_VERSION="v2.5.404"
 
 # PortMaster – Multi‑system game launcher and manager
+# Binary
 export PORTMASTER_DESIRED_VERSION="latest"
 
 # PPSSPP – PSP Emulator
+# Flatpak
 export PPSSPP_DESIRED_VERSION="1.19.3"
 
 # PrimeHack – Metroid Prime fork of Dolphin
+# AppImage
 export PRIMEHACK_DESIRED_VERSION="master-230724.27"
 
 # RetroArch – Multi‑System Front‑End
+# AppImage
 export RETROARCH_DESIRED_VERSION="1.22.2"
 
 # RPCS3 – PlayStation 3 Emulator
+# Flatpak
 export RPCS3_DESIRED_VERSION="0.0.38-1-77aa5d4b"
 
 # Ruffle – Flash Player Emulator
+# Flatpak
 export RUFFLE_DESIRED_VERSION="0.2.0-nightly.2025.12.26"
 
 # Ryujinx – Nintendo Switch Emulator
+# Flatpak
 export RYUBING_DESIRED_VERSION="1.3.2"
 
 # Solarus – Action‑RPG Engine
+# AppImage
 export SOLARUS_DESIRED_VERSION="v2.0.2"
 
 # Steam ROM Manager – Bulk game importer and artwork manager for Steam
+# Flatpak
 export STEAM_ROM_MANAGER_DESIRED_VERSION="2.5.33"
 
 # Xemu – Original Xbox Emulator
+# Flatpak
 export XEMU_DESIRED_VERSION="0.8.124"
+
+
 
 # ------------------------------------------------------------------
 #  Component Desired Versions - Stable Self-built
@@ -100,27 +118,27 @@ export XEMU_DESIRED_VERSION="0.8.124"
 # ------------------------------------------------------------------
 
 # DuckStation (Legacy) – PlayStation  1 Emulator
-# (Our own built legacy archive)
+# AppImage (Our own built legacy archive)
 # https://github.com/RetroDECK/Duckstation/
 export DUCKSTATION_DESIRED_VERSION="preview"
 
 # ES‑DE – ES‑DE Front‑End
-# (Our own built version)
+# AppImage (Our own built version)
 # https://github.com/RetroDECK/ES-DE
 export ES_DE_DESIRED_VERSION="latest"
 
 # Flips – IPS Patcher
-# (Our own shipped version)
+# Binary (Our own shipped version)
 # https://github.com/RetroDECK/components/tree/cooker/flips/assets
 export FLIPS_DESIRED_VERSION="v198"
 
 # XRoar – Tano Dragon Emulator
-# (Our own built version)
+# Binary (Our own built version)
 # https://github.com/RetroDECK/XRoar
 export XROAR_DESIRED_VERSION="latest"
 
 # Vita3K – PlayStation Vita Emulator
-# (Our own built version)
+# AppImage (Our own mirrored version)
 # https://github.com/RetroDECK/Vita3K-bin
 export VITA3K_DESIRED_VERSION="3847"
 
