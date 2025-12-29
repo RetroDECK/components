@@ -26,7 +26,7 @@ Core:
   Accurate SPU Reservations: true
   Accurate Cache Line Stores: false
   Accurate RSX reservation access: false
-  RSX FIFO Accuracy: Fast
+  RSX FIFO Fetch Accuracy: Atomic
   SPU Verification: true
   SPU Cache: true
   SPU Profiler: false
@@ -217,8 +217,7 @@ System:
   Console PSID: 
   HDD Model Name: ""
   HDD Serial Number: ""
-  Process ARGV:
-    {}
+  Process ARGV: {}
 Net:
   Internet enabled: Disconnected
   IP address: 0.0.0.0
@@ -258,5 +257,4 @@ Miscellaneous:
   Window Title Format: "FPS: %F | %R | %V | %T [%t]"
   Pause Emulation During Home Menu: true
   Enable GameMode: false
-Log:
-  {}
+Log: {}
