@@ -104,7 +104,7 @@ export VITA3K_DESIRED_VERSION="3846"
 export XEMU_DESIRED_VERSION="0.8.124"
 
 # XRoar – Tano Dragon emulator (Our own built version)
-export XROAR_DESIRED_VERSION="1.10"
+export XROAR_DESIRED_VERSION="latest"
 
 
 
