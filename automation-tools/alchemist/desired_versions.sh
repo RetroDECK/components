@@ -100,7 +100,8 @@ export XEMU_DESIRED_VERSION="0.8.124"
 # ------------------------------------------------------------------
 
 # DuckStation (Legacy) – PlayStation  1 Emulator
-# (Our own built legacy version)
+# (Our own built legacy archive)
+# https://github.com/RetroDECK/Duckstation/
 export DUCKSTATION_DESIRED_VERSION="preview"
 
 # ES‑DE – ES‑DE Front‑End
