@@ -28,7 +28,7 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
 
   # Logs
   create_dir -d "$logs_path/PCSX2"
-  set_setting_value "$pcsx2_config" "Logs" "$logs_path/PCSX2/" "pcsx2" "Folders"
+  set_setting_value "$pcsx2_config" "Logs" "$logs_path/PCSX2" "pcsx2" "Folders"
 
   # Cheats
   create_dir -d "$cheats_path/PCSX2/cheats_ws"
@@ -47,8 +47,8 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
   set_setting_value "$pcsx2_config" "Textures" "$texture_packs_path/PCSX2/textures" "Folders"
 
   # Textures
-  create_dir -d "$videos_path/PCSX2/"
-  set_setting_value "$pcsx2_config" "Videos" "$videos_path/PCSX2/" "Folders"
+  create_dir -d "$videos_path/PCSX2"
+  set_setting_value "$pcsx2_config" "Videos" "$videos_path/PCSX2" "Folders"
 
   # Mods
   dir_prep "$mods_path/PCSX2/patches" "$pcsx2_patches_path"
