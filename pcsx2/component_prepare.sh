@@ -35,8 +35,8 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
   create_dir -d "$cheats_path/PCSX2/cheats_ni"
   tar -xzf "$component_extras/pcsx2-cheats.tar.gz" -C "$cheats_path/PCSX2" --overwrite
   set_setting_value "$pcsx2_config" "Cheats" "$cheats_path/PCSX2" "Folders"
-  set_setting_value "$pcsx2_config" "cheats_ws" "$cheats_path/PCSX2/cheats_ws" "Folders"
-  set_setting_value "$pcsx2_config" "cheats_ni" "$cheats_path/PCSX2/cheats_ni" "Folders"
+  set_setting_value "$pcsx2_config" "CheatsWS" "$cheats_path/PCSX2/cheats_ws" "Folders"
+  set_setting_value "$pcsx2_config" "CheatsNI" "$cheats_path/PCSX2/cheats_ni" "Folders"
 
   # Covers
   create_dir -d "$storage_path/PCSX2/covers"
@@ -84,8 +84,8 @@ if [[ "$action" == "postmove" ]]; then # Run only post-move commands
   set_setting_value "$pcsx2_config" "MemoryCards" "$saves_path/ps2/pcsx2/memcards" "pcsx2" "Folders"
   set_setting_value "$pcsx2_config" "Logs" "$logs_path/PCSX2/" "pcsx2" "Folders"
   set_setting_value "$pcsx2_config" "Cheats" "$cheats_path/PCSX2" "Folders"
-  set_setting_value "$pcsx2_config" "cheats_ws" "$cheats_path/PCSX2/cheats_ws" "Folders"
-  set_setting_value "$pcsx2_config" "cheats_ni" "$cheats_path/PCSX2/cheats_ni" "Folders"
+  set_setting_value "$pcsx2_config" "CheatsWS" "$cheats_path/PCSX2/cheats_ws" "Folders"
+  set_setting_value "$pcsx2_config" "CheatsNI" "$cheats_path/PCSX2/cheats_ni" "Folders"
   set_setting_value "$pcsx2_config" "Covers" "$storage_path/PCSX2/covers" "Folders"
   set_setting_value "$pcsx2_config" "Textures" "$texture_packs_path/PCSX2/textures" "Folders"
   set_setting_value "$pcsx2_config" "Videos" "$videos_path/PCSX2/" "Folders"
