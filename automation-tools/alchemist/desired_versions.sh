@@ -181,19 +181,19 @@ export LINDBERGH_DESIRED_VERSION="latest"
 # Mudlet – MUD Client
 export MUDLET_DESIRED_VERSION="4.19.1"
 
-# Raze – Duke Nukem GZDoom based Engine
+# Raze – Duke Nukem Engine
 export RAZE_DESIRED_VERSION="latest"
 
-# ScummVM – Classic point‑and‑click adventure Engine
+# ScummVM – Point‑and‑click Adventure Engine
 export SCUMMVM_DESIRED_VERSION="latest"
 
-# ShadPS4 – PlayStation 4 Emulator
+# ShadPS4 – PlayStation  4 Emulator
 export SHADPS4_DESIRED_VERSION="latest"
 
 # SimCoupe – SAM Coupé Emulator
 export SIMCOUPE_DESIRED_VERSION="latest"
 
-# SuperModel – SEGA Model 3 arcade Emulator
+# SuperModel – SEGA Model 3 Arcade Emulator
 export SUPERMODEL_DESIRED_VERSION="latest"
 
 # UZDoom – Modern Doom Engine
@@ -202,7 +202,7 @@ export UZDOOM_DESIRED_VERSION="latest"
 # VPinball – Virtual Pinball Engine
 export VPINBALL_DESIRED_VERSION="newest"
 
-# Xenia – Xbox 360 Emulator (newest build)
+# Xenia – Xbox  360 Emulator
 export XENIA_DESIRED_VERSION="newest"
 
 
