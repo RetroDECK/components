@@ -38,73 +38,73 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # ------------------------------------------------------------------
 
 # Azhar – N3DS emulator
-export AZAHAR_DESIRED_VERSION="latest"
+export AZAHAR_DESIRED_VERSION="2123.2"
 
 # Cemu – Wii U emulator
-export CEMU_DESIRED_VERSION="latest"
+export CEMU_DESIRED_VERSION="2.6"
 
 # Dolphin – GameCube/Wii emulator
-export DOLPHIN_DESIRED_VERSION="latest"
+export DOLPHIN_DESIRED_VERSION="2512"
 
-# DuckStation (Legacy) – PlayStation 1 emulator
+# DuckStation (Legacy) – PlayStation  1 Emulator (Our own legacy version)
 export DUCKSTATION_DESIRED_VERSION="preview"
 
-# ES‑DE – ES‑DE front‑end
+# ES‑DE – ES‑DE Front‑End (Our own version)
 export ES_DE_DESIRED_VERSION="latest"
 
-# Flips – IPS Patcher
-export FLIPS_DESIRED_VERSION="local"
+# Flips – IPS Patcher (Our own version)
+export FLIPS_DESIRED_VERSION="v198"
 
-# GZDoom – Modern Doom engine
+# GZDoom – Modern Doom engine (The last version)
 export GZDOOM_DESIRED_VERSION="latest"
 
 # MAME – Multiple Arcade Machine Emulator
-export MAME_DESIRED_VERSION="latest"
+export MAME_DESIRED_VERSION="0.283"
 
 # MelonDS – Nintendo DS emulator
-export MELONDS_DESIRED_VERSION="latest"
+export MELONDS_DESIRED_VERSION="1.1"
 
 # OpenBOR – Open Beat 'em up engine
-export OPENBOR_DESIRED_VERSION="latest"
+export OPENBOR_DESIRED_VERSION="7533"
 
 # PCSX2 – PlayStation 2 emulator
-export PCSX2_DESIRED_VERSION="latest"
+export PCSX2_DESIRED_VERSION="v2.5.404"
 
 # PortMaster – Multi‑system game launcher and manager
 export PORTMASTER_DESIRED_VERSION="latest"
 
 # PPSSPP – PSP emulator
-export PPSSPP_DESIRED_VERSION="latest"
+export PPSSPP_DESIRED_VERSION="1.19.3"
 
 # PrimeHack – Metroid Prime mod for Dolphin
 export PRIMEHACK_DESIRED_VERSION="master-230724.27"
 
 # RetroArch – Multi‑system front‑end
-export RETROARCH_DESIRED_VERSION="latest"
+export RETROARCH_DESIRED_VERSION="1.22.2"
 
 # RPCS3 – PlayStation 3 emulator
-export RPCS3_DESIRED_VERSION="latest"
+export RPCS3_DESIRED_VERSION="0.0.38-1-77aa5d4b"
 
 # Ruffle – Flash Player emulator
-export RUFFLE_DESIRED_VERSION="latest"
+export RUFFLE_DESIRED_VERSION="0.2.0-nightly.2025.12.26"
 
 # Ryujinx – Nintendo Switch emulator
-export RYUBING_DESIRED_VERSION="latest"
+export RYUBING_DESIRED_VERSION="1.3.2"
 
 # Solarus – Action‑RPG engine
-export SOLARUS_DESIRED_VERSION="latest"
+export SOLARUS_DESIRED_VERSION="v2.0.2"
 
 # Steam ROM Manager – Organises ROM collections for Steam
-export STEAM_ROM_MANAGER_DESIRED_VERSION="latest"
+export STEAM_ROM_MANAGER_DESIRED_VERSION="2.5.33"
 
 # Vita3K – PlayStation Vita emulator
-export VITA3K_DESIRED_VERSION="latest"
+export VITA3K_DESIRED_VERSION="3846"
 
 # Xemu – Original Xbox emulator
-export XEMU_DESIRED_VERSION="latest"
+export XEMU_DESIRED_VERSION="0.8.124"
 
 # XRoar – Tano Dragon emulator
-export XROAR_DESIRED_VERSION="latest"
+export XROAR_DESIRED_VERSION="1.10"
 
 
 
