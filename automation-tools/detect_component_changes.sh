@@ -2,7 +2,7 @@
 set -euo pipefail
 
 usage() {
-  echo "Usage: $0 <component_dir> [--verbose]" >&2
+  echo "Usage: $0 <component_dir|--all> [--verbose]" >&2
   exit 2
 }
 
@@ -16,8 +16,24 @@ if [[ "${2:-}" == "--verbose" ]]; then
   verbose=true
 fi
 
+all_mode=false
+if [[ "$component" == "--all" || "$component" == "-a" ]]; then
+  all_mode=true
+fi
+
 log() {
   $verbose && echo "[detect_changes] $*"
+}
+
+print_summary() {
+  local comp="$1"; shift
+  local changed="$1"; shift
+  local reason="$1"; shift
+  if [[ "$all_mode" == "true" ]]; then
+    printf "%-20s | %-7s | %s\n" "$comp" "$changed" "$reason"
+  else
+    log "$reason"
+  fi
 }
 
 # If GITHUB_EVENT_PATH is set and points to a file, prefer PR metadata
@@ -81,20 +97,86 @@ detect_push_changes() {
 }
 
 main() {
-  # If there is event JSON, try PR detection first
+  if [[ "$all_mode" == "true" ]]; then
+    echo "Component             | Changed | Reason"
+    echo "----------------------+---------+-----------------------------"
+    while IFS= read -r comp_dir; do
+      comp_dir=${comp_dir%/}
+      comp_name=$(basename "$comp_dir")
+
+      reason=""
+      if [[ "${FORCE_REBUILD:-}" == "true" ]]; then
+        print_summary "$comp_name" "yes" "force_rebuild env"
+        continue
+      fi
+
+      event_json_local="${GITHUB_EVENT_PATH:-}"
+      # set event_json for the detection helpers
+      event_json="${event_json_local:-$event_json}"
+      if [[ -n "$event_json_local" && -f "$event_json_local" ]]; then
+        if detect_pr_changes; then
+          print_summary "$comp_name" "yes" "PR changes"
+          continue
+        fi
+      fi
+
+      if detect_push_changes; then
+        print_summary "$comp_name" "yes" "push/reference/last-commit changes"
+        continue
+      fi
+
+      ref_tag_local=""
+      if [[ -f reference/reference_tag.txt ]]; then
+        ref_tag_local=$(< reference/reference_tag.txt)
+      fi
+      ref_ver=""
+      if [[ -n "$ref_tag_local" && -s reference/components_version_list.md ]]; then
+        ref_ver=$(bash automation-tools/get_component_version_from_components_version_list.sh -f reference/components_version_list.md -c "$comp_name" 2>/dev/null || true)
+      fi
+
+      next_ver=""
+      if [[ -f "$comp_dir/component_recipe.json" ]]; then
+        next_ver=$(bash automation-tools/resolve_component_version.sh -r "$comp_dir/component_recipe.json" -v automation-tools/alchemist/desired_versions.sh 2>/dev/null || true)
+      fi
+
+      if [[ -n "$ref_ver" && -n "$next_ver" && "$ref_ver" == "$next_ver" ]]; then
+        print_summary "$comp_name" "no" "versions match (reuse)"
+      else
+        print_summary "$comp_name" "yes" "versions differ or unknown (rebuild)"
+      fi
+    done < <(find . -mindepth 1 -maxdepth 1 -type d -not -name '.*' -print)
+    exit 0
+  fi
+
   if [[ -n "$event_json" && -f "$event_json" ]]; then
     if detect_pr_changes; then
+      print_summary "$component" "yes" "PR changes"
       exit 0
     fi
   fi
 
-  # Otherwise try push/branch detection
   if detect_push_changes; then
+    print_summary "$component" "yes" "push/reference/last-commit changes"
     exit 0
   fi
+  # If verbose, also print ref_tag/ref_ver/next_ver for inspection
+  if [[ "$verbose" == "true" ]]; then
+    ref_tag_local=""
+    if [[ -f reference/reference_tag.txt ]]; then
+      ref_tag_local=$(< reference/reference_tag.txt)
+    fi
+    ref_ver=""
+    if [[ -n "$ref_tag_local" && -s reference/components_version_list.md ]]; then
+      ref_ver=$(bash automation-tools/get_component_version_from_components_version_list.sh -f reference/components_version_list.md -c "$component" 2>/dev/null || true)
+    fi
+    next_ver=""
+    if [[ -f "$component/component_recipe.json" ]]; then
+      next_ver=$(bash automation-tools/resolve_component_version.sh -r "$component/component_recipe.json" -v automation-tools/alchemist/desired_versions.sh 2>/dev/null || true)
+    fi
+    log "ref_tag=$ref_tag_local ref_ver=$ref_ver next_ver=$next_ver"
+  fi
 
-  # Conservatively return 1 (no relevant changes)
-  log "No changes detected for component: $component"
+  print_summary "$component" "no" "no changes detected"
   exit 1
 }
 
