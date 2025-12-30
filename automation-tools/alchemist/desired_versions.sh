@@ -259,7 +259,7 @@ export XEMU_DESIRED_VERSION="latest"
 # export DUCKSTATION_DESIRED_VERSION="preview"
 
 # COOKER (Override)
-export DUCKSTATION_DESIRED_VERSION="latest"
+export DUCKSTATION_DESIRED_VERSION="preview"
 
 
 # ------------------------------------------------------------------------------
