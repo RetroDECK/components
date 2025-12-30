@@ -139,12 +139,13 @@ export PPSSPP_DESIRED_VERSION="latest"
 # ------------------------------------------------------------------------------
 # PrimeHack — Metroid Prime Fork of Dolphin
 # Source: AppImage
+# Note: Locked versions from fork
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
 # export PRIMEHACK_DESIRED_VERSION="master-230724.27"
 
 # COOKER (Override)
-export PRIMEHACK_DESIRED_VERSION="latest"
+export PRIMEHACK_DESIRED_VERSION="master-230724.27"
 
 
 # ------------------------------------------------------------------------------
