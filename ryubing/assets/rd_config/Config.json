@@ -28,7 +28,7 @@
   "match_system_time": true,
   "use_input_global_config": false,
   "docked_mode": true,
-  "enable_discord_integration": true,
+  "enable_discord_integration": false,
   "check_updates_on_start": false,
   "update_checker_type": "Off",
   "focus_lost_action_type": "PauseEmulation",
