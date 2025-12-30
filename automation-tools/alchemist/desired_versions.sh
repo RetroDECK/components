@@ -212,7 +212,7 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
   export PCSX2_DESIRED_VERSION="v2.5.405"
 
 # COOKER (Override)
-# export PCSX2_DESIRED_VERSION="latest"
+# export PCSX2_DESIRED_VERSION="newest"
 
 
 # ------------------------------------------------------------------------------
