@@ -1,7 +1,7 @@
 {
   "pcsx2": [
     {
-      "source_url": "https://github.com/PCSX2/pcsx2/releases/download/{VERSION}/pcsx2-{VERSION}-linux-appimage-x64-Qt.AppImage",
+      "source_url": "https://github.com/PCSX2/pcsx2/releases/download/{VERSION}/pcsx2-*-linux-appimage-x64-Qt.AppImage",
       "source_type": "github_release",
       "version": "$PCSX2_DESIRED_VERSION",
       "extraction_type": "appimage",
