@@ -182,14 +182,14 @@ export RUFFLE_DESIRED_VERSION="latest"
 
 
 # ------------------------------------------------------------------------------
-# Ryujinx — Nintendo Switch Emulator
+# Ryubing — Nintendo Switch Emulator
 # Source: Flatpak
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
-# export RYUJINX_DESIRED_VERSION="1.3.2"
+# export RYUBING_DESIRED_VERSION="1.3.2"
 
 # COOKER (Override)
-export RYUJINX_DESIRED_VERSION="latest"
+export RYUBING_DESIRED_VERSION="latest"
 
 
 # ------------------------------------------------------------------------------
