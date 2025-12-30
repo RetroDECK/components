@@ -1,5 +1,25 @@
 #!/bin/bash
 
+# ==============================================================================
+#  VERSION SELECTION RULES
+#  ----------------
+#  - MAIN    : Stable releases
+#  - COOKER  : Cooker / development builds
+#  - Only ONE export per component must be active
+#
+# VERSION MEANINGS
+#  ----------------
+#  Each variable defines which upstream version the build system will fetch
+#  for a given component:
+#
+#    "latest"   → Newest official stable release
+#    "preview"  → Pre-release / preview builds
+#    "local"    → Build from the local repository checkout
+#    "newest"   → Newest available build, including beta or pre-release
+#    "<serial/numbers/letters/hash>" → Pin to a specific version
+# ==============================================================================
+
+
 # ------------------------------------------------------------------
 #  Default Global Runtime Versions
 #  ----------------
@@ -17,24 +37,17 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 
 
 # ==============================================================================
-#  Component Desired Versions
+#  Component Desired Versions - Flathub
 # ==============================================================================
-#  VERSION SELECTION RULE:
-#  - MAIN    : Stable releases
-#  - COOKER  : Cooker / development builds
-#  - Only ONE export per component must be active
+#  Flathub requires the release hash for each component to lock down specific versions.
+#  To find the correct release hash, check the output of the corresponding
+#  component_version file.
 #
-#  VERSION MEANINGS
-#  ----------------
-#  Each variable defines which upstream version the build system will fetch
-#  for a given component:
-#
-#    "latest"   → Newest official stable release
-#    "preview"  → Pre-release / preview builds
-#    "local"    → Build from the local repository checkout
-#    "newest"   → Newest available build, including beta or pre-release
-#    "<serial/number>" → Pin to a specific version
+#  For each component, document the user-friendly version (as listed on Flathub)
+#  in the following format:
+#  # Version: XXXX
 # ==============================================================================
+
 
 
 # ------------------------------------------------------------------------------
@@ -42,10 +55,11 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # Source: Flatpak
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
-# export AZAHAR_DESIRED_VERSION="2123.2"
+# Version: 2123.2
+  export AZAHAR_DESIRED_VERSION="9ff0756f534f38e43ebfa2a04e23a48136d34aadb76b864ffbbc1e46bbff1ebd"
 
 # COOKER (Override)
-export AZAHAR_DESIRED_VERSION="latest"
+# export AZAHAR_DESIRED_VERSION="latest"
 
 
 # ------------------------------------------------------------------------------
@@ -53,10 +67,11 @@ export AZAHAR_DESIRED_VERSION="latest"
 # Source: Flatpak
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
-# export CEMU_DESIRED_VERSION="2.6"
+# Version: 2.6
+  export CEMU_DESIRED_VERSION="4a22a30407fd3b647165c651ffa785ae0da3ef66b3b5c5249880e793bbec2d6e"
 
 # COOKER (Override)
-export CEMU_DESIRED_VERSION="latest"
+# export CEMU_DESIRED_VERSION="latest"
 
 
 # ------------------------------------------------------------------------------
@@ -64,10 +79,11 @@ export CEMU_DESIRED_VERSION="latest"
 # Source: Flatpak
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
-# export DOLPHIN_DESIRED_VERSION="2512"
+# # Version: 2512
+  export DOLPHIN_DESIRED_VERSION="4fa4752c90703c04e58e7f014be515e905c553c8a707b27ae35ffa5e41dbf6cf"
 
 # COOKER (Override)
-export DOLPHIN_DESIRED_VERSION="latest"
+# export DOLPHIN_DESIRED_VERSION="latest"
 
 
 # ------------------------------------------------------------------------------
@@ -75,10 +91,11 @@ export DOLPHIN_DESIRED_VERSION="latest"
 # Source: Flatpak
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
-# export GZDOOM_DESIRED_VERSION="latest"
+# Version: 4.14.2
+  export GZDOOM_DESIRED_VERSION="604ffd1743c8eeafdfdb9c5663e261014d0ca2572ceeb2f54dcef9b1881d23cf"
 
 # COOKER (Override)
-export GZDOOM_DESIRED_VERSION="latest"
+# export GZDOOM_DESIRED_VERSION="latest"
 
 
 # ------------------------------------------------------------------------------
@@ -86,10 +103,11 @@ export GZDOOM_DESIRED_VERSION="latest"
 # Source: Flatpak
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
-# export MAME_DESIRED_VERSION="0.283"
+# Version: 0.283
+  export MAME_DESIRED_VERSION="f709046e3595a612d106fda3b3f59e447c4d7c1083248400d0e39e935b72a7f1"
 
 # COOKER (Override)
-export MAME_DESIRED_VERSION="latest"
+# export MAME_DESIRED_VERSION="latest"
 
 
 # ------------------------------------------------------------------------------
@@ -97,32 +115,11 @@ export MAME_DESIRED_VERSION="latest"
 # Source: Flatpak
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
-# export MELONDS_DESIRED_VERSION="1.1"
+# Version: 1.1
+  export MELONDS_DESIRED_VERSION="9c8ac146f909e365673fdf2eb711f588c0fdf72fce11fc05c9db698a88d269ba"
 
 # COOKER (Override)
-export MELONDS_DESIRED_VERSION="latest"
-
-
-# ------------------------------------------------------------------------------
-# OpenBOR — Open Beat 'em Up Engine
-# Source: AppImage
-# ------------------------------------------------------------------------------
-# MAIN (Stable)
-# export OPENBOR_DESIRED_VERSION="v7533"
-
-# COOKER (Override)
-export OPENBOR_DESIRED_VERSION="latest"
-
-
-# ------------------------------------------------------------------------------
-# PCSX2 — PlayStation 2 Emulator
-# Source: AppImage
-# ------------------------------------------------------------------------------
-# MAIN (Stable)
-# export PCSX2_DESIRED_VERSION="v2.5.404"
-
-# COOKER (Override)
-export PCSX2_DESIRED_VERSION="latest"
+# export MELONDS_DESIRED_VERSION="latest"
 
 
 # ------------------------------------------------------------------------------
@@ -130,33 +127,11 @@ export PCSX2_DESIRED_VERSION="latest"
 # Source: Flatpak
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
-# export PPSSPP_DESIRED_VERSION="1.19.3"
+# Version: 1.19.3
+  export PPSSPP_DESIRED_VERSION="00d4ac93b5111818ad897284d70743e5d7e72af43ab1d660ee03356c88dda85e"
 
 # COOKER (Override)
-export PPSSPP_DESIRED_VERSION="latest"
-
-
-# ------------------------------------------------------------------------------
-# PrimeHack — Metroid Prime Fork of Dolphin
-# Source: AppImage
-# Note: Locked versions from fork
-# ------------------------------------------------------------------------------
-# MAIN (Stable)
-# export PRIMEHACK_DESIRED_VERSION="master-230724.27"
-
-# COOKER (Override)
-export PRIMEHACK_DESIRED_VERSION="master-230724.27"
-
-
-# ------------------------------------------------------------------------------
-# RetroArch — Multi-System Front-End
-# Source: AppImage
-# ------------------------------------------------------------------------------
-# MAIN (Stable)
-# export RETROARCH_DESIRED_VERSION="1.22.2"
-
-# COOKER (Override)
-export RETROARCH_DESIRED_VERSION="latest"
+# PPSSPP_DESIRED_VERSION="latest"
 
 
 # ------------------------------------------------------------------------------
@@ -164,10 +139,11 @@ export RETROARCH_DESIRED_VERSION="latest"
 # Source: Flatpak
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
-# export RPCS3_DESIRED_VERSION="0.0.38-1-77aa5d4b"
+# Version: 0.0.38-1-77aa5d4b
+  export RPCS3_DESIRED_VERSION="4bcc14efdedca48a31b921455aee1cf5fa4f8ec01bee5cc0c1927855e5ea9c54"
 
 # COOKER (Override)
-export RPCS3_DESIRED_VERSION="latest"
+# export RPCS3_DESIRED_VERSION="latest"
 
 
 # ------------------------------------------------------------------------------
@@ -175,32 +151,11 @@ export RPCS3_DESIRED_VERSION="latest"
 # Source: Flatpak
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
-# export RUFFLE_DESIRED_VERSION="0.2.0-nightly.2025.12.26"
+# Version: 0.2.0-nightly.2025.12.26
+ export RUFFLE_DESIRED_VERSION="d890cd14c6784065f90daea1be2187ec519431975328ccc87e2ea3970c68f01e"
 
 # COOKER (Override)
-export RUFFLE_DESIRED_VERSION="latest"
-
-
-# ------------------------------------------------------------------------------
-# Ryubing — Nintendo Switch Emulator
-# Source: Flatpak
-# ------------------------------------------------------------------------------
-# MAIN (Stable)
-# export RYUBING_DESIRED_VERSION="1.3.2"
-
-# COOKER (Override)
-export RYUBING_DESIRED_VERSION="latest"
-
-
-# ------------------------------------------------------------------------------
-# Solarus — Action RPG Engine
-# Source: AppImage
-# ------------------------------------------------------------------------------
-# MAIN (Stable)
-# export SOLARUS_DESIRED_VERSION="v2.0.2"
-
-# COOKER (Override)
-export SOLARUS_DESIRED_VERSION="latest"
+# export RUFFLE_DESIRED_VERSION="latest"
 
 
 # ------------------------------------------------------------------------------
@@ -208,10 +163,11 @@ export SOLARUS_DESIRED_VERSION="latest"
 # Source: Flatpak
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
-# export STEAM_ROM_MANAGER_DESIRED_VERSION="2.5.33"
+# Version: 2.5.33
+  export STEAM_ROM_MANAGER_DESIRED_VERSION="d0f60620a50ed0255e2657fcde6291db60afbaa56fc69ccac4c03b0733b3259c"
 
 # COOKER (Override)
-export STEAM_ROM_MANAGER_DESIRED_VERSION="latest"
+# export STEAM_ROM_MANAGER_DESIRED_VERSION="latest"
 
 
 # ------------------------------------------------------------------------------
@@ -219,35 +175,101 @@ export STEAM_ROM_MANAGER_DESIRED_VERSION="latest"
 # Source: Flatpak
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
-# export XEMU_DESIRED_VERSION="0.8.124"
+# Version: 0.8.124
+  export XEMU_DESIRED_VERSION="32c3198eed47ed8faa4e4f09738b9579e3c831170ce4a562842239ae9bdce546"
 
 # COOKER (Override)
-export XEMU_DESIRED_VERSION="latest"
+# export XEMU_DESIRED_VERSION="latest"
+
+
+# ==============================================================================
+#  Component Desired Versions — Web / GitHub / GitLab / AppImages
+# ==============================================================================
+#  Components sourced from GitHub, GitLab, or other web pages,
+#  provided as loose binaries or AppImages.
+#
+#  Versions should be explicitly defined to ensure reproducible builds.
+# ==============================================================================
+
+
+
+# ------------------------------------------------------------------------------
+# OpenBOR — Open Beat 'em Up Engine
+# Source: AppImage
+# ------------------------------------------------------------------------------
+# MAIN (Stable)
+  export OPENBOR_DESIRED_VERSION="v7533"
+
+# COOKER (Override)
+# export OPENBOR_DESIRED_VERSION="latest"
+
+
+# ------------------------------------------------------------------------------
+# PCSX2 — PlayStation 2 Emulator
+# Source: AppImage
+# ------------------------------------------------------------------------------
+# MAIN (Stable)
+  export PCSX2_DESIRED_VERSION="v2.5.405"
+
+# COOKER (Override)
+# export PCSX2_DESIRED_VERSION="latest"
+
+
+# ------------------------------------------------------------------------------
+# PrimeHack — Metroid Prime Fork of Dolphin
+# Source: AppImage
+# ------------------------------------------------------------------------------
+# MAIN (Stable)
+# Version Note: Locked versions from fork
+  export PRIMEHACK_DESIRED_VERSION="master-230724.27"
+
+# COOKER (Override)
+# export PRIMEHACK_DESIRED_VERSION="master-230724.27"
+
+
+# ------------------------------------------------------------------------------
+# RetroArch — Multi-System Front-End
+# Source: AppImage
+# ------------------------------------------------------------------------------
+# MAIN (Stable)
+  export RETROARCH_DESIRED_VERSION="1.22.2"
+
+# COOKER (Override)
+# export RETROARCH_DESIRED_VERSION="latest"
+
+
+# ------------------------------------------------------------------------------
+# Ryubing — Nintendo Switch Emulator
+# Source: AppImage
+# ------------------------------------------------------------------------------
+# MAIN (Stable)
+# Version: 1.3.3
+  export RYUBING_DESIRED_VERSION="1.3.3"
+
+# COOKER (Override)
+# export RYUBING_DESIRED_VERSION="latest"
+
+
+# ------------------------------------------------------------------------------
+# Solarus — Action RPG Engine
+# Source: AppImage
+# ------------------------------------------------------------------------------
+# MAIN (Stable)
+  export SOLARUS_DESIRED_VERSION="v2.0.2"
+
+# COOKER (Override)
+# export SOLARUS_DESIRED_VERSION="latest"
+
 
 
 # ==============================================================================
 #  Component Desired Versions — Self-Built / Repo-Hosted Components
 # ==============================================================================
-#  Self-Built components
+#  Components that are self-built and hosted in the RetroDECK repository.
 #
-#  VERSION SELECTION RULE:
-#  - MAIN    : Stable releases
-#  - COOKER  : Cooker / development builds
-#  - Only ONE export per component must be active
 #
-#  VERSION MEANINGS
-#  ----------------
-#  Each variable defines which upstream version the build system will fetch
-#  for a given component:
-#
-#    "latest"   → Newest official stable release
-#    "preview"  → Pre-release / preview builds
-#    "local"    → Build from the local repository checkout
-#    "newest"   → Newest available build, including beta or pre-release
-#    "<serial/number>" → Pin to a specific version
+#  Specify and the desired version for each component below.
 # ==============================================================================
-
-
 
 
 # ------------------------------------------------------------------------------
@@ -256,10 +278,10 @@ export XEMU_DESIRED_VERSION="latest"
 # Repo: https://github.com/RetroDECK/Duckstation
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
-# export DUCKSTATION_DESIRED_VERSION="preview"
+  export DUCKSTATION_DESIRED_VERSION="preview"
 
 # COOKER (Override)
-export DUCKSTATION_DESIRED_VERSION="preview"
+# export DUCKSTATION_DESIRED_VERSION="preview"
 
 
 # ------------------------------------------------------------------------------
@@ -268,10 +290,11 @@ export DUCKSTATION_DESIRED_VERSION="preview"
 # Repo: https://github.com/RetroDECK/ES-DE
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
-# export ES_DE_DESIRED_VERSION="latest"
+# Version: 3.4.0
+  export ES_DE_DESIRED_VERSION="latest"
 
 # COOKER (Override)
-export ES_DE_DESIRED_VERSION="latest"
+#  export ES_DE_DESIRED_VERSION="latest"
 
 
 # ------------------------------------------------------------------------------
@@ -280,7 +303,8 @@ export ES_DE_DESIRED_VERSION="latest"
 # Repo: https://github.com/RetroDECK/components/tree/cooker/flips/assets
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
-export FLIPS_DESIRED_VERSION="v198"
+# Version: 198
+  export FLIPS_DESIRED_VERSION="latest"
 
 # COOKER (Override)
 # export FLIPS_DESIRED_VERSION="latest"
@@ -292,7 +316,7 @@ export FLIPS_DESIRED_VERSION="v198"
 # Repo: https://github.com/RetroDECK/components/tree/cooker/portmaster/assets
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
-export PORTMASTER_DESIRED_VERSION="latest"
+  export PORTMASTER_DESIRED_VERSION="latest"
 
 # COOKER (Override)
 # export PORTMASTER_DESIRED_VERSION="latest"
@@ -304,7 +328,8 @@ export PORTMASTER_DESIRED_VERSION="latest"
 # Repo: https://github.com/RetroDECK/XRoar
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
-export XROAR_DESIRED_VERSION="latest"
+# Version: 1.10
+  export XROAR_DESIRED_VERSION="latest"
 
 # COOKER (Override)
 # export XROAR_DESIRED_VERSION="latest"
@@ -316,10 +341,10 @@ export XROAR_DESIRED_VERSION="latest"
 # Repo: https://github.com/RetroDECK/Vita3K-bin
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
-# export VITA3K_DESIRED_VERSION="3847"
+  export VITA3K_DESIRED_VERSION="3854"
 
 # COOKER (Override)
-export VITA3K_DESIRED_VERSION="latest"
+# export VITA3K_DESIRED_VERSION="latest"
 
 
 
@@ -327,24 +352,12 @@ export VITA3K_DESIRED_VERSION="latest"
 # ==============================================================================
 #  Component Desired Versions — Future
 # ==============================================================================
-#  New components in Cooker for a future Major Release
-#
-#  VERSION SELECTION RULE:
-#  - MAIN    : Stable releases
-#  - COOKER  : Cooker / development builds
-#  - Only ONE export per component must be active
-#
-#  VERSION MEANINGS
-#  ----------------
-#  Each variable defines which upstream version the build system will fetch
-#  for a given component:
-#
-#    "latest"   → Newest official stable release
-#    "preview"  → Pre-release / preview builds
-#    "local"    → Build from the local repository checkout
-#    "newest"   → Newest available build, including beta or pre-release
-#    "<serial/number>" → Pin to a specific version
+#  New components being developed in the Cooker branch for an upcoming major release.
+#  These components are planned for future inclusion and are not yet part of the
+#  current stable version.
 # ==============================================================================
+
+
 
 
 # ------------------------------------------------------------------------------
@@ -354,7 +367,7 @@ export VITA3K_DESIRED_VERSION="latest"
 # export DOSBOX_X_DESIRED_VERSION=""
 
 # COOKER (Override)
-export DOSBOX_X_DESIRED_VERSION="latest"
+  export DOSBOX_X_DESIRED_VERSION="latest"
 
 
 # ------------------------------------------------------------------------------
@@ -364,7 +377,7 @@ export DOSBOX_X_DESIRED_VERSION="latest"
 # export EDEN_DESIRED_VERSION=""
 
 # COOKER (Override)
-export EDEN_DESIRED_VERSION="latest"
+  export EDEN_DESIRED_VERSION="latest"
 
 
 # ------------------------------------------------------------------------------
@@ -374,7 +387,7 @@ export EDEN_DESIRED_VERSION="latest"
 # export EKA2L1_DESIRED_VERSION=""
 
 # COOKER (Override)
-export EKA2L1_DESIRED_VERSION="latest"
+  export EKA2L1_DESIRED_VERSION="latest"
 
 
 # ------------------------------------------------------------------------------
@@ -384,7 +397,7 @@ export EKA2L1_DESIRED_VERSION="latest"
 # export FLYCAST_DESIRED_VERSION=""
 
 # COOKER (Override)
-export FLYCAST_DESIRED_VERSION="latest"
+  export FLYCAST_DESIRED_VERSION="latest"
 
 
 # ------------------------------------------------------------------------------
@@ -394,7 +407,7 @@ export FLYCAST_DESIRED_VERSION="latest"
 # export GARGOYLE_DESIRED_VERSION=""
 
 # COOKER (Override)
-export GARGOYLE_DESIRED_VERSION="latest"
+  export GARGOYLE_DESIRED_VERSION="latest"
 
 
 # ------------------------------------------------------------------------------
@@ -404,7 +417,7 @@ export GARGOYLE_DESIRED_VERSION="latest"
 # export HYPSEUS_DESIRED_VERSION=""
 
 # COOKER (Override)
-export HYPSEUS_DESIRED_VERSION="latest"
+  export HYPSEUS_DESIRED_VERSION="latest"
 
 
 # ------------------------------------------------------------------------------
@@ -414,7 +427,7 @@ export HYPSEUS_DESIRED_VERSION="latest"
 # export IKEMANGO_DESIRED_VERSION=""
 
 # COOKER (Override)
-export IKEMANGO_DESIRED_VERSION="latest"
+  export IKEMANGO_DESIRED_VERSION="latest"
 
 
 # ------------------------------------------------------------------------------
@@ -424,7 +437,7 @@ export IKEMANGO_DESIRED_VERSION="latest"
 # export KEGS_DESIRED_VERSION="1.38"
 
 # COOKER (Override)
-export KEGS_DESIRED_VERSION="latest"
+  export KEGS_DESIRED_VERSION="latest"
 
 
 # ------------------------------------------------------------------------------
@@ -434,7 +447,7 @@ export KEGS_DESIRED_VERSION="latest"
 # export LINDBERGH_DESIRED_VERSION=""
 
 # COOKER (Override)
-export LINDBERGH_DESIRED_VERSION="latest"
+  export LINDBERGH_DESIRED_VERSION="latest"
 
 
 # ------------------------------------------------------------------------------
@@ -444,7 +457,7 @@ export LINDBERGH_DESIRED_VERSION="latest"
 # export MUDLET_DESIRED_VERSION="4.19.1"
 
 # COOKER (Override)
-export MUDLET_DESIRED_VERSION="latest"
+  export MUDLET_DESIRED_VERSION="latest"
 
 
 # ------------------------------------------------------------------------------
@@ -454,7 +467,7 @@ export MUDLET_DESIRED_VERSION="latest"
 # export RAZE_DESIRED_VERSION=""
 
 # COOKER (Override)
-export RAZE_DESIRED_VERSION="latest"
+  export RAZE_DESIRED_VERSION="latest"
 
 
 # ------------------------------------------------------------------------------
@@ -464,7 +477,7 @@ export RAZE_DESIRED_VERSION="latest"
 # export SCUMMVM_DESIRED_VERSION=""
 
 # COOKER (Override)
-export SCUMMVM_DESIRED_VERSION="latest"
+  export SCUMMVM_DESIRED_VERSION="latest"
 
 
 # ------------------------------------------------------------------------------
@@ -474,7 +487,7 @@ export SCUMMVM_DESIRED_VERSION="latest"
 # export SHADPS4_DESIRED_VERSION=""
 
 # COOKER (Override)
-export SHADPS4_DESIRED_VERSION="latest"
+  export SHADPS4_DESIRED_VERSION="latest"
 
 
 # ------------------------------------------------------------------------------
@@ -484,7 +497,7 @@ export SHADPS4_DESIRED_VERSION="latest"
 # export SIMCOUPE_DESIRED_VERSION=""
 
 # COOKER (Override)
-export SIMCOUPE_DESIRED_VERSION="latest"
+  export SIMCOUPE_DESIRED_VERSION="latest"
 
 
 # ------------------------------------------------------------------------------
@@ -494,7 +507,7 @@ export SIMCOUPE_DESIRED_VERSION="latest"
 # export SUPERMODEL_DESIRED_VERSION=""
 
 # COOKER (Override)
-export SUPERMODEL_DESIRED_VERSION="latest"
+  export SUPERMODEL_DESIRED_VERSION="latest"
 
 
 # ------------------------------------------------------------------------------
@@ -504,7 +517,7 @@ export SUPERMODEL_DESIRED_VERSION="latest"
 # export UZDOOM_DESIRED_VERSION=""
 
 # COOKER (Override)
-export UZDOOM_DESIRED_VERSION="latest"
+  export UZDOOM_DESIRED_VERSION="latest"
 
 
 # ------------------------------------------------------------------------------
@@ -514,7 +527,7 @@ export UZDOOM_DESIRED_VERSION="latest"
 # export VPINBALL_DESIRED_VERSION=""
 
 # COOKER (Override)
-export VPINBALL_DESIRED_VERSION="newest"
+  export VPINBALL_DESIRED_VERSION="newest"
 
 
 # ------------------------------------------------------------------------------
@@ -524,7 +537,7 @@ export VPINBALL_DESIRED_VERSION="newest"
 # export XENIA_DESIRED_VERSION=""
 
 # COOKER (Override)
-export XENIA_DESIRED_VERSION="newest"
+  export XENIA_DESIRED_VERSION="newest"
 
 
 
