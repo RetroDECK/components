@@ -17,4 +17,5 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
   install -Dm755 "$XDG_DATA_HOME/PortMaster/PortMaster.sh" "$roms_path/portmaster/PortMaster.sh"
   create_dir "$XDG_DATA_HOME/PortMaster/config/"
   cp "$component_config/config.json" "$XDG_DATA_HOME/PortMaster/config/config.json"
+  set_setting_value "$rd_conf" "portmaster_path" "$rd_home_path/PortMaster" "retrodeck" "paths"
 fi
