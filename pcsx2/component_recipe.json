@@ -13,11 +13,6 @@
         },
         {
           "type": "dir",
-          "source": "apprun-hooks",
-          "dest": "apprun-hooks"
-        },
-        {
-          "type": "dir",
           "source": "usr/lib",
           "dest": "lib"
         },
