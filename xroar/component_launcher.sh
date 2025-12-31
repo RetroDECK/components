@@ -13,4 +13,4 @@ log d "AppDir is: $component_path"
 
 log d "Executing: $component_path/bin/xroar -c $xroar_config $*"
 
-exec "$component_path/bin/xroar" -joy-db-file "gamecontrollerdb.txt" "$@"
+exec "$component_path/bin/xroar" -c $XDG_CONFIG_HOME/xroar/xroar.conf -joy-db-file gamecontrollerdb.txt "$@"
