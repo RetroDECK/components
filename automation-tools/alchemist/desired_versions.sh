@@ -103,11 +103,11 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # Source: Flatpak
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
-# Version: 0.283
-#  export MAME_DESIRED_VERSION="f709046e3595a612d106fda3b3f59e447c4d7c1083248400d0e39e935b72a7f1"
+# Version: 0.284
+  export MAME_DESIRED_VERSION="e3b6bf53f0b8a5c67c4c1dcd23d4e4c7cef24ec727890bdf749e18180cffbd3a"
 
 # COOKER (Override)
-  export MAME_DESIRED_VERSION="latest"
+#  export MAME_DESIRED_VERSION="latest"
 
 
 # ------------------------------------------------------------------------------
