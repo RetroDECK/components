@@ -104,10 +104,10 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
 # Version: 0.283
-  export MAME_DESIRED_VERSION="f709046e3595a612d106fda3b3f59e447c4d7c1083248400d0e39e935b72a7f1"
+#  export MAME_DESIRED_VERSION="f709046e3595a612d106fda3b3f59e447c4d7c1083248400d0e39e935b72a7f1"
 
 # COOKER (Override)
-# export MAME_DESIRED_VERSION="latest"
+  export MAME_DESIRED_VERSION="latest"
 
 
 # ------------------------------------------------------------------------------
