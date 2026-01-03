@@ -35,8 +35,9 @@ IWAD_FILES=(
         "STRIFE0.WAD"       # Strife shareware
         "STRIFE1.WAD"       # Strife
         "TNT.WAD"           # TNT: Evilution
-        "VOICES.WAD"        # Strife Voices                                                                              
-                                                )
+        "VOICES.WAD"        # Strife Voices
+        "WADSMOOSH+.IPK3"   # WadSmoosh+ merged Doom
+                                              )
 
 # Get the directory where this script is located
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -165,7 +166,7 @@ if [[ "${doom_file}" == "" && "${target_arg##*.}" != "doom" ]]; then
         log d "iWAD found"
         command="$gzdoom -config /var/config/gzdoom/gzdoom.ini -iwad \"$target_arg\""
     else
-        log d "WAD or PK3 file found"
+        log d "WAD, IPK3 or PK3 file found"
         command="$gzdoom -config /var/config/gzdoom/gzdoom.ini -file \"$target_arg\""
     fi
 
