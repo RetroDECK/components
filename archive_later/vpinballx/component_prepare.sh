@@ -10,5 +10,5 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
   log i "----------------------"
   
   # Apparently vpinballx-bgfx cannot create the folder by itself
-  create_dir "$XDG_CONFIG_HOME/vpinballx-bgfx/.vpinball/user/"
+  create_dir "$XDG_CONFIG_HOME/vpinballx/.vpinball/user/"
 fi

@@ -1,12 +1,12 @@
 {
-  "vpinballx-bgfx": {
-    "name": "Visual Pinball X",
+  "vpinballx": {
+    "name": "Visual Pinball X - BGFX",
     "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_engine_guides/vpinball-x/vpinball-x-guide/",
     "url_webpage": "https://www.vpforums.org/",
     "url_source": "https://github.com/vpinball/vpinball",
     "component_type": "Engine",
     "description": "Visual Pinball X (vpx) is an virtual pinball (vpinball) engine that simulates pinball tables.",
-    "system_friendly_name": "Visual Pinball X",
+    "system_friendly_name": "Visual Pinball X - BGFX",
     "system": "vpinball"
   }
 }
