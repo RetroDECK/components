@@ -3,7 +3,8 @@ name: "Alchemic Circle: Build RetroDECK Components"
 on:
   push:
     branches:
-        - cooker
+      - cooker
+      - main
   pull_request:
     types: [opened, synchronize, reopened]
 
@@ -180,6 +181,14 @@ jobs:
 
           reuse=false
 
+          # Force rebuild on main branch
+          if [[ "$GITHUB_REF" == "refs/heads/main" ]]; then
+            echo "[INFO] main branch build: forcing rebuild"
+            reuse=false
+            echo "reuse=$reuse" >> $GITHUB_OUTPUT
+            exit 0
+          fi
+
           # Honor global force-rebuild (env) or workflow input
           if [[ "${FORCE_REBUILD:-}" == "true" || "${FORCE_REBUILD_INPUT:-}" == "true" ]]; then
             echo "[INFO] Global force rebuild requested (env/input)"
@@ -324,6 +333,14 @@ jobs:
           echo "artifact_name=${{ matrix.recipe.component }}" >> $GITHUB_ENV
 
           reuse=false
+
+          # Force rebuild on main branch
+          if [[ "$GITHUB_REF" == "refs/heads/main" ]]; then
+            echo "[INFO] main branch build: forcing rebuild"
+            reuse=false
+            echo "reuse=$reuse" >> $GITHUB_OUTPUT
+            exit 0
+          fi
 
           # Honor global force-rebuild (env) or workflow input
           if [[ "${FORCE_REBUILD:-}" == "true" || "${FORCE_REBUILD_INPUT:-}" == "true" ]]; then
