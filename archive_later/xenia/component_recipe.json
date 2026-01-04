@@ -1,20 +1,25 @@
 {
   "xenia": [
     {
-      "source_url": "https://github.com/xenia-canary/xenia-canary-releases/releases/download/{VERSION}/xenia_canary_linux.tar.xz",
+      "source_url": "https://github.com/has207/xenia-edge/releases/download/{VERSION}/xenia_edge_linux.AppImage",
       "source_type": "github_release",
-      "version": "$XENIA_DESIRED_VERSION",
-      "extraction_type": "archive",
+      "version": "latest",
+      "extraction_type": "appimage",
       "assets": [
         {
-          "type": "file",
-          "source": "build/bin/Linux/Release/xenia_canary",
+          "type": "dir",
+          "source": "usr/bin",
           "dest": "bin"
         },
         {
-          "type": "file",
-          "source": "LICENSE",
-          "dest": "bin"
+          "type": "dir",
+          "source": "usr/share/doc",
+          "dest": "doc"
+        },
+        {
+          "type": "dir",
+          "source": "usr/translations",
+          "dest": "translations"
         },
         {
           "type": "dir",
