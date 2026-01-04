@@ -4,7 +4,8 @@
     "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_tool_guides/flips/flips-guide/",
     "url_webpage": "https://github.com/Alcaro/Flips",
     "url_source": "https://github.com/Alcaro/Flips",
-    "description": "Floating IPS patcher (or Flips) is a for IPS and BPS files.",
+    "description": "Floating IPS patcher (or Flips) is a system for patching .ips and .bps files.",
+    "component_type": "System",
     "system_friendly_name": "Floating IPS patcher (Flips)"
   }
 }

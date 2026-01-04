@@ -3,6 +3,7 @@
     {
       "source_url": "$REPO_ROOT/$COMPONENT_NAME/assets/flips-linux.zip",
       "source_type": "local",
+      "version": "198",
       "extraction_type": "archive",
       "assets": [
         {

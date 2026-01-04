@@ -228,9 +228,22 @@
       "extraction_type": "local",
       "assets": [
         {
-          "type": "tar.gz",
+          "type": "dir",
           "source": "cores",
           "dest": "rd_extras/cores"
+        }
+      ]
+    },
+    {
+      "source_url": "https://github.com/libretro/mame2003-plus-libretro",
+      "source_type": "git",
+      "version": "latest",
+      "extraction_type": "local",
+      "assets": [
+        {
+          "type": "tar.gz",
+          "source": "metadata/.",
+          "dest": "rd_extras/mame2003-plus"
         }
       ]
     },

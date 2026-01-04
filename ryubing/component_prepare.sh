@@ -8,9 +8,8 @@ component_name="$(basename "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")")"
 component_config="/app/retrodeck/components/$component_name/rd_config"
 
 if [[ "$action" == "reset" ]]; then # Run reset-only commands
-
   log i "------------------------"
-  log i "Preparing $component_name"
+  log i "Resetting $component_name"
   log i "------------------------"
   
   # removing config directory to wipe legacy files
@@ -24,19 +23,29 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
   sed -i 's#RETRODECKHOMEDIR#'"$rd_home_path"'#g' "$ryubing_config"
   sed -i 's#RETRODECKSTORAGEDIR#'"$storage_path"'#g' "$ryubing_config"
   sed -i 's#RETRODECKROMSDIR#'"$roms_path"'#g' "$ryubing_config"
-  create_dir "$logs_path/switch/Ryujinx"
-  create_dir "$mods_path/switch/Ryujinx"
-  create_dir "$screenshots_path/switch/Ryujinx"
 
+  create_dir "$storage_path/switch/dlc"
+  create_dir "$storage_path/switch/updates"
   dir_prep "$bios_path/switch/keys" "$XDG_CONFIG_HOME/Ryujinx/system"
   dir_prep "$bios_path/switch/firmware" "$XDG_CONFIG_HOME/Ryujinx/bis/system/Contents"
   dir_prep "$saves_path/switch/ryubing" "$XDG_CONFIG_HOME/Ryujinx/bis/system/save"
+  dir_prep "$mods_path/Ryubing/contents" "$XDG_CONFIG_HOME/Ryujinx/mods/contents/"
+  dir_prep "$logs_path/switch/Ryubing" "$XDG_CONFIG_HOME/Ryujinx/Logs"
 fi
 
 if [[ "$action" == "postmove" ]]; then # Run only post-move commands
-    log d "Replacing placeholders in \"$ryubing_config\""
-    # This is an unfortunate one-off because set_setting_value does not currently support JSON
-    sed -i 's#RETRODECKHOMEDIR#'"$rd_home_path"'#g' "$ryubing_config"
-    sed -i 's#RETRODECKSTORAGEDIR#'"$storage_path"'#g' "$ryubing_config"
-    sed -i 's#RETRODECKROMSDIR#'"$roms_path"'#g' "$ryubing_config"
+  log i "----------------------"
+  log i "Post-moving $component_name"
+  log i "----------------------"
+
+  log d "Replacing placeholders in \"$ryubing_config\""
+  # This is an unfortunate one-off because set_setting_value does not currently support JSON
+  sed -i 's#RETRODECKHOMEDIR#'"$rd_home_path"'#g' "$ryubing_config"
+  sed -i 's#RETRODECKSTORAGEDIR#'"$storage_path"'#g' "$ryubing_config"
+  sed -i 's#RETRODECKROMSDIR#'"$roms_path"'#g' "$ryubing_config"
+  dir_prep "$bios_path/switch/keys" "$XDG_CONFIG_HOME/Ryujinx/system"
+  dir_prep "$bios_path/switch/firmware" "$XDG_CONFIG_HOME/Ryujinx/bis/system/Contents"
+  dir_prep "$saves_path/switch/ryubing" "$XDG_CONFIG_HOME/Ryujinx/bis/system/save"
+  dir_prep "$mods_path/Ryubing/contents" "$XDG_CONFIG_HOME/Ryujinx/mods/contents/"
+  dir_prep "$logs_path/switch/Ryubing" "$XDG_CONFIG_HOME/Ryujinx/Logs"
 fi

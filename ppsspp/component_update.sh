@@ -8,8 +8,8 @@ if [[ $(check_version_is_older_than "$version_being_updated" "0.7.0b") == "true"
   # In version 0.7.0b, the following changes were made that required config file updates/reset or other changes to the filesystem:
   # - Move PPSSPP saves/states to appropriate folders
 
-  dir_prep "$saves_folder/PSP/PPSSPP-SA" "$XDG_CONFIG_HOME/ppsspp/PSP/SAVEDATA"
-  dir_prep "$states_folder/PSP/PPSSPP-SA" "$XDG_CONFIG_HOME/ppsspp/PSP/PPSSPP_STATE"
+  dir_prep "$saves_path/PSP/PPSSPP-SA" "$XDG_CONFIG_HOME/ppsspp/PSP/SAVEDATA"
+  dir_prep "$states_path/PSP/PPSSPP-SA" "$XDG_CONFIG_HOME/ppsspp/PSP/PPSSPP_STATE"
 
   set_setting_value "$ppssppconf" "AutoLoadSaveState" "0" "ppsspp" "General"
 fi
@@ -22,10 +22,10 @@ if [[ $(check_version_is_older_than "$version_being_updated" "0.7.1b") == "true"
 fi
 
 if [[ $(check_version_is_older_than "$version_being_updated" "0.9.1b") == "true" ]]; then
-  log i "Preparing the cheats for PPSSPP..."
-  create_dir -d "$cheats_folder/PPSSPP"
-  dir_prep "$cheats_folder/PPSSPP" "$XDG_CONFIG_HOME/ppsspp/PSP/Cheats"
-  tar -xzf "/app/retrodeck/cheats/ppsspp.tar.gz" -C "$cheats_folder/PPSSPP" --overwrite && log i "Cheats for PPSSPP installed"
+  log i "Preparing the cheats for PPSSPP-SA..."
+  create_dir -d "$cheats_path/PPSSPP"
+  dir_prep "$cheats_path/PPSSPP" "$ppsspp_cheats_path"
+  tar -xzf "/app/retrodeck/cheats/ppsspp.tar.gz" -C "$cheats_path/PPSSPP" --overwrite && log i "Cheats for PPSSPP installed"
 
   set_setting_value "$rd_conf" "ppsspp" "$(get_setting_value "$rd_defaults" "ppsspp" "retrodeck" "cheevos")" "retrodeck" "cheevos"
   set_setting_value "$rd_conf" "ppsspp" "$(get_setting_value "$rd_defaults" "ppsspp" "retrodeck" "cheevos_hardcore")" "retrodeck" "cheevos_hardcore"

@@ -4,11 +4,11 @@
 component_name="$(basename "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")")"
 component_config="/app/retrodeck/components/$component_name/rd_config"
 
-log i "--------------------------------"
-log i "Preparing RetroDECK Framework"
-log i "--------------------------------"
-
 if [[ "$action" == "reset" ]]; then # Update the paths of all folders in retrodeck.cfg and create them
+  log i "--------------------------------"
+  log i "Resetting RetroDECK Framework"
+  log i "--------------------------------"
+
   while read -r config_line; do
     local current_setting_name=$(get_setting_name "$config_line" "retrodeck")
     if [[ ! $current_setting_name =~ (rd_home_path|sdcard) ]]; then # Ignore these locations
@@ -21,7 +21,8 @@ if [[ "$action" == "reset" ]]; then # Update the paths of all folders in retrode
       log d "New setting: $current_setting_name=$new_setting_value"
       # Declare the global variable with the new setting value
       declare -g "$current_setting_name=$new_setting_value"
-      log d "Setting: $current_setting_name=$current_setting_value"
+      export "$current_setting_name"
+      log d "Setting: $current_setting_name=$new_setting_value"
       if [[ ! $current_setting_name == "logs_path" ]]; then # Don't create a logs folder normally, this will be a symlink to the internal logs folder in /var/config/retrodeck/logs
         create_dir "$new_setting_value"
       else # Log folder-specific actions
@@ -34,16 +35,20 @@ if [[ "$action" == "reset" ]]; then # Update the paths of all folders in retrode
 
   create_dir -d "$XDG_CONFIG_HOME/retrodeck/graphics"
   cp -rf "/app/retrodeck/graphics/folder-iconsets" "$XDG_CONFIG_HOME/retrodeck/graphics/"
-  handle_folder_iconsets "$(get_setting_value "$rd_conf" "roms_iconset" "retrodeck" "options")"
 fi
 
 if [[ "$action" == "postmove" ]]; then # Update the paths of any folders that came with the retrodeck folder during a move
+  log i "--------------------------------"
+  log i "Post-moving RetroDECK Framework"
+  log i "--------------------------------"
+  
   while read -r config_line; do
     local current_setting_name=$(get_setting_name "$config_line" "retrodeck")
     if [[ ! $current_setting_name =~ (rd_home_path|sdcard) ]]; then # Ignore these locations
       local current_setting_value=$(get_setting_value "$rd_conf" "$current_setting_name" "retrodeck" "paths")
-      if [[ -d "$path/${current_setting_value#*retrodeck/}" ]]; then # If the folder exists at the new ~/retrodeck location
-          declare -g "$current_setting_name=$path/${current_setting_value#*retrodeck/}"
+      if [[ -d "$rd_home_path/${current_setting_value#*retrodeck/}" ]]; then # If the folder exists at the new ~/retrodeck location
+        declare -g "$current_setting_name=$rd_home_path/${current_setting_value#*retrodeck/}"
+        export "$current_setting_name"
       fi
     fi
   done < <(grep -v '^\s*$' "$rd_conf" | awk '/^\[paths\]/{f=1;next} /^\[/{f=0} f')

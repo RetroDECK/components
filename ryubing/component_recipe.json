@@ -1,15 +1,14 @@
 {
   "ryubing": [
     {
-      "source_url": "io.github.ryubing.Ryujinx",
-      "source_type": "flatpak_id",
+      "source_url": "https://git.ryujinx.app/ryubing/ryujinx/-/releases/ryujinx-*-x64.AppImage",
+      "source_type": "gitlab-release",
       "version": "$RYUBING_DESIRED_VERSION",
-      "dest": "user",
-      "extraction_type": "flatpak",
+      "extraction_type": "appimage",
       "assets": [
         {
           "type": "dir",
-          "source": "bin",
+          "source": "usr/bin",
           "dest": "bin"
         },
         {

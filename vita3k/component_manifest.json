@@ -1,22 +1,30 @@
 {
   "vita3k": {
     "name": "Vita3K",
-    "description": "PlayStation Vita Emulator",
+    "description": "Vita3K is a PlayStation Vita (psvita) emulator.",
     "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/vita3k/vita3k-guide/",
     "url_webpage": "https://vita3k.org/",
     "url_source": "https://github.com/Vita3K/Vita3K",
+    "component_type": "Emulator",
     "system_friendly_name": "PlayStation Vita",
     "system": "psvita",
     "configurator_menus": {
       "tools": {
         "update_vita3k_firmware": {
-          "name": "Install: PS Vita Firmware",
-          "description": "Download and Install: PlayStation Vita firmware for the Vita3K emulator.",
+          "name": "Install: Vita3K Firmware",
+          "description": "Download and install: PlayStation Vita firmware for the Vita3K emulator.",
           "command": {
             "zenity": "update_vita3k_firmware"
           }
         }
       }
-    }
+    },
+    "finit_options":
+    [
+      {
+        "dialog": "finit_install_vita3k_firmware_dialog",
+        "action": "update_vita3k_firmware"
+      }
+    ]
   }
 }

@@ -24,15 +24,15 @@ if [[ $(check_version_is_older_than "$version_being_updated" "0.7.0b") == "true"
   # - Move Dolphin and Primehack save folder names
   # - Disable ask-on-exit in existing Citra / Dolphin / Duckstation / Primehack installs for proper preset functionality
 
-  dir_prep "$mods_folder/Primehack" "$XDG_DATA_HOME/primehack/Load/GraphicMods"
-  dir_prep "$texture_packs_folder/Primehack" "$XDG_DATA_HOME/primehack/Load/Textures"
+  dir_prep "$mods_path/Primehack" "$XDG_DATA_HOME/primehack/Load/GraphicMods"
+  dir_prep "$texture_packs_path/Primehack" "$XDG_DATA_HOME/primehack/Load/Textures"
 
-  mv "$saves_folder/gc/primehack/EUR" "$saves_folder/gc/primehack/EU"
-  mv "$saves_folder/gc/primehack/USA" "$saves_folder/gc/primehack/US"
-  mv "$saves_folder/gc/primehack/JAP" "$saves_folder/gc/primehack/JP"
-  dir_prep "$saves_folder/gc/primehack/EU" "$XDG_DATA_HOME/primehack/GC/EUR"
-  dir_prep "$saves_folder/gc/primehack/US" "$XDG_DATA_HOME/primehack/GC/USA"
-  dir_prep "$saves_folder/gc/primehack/JP" "$XDG_DATA_HOME/primehack/GC/JAP"
+  mv "$saves_path/gc/primehack/EUR" "$saves_path/gc/primehack/EU"
+  mv "$saves_path/gc/primehack/USA" "$saves_path/gc/primehack/US"
+  mv "$saves_path/gc/primehack/JAP" "$saves_path/gc/primehack/JP"
+  dir_prep "$saves_path/gc/primehack/EU" "$XDG_DATA_HOME/primehack/GC/EUR"
+  dir_prep "$saves_path/gc/primehack/US" "$XDG_DATA_HOME/primehack/GC/USA"
+  dir_prep "$saves_path/gc/primehack/JP" "$XDG_DATA_HOME/primehack/GC/JAP"
 
   set_setting_value "$primehackconf" "ConfirmStop" "False" "primehack" "Interface"
 fi

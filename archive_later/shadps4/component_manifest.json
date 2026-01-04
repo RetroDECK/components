@@ -4,7 +4,8 @@
     "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/shadps4/shadps4-guide/",
     "url_webpage": "https://shadps4.net/",
     "url_source": "https://github.com/shadps4-emu/shadps4",
-    "description": "shadPS4 is an PlayStation 4 emulator written in C++",
+    "description": "shadPS4 is a PlayStation 4 (ps4) emulator.",
+    "component_type": "Emulator",
     "system_friendly_name": "Playstation 4",
     "system": "ps4"
   }

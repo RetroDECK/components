@@ -4,8 +4,9 @@
     "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/ruffle/ruffle-guide/",
     "url_webpage": "https://ruffle.rs/",
     "url_source": "https://github.com/ruffle-rs/ruffle/",
-    "description": "An open-source Flash Player emulator",
+    "description": "Ruffle is a Flash Player (flash) emulator.",
+    "component_type": "Emulator",
     "system_friendly_name": "Flash Player Emulator",
-    "system": "ruffle"
+    "system": "flash"
   }
 }

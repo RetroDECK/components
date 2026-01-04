@@ -14,14 +14,14 @@ if [[ $(check_version_is_older_than "$version_being_updated" "0.10.0b") == "true
   log i "Checking for Ryujinx and Yuzu saves to move into Ryubing folder."
   switch_saves_moved=false
 
-  for old_saves_folder in "$saves_path/switch/ryujinx/nand/system/save" \
+  for old_saves_path in "$saves_path/switch/ryujinx/nand/system/save" \
                           "$XDG_HOME_CONFIG/Ryujinx/bis/system/save" \
                           "$saves_path/switch/yuzu/nand/system/save" \
                           "$XDG_HOME_CONFIG/Yuzu/bis/system/save" ; do
 
-    if [[ -d "$old_saves_folder" ]]; then
-      log i "Found Switch saves in $old_saves_folder to move."
-      rsync -a --ignore-existing --mkpath "$old_saves_folder/" "$saves_path/switch/ryubing/"
+    if [[ -d "$old_saves_path" ]]; then
+      log i "Found Switch saves in $old_saves_path to move."
+      rsync -a --ignore-existing --mkpath "$old_saves_path/" "$saves_path/switch/ryubing/"
       switch_saves_moved=true
     fi
 
@@ -29,7 +29,7 @@ if [[ $(check_version_is_older_than "$version_being_updated" "0.10.0b") == "true
 
   if [[ $switch_saves_moved == true ]]; then
     log i "Ryujinx and Yuzu saves have been moved into Ryubing folder."
-    configurator_generic_dialog "RetroDECK - Post Update" "<span foreground='$purple'><b>Ryujinx</b></span> and <span foreground='$purple'><b>Yuzu</b></span> saves have been moved into the <span foreground='$purple'><b>Ryubing</b></span> folder.\nThe old Ryujinx save location can now be safely manually deleted to free up space.\n\n<span foreground='$purple'><b>RetroDECK will not delete any save files automatically.</b></span>"
+    configurator_generic_dialog "RetroDECK - Ryubing Post Update" "<span foreground='$purple'><b>Ryujinx</b></span> and <span foreground='$purple'><b>Yuzu</b></span> save files have been consolidated into the <span foreground='$purple'><b>Ryubing</b></span> directory.\nThe previous Ryujinx save location is no longer in use and may be safely removed manually to reclaim disk space.\n\n<span foreground='$purple'><b>RetroDECK does not automatically delete any save data.</b></span>"
   fi
 
 fi

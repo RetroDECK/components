@@ -5,104 +5,118 @@ component_name="$(basename "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")")"
 component_config="/app/retrodeck/components/$component_name/rd_config"
 component_extras="/app/retrodeck/components/$component_name/rd_extras"
 
-# TODO: do a proper script
-# This is just a placeholder script to test the emulator's flow
-log i "----------------------"
-log i "Preparing $component_name"
-log i "----------------------"
+if [[ "$action" == "reset" ]]; then # Run reset-only commands
+  log i "----------------------"
+  log i "Resetting $component_name"
+  log i "----------------------"
 
-# TODO: probably some of these needs to be put elsewhere
-create_dir "$saves_path/mame-sa"
-create_dir "$saves_path/mame-sa/nvram"
-create_dir "$states_path/mame-sa"
-create_dir "$screenshots_path/mame-sa"
-create_dir "$saves_path/mame-sa/diff"
+  # Saves and States
 
-create_dir "$XDG_CONFIG_HOME/mame/ctrlr"
-create_dir "$XDG_CONFIG_HOME/mame/ini"
-create_dir "$XDG_CONFIG_HOME/mame/cfg"
-create_dir "$XDG_CONFIG_HOME/mame/inp"
+  create_dir "$saves_path/mame-sa"
+  create_dir "$saves_path/mame-sa/nvram"
+  create_dir "$states_path/mame-sa"
+  create_dir "$saves_path/mame-sa/diff"
+  dir_prep "$saves_path/mame-sa/hiscore" "$XDG_CONFIG_HOME/mame/hiscore"
 
-create_dir "$storage_path/mame/plugin-data"
-create_dir "$storage_path/mame/hash"
-create_dir "$bios_path/mame-sa/samples"
-create_dir "$storage_path/mame/assets/artwork"
-create_dir "$storage_path/mame/assets/fonts"
-create_dir "$storage_path/mame/assets/crosshair"
-create_dir "$storage_path/mame/plugins"
-create_dir "$storage_path/mame/assets/language"
-create_dir "$storage_path/mame/assets/software"
-create_dir "$storage_path/mame/assets/comments"
-create_dir "$storage_path/mame/assets/share"
-create_dir "$storage_path/mame/dats"
-create_dir "$storage_path/mame/folders"
-create_dir "$storage_path/mame/assets/cabinets"
-create_dir "$storage_path/mame/assets/cpanel"
-create_dir "$storage_path/mame/assets/pcb"
-create_dir "$storage_path/mame/assets/flyers"
-create_dir "$storage_path/mame/assets/titles"
-create_dir "$storage_path/mame/assets/ends"
-create_dir "$storage_path/mame/assets/marquees"
-create_dir "$storage_path/mame/assets/artwork-preview"
-create_dir "$storage_path/mame/assets/bosses"
-create_dir "$storage_path/mame/assets/logo"
-create_dir "$storage_path/mame/assets/scores"
-create_dir "$storage_path/mame/assets/versus"
-create_dir "$storage_path/mame/assets/gameover"
-create_dir "$storage_path/mame/assets/howto"
-create_dir "$storage_path/mame/assets/select"
-create_dir "$storage_path/mame/assets/icons"
-create_dir "$storage_path/mame/assets/covers"
-create_dir "$storage_path/mame/assets/ui"
-create_dir "$shaders_path/mame/bgfx/"
-create_dir "$XDG_DATA_HOME/mame/plugin-data"
-create_dir "$XDG_DATA_HOME/mame/hash"
-create_dir "$XDG_DATA_HOME/mame/assets/artwork"
-create_dir "$XDG_DATA_HOME/mame/assets/fonts"
-create_dir "$XDG_DATA_HOME/mame/assets/crosshair"
-create_dir "$XDG_DATA_HOME/mame/plugins"
-create_dir "$XDG_DATA_HOME/mame/assets/language"
-create_dir "$XDG_DATA_HOME/mame/assets/software"
-create_dir "$XDG_DATA_HOME/mame/assets/comments"
-create_dir "$XDG_DATA_HOME/mame/assets/share"
-create_dir "$XDG_DATA_HOME/mame/dats"
-create_dir "$XDG_DATA_HOME/mame/folders"
-create_dir "$XDG_DATA_HOME/mame/assets/cabinets"
-create_dir "$XDG_DATA_HOME/mame/assets/cpanel"
-create_dir "$XDG_DATA_HOME/mame/assets/pcb"
-create_dir "$XDG_DATA_HOME/mame/assets/flyers"
-create_dir "$XDG_DATA_HOME/mame/assets/titles"
-create_dir "$XDG_DATA_HOME/mame/assets/ends"
-create_dir "$XDG_DATA_HOME/mame/assets/marquees"
-create_dir "$XDG_DATA_HOME/mame/assets/artwork-preview"
-create_dir "$XDG_DATA_HOME/mame/assets/bosses"
-create_dir "$XDG_DATA_HOME/mame/assets/logo"
-create_dir "$XDG_DATA_HOME/mame/assets/scores"
-create_dir "$XDG_DATA_HOME/mame/assets/versus"
-create_dir "$XDG_DATA_HOME/mame/assets/gameover"
-create_dir "$XDG_DATA_HOME/mame/assets/howto"
-create_dir "$XDG_DATA_HOME/mame/assets/select"
-create_dir "$XDG_DATA_HOME/mame/assets/icons"
-create_dir "$XDG_DATA_HOME/mame/assets/covers"
-create_dir "$XDG_DATA_HOME/mame/assets/ui"
-create_dir "$cheats_path/mame"
+  # Screenshots
 
-dir_prep "$saves_path/mame-sa/hiscore" "$XDG_CONFIG_HOME/mame/hiscore"
+  create_dir "$screenshots_path/mame"
 
-cp -fv "$component_config/mame.ini" "$mame_config"
-cp -fv "$component_config/ui.ini" "$mame_config_ui"
-cp -fv "$component_config/default.cfg" "$mame_config_default"
-cp -fvr "$rd_components/mame/share/mame/bgfx/"* "$shaders_path/mame/bgfx/"
+  # Configs
 
-sed -i 's#RETRODECKROMSDIR#'"$roms_path"'#g' "$mame_config" # one-off as roms folders are a lot
-set_setting_value "$mame_config" "nvram_directory" "$saves_path/mame-sa/nvram" "mame"
-set_setting_value "$mame_config" "state_directory" "$states_path/mame-sa" "mame"
-set_setting_value "$mame_config" "snapshot_directory" "$screenshots_path/mame-sa" "mame"
-set_setting_value "$mame_config" "diff_directory" "$saves_path/mame-sa/diff" "mame"
-set_setting_value "$mame_config" "samplepath" "$bios_path/mame-sa/samples" "mame"
-set_setting_value "$mame_config" "cheatpath" "$cheats_path/mame" "mame"
-set_setting_value "$mame_config" "bgfx_path" "$shaders_path/mame/bgfx/" "mame"
+  create_dir "$XDG_CONFIG_HOME/mame/ctrlr"
+  create_dir "$XDG_CONFIG_HOME/mame/ini"
+  create_dir "$XDG_CONFIG_HOME/mame/cfg"
+  create_dir "$XDG_CONFIG_HOME/mame/inp"
 
-log i "Placing cheats in \"$cheats_path/mame\""
-cheat_zip=$(find "$component_extras" -type f -iname cheat*.zip)
-unzip -j -o "$cheat_zip" 'cheat.7z' -d "$cheats_path/mame"
+  # Mods
+
+  create_dir "$mods_path/mame/plugin-data"
+  create_dir "$mods_path/mame/plugins"
+
+  # BIOS
+
+  create_dir "$bios_path/mame-sa/samples"
+
+  # Shaders
+
+  create_dir "$shaders_path/mame/bgfx/"
+
+  # Cheats
+
+  create_dir "$cheats_path/mame"
+
+  # Storage assets
+
+  create_dir "$storage_path/mame/hash"
+  create_dir "$storage_path/mame/artwork"
+  create_dir "$storage_path/mame/fonts"
+  create_dir "$storage_path/mame/crosshair"
+  create_dir "$storage_path/mame/language"
+  create_dir "$storage_path/mame/software"
+  create_dir "$storage_path/mame/comments"
+  create_dir "$storage_path/mame/share"
+  create_dir "$storage_path/mame/dats"
+  create_dir "$storage_path/mame/folders"
+  create_dir "$storage_path/mame/cabinets"
+  create_dir "$storage_path/mame/cpanel"
+  create_dir "$storage_path/mame/pcb"
+  create_dir "$storage_path/mame/flyers"
+  create_dir "$storage_path/mame/titles"
+  create_dir "$storage_path/mame/ends"
+  create_dir "$storage_path/mame/marquees"
+  create_dir "$storage_path/mame/artwork-preview"
+  create_dir "$storage_path/mame/bosses"
+  create_dir "$storage_path/mame/logo"
+  create_dir "$storage_path/mame/scores"
+  create_dir "$storage_path/mame/versus"
+  create_dir "$storage_path/mame/gameover"
+  create_dir "$storage_path/mame/howto"
+  create_dir "$storage_path/mame/select"
+  create_dir "$storage_path/mame/icons"
+  create_dir "$storage_path/mame/covers"
+  create_dir "$storage_path/mame/ui"
+
+  # Copy configs
+
+  cp -fv "$component_config/mame.ini" "$mame_config"
+  cp -fv "$component_config/ui.ini" "$mame_config_ui"
+  cp -fv "$component_config/default.cfg" "$mame_config_default"
+  cp -fvr "$rd_components/mame/share/mame/bgfx/"* "$shaders_path/mame/bgfx/"
+
+  # Set config values
+
+  sed -i 's#RETRODECKROMSDIR#'"$roms_path"'#g' "$mame_config" # one-off as roms folders are a lot
+  set_setting_value "$mame_config" "nvram_directory" "$saves_path/mame-sa/nvram" "mame"
+  set_setting_value "$mame_config" "state_directory" "$states_path/mame-sa" "mame"
+  set_setting_value "$mame_config" "snapshot_directory" "$screenshots_path/mame" "mame"
+  set_setting_value "$mame_config" "diff_directory" "$saves_path/mame-sa/diff" "mame"
+  set_setting_value "$mame_config" "samplepath" "$bios_path/mame-sa/samples" "mame"
+  set_setting_value "$mame_config" "cheatpath" "$cheats_path/mame" "mame"
+  set_setting_value "$mame_config" "bgfx_path" "$shaders_path/mame/bgfx/" "mame"
+  set_setting_value "$mame_config" "homepath" "$mods_path/mame/plugin-data" "mame"
+  set_setting_value "$mame_config" "pluginspath" "$mods_path/mame/plugins" "mame"
+
+  log i "Placing cheats in \"$cheats_path/mame\""
+  cheat_zip=$(find "$component_extras" -type f -iname cheat*.zip)
+  unzip -j -o "$cheat_zip" 'cheat.7z' -d "$cheats_path/mame"
+fi
+
+if [[ "$action" == "postmove" ]]; then # Run reset-only commands
+  log i "----------------------"
+  log i "Post-moving $component_name"
+  log i "----------------------"
+
+  dir_prep "$saves_path/mame-sa/hiscore" "$XDG_CONFIG_HOME/mame/hiscore"
+
+  sed -i 's#RETRODECKROMSDIR#'"$roms_path"'#g' "$mame_config" # one-off as roms folders are a lot
+  set_setting_value "$mame_config" "nvram_directory" "$saves_path/mame-sa/nvram" "mame"
+  set_setting_value "$mame_config" "state_directory" "$states_path/mame-sa" "mame"
+  set_setting_value "$mame_config" "snapshot_directory" "$screenshots_path/mame" "mame"
+  set_setting_value "$mame_config" "diff_directory" "$saves_path/mame-sa/diff" "mame"
+  set_setting_value "$mame_config" "samplepath" "$bios_path/mame-sa/samples" "mame"
+  set_setting_value "$mame_config" "cheatpath" "$cheats_path/mame" "mame"
+  set_setting_value "$mame_config" "bgfx_path" "$shaders_path/mame/bgfx/" "mame"
+  set_setting_value "$mame_config" "homepath" "$mods_path/mame/plugin-data" "mame"
+  set_setting_value "$mame_config" "pluginspath" "$mods_path/mame/plugins" "mame"
+fi

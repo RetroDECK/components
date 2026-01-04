@@ -1,0 +1,7 @@
+The EasyRPG team is responsible for maintaining the RA core.
+
+Given this arrangement, there appears to be little justification for incorporating the full standalone version into RetroDECK, unless a compelling reasons can be presented by the users why this should be warranted.
+
+// Lazorne
+
+28-12-25

@@ -1,12 +1,13 @@
 {
   "ppsspp": {
     "name": "PPSSPP",
-    "description": "PlayStation Portable Emulator",
+    "description": "PPSSPP is a PlayStation Portable (psp) emulator.",
     "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/ppsspp/ppsspp-guide/",
     "url_webpage": "https://www.ppsspp.org/",
     "url_source": "https://github.com/hrydgard/ppsspp",
+    "component_type": "Emulator",
     "system": "psp",
-    "system_friendly_name": "Sony Playstation Portable",
+    "system_friendly_name": "Playstation Portable",
     "compatible_presets": {
       "savestate_auto_load": [
         "false",
@@ -30,7 +31,7 @@
           "action": "change",
           "new_setting_value": "2",
           "section": "General",
-          "target_file": "$ppssppconf",
+          "target_file": "$ppsspp_config",
           "defaults_file": "$ppsspp_rd_config_dir/ppsspp.ini"
         }
       ],
@@ -41,7 +42,7 @@
           "action": "change",
           "new_setting_value": "True",
           "section": "Achievements",
-          "target_file": "$ppssppconf",
+          "target_file": "$ppsspp_config",
           "defaults_file": "$ppsspp_rd_config_dir/ppsspp.ini"
         },
         {
@@ -50,7 +51,7 @@
           "action": "change",
           "new_setting_value": "$cheevos_username",
           "section": "Achievements",
-          "target_file": "$ppssppconf",
+          "target_file": "$ppsspp_config",
           "defaults_file": "$ppsspp_rd_config_dir/ppsspp.ini"
         },
         {
@@ -70,7 +71,7 @@
           "action": "change",
           "new_setting_value": "True",
           "section": "Achievements",
-          "target_file": "$ppssppconf",
+          "target_file": "$ppsspp_config",
           "defaults_file": "$ppsspp_rd_config_dir/ppsspp.ini"
         }
       ]

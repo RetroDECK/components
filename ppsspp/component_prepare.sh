@@ -7,7 +7,7 @@ component_extras="/app/retrodeck/components/$component_name/rd_extras"
 
 if [[ "$action" == "reset" ]]; then # Run reset-only commands
   log i "------------------------"
-  log i "Preparing $component_name"
+  log i "Resetting $component_name"
   log i "------------------------"
 
   create_dir -d "$XDG_CONFIG_HOME/ppsspp/PSP/SYSTEM/"
@@ -15,20 +15,22 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
   set_setting_value "$ppsspp_config" "CurrentDirectory" "$roms_path/psp" "ppsspp" "General"
   dir_prep "$saves_path/PSP/PPSSPP-SA" "$XDG_CONFIG_HOME/ppsspp/PSP/SAVEDATA"
   dir_prep "$states_path/PSP/PPSSPP-SA" "$XDG_CONFIG_HOME/ppsspp/PSP/PPSSPP_STATE"
-  dir_prep "$texture_packs_path/PPSSPP-SA" "$XDG_CONFIG_HOME/ppsspp/PSP/TEXTURES"
-  dir_prep "$shaders_path/PPSSPP-SA" "$XDG_CONFIG_HOME/ppsspp/assets/shaders"
+  dir_prep "$texture_packs_path/PPSSPP/TEXTURES" "$ppsspp_textures_path"
+  dir_prep "$shaders_path/PPSSPP" "$ppsspp_shaders_path"
+  dir_prep "$mods_path/PPSSPP/PLUGINS" "$ppsspp_mods_path"
+  dir_prep "$logs_path/PPSSPP" "$ppsspp_logs_path"
 
   log i "Preparing PPSSPP cheats"
-  create_dir -d "$cheats_path/PPSSPP-SA"
-  dir_prep "$cheats_path/PPSSPP-SA" "$XDG_CONFIG_HOME/ppsspp/PSP/Cheats"
-  if [[ -d "$cheats_path/PPSSPP-SA" && "$(ls -A "$cheats_path"/PPSSPP-SA)" ]]; then
-    backup_file="$backups_path/cheats/PPSSPP-SA-$(date +%y%m%d).tar.gz"
+  create_dir -d "$cheats_path/PPSSPP"
+  dir_prep "$cheats_path/PPSSPP" "$ppsspp_cheats_path"
+  if [[ -d "$cheats_path/PPSSPP" && "$(ls -A "$cheats_path"/PPSSPP-SA)" ]]; then
+    backup_file="$backups_path/cheats/PPSSPP-$(date +%y%m%d).tar.gz"
     create_dir "$(dirname "$backup_file")"
     tar -czf "$backup_file" -C "$cheats_path" PPSSPP
     log i "PPSSPP cheats backed up to $backup_file"
   fi
-  create_dir "$cheats_path/PPSSPP/"
-  unzip -q -o -j "$component_extras/CWCheat-Database-Plus--master.zip" "*/cheat.db" -d "$cheats_path/PPSSPP/"
+
+  unzip -q -o -j "$component_extras/CWCheat-Database-Plus--master.zip" "*/cheat.db" -d "$cheats_path/PPSSPP-SA/"
 
   log i "Preparing PPSSPP BIOS"
   create_dir -d "$bios_path/PPSSPP"
@@ -36,10 +38,16 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
 fi
 
 if [[ "$action" == "postmove" ]]; then # Run only post-move commands
+  log i "------------------------"
+  log i "Post-moving $component_name"
+  log i "------------------------"
+
   set_setting_value "$ppsspp_config" "CurrentDirectory" "$roms_path/psp" "ppsspp" "General"
   dir_prep "$saves_path/PSP/PPSSPP-SA" "$XDG_CONFIG_HOME/ppsspp/PSP/SAVEDATA"
   dir_prep "$states_path/PSP/PPSSPP-SA" "$XDG_CONFIG_HOME/ppsspp/PSP/PPSSPP_STATE"
-  dir_prep "$texture_packs_path/PPSSPP-SA" "$XDG_CONFIG_HOME/ppsspp/PSP/TEXTURES"
-  dir_prep "$shaders_path/PPSSPP-SA" "$XDG_CONFIG_HOME/ppsspp/assets/shaders"
-  dir_prep "$cheats_path/PPSSPP-SA" "$XDG_CONFIG_HOME/ppsspp/PSP/Cheats"
+  dir_prep "$texture_packs_path/PPSSPP/TEXTURES" "$ppsspp_textures_path"
+  dir_prep "$shaders_path/PPSSPP" "$ppsspp_shaders_path"
+  dir_prep "$cheats_path/PPSSPP" "$ppsspp_cheats_path"
+  dir_prep "$mods_path/PPSSPP/PLUGINS" "$ppsspp_mods_path"
+  dir_prep "$logs_path/PPSSPP" "$ppsspp_logs_path"
 fi

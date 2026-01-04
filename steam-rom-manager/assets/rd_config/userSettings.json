@@ -1,29 +1,33 @@
 {
 	"fuzzyMatcher": {
-	  "verbose": false,
-	  "filterProviders": true
+		"verbose": false,
+		"filterProviders": true,
+		"timestamps": {
+			"check": 1764293978766,
+			"download": 1764293978766
+		}
 	},
 	"environmentVariables": {
-	  "steamDirectory": "",
-		  "userAccounts": [
-			  "steamlogin"
-		  ],
-	  "romsDirectory": "",
-	  "retroarchPath": "",
-	  "raCoresDirectory": "",
-	  "localImagesDirectory": ""
+		"steamDirectory": "",
+		"userAccounts": [
+			"steamlogin"
+		],
+		"romsDirectory": "",
+		"retroarchPath": "",
+		"raCoresDirectory": "",
+		"localImagesDirectory": ""
 	},
 	"previewSettings": {
-		  "imageLoadStrategy": "loadLazy",
-	  "retrieveCurrentSteamImages": true,
-		  "disableCategories": false,
-	  "deleteDisabledShortcuts": false,
-	  "imageZoomPercentage": 30,
-	  "hideUserAccount": false
+		"imageLoadStrategy": "loadLazy",
+		"retrieveCurrentSteamImages": true,
+		"disableCategories": false,
+		"deleteDisabledShortcuts": false,
+		"imageZoomPercentage": 30,
+		"hideUserAccount": false
 	},
 	"enabledProviders": [
-		  "sgdb",
-		  "steamCDN"
+		"sgdb",
+		"steamCDN"
 	],
 	"batchDownloadSize": 50,
 	"language": "en-US",
@@ -31,10 +35,10 @@
 	"offlineMode": false,
 	"navigationWidth": 0,
 	"clearLogOnTest": false,
-	  "version": 10,
-	  "dnsServers": [],
-	  "autoUpdate": true,
-	  "autoKillSteam": false,
-	  "autoRestartSteam": false
-  }
-  
+	"version": 10,
+	"dnsServers": [],
+	"autoUpdate": true,
+	"autoKillSteam": false,
+	"autoRestartSteam": false,
+	"emudeckInstall": false
+}

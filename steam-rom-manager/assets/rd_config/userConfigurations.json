@@ -23,7 +23,7 @@
         "drmProtect": false,
         "userAccounts": {
             "specifiedAccounts": [
-                ""
+                "xargonwan"
             ]
         },
         "parserInputs": {
@@ -138,8 +138,6 @@
         "executableModifier": "",
         "startInDirectory": "",
         "titleModifier": "",
-        "fetchControllerTemplatesButton": null,
-        "removeControllersButton": null,
         "steamInputEnabled": "2",
         "imageProviders": [],
         "onlineImageQueries": [
@@ -149,7 +147,7 @@
         "drmProtect": false,
         "userAccounts": {
             "specifiedAccounts": [
-                ""
+                "xargonwan"
             ]
         },
         "parserInputs": {
@@ -232,7 +230,6 @@
                 ],
                 "sizes": [],
                 "sizesHero": [],
-                "sizesTall": null,
                 "sizesIcon": []
             }
         },

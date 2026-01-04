@@ -4,7 +4,8 @@
     "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/gargoyle/gargoyle-guide/.",
     "url_webpage": "https://ccxvii.net/gargoyle/",
     "url_source": "https://github.com/garglk/garglk/",
-    "description": "Gargoyle is an IF player supporting multiple formats",
+    "description": "Gargoyle is a IF player and emulator supporting: Z‑Machine, TADS, Hugo, Glulx and more.",
+    "component_type": "Emulator",
     "system_friendly_name": "Interactive Fiction Player",
     "system": "gargoyle"
   }

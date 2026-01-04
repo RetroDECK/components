@@ -1,7 +1,8 @@
 {
   "es-de": {
-    "description": "ES-DE Frontend",
+    "description": "ES-DE Frontend is a game-launcher frontend.",
     "name": "ES-DE",
+    "component_type": "System",
     "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_system_guides/es-de/esde-guide/.",
     "url_webpage": "https://es-de.org/",
     "url_source": "https://gitlab.com/es-de/emulationstation-de"

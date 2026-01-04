@@ -239,6 +239,12 @@ fi
 
 Create default configuration files in `assets/rd_config/` directory. These should be "RetroDECK defaults" - configure the component to best fit RetroDECK usage by:
 
+## CI: Force rebuild and per-component detection
+
+- **Force rebuild**: When running the `Alchemic Circle: Build RetroDECK Components` workflow manually you can set the `force_rebuild` input to `true` to force rebuilding all components. CI or other runners can also set the environment variable `FORCE_REBUILD=true` to achieve the same effect.
+- **Per-component rebuilds**: The workflow runs `automation-tools/detect_component_changes.sh` for each component. If files in a component folder changed (PR or pushed commits), the workflow will force rebuilding that component even if the cooker reference version matches.
+
+
 - Removing personal paths (home directories, user-specific locations)
 - Setting appropriate default settings for RetroDECK environment
 - Configuring paths to use RetroDECK variables ($roms_path, $saves_path, etc.)

@@ -78,7 +78,7 @@ download() {
   log info "Destination: $final_dest"
 
   download_cmd() {
-    wget -q -O "$final_dest" "$final_url" 2>&1
+    curl -o "$final_dest" "$final_url" 2>&1
   }
 
   if ! try "$max_retries" "$initial_delay" "$max_delay" download_cmd; then

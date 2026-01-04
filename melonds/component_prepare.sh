@@ -6,7 +6,7 @@ component_config="/app/retrodeck/components/$component_name/rd_config"
 
 if [[ "$action" == "reset" ]]; then # Run reset-only commands
   log i "----------------------"
-  log i "Preparing $component_name"
+  log i "Resetting $component_name"
   log i "----------------------"
 
   create_dir -d "$XDG_CONFIG_HOME/melonDS/"
@@ -22,10 +22,14 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
 fi
 
 if [[ "$action" == "postmove" ]]; then # Run only post-move commands
-    dir_prep "$bios_path" "$XDG_CONFIG_HOME/melonDS/bios"
-    set_setting_value "$melonds_config" "BIOS9Path" "$bios_path/bios9.bin" "DS" "melonds"
-    set_setting_value "$melonds_config" "BIOS7Path" "$bios_path/bios7.bin" "DS" "melonds"
-    set_setting_value "$melonds_config" "FirmwarePath" "$bios_path/firmware.bin" "DS" "melonds"
-    set_setting_value "$melonds_config" "SaveFilePath" "$saves_path/nds/melonds" "Instance0" "melonds"
-    set_setting_value "$melonds_config" "SavestatePath" "$states_path/nds/melonds" "Instance0" "melonds"
+  log i "----------------------"
+  log i "Post-moving $component_name"
+  log i "----------------------"
+
+  dir_prep "$bios_path" "$XDG_CONFIG_HOME/melonDS/bios"
+  set_setting_value "$melonds_config" "BIOS9Path" "$bios_path/bios9.bin" "DS" "melonds"
+  set_setting_value "$melonds_config" "BIOS7Path" "$bios_path/bios7.bin" "DS" "melonds"
+  set_setting_value "$melonds_config" "FirmwarePath" "$bios_path/firmware.bin" "DS" "melonds"
+  set_setting_value "$melonds_config" "SaveFilePath" "$saves_path/nds/melonds" "Instance0" "melonds"
+  set_setting_value "$melonds_config" "SavestatePath" "$states_path/nds/melonds" "Instance0" "melonds"
 fi

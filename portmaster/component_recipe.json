@@ -1,14 +1,14 @@
 {
   "portmaster": [
     {
-      "source_url": "https://github.com/PortsMaster/PortMaster-GUI/releases/latest/download/retrodeck.portmaster.zip",
-      "source_type": "github-release",
+      "source_url": "$REPO_ROOT/$COMPONENT_NAME",
+      "source_type": "local",
       "version": "$PORTMASTER_DESIRED_VERSION",
       "extraction_type": "local",
       "assets": [
         {
           "type": "file-rename",
-          "source": "$DOWNLOADED_FILE",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/assets/retrodeck.portmaster.zip",
           "dest": "$COMPONENT_ARTIFACT_ROOT/PortMaster.zip"
         },
         {
@@ -50,6 +50,33 @@
           "type": "file",
           "source": "$REPO_ROOT/$COMPONENT_NAME/component_update.sh",
           "dest": "$COMPONENT_ARTIFACT_ROOT"
+        }
+      ]
+      ,
+      "libs": [
+        {
+          "library": "libSDL2.so",
+          "runtime_name": "org.kde.Sdk",
+          "runtime_version": "6.7",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libSDL2_image-2.0.so",
+          "runtime_name": "org.kde.Sdk",
+          "runtime_version": "6.7",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libSDL2_ttf-2.0.so.0",
+          "runtime_name": "org.kde.Platform",
+          "runtime_version": "6.7",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "liblzma.so.5",
+          "runtime_name": "org.freedesktop.Platform",
+          "runtime_version": "25.08",
+          "dest": "shared-libs"
         }
       ]
     }

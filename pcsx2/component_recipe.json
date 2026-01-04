@@ -1,7 +1,7 @@
 {
   "pcsx2": [
     {
-      "source_url": "https://github.com/PCSX2/pcsx2/releases/download/{VERSION}/pcsx2-{VERSION}-linux-appimage-x64-Qt.AppImage",
+      "source_url": "https://github.com/PCSX2/pcsx2/releases/download/{VERSION}/pcsx2-*-linux-appimage-x64-Qt.AppImage",
       "source_type": "github_release",
       "version": "$PCSX2_DESIRED_VERSION",
       "extraction_type": "appimage",
@@ -10,11 +10,6 @@
           "type": "dir",
           "source": "usr/bin",
           "dest": "bin"
-        },
-        {
-          "type": "dir",
-          "source": "apprun-hooks",
-          "dest": "apprun-hooks"
         },
         {
           "type": "dir",
@@ -78,6 +73,19 @@
           "type": "tar.gz",
           "source": "cheats/.",
           "dest": "rd_extras/pcsx2-cheats"
+        }
+      ]
+    },
+    {
+      "source_url": "https://github.com/PCSX2/pcsx2_patches",
+      "source_type": "git",
+      "version": "latest",
+      "extraction_type": "local",
+      "assets": [
+        {
+          "type": "tar.gz",
+          "source": "patches/.",
+          "dest": "rd_extras/pcsx2-patches"
         }
       ]
     }

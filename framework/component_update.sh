@@ -41,19 +41,19 @@ if [[ $(check_version_is_older_than "$version_being_updated" "0.7.0b") == "true"
 
   update_rd_conf # Expand retrodeck.cfg to latest template
   set_setting_value "$rd_conf" "screenshots_folder" "$rdhome/screenshots"
-  set_setting_value "$rd_conf" "mods_folder" "$rdhome/mods"
-  set_setting_value "$rd_conf" "texture_packs_folder" "$rdhome/texture_packs"
+  set_setting_value "$rd_conf" "mods_path" "$rdhome/mods"
+  set_setting_value "$rd_conf" "texture_packs_path" "$rdhome/texture_packs"
   set_setting_value "$rd_conf" "borders_folder" "$rdhome/borders"
   conf_read
 
-  create_dir "$mods_folder"
-  create_dir "$texture_packs_folder"
-  create_dir "$borders_folder"
+  create_dir "$mods_path"
+  create_dir "$texture_packs_path"
+  create_dir "$borders_path"
 
-  dir_prep "$mods_folder/Citra" "$XDG_DATA_HOME/citra-emu/load/mods"
-  dir_prep "$texture_packs_folder/Citra" "$XDG_DATA_HOME/citra-emu/load/textures"
-  dir_prep "$mods_folder/Yuzu" "$XDG_DATA_HOME/yuzu/load"
-  dir_prep "$texture_packs_folder/Duckstation" "$XDG_CONFIG_HOME/duckstation/textures"
+  dir_prep "$mods_path/Citra" "$XDG_DATA_HOME/citra-emu/load/mods"
+  dir_prep "$texture_packs_path/Citra" "$XDG_DATA_HOME/citra-emu/load/textures"
+  dir_prep "$mods_path/Yuzu" "$XDG_DATA_HOME/yuzu/load"
+  dir_prep "$texture_packs_path/Duckstation" "$XDG_CONFIG_HOME/duckstation/textures"
 
   rm -rf "$XDG_CONFIG_HOME/retrodeck/tools"
 
@@ -99,12 +99,12 @@ if [[ $(check_version_is_older_than "$version_being_updated" "0.8.0b") == "true"
   sed -i 's^nintendo_button_layout^abxy_button_swap^' "$rd_conf" # This is a one-off sed statement as there are no functions for replacing section names
 
   if [ -d "$rdhome/.logs" ]; then
-    mv "$rdhome/.logs" "$logs_folder"
-    log i "Old log folder \"$rdhome/.logs\" found. Renamed it as \"$logs_folder\""
+    mv "$rdhome/.logs" "$logs_path"
+    log i "Old log folder \"$rdhome/.logs\" found. Renamed it as \"$logs_path\""
   fi
 
-  log i "Switch firmware folder should be moved in \"$bios_folder/switch/firmware\" from \"$bios_folder/switch/registered\""
-  mv "$bios_folder/switch/registered" "$bios_folder/switch/firmware"
+  log i "Switch firmware folder should be moved in \"$bios_path/switch/firmware\" from \"$bios_path/switch/registered\""
+  mv "$bios_path/switch/registered" "$bios_path/switch/firmware"
 fi
 
 if [[ $(check_version_is_older_than "$version_being_updated" "0.8.1b") == "true" ]]; then
@@ -201,9 +201,9 @@ fi
 if [[ $(check_version_is_older_than "$version_being_updated" "0.9.0b") == "true" ]]; then
   # Create a Zenity window with checkboxes for each reset option and two buttons
   while true; do
-    choices=$(rd_zenity --list --checklist --title="RetroDECK Reset Options" \
+    choices=$(rd_zenity --list --checklist --title="RetroDECK - Reset Options" \
     --window-icon="/app/share/icons/hicolor/scalable/apps/net.retrodeck.retrodeck.svg" \
-    --text="The following components have been updated and need to be reset or fixed to ensure compatibility with the new version: select the components you want to reset.\n\nNot resetting them may cause serious issues with your installation.\nYou can also reset them manually later via Configurator -> Troubleshooting -> Reset Component.\n\nNote: Your games, saves, game collections and scraped data will not be affected." \
+    --text="The following components have been updated and need to be reset or fixed to ensure compatibility with the new version. Please select the components you want to reset.\n\n\<span foreground='$purple'><b>Not resetting them may cause serious issues with your installation.</b></span>\n\You can also reset them manually later via: Configurator -> Troubleshooting -> Reset Component.\n\n\<span foreground='$purple'><b>Note: Your games, saves, collections, and scraped data will not be affected.</b></span>" \
     --column="Select" --column="Component" --column="Description" --width="1100" --height="700" \
     TRUE "ES-DE" "Needs to be reset to accommodate new paths, theme settings, and general configurations" \
     TRUE "Duckstation" "Configuration reset to RetroDECK defaults to ensure compatibility" \
@@ -229,7 +229,7 @@ if [[ $(check_version_is_older_than "$version_being_updated" "0.9.0b") == "true"
     fi
 
     if [[ $? -eq 0 && -n "$choices" ]]; then
-      if ! rd_zenity --question --title="Confirmation" --text="Are you sure you want to proceed with only the selected options?\n\nThis might cause issues in RetroDECK"; then
+      if ! rd_zenity --question --title="RetroDECK - Reset Confirmation" --text="Are you sure you want to proceed with only the selected options?\n\n\<span foreground='$purple'><b>Warning: This might cause issues in RetroDECK.</b></span>"; then
         log i "User is not sure, showing the checklist window again."
         continue
       else
@@ -239,7 +239,7 @@ if [[ $(check_version_is_older_than "$version_being_updated" "0.9.0b") == "true"
     fi
 
     if [[ $? == 0 ]]; then
-    if ! rd_zenity --question --title="Confirmation" --text="Are you sure you want to skip the reset process?\n\nThis might cause issues in RetroDECK"; then
+    if ! rd_zenity --question --title="RetroDECK - Reset Confirmation" --text="Are you sure you want to proceed with only the selected options?\n\n\<span foreground='$purple'><b>Warning: This might cause issues in RetroDECK.</b></span>"; then
       log i "User is not sure, showing the checklist window again."
       continue
     else
@@ -263,9 +263,9 @@ if [[ $(check_version_is_older_than "$version_being_updated" "0.9.0b") == "true"
 
   # Cemu key file migration
   if [[ -f "$XDG_DATA_HOME/Cemu/keys.txt" ]]; then
-    log i "Found Cemu keys.txt in \"$XDG_DATA_HOME/Cemu/keys.txt\", moving it to \"$bios_folder/cemu/keys.txt\""
-    mv -f "$XDG_DATA_HOME/Cemu/keys.txt" "$bios_folder/cemu/keys.txt"
-    ln -s "$bios_folder/cemu/keys.txt" "$XDG_DATA_HOME/Cemu/keys.txt"
+    log i "Found Cemu keys.txt in \"$XDG_DATA_HOME/Cemu/keys.txt\", moving it to \"$bios_path/cemu/keys.txt\""
+    mv -f "$XDG_DATA_HOME/Cemu/keys.txt" "$bios_path/cemu/keys.txt"
+    ln -s "$bios_path/cemu/keys.txt" "$XDG_DATA_HOME/Cemu/keys.txt"
   fi
 
   # Duckstation reset
@@ -279,9 +279,9 @@ if [[ $(check_version_is_older_than "$version_being_updated" "0.9.0b") == "true"
     log i "User agreed to Ryujinx reset"
     prepare_component "reset" "ryujinx"
   else
-    create_dir "$logs_folder/ryujinx"
-    create_dir "$mods_folder/ryujinx"
-    create_dir "$screenshots_folder/ryujinx"
+    create_dir "$logs_path/ryujinx"
+    create_dir "$mods_path/ryujinx"
+    create_dir "$screenshots_path/ryujinx"
   fi
 
   # Dolphin reset: Setting screen size to 'Auto' instead of 'Widescreen' to ensure better game compatibility
@@ -300,22 +300,22 @@ if [[ $(check_version_is_older_than "$version_being_updated" "0.9.0b") == "true"
 
   log i "Moving Ryujinx data to the new locations"
   if [[ -d "$XDG_CONFIG_HOME/Ryujinx/bis" ]]; then
-    mv -f "$XDG_CONFIG_HOME/Ryujinx/bis"/* "$saves_folder/switch/ryujinx/nand" && rm -rf "$XDG_CONFIG_HOME/Ryujinx/bis" && log i "Migrated Ryujinx nand data to the new location"
+    mv -f "$XDG_CONFIG_HOME/Ryujinx/bis"/* "$saves_path/switch/ryujinx/nand" && rm -rf "$XDG_CONFIG_HOME/Ryujinx/bis" && log i "Migrated Ryujinx nand data to the new location"
   fi
   if [[ -d "$XDG_CONFIG_HOME/Ryujinx/sdcard" ]]; then
-    mv -f "$XDG_CONFIG_HOME/Ryujinx/sdcard"/* "$saves_folder/switch/ryujinx/sdcard" && rm -rf "$XDG_CONFIG_HOME/Ryujinx/sdcard" && log i "Migrated Ryujinx sdcard data to the new location"
+    mv -f "$XDG_CONFIG_HOME/Ryujinx/sdcard"/* "$saves_path/switch/ryujinx/sdcard" && rm -rf "$XDG_CONFIG_HOME/Ryujinx/sdcard" && log i "Migrated Ryujinx sdcard data to the new location"
   fi
   if [[ -d "$XDG_CONFIG_HOME/Ryujinx/bis/system/Contents/registered" ]]; then
-    mv -f "$XDG_CONFIG_HOME/Ryujinx/bis/system/Contents/registered"/* "$bios_folder/switch/firmware" && rm -rf "$XDG_CONFIG_HOME/Ryujinx/bis/system/Contents/registered" && log i "Migration of Ryujinx firmware data to the new location"
+    mv -f "$XDG_CONFIG_HOME/Ryujinx/bis/system/Contents/registered"/* "$bios_path/switch/firmware" && rm -rf "$XDG_CONFIG_HOME/Ryujinx/bis/system/Contents/registered" && log i "Migration of Ryujinx firmware data to the new location"
   fi
   if [[ -d "$XDG_CONFIG_HOME/Ryujinx/system" ]]; then
-    mv -f "$XDG_CONFIG_HOME/Ryujinx/system"/* "$bios_folder/switch/keys" && rm -rf "$XDG_CONFIG_HOME/Ryujinx/system" && log i "Migrated Ryujinx keys data to the new location"
+    mv -f "$XDG_CONFIG_HOME/Ryujinx/system"/* "$bios_path/switch/keys" && rm -rf "$XDG_CONFIG_HOME/Ryujinx/system" && log i "Migrated Ryujinx keys data to the new location"
   fi
   if [[ -d "$XDG_CONFIG_HOME/Ryujinx/mods" ]]; then
-    mv -f "$XDG_CONFIG_HOME/Ryujinx/mods"/* "$mods_folder/ryujinx" && rm -rf "$XDG_CONFIG_HOME/Ryujinx/mods" && log i "Migrated Ryujinx mods data to the new location"
+    mv -f "$XDG_CONFIG_HOME/Ryujinx/mods"/* "$mods_path/ryujinx" && rm -rf "$XDG_CONFIG_HOME/Ryujinx/mods" && log i "Migrated Ryujinx mods data to the new location"
   fi
   if [[ -d "$XDG_CONFIG_HOME/Ryujinx/screenshots" ]]; then
-    mv -f "$XDG_CONFIG_HOME/Ryujinx/screenshots"/* "$screenshots_folder/ryujinx" && rm -rf "$XDG_CONFIG_HOME/Ryujinx/screenshots" && log i "Migrated Ryujinx screenshots to the new location"
+    mv -f "$XDG_CONFIG_HOME/Ryujinx/screenshots"/* "$screenshots_path/ryujinx" && rm -rf "$XDG_CONFIG_HOME/Ryujinx/screenshots" && log i "Migrated Ryujinx screenshots to the new location"
   fi
 fi
 
@@ -324,9 +324,9 @@ if [[ $(check_version_is_older_than "$version_being_updated" "0.9.1b") == "true"
 
   # Create a Zenity window with checkboxes for each reset option and two buttons
   while true; do
-    choices=$(rd_zenity --list --checklist --title="RetroDECK Reset Options" \
+    choices=$(rd_zenity --list --checklist --title="RetroDECK - Reset Options" \
     --window-icon="/app/share/icons/hicolor/scalable/apps/net.retrodeck.retrodeck.svg" \
-    --text="The following components have been updated and need to be reset or fixed to ensure compatibility with the new version: select the components you want to reset.\n\nNot resetting them may cause serious issues with your installation.\nYou can also reset them manually later via Configurator -> Troubleshooting -> Reset Component.\n\nNote: Your games, saves, game collections and scraped data will not be affected." \
+    --text="The following components have been updated and need to be reset or fixed to ensure compatibility with the new version. Please select the components you want to reset.\n\n\<span foreground='$purple'><b>Not resetting them may cause serious issues with your installation.</b></span>\n\You can also reset them manually later via: Configurator -> Troubleshooting -> Reset Component.\n\n\<span foreground='$purple'><b>Note: Your games, saves, collections, and scraped data will not be affected.</b></span>" \
     --column="Select" --column="Component" --column="Description" --width="1100" --height="700" \
     TRUE "Dolphin - GameCube Controller" "The GameCube controller configuration needs to be reset to fix a trigger issue" \
     TRUE "RetroArch" "Needs to be reset to fix the borders issue on some sytems such as psx" \
@@ -350,7 +350,7 @@ if [[ $(check_version_is_older_than "$version_being_updated" "0.9.1b") == "true"
     fi
 
     if [[ $? -eq 0 && -n "$choices" ]]; then
-      if ! rd_zenity --question --title="Confirmation" --text="Are you sure you want to proceed with only the selected options?\n\nThis might cause issues in RetroDECK"; then
+      if ! rd_zenity --question --title="Confirmation" --text="Are you sure you want to proceed with only the selected options?\n\n\<span foreground='$purple'><b>Warning: This might cause issues in RetroDECK.</b></span>"; then
         log i "User is not sure, showing the checklist window again."
         continue
       else
@@ -360,7 +360,7 @@ if [[ $(check_version_is_older_than "$version_being_updated" "0.9.1b") == "true"
     fi
 
     if [[ $? == 0 ]]; then
-    if ! rd_zenity --question --title="Confirmation" --text="Are you sure you want to skip the reset process?\n\nThis might cause issues in RetroDECK"; then
+    if ! rd_zenity --question --title="Confirmation" --text="Are you sure you want to proceed with only the selected options?\n\n\<span foreground='$purple'><b>Warning: This might cause issues in RetroDECK.</b></span>"; then
       log i "User is not sure, showing the checklist window again."
       continue
     else
@@ -417,7 +417,7 @@ if [[ $(check_version_is_older_than "$version_being_updated" "0.9.2b") == "true"
   prepare_component "reset" "steam-rom-manager"
 
   while true; do
-    choices=$(rd_zenity --list --checklist --title="RetroDECK Steam Sync Reset Options" \
+    choices=$(rd_zenity --list --checklist --title="RetroDECK - Steam Sync: Reset Options" \
     --window-icon="/app/share/icons/hicolor/scalable/apps/net.retrodeck.retrodeck.svg" \
     --text="In RetroDECK 0.9.2b, we upgraded our Steam Sync feature, which may require <span foreground='$purple' size='larger'><b>rebuilding the shortcuts</b></span> in Steam.\nYour ES-DE favorites will remain unchanged. Any games you have favorited will be recreated, but <span foreground='$purple' size='larger'><b>last-played information and custom artwork changes may be lost</b></span>.\nIf you added RetroDECK to Steam through our Configurator, it will also be re-added during this process.\n\nSelect the actions you want to perform:" \
     --column="Select" --column="Action" --column="Description" --width="1100" --height="700" \
@@ -443,7 +443,7 @@ if [[ $(check_version_is_older_than "$version_being_updated" "0.9.2b") == "true"
     fi
 
     if [[ $? -eq 0 && -n "$choices" ]]; then
-      if ! rd_zenity --question --title="Confirmation" --text="Are you sure you want to proceed with only the selected options?\n\nThis might cause issues in RetroDECK"; then
+      if ! rd_zenity --question --title="Confirmation" --text="Are you sure you want to proceed with only the selected options?\n\n\<span foreground='$purple'><b>Warning: This might cause issues in RetroDECK.</b></span>"; then
         log i "User is not sure, showing the checklist window again."
         continue
       else
@@ -453,7 +453,7 @@ if [[ $(check_version_is_older_than "$version_being_updated" "0.9.2b") == "true"
     fi
 
     if [[ $? == 0 ]]; then
-      if ! rd_zenity --question --title="Confirmation" --text="Are you sure you want to skip the Steam Sync reset process?\n\nThis might cause issues in RetroDECK"; then
+      if ! rd_zenity --question --title="Confirmation" --text="Are you sure you want to proceed with only the selected options?\n\n\<span foreground='$purple'><b>Warning: This might cause issues in RetroDECK.</b></span>"; then
         log i "User is not sure, showing the checklist window again."
         continue
       else
@@ -483,7 +483,7 @@ if [[ $(check_version_is_older_than "$version_being_updated" "0.9.2b") == "true"
     steam-rom-manager add >> "$srm_log" 2>&1
     ) |
     rd_zenity --progress \
-    --title="RetroDECK Configurator: Add RetroDECK to Steam" \
+    --title="RetroDECK Configurator - Add RetroDECK to Steam" \
     --window-icon="/app/share/icons/hicolor/scalable/apps/net.retrodeck.retrodeck.svg" \
     --text="Adding RetroDECK to Steam...\n\n<span foreground='$purple'>Please wait until the operation is finished and you need to restart Steam afterwards.</span>" \
     --pulsate --width=500 --height=150 --auto-close --no-cancel
@@ -496,14 +496,9 @@ if [[ $(check_version_is_older_than "$version_being_updated" "0.9.2b") == "true"
   fi
 fi
 
-#######################################
-# These actions happen at every update
-#######################################
-
-if [[ ! -z $(find "$HOME/.steam/steam/controller_base/templates/" -maxdepth 1 -type f -iname "RetroDECK*.vdf") || ! -z $(find "$HOME/.var/app/com.valvesoftware.Steam/.steam/steam/controller_base/templates/" -maxdepth 1 -type f -iname "RetroDECK*.vdf") ]]; then # If RetroDECK controller profile has been previously installed
-  install_retrodeck_controller_profile
+if [[ $(check_version_is_older_than "$version_being_updated" "0.10.0b") == "true" ]]; then
+  create_dir -d "$XDG_CONFIG_HOME/retrodeck/graphics"
+  cp -rf "/app/retrodeck/graphics/folder-iconsets" "$XDG_CONFIG_HOME/retrodeck/graphics/"
+  set_setting_value "$rd_conf" "iconset" "lahrs-main" "retrodeck" "options"
+  handle_folder_iconsets "lahrs-main"
 fi
-
-update_splashscreens
-deploy_helper_files
-build_retrodeck_current_presets

@@ -1,7 +1,8 @@
 {
   "dolphin": {
     "name": "Dolphin",
-    "description": "Wii and GameCube Emulator",
+    "description": "Dolphin is a Nintendo Wii (wii) and Gamecube (gc) emulator.",
+    "component_type": "Emulator",
     "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/dolphin-primehack/dolphin-primehack-guide/",
     "url_webpage": "https://dolphin-emu.org",
     "url_source": "https://github.com/dolphin-emu/dolphin",
@@ -87,9 +88,11 @@
       "universal_dyn_input": [
         {
           "enabled_states": [ "true" ],
+          "setting_name": "Universal Dynamic Input",
           "action": "install",
           "source": "/app/retrodeck/components/shared-data/DynamicInputTextures/",
-          "destination": "$XDG_DATA_HOME/dolphin-emu/Load/DynamicInputTextures/"
+          "destination": "$XDG_DATA_HOME/dolphin-emu/Load/DynamicInputTextures/",
+          "cleanup_type": "purge"
         }
       ]
     }

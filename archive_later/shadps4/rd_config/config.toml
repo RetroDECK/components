@@ -1,86 +1,85 @@
 [General]
-alwaysShowChangelog = false
-autoUpdate = false
-BGMvolume = 50
-checkCompatibilityOnStartup = false
-chooseHomeTab = "General"
-compatibilityEnabled = false
+defaultControllerID = ""
 enableDiscordRPC = false
+isConnectedToNetwork = false
 isDevKit = false
 isPS4Pro = false
+isPSNSignedIn = false
 isTrophyPopupDisabled = false
 logFilter = ""
-logType = "async"
-playBGM = false
+logType = "sync"
 showSplash = false
 sideTrophy = "right"
+sysModulesPath = "RETRODECKSTORAGE/shadps4/sys_modules"
 trophyNotificationDuration = 6.0
-updateChannel = "Release"
 userName = "RetroDECK"
+volumeSlider = 100
 
 [Input]
-backButtonBehavior = "left"
-cursorHideTimeout = 5
+backgroundControllerInput = false
+cursorHideTimeout = 1
 cursorState = 1
 isMotionControlsEnabled = true
 specialPadClass = 1
+usbDeviceBackend = 0
 useSpecialPad = false
 useUnifiedInputConfig = true
+
+[Audio]
+mainOutputDevice = "Default Device"
+micDevice = "Default Device"
+padSpkOutputDevice = "Default Device"
 
 [GPU]
 allowHDR = false
 copyGPUBuffers = false
+directMemoryAccess = false
 dumpShaders = false
+fsrEnabled = false
 Fullscreen = false
 FullscreenMode = "Windowed"
+internalScreenHeight = 720
+internalScreenWidth = 1280
 nullGpu = false
-patchShaders = true
+patchShaders = false
+presentMode = "Mailbox"
+rcasAttenuation = 250
+rcasEnabled = true
+readbackLinearImages = false
+readbacks = false
 screenHeight = 720
 screenWidth = 1280
-vblankDivider = 1
+vblankFrequency = 60
 
 [Vulkan]
 crashDiagnostic = false
 gpuId = -1
 guestMarkers = false
 hostMarkers = false
+pipelineCacheArchive = false
+pipelineCacheEnable = false
 rdocEnable = false
 validation = false
+validation_core = true
 validation_gpu = false
 validation_sync = false
 
 [Debug]
 CollectShader = false
+ConfigVersion = "f7f3936339b56298213c9de0ed9ed607295ae5d2"
 DebugDump = false
 FPSColor = true
 isSeparateLogFilesEnabled = false
+logEnabled = true
 
 [Keys]
 TrophyKey = ""
 
 [GUI]
-addonInstallDir = "$XDG_DATA_HOME/shadps4/installed_addons"
-backgroundImageOpacity = 50
-elfDirs = []
-emulatorLanguage = "en_US"
-gameTableMode = 0
-geometry_h = 720
-geometry_w = 1280
-geometry_x = 0
-geometry_y = 263
-iconSize = 36
-iconSizeGrid = 69
-installDirs = ["$XDG_DATA_HOME/shadps4/installed_games"]
+addonInstallDir = "RETRODECKSTORAGE/shadPS4/addcont"
+installDirs = ["RETRODECKROMS/ps4"]
 installDirsEnabled = [true]
-loadGameSizeEnabled = true
-mw_height = 720
-mw_width = 1280
-recentFiles = []
-saveDataPath = "$rd_home_saves_path/shadps4/saves"
-showBackgroundImage = true
-sliderPos = 0
-sliderPosGrid = 0
-theme = 0
+saveDataPath = "RETRODECKSAVES/ps4"
 
 [Settings]
 consoleLanguage = 1

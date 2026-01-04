@@ -1,11 +1,12 @@
 {
   "eden": {
-    "name": "ares",
+    "name": "Eden",
     "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/ares/eden-guide/",
     "url_webpage": "https://eden-emu.dev/",
     "url_source": "https://github.com/eden-emulator/",
-    "description": "Eden is an experimental open-source emulator for the Nintendo Switch, built with performance and stability in mind.",
+    "description": "Eden is a Nintendo Switch (switch) emulator.",
     "system_friendly_name": "Nintendo Switch",
+    "component_type": "Emulator",
     "system": "switch"
   }
 }

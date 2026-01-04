@@ -17,23 +17,23 @@ Core:
   Disable SPU GETLLAR Spin Optimization: false
   SPU Debug: false
   MFC Debug: false
-  Preferred SPU Threads: 1
+  Preferred SPU Threads: 2
   SPU delay penalty: 3
   SPU loop detection: false
   Max SPURS Threads: 6
-  SPU Block Size: Mega
+  SPU Block Size: Safe
   Accurate SPU DMA: false
   Accurate SPU Reservations: true
   Accurate Cache Line Stores: false
   Accurate RSX reservation access: false
-  RSX FIFO Accuracy: Fast
+  RSX FIFO Fetch Accuracy: Atomic
   SPU Verification: true
   SPU Cache: true
   SPU Profiler: false
+  PPU Profiler: false
   MFC Commands Shuffling Limit: 0
   MFC Commands Timeout: 0
   MFC Commands Shuffling In Steps: false
-  Enable TSX: Disabled
   XFloat Accuracy: Approximate
   Accurate PPU 128-byte Reservation Op Max Length: 0
   Stub PPU Traps: 0
@@ -52,8 +52,6 @@ Core:
   HLE lwmutex: false
   SPU LLVM Lower Bound: 0
   SPU LLVM Upper Bound: 18446744073709551615
-  TSX Transaction First Limit: 800
-  TSX Transaction Second Limit: 2000
   Clocks scale: 100
   SPU Wake-Up Delay: 0
   SPU Wake-Up Delay Thread Mask: 63
@@ -64,6 +62,10 @@ Core:
   Performance Report Threshold: 500
   Enable Performance Report: false
   Assume External Debugger: false
+  Accurate GETLLAR: false
+  Full Width AVX-512: true
+  TSX Transaction First Limit: 800
+  TSX Transaction Second Limit: 2000
 VFS:
   Enable /host_root/: false
   Initialize Directories: true
@@ -74,11 +76,11 @@ Video:
   Renderer: Vulkan
   Resolution: 1280x720
   Aspect ratio: 16:9
-  Frame limit: 30
+  Frame limit: Auto
   Second Frame Limit: 0
   MSAA: Auto
   Shader Mode: Async Shader Recompiler
-  Shader Precision: Auto
+  Shader Precision: High
   Write Color Buffers: false
   Write Depth Buffer: false
   Read Color Buffers: false
@@ -134,7 +136,7 @@ Video:
     Exclusive Fullscreen Mode: Automatic
     Asynchronous Texture Streaming 2: false
     FidelityFX CAS Sharpening Intensity: 50
-    Asynchronous Queue Scheduler: Fast
+    Asynchronous Queue Scheduler: Safe
     VRAM allocation limit (MB): 65536
     Use Re-BAR for GPU uploads: true
   Performance Overlay:
@@ -176,7 +178,7 @@ Audio:
   Master Volume: 100
   Enable Buffering: true
   Desired Audio Buffer Duration: 100
-  Enable Time Stretching: true
+  Enable Time Stretching: false
   Disable Sampling Skip: false
   Time Stretching Threshold: 75
   Microphone Type: "Null"
@@ -215,11 +217,13 @@ System:
   Date Format: ddmmyyyy
   Time Format: clock24
   Console time offset (s): 0
-  System Name: RPCS3-960
+  System Name: RPCS3-RD999
   Console PSID: 
   HDD Model Name: ""
   HDD Serial Number: ""
   Process ARGV: {}
+  PSID high: 0
+  PSID low: 0
 Net:
   Internet enabled: Disconnected
   IP address: 0.0.0.0
@@ -228,10 +232,11 @@ Net:
   IP swap list: ""
   UPNP Enabled: false
   PSN status: Disconnected
-  PSN Country: eu
+  PSN Country: us
+  Clans Enabled: false
 Savestate:
   Start Paused: false
-  Suspend Emulation Savestate Mode: true
+  Suspend Emulation Savestate Mode: false
   Compatible Savestate Mode: false
   Inspection Mode Savestates: false
   Save Disc Game Data: false
@@ -240,7 +245,7 @@ Savestate:
 Miscellaneous:
   Automatically start games after boot: true
   Exit RPCS3 when process finishes: true
-  Pause emulation on RPCS3 focus loss: false
+  Pause emulation on RPCS3 focus loss: true
   Start games in fullscreen mode: true
   Prevent display sleep while running games: true
   Show trophy popups: true

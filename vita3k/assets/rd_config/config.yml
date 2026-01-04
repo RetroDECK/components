@@ -13,6 +13,7 @@ show-info-bar: false
 apps-list-grid: false
 display-system-apps: true
 stretch_the_display_area: false
+fullscreen_hd_res_pixel_perfect: true
 show-live-area-screen: true
 icon-size: 64
 archive-log: false
@@ -43,18 +44,20 @@ cpu-pool-size: 10
 modules-mode: 0
 delay-background: 4
 delay-start: 10
-background-alpha: 0.300000012
+background-alpha: 0.3
 log-level: 0
-cpu-backend: Dynarmic
 cpu-opt: true
 pref-path: RETRODECKHOMEDIR/bios/Vita3K/
-discord-rich-presence: true
+discord-rich-presence: false
 wait-for-debugger: false
 color-surface-debug: false
 show-touchpad-cursor: true
 performance-overlay: false
-perfomance-overlay-detail: 0
-perfomance-overlay-position: 0
+performance-overlay-detail: 0
+performance-overlay-position: 0
+screenshot-format: 1
+disable-motion: false
+controller-analog-multiplier: 1
 keyboard-button-select: 229
 keyboard-button-start: 40
 keyboard-button-up: 82
@@ -91,6 +94,7 @@ user-lang: ""
 display-info-message: true
 show-welcome: false
 check-for-updates: false
+file-loading-delay: 0
 asia-font-support: false
 shader-cache: true
 spirv-shader: false
@@ -102,6 +106,7 @@ http-timeout-attempts: 50
 http-timeout-sleep-ms: 100
 http-read-end-attempts: 10
 http-read-end-sleep-ms: 250
+adhoc-addr: 0
 tracy-primitive-impl: false
 controller-binds:
   - 0

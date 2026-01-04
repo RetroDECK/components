@@ -15,3 +15,5 @@ dolphin_config_RetroAchievements="$XDG_CONFIG_HOME/dolphin-emu/RetroAchievements
 dolphin_config_WiimoteNew="$XDG_CONFIG_HOME/dolphin-emu/WiimoteNew.ini"
 dolphin_dynamic_input_textures_path="$XDG_DATA_HOME/dolphin-emu/Load/DynamicInputTextures"
 dolphin_rd_config_dir="$rd_components/dolphin/rd_config"
+dolphin_textures_path="$XDG_DATA_HOME/dolphin-emu/Load/Textures"
+dolphin_mods_path="$XDG_DATA_HOME/dolphin-emu/Load/GraphicMods"

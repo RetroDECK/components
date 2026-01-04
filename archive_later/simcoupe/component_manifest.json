@@ -4,7 +4,8 @@
     "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/simcoupe/simcoupe-guide/",
     "url_webpage": "https://simonowen.com/simcoupe/",
     "url_source": "https://github.com/simonowen/simcoupe",
-    "description": "An emulator for the SAM Coupé 8-bit computer.",
+    "component_type": "Emulator",
+    "description": "SimCoupe is a SAM Coupé (samcoupe) 8-bit computer emulator.",
     "system_friendly_name": "SAM Coupé",
     "system": "samcoupe"
   }

@@ -16,10 +16,10 @@ if [[ $(check_version_is_older_than "$version_being_updated" "0.7.0b") == "true"
 
   rm -rf "$XDG_CONFIG_HOME/emulationstation/ES-DE/gamelists/tools/"
 
-  set_setting_value "$es_settings" "ROMDirectory" "$roms_folder" "es_settings"
-  set_setting_value "$es_settings" "MediaDirectory" "$media_folder" "es_settings"
+  set_setting_value "$es_settings" "ROMDirectory" "$roms_path" "es_settings"
+  set_setting_value "$es_settings" "MediaDirectory" "$media_path" "es_settings"
   sed -i '$ a <string name="UserThemeDirectory" value="" />' "$es_settings" # Add new default line to existing file
-  set_setting_value "$es_settings" "UserThemeDirectory" "$themes_folder" "es_settings"
+  set_setting_value "$es_settings" "UserThemeDirectory" "$themes_path" "es_settings"
   unlink "$XDG_CONFIG_HOME/emulationstation/ROMs"
   unlink "$XDG_CONFIG_HOME/emulationstation/ES-DE/downloaded_media"
   unlink "$XDG_CONFIG_HOME/emulationstation/ES-DE/themes"
@@ -68,12 +68,10 @@ if [[ $(check_version_is_older_than "$version_being_updated" "0.9.4b") == "true"
 fi
 
 if [[ $(check_version_is_older_than "$version_being_updated" "0.10.0b") == "true" ]]; then
-
   # With the RetroDECK Neo the theme folder is changed, so if the user set the RetroDECK Theme we need to fix the name in the config
 
-    if [[ $(get_setting_value "$es_de_config" "Theme" "retrodeck") == "retrodeck" ]]; then
-      log i "Default RetroDECK theme is set, fixing theme name in ES-DE config."
-      set_setting_value "$es_de_config" "Theme" "RetroDECK-theme-main"
-    fi
-
+  if [[ $(get_setting_value "$es_de_config" "Theme" "es_settings") == "retrodeck" ]]; then
+    log i "Default RetroDECK theme is set, fixing theme name in ES-DE config."
+    set_setting_value "$es_de_config" "Theme" "RetroDECK-theme-main" "es_settings"
+  fi
 fi

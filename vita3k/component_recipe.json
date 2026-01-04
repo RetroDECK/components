@@ -1,7 +1,7 @@
 {
   "vita3k": [
     {
-      "source_url": "https://github.com/Vita3K/Vita3K/releases/releases/download/{VERSION}/*.x86_64.AppImage",
+      "source_url": "https://github.com/RetroDECK/Vita3K-bin/releases/download/{VERSION}/*.x86_64.AppImage",
       "source_type": "github_release",
       "version": "$VITA3K_DESIRED_VERSION",
       "extraction_type": "appimage",
