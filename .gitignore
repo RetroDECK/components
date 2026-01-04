@@ -6,6 +6,17 @@ _work
 .flatpak-builder
 component_version
 components_version_list.md
+components_version.md
+components_version_diff.txt
+components_version.md*
+components_version_*.md
+components_version_diff.txt
+components_version.md
+commits_list.txt
+commits_since_main.txt
+release_body.md
+pr_body.md
+target_components_version.md
 squashfs-root
 
 #just temporary until Alchemist is integrated here

@@ -8,6 +8,12 @@ on:
     types: [opened, synchronize, reopened]
 
   workflow_dispatch:
+    inputs:
+      force_rebuild:
+        description: 'Force rebuilding ALL components (true/false)'
+        required: false
+        default: false
+        type: boolean
 
   # schedule:
   #   - cron: '00 17 * * *' # 2:00 AM JST (JST is UTC+9, so 17:00 UTC)
@@ -23,8 +29,15 @@ jobs:
     outputs:
       heavy-matrix: ${{ steps.set-matrix.outputs.heavy }}
       light-matrix: ${{ steps.set-matrix.outputs.light }}
+      reference-tag: ${{ steps.reference-release.outputs.reference_tag }}
     steps:
       - uses: actions/checkout@v4
+
+      - name: Init reference versions (for reuse)
+        run: |
+          mkdir -p reference
+          : > reference/reference_tag.txt
+          : > reference/components_version_list.md
 
       - name: Assignign recipes to different runners
         id: set-matrix
@@ -71,6 +84,40 @@ jobs:
           echo "heavy=$heavy_json" >> $GITHUB_OUTPUT
           echo "light=$light_json" >> $GITHUB_OUTPUT
 
+      - name: Fetch newest cooker reference versions (cooker push only)
+        id: reference-release
+        # Skip fetching reference versions when a forced rebuild is requested via workflow input
+        if: github.ref == 'refs/heads/cooker' && github.event_name != 'pull_request' && github.event_name != 'pull_request_target' && github.event.inputs.force_rebuild != 'true'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+        run: |
+          set -e
+          tag="$(bash automation-tools/find_newest_cooker_release.sh || true)"
+          echo "reference_tag=$tag" >> "$GITHUB_OUTPUT"
+          echo "$tag" > reference/reference_tag.txt
+          if [[ -n "$tag" ]]; then
+            url="https://github.com/${GITHUB_REPOSITORY}/releases/download/${tag}/components_version_list.md"
+            if curl -fsSL "$url" -o reference/components_version_list.md; then
+              echo "[INFO] Downloaded reference components_version_list.md from $tag"
+            else
+              echo "[WARN] Could not download reference components_version_list.md from $tag; disabling reuse"
+              : > reference/components_version_list.md
+              : > reference/reference_tag.txt
+              echo "reference_tag=" >> "$GITHUB_OUTPUT"
+            fi
+          else
+            echo "[INFO] No prior cooker release found; disabling reuse"
+            : > reference/components_version_list.md
+          fi
+
+      - name: Upload reference versions (for reuse)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: reference-versions
+          path: reference/*
+
   build-light:
     name: "Build ${{ matrix.recipe.component }}"
     needs: setup-recipes
@@ -81,18 +128,11 @@ jobs:
         recipe: ${{ fromJson(needs.setup-recipes.outputs.light-matrix) }}
       fail-fast: false
     continue-on-error: true
+    env:
+      # Propagate workflow input as job-level env so steps can skip reference checks when forced
+      FORCE_REBUILD_INPUT: ${{ github.event.inputs.force_rebuild || 'false' }}
     steps:
       - uses: actions/checkout@v4
-
-      # Remove Stuck Mounts
-      - name: Remove stuck mounts
-        run: |
-          if [ -d "/home/ubuntu/actions-runner/_work/RetroDECK/RetroDECK/.flatpak-builder/rofiles" ]; then sudo umount -f /home/ubuntu/actions-runner/_work/RetroDECK/RetroDECK/.flatpak-builder/rofiles/*; fi
-          if [ -d "$HOME/actions-run/_work/RetroDECK/RetroDECK/.flatpak-builder/rofiles" ]; then sudo umount -f $HOME/actions-run/_work/RetroDECK/RetroDECK/.flatpak-builder/rofiles/*; fi
-
-      # Install Dependencies
-      - name: Install dependencies
-        run: curl "https://raw.githubusercontent.com/RetroDECK/components-template/main/automation_tools/install_dependencies.sh" | bash
 
       # Clone Repository (pull_request_target)
       - name: Clone Target Branch
@@ -121,8 +161,96 @@ jobs:
           }
           git log -1 --oneline
 
+      - name: Download reference versions (for reuse)
+        # Skip downloading reference versions entirely when force_rebuild is true (we must rebuild everything)
+        if: always() && env.FORCE_REBUILD_INPUT != 'true'
+        uses: actions/download-artifact@v4
+        with:
+          name: reference-versions
+          path: reference
+
+      - name: Decide reuse vs rebuild (cooker only)
+        id: reuse-check
+        env:
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          FORCE_REBUILD_INPUT: ${{ github.event.inputs.force_rebuild || 'false' }}
+        run: |
+          set -e
+          echo "artifact_name=${{ matrix.recipe.component }}" >> $GITHUB_ENV
+
+          reuse=false
+
+          # Honor global force-rebuild (env) or workflow input
+          if [[ "${FORCE_REBUILD:-}" == "true" || "${FORCE_REBUILD_INPUT:-}" == "true" ]]; then
+            echo "[INFO] Global force rebuild requested (env/input)"
+            reuse=false
+            echo "reuse=$reuse" >> $GITHUB_OUTPUT
+            exit 0
+          fi
+
+          # Per-component repo-local changes detection: force rebuild for this component if files changed
+          component="${{ matrix.recipe.component }}"
+          if automation-tools/detect_component_changes.sh "$component" >/dev/null 2>&1; then
+            echo "[INFO] Detected local changes in $component; forcing rebuild"
+            reuse=false
+            echo "reuse=$reuse" >> $GITHUB_OUTPUT
+            exit 0
+          fi
+
+          if [[ "$GITHUB_REF" == "refs/heads/cooker" ]] && [[ "$GITHUB_EVENT_NAME" != "pull_request" ]] && [[ "$GITHUB_EVENT_NAME" != "pull_request_target" ]]; then
+            ref_tag="$(cat reference/reference_tag.txt 2>/dev/null || true)"
+            ref_file="reference/components_version_list.md"
+
+            if [[ -n "$ref_tag" && -s "$ref_file" ]]; then
+              ref_ver="$(bash automation-tools/get_component_version_from_components_version_list.sh -f "$ref_file" -c "${{ matrix.recipe.component }}" 2>/dev/null || true)"
+              next_ver="$(bash automation-tools/resolve_component_version.sh -r "${{ matrix.recipe.recipe }}" -v automation-tools/alchemist/desired_versions.sh 2>/dev/null || true)"
+
+              if [[ -n "$ref_ver" && -n "$next_ver" && "$ref_ver" == "$next_ver" ]]; then
+                reuse=true
+                echo "REF_TAG=$ref_tag" >> $GITHUB_ENV
+                echo "[INFO] Reusing ${{ matrix.recipe.component }} from $ref_tag (version $ref_ver)"
+              else
+                echo "[INFO] Rebuild ${{ matrix.recipe.component }} (ref='$ref_ver' next='$next_ver')"
+              fi
+            else
+              echo "[INFO] No usable reference; rebuilding"
+            fi
+          else
+            echo "[INFO] Reuse disabled for this ref/event; rebuilding"
+          fi
+
+          echo "reuse=$reuse" >> $GITHUB_OUTPUT
+
+      - name: Reuse component artifacts from newest cooker release
+        if: steps.reuse-check.outputs.reuse == 'true'
+        env:
+          GITHUB_REPOSITORY: ${{ github.repository }}
+        run: |
+          set -e
+          component="${{ matrix.recipe.component }}"
+          mkdir -p "$component/artifacts"
+          base="https://github.com/${GITHUB_REPOSITORY}/releases/download/${REF_TAG}"
+          curl -fsSL "$base/${component}.tar.gz" -o "$component/artifacts/${component}.tar.gz"
+          # sha may not always exist; best-effort
+          curl -fsSL "$base/${component}.tar.gz.sha" -o "$component/artifacts/${component}.tar.gz.sha" || true
+          echo "$REF_TAG" > "$component/artifacts/reused_from_release.txt"
+          echo "$REF_TAG" > "$component/artifacts/reused_from_release.txt"
+
+      # Remove Stuck Mounts
+      - name: Remove stuck mounts
+        if: steps.reuse-check.outputs.reuse != 'true'
+        run: |
+          if [ -d "/home/ubuntu/actions-runner/_work/RetroDECK/RetroDECK/.flatpak-builder/rofiles" ]; then sudo umount -f /home/ubuntu/actions-runner/_work/RetroDECK/RetroDECK/.flatpak-builder/rofiles/*; fi
+          if [ -d "$HOME/actions-run/_work/RetroDECK/RetroDECK/.flatpak-builder/rofiles" ]; then sudo umount -f $HOME/actions-run/_work/RetroDECK/RetroDECK/.flatpak-builder/rofiles/*; fi
+
+      # Install Dependencies
+      - name: Install dependencies
+        if: steps.reuse-check.outputs.reuse != 'true'
+        run: curl "https://raw.githubusercontent.com/RetroDECK/components-template/main/automation_tools/install_dependencies.sh" | bash
+
       # Run Build
       - name: 'Alchemist: Run Build Artifacts'
+        if: steps.reuse-check.outputs.reuse != 'true'
         run: |
           # Use the component name provided in the matrix entry
           echo "artifact_name=${{ matrix.recipe.component }}" >> $GITHUB_ENV
@@ -144,15 +272,12 @@ jobs:
         recipe: ${{ fromJson(needs.setup-recipes.outputs.heavy-matrix) }}
       fail-fast: false
     continue-on-error: true
+    env:
+      # Propagate workflow input as job-level env so steps can skip reference checks when forced
+      FORCE_REBUILD_INPUT: ${{ github.event.inputs.force_rebuild || 'false' }}
     steps:
       
       - uses: actions/checkout@v4
-
-      # Remove Stuck Mounts
-      - name: Remove stuck mounts
-        run: |
-          if [ -d "/home/ubuntu/actions-runner/_work/RetroDECK/RetroDECK/.flatpak-builder/rofiles" ]; then sudo umount -f /home/ubuntu/actions-runner/_work/RetroDECK/RetroDECK/.flatpak-builder/rofiles/*; fi
-          if [ -d "$HOME/actions-run/_work/RetroDECK/RetroDECK/.flatpak-builder/rofiles" ]; then sudo umount -f $HOME/actions-run/_work/RetroDECK/RetroDECK/.flatpak-builder/rofiles/*; fi
 
       # Clone Repository (pull_request_target)
       - name: Clone Target Branch
@@ -181,8 +306,88 @@ jobs:
           }
           git log -1 --oneline
 
+      - name: Download reference versions (for reuse)
+        # Skip downloading reference versions entirely when force_rebuild is true (we must rebuild everything)
+        if: always() && env.FORCE_REBUILD_INPUT != 'true'
+        uses: actions/download-artifact@v4
+        with:
+          name: reference-versions
+          path: reference
+
+      - name: Decide reuse vs rebuild (cooker only)
+        id: reuse-check
+        env:
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          FORCE_REBUILD_INPUT: ${{ github.event.inputs.force_rebuild || 'false' }}
+        run: |
+          set -e
+          echo "artifact_name=${{ matrix.recipe.component }}" >> $GITHUB_ENV
+
+          reuse=false
+
+          # Honor global force-rebuild (env) or workflow input
+          if [[ "${FORCE_REBUILD:-}" == "true" || "${FORCE_REBUILD_INPUT:-}" == "true" ]]; then
+            echo "[INFO] Global force rebuild requested (env/input)"
+            reuse=false
+            echo "reuse=$reuse" >> $GITHUB_OUTPUT
+            exit 0
+          fi
+
+          # Per-component repo-local changes detection: force rebuild for this component if files changed
+          component="${{ matrix.recipe.component }}"
+          if automation-tools/detect_component_changes.sh "$component" >/dev/null 2>&1; then
+            echo "[INFO] Detected local changes in $component; forcing rebuild"
+            reuse=false
+            echo "reuse=$reuse" >> $GITHUB_OUTPUT
+            exit 0
+          fi
+
+          if [[ "$GITHUB_REF" == "refs/heads/cooker" ]] && [[ "$GITHUB_EVENT_NAME" != "pull_request" ]] && [[ "$GITHUB_EVENT_NAME" != "pull_request_target" ]]; then
+            ref_tag="$(cat reference/reference_tag.txt 2>/dev/null || true)"
+            ref_file="reference/components_version_list.md"
+
+            if [[ -n "$ref_tag" && -s "$ref_file" ]]; then
+              ref_ver="$(bash automation-tools/get_component_version_from_components_version_list.sh -f "$ref_file" -c "${{ matrix.recipe.component }}" 2>/dev/null || true)"
+              next_ver="$(bash automation-tools/resolve_component_version.sh -r "${{ matrix.recipe.recipe }}" -v automation-tools/alchemist/desired_versions.sh 2>/dev/null || true)"
+
+              if [[ -n "$ref_ver" && -n "$next_ver" && "$ref_ver" == "$next_ver" ]]; then
+                reuse=true
+                echo "REF_TAG=$ref_tag" >> $GITHUB_ENV
+                echo "[INFO] Reusing ${{ matrix.recipe.component }} from $ref_tag (version $ref_ver)"
+              else
+                echo "[INFO] Rebuild ${{ matrix.recipe.component }} (ref='$ref_ver' next='$next_ver')"
+              fi
+            else
+              echo "[INFO] No usable reference; rebuilding"
+            fi
+          else
+            echo "[INFO] Reuse disabled for this ref/event; rebuilding"
+          fi
+
+          echo "reuse=$reuse" >> $GITHUB_OUTPUT
+
+      - name: Reuse component artifacts from newest cooker release
+        if: steps.reuse-check.outputs.reuse == 'true'
+        env:
+          GITHUB_REPOSITORY: ${{ github.repository }}
+        run: |
+          set -e
+          component="${{ matrix.recipe.component }}"
+          mkdir -p "$component/artifacts"
+          base="https://github.com/${GITHUB_REPOSITORY}/releases/download/${REF_TAG}"
+          curl -fsSL "$base/${component}.tar.gz" -o "$component/artifacts/${component}.tar.gz"
+          curl -fsSL "$base/${component}.tar.gz.sha" -o "$component/artifacts/${component}.tar.gz.sha" || true
+
+      # Remove Stuck Mounts
+      - name: Remove stuck mounts
+        if: steps.reuse-check.outputs.reuse != 'true'
+        run: |
+          if [ -d "/home/ubuntu/actions-runner/_work/RetroDECK/RetroDECK/.flatpak-builder/rofiles" ]; then sudo umount -f /home/ubuntu/actions-runner/_work/RetroDECK/RetroDECK/.flatpak-builder/rofiles/*; fi
+          if [ -d "$HOME/actions-run/_work/RetroDECK/RetroDECK/.flatpak-builder/rofiles" ]; then sudo umount -f $HOME/actions-run/_work/RetroDECK/RetroDECK/.flatpak-builder/rofiles/*; fi
+
       # Run Build
       - name: 'Alchemist: Run Build Artifacts'
+        if: steps.reuse-check.outputs.reuse != 'true'
         run: |
           # Use the component name provided in the matrix entry
           echo "artifact_name=${{ matrix.recipe.component }}" >> $GITHUB_ENV
@@ -198,7 +403,7 @@ jobs:
     needs: [build-light, build-heavy]
     runs-on: ubuntu-latest
     if: always() && (github.event_name != 'schedule' || github.ref == 'refs/heads/update/components')
-    continue-on-error: true
+    continue-on-error: ${{ github.ref != 'refs/heads/main' }}
     steps:
 
       # Clone Repository (pull_request_target)
@@ -231,12 +436,55 @@ jobs:
             fi
           done
 
+      - name: Generate a token for Rekku
+        id: generate-rekku-token
+        uses: actions/create-github-app-token@v1
+        with:
+          app-id: ${{ vars.REKKU_APP_ID }}
+          private-key: ${{ secrets.REKKU_PRIVATE_KEY }}
+          repositories: "components"
+          owner: "RetroDECK"
+
+      - name: Fallback missing component artifacts from releases (non-main)
+        if: github.ref != 'refs/heads/main'
+        env:
+          GITHUB_TOKEN: ${{ steps.generate-rekku-token.outputs.token }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          MATCH_LABEL: cooker
+          FALLBACK_COMPONENTS_FILE: fallback_components.txt
+          MISSING_COMPONENTS_FILE: missing_components.txt
+        run: |
+          bash automation-tools/fallback_release_artifacts.sh
+
+      - name: Fail on missing artifacts (main only)
+        if: github.ref == 'refs/heads/main'
+        run: |
+          set -e
+          MISSING_ARTIFACTS=()
+          for folder in $(find . -maxdepth 2 -mindepth 2 -type f \( -name 'component_recipe.json' -o -name 'component_manifest.json' \) -printf '%h\n' | sed 's|^\./||' | sort -u); do
+            if [ ! -d "$folder/artifacts" ] || ! find "$folder/artifacts" -maxdepth 1 -type f \( -name "*.tar.gz" -o -name "*.zip" -o -name "*.gz" -o -name "*.tar" -o -name "*.7z" -o -name "*.appimage" \) | grep -q .; then
+              MISSING_ARTIFACTS+=("$folder")
+            fi
+          done
+          if [ ${#MISSING_ARTIFACTS[@]} -ne 0 ]; then
+            echo "[ERROR] Missing artifacts on main; failing build. Missing:" >&2
+            printf '%s\n' "${MISSING_ARTIFACTS[@]}" >&2
+            exit 1
+          fi
+
       - name: Generate components_version_list.md
+        env:
+          FALLBACK_COMPONENTS_FILE: fallback_components.txt
         run: |
           # Loop through each <component_name> folder
           for component_dir in */; do
             # Skip automation-tools and other non-component directories
             if [[ "$component_dir" == "automation-tools/" ]] || [[ "$component_dir" == "downloaded-artifacts/" ]]; then
+              continue
+            fi
+
+            # Only process real components
+            if [[ ! -f "${component_dir}component_recipe.json" && ! -f "${component_dir}component_manifest.json" ]]; then
               continue
             fi
 
@@ -280,15 +528,21 @@ jobs:
 
           # Show the resulting components_version_list.md file
           cat components_version_list.md
-      - name: Generate a token for Rekku
-        id: generate-rekku-token
-        uses: actions/create-github-app-token@v1
-        with:
-          app-id: ${{ vars.REKKU_APP_ID }}
-          private-key: ${{ secrets.REKKU_PRIVATE_KEY }}
-          repositories: "components"
-          owner: "RetroDECK"
 
+      # This will generate desired_versions.sh pinned to the versions used by the current build
+      # (it prefers extracted ./<component>/component_version values when available).
+      - name: Generate desired_versions.sh (snapshot)
+        env:
+          GITHUB_TOKEN: ${{ steps.generate-rekku-token.outputs.token }}
+        run: |
+          set -e
+          automation-tools/alchemist/generate_desired_versions.sh -f automation-tools/alchemist/desired_versions.sh
+          latest_generated="$(ls -1t automation-tools/alchemist/desired_versions_*.sh | head -n 1)"
+          if [ -z "$latest_generated" ] || [ ! -f "$latest_generated" ]; then
+            echo "[ERROR] desired_versions generator did not produce an output file" >&2
+            exit 1
+          fi
+          cp -f "$latest_generated" desired_versions.sh
       - name: Get Branch Name
         run: |
           if [[ "$GITHUB_EVENT_NAME" == "pull_request" || "$GITHUB_EVENT_NAME" == "pull_request_target" ]]; then
@@ -348,6 +602,16 @@ jobs:
           echo "This is a RetroDECK Components Artifacts release from [this commit](https://github.com/${{ github.repository }}/commit/${{ github.sha }}), from branch [${{ env.BRANCH_NAME }}](https://github.com/RetroDECK/RetroDECK/tree/feat/${{ env.BRANCH_NAME }})." >> "$RELEASE_BODY_FILE"
           echo "" >> "$RELEASE_BODY_FILE"
 
+          # Fallback warnings (if any)
+          if [ -f "fallback_components.txt" ] && [ -s "fallback_components.txt" ]; then
+            echo "[WARNING] Fallback artifacts were used for the following components:" >> "$RELEASE_BODY_FILE"
+            while IFS='|' read -r comp tag; do
+              [ -z "$comp" ] && continue
+              echo "- $comp (from release $tag)" >> "$RELEASE_BODY_FILE"
+            done < fallback_components.txt
+            echo "" >> "$RELEASE_BODY_FILE"
+          fi
+
           # Append the contents of components_version_list.md to the release body
           cat components_version_list.md >> "$RELEASE_BODY_FILE"
           echo "" >> "$RELEASE_BODY_FILE"
@@ -356,7 +620,7 @@ jobs:
           MISSING_ARTIFACTS=()
 
           # Iterate through folders in the repo root
-          for folder in $(find . -maxdepth 1 -mindepth 1 -type d -not -name '.*' -not -name 'automation-tools' -not -name 'downloaded-artifacts' -exec basename {} \;); do
+          for folder in $(find . -maxdepth 2 -mindepth 2 -type f \( -name 'component_recipe.json' -o -name 'component_manifest.json' \) -printf '%h\n' | sed 's|^\./||' | sort -u); do
             if [ ! -d "$folder/artifacts" ] || ! find "$folder/artifacts" -maxdepth 1 -type f \( -name "*.tar.gz" -o -name "*.zip" -o -name "*.gz" -o -name "*.tar" -o -name "*.7z" -o -name "*.appimage" \) | grep -q .; then
               MISSING_ARTIFACTS+=("$folder")
             fi
@@ -407,7 +671,7 @@ jobs:
           CURRENT_DATE=$(date -u +"%Y%m%d-%H%M")
           # Check if the branch is main or not
           if [[ "${GITHUB_REF}" == "refs/heads/main" ]]; then
-            TAG="${CURRENT_DATE}"
+            TAG="main-${CURRENT_DATE}"
           else
             TAG="cooker-${CURRENT_DATE}"
           fi
@@ -420,12 +684,30 @@ jobs:
           tag: "${{ env.TAG }}"
           name: "RetroDECK Components ${{ env.TAG }}"
           body: ${{ steps.generate-body.outputs.RELEASE_BODY }}
-          artifacts: "*/artifacts/*,!*/artifacts/component_version,components_version_list.md"
+          artifacts: "*/artifacts/*,!*/artifacts/component_version,components_version_list.md,desired_versions.sh"
           allowUpdates: true
           omitBodyDuringUpdate: true
           makeLatest: ${{ env.MAKE_LATEST }}
           repo: ${{ env.REPO_NAME }}
           token: ${{ steps.generate-rekku-token.outputs.token }}
+
+      - name: Update latest-cooker tag
+        if: github.ref != 'refs/heads/main'
+        run: |
+          git submodule deinit -f --all
+          git fetch --tags
+
+          # Remove local and remote latest-cooker tag if exists
+          if git rev-parse --verify "latest-cooker" >/dev/null 2>&1; then
+            git tag -d "latest-cooker" || true
+            git push --delete origin "latest-cooker" || true
+          fi
+
+          # Create or move latest-cooker to point to the just-created cooker tag
+          git tag -f "latest-cooker" "${TAG}"
+          git push -f origin "latest-cooker"
+        env:
+          GITHUB_TOKEN: ${{ steps.generate-rekku-token.outputs.token }}
 
       - name: Create diff between target branch and PR components_version_list.md
         run: |
@@ -456,6 +738,16 @@ jobs:
           echo "## RetroDECK Components Artifacts" > pr_body.md
           echo "" >> pr_body.md
           echo "This pull request updates the RetroDECK components artifacts to version ${{ env.TAG }}." >> pr_body.md
+          echo "" >> pr_body.md
+
+          if [ -f "fallback_components.txt" ] && [ -s "fallback_components.txt" ]; then
+            echo "### WARNING: Fallback artifacts used" >> pr_body.md
+            while IFS='|' read -r comp tag; do
+              [ -z "$comp" ] && continue
+              echo "- $comp (from release $tag)" >> pr_body.md
+            done < fallback_components.txt
+            echo "" >> pr_body.md
+          fi
 
           echo "## Changes:" >> pr_body.md
           echo "$(cat commits_list.txt)" >> pr_body.md
