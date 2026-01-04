@@ -549,8 +549,8 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # ------------------------------------------------------------------
 
 if [[ "${GITHUB_REF_NAME:-}" != "main" ]]; then
-    # Non‑main branches use the “cooker‑latest” build tag
-    export FRAMEWORK_DESIRED_VERSION="cooker-latest on $(date +%Y-%m-%d)"
+    # Non‑main branches use the “latest-cooker” build tag
+    export FRAMEWORK_DESIRED_VERSION="latest-cooker on $(date +%Y-%m-%d)"
 else
     # Main branch uses the “main‑latest” build tag
     export FRAMEWORK_DESIRED_VERSION="main-latest on $(date +%Y-%m-%d)"
