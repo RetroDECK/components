@@ -33,7 +33,7 @@ jobs:
         THRESHOLD_DATE=$(date -u -d "1 month ago" +%Y-%m-%dT%H:%M:%SZ)
 
         # Define the list of tags to be excluded
-        EXCLUDE_TAGS=("cooker-0.9.0b-ShoujoMonster")
+        EXCLUDE_TAGS=("latest" "latest-cooker")
 
         # Get latest release ID (so we don't delete the very latest release)
         LATEST_RELEASE_ID=$(curl -s -H "Authorization: token ${{ steps.generate-rekku-token.outputs.token }}" "https://api.github.com/repos/$GITHUB_REPOSITORY/releases/latest" | jq -r '.id // empty')

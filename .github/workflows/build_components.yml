@@ -671,7 +671,7 @@ jobs:
           CURRENT_DATE=$(date -u +"%Y%m%d-%H%M")
           # Check if the branch is main or not
           if [[ "${GITHUB_REF}" == "refs/heads/main" ]]; then
-            TAG="${CURRENT_DATE}"
+            TAG="main-${CURRENT_DATE}"
           else
             TAG="cooker-${CURRENT_DATE}"
           fi
@@ -690,6 +690,24 @@ jobs:
           makeLatest: ${{ env.MAKE_LATEST }}
           repo: ${{ env.REPO_NAME }}
           token: ${{ steps.generate-rekku-token.outputs.token }}
+
+      - name: Update latest-cooker tag
+        if: github.ref != 'refs/heads/main'
+        run: |
+          git submodule deinit -f --all
+          git fetch --tags
+
+          # Remove local and remote latest-cooker tag if exists
+          if git rev-parse --verify "latest-cooker" >/dev/null 2>&1; then
+            git tag -d "latest-cooker" || true
+            git push --delete origin "latest-cooker" || true
+          fi
+
+          # Create or move latest-cooker to point to the just-created cooker tag
+          git tag -f "latest-cooker" "${TAG}"
+          git push -f origin "latest-cooker"
+        env:
+          GITHUB_TOKEN: ${{ steps.generate-rekku-token.outputs.token }}
 
       - name: Create diff between target branch and PR components_version_list.md
         run: |
