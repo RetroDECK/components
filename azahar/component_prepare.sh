@@ -29,5 +29,5 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
   dir_prep "$texture_packs_path/Azahar/textures" "$azahar_textures_path"
   dir_prep "$shaders_path/Azahar/" "$azahar_shaders_path"
   dir_prep "$logs_path/Azahar/" "$azahar_logs_path"
-  dir_prep "$cheats/Azahar/" "$azahar_cheats_path"
+  dir_prep "$cheats_path/Azahar/" "$azahar_cheats_path"
 fi
