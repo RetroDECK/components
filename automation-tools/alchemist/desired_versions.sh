@@ -209,7 +209,7 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # Source: AppImage
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
-  export PCSX2_DESIRED_VERSION="v2.5.409"
+  export PCSX2_DESIRED_VERSION="v2.6.1"
 
 # COOKER (Override)
 # export PCSX2_DESIRED_VERSION="newest"
@@ -341,7 +341,7 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # Repo: https://github.com/RetroDECK/Vita3K-bin
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
-  export VITA3K_DESIRED_VERSION="3869"
+  export VITA3K_DESIRED_VERSION="3872"
 
 # COOKER (Override)
 # export VITA3K_DESIRED_VERSION="latest"
@@ -549,8 +549,8 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # ------------------------------------------------------------------
 
 if [[ "${GITHUB_REF_NAME:-}" != "main" ]]; then
-    # Non‑main branches use the “cooker‑latest” build tag
-    export FRAMEWORK_DESIRED_VERSION="cooker-latest on $(date +%Y-%m-%d)"
+    # Non‑main branches use the “latest-cooker” build tag
+    export FRAMEWORK_DESIRED_VERSION="latest-cooker on $(date +%Y-%m-%d)"
 else
     # Main branch uses the “main‑latest” build tag
     export FRAMEWORK_DESIRED_VERSION="main-latest on $(date +%Y-%m-%d)"

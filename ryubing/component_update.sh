@@ -9,6 +9,8 @@ if [[ $(check_version_is_older_than "$version_being_updated" "0.10.0b") == "true
   # - Init Ryubing as it is a new emulator
   # - Migrate legacy Ryujinx and Yuzu saves to Ryubing saves dir
 
+  log i "0.10.0b Upgrade - Reset: Ryubing"
+
   prepare_component "reset" "ryubing"
 
   log i "Checking for Ryujinx and Yuzu saves to move into Ryubing folder."
@@ -31,5 +33,4 @@ if [[ $(check_version_is_older_than "$version_being_updated" "0.10.0b") == "true
     log i "Ryujinx and Yuzu saves have been moved into Ryubing folder."
     configurator_generic_dialog "RetroDECK - Ryubing Post Update" "<span foreground='$purple'><b>Ryujinx</b></span> and <span foreground='$purple'><b>Yuzu</b></span> save files have been consolidated into the <span foreground='$purple'><b>Ryubing</b></span> directory.\nThe previous Ryujinx save location is no longer in use and may be safely removed manually to reclaim disk space.\n\n<span foreground='$purple'><b>RetroDECK does not automatically delete any save data.</b></span>"
   fi
-
 fi

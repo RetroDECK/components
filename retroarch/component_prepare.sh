@@ -142,6 +142,13 @@ if [[ "$action" == "postmove" ]]; then # Run only post-move commands
   log i "Post-moving $component_name"
   log i "--------------------------------"
 
+  # ScummVM
+  set_setting_value "$retroarch_config_scummvm" "iconspath" "$storage_path/retroarch/ScummVM/icons" "libretro_scummvm" "scummvm"
+  set_setting_value "$retroarch_config_scummvm" "extrapath" "$storage_path/retroarch/ScummVM/extra" "libretro_scummvm" "scummvm"
+  set_setting_value "$retroarch_config_scummvm" "themepath" "$storage_path/retroarch/ScummVM/theme" "libretro_scummvm" "scummvm"
+  set_setting_value "$retroarch_config_scummvm" "savepath" "$saves_path/scummvm" "libretro_scummvm" "scummvm"
+  set_setting_value "$retroarch_config_scummvm" "browser_lastpath" "$roms_path/scummvm" "libretro_scummvm" "scummvm"
+
   # BIOS
   dir_prep "$bios_path" "$XDG_CONFIG_HOME/retroarch/system"
 

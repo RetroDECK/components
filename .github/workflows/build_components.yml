@@ -672,28 +672,34 @@ jobs:
           cat "$RELEASE_BODY_FILE" >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
 
-      - name: Set Make Latest
-        run: |
-          if [[ "${{ github.ref }}" == "refs/heads/main" ]]; then
-            MAKE_LATEST=true
-          else
-            MAKE_LATEST=false
-          fi
-          echo "MAKE_LATEST=$MAKE_LATEST" >> $GITHUB_ENV
-
       - name: Generate Version Tag
         id: version-tag
         run: |
           # Get the current date and time in GMT
           CURRENT_DATE=$(date -u +"%Y%m%d-%H%M")
-          # Check if the branch is main or not
+
+          # Default: not latest
+          MAKE_LATEST=false
+
+          # Branch-based tagging: main -> main-..., everything else -> cooker-...
           if [[ "${GITHUB_REF}" == "refs/heads/main" ]]; then
             TAG="main-${CURRENT_DATE}"
+            MAKE_LATEST=true
           else
             TAG="cooker-${CURRENT_DATE}"
+            MAKE_LATEST=false
           fi
+
+          # Set target repo name (repo part of owner/repo)
+          REPO_NAME="${GITHUB_REPOSITORY#*/}"
+
+          # Export values
           echo "TAG=$TAG" >> $GITHUB_ENV
+          echo "MAKE_LATEST=$MAKE_LATEST" >> $GITHUB_ENV
+          echo "REPO_NAME=$REPO_NAME" >> $GITHUB_ENV
+
           echo "TAG=$TAG" >> $GITHUB_OUTPUT
+          echo "MAKE_LATEST=$MAKE_LATEST" >> $GITHUB_OUTPUT
 
       - name: Publish release
         uses: ncipollo/release-action@v1

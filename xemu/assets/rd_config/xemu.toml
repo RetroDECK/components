@@ -1,6 +1,6 @@
 [general]
 show_welcome = false
-screenshot_dir = 'RETRODECKHOMEDIR/screenshots'
+screenshot_dir = 'RETRODECKSCREENSHOTSDIR/xemu'
 
 [input.bindings]
 port1 = '03000000de280000ff11000001000000'
@@ -22,7 +22,7 @@ auto_scale = false
 mem_limit = '128'
 
 [sys.files]
-bootrom_path = 'RETRODECKHOMEDIR/bios/mcpx_1.0.bin'
-flashrom_path = 'RETRODECKHOMEDIR/bios/Complex.bin'
-eeprom_path = 'RETRODECKHOMEDIR/saves/xbox/xemu/xbox-eeprom.bin'
-hdd_path = 'RETRODECKHOMEDIR/bios/xbox_hdd.qcow2'
+bootrom_path = 'RETRODECKBIOSDIR/mcpx_1.0.bin'
+flashrom_path = 'RETRODECKBIOSDIR/Complex.bin'
+eeprom_path = 'RETRODECKSAVESDIR/xbox/xemu/xbox-eeprom.bin'
+hdd_path = 'RETRODECKBIOSDIR/xbox_hdd.qcow2'

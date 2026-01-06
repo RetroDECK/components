@@ -61,6 +61,33 @@ if [[ $(check_version_is_older_than "$version_being_updated" "0.9.1b") == "true"
   tar --strip-components=1 -xzf "/app/retrodeck/cheats/retroarch.tar.gz" -C "$cheats_path/retroarch" --overwrite && log i "Cheats for RetroArch installed"
 fi
 
+
+if [[ $(check_version_is_older_than "$version_being_updated" "0.10.0b") == "true" ]]; then
+
+
+  log i "0.10.0b Upgrade - Postmove: RetroArch, Folder Creation, MAME2003+ Asset files"
+
+  create_dir "$videos_path/retroarch"
+  create_dir "$bios_path/np2kai"
+  create_dir "$bios_path/dc"
+  create_dir "$bios_path/Mupen64plus"
+  create_dir "$bios_path/quasi88"
+  create_dir "$bios_path/fbneo/samples"
+  create_dir "$bios_path/mame2003/samples"
+  create_dir "$bios_path/mame2003/artwork"
+  create_dir "$bios_path/mame2003-plus/samples"
+  create_dir "$bios_path/mame2003-plus/artwork"
+  create_dir "$bios_path/mame2010/samples"
+  create_dir "$bios_path/mame2010/artwork"
+  create_dir "$bios_path/mame2010/crosshairs"
+  create_dir "$bios_path/mame2010/fonts"
+  tar -xzf "$component_extras/mame2003-plus" -C "$bios_path/mame2003-plus" --overwrite
+
+  prepare_component "postmove" "retroarch"
+fi
+
+
+
 #######################################
 # These actions happen at every update
 #######################################

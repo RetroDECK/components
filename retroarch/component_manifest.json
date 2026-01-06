@@ -21,7 +21,7 @@
         "false",
         "true"
       ],
-      "snes9x-current_libretro": {
+      "snes9x_libretro": {
         "borders": [
           "false",
           "true"
@@ -39,7 +39,7 @@
           "true"
         ]
       },
-      "genesisplusgx_libretro_MS": {
+      "genesis_plus_gx_libretro_MS": {
         "borders": [
           "false",
           "true"
@@ -53,7 +53,7 @@
           "true"
         ]
       },
-      "genesisplusgx_libretro_GG": {
+      "genesis_plus_gx_libretro_GG": {
         "borders": [
           "false",
           "true"
@@ -105,7 +105,7 @@
           "true"
         ]
       },
-      "mupen64plus-next_libretro": {
+      "mupen64plus_next_libretro": {
         "borders": [
           "false",
           "true"
@@ -199,7 +199,7 @@
           "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
         }
       ],
-      "snes9x-current_libretro": {
+      "snes9x_libretro": {
         "config_file_format": "retroarch",
         "borders": [
           {
@@ -347,7 +347,7 @@
           }
         ]
       },
-      "mupen64plus-next_libretro": {
+      "mupen64plus_next_libretro": {
         "config_file_format": "retroarch",
         "borders": [
           {
@@ -444,7 +444,7 @@
           }
         ]
       },
-      "genesisplusgx_libretro_MS": {
+      "genesis_plus_gx_libretro_MS": {
         "config_file_format": "retroarch",
         "borders": [
           {
@@ -519,7 +519,7 @@
           }
         ]
       },
-      "genesisplusgx_libretro_GG": {
+      "genesis_plus_gx_libretro_GG": {
         "config_file_format": "retroarch",
         "borders": [
           {
@@ -1274,7 +1274,7 @@
         ],
         "system_friendly_name": "Sega Genesis"
       },
-      "genesisplusgx_libretro_MS": {
+      "genesis_plus_gx_libretro_MS": {
         "name": "Genesis Plus GX",
         "description": "SEGA MS/GG/MD/CD Libretro Core (Genesis games)",
         "system": [
@@ -1284,13 +1284,13 @@
         ],
         "system_friendly_name": "Sega Genesis"
       },
-      "genesisplusgx_libretro_GG": {
+      "genesis_plus_gx_libretro_GG": {
         "name": "Genesis Plus GX",
         "description": "SEGA MS/GG/MD/CD Libretro Core (GameGear games)",
         "system": "gg",
         "system_friendly_name": "Sega GameGear"
       },
-      "genesisplusgxwide_libretro": {
+      "genesis_plus_gx_wide_libretro": {
         "name": "Genesis Plus GX Wide",
         "description": "SEGA MS/GG/MD/CD Libretro Core for Wide Screen",
         "system": [
@@ -1301,13 +1301,13 @@
         ],
         "system_friendly_name": "Sega Genesis"
       },
-      "mupen64plus-next_libretro": {
+      "mupen64plus_next_libretro": {
         "name": "Mupen64Plus-Next",
         "description": "Nintendo 64 Libretro Core",
         "system": "n64",
         "system_friendly_name": "Nintendo N64"
       },
-      "snes9x-current_libretro": {
+      "snes9x_libretro": {
         "name": "Snes9x - Current",
         "description": "Super Nintendo Libretro Core",
         "system": "snes",

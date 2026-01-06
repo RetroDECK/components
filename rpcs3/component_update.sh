@@ -44,10 +44,20 @@ fi
 
 if [[ $(check_version_is_older_than "$version_being_updated" "0.10.0b") == "true" ]]; then
 
+  log i "0.10.0b Upgrade - Postmove: RPCS3 - Folder Creation, Move old location"
+
+  create_dir "$storage_path/rpcs3/dev_hdd0"
+  create_dir "$storage_path/rpcs3/dev_hdd1"
+  create_dir "$storage_path/rpcs3/dev_flash"
+  create_dir "$storage_path/rpcs3/dev_flash2"
+  create_dir "$storage_path/rpcs3/dev_flash3"
+  create_dir "$storage_path/rpcs3/dev_bdvd"
+  create_dir "$storage_path/rpcs3/dev_usb000"
+
+  prepare_component "postmove" "rpcs3"
+
   # Since in 0.10.0b we added the storage folder we need to migrate the folders
-  sed -i 's^\^$(EmulatorDir): .*^$(EmulatorDir): '"$storage_path/rpcs3/"'^' "$rpcs3_config_vfs"
-  dir_prep "$saves_path/ps3/rpcs3" "$storage_path/rpcs3/dev_hdd0/home/00000001/savedata"
-  dir_prep "$states_path/ps3/rpcs3" "$XDG_CONFIG_HOME/rpcs3/savestates"
+
   move "$bios_folder/rpcs3/dev_hdd0" "$storage_path/rpcs3/dev_hdd0"
   move "$bios_folder/rpcs3/dev_hdd1" "$storage_path/rpcs3/dev_hdd1"
   move "$bios_folder/rpcs3/dev_flash" "$storage_path/rpcs3/dev_flash"
@@ -55,7 +65,5 @@ if [[ $(check_version_is_older_than "$version_being_updated" "0.10.0b") == "true
   move "$bios_folder/rpcs3/dev_flash3" "$storage_path/rpcs3/dev_flash3"
   move "$bios_folder/rpcs3/dev_bdvd" "$storage_path/rpcs3/dev_bdvd"
   move "$bios_folder/rpcs3/dev_usb000" "$storage_path/rpcs3/dev_usb000"
-  dir_prep "$storage_path/rpcs3/captures" "$XDG_CONFIG_HOME/rpcs3/captures"
-  dir_prep "$storage_path/rpcs3/patches" "$XDG_CONFIG_HOME/rpcs3/patches"
 
 fi

@@ -15,3 +15,12 @@ if [[ $(check_version_is_older_than "$version_being_updated" "0.8.2b") == "true"
   log i "Vita3K changed some paths, reflecting them: moving \"$XDG_DATA_HOME/Vita3K\" in \"$XDG_CONFIG_HOME/Vita3K\""
   move "$XDG_DATA_HOME/Vita3K" "$XDG_CONFIG_HOME/Vita3K"
 fi
+
+if [[ $(check_version_is_older_than "$version_being_updated" "0.10.0b") == "true" ]]; then
+
+  log i "0.10.0b Upgrade - Postmove: Vita3K - Folder Creation"
+
+  create_dir "$storage_path/Vita3K/"
+  cp -frv "$component_config/ux0" "$storage_path/Vita3K/" # User config
+  prepare_component "postmove" "vita3k"
+fi

@@ -497,8 +497,12 @@ if [[ $(check_version_is_older_than "$version_being_updated" "0.9.2b") == "true"
 fi
 
 if [[ $(check_version_is_older_than "$version_being_updated" "0.10.0b") == "true" ]]; then
+  set_setting_value "$rd_conf" "storage_path" "$rd_home_path/storage" "retrodeck" "paths"
+  create_dir "$storage_path"
+  set_setting_value "$rd_conf" "videos_path" "$rd_home_path/videos" "retrodeck" "paths"
+  create_dir "$videos_path"
+
   create_dir -d "$XDG_CONFIG_HOME/retrodeck/graphics"
   cp -rf "/app/retrodeck/graphics/folder-iconsets" "$XDG_CONFIG_HOME/retrodeck/graphics/"
   set_setting_value "$rd_conf" "iconset" "lahrs-main" "retrodeck" "options"
-  handle_folder_iconsets "lahrs-main"
 fi
