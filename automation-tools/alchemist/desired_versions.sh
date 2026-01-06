@@ -209,7 +209,7 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # Source: AppImage
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
-  export PCSX2_DESIRED_VERSION="v2.6.0"
+  export PCSX2_DESIRED_VERSION="v2.6.1"
 
 # COOKER (Override)
 # export PCSX2_DESIRED_VERSION="newest"
@@ -341,7 +341,7 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # Repo: https://github.com/RetroDECK/Vita3K-bin
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
-  export VITA3K_DESIRED_VERSION="3871"
+  export VITA3K_DESIRED_VERSION="3872"
 
 # COOKER (Override)
 # export VITA3K_DESIRED_VERSION="latest"
