@@ -44,6 +44,8 @@ fi
 
 if [[ $(check_version_is_older_than "$version_being_updated" "0.10.0b") == "true" ]]; then
 
+  log i "0.10.0b Upgrade - Postmove: RPCS3 - Folder Creation, Move old location"
+
   create_dir "$storage_path/rpcs3/dev_hdd0"
   create_dir "$storage_path/rpcs3/dev_hdd1"
   create_dir "$storage_path/rpcs3/dev_flash"

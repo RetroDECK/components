@@ -9,6 +9,8 @@ if [[ $(check_version_is_older_than "$version_being_updated" "0.10.0b") == "true
   # - Init Azahar as it is a new emulator
   # - Migrate legacy Citra saves to Azahar saves dir
 
+  log i "0.10.0b Upgrade - Reset: Azahar"
+
   prepare_component "reset" "azahar"
 
   if [[ -d "$XDG_DATA_HOME/citra-emu/nand" ]]; then

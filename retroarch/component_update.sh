@@ -63,10 +63,11 @@ fi
 
 
 if [[ $(check_version_is_older_than "$version_being_updated" "0.10.0b") == "true" ]]; then
-  # Video
-  create_dir "$videos_path/retroarch"
 
-  # BIOS Directories
+
+  log i "0.10.0b Upgrade - Postmove: RetroArch, Folder Creation, MAME2003+ Asset files"
+
+  create_dir "$videos_path/retroarch"
   create_dir "$bios_path/np2kai"
   create_dir "$bios_path/dc"
   create_dir "$bios_path/Mupen64plus"

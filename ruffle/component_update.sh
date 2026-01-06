@@ -10,7 +10,10 @@ if [[ $(check_version_is_older_than "$version_being_updated" "0.9.0b") == "true"
 fi
 
 if [[ $(check_version_is_older_than "$version_being_updated" "0.10.0b") == "true" ]]; then
+
+  log i "0.10.0b Upgrade - Reset: Ruffle"
+
   prepare_component "reset" "ruffle"
 
-  # Ruffle was not properly configured before
+  # Fixes issue with save folder not being set, a full reset is needed.
 fi

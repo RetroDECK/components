@@ -9,6 +9,8 @@ if [[ $(check_version_is_older_than "$version_being_updated" "0.10.0b") == "true
   # - Init Ryubing as it is a new emulator
   # - Migrate legacy Ryujinx and Yuzu saves to Ryubing saves dir
 
+  log i "0.10.0b Upgrade - Reset: Ryubing"
+
   prepare_component "reset" "ryubing"
 
   log i "Checking for Ryujinx and Yuzu saves to move into Ryubing folder."
