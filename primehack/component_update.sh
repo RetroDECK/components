@@ -37,6 +37,12 @@ if [[ $(check_version_is_older_than "$version_being_updated" "0.7.0b") == "true"
   set_setting_value "$primehackconf" "ConfirmStop" "False" "primehack" "Interface"
 fi
 
+if [[ $(check_version_is_older_than "$version_being_updated" "0.10.0b") == "true" ]]; then
+  set_setting_value "$primehack_config" "CPUThread" "False" "primehack" "Core"
+  set_setting_value "$primehack_config" "LanguageCode" " " "primehack" "Interface"
+  prepare_component "postmove" "primehack"
+fi
+
 #######################################
 # These actions happen at every update
 #######################################

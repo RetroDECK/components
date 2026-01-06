@@ -30,3 +30,10 @@ if [[ $(check_version_is_older_than "$version_being_updated" "0.9.1b") == "true"
   set_setting_value "$rd_conf" "ppsspp" "$(get_setting_value "$rd_defaults" "ppsspp" "retrodeck" "cheevos")" "retrodeck" "cheevos"
   set_setting_value "$rd_conf" "ppsspp" "$(get_setting_value "$rd_defaults" "ppsspp" "retrodeck" "cheevos_hardcore")" "retrodeck" "cheevos_hardcore"
 fi
+
+if [[ $(check_version_is_older_than "$version_being_updated" "0.10.0b") == "true" ]]; then
+
+  prepare_component "postmove" "ppsspp"
+
+  unzip -q -o -j "$component_extras/CWCheat-Database-Plus--master.zip" "*/cheat.db" -d "$cheats_path/PPSSPP"
+fi

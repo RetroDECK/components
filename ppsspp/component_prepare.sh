@@ -23,14 +23,14 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
   log i "Preparing PPSSPP cheats"
   create_dir -d "$cheats_path/PPSSPP"
   dir_prep "$cheats_path/PPSSPP" "$ppsspp_cheats_path"
-  if [[ -d "$cheats_path/PPSSPP" && "$(ls -A "$cheats_path"/PPSSPP-SA)" ]]; then
+  if [[ -d "$cheats_path/PPSSPP" && "$(ls -A "$cheats_path"/PPSSPP)" ]]; then
     backup_file="$backups_path/cheats/PPSSPP-$(date +%y%m%d).tar.gz"
     create_dir "$(dirname "$backup_file")"
     tar -czf "$backup_file" -C "$cheats_path" PPSSPP
     log i "PPSSPP cheats backed up to $backup_file"
   fi
 
-  unzip -q -o -j "$component_extras/CWCheat-Database-Plus--master.zip" "*/cheat.db" -d "$cheats_path/PPSSPP-SA/"
+  unzip -q -o -j "$component_extras/CWCheat-Database-Plus--master.zip" "*/cheat.db" -d "$cheats_path/PPSSPP"
 
   log i "Preparing PPSSPP BIOS"
   create_dir -d "$bios_path/PPSSPP"
