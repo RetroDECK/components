@@ -10,6 +10,7 @@ if [[ $(check_version_is_older_than "$version_being_updated" "0.10.0b") == "true
   # - Migrate legacy Citra saves to Azahar saves dir
 
   prepare_component "reset" "azahar"
+
   if [[ -d "$XDG_DATA_HOME/citra-emu/nand" ]]; then
     move "$XDG_DATA_HOME/citra-emu/nand" "$saves_path/n3ds/azahar/"
   fi

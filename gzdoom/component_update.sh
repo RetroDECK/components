@@ -9,3 +9,12 @@ if [[ $(check_version_is_older_than "$version_being_updated" "0.8.0b") == "true"
 
   prepare_component "reset" "gzdoom"
 fi
+
+if [[ $(check_version_is_older_than "$version_being_updated" "0.10.0b") == "true" ]]; then
+
+  log i "0.10.0b Upgrade - Reset: GZDoom"
+
+  prepare_component "reset" "gzdoom"
+
+  # GZDOOM needs to be reset as the changes are in the config that connects to the new folders.
+fi

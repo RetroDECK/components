@@ -38,7 +38,13 @@ if [[ $(check_version_is_older_than "$version_being_updated" "0.10.0b") == "true
   log i "Dolphin team suggest to run Dolphin in single core, setting it"
   set_setting_value "$dolphin_config" "CPUThread" "False" "dolphin" "Core"
   set_setting_value "$dolphin_config" "LanguageCode" " " "dolphin" "Interface"
+
+  prepare_component "postmove" "dolphin"
+
 fi
+
+
+
 
 #######################################
 # These actions happen at every update

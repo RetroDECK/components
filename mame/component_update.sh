@@ -38,35 +38,12 @@ if [[ $(check_version_is_older_than "$version_being_updated" "0.9.1b") == "true"
   rm -rf "$XDG_DATA_HOME/mame/cheat"
 fi
 
-# Legacy XDG Folders
+if [[ $(check_version_is_older_than "$version_being_updated" "0.10.0b") == "true" ]]; then
 
-# create_dir "$XDG_DATA_HOME/mame/plugin-data"
-# create_dir "$XDG_DATA_HOME/mame/hash"
-# create_dir "$XDG_DATA_HOME/mame/assets/artwork"
-# create_dir "$XDG_DATA_HOME/mame/assets/fonts"
-# create_dir "$XDG_DATA_HOME/mame/assets/crosshair"
-# create_dir "$XDG_DATA_HOME/mame/plugins"
-# create_dir "$XDG_DATA_HOME/mame/assets/language"
-# create_dir "$XDG_DATA_HOME/mame/assets/software"
-# create_dir "$XDG_DATA_HOME/mame/assets/comments"
-# create_dir "$XDG_DATA_HOME/mame/assets/share"
-# create_dir "$XDG_DATA_HOME/mame/dats"
-# create_dir "$XDG_DATA_HOME/mame/folders"
-# create_dir "$XDG_DATA_HOME/mame/assets/cabinets"
-# create_dir "$XDG_DATA_HOME/mame/assets/cpanel"
-# create_dir "$XDG_DATA_HOME/mame/assets/pcb"
-# create_dir "$XDG_DATA_HOME/mame/assets/flyers"
-# create_dir "$XDG_DATA_HOME/mame/assets/titles"
-# create_dir "$XDG_DATA_HOME/mame/assets/ends"
-# create_dir "$XDG_DATA_HOME/mame/assets/marquees"
-# create_dir "$XDG_DATA_HOME/mame/assets/artwork-preview"
-# create_dir "$XDG_DATA_HOME/mame/assets/bosses"
-# create_dir "$XDG_DATA_HOME/mame/assets/logo"
-# create_dir "$XDG_DATA_HOME/mame/assets/scores"
-# create_dir "$XDG_DATA_HOME/mame/assets/versus"
-# create_dir "$XDG_DATA_HOME/mame/assets/gameover"
-# create_dir "$XDG_DATA_HOME/mame/assets/howto"
-# create_dir "$XDG_DATA_HOME/mame/assets/select"
-# create_dir "$XDG_DATA_HOME/mame/assets/icons"
-# create_dir "$XDG_DATA_HOME/mame/assets/covers"
-# create_dir "$XDG_DATA_HOME/mame/assets/ui"
+  log i "0.10.0b Upgrade - Reset: MAME"
+
+  prepare_component "reset" "mame"
+
+  # MAME needs to be reset because of major config changes.
+
+fi

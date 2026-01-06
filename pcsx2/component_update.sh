@@ -25,3 +25,18 @@ if [[ $(check_version_is_older_than "$version_being_updated" "0.9.1b") == "true"
   set_setting_value "$pcsx2conf" "Cheats" "$cheats_path/PCSX2" "Folders"
   tar --strip-components=1 -xzf "/app/retrodeck/cheats/pcsx2.tar.gz" -C "$cheats_path/PCSX2" --overwrite && log i "Cheats for PCSX2 installed"
 fi
+
+if [[ $(check_version_is_older_than "$version_being_updated" "0.10.0b") == "true" ]]; then
+  log i "0.10.0b Upgrade: PCSX2 - Postmove, mods and cheats and folder creation"
+
+  create_dir -d "$screenshots_path/PCSX2"
+  create_dir -d "$logs_path/PCSX2"
+  create_dir -d "$cheats_path/PCSX2/cheats_ws"
+  create_dir -d "$cheats_path/PCSX2/cheats_ni"
+  tar -xzf "$component_extras/pcsx2-cheats.tar.gz" -C "$cheats_path/PCSX2" --overwrite
+  create_dir -d "$storage_path/PCSX2/covers"
+  create_dir -d "$texture_packs_path/PCSX2/textures"
+  create_dir -d "$videos_path/PCSX2"
+  prepare_component "postmove" "pcxs2"
+  tar -xzf "$component_extras/pcsx2-patches.tar.gz" -C "$mods_path/PCSX2/patches" --overwrite
+fi

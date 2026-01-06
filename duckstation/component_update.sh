@@ -43,3 +43,9 @@ if [[ $(check_version_is_older_than "$version_being_updated" "0.7.0b") == "true"
   set_setting_value "$duckstationconf" "SaveStateOnExit" "false" "duckstation" "Main"
   set_setting_value "$duckstationconf" "Enabled" "false" "duckstation" "Cheevos"
 fi
+
+if [[ $(check_version_is_older_than "$version_being_updated" "0.10.0b") == "true" ]]; then
+
+  prepare_component "postmove" "duckstation"
+
+fi

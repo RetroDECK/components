@@ -44,6 +44,14 @@ fi
 
 if [[ $(check_version_is_older_than "$version_being_updated" "0.10.0b") == "true" ]]; then
 
+  create_dir "$storage_path/rpcs3/dev_hdd0"
+  create_dir "$storage_path/rpcs3/dev_hdd1"
+  create_dir "$storage_path/rpcs3/dev_flash"
+  create_dir "$storage_path/rpcs3/dev_flash2"
+  create_dir "$storage_path/rpcs3/dev_flash3"
+  create_dir "$storage_path/rpcs3/dev_bdvd"
+  create_dir "$storage_path/rpcs3/dev_usb000"
+
   # Since in 0.10.0b we added the storage folder we need to migrate the folders
   sed -i 's^\^$(EmulatorDir): .*^$(EmulatorDir): '"$storage_path/rpcs3/"'^' "$rpcs3_config_vfs"
   move "$bios_folder/rpcs3/dev_hdd0" "$storage_path/rpcs3/dev_hdd0"
