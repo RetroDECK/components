@@ -58,12 +58,12 @@ if [[ $(check_version_is_older_than "$version_being_updated" "0.10.0b") == "true
 
   # Since in 0.10.0b we added the storage folder we need to migrate the folders
 
-  move "$bios_folder/rpcs3/dev_hdd0" "$storage_path/rpcs3/dev_hdd0"
-  move "$bios_folder/rpcs3/dev_hdd1" "$storage_path/rpcs3/dev_hdd1"
-  move "$bios_folder/rpcs3/dev_flash" "$storage_path/rpcs3/dev_flash"
-  move "$bios_folder/rpcs3/dev_flash2" "$storage_path/rpcs3/dev_flash2"
-  move "$bios_folder/rpcs3/dev_flash3" "$storage_path/rpcs3/dev_flash3"
-  move "$bios_folder/rpcs3/dev_bdvd" "$storage_path/rpcs3/dev_bdvd"
-  move "$bios_folder/rpcs3/dev_usb000" "$storage_path/rpcs3/dev_usb000"
-
+  unlink "$bios_path/rpcs3/dev_hdd0/home/00000001/savedata"
+  move "$bios_path/rpcs3/dev_hdd0" "$storage_path/rpcs3/dev_hdd0"
+  move "$bios_path/rpcs3/dev_hdd1" "$storage_path/rpcs3/dev_hdd1"
+  move "$bios_path/rpcs3/dev_flash" "$storage_path/rpcs3/dev_flash"
+  move "$bios_path/rpcs3/dev_flash2" "$storage_path/rpcs3/dev_flash2"
+  move "$bios_path/rpcs3/dev_flash3" "$storage_path/rpcs3/dev_flash3"
+  move "$bios_path/rpcs3/dev_bdvd" "$storage_path/rpcs3/dev_bdvd"
+  move "$bios_path/rpcs3/dev_usb000" "$storage_path/rpcs3/dev_usb000"
 fi
