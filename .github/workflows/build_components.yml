@@ -263,7 +263,12 @@ jobs:
         run: |
           # Use the component name provided in the matrix entry
           echo "artifact_name=${{ matrix.recipe.component }}" >> $GITHUB_ENV
-          automation-tools/alchemist/alchemist.sh -f "${{ matrix.recipe.recipe }}"
+          if [[ "${GITHUB_REF}" == "refs/heads/main" ]]; then
+            # Force rebuild on main using pinned desired_versions.sh
+            automation-tools/alchemist/alchemist.sh -v automation-tools/alchemist/desired_versions.sh -f "${{ matrix.recipe.recipe }}"
+          else
+            automation-tools/alchemist/alchemist.sh -f "${{ matrix.recipe.recipe }}"
+          fi
 
       - name: Upload Artifacts
         uses: actions/upload-artifact@v4
@@ -408,7 +413,12 @@ jobs:
         run: |
           # Use the component name provided in the matrix entry
           echo "artifact_name=${{ matrix.recipe.component }}" >> $GITHUB_ENV
-          automation-tools/alchemist/alchemist.sh -f "${{ matrix.recipe.recipe }}"
+          if [[ "${GITHUB_REF}" == "refs/heads/main" ]]; then
+            # Force rebuild on main using pinned desired_versions.sh
+            automation-tools/alchemist/alchemist.sh -v automation-tools/alchemist/desired_versions.sh -f "${{ matrix.recipe.recipe }}"
+          else
+            automation-tools/alchemist/alchemist.sh -f "${{ matrix.recipe.recipe }}"
+          fi
 
       - name: Upload Artifacts
         uses: actions/upload-artifact@v4
