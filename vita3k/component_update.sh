@@ -21,6 +21,6 @@ if [[ $(check_version_is_older_than "$version_being_updated" "0.10.0b") == "true
   log i "0.10.0b Upgrade - Postmove: Vita3K - Folder Creation"
 
   create_dir "$storage_path/Vita3K/"
-  cp -frv "$component_config/ux0" "$storage_path/Vita3K/" # User config
+  cp -frv "$vita3k_rd_config_dir/ux0" "$storage_path/Vita3K/" # User config
   prepare_component "postmove" "vita3k"
 fi

@@ -81,7 +81,7 @@ if [[ $(check_version_is_older_than "$version_being_updated" "0.10.0b") == "true
   create_dir "$bios_path/mame2010/artwork"
   create_dir "$bios_path/mame2010/crosshairs"
   create_dir "$bios_path/mame2010/fonts"
-  tar -xzf "$component_extras/mame2003-plus" -C "$bios_path/mame2003-plus" --overwrite
+  tar -xzf "$retroarch_extras_path/mame2003-plus" -C "$bios_path/mame2003-plus" --overwrite
 
   prepare_component "postmove" "retroarch"
 fi
