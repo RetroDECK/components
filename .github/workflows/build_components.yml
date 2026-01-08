@@ -723,6 +723,7 @@ jobs:
           makeLatest: ${{ env.MAKE_LATEST }}
           repo: ${{ env.REPO_NAME }}
           token: ${{ steps.generate-rekku-token.outputs.token }}
+          draft: false
 
       - name: Update latest-cooker tag
         if: github.ref != 'refs/heads/main'
