@@ -711,6 +711,20 @@ jobs:
           echo "TAG=$TAG" >> $GITHUB_OUTPUT
           echo "MAKE_LATEST=$MAKE_LATEST" >> $GITHUB_OUTPUT
 
+      - name: Rewrite Tag (main only, ensure tag exists before Publish)
+        if: github.ref == 'refs/heads/main'
+        run: |
+          git submodule deinit -f --all
+          git fetch --tags
+          if git rev-parse --verify "${{ env.TAG }}" >/dev/null 2>&1; then
+              git tag -d "${{ env.TAG }}" || true
+              git push --delete origin "${{ env.TAG }}" || true
+          fi
+          git tag "${{ env.TAG }}"
+          git push origin "${{ env.TAG }}"
+        env:
+          GITHUB_TOKEN: ${{ steps.generate-rekku-token.outputs.token }}
+
       - name: Publish release
         uses: ncipollo/release-action@v1
         with:
@@ -811,16 +825,3 @@ jobs:
           header: "RetroDECK Build Artifacts"
           path: pr_body.md
           
-      - name: Rewrite Tag
-        if: github.ref == 'refs/heads/main'
-        run: |
-          git submodule deinit -f --all
-          git fetch --tags
-          if git rev-parse --verify "${{ env.TAG }}" >/dev/null 2>&1; then
-              git tag -d "${{ env.TAG }}"
-              git push --delete origin "${{ env.TAG }}"
-          fi
-          git tag "${{ env.TAG }}"
-          git push origin "${{ env.TAG }}"
-        env:
-          GITHUB_TOKEN: ${{ steps.generate-rekku-token.outputs.token }}
