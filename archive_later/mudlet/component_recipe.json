@@ -28,11 +28,6 @@
         },
         {
           "type": "dir",
-          "source": "plugins",
-          "dest": "plugins"
-        },
-        {
-          "type": "dir",
           "source": "translations",
           "dest": "translations"
         },
