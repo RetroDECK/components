@@ -28,11 +28,6 @@
         },
         {
           "type": "dir",
-          "source": "plugins",
-          "dest": "plugins"
-        },
-        {
-          "type": "dir",
           "source": "translations",
           "dest": "translations"
         },
@@ -82,55 +77,60 @@
           "library": "libQt5Concurrent.so.5",
           "runtime_name": "org.kde.Platform",
           "runtime_version": "$DESIRED_QT5_RUNTIME_VERSION",
-          "dest": "lib"
+          "dest": "shared-libs"
         },
         {
           "library": "libQt5Core.so.5",
           "runtime_name": "org.kde.Platform",
           "runtime_version": "$DESIRED_QT5_RUNTIME_VERSION",
-          "dest": "lib"
+          "dest": "shared-libs"
         },
         {
           "library": "libQt5Multimedia.so.5",
           "runtime_name": "org.kde.Platform",
           "runtime_version": "$DESIRED_QT5_RUNTIME_VERSION",
-          "dest": "lib"
+          "dest": "shared-libs"
         },
         {
           "library": "libQt5Network.so.5",
           "runtime_name": "org.kde.Platform",
           "runtime_version": "$DESIRED_QT5_RUNTIME_VERSION",
-          "dest": "lib"
+          "dest": "shared-libs"
         },
         {
           "library": "libQt5Gui.so.5",
           "runtime_name": "org.kde.Platform",
           "runtime_version": "$DESIRED_QT5_RUNTIME_VERSION",
-          "dest": "lib"
+          "dest": "shared-libs"
         },
         {
           "library": "libQt5Widgets.so.5",
           "runtime_name": "org.kde.Platform",
           "runtime_version": "$DESIRED_QT5_RUNTIME_VERSION",
-          "dest": "lib"
+          "dest": "shared-libs"
         },
         {
           "library": "libQt5TextToSpeech.so.5",
           "runtime_name": "org.kde.Platform",
           "runtime_version": "$DESIRED_QT5_RUNTIME_VERSION",
-          "dest": "lib"
+          "dest": "shared-libs"
         },
         {
           "library": "libQt5DBus.so.5",
           "runtime_name": "org.kde.Platform",
           "runtime_version": "$DESIRED_QT5_RUNTIME_VERSION",
-          "dest": "lib"
+          "dest": "shared-libs"
         },
         {
           "library": "libicui18n.so.67",
           "runtime_name": "org.freedesktop.Platform",
           "runtime_version": "20.08",
-          "dest": "lib"
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libqt5keychain.so.1",
+          "source": "shared-libs",
+          "dest": "shared-libs"
         },
         {
           "library": "libGLU.so.1",

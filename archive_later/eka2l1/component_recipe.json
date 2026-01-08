@@ -57,31 +57,31 @@
           "library": "libQt5Widgets.so.5",
           "runtime_name": "org.kde.Platform",
           "runtime_version": "5.15",
-          "dest": "lib"
+          "dest": "shared-libs"
         },
         {
           "library": "libQt5Svg.so.5",
           "runtime_name": "org.kde.Platform",
           "runtime_version": "5.15",
-          "dest": "lib"
+          "dest": "shared-libs"
         },
         {
           "library": "libQt5Gui.so.5",
           "runtime_name": "org.kde.Platform",
           "runtime_version": "5.15",
-          "dest": "lib"
+          "dest": "shared-libs"
         },
         {
           "library": "libQt5Core.so.5",
           "runtime_name": "org.kde.Platform",
           "runtime_version": "5.15",
-          "dest": "lib"
+          "dest": "shared-libs"
         },
         {
           "library": "libQt5Network.so.5",
           "runtime_name": "org.kde.Platform",
           "runtime_version": "5.15",
-          "dest": "lib"
+          "dest": "shared-libs"
         },
         {
           "library": "libbz2.so.1.0",
@@ -92,7 +92,7 @@
           "library": "libssl.so.1.1",
           "runtime_name": "org.kde.Platform",
           "runtime_version": "5.15",
-          "dest": "lib"
+          "dest": "shared-libs"
         }
       ]
     }

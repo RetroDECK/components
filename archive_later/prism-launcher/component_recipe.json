@@ -73,49 +73,49 @@
           "library": "libQt6Widgets.so.6",
           "runtime_name": "org.kde.Platform",
           "runtime_version": "6.9",
-          "dest": "lib"
+          "dest": "shared-libs"
         },
         {
           "library": "libQt6Gui.so.6",
           "runtime_name": "org.kde.Platform",
           "runtime_version": "6.9",
-          "dest": "lib"
+          "dest": "shared-libs"
         },
         {
           "library": "libQt6Core.so.6",
           "runtime_name": "org.kde.Platform",
           "runtime_version": "6.9",
-          "dest": "lib"
+          "dest": "shared-libs"
         },
         {
           "library": "libQt6Xml.so.6",
           "runtime_name": "org.kde.Platform",
           "runtime_version": "6.9",
-          "dest": "lib"
+          "dest": "shared-libs"
         },
         {
           "library": "libQt6NetworkAuth.so.6",
           "runtime_name": "org.kde.Platform",
           "runtime_version": "6.9",
-          "dest": "lib"
+          "dest": "shared-libs"
         },
         {
           "library": "libQt6Network.so.6",
           "runtime_name": "org.kde.Platform",
           "runtime_version": "6.9",
-          "dest": "lib"
+          "dest": "shared-libs"
         },
         {
           "library": "libQt6Core5Compat.so.6",
           "runtime_name": "org.kde.Platform",
           "runtime_version": "6.9",
-          "dest": "lib"
+          "dest": "shared-libs"
         },
         {
           "library": "libQt6DBus.so.6",
           "runtime_name": "org.kde.Platform",
           "runtime_version": "6.9",
-          "dest": "lib"
+          "dest": "shared-libs"
         }
       ]
     }

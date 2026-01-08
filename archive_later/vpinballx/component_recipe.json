@@ -128,22 +128,22 @@
         {
           "library": "libfreeimage.so.3.19.0",
           "source": "",
-          "dest": "lib"
+          "dest": "shared-libs"
         },
         {
           "library": "libhidapi-hidraw.so.0",
           "source": "",
-          "dest": "lib"
+          "dest": "shared-libs"
         },
         {
           "library": "libbgfx.so",
           "source": "",
-          "dest": "lib"
+          "dest": "shared-libs"
         },
         {
           "library": "libserialport.so",
           "source": "",
-          "dest": "lib"
+          "dest": "shared-libs"
         }
       ]
     },
