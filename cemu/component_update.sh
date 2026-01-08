@@ -15,9 +15,6 @@ if [[ $(check_version_is_older_than "$version_being_updated" "0.10.0b") == "true
 
   log i "0.10.0b Upgrade - Postmove: Cemu"
 
-  prepare_component "postmove" "cemu"
+  prepare_component "reset" "cemu"
 
-  if [[ -e "$bios_path/cemu/keys.txt" ]]; then
-    rm -rf "$XDG_DATA_HOME/Cemu/keys.txt" && ln -s "$bios_path/cemu/keys.txt" "$XDG_DATA_HOME/Cemu/keys.txt" && log d "Linked $bios_path/cemu/keys.txt to $XDG_DATA_HOME/Cemu/keys.txt"
-  fi
 fi
