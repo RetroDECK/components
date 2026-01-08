@@ -192,7 +192,6 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # ==============================================================================
 
 
-
 # ------------------------------------------------------------------------------
 # OpenBOR — Open Beat 'em Up Engine
 # Source: AppImage
@@ -341,7 +340,7 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # Repo: https://github.com/RetroDECK/Vita3K-bin
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
-  export VITA3K_DESIRED_VERSION="3872"
+  export VITA3K_DESIRED_VERSION="3877"
 
 # COOKER (Override)
 # export VITA3K_DESIRED_VERSION="latest"
