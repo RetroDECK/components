@@ -33,10 +33,11 @@ if [[ $(check_version_is_older_than "$version_being_updated" "0.10.0b") == "true
   create_dir -d "$logs_path/PCSX2"
   create_dir -d "$cheats_path/PCSX2/cheats_ws"
   create_dir -d "$cheats_path/PCSX2/cheats_ni"
-  tar -xzf "$component_extras/pcsx2-cheats.tar.gz" -C "$cheats_path/PCSX2" --overwrite
+  move "$cheats_path/pcsx2" "$cheats_path/PCSX2"
+  tar -xzf "$pcsx2_rd_extras_dir/pcsx2-cheats.tar.gz" -C "$cheats_path/PCSX2" --overwrite
   create_dir -d "$storage_path/PCSX2/covers"
   create_dir -d "$texture_packs_path/PCSX2/textures"
   create_dir -d "$videos_path/PCSX2"
-  prepare_component "postmove" "pcxs2"
-  tar -xzf "$component_extras/pcsx2-patches.tar.gz" -C "$mods_path/PCSX2/patches" --overwrite
+  prepare_component "postmove" "pcsx2"
+  tar -xzf "$pcsx2_rd_extras_dir/pcsx2-patches.tar.gz" -C "$mods_path/PCSX2/patches" --overwrite
 fi

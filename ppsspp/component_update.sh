@@ -37,5 +37,5 @@ if [[ $(check_version_is_older_than "$version_being_updated" "0.10.0b") == "true
 
   prepare_component "postmove" "ppsspp"
 
-  unzip -q -o -j "$component_extras/CWCheat-Database-Plus--master.zip" "*/cheat.db" -d "$cheats_path/PPSSPP"
+  unzip -q -o -j "$ppsspp_rd_extras_dir/CWCheat-Database-Plus--master.zip" "*/cheat.db" -d "$cheats_path/PPSSPP"
 fi
