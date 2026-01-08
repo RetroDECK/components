@@ -20,7 +20,7 @@
         {
           "type": "file",
           "source": "lib/libgarglkmain.a",
-          "dest": "lib"
+          "dest": "shared-libs"
         },
         {
           "type": "create",
@@ -85,7 +85,7 @@
         {
           "library": "libgarglk.so",
           "source": "lib",
-          "dest": "lib"
+          "dest": "shared-libs"
         }
       ]
     }

@@ -59,12 +59,12 @@
         {
           "type": "file",
           "source": "lib/x86_64-linux-gnu/libgme.a",
-          "dest": "lib"
+          "dest": "shared-libs"
         },
         {
           "type": "file",
           "source": "lib/x86_64-linux-gnu/libsndfile.a",
-          "dest": "lib"
+          "dest": "shared-libs"
         },
         {
           "type": "dir",

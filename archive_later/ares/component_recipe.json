@@ -58,7 +58,7 @@
         {
           "library": "librashader.so",
           "source": "lib",
-          "dest": "lib"
+          "dest": "shared-libs"
         }
       ]
     }
