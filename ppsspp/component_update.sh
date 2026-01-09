@@ -27,8 +27,8 @@ if [[ $(check_version_is_older_than "$version_being_updated" "0.9.1b") == "true"
   dir_prep "$cheats_path/PPSSPP" "$ppsspp_cheats_path"
   tar -xzf "/app/retrodeck/cheats/ppsspp.tar.gz" -C "$cheats_path/PPSSPP" --overwrite && log i "Cheats for PPSSPP installed"
 
-  set_setting_value "$ppsspp_config" "ppsspp" "$(get_setting_value "$rd_defaults" "ppsspp" "retrodeck" "cheevos")" "retrodeck" "cheevos"
-  set_setting_value "$ppsspp_config" "ppsspp" "$(get_setting_value "$rd_defaults" "ppsspp" "retrodeck" "cheevos_hardcore")" "retrodeck" "cheevos_hardcore"
+  set_setting_value "$rd_conf" "ppsspp" "$(get_setting_value "$rd_defaults" "ppsspp" "retrodeck" "cheevos")" "retrodeck" "cheevos"
+  set_setting_value "$rd_conf" "ppsspp" "$(get_setting_value "$rd_defaults" "ppsspp" "retrodeck" "cheevos_hardcore")" "retrodeck" "cheevos_hardcore"
 fi
 
 if [[ $(check_version_is_older_than "$version_being_updated" "0.10.0b") == "true" ]]; then
@@ -36,9 +36,8 @@ if [[ $(check_version_is_older_than "$version_being_updated" "0.10.0b") == "true
   log i "0.10.0b Upgrade - Postmove: PPSSPP"
 
   prepare_component "postmove" "ppsspp"
-
-
- = 0 (OPENGL)
+  
   set_setting_value "$ppsspp_config" "GraphicsBackend" "0 (OPENGL)" "ppsspp" "Graphics"
+  set_setting_value "$ppsspp_config" "InternalResolution" "3" "ppsspp" "Graphics"
   unzip -q -o -j "$ppsspp_rd_extras_dir/CWCheat-Database-Plus--master.zip" "*/cheat.db" -d "$cheats_path/PPSSPP"
 fi
