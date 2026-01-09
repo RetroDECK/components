@@ -61,10 +61,7 @@ if [[ $(check_version_is_older_than "$version_being_updated" "0.9.1b") == "true"
   tar --strip-components=1 -xzf "/app/retrodeck/cheats/retroarch.tar.gz" -C "$cheats_path/retroarch" --overwrite && log i "Cheats for RetroArch installed"
 fi
 
-
 if [[ $(check_version_is_older_than "$version_being_updated" "0.10.0b") == "true" ]]; then
-
-
   log i "0.10.0b Upgrade - Postmove: RetroArch, Folder Creation, MAME2003+ Asset files"
 
   create_dir "$videos_path/retroarch"
@@ -84,9 +81,19 @@ if [[ $(check_version_is_older_than "$version_being_updated" "0.10.0b") == "true
   tar -xzf "$retroarch_extras_path/mame2003-plus.tar.gz" -C "$bios_path/mame2003-plus" --overwrite
 
   prepare_component "postmove" "retroarch"
+
+  set_setting_value "$retroarch_config" "assets_directory" "/app/retrodeck/components/retroarch/assets" "retroarch"
+  set_setting_value "$retroarch_config" "audio_filter_dir" "/app/retrodeck/components/retroarch/filters/audio" "retroarch"
+  set_setting_value "$retroarch_config" "content_database_path" "/app/retrodeck/components/retroarch/database/rdb" "retroarch"
+  set_setting_value "$retroarch_config" "cursor_directory" "/app/retrodeck/components/retroarch/database/cursors" "retroarch"
+  set_setting_value "$retroarch_config" "joypad_autoconfig_dir" "/app/retrodeck/components/retroarch/autoconfig" "retroarch"
+  set_setting_value "$retroarch_config" "libretro_directory" "$retroarch_extras_path/cores" "retroarch"
+  set_setting_value "$retroarch_config" "libretro_info_path" "$retroarch_extras_path/cores" "retroarch"
+  set_setting_value "$retroarch_config" "video_filter_dir" "/app/retrodeck/components/retroarch/filters/video" "retroarch"
+
+  move "$texture_packs_path/RetroArch-Mesen" "$texture_packs_path/retroarch-core/Mesen"
+  move "$texture_packs_path/RetroArch-Mupen64Plus" "$texture_packs_path/retroarch-core/Mupen64Plus"
 fi
-
-
 
 #######################################
 # These actions happen at every update
