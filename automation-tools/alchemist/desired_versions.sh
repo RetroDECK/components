@@ -55,8 +55,8 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # Source: Flatpak
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
-# Version: 2123.2
-  export AZAHAR_DESIRED_VERSION="9ff0756f534f38e43ebfa2a04e23a48136d34aadb76b864ffbbc1e46bbff1ebd"
+# Version: 2123.4.1
+  export AZAHAR_DESIRED_VERSION="724ecf04e68d118fc0bd5032716fbb638585d30575f8ca113e4ee582d7e06a1a"
 
 # COOKER (Override)
 # export AZAHAR_DESIRED_VERSION="latest"
@@ -139,8 +139,8 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # Source: Flatpak
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
-# Version: 0.0.39-1-8d
-  export RPCS3_DESIRED_VERSION="0370bb23102e36924728ebd2abbf82cb3037401202b1962dcce81901afdfc1a0"
+# Version: 0.0.39-1-ef
+  export RPCS3_DESIRED_VERSION="ee08049b192ac69e545eda3d4bc6b6a60e490b4e4df3417e2888d9ae80acb63c"
 
 # COOKER (Override)
 # export RPCS3_DESIRED_VERSION="latest"
@@ -151,8 +151,8 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # Source: Flatpak
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
-# Version: 0.2.0-nightly.2025.12.26
- export RUFFLE_DESIRED_VERSION="d890cd14c6784065f90daea1be2187ec519431975328ccc87e2ea3970c68f01e"
+# Version: 0.2.0-nightly.2025.12.31
+ export RUFFLE_DESIRED_VERSION="70edc0d9e8b564a764124bab3878654ede76eb148883019f7648eb32b26b19dd"
 
 # COOKER (Override)
 # export RUFFLE_DESIRED_VERSION="latest"
@@ -175,8 +175,8 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # Source: Flatpak
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
-# Version: 0.8.124
-  export XEMU_DESIRED_VERSION="32c3198eed47ed8faa4e4f09738b9579e3c831170ce4a562842239ae9bdce546"
+# Version: 0.8.130
+  export XEMU_DESIRED_VERSION="987dc22f660ae8c003f2054585eb6e8506c3d1b42218b9244660208d4018eeab"
 
 # COOKER (Override)
 # export XEMU_DESIRED_VERSION="latest"
