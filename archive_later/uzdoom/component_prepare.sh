@@ -16,9 +16,9 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
   create_dir "$XDG_DATA_HOME/uzdoom/audio/fm_banks"
   create_dir "$XDG_DATA_HOME/uzdoom/audio/soundfonts"
   create_dir "$bios_path/uzdoom"
-  create_dir "$storage_path/uzdoom/audio/soundfonts"
-  create_dir "$storage_path/uzdoom/audio/fm_banks"
-  create_dir "$storage_path/uzdoom/audio/midi"
+  create_dir "$storage_path/doom/uzdoom/audio/soundfonts"
+  create_dir "$storage_path/doom/uzdoom/audio/fm_banks"
+  create_dir "$storage_path/doom/uzdoom/audio/midi"
 
   cp -fv "$component_config/uzdoom.ini" "$uzdoom_config"
 
