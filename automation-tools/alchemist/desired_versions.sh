@@ -151,8 +151,8 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # Source: Flatpak
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
-# Version: 0.2.0-nightly.2025.12.31
- export RUFFLE_DESIRED_VERSION="70edc0d9e8b564a764124bab3878654ede76eb148883019f7648eb32b26b19dd"
+# Version: 0.2.0-nightly.2026.1.8
+ export RUFFLE_DESIRED_VERSION="db881e38b0b37481ede11e56b307e0962760f1d26dedaff122e4f5c4221be1f3"
 
 # COOKER (Override)
 # export RUFFLE_DESIRED_VERSION="latest"
@@ -208,7 +208,7 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # Source: AppImage
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
-  export PCSX2_DESIRED_VERSION="v2.6.1"
+  export PCSX2_DESIRED_VERSION="v2.6.2"
 
 # COOKER (Override)
 # export PCSX2_DESIRED_VERSION="newest"
@@ -340,7 +340,7 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # Repo: https://github.com/RetroDECK/Vita3K-bin
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
-  export VITA3K_DESIRED_VERSION="3883"
+  export VITA3K_DESIRED_VERSION="3893"
 
 # COOKER (Override)
 # export VITA3K_DESIRED_VERSION="latest"
