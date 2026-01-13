@@ -29,6 +29,6 @@ OLD PREPARE
 
   # Storage
 
-  create_dir "$storage_path/xenia/storage"
+  create_dir "$storage_path/x360/xenia/storage"
   dir_prep "$storage_path/xbox360/xenia/storage" "/app/retrodeck/components/xenia/storage"
-  create_dir "$storage_path/xenia/fonts"
+  create_dir "$storage_path/x360/xenia/fonts"
