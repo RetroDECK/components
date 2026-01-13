@@ -25,7 +25,6 @@ if [[ "$action" == "reset" ]]; then
   dir_prep "$logs_path/ES-DE" "$XDG_CONFIG_HOME/ES-DE/logs"
   log d "Generating roms system folders"
   start_esde --create-system-dirs
-  update_splashscreens
 fi
 
 if [[ "$action" == "postmove" ]]; then
