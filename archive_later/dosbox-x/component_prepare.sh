@@ -13,8 +13,8 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
   cp -fT "$component_config/dosbox-x.conf" "$dosbox_x_config"
 
   # Default General Storage
-  create_dir "$storage_path/dosbox-x"
-  set_setting_value "$dosbox_x_config" "working directory default" "$storage_path/dosbox-x" "dosbox-x"
+  create_dir "$storage_path/windows/dosbox-x"
+  set_setting_value "$dosbox_x_config" "working directory default" "$storage_path/windows/dosbox-x" "dosbox-x"
 
   # Logs path
   create_dir "$logs_path/dosbox-x"
