@@ -39,6 +39,9 @@ if [[ $(check_version_is_older_than "$version_being_updated" "0.10.0b") == "true
 
   set_setting_value "$dolphin_config" "CPUThread" "False" "dolphin" "Core"
   set_setting_value "$dolphin_config" "LanguageCode" " " "dolphin" "Interface"
+  set_setting_value "$dolphin_config" "SIDevice1" "6" "dolphin" "Core"
+  set_setting_value "$dolphin_config" "SIDevice2" "6" "dolphin" "Core"
+  set_setting_value "$dolphin_config" "SIDevice3" "6" "dolphin" "Core"
 
   prepare_component "postmove" "dolphin"
 
