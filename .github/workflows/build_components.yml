@@ -263,7 +263,12 @@ jobs:
         run: |
           # Use the component name provided in the matrix entry
           echo "artifact_name=${{ matrix.recipe.component }}" >> $GITHUB_ENV
-          automation-tools/alchemist/alchemist.sh -f "${{ matrix.recipe.recipe }}"
+          if [[ "${GITHUB_REF}" == "refs/heads/main" ]]; then
+            # Force rebuild on main using pinned desired_versions.sh
+            automation-tools/alchemist/alchemist.sh -v automation-tools/alchemist/desired_versions.sh -f "${{ matrix.recipe.recipe }}"
+          else
+            automation-tools/alchemist/alchemist.sh -f "${{ matrix.recipe.recipe }}"
+          fi
 
       - name: Upload Artifacts
         uses: actions/upload-artifact@v4
@@ -408,7 +413,12 @@ jobs:
         run: |
           # Use the component name provided in the matrix entry
           echo "artifact_name=${{ matrix.recipe.component }}" >> $GITHUB_ENV
-          automation-tools/alchemist/alchemist.sh -f "${{ matrix.recipe.recipe }}"
+          if [[ "${GITHUB_REF}" == "refs/heads/main" ]]; then
+            # Force rebuild on main using pinned desired_versions.sh
+            automation-tools/alchemist/alchemist.sh -v automation-tools/alchemist/desired_versions.sh -f "${{ matrix.recipe.recipe }}"
+          else
+            automation-tools/alchemist/alchemist.sh -f "${{ matrix.recipe.recipe }}"
+          fi
 
       - name: Upload Artifacts
         uses: actions/upload-artifact@v4
@@ -701,6 +711,20 @@ jobs:
           echo "TAG=$TAG" >> $GITHUB_OUTPUT
           echo "MAKE_LATEST=$MAKE_LATEST" >> $GITHUB_OUTPUT
 
+      - name: Rewrite Tag (main only, ensure tag exists before Publish)
+        if: github.ref == 'refs/heads/main'
+        run: |
+          git submodule deinit -f --all
+          git fetch --tags
+          if git rev-parse --verify "${{ env.TAG }}" >/dev/null 2>&1; then
+              git tag -d "${{ env.TAG }}" || true
+              git push --delete origin "${{ env.TAG }}" || true
+          fi
+          git tag "${{ env.TAG }}"
+          git push origin "${{ env.TAG }}"
+        env:
+          GITHUB_TOKEN: ${{ steps.generate-rekku-token.outputs.token }}
+
       - name: Publish release
         uses: ncipollo/release-action@v1
         with:
@@ -713,6 +737,7 @@ jobs:
           makeLatest: ${{ env.MAKE_LATEST }}
           repo: ${{ env.REPO_NAME }}
           token: ${{ steps.generate-rekku-token.outputs.token }}
+          draft: false
 
       - name: Update latest-cooker tag
         if: github.ref != 'refs/heads/main'
@@ -800,16 +825,3 @@ jobs:
           header: "RetroDECK Build Artifacts"
           path: pr_body.md
           
-      - name: Rewrite Tag
-        if: github.ref == 'refs/heads/main'
-        run: |
-          git submodule deinit -f --all
-          git fetch --tags
-          if git rev-parse --verify "${{ env.TAG }}" >/dev/null 2>&1; then
-              git tag -d "${{ env.TAG }}"
-              git push --delete origin "${{ env.TAG }}"
-          fi
-          git tag "${{ env.TAG }}"
-          git push origin "${{ env.TAG }}"
-        env:
-          GITHUB_TOKEN: ${{ steps.generate-rekku-token.outputs.token }}
