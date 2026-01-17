@@ -55,8 +55,8 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # Source: Flatpak
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
-# Version: 2123.4.1
-  export AZAHAR_DESIRED_VERSION="724ecf04e68d118fc0bd5032716fbb638585d30575f8ca113e4ee582d7e06a1a"
+# Version: 2124
+  export AZAHAR_DESIRED_VERSION="94b8fdd9355f408050747c20de8400339de7d5d27c2d75b9b5c093a2b4b0bba5"
 
 # COOKER (Override)
 # export AZAHAR_DESIRED_VERSION="latest"
@@ -340,7 +340,7 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # Repo: https://github.com/RetroDECK/Vita3K-bin
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
-  export VITA3K_DESIRED_VERSION="3893"
+  export VITA3K_DESIRED_VERSION="3900"
 
 # COOKER (Override)
 # export VITA3K_DESIRED_VERSION="latest"
