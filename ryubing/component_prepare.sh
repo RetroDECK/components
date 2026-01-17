@@ -28,7 +28,9 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
   create_dir "$storage_path/switch/updates"
   dir_prep "$bios_path/switch/keys" "$XDG_CONFIG_HOME/Ryujinx/system"
   dir_prep "$bios_path/switch/firmware" "$XDG_CONFIG_HOME/Ryujinx/bis/system/Contents"
-  dir_prep "$saves_path/switch/ryubing" "$XDG_CONFIG_HOME/Ryujinx/bis/system/save"
+  dir_prep "$saves_path/switch/ryubing/system" "$XDG_CONFIG_HOME/Ryujinx/bis/system/save"
+  dir_prep "$saves_path/switch/ryubing/user" "$XDG_CONFIG_HOME/Ryujinx/bis/user/save"
+  dir_prep "$saves_path/switch/ryubing/saveMeta" "$XDG_CONFIG_HOME/Ryujinx/bis/user/saveMeta"
   dir_prep "$mods_path/Ryubing/contents" "$XDG_CONFIG_HOME/Ryujinx/mods/contents/"
   dir_prep "$logs_path/switch/Ryubing" "$XDG_CONFIG_HOME/Ryujinx/Logs"
 fi
@@ -45,7 +47,9 @@ if [[ "$action" == "postmove" ]]; then # Run only post-move commands
   sed -i 's#RETRODECKROMSDIR#'"$roms_path"'#g' "$ryubing_config"
   dir_prep "$bios_path/switch/keys" "$XDG_CONFIG_HOME/Ryujinx/system"
   dir_prep "$bios_path/switch/firmware" "$XDG_CONFIG_HOME/Ryujinx/bis/system/Contents"
-  dir_prep "$saves_path/switch/ryubing" "$XDG_CONFIG_HOME/Ryujinx/bis/system/save"
+  dir_prep "$saves_path/switch/ryubing/system" "$XDG_CONFIG_HOME/Ryujinx/bis/system/save"
+  dir_prep "$saves_path/switch/ryubing/user" "$XDG_CONFIG_HOME/Ryujinx/bis/user/save"
+  dir_prep "$saves_path/switch/ryubing/saveMeta" "$XDG_CONFIG_HOME/Ryujinx/bis/user/saveMeta"
   dir_prep "$mods_path/Ryubing/contents" "$XDG_CONFIG_HOME/Ryujinx/mods/contents/"
   dir_prep "$logs_path/switch/Ryubing" "$XDG_CONFIG_HOME/Ryujinx/Logs"
 fi
