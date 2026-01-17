@@ -52,7 +52,8 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 
 # ------------------------------------------------------------------------------
 # Azahar — Nintendo 3DS Emulator
-# Source: Flatpak
+# Source: Flatpak - Flathub
+# Link: https://flathub.org/en/apps/org.azahar_emu.Azahar
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
 # Version: 2124
@@ -64,7 +65,8 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 
 # ------------------------------------------------------------------------------
 # Cemu — Wii U Emulator
-# Source: Flatpak
+# Source: Flatpak - Flathub
+# Link: https://flathub.org/en/apps/info.cemu.Cemu
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
 # Version: 2.6
@@ -76,7 +78,8 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 
 # ------------------------------------------------------------------------------
 # Dolphin — GameCube / Wii Emulator
-# Source: Flatpak
+# Source: Flatpak - Flathub
+# Link: https://flathub.org/en/apps/org.DolphinEmu.dolphin-emu
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
 # # Version: 2512
@@ -88,7 +91,8 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 
 # ------------------------------------------------------------------------------
 # GZDoom — Modern Doom Engine
-# Source: Flatpak
+# Source: Flatpak - Flathub
+# Link: https://flathub.org/en/apps/org.zdoom.GZDoom
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
 # Version: 4.14.2
@@ -100,7 +104,8 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 
 # ------------------------------------------------------------------------------
 # MAME — Multiple Arcade Machine Emulator
-# Source: Flatpak
+# Source: Flatpak - Flathub
+# Link: https://flathub.org/en/apps/org.mamedev.MAME
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
 # Version: 0.284
@@ -112,7 +117,8 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 
 # ------------------------------------------------------------------------------
 # MelonDS — Nintendo DS Emulator
-# Source: Flatpak
+# Source: Flatpak - Flathub
+# Link: https://flathub.org/en/apps/net.kuribo64.melonDS
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
 # Version: 1.1
@@ -124,7 +130,8 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 
 # ------------------------------------------------------------------------------
 # PPSSPP — PlayStation Portable Emulator
-# Source: Flatpak
+# Source: Flatpak - Flathub
+# Link: https://flathub.org/en/apps/org.ppsspp.PPSSPP
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
 # Version: 1.19.3
@@ -136,7 +143,8 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 
 # ------------------------------------------------------------------------------
 # RPCS3 — PlayStation 3 Emulator
-# Source: Flatpak
+# Source: Flatpak - Flathub
+# Link: https://flathub.org/en/apps/net.rpcs3.RPCS3
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
 # Version: 0.0.39-1-ef
@@ -148,7 +156,8 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 
 # ------------------------------------------------------------------------------
 # Ruffle — Flash Player Emulator
-# Source: Flatpak
+# Source: Flatpak - Flathub
+# Link: https://flathub.org/en/apps/rs.ruffle.Ruffle
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
 # Version: 0.2.0-nightly.2026.1.8
@@ -160,7 +169,8 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 
 # ------------------------------------------------------------------------------
 # Steam ROM Manager — Steam Artwork & ROM Importer
-# Source: Flatpak
+# Source: Flatpak - Flathub
+# Link: https://flathub.org/en/apps/com.steamgriddb.steam-rom-manager
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
 # Version: 2.5.33
@@ -172,7 +182,8 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 
 # ------------------------------------------------------------------------------
 # Xemu — Original Xbox Emulator
-# Source: Flatpak
+# Source: Flatpak - Flathub
+# Link: https://flathub.org/en/apps/app.xemu.xemu
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
 # Version: 0.8.130
@@ -195,6 +206,7 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # ------------------------------------------------------------------------------
 # OpenBOR — Open Beat 'em Up Engine
 # Source: AppImage
+# Link: https://github.com/DCurrent/openbor/releases/
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
   export OPENBOR_DESIRED_VERSION="v7533"
@@ -206,6 +218,7 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # ------------------------------------------------------------------------------
 # PCSX2 — PlayStation 2 Emulator
 # Source: AppImage
+# Link: https://github.com/PCSX2/pcsx2/releases/
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
   export PCSX2_DESIRED_VERSION="v2.6.2"
@@ -215,20 +228,9 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 
 
 # ------------------------------------------------------------------------------
-# PrimeHack — Metroid Prime Fork of Dolphin
-# Source: AppImage
-# ------------------------------------------------------------------------------
-# MAIN (Stable)
-# Version Note: Locked versions from fork
-  export PRIMEHACK_DESIRED_VERSION="master-230724.27"
-
-# COOKER (Override)
-# export PRIMEHACK_DESIRED_VERSION="master-230724.27"
-
-
-# ------------------------------------------------------------------------------
 # RetroArch — Multi-System Front-End
 # Source: AppImage
+# Link: https://buildbot.libretro.com/stable/
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
   export RETROARCH_DESIRED_VERSION="1.22.2"
@@ -240,6 +242,7 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # ------------------------------------------------------------------------------
 # Ryubing — Nintendo Switch Emulator
 # Source: AppImage
+# Link: https://git.ryujinx.app/ryubing/ryujinx/-/releases/
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
 # Version: 1.3.3
@@ -252,6 +255,7 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # ------------------------------------------------------------------------------
 # Solarus — Action RPG Engine
 # Source: AppImage
+# Link: https://gitlab.com/solarus-games/solarus/-/releases/
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
   export SOLARUS_DESIRED_VERSION="v2.0.2"
@@ -274,7 +278,7 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # ------------------------------------------------------------------------------
 # DuckStation (Legacy) — PlayStation 1 Emulator
 # Source: AppImage (RetroDECK-built legacy archive)
-# Repo: https://github.com/RetroDECK/Duckstation
+# Link: https://github.com/RetroDECK/Duckstation/releases
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
   export DUCKSTATION_DESIRED_VERSION="preview"
@@ -286,7 +290,7 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # ------------------------------------------------------------------------------
 # ES-DE — EmulationStation Desktop Edition
 # Source: AppImage (RetroDECK-built)
-# Repo: https://github.com/RetroDECK/ES-DE
+# Link: https://github.com/RetroDECK/ES-DE/releases
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
 # Version: 3.4.0
@@ -299,7 +303,7 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # ------------------------------------------------------------------------------
 # Flips — IPS Patch Utility
 # Source: Binary (RetroDECK-built)
-# Repo: https://github.com/RetroDECK/components/tree/cooker/flips/assets
+# Link: https://github.com/RetroDECK/components/tree/cooker/flips/assets
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
 # Version: 198
@@ -312,7 +316,7 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # ------------------------------------------------------------------------------
 # PortMaster — Multi-System Game Launcher
 # Source: Binary (RetroDECK-built)
-# Repo: https://github.com/RetroDECK/components/tree/cooker/portmaster/assets
+# Link: https://github.com/RetroDECK/components/tree/cooker/portmaster/assets
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
   export PORTMASTER_DESIRED_VERSION="latest"
@@ -324,7 +328,7 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # ------------------------------------------------------------------------------
 # XRoar — Tano Dragon Emulator
 # Source: Binary (RetroDECK-built)
-# Repo: https://github.com/RetroDECK/XRoar
+# Link: https://github.com/RetroDECK/XRoar/releases
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
 # Version: 1.10
@@ -334,10 +338,24 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # export XROAR_DESIRED_VERSION="latest"
 
 
+
+# ------------------------------------------------------------------------------
+# PrimeHack — Metroid Prime Fork of Dolphin
+# Source: AppImage
+# Link: https://github.com/RetroDECK/io.github.shiiion.primehack/releases
+# ------------------------------------------------------------------------------
+# MAIN (Stable)
+  export PRIMEHACK_DESIRED_VERSION="master-230724.27"
+
+# COOKER (Override)
+# export PRIMEHACK_DESIRED_VERSION="master-230724.27"
+
+
+
 # ------------------------------------------------------------------------------
 # Vita3K — PlayStation Vita Emulator
 # Source: AppImage (RetroDECK-mirrored)
-# Repo: https://github.com/RetroDECK/Vita3K-bin
+# Link: https://github.com/RetroDECK/Vita3K-bin/releases
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
   export VITA3K_DESIRED_VERSION="3900"
