@@ -16,14 +16,25 @@ if [[ $(check_version_is_older_than "$version_being_updated" "0.10.0b") == "true
   log i "Checking for Ryujinx and Yuzu saves to move into Ryubing folder."
   switch_saves_moved=false
 
-  for old_saves_path in "$saves_path/switch/ryujinx/nand/system/save" \
+  for old_saves_path_system in "$saves_path/switch/ryujinx/nand/system/save" \
                           "$XDG_HOME_CONFIG/Ryujinx/bis/system/save" \
                           "$saves_path/switch/yuzu/nand/system/save" \
                           "$XDG_HOME_CONFIG/Yuzu/bis/system/save" ; do
 
-    if [[ -d "$old_saves_path" ]]; then
-      log i "Found Switch saves in $old_saves_path to move."
-      rsync -a --ignore-existing --mkpath "$old_saves_path/" "$saves_path/switch/ryubing/"
+    if [[ -d "$old_saves_path_system" ]]; then
+      log i "Found Switch saves in $old_saves_path_system to move."
+      rsync -a --ignore-existing --mkpath "$old_saves_path_system/" "$saves_path/switch/ryubing/system"
+      switch_saves_moved=true
+    fi
+
+    for old_saves_path_user in "$saves_path/switch/ryujinx/nand/user/save" \
+                          "$XDG_HOME_CONFIG/Ryujinx/bis/user/save" \
+                          "$saves_path/switch/yuzu/nand/user/save" \
+                          "$XDG_HOME_CONFIG/Yuzu/bis/user/save" ; do
+
+    if [[ -d "$old_saves_user" ]]; then
+      log i "Found Switch saves in $old_saves_path_user to move."
+      rsync -a --ignore-existing --mkpath "$old_saves_path_user/" "$saves_path/switch/ryubing/user"
       switch_saves_moved=true
     fi
 
