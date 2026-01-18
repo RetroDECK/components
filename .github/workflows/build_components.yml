@@ -119,9 +119,30 @@ jobs:
           name: reference-versions
           path: reference/*
 
+  lint-shell-scripts:
+    name: "Lint shell scripts"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Lint .sh scripts
+        run: |
+          set -euo pipefail
+          # Find all .sh files excluding archive_* and automation-tools directories and .git
+          mapfile -d '' files < <(find . -type f -name '*.sh' -not -path './archive_*/*' -not -path './.git/*' -not -path './automation-tools/*' -print0)
+          if [ ${#files[@]} -eq 0 ]; then
+            echo "No .sh files found"
+            exit 0
+          fi
+
+          for f in "${files[@]}"; do
+            echo "Checking $f"
+            bash -n "$f"
+          done
+
   build-light:
     name: "Build ${{ matrix.recipe.component }}"
-    needs: setup-recipes
+    needs: [setup-recipes, lint-shell-scripts]
     runs-on: ubuntu-latest
     if: github.event_name != 'schedule' || github.ref == 'refs/heads/update/components'
     strategy:
@@ -278,7 +299,7 @@ jobs:
 
   build-heavy:
     name: "Build ${{ matrix.recipe.component }}"
-    needs: setup-recipes
+    needs: [setup-recipes, lint-shell-scripts]
     runs-on: retrodeck
     if: (github.event_name != 'schedule' || github.ref == 'refs/heads/update/components') && fromJSON(needs.setup-recipes.outputs.heavy-matrix).length > 0
     strategy:
