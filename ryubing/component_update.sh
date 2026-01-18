@@ -32,11 +32,12 @@ if [[ $(check_version_is_older_than "$version_being_updated" "0.10.0b") == "true
                           "$saves_path/switch/yuzu/nand/user/save" \
                           "$XDG_HOME_CONFIG/Yuzu/bis/user/save" ; do
 
-    if [[ -d "$old_saves_user" ]]; then
-      log i "Found Switch saves in $old_saves_path_user to move."
-      rsync -a --ignore-existing --mkpath "$old_saves_path_user/" "$saves_path/switch/ryubing/user"
-      switch_saves_moved=true
-    fi
+      if [[ -d "$old_saves_path_user" ]]; then
+        log i "Found Switch saves in $old_saves_path_user to move."
+        rsync -a --ignore-existing --mkpath "$old_saves_path_user/" "$saves_path/switch/ryubing/user"
+        switch_saves_moved=true
+      fi
+    done
 
   done
 
