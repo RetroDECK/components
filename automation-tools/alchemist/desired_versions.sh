@@ -358,7 +358,7 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # Link: https://github.com/RetroDECK/Vita3K-bin/releases
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
-  export VITA3K_DESIRED_VERSION="3900"
+  export VITA3K_DESIRED_VERSION="3901"
 
 # COOKER (Override)
 # export VITA3K_DESIRED_VERSION="latest"
