@@ -66,7 +66,7 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
     tar -czf "$backup_file" -C "$bios_path/mame2003-plus" retroarch
     log i "MAME 2003-Plus BIOS data backed up to $backup_file"
   fi
-  tar -xzf "$component_extras/mame2003-plus" -C "$bios_path/mame2003-plus" --overwrite
+  tar -xzf "$retroarch_extras_path/mame2003-plus.tar.gz" -C "$bios_path/mame2003-plus" --overwrite
 
   retroarch_updater
 
