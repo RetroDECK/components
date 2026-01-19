@@ -12,9 +12,6 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
   log i "Resetting $component_name"
   log i "------------------------"
   
-  # removing config directory to wipe legacy files
-  log d "Removing \"$XDG_CONFIG_HOME/Ryujinx\""
-  rm -rf "$XDG_CONFIG_HOME/Ryujinx"
   create_dir "$XDG_CONFIG_HOME/Ryujinx/system"
   create_dir "$ryubing_profiles_path"
   cp -fv "$component_config/Config.json" "$ryubing_config"
