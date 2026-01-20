@@ -63,7 +63,7 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
   if [[ -d "$bios_path/mame2003-plus" && "$(ls -A "$bios_path/mame2003-plus")" ]]; then
     backup_file="$backups_path/bios/mame2003-plus-$(date +%y%m%d).tar.gz"
     create_dir "$(dirname "$backup_file")"
-    tar -czf "$backup_file" -C "$bios_path/mame2003-plus" retroarch
+    tar -czf "$backup_file" -C "$bios_path" mame2003-plus
     log i "MAME 2003-Plus BIOS data backed up to $backup_file"
   fi
   tar -xzf "$retroarch_extras_path/mame2003-plus.tar.gz" -C "$bios_path/mame2003-plus" --overwrite
