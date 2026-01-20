@@ -12,4 +12,9 @@ log i "RetroDECK is now launching $component_name"
 log d "Library path is: $LD_LIBRARY_PATH"
 log d "QT plugin path is: $QT_PLUGIN_PATH"
 
-exec "$component_path/bin/mame" "$@"
+if [[ "$1" == "chdman_compression" ]]; then
+  shift
+  exec "$component_path/bin/chdman" "$@"
+else
+  exec "$component_path/bin/mame" "$@"
+fi
