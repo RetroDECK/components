@@ -28,7 +28,7 @@
 
 
 # ------------------------------------------------------------------------------
-# Qt 5 Runtime — Legacy Qt Support
+# Qt 5 Runtime - Legacy Qt Support
 # ------------------------------------------------------------------------------
 
 # MAIN (Stable)
@@ -51,7 +51,7 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 
 
 # ------------------------------------------------------------------------------
-# Azahar — Nintendo 3DS Emulator
+# Azahar - Nintendo 3DS Emulator
 # Source: Flatpak - Flathub
 # Link: https://flathub.org/en/apps/org.azahar_emu.Azahar
 # ------------------------------------------------------------------------------
@@ -64,7 +64,7 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 
 
 # ------------------------------------------------------------------------------
-# Cemu — Wii U Emulator
+# Cemu - Wii U Emulator
 # Source: Flatpak - Flathub
 # Link: https://flathub.org/en/apps/info.cemu.Cemu
 # ------------------------------------------------------------------------------
@@ -77,7 +77,7 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 
 
 # ------------------------------------------------------------------------------
-# Dolphin — GameCube / Wii Emulator
+# Dolphin - GameCube / Wii Emulator
 # Source: Flatpak - Flathub
 # Link: https://flathub.org/en/apps/org.DolphinEmu.dolphin-emu
 # ------------------------------------------------------------------------------
@@ -90,7 +90,7 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 
 
 # ------------------------------------------------------------------------------
-# GZDoom — Modern Doom Engine
+# GZDoom - Modern Doom Engine
 # Source: Flatpak - Flathub
 # Link: https://flathub.org/en/apps/org.zdoom.GZDoom
 # ------------------------------------------------------------------------------
@@ -103,7 +103,7 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 
 
 # ------------------------------------------------------------------------------
-# MAME — Multiple Arcade Machine Emulator
+# MAME - Multiple Arcade Machine Emulator
 # Source: Flatpak - Flathub
 # Link: https://flathub.org/en/apps/org.mamedev.MAME
 # ------------------------------------------------------------------------------
@@ -116,7 +116,7 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 
 
 # ------------------------------------------------------------------------------
-# MelonDS — Nintendo DS Emulator
+# MelonDS - Nintendo DS Emulator
 # Source: Flatpak - Flathub
 # Link: https://flathub.org/en/apps/net.kuribo64.melonDS
 # ------------------------------------------------------------------------------
@@ -129,7 +129,7 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 
 
 # ------------------------------------------------------------------------------
-# PPSSPP — PlayStation Portable Emulator
+# PPSSPP - PlayStation Portable Emulator
 # Source: Flatpak - Flathub
 # Link: https://flathub.org/en/apps/org.ppsspp.PPSSPP
 # ------------------------------------------------------------------------------
@@ -142,7 +142,7 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 
 
 # ------------------------------------------------------------------------------
-# RPCS3 — PlayStation 3 Emulator
+# RPCS3 - PlayStation 3 Emulator
 # Source: Flatpak - Flathub
 # Link: https://flathub.org/en/apps/net.rpcs3.RPCS3
 # ------------------------------------------------------------------------------
@@ -155,7 +155,7 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 
 
 # ------------------------------------------------------------------------------
-# Ruffle — Flash Player Emulator
+# Ruffle - Flash Player Emulator
 # Source: Flatpak - Flathub
 # Link: https://flathub.org/en/apps/rs.ruffle.Ruffle
 # ------------------------------------------------------------------------------
@@ -168,7 +168,7 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 
 
 # ------------------------------------------------------------------------------
-# Steam ROM Manager — Steam Artwork & ROM Importer
+# Steam ROM Manager - Steam Artwork & ROM Importer
 # Source: Flatpak - Flathub
 # Link: https://flathub.org/en/apps/com.steamgriddb.steam-rom-manager
 # ------------------------------------------------------------------------------
@@ -181,7 +181,7 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 
 
 # ------------------------------------------------------------------------------
-# Xemu — Original Xbox Emulator
+# Xemu - Original Xbox Emulator
 # Source: Flatpak - Flathub
 # Link: https://flathub.org/en/apps/app.xemu.xemu
 # ------------------------------------------------------------------------------
@@ -194,7 +194,7 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 
 
 # ==============================================================================
-#  Component Desired Versions — Web / GitHub / GitLab / AppImages
+#  Component Desired Versions - Web / GitHub / GitLab / AppImages
 # ==============================================================================
 #  Components sourced from GitHub, GitLab, or other web pages,
 #  provided as loose binaries or AppImages.
@@ -204,7 +204,7 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 
 
 # ------------------------------------------------------------------------------
-# OpenBOR — Open Beat 'em Up Engine
+# OpenBOR - Open Beat 'em Up Engine
 # Source: AppImage
 # Link: https://github.com/DCurrent/openbor/releases/
 # ------------------------------------------------------------------------------
@@ -216,7 +216,7 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 
 
 # ------------------------------------------------------------------------------
-# PCSX2 — PlayStation 2 Emulator
+# PCSX2 - PlayStation 2 Emulator
 # Source: AppImage
 # Link: https://github.com/PCSX2/pcsx2/releases/
 # ------------------------------------------------------------------------------
@@ -228,7 +228,7 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 
 
 # ------------------------------------------------------------------------------
-# RetroArch — Multi-System Front-End
+# RetroArch - Multi-System Front-End
 # Source: AppImage
 # Link: https://buildbot.libretro.com/stable/
 # ------------------------------------------------------------------------------
@@ -240,7 +240,7 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 
 
 # ------------------------------------------------------------------------------
-# Ryubing — Nintendo Switch Emulator
+# Ryubing - Nintendo Switch Emulator
 # Source: AppImage
 # Link: https://git.ryujinx.app/ryubing/ryujinx/-/releases/
 # ------------------------------------------------------------------------------
@@ -253,7 +253,7 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 
 
 # ------------------------------------------------------------------------------
-# Solarus — Action RPG Engine
+# Solarus - Action RPG Engine
 # Source: AppImage
 # Link: https://gitlab.com/solarus-games/solarus/-/releases/
 # ------------------------------------------------------------------------------
@@ -266,7 +266,7 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 
 
 # ==============================================================================
-#  Component Desired Versions — Self-Built / Repo-Hosted Components
+#  Component Desired Versions - Self-Built / Repo-Hosted Components
 # ==============================================================================
 #  Components that are self-built and hosted in the RetroDECK repository.
 #
@@ -276,7 +276,7 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 
 
 # ------------------------------------------------------------------------------
-# DuckStation (Legacy) — PlayStation 1 Emulator
+# DuckStation (Legacy) - PlayStation 1 Emulator
 # Source: AppImage (RetroDECK-built legacy archive)
 # Link: https://github.com/RetroDECK/Duckstation/releases
 # ------------------------------------------------------------------------------
@@ -288,7 +288,7 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 
 
 # ------------------------------------------------------------------------------
-# ES-DE — EmulationStation Desktop Edition
+# ES-DE - EmulationStation Desktop Edition
 # Source: AppImage (RetroDECK-built)
 # Link: https://github.com/RetroDECK/ES-DE/releases
 # ------------------------------------------------------------------------------
@@ -301,7 +301,7 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 
 
 # ------------------------------------------------------------------------------
-# Flips — IPS Patch Utility
+# Flips - IPS Patch Utility
 # Source: Binary (RetroDECK-built)
 # Link: https://github.com/RetroDECK/components/tree/cooker/flips/assets
 # ------------------------------------------------------------------------------
@@ -314,7 +314,7 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 
 
 # ------------------------------------------------------------------------------
-# PortMaster — Multi-System Game Launcher
+# PortMaster - Multi-System Game Launcher
 # Source: Binary (RetroDECK-built)
 # Link: https://github.com/RetroDECK/components/tree/cooker/portmaster/assets
 # ------------------------------------------------------------------------------
@@ -326,7 +326,7 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 
 
 # ------------------------------------------------------------------------------
-# XRoar — Tano Dragon Emulator
+# XRoar - Tano Dragon Emulator
 # Source: Binary (RetroDECK-built)
 # Link: https://github.com/RetroDECK/XRoar/releases
 # ------------------------------------------------------------------------------
@@ -340,7 +340,7 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 
 
 # ------------------------------------------------------------------------------
-# PrimeHack — Metroid Prime Fork of Dolphin
+# PrimeHack - Metroid Prime Fork of Dolphin
 # Source: AppImage
 # Link: https://github.com/RetroDECK/io.github.shiiion.primehack/releases
 # ------------------------------------------------------------------------------
@@ -353,7 +353,7 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 
 
 # ------------------------------------------------------------------------------
-# Vita3K — PlayStation Vita Emulator
+# Vita3K - PlayStation Vita Emulator
 # Source: AppImage (RetroDECK-mirrored)
 # Link: https://github.com/RetroDECK/Vita3K-bin/releases
 # ------------------------------------------------------------------------------
@@ -367,7 +367,7 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 
 
 # ==============================================================================
-#  Component Desired Versions — Future
+#  Component Desired Versions - Future
 # ==============================================================================
 #  New components being developed in the Cooker branch for an upcoming major release.
 #  These components are planned for future inclusion and are not yet part of the
@@ -378,7 +378,7 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 
 
 # ------------------------------------------------------------------------------
-# DOSBox-X — Enhanced DOSBox Engine
+# DOSBox-X - Enhanced DOSBox Engine
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
 # export DOSBOX_X_DESIRED_VERSION=""
@@ -388,7 +388,7 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 
 
 # ------------------------------------------------------------------------------
-# Eden — Nintendo Switch Emulator
+# Eden - Nintendo Switch Emulator
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
 # export EDEN_DESIRED_VERSION=""
@@ -398,7 +398,7 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 
 
 # ------------------------------------------------------------------------------
-# EKA2L1 — Symbian OS Emulator
+# EKA2L1 - Symbian OS Emulator
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
 # export EKA2L1_DESIRED_VERSION=""
@@ -408,7 +408,7 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 
 
 # ------------------------------------------------------------------------------
-# Flycast — Dreamcast Emulator
+# Flycast - Dreamcast Emulator
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
 # export FLYCAST_DESIRED_VERSION=""
@@ -418,7 +418,7 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 
 
 # ------------------------------------------------------------------------------
-# Gargoyle — Interactive Fiction Emulator
+# Gargoyle - Interactive Fiction Emulator
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
 # export GARGOYLE_DESIRED_VERSION=""
@@ -428,7 +428,7 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 
 
 # ------------------------------------------------------------------------------
-# Hypseus — Laser Disc Arcade Emulator
+# Hypseus - Laser Disc Arcade Emulator
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
 # export HYPSEUS_DESIRED_VERSION=""
@@ -438,7 +438,7 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 
 
 # ------------------------------------------------------------------------------
-# Ikeman Go — Fighting Engine
+# Ikeman Go - Fighting Engine
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
 # export IKEMANGO_DESIRED_VERSION=""
@@ -448,7 +448,7 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 
 
 # ------------------------------------------------------------------------------
-# KEGS — Apple IIGS Emulator
+# KEGS - Apple IIGS Emulator
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
 # export KEGS_DESIRED_VERSION="1.38"
@@ -458,7 +458,7 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 
 
 # ------------------------------------------------------------------------------
-# Lindbergh — SEGA Lindbergh Emulator
+# Lindbergh - SEGA Lindbergh Emulator
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
 # export LINDBERGH_DESIRED_VERSION=""
@@ -468,7 +468,7 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 
 
 # ------------------------------------------------------------------------------
-# Mudlet — MUD Client
+# Mudlet - MUD Client
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
 # export MUDLET_DESIRED_VERSION="4.19.1"
@@ -478,7 +478,7 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 
 
 # ------------------------------------------------------------------------------
-# Raze — Duke Nukem Engine
+# Raze - Duke Nukem Engine
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
 # export RAZE_DESIRED_VERSION=""
@@ -488,7 +488,7 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 
 
 # ------------------------------------------------------------------------------
-# ScummVM — Point-and-Click Adventure Engine
+# ScummVM - Point-and-Click Adventure Engine
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
 # export SCUMMVM_DESIRED_VERSION=""
@@ -498,7 +498,7 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 
 
 # ------------------------------------------------------------------------------
-# ShadPS4 — PlayStation 4 Emulator
+# ShadPS4 - PlayStation 4 Emulator
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
 # export SHADPS4_DESIRED_VERSION=""
@@ -508,7 +508,7 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 
 
 # ------------------------------------------------------------------------------
-# SimCoupe — SAM Coupé Emulator
+# SimCoupe - SAM Coupé Emulator
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
 # export SIMCOUPE_DESIRED_VERSION=""
@@ -518,7 +518,7 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 
 
 # ------------------------------------------------------------------------------
-# SuperModel — SEGA Model 3 Arcade Emulator
+# SuperModel - SEGA Model 3 Arcade Emulator
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
 # export SUPERMODEL_DESIRED_VERSION=""
@@ -528,7 +528,16 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 
 
 # ------------------------------------------------------------------------------
-# UZDoom — Modern Doom Engine
+# Tsugaru - FM TOWNS Emulator
+# ------------------------------------------------------------------------------
+# MAIN (Stable)
+# export SUPERMODEL_DESIRED_VERSION=""
+
+# COOKER (Override)
+  export TSUGARU_DESIRED_VERSION="newest"
+
+# ------------------------------------------------------------------------------
+# UZDoom - Modern Doom Engine
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
 # export UZDOOM_DESIRED_VERSION=""
@@ -538,7 +547,7 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 
 
 # ------------------------------------------------------------------------------
-# VPinball — Virtual Pinball Engine
+# VPinball - Virtual Pinball Engine
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
 # export VPINBALL_DESIRED_VERSION=""
@@ -548,7 +557,7 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 
 
 # ------------------------------------------------------------------------------
-# Xenia — Xbox 360 Emulator
+# Xenia - Xbox 360 Emulator
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
 # export XENIA_DESIRED_VERSION=""
