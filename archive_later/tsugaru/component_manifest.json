@@ -1,11 +1,11 @@
 {
   "tsugaru": {
-    "name": "EKA2L1",
+    "name": "Tsugaru",
     "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/tsugaru/tsugaru-guide/",
     "url_source": "https://github.com/captainys/TOWNSEMU",
     "description": "FM TOWNS / Marty Emulator - Tsugaru",
-    "system_friendly_name": "FMT TOWNS / Marty",
+    "system_friendly_name": "FM TOWNS / Marty",
     "component_type": "Emulator",
-    "system": "n3ds"
+    "system": "fmtowns"
   }
 }
