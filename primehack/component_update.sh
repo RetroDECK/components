@@ -50,6 +50,7 @@ if [[ $(check_version_is_older_than "$version_being_updated" "0.10.2b") == "true
 
   log i "0.10.2b Upgrade - Postmove: PrimeHack"
 
+  create_dir "$roms_path/primehack"
   set_setting_value "$primehack_config" "SIDevice0" "0" "primehack" "Core"
   rsync -rlD --mkpath "$primehack_rd_config_dir/config/Profiles/Wiimote/" "$XDG_CONFIG_HOME/primehack/Profiles/Wiimote/"
   rsync -rlD --mkpath "$primehack_rd_config_dir/config/WiimoteNew.ini" "$XDG_CONFIG_HOME/primehack/WiimoteNew.ini"
