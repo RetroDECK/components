@@ -20,4 +20,8 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
     jq '.environmentVariables.steamDirectory = "'"$steam_userdata_current"'"' "$srm_userdata/userSettings.json" > "$srm_userdata/tmp.json" && mv -f "$srm_userdata/tmp.json" "$srm_userdata/userSettings.json"
     jq '.environmentVariables.romsDirectory = "'"$rd_home_path"'/.sync"' "$srm_userdata/userSettings.json" > "$srm_userdata/tmp.json" && mv -f "$srm_userdata/tmp.json" "$srm_userdata/userSettings.json"
   fi
+
+  if [[ ! -z $(find "$HOME/.steam/steam/controller_base/templates/" -maxdepth 1 -type f -iname "RetroDECK*.vdf") || ! -z $(find "$HOME/.var/app/com.valvesoftware.Steam/.steam/steam/controller_base/templates/" -maxdepth 1 -type f -iname "RetroDECK*.vdf") ]]; then # If RetroDECK controller profile has been previously installed
+    install_retrodeck_controller_profile
+  fi
 fi

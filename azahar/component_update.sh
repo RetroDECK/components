@@ -29,3 +29,8 @@ if [[ $(check_version_is_older_than "$version_being_updated" "0.10.0b") == "true
     move "$texture_packs_path/citra/" "$texture_packs_path/n3ds/azahar/"
   fi
 fi
+
+if [[ $(check_version_is_older_than "$version_being_updated" "0.10.2b") == "true" ]]; then
+  log i "0.10.2b Upgrade - Reset: Azahar"
+  prepare_component "reset" "azahar"
+fi

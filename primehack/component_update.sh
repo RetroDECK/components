@@ -46,11 +46,21 @@ if [[ $(check_version_is_older_than "$version_being_updated" "0.10.0b") == "true
   prepare_component "postmove" "primehack"
 fi
 
+if [[ $(check_version_is_older_than "$version_being_updated" "0.10.2b") == "true" ]]; then
+
+  log i "0.10.2b Upgrade - Postmove: PrimeHack"
+
+  create_dir "$roms_path/primehack"
+  set_setting_value "$primehack_config" "SIDevice0" "0" "primehack" "Core"
+  rsync -rlD --mkpath "$primehack_rd_config_dir/config/Profiles/Wiimote/" "$XDG_CONFIG_HOME/primehack/Profiles/Wiimote/"
+  rsync -rlD --mkpath "$primehack_rd_config_dir/config/WiimoteNew.ini" "$XDG_CONFIG_HOME/primehack/WiimoteNew.ini"
+fi
+
 #######################################
 # These actions happen at every update
 #######################################
 
 if [[ -d "$primehack_dynamic_input_textures_path" ]]; then # Refresh installed textures if they have been enabled
   log i "Refreshing installed textures for Primehack..."
-  rsync -rlD --mkpath "/app/retrodeck/components/shared-data/DynamicInputTextures/" "$primehack_dynamic_input_textures_path/" && log i "Done"
+  rsync -rlD --delete --mkpath "/app/retrodeck/components/shared-data/DynamicInputTextures/" "$primehack_dynamic_input_textures_path/" && log i "Done"
 fi

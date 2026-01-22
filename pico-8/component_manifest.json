@@ -6,6 +6,6 @@
     "description": "PICO-8 is a fantasy console for playing tiny, retro-style games.",
     "system_friendly_name": "PICO-8 Fantasy Console",
     "component_type": "Emulator",
-    "system": "pico-8"
+    "system": "pico8"
   }
 }
