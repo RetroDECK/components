@@ -62,5 +62,5 @@ fi
 
 if [[ -d "$primehack_dynamic_input_textures_path" ]]; then # Refresh installed textures if they have been enabled
   log i "Refreshing installed textures for Primehack..."
-  rsync -rlD --mkpath "/app/retrodeck/components/shared-data/DynamicInputTextures/" "$primehack_dynamic_input_textures_path/" && log i "Done"
+  rsync -rlD --delete --mkpath "/app/retrodeck/components/shared-data/DynamicInputTextures/" "$primehack_dynamic_input_textures_path/" && log i "Done"
 fi

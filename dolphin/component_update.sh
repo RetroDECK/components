@@ -53,5 +53,5 @@ fi
 
 if [[ -d "$dolphin_dynamic_input_textures_path" ]]; then # Refresh installed textures if they have been enabled
   log i "Refreshing installed textures for Dolphin..."
-  rsync -rlD --mkpath "/app/retrodeck/components/shared-data/DynamicInputTextures/" "$dolphin_dynamic_input_textures_path/" && log i "Done"
+  rsync -rlD --delete --mkpath "/app/retrodeck/components/shared-data/DynamicInputTextures/" "$dolphin_dynamic_input_textures_path/" && log i "Done"
 fi
