@@ -506,3 +506,9 @@ if [[ $(check_version_is_older_than "$version_being_updated" "0.10.0b") == "true
   cp -rf "/app/retrodeck/graphics/folder-iconsets" "$XDG_CONFIG_HOME/retrodeck/graphics/"
   set_setting_value "$rd_conf" "iconset" "lahrs-main" "retrodeck" "options"
 fi
+
+#######################################
+# These actions happen at every update
+#######################################
+
+rsync -rlD --delete --mkpath "/app/retrodeck/graphics/folder-iconsets/" "$XDG_CONFIG_HOME/retrodeck/graphics/folder-iconsets/"
