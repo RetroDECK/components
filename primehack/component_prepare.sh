@@ -11,8 +11,7 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
 
   create_dir -d "$XDG_CONFIG_HOME/primehack/"
   cp -fvr "$component_config/config/"* "$XDG_CONFIG_HOME/primehack/"
-  set_setting_value "$primehack_config" "ISOPath0" "$roms_path/wii" "primehack" "General"
-  set_setting_value "$primehack_config" "ISOPath1" "$roms_path/gc" "primehack" "General"
+  set_setting_value "$primehack_config" "ISOPath0" "$roms_path/primehack" "primehack" "General"
   dir_prep "$saves_path/gc/primehack/EU" "$XDG_DATA_HOME/primehack/GC/EUR"
   dir_prep "$saves_path/gc/primehack/US" "$XDG_DATA_HOME/primehack/GC/USA"
   dir_prep "$saves_path/gc/primehack/JP" "$XDG_DATA_HOME/primehack/GC/JAP"
@@ -42,5 +41,5 @@ if [[ "$action" == "postmove" ]]; then # Run only post-move commands
   dir_prep "$shaders_path/Primehack" "$XDG_DATA_HOME/primehack/Shaders"
   dir_prep "$logs_path/Primehack" "$XDG_DATA_HOME/primehack/Logs"
   dir_prep "$storage_path/Primehack/Dump" "$XDG_DATA_HOME/Primehack/Dump"
-  set_setting_value "$primehack_config" "ISOPath0" "$roms_path/gc" "primehack" "General"
+  set_setting_value "$primehack_config" "ISOPath0" "$roms_path/primehack" "primehack" "General"
 fi
