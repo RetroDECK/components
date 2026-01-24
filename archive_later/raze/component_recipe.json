@@ -3,7 +3,7 @@
     {
       "source_url": "org.zdoom.Raze",
       "source_type": "flatpak_id",
-      "version": "RAZE_DESIRED_VERSION",
+      "version": "$RAZE_DESIRED_VERSION",
       "dest": "user",
       "extraction_type": "flatpak",
       "assets": [
@@ -15,7 +15,7 @@
         {
           "type": "file",
           "source": "share/raze/raze.pk3",
-          "dest": ""
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
         },
         {
           "type": "dir",
