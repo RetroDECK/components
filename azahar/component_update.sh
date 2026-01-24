@@ -34,3 +34,9 @@ if [[ $(check_version_is_older_than "$version_being_updated" "0.10.2b") == "true
   log i "0.10.2b Upgrade - Reset: Azahar"
   prepare_component "reset" "azahar"
 fi
+
+if [[ $(check_version_is_older_than "$version_being_updated" "0.10.3b") == "true" ]]; then
+  log i "0.10.3b Upgrade - Reset: Azahar"
+  set_setting_value "$azahar_qtconfig" "Shortcuts\Main%20Window\Rotate%20Screens%20Upright\KeySeq" "Alt+Y" "azahar" "UI"
+  set_setting_value "$azahar_qtconfig" "hortcuts\Main%20Window\Toggle%20Screen%20Layout\KeySeq" "Ctrl+L" "azahar" "UI"
+fi
