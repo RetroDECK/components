@@ -11,4 +11,6 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
 
   create_dir "$XDG_CONFIG_HOME/mudlet"
   dir_prep "$saves_path/muds/profiles" "$XDG_CONFIG_HOME/mudlet/portable/profiles"
+  dir_prep "$mods_path/mudlet/plugins" "$$XDG_CONFIG_HOME/mudlet/plugins/"
+
 fi
