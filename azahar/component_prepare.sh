@@ -18,11 +18,11 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
 
   cp -fT "$component_config/qt-config.ini" "$azahar_config_path/qt-config.ini"
 
-  set_setting_value "$azahar_qtconfig" "use_custom_storage" "true" "azahar"
-  set_setting_value "$azahar_qtconfig" "nand_directory" "$saves_path/n3ds/azahar/nand/" "azahar"
-  set_setting_value "$azahar_qtconfig" "sdmc_directory" "$saves_path/n3ds/azahar/sdmc/" "azahar"
-  set_setting_value "$azahar_qtconfig" "Paths\gamedirs\3\path" "$roms_path/n3ds" "azahar"
-  set_setting_value "$azahar_qtconfig" "Paths\screenshotPath" "$screenshots_path/Azahar" "azahar"
+  set_setting_value "$azahar_qtconfig" "use_custom_storage" "true" "azahar" "Data%20Storage"
+  set_setting_value "$azahar_qtconfig" "nand_directory" "$saves_path/n3ds/azahar/nand/" "azahar" "Data%20Storage"
+  set_setting_value "$azahar_qtconfig" "sdmc_directory" "$saves_path/n3ds/azahar/sdmc/" "azahar" "Data%20Storage"
+  set_setting_value "$azahar_qtconfig" "Paths\gamedirs\3\path" "$roms_path/n3ds" "azahar" "UI"
+  set_setting_value "$azahar_qtconfig" "Paths\screenshotPath" "$screenshots_path/Azahar" "azahar" "UI"
 
   dir_prep "$mods_path/Azahar/mods" "$azahar_mods_path"
   dir_prep "$texture_packs_path/Azahar/textures" "$azahar_textures_path"
@@ -36,11 +36,11 @@ if [[ "$action" == "postmove" ]]; then # Run commands that apply to both resets 
   log i "Post-moving $component_name"
   log i "----------------------"
 
-  set_setting_value "$azahar_qtconfig" "use_custom_storage" "true" "azahar"
-  set_setting_value "$azahar_qtconfig" "nand_directory" "$saves_path/n3ds/azahar/nand/" "azahar"
-  set_setting_value "$azahar_qtconfig" "sdmc_directory" "$saves_path/n3ds/azahar/sdmc/" "azahar"
-  set_setting_value "$azahar_qtconfig" "Paths\gamedirs\3\path" "$roms_path/n3ds" "azahar"
-  set_setting_value "$azahar_qtconfig" "Paths\screenshotPath" "$screenshots_path/Azahar" "azahar"
+  set_setting_value "$azahar_qtconfig" "use_custom_storage" "true" "azahar" "Data%20Storage"
+  set_setting_value "$azahar_qtconfig" "nand_directory" "$saves_path/n3ds/azahar/nand/" "azahar" "Data%20Storage"
+  set_setting_value "$azahar_qtconfig" "sdmc_directory" "$saves_path/n3ds/azahar/sdmc/" "azahar" "Data%20Storage"
+  set_setting_value "$azahar_qtconfig" "Paths\gamedirs\3\path" "$roms_path/n3ds" "azahar" "UI"
+  set_setting_value "$azahar_qtconfig" "Paths\screenshotPath" "$screenshots_path/Azahar" "azahar" "UI"
 
   dir_prep "$mods_path/Azahar/mods" "$azahar_mods_path"
   dir_prep "$texture_packs_path/Azahar/textures" "$azahar_textures_path"
