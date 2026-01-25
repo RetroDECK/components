@@ -1,11 +1,24 @@
 {
-  "component-name": {
-    "name": "shortname",
+  "fs-uae": {
+    "name": "fs-uae",
     "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_tool_guides/delta-patcher/delta-patcher-guide/",
-    "url_webpage": "https://github.com/marco-calautti/DeltaPatcher",
-    "url_source": "https://github.com/marco-calautti/DeltaPatcher",
-    "description": "Desc",
-    "component_type": "Type",
-    "system_friendly_name": "Long Name"
+    "url_webpage": "https://fs-uae.net/",
+    "url_source": "https://github.com/FrodeSolheim/fs-uae",
+    "description": "FS-UAE is a Amiga Emulator",
+    "component_type": "Emulator",
+    "system_friendly_name": [
+      "Amiga",
+      "Amiga 1200",
+      "Amiga 600",
+      "Amiga CD32",
+      "Commodore CDTV"
+    ],
+    "system": [
+      "amiga",
+      "amiga1200",
+      "amiga600",
+      "amigacd32",
+      "cdtv"
+    ]
   }
 }
