@@ -1,7 +1,7 @@
 {
   "fs-uae": {
     "name": "fs-uae",
-    "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_tool_guides/delta-patcher/delta-patcher-guide/",
+    "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/fs-uae/fs-uae-guide/",
     "url_webpage": "https://fs-uae.net/",
     "url_source": "https://github.com/FrodeSolheim/fs-uae",
     "description": "FS-UAE is a Amiga Emulator",

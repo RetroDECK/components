@@ -1,0 +1,12 @@
+{
+  "linapple": {
+    "name": "linapple",
+    "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/gametank/gametank-guide/",
+    "url_webpage": "https://sourceforge.net/projects/linapple/",
+    "url_source": "https://linapple.sourceforge.net/",
+    "description": "LinApple is a Apple 2 / 2E Emulator",
+    "component_type": "Emulator",
+    "system_friendly_name": "LinApple a Apple 2 / 2E Emulator",
+    "system": "apple2"
+  }
+}

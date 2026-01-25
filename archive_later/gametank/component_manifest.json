@@ -1,11 +1,12 @@
 {
-  "component-name": {
-    "name": "shortname",
-    "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_tool_guides/delta-patcher/delta-patcher-guide/",
-    "url_webpage": "https://github.com/marco-calautti/DeltaPatcher",
-    "url_source": "https://github.com/marco-calautti/DeltaPatcher",
-    "description": "Desc",
-    "component_type": "Type",
-    "system_friendly_name": "Long Name"
+  "gametank": {
+    "name": "gametank",
+    "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/gametank/gametank-guide/",
+    "url_webpage": "https://github.com/clydeshaffer/GameTankEmulator",
+    "url_source": "https://github.com/clydeshaffer/GameTankEmulator",
+    "description": "GameTank is a GameTank 8-bit Emulator",
+    "component_type": "Emulator",
+    "system_friendly_name": "GameTank 8-bit Emulator",
+    "system": "gametank"
   }
 }
