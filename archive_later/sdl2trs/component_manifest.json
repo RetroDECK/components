@@ -1,11 +1,12 @@
 {
-  "component-name": {
-    "name": "shortname",
-    "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_tool_guides/delta-patcher/delta-patcher-guide/",
-    "url_webpage": "https://github.com/marco-calautti/DeltaPatcher",
-    "url_source": "https://github.com/marco-calautti/DeltaPatcher",
-    "description": "Desc",
-    "component_type": "Type",
-    "system_friendly_name": "Long Name"
+  "sdl2trs": {
+    "name": "SDL2TRS",
+    "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/sdl2trs/sdl2trs-guide/",
+    "url_webpage": "https://gitlab.com/jengun/sdltrs",
+    "url_source": "https://gitlab.com/jengun/sdltrs",
+    "system": "trs-80",
+    "component_type": "Emulator",
+    "description": "SDL2TRS is a Tandy TRS-80 Model I/III/4/4P (trs-80) Emulator",
+    "system_friendly_name": "trs-80"
   }
 }

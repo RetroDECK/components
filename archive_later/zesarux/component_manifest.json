@@ -1,11 +1,11 @@
 {
-  "component-name": {
-    "name": "shortname",
-    "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_tool_guides/delta-patcher/delta-patcher-guide/",
-    "url_webpage": "https://github.com/marco-calautti/DeltaPatcher",
-    "url_source": "https://github.com/marco-calautti/DeltaPatcher",
-    "description": "Desc",
-    "component_type": "Type",
-    "system_friendly_name": "Long Name"
+  "zesarux": {
+    "name": "ZEsarUX",
+    "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/zesarux/zesarux-guide/",
+    "url_source": "https://github.com/chernandezba/zesarux",
+    "description": "ZEsarUX is a ZX Second Emulator",
+    "system_friendly_name": "ZX Second",
+    "component_type": "Emulator",
+    "system": "zxnext"
   }
 }

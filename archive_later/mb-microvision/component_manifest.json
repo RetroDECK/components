@@ -1,11 +1,11 @@
 {
-  "component-name": {
-    "name": "shortname",
-    "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_tool_guides/delta-patcher/delta-patcher-guide/",
-    "url_webpage": "https://github.com/marco-calautti/DeltaPatcher",
-    "url_source": "https://github.com/marco-calautti/DeltaPatcher",
-    "description": "Desc",
-    "component_type": "Type",
-    "system_friendly_name": "Long Name"
+  "mvem": {
+    "name": "MVEM",
+    "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/mvem/mvem-guide/",
+    "url_source": "https://www.raphkoster.com/2017/05/07/microvision-emulator-release/",
+    "description": "MVEM is a Microvision Emulator.",
+    "component_type": "Emulator",
+    "system_friendly_name": "Microvision",
+    "system": "microvision"
   }
 }

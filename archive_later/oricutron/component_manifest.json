@@ -1,11 +1,12 @@
 {
-  "component-name": {
-    "name": "shortname",
-    "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_tool_guides/delta-patcher/delta-patcher-guide/",
-    "url_webpage": "https://github.com/marco-calautti/DeltaPatcher",
-    "url_source": "https://github.com/marco-calautti/DeltaPatcher",
-    "description": "Desc",
-    "component_type": "Type",
-    "system_friendly_name": "Long Name"
+  "oricutron": {
+    "name": "Oricutron",
+    "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/oricutron/oricutron-guide/",
+    "url_webpage": "https://www.petergordon.org.uk/oricutron/",
+    "url_source": "https://github.com/pete-gordon/oricutron",
+    "system": "oric",
+    "component_type": "Emulator",
+    "description": "Oricutron is a Oric-1/Atmos/Telestrat/Pravetz 8D Emulator",
+    "system_friendly_name": "Oric"
   }
 }
