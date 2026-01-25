@@ -1,11 +1,10 @@
 {
-  "delta-patcher": [
+  "xroar": [
     {
-      "source_url": "",
-      "source_type": "",
-      "version": "latest",
-      "dest": "user",
-      "extraction_type": "",
+      "source_url": "https://github.com/RetroDECK/SDLTRS/releases/download/{VERSION}/sdltrs.tar.gz",
+      "source_type": "github_release",
+      "version": "$SDLTRS_DESIRED_VERSION",
+      "extraction_type": "archive",
       "assets": [
         {
           "type": "dir",
@@ -16,6 +15,16 @@
           "type": "create",
           "dest": "component_version",
           "contents": "$SOURCE_VERSION"
+        },
+        {
+          "type": "dir",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/assets/rd_config",
+          "dest": "rd_config"
+        },
+        {
+          "type": "file",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/assets/rd_config/gamecontrollerdb.txt",
+          "dest": "bin"
         },
         {
           "type": "file",

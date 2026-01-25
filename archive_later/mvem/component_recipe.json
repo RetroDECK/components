@@ -1,22 +1,11 @@
 {
-  "delta-patcher": [
+  "mvem": [
     {
-      "source_url": "",
-      "source_type": "",
-      "version": "latest",
-      "dest": "user",
-      "extraction_type": "",
+      "source_url": "$REPO_ROOT/$COMPONENT_NAME/assets/flips-linux.zip",
+      "source_type": "local",
+      "version": "$MVEM_DESIRED_VERSION",
+      "extraction_type": "archive",
       "assets": [
-        {
-          "type": "dir",
-          "source": "bin",
-          "dest": "bin"
-        },
-        {
-          "type": "create",
-          "dest": "component_version",
-          "contents": "$SOURCE_VERSION"
-        },
         {
           "type": "file",
           "source": "$REPO_ROOT/$COMPONENT_NAME/component_functions.sh",
