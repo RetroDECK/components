@@ -1,11 +1,11 @@
 {
-  "component-name": {
+  "commander-x16": {
     "name": "shortname",
     "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_tool_guides/delta-patcher/delta-patcher-guide/",
-    "url_webpage": "https://github.com/marco-calautti/DeltaPatcher",
+    "url_webpage": "https://www.commanderx16.com/",
     "url_source": "https://github.com/marco-calautti/DeltaPatcher",
-    "description": "Desc",
-    "component_type": "Type",
-    "system_friendly_name": "Long Name"
+    "description": "Commander X16 is a X16 emulator.",
+    "component_type": "Emulator",
+    "system_friendly_name": "Commander X16"
   }
 }

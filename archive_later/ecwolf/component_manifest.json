@@ -1,11 +1,11 @@
 {
-  "component-name": {
-    "name": "shortname",
+  "ecwolf": {
+    "name": "ECWolf",
     "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_tool_guides/delta-patcher/delta-patcher-guide/",
-    "url_webpage": "https://github.com/marco-calautti/DeltaPatcher",
-    "url_source": "https://github.com/marco-calautti/DeltaPatcher",
-    "description": "Desc",
-    "component_type": "Type",
+    "url_webpage": "https://maniacsvault.net/ecwolf/",
+    "url_source": "https://github.com/ECWolfEngine/ECWolf",
+    "description": "ECWolf is a Wolfenstein 3D engine based of Wolf4SDL",
+    "component_type": "Engine",
     "system_friendly_name": "Long Name"
   }
 }
