@@ -1,6 +1,6 @@
 {
   "zesarux": [
-    { 
+    {
       "source_url": "https://github.com/chernandezba/zesarux/releases/download/{VERSION}/*_ubuntu22_x86_64.tar.gz",
       "source_type": "github_release",
       "version": "$ZESARUX_DESIRED_VERSION",
@@ -45,6 +45,13 @@
           "type": "file",
           "source": "$REPO_ROOT/$COMPONENT_NAME/component_update.sh",
           "dest": "$COMPONENT_ARTIFACT_ROOT"
+        }
+      ],
+      "libs": [
+        {
+          "library": "libSDL-1.2.so.0",
+          "source": "",
+          "dest": "shared-libs"
         }
       ]
     }
