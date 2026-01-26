@@ -1,5 +1,5 @@
 {
-  "commanderx16": [
+  "commander-x16": [
     {
       "source_url": "https://github.com/X16Community/x16-emulator/releases/download/{VERSION}/x16emu_linux-x86_64-*.zip",
       "source_type": "github_release",
