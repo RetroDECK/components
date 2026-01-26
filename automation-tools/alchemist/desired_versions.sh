@@ -374,8 +374,14 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 #  current stable version.
 # ==============================================================================
 
+# ------------------------------------------------------------------------------
+# Adventure Game Studio
+# ------------------------------------------------------------------------------
+# MAIN (Stable)
+# export AGS_DESIRED_VERSION=""
 
-
+# COOKER (Override)
+  export AGS_DESIRED_VERSION="newest"
 
 # ------------------------------------------------------------------------------
 # DOSBox-X - Enhanced DOSBox Engine
