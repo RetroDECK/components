@@ -1,0 +1,431 @@
+Video
+  Driver: OpenGL 3.2
+  Monitor: Primary
+  Format: ARGB24
+  Exclusive: false
+  Blocking: false
+  PresentSRGB: false
+  ThreadedRenderer: true
+  NativeFullScreen: false
+  Flush: false
+  Shader: bilinear.slangp
+  Multiplier: 2
+  Output: Scale
+  AspectCorrectionMode: Standard
+  AdaptiveSizing: true
+  AutoCentering: false
+  Luminance: 1.0
+  Saturation: 1.0
+  Gamma: 1.0
+  ColorBleed: false
+  ColorEmulation: true
+  DeepBlackBoost: false
+  InterframeBlending: true
+  Overscan: false
+  PixelAccuracy: false
+  Quality: SD
+  Supersampling: false
+  DisableVideoInterfaceProcessing: false
+  WeaveDeinterlacing: true
+Audio
+  Driver: SDL
+  Device: Default
+  Frequency: 48000
+  Latency: 20
+  Exclusive: false
+  Blocking: true
+  Dynamic: false
+  Mute: false
+  Volume: 1.0
+  Balance: 0.0
+Input
+  Driver: SDL
+  Defocus: Pause
+Boot
+  Fast: false
+  Debugger: false
+  AwaitGDBClient: false
+  Prefer: NTSC-U
+General
+  ShowStatusBar: true
+  Rewind: false
+  RunAhead: false
+  AutoSaveMemory: true
+  HomebrewMode: false
+  ForceInterpreter: false
+Rewind
+  Length: 100
+  Frequency: 10
+Paths
+  Home:
+  Firmware: RETRODECKBIOSDIR
+  Saves: RETRODECKSAVESDIR/ares/
+  Screenshots: RETRODECKSCREENSHORTSDIR/ares
+  Debugging: RETRODECKLOGSDIR/ares
+  ArcadeRoms: RETRODECKROMSDIR/arcade/
+  SuperFamicom
+    GameBoy: RETRODECKROMSDIR/sgb/
+    BSMemory: RETRODECKROMSDIR/satellaview/
+    SufamiTurbo: RETRODECKROMSDIR/sufami/
+DebugServer
+  Port: 9123
+  Enabled: false
+  UseIPv4: false
+Nintendo64
+  ExpansionPak: true
+  ControllerPakBankString: 32KiB (Default)
+  Visible: true
+  Path
+GameBoyAdvance
+  Player: false
+  Visible: true
+  Path
+  Firmware
+    BIOS.World
+MegaDrive
+  TMSS: false
+  Visible: true
+  Path
+Recent
+  Game-1
+  Game-2
+  Game-3
+  Game-4
+  Game-5
+  Game-6
+  Game-7
+  Game-8
+  Game-9
+VirtualPad1
+  Pad.Up: 0x3/1/1/Lo;;
+  Pad.Down: 0x3/1/1/Hi;;
+  Pad.Left: 0x3/1/0/Lo;;
+  Pad.Right: 0x3/1/0/Hi;;
+  Select: 0x3/3/6;;
+  Start: 0x3/3/7;;
+  A..South: 0x3/3/0;;
+  B..East: 0x3/3/1;;
+  X..West: 0x3/3/2;;
+  Y..North: 0x3/3/3;;
+  L-Bumper: 0x3/3/4;;
+  R-Bumper: 0x3/3/5;;
+  L-Trigger: 0x3/0/2/Hi;;
+  R-Trigger: 0x3/0/5/Hi;;
+  L-Stick..Click: 0x3/3/9;;
+  R-Stick..Click: 0x3/3/10;;
+  L-Up: 0x3/0/1/Lo;;
+  L-Down: 0x3/0/1/Hi;;
+  L-Left: 0x3/0/0/Lo;;
+  L-Right: 0x3/0/0/Hi;;
+  R-Up: 0x3/0/4/Lo;;
+  R-Down: 0x3/0/4/Hi;;
+  R-Left: 0x3/0/3/Lo;;
+  R-Right: 0x3/0/3/Hi;;
+  Rumble: ;;
+VirtualMouse1
+  X: 0x2/0/0;;
+  Y: 0x2/0/1;;
+  Left: 0x2/1/0;;
+  Middle: 0x2/1/1;;
+  Right: 0x2/1/1;;
+  Extra: ;;
+VirtualPad2
+  Pad.Up: 0x100000003/1/1/Lo;;
+  Pad.Down: 0x100000003/1/1/Hi;;
+  Pad.Left: 0x100000003/1/0/Lo;;
+  Pad.Right: 0x100000003/1/0/Hi;;
+  Select: 0x100000003/3/6;;
+  Start: 0x100000003/3/7;;
+  A..South: 0x100000003/3/1;;
+  B..East: 0x100000003/3/0;;
+  X..West: 0x100000003/3/3;;
+  Y..North: 0x100000003/3/2;;
+  L-Bumper: 0x100000003/3/4;;
+  R-Bumper: 0x100000003/3/5;;
+  L-Trigger: 0x100000003/0/2/Hi;;
+  R-Trigger: 0x100000003/0/5/Hi;;
+  L-Stick..Click: 0x100000003/3/9;;
+  R-Stick..Click: 0x100000003/3/10;;
+  L-Up: 0x100000003/0/1/Lo;;
+  L-Down: 0x100000003/0/1/Hi;;
+  L-Left: 0x100000003/0/0/Lo;;
+  L-Right: 0x100000003/0/0/Hi;;
+  R-Up: 0x100000003/0/4/Lo;;
+  R-Down: 0x100000003/0/4/Hi;;
+  R-Left: 0x100000003/0/3/Lo;;
+  R-Right: 0x100000003/0/3/Hi;;
+  Rumble: ;;
+VirtualMouse2
+  X: ;;
+  Y: ;;
+  Left: ;;
+  Middle: ;;
+  Right: ;;
+  Extra: ;;
+VirtualPad3
+  Pad.Up: 0x200000003/1/1/Lo;;
+  Pad.Down: 0x200000003/1/1/Hi;;
+  Pad.Left: 0x200000003/1/0/Lo;;
+  Pad.Right: 0x200000003/1/0/Hi;;
+  Select: 0x200000003/3/6;;
+  Start: 0x200000003/3/7;;
+  A..South: 0x200000003/3/1;;
+  B..East: 0x200000003/3/0;;
+  X..West: 0x200000003/3/3;;
+  Y..North: 0x200000003/3/2;;
+  L-Bumper: 0x200000003/3/4;;
+  R-Bumper: 0x200000003/3/5;;
+  L-Trigger: 0x200000003/0/2/Hi;;
+  R-Trigger: 0x200000003/0/5/Hi;;
+  L-Stick..Click: 0x200000003/3/9;;
+  R-Stick..Click: 0x200000003/3/10;;
+  L-Up: 0x200000003/0/1/Lo;;
+  L-Down: 0x200000003/0/1/Hi;;
+  L-Left: 0x200000003/0/0/Lo;;
+  L-Right: 0x200000003/0/0/Hi;;
+  R-Up: 0x200000003/0/4/Lo;;
+  R-Down: 0x200000003/0/4/Hi;;
+  R-Left: 0x200000003/0/3/Lo;;
+  R-Right: 0x200000003/0/3/Hi;;
+  Rumble: ;;
+VirtualMouse3
+  X: ;;
+  Y: ;;
+  Left: ;;
+  Middle: ;;
+  Right: ;;
+  Extra: ;;
+VirtualPad4
+  Pad.Up: 0x300000003/1/1/Lo;;
+  Pad.Down: 0x300000003/1/1/Hi;;
+  Pad.Left: 0x300000003/1/0/Lo;;
+  Pad.Right: 0x300000003/1/0/Hi;;
+  Select: 0x300000003/3/6;;
+  Start: 0x300000003/3/7;;
+  A..South: 0x300000003/3/1;;
+  B..East: 0x300000003/3/0;;
+  X..West: 0x300000003/3/3;;
+  Y..North: 0x300000003/3/2;;
+  L-Bumper: 0x300000003/3/4;;
+  R-Bumper: 0x300000003/3/5;;
+  L-Trigger: 0x300000003/0/2/Hi;;
+  R-Trigger: 0x300000003/0/5/Hi;;
+  L-Stick..Click: 0x300000003/3/9;;
+  R-Stick..Click: 0x300000003/3/10;;
+  L-Up: 0x300000003/0/1/Lo;;
+  L-Down: 0x300000003/0/1/Hi;;
+  L-Left: 0x300000003/0/0/Lo;;
+  L-Right: 0x300000003/0/0/Hi;;
+  R-Up: 0x300000003/0/4/Lo;;
+  R-Down: 0x300000003/0/4/Hi;;
+  R-Left: 0x300000003/0/3/Lo;;
+  R-Right: 0x300000003/0/3/Hi;;
+  Rumble: ;;
+VirtualMouse4
+  X: ;;
+  Y: ;;
+  Left: ;;
+  Middle: ;;
+  Right: ;;
+  Extra: ;;
+VirtualPad5
+  Pad.Up: 0x400000003/1/1/Lo;;
+  Pad.Down: 0x400000003/1/1/Hi;;
+  Pad.Left: 0x400000003/1/0/Lo;;
+  Pad.Right: 0x400000003/1/0/Hi;;
+  Select: 0x400000003/3/6;;
+  Start: 0x400000003/3/7;;
+  A..South: 0x400000003/3/1;;
+  B..East: 0x400000003/3/0;;
+  X..West: 0x400000003/3/3;;
+  Y..North: 0x400000003/3/2;;
+  L-Bumper: 0x400000003/3/4;;
+  R-Bumper: 0x400000003/3/5;;
+  L-Trigger: 0x400000003/0/2/Hi;;
+  R-Trigger: 0x400000003/0/5/Hi;;
+  L-Stick..Click: 0x400000003/3/9;;
+  R-Stick..Click: 0x400000003/3/10;;
+  L-Up: 0x400000003/0/1/Lo;;
+  L-Down: 0x400000003/0/1/Hi;;
+  L-Left: 0x400000003/0/0/Lo;;
+  L-Right: 0x400000003/0/0/Hi;;
+  R-Up: 0x400000003/0/4/Lo;;
+  R-Down: 0x400000003/0/4/Hi;;
+  R-Left: 0x400000003/0/3/Lo;;
+  R-Right: 0x400000003/0/3/Hi;;
+  Rumble: ;;
+VirtualMouse5
+  X: ;;
+  Y: ;;
+  Left: ;;
+  Middle: ;;
+  Right: ;;
+  Extra: ;;
+Hotkey
+  ToggleFullscreen: ;;
+  TogglePseudo-Fullscreen: ;;
+  ToggleMouseCapture: ;;
+  ToggleKeyboardCapture: ;;
+  FastForward: ;;
+  ToggleFastForward: ;;
+  Rewind: ;;
+  FrameAdvance: ;;
+  CaptureScreenshot: ;;
+  SaveState: ;;
+  LoadState: ;;
+  DecrementStateSlot: ;;
+  IncrementStateSlot: ;;
+  PauseEmulation: ;;
+  ResetSystem: ;;
+  ReloadCurrentGame: ;;
+  QuitEmulator: ;;
+  MuteAudio: ;;
+  IncreaseAudio: ;;
+  DecreaseAudio: ;;
+Arcade
+  Visible: true
+  Path: RETRODECKROMSDIR/arcade/
+Atari2600
+  Path: RETRODECKROMSDIR/atari2600/
+  Visible: true
+WonderSwan
+  Path: RETRODECKROMSDIR/wonderswan/
+  Visible: true
+WonderSwanColor
+  Path: RETRODECKROMSDIR/wonderswancolor/
+  Visible: true
+PocketChallengeV2
+  Path: RETRODECKROMSDIR/pocketchallengev2/
+  Visible: true
+ColecoVision
+  Path: RETRODECKROMSDIR/colecovision/
+  Firmware
+    BIOS.World: RETRODECKBIOSDIR/colecovision.rom
+  Visible: true
+MyVision
+  Visible: true
+  Path: RETRODECKROMSDIR/arcade/
+MSX
+  Path: RETRODECKROMSDIR/msx/
+  Firmware
+    BIOS.Japan: RETRODECKBIOSDIR/MSX.ROM
+  Visible: true
+MSX2
+  Path: RETRODECKROMSDIR/msx2/
+  Firmware
+    BIOS.Japan: RETRODECKBIOSDIR/MSX2.ROM
+  Visible: true
+PCEngine
+  Path: RETRODECKROMSDIR/pcengine/
+  Visible: true
+PCEngineCD
+  Path: RETRODECKROMSDIR/pcenginecd/
+  Firmware
+    BIOS.US: RETRODECKBIOSDIR/syscard3u.pce
+    BIOS.Japan: RETRODECKBIOSDIR/syscard3.pce
+  Visible: true
+SuperGrafx
+  Path: RETRODECKROMSDIR/supergrafx/
+  Visible: true
+SuperGrafxCD
+  Path: RETRODECKROMSDIR/supergrafx/
+  Firmware
+    BIOS.Japan: RETRODECKBIOSDIR/syscard3.pce
+  Visible: true
+Famicom
+  Path: RETRODECKROMSDIR/nes/
+  Visible: true
+FamicomDiskSystem
+  Path: RETRODECKROMSDIR/fds/
+  Firmware
+    BIOS.Japan: RETRODECKBIOSDIR/disksys.rom
+  Visible: true
+SuperFamicom
+  Path: RETRODECKROMSDIR/snes/
+  Visible: true
+Nintendo64
+  Path: RETRODECKROMSDIR/n64/
+  Visible: true
+Nintendo64DD
+  Path: RETRODECKROMSDIR/n64dd/
+  Firmware
+    BIOS.Japan: RETRODECKBIOSDIR/64DD_IPL_JP.n64
+    BIOS.US: RETRODECKBIOSDIR/64DD_IPL_US.n64
+    BIOS.DEV: RETRODECKBIOSDIR/64DD_IPL_DEV.n64
+  Visible: true
+GameBoy
+  Path: RETRODECKROMSDIR/gb/
+  Visible: true
+GameBoyColor
+  Path: RETRODECKROMSDIR/gbc/
+  Visible: true
+GameBoyAdvance
+  Path: RETRODECKROMSDIR/gba/
+  Firmware
+    BIOS.World: RETRODECKBIOSDIR/gba_bios.bin
+  Visible: true
+SG-1000
+  Path: RETRODECKROMSDIR/sg-1000/
+  Visible: true
+MasterSystem
+  Path: RETRODECKROMSDIR/mastersystem/
+  Firmware
+    BIOS.US: RETRODECKBIOSDIR/bios_U.sms
+    BIOS.Japan: RETRODECKBIOSDIR/bios_J.sms
+    BIOS.Europe: RETRODECKBIOSDIR/bios_E.sms
+  Visible: true
+GameGear
+  Path: RETRODECKROMSDIR/gamegear/
+  Firmware
+    BIOS.World: RETRODECKBIOSDIR/bios.gg
+  Visible: true
+MegaDrive
+  Path: RETRODECKROMSDIR/genesis/
+  Visible: true
+Mega32X
+  Path: RETRODECKROMSDIR/sega32x/
+  Visible: true
+MegaCD
+  Path: RETRODECKROMSDIR/segacd/
+  Firmware
+    BIOS.US: RETRODECKBIOSDIR/bios_CD_U.bin
+    BIOS.Japan: RETRODECKBIOSDIR/bios_CD_J.bin
+    BIOS.Europe: RETRODECKBIOSDIR/bios_CD_E.bin
+  Visible: true
+MegaCD32X
+  Path: RETRODECKROMSDIR/segacd/
+  Visible: true
+NeoGeoAES
+  Path: RETRODECKROMSDIR/arcade/
+  Firmware
+    BIOS.World: RETRODECKBIOSDIR/neo-po.bin
+  Visible: true
+NeoGeoMVS
+  Path: RETRODECKROMSDIR/arcade/
+  Firmware
+    BIOS.World
+  Visible: true
+NeoGeoPocket
+  Path: RETRODECKROMSDIR/ngp/
+  Firmware
+    BIOS.World: RETRODECKBIOSDIR/SNK Neo Geo Pocket (Japan, Europe).ngp
+  Visible: true
+NeoGeoPocketColor
+  Path: RETRODECKROMSDIR/ngpc/
+  Firmware
+    BIOS.World: RETRODECKBIOSDIR/SNK Neo Geo Pocket Color (World) (En,Ja).ngp
+  Visible: true
+PlayStation
+  Path: RETRODECKROMSDIR/psx/
+  Firmware
+    BIOS.US: RETRODECKBIOSDIR/scph5501.bin
+    BIOS.Japan: RETRODECKBIOSDIR/scph5500.bin
+    BIOS.Europe: RETRODECKBIOSDIR/scph5502.bin
+  Visible: true
+ZXSpectrum
+  Path: RETRODECKROMSDIR/zxspectrum/
+  Visible: true
+ZXSpectrum128
+  Path: RETRODECKROMSDIR/zxspectrum/
+  Visible: true
+
