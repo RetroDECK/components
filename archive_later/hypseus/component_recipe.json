@@ -74,7 +74,48 @@
           "contents": "$SOURCE_VERSION"
         }
       ],
-      "libs": []
+      "libs": [
+        {
+          "library": "libbz2.so.1.0",
+          "source": "usr/lib",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libdeflate.so.0",
+          "source": "usr/lib",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libjbig.so.0",
+          "source": "usr/lib",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libjpeg.so.8",
+          "source": "usr/lib",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libSDL2_image-2.0.so.0",
+          "source": "usr/lib",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libSDL2_ttf-2.0.so.0",
+          "source": "usr/lib",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libtiff.so.5",
+          "source": "usr/lib",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libzip.so.4",
+          "source": "usr/lib",
+          "dest": "shared-libs"
+        }
+      ]
     }
   ]
 }
