@@ -383,6 +383,16 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # COOKER (Override)
   export AGS_DESIRED_VERSION="newest"
 
+
+# ------------------------------------------------------------------------------
+# Commander X16 8-bit Computer
+# ------------------------------------------------------------------------------
+# MAIN (Stable)
+# export COMMANDER_X16_DESIRED_VERSION=""
+
+# COOKER (Override)
+  export COMMANDER_X16_DESIRED_VERSION="latest"
+
 # ------------------------------------------------------------------------------
 # DOSBox-X - Enhanced DOSBox Engine
 # ------------------------------------------------------------------------------

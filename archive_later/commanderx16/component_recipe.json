@@ -1,21 +1,30 @@
 {
-  "delta-patcher": [
+  "commanderx16": [
     {
-      "source_url": "",
-      "source_type": "",
-      "version": "latest",
-      "dest": "user",
-      "extraction_type": "",
+      "source_url": "https://github.com/X16Community/x16-emulator/releases/download/{VERSION}/x16emu_linux-x86_64-*.zip",
+      "source_type": "github_release",
+      "version": "$COMMANDER_X16_DESIRED_VERSION",
+      "extraction_type": "archive",
       "assets": [
-        {
-          "type": "dir",
-          "source": "bin",
-          "dest": "bin"
-        },
         {
           "type": "create",
           "dest": "component_version",
-          "contents": "$SOURCE_VERSION"
+          "contents": "$FRAMEWORK_DESIRED_VERSION"
+        },
+        {
+          "type": "dir",
+          "source": "FS-UAE/Linux/x86-64",
+          "dest": "bin"
+        },
+        {
+          "type": "dir",
+          "source": "FS-UAE/Licenses",
+          "dest": "docs"
+        },
+        {
+          "type": "dir",
+          "source": "FS-UAE/Locale",
+          "dest": "Locale"
         },
         {
           "type": "file",
