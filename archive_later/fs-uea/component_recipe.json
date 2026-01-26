@@ -1,21 +1,25 @@
 {
-  "delta-patcher": [
+  "fs-uae": [
     {
-      "source_url": "",
-      "source_type": "",
-      "version": "latest",
-      "dest": "user",
-      "extraction_type": "",
+      "source_url": "https://github.com/FrodeSolheim/fs-uae/releases/download/{VERSION}/*_Linux_x86-64.tar.xz",
+      "source_type": "github_release",
+      "version": "$FS_UAE_DESIRED_VERSION",
+      "extraction_type": "archive",
       "assets": [
-        {
-          "type": "dir",
-          "source": "bin",
-          "dest": "bin"
-        },
         {
           "type": "create",
           "dest": "component_version",
-          "contents": "$SOURCE_VERSION"
+          "contents": "$FRAMEWORK_DESIRED_VERSION"
+        },
+        {
+          "type": "dir",
+          "source": "Linux/x86-64",
+          "dest": "bin"
+        },
+        {
+          "type": "dir",
+          "source": "Licenses",
+          "dest": "docs"
         },
         {
           "type": "file",

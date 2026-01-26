@@ -412,6 +412,16 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # COOKER (Override)
   export EKA2L1_DESIRED_VERSION="latest"
 
+# ------------------------------------------------------------------------------
+# FS-UAE - Amiga Emulator
+# ------------------------------------------------------------------------------
+# MAIN (Stable)
+# export FS_UAE_DESIRED_VERSION=""
+
+# COOKER (Override)
+  export FS_UAE_DESIRED_VERSION="latest"
+
+
 
 # ------------------------------------------------------------------------------
 # Flycast - Dreamcast Emulator
