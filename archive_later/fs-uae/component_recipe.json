@@ -3,7 +3,7 @@
     {
       "source_url": "https://github.com/FrodeSolheim/fs-uae/releases/download/{VERSION}/*Linux_x86-64.tar.xz",
       "source_type": "github_release",
-      "version": "latest",
+      "version": "$FS_UAE_DESIRED_VERSION",
       "extraction_type": "archive",
       "assets": [
         {
