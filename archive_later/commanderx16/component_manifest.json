@@ -6,7 +6,7 @@
     "url_source": "https://github.com/marco-calautti/DeltaPatcher",
     "description": "Commander X16 is a X16 emulator.",
     "component_type": "Emulator",
-    "system": "cx16",
+    "system": "d",
     "system_friendly_name": "Commander X16"
   }
 }
