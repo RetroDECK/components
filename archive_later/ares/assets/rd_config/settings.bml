@@ -295,7 +295,7 @@ WonderSwanColor
   Path: RETRODECKROMSDIR/wonderswancolor/
   Visible: true
 PocketChallengeV2
-  Path: RETRODECKROMSDIR/pocketchallengev2/
+  Path: RETRODECKROMSDIR/supervision/
   Visible: true
 ColecoVision
   Path: RETRODECKROMSDIR/colecovision/
