@@ -12,19 +12,9 @@
           "contents": "$FRAMEWORK_DESIRED_VERSION"
         },
         {
-          "type": "dir",
-          "source": "FS-UAE/Linux/x86-64",
-          "dest": "bin"
-        },
-        {
-          "type": "dir",
-          "source": "FS-UAE/Licenses",
-          "dest": "docs"
-        },
-        {
-          "type": "dir",
-          "source": "FS-UAE/Locale",
-          "dest": "Locale"
+          "type": "",
+          "source": "",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
         },
         {
           "type": "file",
