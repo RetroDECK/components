@@ -1,9 +1,9 @@
 {
   "fs-uae": [
     {
-      "source_url": "https://github.com/FrodeSolheim/fs-uae/releases/download/{VERSION}/*_Linux_x86-64.tar.xz",
+      "source_url": "https://github.com/FrodeSolheim/fs-uae/releases/download/{VERSION}/*Linux_x86-64.tar.xz",
       "source_type": "github_release",
-      "version": "$FS_UAE_DESIRED_VERSION",
+      "version": "latest",
       "extraction_type": "archive",
       "assets": [
         {
@@ -13,17 +13,17 @@
         },
         {
           "type": "dir",
-          "source": "Linux/x86-64",
+          "source": "FS-UAE/Linux/x86-64",
           "dest": "bin"
         },
         {
           "type": "dir",
-          "source": "Licenses",
+          "source": "FS-UAE/Licenses",
           "dest": "docs"
         },
         {
           "type": "dir",
-          "source": "Locale",
+          "source": "FS-UAE/Locale",
           "dest": "Locale"
         },
         {
