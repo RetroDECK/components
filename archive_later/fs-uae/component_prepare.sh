@@ -11,6 +11,7 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
 
 
   create_dir -d "$XDG_CONFIG_HOME/FS-UAE/"
+  create_dir -d "$XDG_DATA_HOME/FS-UAE/"
   cp -fvr "$component_config/"* "$XDG_CONFIG_HOME/FS-UAE/"
   create_dir "$storage_path/FS-UAE/AmigaVision/shared"
 
