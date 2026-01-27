@@ -9,7 +9,11 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
   log i "Preparing $component_name"
   log i "----------------------"
 
+
   create_dir -d "$XDG_CONFIG_HOME/FS-UAE/"
+  cp -fvr "$component_config/"* "$XDG_CONFIG_HOME/FS-UAE/"
   create_dir "$storage_path/FS-UAE/AmigaVision/shared"
 
 fi
+
+# Symlink
