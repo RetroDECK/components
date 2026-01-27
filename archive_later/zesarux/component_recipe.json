@@ -12,9 +12,649 @@
           "contents": "$FRAMEWORK_DESIRED_VERSION"
         },
         {
-          "type": "",
-          "source": "$EXTRACTED_PATH",
+          "type": "dir",
+          "source": "ZEsarUX-12.1/alternate_roms",
           "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "dir",
+          "source": "ZEsarUX-12.1/copiers",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "dir",
+          "source": "ZEsarUX-12.1/docs",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "dir",
+          "source": "ZEsarUX-12.1/keyboards",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "dir",
+          "source": "ZEsarUX-12.1/licenses",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "dir",
+          "source": "ZEsarUX-12.1/my_soft",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "dir",
+          "source": "ZEsarUX-12.1/speech_filters",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "dir",
+          "source": "ZEsarUX-12.1/steering_wheel_presets",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "dir",
+          "source": "ZEsarUX-12.1/text_image_filters",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "ZEsarUX-12.1/128.rom",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "ZEsarUX-12.1/128s.rom",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "ZEsarUX-12.1/48.rom",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "ZEsarUX-12.1/48es.rom",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "ZEsarUX-12.1/80-lec.rom",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "ZEsarUX-12.1/ace.rom",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "ZEsarUX-12.1/atomlite.rom",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "ZEsarUX-12.1/chrome.rom",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "ZEsarUX-12.1/coleco.rom",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "ZEsarUX-12.1/cpc464.rom",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "ZEsarUX-12.1/cpc6128.rom",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "ZEsarUX-12.1/cpc664.rom",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "ZEsarUX-12.1/defcon.rom",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "ZEsarUX-12.1/dinamid3.rom",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "ZEsarUX-12.1/esxide085.rom",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "ZEsarUX-12.1/esxmmc085.rom",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "ZEsarUX-12.1/gs104.rom",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "ZEsarUX-12.1/gs105a.rom",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "ZEsarUX-12.1/hilow_barbanegra.rom",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "ZEsarUX-12.1/hilow_datadrive.rom",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "ZEsarUX-12.1/if1-v1.rom",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "ZEsarUX-12.1/if1-v2.rom",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "ZEsarUX-12.1/interface007.rom",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "ZEsarUX-12.1/inves.rom",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "ZEsarUX-12.1/mf1.rom",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "ZEsarUX-12.1/mf128.rom",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "ZEsarUX-12.1/mf3.rom",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "ZEsarUX-12.1/mhpokeador.rom",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "ZEsarUX-12.1/mhpokeador-salvapan.rom",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "ZEsarUX-12.1/mhpokeador-transfer.rom",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "ZEsarUX-12.1/mk14.rom",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "ZEsarUX-12.1/msx.rom",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "ZEsarUX-12.1/p2.rom",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "ZEsarUX-12.1/p2a40.rom",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "ZEsarUX-12.1/p2a41.rom",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "ZEsarUX-12.1/p2as.rom",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "ZEsarUX-12.1/p2f.rom",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "ZEsarUX-12.1/p2s.rom",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "ZEsarUX-12.1/pcw_boot.rom",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "ZEsarUX-12.1/pentagon.rom",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "ZEsarUX-12.1/phoenix3.rom",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "ZEsarUX-12.1/prism.rom",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "ZEsarUX-12.1/prism_failsafe.rom",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "ZEsarUX-12.1/ql_jm.rom",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "ZEsarUX-12.1/ql_js.rom",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "ZEsarUX-12.1/ramjet2.rom",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "ZEsarUX-12.1/ramjet3.rom",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "ZEsarUX-12.1/samcoupe.rom",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "ZEsarUX-12.1/samram.rom",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "ZEsarUX-12.1/samram_eng.rom",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "ZEsarUX-12.1/se.rom",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "ZEsarUX-12.1/sg1000.rom",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "ZEsarUX-12.1/sms.rom",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "ZEsarUX-12.1/specmate.rom",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "ZEsarUX-12.1/svi.rom",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "ZEsarUX-12.1/tbblue_loader.rom",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "ZEsarUX-12.1/tc2048.rom",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "ZEsarUX-12.1/tk85.rom",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "ZEsarUX-12.1/tk90x.rom",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "ZEsarUX-12.1/tk90xs.rom",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "ZEsarUX-12.1/tk90x_v1br.rom",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "ZEsarUX-12.1/tk90x_v2es.rom",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "ZEsarUX-12.1/tk95.rom",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "ZEsarUX-12.1/tk95es.rom",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "ZEsarUX-12.1/tk95es_modif.rom",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "ZEsarUX-12.1/transtape2.rom",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "ZEsarUX-12.1/transtape3-vA.rom",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "ZEsarUX-12.1/transtape3-vB.rom",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "ZEsarUX-12.1/transtape3-vC.rom",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "ZEsarUX-12.1/trdos.rom",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "ZEsarUX-12.1/ts1500.rom",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "ZEsarUX-12.1/ts2068.rom",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "ZEsarUX-12.1/unodos3.rom",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "ZEsarUX-12.1/Z88OZ431.rom",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "ZEsarUX-12.1/Z88OZ441.rom",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "ZEsarUX-12.1/Z88OZ45.rom",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "ZEsarUX-12.1/Z88OZ46.rom",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "ZEsarUX-12.1/Z88OZ47.rom",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "ZEsarUX-12.1/Z88UK220.rom",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "ZEsarUX-12.1/Z88UK300.rom",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "ZEsarUX-12.1/Z88UK400.rom",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "ZEsarUX-12.1/zx80.rom",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "ZEsarUX-12.1/zx81.rom",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "ZEsarUX-12.1/zxevo_baseconf.rom",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "ZEsarUX-12.1/zxevo_tsconf.rom",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "ZEsarUX-12.1/zxpand_zx80.rom",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "ZEsarUX-12.1/zxpand_zx81.rom",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "ZEsarUX-12.1/zxuno_bootloader.rom",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "ZEsarUX-12.1/pcw_8x_boot1.dsk",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "ZEsarUX-12.1/pcw_8x_boot2.dsk",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "ZEsarUX-12.1/editionnamegame.tap",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "ZEsarUX-12.1/editionnamegame.tap.config",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "ZEsarUX-12.1/mantransfev3.bin",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "ZEsarUX-12.1/tbblue.mmc",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "ZEsarUX-12.1/zxmmcplus.flash",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "ZEsarUX-12.1/zxuno.flash",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "ZEsarUX-12.1/install.sh",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "ZEsarUX-12.1/zesarux",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "ZEsarUX-12.1/included_utilities.odt",
+          "dest": "docs"
+        },
+        {
+          "type": "file",
+          "source": "ZEsarUX-12.1/zesarux.odt",
+          "dest": "docs"
+        },
+        {
+          "type": "file",
+          "source": "ZEsarUX-12.1/zesarux.pdf",
+          "dest": "docs"
+        },
+        {
+          "type": "file",
+          "source": "ZEsarUX-12.1/ACKNOWLEDGEMENTS",
+          "dest": "docs"
+        },
+        {
+          "type": "file",
+          "source": "ZEsarUX-12.1/ALTERNATEROMS",
+          "dest": "docs"
+        },
+        {
+          "type": "file",
+          "source": "ZEsarUX-12.1/Cambios",
+          "dest": "docs"
+        },
+        {
+          "type": "file",
+          "source": "ZEsarUX-12.1/Changelog",
+          "dest": "docs"
+        },
+        {
+          "type": "file",
+          "source": "ZEsarUX-12.1/DONATE",
+          "dest": "docs"
+        },
+        {
+          "type": "file",
+          "source": "ZEsarUX-12.1/DONORS",
+          "dest": "docs"
+        },
+        {
+          "type": "file",
+          "source": "ZEsarUX-12.1/EXCLUSIVEFEATURES",
+          "dest": "docs"
+        },
+        {
+          "type": "file",
+          "source": "ZEsarUX-12.1/FAQ",
+          "dest": "docs"
+        },
+        {
+          "type": "file",
+          "source": "ZEsarUX-12.1/FEATURES",
+          "dest": "docs"
+        },
+        {
+          "type": "file",
+          "source": "ZEsarUX-12.1/FEATURES_es",
+          "dest": "docs"
+        },
+        {
+          "type": "file",
+          "source": "ZEsarUX-12.1/HISTORY",
+          "dest": "docs"
+        },
+        {
+          "type": "file",
+          "source": "ZEsarUX-12.1/INCLUDEDTAPES",
+          "dest": "docs"
+        },
+        {
+          "type": "file",
+          "source": "ZEsarUX-12.1/IN_MEMORIAM_DAVID",
+          "dest": "docs"
+        },
+        {
+          "type": "file",
+          "source": "ZEsarUX-12.1/IN_MEMORIAM_DAVID_es",
+          "dest": "docs"
+        },
+        {
+          "type": "file",
+          "source": "ZEsarUX-12.1/IN_MEMORIAM_DIEGO",
+          "dest": "docs"
+        },
+        {
+          "type": "file",
+          "source": "ZEsarUX-12.1/IN_MEMORIAM_DIEGO_es",
+          "dest": "docs"
+        },
+        {
+          "type": "file",
+          "source": "ZEsarUX-12.1/INSTALL",
+          "dest": "docs"
+        },
+        {
+          "type": "file",
+          "source": "ZEsarUX-12.1/LICENSE",
+          "dest": "docs"
+        },
+        {
+          "type": "file",
+          "source": "ZEsarUX-12.1/LICENSES_info",
+          "dest": "docs"
         },
         {
           "type": "dir",
