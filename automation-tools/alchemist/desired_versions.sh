@@ -591,7 +591,14 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # COOKER (Override)
   export XENIA_DESIRED_VERSION="newest"
 
+# ------------------------------------------------------------------------------
+# ZEsarUX - ZX Second-Emulator
+# ------------------------------------------------------------------------------
+# MAIN (Stable)
+# export ZESARUX_DESIRED_VERSION=""
 
+# COOKER (Override)
+  export ZESARUX_DESIRED_VERSION="latest"
 
 
 # ------------------------------------------------------------------

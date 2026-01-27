@@ -1,7 +1,7 @@
 {
   "zesarux": [
     {
-      "source_url": "https://github.com/chernandezba/zesarux/releases/download/{VERSION}/*_ubuntu22_x86_64.tar.gz",
+      "source_url": "https://github.com/chernandezba/zesarux/releases/download/{VERSION}/*ubuntu22_x86_64.tar.gz",
       "source_type": "github_release",
       "version": "$ZESARUX_DESIRED_VERSION",
       "extraction_type": "archive",
@@ -12,8 +12,13 @@
           "contents": "$FRAMEWORK_DESIRED_VERSION"
         },
         {
+          "type": "",
+          "source": "$EXTRACTED_PATH",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
           "type": "dir",
-          "source": "$REPO_ROOT/$COMPONENT_NAME/rd_config",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/assets/rd_config",
           "dest": "rd_config"
         },
         {
@@ -47,13 +52,7 @@
           "dest": "$COMPONENT_ARTIFACT_ROOT"
         }
       ],
-      "libs": [
-        {
-          "library": "libSDL-1.2.so.0",
-          "source": "",
-          "dest": "shared-libs"
-        }
-      ]
+      "libs": []
     }
   ]
 }
