@@ -1,0 +1,121 @@
+{
+  "hypseus": [
+    {
+      "source_url": "https://github.com/DirtBagXon/hypseus-singe/releases/download/{VERSION}/*_AppImage.tar.gz",
+      "source_type": "github_release",
+      "version": "$HYPSEUS_DESIRED_VERSION",
+      "extraction_type": "zip",
+      "assets": [
+        {
+          "type": "create",
+          "dest": "component_version",
+          "contents": "$FRAMEWORK_DESIRED_VERSION"
+        },
+        {
+          "type": "dir",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/rd_config",
+          "dest": "rd_config"
+        },
+        {
+          "type": "file",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/component_functions.sh",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/component_launcher.sh",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/component_manifest.json",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/component_recipe.json",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/component_prepare.sh",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/component_update.sh",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        }
+      ]
+    },
+    {
+      "source_url": "$EXTRACTED_PATH/*_ES-DE.tar.gz",
+      "source_type": "local",
+      "extraction_type": "archive"
+    },
+    {
+      "source_url": "$EXTRACTED_PATH/hypseus-singe/Hypseus_Singe-x86_64.AppImage",
+      "source_type": "local",
+      "extraction_type": "appimage",
+      "assets": [
+        {
+          "type": "dir",
+          "source": "usr/bin",
+          "dest": "bin"
+        },
+        {
+          "type": "dir",
+          "source": "$REPO_ROOT/$COMPONENT_NAME",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "create",
+          "dest": "component_version",
+          "contents": "$SOURCE_VERSION"
+        }
+      ],
+      "libs": [
+        {
+          "library": "libbz2.so.1.0",
+          "source": "usr/lib",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libdeflate.so.0",
+          "source": "usr/lib",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libjbig.so.0",
+          "source": "usr/lib",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libjpeg.so.8",
+          "source": "usr/lib",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libSDL2_image-2.0.so.0",
+          "source": "usr/lib",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libSDL2_ttf-2.0.so.0",
+          "source": "usr/lib",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libtiff.so.5",
+          "source": "usr/lib",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libzip.so.4",
+          "source": "usr/lib",
+          "dest": "shared-libs"
+        }
+      ]
+    }
+  ]
+}

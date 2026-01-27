@@ -9,6 +9,5 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
   log i "Preparing $component_name"
   log i "----------------------"
 
-  create_dir "$storage_path/FS-UAE/shared"
-
+  create_dir "$XDG_CONFIG_HOME/hypseus"
 fi
