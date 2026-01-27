@@ -17,4 +17,6 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
 
 fi
 
-# Symlink
+# Symlink custom.fs-uae to $storage_path/FS-UAE/custom.fs-uae
+# Make a function that copies AmigaVision.fdi to $roms_path/amiga/ If enabled. 
+# If disabled it deletes the file $roms_path/amiga/AmigaVision.fdi if it's there during boot.
