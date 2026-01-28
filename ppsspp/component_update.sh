@@ -41,3 +41,12 @@ if [[ $(check_version_is_older_than "$version_being_updated" "0.10.0b") == "true
   set_setting_value "$ppsspp_config" "InternalResolution" "3" "ppsspp" "Graphics"
   unzip -q -o -j "$ppsspp_rd_extras_dir/CWCheat-Database-Plus--master.zip" "*/cheat.db" -d "$cheats_path/PPSSPP"
 fi
+
+if [[ $(check_version_is_older_than "$version_being_updated" "0.10.3b") == "true" ]]; then
+
+  log i "0.10.3b Upgrade - PPSSPP: Relink Shaders"
+
+  dir_prep "$shaders_path/PPSSPP" "$ppsspp_shaders_path"
+
+fi
+
