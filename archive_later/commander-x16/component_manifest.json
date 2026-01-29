@@ -4,9 +4,9 @@
     "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/commander-x16/commander-x16-guide/",
     "url_webpage": "https://www.commanderx16.com/",
     "url_source": "https://github.com/marco-calautti/DeltaPatcher",
-    "description": "Commander X16 is a X16 emulator.",
+    "description": "Commander X16 Emulator.",
     "component_type": "Emulator",
-    "system": "d",
+    "system": "commander-x16",
     "system_friendly_name": "Commander X16"
   }
 }
