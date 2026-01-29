@@ -1,5 +1,5 @@
 {
-  "xenia": [
+  "xenia-edge": [
     {
       "source_url": "https://github.com/has207/xenia-edge/releases/download/{VERSION}/xenia_edge_linux.AppImage",
       "source_type": "github_release",
