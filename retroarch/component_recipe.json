@@ -42,9 +42,9 @@
           "dest": "database/rdb"
         },
         {
-          "type": "dir",
-          "source": "RetroArch-Linux-x86_64/RetroArch-Linux-x86_64.AppImage.home/.config/retroarch/filters",
-          "dest": "filters"
+          "type": "tar.gz",
+          "source": "RetroArch-Linux-x86_64/RetroArch-Linux-x86_64.AppImage.home/.config/retroarch/filters/.",
+          "dest": "rd_extras/filters"
         },
         {
           "type": "tar.gz",
