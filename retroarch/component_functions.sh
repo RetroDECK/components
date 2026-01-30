@@ -14,14 +14,14 @@ retroarch_updater() {
   log i "Running RetroArch updater"
 
   log i "Updating overlays/borders..."
-  create_dir -d "$XDG_CONFIG_HOME/retroarch/overlays"
+  create_dir "$XDG_CONFIG_HOME/retroarch/overlays"
   tar -xzf "$retroarch_extras_path/overlays.tar.gz" -C "$XDG_CONFIG_HOME/retroarch/overlays" --overwrite && log d "RetroArch overlays and borders updated correctly"
 
   log i "Updating shaders..."
-  create_dir -d "$XDG_CONFIG_HOME/retroarch/shaders"
+  create_dir "$XDG_CONFIG_HOME/retroarch/shaders"
   tar -xzf "$retroarch_extras_path/shaders.tar.gz" -C "$XDG_CONFIG_HOME/retroarch/shaders" --overwrite && log d "RetroArch shaders updated correctly"
 
   log i "Updating cheats..."
-  create_dir -d "$cheats_path/retroarch"
+  create_dir "$cheats_path/retroarch"
   tar -xzf "$retroarch_extras_path/cheats.tar.gz" -C "$cheats_path/retroarch" --overwrite && log d "RetroArch cheats updated correctly"
 }
