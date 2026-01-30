@@ -11,7 +11,6 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
   log i "--------------------------------"
 
   create_dir -d "$XDG_CONFIG_HOME/retroarch"
-  dir_prep "$bios_path" "$XDG_CONFIG_HOME/retroarch/system"
   dir_prep "$logs_path/retroarch" "$XDG_CONFIG_HOME/retroarch/logs"
   if [[ -d "$cheats_path/retroarch" && "$(ls -A "$cheats_path/retroarch")" ]]; then
     backup_file="$backups_path/cheats/retroarch-$(date +%y%m%d).tar.gz"
@@ -38,6 +37,11 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
   set_setting_value "$retroarch_config" "content_database_path" "$component_path/database/rdb" "retroarch"
   set_setting_value "$retroarch_config" "libretro_directory" "$retroarch_extras_path/cores" "retroarch"
   set_setting_value "$retroarch_config" "libretro_info_path" "$retroarch_extras_path/cores" "retroarch"
+  set_setting_value "$retroarch_config" "audio_filter_dir" "$shaders_path/retroarch/filters/audio" "retroarch"
+  set_setting_value "$retroarch_config" "video_filter_dir" "$shaders_path/retroarch/filters/video" "retroarch"
+  set_setting_value "$retroarch_config" "video_shader_dir" "$shaders_path/retroarch/shaders" "retroarch"
+  set_setting_value "$retroarch_config" "overlay_directory" "$borders_path/retroarch" "retroarch"
+  set_setting_value "$retroarch_config" "system_directory" "$bios_path" "retroarch"
 
   # Video
   create_dir "$videos_path/retroarch"
@@ -71,9 +75,6 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
   retroarch_updater
 
   # Avoid these paths being clobbered by the updater
-  dir_prep "$borders_path/retroarch/" "$XDG_CONFIG_HOME/retroarch/overlays/borders"
-  log d "Linking shaders folder to ensure retroarch can find it $XDG_CONFIG_HOME/retroarch/shaders to $shaders_path/retroarch"
-  dir_prep "$shaders_path/retroarch" "$XDG_CONFIG_HOME/retroarch/shaders"
   ln -s "$retroarch_extras_path/cores" "$XDG_CONFIG_HOME/retroarch/cores" # Link RO cores to RA config dir so ES-DE can find it
   
   # FBNEO
@@ -124,17 +125,17 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
   set_setting_value "$retroarch_config_scummvm" "browser_lastpath" "$roms_path/scummvm" "libretro_scummvm" "scummvm"
 
   # Texture Packs
-  dir_prep "$texture_packs_path/retroarch-core/Mesen/HdPacks" "$XDG_CONFIG_HOME/retroarch/system/HdPacks"
-  dir_prep "$texture_packs_path/retroarch-core/Mupen64Plus/cache" "$XDG_CONFIG_HOME/retroarch/system/Mupen64plus/cache"
-  dir_prep "$texture_packs_path/retroarch-core/Mupen64Plus/hires_texture" "$XDG_CONFIG_HOME/retroarch/system/Mupen64plus/hires_texture"
-  dir_prep "$texture_packs_path/retroarch-core/Citra/textures" "$XDG_CONFIG_HOME/retroarch/saves/Citra/load/textures"
-  dir_prep "$texture_packs_path/retroarch-core/Dolphin/Textures" "$XDG_CONFIG_HOME/retroarch/saves/dolphin-emu/User/Load/Textures/"
-  dir_prep "$texture_packs_path/retroarch-core/PPSSPP/TEXTURES" "$XDG_CONFIG_HOME/retroarch/saves/PPSSPP/PSP/TEXTURES"
+  dir_prep "$texture_packs_path/retroarch-core/Mesen/HdPacks" "$bios_path/HdPacks"
+  dir_prep "$texture_packs_path/retroarch-core/Mupen64Plus/cache" "$bios_path/Mupen64plus/cache"
+  dir_prep "$texture_packs_path/retroarch-core/Mupen64Plus/hires_texture" "$bios_path/Mupen64plus/hires_texture"
+#   dir_prep "$texture_packs_path/retroarch-core/Citra/textures" "$XDG_CONFIG_HOME/retroarch/saves/Citra/load/textures"
+#   dir_prep "$texture_packs_path/retroarch-core/Dolphin/Textures" "$XDG_CONFIG_HOME/retroarch/saves/dolphin-emu/User/Load/Textures/"
+#   dir_prep "$texture_packs_path/retroarch-core/PPSSPP/TEXTURES" "$XDG_CONFIG_HOME/retroarch/saves/PPSSPP/PSP/TEXTURES"
   dir_prep "$texture_packs_path/retroarch-core/Flycast/textures" "$bios_path/dc/textures"
 
   # Mods
-  dir_prep "$mods_path/retroarch-core/Citra/mods" "$XDG_CONFIG_HOME/retroarch/saves/Citra/load/mods"
-  dir_prep "$mods_path/retroarch-core/Dolphin/GraphicMods" "$XDG_CONFIG_HOME/retroarch/saves/dolphin-emu/User/Load/GraphicMods"
+#   dir_prep "$mods_path/retroarch-core/Citra/mods" "$XDG_CONFIG_HOME/retroarch/saves/Citra/load/mods"
+#   dir_prep "$mods_path/retroarch-core/Dolphin/GraphicMods" "$XDG_CONFIG_HOME/retroarch/saves/dolphin-emu/User/Load/GraphicMods"
 fi
 
 if [[ "$action" == "postmove" ]]; then # Run only post-move commands
@@ -150,18 +151,18 @@ if [[ "$action" == "postmove" ]]; then # Run only post-move commands
   set_setting_value "$retroarch_config_scummvm" "browser_lastpath" "$roms_path/scummvm" "libretro_scummvm" "scummvm"
 
   # BIOS
-  dir_prep "$bios_path" "$XDG_CONFIG_HOME/retroarch/system"
+  set_setting_value "$retroarch_config" "system_directory" "$bios_path" "retroarch"
 
   # Logs
   dir_prep "$logs_path/retroarch" "$XDG_CONFIG_HOME/retroarch/logs"
 
   # Texture Packs
-  dir_prep "$texture_packs_path/retroarch-core/Mesen/HdPacks" "$XDG_CONFIG_HOME/retroarch/system/HdPacks"
-  dir_prep "$texture_packs_path/retroarch-core/Mupen64Plus/cache" "$XDG_CONFIG_HOME/retroarch/system/Mupen64plus/cache"
-  dir_prep "$texture_packs_path/retroarch-core/Mupen64Plus/hires_texture" "$XDG_CONFIG_HOME/retroarch/system/Mupen64plus/hires_texture"
-  dir_prep "$texture_packs_path/retroarch-core/Citra/textures" "$XDG_CONFIG_HOME/retroarch/saves/Citra/load/textures"
-  dir_prep "$texture_packs_path/retroarch-core/Dolphin/Textures" "$XDG_CONFIG_HOME/retroarch/saves/dolphin-emu/User/Load/Textures/"
-  dir_prep "$texture_packs_path/retroarch-core/PPSSPP/TEXTURES" "$XDG_CONFIG_HOME/retroarch/saves/PPSSPP/PSP/TEXTURES"
+  dir_prep "$texture_packs_path/retroarch-core/Mesen/HdPacks" "$bios_path/HdPacks"
+  dir_prep "$texture_packs_path/retroarch-core/Mupen64Plus/cache" "$bios_path/Mupen64plus/cache"
+  dir_prep "$texture_packs_path/retroarch-core/Mupen64Plus/hires_texture" "$bios_path/Mupen64plus/hires_texture"
+#   dir_prep "$texture_packs_path/retroarch-core/Citra/textures" "$XDG_CONFIG_HOME/retroarch/saves/Citra/load/textures"
+#   dir_prep "$texture_packs_path/retroarch-core/Dolphin/Textures" "$XDG_CONFIG_HOME/retroarch/saves/dolphin-emu/User/Load/Textures/"
+#   dir_prep "$texture_packs_path/retroarch-core/PPSSPP/TEXTURES" "$XDG_CONFIG_HOME/retroarch/saves/PPSSPP/PSP/TEXTURES"
   dir_prep "$texture_packs_path/retroarch-core/Flycast/textures" "$bios_path/dc/textures"
 
   # Cheats
@@ -169,11 +170,11 @@ if [[ "$action" == "postmove" ]]; then # Run only post-move commands
 
   # Shaders
   dir_prep "$shaders_path/retroarch-core/fbneo/blend" "$bios_path/fbneo/blend"
-  dir_prep "$shaders_path/retroarch" "$XDG_CONFIG_HOME/retroarch/shaders"
+#   dir_prep "$shaders_path/retroarch/shaders" "$XDG_CONFIG_HOME/retroarch/shaders"
 
   # Mods
-  dir_prep "$mods_path/retroarch-core/Citra/mods" "$XDG_CONFIG_HOME/retroarch/saves/Citra/load/mods"
-  dir_prep "$mods_path/retroarch-core/Dolphin/GraphicMods" "$XDG_CONFIG_HOME/retroarch/saves/dolphin-emu/User/Load/GraphicMods"
+#   dir_prep "$mods_path/retroarch-core/Citra/mods" "$XDG_CONFIG_HOME/retroarch/saves/Citra/load/mods"
+#   dir_prep "$mods_path/retroarch-core/Dolphin/GraphicMods" "$XDG_CONFIG_HOME/retroarch/saves/dolphin-emu/User/Load/GraphicMods"
   dir_prep "$mods_path/retroarch-core/fbneo/patched" "$bios_path/fbneo/patched"
   dir_prep "$mods_path/retroarch-core/fbneo/ips" "$bios_path/fbneo/ips"
   dir_prep "$mods_path/retroarch-core/fbneo/romdata" "$bios_path/fbneo/romdata"
@@ -186,4 +187,14 @@ if [[ "$action" == "postmove" ]]; then # Run only post-move commands
   set_setting_value "$retroarch_config" "log_dir" "$logs_path" "retroarch"
   set_setting_value "$retroarch_config" "rgui_browser_directory" "$roms_path" "retroarch"
   set_setting_value "$retroarch_config" "cheat_database_path" "$cheats_path/retroarch" "retroarch"
+  set_setting_value "$retroarch_config" "assets_directory" "$component_path/assets" "retroarch"
+  set_setting_value "$retroarch_config" "joypad_autoconfig_dir" "$component_path/autoconfig" "retroarch"
+  set_setting_value "$retroarch_config" "cursor_directory" "$component_path/database/cursors" "retroarch"
+  set_setting_value "$retroarch_config" "content_database_path" "$component_path/database/rdb" "retroarch"
+  set_setting_value "$retroarch_config" "libretro_directory" "$retroarch_extras_path/cores" "retroarch"
+  set_setting_value "$retroarch_config" "libretro_info_path" "$retroarch_extras_path/cores" "retroarch"
+  set_setting_value "$retroarch_config" "audio_filter_dir" "$shaders_path/retroarch/filters/audio" "retroarch"
+  set_setting_value "$retroarch_config" "video_filter_dir" "$shaders_path/retroarch/filters/video" "retroarch"
+  set_setting_value "$retroarch_config" "video_shader_dir" "$shaders_path/retroarch/shaders" "retroarch"
+  set_setting_value "$retroarch_config" "overlay_directory" "$borders_path/retroarch" "retroarch"
 fi
