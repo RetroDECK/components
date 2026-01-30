@@ -23,7 +23,7 @@ retroarch_updater() {
 
   log i "Updating filters..."
   create_dir "$shaders_path/retroarch/filters"
-  tar -h -xzf "$retroarch_extras_path/filters.tar.gz" -C "$shaders_path/retroarch/filters" --overwrite && log d "RetroArch shaders updated correctly"
+  tar -h -xzf "$retroarch_extras_path/filters.tar.gz" -C "$shaders_path/retroarch/filters" --overwrite && log d "RetroArch filters updated correctly"
 
   log i "Updating cheats..."
   create_dir "$cheats_path/retroarch"
