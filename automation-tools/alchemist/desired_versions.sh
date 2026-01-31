@@ -56,8 +56,8 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # Link: https://flathub.org/en/apps/org.azahar_emu.Azahar
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
-# Version: 2124
-  export AZAHAR_DESIRED_VERSION="94b8fdd9355f408050747c20de8400339de7d5d27c2d75b9b5c093a2b4b0bba5"
+# Version: 2124.3
+  export AZAHAR_DESIRED_VERSION="e30fef66588957afa29ef13373e7f009590cfc08ce773b09aaf6974adafd6af8"
 
 # COOKER (Override)
 # export AZAHAR_DESIRED_VERSION="latest"
@@ -108,8 +108,8 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # Link: https://flathub.org/en/apps/org.mamedev.MAME
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
-# Version: 0.284
-  export MAME_DESIRED_VERSION="e3b6bf53f0b8a5c67c4c1dcd23d4e4c7cef24ec727890bdf749e18180cffbd3a"
+# Version: 0.285
+ export MAME_DESIRED_VERSION="20c1607af2bfa20fd285a1728fd009bddd3f1e5344c1287918e2429fdff78a3e"
 
 # COOKER (Override)
 #  export MAME_DESIRED_VERSION="latest"
@@ -160,7 +160,7 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # Link: https://flathub.org/en/apps/rs.ruffle.Ruffle
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
-# Version: 0.2.0-nightly.2026.1.8
+# Version: 0.2.0-nightly.2026.1.23
  export RUFFLE_DESIRED_VERSION="db881e38b0b37481ede11e56b307e0962760f1d26dedaff122e4f5c4221be1f3"
 
 # COOKER (Override)
@@ -174,7 +174,7 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
 # Version: 2.5.33
-  export STEAM_ROM_MANAGER_DESIRED_VERSION="d0f60620a50ed0255e2657fcde6291db60afbaa56fc69ccac4c03b0733b3259c"
+  export STEAM_ROM_MANAGER_DESIRED_VERSION="db881e38b0b37481ede11e56b307e0962760f1d26dedaff122e4f5c4221be1f3"
 
 # COOKER (Override)
 # export STEAM_ROM_MANAGER_DESIRED_VERSION="latest"
@@ -186,8 +186,8 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # Link: https://flathub.org/en/apps/app.xemu.xemu
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
-# Version: 0.8.130
-  export XEMU_DESIRED_VERSION="987dc22f660ae8c003f2054585eb6e8506c3d1b42218b9244660208d4018eeab"
+# Version: 0.8.133
+ export XEMU_DESIRED_VERSION="9225f2a63f07b3eb392de453f70636f80473098557f3f888a5e5f6b58ee9ad20"
 
 # COOKER (Override)
 # export XEMU_DESIRED_VERSION="latest"
@@ -221,7 +221,7 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # Link: https://github.com/PCSX2/pcsx2/releases/
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
-  export PCSX2_DESIRED_VERSION="v2.6.2"
+  export PCSX2_DESIRED_VERSION="v2.6.3"
 
 # COOKER (Override)
 # export PCSX2_DESIRED_VERSION="newest"
@@ -258,7 +258,7 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # Link: https://gitlab.com/solarus-games/solarus/-/releases/
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
-  export SOLARUS_DESIRED_VERSION="v2.0.2"
+  export SOLARUS_DESIRED_VERSION="v2.0.3"
 
 # COOKER (Override)
 # export SOLARUS_DESIRED_VERSION="latest"
@@ -358,7 +358,7 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # Link: https://github.com/RetroDECK/Vita3K-bin/releases
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
-  export VITA3K_DESIRED_VERSION="3901"
+  export VITA3K_DESIRED_VERSION="3912"
 
 # COOKER (Override)
 # export VITA3K_DESIRED_VERSION="latest"
