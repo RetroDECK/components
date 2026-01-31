@@ -174,7 +174,7 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
 # Version: 2.5.33
-  export STEAM_ROM_MANAGER_DESIRED_VERSION="db881e38b0b37481ede11e56b307e0962760f1d26dedaff122e4f5c4221be1f3"
+  export STEAM_ROM_MANAGER_DESIRED_VERSION="d0f60620a50ed0255e2657fcde6291db60afbaa56fc69ccac4c03b0733b3259c"
 
 # COOKER (Override)
 # export STEAM_ROM_MANAGER_DESIRED_VERSION="latest"
