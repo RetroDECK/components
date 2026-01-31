@@ -12,4 +12,4 @@ log d "QT plugin path is: $QT_PLUGIN_PATH"
 log d "QT QPA PLATFORM plugin path is: $QT_QPA_PLATFORM_PLUGIN_PATH"
 
 # Launch
-exec "$component_path/x16emu" "$@"
+exec "$component_path/x16emu -fullscreen -joy1 -run" "$@"
