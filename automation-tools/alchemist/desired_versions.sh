@@ -160,8 +160,8 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # Link: https://flathub.org/en/apps/rs.ruffle.Ruffle
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
-# Version: 0.2.0-nightly.2026.1.23
- export RUFFLE_DESIRED_VERSION="db881e38b0b37481ede11e56b307e0962760f1d26dedaff122e4f5c4221be1f3"
+# Version: 0.2.0-nightly.2026.1.29
+ export RUFFLE_DESIRED_VERSION="cfc2b1578ca6df16b4d457d1f6c2e3302134ddf220062114d7b5391e80673b8d"
 
 # COOKER (Override)
 # export RUFFLE_DESIRED_VERSION="latest"
