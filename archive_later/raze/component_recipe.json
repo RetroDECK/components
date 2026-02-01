@@ -65,13 +65,33 @@
       ],
       "libs": [
         {
-          "library": "libvpx.so.8",
+          "library": "libvpx.so.9",
           "runtime_name": "org.freedesktop.Platform",
-          "runtime_version": "23.08",
+          "runtime_version": "24.08",
           "dest": "shared-libs"
         },
         {
           "library": "libzmusiclite.so.1",
+          "source": "lib",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libzmusic.so.1",
+          "source": "lib",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libinstpatch-1.0.so.2",
+          "source": "lib",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libgme.so.0",
+          "source": "lib",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libfluidsynth.so.3",
           "source": "lib",
           "dest": "shared-libs"
         }
