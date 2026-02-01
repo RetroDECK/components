@@ -84,17 +84,6 @@
           "dest": "shared-libs"
         },
         {
-          "library": "libicui18n.so.67",
-          "runtime_name": "org.freedesktop.Platform",
-          "runtime_version": "20.08",
-          "dest": "shared-libs"
-        },
-        {
-          "library": "libbz2.so.1.0",
-          "source": "usr/lib",
-          "dest": "shared-libs"
-        },
-        {
           "library": "libssl.so.1.1",
           "runtime_name": "org.kde.Platform",
           "runtime_version": "5.15",
@@ -104,6 +93,29 @@
           "library": "libcrypto.so.1.1",
           "runtime_name": "org.kde.Platform",
           "runtime_version": "5.15",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libicui18n.so.67",
+          "runtime_name": "org.freedesktop.Platform",
+          "runtime_version": "20.08",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libicuuc.so.67",
+          "runtime_name": "org.freedesktop.Platform",
+          "runtime_version": "20.08",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libicudata.so.67",
+          "runtime_name": "org.freedesktop.Platform",
+          "runtime_version": "20.08",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libbz2.so.1.0",
+          "source": "usr/lib",
           "dest": "shared-libs"
         }
       ]
