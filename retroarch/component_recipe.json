@@ -125,6 +125,19 @@
       ]
     },
     {
+      "source_url": "https://buildbot.libretro.com/{VERSION}/linux/x86_64/latest/amiarcadia_libretro.so.zip",
+      "source_type": "http",
+      "version": "nightly",
+      "extraction_type": "archive",
+      "assets": [
+        {
+          "type": "file",
+          "source": "amiarcadia_libretro.so",
+          "dest": "$WORKDIR/cores"
+        }
+      ]
+    },
+    {
       "source_url": "https://buildbot.libretro.com/{VERSION}/linux/x86_64/latest/citra_libretro.so.zip",
       "source_type": "http",
       "version": "nightly",
@@ -138,6 +151,58 @@
       ]
     },
     {
+      "source_url": "https://buildbot.libretro.com/{VERSION}/linux/x86_64/latest/easyrpg_libretro.so.zip",
+      "source_type": "http",
+      "version": "nightly",
+      "extraction_type": "archive",
+      "assets": [
+        {
+          "type": "file",
+          "source": "easyrpg_libretro.so",
+          "dest": "$WORKDIR/cores"
+        }
+      ]
+    },
+    {
+      "source_url": "https://buildbot.libretro.com/{VERSION}/linux/x86_64/latest/fbalpha_libretro.so.zip",
+      "source_type": "http",
+      "version": "nightly",
+      "extraction_type": "archive",
+      "assets": [
+        {
+          "type": "file",
+          "source": "fbalpha_libretro.so",
+          "dest": "$WORKDIR/cores"
+        }
+      ]
+    },
+    {
+      "source_url": "https://buildbot.libretro.com/{VERSION}/linux/x86_64/latest/mcsoftserve_libretro.so.zip",
+      "source_type": "http",
+      "version": "nightly",
+      "extraction_type": "archive",
+      "assets": [
+        {
+          "type": "file",
+          "source": "mcsoftserve_libretro.so",
+          "dest": "$WORKDIR/cores"
+        }
+      ]
+    },
+    {
+      "source_url": "https://buildbot.libretro.com/{VERSION}/linux/x86_64/latest/pd777_libretro.so.zip",
+      "source_type": "http",
+      "version": "nightly",
+      "extraction_type": "archive",
+      "assets": [
+        {
+          "type": "file",
+          "source": "pd777_libretro.so",
+          "dest": "$WORKDIR/cores"
+        }
+      ]
+    },
+    {
       "source_url": "https://buildbot.libretro.com/{VERSION}/linux/x86_64/latest/sameduck_libretro.so.zip",
       "source_type": "http",
       "version": "nightly",
@@ -146,6 +211,32 @@
         {
           "type": "file",
           "source": "sameduck_libretro.so",
+          "dest": "$WORKDIR/cores"
+        }
+      ]
+    },
+    {
+      "source_url": "https://buildbot.libretro.com/{VERSION}/linux/x86_64/latest/vice_xcbm2_libretro.so.zip",
+      "source_type": "http",
+      "version": "nightly",
+      "extraction_type": "archive",
+      "assets": [
+        {
+          "type": "file",
+          "source": "vice_xcbm2_libretro.so",
+          "dest": "$WORKDIR/cores"
+        }
+      ]
+    },
+    {
+      "source_url": "https://buildbot.libretro.com/{VERSION}/linux/x86_64/latest/vice_xcbm5x0_libretro.so.zip",
+      "source_type": "http",
+      "version": "nightly",
+      "extraction_type": "archive",
+      "assets": [
+        {
+          "type": "file",
+          "source": "vice_xcbm5x0_libretro.so",
           "dest": "$WORKDIR/cores"
         }
       ]
