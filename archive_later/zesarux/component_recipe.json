@@ -549,112 +549,112 @@
         {
           "type": "file",
           "source": "ZEsarUX-12.1/included_utilities.odt",
-          "dest": "docs"
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
         },
         {
           "type": "file",
           "source": "ZEsarUX-12.1/zesarux.odt",
-          "dest": "docs"
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
         },
         {
           "type": "file",
           "source": "ZEsarUX-12.1/zesarux.pdf",
-          "dest": "docs"
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
         },
         {
           "type": "file",
           "source": "ZEsarUX-12.1/ACKNOWLEDGEMENTS",
-          "dest": "docs"
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
         },
         {
           "type": "file",
           "source": "ZEsarUX-12.1/ALTERNATEROMS",
-          "dest": "docs"
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
         },
         {
           "type": "file",
           "source": "ZEsarUX-12.1/Cambios",
-          "dest": "docs"
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
         },
         {
           "type": "file",
           "source": "ZEsarUX-12.1/Changelog",
-          "dest": "docs"
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
         },
         {
           "type": "file",
           "source": "ZEsarUX-12.1/DONATE",
-          "dest": "docs"
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
         },
         {
           "type": "file",
           "source": "ZEsarUX-12.1/DONORS",
-          "dest": "docs"
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
         },
         {
           "type": "file",
           "source": "ZEsarUX-12.1/EXCLUSIVEFEATURES",
-          "dest": "docs"
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
         },
         {
           "type": "file",
           "source": "ZEsarUX-12.1/FAQ",
-          "dest": "docs"
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
         },
         {
           "type": "file",
           "source": "ZEsarUX-12.1/FEATURES",
-          "dest": "docs"
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
         },
         {
           "type": "file",
           "source": "ZEsarUX-12.1/FEATURES_es",
-          "dest": "docs"
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
         },
         {
           "type": "file",
           "source": "ZEsarUX-12.1/HISTORY",
-          "dest": "docs"
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
         },
         {
           "type": "file",
           "source": "ZEsarUX-12.1/INCLUDEDTAPES",
-          "dest": "docs"
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
         },
         {
           "type": "file",
           "source": "ZEsarUX-12.1/IN_MEMORIAM_DAVID",
-          "dest": "docs"
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
         },
         {
           "type": "file",
           "source": "ZEsarUX-12.1/IN_MEMORIAM_DAVID_es",
-          "dest": "docs"
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
         },
         {
           "type": "file",
           "source": "ZEsarUX-12.1/IN_MEMORIAM_DIEGO",
-          "dest": "docs"
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
         },
         {
           "type": "file",
           "source": "ZEsarUX-12.1/IN_MEMORIAM_DIEGO_es",
-          "dest": "docs"
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
         },
         {
           "type": "file",
           "source": "ZEsarUX-12.1/INSTALL",
-          "dest": "docs"
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
         },
         {
           "type": "file",
           "source": "ZEsarUX-12.1/LICENSE",
-          "dest": "docs"
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
         },
         {
           "type": "file",
           "source": "ZEsarUX-12.1/LICENSES_info",
-          "dest": "docs"
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
         },
         {
           "type": "dir",
@@ -693,6 +693,23 @@
         }
       ],
       "libs": []
+    },
+    {
+      "source_url": "$REPO_ROOT/$COMPONENT_NAME/assets/libSDL-1.tar.gz",
+      "source_type": "local",
+      "extraction_type": "archive",
+      "assets": [
+        {
+          "type": "file",
+          "source": "$EXTRACTED_PATH/libSDL-1.2.so.0",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "$EXTRACTED_PATH/libSDL-1.2.so.1.2.68",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        }
+      ]
     }
   ]
 }
