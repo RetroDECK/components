@@ -102,7 +102,8 @@
         },
         {
           "library": "libcrypto.so.1.1",
-          "source": "usr/lib",
+          "runtime_name": "org.kde.Platform",
+          "runtime_version": "5.15",
           "dest": "shared-libs"
         }
       ]
