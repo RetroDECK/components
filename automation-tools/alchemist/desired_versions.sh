@@ -414,6 +414,15 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 
 
 # ------------------------------------------------------------------------------
+# ECWOLF - Wolfenstein 3D Engine
+# ------------------------------------------------------------------------------
+# MAIN (Stable)
+# export ECWOLF_DESIRED_VERSION=""
+
+# COOKER (Override)
+  export ECWOLF_DESIRED_VERSION="latest"
+
+# ------------------------------------------------------------------------------
 # EKA2L1 - Symbian OS Emulator
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
