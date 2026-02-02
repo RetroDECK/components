@@ -1,16 +1,30 @@
 {
-  "delta-patcher": [
+  "mednafen": [
     {
-      "source_url": "",
-      "source_type": "",
-      "version": "latest",
-      "dest": "user",
-      "extraction_type": "",
+      "source_url": "https://github.com/pkgforge-dev/mednafen-appimage/releases/download/{VERSION}/*-anylinux-x86_64.AppImage",
+      "source_type": "github_release",
+      "version": "$MEDNAFEN_DESIRED_VERSION",
+      "extraction_type": "appimage",
       "assets": [
+        {
+          "type": "dir",
+          "source": "share",
+          "dest": "share"
+        },
         {
           "type": "dir",
           "source": "bin",
           "dest": "bin"
+        },
+        {
+          "type": "dir",
+          "source": "shared/bin",
+          "dest": "bin"
+        },
+        {
+          "type": "dir",
+          "source": "$REPO_ROOT/$COMPONENT_NAME",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
         },
         {
           "type": "create",

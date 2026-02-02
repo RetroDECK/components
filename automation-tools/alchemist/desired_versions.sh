@@ -501,6 +501,14 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # COOKER (Override)
   export LINDBERGH_DESIRED_VERSION="latest"
 
+# ------------------------------------------------------------------------------
+# Mednafen - Multi Emulator
+# ------------------------------------------------------------------------------
+# MAIN (Stable)
+# export MEDNAFEN_DESIRED_VERSION="latest"
+
+# COOKER (Override)
+  export MEDNAFEN_DESIRED_VERSION="latest"
 
 # ------------------------------------------------------------------------------
 # Mudlet - MUD Client
