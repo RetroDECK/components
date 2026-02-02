@@ -1,40 +1,21 @@
 {
-  "xenia": [
+  "delta-patcher": [
     {
-      "source_url": "https://github.com/has207/xenia-edge/releases/download/{VERSION}/xenia_edge_linux.AppImage",
-      "source_type": "github_release",
+      "source_url": "",
+      "source_type": "",
       "version": "latest",
-      "extraction_type": "appimage",
+      "dest": "user",
+      "extraction_type": "",
       "assets": [
         {
           "type": "dir",
-          "source": "usr/bin",
+          "source": "bin",
           "dest": "bin"
-        },
-        {
-          "type": "dir",
-          "source": "usr/share/doc",
-          "dest": "doc"
-        },
-        {
-          "type": "dir",
-          "source": "usr/translations",
-          "dest": "translations"
-        },
-        {
-          "type": "dir",
-          "source": "$REPO_ROOT/$COMPONENT_NAME",
-          "dest": "$COMPONENT_ARTIFACT_ROOT"
         },
         {
           "type": "create",
           "dest": "component_version",
           "contents": "$SOURCE_VERSION"
-        },
-        {
-          "type": "dir",
-          "source": "$REPO_ROOT/$COMPONENT_NAME/rd_config",
-          "dest": "rd_config"
         },
         {
           "type": "file",

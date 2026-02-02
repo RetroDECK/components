@@ -9,7 +9,7 @@
         {
           "type": "dir",
           "source": "kegs.1.38",
-          "dest": "bin"
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
         },
         {
           "type": "create",

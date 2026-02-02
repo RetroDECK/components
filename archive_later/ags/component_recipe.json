@@ -13,8 +13,18 @@
         },
         {
           "type": "dir",
-          "source": "$REPO_ROOT/$COMPONENT_NAME/rd_config",
-          "dest": "rd_config"
+          "source": "data/licenses",
+          "dest": "docs"
+        },
+        {
+          "type": "file",
+          "source": "data/ags64",
+          "dest": "bin"
+        },
+        {
+          "type": "dir",
+          "source": "data/lib64",
+          "dest": "bin/lib64"
         },
         {
           "type": "file",
@@ -46,7 +56,8 @@
           "source": "$REPO_ROOT/$COMPONENT_NAME/component_update.sh",
           "dest": "$COMPONENT_ARTIFACT_ROOT"
         }
-      ]
+      ],
+      "libs": []
     }
   ]
 }

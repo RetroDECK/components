@@ -1,0 +1,13 @@
+The Libsolarus version number must always match the current release version.  
+When a new release is published, the version must be updated accordingly in the recipe to ensure consistency between the packaged library and the official release.
+
+Example recipe entry for version v.2.0.3:
+
+{
+  "library": "libsolarus.so.2.0.3",
+  "source": "usr/lib",
+  "dest": "shared-libs"
+}
+
+Naming convention:
+libsolarus.so.<version>

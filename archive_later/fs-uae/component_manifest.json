@@ -1,0 +1,24 @@
+{
+  "fs-uae": {
+    "name": "FS-UAE",
+    "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/fs-uae/fs-uae-guide/",
+    "url_webpage": "https://fs-uae.net/",
+    "url_source": "https://github.com/FrodeSolheim/fs-uae",
+    "description": "FS-UAE is a Amiga Emulator",
+    "component_type": "Emulator",
+    "system_friendly_name": [
+      "Amiga",
+      "Amiga 1200",
+      "Amiga 600",
+      "Amiga CD32",
+      "Commodore CDTV"
+    ],
+    "system": [
+      "amiga",
+      "amiga1200",
+      "amiga600",
+      "amigacd32",
+      "cdtv"
+    ]
+  }
+}

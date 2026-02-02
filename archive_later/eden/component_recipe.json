@@ -93,6 +93,27 @@
           "dest": "shared-libs"
         },
         {
+          "library": "libQt6DBus.so.6",
+          "runtime_name": "org.kde.Platform",
+          "runtime_version": "6.10",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libboost_filesystem.so.1.89.0",
+          "source": "lib",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libfmt.so.12",
+          "source": "lib",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libmbedtls.so.21",
+          "source": "lib",
+          "dest": "shared-libs"
+        },
+        {
           "library": "libSPIRV-Tools-opt.so",
           "source": "lib",
           "dest": "shared-libs"
@@ -108,17 +129,6 @@
           "dest": "shared-libs"
         },
         {
-          "library": "libQt6DBus.so.6",
-          "runtime_name": "org.kde.Platform",
-          "runtime_version": "6.10",
-          "dest": "shared-libs"
-        },
-        {
-          "library": "libmbedtls.so.21",
-          "source": "lib",
-          "dest": "shared-libs"
-        },
-        {
           "library": "libmbedx509.so.7",
           "source": "lib",
           "dest": "shared-libs"
@@ -130,16 +140,6 @@
         },
         {
           "library": "libenet.so.7",
-          "source": "lib",
-          "dest": "shared-libs"
-        },
-        {
-          "library": "libboost_filesystem.so.1.89.0",
-          "source": "lib",
-          "dest": "shared-libs"
-        },
-        {
-          "library": "libfmt.so.12",
           "source": "lib",
           "dest": "shared-libs"
         }

@@ -53,8 +53,8 @@
           "action": "change",
           "new_setting_value": "$cheevos_token",
           "section": "Achievements",
-          "target_file": "$pcsx2_config",
-          "defaults_file": "$pcsx2_rd_config_dir/PCSX2.ini"
+          "target_file": "$pcsx2_secrets_ini",
+          "defaults_file": "$pcsx2_rd_config_dir/secrets.ini"
         },
         {
           "enabled_states": [ "true" ],

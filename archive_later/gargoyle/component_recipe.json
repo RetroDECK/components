@@ -83,6 +83,12 @@
           "dest": "shared-libs"
         },
         {
+          "library": "libQt5DBus.so.5",
+          "runtime_name": "org.kde.Platform",
+          "runtime_version": "$DESIRED_QT5_RUNTIME_VERSION",
+          "dest": "shared-libs"
+        },
+        {
           "library": "libgarglk.so",
           "source": "lib",
           "dest": "shared-libs"

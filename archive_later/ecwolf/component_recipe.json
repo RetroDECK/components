@@ -1,0 +1,84 @@
+{
+  "ecwolf": [
+    {
+      "source_url": "https://github.com/pkgforge-dev/ECWolf-AppImage/releases/download/v{VERSION}/*-anylinux-x86_64.AppImage",
+      "source_type": "github_release",
+      "version": "$ECWOLF_DESIRED_VERSION",
+      "extraction_type": "appimage",
+      "assets": [
+        {
+          "type": "dir",
+          "source": "share",
+          "dest": "share"
+        },
+        {
+          "type": "dir",
+          "source": "bin",
+          "dest": "bin"
+        },
+        {
+          "type": "dir",
+          "source": "etc",
+          "dest": "etc"
+        },
+        {
+          "type": "dir",
+          "source": "shared/bin",
+          "dest": "bin"
+        },
+        {
+          "type": "dir",
+          "source": "$REPO_ROOT/$COMPONENT_NAME",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "create",
+          "dest": "component_version",
+          "contents": "$SOURCE_VERSION"
+        },
+        {
+          "type": "file",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/component_functions.sh",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/component_launcher.sh",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/component_manifest.json",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/component_recipe.json",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/component_prepare.sh",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/component_update.sh",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        }
+      ],
+      "libs": [
+        {
+          "library": "libbz2.so.1.0",
+          "source": "lib",
+          "dest": "bin"
+        },
+        {
+          "library": "libjpeg.so.8",
+          "source": "lib",
+          "dest": "bin"
+        }
+      ]
+    }
+  ]
+}

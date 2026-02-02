@@ -1,0 +1,133 @@
+{
+  "commander-x16": [
+    {
+      "source_url": "https://github.com/X16Community/x16-emulator/releases/download/{VERSION}/x16emu_linux-x86_64-*.zip",
+      "source_type": "github_release",
+      "version": "$COMMANDER_X16_DESIRED_VERSION",
+      "extraction_type": "archive",
+      "assets": [
+        {
+          "type": "create",
+          "dest": "component_version",
+          "contents": "$FRAMEWORK_DESIRED_VERSION"
+        },
+        {
+          "type": "file",
+          "source": "audio.sym",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "bannex.sym",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "basic.sym",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "charset.sym",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "demo.sym",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "diag.sym",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "dos.sym",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "fat32.sym",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "graph.sym",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "kernal.sym",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "keymap.sym",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "makecart",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "monitor.sym",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "rom.bin",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "sdcard.img.zip",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "util.sym",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "x16emu",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/component_functions.sh",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/component_launcher.sh",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/component_manifest.json",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/component_recipe.json",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/component_prepare.sh",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/component_update.sh",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        }
+      ],
+      "libs": []
+    }
+  ]
+}

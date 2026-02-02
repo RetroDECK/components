@@ -1,0 +1,12 @@
+{
+  "commander-x16": {
+    "name": "Commander X16",
+    "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/commander-x16/commander-x16-guide/",
+    "url_webpage": "https://www.commanderx16.com/",
+    "url_source": "https://github.com/X16Community/x16-emulator",
+    "description": "Commander X16 Emulator.",
+    "component_type": "Emulator",
+    "system": "commander-x16",
+    "system_friendly_name": "Commander X16"
+  }
+}

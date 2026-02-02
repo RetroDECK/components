@@ -5,7 +5,7 @@
     "url_webpage": "https://ruffle.rs/",
     "url_source": "https://www.scummvm.org/",
     "component_type": "Engine",
-    "description": "ScummVM is an engine that allows you to play: classic graphic point-and-click adventure games, text adventure games, and RPGs.",
+    "description": "ScummVM is an engine for point-and-click adventure, text adventure, RPG games.",
     "system_friendly_name": "ScummVM",
     "system": "scummvm",
     "compatible_presets": {

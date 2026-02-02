@@ -9,7 +9,7 @@
         {
           "type": "file",
           "source": "mudlet",
-          "dest": "bin"
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
         },
         {
           "type": "dir",
@@ -40,6 +40,11 @@
           "type": "create",
           "dest": "component_version",
           "contents": "$SOURCE_VERSION"
+        },
+        {
+          "type": "create",
+          "dest": "portable.txt",
+          "contents": ""
         },
         {
           "type": "file",
@@ -129,7 +134,7 @@
         },
         {
           "library": "libqt5keychain.so.1",
-          "source": "shared-libs",
+          "source": "lib",
           "dest": "shared-libs"
         },
         {

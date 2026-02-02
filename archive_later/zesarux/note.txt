@@ -1,0 +1,1 @@
+needs: libSDL-1.2.so.0

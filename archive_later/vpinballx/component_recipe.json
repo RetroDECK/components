@@ -56,7 +56,7 @@
         {
           "type": "file",
           "source": "VPinballX_BGFX",
-          "dest": "bin/VPinballX_BGFX"
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
         },
         {
           "type": "dir",

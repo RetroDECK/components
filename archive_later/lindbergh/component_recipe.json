@@ -18,7 +18,7 @@
         },
         {
           "type": "dir",
-          "source": "$REPO_ROOT/$COMPONENT_NAME/rd_config",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/assets/rd_config",
           "dest": "rd_config"
         },
         {
@@ -58,7 +58,13 @@
           "runtime_name": "org.freedesktop.Platform",
           "runtime_version": "25.08",
           "dest": "shared-libs"
+        },
+        {
+          "library": "libCg.so",
+          "source": "lib32",
+          "dest": "lib"
         }
+
       ]
     }
   ]

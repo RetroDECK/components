@@ -1,0 +1,12 @@
+{
+  "mednafen": {
+    "name": "Mednafen",
+    "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/mednafen/mednafen-guide/",
+    "url_webpage": "https://mednafen.github.io/",
+    "url_source": "https://mednafen.github.io/",
+    "system": "mednafen",
+    "component_type": "Multi-Emulator",
+    "description": "Mednafen is a multi-emulator.",
+    "system_friendly_name": "Multiple Retro Systems"
+  }
+}
