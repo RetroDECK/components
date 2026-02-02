@@ -96,11 +96,10 @@ if [[ $(check_version_is_older_than "$version_being_updated" "0.10.0b") == "true
 fi
 
 if [[ $(check_version_is_older_than "$version_being_updated" "0.10.3b") == "true" ]]; then
-  create_dir "$shaders_path/retroarch/shaders"
   create_dir "$shaders_path/retroarch/filters"
-  move "$shaders_path/retroarch/shaders_cg" "$shaders_path/retroarch/shaders/"
-  move "$shaders_path/retroarch/shaders_glsl" "$shaders_path/retroarch/shaders/"
-  move "$shaders_path/retroarch/shaders_slang" "$shaders_path/retroarch/shaders/"
+  move "$shaders_path/retroarch/shaders_cg" "$shaders_path/retroarch/shaders/shaders_cg"
+  move "$shaders_path/retroarch/shaders_glsl" "$shaders_path/retroarch/shaders/shaders_glsl"
+  move "$shaders_path/retroarch/shaders_slang" "$shaders_path/retroarch/shaders/shaders_slang"
   set_setting_value "$retroarch_config" "audio_filter_dir" "$shaders_path/retroarch/filters/audio" "retroarch"
   set_setting_value "$retroarch_config" "video_filter_dir" "$shaders_path/retroarch/filters/video" "retroarch"
   set_setting_value "$retroarch_config" "video_shader_dir" "$shaders_path/retroarch/shaders" "retroarch"
