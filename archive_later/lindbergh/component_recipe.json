@@ -19,6 +19,26 @@
           "dest": "bin"
         },
         {
+          "type": "dir",
+          "source": "etc",
+          "dest": "etc"
+        },
+        {
+          "type": "dir",
+          "source": "lib",
+          "dest": "lib"
+        },
+        {
+          "type": "dir",
+          "source": "lib32",
+          "dest": "lib32"
+        },
+        {
+          "type": "dir",
+          "source": "sbin",
+          "dest": "sbin"
+        },
+        {
           "type": "create",
           "dest": "component_version",
           "contents": "$SOURCE_VERSION"
