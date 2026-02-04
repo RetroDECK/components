@@ -1,55 +1,21 @@
 {
-  "mudlet": [
+  "opensurge": [
     {
-      "source_url": "$REPO_ROOT/$COMPONENT_NAME/tmp_assets/Mudlet-{VERSION}-linux-x64.AppImage",
-      "source_type": "local",
-      "version": "$MUDLET_DESIRED_VERSION",
-      "extraction_type": "appimage",
+      "source_url": "org.opensurge2d.OpenSurge",
+      "source_type": "flatpak_id",
+      "version": "$OPENSURGE_DESIRED_VERSION",
+      "dest": "user",
+      "extraction_type": "flatpak",
       "assets": [
         {
-          "type": "file",
-          "source": "mudlet",
-          "dest": "$COMPONENT_ARTIFACT_ROOT"
-        },
-        {
           "type": "dir",
-          "source": "doc",
-          "dest": "doc"
-        },
-        {
-          "type": "dir",
-          "source": "lcf",
-          "dest": "lcf"
-        },
-        {
-          "type": "dir",
-          "source": "mudlet-lua",
-          "dest": "mudlet-lua"
-        },
-        {
-          "type": "dir",
-          "source": "lib",
-          "dest": "mudlet-lua"
-        },
-        {
-          "type": "dir",
-          "source": "translations",
-          "dest": "translations"
-        },
-        {
-          "type": "dir",
-          "source": "$REPO_ROOT/$COMPONENT_NAME",
-          "dest": "$COMPONENT_ARTIFACT_ROOT"
+          "source": "bin",
+          "dest": "bin"
         },
         {
           "type": "create",
           "dest": "component_version",
           "contents": "$SOURCE_VERSION"
-        },
-        {
-          "type": "create",
-          "dest": "portable.txt",
-          "contents": ""
         },
         {
           "type": "file",
