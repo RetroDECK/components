@@ -1,7 +1,0 @@
-LinApple is lacking updates, KEGS is still updated.
-
-It's better to use KEGS.
-
-// Lazorne
-
-2026-01-27
