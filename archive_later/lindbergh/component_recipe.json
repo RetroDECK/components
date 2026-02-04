@@ -1,14 +1,21 @@
 {
   "lindbergh": [
     {
-      "source_url": "https://github.com/lindbergh-loader/lindbergh-loader/releases/{VERSION}/*.AppImage",
+      "source_url": "https://github.com/lindbergh-loader/lindbergh-loader/releases/{VERSION}/*.flatpak",
       "source_type": "github_release",
       "version": "$LINDBERGH_DESIRED_VERSION",
-      "extraction_type": "appimage",
+      "extraction_type": "local"
+    },
+    {
+      "source_url": "$EXTRACTED_PATH",
+      "source_type": "flatpak-bundle",
+      "dest": "user",
+      "version": "com.github.lindberghloader",
+      "extraction_type": "flatpak",
       "assets": [
         {
           "type": "dir",
-          "source": "usr/bin",
+          "source": "bin",
           "dest": "bin"
         },
         {
@@ -52,20 +59,7 @@
           "dest": "$COMPONENT_ARTIFACT_ROOT"
         }
       ],
-      "libs": [
-        {
-          "library": "libSDL3.so.0",
-          "runtime_name": "org.freedesktop.Platform",
-          "runtime_version": "25.08",
-          "dest": "shared-libs"
-        },
-        {
-          "library": "libCg.so",
-          "source": "lib32",
-          "dest": "lib"
-        }
-
-      ]
+      "libs": []
     }
   ]
 }
