@@ -519,6 +519,14 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # COOKER (Override)
   export MUDLET_DESIRED_VERSION="latest"
 
+# ------------------------------------------------------------------------------
+# Open Surge Engine - 2D Game Engine
+# ------------------------------------------------------------------------------
+# MAIN (Stable)
+# export OPENSURGE_DESIRED_VERSION="4.19.1"
+
+# COOKER (Override)
+  export OPENSURGE_DESIRED_VERSION="latest"
 
 # ------------------------------------------------------------------------------
 # Raze - Duke Nukem Engine
