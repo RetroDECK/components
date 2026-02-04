@@ -12,6 +12,16 @@
           "dest": "bin"
         },
         {
+          "type": "dir",
+          "source": "usr/share/doc/uzdoom/licenses",
+          "dest": "doc"
+        },
+        {
+          "type": "dir",
+          "source": "usr/share/games/uzdoom/",
+          "dest": "share/games/uzdoom/"
+        },
+        {
           "type": "create",
           "dest": "component_version",
           "contents": "$SOURCE_VERSION"
@@ -55,32 +65,12 @@
           "type": "file",
           "source": "$REPO_ROOT/$COMPONENT_NAME/component_update.sh",
           "dest": "$COMPONENT_ARTIFACT_ROOT"
-        },
-        {
-          "type": "file",
-          "source": "lib/x86_64-linux-gnu/libgme.a",
-          "dest": "lib"
-        },
-        {
-          "type": "file",
-          "source": "lib/x86_64-linux-gnu/libsndfile.a",
-          "dest": "lib"
-        },
-        {
-          "type": "dir",
-          "source": "usr/share/games/doom/",
-          "dest": "share/games/doom/"
-        },
-        {
-          "type": "dir",
-          "source": "share/licenses/org.zdoom.uzdoom/",
-          "dest": "doc"
         }
       ],
       "libs": [
         {
           "library": "libzmusic.so.1",
-          "source": "usr/lib/x86_64-linux-gnu/lib",
+          "source": "usr/lib/x86_64-linux-gnu/",
           "dest": "shared-libs"
         }
       ]
