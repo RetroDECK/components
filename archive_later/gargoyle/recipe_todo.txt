@@ -1,2 +1,0 @@
-QT Plugin path, won't open.
-All other errors have been handled.
