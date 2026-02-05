@@ -6,7 +6,7 @@
     "url_source": "https://github.com/Mudlet/Mudlet",
     "component_type": "Client",
     "description": "Mudlet is a client for playing and enhancing MUDs (muds) offering automation and rich visual customizations.",
-    "system_friendly_name": "Multi-User Dungeons Client",
+    "system_friendly_name": "Muldet MUD Client",
     "system": "muds"
   }
 }
