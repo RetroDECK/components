@@ -1,7 +1,7 @@
 {
   "mudlet": [
     {
-      "source_url": "tmp_assets/Mudlet.AppImage",
+      "source_url": "$REPO_ROOT/$COMPONENT_NAME/tmp_assets/Mudlet.AppImage",
       "source_type": "local",
       "version": "$MUDLET_DESIRED_VERSION",
       "extraction_type": "appimage",
