@@ -280,8 +280,7 @@
         },
         {
           "library": "libGLU.so.1",
-          "runtime_name": "org.freedesktop.Platform.VulkanLayer.MangoHud",
-          "runtime_version": "23.08",
+          "source": "lib",
           "dest": "shared-libs"
         },
         {
