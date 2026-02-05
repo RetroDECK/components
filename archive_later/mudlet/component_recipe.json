@@ -281,82 +281,82 @@
         {
           "library": "libGLU.so.1",
           "source": "lib",
-          "dest": "shared-libs"
+          "dest": "lib"
         },
         {
           "library": "libassimp.so.5",
           "source": "lib",
-          "dest": "shared-libs"
+          "dest": "lib"
         },
         {
           "library": "liblua5.1.so.0",
           "source": "lib",
-          "dest": "shared-libs"
+          "dest": "lib"
         },
         {
           "library": "libpugixml.so.1",
           "source": "lib",
-          "dest": "shared-libs"
+          "dest": "lib"
         },
         {
           "library": "libzip.so.4",
           "source": "lib",
-          "dest": "shared-libs"
+          "dest": "lib"
         },
         {
           "library": "lfs.so",
           "source": "lib",
-          "dest": "shared-libs"
-        },
-        {
-          "library": "rex_pcre.so",
-          "source": "lib",
-          "dest": "shared-libs"
+          "dest": "lib"
         },
         {
           "library": "sqlite3.so",
           "source": "lib/luasql",
-          "dest": "shared-libs"
+          "dest": "lib/luasql"
         },
         {
           "library": "rex_pcre2.so",
           "source": "lib",
-          "dest": "shared-libs"
+          "dest": "lib"
         },
         {
           "library": "zip.so",
           "source": "lib/brimworks",
-          "dest": "shared-libs"
+          "dest": "lib/brimworks"
         },
         {
-          "library": "lua-utf8.so'",
+          "library": "lua-utf8.so",
           "source": "lib",
-          "dest": "shared-libs"
+          "dest": "lib"
         },
         {
-          "library": "libbz2.so.1.0'",
+          "library": "libbz2.so.1.0",
           "source": "lib",
-          "dest": "shared-libs"
+          "dest": "lib"
         },
         {
-          "library": "libdraco.so.4'",
+          "library": "libdraco.so.4",
           "source": "lib",
-          "dest": "shared-libs"
+          "dest": "lib"
         },
         {
-          "library": "libminizip.so.1'",
+          "library": "libminizip.so.1",
           "source": "lib",
-          "dest": "shared-libs"
+          "dest": "lib"
         },
         {
-          "library": "yajl.so'",
+          "library": "yajl.so",
           "source": "lib",
-          "dest": "shared-libs"
+          "dest": "lib"
+        },
+        {
+          "library": "libyajl.so.2",
+          "source": "lib",
+          "dest": "lib"
         },
         {
           "library": "libqt6keychain.so.1",
           "source": "lib",
-          "dest": "shared-libs"
+          "dest": "lib"
         }
       ]
     }
