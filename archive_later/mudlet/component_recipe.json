@@ -184,7 +184,7 @@
         {
           "type": "create",
           "dest": "portable.txt",
-          "contents": ""
+          "contents": "/var/data/mudlet/"
         },
         {
           "type": "file",
