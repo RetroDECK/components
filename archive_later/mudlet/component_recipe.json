@@ -184,7 +184,7 @@
         {
           "type": "create",
           "dest": "portable.txt",
-          "contents": "/var/data/mudlet/"
+          "contents": ""
         },
         {
           "type": "file",
@@ -304,17 +304,37 @@
           "dest": "shared-libs"
         },
         {
-          "library": "libbz2.so.1.0",
+          "library": "lfs.so",
           "source": "lib",
           "dest": "shared-libs"
         },
         {
-          "library": "libdraco.so.4 ",
+          "library": "rex_pcre.so",
           "source": "lib",
           "dest": "shared-libs"
         },
         {
-          "library": "libminizip.so.1",
+          "library": "sqlite3.so",
+          "source": "lib/luasql",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "rex_pcre2.so",
+          "source": "lib",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "zip.so",
+          "source": "lib/brimworks",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "lua-utf8.so'",
+          "source": "lib",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "yajl.so'",
           "source": "lib",
           "dest": "shared-libs"
         },
