@@ -1,0 +1,12 @@
+{
+  "sdl2trs": {
+    "name": "SDL2TRS",
+    "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/sdl2trs/sdl2trs-guide/",
+    "url_webpage": "https://gitlab.com/jengun/sdltrs/-/tree/sdl2/",
+    "url_source": "https://gitlab.com/jengun/sdltrs/-/tree/sdl2/",
+    "system": "trs-80",
+    "component_type": "Emulator",
+    "description": "SDL2TRS is a Tandy TRS-80 Model I/III/4/4P (trs-80) Emulator",
+    "system_friendly_name": "trs-80"
+  }
+}

@@ -549,6 +549,15 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 
 
 # ------------------------------------------------------------------------------
+# SDL2TRS - TRS-80 Model I/III/4/4P Emulator 
+# ------------------------------------------------------------------------------
+# MAIN (Stable)
+# export SDL2TRS_DESIRED_VERSION="latest"
+
+# COOKER (Override)
+  export SDL2TRS_DESIRED_VERSION="latest"
+
+# ------------------------------------------------------------------------------
 # ShadPS4 - PlayStation 4 Emulator
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
