@@ -3,6 +3,7 @@
     "name": "Oricutron",
     "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/oricutron/oricutron-guide/",
     "url_webpage": "https://www.petergordon.org.uk/oricutron/",
+    "url_other": "https://raxiss.com/article/id/25-Oricutron-For-Developers",
     "url_source": "https://github.com/pete-gordon/oricutron",
     "system": "oric",
     "component_type": "Emulator",
