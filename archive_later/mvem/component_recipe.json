@@ -1,11 +1,21 @@
 {
   "mvem": [
     {
-      "source_url": "$REPO_ROOT/$COMPONENT_NAME/assets/flips-linux.zip",
+      "source_url": "$REPO_ROOT/$COMPONENT_NAME/tmp_assets/mvem.tar.gz",
       "source_type": "local",
       "version": "$MVEM_DESIRED_VERSION",
       "extraction_type": "archive",
       "assets": [
+        {
+          "type": "file",
+          "source": "mvem",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "dir",
+          "source": "roms",
+          "dest": "roms"
+        },
         {
           "type": "file",
           "source": "$REPO_ROOT/$COMPONENT_NAME/component_functions.sh",
