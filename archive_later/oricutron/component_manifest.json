@@ -7,7 +7,7 @@
     "url_source": "https://github.com/pete-gordon/oricutron",
     "system": "oric",
     "component_type": "Emulator",
-    "description": "Oricutron is a Oric-1/Atmos/Telestrat/Pravetz 8D Emulator",
+    "description": "Oricutron is a Oric-1/Atmos/Telestrat/Pravetz 8D (oric) Emulator",
     "system_friendly_name": "Oric"
   }
 }

@@ -523,10 +523,20 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # Open Surge Engine - 2D Game Engine
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
-# export OPENSURGE_DESIRED_VERSION="4.19.1"
+# export OPENSURGE_DESIRED_VERSION="latest"
 
 # COOKER (Override)
   export OPENSURGE_DESIRED_VERSION="latest"
+
+
+# ------------------------------------------------------------------------------
+# Orictron - Oric-1/Atmos/Telestrat/Pravetz 8D emulator
+# ------------------------------------------------------------------------------
+# MAIN (Stable)
+# export ORICUTRON_DESIRED_VERSION="20260123"
+
+# COOKER (Override)
+  export ORICUTRON_DESIRED_VERSION="20260123"
 
 # ------------------------------------------------------------------------------
 # Raze - Duke Nukem Engine
@@ -617,13 +627,13 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 
 
 # ------------------------------------------------------------------------------
-# Xenia - Xbox 360 Emulator
+# Xenia Edge - Xbox 360 Emulator
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
-# export XENIA_DESIRED_VERSION=""
+# export XENIA_EDGE_DESIRED_VERSION=""
 
 # COOKER (Override)
-  export XENIA_DESIRED_VERSION="newest"
+  export XENIA_EDGE_DESIRED_VERSION="newest"
 
 # ------------------------------------------------------------------------------
 # ZEsarUX - ZX Second-Emulator

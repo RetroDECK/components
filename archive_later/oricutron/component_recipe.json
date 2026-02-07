@@ -1,21 +1,55 @@
 {
-  "delta-patcher": [
+  "oricutron": [
     {
-      "source_url": "",
-      "source_type": "",
-      "version": "latest",
-      "dest": "user",
-      "extraction_type": "",
+      "source_url": "$REPO_ROOT/$COMPONENT_NAME/tmp_assets/Oricutron_lin64-{VERSION}.zip",
+      "source_type": "local",
+      "version": "$ORICUTRON_DESIRED_VERSION",
+      "extraction_type": "archive",
       "assets": [
         {
+          "type": "file",
+          "source": "oricutron",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "oricutron-sdl2",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
           "type": "dir",
-          "source": "bin",
-          "dest": "bin"
+          "source": "disks",
+          "dest": "disks"
+        },
+        {
+          "type": "dir",
+          "source": "images",
+          "dest": "images"
+        },
+        {
+          "type": "dir",
+          "source": "pravdisks",
+          "dest": "pravdisks"
+        },
+        {
+          "type": "dir",
+          "source": "roms",
+          "dest": "roms"
+        },
+        {
+          "type": "dir",
+          "source": "teledisks",
+          "dest": "teledisks"
         },
         {
           "type": "create",
           "dest": "component_version",
           "contents": "$SOURCE_VERSION"
+        },
+        {
+          "type": "dir",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/assets/rd_config",
+          "dest": "rd_config"
         },
         {
           "type": "file",
