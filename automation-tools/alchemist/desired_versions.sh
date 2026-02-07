@@ -378,7 +378,7 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # Adventure Game Studio
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
-# export AGS_DESIRED_VERSION=""
+# export AGS_DESIRED_VERSION="newest"
 
 # COOKER (Override)
   export AGS_DESIRED_VERSION="newest"
@@ -388,7 +388,7 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # Commander X16 8-bit Computer
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
-# export COMMANDER_X16_DESIRED_VERSION=""
+# export COMMANDER_X16_DESIRED_VERSION="latest"
 
 # COOKER (Override)
   export COMMANDER_X16_DESIRED_VERSION="latest"
@@ -397,7 +397,7 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # DOSBox-X - Enhanced DOSBox Engine
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
-# export DOSBOX_X_DESIRED_VERSION=""
+# export DOSBOX_X_DESIRED_VERSION="latest"
 
 # COOKER (Override)
   export DOSBOX_X_DESIRED_VERSION="latest"
@@ -407,7 +407,7 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # Eden - Nintendo Switch Emulator
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
-# export EDEN_DESIRED_VERSION=""
+# export EDEN_DESIRED_VERSION="latest"
 
 # COOKER (Override)
   export EDEN_DESIRED_VERSION="latest"
@@ -417,7 +417,7 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # ECWOLF - Wolfenstein 3D Engine
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
-# export ECWOLF_DESIRED_VERSION=""
+# export ECWOLF_DESIRED_VERSION="latest"
 
 # COOKER (Override)
   export ECWOLF_DESIRED_VERSION="latest"
@@ -426,7 +426,7 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # EKA2L1 - Symbian OS Emulator
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
-# export EKA2L1_DESIRED_VERSION=""
+# export EKA2L1_DESIRED_VERSION="latest"
 
 # COOKER (Override)
   export EKA2L1_DESIRED_VERSION="latest"
@@ -446,7 +446,7 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # Flycast - Dreamcast Emulator
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
-# export FLYCAST_DESIRED_VERSION=""
+# export FLYCAST_DESIRED_VERSION="latest"
 
 # COOKER (Override)
   export FLYCAST_DESIRED_VERSION="latest"
@@ -473,10 +473,19 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 
 
 # ------------------------------------------------------------------------------
+# Ironwail - Quake Engine
+# ------------------------------------------------------------------------------
+# MAIN (Stable)
+# export IRONWAIL_DESIRED_VERSION="latest"
+
+# COOKER (Override)
+  export IRONWAIL_DESIRED_VERSION="latest"
+
+# ------------------------------------------------------------------------------
 # Ikeman Go - Fighting Engine
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
-# export IKEMANGO_DESIRED_VERSION=""
+# export IKEMANGO_DESIRED_VERSION="latest"
 
 # COOKER (Override)
   export IKEMANGO_DESIRED_VERSION="latest"
@@ -486,7 +495,7 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # KEGS - Apple IIGS Emulator
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
-# export KEGS_DESIRED_VERSION="1.38"
+# export KEGS_DESIRED_VERSION="latest"
 
 # COOKER (Override)
   export KEGS_DESIRED_VERSION="latest"
@@ -496,7 +505,7 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # Lindbergh - SEGA Lindbergh Emulator
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
-# export LINDBERGH_DESIRED_VERSION=""
+# export LINDBERGH_DESIRED_VERSION="latest"
 
 # COOKER (Override)
   export LINDBERGH_DESIRED_VERSION="latest"
@@ -514,7 +523,7 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # Mudlet - MUD Client
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
-# export MUDLET_DESIRED_VERSION="4.19.1"
+# export MUDLET_DESIRED_VERSION="latest"
 
 # COOKER (Override)
   export MUDLET_DESIRED_VERSION="latest"
@@ -542,7 +551,7 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # Raze - Duke Nukem Engine
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
-# export RAZE_DESIRED_VERSION=""
+# export RAZE_DESIRED_VERSION="latest"
 
 # COOKER (Override)
   export RAZE_DESIRED_VERSION="latest"
@@ -552,7 +561,7 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # ScummVM - Point-and-Click Adventure Engine
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
-# export SCUMMVM_DESIRED_VERSION=""
+# export SCUMMVM_DESIRED_VERSION="latest"
 
 # COOKER (Override)
   export SCUMMVM_DESIRED_VERSION="latest"
@@ -571,7 +580,7 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # ShadPS4 - PlayStation 4 Emulator
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
-# export SHADPS4_DESIRED_VERSION=""
+# export SHADPS4_DESIRED_VERSION="latest"
 
 # COOKER (Override)
   export SHADPS4_DESIRED_VERSION="latest"
@@ -581,7 +590,7 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # SimCoupe - SAM Coupé Emulator
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
-# export SIMCOUPE_DESIRED_VERSION=""
+# export SIMCOUPE_DESIRED_VERSION="latest"
 
 # COOKER (Override)
   export SIMCOUPE_DESIRED_VERSION="latest"
@@ -591,7 +600,7 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # SuperModel - SEGA Model 3 Arcade Emulator
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
-# export SUPERMODEL_DESIRED_VERSION=""
+# export SUPERMODEL_DESIRED_VERSION="latest"
 
 # COOKER (Override)
   export SUPERMODEL_DESIRED_VERSION="latest"
@@ -601,7 +610,7 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # Tsugaru - FM TOWNS Emulator
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
-# export SUPERMODEL_DESIRED_VERSION=""
+# export SUPERMODEL_DESIRED_VERSION="newest"
 
 # COOKER (Override)
   export TSUGARU_DESIRED_VERSION="newest"
@@ -610,7 +619,7 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # UZDoom - Modern Doom Engine
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
-# export UZDOOM_DESIRED_VERSION=""
+# export UZDOOM_DESIRED_VERSION="latest"
 
 # COOKER (Override)
   export UZDOOM_DESIRED_VERSION="latest"
@@ -620,7 +629,7 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # VPinball - Virtual Pinball Engine
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
-# export VPINBALL_DESIRED_VERSION=""
+# export VPINBALL_DESIRED_VERSION="newest"
 
 # COOKER (Override)
   export VPINBALL_DESIRED_VERSION="newest"
@@ -630,7 +639,7 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # Xenia Edge - Xbox 360 Emulator
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
-# export XENIA_EDGE_DESIRED_VERSION=""
+# export XENIA_EDGE_DESIRED_VERSION="newest"
 
 # COOKER (Override)
   export XENIA_EDGE_DESIRED_VERSION="newest"
@@ -639,7 +648,7 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # ZEsarUX - ZX Second-Emulator
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
-# export ZESARUX_DESIRED_VERSION=""
+# export ZESARUX_DESIRED_VERSION="latest"
 
 # COOKER (Override)
   export ZESARUX_DESIRED_VERSION="latest"
