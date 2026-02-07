@@ -1,0 +1,12 @@
+{
+  "librequake": {
+    "name": "LibreQuake",
+    "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_port_guides/librequake/librequake-guide/",
+    "url_webpage": "https://librequake.queer.sh/",
+    "url_source": "https://flathub.org/apps/io.github.lavenderdotpet.LibreQuake",
+    "description": "The LibreQuake project foss replacement for quake.",
+    "system_friendly_name": "LibreQuake",
+    "component_type": "Port",
+    "system": "port"
+  }
+}
