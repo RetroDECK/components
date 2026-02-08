@@ -495,10 +495,10 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # KEGS - Apple IIGS Emulator
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
-# export KEGS_DESIRED_VERSION="latest"
+# export KEGS_DESIRED_VERSION="1.38"
 
 # COOKER (Override)
-  export KEGS_DESIRED_VERSION="latest"
+  export KEGS_DESIRED_VERSION="1.38"
 
 
 # ------------------------------------------------------------------------------
