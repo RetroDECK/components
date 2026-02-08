@@ -9,5 +9,6 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
   log i "Preparing $component_name"
   log i "----------------------"
 
-  create_dir "$XDG_CONFIG_HOME/kegs"
+create_dir "$XDG_CONFIG_HOME/kegs"
+dir_prep "$bios_path" "$XDG_CONFIG_HOME/kegs/bios"
 fi
