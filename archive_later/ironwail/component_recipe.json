@@ -12,6 +12,11 @@
           "dest": "$COMPONENT_ARTIFACT_ROOT"
         },
         {
+          "type": "dir",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/assets/rd_config",
+          "dest": "rd_config"
+        },
+        {
           "type": "create",
           "dest": "component_version",
           "contents": "$SOURCE_VERSION"
