@@ -4,6 +4,7 @@
 amiga_model = A1200/020
 cpu = 68020
 chip_memory = 2048
+base_dir = /var/data/fs-uae/
 zorro_iii_memory = 262144
 jit_compiler = 0
 kickstart_file =

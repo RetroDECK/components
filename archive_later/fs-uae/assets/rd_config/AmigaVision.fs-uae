@@ -6,6 +6,7 @@ cpu = 68020
 chip_memory = 2048
 zorro_iii_memory = 262144
 jit_compiler = 0
+base_dir = /var/data/fs-uae/
 kickstart_file = RETRODECKBIOS/AmigaVision.rom
 cdrom_drive_count = 0
 floppy_drive_count = 2
