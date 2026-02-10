@@ -72,6 +72,7 @@ parse_download_args() {
   max_retries=3
   initial_delay=2
   max_delay=30
+  resolve_versions="false"
 
   while [[ $# -gt 0 ]]; do
     case "$1" in
@@ -103,6 +104,10 @@ parse_download_args() {
         max_delay="$2"
         shift 2
         ;;
+      -r|--resolve_version)
+        resolve_version="$2"
+        shift 2
+        ;;
       *)
         echo "Unknown option: $1"
         return 1
@@ -131,7 +136,7 @@ process_download() {
   source "$downloader_dir/$downloader_file"
   log info "Using downloader: $downloader_file"
 
-  if ! download "$url" "$dest" "$version" "$type" "$max_retries" "$initial_delay" "$max_delay"; then
+  if ! download "$url" "$dest" "$version" "$type" "$max_retries" "$initial_delay" "$max_delay" "$resolve_version"; then
     log error "Download failed"
     return 1
   fi
