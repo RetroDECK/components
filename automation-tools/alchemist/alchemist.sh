@@ -158,7 +158,7 @@ transmute() {
             ! -name "$(basename "$artifact_sha_file")" \
             -exec rm -rf {} +
   elif [[ "$RESOLVE_VERSION" == "true" ]]; then
-    log info "--resolve-versions detected, skipping artifact compression and $WORKDIR cleanup"
+    log info "--resolve-versions detected, skipping artifact creation"
   else
     log info "--dry-run detected, skipping artifact compression and $WORKDIR cleanup"
   fi
