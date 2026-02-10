@@ -7,9 +7,15 @@ downloader_info() {
 download() {
   local source="$1"
   local dest="$2"
+  local resolve_version="$8"
 
   local final_source="$source"
   local final_dest="$dest"
+
+  if [[ "$resolve_version" == "true" ]]; then
+    echo "DOWNLOADED_VERSION=$SOURCE_VERSION"
+    return 0
+  fi
 
   if [[ ! -d "$dest" ]]; then
     log error "Dest directory $dest does not exist, exiting..."
