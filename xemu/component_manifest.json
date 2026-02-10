@@ -7,6 +7,29 @@
     "url_source": "https://github.com/xemu-project/xemu",
     "component_type": "Emulator",
     "system_friendly_name": "Xbox",
-    "system": "xbox"
+    "system": "xbox",
+    "bios": [
+      {
+        "filename": "mcpx_1.0.bin",
+        "md5": "d49c52a4102f6df7bcf8d0617ac475ed",
+        "system": "xbox",
+        "description": "Xbox BIOS"
+      },
+      {
+        "filename": "Complex.bin",
+        "system": "xbox",
+        "description": "XBOX Complex BIOS"
+      },
+      {
+        "filename": "Complex_4627v1.03.bin",
+        "system": "xbox",
+        "description": "XBOX Complex BIOS 1.03"
+      },
+      {
+        "filename": "Complex_4627.bin",
+        "system": "xbox",
+        "description": "XBOX Complex BIOS 4627"
+      }
+    ]
   }
 }
