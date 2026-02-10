@@ -6,6 +6,29 @@
     "description": "KEGS is a Apple IIgs (apple2gs) emulator.",
     "component_type": "Emulator",
     "system_friendly_name": "Apple IIgs",
-    "system": "apple2gs"
+    "system": "apple2gs",
+    "bios": [
+      {
+        "filename": "ROM01.ROM",
+        "md5": "20a0334c447cb069a040ae5be1d938df",
+        "system": "apple2gs",
+        "description": "Apple2gs ROM01",
+        "required": "At least one"
+      },
+      {
+        "filename": "APPLE2GS.ROM2",
+        "md5": "ba89edf2729a28a17cd9e0f7a0ac9a39",
+        "system": "apple2gs",
+        "description": "apple2gs ROM03 - Alternative name",
+        "required": "At least one"
+      },
+      {
+        "filename": "ROM.ROM",
+        "md5": "20a0334c447cb069a040ae5be1d938df",
+        "system": "apple2gs",
+        "description": "Apple2gs ROM01 - KEGS",
+        "required": "Yes for KEGS (recommended)"
+      }
+    ]
   }
 }
