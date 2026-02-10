@@ -90,7 +90,7 @@ parse_asset_args() {
   # Validate required arguments
   if [[ ! -n "$type" || ( ! -n "$source" && ! -n "$dest" ) ]]; then
     log error "Missing required arguments"
-    return 1
+    exit 1
   fi
 }
 
