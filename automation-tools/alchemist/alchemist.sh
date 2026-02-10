@@ -48,7 +48,9 @@ transmute() {
   fi
 
   export COMPONENT_ARTIFACT_ROOT="$WORKDIR/$COMPONENT_NAME-artifact" # Initialize the final destination for kept files
-  mkdir -p "$COMPONENT_ARTIFACT_ROOT"
+  if [[ ! "$RESOLVE_VERSION" == "true" ]]; then
+    mkdir -p "$COMPONENT_ARTIFACT_ROOT"
+  fi
 
   while read -r source_obj; do
     source_type="$(jq -r '.source_type' <<< $source_obj)"
@@ -62,9 +64,14 @@ transmute() {
     fi
 
     # Download stage for this object
-    download_result=$(process_download -t "$source_type" -u "$source_url" -d "$source_dest" -v "$SOURCE_VERSION")
-    export DOWNLOADED_FILE=$(echo "$download_result" | grep "^DOWNLOADED_FILE=" | cut -d= -f2)
-    export SOURCE_VERSION=$(echo "$download_result" | grep "^DOWNLOADED_VERSION=" | cut -d= -f2)
+    download_result=$(process_download -t "$source_type" -u "$source_url" -d "$source_dest" -v "$SOURCE_VERSION" -r "$RESOLVE_VERSION")
+    if [[ "$RESOLVE_VERSION" == "true" ]]; then
+      echo "RESOLVED_VERSION=$(echo "$download_result" | grep "^DOWNLOADED_VERSION=" | cut -d= -f2)"
+      break
+    else
+      export DOWNLOADED_FILE=$(echo "$download_result" | grep "^DOWNLOADED_FILE=" | cut -d= -f2)
+      export SOURCE_VERSION=$(echo "$download_result" | grep "^DOWNLOADED_VERSION=" | cut -d= -f2)
+    fi
 
     # Extraction stage for this object
     extraction_result=$(process_extract -f "$DOWNLOADED_FILE" -d "$source_dest" -t "$extraction_type")
@@ -150,6 +157,8 @@ transmute() {
             ! -name "$(basename "$artifact_tar_file")" \
             ! -name "$(basename "$artifact_sha_file")" \
             -exec rm -rf {} +
+  elif [[ "$RESOLVE_VERSION" == "true" ]]; then
+    log info "--resolve-versions detected, skipping artifact compression and $WORKDIR cleanup"
   else
     log info "--dry-run detected, skipping artifact compression and $WORKDIR cleanup"
   fi
@@ -162,6 +171,7 @@ parse_args() {
   local alt_workdir=""
   local alt_versions=""
   DRYRUN=""
+  RESOLVE_VERSION=""
 
   while [[ $# -gt 0 ]]; do
     case "$1" in
@@ -178,6 +188,11 @@ parse_args() {
         shift 2
         ;;
       --dry-run)
+        export DRYRUN="true"
+        shift 1
+        ;;
+      -r|--resolve-versions)
+        export RESOLVE_VERSION="true"
         export DRYRUN="true"
         shift 1
         ;;
