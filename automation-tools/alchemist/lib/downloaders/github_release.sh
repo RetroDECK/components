@@ -17,11 +17,12 @@ download() {
   local max_retries="${5:-3}"
   local initial_delay="${6:-2}"
   local max_delay="${7:-30}"
+  local resolve_version="$8"
 
   local resolved_version="$version"
   local final_url="$url"
 
-  if [[ ! -d "$dest" ]]; then
+  if [[ ! -d "$dest" && ! "$resolve_version" == "true" ]]; then
     log info "Dest directory $dest does not exist, creating..."
     mkdir -p "$dest"
   fi
@@ -77,6 +78,11 @@ download() {
   else
     log error "Provided URL is not for a GitHub release"
     return 1
+  fi
+
+  if [[ "$resolve_version" == "true" ]]; then
+    echo "DOWNLOADED_VERSION=$resolved_version"
+    return 0
   fi
 
   local final_dest="$dest"
