@@ -12,6 +12,12 @@ download() {
   local max_retries="${5:-3}"
   local initial_delay="${6:-2}"
   local max_delay="${7:-30}"
+  local resolve_version="$8"
+
+  if [[ "$resolve_version" == "true" ]]; then
+    echo "DOWNLOADED_VERSION=$flatpak_id"
+    return 0
+  fi
 
   if [[ "$flatpak_install_mode" == "user" ]]; then
     final_dest="$FLATPAK_USER_ROOT/app/$flatpak_id/current/active/files"

@@ -12,6 +12,7 @@ download() {
   local max_retries="${5:-3}"
   local initial_delay="${6:-2}"
   local max_delay="${7:-30}"
+  local resolve_version="$8"
 
   local final_dest="$dest"
   local resolved_git_commit="$version"
@@ -31,7 +32,7 @@ download() {
     final_dest="$WORKDIR/$repo"
   fi
 
-  if [[ ! -d "$final_dest" ]]; then
+  if [[ ! -d "$final_dest" && ! "$resolve_version" == "true" ]]; then
     log info "Dest directory $final_dest does not exist, creating..."
     mkdir -p "$final_dest"
   fi
@@ -44,6 +45,11 @@ download() {
       return 1
     fi
     log info "Resolved latest version: $resolved_git_commit"
+  fi
+
+  if [[ "$resolve_version" == "true" ]]; then
+    echo "DOWNLOADED_VERSION=$resolved_git_commit"
+    return 0
   fi
 
   log info "Cloning repository: $url"

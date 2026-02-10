@@ -13,6 +13,7 @@ download() {
   local max_retries="${5:-3}"
   local initial_delay="${6:-2}"
   local max_delay="${7:-30}"
+  local resolve_version="$8"
 
   local resolved_flatpak_version="$flatpak_version"
 
@@ -24,6 +25,11 @@ download() {
       return 1
     fi
     log info "Resolved latest version: $resolved_flatpak_version"
+  fi
+
+  if [[ "$resolve_version" == "true" ]]; then
+    echo "DOWNLOADED_VERSION=$resolved_flatpak_version"
+    return 0
   fi
   
   if [[ "$flatpak_install_mode" == "user" ]]; then

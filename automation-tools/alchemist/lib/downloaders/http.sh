@@ -12,10 +12,16 @@ download() {
   local max_retries="${5:-3}"
   local initial_delay="${6:-2}"
   local max_delay="${7:-30}"
+  local resolve_version="$8"
 
   local resolved_version="$version"
   local final_url="$url"
   local final_dest="$dest"
+
+  if [[ "$resolve_version" == "true" ]]; then
+    echo "DOWNLOADED_VERSION=$SOURCE_VERSION"
+    return 0
+  fi
 
   if [[ ! "$final_dest" = /* ]]; then # If provided dest path is relative
     final_dest="$WORKDIR/$dest"
