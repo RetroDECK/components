@@ -82,7 +82,7 @@ parse_extract_args() {
   # Validate required arguments
   if [[ ! -n "$file" || ! -n "$dest" || ! -n "$type" ]]; then
     log error "Missing required arguments"
-    return 1
+    exit 1
   fi
 }
 
