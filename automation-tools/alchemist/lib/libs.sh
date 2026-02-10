@@ -44,7 +44,7 @@ parse_gather_lib_args() {
   # Validate required arguments
   if [[ ! -n "$name" || ! -n "$dest" || ((( -n "$runtime_name" && ! -n "$runtime_version" ) || ( ! -n "$runtime_name" && -n "$runtime_version" )) || ( ! -n "$source" && ! -n "$runtime_name" && ! -n "$runtime_version" )) ]]; then
     log error "Missing required arguments"
-    return 1
+    exit 1
   fi
 }
 
@@ -146,9 +146,7 @@ gather_lib() {
 }
 
 process_gather_lib() {
-  if ! parse_gather_lib_args "$@"; then
-    return 1
-  fi
+  parse_gather_lib_args "$@"
 
   if ! gather_lib "$name" "$dest" "$runtime_name" "$runtime_version" "$source"; then
     log error "Gathering component library $name failed"
