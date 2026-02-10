@@ -59,6 +59,10 @@ gather_lib() {
 
   local lib_basename="${name%%\.so*}.so"
 
+  if [[ ! "$source" = /* ]]; then # If provided source path is relative
+    source="$EXTRACTED_PATH/$source"
+  fi
+
   if [[ -n "$runtime_name" && -n "$runtime_version" ]]; then # Lib is from a Flatpak runtime
     final_dest="$COMPONENT_ARTIFACT_ROOT/$dest/$runtime_name/$runtime_version"
     if [[ -e "$final_dest/$name" ]]; then # If lib already exists at the destination
@@ -92,16 +96,20 @@ gather_lib() {
       final_source="$(dirname ${flatpak_found_libs[0]})/$lib_basename"
     fi
   else # Lib has a specific defined source
-    final_dest="$COMPONENT_ARTIFACT_ROOT/$dest"
+    if [[ ! "$dest" = /* ]]; then # If provided source path is relative
+      final_dest="$COMPONENT_ARTIFACT_ROOT/$dest"
+    else
+      final_dest="$dest"
+    fi
     if [[ -e "$final_dest/$name" ]]; then # If lib already exists at the destination
       log info "Library $name already exists at $final_dest, skipping..."
       return 0
     fi
-    if [[ ! -e "$EXTRACTED_PATH/$source/$name" ]]; then
-      log error "Library $name not found at defined source $EXTRACTED_PATH/$source/$name"
+    if [[ ! -e "$source/$name" ]]; then
+      log error "Library $name not found at defined source $source/$name"
       return 1
     fi
-    final_source="$EXTRACTED_PATH/$source/$lib_basename"
+    final_source="$source/$lib_basename"
   fi
 
   if [[ ! -d "$final_dest" ]]; then
@@ -138,7 +146,9 @@ gather_lib() {
 }
 
 process_gather_lib() {
-  parse_gather_lib_args "$@"
+  if ! parse_gather_lib_args "$@"; then
+    return 1
+  fi
 
   if ! gather_lib "$name" "$dest" "$runtime_name" "$runtime_version" "$source"; then
     log error "Gathering component library $name failed"
