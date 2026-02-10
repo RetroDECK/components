@@ -51,6 +51,9 @@ transmute() {
   if [[ ! "$RESOLVE_VERSION" == "true" ]]; then
     mkdir -p "$COMPONENT_ARTIFACT_ROOT"
   fi
+  if [[ ! "$RESOLVE_VERSION" == "true" ]]; then
+    mkdir -p "$COMPONENT_ARTIFACT_ROOT"
+  fi
 
   while read -r source_obj; do
     source_type="$(jq -r '.source_type' <<< $source_obj)"
@@ -66,7 +69,7 @@ transmute() {
     # Download stage for this object
     download_result=$(process_download -t "$source_type" -u "$source_url" -d "$source_dest" -v "$SOURCE_VERSION" -r "$RESOLVE_VERSION")
     if [[ "$RESOLVE_VERSION" == "true" ]]; then
-      echo "$download_result" | grep "^DOWNLOADED_VERSION=" | cut -d= -f2
+      echo "RESOLVED_VERSION=$(echo "$download_result" | grep "^DOWNLOADED_VERSION=" | cut -d= -f2)"
       break
     else
       export DOWNLOADED_FILE=$(echo "$download_result" | grep "^DOWNLOADED_FILE=" | cut -d= -f2)
@@ -158,7 +161,7 @@ transmute() {
             ! -name "$(basename "$artifact_sha_file")" \
             -exec rm -rf {} +
   elif [[ "$RESOLVE_VERSION" == "true" ]]; then
-    log info "--resolve-versions detected, skipping artifact creation"
+    log info "--resolve-versions detected, skipping artifact compression and $WORKDIR cleanup"
   else
     log info "--dry-run detected, skipping artifact compression and $WORKDIR cleanup"
   fi
@@ -188,6 +191,11 @@ parse_args() {
         shift 2
         ;;
       --dry-run)
+        export DRYRUN="true"
+        shift 1
+        ;;
+      -r|--resolve-versions)
+        export RESOLVE_VERSION="true"
         export DRYRUN="true"
         shift 1
         ;;
