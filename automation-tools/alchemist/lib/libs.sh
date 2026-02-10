@@ -151,9 +151,7 @@ gather_lib() {
 }
 
 process_gather_lib() {
-  if ! parse_gather_lib_args "$@"; then
-    return 1
-  fi
+  parse_gather_lib_args "$@"
 
   if ! gather_lib "$name" "$dest" "$runtime_name" "$runtime_version" "$source"; then
     log error "Gathering component library $name failed"
