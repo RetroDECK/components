@@ -29,11 +29,6 @@ extract() {
         7z x "$1" -o"$2"
       }
       ;;
-    *.001)
-      extract_cmd() {
-        7z x "$1" -o"$2"
-      }
-      ;;
     *.zip)
       extract_cmd() {
         unzip -q "$1" -d "$2"
