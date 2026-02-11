@@ -4,6 +4,7 @@
     "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_tool_guides/delta-patcher/delta-patcher-guide/",
     "url_webpage": "https://github.com/marco-calautti/DeltaPatcher",
     "url_source": "https://github.com/marco-calautti/DeltaPatcher",
+    "url_flathub": "https://flathub.org/en/apps/io.github.marco_calautti.DeltaPatcher",
     "url_donation_purchase": "",
     "description": "Delta Patcher is a system for patching .xdelta files.",
     "component_type": "System",

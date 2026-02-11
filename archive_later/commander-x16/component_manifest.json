@@ -3,7 +3,7 @@
     "name": "Commander X16",
     "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/commander-x16/commander-x16-guide/",
     "url_webpage": "https://www.commanderx16.com/",
-    "url_donation_purchase": "",
+    "url_donation_purchase": "https://cx16forum.com/forum/viewtopic.php?t=6772",
     "url_source": "https://github.com/X16Community/x16-emulator",
     "description": "Commander X16 Emulator.",
     "component_type": "Emulator",
