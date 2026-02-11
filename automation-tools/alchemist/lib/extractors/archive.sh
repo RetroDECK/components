@@ -24,7 +24,7 @@ extract() {
   fi
 
   case "$filename" in
-    *.7z)
+    *.7z*)
       extract_cmd() {
         7z x "$1" -o"$2"
       }
