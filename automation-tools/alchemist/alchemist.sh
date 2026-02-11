@@ -137,7 +137,7 @@ transmute() {
     log info "Compressing artifact source $COMPONENT_ARTIFACT_ROOT into $artifact_tar_file"
     if ! tar -czf "$artifact_tar_file" -C "$COMPONENT_ARTIFACT_ROOT" .; then
       log error "Artifact tar file $artifact_tar_file could not be created."
-      return 1
+      exit 1
     fi
 
     sha256sum "$artifact_tar_file" | awk '{print $1}' > "$artifact_sha_file"
@@ -198,7 +198,7 @@ parse_args() {
         ;;
       *)
         echo "Unknown option: $1"
-        return 1
+        exit 1
         ;;
     esac
   done
@@ -206,7 +206,7 @@ parse_args() {
   # Validate required arguments
   if [[ ! -n "$recipe" ]]; then
     log error "Missing required arguments: -f <recipe file>"
-    return 1
+    exit 1
   fi
 
   transmute "$recipe" "$alt_workdir" "$alt_versions"
