@@ -4,6 +4,7 @@
     "name": "xemu",
     "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/xemu/xemu-guide/",
     "url_webpage": "https://xemu.app/",
+  "url_donation_purchase": "",
     "url_source": "https://github.com/xemu-project/xemu",
     "component_type": "Emulator",
     "system_friendly_name": "Xbox",

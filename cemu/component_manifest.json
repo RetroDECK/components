@@ -4,6 +4,7 @@
     "name": "Cemu",
     "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/cemu/cemu-guide/",
     "url_webpage": "https://cemu.info/",
+  "url_donation_purchase": "",
     "url_source": "https://github.com/cemu-project/Cemu",
     "system": "wiiu",
     "component_type": "Emulator",

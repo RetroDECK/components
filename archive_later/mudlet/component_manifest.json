@@ -3,6 +3,7 @@
     "name": "Mudlet",
     "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_engine_guides/mudlet/mudlet-guide/",
     "url_webpage": "https://www.mudlet.org/",
+  "url_donation_purchase": "",
     "url_source": "https://github.com/Mudlet/Mudlet",
     "component_type": "Client",
     "description": "Mudlet is a client for playing and enhancing MUDs (muds) offering automation and rich visual customizations.",

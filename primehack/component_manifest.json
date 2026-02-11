@@ -4,6 +4,7 @@
     "description": "PrimeHack is a modified fork of Dolphin for playing Metroid Prime with modern controls.",
     "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/dolphin-primehack/dolphin-primehack-guide/",
     "url_webpage": "https://github.com/shiiion/dolphin/wiki/",
+  "url_donation_purchase": "",
     "url_source": "https://github.com/shiiion/dolphin",
     "component_type": "Emulator",
     "system": [
@@ -24,7 +25,9 @@
       "config_file_format": "dolphin",
       "ask_to_exit": [
         {
-          "enabled_states": [ "true" ],
+          "enabled_states": [
+            "true"
+          ],
           "setting_name": "ConfirmStop",
           "action": "change",
           "new_setting_value": "True",
@@ -35,7 +38,9 @@
       ],
       "universal_dyn_input": [
         {
-          "enabled_states": [ "true" ],
+          "enabled_states": [
+            "true"
+          ],
           "setting_name": "Universal Dynamic Input",
           "action": "install",
           "source": "/app/retrodeck/components/shared-data/DynamicInputTextures/",

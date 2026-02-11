@@ -3,6 +3,7 @@
     "name": "Ikemen GO",
     "description": "Ikemen GO is an open source fighting game engine that is backwards-compatible with M.U.G.E.N.",
     "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_engine_guides/ikemengo/ikemengo-guide/",
+  "url_donation_purchase": "",
     "url_source": "https://github.com/ikemen-engine/Ikemen-GO",
     "component_type": "Engine",
     "system_friendly_name": "Ikemen GO / M.U.G.E.N.",

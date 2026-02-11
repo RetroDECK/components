@@ -3,6 +3,7 @@
     "name": "UZDoom",
     "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/uzdoom/uzdoom-guide/",
     "url_webpage": "https://zdoom.org/index",
+  "url_donation_purchase": "",
     "url_source": "https://github.com/ZDoom/uzdoom",
     "component_type": "Engine",
     "description": "UZDoom is a modern, enhanced source port engine of classic DOOM and DOOM engine games.",

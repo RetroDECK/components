@@ -2,6 +2,7 @@
   "ags": {
     "name": "ags",
     "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_engine_guides/ags/ags-guide/",
+  "url_donation_purchase": "",
     "url_source": "https://github.com/adventuregamestudio/",
     "description": "Adventure Game Studio (ags) is an open‑source game engine for 2D point-and-click adventure games",
     "system_friendly_name": "Adventure Game Studio ",

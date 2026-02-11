@@ -3,6 +3,7 @@
     "name": "opensurge",
     "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_engine_guides/opensurge/opensurge-guide/",
     "url_webpage": "https://opensurge2d.org/",
+  "url_donation_purchase": "",
     "url_source": "https://github.com/alemart/opensurge",
     "description": "Open Surge is a 2D retro game engine in the spirit of classic 16-bit Sonic platformers of the 1990s.",
     "component_type": "Engine",

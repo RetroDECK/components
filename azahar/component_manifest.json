@@ -3,6 +3,7 @@
     "name": "Azahar",
     "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/azahar/azahar-guide/",
     "url_webpage": "https://azahar-emulator.org/",
+"url_donation": " ", 
     "url_source": "https://github.com/azahar-emu/azahar",
     "description": "Azahar is a Nintendo 3DS (n3ds) emulator.",
     "system_friendly_name": "Nintendo 3DS",

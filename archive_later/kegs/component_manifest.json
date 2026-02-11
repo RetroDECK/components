@@ -2,6 +2,7 @@
   "kegs": {
     "name": "KEGS",
     "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/kegs/kegs-guide/.",
+  "url_donation_purchase": "",
     "url_source": "http://kegs.sourceforge.net/",
     "description": "KEGS is a Apple IIgs (apple2gs) emulator.",
     "component_type": "Emulator",

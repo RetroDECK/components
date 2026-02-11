@@ -3,6 +3,7 @@
     "name": "DOSBox-X",
     "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_engine_guides/dosbox-x/dosbox-x-guide/",
     "url_webpage": "https://dosbox-x.com/",
+  "url_donation_purchase": "",
     "url_source": "https://github.com/joncampbell123/dosbox-x",
     "description": "DOSBox-X is a DOS, Windows 3x and 9x emulator.",
     "component_type": "Emulator",

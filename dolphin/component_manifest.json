@@ -5,6 +5,7 @@
     "component_type": "Emulator",
     "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/dolphin-primehack/dolphin-primehack-guide/",
     "url_webpage": "https://dolphin-emu.org",
+  "url_donation_purchase": "",
     "url_source": "https://github.com/dolphin-emu/dolphin",
     "system": [
       "gc",

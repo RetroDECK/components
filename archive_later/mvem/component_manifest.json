@@ -2,6 +2,7 @@
   "mvem": {
     "name": "MVEM",
     "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/mvem/mvem-guide/",
+  "url_donation_purchase": "",
     "url_source": "https://www.raphkoster.com/2017/05/07/microvision-emulator-release/",
     "url_source_2": "https://github.com/slaminger/Microvision-Emulation",
     "url_source_3": "https://mbmicrovision.blogspot.com/",

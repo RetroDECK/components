@@ -284,6 +284,7 @@ Define component metadata for the RetroDECK framework:
     "name": "Component Display Name",
     "url_rdwiki": "https://retrodeck.readthedocs.io/path/to/docs/",
     "url_webpage": "https://component-website.com/",
+"url_donation": " ", 
     "url_source": "https://github.com/component/source/",
     "description": "Brief description of the component",
     "system_friendly_name": "System Name",
