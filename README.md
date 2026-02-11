@@ -132,7 +132,7 @@ Create `component_manifest.json` with metadata and configuration presets. The Re
     "name": "MyEmulator",
     "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/myemulator/myemulator-guide/",
     "url_webpage": "https://example.com/myemulator",
-"url_donation": " ", 
+     "url_donation_purchase": "", " ", 
     "url_source": "https://github.com/developer/myemulator",
     "description": "MyEmulator is an awesome emulator for System X.",
     "system_friendly_name": "System X",
