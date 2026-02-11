@@ -3,7 +3,7 @@
     "name": "Prism Launcher",
     "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_engine_guides/prism/prism-guide/",
     "url_webpage": "https://prismlauncher.org/",
-  "url_donation_purchase": "",
+    "url_donation_purchase": "",
     "url_source": "https://github.com/PrismLauncher/PrismLauncher",
     "component_type": "Client",
     "description": "Prism Launcher is a Minecraft client for using multiple instances, accounts and mods.",

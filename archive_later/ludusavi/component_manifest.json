@@ -3,7 +3,7 @@
     "name": "Ludusavi",
     "description": "Ludusavi is a system for backing up your video game data.",
     "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_system_guides/ludusavi/ludusavi-guide/",
-  "url_donation_purchase": "",
+    "url_donation_purchase": "",
     "url_source": "https://github.com/mtkennerly/ludusavi/",
     "component_type": "System",
     "system_friendly_name": "Ludusavi",

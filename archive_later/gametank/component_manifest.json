@@ -3,7 +3,7 @@
     "name": "GameTank",
     "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/gametank/gametank-guide/",
     "url_webpage": "https://github.com/clydeshaffer/GameTankEmulator",
-  "url_donation_purchase": "",
+    "url_donation_purchase": "",
     "url_source": "https://github.com/clydeshaffer/GameTankEmulator",
     "description": "GameTankEmulator is a GameTank 8-bit Emulator",
     "component_type": "Emulator",

@@ -4,7 +4,7 @@
     "description": "PPSSPP is a PlayStation Portable (psp) emulator.",
     "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/ppsspp/ppsspp-guide/",
     "url_webpage": "https://www.ppsspp.org/",
-  "url_donation_purchase": "",
+    "url_donation_purchase": "https://www.ppsspp.org/buygold",
     "url_source": "https://github.com/hrydgard/ppsspp",
     "component_type": "Emulator",
     "system": "psp",

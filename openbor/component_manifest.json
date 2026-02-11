@@ -5,7 +5,7 @@
     "component_type": "Engine",
     "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_engine_guides/openbor/openbor-guide/",
     "url_webpage": "https://www.chronocrash.com/",
-  "url_donation_purchase": "",
+    "url_donation_purchase": "",
     "url_source": "https://github.com/DCurrent/openbor",
     "system_friendly_name": "OpenBOR",
     "system": "openbor"

@@ -3,7 +3,7 @@
     "name": "PCSX2",
     "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/pcsx2/pcsx2-guide/",
     "url_webpage": "https://pcsx2.net/",
-  "url_donation_purchase": "",
+    "url_donation_purchase": "",
     "url_source": "https://github.com/PCSX2/pcsx2",
     "description": "PCSX2 is a PlayStation 2 (ps2) emulator.",
     "component_type": "Emulator",

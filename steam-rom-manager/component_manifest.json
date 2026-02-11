@@ -3,7 +3,7 @@
     "name": "Steam ROM Manager",
     "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_system_guides/srm/srm-guide/",
     "url_webpage": "https://steamgriddb.github.io/steam-rom-manager/",
-  "url_donation_purchase": "",
+    "url_donation_purchase": "",
     "url_source": "https://github.com/SteamGridDB/steam-rom-manager",
     "description": "Steam Rom Manager (SRM) is a system that adds games to your Steam library.",
     "component_type": "System",

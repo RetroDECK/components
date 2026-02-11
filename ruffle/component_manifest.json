@@ -3,7 +3,7 @@
     "name": "Ruffle",
     "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/ruffle/ruffle-guide/",
     "url_webpage": "https://ruffle.rs/",
-  "url_donation_purchase": "",
+    "url_donation_purchase": "https://opencollective.com/ruffle",
     "url_source": "https://github.com/ruffle-rs/ruffle/",
     "description": "Ruffle is a Flash Player (flash) emulator.",
     "component_type": "Emulator",

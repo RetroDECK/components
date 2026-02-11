@@ -3,7 +3,7 @@
     "name": "SimCoupe",
     "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/simcoupe/simcoupe-guide/",
     "url_webpage": "https://simonowen.com/simcoupe/",
-  "url_donation_purchase": "",
+    "url_donation_purchase": "",
     "url_source": "https://github.com/simonowen/simcoupe",
     "component_type": "Emulator",
     "description": "SimCoupe is a SAM Coupé (samcoupe) 8-bit computer emulator.",

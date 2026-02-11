@@ -3,7 +3,7 @@
     "name": "Eden",
     "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/ares/eden-guide/",
     "url_webpage": "https://eden-emu.dev/",
-  "url_donation_purchase": "",
+    "url_donation_purchase": "https://eden-emu.dev/donations",
     "url_source": "https://git.eden-emu.dev/eden-emu/eden",
     "description": "Eden is a Nintendo Switch (switch) emulator.",
     "system_friendly_name": "Nintendo Switch",

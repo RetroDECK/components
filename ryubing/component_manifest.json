@@ -3,7 +3,7 @@
     "name": "Ryubing",
     "description": "Ryubing is a Nintendo Switch (switch) emulator.",
     "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/ryubing/ryubing-guide/",
-  "url_donation_purchase": "",
+    "url_donation_purchase": "https://ryujinx.app/donate",
     "url_source": "https://git.ryujinx.app/ryubing/ryujinx",
     "component_type": "Emulator",
     "system_friendly_name": "Nintendo Switch",

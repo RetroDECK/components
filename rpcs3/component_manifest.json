@@ -3,7 +3,10 @@
     "name": "RPCS3",
     "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/rpcs3/rpcs3-guide/",
     "url_webpage": "https://rpcs3.net/",
-  "url_donation_purchase": "",
+    "url_donation_purchase": [
+      "https://patreon.com/Nekotekina",
+      "https://rpcs3.net/alipay"
+    ],
     "url_source": "https://github.com/RPCS3/rpcs3",
     "description": "RPCS3 is a Playstation 3 (ps3) emulator.",
     "system_friendly_name": "PlayStation 3",
