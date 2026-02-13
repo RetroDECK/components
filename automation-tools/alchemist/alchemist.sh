@@ -140,7 +140,7 @@ transmute() {
       exit 1
     fi
 
-    sha256sum "$artifact_tar_file" | awk '{print $1}' > "$artifact_sha_file"
+    sha256sum "$artifact_tar_file" > "$artifact_sha_file"
 
     if [[ -d "$WORKDIR" ]]; then
       log info "Cleaning up work dir $WORKDIR"
