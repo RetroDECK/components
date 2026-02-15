@@ -1876,17 +1876,18 @@
           "required": "Required"
         },
         {
-          "filename": "msx.zip",
-          "system": "fbneo",
-          "description": "MSX1 system BIOS",
-          "required": "Required"
+          "filename": "ngp.zip",
+          "md5": "d87d876c4391935c9d48ef352a3ff02d",
+          "system": "ngp",
+          "description": "NeoGeo Pocket BIOS",
+          "required": "Optional"
         },
         {
-          "filename": "ngp.zip",
+          "filename": "ngpc.zip",
           "md5": "3655aacebb43a963607d4cf821fc1301",
-          "system": "fbneo",
+          "system": "ngpc",
           "description": "NeoGeo Pocket BIOS",
-          "required": "Required"
+          "required": "Optional"
         },
         {
           "filename": "spectrum.zip",
@@ -1970,7 +1971,9 @@
           "filename": "MSX.ROM",
           "md5": [
             "364a1a579fe5cb8dba54519bcfcdac0d",
-            "aa95aea2563cd5ec0a0919b44cc17d47"
+            "aa95aea2563cd5ec0a0919b44cc17d47",
+            "9218f6dd89f7ba01e3090d44721b4260",
+            "cadad331097664327248654c1281816b"
           ],
           "system": "msx",
           "description": "MSX 1 BIOS",
@@ -1994,7 +1997,8 @@
           "filename": "MSX2P.ROM",
           "md5": [
             "847cc025ffae665487940ff2639540e5",
-            "6d8c0ca64e726c82a4b726e9b01cdf1e"
+            "6d8c0ca64e726c82a4b726e9b01cdf1e",
+            "c5c26c3e8bc6c485424818057f0507b9"
           ],
           "system": "msx",
           "description": "MSX 2+ BIOS",
@@ -2009,7 +2013,10 @@
         },
         {
           "filename": "DISK.ROM",
-          "md5": "80dcd1ad1a4cf65d64b7ba10504e8190",
+          "md5": [
+            "80dcd1ad1a4cf65d64b7ba10504e8190",
+            "254bfa82fa9b34c82d7b9766b193c303"
+          ],
           "system": "msx",
           "description": "MSX Disk ROM / BDOS",
           "required": "Required"
@@ -2037,14 +2044,21 @@
         },
         {
           "filename": "KANJI.ROM",
-          "md5": "febe8782b466d7c3b16de6d104826b34",
+          "md5": [
+            "febe8782b466d7c3b16de6d104826b34",
+            "4ddb542906f9891cf3b3648fecd8c228",
+            "5353336d9c81946fa17582daccbb5cae"
+          ],
           "system": "msx",
           "description": "MSX Kanji font ROM",
           "required": "Required for some Japanese games."
         },
         {
           "filename": "syscard3.pce",
-          "md5": "38179df8f4ac870017db21ebcbf53114",
+          "md5": [
+            "38179df8f4ac870017db21ebcbf53114",
+            "0754f903b52e3b3342202bdafb13efa5"
+          ],
           "system": [
             "pcengine",
             "pcenginecd"
@@ -2422,21 +2436,30 @@
         },
         {
           "filename": "bios_CD_E.bin",
-          "md5": "e66fa1dc5820d254611fdcdba0662372",
+          "md5": [
+            "e66fa1dc5820d254611fdcdba0662372",
+            "9b562ebf2d095bf1dabadbc1881f519a"
+          ],
           "system": "segacd",
           "description": "Sega Mega-CD EU BIOS",
           "required": "At least one BIOS file required"
         },
         {
           "filename": "bios_CD_U.bin",
-          "md5": "2efd74e3232ff260e371b99f84024f7f",
+          "md5": [
+            "2efd74e3232ff260e371b99f84024f7f",
+            "310a9081d2edf2d316ab38813136725e","baca1df271d7c11fe50087c0358f4eb5"
+          ],
           "system": "segacd",
           "description": "Sega CD US BIOS",
           "required": "At least one BIOS file required"
         },
         {
           "filename": "bios_CD_J.bin",
-          "md5": "278a9397d192149e84e820ac621a8edd",
+          "md5": [
+            "278a9397d192149e84e820ac621a8edd",
+            "683a8a9e273662561172468dfa2858eb"
+          ],
           "system": "segacd",
           "description": "Sega Mega-CD JP BIOS",
           "required": "At least one BIOS file required"
@@ -2549,7 +2572,7 @@
           "filename": "bios.sms",
           "md5": "840481177270d5642a14ca71ee72844c",
           "system": "mastersystem",
-          "description": "Sega Master System BIOS",
+          "description": "Sega Master System US BIOS",
           "required": "Required"
         },
         {
@@ -2564,7 +2587,7 @@
           "md5": "2c66f5911e5b42b8ebe113403548eee7",
           "system": "colecovision",
           "description": "ColecoVision BIOS",
-          "required": "Optional"
+          "required": "Required"
         },
         {
           "filename": "colecovision.rom",
@@ -2730,7 +2753,7 @@
           "md5": "82a21c1890cae844b3df741f2762d48d",
           "system": "amiga",
           "description": "Kickstart 3.4 ROM for Amiga 500",
-          "required": "Yes"
+          "required": "Required"
         },
         {
           "filename": "AmigaVision.rom",
@@ -2744,14 +2767,14 @@
           "md5": "e40a5dfb3d017ba8779faba30cbd1c8e",
           "system": "amiga",
           "description": "Kickstart 4.0 ROM for Amiga 600",
-          "required": "Yes"
+          "required": "Required"
         },
         {
           "filename": "kick40068.A1200",
           "md5": "646773759326fbac3b2311fd8c8793ee",
           "system": "amiga",
           "description": "Kickstart 4.0 ROM for Amiga 1200",
-          "required": "Yes"
+          "required": "Required"
         },
         {
           "filename": "sl31253.bin",
@@ -2941,8 +2964,22 @@
           "filename": "64DD_IPL.bin",
           "md5": "8d3d9f294b6e174bc7b1d2fd1c727530",
           "system": "n64dd",
-          "description": "Nintendo 64 64DD IPL BIOS",
-          "required": "Yes"
+          "description": "Nintendo 64 64DD IPL BIOS - Japan",
+          "required": "At least one"
+        },
+        {
+          "filename": "64DD_IPL.bin",
+          "md5": "aad37b1492886b892f1821f37fd3ae34",
+          "system": "n64dd",
+          "description": "Nintendo 64 64DD IPL BIOS - Japan Dev",
+          "required": "At least one"
+        },
+        {
+          "filename": "64DD_IPL.bin",
+          "md5": "37c36e4286d36892a9fc70eafe4104be",
+          "system": "n64dd",
+          "description": "Nintendo 64 64DD IPL BIOS - USA",
+          "required": "At least one"
         },
         {
           "filename": "NstDatabase.xml",
