@@ -8,6 +8,22 @@
     "description": "Eden is a Nintendo Switch (switch) emulator.",
     "system_friendly_name": "Nintendo Switch",
     "component_type": "Emulator",
-    "system": "switch"
+    "system": "switch",
+    "bios": [
+      {
+        "filename": "prod.keys",
+        "system": "switch",
+        "description": "Production keys for Switch emulation",
+        "required": "Required",
+        "paths": "$bios_path/switch/keys"
+      },
+      {
+        "filename": "title.keys",
+        "system": "switch",
+        "description": "Title-specific keys for Switch emulation",
+        "required": "Required",
+        "paths": "$bios_path/switch/keys"
+      }
+    ]
   }
 }

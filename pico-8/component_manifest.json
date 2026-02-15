@@ -7,6 +7,29 @@
     "description": "PICO-8 is a fantasy console for playing tiny, retro-style games.",
     "system_friendly_name": "PICO-8 Fantasy Console",
     "component_type": "Emulator",
-    "system": "pico8"
+    "system": "pico8",
+    "bios": [
+      {
+        "filename": "pico8",
+        "system": "pico8",
+        "description": "PICO-8 executable",
+        "required": "Required",
+        "paths": "$bios_path/pico-8"
+      },
+      {
+        "filename": "pico8.dat",
+        "system": "pico8",
+        "description": "PICO-8 system data file",
+        "required": "Required",
+        "paths": "$bios_path/pico-8"
+      },
+      {
+        "filename": "pico8_dyn",
+        "system": "pico8",
+        "description": "Dynamic library for PICO-8",
+        "required": "Required",
+        "paths": "$bios_path/pico-8"
+      }
+    ]
   }
 }

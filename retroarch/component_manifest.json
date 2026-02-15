@@ -2337,6 +2337,27 @@
           "required": "Optional, for boot logo"
         },
         {
+          "filename": "pico8",
+          "system": "pico8",
+          "description": "PICO-8 executable",
+          "required": "Required",
+          "paths": "$bios_path/pico-8"
+        },
+        {
+          "filename": "pico8.dat",
+          "system": "pico8",
+          "description": "PICO-8 system data file",
+          "required": "Required",
+          "paths": "$bios_path/pico-8"
+        },
+        {
+          "filename": "pico8_dyn",
+          "system": "pico8",
+          "description": "Dynamic library for PICO-8",
+          "required": "Required",
+          "paths": "$bios_path/pico-8"
+        },
+        {
           "filename": "aes_keys.txt",
           "system": "n3ds",
           "description": "Decryption keys for Citra 3DS / AzaharPlus",
@@ -2398,41 +2419,6 @@
           "md5": "1e4fb124a3a886865acb574f388c803d",
           "system": "pokemini",
           "description": "Pokémon Mini BIOS"
-        },
-        {
-          "filename": "prod.keys",
-          "system": "switch",
-          "description": "Production keys for Switch emulation",
-          "required": "Required",
-          "paths": "$bios_path/switch/keys"
-        },
-        {
-          "filename": "title.keys",
-          "system": "switch",
-          "description": "Title-specific keys for Switch emulation",
-          "required": "Required",
-          "paths": "$bios_path/switch/keys"
-        },
-        {
-          "filename": "pico8",
-          "system": "pico8",
-          "description": "PICO-8 executable",
-          "required": "Required",
-          "paths": "$bios_path/pico-8"
-        },
-        {
-          "filename": "pico8.dat",
-          "system": "pico8",
-          "description": "PICO-8 system data file",
-          "required": "Required",
-          "paths": "$bios_path/pico-8"
-        },
-        {
-          "filename": "pico8_dyn",
-          "system": "pico8",
-          "description": "Dynamic library for PICO-8",
-          "required": "Required",
-          "paths": "$bios_path/pico-8"
         },
         {
           "filename": "bios_CD_E.bin",

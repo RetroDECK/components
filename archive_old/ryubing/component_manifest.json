@@ -8,6 +8,22 @@
     "component_type": "Emulator",
     "system_friendly_name": "Nintendo Switch",
     "system": "switch",
+    "bios": [
+      {
+        "filename": "prod.keys",
+        "system": "switch",
+        "description": "Production keys for Switch emulation",
+        "required": "Required",
+        "paths": "$bios_path/switch/keys"
+      },
+      {
+        "filename": "title.keys",
+        "system": "switch",
+        "description": "Title-specific keys for Switch emulation",
+        "required": "Required",
+        "paths": "$bios_path/switch/keys"
+      }
+    ],
     "compatible_presets": {
       "abxy_button_swap": [
         "false",
