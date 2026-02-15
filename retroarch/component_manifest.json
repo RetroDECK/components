@@ -2448,7 +2448,8 @@
           "filename": "bios_CD_U.bin",
           "md5": [
             "2efd74e3232ff260e371b99f84024f7f",
-            "310a9081d2edf2d316ab38813136725e","baca1df271d7c11fe50087c0358f4eb5"
+            "310a9081d2edf2d316ab38813136725e",
+            "baca1df271d7c11fe50087c0358f4eb5"
           ],
           "system": "segacd",
           "description": "Sega CD US BIOS",
@@ -3228,7 +3229,10 @@
         },
         {
           "filename": "bios_J.sms",
-          "md5": "24a519c53f67b00640d0048ef7089105",
+          "md5": [
+            "24a519c53f67b00640d0048ef7089105",
+            "e8b26871629b938887757a64798df6dc"
+          ],
           "system": "sms",
           "description": "Sega Master System Japanese BIOS",
           "required": "Optional, depends on emulator / core"
