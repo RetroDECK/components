@@ -1,0 +1,3 @@
+As the Emulator was removed there is no reason to add it to RetroDECK.
+
+// Lazorne
