@@ -18,11 +18,6 @@
           "dest": "libexec"
         },
         {
-          "type": "file",
-          "source": "lib/libgarglkmain.a",
-          "dest": "shared-libs"
-        },
-        {
           "type": "create",
           "dest": "component_version",
           "contents": "$SOURCE_VERSION"
@@ -65,33 +60,19 @@
       ],
       "libs": [
         {
-          "library": "libQt5Widgets.so.5",
-          "runtime_name": "org.kde.Platform",
-          "runtime_version": "5.15-25.08",
-          "dest": "shared-libs"
-        },
-        {
-          "library": "libQt5Gui.so.5",
-          "runtime_name": "org.kde.Platform",
-          "runtime_version": "5.15-25.08",
-          "dest": "shared-libs"
-        },
-        {
-          "library": "libQt5Core.so.5",
-          "runtime_name": "org.kde.Platform",
-          "runtime_version": "5.15-25.08",
-          "dest": "shared-libs"
-        },
-        {
-          "library": "libQt5DBus.so.5",
-          "runtime_name": "org.kde.Platform",
-          "runtime_version": "$DESIRED_QT5_RUNTIME_VERSION",
-          "dest": "shared-libs"
-        },
-        {
           "library": "libgarglk.so",
           "source": "lib",
-          "dest": "shared-libs"
+          "dest": "lib"
+        },
+        {
+          "library": "libgarglk-gpl2.so",
+          "source": "lib",
+          "dest": "lib"
+        },
+        {
+          "library": "libopenmpt.so.0",
+          "source": "lib",
+          "dest": "lib"
         }
       ]
     }
