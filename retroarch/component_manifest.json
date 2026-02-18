@@ -1862,6 +1862,34 @@
           "description": "DOS 12D ROM Enterprise"
         },
         {
+          "filename": "gamecom.zip",
+          "system": "gamecom",
+          "description": "Game.com - BIOS"
+        },
+        {
+          "filename": "external.bin",
+          "md5": "813364d4863b1d7b7b8fd6a97a416bcf",
+          "system": "gamecom",
+          "description": "Game.com - BIOS"
+        },
+        {
+          "filename": "internal.bin",
+          "md5": "f7bcefb6daf923c8e5ea2eb69f619efe",
+          "system": "gamecom",
+          "description": "Game.com - BIOS"
+        },
+        {
+          "filename": "gmaster.zip",
+          "system": "gmaster",
+          "description": "Game Master  - BIOS"
+        },
+        {
+          "filename": "d78c11agf_e19.u1",
+          "md5": "6bff08b5e5f96de405cd56d5f04a08f8",
+          "system": "gmaster",
+          "description": "Game Master  - BIOS"
+        },
+        {
           "filename": "neogeo.zip",
           "md5": [
             "00dad01abdbf8ea9e79ad2fe11bdb182",
@@ -4636,6 +4664,28 @@
           "description": "Interface ROM for PC-9800"
         },
         {
+          "filename": "upd7801g.s01",
+          "md5": "635a978fd40db9a18ee44eff449fc126",
+          "system": "scv",
+          "description": "Super Cassette Vision - BIOS"
+        },
+        {
+          "filename": "scv.zip",
+          "md5": "33df021613fb12abe2ad14b9eb17c7fe",
+          "system": "scv",
+          "description": "Super Cassette Vision - BIOS"
+        },
+        {
+          "filename": "umc6650.zip",
+          "system": "supracan",
+          "description": "Super A'Can - BIOS"
+        },
+        {
+          "filename": "supracan.zip",
+          "system": "supracan",
+          "description": "Super A'Can - BIOS"
+        },
+        {
           "filename": "ps2-0100j-20000117.bin",
           "md5": "acf4730ceb38ac9d8c7d8e21f2614600",
           "system": "ps2",
@@ -5082,6 +5132,39 @@
           "system": "psx",
           "description": "PlayStation 1 BIOS",
           "required": "At least one BIOS file required"
+        },
+        {
+          "filename": "Vectrex_Bios.bin",
+          "system": "vectrex",
+          "description": "Vectrex BIOS"
+        },
+        {
+          "filename": "VEC_MineStorm.vec",
+          "system": "vectrex",
+          "description": "Vectrex BIOS"
+        },
+        {
+          "filename": "vsmile.zip",
+          "system": "vsmile",
+          "description": " V.SMILE TV Learning System BIOS"
+        },
+        {
+          "filename": "vsmile_v100.bin",
+          "md5": "851ff77a89ec3f4f2793eb4aede30e5f",
+          "system": "vsmile",
+          "description": " V.SMILE TV Learning System BIOS"
+        },
+        {
+          "filename": "vsmile_v102.bin",
+          "md5": "f41fcc19ebe1e90fa359cd0df6293fab",
+          "system": "vsmile",
+          "description": " V.SMILE TV Learning System BIOS"
+        },
+        {
+          "filename": "vsmile_v103.bin",
+          "md5": "11e59253c578c8f16ea2375ec398e4e9",
+          "system": "vsmile",
+          "description": " V.SMILE TV Learning System BIOS"
         }
       ]
     }
