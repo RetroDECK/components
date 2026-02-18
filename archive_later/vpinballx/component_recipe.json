@@ -108,42 +108,42 @@
         },
         {
           "library": "libbgfx.so",
-          "source": "",
+          "source": "$EXTRACTED_PATH",
           "dest": "$COMPONENT_ARTIFACT_ROOT"
         },
         {
           "library": "libdof.so",
-          "source": ".",
+          "source": "$EXTRACTED_PATH",
           "dest": "$COMPONENT_ARTIFACT_ROOT"
         },
         {
           "library": "libfreeimage.so",
-          "source": "",
+          "source": "$EXTRACTED_PATH",
           "dest": "$COMPONENT_ARTIFACT_ROOT"
         },
         {
           "library": "libhidapi-hidraw.so.0",
-          "source": "",
+          "source": "$EXTRACTED_PATH",
           "dest": "$COMPONENT_ARTIFACT_ROOT"
         },
         {
           "library": "libSDL3.so.0",
-          "source": "",
+          "source": "$EXTRACTED_PATH",
           "dest": "$COMPONENT_ARTIFACT_ROOT"
         },
         {
           "library": "libSDL3_image.so.0",
-          "source": "",
+          "source": "$EXTRACTED_PATH",
           "dest": "$COMPONENT_ARTIFACT_ROOT"
         },
         {
           "library": "libSDL3_ttf.so.0",
-          "source": "",
+          "source": "$EXTRACTED_PATH",
           "dest": "$COMPONENT_ARTIFACT_ROOT"
         },
         {
           "library": "libserialport.so",
-          "source": "",
+          "source": "$EXTRACTED_PATH",
           "dest": "$COMPONENT_ARTIFACT_ROOT"
         }
       ]
