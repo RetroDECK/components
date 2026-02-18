@@ -1532,6 +1532,36 @@
           "description": "Atari 800XL / 65XE / 130XE OS."
         },
         {
+          "filename": "ATARIXL.ROM",
+          "md5": "06daac977823773a3eea3422fd26a703",
+          "system": "atari800",
+          "description": "Atari 800XL / 65XE / 130XE OS - ALT NAME."
+        },
+        {
+          "filename": "ATARIBAS.ROM",
+          "md5": "0bac0c6a50104045d902df4503a4c30b",
+          "system": "atari800",
+          "description": "Atari 800XL / 65XE / 130XE OS."
+        },
+        {
+          "filename": "ATARIOSA.ROM",
+          "md5": "eb1f32f5d9f382db1bbfb8d7f9cb343a",
+          "system": "atari800",
+          "description": "Atari 800XL / 65XE / 130XE OS."
+        },
+        {
+          "filename": "5200.rom",
+          "md5": "281f20ea4320404ec820fb7ec0693b38",
+          "system": "atari5200",
+          "description": "Atari 5200"
+        },
+        {
+          "filename": "ATARIOSB.ROM",
+          "md5": "a3e8d617c95d08031fe1b20d541434b2",
+          "system": "atari800",
+          "description": "Atari 800XL / 65XE / 130XE OS."
+        },
+        {
           "filename": "ROM_OS_BB02R3",
           "md5": "2dbc73da0d34994d1e2e62e22eb49224",
           "system": "atari800",
@@ -1746,6 +1776,74 @@
           "description": "JiffyDOS custom BIOS"
         },
         {
+          "filename": "cdimono1.zip",
+          "system": "cdimono1",
+          "description": "Philips CDi"
+        },
+        {
+          "filename": "cdimono2.zip",
+          "md5": "97aa5f47030cd9fdb679d4fafbb0e332",
+          "system": "cdimono1",
+          "description": "Philips CDi"
+        },
+        {
+          "filename": "cdibios.zip",
+          "md5": "709acce6e9c4043b851ea7429b8e7eff",
+          "system": "cdimono1",
+          "description": "Philips CDi"
+        },
+        {
+          "filename": "cdibios.zip",
+          "md5": "709acce6e9c4043b851ea7429b8e7eff",
+          "system": "cdimono1",
+          "description": "Philips CDi"
+        },
+        {
+          "filename": "cdi200.rom",
+          "md5": "2969341396aa61e0143dc2351aaa6ef6",
+          "system": "cdimono1",
+          "description": "Philips CDi"
+        },
+        {
+          "filename": "cdi220.rom",
+          "md5": "ac80a92c988ce07fbd6a8f21ded34cf1",
+          "system": "cdimono1",
+          "description": "Philips CDi"
+        },
+        {
+          "filename": "cdi220b.rom",
+          "md5": "ac0d468be366779c9df633be98da250a",
+          "system": "cdimono1",
+          "description": "Philips CDi"
+        },
+        {
+          "filename": "zx405037p__cdi_servo_2.1__b43t__llek9215.mc68hc705c8a_withtestrom.7201",
+          "md5": "3e59b8a9a423d3ecd612a32fe4e2d748",
+          "system": "cdimono1",
+          "description": "Philips CDi"
+        },
+        {
+          "filename": "zx405042p__cdi_slave_2.0__b43t__zzmk9213.mc68hc705c8a_withtestrom.7206",
+          "md5": "3d20cf7550f1b723158b42a1fd5bac62",
+          "system": "cdimono1",
+          "description": "Philips CDi"
+        },
+        {
+          "filename": "philips__cdi-220_ph3_r1.2__mb834200b-15__02f_aa__9402_z04.tc574200-le._1.7211",
+          "system": "cdimono1",
+          "description": "Philips CDi"
+        },
+        {
+          "filename": "zc405351p__servo_cdi_4.1__0d67p__lluk9404.mc68hc705c8a.7490",
+          "system": "cdimono1",
+          "description": "Philips CDi"
+        },
+        {
+          "filename": "zc405352p__slave_cdi_4.1__0d67p__lltr9403.mc68hc705c8a.7206",
+          "system": "cdimono1",
+          "description": "Philips CDi"
+        },
+        {
           "filename": "tvc22_ext.rom",
           "md5": "5ce95a26ceed5bec73995d83568da9cf",
           "system": "enterprise",
@@ -1765,15 +1863,33 @@
         },
         {
           "filename": "neogeo.zip",
-          "md5": "00dad01abdbf8ea9e79ad2fe11bdb182",
-          "system": "fbneo",
+          "md5": [
+            "00dad01abdbf8ea9e79ad2fe11bdb182",
+            "dffb72f116d36d025068b23970a4f6df"
+          ],
+          "system": [
+            "neogeo",
+            "fbneo",
+            "arcade"
+          ],
           "description": "Neo Geo BIOS",
           "required": "Required",
           "paths": [
             "$roms_path/neogeo",
             "$roms_path/fbneo",
-            "$roms_path/arcade"
+            "$roms_path/arcade",
+            "$bios_path"
           ]
+        },
+        {
+          "filename": "aes.zip",
+          "system": [
+            "neogeo",
+            "fbneo",
+            "arcade"
+          ],
+          "description": "Neo Geo AES BIOS",
+          "required": "Optional"
         },
         {
           "filename": "neocdz.zip",
@@ -1781,6 +1897,66 @@
           "system": "fbneo",
           "description": "Neo Geo CDZ BIOS",
           "required": "Required"
+        },
+        {
+          "filename": "neocd_f.rom",
+          "md5": "a5f4a7a627b3083c979f6ebe1fabc5d2df6d083b",
+          "system": "neogeocd",
+          "description": "Neo Geo CD"
+        },
+        {
+          "filename": "neocd_sf.rom",
+          "md5": "4a94719ee5d0e3f2b981498f70efc1b8f1cef325",
+          "system": "neogeocd",
+          "description": "Neo Geo CD"
+        },
+        {
+          "filename": "neocd_t.rom",
+          "md5": "cc92b54a18a8bff6e595aabe8e5c360ba9e62eb5",
+          "system": "neogeocd",
+          "description": "Neo Geo CD"
+        },
+        {
+          "filename": "neocd_st.rom",
+          "md5": "19729b51bdab60c42aafef6e20ea9234c7eb8410",
+          "system": "neogeocd",
+          "description": "Neo Geo CD"
+        },
+        {
+          "filename": "neocd_z.rom",
+          "md5": "b0f1c4fa8d4492a04431805f6537138b842b549f",
+          "system": "neogeocd",
+          "description": "Neo Geo CD"
+        },
+        {
+          "filename": "neocd_sz.rom",
+          "md5": "6a947457031dd3a702a296862446d7485aa89dbb",
+          "system": "neogeocd",
+          "description": "Neo Geo CD"
+        },
+        {
+          "filename": "front-sp1.bin",
+          "md5": "53bc1f283cdf00fa2efbb79f2e36d4c8038d743a",
+          "system": "neogeocd",
+          "description": "Neo Geo CD"
+        },
+        {
+          "filename": "top-sp1.bin",
+          "md5": "235f4d1d74364415910f73c10ae5482d90b4274f",
+          "system": "neogeocd",
+          "description": "Neo Geo CD"
+        },
+        {
+          "filename": "neocd.bin",
+          "md5": "7bb26d1e5d1e930515219cb18bcde5b7b23e2eda",
+          "system": "neogeocd",
+          "description": "Neo Geo CD"
+        },
+        {
+          "filename": "uni-bioscd.rom",
+          "md5": "5142f205912869b673a71480c5828b1eaed782a8",
+          "system": "neogeocd",
+          "description": "Neo Geo CD"
         },
         {
           "filename": "decocass.zip",
@@ -1918,14 +2094,14 @@
           "md5": "62e761035cb657903761800f4437b8af",
           "system": "intellivision",
           "description": "Intellivision Executive ROM",
-          "required": "Optional"
+          "required": "Required"
         },
         {
           "filename": "grom.bin",
           "md5": "0cd5946c6473e42e8e4c2137785e427f",
           "system": "intellivision",
           "description": "Intellivision Graphics ROM",
-          "required": "Optional"
+          "required": "Required"
         },
         {
           "filename": "o2rom.bin",
@@ -2435,6 +2611,21 @@
           "description": "Pokémon Mini BIOS"
         },
         {
+          "filename": "32X_G_BIOS.BIN",
+          "system": "sega32x",
+          "description": "SEGA 32X BIOS"
+        },
+        {
+          "filename": "32X_M_BIOS.BIN",
+          "system": "sega32x",
+          "description": "SEGA 32X BIOS"
+        },
+        {
+          "filename": "32X_S_BIOS.BIN",
+          "system": "sega32x",
+          "description": "SEGA 32X BIOS"
+        },
+        {
           "filename": "bios_CD_E.bin",
           "md5": [
             "e66fa1dc5820d254611fdcdba0662372",
@@ -2598,6 +2789,13 @@
           "required": "Optional"
         },
         {
+          "filename": "coleco.rom",
+          "md5": "2c66f5911e5b42b8ebe113403548eee7",
+          "system": "colecovision",
+          "description": "ColecoVision ROM image Alternative name - BIOS.col",
+          "required": "Optional"
+        },
+        {
           "filename": "sega_101.bin",
           "md5": "85ec9ca47d8f6807718151cbcca8b964",
           "system": [
@@ -2748,6 +2946,37 @@
           "system": "atari7800",
           "description": "Atari 7800 BIOS - USA - ProSystem",
           "required": "Optional"
+        },
+        {
+          "filename": "ProSystem.dat",
+          "md5": "ce6a86574d0c9de9075705f14e99d090",
+          "system": "atari7800",
+          "description": "Atari 7800 BIOS - ProSystem",
+          "required": "Optional"
+        },
+        {
+          "filename": "A78_highscore.bin",
+          "md5": "ce6a86574d0c9de9075705f14e99d090",
+          "system": "atari7800",
+          "description": "Atari 7800 - ProSystem - High Score",
+          "required": "Optional"
+        },
+        {
+          "filename": "xegs.zip",
+          "system": "atarixe",
+          "description": "Atari XE zip"
+        },
+        {
+          "filename": "c101687.rom",
+          "md5": "42cbd989802c17d0ac3731d33270d835",
+          "system": "atarixe",
+          "description": "Atari XE"
+        },
+        {
+          "filename": "Atari Jaguar (World).j64",
+          "md5": "cb492f093cd9e22a913d158741e8f00a",
+          "system": "atarijaguar",
+          "description": "Atari Jaguar"
         },
         {
           "filename": "kick34005.A500",
@@ -3097,6 +3326,16 @@
             "supergb"
           ],
           "description": "Super Game Boy BIOS",
+          "required": "Optional, for boot logo"
+        },
+        {
+          "filename": "sgb2_boot.bin",
+          "md5": "e0430bca9925fb9882148fd2dc2418c1",
+          "system": [
+            "snes",
+            "supergb"
+          ],
+          "description": "Super Game Boy BIOS - Alt name",
           "required": "Optional, for boot logo"
         },
         {
