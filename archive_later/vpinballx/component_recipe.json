@@ -12,11 +12,6 @@
           "contents": "$FRAMEWORK_DESIRED_VERSION"
         },
         {
-          "type": "file",
-          "source": "$REPO_ROOT/$COMPONENT_NAME/rd_assets/gcdb/gamecontrollerdb.txt",
-          "dest": "$COMPONENT_ARTIFACT_ROOT"
-        },
-        {
           "type": "dir",
           "source": "$REPO_ROOT/$COMPONENT_NAME/rd_assets/rd_config",
           "dest": "rd_config"
@@ -144,6 +139,18 @@
         {
           "library": "libserialport.so",
           "source": "$EXTRACTED_PATH",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        }
+      ]
+    },
+    {
+      "source_url": "https://github.com/mdqinc/SDL_GameControllerDB/blob/master/gamecontrollerdb.txt",
+      "source_type": "http",
+      "extraction_type": "local",
+      "assets": [
+        {
+          "type": "file",
+          "source": "$WORKDIR/gamecontrollerdb.txt",
           "dest": "$COMPONENT_ARTIFACT_ROOT"
         }
       ]

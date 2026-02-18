@@ -23,11 +23,6 @@
         },
         {
           "type": "file",
-          "source": "$REPO_ROOT/$COMPONENT_NAME/rd_assets/rd_config/gamecontrollerdb.txt",
-          "dest": "bin"
-        },
-        {
-          "type": "file",
           "source": "$REPO_ROOT/$COMPONENT_NAME/component_functions.sh",
           "dest": "$COMPONENT_ARTIFACT_ROOT"
         },
@@ -58,6 +53,18 @@
         }
       ],
       "libs": []
+    },
+    {
+      "source_url": "https://github.com/mdqinc/SDL_GameControllerDB/blob/master/gamecontrollerdb.txt",
+      "source_type": "http",
+      "extraction_type": "local",
+      "assets": [
+        {
+          "type": "file",
+          "source": "$WORKDIR/gamecontrollerdb.txt",
+          "dest": "bin"
+        }
+      ]
     }
   ]
 }
