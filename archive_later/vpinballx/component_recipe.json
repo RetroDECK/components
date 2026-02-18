@@ -12,6 +12,11 @@
           "contents": "$FRAMEWORK_DESIRED_VERSION"
         },
         {
+          "type": "file",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/assets/gcdb/gamecontrollerdb.txt",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
           "type": "dir",
           "source": "$REPO_ROOT/$COMPONENT_NAME/assets/rd_config",
           "dest": "rd_config"
@@ -104,42 +109,42 @@
         {
           "library": "libbgfx.so",
           "source": "",
-          "dest": "$COMPONENT_ARTIFACT_ROOT"
+          "dest": "."
         },
         {
           "library": "libdof.so",
-          "source": "",
-          "dest": "$COMPONENT_ARTIFACT_ROOT"
+          "source": ".",
+          "dest": "."
         },
         {
           "library": "libfreeimage.so",
           "source": "",
-          "dest": "$COMPONENT_ARTIFACT_ROOT"
+          "dest": "."
         },
         {
           "library": "libhidapi-hidraw.so.0",
           "source": "",
-          "dest": "$COMPONENT_ARTIFACT_ROOT"
+          "dest": "."
         },
         {
           "library": "libSDL3.so.0",
           "source": "",
-          "dest": "$COMPONENT_ARTIFACT_ROOT"
+          "dest": "."
         },
         {
           "library": "libSDL3_image.so.0",
           "source": "",
-          "dest": "$COMPONENT_ARTIFACT_ROOT"
+          "dest": "."
         },
         {
           "library": "libSDL3_ttf.so.0",
           "source": "",
-          "dest": "$COMPONENT_ARTIFACT_ROOT"
+          "dest": "."
         },
         {
           "library": "libserialport.so",
           "source": "",
-          "dest": "$COMPONENT_ARTIFACT_ROOT"
+          "dest": "."
         }
       ]
     }
