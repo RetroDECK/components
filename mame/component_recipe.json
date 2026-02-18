@@ -24,12 +24,12 @@
         },
         {
           "type": "dir",
-          "source": "$REPO_ROOT/$COMPONENT_NAME/assets/rd_config",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/rd_assets/rd_config",
           "dest": "rd_config"
         },
         {
           "type": "dir",
-          "source": "$REPO_ROOT/$COMPONENT_NAME/assets/rd_extras",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/rd_assets/rd_extras",
           "dest": "rd_extras"
         },
         {
@@ -85,7 +85,7 @@
       ]
     },
     {
-      "source_url": "$REPO_ROOT/$COMPONENT_NAME/assets/rd_extras/cheat*.zip",
+      "source_url": "$REPO_ROOT/$COMPONENT_NAME/rd_assets/rd_extras/cheat*.zip",
       "source_type": "local",
       "extraction_type": "archive",
       "assets": [

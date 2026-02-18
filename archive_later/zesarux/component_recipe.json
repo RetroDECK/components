@@ -658,7 +658,7 @@
         },
         {
           "type": "dir",
-          "source": "$REPO_ROOT/$COMPONENT_NAME/assets/rd_config",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/rd_assets/rd_config",
           "dest": "rd_config"
         },
         {
@@ -695,7 +695,7 @@
       "libs": []
     },
     {
-      "source_url": "$REPO_ROOT/$COMPONENT_NAME/assets/libSDL-1.tar.gz",
+      "source_url": "$REPO_ROOT/$COMPONENT_NAME/rd_assets/libSDL-1.tar.gz",
       "source_type": "local",
       "extraction_type": "archive",
       "assets": [

@@ -18,12 +18,12 @@
         },
         {
           "type": "dir",
-          "source": "$REPO_ROOT/$COMPONENT_NAME/assets/rd_config",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/rd_assets/rd_config",
           "dest": "$COMPONENT_ARTIFACT_ROOT/rd_config"
         },
         {
           "type": "file",
-          "source": "$REPO_ROOT/$COMPONENT_NAME/assets/harbourmaster",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/rd_assets/harbourmaster",
           "dest": "$COMPONENT_ARTIFACT_ROOT"
         },
         {
