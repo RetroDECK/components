@@ -238,20 +238,6 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # COOKER (Override)
 # export RETROARCH_DESIRED_VERSION="latest"
 
-
-# ------------------------------------------------------------------------------
-# Ryubing - Nintendo Switch Emulator
-# Source: AppImage
-# Link: https://git.ryujinx.app/ryubing/ryujinx/-/releases/
-# ------------------------------------------------------------------------------
-# MAIN (Stable)
-# Version: 1.3.3
-  export RYUBING_DESIRED_VERSION="1.3.3"
-
-# COOKER (Override)
-# export RYUBING_DESIRED_VERSION="latest"
-
-
 # ------------------------------------------------------------------------------
 # Solarus - Action RPG Engine
 # Source: AppImage
@@ -404,16 +390,6 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 
 
 # ------------------------------------------------------------------------------
-# Eden - Nintendo Switch Emulator
-# ------------------------------------------------------------------------------
-# MAIN (Stable)
-# export EDEN_DESIRED_VERSION="latest"
-
-# COOKER (Override)
-  export EDEN_DESIRED_VERSION="latest"
-
-
-# ------------------------------------------------------------------------------
 # ECWOLF - Wolfenstein 3D Engine
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
@@ -421,6 +397,7 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 
 # COOKER (Override)
   export ECWOLF_DESIRED_VERSION="latest"
+
 
 # ------------------------------------------------------------------------------
 # EKA2L1 - Symbian OS Emulator
@@ -439,7 +416,6 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 
 # COOKER (Override)
   export FS_UAE_DESIRED_VERSION="latest"
-
 
 
 # ------------------------------------------------------------------------------
@@ -667,3 +643,31 @@ else
     # Main branch uses the “main‑latest” build tag
     export FRAMEWORK_DESIRED_VERSION="main-latest on $(date +%Y-%m-%d)"
 fi
+
+# ==============================================================================
+#  Component Desired Versions - Removed
+# ==============================================================================
+#  Components that has been removed or was never included into RetroDECK 
+#  due to some factor.
+# ==============================================================================
+
+
+# ------------------------------------------------------------------------------
+# Eden - Nintendo Switch Emulator
+# ------------------------------------------------------------------------------
+# MAIN (Stable)
+# export EDEN_DESIRED_VERSION="latest"
+
+# COOKER (Override)
+  export EDEN_DESIRED_VERSION="latest"
+
+# ------------------------------------------------------------------------------
+# Ryubing - Nintendo Switch Emulator
+# Source: AppImage
+# Link: https://git.ryujinx.app/ryubing/ryujinx/-/releases/
+# ------------------------------------------------------------------------------
+# MAIN (Stable)
+  export RYUBING_DESIRED_VERSION="latest"
+
+# COOKER (Override)
+# export RYUBING_DESIRED_VERSION="latest"
