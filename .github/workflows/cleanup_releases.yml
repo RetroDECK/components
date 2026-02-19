@@ -45,7 +45,7 @@ jobs:
           DEFAULT_KEEP_COUNT=5
 
           # Branches that should never be cleaned up on branch deletion events
-          DELETION_PRESERVED="main cooker"
+          DELETION_PRESERVED="main cooker epicure"
 
           # Branches that should never be cleaned up on automatic triggers
           AUTO_PRESERVED="main"
