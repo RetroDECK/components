@@ -290,7 +290,7 @@ UNIFIED GAME MODE:
 
 CREATE FILESYSTEM IMAGES / LAYER NAMING:
     OS Layer:  --makefs win98          Create 4GB FAT32 sparse VHD for Windows 98 at $storage_path/dosbox-x/win98.vhd
-                         --makefs win31          Create 512MB FAT16 sparse VHD for Windows 3.1 at $storage_path/dosbox-x/win31.vhd
+               --makefs win31          Create 512MB FAT16 sparse VHD for Windows 3.1 at $storage_path/dosbox-x/win31.vhd
 
     Naming conventions:
         - OS Layer:   $storage_path/dosbox-x/$WIN_VERSION.vhd
@@ -477,37 +477,6 @@ verify_os_config() {
     fi
 }
 
-copy_base_vhd_from_template() {
-    local os_version="$1"
-    local target_path="$2"
-
-    # Force recreate if -f flag was used
-    if [[ $FORCE_RECREATE -eq 1 && -f "$target_path" ]]; then
-        log i "Force recreating VHD (removing existing file)..."
-        rm -f "$target_path" || { log e "Failed to remove old VHD"; exit 1; }
-    fi
-
-    if [[ ! -f "$target_path" ]]; then
-        log i "Windows $os_version VHD not found at: $target_path"
-        log i "Creating VHD automatically..."
-
-        case "$os_version" in
-            win98)
-                mkfs_win98 "$target_path" || exit 1
-                ;;
-            win31)
-                mkfs_win31 "$target_path" || exit 1
-                ;;
-            *)
-                log e "Unknown Windows version: $os_version"
-                exit 1
-                ;;
-        esac
-    else
-        log i "VHD base already exists: $target_path"
-    fi
-}
-
 create_game_layer_vhd() {
     local game_name="$1"
     # Prepare the path for the per-game VHD layer (game + saves unified).
@@ -656,6 +625,10 @@ generate_autoexec_install_os() {
     # operations; a consolidated cleanup is emitted closer to the actual
     # installation step below.
     # present across reboots during installation — start from D: because C: is taken
+    # Mount the pre-formatted OS VHD as C: so Setup can detect/boot the target
+    cat <<EOF >> "$conf_file"
+IMGMOUNT C "$VHD_BASE_PATH" -t hdd
+EOF
     mount_disks "$conf_file" "D"
 
     # Optionally copy drivers from the CD to the Windows system directory to
@@ -1165,7 +1138,6 @@ handle_install_os() {
     WIN_VERSION="$INSTALL_NAME"
     log i "OS install mode: Installing $WIN_VERSION"
     configurator_generic_dialog "RetroDECK - Installing $WIN_VERSION" "Please follow the Windows Setup prompts to install the operating system and set it up for your needings.\nYou might want to change the desktop resolution and the colors.\n\nThe installation will start in TURBO mode, but any key input will disable it, please re-enable it during the loading bars to speed them up."
-        configurator_generic_dialog "RetroDECK - Game Install" "A per-game VHD $(basename \"$GAME_VHD_PATH\") will be created and used for the game and its save files.\n\nThis per-game VHD will be mounted as C:\\ (a writable child that contains the OS, the installed game and any save files).\nPlease install your game into C:\\ inside the Windows environment (the VHD will be mounted as C:).\n\nThere is no separate saves VHD in the two-layer model — the per-game VHD contains both game data and save files.\nBack up the per-game VHD if you want to preserve both game and saves."
     # Treat the install name exactly as provided by the user. The only
     # special-case: if the name ends with .vhd (any case) strip that suffix
     # because we will append ".vhd" ourselves when creating the game layer
