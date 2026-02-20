@@ -16,6 +16,33 @@
       "windows3x",
       "windows9x",
       "dos"
-    ]
+    ],
+    "configurator_menus": {
+      "tools": {
+        "dosbox_x":{
+          "dosbox_x_install_win98": {
+            "name": "DOSBox-X: Install Windows 98",
+            "description": "Install Windows 98 in DOSBox-X emulator.",
+            "command": {
+              "zenity": "dosbox_x_install_win98"
+            }
+            },
+          "dosbox_x_run_win98": {
+            "name": "DOSBox-X: Run Windows 98",
+            "description": "Run the Windows 98 base layer in DOSBox-X emulator.",
+            "command": {
+              "zenity": "dosbox_x_run_win98"
+            }
+          },
+          "dosbox_x_install_win98_game": {
+            "name": "DOSBox-X: Install Windows 98 Game",
+            "description": "Install a Windows 98 game in DOSBox-X emulator.",
+            "command": {
+              "zenity": "dosbox_x_install_win98_game"
+            }  
+          }
+        }
+      }
+    }
   }
 }

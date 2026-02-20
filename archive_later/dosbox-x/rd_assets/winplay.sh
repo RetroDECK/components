@@ -13,7 +13,7 @@ source /app/libexec/global.sh
 
 init_globals() {
     # VHD layer paths - save_path should be provided by RetroDECK framework
-    # - OS Layer: $bios_path/$WIN_VERSION.vhd
+    # - OS Layer: $storage_path/dosbox-x/$WIN_VERSION.vhd
     # - Game Layer: $roms_path/<ESDE_SYSTEM_NAME>/<game name>.vhd
     # (Per-game VHD is the single writable layer for the game — it contains
     #  the game files and any save files created by the title.)
@@ -78,7 +78,7 @@ setup_paths() {
         OS_CONFIG_DIR="${dosbox_x_os_configs_dir:-$OS_CONFIG_DIR}"
     fi
 
-    VHD_BASE_PATH="$bios_path/$WIN_VERSION.vhd"
+    VHD_BASE_PATH="$storage_path/dosbox-x/$WIN_VERSION.vhd"
     TMP_CONF="$XDG_CACHE_HOME/dosbox-x/winplay.conf"
     # Choose the default virtual size for layers and per-system path name based on WIN_VERSION.
     case "${WIN_VERSION,,}" in
@@ -289,11 +289,11 @@ UNIFIED GAME MODE:
   --cdrom <path>          Alias for --cd-rom
 
 CREATE FILESYSTEM IMAGES / LAYER NAMING:
-    OS Layer:  --makefs win98          Create 4GB FAT32 sparse VHD for Windows 98 at $bios_path/win98.vhd
-                         --makefs win31          Create 512MB FAT16 sparse VHD for Windows 3.1 at $bios_path/win31.vhd
+    OS Layer:  --makefs win98          Create 4GB FAT32 sparse VHD for Windows 98 at $storage_path/dosbox-x/win98.vhd
+                         --makefs win31          Create 512MB FAT16 sparse VHD for Windows 3.1 at $storage_path/dosbox-x/win31.vhd
 
     Naming conventions:
-        - OS Layer:   $bios_path/$WIN_VERSION.vhd
+        - OS Layer:   $storage_path/dosbox-x/$WIN_VERSION.vhd
         - Game Layer: $roms_path/<ESDE_SYSTEM_NAME>/<game name>.vhd
         - (No separate saves layer — save files will be stored inside the Game Layer VHD)
 
@@ -383,7 +383,7 @@ extract_args_from_environment() {
 # ============================================================================
 
 mkfs_win98() {
-    local target_path="${1:-$bios_path/win98.vhd}"
+    local target_path="${1:-$storage_path/dosbox-x/win98.vhd}"
     local size_mb=4096
 
     mkdir -p "$(dirname "$target_path")"
@@ -412,7 +412,7 @@ mkfs_win98() {
 }
 
 mkfs_win31() {
-    local target_path="${1:-$bios_path/win31.vhd}"
+    local target_path="${1:-$storage_path/dosbox-x/win31.vhd}"
     local size_mb=512
 
     mkdir -p "$(dirname "$target_path")"
@@ -443,11 +443,11 @@ mkfs_win31() {
 handle_makefs_mode() {
     case "$MAKEFS_VERSION" in
         win98)
-            mkfs_win98 "$bios_path/win98.vhd"
+            mkfs_win98 "$storage_path/dosbox-x/win98.vhd"
             exit $?
             ;;
         win31)
-            mkfs_win31 "$bios_path/win31.vhd"
+            mkfs_win31 "$storage_path/dosbox-x/win31.vhd"
             exit $?
             ;;
         *)
