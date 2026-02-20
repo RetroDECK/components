@@ -18,7 +18,7 @@
         },
         {
           "type": "merge",
-          "source": "$REPO_ROOT/$COMPONENT_NAME/assets/rd_extras/borders",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/rd_assets/rd_extras/borders",
           "dest": "$WORKDIR/overlays/borders"
         },
         {
@@ -53,12 +53,12 @@
         },
         {
           "type": "dir",
-          "source": "$REPO_ROOT/$COMPONENT_NAME/assets/rd_config",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/rd_assets/rd_config",
           "dest": "rd_config"
         },
         {
           "type": "file",
-          "source": "$REPO_ROOT/$COMPONENT_NAME/assets/rd_extras/ScummVM.zip",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/rd_assets/rd_extras/ScummVM.zip",
           "dest": "rd_extras"
         },
         {

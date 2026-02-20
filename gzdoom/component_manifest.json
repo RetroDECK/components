@@ -3,6 +3,7 @@
     "name": "GZDoom",
     "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/gzdoom/gzdoom-guide/",
     "url_webpage": "https://zdoom.org/index",
+    "url_donation_purchase": "",
     "url_source": "https://github.com/ZDoom/gzdoom",
     "component_type": "Engine",
     "description": "GZDoom is a modern, enhanced source port engine of classic DOOM and DOOM engine games.",

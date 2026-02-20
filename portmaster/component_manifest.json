@@ -4,6 +4,7 @@
     "name": "PortMaster",
     "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_port_guides/portmaster/portmaster-guide/",
     "url_webpage": "https://portmaster.games/index.html",
+    "url_donation_purchase": "https://opencollective.com/portmaster",
     "url_source": "https://github.com/PortsMaster/PortMaster-New",
     "system_friendly_name": "PortMaster",
     "component_type": "System",

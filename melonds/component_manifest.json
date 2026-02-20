@@ -5,8 +5,56 @@
     "component_type": "Emulator",
     "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/melonds/melonds-guide/",
     "url_webpage": "https://melonds.kuribo64.net/",
+    "url_donation_purchase": [
+      "https://www.patreon.com/Arisotura",
+      "https://paypal.me/Arisotura"
+    ],
     "url_source": "https://github.com/melonDS-emu/melonDS",
     "system_friendly_name": "Nintendo DS",
-    "system": "nds"
+    "system": "nds",
+    "bios": [
+      {
+        "filename": "bios7.bin",
+        "md5": "df692a80a5b1bc90728bc3dfc76cd948",
+        "system": "nds",
+        "description": "Nintendo DS ARM7 BIOS",
+        "required": "Required"
+      },
+      {
+        "filename": "bios9.bin",
+        "md5": "a392174eb3e572fed6447e956bde4b25",
+        "system": "nds",
+        "description": "Nintendo DS ARM9 BIOS",
+        "required": "Required"
+      },
+      {
+        "filename": "firmware.bin",
+        "md5": "e45033d9b0fa6b0de071292bba7c9d13",
+        "system": "nds",
+        "description": "Nintendo DS firmware",
+        "required": "Required"
+      },
+      {
+        "filename": "biosdsi7.bin",
+        "sha256": "2946281e730e71f7cafdb125f5cb60fed944ca5d610ee1e082c441b602b5f4e2",
+        "system": "nds",
+        "description": "Nintendo DSi ARM7 BIOS",
+        "required": "Required"
+      },
+      {
+        "filename": "biosdsi9.bin",
+        "sha256": "47538922a8e8a8e79b922ff1203863ef5c40d9c54656a8d2c89c56ece52029ce",
+        "system": "nds",
+        "description": "Nintendo DSi ARM9 BIOS",
+        "required": "Required"
+      },
+      {
+        "filename": "dsifirmware.bin",
+        "sha256": "11a150e3729bdde3ae8f5e7fc8be67d8bfbc548a1d2e523da58aa826ca0ffa99",
+        "system": "nds",
+        "description": "Nintendo DSi firmware",
+        "required": "Required"
+      }
+    ]
   }
 }

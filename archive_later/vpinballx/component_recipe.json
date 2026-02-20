@@ -13,7 +13,7 @@
         },
         {
           "type": "dir",
-          "source": "$REPO_ROOT/$COMPONENT_NAME/rd_config",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/rd_assets/rd_config",
           "dest": "rd_config"
         },
         {
@@ -96,85 +96,62 @@
       ],
       "libs": [
         {
-          "library": "libSDL3.so.0",
-          "runtime_name": "org.freedesktop.Platform",
-          "runtime_version": "25.08",
-          "dest": "shared-libs"
-        },
-        {
-          "library": "libSDL3_image.so.0",
-          "runtime_name": "org.freedesktop.Platform",
-          "runtime_version": "25.08",
-          "dest": "shared-libs"
-        },
-        {
           "library": "libjxl.so.0.11",
           "runtime_name": "org.freedesktop.Platform",
           "runtime_version": "25.08",
           "dest": "shared-libs"
         },
         {
-          "library": "libSDL3_ttf.so.0",
-          "runtime_name": "org.freedesktop.Platform",
-          "runtime_version": "25.08",
-          "dest": "shared-libs"
-        },
-        {
-          "library": "libhidapi-hidraw.so.0",
-          "runtime_name": "org.gnome.Platform",
-          "runtime_version": "49",
-          "dest": "shared-libs"
-        },
-        {
-          "library": "libfreeimage.so.3.19.0",
-          "source": "",
-          "dest": "shared-libs"
-        },
-        {
-          "library": "libhidapi-hidraw.so.0",
-          "source": "",
-          "dest": "shared-libs"
-        },
-        {
           "library": "libbgfx.so",
-          "source": "",
-          "dest": "shared-libs"
+          "source": "$EXTRACTED_PATH",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "library": "libdof.so",
+          "source": "$EXTRACTED_PATH",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "library": "libfreeimage.so",
+          "source": "$EXTRACTED_PATH",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "library": "libhidapi-hidraw.so.0",
+          "source": "$EXTRACTED_PATH",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "library": "libSDL3.so.0",
+          "source": "$EXTRACTED_PATH",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "library": "libSDL3_image.so.0",
+          "source": "$EXTRACTED_PATH",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "library": "libSDL3_ttf.so.0",
+          "source": "$EXTRACTED_PATH",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
         },
         {
           "library": "libserialport.so",
-          "source": "",
-          "dest": "shared-libs"
+          "source": "$EXTRACTED_PATH",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
         }
       ]
     },
     {
-      "source_url": "https://github.com/vpinball/pinmame/releases/download/{VERSION}/libpinmame-*-linux-x64.zip",
-      "source_type": "github_release",
-      "version": "newest",
-      "extraction_type": "archive"
-    },
-    {
-      "source_url": "$EXTRACTED_PATH/libpinmame-*-linux-x64.tar.gz",
-      "source_type": "local",
-      "extraction_type": "archive",
+      "source_url": "https://github.com/mdqinc/SDL_GameControllerDB/blob/master/gamecontrollerdb.txt",
+      "source_type": "http",
+      "extraction_type": "local",
       "assets": [
         {
-          "type": "dir",
-          "source": "",
-          "dest": "libpinmame"
-        }
-      ]
-    },
-    {
-      "source_url": "https://github.com/vpinball/pinmame/releases/download/{VERSION}/xpinmame-*-linux-x64.zip",
-      "source_type": "github_release",
-      "version": "newest",
-      "extraction_type": "archive",
-      "assets": [
-        {
-          "type": "dir",
-          "source": "",
-          "dest": "xpinmame"
+          "type": "file",
+          "source": "$WORKDIR/gamecontrollerdb.txt",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
         }
       ]
     }

@@ -14,4 +14,4 @@ log d "Library Path: $LD_LIBRARY_PATH"
 log d "QT Plugin Path: $QT_PLUGIN_PATH"
 log d "QT QPA Platform Plugin Path is: $QT_QPA_PLATFORM_PLUGIN_PATH"
 
-exec "$component_path/bin/scummvm" "$@"
+exec "$component_path/bin/scummvm" --themepath=/app/retrodeck/components/scummvm/scummvm/ "$@"

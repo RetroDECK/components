@@ -2,10 +2,11 @@
   "zesarux": {
     "name": "ZEsarUX",
     "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/zesarux/zesarux-guide/",
+    "url_donation_purchase": "",
     "url_source": "https://github.com/chernandezba/zesarux",
-    "description": "ZEsarUX is a ZX Spectrum Next Emulator",
+    "description": "ZEsarUX is a ZX Spectrum Next Multi-Emulator",
     "system_friendly_name": "ZX Spectrum Next",
-    "component_type": "Emulator",
+    "component_type": "Multi-Emulator",
     "system": "zxnext"
   }
 }

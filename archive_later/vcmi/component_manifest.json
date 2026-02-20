@@ -3,6 +3,7 @@
     "name": "vcmi",
     "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_ports_guides/vcmi/vcmi-guide/",
     "url_webpage": "https://vcmi.eu/",
+    "url_donation_purchase": "",
     "url_source": "https://github.com/vcmi/vcmi",
     "description": "VCMI is a engine for Heroes III, offering new and extended possibilities.",
     "system_friendly_name": "Heroes of Might & Magic III - VCMI",

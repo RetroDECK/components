@@ -1,0 +1,66 @@
+X = 2
+
+400 	tcy 	0 						; look at 2:0 bit 0, current state
+401 	tbit1 	0 						; if it is 1, then clear 0/set 1
+402 	br 		408
+403 	sbit  	0						; set 1 / clear 0 - push pull audio
+404 	setr
+405 	tcy 	1
+406 	rstr
+407 	br 		40d
+
+408 	rbit 	0 						; set 0 / clear 1 
+409 	rstr
+40a 	tcy 	1
+40b 	setr
+40c 	br 		40d 					; !
+
+40d 	tcy 	5 						; point to 2:5, counting the pulses
+40e 	imac 							; load and increment pulse counter
+40f 	br 		417 					; on overflow, increment 2:6, then 2:7
+
+410 	tam 							; write it back
+411 	cla 							; pulse pin 6 (data clock)
+412 	tcy 	6
+413 	setr
+414 	rstr
+
+415 	tcy 	8 						; pitch at 2:8
+416 	br 		420  					; play it
+
+417 	tcmiy 	0 						; clear update counter, now pointing at 2:7
+
+418 	imac 							; increment 2:6
+419 	br 		41C 					; overflow on 2:6 ?
+41A 	tam 							; write it back
+41B 	br 		415 					; play current pitch in 2:8
+
+41C 	tcmiy 	0 						; overflow in 2:6
+41D 	imac 							; increment and load 2:7
+41E 	br 		432 					; that overflows, go to 432 (next note ?)
+
+41F 	tamiyc 							; otherwise write that back, now pointing at 2:8
+
+420 	imac 							; increment on load - points to pitch ?
+421 	br 		400						; goes back and toggles audio on overflow
+422 	iac 							; inc value 3 times in total, overflow go back.
+423 	br 		400
+424 	iac
+425 	br 		400
+
+426 	mnez 							; this is wasting time for tuning ?
+427 	iac 
+428 	br 		400 					; fourth time.
+429 	mnez 							
+42A 	iac
+42B 	br 		400 					; these must be different notes, the delays
+42C 	iac  							; change the pitch, MNEZ is an effective NOP.
+42D 	br 		400
+
+42e 	tcy 	2 						; short delay
+42f 	dyn
+430 	br 		42f
+431 	br 	 	400 					; and loop round
+
+432 	comc 							; go to chapter 1
+433 	br 		b 						; and go off and do the next bit ?

@@ -1,26 +1,30 @@
 {
   "gargoyle": [
     {
-      "source_url": "io.github.garglk.Gargoyle",
-      "source_type": "flatpak_id",
+      "source_url": "https://github.com/garglk/garglk/releases/download/{VERSION}/Gargoyle-x86_64.AppImage",
+      "source_type": "github_release",
       "version": "$GARGOYLE_DESIRED_VERSION",
-      "dest": "user",
-      "extraction_type": "flatpak",
+      "extraction_type": "appimage",
       "assets": [
         {
           "type": "dir",
-          "source": "bin",
+          "source": "usr/bin",
           "dest": "bin"
         },
         {
           "type": "dir",
-          "source": "libexec",
-          "dest": "libexec"
+          "source": "usr/plugins",
+          "dest": "plugins"
         },
         {
-          "type": "file",
-          "source": "lib/libgarglkmain.a",
-          "dest": "shared-libs"
+          "type": "dir",
+          "source": "usr/share/gargoyle",
+          "dest": "share/gargoyle"
+        },
+        {
+          "type": "dir",
+          "source": "usr/share/doc/",
+          "dest": "doc"
         },
         {
           "type": "create",
@@ -29,7 +33,7 @@
         },
         {
           "type": "dir",
-          "source": "$REPO_ROOT/$COMPONENT_NAME/rd_config",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/rd_assets/rd_config",
           "dest": "rd_config"
         },
         {
@@ -65,33 +69,38 @@
       ],
       "libs": [
         {
-          "library": "libQt5Widgets.so.5",
+          "library": "libfmt.so.8",
+          "source": "usr/lib",
+          "dest": "lib"
+        },
+        {
+          "library": "libQt6Widgets.so.6",
           "runtime_name": "org.kde.Platform",
-          "runtime_version": "5.15-25.08",
+          "runtime_version": "6.10",
           "dest": "shared-libs"
         },
         {
-          "library": "libQt5Gui.so.5",
+          "library": "libQt6Gui.so.6",
           "runtime_name": "org.kde.Platform",
-          "runtime_version": "5.15-25.08",
+          "runtime_version": "6.10",
           "dest": "shared-libs"
         },
         {
-          "library": "libQt5Core.so.5",
+          "library": "libQt6Core.so.6",
           "runtime_name": "org.kde.Platform",
-          "runtime_version": "5.15-25.08",
+          "runtime_version": "6.10",
           "dest": "shared-libs"
         },
         {
-          "library": "libQt5DBus.so.5",
+          "library": "libQt6DBus.so.6",
           "runtime_name": "org.kde.Platform",
-          "runtime_version": "$DESIRED_QT5_RUNTIME_VERSION",
+          "runtime_version": "6.10",
           "dest": "shared-libs"
         },
         {
-          "library": "libgarglk.so",
-          "source": "lib",
-          "dest": "shared-libs"
+          "library": "libspeechd.so.2",
+          "source": "usr/lib",
+          "dest": "lib"
         }
       ]
     }

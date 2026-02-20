@@ -4,6 +4,7 @@
     "description": "Duckstation is a Playstation 1 (psx) emulator.",
     "component_type": "Emulator",
     "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/duckstation/duckstation-guide/",
+    "url_donation_purchase": "",
     "system_friendly_name": "Playstation 1 (PSX)",
     "system": "psx",
     "compatible_presets": {
@@ -11,7 +12,7 @@
         "false",
         "true"
       ],
-      "cheevos_hardcore" : [
+      "cheevos_hardcore": [
         "false",
         "true"
       ],
@@ -28,7 +29,9 @@
       "config_file_format": "duckstation",
       "cheevos": [
         {
-          "enabled_states": [ "true" ],
+          "enabled_states": [
+            "true"
+          ],
           "setting_name": "Enabled",
           "action": "change",
           "new_setting_value": "true",
@@ -37,7 +40,9 @@
           "defaults_file": "$duckstation_rd_config_dir/settings.ini"
         },
         {
-          "enabled_states": [ "true" ],
+          "enabled_states": [
+            "true"
+          ],
           "setting_name": "Username",
           "action": "change",
           "new_setting_value": "$cheevos_username",
@@ -46,7 +51,9 @@
           "defaults_file": "$duckstation_rd_config_dir/settings.ini"
         },
         {
-          "enabled_states": [ "true" ],
+          "enabled_states": [
+            "true"
+          ],
           "setting_name": "Token",
           "action": "change",
           "new_setting_value": "$cheevos_token",
@@ -55,7 +62,9 @@
           "defaults_file": "$duckstation_rd_config_dir/settings.ini"
         },
         {
-          "enabled_states": [ "true" ],
+          "enabled_states": [
+            "true"
+          ],
           "setting_name": "LoginTimestamp",
           "action": "change",
           "new_setting_value": "$cheevos_login_timestamp",
@@ -66,7 +75,9 @@
       ],
       "cheevos_hardcore": [
         {
-          "enabled_states": [ "true" ],
+          "enabled_states": [
+            "true"
+          ],
           "setting_name": "ChallengeMode",
           "action": "change",
           "new_setting_value": "true",
@@ -77,7 +88,9 @@
       ],
       "savestate_on_exit": [
         {
-          "enabled_states": [ "true" ],
+          "enabled_states": [
+            "true"
+          ],
           "setting_name": "SaveStateOnExit",
           "action": "change",
           "new_setting_value": "true",
@@ -88,13 +101,164 @@
       ],
       "ask_to_exit": [
         {
-          "enabled_states": [ "true" ],
+          "enabled_states": [
+            "true"
+          ],
           "setting_name": "ConfirmPowerOff",
           "action": "change",
           "new_setting_value": "true",
           "section": "Main",
           "target_file": "$duckstation_config",
           "defaults_file": "$duckstation_rd_config_dir/settings.ini"
+        }
+      ],
+      "bios": [
+        {
+          "filename": "psxonpsp660.bin",
+          "md5": "c53ca5908936d412331790f4426c6c33",
+          "system": "psx",
+          "description": "PlayStation BIOS extracted from PSP - Japan",
+          "required": "At least one BIOS file required"
+        },
+        {
+          "filename": "scph5500.bin",
+          "md5": "8dd7d5296a650fac7319bce665a6a53c",
+          "system": "psx",
+          "description": "PlayStation BIOS - SCPH-5500 - Japan",
+          "required": "At least one BIOS file required"
+        },
+        {
+          "filename": "scph5501.bin",
+          "md5": "490f666e1afb15b7362b406ed1cea246",
+          "system": "psx",
+          "description": "PlayStation BIOS - SCPH-5501  - USA",
+          "required": "At least one BIOS file required"
+        },
+        {
+          "filename": "scph5502.bin",
+          "md5": "32736f17079d0b2b7024407c39bd3050",
+          "system": "psx",
+          "description": "PlayStation BIOS - SCPH-5502 - Europe)",
+          "required": "At least one BIOS file required"
+        },
+        {
+          "filename": "scph7001.bin",
+          "md5": "1e68c231d0896b7eadcad1d7d8e76129",
+          "system": "psx",
+          "description": "PlayStation BIOS - SCPH-7001 - Japan",
+          "required": "At least one BIOS file required"
+        },
+        {
+          "filename": "scph7002.bin",
+          "md5": "b9d9a0286c33dc6b7237bb13cd46fdee",
+          "system": "psx",
+          "description": "PlayStation BIOS - SCPH-7002 - USA)",
+          "required": "At least one BIOS file required"
+        },
+        {
+          "filename": "scph7003.bin",
+          "md5": "490f666e1afb15b7362b406ed1cea246",
+          "system": "psx",
+          "description": "PlayStation BIOS - SCPH-7003 - Europe",
+          "required": "At least one BIOS file required"
+        },
+        {
+          "filename": "scph7502.bin",
+          "md5": "b9d9a0286c33dc6b7237bb13cd46fdee",
+          "system": "psx",
+          "description": "PlayStation BIOS - SCPH-7502 - Europe",
+          "required": "At least one BIOS file required"
+        },
+        {
+          "filename": "scph9002(7502).bin",
+          "md5": "b9d9a0286c33dc6b7237bb13cd46fdee",
+          "system": "psx",
+          "description": "PlayStation BIOS - SCPH-9002 - Europe",
+          "required": "At least one BIOS file required"
+        },
+        {
+          "filename": "ps1_rom.bin",
+          "md5": "81bbe60ba7a3d1cea1d48c14cbcc647b",
+          "system": "psx",
+          "description": "Generic PlayStation BIOS from the Playstation 3",
+          "required": "At least one BIOS file required"
+        },
+        {
+          "filename": "scph1000.bin",
+          "md5": "239665b1a3dade1b5a52c06338011044",
+          "system": "psx",
+          "description": "PlayStation 1 BIOS - USA",
+          "required": "At least one BIOS file required"
+        },
+        {
+          "filename": "scph1001.bin",
+          "md5": "924e392ed05558ffdb115408c263dccf",
+          "system": "psx",
+          "description": "PlayStation 1 BIOS - EUROPE",
+          "required": "At least one BIOS file required"
+        },
+        {
+          "filename": "scph1002.bin",
+          "md5": "54847e693405ffeb0359c6287434cbef",
+          "system": "psx",
+          "description": "PlayStation 1 BIOS - JAPAN",
+          "required": "At least one BIOS file required"
+        },
+        {
+          "filename": "scph100.bin",
+          "md5": "8abc1b549a4a80954addc48ef02c4521",
+          "system": "psx",
+          "description": "PlayStation 1 BIOS",
+          "required": "At least one BIOS file required"
+        },
+        {
+          "filename": "scph101.bin",
+          "md5": "6e3735ff4c7dc899ee98981385f6f3d0",
+          "system": "psx",
+          "description": "PlayStation 1 BIOS - USA",
+          "required": "At least one BIOS file required"
+        },
+        {
+          "filename": "scph102A.bin",
+          "md5": "b10f5e0e3d9eb60e5159690680b1e774",
+          "system": "psx",
+          "description": "PlayStation 1 BIOS - EUROPE",
+          "required": "At least one BIOS file required"
+        },
+        {
+          "filename": "scph102B.bin",
+          "md5": "de93caec13d1a141a40a79f5c86168d6",
+          "system": "psx",
+          "description": "PlayStation 1 BIOS - JAPAN",
+          "required": "At least one BIOS file required"
+        },
+        {
+          "filename": "scph102C.bin",
+          "md5": "de93caec13d1a141a40a79f5c86168d6",
+          "system": "psx",
+          "description": "PlayStation 1 BIOS",
+          "required": "At least one BIOS file required"
+        },
+        {
+          "filename": "scph3000.bin",
+          "md5": "849515939161e62f6b866f6853006780",
+          "system": "psx",
+          "description": "PlayStation 1 BIOS",
+          "required": "At least one BIOS file required"
+        },
+        {
+          "filename": "scph3500.bin",
+          "md5": "cba733ceeff5aef5c32254f1d617fa62",
+          "system": "psx",
+          "description": "PlayStation 1 BIOS",
+          "required": "At least one BIOS file required"
+        },
+        {
+          "filename": "scph5000.bin",
+          "md5": "eb201d2d98251a598af467d4347bb62f",
+          "system": "psx",
+          "description": "PlayStation 1 BIOS",
+          "required": "At least one BIOS file required"
         }
       ]
     }

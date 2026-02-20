@@ -1,0 +1,63 @@
+{
+  "sdl2trs": {
+    "name": "SDL2TRS",
+    "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/sdl2trs/sdl2trs-guide/",
+    "url_webpage": "https://gitlab.com/jengun/sdltrs/-/tree/sdl2/",
+    "url_donation_purchase": "",
+    "url_source": "https://gitlab.com/jengun/sdltrs/-/tree/sdl2/",
+    "system": "trs-80",
+    "component_type": "Emulator",
+    "description": "SDL2TRS is a Tandy TRS-80 Model I/III/4/4P (trs-80) Emulator",
+    "system_friendly_name": "trs-80",
+    "bios": [
+      {
+        "filename": "level1.rom",
+        "md5": "1136f64e2c249848f956343862742e1e",
+        "system": "trs-80",
+        "description": "TRS-80 Level I BASIC ROM",
+        "paths": "$roms_path/trs-80",
+        "required": "Optional"
+      },
+      {
+        "filename": "level2.rom",
+        "md5": "ca74822ebc2803c6635a55116ecd9539",
+        "system": "trs-80",
+        "description": "TRS-80 Level II BASIC ROM",
+        "paths": "$roms_path/trs-80",
+        "required": "Yes"
+      },
+      {
+        "filename": "level3.rom",
+        "md5": "ecd0a5a83fca19ea860fe565fad4b061",
+        "system": "trs-80",
+        "description": "TRS-80 Model III ROM",
+        "paths": "$roms_path/trs-80",
+        "required": "Optional"
+      },
+      {
+        "filename": "level4.rom",
+        "md5": "0e4c4b1638a23fd26796816cf2f83961",
+        "system": "trs-80",
+        "description": "TRS-80 Model 4 ROM",
+        "paths": "$roms_path/trs-80",
+        "required": "Optional"
+      },
+      {
+        "filename": "level4p.rom",
+        "md5": "9bc4cc42958a2a120670e5bc0bfc1d5e",
+        "system": "trs-80",
+        "description": "TRS-80 Model 4P ROM",
+        "paths": "$roms_path/trs-80",
+        "required": "Optional"
+      },
+      {
+        "filename": "boot.dsk",
+        "md5": "6f624bdbf4b410cfbe8603fa3bef44fa",
+        "system": "trs-80",
+        "description": "TRS-80 Boot Disk - NewDos/80 V 2.0",
+        "paths": "$roms_path/trs-80",
+        "required": "Yes"
+      }
+    ]
+  }
+}

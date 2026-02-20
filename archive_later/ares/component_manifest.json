@@ -3,10 +3,440 @@
     "name": "ares",
     "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/ares/ares-guide/",
     "url_webpage": "https://ares-emu.net/",
+    "url_donation_purchase": "https://www.patreon.com/LukeUsher",
     "url_source": "https://github.com/ares-emulator/ares",
     "description": "ares is a multi-emulator.",
     "system_friendly_name": "Multiple Retro Systems",
     "component_type": "Multi-Emulator",
-    "system": "Multiple Retro Systems"
+    "system": "Multiple Retro Systems",
+    "bios": [
+      {
+        "filename": "BIOS.col",
+        "md5": "2c66f5911e5b42b8ebe113403548eee7",
+        "system": "colecovision",
+        "description": "ColecoVision BIOS",
+        "required": "Required"
+      },
+      {
+        "filename": "disksys.rom",
+        "md5": "ca30b50f880eb660a320674ed365ef7a",
+        "system": [
+          "nes",
+          "sfc"
+        ],
+        "description": "Family Computer Disk System BIOS"
+      },
+      {
+        "filename": "gba_bios.bin",
+        "md5": "a860e8c0b6d573d191e4ec7db1b1e4f6",
+        "system": "gba",
+        "description": "Game Boy Advance BIOS",
+        "required": "Optional, for boot logo"
+      },
+      {
+        "filename": "bios.gg",
+        "md5": "672e104c3be3a238301aceffc3b23fd6",
+        "system": "gamegear",
+        "description": "Sega Game Gear BIOS",
+        "required": "Optional"
+      },
+      {
+        "filename": "bios_J.sms",
+        "md5": "24a519c53f67b00640d0048ef7089105",
+        "system": "sms",
+        "description": "Sega Master System Japanese BIOS",
+        "required": "Optional, depends on emulator / core"
+      },
+      {
+        "filename": "bios.sms",
+        "md5": "840481177270d5642a14ca71ee72844c",
+        "system": "mastersystem",
+        "description": "Sega Master System BIOS",
+        "required": "Required"
+      },
+      {
+        "filename": "bios_CD_E.bin",
+        "md5": [
+          "e66fa1dc5820d254611fdcdba0662372",
+          "9b562ebf2d095bf1dabadbc1881f519a"
+        ],
+        "system": "segacd",
+        "description": "Sega Mega-CD EU BIOS",
+        "required": "At least one BIOS file required"
+      },
+      {
+        "filename": "bios_CD_U.bin",
+        "md5": [
+          "2efd74e3232ff260e371b99f84024f7f",
+          "310a9081d2edf2d316ab38813136725e",
+          "baca1df271d7c11fe50087c0358f4eb5"
+        ],
+        "system": "segacd",
+        "description": "Sega CD US BIOS",
+        "required": "At least one BIOS file required"
+      },
+      {
+        "filename": "bios_CD_J.bin",
+        "md5": [
+          "278a9397d192149e84e820ac621a8edd",
+          "683a8a9e273662561172468dfa2858eb"
+        ],
+        "system": "segacd",
+        "description": "Sega Mega-CD JP BIOS",
+        "required": "At least one BIOS file required"
+      },
+      {
+        "filename": "MSX.ROM",
+        "md5": [
+          "364a1a579fe5cb8dba54519bcfcdac0d",
+          "aa95aea2563cd5ec0a0919b44cc17d47",
+          "9218f6dd89f7ba01e3090d44721b4260",
+          "cadad331097664327248654c1281816b"
+        ],
+        "system": "msx",
+        "description": "MSX 1 BIOS",
+        "required": "Required"
+      },
+      {
+        "filename": "MSX2.ROM",
+        "md5": "ec3a01c91f24fbddcbcab0ad301bc9ef",
+        "system": "msx",
+        "description": "MSX 2 BIOS",
+        "required": "Required"
+      },
+      {
+        "filename": "MSX2EXT.ROM",
+        "md5": "2183c2aff17cf4297bdb496de78c2e8a",
+        "system": "msx",
+        "description": "MSX 2 Extended ROM",
+        "required": "Required"
+      },
+      {
+        "filename": "MSX2P.ROM",
+        "md5": [
+          "847cc025ffae665487940ff2639540e5",
+          "6d8c0ca64e726c82a4b726e9b01cdf1e",
+          "c5c26c3e8bc6c485424818057f0507b9"
+        ],
+        "system": "msx",
+        "description": "MSX 2+ BIOS",
+        "required": "Required"
+      },
+      {
+        "filename": "MSX2PEXT.ROM",
+        "md5": "7c8243c71d8f143b2531f01afa6a05dc",
+        "system": "msx",
+        "description": "MSX 2+ Extended ROM",
+        "required": "Required"
+      },
+      {
+        "filename": "DISK.ROM",
+        "md5": [
+          "80dcd1ad1a4cf65d64b7ba10504e8190",
+          "254bfa82fa9b34c82d7b9766b193c303"
+        ],
+        "system": "msx",
+        "description": "MSX Disk ROM / BDOS",
+        "required": "Required"
+      },
+      {
+        "filename": "FMPAC.ROM",
+        "md5": "6f69cc8b5ed761b03afd78000dfb0e19",
+        "system": "msx",
+        "description": "MSX FMPAC floppy controller BIOS",
+        "required": "Optional"
+      },
+      {
+        "filename": "MSXDOS2.ROM",
+        "md5": "6418d091cd6907bbcf940324339e43bb",
+        "system": "msx",
+        "description": "MSX-DOS 2 kernel",
+        "required": "Required"
+      },
+      {
+        "filename": "PAINTER.ROM",
+        "md5": "403cdea1cbd2bb24fae506941f8f655e",
+        "system": "msx",
+        "description": "MSX Yamaha Painter ROM",
+        "required": "Optional"
+      },
+      {
+        "filename": "KANJI.ROM",
+        "md5": [
+          "febe8782b466d7c3b16de6d104826b34",
+          "4ddb542906f9891cf3b3648fecd8c228",
+          "5353336d9c81946fa17582daccbb5cae"
+        ],
+        "system": "msx",
+        "description": "MSX Kanji font ROM",
+        "required": "Required for some Japanese games."
+      },
+      {
+        "filename": "Neo Geo AES.zip",
+        "md5": "99d2a3ea399e3512b4091854e184f0ba",
+        "system": "neogeo",
+        "description": "Neo Geo AES - BIOS (World).zip",
+        "required": "At least one"
+      },
+      {
+        "filename": "Neo Geo MVS.zip",
+        "md5": "618189e1be366c01d3cefd7a77692051",
+        "system": "neogeo",
+        "description": "Neo Geo MVS - BIOS",
+        "required": "At least one"
+      },
+      {
+        "filename": "ngp.zip",
+        "md5": "d87d876c4391935c9d48ef352a3ff02d",
+        "system": "ngp",
+        "description": "NeoGeo Pocket BIOS",
+        "required": "Optional"
+      },
+      {
+        "filename": "ngpc.zip",
+        "md5": "3655aacebb43a963607d4cf821fc1301",
+        "system": "ngpc",
+        "description": "NeoGeo Pocket BIOS",
+        "required": "Optional"
+      },
+      {
+        "filename": "neo-epo.bin",
+        "md5": "b11751ad42879c461d64ad2b7b2b0129",
+        "system": "neogeo",
+        "description": "neo-epo.bin",
+        "required": "Required"
+      },
+      {
+        "filename": "64DD_IPL.bin",
+        "md5": "8d3d9f294b6e174bc7b1d2fd1c727530",
+        "system": "n64dd",
+        "description": "Nintendo 64 64DD IPL BIOS - Japan",
+        "required": "At least one"
+      },
+      {
+        "filename": "64DD_IPL.bin",
+        "md5": "aad37b1492886b892f1821f37fd3ae34",
+        "system": "n64dd",
+        "description": "Nintendo 64 64DD IPL BIOS - Japan Dev",
+        "required": "At least one"
+      },
+      {
+        "filename": "64DD_IPL.bin",
+        "md5": "37c36e4286d36892a9fc70eafe4104be",
+        "system": "n64dd",
+        "description": "Nintendo 64 64DD IPL BIOS - USA",
+        "required": "At least one"
+      },
+      {
+        "filename": "syscard3.pce",
+        "md5": "38179df8f4ac870017db21ebcbf53114",
+        "system": [
+          "pcengine",
+          "pcenginecd"
+        ],
+        "description": "PC Engine Super CD-ROM² System V3.xx BIOS - Japan",
+        "required": "Required"
+      },
+      {
+        "filename": "PC Engine CD - BIOS (US).bin",
+        "md5": "0754f903b52e3b3342202bdafb13efa5",
+        "system": [
+          "pcengine",
+          "pcenginecd"
+        ],
+        "description": "PC Engine Super CD-ROM² System V3.xx BIOS - US",
+        "required": "Required"
+      },
+      {
+        "filename": "PlayStation - BIOS (Europe).bin",
+        "md5": "32736f17079d0b2b7024407c39bd3050",
+        "system": "",
+        "description": "PlayStation - BIOS (Europe).bin"
+      },
+      {
+        "filename": "psxonpsp660.bin",
+        "md5": "c53ca5908936d412331790f4426c6c33",
+        "system": "psx",
+        "description": "PlayStation BIOS extracted from PSP - Japan",
+        "required": "At least one BIOS file required"
+      },
+      {
+        "filename": "scph5500.bin",
+        "md5": "8dd7d5296a650fac7319bce665a6a53c",
+        "system": "psx",
+        "description": "PlayStation BIOS - SCPH-5500 - Japan",
+        "required": "At least one BIOS file required"
+      },
+      {
+        "filename": "scph5501.bin",
+        "md5": "490f666e1afb15b7362b406ed1cea246",
+        "system": "psx",
+        "description": "PlayStation BIOS - SCPH-5501  - USA",
+        "required": "At least one BIOS file required"
+      },
+      {
+        "filename": "scph5502.bin",
+        "md5": "32736f17079d0b2b7024407c39bd3050",
+        "system": "psx",
+        "description": "PlayStation BIOS - SCPH-5502 - Europe)",
+        "required": "At least one BIOS file required"
+      },
+      {
+        "filename": "scph7001.bin",
+        "md5": "1e68c231d0896b7eadcad1d7d8e76129",
+        "system": "psx",
+        "description": "PlayStation BIOS - SCPH-7001 - Japan",
+        "required": "At least one BIOS file required"
+      },
+      {
+        "filename": "scph7002.bin",
+        "md5": "b9d9a0286c33dc6b7237bb13cd46fdee",
+        "system": "psx",
+        "description": "PlayStation BIOS - SCPH-7002 - USA)",
+        "required": "At least one BIOS file required"
+      },
+      {
+        "filename": "scph7003.bin",
+        "md5": "490f666e1afb15b7362b406ed1cea246",
+        "system": "psx",
+        "description": "PlayStation BIOS - SCPH-7003 - Europe",
+        "required": "At least one BIOS file required"
+      },
+      {
+        "filename": "scph7502.bin",
+        "md5": "b9d9a0286c33dc6b7237bb13cd46fdee",
+        "system": "psx",
+        "description": "PlayStation BIOS - SCPH-7502 - Europe",
+        "required": "At least one BIOS file required"
+      },
+      {
+        "filename": "scph9002(7502).bin",
+        "md5": "b9d9a0286c33dc6b7237bb13cd46fdee",
+        "system": "psx",
+        "description": "PlayStation BIOS - SCPH-9002 - Europe",
+        "required": "At least one BIOS file required"
+      },
+      {
+        "filename": "ps1_rom.bin",
+        "md5": "81bbe60ba7a3d1cea1d48c14cbcc647b",
+        "system": "psx",
+        "description": "Generic PlayStation BIOS from the Playstation 3",
+        "required": "At least one BIOS file required"
+      },
+      {
+        "filename": "scph1000.bin",
+        "md5": "239665b1a3dade1b5a52c06338011044",
+        "system": "psx",
+        "description": "PlayStation 1 BIOS - USA",
+        "required": "At least one BIOS file required"
+      },
+      {
+        "filename": "scph1001.bin",
+        "md5": "924e392ed05558ffdb115408c263dccf",
+        "system": "psx",
+        "description": "PlayStation 1 BIOS - EUROPE",
+        "required": "At least one BIOS file required"
+      },
+      {
+        "filename": "scph1002.bin",
+        "md5": "54847e693405ffeb0359c6287434cbef",
+        "system": "psx",
+        "description": "PlayStation 1 BIOS - JAPAN",
+        "required": "At least one BIOS file required"
+      },
+      {
+        "filename": "scph100.bin",
+        "md5": "8abc1b549a4a80954addc48ef02c4521",
+        "system": "psx",
+        "description": "PlayStation 1 BIOS",
+        "required": "At least one BIOS file required"
+      },
+      {
+        "filename": "scph101.bin",
+        "md5": "6e3735ff4c7dc899ee98981385f6f3d0",
+        "system": "psx",
+        "description": "PlayStation 1 BIOS - USA",
+        "required": "At least one BIOS file required"
+      },
+      {
+        "filename": "scph102A.bin",
+        "md5": "b10f5e0e3d9eb60e5159690680b1e774",
+        "system": "psx",
+        "description": "PlayStation 1 BIOS - EUROPE",
+        "required": "At least one BIOS file required"
+      },
+      {
+        "filename": "scph102B.bin",
+        "md5": "de93caec13d1a141a40a79f5c86168d6",
+        "system": "psx",
+        "description": "PlayStation 1 BIOS - JAPAN",
+        "required": "At least one BIOS file required"
+      },
+      {
+        "filename": "scph102C.bin",
+        "md5": "de93caec13d1a141a40a79f5c86168d6",
+        "system": "psx",
+        "description": "PlayStation 1 BIOS",
+        "required": "At least one BIOS file required"
+      },
+      {
+        "filename": "scph3000.bin",
+        "md5": "849515939161e62f6b866f6853006780",
+        "system": "psx",
+        "description": "PlayStation 1 BIOS",
+        "required": "At least one BIOS file required"
+      },
+      {
+        "filename": "scph3500.bin",
+        "md5": "cba733ceeff5aef5c32254f1d617fa62",
+        "system": "psx",
+        "description": "PlayStation 1 BIOS",
+        "required": "At least one BIOS file required"
+      },
+      {
+        "filename": "scph5000.bin",
+        "md5": "eb201d2d98251a598af467d4347bb62f",
+        "system": "psx",
+        "description": "PlayStation 1 BIOS",
+        "required": "At least one BIOS file required"
+      },
+      {
+        "filename": "sp-45.sp1",
+        "md5": "0396470c1ed8b1a7d5cce754924246bb",
+        "system": "neogeo",
+        "description": "NEOGEO SP-45 BIOS",
+        "required": "Optional"
+      },
+      {
+        "filename": "gba_bios.bin",
+        "md5": "a860e8c0b6d573d191e4ec7db1b1e4f6",
+        "system": "gba",
+        "description": "Game Boy Advance BIOS",
+        "required": "Optional, for boot logo"
+      },
+      {
+        "filename": "bios.gg",
+        "md5": "672e104c3be3a238301aceffc3b23fd6",
+        "system": "gamegear",
+        "description": "Sega Game Gear BIOS",
+        "required": "Optional"
+      },
+      {
+        "filename": "bios_J.sms",
+        "md5": [
+          "24a519c53f67b00640d0048ef7089105",
+          "e8b26871629b938887757a64798df6dc"
+        ],
+        "system": "sms",
+        "description": "Sega Master System Japanese BIOS",
+        "required": "Optional, depends on emulator / core"
+      },
+      {
+        "filename": "uni-bios_4_0.rom",
+        "md5": "4f0aeda8d2d145f596826b62d563c4ef",
+        "system": "neogeo",
+        "description": "NEOGEO uni-bios 4.0"
+      }
+    ]
   }
 }

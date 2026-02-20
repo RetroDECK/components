@@ -3,7 +3,7 @@
     {
       "source_url": "https://github.com/has207/xenia-edge/releases/download/{VERSION}/xenia_edge_linux.AppImage",
       "source_type": "github_release",
-      "version": "latest",
+      "version": "$XENIA_EDGE_DESIRED_VERSION",
       "extraction_type": "appimage",
       "assets": [
         {
@@ -33,7 +33,7 @@
         },
         {
           "type": "dir",
-          "source": "$REPO_ROOT/$COMPONENT_NAME/rd_config",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/rd_assets/rd_config",
           "dest": "rd_config"
         },
         {
@@ -68,6 +68,18 @@
         }
       ],
       "libs": []
+    },
+    {
+      "source_url": "https://github.com/mdqinc/SDL_GameControllerDB/blob/master/gamecontrollerdb.txt",
+      "source_type": "http",
+      "extraction_type": "local",
+      "assets": [
+        {
+          "type": "file",
+          "source": "$WORKDIR/gamecontrollerdb.txt",
+          "dest": "bin"
+        }
+      ]
     }
   ]
 }

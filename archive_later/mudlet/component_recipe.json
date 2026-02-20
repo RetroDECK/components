@@ -1,9 +1,14 @@
 {
   "mudlet": [
     {
-      "source_url": "$REPO_ROOT/$COMPONENT_NAME/tmp_assets/Mudlet-{VERSION}-linux-x64.AppImage",
+      "source_url": "$REPO_ROOT/$COMPONENT_NAME/tmp_assets/Mudlet.7z.001",
       "source_type": "local",
       "version": "$MUDLET_DESIRED_VERSION",
+      "extraction_type": "archive"
+    },
+    {
+      "source_url": "$EXTRACTED_PATH/Mudlet.AppImage",
+      "source_type": "local",
       "extraction_type": "appimage",
       "assets": [
         {
@@ -37,6 +42,146 @@
           "dest": "$COMPONENT_ARTIFACT_ROOT"
         },
         {
+          "type": "file",
+          "source": "es_ES.aff",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "es_ES.dic",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "de_AT_frami.aff",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "de_AT_frami.dic",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "el_GR.aff",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "el_GR.dic",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "nl_NL.aff",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "nl_NL.dic",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "pt_BR.aff",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "pt_BR.dic",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "fr.aff",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "fr.dic",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "de_CH_frami.aff",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "de_CH_frami.dic",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "en_GB.aff",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "en_GB.dic",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "pl_PL.aff",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "pl_PL.dic",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "pt_PT.aff",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "pt_PT.dic",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "it_IT.aff",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "it_IT.dic",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "de_DE_frami.aff",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "de_DE_frami.dic",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "en_US.aff",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "en_US.dic",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "ru_RU.aff",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "ru_RU.dic",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
           "type": "create",
           "dest": "component_version",
           "contents": "$SOURCE_VERSION"
@@ -44,7 +189,7 @@
         {
           "type": "create",
           "dest": "portable.txt",
-          "contents": ""
+          "contents": "/var/data/mudlet/"
         },
         {
           "type": "file",
@@ -79,103 +224,144 @@
       ],
       "libs": [
         {
-          "library": "libQt5Concurrent.so.5",
+          "library": "libQt6Network.so.6",
           "runtime_name": "org.kde.Platform",
-          "runtime_version": "$DESIRED_QT5_RUNTIME_VERSION",
+          "runtime_version": "6.10",
           "dest": "shared-libs"
         },
         {
-          "library": "libQt5Core.so.5",
+          "library": "libQt6Core.so.6",
           "runtime_name": "org.kde.Platform",
-          "runtime_version": "$DESIRED_QT5_RUNTIME_VERSION",
+          "runtime_version": "6.10",
           "dest": "shared-libs"
         },
         {
-          "library": "libQt5Multimedia.so.5",
+          "library": "libQt6Core5Compat.so.6",
           "runtime_name": "org.kde.Platform",
-          "runtime_version": "$DESIRED_QT5_RUNTIME_VERSION",
+          "runtime_version": "6.10",
           "dest": "shared-libs"
         },
         {
-          "library": "libQt5Network.so.5",
+          "library": "libQt6Widgets.so.6",
           "runtime_name": "org.kde.Platform",
-          "runtime_version": "$DESIRED_QT5_RUNTIME_VERSION",
+          "runtime_version": "6.10",
           "dest": "shared-libs"
         },
         {
-          "library": "libQt5Gui.so.5",
+          "library": "libQt6Gui.so.6",
           "runtime_name": "org.kde.Platform",
-          "runtime_version": "$DESIRED_QT5_RUNTIME_VERSION",
+          "runtime_version": "6.10",
           "dest": "shared-libs"
         },
         {
-          "library": "libQt5Widgets.so.5",
+          "library": "libQt6MultimediaWidgets.so.6",
           "runtime_name": "org.kde.Platform",
-          "runtime_version": "$DESIRED_QT5_RUNTIME_VERSION",
+          "runtime_version": "6.10",
           "dest": "shared-libs"
         },
         {
-          "library": "libQt5TextToSpeech.so.5",
+          "library": "libQt6Multimedia.so.6",
           "runtime_name": "org.kde.Platform",
-          "runtime_version": "$DESIRED_QT5_RUNTIME_VERSION",
+          "runtime_version": "6.10",
           "dest": "shared-libs"
         },
         {
-          "library": "libQt5DBus.so.5",
+          "library": "libQt6UiTools.so.6",
           "runtime_name": "org.kde.Platform",
-          "runtime_version": "$DESIRED_QT5_RUNTIME_VERSION",
+          "runtime_version": "6.10",
           "dest": "shared-libs"
         },
         {
-          "library": "libicui18n.so.67",
-          "runtime_name": "org.freedesktop.Platform",
-          "runtime_version": "20.08",
+          "library": "libQt6OpenGLWidgets.so.6",
+          "runtime_name": "org.kde.Platform",
+          "runtime_version": "6.10",
           "dest": "shared-libs"
         },
         {
-          "library": "libqt5keychain.so.1",
-          "source": "lib",
+          "library": "libQt6OpenGL.so.6",
+          "runtime_name": "org.kde.Platform",
+          "runtime_version": "6.10",
           "dest": "shared-libs"
         },
         {
           "library": "libGLU.so.1",
           "source": "lib",
-          "dest": "shared-libs"
+          "dest": "lib"
         },
         {
-          "library": "libssl.so.1.1",
+          "library": "libassimp.so.5",
           "source": "lib",
-          "dest": "shared-libs"
+          "dest": "lib"
         },
         {
-          "library": "libicui18n.so.56",
+          "library": "liblua5.1.so.0",
           "source": "lib",
-          "dest": "shared-libs"
+          "dest": "lib"
         },
         {
-          "library": "libqt5keychain.so.1",
+          "library": "libpugixml.so.1",
           "source": "lib",
-          "dest": "shared-libs"
+          "dest": "lib"
         },
         {
-          "library": "libzip.so.5",
+          "library": "libzip.so.4",
           "source": "lib",
-          "dest": "shared-libs"
+          "dest": "lib"
         },
         {
-          "library": "libQsLog.so",
+          "library": "lfs.so",
           "source": "lib",
-          "dest": "shared-libs"
+          "dest": "lib"
+        },
+        {
+          "library": "sqlite3.so",
+          "source": "lib/luasql",
+          "dest": "lib/luasql"
+        },
+        {
+          "library": "rex_pcre2.so",
+          "source": "lib",
+          "dest": "lib"
+        },
+        {
+          "library": "zip.so",
+          "source": "lib/brimworks",
+          "dest": "lib/brimworks"
+        },
+        {
+          "library": "lua-utf8.so",
+          "source": "lib",
+          "dest": "lib"
         },
         {
           "library": "libbz2.so.1.0",
           "source": "lib",
-          "dest": "shared-libs"
+          "dest": "lib"
         },
         {
-          "library": "libcrypto.so.1.1",
+          "library": "libdraco.so.4",
           "source": "lib",
-          "dest": "shared-libs"
+          "dest": "lib"
+        },
+        {
+          "library": "libminizip.so.1",
+          "source": "lib",
+          "dest": "lib"
+        },
+        {
+          "library": "yajl.so",
+          "source": "lib",
+          "dest": "lib"
+        },
+        {
+          "library": "libyajl.so.2",
+          "source": "lib",
+          "dest": "lib"
+        },
+        {
+          "library": "libqt6keychain.so.1",
+          "source": "lib",
+          "dest": "lib"
         }
       ]
     }

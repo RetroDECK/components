@@ -2,7 +2,10 @@
   "retrodeck": {
     "name": "RetroDECK",
     "description": "RetroDECK Framework",
-    "url": "https://retrodeck.net",
+    "url_rdwiki": "https://retrodeck.readthedocs.io/en/",
+    "url_webpage": "https://retrodeck.net",
+    "url_donation_purchase": "https://retrodeck.readthedocs.io/en/latest/wiki_credits_social/donations-licenses/",
+    "url_source": "https://github.com/RetroDECK",
     "configurator_menus": {
       "settings": {
         "iconset_show_hide": {

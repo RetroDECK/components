@@ -65,7 +65,7 @@
         },
         {
           "type": "file",
-          "source": "$REPO_ROOT/$COMPONENT_NAME/assets/libdeflate.so.0",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/rd_assets/libdeflate.so.0",
           "dest": "lib"
         }
       ],

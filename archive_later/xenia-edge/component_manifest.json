@@ -3,6 +3,7 @@
     "name": "Xenia Edge",
     "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/xenia/xenia-guide/",
     "url_webpage": "https://xenia.jp/",
+    "url_donation_purchase": "https://www.patreon.com/xenia_project",
     "url_source": "https://github.com/has207/xenia-edge/",
     "component_type": "Emulator",
     "description": "Xenia Edge is a Microsoft Xbox 360 (xbox360) emulator.",

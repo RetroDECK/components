@@ -1,16 +1,20 @@
 {
-  "delta-patcher": [
+  "gametank": [
     {
-      "source_url": "",
-      "source_type": "",
-      "version": "latest",
-      "dest": "user",
-      "extraction_type": "",
+      "source_url": "$REPO_ROOT/$COMPONENT_NAME/tmp_assets/GameTank.tar.gz",
+      "source_type": "local",
+      "version": "$GAMETANK_DESIRED_VERSION",
+      "extraction_type": "archive",
       "assets": [
         {
+          "type": "file",
+          "source": "GameTankEmulator",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
           "type": "dir",
-          "source": "bin",
-          "dest": "bin"
+          "source": "roms",
+          "dest": "roms"
         },
         {
           "type": "create",

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 extractor_info() {
-  echo "type:archive,7z,zip,tar.gz,tgz,tar.bz2,tbz2,tar.xz,txz,tar"
+  echo "type:archive,7z,001,zip,tar.gz,tgz,tar.bz2,tbz2,tar.xz,txz,tar"
 }
 
 extract() {
@@ -25,6 +25,11 @@ extract() {
 
   case "$filename" in
     *.7z)
+      extract_cmd() {
+        7z x "$1" -o"$2"
+      }
+      ;;
+    *.001)
       extract_cmd() {
         7z x "$1" -o"$2"
       }

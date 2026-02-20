@@ -4,6 +4,7 @@
     "description": "Vita3K is a PlayStation Vita (psvita) emulator.",
     "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/vita3k/vita3k-guide/",
     "url_webpage": "https://vita3k.org/",
+    "url_donation_purchase": "https://ko-fi.com/vita3k/tiers",
     "url_source": "https://github.com/Vita3K/Vita3K",
     "component_type": "Emulator",
     "system_friendly_name": "PlayStation Vita",
@@ -19,8 +20,7 @@
         }
       }
     },
-    "finit_options":
-    [
+    "finit_options": [
       {
         "dialog": "finit_install_vita3k_firmware_dialog",
         "action": "update_vita3k_firmware"

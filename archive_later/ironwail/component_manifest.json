@@ -1,0 +1,12 @@
+{
+  "ironwail": {
+    "name": "Ironwail",
+    "description": "Ironwail is a Quake engine based on QuakeSpasm.",
+    "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_engine_guides/ironwail/ironwail-guide/",
+    "url_donation_purchase": "",
+    "url_source": "https://github.com/andrei-drexler/ironwail/",
+    "component_type": "Engine",
+    "system_friendly_name": "Quake",
+    "system": "quake"
+  }
+}

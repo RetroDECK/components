@@ -3,6 +3,7 @@
     "name": "FS-UAE",
     "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/fs-uae/fs-uae-guide/",
     "url_webpage": "https://fs-uae.net/",
+    "url_donation_purchase": "https://fs-uae.net/donate/",
     "url_source": "https://github.com/FrodeSolheim/fs-uae",
     "description": "FS-UAE is a Amiga Emulator",
     "component_type": "Emulator",

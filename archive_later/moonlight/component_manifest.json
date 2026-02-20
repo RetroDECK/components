@@ -3,10 +3,10 @@
     "name": "Moonlight",
     "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_system_guides/moonlight/moonlight-guide/",
     "url_webpage": "https://moonlight-stream.org/",
+    "url_donation_purchase": "",
     "url_source": "https://github.com/moonlight-stream",
     "description": "Moonlight is a system that streams games and apps from a host running Sunshine or NVIDIA  GeForce  Experience.",
     "component_type": "System",
     "system_friendly_name": "Moonlight"
   }
 }
-
