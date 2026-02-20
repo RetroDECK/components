@@ -13,8 +13,8 @@
         },
         {
           "type": "dir",
-          "source": "roms",
-          "dest": "roms"
+          "source": "overlay_assets",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
         },
         {
           "type": "file",
