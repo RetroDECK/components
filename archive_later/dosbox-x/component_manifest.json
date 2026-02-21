@@ -5,7 +5,7 @@
     "url_webpage": "https://dosbox-x.com/",
     "url_donation_purchase": "",
     "url_source": "https://github.com/joncampbell123/dosbox-x",
-    "description": "DOSBox-X is a DOS, Windows 3x and 9x emulator.",
+    "description": "DOSBox-X is a DOS, Windows 3.x and 9x emulator.",
     "component_type": "Emulator",
     "system_friendly_name": [
       "Microsoft Windows 3x",
