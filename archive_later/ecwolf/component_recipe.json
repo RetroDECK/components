@@ -28,6 +28,11 @@
         },
         {
           "type": "dir",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/rd_assets/rd_config",
+          "dest": "rd_config"
+        },
+        {
+          "type": "dir",
           "source": "$REPO_ROOT/$COMPONENT_NAME",
           "dest": "$COMPONENT_ARTIFACT_ROOT"
         },
