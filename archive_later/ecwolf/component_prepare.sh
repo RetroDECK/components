@@ -8,4 +8,14 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
   log i "----------------------"
   log i "Preparing $component_name"
   log i "----------------------"
+
+      dir_prep "$roms_path/quake/ironwail/id1" "$XDG_CONFIG_HOME/ironwail/id1"
+fi
+
+if [[ "$action" == "postmove" ]]; then # Run commands that apply to both resets and moves
+  log i "----------------------"
+  log i "Post-moving $component_name"
+  log i "----------------------"
+
+    dir_prep "$roms_path/quake/ironwail/id1" "$XDG_CONFIG_HOME/ironwail/id1"
 fi
