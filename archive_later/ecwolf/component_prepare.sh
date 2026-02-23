@@ -23,9 +23,9 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
   create_dir "$roms_path/wolf/Wolfenstein 3D - Shareware.wolf"
   create_dir "$roms_path/wolf/Spear of Destiny - Full.wolf"
   create_dir "$roms_path/wolf/Spear of Destiny - Demo.wolf"
-  create_dir "$roms_path/wolf/Mission Pack 1.wolf"
-  create_dir "$roms_path/wolf/Mission Pack 2.wolf"
-  create_dir "$roms_path/wolf/Mission Pack 3.wolf"
+  create_dir "$roms_path/wolf/Spear of Destiny - Mission Pack 1.wolf"
+  create_dir "$roms_path/wolf/Spear of Destiny - Mission Pack 2.wolf"
+  create_dir "$roms_path/wolf/Spear of Destiny - Mission Pack 3.wolf"
   create_dir "$roms_path/wolf/Super 3D Noahs Ark.wolf"
 
 fi
@@ -41,8 +41,8 @@ if [[ "$action" == "postmove" ]]; then # Run commands that apply to both resets 
   create_dir "$roms_path/wolf/Wolfenstein 3D - Shareware.wolf"
   create_dir "$roms_path/wolf/Spear of Destiny - Full.wolf"
   create_dir "$roms_path/wolf/Spear of Destiny - Demo.wolf"
-  create_dir "$roms_path/wolf/Mission Pack 1.wolf"
-  create_dir "$roms_path/wolf/Mission Pack 2.wolf"
-  create_dir "$roms_path/wolf/Mission Pack 3.wolf"
+  create_dir "$roms_path/wolf/Spear of Destiny - Mission Pack 1.wolf"
+  create_dir "$roms_path/wolf/Spear of Destiny - Mission Pack 2.wolf"
+  create_dir "$roms_path/wolf/Spear of Destiny - Mission Pack 3.wolf"
   create_dir "$roms_path/wolf/Super 3D Noahs Ark.wolf"
 fi
