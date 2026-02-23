@@ -240,19 +240,6 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 
 
 # ------------------------------------------------------------------------------
-# Ryubing - Nintendo Switch Emulator
-# Source: AppImage
-# Link: https://git.ryujinx.app/ryubing/ryujinx/-/releases/
-# ------------------------------------------------------------------------------
-# MAIN (Stable)
-# Version: 1.3.3
-  export RYUBING_DESIRED_VERSION="1.3.3"
-
-# COOKER (Override)
-# export RYUBING_DESIRED_VERSION="latest"
-
-
-# ------------------------------------------------------------------------------
 # Solarus - Action RPG Engine
 # Source: AppImage
 # Link: https://gitlab.com/solarus-games/solarus/-/releases/
