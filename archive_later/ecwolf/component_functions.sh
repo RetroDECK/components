@@ -3,7 +3,7 @@
 # Paths
 
 ecwolf_config_path="$XDG_CONFIG_HOME/ecwolf"
-ecwolf_saves_path="$XDG_DATA_HOME/ecwolf"
+ecwolf_saves_path="$XDG_DATA_HOME/ecwolf/saves"
 ecwolf_gamefiles_symlinks_path="$XDG_DATA_HOME/ecwolf"
 
 # Wolfenstein 3D
