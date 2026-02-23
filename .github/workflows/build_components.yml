@@ -292,9 +292,9 @@ jobs:
           echo "Build matrix summary:"
           echo "$recipes" | jq -r '.[] | 
             if .can_reuse then
-              "\(.component) v\(.version) - REUSE from previous release"
+              "\(.component) \(.version) - REUSE from previous release"
             else
-              "\(.component) v\(.version) - BUILD new artifact"
+              "\(.component) \(.version) - BUILD new artifact"
             end'
           
           reuse_count=$(echo "$recipes" | jq '[.[] | select(.can_reuse == true)] | length')
@@ -386,18 +386,18 @@ jobs:
             exit 1
           fi
           
-          echo "Downloading $COMPONENT artifacts from $PREV_RELEASE..."
+          echo "Downloading $COMPONENT assets from $PREV_RELEASE..."
           
           # Create artifacts directory for this component
           mkdir -p "${COMPONENT}/artifacts"
           
-          # Download the component's artifacts from previous release
+          # Download the component's assets from previous release
           gh release download "$PREV_RELEASE" \
             -p "${COMPONENT}.tar.gz" \
             -p "${COMPONENT}.tar.gz.sha" \
             -D "${COMPONENT}/artifacts/"
           
-          echo "Reused artifact from previous release"
+          echo "Reused assets from previous release"
           echo "  Archive: ${COMPONENT}/artifacts/${COMPONENT}.tar.gz"
           echo "  SHA: ${COMPONENT}/artifacts/${COMPONENT}.tar.gz.sha"
         env:
