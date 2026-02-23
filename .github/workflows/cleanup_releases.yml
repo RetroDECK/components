@@ -44,11 +44,14 @@ jobs:
           # Default number of releases to keep per branch
           DEFAULT_KEEP_COUNT=5
 
-          # Branches that should never be cleaned up on branch deletion events
-          DELETION_PRESERVED="main cooker epicure"
+          # Branches that are always protected from cleanup, regardless of trigger type
+          ALWAYS_PROTECTED="main"
 
-          # Branches that should never be cleaned up on automatic triggers
-          AUTO_PRESERVED="main"
+          # Additional branches preserved on branch deletion events (beyond ALWAYS_PROTECTED)
+          DELETION_PRESERVED="cooker epicure"
+
+          # Additional branches preserved on automatic triggers (beyond ALWAYS_PROTECTED)
+          AUTO_PRESERVED=""
 
           # Determine effective keep count
           if [[ "${{ github.event_name }}" == "workflow_dispatch" && -n "${{ inputs.keep_count }}" ]]; then
@@ -69,6 +72,7 @@ jobs:
           fi
 
           echo "keep_count=$KEEP_COUNT" >> $GITHUB_OUTPUT
+          echo "always_protected=$ALWAYS_PROTECTED" >> $GITHUB_OUTPUT
           echo "deletion_preserved=$DELETION_PRESERVED" >> $GITHUB_OUTPUT
           echo "auto_preserved=$AUTO_PRESERVED" >> $GITHUB_OUTPUT
           echo "dry_run=$DRY_RUN" >> $GITHUB_OUTPUT
@@ -78,6 +82,7 @@ jobs:
           echo "Cleanup Configuration"
           echo "=========================================="
           echo "  Keep count:              $KEEP_COUNT"
+          echo "  Always protected:        $ALWAYS_PROTECTED"
           echo "  Deletion preserved:      $DELETION_PRESERVED"
           echo "  Auto cleanup preserved:  $AUTO_PRESERVED"
           echo "  Dry run:                 $DRY_RUN"
@@ -89,14 +94,15 @@ jobs:
         if: github.event_name == 'delete' && github.event.ref_type == 'branch'
         run: |
           DELETED_BRANCH="${{ github.event.ref }}"
+          ALWAYS_PROTECTED="${{ steps.config.outputs.always_protected }}"
           DELETION_PRESERVED="${{ steps.config.outputs.deletion_preserved }}"
 
           echo "Branch deleted: $DELETED_BRANCH"
 
-          # Never cleanup preserved branches on deletion events
-          for preserved in $DELETION_PRESERVED; do
+          # Never cleanup always-protected or deletion-preserved branches
+          for preserved in $ALWAYS_PROTECTED $DELETION_PRESERVED; do
             if [[ "$DELETED_BRANCH" == "$preserved" ]]; then
-              echo "Branch $DELETED_BRANCH is preservation-protected, skipping cleanup"
+              echo "Branch $DELETED_BRANCH is protected, skipping cleanup"
               echo "skip=true" >> $GITHUB_OUTPUT
               exit 0
             fi
@@ -179,16 +185,20 @@ jobs:
           steps.branch-delete.outputs.skip == 'true'
         run: |
           KEEP_COUNT="${{ steps.config.outputs.keep_count }}"
+          ALWAYS_PROTECTED="${{ steps.config.outputs.always_protected }}"
 
-          # Determine which branches to preserve based on trigger type:
-          # - Automatic (workflow_run): preserve main only
-          # - Manual (workflow_dispatch): no preservation, all branches allowed
+          # Build preserved list: always start with ALWAYS_PROTECTED,
+          # then add trigger-specific extras
+          PRESERVED_BRANCHES="$ALWAYS_PROTECTED"
+
           if [[ "${{ github.event_name }}" == "workflow_run" ]]; then
-            PRESERVED_BRANCHES="${{ steps.config.outputs.auto_preserved }}"
+            AUTO_EXTRA="${{ steps.config.outputs.auto_preserved }}"
+            if [[ -n "$AUTO_EXTRA" ]]; then
+              PRESERVED_BRANCHES="$PRESERVED_BRANCHES $AUTO_EXTRA"
+            fi
             echo "Automatic trigger - preserving branches: $PRESERVED_BRANCHES"
           else
-            PRESERVED_BRANCHES=""
-            echo "Manual trigger - no branches preserved"
+            echo "Manual trigger - preserving branches: $PRESERVED_BRANCHES"
           fi
 
           echo "Analyzing releases..."
