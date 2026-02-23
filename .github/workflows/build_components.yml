@@ -57,683 +57,683 @@ jobs:
             echo "should_build=false" >> $GITHUB_OUTPUT
           fi
   
-  validate:
-    name: Validate Scripts and Files
-    needs: check-trigger
-    if: needs.check-trigger.outputs.should_build == 'true'
-    runs-on: ubuntu-latest
-    outputs:
-      branch: ${{ steps.branch.outputs.branch }}
-    steps:
-      - name: Determine branch
-        id: branch
-        run: |
-          # For scheduled triggers, always use epicure
-          # For manual triggers, use override or selected branch
-          # For push triggers, use the pushed branch
-          if [[ "${{ github.event_name }}" == "schedule" ]]; then
-            BRANCH="epicure"
-          elif [[ -n "${{ inputs.branch_override }}" ]]; then
-            BRANCH="${{ inputs.branch_override }}"
-          else
-            BRANCH="${{ github.ref_name }}"
-          fi
-          echo "branch=$BRANCH" >> $GITHUB_OUTPUT
-          echo "Building from branch: $BRANCH"
+  # validate:
+  #   name: Validate Scripts and Files
+  #   needs: check-trigger
+  #   if: needs.check-trigger.outputs.should_build == 'true'
+  #   runs-on: ubuntu-latest
+  #   outputs:
+  #     branch: ${{ steps.branch.outputs.branch }}
+  #   steps:
+  #     - name: Determine branch
+  #       id: branch
+  #       run: |
+  #         # For scheduled triggers, always use epicure
+  #         # For manual triggers, use override or selected branch
+  #         # For push triggers, use the pushed branch
+  #         if [[ "${{ github.event_name }}" == "schedule" ]]; then
+  #           BRANCH="epicure"
+  #         elif [[ -n "${{ inputs.branch_override }}" ]]; then
+  #           BRANCH="${{ inputs.branch_override }}"
+  #         else
+  #           BRANCH="${{ github.ref_name }}"
+  #         fi
+  #         echo "branch=$BRANCH" >> $GITHUB_OUTPUT
+  #         echo "Building from branch: $BRANCH"
       
-      - name: Checkout code
-        uses: actions/checkout@v4
-        with:
-          ref: ${{ steps.branch.outputs.branch }}
+  #     - name: Checkout code
+  #       uses: actions/checkout@v4
+  #       with:
+  #         ref: ${{ steps.branch.outputs.branch }}
 
-      - name: Validate Bash scripts
-        run: |
-          echo "Validating Bash scripts..."
-          find . -type f -name "*.sh" | while read script; do
-            echo "Checking: $script"
-            bash -n "$script" || exit 1
-          done
-          echo "All Bash scripts are valid"
+  #     - name: Validate Bash scripts
+  #       run: |
+  #         echo "Validating Bash scripts..."
+  #         find . -type f -name "*.sh" | while read script; do
+  #           echo "Checking: $script"
+  #           bash -n "$script" || exit 1
+  #         done
+  #         echo "All Bash scripts are valid"
 
-      - name: Validate JSON files
-        run: |
-          echo "Validating JSON files..."
-          find . -type f -name "*.json" | while read json; do
-            echo "Checking: $json"
-            jq empty "$json" || exit 1
-          done
-          echo "All JSON files are valid"
+  #     - name: Validate JSON files
+  #       run: |
+  #         echo "Validating JSON files..."
+  #         find . -type f -name "*.json" | while read json; do
+  #           echo "Checking: $json"
+  #           jq empty "$json" || exit 1
+  #         done
+  #         echo "All JSON files are valid"
 
-  resolve-versions:
-    name: Resolve Component Versions
-    needs: [check-trigger, validate]
-    if: needs.check-trigger.outputs.should_build == 'true'
-    runs-on: ubuntu-latest
-    outputs:
-      versions-json: ${{ steps.resolve.outputs.versions }}
-      prev-versions-json: ${{ steps.get-prev.outputs.prev_versions }}
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-        with:
-          ref: ${{ needs.validate.outputs.branch }}
-          fetch-depth: 0  # Need full history for git tree hashes
+  # resolve-versions:
+  #   name: Resolve Component Versions
+  #   needs: [check-trigger, validate]
+  #   if: needs.check-trigger.outputs.should_build == 'true'
+  #   runs-on: ubuntu-latest
+  #   outputs:
+  #     versions-json: ${{ steps.resolve.outputs.versions }}
+  #     prev-versions-json: ${{ steps.get-prev.outputs.prev_versions }}
+  #   steps:
+  #     - name: Checkout code
+  #       uses: actions/checkout@v4
+  #       with:
+  #         ref: ${{ needs.validate.outputs.branch }}
+  #         fetch-depth: 0  # Need full history for git tree hashes
 
-      - name: Get previous release metadata
-        id: get-prev
-        run: |
-          BRANCH_NAME="${{ needs.validate.outputs.branch }}"
+  #     - name: Get previous release metadata
+  #       id: get-prev
+  #       run: |
+  #         BRANCH_NAME="${{ needs.validate.outputs.branch }}"
           
-          echo "Looking for previous release on branch: ${BRANCH_NAME}"
+  #         echo "Looking for previous release on branch: ${BRANCH_NAME}"
           
-          # Get the most recent release for this branch
-          PREV_RELEASE=$(gh release list --limit 100 --json tagName | \
-            jq -r --arg branch "$BRANCH_NAME" \
-            '.[] | select(.tagName | startswith($branch + "-")) | .tagName' | \
-            head -n 1)
+  #         # Get the most recent release for this branch
+  #         PREV_RELEASE=$(gh release list --limit 100 --json tagName | \
+  #           jq -r --arg branch "$BRANCH_NAME" \
+  #           '.[] | select(.tagName | startswith($branch + "-")) | .tagName' | \
+  #           head -n 1)
           
-          if [[ -z "$PREV_RELEASE" ]]; then
-            echo "No previous release found for branch ${BRANCH_NAME}"
-            echo "prev_versions={}" >> $GITHUB_OUTPUT
-          else
-            echo "Previous release found: ${PREV_RELEASE}"
+  #         if [[ -z "$PREV_RELEASE" ]]; then
+  #           echo "No previous release found for branch ${BRANCH_NAME}"
+  #           echo "prev_versions={}" >> $GITHUB_OUTPUT
+  #         else
+  #           echo "Previous release found: ${PREV_RELEASE}"
             
-            # Download the metadata file from previous release
-            if gh release download "$PREV_RELEASE" -p "components_metadata.json" 2>/dev/null; then
-              PREV_METADATA=$(cat components_metadata.json | jq -c .)
-              echo "Previous metadata downloaded successfully"
-              echo "prev_versions=$PREV_METADATA" >> $GITHUB_OUTPUT
+  #           # Download the metadata file from previous release
+  #           if gh release download "$PREV_RELEASE" -p "components_metadata.json" 2>/dev/null; then
+  #             PREV_METADATA=$(cat components_metadata.json | jq -c .)
+  #             echo "Previous metadata downloaded successfully"
+  #             echo "prev_versions=$PREV_METADATA" >> $GITHUB_OUTPUT
               
-              # Show summary of previous versions
-              echo "Previous component versions:"
-              echo "$PREV_METADATA" | jq -r 'to_entries[] | "  \(.key): \(.value.version)"'
-            else
-              echo "No metadata found in previous release"
-              echo "prev_versions={}" >> $GITHUB_OUTPUT
-            fi
-          fi
-        env:
-          GH_TOKEN: ${{ github.token }}
+  #             # Show summary of previous versions
+  #             echo "Previous component versions:"
+  #             echo "$PREV_METADATA" | jq -r 'to_entries[] | "  \(.key): \(.value.version)"'
+  #           else
+  #             echo "No metadata found in previous release"
+  #             echo "prev_versions={}" >> $GITHUB_OUTPUT
+  #           fi
+  #         fi
+  #       env:
+  #         GH_TOKEN: ${{ github.token }}
 
-      - name: Resolve component versions
-        id: resolve
-        run: |
-          echo "Resolving component versions..."
+  #     - name: Resolve component versions
+  #       id: resolve
+  #       run: |
+  #         echo "Resolving component versions..."
           
-          metadata='{}'
+  #         metadata='{}'
           
-          for recipe in */component_recipe.json; do
-            # Skip if the glob didn't match any real file
-            [ -f "$recipe" ] || continue
+  #         for recipe in */component_recipe.json; do
+  #           # Skip if the glob didn't match any real file
+  #           [ -f "$recipe" ] || continue
             
-            component=$(basename "$(dirname "$recipe")")
-            component_dir=$(dirname "$recipe")
+  #           component=$(basename "$(dirname "$recipe")")
+  #           component_dir=$(dirname "$recipe")
             
-            echo ""
-            echo "Processing $component..."
+  #           echo ""
+  #           echo "Processing $component..."
             
-            version=$(automation-tools/alchemist/alchemist.sh -f "$recipe" --resolve-versions)
+  #           version=$(automation-tools/alchemist/alchemist.sh -f "$recipe" --resolve-versions)
             
-            # Verify that version resolution worked
-            if [[ -z "$version" ]]; then
-              echo "ERROR: Failed to resolve version for $component"
-              exit 1
-            fi
+  #           # Verify that version resolution worked
+  #           if [[ -z "$version" ]]; then
+  #             echo "ERROR: Failed to resolve version for $component"
+  #             exit 1
+  #           fi
             
-            # Get git tree hash for this component directory
-            tree_hash=$(git rev-parse "HEAD:$component_dir")
+  #           # Get git tree hash for this component directory
+  #           tree_hash=$(git rev-parse "HEAD:$component_dir")
 
-            # When building current metadata, include previous built_on for reused components
-            prev_built_on=$(echo "$PREV_VERSIONS" | jq -r --arg c "$component" '.[$c].built_on // empty')
+  #           # When building current metadata, include previous built_on for reused components
+  #           prev_built_on=$(echo "$PREV_VERSIONS" | jq -r --arg c "$component" '.[$c].built_on // empty')
             
-            # Add to metadata JSON
-            metadata=$(echo "$metadata" | jq \
-              --arg component "$component" \
-              --arg version "$version" \
-              --arg tree_hash "$tree_hash" \
-              --arg built_on "$prev_built_on" \
-              '.[$component] = {
-                version: $version,
-                git_tree_hash: $tree_hash,
-                built_on: $built_on
-              }')
+  #           # Add to metadata JSON
+  #           metadata=$(echo "$metadata" | jq \
+  #             --arg component "$component" \
+  #             --arg version "$version" \
+  #             --arg tree_hash "$tree_hash" \
+  #             --arg built_on "$prev_built_on" \
+  #             '.[$component] = {
+  #               version: $version,
+  #               git_tree_hash: $tree_hash,
+  #               built_on: $built_on
+  #             }')
             
-            echo "  Version: $version"
-            echo "  Tree hash: ${tree_hash:0:12}..."
-          done
+  #           echo "  Version: $version"
+  #           echo "  Tree hash: ${tree_hash:0:12}..."
+  #         done
           
-          echo ""
-          echo "Version resolution complete"
-          echo "versions=$metadata" >> $GITHUB_OUTPUT
+  #         echo ""
+  #         echo "Version resolution complete"
+  #         echo "versions=$metadata" >> $GITHUB_OUTPUT
           
-          # Save to file for later attachment to release
-          echo "$metadata" | jq . > components_metadata.json
+  #         # Save to file for later attachment to release
+  #         echo "$metadata" | jq . > components_metadata.json
           
-          echo ""
-          echo "Current component versions:"
-          echo "$metadata" | jq -r 'to_entries[] | "  \(.key): \(.value.version)"'
+  #         echo ""
+  #         echo "Current component versions:"
+  #         echo "$metadata" | jq -r 'to_entries[] | "  \(.key): \(.value.version)"'
 
-      - name: Upload metadata for later use
-        uses: actions/upload-artifact@v4
-        with:
-          name: components-metadata
-          path: components_metadata.json
-          retention-days: 1
+  #     - name: Upload metadata for later use
+  #       uses: actions/upload-artifact@v4
+  #       with:
+  #         name: components-metadata
+  #         path: components_metadata.json
+  #         retention-days: 1
 
-  setup-recipes:
-    name: Setup Build Matrix
-    needs: [check-trigger, validate, resolve-versions]
-    if: needs.check-trigger.outputs.should_build == 'true'
-    runs-on: ubuntu-latest
-    outputs:
-      build-matrix: ${{ steps.set-matrix.outputs.build }}
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-        with:
-          ref: ${{ needs.validate.outputs.branch }}
+  # setup-recipes:
+  #   name: Setup Build Matrix
+  #   needs: [check-trigger, validate, resolve-versions]
+  #   if: needs.check-trigger.outputs.should_build == 'true'
+  #   runs-on: ubuntu-latest
+  #   outputs:
+  #     build-matrix: ${{ steps.set-matrix.outputs.build }}
+  #   steps:
+  #     - name: Checkout code
+  #       uses: actions/checkout@v4
+  #       with:
+  #         ref: ${{ needs.validate.outputs.branch }}
 
-      - name: Build component matrix with reuse info
-        id: set-matrix
-        run: |
-          echo "Building component matrix..."
+  #     - name: Build component matrix with reuse info
+  #       id: set-matrix
+  #       run: |
+  #         echo "Building component matrix..."
           
-          CURRENT_VERSIONS='${{ needs.resolve-versions.outputs.versions-json }}'
-          PREV_VERSIONS='${{ needs.resolve-versions.outputs.prev-versions-json }}'
+  #         CURRENT_VERSIONS='${{ needs.resolve-versions.outputs.versions-json }}'
+  #         PREV_VERSIONS='${{ needs.resolve-versions.outputs.prev-versions-json }}'
           
-          echo "Current versions data available: $(echo "$CURRENT_VERSIONS" | jq 'keys | length') components"
-          echo "Previous versions data available: $(echo "$PREV_VERSIONS" | jq 'keys | length') components"
-          echo ""
+  #         echo "Current versions data available: $(echo "$CURRENT_VERSIONS" | jq 'keys | length') components"
+  #         echo "Previous versions data available: $(echo "$PREV_VERSIONS" | jq 'keys | length') components"
+  #         echo ""
           
-          recipes=$(
-            for recipe in */component_recipe.json; do
-              [ -f "$recipe" ] || continue
+  #         recipes=$(
+  #           for recipe in */component_recipe.json; do
+  #             [ -f "$recipe" ] || continue
               
-              component=$(basename "$(dirname "$recipe")")
+  #             component=$(basename "$(dirname "$recipe")")
               
-              # Get current version and tree hash
-              current_version=$(echo "$CURRENT_VERSIONS" | jq -r --arg component "$component" '.[$component].version // "unknown"')
-              current_tree=$(echo "$CURRENT_VERSIONS" | jq -r --arg component "$component" '.[$component].git_tree_hash // empty')
+  #             # Get current version and tree hash
+  #             current_version=$(echo "$CURRENT_VERSIONS" | jq -r --arg component "$component" '.[$component].version // "unknown"')
+  #             current_tree=$(echo "$CURRENT_VERSIONS" | jq -r --arg component "$component" '.[$component].git_tree_hash // empty')
               
-              # Get previous version and tree hash
-              prev_version=$(echo "$PREV_VERSIONS" | jq -r --arg component "$component" '.[$component].version // empty')
-              prev_tree=$(echo "$PREV_VERSIONS" | jq -r --arg component "$component" '.[$component].git_tree_hash // empty')
+  #             # Get previous version and tree hash
+  #             prev_version=$(echo "$PREV_VERSIONS" | jq -r --arg component "$component" '.[$component].version // empty')
+  #             prev_tree=$(echo "$PREV_VERSIONS" | jq -r --arg component "$component" '.[$component].git_tree_hash // empty')
               
-              # Determine if we can reuse
-              can_reuse="false"
-              if [[ -n "$prev_version" && -n "$prev_tree" ]]; then
-                if [[ "$current_version" == "$prev_version" && "$current_tree" == "$prev_tree" ]]; then
-                  can_reuse="true"
-                fi
-              fi
+  #             # Determine if we can reuse
+  #             can_reuse="false"
+  #             if [[ -n "$prev_version" && -n "$prev_tree" ]]; then
+  #               if [[ "$current_version" == "$prev_version" && "$current_tree" == "$prev_tree" ]]; then
+  #                 can_reuse="true"
+  #               fi
+  #             fi
               
-              jq -n \
-                --arg recipe "$recipe" \
-                --arg component "$component" \
-                --arg version "$current_version" \
-                --arg can_reuse "$can_reuse" \
-                '{
-                  recipe: $recipe,
-                  component: $component,
-                  version: $version,
-                  can_reuse: ($can_reuse == "true")
-                }'
-            done | jq -s -c .
-          )
+  #             jq -n \
+  #               --arg recipe "$recipe" \
+  #               --arg component "$component" \
+  #               --arg version "$current_version" \
+  #               --arg can_reuse "$can_reuse" \
+  #               '{
+  #                 recipe: $recipe,
+  #                 component: $component,
+  #                 version: $version,
+  #                 can_reuse: ($can_reuse == "true")
+  #               }'
+  #           done | jq -s -c .
+  #         )
           
-          # Validate we found at least one recipe
-          recipe_count=$(echo "$recipes" | jq 'length')
-          if [ "$recipe_count" -eq 0 ]; then
-            echo "Error: No component recipes found!"
-            exit 1
-          fi
+  #         # Validate we found at least one recipe
+  #         recipe_count=$(echo "$recipes" | jq 'length')
+  #         if [ "$recipe_count" -eq 0 ]; then
+  #           echo "Error: No component recipes found!"
+  #           exit 1
+  #         fi
           
-          # Show summary
-          echo "Build matrix summary:"
-          echo "$recipes" | jq -r '.[] | 
-            if .can_reuse then
-              "\(.component) \(.version) - REUSE from previous release"
-            else
-              "\(.component) \(.version) - BUILD new artifact"
-            end'
+  #         # Show summary
+  #         echo "Build matrix summary:"
+  #         echo "$recipes" | jq -r '.[] | 
+  #           if .can_reuse then
+  #             "\(.component) \(.version) - REUSE from previous release"
+  #           else
+  #             "\(.component) \(.version) - BUILD new artifact"
+  #           end'
           
-          reuse_count=$(echo "$recipes" | jq '[.[] | select(.can_reuse == true)] | length')
-          build_count=$(echo "$recipes" | jq '[.[] | select(.can_reuse == false)] | length')
+  #         reuse_count=$(echo "$recipes" | jq '[.[] | select(.can_reuse == true)] | length')
+  #         build_count=$(echo "$recipes" | jq '[.[] | select(.can_reuse == false)] | length')
           
-          echo ""
-          echo "=========================================="
-          echo "Summary: $reuse_count to reuse, $build_count to build"
-          echo "=========================================="
+  #         echo ""
+  #         echo "=========================================="
+  #         echo "Summary: $reuse_count to reuse, $build_count to build"
+  #         echo "=========================================="
           
-          echo "build=$recipes" >> $GITHUB_OUTPUT
+  #         echo "build=$recipes" >> $GITHUB_OUTPUT
 
-  build-components:
-    name: Build ${{ matrix.component }}
-    needs: setup-recipes
-    runs-on: ubuntu-latest
-    strategy:
-      matrix: 
-        include: ${{ fromJSON(needs.setup-recipes.outputs.build-matrix) }}
-      fail-fast: true
-      max-parallel: 20
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-        with:
-          ref: ${{ needs.validate.outputs.branch }}
-          fetch-depth: 0
+  # build-components:
+  #   name: Build ${{ matrix.component }}
+  #   needs: setup-recipes
+  #   runs-on: ubuntu-latest
+  #   strategy:
+  #     matrix: 
+  #       include: ${{ fromJSON(needs.setup-recipes.outputs.build-matrix) }}
+  #     fail-fast: true
+  #     max-parallel: 20
+  #   steps:
+  #     - name: Checkout code
+  #       uses: actions/checkout@v4
+  #       with:
+  #         ref: ${{ needs.validate.outputs.branch }}
+  #         fetch-depth: 0
 
-      - name: Install build dependencies
-        run: |
-          echo "Installing build dependencies..."
+  #     - name: Install build dependencies
+  #       run: |
+  #         echo "Installing build dependencies..."
           
-          # Detect package manager
-          unset pkg_mgr
-          # rpm-ostree must be checked before dnf because a dnf (wrapper) command also works on rpm-ostree distros
-          for potential_pkg_mgr in apt pacman rpm-ostree dnf; do
-            command -v "$potential_pkg_mgr" &> /dev/null && pkg_mgr="$potential_pkg_mgr" && break
-          done
+  #         # Detect package manager
+  #         unset pkg_mgr
+  #         # rpm-ostree must be checked before dnf because a dnf (wrapper) command also works on rpm-ostree distros
+  #         for potential_pkg_mgr in apt pacman rpm-ostree dnf; do
+  #           command -v "$potential_pkg_mgr" &> /dev/null && pkg_mgr="$potential_pkg_mgr" && break
+  #         done
           
-          echo "Detected package manager: $pkg_mgr"
+  #         echo "Detected package manager: $pkg_mgr"
           
-          case "$pkg_mgr" in
-            apt)
-              sudo add-apt-repository -y ppa:flatpak/stable
-              sudo apt update
-              sudo apt install -y flatpak flatpak-builder p7zip-full xmlstarlet bzip2 curl jq unzip
-              ;;
-            pacman)
-              sudo pacman -Syu --noconfirm flatpak flatpak-builder p7zip xmlstarlet bzip2 curl jq unzip
-              ;;
-            rpm-ostree)
-              echo "ERROR: When using a distro with rpm-ostree, you shouldn't build directly on the host."
-              echo "Try using a distrobox or container."
-              exit 1
-              ;;
-            dnf)
-              sudo dnf install -y flatpak flatpak-builder p7zip p7zip-plugins xmlstarlet bzip2 curl jq unzip
-              ;;
-            *)
-              echo "ERROR: Package manager $pkg_mgr not supported."
-              echo "Supported package managers: apt, pacman, dnf"
-              exit 1
-              ;;
-          esac
+  #         case "$pkg_mgr" in
+  #           apt)
+  #             sudo add-apt-repository -y ppa:flatpak/stable
+  #             sudo apt update
+  #             sudo apt install -y flatpak flatpak-builder p7zip-full xmlstarlet bzip2 curl jq unzip
+  #             ;;
+  #           pacman)
+  #             sudo pacman -Syu --noconfirm flatpak flatpak-builder p7zip xmlstarlet bzip2 curl jq unzip
+  #             ;;
+  #           rpm-ostree)
+  #             echo "ERROR: When using a distro with rpm-ostree, you shouldn't build directly on the host."
+  #             echo "Try using a distrobox or container."
+  #             exit 1
+  #             ;;
+  #           dnf)
+  #             sudo dnf install -y flatpak flatpak-builder p7zip p7zip-plugins xmlstarlet bzip2 curl jq unzip
+  #             ;;
+  #           *)
+  #             echo "ERROR: Package manager $pkg_mgr not supported."
+  #             echo "Supported package managers: apt, pacman, dnf"
+  #             exit 1
+  #             ;;
+  #         esac
           
-          # Add Flatpak remotes
-          flatpak remote-add --user --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-          flatpak remote-add --user --if-not-exists flathub-beta https://flathub.org/beta-repo/flathub-beta.flatpakrepo
+  #         # Add Flatpak remotes
+  #         flatpak remote-add --user --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+  #         flatpak remote-add --user --if-not-exists flathub-beta https://flathub.org/beta-repo/flathub-beta.flatpakrepo
           
-          echo "Build dependencies installed successfully"
+  #         echo "Build dependencies installed successfully"
 
-      - name: Download previous artifact
-        if: matrix.can_reuse == true
-        run: |
-          COMPONENT="${{ matrix.component }}"
-          BRANCH_NAME="${{ needs.validate.outputs.branch }}"
+  #     - name: Download previous artifact
+  #       if: matrix.can_reuse == true
+  #       run: |
+  #         COMPONENT="${{ matrix.component }}"
+  #         BRANCH_NAME="${{ needs.validate.outputs.branch }}"
           
-          echo "Component $COMPONENT can be reused from previous release"
+  #         echo "Component $COMPONENT can be reused from previous release"
           
-          # Get the most recent release for this branch
-          PREV_RELEASE=$(gh release list --limit 100 --json tagName | \
-            jq -r --arg branch "$BRANCH_NAME" \
-            '.[] | select(.tagName | startswith($branch + "-")) | .tagName' | \
-            head -n 1)
+  #         # Get the most recent release for this branch
+  #         PREV_RELEASE=$(gh release list --limit 100 --json tagName | \
+  #           jq -r --arg branch "$BRANCH_NAME" \
+  #           '.[] | select(.tagName | startswith($branch + "-")) | .tagName' | \
+  #           head -n 1)
           
-          if [[ -z "$PREV_RELEASE" ]]; then
-            echo "ERROR: No previous release found, but can_reuse is true"
-            echo "This should not happen, there may be an issue with the setup-recipes job"
-            exit 1
-          fi
+  #         if [[ -z "$PREV_RELEASE" ]]; then
+  #           echo "ERROR: No previous release found, but can_reuse is true"
+  #           echo "This should not happen, there may be an issue with the setup-recipes job"
+  #           exit 1
+  #         fi
           
-          echo "Downloading $COMPONENT assets from $PREV_RELEASE..."
+  #         echo "Downloading $COMPONENT assets from $PREV_RELEASE..."
           
-          # Create artifacts directory for this component
-          mkdir -p "${COMPONENT}/artifacts"
+  #         # Create artifacts directory for this component
+  #         mkdir -p "${COMPONENT}/artifacts"
           
-          # Download the component's assets from previous release
-          gh release download "$PREV_RELEASE" \
-            -p "${COMPONENT}.tar.gz" \
-            -p "${COMPONENT}.tar.gz.sha" \
-            -D "${COMPONENT}/artifacts/"
+  #         # Download the component's assets from previous release
+  #         gh release download "$PREV_RELEASE" \
+  #           -p "${COMPONENT}.tar.gz" \
+  #           -p "${COMPONENT}.tar.gz.sha" \
+  #           -D "${COMPONENT}/artifacts/"
           
-          echo "Reused assets from previous release"
-          echo "  Archive: ${COMPONENT}/artifacts/${COMPONENT}.tar.gz"
-          echo "  SHA: ${COMPONENT}/artifacts/${COMPONENT}.tar.gz.sha"
-        env:
-          GH_TOKEN: ${{ github.token }}
+  #         echo "Reused assets from previous release"
+  #         echo "  Archive: ${COMPONENT}/artifacts/${COMPONENT}.tar.gz"
+  #         echo "  SHA: ${COMPONENT}/artifacts/${COMPONENT}.tar.gz.sha"
+  #       env:
+  #         GH_TOKEN: ${{ github.token }}
 
-      - name: Build component
-        if: matrix.can_reuse == false
-        run: |
-          COMPONENT="${{ matrix.component }}"
-          RECIPE="${{ matrix.recipe }}"
-          VERSION="${{ matrix.version }}"
+  #     - name: Build component
+  #       if: matrix.can_reuse == false
+  #       run: |
+  #         COMPONENT="${{ matrix.component }}"
+  #         RECIPE="${{ matrix.recipe }}"
+  #         VERSION="${{ matrix.version }}"
           
-          echo "Building $COMPONENT version $VERSION from $RECIPE..."
+  #         echo "Building $COMPONENT version $VERSION from $RECIPE..."
           
-          # Run the build script
-          automation-tools/build/build_component.sh \
-            -v automation-tools/build/desired_versions.sh \
-            -f "$RECIPE"
+  #         # Run the build script
+  #         automation-tools/build/build_component.sh \
+  #           -v automation-tools/build/desired_versions.sh \
+  #           -f "$RECIPE"
           
-          echo "Build complete"
-          echo "  Archive: ${COMPONENT}/artifacts/${COMPONENT}.tar.gz"
+  #         echo "Build complete"
+  #         echo "  Archive: ${COMPONENT}/artifacts/${COMPONENT}.tar.gz"
 
-      - name: Verify artifacts
-        run: |
-          COMPONENT="${{ matrix.component }}"
+  #     - name: Verify artifacts
+  #       run: |
+  #         COMPONENT="${{ matrix.component }}"
           
-          echo "Verifying artifacts for $COMPONENT..."
+  #         echo "Verifying artifacts for $COMPONENT..."
           
-          # Check that both files exist
-          if [[ ! -f "${COMPONENT}/artifacts/${COMPONENT}.tar.gz" ]]; then
-            echo "ERROR: Archive not found: ${COMPONENT}/artifacts/${COMPONENT}.tar.gz"
-            exit 1
-          fi
+  #         # Check that both files exist
+  #         if [[ ! -f "${COMPONENT}/artifacts/${COMPONENT}.tar.gz" ]]; then
+  #           echo "ERROR: Archive not found: ${COMPONENT}/artifacts/${COMPONENT}.tar.gz"
+  #           exit 1
+  #         fi
           
-          if [[ ! -f "${COMPONENT}/artifacts/${COMPONENT}.tar.gz.sha" ]]; then
-            echo "ERROR: SHA file not found: ${COMPONENT}/artifacts/${COMPONENT}.tar.gz.sha"
-            exit 1
-          fi
+  #         if [[ ! -f "${COMPONENT}/artifacts/${COMPONENT}.tar.gz.sha" ]]; then
+  #           echo "ERROR: SHA file not found: ${COMPONENT}/artifacts/${COMPONENT}.tar.gz.sha"
+  #           exit 1
+  #         fi
           
-          # Verify SHA file format
-          if ! grep -q "${COMPONENT}.tar.gz" "${COMPONENT}/artifacts/${COMPONENT}.tar.gz.sha"; then
-            echo "ERROR: SHA file does not contain expected filename"
-            exit 1
-          fi
+  #         # Verify SHA file format
+  #         if ! grep -q "${COMPONENT}.tar.gz" "${COMPONENT}/artifacts/${COMPONENT}.tar.gz.sha"; then
+  #           echo "ERROR: SHA file does not contain expected filename"
+  #           exit 1
+  #         fi
           
-          # Get file sizes
-          ARCHIVE_SIZE=$(du -h "${COMPONENT}/artifacts/${COMPONENT}.tar.gz" | cut -f1)
+  #         # Get file sizes
+  #         ARCHIVE_SIZE=$(du -h "${COMPONENT}/artifacts/${COMPONENT}.tar.gz" | cut -f1)
           
-          echo "Artifacts verified successfully"
-          echo "  Archive size: $ARCHIVE_SIZE"
+  #         echo "Artifacts verified successfully"
+  #         echo "  Archive size: $ARCHIVE_SIZE"
 
-      - name: Upload artifacts for release
-        uses: actions/upload-artifact@v4
-        with:
-          name: ${{ matrix.component }}-artifacts
-          path: ${{ matrix.component }}/artifacts/
-          retention-days: 1
-          if-no-files-found: error
+  #     - name: Upload artifacts for release
+  #       uses: actions/upload-artifact@v4
+  #       with:
+  #         name: ${{ matrix.component }}-artifacts
+  #         path: ${{ matrix.component }}/artifacts/
+  #         retention-days: 1
+  #         if-no-files-found: error
           
-  create-release:
-    name: Create Release
-    needs: [validate, resolve-versions, setup-recipes, build-components]
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-        with:
-          ref: ${{ needs.validate.outputs.branch }}
+  # create-release:
+  #   name: Create Release
+  #   needs: [validate, resolve-versions, setup-recipes, build-components]
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Checkout code
+  #       uses: actions/checkout@v4
+  #       with:
+  #         ref: ${{ needs.validate.outputs.branch }}
 
-      - name: Generate release tag
-        id: tag
-        run: |
-          # Get branch name and replace slashes with dashes
-          BRANCH_NAME="${{ needs.validate.outputs.branch }}"
-          BRANCH_SAFE=$(echo "$BRANCH_NAME" | sed 's/\//-/g')
+  #     - name: Generate release tag
+  #       id: tag
+  #       run: |
+  #         # Get branch name and replace slashes with dashes
+  #         BRANCH_NAME="${{ needs.validate.outputs.branch }}"
+  #         BRANCH_SAFE=$(echo "$BRANCH_NAME" | sed 's/\//-/g')
           
-          # Generate timestamp
-          TIMESTAMP=$(date -u +"%Y%m%d-%H%M%S")
+  #         # Generate timestamp
+  #         TIMESTAMP=$(date -u +"%Y%m%d-%H%M%S")
           
-          # Combine into tag
-          RELEASE_TAG="${BRANCH_SAFE}-${TIMESTAMP}"
+  #         # Combine into tag
+  #         RELEASE_TAG="${BRANCH_SAFE}-${TIMESTAMP}"
           
-          echo "tag=${RELEASE_TAG}" >> $GITHUB_OUTPUT
-          echo "timestamp=$(date -u +"%Y-%m-%d %H:%M:%S UTC")" >> $GITHUB_OUTPUT
-          echo "branch=${BRANCH_NAME}" >> $GITHUB_OUTPUT
-          echo "branch_safe=${BRANCH_SAFE}" >> $GITHUB_OUTPUT
+  #         echo "tag=${RELEASE_TAG}" >> $GITHUB_OUTPUT
+  #         echo "timestamp=$(date -u +"%Y-%m-%d %H:%M:%S UTC")" >> $GITHUB_OUTPUT
+  #         echo "branch=${BRANCH_NAME}" >> $GITHUB_OUTPUT
+  #         echo "branch_safe=${BRANCH_SAFE}" >> $GITHUB_OUTPUT
           
-          echo "Release tag: ${RELEASE_TAG}"
+  #         echo "Release tag: ${RELEASE_TAG}"
 
-      - name: Determine release type
-        id: release-type
-        run: |
-          BRANCH_NAME="${{ steps.tag.outputs.branch }}"
+  #     - name: Determine release type
+  #       id: release-type
+  #       run: |
+  #         BRANCH_NAME="${{ steps.tag.outputs.branch }}"
           
-          case "$BRANCH_NAME" in
-            main)
-              echo "latest=true" >> $GITHUB_OUTPUT
-              echo "prerelease=false" >> $GITHUB_OUTPUT
-              echo "draft=false" >> $GITHUB_OUTPUT
-              echo "Release type: Latest"
-              ;;
-            cooker|epicure)
-              echo "latest=false" >> $GITHUB_OUTPUT
-              echo "prerelease=true" >> $GITHUB_OUTPUT
-              echo "draft=false" >> $GITHUB_OUTPUT
-              echo "Release type: Pre-release"
-              ;;
-            component/*)
-              echo "latest=false" >> $GITHUB_OUTPUT
-              echo "prerelease=false" >> $GITHUB_OUTPUT
-              echo "draft=true" >> $GITHUB_OUTPUT
-              echo "Release type: Draft"
-              ;;
-            *)
-              echo "latest=false" >> $GITHUB_OUTPUT
-              echo "prerelease=false" >> $GITHUB_OUTPUT
-              echo "draft=true" >> $GITHUB_OUTPUT
-              echo "Release type: Draft (unknown branch type)"
-              ;;
-          esac
+  #         case "$BRANCH_NAME" in
+  #           main)
+  #             echo "latest=true" >> $GITHUB_OUTPUT
+  #             echo "prerelease=false" >> $GITHUB_OUTPUT
+  #             echo "draft=false" >> $GITHUB_OUTPUT
+  #             echo "Release type: Latest"
+  #             ;;
+  #           cooker|epicure)
+  #             echo "latest=false" >> $GITHUB_OUTPUT
+  #             echo "prerelease=true" >> $GITHUB_OUTPUT
+  #             echo "draft=false" >> $GITHUB_OUTPUT
+  #             echo "Release type: Pre-release"
+  #             ;;
+  #           component/*)
+  #             echo "latest=false" >> $GITHUB_OUTPUT
+  #             echo "prerelease=false" >> $GITHUB_OUTPUT
+  #             echo "draft=true" >> $GITHUB_OUTPUT
+  #             echo "Release type: Draft"
+  #             ;;
+  #           *)
+  #             echo "latest=false" >> $GITHUB_OUTPUT
+  #             echo "prerelease=false" >> $GITHUB_OUTPUT
+  #             echo "draft=true" >> $GITHUB_OUTPUT
+  #             echo "Release type: Draft (unknown branch type)"
+  #             ;;
+  #         esac
 
-      - name: Download all component artifacts
-        uses: actions/download-artifact@v4
-        with:
-          path: downloaded-artifacts/
-          pattern: '*-artifacts'
+  #     - name: Download all component artifacts
+  #       uses: actions/download-artifact@v4
+  #       with:
+  #         path: downloaded-artifacts/
+  #         pattern: '*-artifacts'
 
-      - name: Download components metadata
-        uses: actions/download-artifact@v4
-        with:
-          name: components-metadata
-          path: downloaded-artifacts/
+  #     - name: Download components metadata
+  #       uses: actions/download-artifact@v4
+  #       with:
+  #         name: components-metadata
+  #         path: downloaded-artifacts/
 
-      - name: Collect and verify artifacts
-        id: collect
-        run: |
-          echo "Collecting artifacts..."
-          mkdir -p release-assets
+  #     - name: Collect and verify artifacts
+  #       id: collect
+  #       run: |
+  #         echo "Collecting artifacts..."
+  #         mkdir -p release-assets
           
-          # Move all component artifacts to release-assets
-          find downloaded-artifacts/ -name "*.tar.gz" -o -name "*.tar.gz.sha" | \
-            while read file; do
-              cp "$file" release-assets/
-              echo "  Collected: $(basename $file)"
-            done
+  #         # Move all component artifacts to release-assets
+  #         find downloaded-artifacts/ -name "*.tar.gz" -o -name "*.tar.gz.sha" | \
+  #           while read file; do
+  #             cp "$file" release-assets/
+  #             echo "  Collected: $(basename $file)"
+  #           done
           
-          # Verify we have matching .tar.gz and .sha pairs
-          echo ""
-          echo "Verifying artifact pairs..."
-          MISSING=0
+  #         # Verify we have matching .tar.gz and .sha pairs
+  #         echo ""
+  #         echo "Verifying artifact pairs..."
+  #         MISSING=0
           
-          for archive in release-assets/*.tar.gz; do
-            sha_file="${archive}.sha"
-            if [[ ! -f "$sha_file" ]]; then
-              echo "ERROR: Missing SHA file for $(basename $archive)"
-              MISSING=$((MISSING + 1))
-            fi
-          done
+  #         for archive in release-assets/*.tar.gz; do
+  #           sha_file="${archive}.sha"
+  #           if [[ ! -f "$sha_file" ]]; then
+  #             echo "ERROR: Missing SHA file for $(basename $archive)"
+  #             MISSING=$((MISSING + 1))
+  #           fi
+  #         done
           
-          if [ "$MISSING" -gt 0 ]; then
-            echo "ERROR: $MISSING artifact(s) are missing SHA files"
-            exit 1
-          fi
+  #         if [ "$MISSING" -gt 0 ]; then
+  #           echo "ERROR: $MISSING artifact(s) are missing SHA files"
+  #           exit 1
+  #         fi
           
-          ARTIFACT_COUNT=$(ls release-assets/*.tar.gz | wc -l)
-          echo "All artifacts verified: $ARTIFACT_COUNT components"
-          echo "artifact_count=$ARTIFACT_COUNT" >> $GITHUB_OUTPUT
+  #         ARTIFACT_COUNT=$(ls release-assets/*.tar.gz | wc -l)
+  #         echo "All artifacts verified: $ARTIFACT_COUNT components"
+  #         echo "artifact_count=$ARTIFACT_COUNT" >> $GITHUB_OUTPUT
 
-      - name: Generate release metadata and sources JSON
-        id: generate-metadata
-        run: |
-          RELEASE_TAG="${{ steps.tag.outputs.tag }}"
-          BUILD_TIMESTAMP="${{ steps.tag.outputs.timestamp }}"
-          CURRENT_METADATA=$(cat downloaded-artifacts/components_metadata.json)
-          PREV_VERSIONS='${{ needs.resolve-versions.outputs.prev-versions-json }}'
-          REPO="${{ github.repository }}"
-          BASE_URL="https://github.com/${REPO}/releases/download/${RELEASE_TAG}"
-          COMMIT="${{ github.sha }}"
-          BRANCH="${{ steps.tag.outputs.branch }}"
+  #     - name: Generate release metadata and sources JSON
+  #       id: generate-metadata
+  #       run: |
+  #         RELEASE_TAG="${{ steps.tag.outputs.tag }}"
+  #         BUILD_TIMESTAMP="${{ steps.tag.outputs.timestamp }}"
+  #         CURRENT_METADATA=$(cat downloaded-artifacts/components_metadata.json)
+  #         PREV_VERSIONS='${{ needs.resolve-versions.outputs.prev-versions-json }}'
+  #         REPO="${{ github.repository }}"
+  #         BASE_URL="https://github.com/${REPO}/releases/download/${RELEASE_TAG}"
+  #         COMMIT="${{ github.sha }}"
+  #         BRANCH="${{ steps.tag.outputs.branch }}"
           
-          echo "Generating release metadata and sources JSON..."
+  #         echo "Generating release metadata and sources JSON..."
           
-          release_metadata='{}'
-          sources_json='[]'
+  #         release_metadata='{}'
+  #         sources_json='[]'
           
-          for archive in release-assets/*.tar.gz; do
-            COMPONENT=$(basename "$archive" .tar.gz)
-            SHA=$(awk '{print $1}' "release-assets/${COMPONENT}.tar.gz.sha")
-            URL="${BASE_URL}/${COMPONENT}.tar.gz"
+  #         for archive in release-assets/*.tar.gz; do
+  #           COMPONENT=$(basename "$archive" .tar.gz)
+  #           SHA=$(awk '{print $1}' "release-assets/${COMPONENT}.tar.gz.sha")
+  #           URL="${BASE_URL}/${COMPONENT}.tar.gz"
             
-            # Get version from current metadata
-            VERSION=$(echo "$CURRENT_METADATA" | \
-              jq -r --arg component "$COMPONENT" '.[$component].version // "unknown"')
+  #           # Get version from current metadata
+  #           VERSION=$(echo "$CURRENT_METADATA" | \
+  #             jq -r --arg component "$COMPONENT" '.[$component].version // "unknown"')
             
-            # Get tree hash from current metadata
-            TREE_HASH=$(echo "$CURRENT_METADATA" | \
-              jq -r --arg component "$COMPONENT" '.[$component].git_tree_hash // empty')
+  #           # Get tree hash from current metadata
+  #           TREE_HASH=$(echo "$CURRENT_METADATA" | \
+  #             jq -r --arg component "$COMPONENT" '.[$component].git_tree_hash // empty')
             
-            # Determine if this component was reused
-            PREV_TREE=$(echo "$PREV_VERSIONS" | \
-              jq -r --arg component "$COMPONENT" '.[$component].git_tree_hash // empty')
-            PREV_VERSION=$(echo "$PREV_VERSIONS" | \
-              jq -r --arg component "$COMPONENT" '.[$component].version // empty')
+  #           # Determine if this component was reused
+  #           PREV_TREE=$(echo "$PREV_VERSIONS" | \
+  #             jq -r --arg component "$COMPONENT" '.[$component].git_tree_hash // empty')
+  #           PREV_VERSION=$(echo "$PREV_VERSIONS" | \
+  #             jq -r --arg component "$COMPONENT" '.[$component].version // empty')
             
-            if [[ -n "$PREV_TREE" && "$TREE_HASH" = "$PREV_TREE" && "$VERSION" = "$PREV_VERSION" ]]; then
-              # Component was reused - carry forward previous built_on timestamp
-              BUILT_ON=$(echo "$PREV_VERSIONS" | \
-                jq -r --arg component "$COMPONENT" '.[$component].built_on // empty')
-              STATUS="reused"
-            else
-              # Component was newly built - use current timestamp
-              BUILT_ON="$BUILD_TIMESTAMP"
-              STATUS="new"
-            fi
+  #           if [[ -n "$PREV_TREE" && "$TREE_HASH" = "$PREV_TREE" && "$VERSION" = "$PREV_VERSION" ]]; then
+  #             # Component was reused - carry forward previous built_on timestamp
+  #             BUILT_ON=$(echo "$PREV_VERSIONS" | \
+  #               jq -r --arg component "$COMPONENT" '.[$component].built_on // empty')
+  #             STATUS="reused"
+  #           else
+  #             # Component was newly built - use current timestamp
+  #             BUILT_ON="$BUILD_TIMESTAMP"
+  #             STATUS="new"
+  #           fi
             
-            # Add to release metadata
-            release_metadata=$(echo "$release_metadata" | jq \
-              --arg component "$COMPONENT" \
-              --arg version "$VERSION" \
-              --arg tree_hash "$TREE_HASH" \
-              --arg built_on "$BUILT_ON" \
-              --arg sha "$SHA" \
-              --arg url "$URL" \
-              --arg status "$STATUS" \
-              '.[$component] = {
-                version: $version,
-                git_tree_hash: $tree_hash,
-                built_on: $built_on,
-                sha256: $sha,
-                url: $url,
-                status: $status
-              }')
+  #           # Add to release metadata
+  #           release_metadata=$(echo "$release_metadata" | jq \
+  #             --arg component "$COMPONENT" \
+  #             --arg version "$VERSION" \
+  #             --arg tree_hash "$TREE_HASH" \
+  #             --arg built_on "$BUILT_ON" \
+  #             --arg sha "$SHA" \
+  #             --arg url "$URL" \
+  #             --arg status "$STATUS" \
+  #             '.[$component] = {
+  #               version: $version,
+  #               git_tree_hash: $tree_hash,
+  #               built_on: $built_on,
+  #               sha256: $sha,
+  #               url: $url,
+  #               status: $status
+  #             }')
             
-            # Add to sources JSON
-            sources_json=$(echo "$sources_json" | jq \
-              --arg url "$URL" \
-              --arg sha "$SHA" \
-              '. += [{
-                type: "file",
-                url: $url,
-                sha256: $sha,
-                dest: "components"
-              }]')
+  #           # Add to sources JSON
+  #           sources_json=$(echo "$sources_json" | jq \
+  #             --arg url "$URL" \
+  #             --arg sha "$SHA" \
+  #             '. += [{
+  #               type: "file",
+  #               url: $url,
+  #               sha256: $sha,
+  #               dest: "components"
+  #             }]')
             
-          done
+  #         done
           
-          # Write files
-          echo "$release_metadata" | jq . > release-assets/release_metadata.json
-          echo "$sources_json" | jq . > release-assets/components-sources.json
+  #         # Write files
+  #         echo "$release_metadata" | jq . > release-assets/release_metadata.json
+  #         echo "$sources_json" | jq . > release-assets/components-sources.json
           
-          echo "Release metadata generated"
-          echo "Sources JSON generated"
+  #         echo "Release metadata generated"
+  #         echo "Sources JSON generated"
 
-      - name: Generate release notes
-        id: release-notes
-        run: |
-          RELEASE_TAG="${{ steps.tag.outputs.tag }}"
-          BUILD_TIMESTAMP="${{ steps.tag.outputs.timestamp }}"
-          BRANCH="${{ steps.tag.outputs.branch }}"
-          COMMIT="${{ github.sha }}"
-          REPO="${{ github.repository }}"
-          METADATA=$(cat release-assets/release_metadata.json)
+  #     - name: Generate release notes
+  #       id: release-notes
+  #       run: |
+  #         RELEASE_TAG="${{ steps.tag.outputs.tag }}"
+  #         BUILD_TIMESTAMP="${{ steps.tag.outputs.timestamp }}"
+  #         BRANCH="${{ steps.tag.outputs.branch }}"
+  #         COMMIT="${{ github.sha }}"
+  #         REPO="${{ github.repository }}"
+  #         METADATA=$(cat release-assets/release_metadata.json)
           
-          # Count new vs reused
-          NEW_COUNT=$(echo "$METADATA" | \
-            jq '[to_entries[] | select(.value.status == "new")] | length')
-          REUSED_COUNT=$(echo "$METADATA" | \
-            jq '[to_entries[] | select(.value.status == "reused")] | length')
-          TOTAL_COUNT=$(echo "$METADATA" | jq 'keys | length')
+  #         # Count new vs reused
+  #         NEW_COUNT=$(echo "$METADATA" | \
+  #           jq '[to_entries[] | select(.value.status == "new")] | length')
+  #         REUSED_COUNT=$(echo "$METADATA" | \
+  #           jq '[to_entries[] | select(.value.status == "reused")] | length')
+  #         TOTAL_COUNT=$(echo "$METADATA" | jq 'keys | length')
           
-          # Build release notes
-          NOTES="## ${{ github.repository_owner }} ${{ github.event.repository.name }} ${RELEASE_TAG}
+  #         # Build release notes
+  #         NOTES="## ${{ github.repository_owner }} ${{ github.event.repository.name }} ${RELEASE_TAG}
           
-          **Branch:** \`${BRANCH}\`
-          **Commit:** \`${COMMIT}\`
-          **Built On:** ${BUILD_TIMESTAMP}
-          **Components:** ${TOTAL_COUNT} total (${NEW_COUNT} new, ${REUSED_COUNT} reused)
+  #         **Branch:** \`${BRANCH}\`
+  #         **Commit:** \`${COMMIT}\`
+  #         **Built On:** ${BUILD_TIMESTAMP}
+  #         **Components:** ${TOTAL_COUNT} total (${NEW_COUNT} new, ${REUSED_COUNT} reused)
           
-          ---
+  #         ---
           
-          ## Components
+  #         ## Components
           
-          | Component | Version | Status | Built On | Commit |
-          |-----------|---------|--------|----------|--------|"
+  #         | Component | Version | Status | Built On | Commit |
+  #         |-----------|---------|--------|----------|--------|"
           
-          # Add a row for each component, sorted alphabetically
-          while IFS= read -r row; do
-            NOTES="${NOTES}
-          ${row}"
-          done < <(echo "$METADATA" | jq -r '
-            to_entries |
-            sort_by(.key) |
-            .[] |
-            "| \(.key) | \(.value.version) | \(if .value.status == "new" then "New Build" else "Reused" end) | \(.value.built_on) | \(if .value.status == "new" then "${{ github.sha }}" else "—" end) |"
-          ')
+  #         # Add a row for each component, sorted alphabetically
+  #         while IFS= read -r row; do
+  #           NOTES="${NOTES}
+  #         ${row}"
+  #         done < <(echo "$METADATA" | jq -r '
+  #           to_entries |
+  #           sort_by(.key) |
+  #           .[] |
+  #           "| \(.key) | \(.value.version) | \(if .value.status == "new" then "New Build" else "Reused" end) | \(.value.built_on) | \(if .value.status == "new" then "${{ github.sha }}" else "—" end) |"
+  #         ')
           
-          # Write to file to avoid issues with special characters
-          echo "$NOTES" > release_notes.md
+  #         # Write to file to avoid issues with special characters
+  #         echo "$NOTES" > release_notes.md
           
-          echo "Release notes generated"
-          cat release_notes.md
+  #         echo "Release notes generated"
+  #         cat release_notes.md
 
-      - name: Create release
-        run: |
-          RELEASE_TAG="${{ steps.tag.outputs.tag }}"
-          REPO_OWNER="${{ github.repository_owner }}"
-          REPO_NAME="${{ github.event.repository.name }}"
-          TITLE="${REPO_OWNER} ${REPO_NAME} ${RELEASE_TAG}"
+  #     - name: Create release
+  #       run: |
+  #         RELEASE_TAG="${{ steps.tag.outputs.tag }}"
+  #         REPO_OWNER="${{ github.repository_owner }}"
+  #         REPO_NAME="${{ github.event.repository.name }}"
+  #         TITLE="${REPO_OWNER} ${REPO_NAME} ${RELEASE_TAG}"
           
-          # Build gh release create command with appropriate flags
-          RELEASE_FLAGS=""
+  #         # Build gh release create command with appropriate flags
+  #         RELEASE_FLAGS=""
           
-          if [[ "${{ steps.release-type.outputs.draft }}" == "true" ]]; then
-            RELEASE_FLAGS="$RELEASE_FLAGS --draft"
-          fi
+  #         if [[ "${{ steps.release-type.outputs.draft }}" == "true" ]]; then
+  #           RELEASE_FLAGS="$RELEASE_FLAGS --draft"
+  #         fi
           
-          if [[ "${{ steps.release-type.outputs.prerelease }}" == "true" ]]; then
-            RELEASE_FLAGS="$RELEASE_FLAGS --prerelease"
-          fi
+  #         if [[ "${{ steps.release-type.outputs.prerelease }}" == "true" ]]; then
+  #           RELEASE_FLAGS="$RELEASE_FLAGS --prerelease"
+  #         fi
           
-          if [[ "${{ steps.release-type.outputs.latest }}" == "true" ]]; then
-            RELEASE_FLAGS="$RELEASE_FLAGS --latest"
-          fi
+  #         if [[ "${{ steps.release-type.outputs.latest }}" == "true" ]]; then
+  #           RELEASE_FLAGS="$RELEASE_FLAGS --latest"
+  #         fi
           
-          echo "Creating release: ${TITLE}"
-          echo "Flags: ${RELEASE_FLAGS}"
+  #         echo "Creating release: ${TITLE}"
+  #         echo "Flags: ${RELEASE_FLAGS}"
           
-          gh release create "$RELEASE_TAG" \
-            --title "$TITLE" \
-            --notes-file release_notes.md \
-            $RELEASE_FLAGS \
-            release-assets/*
+  #         gh release create "$RELEASE_TAG" \
+  #           --title "$TITLE" \
+  #           --notes-file release_notes.md \
+  #           $RELEASE_FLAGS \
+  #           release-assets/*
           
-          echo ""
-          echo "Release created successfully!"
-          echo "  Tag: ${RELEASE_TAG}"
-          echo "  URL: https://github.com/${{ github.repository }}/releases/tag/${RELEASE_TAG}"
-        env:
-          GH_TOKEN: ${{ github.token }}
+  #         echo ""
+  #         echo "Release created successfully!"
+  #         echo "  Tag: ${RELEASE_TAG}"
+  #         echo "  URL: https://github.com/${{ github.repository }}/releases/tag/${RELEASE_TAG}"
+  #       env:
+  #         GH_TOKEN: ${{ github.token }}
