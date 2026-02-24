@@ -238,6 +238,7 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # COOKER (Override)
 # export RETROARCH_DESIRED_VERSION="latest"
 
+
 # ------------------------------------------------------------------------------
 # Solarus - Action RPG Engine
 # Source: AppImage
@@ -344,6 +345,7 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # Link: https://github.com/RetroDECK/Vita3K-bin/releases
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
+  export VITA3K_DESIRED_VERSION="3924"
   export VITA3K_DESIRED_VERSION="3924"
 
 # COOKER (Override)
