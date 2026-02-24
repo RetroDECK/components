@@ -309,7 +309,8 @@ jobs:
 
           echo ""
           echo "Version resolution complete"
-          echo "versions=$metadata" >> $GITHUB_OUTPUT
+          
+          echo "versions=$(echo "$metadata" | jq -c .)" >> $GITHUB_OUTPUT
 
           echo "$metadata" | jq . > components_metadata.json
 
