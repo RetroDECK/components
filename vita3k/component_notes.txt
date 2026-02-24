@@ -3,3 +3,5 @@ This component appears to have a static path coded for its assets. The current w
 ln -s "/app/retrodeck/components/vita3k/share/Vita3K" "/app/share/Vita3K"
 
 If this path can be modified through the component_launcher.sh at some point, it should be handled that way.
+
+This components upstream sources do not keep releases indefinitely, and older versions will drop off quickly. It needs to be updated more often than others to avoid version resolution errors.
