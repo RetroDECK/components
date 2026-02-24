@@ -446,7 +446,7 @@ jobs:
               sudo apt install -y flatpak flatpak-builder p7zip-full xmlstarlet bzip2 curl jq unzip
               ;;
             pacman)
-              sudo pacman -Syu --noconfirm flatpak flatpak-builder p7zip xmlstarlet bzip2 curl jq unzip
+              sudo pacman -Sy --noconfirm flatpak flatpak-builder p7zip xmlstarlet bzip2 curl jq unzip
               ;;
             dnf)
               sudo dnf install -y flatpak flatpak-builder p7zip p7zip-plugins xmlstarlet bzip2 curl jq unzip
