@@ -25,7 +25,7 @@ on:
       - main
       - cooker
 
-  schedule:
+  # schedule:
     # Weekly epicure build - Monday at 14:00 UTC
     # - cron: '0 14 * * 1'
 
