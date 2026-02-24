@@ -598,17 +598,17 @@ jobs:
               ;;
           esac
 
-  #     - name: Download all component artifacts
-  #       uses: actions/download-artifact@v4
-  #       with:
-  #         path: downloaded-artifacts/
-  #         pattern: '*-artifacts'
+      - name: Download all component artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: downloaded-artifacts/
+          pattern: '*-artifacts'
 
-  #     - name: Download components metadata
-  #       uses: actions/download-artifact@v4
-  #       with:
-  #         name: components-metadata
-  #         path: downloaded-artifacts/
+      - name: Download components metadata
+        uses: actions/download-artifact@v4
+        with:
+          name: components-metadata
+          path: downloaded-artifacts/
 
       - name: Collect and verify artifacts
         id: collect
