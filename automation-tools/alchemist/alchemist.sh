@@ -66,7 +66,7 @@ transmute() {
     # Download stage for this object
     download_result=$(process_download -t "$source_type" -u "$source_url" -d "$source_dest" -v "$SOURCE_VERSION" -r "$RESOLVE_VERSION")
     if [[ "$RESOLVE_VERSION" == "true" ]]; then
-      echo "RESOLVED_VERSION=$(echo "$download_result" | grep "^DOWNLOADED_VERSION=" | cut -d= -f2)"
+      echo "$download_result" | grep "^DOWNLOADED_VERSION=" | cut -d= -f2
       break
     else
       export DOWNLOADED_FILE=$(echo "$download_result" | grep "^DOWNLOADED_FILE=" | cut -d= -f2)
