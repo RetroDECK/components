@@ -854,34 +854,75 @@ jobs:
   # ===========================================================================
   summary:
     name: Build Summary
-    needs: [check-trigger, configure, build-components, create-release, trigger-flatpak-build]
+    needs: [check-trigger, configure, setup-matrix, build-components, create-release, trigger-flatpak-build]
     if: always() && needs.check-trigger.outputs.should_build == 'true'
     runs-on: ubuntu-latest
     steps:
+      - name: Download components metadata
+        if: needs.build-components.result == 'success'
+        uses: actions/download-artifact@v4
+        with:
+          name: components-metadata
+          path: .
+
       - name: Generate summary
         run: |
           BRANCH="${{ needs.configure.outputs.branch }}"
           IS_DRY_RUN="${{ needs.configure.outputs.is_dry_run }}"
           TRIGGER_FLATPAK="${{ needs.configure.outputs.trigger_flatpak }}"
+          BUILD_MATRIX='${{ needs.setup-matrix.outputs.build-matrix }}'
 
           BUILD_RESULT="${{ needs.build-components.result }}"
           RELEASE_RESULT="${{ needs.create-release.result }}"
           FLATPAK_RESULT="${{ needs.trigger-flatpak-build.result }}"
 
+          # Determine release tag (actual or would-be for dry run)
+          RELEASE_TAG="${{ needs.create-release.outputs.release_tag }}"
+          if [[ -z "$RELEASE_TAG" ]]; then
+            # Dry run or release was skipped - generate what the tag would be
+            BRANCH_SAFE=$(echo "$BRANCH" | sed 's/\//-/g')
+            RELEASE_TAG="${BRANCH_SAFE}-$(date -u +"%Y%m%d-%H%M%S") (not created)"
+          fi
+
+          # Header
           echo "## Components Build Summary" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
 
           if [[ "$IS_DRY_RUN" == "true" ]]; then
-            echo "**Mode:** Dry run" >> $GITHUB_STEP_SUMMARY
+            echo "> **Dry run** - no release was created" >> $GITHUB_STEP_SUMMARY
             echo "" >> $GITHUB_STEP_SUMMARY
           fi
 
+          # Build parameters table
+          echo "### Parameters" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
           echo "| Parameter | Value |" >> $GITHUB_STEP_SUMMARY
           echo "|-----------|-------|" >> $GITHUB_STEP_SUMMARY
           echo "| Branch | \`${BRANCH}\` |" >> $GITHUB_STEP_SUMMARY
+          echo "| Release tag | \`${RELEASE_TAG}\` |" >> $GITHUB_STEP_SUMMARY
           echo "| Trigger flatpak | ${TRIGGER_FLATPAK} |" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
 
+          # Components table
+          if [[ -n "$BUILD_MATRIX" && "$BUILD_MATRIX" != "null" ]]; then
+            TOTAL=$(echo "$BUILD_MATRIX" | jq 'length')
+            REUSE_COUNT=$(echo "$BUILD_MATRIX" | jq '[.[] | select(.can_reuse == true)] | length')
+            BUILD_COUNT=$(echo "$BUILD_MATRIX" | jq '[.[] | select(.can_reuse == false)] | length')
+
+            echo "### Components ($TOTAL total: $BUILD_COUNT built, $REUSE_COUNT reused)" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "| Component | Version | Status |" >> $GITHUB_STEP_SUMMARY
+            echo "|-----------|---------|--------|" >> $GITHUB_STEP_SUMMARY
+
+            echo "$BUILD_MATRIX" | jq -r '
+              sort_by(.component) | .[] |
+              "| \(.component) | \(.version) | \(if .can_reuse then "Reused" else "Built" end) |"
+            ' >> $GITHUB_STEP_SUMMARY
+
+            echo "" >> $GITHUB_STEP_SUMMARY
+          fi
+
+          # Results table
           echo "### Results" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "| Stage | Result |" >> $GITHUB_STEP_SUMMARY
