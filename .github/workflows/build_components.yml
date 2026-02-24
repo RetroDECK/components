@@ -499,9 +499,7 @@ jobs:
 
           echo "Building $COMPONENT version $VERSION..."
 
-          automation-tools/build/build_component.sh \
-            -v automation-tools/build/desired_versions.sh \
-            -f "${{ matrix.recipe }}"
+          automation-tools/alchemist/alchemist.sh -v automation-tools/alchemist/desired_versions.sh -f "${{ matrix.recipe }}"
 
           echo "Build complete"
 
