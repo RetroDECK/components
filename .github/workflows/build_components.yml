@@ -137,7 +137,7 @@ jobs:
   # Determine build parameters and validate sources
   # ===========================================================================
   configure:
-    name: Configure Build
+    name: Configure Build and Validate Files
     needs: check-trigger
     if: needs.check-trigger.outputs.should_build == 'true'
     runs-on: ubuntu-latest
@@ -180,10 +180,13 @@ jobs:
           echo "Validating Bash scripts..."
 
           ERRORS=0
+          FILES=0
           while IFS= read -r script; do
             if ! bash -n "$script" 2>/dev/null; then
               echo "FAILED: $script"
               ERRORS=$((ERRORS + 1))
+            else
+              FILES=$((FILES + 1))
             fi
           done < <(find . -type f -name "*.sh")
 
@@ -192,17 +195,20 @@ jobs:
             exit 1
           fi
 
-          echo "All Bash scripts passed syntax validation"
+          echo "$FILES Bash scripts passed syntax validation"
 
       - name: Validate JSON files
         run: |
           echo "Validating JSON files..."
 
           ERRORS=0
+          FILES=0
           while IFS= read -r json; do
             if ! jq empty "$json" 2>/dev/null; then
               echo "FAILED: $json"
               ERRORS=$((ERRORS + 1))
+            else
+              FILES=$((FILES + 1))
             fi
           done < <(find . -type f -name "*.json")
 
@@ -211,7 +217,7 @@ jobs:
             exit 1
           fi
 
-          echo "All JSON files passed validation"
+          echo "$FILES JSON files passed validation"
 
   # ===========================================================================
   # Resolve component versions and detect reusable artifacts
