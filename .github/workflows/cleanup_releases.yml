@@ -177,6 +177,8 @@ jobs:
             echo "Filtered to branch '$TARGET_BRANCH': $FILTERED release(s)"
             mv filtered_releases.json all_releases.json
           fi
+        env:
+          GH_TOKEN: ${{ github.token }}
 
       - name: Identify releases to delete
         id: identify
