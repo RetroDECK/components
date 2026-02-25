@@ -89,272 +89,272 @@ jobs:
           echo "  Trigger:                 ${{ github.event_name }}"
           echo "=========================================="
 
-      # - name: Handle branch deletion
-      #   id: branch-delete
-      #   if: github.event_name == 'delete' && github.event.ref_type == 'branch'
-      #   run: |
-      #     DELETED_BRANCH="${{ github.event.ref }}"
-      #     ALWAYS_PROTECTED="${{ steps.config.outputs.always_protected }}"
-      #     DELETION_PRESERVED="${{ steps.config.outputs.deletion_preserved }}"
+      - name: Handle branch deletion
+        id: branch-delete
+        if: github.event_name == 'delete' && github.event.ref_type == 'branch'
+        run: |
+          DELETED_BRANCH="${{ github.event.ref }}"
+          ALWAYS_PROTECTED="${{ steps.config.outputs.always_protected }}"
+          DELETION_PRESERVED="${{ steps.config.outputs.deletion_preserved }}"
 
-      #     echo "Branch deleted: $DELETED_BRANCH"
+          echo "Branch deleted: $DELETED_BRANCH"
 
-      #     # Never cleanup always-protected or deletion-preserved branches
-      #     for preserved in $ALWAYS_PROTECTED $DELETION_PRESERVED; do
-      #       if [[ "$DELETED_BRANCH" == "$preserved" ]]; then
-      #         echo "Branch $DELETED_BRANCH is protected, skipping cleanup"
-      #         echo "skip=true" >> $GITHUB_OUTPUT
-      #         exit 0
-      #       fi
-      #     done
+          # Never cleanup always-protected or deletion-preserved branches
+          for preserved in $ALWAYS_PROTECTED $DELETION_PRESERVED; do
+            if [[ "$DELETED_BRANCH" == "$preserved" ]]; then
+              echo "Branch $DELETED_BRANCH is protected, skipping cleanup"
+              echo "skip=true" >> $GITHUB_OUTPUT
+              exit 0
+            fi
+          done
 
-      #     # Sanitize branch name
-      #     BRANCH_SAFE=$(echo "$DELETED_BRANCH" | sed 's/\//-/g')
+          # Sanitize branch name
+          BRANCH_SAFE=$(echo "$DELETED_BRANCH" | sed 's/\//-/g')
 
-      #     echo "Looking for releases matching: ${BRANCH_SAFE}-*"
+          echo "Looking for releases matching: ${BRANCH_SAFE}-*"
 
-      #     # Find all releases for this branch
-      #     MATCHING_RELEASES=$(gh release list --limit 1000 --json tagName | \
-      #       jq -r --arg prefix "${BRANCH_SAFE}-" \
-      #       '.[] | select(.tagName | startswith($prefix)) | .tagName')
+          # Find all releases for this branch
+          MATCHING_RELEASES=$(gh release list --limit 1000 --json tagName | \
+            jq -r --arg prefix "${BRANCH_SAFE}-" \
+            '.[] | select(.tagName | startswith($prefix)) | .tagName')
 
-      #     RELEASE_COUNT=$(echo "$MATCHING_RELEASES" | grep -c . || true)
+          RELEASE_COUNT=$(echo "$MATCHING_RELEASES" | grep -c . || true)
 
-      #     if [ "$RELEASE_COUNT" -eq 0 ]; then
-      #       echo "No releases found for deleted branch: $DELETED_BRANCH"
-      #       echo "skip=true" >> $GITHUB_OUTPUT
-      #       exit 0
-      #     fi
+          if [ "$RELEASE_COUNT" -eq 0 ]; then
+            echo "No releases found for deleted branch: $DELETED_BRANCH"
+            echo "skip=true" >> $GITHUB_OUTPUT
+            exit 0
+          fi
 
-      #     echo "Found $RELEASE_COUNT release(s) to delete for branch: $DELETED_BRANCH"
-      #     echo "$MATCHING_RELEASES" | while read release; do
-      #       echo "  - $release"
-      #     done
+          echo "Found $RELEASE_COUNT release(s) to delete for branch: $DELETED_BRANCH"
+          echo "$MATCHING_RELEASES" | while read release; do
+            echo "  - $release"
+          done
 
-      #     # Delete all releases for this branch
-      #     echo ""
-      #     echo "Deleting all releases for branch: $DELETED_BRANCH"
-      #     echo "$MATCHING_RELEASES" | while read release; do
-      #       if [[ -n "$release" ]]; then
-      #         echo "Deleting: $release"
-      #         gh release delete "$release" --yes --cleanup-tag || {
-      #           echo "Error: Failed to delete $release"
-      #         }
-      #       fi
-      #     done
+          # Delete all releases for this branch
+          echo ""
+          echo "Deleting all releases for branch: $DELETED_BRANCH"
+          echo "$MATCHING_RELEASES" | while read release; do
+            if [[ -n "$release" ]]; then
+              echo "Deleting: $release"
+              gh release delete "$release" --yes --cleanup-tag || {
+                echo "Error: Failed to delete $release"
+              }
+            fi
+          done
 
-      #     echo ""
-      #     echo "Deleted $RELEASE_COUNT release(s) for deleted branch: $DELETED_BRANCH"
-      #     echo "skip=false" >> $GITHUB_OUTPUT
-      #   env:
-      #     GH_TOKEN: ${{ github.token }}
+          echo ""
+          echo "Deleted $RELEASE_COUNT release(s) for deleted branch: $DELETED_BRANCH"
+          echo "skip=false" >> $GITHUB_OUTPUT
+        env:
+          GH_TOKEN: ${{ github.token }}
 
-      # - name: Get all workflow releases
-      #   id: get-releases
-      #   if: |
-      #     github.event_name != 'delete' ||
-      #     steps.branch-delete.outputs.skip == 'true'
-      #   run: |
-      #     TARGET_BRANCH="${{ inputs.branch }}"
+      - name: Get all workflow releases
+        id: get-releases
+        if: |
+          github.event_name != 'delete' ||
+          steps.branch-delete.outputs.skip == 'true'
+        run: |
+          TARGET_BRANCH="${{ inputs.branch }}"
 
-      #     echo "Fetching releases..."
+          echo "Fetching releases..."
 
-      #     # Get all releases, filtering to only those matching our tag format
-      #     gh release list --limit 1000 --json tagName,createdAt,isDraft,isPrerelease | \
-      #       jq '[.[] | select(.tagName | test("[0-9]{8}-[0-9]{6}$"))]' \
-      #       > all_releases.json
+          # Get all releases, filtering to only those matching our tag format
+          gh release list --limit 1000 --json tagName,createdAt,isDraft,isPrerelease | \
+            jq '[.[] | select(.tagName | test("[0-9]{8}-[0-9]{6}$"))]' \
+            > all_releases.json
 
-      #     TOTAL=$(jq 'length' all_releases.json)
-      #     echo "Found $TOTAL release(s)"
+          TOTAL=$(jq 'length' all_releases.json)
+          echo "Found $TOTAL release(s)"
 
-      #     # Filter to target branch if specified
-      #     if [[ -n "$TARGET_BRANCH" ]]; then
-      #       BRANCH_SAFE=$(echo "$TARGET_BRANCH" | sed 's/\//-/g')
-      #       jq --arg prefix "${BRANCH_SAFE}-" \
-      #         '[.[] | select(.tagName | startswith($prefix))]' \
-      #         all_releases.json > filtered_releases.json
-      #       FILTERED=$(jq 'length' filtered_releases.json)
-      #       echo "Filtered to branch '$TARGET_BRANCH': $FILTERED release(s)"
-      #       mv filtered_releases.json all_releases.json
-      #     fi
+          # Filter to target branch if specified
+          if [[ -n "$TARGET_BRANCH" ]]; then
+            BRANCH_SAFE=$(echo "$TARGET_BRANCH" | sed 's/\//-/g')
+            jq --arg prefix "${BRANCH_SAFE}-" \
+              '[.[] | select(.tagName | startswith($prefix))]' \
+              all_releases.json > filtered_releases.json
+            FILTERED=$(jq 'length' filtered_releases.json)
+            echo "Filtered to branch '$TARGET_BRANCH': $FILTERED release(s)"
+            mv filtered_releases.json all_releases.json
+          fi
 
-      # - name: Identify releases to delete
-      #   id: identify
-      #   if: |
-      #     github.event_name != 'delete' ||
-      #     steps.branch-delete.outputs.skip == 'true'
-      #   run: |
-      #     KEEP_COUNT="${{ steps.config.outputs.keep_count }}"
-      #     ALWAYS_PROTECTED="${{ steps.config.outputs.always_protected }}"
+      - name: Identify releases to delete
+        id: identify
+        if: |
+          github.event_name != 'delete' ||
+          steps.branch-delete.outputs.skip == 'true'
+        run: |
+          KEEP_COUNT="${{ steps.config.outputs.keep_count }}"
+          ALWAYS_PROTECTED="${{ steps.config.outputs.always_protected }}"
 
-      #     # Build preserved list: always start with ALWAYS_PROTECTED,
-      #     # then add trigger-specific extras
-      #     PRESERVED_BRANCHES="$ALWAYS_PROTECTED"
+          # Build preserved list: always start with ALWAYS_PROTECTED,
+          # then add trigger-specific extras
+          PRESERVED_BRANCHES="$ALWAYS_PROTECTED"
 
-      #     if [[ "${{ github.event_name }}" == "workflow_run" ]]; then
-      #       AUTO_EXTRA="${{ steps.config.outputs.auto_preserved }}"
-      #       if [[ -n "$AUTO_EXTRA" ]]; then
-      #         PRESERVED_BRANCHES="$PRESERVED_BRANCHES $AUTO_EXTRA"
-      #       fi
-      #       echo "Automatic trigger - preserving branches: $PRESERVED_BRANCHES"
-      #     else
-      #       echo "Manual trigger - preserving branches: $PRESERVED_BRANCHES"
-      #     fi
+          if [[ "${{ github.event_name }}" == "workflow_run" ]]; then
+            AUTO_EXTRA="${{ steps.config.outputs.auto_preserved }}"
+            if [[ -n "$AUTO_EXTRA" ]]; then
+              PRESERVED_BRANCHES="$PRESERVED_BRANCHES $AUTO_EXTRA"
+            fi
+            echo "Automatic trigger - preserving branches: $PRESERVED_BRANCHES"
+          else
+            echo "Manual trigger - preserving branches: $PRESERVED_BRANCHES"
+          fi
 
-      #     echo "Analyzing releases..."
-      #     echo ""
+          echo "Analyzing releases..."
+          echo ""
 
-      #     # Get unique branch prefixes from release tags
-      #     BRANCH_PREFIXES=$(jq -r '.[].tagName' all_releases.json | \
-      #       sed 's/-[0-9]\{8\}-[0-9]\{6\}$//' | \
-      #       sort -u)
+          # Get unique branch prefixes from release tags
+          BRANCH_PREFIXES=$(jq -r '.[].tagName' all_releases.json | \
+            sed 's/-[0-9]\{8\}-[0-9]\{6\}$//' | \
+            sort -u)
 
-      #     TO_DELETE=""
+          TO_DELETE=""
 
-      #     for branch_prefix in $BRANCH_PREFIXES; do
-      #       # Check if this is a preserved branch
-      #       IS_PRESERVED="false"
-      #       for preserved in $PRESERVED_BRANCHES; do
-      #         PRESERVED_SAFE=$(echo "$preserved" | sed 's/\//-/g')
-      #         if [[ "$branch_prefix" == "$PRESERVED_SAFE" ]]; then
-      #           IS_PRESERVED="true"
-      #           break
-      #         fi
-      #       done
+          for branch_prefix in $BRANCH_PREFIXES; do
+            # Check if this is a preserved branch
+            IS_PRESERVED="false"
+            for preserved in $PRESERVED_BRANCHES; do
+              PRESERVED_SAFE=$(echo "$preserved" | sed 's/\//-/g')
+              if [[ "$branch_prefix" == "$PRESERVED_SAFE" ]]; then
+                IS_PRESERVED="true"
+                break
+              fi
+            done
 
-      #       if [[ "$IS_PRESERVED" == "true" ]]; then
-      #         BRANCH_RELEASE_COUNT=$(jq --arg prefix "${branch_prefix}-" \
-      #           '[.[] | select(.tagName | startswith($prefix))] | length' \
-      #           all_releases.json)
-      #         echo "Branch: $branch_prefix (PRESERVED - skipping, $BRANCH_RELEASE_COUNT release(s))"
-      #         continue
-      #       fi
+            if [[ "$IS_PRESERVED" == "true" ]]; then
+              BRANCH_RELEASE_COUNT=$(jq --arg prefix "${branch_prefix}-" \
+                '[.[] | select(.tagName | startswith($prefix))] | length' \
+                all_releases.json)
+              echo "Branch: $branch_prefix (PRESERVED - skipping, $BRANCH_RELEASE_COUNT release(s))"
+              continue
+            fi
 
-      #       # Get releases for this branch sorted newest first
-      #       BRANCH_RELEASES=$(jq -r --arg prefix "${branch_prefix}-" \
-      #         '[.[] | select(.tagName | startswith($prefix))] |
-      #         sort_by(.createdAt) | reverse | .[].tagName' \
-      #         all_releases.json)
+            # Get releases for this branch sorted newest first
+            BRANCH_RELEASES=$(jq -r --arg prefix "${branch_prefix}-" \
+              '[.[] | select(.tagName | startswith($prefix))] |
+              sort_by(.createdAt) | reverse | .[].tagName' \
+              all_releases.json)
 
-      #       TOTAL=$(echo "$BRANCH_RELEASES" | grep -c . || true)
+            TOTAL=$(echo "$BRANCH_RELEASES" | grep -c . || true)
 
-      #       echo "Branch: $branch_prefix ($TOTAL release(s))"
+            echo "Branch: $branch_prefix ($TOTAL release(s))"
 
-      #       # If keep count is 0, delete everything
-      #       if [ "$KEEP_COUNT" -eq 0 ]; then
-      #         echo "  Keep count is 0, marking all releases for deletion"
-      #         TO_DELETE="${TO_DELETE}${BRANCH_RELEASES}"$'\n'
-      #         continue
-      #       fi
+            # If keep count is 0, delete everything
+            if [ "$KEEP_COUNT" -eq 0 ]; then
+              echo "  Keep count is 0, marking all releases for deletion"
+              TO_DELETE="${TO_DELETE}${BRANCH_RELEASES}"$'\n'
+              continue
+            fi
 
-      #       if [ "$TOTAL" -le "$KEEP_COUNT" ]; then
-      #         echo "  Within limit ($TOTAL/$KEEP_COUNT), no cleanup needed"
-      #         continue
-      #       fi
+            if [ "$TOTAL" -le "$KEEP_COUNT" ]; then
+              echo "  Within limit ($TOTAL/$KEEP_COUNT), no cleanup needed"
+              continue
+            fi
 
-      #       DELETE_COUNT=$((TOTAL - KEEP_COUNT))
-      #       echo "  Exceeds limit by $DELETE_COUNT, will delete oldest $DELETE_COUNT"
+            DELETE_COUNT=$((TOTAL - KEEP_COUNT))
+            echo "  Exceeds limit by $DELETE_COUNT, will delete oldest $DELETE_COUNT"
 
-      #       # Get releases to delete (everything after the first KEEP_COUNT)
-      #       RELEASES_TO_DELETE=$(echo "$BRANCH_RELEASES" | \
-      #         tail -n +$((KEEP_COUNT + 1)))
+            # Get releases to delete (everything after the first KEEP_COUNT)
+            RELEASES_TO_DELETE=$(echo "$BRANCH_RELEASES" | \
+              tail -n +$((KEEP_COUNT + 1)))
 
-      #       echo "$RELEASES_TO_DELETE" | while read release; do
-      #         echo "    - $release"
-      #       done
+            echo "$RELEASES_TO_DELETE" | while read release; do
+              echo "    - $release"
+            done
 
-      #       TO_DELETE="${TO_DELETE}${RELEASES_TO_DELETE}"$'\n'
-      #     done
+            TO_DELETE="${TO_DELETE}${RELEASES_TO_DELETE}"$'\n'
+          done
 
-      #     # Save to file, removing empty lines
-      #     echo "$TO_DELETE" | grep -v '^$' > releases_to_delete.txt || \
-      #       touch releases_to_delete.txt
+          # Save to file, removing empty lines
+          echo "$TO_DELETE" | grep -v '^$' > releases_to_delete.txt || \
+            touch releases_to_delete.txt
 
-      #     DELETE_TOTAL=$(grep -c . releases_to_delete.txt || true)
-      #     echo ""
-      #     echo "=========================================="
-      #     echo "Total releases marked for deletion: $DELETE_TOTAL"
-      #     echo "=========================================="
+          DELETE_TOTAL=$(grep -c . releases_to_delete.txt || true)
+          echo ""
+          echo "=========================================="
+          echo "Total releases marked for deletion: $DELETE_TOTAL"
+          echo "=========================================="
 
-      #     echo "delete_count=$DELETE_TOTAL" >> $GITHUB_OUTPUT
+          echo "delete_count=$DELETE_TOTAL" >> $GITHUB_OUTPUT
 
-      # - name: Delete old releases
-      #   if: |
-      #     (github.event_name != 'delete' || steps.branch-delete.outputs.skip == 'true') &&
-      #     steps.identify.outputs.delete_count > 0
-      #   run: |
-      #     DRY_RUN="${{ steps.config.outputs.dry_run }}"
-      #     DELETE_COUNT="${{ steps.identify.outputs.delete_count }}"
+      - name: Delete old releases
+        if: |
+          (github.event_name != 'delete' || steps.branch-delete.outputs.skip == 'true') &&
+          steps.identify.outputs.delete_count > 0
+        run: |
+          DRY_RUN="${{ steps.config.outputs.dry_run }}"
+          DELETE_COUNT="${{ steps.identify.outputs.delete_count }}"
 
-      #     if [[ "$DRY_RUN" == "true" ]]; then
-      #       echo "DRY RUN MODE - No releases will be deleted"
-      #       echo ""
-      #       echo "The following $DELETE_COUNT release(s) would be deleted:"
-      #       cat releases_to_delete.txt | while read release; do
-      #         echo "  - $release"
-      #       done
-      #       echo ""
-      #       echo "To perform actual cleanup, run this workflow again with dry_run=false"
-      #     else
-      #       echo "Deleting $DELETE_COUNT old release(s)..."
-      #       echo ""
+          if [[ "$DRY_RUN" == "true" ]]; then
+            echo "DRY RUN MODE - No releases will be deleted"
+            echo ""
+            echo "The following $DELETE_COUNT release(s) would be deleted:"
+            cat releases_to_delete.txt | while read release; do
+              echo "  - $release"
+            done
+            echo ""
+            echo "To perform actual cleanup, run this workflow again with dry_run=false"
+          else
+            echo "Deleting $DELETE_COUNT old release(s)..."
+            echo ""
 
-      #       SUCCESS=0
-      #       FAILED=0
+            SUCCESS=0
+            FAILED=0
 
-      #       while read release; do
-      #         if [[ -n "$release" ]]; then
-      #           echo "Deleting: $release"
-      #           if gh release delete "$release" --yes --cleanup-tag; then
-      #             SUCCESS=$((SUCCESS + 1))
-      #           else
-      #             echo "Failed to delete: $release"
-      #             FAILED=$((FAILED + 1))
-      #           fi
-      #         fi
-      #       done < releases_to_delete.txt
+            while read release; do
+              if [[ -n "$release" ]]; then
+                echo "Deleting: $release"
+                if gh release delete "$release" --yes --cleanup-tag; then
+                  SUCCESS=$((SUCCESS + 1))
+                else
+                  echo "Failed to delete: $release"
+                  FAILED=$((FAILED + 1))
+                fi
+              fi
+            done < releases_to_delete.txt
 
-      #       echo ""
-      #       echo "=========================================="
-      #       echo "Deleted: $SUCCESS release(s)"
-      #       if [ "$FAILED" -gt 0 ]; then
-      #         echo "Failed:  $FAILED release(s)"
-      #       fi
-      #       echo "=========================================="
-      #     fi
-      #   env:
-      #     GH_TOKEN: ${{ github.token }}
+            echo ""
+            echo "=========================================="
+            echo "Deleted: $SUCCESS release(s)"
+            if [ "$FAILED" -gt 0 ]; then
+              echo "Failed:  $FAILED release(s)"
+            fi
+            echo "=========================================="
+          fi
+        env:
+          GH_TOKEN: ${{ github.token }}
 
-      # - name: Summary
-      #   if: always()
-      #   run: |
-      #     echo "## Cleanup Summary" >> $GITHUB_STEP_SUMMARY
-      #     echo "" >> $GITHUB_STEP_SUMMARY
-      #     echo "**Trigger:** ${{ github.event_name }}" >> $GITHUB_STEP_SUMMARY
-      #     echo "" >> $GITHUB_STEP_SUMMARY
+      - name: Summary
+        if: always()
+        run: |
+          echo "## Cleanup Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Trigger:** ${{ github.event_name }}" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
 
-      #     if [[ "${{ github.event_name }}" == "delete" ]]; then
-      #       if [[ "${{ steps.branch-delete.outputs.skip }}" == "true" ]]; then
-      #         echo "Branch deletion detected but no cleanup was needed" >> $GITHUB_STEP_SUMMARY
-      #       else
-      #         echo "Branch \`${{ github.event.ref }}\` was deleted - all associated releases removed" >> $GITHUB_STEP_SUMMARY
-      #       fi
-      #     else
-      #       DRY_RUN="${{ steps.config.outputs.dry_run }}"
-      #       DELETE_COUNT="${{ steps.identify.outputs.delete_count }}"
+          if [[ "${{ github.event_name }}" == "delete" ]]; then
+            if [[ "${{ steps.branch-delete.outputs.skip }}" == "true" ]]; then
+              echo "Branch deletion detected but no cleanup was needed" >> $GITHUB_STEP_SUMMARY
+            else
+              echo "Branch \`${{ github.event.ref }}\` was deleted - all associated releases removed" >> $GITHUB_STEP_SUMMARY
+            fi
+          else
+            DRY_RUN="${{ steps.config.outputs.dry_run }}"
+            DELETE_COUNT="${{ steps.identify.outputs.delete_count }}"
 
-      #       if [ "$DELETE_COUNT" -eq 0 ]; then
-      #         echo "No releases need cleanup - all branches within limits" >> $GITHUB_STEP_SUMMARY
-      #       else
-      #         echo "Releases marked for deletion: $DELETE_COUNT" >> $GITHUB_STEP_SUMMARY
-      #         echo "" >> $GITHUB_STEP_SUMMARY
+            if [ "$DELETE_COUNT" -eq 0 ]; then
+              echo "No releases need cleanup - all branches within limits" >> $GITHUB_STEP_SUMMARY
+            else
+              echo "Releases marked for deletion: $DELETE_COUNT" >> $GITHUB_STEP_SUMMARY
+              echo "" >> $GITHUB_STEP_SUMMARY
 
-      #         if [[ "$DRY_RUN" = "true" ]]; then
-      #           echo "**Dry run mode** - No releases were actually deleted" >> $GITHUB_STEP_SUMMARY
-      #           echo "" >> $GITHUB_STEP_SUMMARY
-      #           echo "Run again with \`dry_run=false\` to perform actual cleanup" >> $GITHUB_STEP_SUMMARY
-      #         else
-      #           echo "Cleanup completed" >> $GITHUB_STEP_SUMMARY
-      #         fi
-      #       fi
-      #     fi
+              if [[ "$DRY_RUN" = "true" ]]; then
+                echo "**Dry run mode** - No releases were actually deleted" >> $GITHUB_STEP_SUMMARY
+                echo "" >> $GITHUB_STEP_SUMMARY
+                echo "Run again with \`dry_run=false\` to perform actual cleanup" >> $GITHUB_STEP_SUMMARY
+              else
+                echo "Cleanup completed" >> $GITHUB_STEP_SUMMARY
+              fi
+            fi
+          fi
