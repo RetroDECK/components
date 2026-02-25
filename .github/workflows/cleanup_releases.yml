@@ -2,13 +2,13 @@ name: Cleanup Releases
 
 on:
   # Automatic trigger after build workflow completes
-  workflow_run:
-    workflows: ["Alchemic Circle: Build RetroDECK Components"]
-    types:
-      - completed
+  # workflow_run:
+  #   workflows: ["Alchemic Circle: Build RetroDECK Components"]
+  #   types:
+  #     - completed
 
   # Trigger on branch deletion
-  delete:
+  # delete:
 
   # Manual trigger with options
   workflow_dispatch:
