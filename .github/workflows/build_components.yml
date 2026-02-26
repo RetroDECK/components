@@ -223,7 +223,7 @@ jobs:
   # Auto-pin versions on main branch
   # ===========================================================================
   auto-pin-versions:
-    name: Auto-Pin Versions (main only)
+    name: Auto-Pin Versions and Sync Epicure (main only)
     needs: configure
     if: needs.configure.outputs.branch == 'main'
     runs-on: ubuntu-latest
@@ -232,7 +232,12 @@ jobs:
         uses: actions/checkout@v4
         with:
           ref: main
-          fetch-depth: 1
+          fetch-depth: 0
+
+      - name: Configure git identity
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
 
       - name: Fetch proposed pins from latest cooker release
         id: fetch-pins
@@ -263,7 +268,7 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
 
-      - name: Commit version pins
+      - name: Commit version pins to main
         if: steps.fetch-pins.outputs.found == 'true'
         run: |
           # Compare with existing pins file if present
@@ -275,13 +280,29 @@ jobs:
           echo "Updating version_pins.sh..."
           cp proposed_version_pins.sh version_pins.sh
 
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
           git add version_pins.sh
           git commit -m "Auto-pin component versions from latest cooker build"
           git push
 
           echo "version_pins.sh committed to main"
+
+      - name: Sync epicure branch from main
+        run: |
+          echo "Syncing epicure branch from main..."
+
+          # Reset epicure to match current main (including any pins commit above)
+          git checkout -B epicure origin/main
+
+          # Remove version pins so all components resolve dynamically
+          if [[ -f version_pins.sh ]]; then
+            git rm version_pins.sh
+            git commit -m "Remove version pins for epicure (dynamic resolution)"
+          else
+            echo "No version_pins.sh present, epicure is already unpinned"
+          fi
+
+          git push --force origin epicure
+          echo "Epicure branch synced from main (unpinned)"
 
   # ===========================================================================
   # Resolve component versions and detect reusable artifacts
