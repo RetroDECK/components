@@ -220,11 +220,76 @@ jobs:
           echo "$FILES JSON files passed validation"
 
   # ===========================================================================
+  # Auto-pin versions on main branch
+  # ===========================================================================
+  auto-pin-versions:
+    name: Auto-Pin Versions (main only)
+    needs: configure
+    if: needs.configure.outputs.branch == 'main'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 1
+
+      - name: Fetch proposed pins from latest cooker release
+        id: fetch-pins
+        run: |
+          echo "Looking for latest cooker release with proposed version pins..."
+
+          LATEST_COOKER=$(gh release list --limit 50 --json tagName,createdAt \
+            -q '[.[] | select(.tagName | startswith("cooker-"))] | sort_by(.createdAt) | reverse | .[0].tagName')
+
+          if [[ -z "$LATEST_COOKER" || "$LATEST_COOKER" == "null" ]]; then
+            echo "No cooker release found"
+            echo "found=false" >> $GITHUB_OUTPUT
+            exit 0
+          fi
+
+          echo "Latest cooker release: $LATEST_COOKER"
+
+          if gh release download "$LATEST_COOKER" -p "proposed_version_pins.sh" -O proposed_version_pins.sh 2>/dev/null; then
+            echo "Proposed version pins downloaded from $LATEST_COOKER"
+            echo "found=true" >> $GITHUB_OUTPUT
+            echo ""
+            echo "Proposed pins content:"
+            cat proposed_version_pins.sh
+          else
+            echo "No proposed_version_pins.sh found in release $LATEST_COOKER"
+            echo "found=false" >> $GITHUB_OUTPUT
+          fi
+        env:
+          GH_TOKEN: ${{ github.token }}
+
+      - name: Commit version pins
+        if: steps.fetch-pins.outputs.found == 'true'
+        run: |
+          # Compare with existing pins file if present
+          if [[ -f version_pins.sh ]] && diff -q version_pins.sh proposed_version_pins.sh &>/dev/null; then
+            echo "version_pins.sh is already up to date, no commit needed"
+            exit 0
+          fi
+
+          echo "Updating version_pins.sh..."
+          cp proposed_version_pins.sh version_pins.sh
+
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add version_pins.sh
+          git commit -m "Auto-pin component versions from latest cooker build"
+          git push
+
+          echo "version_pins.sh committed to main"
+
+  # ===========================================================================
   # Resolve component versions and detect reusable artifacts
   # ===========================================================================
   resolve-versions:
     name: Resolve Component Versions
-    needs: configure
+    needs: [configure, auto-pin-versions]
+    if: always() && needs.configure.result == 'success' && (needs.auto-pin-versions.result == 'success' || needs.auto-pin-versions.result == 'skipped')
     runs-on: ubuntu-latest
     outputs:
       versions-json: ${{ steps.resolve.outputs.versions }}
@@ -330,6 +395,23 @@ jobs:
           name: components-metadata
           path: components_metadata.json
           retention-days: 1
+
+      - name: Generate proposed version pins
+        run: |
+          echo "Generating proposed version pins from resolved metadata..."
+
+          automation-tools/alchemist/generate_version_pins.sh -m components_metadata.json -o proposed_version_pins.sh
+
+          echo ""
+          echo "Proposed version pins:"
+          cat proposed_version_pins.sh
+
+      - name: Upload proposed version pins
+        uses: actions/upload-artifact@v4
+        with:
+          name: proposed-version-pins
+          path: proposed_version_pins.sh
+          retention-days: 90
 
   # ===========================================================================
   # Build the component matrix with reuse detection
@@ -505,7 +587,7 @@ jobs:
 
           echo "Building $COMPONENT version $VERSION..."
 
-          automation-tools/alchemist/alchemist.sh -v automation-tools/alchemist/desired_versions.sh -f "${{ matrix.recipe }}"
+          automation-tools/alchemist/alchemist.sh -f "${{ matrix.recipe }}"
 
           echo "Build complete"
 
@@ -610,6 +692,12 @@ jobs:
           name: components-metadata
           path: downloaded-artifacts/
 
+      - name: Download proposed version pins
+        uses: actions/download-artifact@v4
+        with:
+          name: proposed-version-pins
+          path: downloaded-artifacts/
+
       - name: Collect and verify artifacts
         id: collect
         run: |
@@ -619,6 +707,14 @@ jobs:
             while read -r file; do
               cp "$file" release-assets/
             done
+
+          # Include proposed version pins as a release asset
+          if [[ -f downloaded-artifacts/proposed_version_pins.sh ]]; then
+            cp downloaded-artifacts/proposed_version_pins.sh release-assets/
+            echo "Proposed version pins included in release assets"
+          else
+            echo "WARNING: proposed_version_pins.sh not found in artifacts"
+          fi
 
           # Verify matching pairs
           MISSING=0
