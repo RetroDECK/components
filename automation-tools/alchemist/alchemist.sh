@@ -9,6 +9,7 @@
 # USAGE: 
 # alchemist.sh -f component_recipe.json [-o <dir>] [-v <version file>]
 
+set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 export REPO_ROOT="$(git rev-parse --show-toplevel 2>/dev/null || pwd)"
@@ -19,6 +20,7 @@ source "$SCRIPT_DIR/lib/download.sh"
 source "$SCRIPT_DIR/lib/extract.sh"
 source "$SCRIPT_DIR/lib/assemble.sh"
 source "$SCRIPT_DIR/lib/libs.sh"
+source "$SCRIPT_DIR/lib/load_versions.sh"
 
 log() {
   echo "[$1] $2" >&2
@@ -28,16 +30,10 @@ transmute() {
   component_recipe_file=$(realpath "$1")
   WORKDIR="${2:-$DEFAULT_WORKDIR}"
   export WORKDIR="$(realpath "$WORKDIR")"
-  desired_versions="${3:-$DESIRED_VERSIONS}"
+
+  load_desired_versions
 
   export EXTRACTED_PATH=""
-
-  if [[ ! -e "$desired_versions" ]]; then
-    log error "Desired version file could not be found at $desired_versions, cannot continue."
-    exit 1
-  fi
-
-  source "$desired_versions"
 
   # component_recipe.json file information extraction
   component_recipe_contents=$(jq -r '.' "$component_recipe_file")
@@ -169,7 +165,6 @@ transmute() {
 parse_args() {
   local recipe=""
   local alt_workdir=""
-  local alt_versions=""
   DRYRUN=""
   RESOLVE_VERSION=""
 
@@ -181,10 +176,6 @@ parse_args() {
         ;;
       -o|--output)
         alt_workdir="$2"
-        shift 2
-        ;;
-      -v|--versions)
-        alt_versions="$2"
         shift 2
         ;;
       --dry-run)
@@ -209,7 +200,7 @@ parse_args() {
     exit 1
   fi
 
-  transmute "$recipe" "$alt_workdir" "$alt_versions"
+  transmute "$recipe" "$alt_workdir"
 }
 
 parse_args "$@"
