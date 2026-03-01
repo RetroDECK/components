@@ -8,4 +8,16 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
   log i "----------------------"
   log i "Preparing $component_name"
   log i "----------------------"
+
+  dir_prep "$saves_path/ecwolf" "$ecwolf_saves_path"
+
+fi
+
+if [[ "$action" == "postmove" ]]; then # Run commands that apply to both resets and moves
+  log i "----------------------"
+  log i "Post-moving $component_name"
+  log i "----------------------"
+
+  dir_prep "$saves_path/ecwolf" "$ecwolf_saves_path"
+  
 fi

@@ -12,8 +12,13 @@
           "dest": "share"
         },
         {
-          "type": "dir",
-          "source": "bin",
+          "type": "file",
+          "source": "bin/ecwolf",
+          "dest": "bin"
+        },
+        {
+          "type": "file",
+          "source": "bin/ecwolf.pk3",
           "dest": "bin"
         },
         {
@@ -25,6 +30,11 @@
           "type": "dir",
           "source": "shared/bin",
           "dest": "bin"
+        },
+        {
+          "type": "dir",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/rd_assets/rd_config",
+          "dest": "rd_config"
         },
         {
           "type": "dir",
@@ -75,6 +85,21 @@
         },
         {
           "library": "libjpeg.so.8",
+          "source": "lib",
+          "dest": "bin"
+        },
+        {
+          "library": "libSDL2_mixer-2.0.so.0",
+          "source": "lib",
+          "dest": "bin"
+        },
+        {
+          "library": "libSDL2_net-2.0.so.0",
+          "source": "lib",
+          "dest": "bin"
+        },
+        {
+          "library": "libm.so.6",
           "source": "lib",
           "dest": "bin"
         }
