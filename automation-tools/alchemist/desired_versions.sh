@@ -108,8 +108,8 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # Link: https://flathub.org/en/apps/org.mamedev.MAME
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
-# Version: 0.285
- export MAME_DESIRED_VERSION="20c1607af2bfa20fd285a1728fd009bddd3f1e5344c1287918e2429fdff78a3e"
+# Version: 0.286
+ export MAME_DESIRED_VERSION="a5f7ddbc14ffd38bd9bc09f60c73204cf9e64dd361666f0e59b3247eb2c23395"
 
 # COOKER (Override)
 #  export MAME_DESIRED_VERSION="latest"
@@ -160,8 +160,8 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # Link: https://flathub.org/en/apps/rs.ruffle.Ruffle
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
-# Version: 0.2.0-nightly.2026.1.29
- export RUFFLE_DESIRED_VERSION="cfc2b1578ca6df16b4d457d1f6c2e3302134ddf220062114d7b5391e80673b8d"
+# Version: 0.2.0-nightly.2026.2.27
+ export RUFFLE_DESIRED_VERSION="1d2b3961d87b0acfaab68cff6fa4a87525e06b45ced11cf7e45d1257c0fa3b9c"
 
 # COOKER (Override)
 # export RUFFLE_DESIRED_VERSION="latest"
@@ -186,8 +186,8 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # Link: https://flathub.org/en/apps/app.xemu.xemu
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
-# Version: 0.8.133
- export XEMU_DESIRED_VERSION="9225f2a63f07b3eb392de453f70636f80473098557f3f888a5e5f6b58ee9ad20"
+# Version: 0.8.134
+ export XEMU_DESIRED_VERSION="0739a75dec8215f73d58e19e492a6f9f6a796d1f73842d40da56e7f51a81cbad"
 
 # COOKER (Override)
 # export XEMU_DESIRED_VERSION="latest"
@@ -344,7 +344,7 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # Link: https://github.com/RetroDECK/Vita3K-bin/releases
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
-  export VITA3K_DESIRED_VERSION="3924"
+  export VITA3K_DESIRED_VERSION="3930"
 
 # COOKER (Override)
 # export VITA3K_DESIRED_VERSION="latest"
