@@ -161,7 +161,7 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
 # Version: 0.2.0-nightly.2026.2.27
- export RUFFLE_DESIRED_VERSION="1d2b3961d87b0acfaab68cff6fa4a87525e06b45ced11cf7e45d1257c0fa3b9c"
+ export RUFFLE_DESIRED_VERSION="cfc2b1578ca6df16b4d457d1f6c2e3302134ddf220062114d7b5391e80673b8d"
 
 # COOKER (Override)
 # export RUFFLE_DESIRED_VERSION="latest"
