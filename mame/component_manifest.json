@@ -13,6 +13,35 @@
       "arcade",
       "mame"
     ],
+    "compression": {
+      "chd": {
+        "targets": [
+          "3do",
+          "amigacd32",
+          "arcade",
+          "atomiswave",
+          "cdimono1",
+          "cdtv",
+          "dreamcast",
+          "fmtowns",
+          "megacd",
+          "megacdjp",
+          "mess",
+          "naomi",
+          "neogeocd",
+          "neogeocdjp",
+          "pcenginecd",
+          "pcfx",
+          "psp",
+          "psx",
+          "ps2",
+          "saturn",
+          "saturnjp",
+          "segacd",
+          "tg-cd"
+        ]
+      }
+    },
     "bios": [
       {
         "filename": "3c505.zip",

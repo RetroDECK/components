@@ -230,6 +230,14 @@
           "required": "Optional, for boot logo"
         }
       ]
+    },
+    "compression": {
+      "rvz": {
+        "targets": [
+          "gc",
+          "wii"
+        ]
+      }
     }
   }
 }
