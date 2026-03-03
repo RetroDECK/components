@@ -11,10 +11,10 @@ log d "Library path is: $LD_LIBRARY_PATH"
 log d "QT plugin path is: $QT_PLUGIN_PATH"
 
 case "${XDG_CURRENT_DESKTOP}" in
-    *GNOME*|*gnome*|*XFCE*)
-        export QT_QPA_PLATFORMTHEME=gtk2
-        log d "QT_QPA_PLATFORMTHEME is set to: $QT_QPA_PLATFORMTHEME"
-        ;;
+  *GNOME*|*gnome*|*XFCE*)
+    export QT_QPA_PLATFORMTHEME=gtk2
+    log d "QT_QPA_PLATFORMTHEME is set to: $QT_QPA_PLATFORMTHEME"
+    ;;
 esac
 
 if [[ "$1" == "rvz_compression" ]]; then
