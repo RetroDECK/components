@@ -4,7 +4,7 @@
 # These actions happen conditionally based on the version being upgraded
 #########################################################################
 
-if [[ $(check_version_is_older_than "$version_being_updated" "0.10.0b") == "true" ]]; then
+if check_version_is_older_than "$version_being_updated" "0.10.0b"; then
   # In version 0.10.0b, the following changes were made that required config file updates/reset or other changes to the filesystem:
   # - Init Azahar as it is a new emulator
   # - Migrate legacy Citra saves to Azahar saves dir
@@ -30,12 +30,12 @@ if [[ $(check_version_is_older_than "$version_being_updated" "0.10.0b") == "true
   fi
 fi
 
-if [[ $(check_version_is_older_than "$version_being_updated" "0.10.2b") == "true" ]]; then
+if check_version_is_older_than "$version_being_updated" "0.10.2b"; then
   log i "0.10.2b Upgrade - Reset: Azahar"
   prepare_component "reset" "azahar"
 fi
 
-if [[ $(check_version_is_older_than "$version_being_updated" "0.10.3b") == "true" ]]; then
+if check_version_is_older_than "$version_being_updated" "0.10.3b"; then
   log i "0.10.3b Upgrade - Reset: Azahar"
   set_setting_value "$azahar_qtconfig" "Shortcuts\Main%20Window\Rotate%20Screens%20Upright\KeySeq" "Alt+Y" "azahar" "UI"
   set_setting_value "$azahar_qtconfig" "Shortcuts\Main%20Window\Toggle%20Screen%20Layout\KeySeq" "Ctrl+L" "azahar" "UI"

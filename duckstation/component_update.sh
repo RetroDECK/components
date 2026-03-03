@@ -4,7 +4,7 @@
 # These actions happen conditionally based on the version being upgraded
 #########################################################################
 
-if [[ $(check_version_is_older_than "$version_being_updated" "0.6.2b") == "true" ]]; then
+if check_version_is_older_than "$version_being_updated" "0.6.2b"; then
   # In version 0.6.2b, the following changes were made that required config file updates/reset:
   # - Duckstation save and state locations were dir_prep'd to the rdhome/save and /state folders, which was not previously done. Much safer now!
 
@@ -12,7 +12,7 @@ if [[ $(check_version_is_older_than "$version_being_updated" "0.6.2b") == "true"
   dir_prep "$rdhome/states/duckstation" "$XDG_DATA_HOME/duckstation/savestates"
 fi
 
-if [[ $(check_version_is_older_than "$version_being_updated" "0.7.0b") == "true" ]]; then
+if check_version_is_older_than "$version_being_updated" "0.7.0b"; then
   # In version 0.7.0b, the following changes were made that required config file updates/reset or other changes to the filesystem:
   # - Update Duckstation configs to latest templates (to accomadate RetroAchievements feature) and move Duckstation config folder from $XDG_DATA_HOME to $XDG_CONFIG_HOME
   # - Move Duckstation saves and states to new locations
@@ -44,10 +44,9 @@ if [[ $(check_version_is_older_than "$version_being_updated" "0.7.0b") == "true"
   set_setting_value "$duckstationconf" "Enabled" "false" "duckstation" "Cheevos"
 fi
 
-if [[ $(check_version_is_older_than "$version_being_updated" "0.10.0b") == "true" ]]; then
+if check_version_is_older_than "$version_being_updated" "0.10.0b"; then
 
   log i "0.10.0b Upgrade - Postmove: Duckstation (Legacy)"
 
   prepare_component "postmove" "duckstation"
-
 fi

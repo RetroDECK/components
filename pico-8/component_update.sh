@@ -4,7 +4,7 @@
 # These actions happen conditionally based on the version being upgraded
 #########################################################################
 
-if [[ $(check_version_is_older_than "$version_being_updated" "0.6.2b") == "true" ]]; then
+if check_version_is_older_than "$version_being_updated" "0.6.2b"; then
   # In version 0.6.2b, the following changes were made that required config file updates/reset:
   # - Fix PICO-8 folder structure. ROM and save folders are now sane and binary files will go into ~/retrodeck/bios/pico-8/
 
@@ -14,7 +14,7 @@ if [[ $(check_version_is_older_than "$version_being_updated" "0.6.2b") == "true"
   dir_prep "$bios_path/pico-8/cdata" "$saves_path/pico-8" # PICO-8 saves folder
 fi
 
-if [[ $(check_version_is_older_than "$version_being_updated" "0.6.3b") == "true" ]]; then
+if check_version_is_older_than "$version_being_updated" "0.6.3b"; then
   # In version 0.6.3b, the following changes were made that required config file updates/reset:
   # - Fix symlink to hard-coded PICO-8 config folder (dir_prep doesn't like ~)
 
@@ -24,7 +24,7 @@ if [[ $(check_version_is_older_than "$version_being_updated" "0.6.3b") == "true"
   dir_prep "$saves_path/pico-8" "$bios_path/pico-8/cdata" # PICO-8 saves folder structure was backwards, fixing for consistency.
 fi
 
-if [[ $(check_version_is_older_than "$version_being_updated" "0.7.0b") == "true" ]]; then
+if check_version_is_older_than "$version_being_updated" "0.7.0b"; then
   # In version 0.7.0b, the following changes were made that required config file updates/reset or other changes to the filesystem:
   # - Init PICO-8 as it has newly-shipped config files
 

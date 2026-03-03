@@ -4,7 +4,7 @@
 # These actions happen conditionally based on the version being upgraded
 #########################################################################
 
-if [[ $(check_version_is_older_than "$version_being_updated" "0.6.3b") == "true" ]]; then
+if check_version_is_older_than "$version_being_updated" "0.6.3b"; then
   # In version 0.6.3b, the following changes were made that required config file updates/reset:
   # - Overwrite Citra and Yuzu configs, as controller mapping was broken due to emulator updates.
 
@@ -17,7 +17,7 @@ if [[ $(check_version_is_older_than "$version_being_updated" "0.6.3b") == "true"
   rm -rfv "$XDG_CONFIG_HOME/retrodeck/tools/"
 fi
 
-if [[ $(check_version_is_older_than "$version_being_updated" "0.6.4b") == "true" ]]; then
+if check_version_is_older_than "$version_being_updated" "0.6.4b"; then
   # In version 0.6.4b, the following changes were made:
   # Changed settings in Primehack: The audio output was not selected by default, default AR was also incorrect.
   # Changed settings in Duckstation and PCSX2: The "ask on exit" was disabled and "save on exit" was enabled.
@@ -26,14 +26,14 @@ if [[ $(check_version_is_older_than "$version_being_updated" "0.6.4b") == "true"
   deploy_multi_patch "config/patches/updates/064b_update.patch"
 fi
 
-if [[ $(check_version_is_older_than "$version_being_updated" "0.6.5b") == "true" ]]; then
+if check_version_is_older_than "$version_being_updated" "0.6.5b"; then
   # In version 0.6.5b, the following changes were made:
   # Change Yuzu GPU accuracy to normal for better performance
 
   set_setting_value "$yuzuconf" "gpu_accuracy" "0" "yuzu" "Renderer"
 fi
 
-if [[ $(check_version_is_older_than "$version_being_updated" "0.7.0b") == "true" ]]; then
+if check_version_is_older_than "$version_being_updated" "0.7.0b"; then
   # In version 0.7.0b, the following changes were made that required config file updates/reset or other changes to the filesystem:
   # - Update retrodeck.cfg and set new paths to $rdhome by default
   # - New ~/retrodeck/mods and ~/retrodeck/texture_packs directories are added and symlinked to multiple different emulators (where supported)
@@ -68,7 +68,7 @@ if [[ $(check_version_is_older_than "$version_being_updated" "0.7.0b") == "true"
   fi
 fi
 
-if [[ $(check_version_is_older_than "$version_being_updated" "0.8.0b") == "true" ]]; then
+if check_version_is_older_than "$version_being_updated" "0.8.0b"; then
   log i "In version 0.8.0b, the following changes were made that required config file updates/reset or other changes to the filesystem:"
   log i "- Remove RetroDECK controller profile from existing template location"
   log i "- Change section name in retrodeck.cfg for ABXY button swap preset"
@@ -107,7 +107,7 @@ if [[ $(check_version_is_older_than "$version_being_updated" "0.8.0b") == "true"
   mv "$bios_path/switch/registered" "$bios_path/switch/firmware"
 fi
 
-if [[ $(check_version_is_older_than "$version_being_updated" "0.8.1b") == "true" ]]; then
+if check_version_is_older_than "$version_being_updated" "0.8.1b"; then
   log i "In version 0.8.1b, the following changes were made that required config file updates/reset or other changes to the filesystem:"
   log i "- Give the user the option to reset Ryujinx, which was not properly initialized in 0.8.0b"
 
@@ -118,7 +118,7 @@ if [[ $(check_version_is_older_than "$version_being_updated" "0.8.1b") == "true"
   fi
 fi
 
-if [[ $(check_version_is_older_than "$version_being_updated" "0.8.2b") == "true" ]]; then
+if check_version_is_older_than "$version_being_updated" "0.8.2b"; then
   log i "Moving ES-DE downloaded_media, gamelist, and themes from \"$rdhome\" to \"$rdhome/ES-DE\" due to a RetroDECK Framework bug"
   move "$rdhome/themes" "$rdhome/ES-DE/themes" && log d "Move of \"$rdhome/themes\" in \"$rdhome/ES-DE\" folder completed"
   move "$rdhome/downloaded_media" "$rdhome/ES-DE/downloaded_media" && log d "Move of \"$rdhome/downloaded_media\" in \"$rdhome/ES-DE\" folder completed"
@@ -128,7 +128,7 @@ if [[ $(check_version_is_older_than "$version_being_updated" "0.8.2b") == "true"
   ln -sv "$ryujinxconf" "$(dirname "$ryujinxconf")/PRConfig.json"
 fi
 
-if [[ $(check_version_is_older_than "$version_being_updated" "0.8.3b") == "true" ]]; then
+if check_version_is_older_than "$version_being_updated" "0.8.3b"; then
   # In version 0.8.3b, the following changes were made:
   # - Recovery from a failed move of the themes, downloaded_media and gamelists folder to their new ES-DE locations.
   if [[ ! -d "$rdhome/ES-DE/themes" || ! -d "$rdhome/ES-DE/downloaded_media" || ! -d "$rdhome/ES-DE/gamelists" ]]; then
@@ -145,7 +145,7 @@ if [[ $(check_version_is_older_than "$version_being_updated" "0.8.3b") == "true"
   fi
 fi
 
-if [[ $(check_version_is_older_than "$version_being_updated" "0.8.4b") == "true" ]]; then
+if check_version_is_older_than "$version_being_updated" "0.8.4b"; then
   # In version 0.8.4b, the following changes were made:
   # - Recovery from a failed move of the themes, downloaded_media and gamelists folder to their new ES-DE locations (AGAIN)
 
@@ -198,7 +198,7 @@ if [[ $(check_version_is_older_than "$version_being_updated" "0.8.4b") == "true"
   set_setting_value "$es_settings" "UserThemeDirectory" "$themes_folder" "es_settings"
 fi
 
-if [[ $(check_version_is_older_than "$version_being_updated" "0.9.0b") == "true" ]]; then
+if check_version_is_older_than "$version_being_updated" "0.9.0b"; then
   # Create a Zenity window with checkboxes for each reset option and two buttons
   while true; do
     choices=$(rd_zenity --list --checklist --title="RetroDECK - Reset Options" \
@@ -319,7 +319,7 @@ if [[ $(check_version_is_older_than "$version_being_updated" "0.9.0b") == "true"
   fi
 fi
 
-if [[ $(check_version_is_older_than "$version_being_updated" "0.9.1b") == "true" ]]; then
+if check_version_is_older_than "$version_being_updated" "0.9.1b"; then
   log i "Running the 0.9.1b post update process"
 
   # Create a Zenity window with checkboxes for each reset option and two buttons
@@ -409,7 +409,7 @@ if [[ $(check_version_is_older_than "$version_being_updated" "0.9.1b") == "true"
   fi
 fi
 
-if [[ $(check_version_is_older_than "$version_being_updated" "0.9.2b") == "true" ]]; then
+if check_version_is_older_than "$version_being_updated" "0.9.2b"; then
   # In version 0.9.2b, the following changes were made that required config file updates/reset or other changes to the filesystem:
   # Steam Sync completely rebuilt into new manifest system. Favorites may need to be nuked and, if steam_sync is enabled will be rebuilt. This is an optional step.
 
@@ -496,7 +496,7 @@ if [[ $(check_version_is_older_than "$version_being_updated" "0.9.2b") == "true"
   fi
 fi
 
-if [[ $(check_version_is_older_than "$version_being_updated" "0.10.0b") == "true" ]]; then
+if check_version_is_older_than "$version_being_updated" "0.10.0b"; then
   set_setting_value "$rd_conf" "storage_path" "$rd_home_path/storage" "retrodeck" "paths"
   create_dir "$storage_path"
   set_setting_value "$rd_conf" "videos_path" "$rd_home_path/videos" "retrodeck" "paths"

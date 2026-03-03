@@ -4,14 +4,14 @@
 # These actions happen conditionally based on the version being upgraded
 #########################################################################
 
-if [[ $(check_version_is_older_than "$version_being_updated" "0.8.0b") == "true" ]]; then
+if check_version_is_older_than "$version_being_updated" "0.8.0b"; then
   log i "In version 0.8.0b, the following changes were made that required config file updates/reset or other changes to the filesystem:"
   log i "- The following components are been added and need to be initialized: es-de 3.0, MAME-SA, Vita3K, GZDoom"
 
   prepare_component "reset" "mame"
 fi
 
-if [[ $(check_version_is_older_than "$version_being_updated" "0.8.1b") == "true" ]]; then
+if check_version_is_older_than "$version_being_updated" "0.8.1b"; then
   log i "In version 0.8.1b, the following changes were made that required config file updates/reset or other changes to the filesystem:"
 
   log i "MAME-SA, migrating samples to the new exposed folder: from \"$XDG_DATA_HOME/mame/assets/samples\" to \"$bios_path/mame-sa/samples\""
@@ -23,7 +23,7 @@ if [[ $(check_version_is_older_than "$version_being_updated" "0.8.1b") == "true"
   unzip -j -o "$config/mame/cheat0264.zip" 'cheat.7z' -d "$XDG_DATA_HOME/mame/cheat"
 fi
 
-if [[ $(check_version_is_older_than "$version_being_updated" "0.9.1b") == "true" ]]; then
+if check_version_is_older_than "$version_being_updated" "0.9.1b"; then
   log i "Preparing the shaders folder for MAME..."
   shaders_folder="$rdhome/shaders" && log i "Shaders folder set to \"$shaders_path\""
   conf_write && log i "Done"
@@ -38,7 +38,7 @@ if [[ $(check_version_is_older_than "$version_being_updated" "0.9.1b") == "true"
   rm -rf "$XDG_DATA_HOME/mame/cheat"
 fi
 
-if [[ $(check_version_is_older_than "$version_being_updated" "0.10.0b") == "true" ]]; then
+if check_version_is_older_than "$version_being_updated" "0.10.0b"; then
 
   log i "0.10.0b Upgrade - Reset: MAME"
 
