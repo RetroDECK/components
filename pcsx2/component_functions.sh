@@ -12,3 +12,35 @@ pcsx2_patches_path="$XDG_CONFIG_HOME/PCSX2/patches"
 pcsx2_cheats_path="$XDG_CONFIG_HOME/PCSX2/cheats"
 pcsx2_logs_path="$XDG_CONFIG_HOME/PCSX2/logs"
 pcsx2_secrets_ini="$XDG_CONFIG_HOME/PCSX2/inis/secrets.ini"
+
+_set_setting_value::pcsx2() {
+  local file="$1"
+  local name=$(sed_escape_pattern "$2")
+  local value=$(sed_escape_replacement "$3")
+  local section="${4:-}"
+
+  if [[ -n "$section" ]]; then
+    section=$(sed_escape_pattern "$section")
+    sed -i '\^\['"$section"'\]^,\^\^'"$name"' =^s^\^'"$name"' =.*^'"$name"' = '"$value"'^' "$file"
+  else
+    sed -i 's^\^'"$name"' =.*^'"$name"' = '"$value"'^' "$file"
+  fi
+}
+
+_get_setting_value::pcsx2() {
+  local file="$1" name="$2" section="${3:-}"
+
+  if [[ -n "$section" ]]; then
+    awk -v section="[$section]" -v key="$name" \
+      '$0 == section { in_section=1; next }
+       /^\[/ { in_section=0 }
+       in_section && index($0, key " =") == 1 {
+         print substr($0, index($0,"=")+2); exit
+       }' "$file"
+  else
+    awk -v key="$name" \
+      'index($0, key " =") == 1 {
+         print substr($0, index($0,"=")+2); exit
+       }' "$file"
+  fi
+}

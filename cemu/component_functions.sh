@@ -8,3 +8,29 @@ cemu_config_controller3="$XDG_CONFIG_HOME/Cemu/controllerProfiles/controller3.xm
 cemu_textures_path="$XDG_DATA_HOME/Cemu/graphicPacks"
 cemu_shadercache_path="$XDG_CACHE_HOME/Cemu/shaderCache"
 cemu_shadercache_transferable_path="$XDG_CACHE_HOME/Cemu/shaderCache/transferable"
+
+_set_setting_value::cemu() {
+  local file="$1" name="$2" value="$3" section="${4:-}"
+
+  local xpath
+  if [[ -n "$section" ]]; then
+    xpath="/content/${section}/${name}"
+  else
+    xpath="/content/${name}"
+  fi
+
+  xml ed -L -u "$xpath" -v "$value" "$file"
+}
+
+_get_setting_value::cemu() {
+  local file="$1" name="$2" section="${3:-}"
+
+  local xpath
+  if [[ -n "$section" ]]; then
+    xpath="/content/${section}/${name}"
+  else
+    xpath="/content/${name}"
+  fi
+
+  xml sel -t -v "$xpath" "$file"
+}

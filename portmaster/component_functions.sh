@@ -13,3 +13,18 @@ portmaster_show(){
     log e "\"$1\" is not a valid choice, quitting"
   fi
 }
+
+_set_setting_value::portmaster() {
+  local file="$1" name="$2" value="$3"
+
+  local tmp
+  tmp=$(jq --arg key "$name" --arg val "$value" \
+    '(.[$key]) |= (if type == "number" then ($val | tonumber) elif type == "boolean" then ($val | test("true")) else $val end)' \
+    "$file") && printf '%s\n' "$tmp" > "$file"
+}
+
+_get_setting_value::portmaster() {
+  local file="$1" name="$2"
+
+  jq -r --arg key "$name" '.[$key]' "$file"
+}
