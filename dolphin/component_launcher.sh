@@ -17,4 +17,9 @@ case "${XDG_CURRENT_DESKTOP}" in
         ;;
 esac
 
-exec "$component_path/bin/dolphin-emu" "$@"
+if [[ "$1" == "rvz_compression" ]]; then
+  shift
+  exec "$component_path/bin/dolphin-tool" "$@"
+else
+  exec "$component_path/bin/dolphin-emu" "$@"
+fi
