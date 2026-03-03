@@ -6,6 +6,16 @@
     "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_system_guides/es-de/esde-guide/.",
     "url_webpage": "https://es-de.org/",
     "url_donation_purchase": "https://www.patreon.com/es_de/",
-    "url_source": "https://gitlab.com/es-de/emulationstation-de"
+    "url_source": "https://gitlab.com/es-de/emulationstation-de",
+    "helper_files": {
+      "custom_systems_es_find_rules": {
+        "filename": "es_find_rules.xml",
+        "location": "$rd_home_path/ES-DE/custom_systems"
+      },
+      "custom_systems_es_systems": {
+        "filename": "es_systems.xml",
+        "location": "$rd_home_path/ES-DE/custom_systems"
+      }
+    }
   }
 }
