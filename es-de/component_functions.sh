@@ -11,6 +11,34 @@ start_esde(){
   /bin/bash /app/retrodeck/components/es-de/component_launcher.sh "$@"
 }
 
+splash_screen() {
+  # This function will replace the RetroDECK startup splash screen with a different image if the day and time match a listing in the JSON data.
+  # USAGE: splash_screen
+
+  current_day=$(date +"%m%d")  # Read the current date in a format that can be calculated in ranges
+  current_time=$(date +"%H%M") # Read the current time in a format that can be calculated in ranges
+
+  # Read the JSON file and extract splash screen data using jq
+  splash_screen=$(jq -r --arg current_day "$current_day" --arg current_time "$current_time" '
+    .splash_screens | to_entries[] |
+    select(
+      ($current_day | tonumber) >= (.value.start_date | tonumber) and
+      ($current_day | tonumber) <= (.value.end_date | tonumber) and
+      ($current_time | tonumber) >= (.value.start_time | tonumber) and
+      ($current_time | tonumber) <= (.value.end_time | tonumber)
+    ) | .value.filename' "$features")
+
+  # Determine the splash file to use
+  if [[ -n "$splash_screen" ]]; then
+    new_splash_file="$splashscreen_dir/$splash_screen"
+  else
+    new_splash_file="$default_splash_file"
+  fi
+
+  mkdir -p "$XDG_CONFIG_HOME/ES-DE/resources/graphics"
+  cp -f "$new_splash_file" "$current_splash_file" # Deploy assigned splash screen
+}
+
 _set_setting_value::es-de() {
   local file="$1"
   local name=$(sed_escape_pattern "$2")

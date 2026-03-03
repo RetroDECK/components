@@ -417,6 +417,19 @@ install_retrodeck_controller_profile() {
   fi
 }
 
+add_retrodeck_to_steam() {
+  (
+    log i "RetroDECK has been added to Steam"
+    rd_srm enable --names "RetroDECK Launcher"
+    rd_srm add
+  ) |
+  rd_zenity --progress --no-cancel --pulsate --auto-close \
+    --window-icon="/app/share/icons/hicolor/scalable/apps/net.retrodeck.retrodeck.svg" \
+    --title "RetroDECK Configurator - Adding RetroDECK to Steam" \
+    --text="RetroDECK is being added to Steam.\n\n<span foreground='$purple'><b>Please wait while the process finishes...</b></span>"
+  rd_zenity --info --no-wrap --window-icon="/app/share/icons/hicolor/scalable/apps/net.retrodeck.retrodeck.svg" --title "RetroDECK" --text="RetroDECK has been added to Steam.\n\n\<span foreground='$purple'><b>Please restart Steam to see the changes.</b></span>"
+}
+
 install_retrodeck_controller_profile_and_add_to_steam() {
   install_retrodeck_controller_profile
   add_retrodeck_to_steam
