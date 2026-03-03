@@ -44,3 +44,58 @@ correct_rpcs3_desktop_files() {
     sed -i "s|^Exec=\"[^\"]*\"\(.*\)|Exec=\"${rpcs3_component_path}\"\1|" "$file"
   done < <(find "$roms_path/ps3" -mindepth 1 -type f -iname "*.desktop")
 }
+
+_set_setting_value::rpcs3() {
+  local file="$1" name="$2" value="$3" section="${4:-}"
+
+  if [[ "$file" =~ \.ini$ ]]; then
+    local esc_name=$(sed_escape_pattern "$name")
+    local esc_value=$(sed_escape_replacement "$value")
+    if [[ -n "$section" ]]; then
+      local esc_section=$(sed_escape_pattern "$section")
+      sed -i '\^\['"$esc_section"'\]^,\^\^'"$esc_name"'=^s^\^'"$esc_name"'=.*^'"$esc_name"'='"$esc_value"'^' "$file"
+    else
+      sed -i 's^\^'"$esc_name"'=.*^'"$esc_name"'='"$esc_value"'^' "$file"
+    fi
+
+  elif [[ "$file" =~ \.yml$ ]]; then
+    local yq_path=""
+    if [[ -n "$section" ]]; then
+      while IFS= read -r segment; do
+        [[ -n "$segment" ]] && yq_path+=".[\"${segment}\"]"
+      done <<< "${section//::/$'\n'}"
+    fi
+    yq_path+=".[\"${name}\"]"
+    VAL="$value" yq -i "${yq_path} = env(VAL)" "$file"
+  fi
+}
+
+_get_setting_value::rpcs3() {
+  local file="$1" name="$2" section="${3:-}"
+
+  if [[ "$file" =~ \.ini$ ]]; then
+    if [[ -n "$section" ]]; then
+      awk -F'=' -v section="[$section]" -v key="$name" \
+        '$0 == section { in_section=1; next }
+         /^\[/ { in_section=0 }
+         in_section && $1 == key {
+           print substr($0, index($0,"=")+1); exit
+         }' "$file"
+    else
+      awk -F'=' -v key="$name" \
+        '$1 == key {
+           print substr($0, index($0,"=")+1); exit
+         }' "$file"
+    fi
+
+  elif [[ "$file" =~ \.yml$ ]]; then
+    local yq_path=""
+    if [[ -n "$section" ]]; then
+      while IFS= read -r segment; do
+        [[ -n "$segment" ]] && yq_path+=".[\"${segment}\"]"
+      done <<< "${section//::/$'\n'}"
+    fi
+    yq_path+=".[\"${name}\"]"
+    yq -r "${yq_path}" "$file"
+  fi
+}
