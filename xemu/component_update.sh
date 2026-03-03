@@ -5,7 +5,7 @@
 #########################################################################
 
 
-if [[ $(check_version_is_older_than "$version_being_updated" "0.10.0b") == "true" ]]; then
+if check_version_is_older_than "$version_being_updated" "0.10.0b"; then
   log i "0.10.0b Upgrade - Postmove: xemu - Folder Creation"
 
   create_dir "$screenshots_path/xemu"

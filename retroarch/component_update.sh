@@ -4,7 +4,7 @@
 # These actions happen conditionally based on the version being upgraded
 #########################################################################
 
-if [[ $(check_version_is_older_than "$version_being_updated" "0.7.0b") == "true" ]]; then
+if check_version_is_older_than "$version_being_updated" "0.7.0b"; then
   # In version 0.7.0b, the following changes were made that required config file updates/reset or other changes to the filesystem:
   # - Copy new borders into RA config location
   # - Copy new RetroArch control remaps into RA config location
@@ -28,7 +28,7 @@ if [[ $(check_version_is_older_than "$version_being_updated" "0.7.0b") == "true"
   set_setting_value "$raconf" "savestate_auto_save" "false" "retroarch"
 fi
 
-if [[ $(check_version_is_older_than "$version_being_updated" "0.8.0b") == "true" ]]; then
+if check_version_is_older_than "$version_being_updated" "0.8.0b"; then
   log i "In version 0.8.0b, the following changes were made that required config file updates/reset or other changes to the filesystem:"
   log i "- Force disable global rewind in RA in prep for preset system"
 
@@ -36,7 +36,7 @@ if [[ $(check_version_is_older_than "$version_being_updated" "0.8.0b") == "true"
   set_setting_value "$raconf" "rewind_enable" "false" "retroarch"
 fi
 
-if [[ $(check_version_is_older_than "$version_being_updated" "0.8.1b") == "true" ]]; then
+if check_version_is_older_than "$version_being_updated" "0.8.1b"; then
   log i "In version 0.8.1b, the following changes were made that required config file updates/reset or other changes to the filesystem:"
 
   log i "Installing the missing ScummVM assets and renaming \"$storage_path/retroarch/ScummVM/themes\" into \"theme\""
@@ -49,19 +49,19 @@ if [[ $(check_version_is_older_than "$version_being_updated" "0.8.1b") == "true"
   rm -rf "/tmp/extra /tmp/theme"
 fi
 
-if [[ $(check_version_is_older_than "$version_being_updated" "0.9.0b") == "true" ]]; then
+if check_version_is_older_than "$version_being_updated" "0.9.0b"; then
   log i "Forcing RetroArch to use the new libretro info path"
   set_setting_value "$raconf" "libretro_info_path" "$XDG_CONFIG_HOME/retroarch/cores" "retroarch"
 fi
 
-if [[ $(check_version_is_older_than "$version_being_updated" "0.9.1b") == "true" ]]; then
+if check_version_is_older_than "$version_being_updated" "0.9.1b"; then
   log i "Preparing the cheats for RetroArch..."
   create_dir "$cheats_path/retroarch"
   set_setting_value "$raconf" "cheat_database_path" "$cheats_path/retroarch" "retroarch"
   tar --strip-components=1 -xzf "/app/retrodeck/cheats/retroarch.tar.gz" -C "$cheats_path/retroarch" --overwrite && log i "Cheats for RetroArch installed"
 fi
 
-if [[ $(check_version_is_older_than "$version_being_updated" "0.10.0b") == "true" ]]; then
+if check_version_is_older_than "$version_being_updated" "0.10.0b"; then
   log i "0.10.0b Upgrade - Postmove: RetroArch, Folder Creation, MAME2003+ Asset files"
 
   create_dir "$videos_path/retroarch"
@@ -95,7 +95,7 @@ if [[ $(check_version_is_older_than "$version_being_updated" "0.10.0b") == "true
   move "$texture_packs_path/RetroArch-Mupen64Plus" "$texture_packs_path/retroarch-core/Mupen64Plus"
 fi
 
-if [[ $(check_version_is_older_than "$version_being_updated" "0.10.3b") == "true" ]]; then
+if check_version_is_older_than "$version_being_updated" "0.10.3b"; then
   create_dir "$shaders_path/retroarch/filters"
   move "$shaders_path/retroarch/shaders_cg" "$shaders_path/retroarch/shaders/shaders_cg"
   move "$shaders_path/retroarch/shaders_glsl" "$shaders_path/retroarch/shaders/shaders_glsl"
