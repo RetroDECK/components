@@ -79,18 +79,18 @@ _compress_game::chd() {
 
   case "$system" in # Check platform-specific compression options
     "psp" )
-      log d "Compressing PSP game $2 into $3"
-      /bin/bash "$rd_components/mame/component_launcher.sh" chdman_compression createdvd --hunksize 2048 -i "$2" -o "$3".chd -c zstd
+      log d "Compressing PSP game $source_file into $dest_file"
+      /bin/bash "$rd_components/mame/component_launcher.sh" chdman_compression createdvd --hunksize 2048 -i "$source_file" -o "$dest_file".chd -c zstd
     ;;
     "ps2" )
       if [[ "$filename_extension" == "cue" ]]; then
-        /bin/bash "$rd_components/mame/component_launcher.sh" chdman_compression createcd -i "$2" -o "$3".chd
+        /bin/bash "$rd_components/mame/component_launcher.sh" chdman_compression createcd -i "$source_file" -o "$dest_file".chd
       else
-        /bin/bash "$rd_components/mame/component_launcher.sh" chdman_compression createdvd -i "$2" -o "$3".chd -c zstd
+        /bin/bash "$rd_components/mame/component_launcher.sh" chdman_compression createdvd -i "$source_file" -o "$dest_file".chd -c zstd
       fi
     ;;
     * )
-      /bin/bash "$rd_components/mame/component_launcher.sh" chdman_compression createcd -i "$2" -o "$3".chd
+      /bin/bash "$rd_components/mame/component_launcher.sh" chdman_compression createcd -i "$source_file" -o "$dest_file".chd
     ;;
   esac
 }
