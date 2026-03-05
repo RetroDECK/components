@@ -6,9 +6,87 @@ es_de_logs_path="$XDG_CONFIG_HOME/ES-DE/logs"
 es_systems="/app/retrodeck/components/es-de/share/es-de/resources/systems/linux/es_systems.xml"                                     # ES-DE supported system list
 es_find_rules="/app/retrodeck/components/es-de/share/es-de/resources/systems/linux/es_find_rules.xml"                               # ES-DE emulator find rules
 
-start_esde(){
-  log d "Starting ES-DE"
-  /bin/bash /app/retrodeck/components/es-de/component_launcher.sh "$@"
+_set_setting_value::es-de() {
+  local file="$1"
+  local name=$(sed_escape_pattern "$2")
+  local value=$(sed_escape_replacement "$3")
+
+  sed -i 's^'"$name"'" value=".*"^'"$name"'" value="'"$value"'"^' "$file"
+}
+
+_get_setting_value::es-de() {
+  local file="$1" name="$2"
+  sed -n 's^.*name="'"$(sed_escape_pattern "$name")"'" value="\(.*\)".*^\1^p' "$file"
+}
+
+_prepare_component::es-de() {
+  local action="$1"
+
+  local component_config="$(get_own_component_path)/rd_config"
+
+  case "$action" in
+
+    reset)
+      log i "--------------------------------"
+      log i "Resetting ES-DE"
+      log i "--------------------------------"
+
+      rm -rf "$XDG_CONFIG_HOME/ES-DE"
+      create_dir "$XDG_CONFIG_HOME/ES-DE/settings"
+      log d "Preparing es_settings.xml"
+      cp -f "$component_config/es_settings.xml" "$es_de_config"
+      set_setting_value "$es_de_config" "Theme" "RetroDECK-theme-main" "es_settings"
+      set_setting_value "$es_de_config" "ROMDirectory" "$roms_path" "es_settings"
+      set_setting_value "$es_de_config" "MediaDirectory" "$downloaded_media_path" "es_settings"
+      set_setting_value "$es_de_config" "UserThemeDirectory" "$themes_path" "es_settings"
+      dir_prep "$rd_home_path/ES-DE/gamelists" "$XDG_CONFIG_HOME/ES-DE/gamelists"
+      dir_prep "$rd_home_path/ES-DE/collections" "$XDG_CONFIG_HOME/ES-DE/collections"
+      dir_prep "$rd_home_path/ES-DE/scripts" "$XDG_CONFIG_HOME/ES-DE/scripts"
+      dir_prep "$rd_home_path/ES-DE/screensavers" "$XDG_CONFIG_HOME/ES-DE/screensavers"
+      dir_prep "$rd_home_path/ES-DE/custom_systems" "$XDG_CONFIG_HOME/ES-DE/custom_systems"
+      dir_prep "$logs_path/ES-DE" "$XDG_CONFIG_HOME/ES-DE/logs"
+      log d "Generating roms system folders"
+      start_esde --create-system-dirs
+    ;;
+
+    postmove)
+      log i "--------------------------------"
+      log i "Post-moving ES-DE"
+      log i "--------------------------------"
+
+      set_setting_value "$es_de_config" "ROMDirectory" "$roms_path" "es_settings"
+      set_setting_value "$es_de_config" "MediaDirectory" "$downloaded_media_path" "es_settings"
+      set_setting_value "$es_de_config" "UserThemeDirectory" "$themes_path" "es_settings"
+      dir_prep "$rd_home_path/ES-DE/gamelists" "$XDG_CONFIG_HOME/ES-DE/gamelists"
+      dir_prep "$rd_home_path/ES-DE/collections" "$XDG_CONFIG_HOME/ES-DE/collections"
+      dir_prep "$rd_home_path/ES-DE/scripts" "$XDG_CONFIG_HOME/ES-DE/scripts"
+      dir_prep "$rd_home_path/ES-DE/screensavers" "$XDG_CONFIG_HOME/ES-DE/screensavers"
+      dir_prep "$rd_home_path/ES-DE/custom_systems" "$XDG_CONFIG_HOME/ES-DE/custom_systems"
+      dir_prep "$logs_path/ES-DE" "$XDG_CONFIG_HOME/ES-DE/logs"
+    ;;
+
+    startup)
+      log i "--------------------------------"
+      log i "Starting ES-DE"
+      log i "--------------------------------"
+      local component_path="$(get_own_component_path)"
+
+      splash_screen::es-de
+  
+      log i "Starting ES-DE"
+      /bin/bash "$component_path/es-de/component_launcher.sh" "$@"
+    ;;
+
+    shutdown)
+      log i "--------------------------------"
+      log i "Shutting down ES-DE"
+      log i "--------------------------------"
+
+      log i "Quitting ES-DE"
+      pkill -f "es-de"
+    ;;
+
+  esac
 }
 
 splash_screen() {
