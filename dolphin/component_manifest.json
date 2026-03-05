@@ -16,30 +16,16 @@
       "Wii"
     ],
     "compatible_presets": {
-      "ask_to_exit": [
-        "false",
-        "true"
-      ],
-      "cheevos": [
-        "false",
-        "true"
-      ],
-      "cheevos_hardcore": [
-        "false",
-        "true"
-      ],
-      "universal_dyn_input": [
-        "false",
-        "true"
-      ]
+      "ask_to_exit": ["false", "true"],
+      "cheevos": ["false", "true"],
+      "cheevos_hardcore": ["false", "true"],
+      "universal_dyn_input": ["false", "true"]
     },
     "preset_actions": {
       "config_file_format": "dolphin",
       "ask_to_exit": [
         {
-          "enabled_states": [
-            "true"
-          ],
+          "enabled_states": ["true"],
           "setting_name": "ConfirmStop",
           "action": "change",
           "new_setting_value": "True",
@@ -50,9 +36,7 @@
       ],
       "cheevos": [
         {
-          "enabled_states": [
-            "true"
-          ],
+          "enabled_states": ["true"],
           "setting_name": "Enabled",
           "action": "change",
           "new_setting_value": "True",
@@ -61,9 +45,7 @@
           "defaults_file": "$dolphin_rd_config_dir/RetroAchievements.ini"
         },
         {
-          "enabled_states": [
-            "true"
-          ],
+          "enabled_states": ["true"],
           "setting_name": "Username",
           "action": "change",
           "new_setting_value": "$cheevos_username",
@@ -72,9 +54,7 @@
           "defaults_file": "$dolphin_rd_config_dir/RetroAchievements.ini"
         },
         {
-          "enabled_states": [
-            "true"
-          ],
+          "enabled_states": ["true"],
           "setting_name": "ApiToken",
           "action": "change",
           "new_setting_value": "$cheevos_token",
@@ -85,9 +65,7 @@
       ],
       "cheevos_hardcore": [
         {
-          "enabled_states": [
-            "true"
-          ],
+          "enabled_states": ["true"],
           "setting_name": "HardcoreEnabled",
           "action": "change",
           "new_setting_value": "True",
@@ -98,9 +76,7 @@
       ],
       "universal_dyn_input": [
         {
-          "enabled_states": [
-            "true"
-          ],
+          "enabled_states": ["true"],
           "setting_name": "Universal Dynamic Input",
           "action": "install",
           "source": "/app/retrodeck/components/shared-data/DynamicInputTextures/",
