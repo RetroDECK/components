@@ -66,14 +66,16 @@
           "target_file": "$ppsspp_config",
           "defaults_file": "$ppsspp_rd_config_dir/ppsspp.ini"
         }
-      ],
-      "bios": {
+      ]
+    },
+    "bios": [
+      {
         "filename": "ppge_atlas.zim",
         "md5": "866855cc330b9b95cc69135fb7b41d38",
         "system": "psp",
         "description": "PSP Atlas ZIM - asset package for PSP homebrew",
         "required": "Optional"
       }
-    }
+    ]
   }
 }
