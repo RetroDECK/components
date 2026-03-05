@@ -83,115 +83,115 @@
           "destination": "$XDG_DATA_HOME/dolphin-emu/Load/DynamicInputTextures/",
           "cleanup_type": "purge"
         }
-      ],
-      "bios": [
-        {
-          "filename": "gc-dvd-20010608.bin",
-          "md5": "561532ad496f644897952d2cef5bb431",
-          "system": "gc",
-          "paths": [
-            "$saves_path/gc/dolphin/EU",
-            "$saves_path/gc/dolphin/US",
-            "$saves_path/gc/dolphin/JP"
-          ],
-          "description": "GameCube DVD BIOS",
-          "required": "Optional"
-        },
-        {
-          "filename": "gc-dvd-20010831.bin",
-          "md5": "b953eb1a8fc9922b3f7051c1cdc451f1",
-          "system": "gc",
-          "paths": [
-            "$saves_path/gc/dolphin/EU",
-            "$saves_path/gc/dolphin/US",
-            "$saves_path/gc/dolphin/JP"
-          ],
-          "description": "GameCube DVD BIOS",
-          "required": "Optional"
-        },
-        {
-          "filename": "gc-dvd-20020402.bin",
-          "md5": "413154dd0e2c824c9b18b807fd03ec4e",
-          "system": "gc",
-          "paths": [
-            "$saves_paths_path/gc/dolphin/EU",
-            "$saves_paths_paths_path/gc/dolphin/US",
-            "$saves_path/gc/dolphin/JP"
-          ],
-          "description": "GameCube DVD BIOS",
-          "required": "Optional"
-        },
-        {
-          "filename": "gc-dvd-20020823.bin",
-          "md5": "c03f6bbaf644eb9b3ee261dbe199eb42",
-          "system": "gc",
-          "paths": [
-            "$saves_path/gc/dolphin/EU",
-            "$saves_path/gc/dolphin/US",
-            "$saves_path/gc/dolphin/JP"
-          ],
-          "description": "GameCube DVD BIOS",
-          "required": "Optional"
-        },
-        {
-          "filename": "gc-ntsc-10.bin",
-          "md5": "fc924a7c879b661abc37cec4f018fdf3",
-          "system": "gc",
-          "paths": [
-            "$saves_path/gc/dolphin/US",
-            "$saves_path/gc/dolphin/JP"
-          ],
-          "description": "GameCube USA BIOS",
-          "required": "Optional, for boot logo"
-        },
-        {
-          "filename": "gc-ntsc-11.bin",
-          "md5": "019e39822a9ca3029124f74dd4d55ac4",
-          "system": "gc",
-          "paths": [
-            "$saves_path/gc/dolphin/US",
-            "$saves_path/gc/dolphin/JP"
-          ],
-          "description": "GameCube USA BIOS",
-          "required": "Optional, for boot logo"
-        },
-        {
-          "filename": "gc-ntsc-12.bin",
-          "md5": "b17148254a5799684c7d783206504926",
-          "system": "gc",
-          "paths": [
-            "$saves_path/gc/dolphin/US",
-            "$saves_path/gc/dolphin/JP"
-          ],
-          "description": "GameCube USA BIOS",
-          "required": "Optional, for boot logo"
-        },
-        {
-          "filename": "gc-pal-10.bin",
-          "md5": "0cdda509e2da83c85bfe423dd87346cc",
-          "system": "gc",
-          "paths": "$saves_path/gc/dolphin/EU",
-          "description": "GameCube EU BIOS",
-          "required": "Optional, for boot logo"
-        },
-        {
-          "filename": "gc-pal-11.bin",
-          "md5": "339848a0b7c2124cf155276c1e79cbd0",
-          "system": "gc",
-          "paths": "$saves_path/gc/dolphin/EU",
-          "description": "GameCube EU BIOS",
-          "required": "Optional, for boot logo"
-        },
-        {
-          "filename": "gc-pal-12.bin",
-          "md5": "db92574caab77a7ec99d4605fd6f2450",
-          "system": "gc",
-          "paths": "$saves_path/gc/dolphin/EU",
-          "description": "GameCube EU BIOS",
-          "required": "Optional, for boot logo"
-        }
       ]
     },
+    "bios": [
+      {
+        "filename": "gc-dvd-20010608.bin",
+        "md5": "561532ad496f644897952d2cef5bb431",
+        "system": "gc",
+        "paths": [
+          "$saves_path/gc/dolphin/EU",
+          "$saves_path/gc/dolphin/US",
+          "$saves_path/gc/dolphin/JP"
+        ],
+        "description": "GameCube DVD BIOS",
+        "required": "Optional"
+      },
+      {
+        "filename": "gc-dvd-20010831.bin",
+        "md5": "b953eb1a8fc9922b3f7051c1cdc451f1",
+        "system": "gc",
+        "paths": [
+          "$saves_path/gc/dolphin/EU",
+          "$saves_path/gc/dolphin/US",
+          "$saves_path/gc/dolphin/JP"
+        ],
+        "description": "GameCube DVD BIOS",
+        "required": "Optional"
+      },
+      {
+        "filename": "gc-dvd-20020402.bin",
+        "md5": "413154dd0e2c824c9b18b807fd03ec4e",
+        "system": "gc",
+        "paths": [
+          "$saves_paths_path/gc/dolphin/EU",
+          "$saves_paths_paths_path/gc/dolphin/US",
+          "$saves_path/gc/dolphin/JP"
+        ],
+        "description": "GameCube DVD BIOS",
+        "required": "Optional"
+      },
+      {
+        "filename": "gc-dvd-20020823.bin",
+        "md5": "c03f6bbaf644eb9b3ee261dbe199eb42",
+        "system": "gc",
+        "paths": [
+          "$saves_path/gc/dolphin/EU",
+          "$saves_path/gc/dolphin/US",
+          "$saves_path/gc/dolphin/JP"
+        ],
+        "description": "GameCube DVD BIOS",
+        "required": "Optional"
+      },
+      {
+        "filename": "gc-ntsc-10.bin",
+        "md5": "fc924a7c879b661abc37cec4f018fdf3",
+        "system": "gc",
+        "paths": [
+          "$saves_path/gc/dolphin/US",
+          "$saves_path/gc/dolphin/JP"
+        ],
+        "description": "GameCube USA BIOS",
+        "required": "Optional, for boot logo"
+      },
+      {
+        "filename": "gc-ntsc-11.bin",
+        "md5": "019e39822a9ca3029124f74dd4d55ac4",
+        "system": "gc",
+        "paths": [
+          "$saves_path/gc/dolphin/US",
+          "$saves_path/gc/dolphin/JP"
+        ],
+        "description": "GameCube USA BIOS",
+        "required": "Optional, for boot logo"
+      },
+      {
+        "filename": "gc-ntsc-12.bin",
+        "md5": "b17148254a5799684c7d783206504926",
+        "system": "gc",
+        "paths": [
+          "$saves_path/gc/dolphin/US",
+          "$saves_path/gc/dolphin/JP"
+        ],
+        "description": "GameCube USA BIOS",
+        "required": "Optional, for boot logo"
+      },
+      {
+        "filename": "gc-pal-10.bin",
+        "md5": "0cdda509e2da83c85bfe423dd87346cc",
+        "system": "gc",
+        "paths": "$saves_path/gc/dolphin/EU",
+        "description": "GameCube EU BIOS",
+        "required": "Optional, for boot logo"
+      },
+      {
+        "filename": "gc-pal-11.bin",
+        "md5": "339848a0b7c2124cf155276c1e79cbd0",
+        "system": "gc",
+        "paths": "$saves_path/gc/dolphin/EU",
+        "description": "GameCube EU BIOS",
+        "required": "Optional, for boot logo"
+      },
+      {
+        "filename": "gc-pal-12.bin",
+        "md5": "db92574caab77a7ec99d4605fd6f2450",
+        "system": "gc",
+        "paths": "$saves_path/gc/dolphin/EU",
+        "description": "GameCube EU BIOS",
+        "required": "Optional, for boot logo"
+      }
+    ],
     "compression": {
       "rvz": {
         "targets": [
