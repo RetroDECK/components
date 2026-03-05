@@ -89,7 +89,7 @@ _prepare_component::es-de() {
   esac
 }
 
-splash_screen() {
+splash_screen::es-de() {
   # This function will replace the RetroDECK startup splash screen with a different image if the day and time match a listing in the JSON data.
   # USAGE: splash_screen
 
@@ -114,10 +114,10 @@ splash_screen() {
   fi
 
   mkdir -p "$XDG_CONFIG_HOME/ES-DE/resources/graphics"
-  cp -f "$new_splash_file" "$current_splash_file" # Deploy assigned splash screen
+  cp -f "$new_splash_file" "$current_splash_file"
 }
 
-configurator_rebuild_esde_systems() {
+configurator_rebuild_esde_systems::es-de() {
   start_esde --create-system-dirs
   local current_iconset=$(get_setting_value "$rd_conf" "iconset" "retrodeck" "options")
   if [[ ! "$current_iconset" == "false" ]]; then
@@ -130,17 +130,4 @@ configurator_rebuild_esde_systems() {
   fi
   configurator_generic_dialog "RetroDECK Configurator - Rebuild System Folders" "<span foreground='$purple'><b>The rebuilding process is complete.</b></span>\n\nAll missing default system folders will now exist in <span foreground='$purple'><b>$roms_path</b></span>."
   configurator_data_management_dialog
-}
-
-_set_setting_value::es-de() {
-  local file="$1"
-  local name=$(sed_escape_pattern "$2")
-  local value=$(sed_escape_replacement "$3")
-
-  sed -i 's^'"$name"'" value=".*"^'"$name"'" value="'"$value"'"^' "$file"
-}
-
-_get_setting_value::es-de() {
-  local file="$1" name="$2"
-  sed -n 's^.*name="'"$(sed_escape_pattern "$name")"'" value="\(.*\)".*^\1^p' "$file"
 }
