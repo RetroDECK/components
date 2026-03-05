@@ -9,6 +9,12 @@
     "component_type": "Emulator",
     "system_friendly_name": "PlayStation Vita",
     "system": "psvita",
+    "helper_files": {
+      "vita3k_guide": {
+        "filename": "vita3k_guide.txt",
+        "location": "$roms_path/psvita"
+      }
+    },
     "configurator_menus": {
       "tools": {
         "update_vita3k_firmware": {
