@@ -57,6 +57,11 @@
           "dest": "rd_config"
         },
         {
+          "type": "dir",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/rd_assets/helper_files",
+          "dest": "helper_files"
+        },
+        {
           "type": "file",
           "source": "$REPO_ROOT/$COMPONENT_NAME/rd_assets/rd_extras/ScummVM.zip",
           "dest": "rd_extras"
