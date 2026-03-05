@@ -29,3 +29,28 @@ _get_setting_value::pico-8() {
        print val; exit
      }' "$file"
 }
+
+_prepare_component::pico-8() {
+  local action="$1"
+
+  local component_config="$(get_own_component_path)/rd_config"
+
+  case "$action" in
+
+    reset|postmove)
+      log i "------------------------"
+      log i "Performing PICO-8 $action actions"
+      log i "------------------------"
+
+      if [[ -d "$roms_path/pico8" ]]; then
+        dir_prep "$roms_path/pico8" "$bios_path/pico-8/carts" # Symlink default game location to RD roms for cleanliness (this location is overridden anyway by the --root_path launch argument anyway)
+      fi
+      dir_prep "$bios_path/pico-8" "$HOME/.lexaloffle/pico-8" # Store binary and config files together. The .lexaloffle directory is a hard-coded location for the PICO-8 config file, cannot be changed
+      dir_prep "$saves_path/pico-8" "$bios_path/pico-8/cdata"  # PICO-8 saves folder
+      create_dir "$XDG_CONFIG_HOME/pico-8/"
+      cp -fv "$component_config/config.txt" "$pico8_config"
+      cp -fv "$component_config/sdl_controllers.txt" "$pico8_config_sdl_controllers"
+    ;;
+
+  esac
+}
