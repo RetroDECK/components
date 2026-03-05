@@ -10,26 +10,15 @@
     "system": "psp",
     "system_friendly_name": "Playstation Portable",
     "compatible_presets": {
-      "savestate_auto_load": [
-        "false",
-        "true"
-      ],
-      "cheevos": [
-        "false",
-        "true"
-      ],
-      "cheevos_hardcore": [
-        "false",
-        "true"
-      ]
+      "savestate_auto_load": ["false", "true"],
+      "cheevos": ["false", "true"],
+      "cheevos_hardcore": ["false", "true"]
     },
     "preset_actions": {
       "config_file_format": "ppsspp",
       "savestate_auto_load": [
         {
-          "enabled_states": [
-            "true"
-          ],
+          "enabled_states": ["true"],
           "setting_name": "AutoLoadSaveState",
           "action": "change",
           "new_setting_value": "2",
@@ -40,9 +29,7 @@
       ],
       "cheevos": [
         {
-          "enabled_states": [
-            "true"
-          ],
+          "enabled_states": ["true"],
           "setting_name": "AchievementsEnable",
           "action": "change",
           "new_setting_value": "True",
@@ -51,9 +38,7 @@
           "defaults_file": "$ppsspp_rd_config_dir/ppsspp.ini"
         },
         {
-          "enabled_states": [
-            "true"
-          ],
+          "enabled_states": ["true"],
           "setting_name": "AchievementsUserName",
           "action": "change",
           "new_setting_value": "$cheevos_username",
@@ -62,9 +47,7 @@
           "defaults_file": "$ppsspp_rd_config_dir/ppsspp.ini"
         },
         {
-          "enabled_states": [
-            "true"
-          ],
+          "enabled_states": ["true"],
           "setting_name": "cheevos_token",
           "action": "change",
           "new_setting_value": "$cheevos_token",
@@ -75,9 +58,7 @@
       ],
       "cheevos_hardcore": [
         {
-          "enabled_states": [
-            "true"
-          ],
+          "enabled_states": ["true"],
           "setting_name": "AchievementsChallengeMode",
           "action": "change",
           "new_setting_value": "True",
