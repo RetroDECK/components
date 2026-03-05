@@ -12,22 +12,14 @@
       "wii"
     ],
     "compatible_presets": {
-      "ask_to_exit": [
-        "false",
-        "true"
-      ],
-      "universal_dyn_input": [
-        "false",
-        "true"
-      ]
+      "ask_to_exit": ["false", "true"],
+      "universal_dyn_input": ["false", "true"]
     },
     "preset_actions": {
       "config_file_format": "dolphin",
       "ask_to_exit": [
         {
-          "enabled_states": [
-            "true"
-          ],
+          "enabled_states": ["true"],
           "setting_name": "ConfirmStop",
           "action": "change",
           "new_setting_value": "True",
@@ -38,9 +30,7 @@
       ],
       "universal_dyn_input": [
         {
-          "enabled_states": [
-            "true"
-          ],
+          "enabled_states": ["true"],
           "setting_name": "Universal Dynamic Input",
           "action": "install",
           "source": "/app/retrodeck/components/shared-data/DynamicInputTextures/",
