@@ -12,6 +12,12 @@
     "system_friendly_name": "PlayStation 3",
     "component_type": "Emulator",
     "system": "ps3",
+    "helper_files": {
+      "rpcs3_guide": {
+        "filename": "rpcs3_guide.txt",
+        "location": "$roms_path/ps3"
+      }
+    },
     "configurator_menus": {
       "tools": {
         "update_rpcs3_firmware": {
