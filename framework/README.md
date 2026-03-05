@@ -1,3 +1,0 @@
-# RetroDECK Framework
-
-For techincal reason the config of this folder is still managed in the main repo, move it there needs major rewrite.
