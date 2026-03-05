@@ -43,3 +43,61 @@ _get_setting_value::ppsspp() {
        }' "$file"
   fi
 }
+
+_prepare_component::ppsspp() {
+  local action="$1"
+
+  local component_config="$(get_own_component_path)/rd_config"
+  local component_extras="$(get_own_component_path)/rd_extras"
+
+  case "$action" in
+
+    reset)
+      log i "------------------------"
+      log i "Resetting PPSSPP-SA"
+      log i "------------------------"
+      
+      create_dir -d "$XDG_CONFIG_HOME/ppsspp/PSP/SYSTEM/"
+      cp -fv "$component_config/"* "$XDG_CONFIG_HOME/ppsspp/PSP/SYSTEM/"
+      set_setting_value "$ppsspp_config" "CurrentDirectory" "$roms_path/psp" "ppsspp" "General"
+      dir_prep "$saves_path/PSP/PPSSPP-SA" "$XDG_CONFIG_HOME/ppsspp/PSP/SAVEDATA"
+      dir_prep "$states_path/PSP/PPSSPP-SA" "$XDG_CONFIG_HOME/ppsspp/PSP/PPSSPP_STATE"
+      dir_prep "$texture_packs_path/PPSSPP/TEXTURES" "$ppsspp_textures_path"
+      dir_prep "$shaders_path/PPSSPP" "$ppsspp_shaders_path"
+      dir_prep "$mods_path/PPSSPP/PLUGINS" "$ppsspp_mods_path"
+      dir_prep "$logs_path/PPSSPP" "$ppsspp_logs_path"
+
+      log i "Preparing PPSSPP cheats"
+      create_dir -d "$cheats_path/PPSSPP"
+      dir_prep "$cheats_path/PPSSPP" "$ppsspp_cheats_path"
+      if [[ -d "$cheats_path/PPSSPP" && "$(ls -A "$cheats_path"/PPSSPP)" ]]; then
+        backup_file="$backups_path/cheats/PPSSPP-$(date +%y%m%d).tar.gz"
+        create_dir "$(dirname "$backup_file")"
+        tar -czf "$backup_file" -C "$cheats_path" PPSSPP
+        log i "PPSSPP cheats backed up to $backup_file"
+      fi
+
+      unzip -q -o -j "$component_extras/CWCheat-Database-Plus--master.zip" "*/cheat.db" -d "$cheats_path/PPSSPP"
+
+      log i "Preparing PPSSPP BIOS"
+      create_dir -d "$bios_path/PPSSPP"
+      tar -xzf "$component_extras/ppsspp_foss_bios.tar.gz" -C "$bios_path/PPSSPP" --strip-components=1 assets/ && log i "PPSSPP BIOS files extracted to $bios_path/PPSSPP" || log e "Failed to extract PPSSPP BIOS files."  
+    ;;
+
+    postmove)
+      log i "------------------------"
+      log i "Post-moving PPSSPP-SA"
+      log i "------------------------"
+
+      set_setting_value "$ppsspp_config" "CurrentDirectory" "$roms_path/psp" "ppsspp" "General"
+      dir_prep "$saves_path/PSP/PPSSPP-SA" "$XDG_CONFIG_HOME/ppsspp/PSP/SAVEDATA"
+      dir_prep "$states_path/PSP/PPSSPP-SA" "$XDG_CONFIG_HOME/ppsspp/PSP/PPSSPP_STATE"
+      dir_prep "$texture_packs_path/PPSSPP/TEXTURES" "$ppsspp_textures_path"
+      dir_prep "$shaders_path/PPSSPP" "$ppsspp_shaders_path"
+      dir_prep "$cheats_path/PPSSPP" "$ppsspp_cheats_path"
+      dir_prep "$mods_path/PPSSPP/PLUGINS" "$ppsspp_mods_path"
+      dir_prep "$logs_path/PPSSPP" "$ppsspp_logs_path"
+    ;;
+
+  esac
+}
