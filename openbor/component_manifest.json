@@ -8,6 +8,12 @@
     "url_donation_purchase": "",
     "url_source": "https://github.com/DCurrent/openbor",
     "system_friendly_name": "OpenBOR",
-    "system": "openbor"
+    "system": "openbor",
+    "helper_files": {
+      "openbor_guide": {
+        "filename": "openbor_guide.txt",
+        "location": "$roms_path/openbor"
+      }
+    }
   }
 }
