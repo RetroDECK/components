@@ -3,6 +3,11 @@
     "description": "ES-DE Frontend is a game-launcher frontend.",
     "name": "ES-DE",
     "component_type": "System",
+    "prepare_priority": {
+      "default": 50,
+      "startup": 99,
+      "shutdown": 10
+    },
     "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_system_guides/es-de/esde-guide/.",
     "url_webpage": "https://es-de.org/",
     "url_donation_purchase": "https://www.patreon.com/es_de/",
