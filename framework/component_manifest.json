@@ -2,6 +2,9 @@
   "retrodeck": {
     "name": "RetroDECK",
     "description": "RetroDECK Framework",
+    "prepare_priority": {
+      "shutdown": 99
+    },
     "url_rdwiki": "https://retrodeck.readthedocs.io/en/",
     "url_webpage": "https://retrodeck.net",
     "url_donation_purchase": "https://retrodeck.readthedocs.io/en/latest/wiki_credits_social/donations-licenses/",
