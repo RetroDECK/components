@@ -8,6 +8,12 @@
     "component_type": "Engine",
     "description": "GZDoom is a modern, enhanced source port engine of classic DOOM and DOOM engine games.",
     "system_friendly_name": "Doom",
-    "system": "doom"
+    "system": "doom",
+    "helper_files": {
+      "doom_guide": {
+        "filename": "doom_guide.txt",
+        "location": "$roms_path/doom"
+      }
+    }
   }
 }
