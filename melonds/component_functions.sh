@@ -41,3 +41,43 @@ _get_setting_value::melonds() {
        }' "$file"
   fi
 }
+
+_prepare_component::melonds() {
+  local action="$1"
+
+  local component_config="$(get_own_component_path)/rd_config"
+
+  case "$action" in
+
+    reset)
+      log i "----------------------"
+      log i "Resetting MelonDS"
+      log i "----------------------"
+
+      create_dir -d "$XDG_CONFIG_HOME/melonDS/"
+      cp -fv "$component_config/melonDS.toml" "$melonds_config"
+      set_setting_value "$melonds_config" "BIOS9Path" "\"$bios_path/bios9.bin\"" "melonds" "DS"
+      set_setting_value "$melonds_config" "BIOS7Path" "\"$bios_path/bios7.bin\"" "melonds" "DS"
+      set_setting_value "$melonds_config" "FirmwarePath" "\"$bios_path/firmware.bin\"" "melonds" "DS"
+      set_setting_value "$melonds_config" "SaveFilePath" "\"$saves_path/nds/melonds\"" "melonds" "Instance0"
+      set_setting_value "$melonds_config" "SavestatePath" "\"$states_path/nds/melonds\"" "melonds" "Instance0"
+      create_dir "$saves_path/nds/melonds"
+      create_dir "$states_path/nds/melonds"
+      dir_prep "$bios_path" "$XDG_CONFIG_HOME/melonDS/bios"
+    ;;
+
+    postmove)
+      log i "----------------------"
+      log i "Post-moving MelonDS"
+      log i "----------------------"
+
+      dir_prep "$bios_path" "$XDG_CONFIG_HOME/melonDS/bios"
+      set_setting_value "$melonds_config" "BIOS9Path" "\"$bios_path/bios9.bin\"" "melonds" "DS"
+      set_setting_value "$melonds_config" "BIOS7Path" "\"$bios_path/bios7.bin\"" "melonds" "DS"
+      set_setting_value "$melonds_config" "FirmwarePath" "\"$bios_path/firmware.bin\"" "melonds" "DS"
+      set_setting_value "$melonds_config" "SaveFilePath" "\"$saves_path/nds/melonds\"" "melonds" "Instance0"
+      set_setting_value "$melonds_config" "SavestatePath" "\"$states_path/nds/melonds\"" "melonds" "Instance0"
+    ;;
+
+  esac
+}
