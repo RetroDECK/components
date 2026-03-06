@@ -86,28 +86,6 @@
           "source": "share/licenses/org.zdoom.GZDoom/",
           "dest": "doc"
         }
-      ],
-      "libs": [
-        {
-          "library": "libzmusic.so.1",
-          "source": "lib",
-          "dest": "shared-libs"
-        },
-        {
-          "library": "libfluidsynth.so.3",
-          "source": "lib",
-          "dest": "shared-libs"
-        },
-        {
-          "library": "libinstpatch-1.0.so.2",
-          "source": "lib",
-          "dest": "shared-libs"
-        },
-        {
-          "library": "libzmusiclite.so.1",
-          "source": "lib",
-          "dest": "shared-libs"
-        }
       ]
     }
   ]
