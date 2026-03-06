@@ -14,6 +14,12 @@ on:
         type: boolean
         default: false
 
+      force_countertop:
+        description: 'Force countertop variant in flatpak build (implies [release] trigger)'
+        required: false
+        type: boolean
+        default: false
+
       dry_run:
         description: 'Dry run - build and validate but do not create release or trigger flatpak'
         required: false
@@ -46,6 +52,7 @@ jobs:
       should_build: ${{ steps.check.outputs.should_build }}
       trigger_flatpak: ${{ steps.check.outputs.trigger_flatpak }}
       is_dry_run: ${{ steps.check.outputs.is_dry_run }}
+      force_countertop: ${{ steps.check.outputs.force_countertop }}
     steps:
       - name: Checkout code
         if: github.event_name == 'push'
@@ -60,6 +67,7 @@ jobs:
           BUILD_TRIGGER="build"
           RELEASE_TRIGGER="release"
           DRY_RUN_TRIGGER="dry-run"
+          COUNTERTOP_TRIGGER="countertop"
 
           # --- Schedule trigger (epicure) ---
           if [[ "${{ github.event_name }}" == "schedule" ]]; then
@@ -67,6 +75,7 @@ jobs:
             echo "should_build=true" >> $GITHUB_OUTPUT
             echo "trigger_flatpak=true" >> $GITHUB_OUTPUT
             echo "is_dry_run=false" >> $GITHUB_OUTPUT
+            echo "force_countertop=false" >> $GITHUB_OUTPUT
             exit 0
           fi
 
@@ -74,10 +83,18 @@ jobs:
           if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
             echo "Manual trigger"
             echo "should_build=true" >> $GITHUB_OUTPUT
-            if [[ "${{ inputs.dry_run }}" == "true" ]]; then
+
+            if [[ "${{ inputs.force_countertop }}" == "true" ]]; then
+              echo "force_countertop=true" >> $GITHUB_OUTPUT
+              # Countertop implies release behavior
+              echo "trigger_flatpak=true" >> $GITHUB_OUTPUT
+              echo "is_dry_run=false" >> $GITHUB_OUTPUT
+            elif [[ "${{ inputs.dry_run }}" == "true" ]]; then
+              echo "force_countertop=false" >> $GITHUB_OUTPUT
               echo "is_dry_run=true" >> $GITHUB_OUTPUT
               echo "trigger_flatpak=false" >> $GITHUB_OUTPUT
             else
+              echo "force_countertop=false" >> $GITHUB_OUTPUT
               echo "is_dry_run=false" >> $GITHUB_OUTPUT
               if [[ "${{ inputs.trigger_flatpak_build }}" == "true" ]]; then
                 echo "trigger_flatpak=true" >> $GITHUB_OUTPUT
@@ -91,11 +108,28 @@ jobs:
           # --- Push event ---
           COMMITS=$(git log --format=%B ${{ github.event.before }}..${{ github.event.after }})
 
+          # Detect [countertop] flag in commits (can combine with other triggers)
+          FORCE_COUNTERTOP="false"
+          if echo "$COMMITS" | grep -qiE "\[${COUNTERTOP_TRIGGER}\]"; then
+            echo "Found [countertop] trigger in commit messages"
+            FORCE_COUNTERTOP="true"
+          fi
+          echo "force_countertop=$FORCE_COUNTERTOP" >> $GITHUB_OUTPUT
+
           # PR merge commits always trigger a build (no trigger word needed)
           if echo "$COMMITS" | grep -qiE "^Merge pull request #"; then
             echo "PR merge detected - auto-building"
             echo "should_build=true" >> $GITHUB_OUTPUT
             echo "trigger_flatpak=false" >> $GITHUB_OUTPUT
+            echo "is_dry_run=false" >> $GITHUB_OUTPUT
+            exit 0
+          fi
+
+          # [countertop] implies release behavior (build + release + trigger flatpak)
+          if [[ "$FORCE_COUNTERTOP" == "true" ]]; then
+            echo "[countertop] implies release behavior"
+            echo "should_build=true" >> $GITHUB_OUTPUT
+            echo "trigger_flatpak=true" >> $GITHUB_OUTPUT
             echo "is_dry_run=false" >> $GITHUB_OUTPUT
             exit 0
           fi
@@ -145,6 +179,7 @@ jobs:
       branch: ${{ steps.config.outputs.branch }}
       is_dry_run: ${{ needs.check-trigger.outputs.is_dry_run }}
       trigger_flatpak: ${{ needs.check-trigger.outputs.trigger_flatpak }}
+      force_countertop: ${{ needs.check-trigger.outputs.force_countertop }}
     steps:
       - name: Determine build parameters
         id: config
@@ -168,6 +203,7 @@ jobs:
           echo "  Branch:           $BRANCH"
           echo "  Dry run:          ${{ needs.check-trigger.outputs.is_dry_run }}"
           echo "  Trigger flatpak:  ${{ needs.check-trigger.outputs.trigger_flatpak }}"
+          echo "  Force countertop: ${{ needs.check-trigger.outputs.force_countertop }}"
           echo "=========================================="
 
       - name: Checkout code
@@ -220,7 +256,15 @@ jobs:
           echo "$FILES JSON files passed validation"
 
   # ===========================================================================
-  # Auto-pin versions on main branch
+  # Auto-pin versions on main branch and sync epicure
+  # ===========================================================================
+  # When code is merged from cooker to main, this job:
+  #   1. Fetches the proposed version pins from the latest cooker release
+  #   2. Commits them as version_pins.sh to the main branch
+  #   3. Syncs the epicure branch from main with pins removed
+  #
+  # This ensures the main build uses reproducible pinned versions, and
+  # epicure stays in sync with main's code while resolving dynamically.
   # ===========================================================================
   auto-pin-versions:
     name: Auto-Pin Versions and Sync Epicure (main only)
@@ -981,6 +1025,7 @@ jobs:
           echo "  Flatpak repo:       $FLATPAK_REPO"
           echo "  Components branch:  $BRANCH"
           echo "  Components release: $RELEASE_TAG"
+          echo "  Force countertop:   ${{ needs.configure.outputs.force_countertop }}"
 
           # Epicure components -> trigger on main branch (epicure uses main code)
           # All others -> trigger on matching branch
@@ -994,8 +1039,9 @@ jobs:
             --repo "$FLATPAK_REPO" \
             --ref "$TARGET_BRANCH" \
             -f triggered_by_components=true \
-            -f components_branch="$BRANCH" \
-            -f components_release_tag="$RELEASE_TAG"
+            -f branch_override="$BRANCH" \
+            -f components_release_tag="$RELEASE_TAG" \
+            -f force_countertop="${{ needs.configure.outputs.force_countertop }}"
 
           echo ""
           echo "=========================================="
