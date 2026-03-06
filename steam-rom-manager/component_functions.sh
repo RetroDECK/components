@@ -1,15 +1,69 @@
 #!/bin/bash
 
-steamsync_folder="$rd_home_path/.sync"                                                                                        # Folder containing favorites manifest for SRM
-srm_userdata="$XDG_CONFIG_HOME/steam-rom-manager/userData"                                                              # SRM userdata folder, holding 
-retrodeck_favorites_file="$steamsync_folder/retrodeck_favorites.json"                                                   # The current SRM manifest of all games that have been favorited in ES-DE
-srm_log="$logs_path/srm_log.log"                                                                                      # Log file for capturing the output of the most recent SRM run, for debugging purposes
-retrodeck_added_favorites="$steamsync_folder/retrodeck_added_favorites.json"                                            # Temporary manifest of any games that were newly added to the ES-DE favorites and should be added to Steam
-retrodeck_removed_favorites="$steamsync_folder/retrodeck_removed_favorites.json"                                        # Temporary manifest of any games that were removed from the ES-DE favorites and should be removed from Steam
+export steamsync_folder="$rd_home_path/.sync"                                                                                        # Folder containing favorites manifest for SRM
+export srm_userdata="$XDG_CONFIG_HOME/steam-rom-manager/userData"                                                              # SRM userdata folder, holding 
+export retrodeck_favorites_file="$steamsync_folder/retrodeck_favorites.json"                                                   # The current SRM manifest of all games that have been favorited in ES-DE
+export srm_log="$logs_path/srm_log.log"                                                                                      # Log file for capturing the output of the most recent SRM run, for debugging purposes
+export retrodeck_added_favorites="$steamsync_folder/retrodeck_added_favorites.json"                                            # Temporary manifest of any games that were newly added to the ES-DE favorites and should be added to Steam
+export retrodeck_removed_favorites="$steamsync_folder/retrodeck_removed_favorites.json"                                        # Temporary manifest of any games that were removed from the ES-DE favorites and should be removed from Steam
 
-steam_userdata_native="$HOME/.steam/steam"
-steam_userdata_flatpak="$HOME/.var/app/com.valvesoftware.Steam/.steam/steam"
-steam_userdata_current=""
+export steam_userdata_native="$HOME/.steam/steam"
+export steam_userdata_flatpak="$HOME/.var/app/com.valvesoftware.Steam/.steam/steam"
+export steam_userdata_current=""
+
+_prepare_component::steam-rom-manager() {
+  local action="$1"
+
+  local component_config="$(get_own_component_path)/rd_config"
+
+  case "$action" in
+
+    reset)
+      log i "--------------------------------"
+      log i "Resetting Steam ROM Manager"
+      log i "--------------------------------"
+
+      create_dir -d "$srm_userdata"
+      cp -fv "$component_config/"*.json "$srm_userdata"
+      cp -fvr "$component_config/manifests" "$srm_userdata"
+
+      get_steam_user
+
+      if [[ -n "$steam_userdata_current" ]]; then
+        log i "Updating steamDirectory and romDirectory lines in $srm_userdata/userSettings.json"
+        jq '.environmentVariables.steamDirectory = "'"$steam_userdata_current"'"' "$srm_userdata/userSettings.json" > "$srm_userdata/tmp.json" && mv -f "$srm_userdata/tmp.json" "$srm_userdata/userSettings.json"
+        jq '.environmentVariables.romsDirectory = "'"$rd_home_path"'/.sync"' "$srm_userdata/userSettings.json" > "$srm_userdata/tmp.json" && mv -f "$srm_userdata/tmp.json" "$srm_userdata/userSettings.json"
+      fi
+
+      if [[ ! -z $(find "$HOME/.steam/steam/controller_base/templates/" -maxdepth 1 -type f -iname "RetroDECK*.vdf") || ! -z $(find "$HOME/.var/app/com.valvesoftware.Steam/.steam/steam/controller_base/templates/" -maxdepth 1 -type f -iname "RetroDECK*.vdf") ]]; then # If RetroDECK controller profile has been previously installed
+        install_retrodeck_controller_profile
+      fi
+    ;;
+
+    startup)
+      log i "--------------------------------"
+      log i "Starting ES-DE"
+      log i "--------------------------------"
+      local component_path="$(get_own_component_path)"
+
+      splash_screen::es-de
+  
+      log i "Starting ES-DE"
+      /bin/bash "$component_path/es-de/component_launcher.sh" "$@"
+    ;;
+
+    shutdown)
+      log i "--------------------------------"
+      log i "Shutting down Steam ROM Manager"
+      log i "--------------------------------"
+
+      if [[ $(get_setting_value "$rd_conf" "steam_sync" "retrodeck" "options") =~ (true|native|flatpak) ]]; then
+        steam_sync
+      fi
+    ;;
+
+  esac
+}
 
 configurator_add_retrodeck_to_steam_dialog() {
   (
@@ -187,7 +241,6 @@ get_steam_user() {
       fi
 
     else
-      # Log warning if file not found
       log w "No Steam user found, proceeding" >&2
     fi
   fi
