@@ -1,0 +1,1 @@
+This component has been abandoned, they suggest moving to UZDOOM.
