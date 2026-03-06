@@ -2,6 +2,9 @@
   "portmaster": {
     "description": "PortMaster a port manager that simplifies installing and updating ports.",
     "name": "PortMaster",
+    "prepare_priority": {
+      "startup": 90
+    },
     "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_port_guides/portmaster/portmaster-guide/",
     "url_webpage": "https://portmaster.games/index.html",
     "url_donation_purchase": "https://opencollective.com/portmaster",
