@@ -1,6 +1,6 @@
 #!/bin/bash
 
-xroar_config="$XDG_CONFIG_HOME/xroar/xroar.conf"
+export xroar_config="$XDG_CONFIG_HOME/xroar/xroar.conf"
 
 _set_setting_value::xroar() {
   local file="$1"
