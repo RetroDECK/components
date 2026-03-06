@@ -1,8 +1,8 @@
 #!/bin/bash
 
-ruffle_config="$XDG_CONFIG_HOME/ruffle/preferences.toml"
-ruffle_logs_path="$XDG_CACHE_HOME/ruffle/log"
-ruffle_saves_path="$XDG_DATA_HOME/ruffle/SharedObjects"
+export ruffle_config="$XDG_CONFIG_HOME/ruffle/preferences.toml"
+export ruffle_logs_path="$XDG_CACHE_HOME/ruffle/log"
+export ruffle_saves_path="$XDG_DATA_HOME/ruffle/SharedObjects"
 
 _set_setting_value::ruffle() {
   local file="$1"
