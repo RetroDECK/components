@@ -1,16 +1,16 @@
 #!/bin/bash
 
-ppsspp_config="$XDG_CONFIG_HOME/ppsspp/PSP/SYSTEM/ppsspp.ini"
-ppsspp_config_controls="$XDG_CONFIG_HOME/ppsspp/PSP/SYSTEM/controls.ini"
-ppsspp_retroachievements_dat="$XDG_CONFIG_HOME/ppsspp/PSP/SYSTEM/ppsspp_retroachievements.dat"
-ppsspp_cheats_db="$rd_components/ppsspp/cheats/cheat.db"
-ppsspp_rd_config_dir="$rd_components/ppsspp/rd_config"
-ppsspp_rd_extras_dir="$rd_components/ppsspp/rd_extras"
-ppsspp_textures_path="$XDG_CONFIG_HOME/ppsspp/PSP/TEXTURES"
-ppsspp_shaders_path="$XDG_CONFIG_HOME/ppsspp/PSP/shaders"
-ppsspp_cheats_path="$XDG_CONFIG_HOME/ppsspp/PSP/Cheats"
-ppsspp_mods_path="$XDG_CONFIG_HOME/ppsspp/PSP/PLUGINS"
-ppsspp_logs_path="$XDG_CONFIG_HOME/ppsspp/PSP/SYSTEM/DUMP"
+export ppsspp_config="$XDG_CONFIG_HOME/ppsspp/PSP/SYSTEM/ppsspp.ini"
+export ppsspp_config_controls="$XDG_CONFIG_HOME/ppsspp/PSP/SYSTEM/controls.ini"
+export ppsspp_retroachievements_dat="$XDG_CONFIG_HOME/ppsspp/PSP/SYSTEM/ppsspp_retroachievements.dat"
+export ppsspp_cheats_db="$rd_components/ppsspp/cheats/cheat.db"
+export ppsspp_rd_config_dir="$rd_components/ppsspp/rd_config"
+export ppsspp_rd_extras_dir="$rd_components/ppsspp/rd_extras"
+export ppsspp_textures_path="$XDG_CONFIG_HOME/ppsspp/PSP/TEXTURES"
+export ppsspp_shaders_path="$XDG_CONFIG_HOME/ppsspp/PSP/shaders"
+export ppsspp_cheats_path="$XDG_CONFIG_HOME/ppsspp/PSP/Cheats"
+export ppsspp_mods_path="$XDG_CONFIG_HOME/ppsspp/PSP/PLUGINS"
+export ppsspp_logs_path="$XDG_CONFIG_HOME/ppsspp/PSP/SYSTEM/DUMP"
 
 _set_setting_value::ppsspp() {
   local file="$1"
