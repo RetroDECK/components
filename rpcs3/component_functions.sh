@@ -1,14 +1,14 @@
 #!/bin/bash
 
-rpcs3_config="$XDG_CONFIG_HOME/rpcs3/config.yml"
-rpcs3_config_evdev_positive_axis="$XDG_CONFIG_HOME/rpcs3/evdev_positive_axis.yml"
-rpcs3_log="$XDG_CACHE_HOME/rpcs3/RPCS3.log"
-rpcs3_config_vfs="$XDG_CONFIG_HOME/rpcs3/vfs.yml"
-rpcs3_gui_current_settings="$XDG_CONFIG_HOME/rpcs3/GuiConfigs/CurrentSettings.ini"
-rpcs3_input_active_profiles="$XDG_CONFIG_HOME/rpcs3/input_configs/active_profiles.yml"
-rpcs3_input_Default="$XDG_CONFIG_HOME/rpcs3/input_configs/global/Default.yml"
-rpcs3_component_dir="$rd_components/rpcs3"
-rpcs3_firmware="http://dus01.ps3.update.playstation.net/update/ps3/image/us/2025_0305_c179ad173bbc08b55431d30947725a4b/PS3UPDAT.PUP"
+export rpcs3_config="$XDG_CONFIG_HOME/rpcs3/config.yml"
+export rpcs3_config_evdev_positive_axis="$XDG_CONFIG_HOME/rpcs3/evdev_positive_axis.yml"
+export rpcs3_log="$XDG_CACHE_HOME/rpcs3/RPCS3.log"
+export rpcs3_config_vfs="$XDG_CONFIG_HOME/rpcs3/vfs.yml"
+export rpcs3_gui_current_settings="$XDG_CONFIG_HOME/rpcs3/GuiConfigs/CurrentSettings.ini"
+export rpcs3_input_active_profiles="$XDG_CONFIG_HOME/rpcs3/input_configs/active_profiles.yml"
+export rpcs3_input_Default="$XDG_CONFIG_HOME/rpcs3/input_configs/global/Default.yml"
+export rpcs3_component_dir="$rd_components/rpcs3"
+export rpcs3_firmware="http://dus01.ps3.update.playstation.net/update/ps3/image/us/2025_0305_c179ad173bbc08b55431d30947725a4b/PS3UPDAT.PUP"
 
 update_rpcs3_firmware() {
   if [[ $(check_network_connectivity) == "true" ]]; then
