@@ -58,21 +58,6 @@
         },
         {
           "type": "dir",
-          "source": "rd_assets/gzdoom_release/lib",
-          "dest": "lib"
-        },
-        {
-          "type": "dir",
-          "source": "rd_assets/gzdoom_release/share",
-          "dest": "share"
-        },
-        {
-          "type": "dir",
-          "source": "rd_assets/gzdoom_release/shared-libs",
-          "dest": "shared-libs"
-        },
-        {
-          "type": "dir",
           "source": "rd_assets/gzdoom_release/doc",
           "dest": "doc"
         }
