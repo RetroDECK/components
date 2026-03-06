@@ -57,26 +57,6 @@
           "dest": "$COMPONENT_ARTIFACT_ROOT"
         },
         {
-          "type": "file",
-          "source": "lib/libgme.a",
-          "dest": "lib"
-        },
-        {
-          "type": "file",
-          "source": "lib/libsndfile.a",
-          "dest": "lib"
-        },
-        {
-          "type": "dir",
-          "source": "lib/pkgconfig",
-          "dest": "lib/pkgconfig"
-        },
-        {
-          "type": "dir",
-          "source": "lib/cmake",
-          "dest": "lib/cmake"
-        },
-        {
           "type": "dir",
           "source": "share/games/doom/",
           "dest": "share/games/doom/"
