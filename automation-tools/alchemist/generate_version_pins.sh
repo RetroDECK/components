@@ -68,14 +68,14 @@ generate_pins() {
 
       if [[ -z "$version" ]]; then
         log warn "No version found for component '$component', skipping"
-        ((skip_count++))
+        skip_count=$((skip_count + 1))
         continue
       fi
 
       # Skip components whose version is still a placeholder
       if [[ "$version" =~ ^(latest|newest)(\ on\ .*)?$ ]]; then
         log warn "Component '$component' resolved to placeholder '$version', skipping pin"
-        ((skip_count++))
+        skip_count=$((skip_count + 1))
         continue
       fi
 
@@ -86,7 +86,7 @@ generate_pins() {
       normalized="${normalized^^}"
 
       echo "export ${normalized}_PINNED_VERSION=\"${version}\""
-      ((pin_count++))
+      pin_count=$((pin_count + 1))
 
     done < <(jq -r 'keys[]' "$metadata_file")
 
@@ -110,8 +110,8 @@ parse_args() {
         shift 2
         ;;
       *)
-        echo "Unknown option: $1" >&2
-        echo "Usage: $0 -m <metadata_json> [-o <output_file>]" >&2
+        log error "Unknown option: $1"
+        echo "Usage: $0 -m <metadata_json> [-o <output_file>]"
         return 1
         ;;
     esac
@@ -119,7 +119,7 @@ parse_args() {
 
   if [[ -z "$metadata_file" ]]; then
     log error "Missing required argument: -m <metadata_json>"
-    echo "Usage: $0 -m <metadata_json> [-o <output_file>]" >&2
+    echo "Usage: $0 -m <metadata_json> [-o <output_file>]"
     return 1
   fi
 
