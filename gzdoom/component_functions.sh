@@ -1,6 +1,6 @@
 #!/bin/bash
 
-gzdoom_config="$XDG_CONFIG_HOME/gzdoom/gzdoom.ini"
+export gzdoom_config="$XDG_CONFIG_HOME/gzdoom/gzdoom.ini"
 
 _prepare_component::gzdoom() {
   local action="$1"
