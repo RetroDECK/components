@@ -1,7 +1,7 @@
 #!/bin/bash
 
-pico8_config="$XDG_CONFIG_HOME/pico-8/config.txt"
-pico8_config_sdl_controllers="$XDG_CONFIG_HOME/pico-8/sdl_controllers.txt"
+export pico8_config="$XDG_CONFIG_HOME/pico-8/config.txt"
+export pico8_config_sdl_controllers="$XDG_CONFIG_HOME/pico-8/sdl_controllers.txt"
 
 _set_setting_value::pico-8() {
   local file="$1"
