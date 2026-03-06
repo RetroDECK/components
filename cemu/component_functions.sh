@@ -1,13 +1,13 @@
 #!/bin/bash
 
-cemu_config="$XDG_CONFIG_HOME/Cemu/settings.xml"
-cemu_config_controller0="$XDG_CONFIG_HOME/Cemu/controllerProfiles/controller0.xml"
-cemu_config_controller1="$XDG_CONFIG_HOME/Cemu/controllerProfiles/controller1.xml"
-cemu_config_controller2="$XDG_CONFIG_HOME/Cemu/controllerProfiles/controller2.xml"
-cemu_config_controller3="$XDG_CONFIG_HOME/Cemu/controllerProfiles/controller3.xml"
-cemu_textures_path="$XDG_DATA_HOME/Cemu/graphicPacks"
-cemu_shadercache_path="$XDG_CACHE_HOME/Cemu/shaderCache"
-cemu_shadercache_transferable_path="$XDG_CACHE_HOME/Cemu/shaderCache/transferable"
+export cemu_config="$XDG_CONFIG_HOME/Cemu/settings.xml"
+export cemu_config_controller0="$XDG_CONFIG_HOME/Cemu/controllerProfiles/controller0.xml"
+export cemu_config_controller1="$XDG_CONFIG_HOME/Cemu/controllerProfiles/controller1.xml"
+export cemu_config_controller2="$XDG_CONFIG_HOME/Cemu/controllerProfiles/controller2.xml"
+export cemu_config_controller3="$XDG_CONFIG_HOME/Cemu/controllerProfiles/controller3.xml"
+export cemu_textures_path="$XDG_DATA_HOME/Cemu/graphicPacks"
+export cemu_shadercache_path="$XDG_CACHE_HOME/Cemu/shaderCache"
+export cemu_shadercache_transferable_path="$XDG_CACHE_HOME/Cemu/shaderCache/transferable"
 
 _set_setting_value::cemu() {
   local file="$1" name="$2" value="$3" section="${4:-}"
