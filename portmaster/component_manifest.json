@@ -8,6 +8,12 @@
     "url_source": "https://github.com/PortsMaster/PortMaster-New",
     "system_friendly_name": "PortMaster",
     "component_type": "System",
-    "system": "portmaster"
+    "system": "portmaster",
+    "helper_files": {
+      "portmaster_guide": {
+        "filename": "portmaster_guide.txt",
+        "location": "$portmaster_path"
+      }
+    }
   }
 }
