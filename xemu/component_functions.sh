@@ -1,6 +1,6 @@
 #!/bin/bash
 
-xemu_conf="$XDG_CONFIG_HOME/xemu/xemu.toml"
+export xemu_conf="$XDG_CONFIG_HOME/xemu/xemu.toml"
 
 _set_setting_value::xemu() {
   local file="$1"
