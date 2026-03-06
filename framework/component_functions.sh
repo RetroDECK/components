@@ -120,7 +120,7 @@ _prepare_component::framework() {
       done < <(jq -r '.paths | to_entries[] | [.key, (.value | tostring)] | @tsv' "$rd_conf")
 
       create_dir -d "$XDG_CONFIG_HOME/retrodeck/graphics"
-      rsync -rlD --delete --mkpath "/app/retrodeck/graphics/folder-iconsets/" "$XDG_CONFIG_HOME/retrodeck/graphics/folder-iconsets/"
+      rsync -rlD --mkpath "/app/retrodeck/graphics/folder-iconsets/" "$XDG_CONFIG_HOME/retrodeck/graphics/folder-iconsets/"
     ;;
 
     postmove)
