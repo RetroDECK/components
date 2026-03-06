@@ -10,6 +10,8 @@ get_latest_flatpak_release_version() {
   response=$(flatpak remote-info --"$FLATPAK_DEFAULT_INSTALL_MODE" flathub "$flatpak_id" 2>&1)
   local flatpak_cmd_exit=$?
 
+  log debug "DEBUG: response=$response"
+
   if [[ "$flatpak_cmd_exit" -ne 0 ]]; then
     log error "Failed to fetch latest release for $flatpak_id"
     return 1
