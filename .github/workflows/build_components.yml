@@ -265,26 +265,43 @@ jobs:
   #
   # This ensures the main build uses reproducible pinned versions, and
   # epicure stays in sync with main's code while resolving dynamically.
+  #
+  # On non-main branches, this job runs but all steps are skipped. This
+  # avoids the GitHub Actions issue where a job-level skip propagates
+  # through the dependency chain and causes downstream jobs to skip.
   # ===========================================================================
   auto-pin-versions:
     name: Auto-Pin Versions and Sync Epicure (main only)
     needs: configure
-    if: needs.configure.outputs.branch == 'main'
     runs-on: ubuntu-latest
     steps:
+      - name: Check if pinning is needed
+        id: check
+        run: |
+          if [[ "${{ needs.configure.outputs.branch }}" == "main" ]]; then
+            echo "Main branch detected, version pinning and epicure sync will run"
+            echo "is_main=true" >> $GITHUB_OUTPUT
+          else
+            echo "Not on main branch, skipping version pinning and epicure sync"
+            echo "is_main=false" >> $GITHUB_OUTPUT
+          fi
+
       - name: Checkout main
+        if: steps.check.outputs.is_main == 'true'
         uses: actions/checkout@v4
         with:
           ref: main
           fetch-depth: 0
 
       - name: Configure git identity
+        if: steps.check.outputs.is_main == 'true'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
       - name: Fetch proposed pins from latest cooker release
         id: fetch-pins
+        if: steps.check.outputs.is_main == 'true'
         run: |
           echo "Looking for latest cooker release with proposed version pins..."
 
@@ -313,7 +330,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
 
       - name: Commit version pins to main
-        if: steps.fetch-pins.outputs.found == 'true'
+        if: steps.check.outputs.is_main == 'true' && steps.fetch-pins.outputs.found == 'true'
         run: |
           # Compare with existing pins file if present
           if [[ -f version_pins.sh ]] && diff -q version_pins.sh proposed_version_pins.sh &>/dev/null; then
@@ -331,6 +348,7 @@ jobs:
           echo "version_pins.sh committed to main"
 
       - name: Sync epicure branch from main
+        if: steps.check.outputs.is_main == 'true'
         run: |
           echo "Syncing epicure branch from main..."
 
@@ -354,7 +372,6 @@ jobs:
   resolve-versions:
     name: Resolve Component Versions
     needs: [configure, auto-pin-versions]
-    if: always() && needs.configure.result == 'success' && (needs.auto-pin-versions.result == 'success' || needs.auto-pin-versions.result == 'skipped')
     runs-on: ubuntu-latest
     outputs:
       versions-json: ${{ steps.resolve.outputs.versions }}
