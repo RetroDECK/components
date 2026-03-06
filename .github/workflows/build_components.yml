@@ -354,6 +354,39 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
 
+      - name: Install build dependencies
+        if: matrix.can_reuse == false
+        run: |
+          echo "Installing build dependencies..."
+
+          unset pkg_mgr
+          for candidate in apt pacman dnf; do
+            command -v "$candidate" &> /dev/null && pkg_mgr="$candidate" && break
+          done
+
+          case "${pkg_mgr:-}" in
+            apt)
+              sudo add-apt-repository -y ppa:flatpak/stable
+              sudo apt update
+              sudo apt install -y flatpak flatpak-builder p7zip-full xmlstarlet bzip2 curl jq unzip
+              ;;
+            pacman)
+              sudo pacman -Sy --noconfirm flatpak flatpak-builder p7zip xmlstarlet bzip2 curl jq unzip
+              ;;
+            dnf)
+              sudo dnf install -y flatpak flatpak-builder p7zip p7zip-plugins xmlstarlet bzip2 curl jq unzip
+              ;;
+            *)
+              echo "ERROR: No supported package manager found (apt, pacman, dnf)"
+              exit 1
+              ;;
+          esac
+
+          flatpak remote-add --user --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+          flatpak remote-add --user --if-not-exists flathub-beta https://flathub.org/beta-repo/flathub-beta.flatpakrepo
+
+          echo "Build dependencies installed"
+
       - name: Resolve component versions
         id: resolve
         env:
