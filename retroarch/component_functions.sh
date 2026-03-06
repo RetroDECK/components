@@ -1,11 +1,11 @@
 #!/bin/bash
 
-retroarch_config="$XDG_CONFIG_HOME/retroarch/retroarch.cfg"
-retroarch_config_core_options="$XDG_CONFIG_HOME/retroarch/retroarch-core-options.cfg"
-retroarch_config_scummvm="$bios_path/scummvm.ini"
-retroarch_cores_path="$XDG_CONFIG_HOME/retroarch/cores"
-retroarch_extras_path="$rd_components/retroarch/rd_extras"
-retroarch_rd_config_dir="$rd_components/retroarch/rd_config"
+export retroarch_config="$XDG_CONFIG_HOME/retroarch/retroarch.cfg"
+export retroarch_config_core_options="$XDG_CONFIG_HOME/retroarch/retroarch-core-options.cfg"
+export retroarch_config_scummvm="$bios_path/scummvm.ini"
+export retroarch_cores_path="$XDG_CONFIG_HOME/retroarch/cores"
+export retroarch_extras_path="$rd_components/retroarch/rd_extras"
+export retroarch_rd_config_dir="$rd_components/retroarch/rd_config"
 
 _set_setting_value::retroarch() {
   local file="$1"
