@@ -15,141 +15,67 @@
     "system": "retroarch",
     "component_type": "Multi-Emulator",
     "system_friendly_name": "Multiple Retro Systems",
+    "helper_files": {
+      "scummvm_guide": {
+        "filename": "scummvm_guide.txt",
+        "location": "$roms_path/scummvm"
+      }
+    },
+    "conflicting_presets": [
+      ["borders", "widescreen"]
+    ],
     "compatible_presets": {
-      "cheevos": [
-        "false",
-        "true"
-      ],
-      "cheevos_hardcore": [
-        "false",
-        "true"
-      ],
-      "quick_resume": [
-        "false",
-        "true"
-      ],
+      "cheevos": ["false", "true"],
+      "cheevos_hardcore": ["false", "true"],
+      "quick_resume": ["false", "true"],
       "snes9x_libretro": {
-        "borders": [
-          "false",
-          "true"
-        ],
-        "widescreen": [
-          "false",
-          "true"
-        ],
-        "abxy_button_swap": [
-          "false",
-          "true"
-        ],
-        "rewind": [
-          "false",
-          "true"
-        ]
+        "borders": ["false", "true"],
+        "widescreen": ["false", "true"],
+        "abxy_button_swap": ["false", "true"],
+        "rewind": ["false", "true"]
       },
       "genesis_plus_gx_libretro_MS": {
-        "borders": [
-          "false",
-          "true"
-        ],
-        "widescreen": [
-          "false",
-          "true"
-        ],
-        "rewind": [
-          "false",
-          "true"
-        ]
+        "borders": ["false", "true"],
+        "widescreen": ["false", "true"],
+        "rewind": ["false", "true"]
       },
       "genesis_plus_gx_libretro_GG": {
-        "borders": [
-          "false",
-          "true"
-        ],
-        "rewind": [
-          "false",
-          "true"
-        ]
+        "borders": ["false", "true"],
+        "rewind": ["false", "true"]
       },
       "gambatte_libretro_GB": {
-        "borders": [
-          "false",
-          "true"
-        ],
-        "rewind": [
-          "false",
-          "true"
-        ],
-        "abxy_button_swap": [
-          "false",
-          "true"
-        ]
+        "borders": ["false", "true"],
+        "rewind": ["false", "true"],
+        "abxy_button_swap": ["false", "true"]
       },
       "gambatte_libretro_GBC": {
-        "borders": [
-          "false",
-          "true"
-        ],
-        "rewind": [
-          "false",
-          "true"
-        ],
-        "abxy_button_swap": [
-          "false",
-          "true"
-        ]
+        "borders": ["false", "true"],
+        "rewind": ["false", "true"],
+        "abxy_button_swap": ["false", "true"]
       },
       "mgba_libretro": {
-        "borders": [
-          "false",
-          "true"
-        ],
-        "rewind": [
-          "false",
-          "true"
-        ],
-        "abxy_button_swap": [
-          "false",
-          "true"
-        ]
+        "borders": ["false", "true"],
+        "rewind": ["false", "true"],
+        "abxy_button_swap": ["false", "true"]
       },
       "mupen64plus_next_libretro": {
-        "borders": [
-          "false",
-          "true"
-        ],
-        "widescreen": [
-          "false",
-          "true"
-        ],
-        "abxy_button_swap": [
-          "false",
-          "true"
-        ]
+        "borders": ["false", "true"],
+        "widescreen": ["false", "true"],
+        "abxy_button_swap": ["false", "true"]
       },
       "mesen_libretro": {
-        "abxy_button_swap": [
-          "false",
-          "true"
-        ]
+        "abxy_button_swap": ["false", "true"]
       },
       "swanstation_libretro": {
-        "borders": [
-          "false",
-          "true"
-        ],
-        "widescreen": [
-          "false",
-          "true"
-        ]
+        "borders": ["false", "true"],
+        "widescreen": ["false", "true"]
       }
     },
     "preset_actions": {
       "config_file_format": "retroarch-all",
       "cheevos": [
         {
-          "enabled_states": [
-            "true"
-          ],
+          "enabled_states": ["true"],
           "setting_name": "cheevos_enable",
           "action": "change",
           "new_setting_value": "true",
@@ -158,9 +84,7 @@
           "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
         },
         {
-          "enabled_states": [
-            "true"
-          ],
+          "enabled_states": ["true"],
           "setting_name": "cheevos_token",
           "action": "change",
           "new_setting_value": "$cheevos_token",
@@ -169,9 +93,7 @@
           "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
         },
         {
-          "enabled_states": [
-            "true"
-          ],
+          "enabled_states": ["true"],
           "setting_name": "cheevos_username",
           "action": "change",
           "new_setting_value": "$cheevos_username",
@@ -182,9 +104,7 @@
       ],
       "cheevos_hardcore": [
         {
-          "enabled_states": [
-            "true"
-          ],
+          "enabled_states": ["true"],
           "setting_name": "cheevos_hardcore_mode_enable",
           "action": "change",
           "new_setting_value": "true",
@@ -195,9 +115,7 @@
       ],
       "quick_resume": [
         {
-          "enabled_states": [
-            "true"
-          ],
+          "enabled_states": ["true"],
           "setting_name": "savestate_auto_save",
           "action": "change",
           "new_setting_value": "true",
