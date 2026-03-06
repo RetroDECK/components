@@ -244,15 +244,3 @@ retroarch_updater() {
   create_dir "$cheats_path/retroarch"
   tar -h -xzf "$retroarch_extras_path/cheats.tar.gz" -C "$cheats_path/retroarch" --overwrite && log d "RetroArch cheats updated correctly"
 }
-
-_set_setting_value::retroarch() {
-  local file="$1"
-  local name=$(sed_escape_pattern "$2")
-  local value=$(sed_escape_replacement "$3")
-  sed -i 's^'"$name"' = ".*"^'"$name"' = "'"$value"'"^' "$file"
-}
-
-_get_setting_value::retroarch() {
-  local file="$1" name="$2"
-  sed -n 's^'"$(sed_escape_pattern "$name")"' = "\(.*\)"^\1^p' "$file"
-}
