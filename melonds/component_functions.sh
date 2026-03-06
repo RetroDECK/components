@@ -1,6 +1,6 @@
 #!/bin/bash
 
-melonds_config="$XDG_CONFIG_HOME/melonDS/melonDS.toml"
+export melonds_config="$XDG_CONFIG_HOME/melonDS/melonDS.toml"
 
 _set_setting_value::melonds() {
   local file="$1"
