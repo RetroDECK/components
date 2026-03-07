@@ -92,6 +92,13 @@ _prepare_component::es-de() {
   esac
 }
 
+start_esde(){
+  log d "Starting ES-DE"
+
+  local component_path="$(get_own_component_path)"
+  /bin/bash ${component_path}/component_launcher.sh "$@"
+}
+
 splash_screen::es-de() {
   # This function will replace the RetroDECK startup splash screen with a different image if the day and time match a listing in the JSON data.
   # USAGE: splash_screen
