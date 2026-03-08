@@ -32,6 +32,7 @@ _get_setting_value::pico-8() {
 
 _prepare_component::pico-8() {
   local action="$1"
+  shift
 
   local component_config="$(get_own_component_path)/rd_config"
 

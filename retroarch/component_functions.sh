@@ -21,6 +21,7 @@ _get_setting_value::retroarch() {
 
 _prepare_component::retroarch() {
   local action="$1"
+  shift
 
   local component_config="$(get_own_component_path)/rd_config"
 

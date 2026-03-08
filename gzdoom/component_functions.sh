@@ -4,6 +4,7 @@ export gzdoom_config="$XDG_CONFIG_HOME/gzdoom/gzdoom.ini"
 
 _prepare_component::gzdoom() {
   local action="$1"
+  shift
 
   local component_config="$(get_own_component_path)/rd_config"
 

@@ -35,6 +35,7 @@ _get_setting_value::mame() {
 
 _prepare_component::mame() {
   local action="$1"
+  shift
 
   local component_path="$(get_own_component_path)"
   local component_config="$(get_own_component_path)/rd_config"

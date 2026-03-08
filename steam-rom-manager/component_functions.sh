@@ -13,6 +13,7 @@ export steam_userdata_current=""
 
 _prepare_component::steam-rom-manager() {
   local action="$1"
+  shift
 
   local component_config="$(get_own_component_path)/rd_config"
 

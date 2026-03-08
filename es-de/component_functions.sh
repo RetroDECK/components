@@ -24,6 +24,7 @@ _get_setting_value::es-de() {
 
 _prepare_component::es-de() {
   local action="$1"
+  shift
 
   local component_config="$(get_own_component_path)/rd_config"
 
