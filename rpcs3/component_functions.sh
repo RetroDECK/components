@@ -99,3 +99,59 @@ _get_setting_value::rpcs3() {
     yq -r "${yq_path}" "$file"
   fi
 }
+
+_prepare_component::rpcs3() {
+  local action="$1"
+  shift
+
+  local component_config="$(get_own_component_path)/rd_config"
+
+  case "$action" in
+
+    reset)
+      log i "------------------------"
+      log i "Resetting RPCS3"
+      log i "------------------------"
+
+      create_dir -d "$XDG_CONFIG_HOME/rpcs3/"
+      cp -fr "$component_config/"* "$XDG_CONFIG_HOME/rpcs3/"
+      # This is an unfortunate one-off because set_setting_value does not currently support settings with $ in the name.
+      sed -i 's^\^$(EmulatorDir): .*^$(EmulatorDir): '"$storage_path/rpcs3/"'^' "$rpcs3_config_vfs"
+      set_setting_value "$rpcs3_config_vfs" "/games/" "$roms_path/ps3/" "rpcs3"
+      dir_prep "$saves_path/ps3/rpcs3" "$storage_path/rpcs3/dev_hdd0/home/00000001/savedata"
+      dir_prep "$states_path/ps3/rpcs3" "$XDG_CONFIG_HOME/rpcs3/savestates"
+      create_dir "$storage_path/rpcs3/dev_hdd0"
+      create_dir "$storage_path/rpcs3/dev_hdd1"
+      create_dir "$storage_path/rpcs3/dev_flash"
+      create_dir "$storage_path/rpcs3/dev_flash2"
+      create_dir "$storage_path/rpcs3/dev_flash3"
+      create_dir "$storage_path/rpcs3/dev_bdvd"
+      create_dir "$storage_path/rpcs3/dev_usb000"
+      dir_prep "$storage_path/rpcs3/captures" "$XDG_CONFIG_HOME/rpcs3/captures"
+      dir_prep "$storage_path/rpcs3/patches" "$XDG_CONFIG_HOME/rpcs3/patches"
+    ;;
+
+    postmove)
+      log i "------------------------"
+      log i "Post-moving RPCS3"
+      log i "------------------------"
+
+      # This is an unfortunate one-off because set_setting_value does not currently support settings with $ in the name.
+      sed -i 's^\^$(EmulatorDir): .*^$(EmulatorDir): '"$storage_path/rpcs3/"'^' "$rpcs3_config_vfs"
+      set_setting_value "$rpcs3_config_vfs" "/games/" "$roms_path/ps3" "rpcs3"
+      dir_prep "$saves_path/ps3/rpcs3" "$storage_path/rpcs3/dev_hdd0/home/00000001/savedata"
+      dir_prep "$states_path/ps3/rpcs3" "$XDG_CONFIG_HOME/rpcs3/savestates"
+      dir_prep "$storage_path/rpcs3/captures" "$XDG_CONFIG_HOME/rpcs3/captures"
+      dir_prep "$storage_path/rpcs3/patches" "$XDG_CONFIG_HOME/rpcs3/patches"
+    ;;
+
+    startup)
+      log i "------------------------"
+      log i "Performing RPCS3 startup actions"
+      log i "------------------------"
+
+      correct_rpcs3_desktop_files
+    ;;
+
+  esac
+}
