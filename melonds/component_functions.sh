@@ -44,6 +44,7 @@ _get_setting_value::melonds() {
 
 _prepare_component::melonds() {
   local action="$1"
+  shift
 
   local component_config="$(get_own_component_path)/rd_config"
 

@@ -47,6 +47,7 @@ _get_setting_value::pcsx2() {
 
 _prepare_component::pcsx2() {
   local action="$1"
+  shift
 
   local component_config="$(get_own_component_path)/rd_config"
   local component_extras="$(get_own_component_path)/rd_extras"

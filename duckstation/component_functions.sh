@@ -45,6 +45,7 @@ _get_setting_value::duckstation() {
 
 _prepare_component::duckstation() {
   local action="$1"
+  shift
 
   local component_config="$(get_own_component_path)/rd_config"
 

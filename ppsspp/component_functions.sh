@@ -46,6 +46,7 @@ _get_setting_value::ppsspp() {
 
 _prepare_component::ppsspp() {
   local action="$1"
+  shift
 
   local component_config="$(get_own_component_path)/rd_config"
   local component_extras="$(get_own_component_path)/rd_extras"

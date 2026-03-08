@@ -90,6 +90,7 @@ _compress_game::zip() {
 
 _prepare_component::framework() {
   local action="$1"
+  shift
 
   local component_config="$(get_own_component_path)/rd_config"
 
