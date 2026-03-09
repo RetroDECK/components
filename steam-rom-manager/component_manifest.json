@@ -13,6 +13,15 @@
     "description": "Steam Rom Manager (SRM) is a system that adds games to your Steam library.",
     "component_type": "System",
     "configurator_menus": {
+      "tools": {
+        "install_retrodeck_controller_layouts": {
+          "name": "Install: Steam Controller Templates",
+          "description": "Installs RetroDECK controller templates to Steam.",
+          "command": {
+            "zenity": "configurator_install_retrodeck_controller_profile_dialog"
+          }
+        }
+      },
       "steam_tools": {
         "automatic_steam_sync": {
           "name": "Automatic Steam Synchronization",

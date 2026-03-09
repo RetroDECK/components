@@ -99,13 +99,6 @@
             "zenity": "configurator_compression_tool_dialog"
           }
         },
-        "install_retrodeck_controller_layouts": {
-          "name": "Install: Steam Controller Templates",
-          "description": "Installs RetroDECK controller templates to Steam.",
-          "command": {
-            "zenity": "configurator_install_retrodeck_controller_profile_dialog"
-          }
-        },
         "m3u_multi_file_validator": {
           "name": "M3U Multi-File Validator",
           "description": "Validates the structure of multi-file or multi-disc games.",
