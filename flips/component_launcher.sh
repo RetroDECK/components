@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source /app/libexec/logger.sh
+source /app/libexec/launcher_functions.sh
 
 # Setting component name and path based on the directory name
 component_name="$(basename "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")")"

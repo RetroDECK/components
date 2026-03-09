@@ -1,5 +1,7 @@
 #!/bin/bash
 
+source /app/libexec/launcher_functions.sh
+
 arg="$@"
 
 # Setting component name and path based on the directory name
