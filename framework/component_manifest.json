@@ -3,6 +3,7 @@
     "name": "RetroDECK",
     "description": "RetroDECK Framework",
     "prepare_priority": {
+      "startup": 0,
       "shutdown": 99
     },
     "url_rdwiki": "https://retrodeck.readthedocs.io/en/",
