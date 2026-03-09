@@ -252,13 +252,6 @@
             "zenity": "configurator_browse_retrodeck_wiki_dialog"
           }
         },
-        "godot_configurator": {
-          "name": "Open Godot Configurator",
-          "description": "Launch the Godot Configurator for advanced settings and modifications.",
-          "command": {
-            "zenity": "godot-configurator.sh"
-          }
-        },
         "install_retrodeck_starter_pack": {
           "name": "Install: RetroDECK Starter Pack",
           "description": "Install the optional RetroDECK starter pack.",
@@ -271,13 +264,6 @@
           "description": "Install a specific cooker release or the latest main version of RetroDECK.",
           "command": {
             "zenity": "configurator_online_update_channel_dialog"
-          }
-        },
-        "multi_user_mode": {
-          "name": "Change Multi-User Mode",
-          "description": "Enable or disable: multi-user support in RetroDECK.",
-          "command": {
-            "zenity": "configurator_retrodeck_multiuser_dialog"
           }
         },
         "usb_import": {
