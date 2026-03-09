@@ -1,5 +1,7 @@
 #!/bin/bash
 
+export portmaster_path="${rd_home_path}/Portmaster"
+
 _set_setting_value::portmaster() {
   local file="$1" name="$2" value="$3"
 
