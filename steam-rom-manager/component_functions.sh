@@ -84,6 +84,17 @@ configurator_add_retrodeck_to_steam_dialog() {
   configurator_steam_tools_dialog
 }
 
+configurator_install_retrodeck_controller_profile_dialog() {
+  install_retrodeck_controller_profile
+
+  rd_zenity --info \
+      --no-wrap --window-icon="/app/share/icons/hicolor/scalable/apps/net.retrodeck.retrodeck.svg" \
+      --title "RetroDECK Configurator - Install RetroDECK Controller Profiles" \
+      --text="The RetroDECK Steam Controller Profiles are now <span foreground='$purple'><b>installed</b></span>."
+  
+  configurator_tools_dialog
+}
+
 configurator_automatic_steam_sync_dialog() {
   if [[ $(get_setting_value "$rd_conf" "steam_sync" retrodeck "options") =~ (true|native|flatpak) ]]; then
     zenity --question \
