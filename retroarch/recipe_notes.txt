@@ -1,0 +1,16 @@
+This block was taken out of the download sources because the upstream repo is reworking their precompiled file distribution and this file does not currently exist (as of 3/9/2026), check for existence later:
+
+    {
+      "source_url": "https://github.com/RapidEdwin08/Genesis-Plus-GX-Expanded-Rom-Size",
+      "source_type": "git",
+      "version": "latest",
+      "dest": "Genesis-Plus-GX-Expanded-Rom-Size",
+      "extraction_type": "local",
+      "assets": [
+        {
+          "type": "file",
+          "source": "builds/Linux_so64/genesis_plus_gx_libretro.so",
+          "dest": "$WORKDIR/cores"
+        }
+      ]
+    },
