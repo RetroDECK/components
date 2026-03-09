@@ -12,6 +12,17 @@
     "url_webpage": "https://es-de.org/",
     "url_donation_purchase": "https://www.patreon.com/es_de/",
     "url_source": "https://gitlab.com/es-de/emulationstation-de",
+    "configurator_menus": {
+      "data_management": {
+        "rebuild_esde_systems": {
+          "name": "ROMs Folder: Rebuild Systems",
+          "description": "Recreate any missing system folders in the roms directory.",
+          "command": {
+            "zenity": "configurator_rebuild_esde_systems"
+          }
+        }
+      }
+    },
     "helper_files": {
       "custom_systems_es_find_rules": {
         "filename": "es_find_rules.xml",

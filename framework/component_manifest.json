@@ -150,13 +150,6 @@
             "zenity": "configurator_clean_empty_systems_dialog"
           }
         },
-        "rebuild_esde_systems": {
-          "name": "ROMs Folder: Rebuild Systems",
-          "description": "Recreate any missing system folders in the roms directory.",
-          "command": {
-            "zenity": "configurator_rebuild_esde_systems"
-          }
-        },
         "move_all": {
           "name": "Move: All of RetroDECK",
           "description": "Move the entire RetroDECK data folder: retrodeck to a new location.",
