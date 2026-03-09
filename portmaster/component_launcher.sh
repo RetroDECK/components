@@ -1,5 +1,7 @@
 #!/bin/bash
 
+source /app/libexec/launcher_functions.sh
+
 export LD_LIBRARY_PATH="$component_path/lib:$rd_shared_libs:$rd_shared_libs/org.gnome.Platform/49/:$ffmpeg_path/25.08:${LD_LIBRARY_PATH}"
 export QT_PLUGIN_PATH="${QT_PLUGIN_PATH}"
 export QT_QPA_PLATFORM_PLUGIN_PATH="${QT_QPA_PLATFORM_PLUGIN_PATH}"
