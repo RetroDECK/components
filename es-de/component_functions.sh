@@ -50,7 +50,7 @@ _prepare_component::es-de() {
       dir_prep "$rd_home_path/ES-DE/custom_systems" "$XDG_CONFIG_HOME/ES-DE/custom_systems"
       dir_prep "$logs_path/ES-DE" "$XDG_CONFIG_HOME/ES-DE/logs"
       log d "Generating roms system folders"
-      start_esde --create-system-dirs
+      start::es-de --create-system-dirs
     ;;
 
     postmove)
@@ -78,7 +78,7 @@ _prepare_component::es-de() {
       splash_screen::es-de
   
       log i "Starting ES-DE"
-      /bin/bash "$component_path/es-de/component_launcher.sh" "$@"
+      start::es-de "$@"
     ;;
 
     shutdown)
@@ -93,7 +93,7 @@ _prepare_component::es-de() {
   esac
 }
 
-start_esde(){
+start::es-de(){
   log d "Starting ES-DE"
 
   local component_path="$(get_own_component_path)"
