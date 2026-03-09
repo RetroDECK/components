@@ -12,6 +12,17 @@
     "system_friendly_name": "PortMaster",
     "component_type": "System",
     "system": "portmaster",
+    "configurator_menus": {
+      "settings": {
+        "portmaster_show_hide": {
+          "name": "PortMaster in ES-DE",
+          "description": "Enable or disable: PortMaster entry in ES-DE.",
+          "command": {
+            "zenity": "configurator_portmaster_toggle_dialog"
+          }
+        }
+      }
+    },
     "helper_files": {
       "portmaster_guide": {
         "filename": "portmaster_guide.txt",

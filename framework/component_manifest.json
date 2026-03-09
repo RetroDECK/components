@@ -75,13 +75,6 @@
           "command": {
             "zenity": "configurator_iconset_toggle_dialog"
           }
-        },
-        "portmaster_show_hide": {
-          "name": "PortMaster in ES-DE",
-          "description": "Enable or disable: PortMaster entry in ES-DE.",
-          "command": {
-            "zenity": "configurator_portmaster_toggle_dialog"
-          }
         }
       },
       "tools": {
