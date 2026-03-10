@@ -66,6 +66,26 @@ _prepare_component::steam-rom-manager() {
   esac
 }
 
+configurator_steam_tools_dialog() {
+  build_zenity_menu_array choices steam_tools # Build Zenity bash array for given menu type
+
+  choice=$(rd_zenity --list --title="RetroDECK Configurator - Steam Tools" --cancel-label="Back" --ok-label="OK" \
+  --window-icon="/app/share/icons/hicolor/scalable/apps/net.retrodeck.retrodeck.svg" --width=1200 --height=720 \
+  --column="Choice" --column="Action" --column="command" --hide-column=3 --print-column=3 \
+  "${choices[@]}")
+
+  local rc="$?"
+
+  if [[ "$rc" -eq 0 && -n "$choice" ]]; then # User made a selection
+    log d "choice: $choice"
+
+    launch_command "$choice"
+    configurator_steam_tools_dialog
+  else # User hit cancel
+    configurator_welcome_dialog
+  fi
+}
+
 configurator_add_retrodeck_to_steam_dialog() {
   (
   # Add RetroDECK launcher to Steam
@@ -295,7 +315,6 @@ populate_steamuser_srm() {
 }
 
 steam_sync() {
-
   # This function looks for favorited games in all ES-DE gamelists and builds a manifest of any found.
   # It then compares the new manifest to the existing one (if it exists) and runs an SRM sync if there are differences
   # If all favorites were removed from ES-DE, it will remove all existing entries from Steam and then remove the favorites manifest entirely
