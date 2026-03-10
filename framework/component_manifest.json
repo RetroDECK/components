@@ -69,6 +69,56 @@
       }
     },
     "configurator_menus": {
+      "welcome": {
+        "about_retrodeck": {
+          "name": "About Retrodeck",
+          "description": "View patch notes, credits, and other project information.",
+          "priority": 1,
+          "command": {
+            "zenity": "configurator_about_retrodeck_dialog"
+          }
+        },
+        "data_management": {
+          "name": "Data Management",
+          "description": "Move, clean empty or rebuild RetroDECK directories.",
+          "priority": 2,
+          "command": {
+            "zenity": "configurator_data_management_dialog"
+          }
+        },
+        "open_component": {
+          "name": "Open Component",
+          "description": "Manually launch and configure individual components. Advanced Users Only.",
+          "priority": 3,
+          "command": {
+            "zenity": "configurator_power_user_warning_dialog"
+          }
+        },
+        "reset_components": {
+          "name": "Reset Components",
+          "description": "Reset a specific component or restore all RetroDECK defaults.",
+          "priority": 4,
+          "command": {
+            "zenity": "configurator_reset_dialog"
+          }
+        },
+        "settings": {
+          "name": "Settings",
+          "description": "Adjust core RetroDECK: Presets, Visuals, Tweaks and Logins.",
+          "priority": 5,
+          "command": {
+            "zenity": "configurator_global_presets_and_settings_dialog"
+          }
+        },
+        "tools": {
+          "name": "Tools",
+          "description": "Run various tools: BIOS Checker, File Compressor, Install optional features and more.",
+          "priority": 7,
+          "command": {
+            "zenity": "configurator_tools_dialog"
+          }
+        }
+      },
       "settings": {
         "iconset_show_hide": {
           "name": "RetroDECK Folder Iconset",
