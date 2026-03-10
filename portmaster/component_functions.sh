@@ -38,7 +38,6 @@ _prepare_component::portmaster() {
       install -Dm755 "$XDG_DATA_HOME/PortMaster/PortMaster.sh" "$roms_path/portmaster/PortMaster.sh"
       create_dir "$XDG_DATA_HOME/PortMaster/config/"
       cp "$component_config/config.json" "$XDG_DATA_HOME/PortMaster/config/config.json"
-      set_setting_value "$rd_conf" "portmaster_path" "$rd_home_path/PortMaster" "retrodeck" "paths"
       create_dir "$portmaster_path"
     ;;
 
@@ -48,7 +47,7 @@ _prepare_component::portmaster() {
       log i "------------------------"
 
       log d "Checking if PortMaster should be shown"
-      if [[ $(get_setting_value "$rd_conf" "portmaster_show" "retrodeck" "options") == "false" ]]; then
+      if [[ $(get_component_option "portmaster" "portmaster_show") == "false" ]]; then
         log d "Assuring that PortMaster is hidden on ES-DE"
         portmaster_show "false"
       else
@@ -65,17 +64,17 @@ portmaster_show() {
   if [ "$1" = "true" ]; then
     log d "\"$roms_path/portmaster/PortMaster.sh\" is not found, installing it"
     install -Dm755 "$XDG_DATA_HOME/PortMaster/PortMaster.sh" "$roms_path/portmaster/PortMaster.sh" && log d "PortMaster is correctly showing in ES-DE"
-    set_setting_value "$rd_conf" "portmaster_show" "true" retrodeck "options"
+    set_component_option "portmaster" "portmaster_show" "true"
   elif [ "$1" = "false" ]; then
     rm -rf "$roms_path/portmaster/PortMaster.sh" && log d "PortMaster is correctly hidden in ES-DE"
-    set_setting_value "$rd_conf" "portmaster_show" "false" retrodeck "options"
+    set_component_option "portmaster" "portmaster_show" "false"
   else
     log e "\"$1\" is not a valid choice, quitting"
   fi
 }
 
 configurator_portmaster_toggle_dialog() {
-  if [[ $(get_setting_value "$rd_conf" "portmaster_show" "retrodeck" "options") == "true" ]]; then
+  if [[ $(get_component_option "portmaster" "portmaster_show") == "true" ]]; then
     rd_zenity --question \
     --no-wrap --window-icon="/app/share/icons/hicolor/scalable/apps/net.retrodeck.retrodeck.svg" \
     --title "RetroDECK Configurator - PortMaster Visibility" \
