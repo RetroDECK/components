@@ -131,7 +131,7 @@ splash_screen::es-de() {
 }
 
 configurator_rebuild_esde_systems::es-de() {
-  start_esde --create-system-dirs
+  start::es-de --create-system-dirs
   local current_iconset=$(get_setting_value "$rd_conf" "iconset" "retrodeck" "options")
   if [[ ! "$current_iconset" == "false" ]]; then
     (
