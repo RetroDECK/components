@@ -37,8 +37,8 @@ finit_install_rpcs3_firmware_dialog() {
   --text="Would you like to install the RPCS3 firmware as part of the initial RetroDECK setup?\n\nThis process may take several minutes and requires an active Internet connection.\n\n<span foreground='$purple'><b>RPCS3 will launch automatically</b></span> at the end of the RetroDECK setup.\nAfter the firmware installation is complete,<span foreground='$purple'><b> please close the emulator window</b></span> to finish the process."
 }
 
-correct_rpcs3_desktop_files() {
-  rpcs3_component_path="$rpcs3_component_dir/component_launcher.sh"
+correct_rpcs3_desktop_files::rpcs3() {
+  rpcs3_component_path="$(get_own_component_path)/component_launcher.sh"
 
   while IFS= read -r file; do
     sed -i "s|^Exec=\"[^\"]*\"\(.*\)|Exec=\"${rpcs3_component_path}\"\1|" "$file"
@@ -150,7 +150,7 @@ _prepare_component::rpcs3() {
       log i "Performing RPCS3 startup actions"
       log i "------------------------"
 
-      correct_rpcs3_desktop_files
+      correct_rpcs3_desktop_files::rpcs3
     ;;
 
   esac
