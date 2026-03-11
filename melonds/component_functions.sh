@@ -82,3 +82,26 @@ _prepare_component::melonds() {
 
   esac
 }
+
+_post_update::melonds() {
+  local previous_version="$1"
+
+}
+
+_post_update_legacy::melonds() {
+  # This function is to cover users upgrading from prior to 0.11.0, when per-component versioning was introduced. It can be removed once we are confident all users are running 0.11.0 or higher
+  
+  local previous_version="$1"
+
+  if check_version_is_older_than "$previous_version" "0.10.1b"; then
+
+    log i "0.10.1b Upgrade - Fix Bios Path: MelonDS"
+
+  #   set_setting_value "$melonds_config" "BIOS9Path" "$bios_path/bios9.bin" "DS" "melonds"
+  #   set_setting_value "$melonds_config" "BIOS7Path" "$bios_path/bios7.bin" "DS" "melonds"
+  #   set_setting_value "$melonds_config" "FirmwarePath" "$bios_path/firmware.bin" "DS" "melonds"
+    sed -i "s#RETRODECKSTATESDIR#${states_path}#g" "$melonds_config"
+    sed -i "s#RETRODECKSAVESDIR#${saves_path}#g" "$melonds_config"
+    sed -i "s#RETRODECKBIOSDIR#${bios_path}#g" "$melonds_config"
+  fi
+}
