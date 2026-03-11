@@ -168,8 +168,7 @@ configurator_automatic_steam_sync_dialog() {
 configurator_enable_steam_sync() {
   if steam_type=$(get_steam_user "get_type"); then
     set_setting_value "$rd_conf" "steam_sync" "$steam_type" retrodeck "options"
-    export CONFIGURATOR_GUI="zenity"
-    steam_sync
+    steam_sync "zenity"
     zenity --icon-name=net.retrodeck.retrodeck --info --no-wrap --ok-label="OK"  \
         --window-icon="/app/share/icons/hicolor/scalable/apps/net.retrodeck.retrodeck.svg" \
         --title "RetroDECK Configurator - Steam Syncronization" \
