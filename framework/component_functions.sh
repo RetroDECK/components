@@ -88,7 +88,7 @@ _compress_game::zip() {
   zip -jq9 "$dest_file.zip" "$source_file"
 }
 
-_prepare_component::framework() {
+_prepare_component::retrodeck() {
   local action="$1"
   shift
 
@@ -182,7 +182,7 @@ _prepare_component::framework() {
   esac
 }
 
-_post_update::framework() {
+_post_update::retrodeck() {
   local previous_version="$1"
 
   if check_version_is_older_than "$previous_version" "0.6.3b"; then
@@ -651,7 +651,7 @@ _post_update::framework() {
     # Refresh Steam Sync
     if [[ "$execute_all" == "true" || " ${selected_choices[@]} " =~ " Refresh Steam Sync " ]]; then
       log i "User agreed to refresh Steam Sync"
-      steam-rom-manager nuke
+      start::steam-rom-manager nuke
       export CONFIGURATOR_GUI="zenity"
       steam_sync
     fi
@@ -660,8 +660,8 @@ _post_update::framework() {
     if [[ "$execute_all" == "true" || " ${selected_choices[@]} " =~ " Add RetroDECK Shortcut to Steam " ]]; then
       log i "User agreed to add RetroDECK shortcut to Steam"
       (
-      steam-rom-manager enable --names "RetroDECK Launcher" >> "$srm_log" 2>&1
-      steam-rom-manager add >> "$srm_log" 2>&1
+      start::steam-rom-manager enable --names "RetroDECK Launcher" >> "$srm_log" 2>&1
+      start::steam-rom-manager add >> "$srm_log" 2>&1
       ) |
       rd_zenity --progress \
       --title="RetroDECK Configurator - Add RetroDECK to Steam" \
@@ -673,7 +673,7 @@ _post_update::framework() {
     # Regenerate ES-DE Folders
     if [[ "$execute_all" == "true" || " ${selected_choices[@]} " =~ " Regenerate ES-DE Folders " ]]; then
       log i "User agreed to regenerate ES-DE folders"
-      es-de --create-system-dirs
+      start::es-de --create-system-dirs
     fi
   fi
 
