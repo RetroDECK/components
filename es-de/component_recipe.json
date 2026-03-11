@@ -34,7 +34,12 @@
         {
           "type": "dir",
           "source": "$REPO_ROOT/$COMPONENT_NAME/rd_assets/helper_files",
-          "dest": "helper_files"
+          "dest": "$COMPONENT_ARTIFACT_ROOT/helper_files"
+        },
+        {
+          "type": "dir",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/rd_assets/res",
+          "dest": "$COMPONENT_ARTIFACT_ROOT/res"
         },
         {
           "type": "file",
@@ -60,11 +65,6 @@
           "type": "file",
           "source": "$REPO_ROOT/$COMPONENT_NAME/component_update.sh",
           "dest": "$COMPONENT_ARTIFACT_ROOT"
-        },
-        {
-          "type": "dir",
-          "source": "$REPO_ROOT/$COMPONENT_NAME/rd_assets/rd_config",
-          "dest": "$COMPONENT_ARTIFACT_ROOT/rd_config"
         }
       ]
     },

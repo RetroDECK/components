@@ -3,11 +3,11 @@
 export es_de_appdata_path="$XDG_CONFIG_HOME/ES-DE"
 export es_de_config="$XDG_CONFIG_HOME/ES-DE/settings/es_settings.xml"
 export es_de_logs_path="$XDG_CONFIG_HOME/ES-DE/logs"
-export es_systems="/app/retrodeck/components/es-de/share/es-de/resources/systems/linux/es_systems.xml"                                     # ES-DE supported system list
-export es_find_rules="/app/retrodeck/components/es-de/share/es-de/resources/systems/linux/es_find_rules.xml"                               # ES-DE emulator find rules
-export splashscreen_dir="/app/retrodeck/graphics/extra_splashes"                                   # The default location of extra splash screens
+export es_systems="$rd_components/es-de/share/es-de/resources/systems/linux/es_systems.xml"                                     # ES-DE supported system list
+export es_find_rules="$rd_components/es-de/share/es-de/resources/systems/linux/es_find_rules.xml"                               # ES-DE emulator find rules
+export splashscreen_dir="$rd_components/es-de/res/extra_splashes"                                   # The default location of extra splash screens
 export current_splash_file="$XDG_CONFIG_HOME/ES-DE/resources/graphics/splash.svg"                                    # The active splash file that will be shown on boot
-export default_splash_file="/app/retrodeck/graphics/splash.svg"                               # The default RetroDECK splash screen
+export default_splash_file="$rd_components/es-de/res/splash.svg"                               # The default RetroDECK splash screen
 
 _set_setting_value::es-de() {
   local file="$1"
