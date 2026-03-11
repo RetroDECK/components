@@ -295,7 +295,7 @@ get_steam_user() {
       fi
 
     else
-      log w "No Steam user found, proceeding" >&2
+      log w "No Steam user found, proceeding"
     fi
   fi
 }
