@@ -224,11 +224,11 @@
             }
         },
         "defaultImage": {
-            "tall": "/app/retrodeck/steam_grid/portrait.png",
-            "long": "/app/retrodeck/steam_grid/banner.png",
-            "hero": "/app/retrodeck/steam_grid/hero.png",
-            "logo": "/app/retrodeck/steam_grid/logo.png",
-            "icon": "/app/retrodeck/steam_grid/icon.png"
+            "tall": "/app/retrodeck/components/steam-rom-manager/res/steam_grid/portrait.png",
+            "long": "/app/retrodeck/components/steam-rom-manager/res/steam_grid/banner.png",
+            "hero": "/app/retrodeck/components/steam-rom-manager/res/steam_grid/hero.png",
+            "logo": "/app/retrodeck/components/steam-rom-manager/res/steam_grid/logo.png",
+            "icon": "/app/retrodeck/components/steam-rom-manager/res/steam_grid/icon.png"
         },
         "localImages": {
             "tall": null,
