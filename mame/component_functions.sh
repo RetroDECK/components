@@ -224,6 +224,19 @@ _compress_game::chd() {
   esac
 }
 
+_post_compression_cleanup::chd() {
+  local file_to_cleanup="$1"
+  log i "Removing $file_to_cleanup as part of post-compression cleanup"
+  if [[ "$file_to_cleanup" == *".cue" ]]; then
+    local file_path=$(dirname "$(realpath "$file_to_cleanup")")
+    while IFS= read -r bin_file; do
+      log i "Removing file $file_path/$bin_file"
+      rm -f "$file_path/$bin_file"
+    done < <(grep -o -P '(?<=FILE ").*(?=".*$)' "$file_to_cleanup")
+  fi
+  rm -f "$file_to_cleanup"
+}
+
 _post_update_legacy::mame() {
   local previous_version="$1"
 
