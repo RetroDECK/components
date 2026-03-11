@@ -11,7 +11,7 @@ export rpcs3_component_dir="$rd_components/rpcs3"
 export rpcs3_firmware="http://dus01.ps3.update.playstation.net/update/ps3/image/us/2025_0305_c179ad173bbc08b55431d30947725a4b/PS3UPDAT.PUP"
 
 update_rpcs3_firmware() {
-  if [[ $(check_network_connectivity) == "true" ]]; then
+  if check_network_connectivity; then
     configurator_generic_dialog "RetroDECK Configurator - Install: RPCS3 Firmware" "This tool will download the <span foreground='$purple'><b>firmware required by RPCS3</b></span>.\n\nThe process may take several minutes, and the emulator will start to complete the installation.\n\n<span foreground='$purple'><b>Please close RPCS3 manually</b></span> once the installation is finished."
     (
       create_dir "$roms_path/ps3/tmp"

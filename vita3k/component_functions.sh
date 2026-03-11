@@ -12,7 +12,7 @@ export vita3k_shaders_path="$XDG_CACHE_HOME/Vita3K/shaders"
 export vita3k_rd_config_dir="$rd_components/vita3k/rd_config"
 
 update_vita3k_firmware() {
-  if [[ $(check_network_connectivity) == "true" ]]; then
+  if check_network_connectivity; then
     configurator_generic_dialog "RetroDECK Configurator - Install: Vita3K firmware" "This tool will download the <span foreground='$purple'><b>firmware required by Vita3K</b></span>.\n\nThe process may take several minutes"
     (
       download_file "$vita3k_vu_firmware_url" "/tmp/PSVUPDAT.PUP" "Vita3K Firmware file: PSVUPDAT.PUP"
