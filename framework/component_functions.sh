@@ -652,8 +652,7 @@ _post_update::retrodeck() {
     if [[ "$execute_all" == "true" || " ${selected_choices[@]} " =~ " Refresh Steam Sync " ]]; then
       log i "User agreed to refresh Steam Sync"
       start::steam-rom-manager nuke
-      export CONFIGURATOR_GUI="zenity"
-      steam_sync
+      steam_sync "zenity"
     fi
 
     # Add RetroDECK Shortcut to Steam

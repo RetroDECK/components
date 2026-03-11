@@ -58,7 +58,7 @@ _prepare_component::steam-rom-manager() {
       log i "--------------------------------"
 
       if [[ $(get_setting_value "$rd_conf" "steam_sync" "retrodeck" "options") =~ (true|native|flatpak) ]]; then
-        steam_sync
+        steam_sync "zenity"
       fi
     ;;
 
@@ -212,9 +212,7 @@ configurator_disable_steam_sync() {
 
 configurator_manual_steam_sync_dialog() {
   configurator_generic_dialog "RetroDeck Configurator - Steam Syncronization: Manual" "RetroDECK will now look for any <span foreground='$purple'><b>Favorited</b></span> games and sync them to your Steam library as individual entries if needed.\n\nIf Steam Sync has been run before and no favorites have been added or removed, you will be returned to the Steam Tools menu.\nIf changes are needed, you will see a progress dialog during the process."
-  export CONFIGURATOR_GUI="zenity"
-  steam_sync
-  configurator_steam_tools_dialog
+  steam_sync "zenity"
 }
 
 configurator_purge_steam_sync_dialog() {
@@ -350,7 +348,9 @@ steam_sync() {
   # It then compares the new manifest to the existing one (if it exists) and runs an SRM sync if there are differences
   # If all favorites were removed from ES-DE, it will remove all existing entries from Steam and then remove the favorites manifest entirely
   # If there is no existing manifest, this is a first time sync and games are synced automatically
-  # USAGE: steam_sync
+  # USAGE: steam_sync ["$visibility_mode"]
+
+  local visibility="${1:-}"
 
   log "i" "Starting Steam Sync"
   create_dir "$steamsync_folder"
@@ -445,7 +445,7 @@ steam_sync() {
   if [[ -f "$retrodeck_favorites_file" ]]; then # If an existing favorites manifest exists
     if [[ ! "$(cat "${retrodeck_favorites_file}.new" | jq 'length')" -gt 0 ]]; then # If all favorites were removed from all gamelists, meaning new manifest is empty
       log i "No favorites were found in current ES-DE gamelists, removing old entries"
-      steam_sync_remove
+      steam_sync_remove "$visibility"
       # Old manifest cleanup
       rm "$retrodeck_favorites_file"
       rm "${retrodeck_favorites_file}.new"
@@ -456,18 +456,20 @@ steam_sync() {
       else
         # Make new favorites manifest the current one
         mv "${retrodeck_favorites_file}.new" "$retrodeck_favorites_file"
-        steam_sync_add
+        steam_sync_add "$visibility"
       fi
     fi
   elif [[ "$(cat "${retrodeck_favorites_file}.new" | jq 'length')" -gt 0 ]]; then # No existing favorites manifest was found, so check if new manifest has entries
     log d "First time building favorites manifest, running sync"
     mv "${retrodeck_favorites_file}.new" "$retrodeck_favorites_file"
-    steam_sync_add
+    steam_sync_add "$visibility"
   fi
 }
 
 steam_sync_add() {
-  if [[ "$CONFIGURATOR_GUI" == "zenity" ]]; then
+  local visibility="${1:-}"
+  
+  if [[ "$visibility" == "zenity" ]]; then
     (
     start::steam-rom-manager disable --names "RetroDECK Launcher" >> "$srm_log" 2>&1
     start::steam-rom-manager enable --names "RetroDECK Steam Sync" >> "$srm_log" 2>&1
@@ -486,7 +488,9 @@ steam_sync_add() {
 }
 
 steam_sync_remove() {
-  if [[ "$CONFIGURATOR_GUI" == "zenity" ]]; then
+  local visibility="${1:-}"
+
+  if [[ "$visibility" == "zenity" ]]; then
     (
     start::steam-rom-manager disable --names "RetroDECK Launcher" >> "$srm_log" 2>&1
     start::steam-rom-manager enable --names "RetroDECK Steam Sync" >> "$srm_log" 2>&1
