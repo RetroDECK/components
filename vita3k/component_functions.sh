@@ -91,3 +91,35 @@ _prepare_component::vita3k() {
 
   esac
 }
+
+_post_update::vita3k() {
+  local previous_version="$1"
+
+}
+
+_post_update_legacy::vita3k() {
+  # This function is to cover users upgrading from prior to 0.11.0, when per-component versioning was introduced. It can be removed once we are confident all users are running 0.11.0 or higher
+  
+  local previous_version="$1"
+
+  if check_version_is_older_than "$previous_version" "0.8.0b"; then
+    log i "In version 0.8.0b, the following changes were made that required config file updates/reset or other changes to the filesystem:"
+    log i "- The following components are been added and need to be initialized: es-de 3.0, MAME-SA, Vita3K, GZDoom"
+
+    prepare_component "reset" "vita3k"
+  fi
+
+  if check_version_is_older_than "$previous_version" "0.8.2b"; then
+    log i "Vita3K changed some paths, reflecting them: moving \"$XDG_DATA_HOME/Vita3K\" in \"$XDG_CONFIG_HOME/Vita3K\""
+    move "$XDG_DATA_HOME/Vita3K" "$XDG_CONFIG_HOME/Vita3K"
+  fi
+
+  if check_version_is_older_than "$previous_version" "0.10.0b"; then
+
+    log i "0.10.0b Upgrade - Postmove: Vita3K - Folder Creation"
+
+    create_dir "$storage_path/psvita/Vita3K/"
+    cp -frv "$vita3k_rd_config_dir/ux0" "$storage_path/psvita/Vita3K/" # User config
+    prepare_component "postmove" "vita3k"
+  fi
+}
