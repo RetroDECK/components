@@ -33,6 +33,16 @@
           "dest": "rd_config"
         },
         {
+          "type": "dir",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/rd_assets/controller_configs",
+          "dest": "controller_configs"
+        },
+        {
+          "type": "dir",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/rd_assets/res",
+          "dest": "res"
+        },
+        {
           "type": "file",
           "source": "$REPO_ROOT/$COMPONENT_NAME/component_functions.sh",
           "dest": "$COMPONENT_ARTIFACT_ROOT"
