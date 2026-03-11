@@ -120,8 +120,8 @@ configurator_steam_tools_dialog() {
 configurator_add_retrodeck_to_steam_dialog() {
   (
   # Add RetroDECK launcher to Steam
-  rd_srm enable --names "RetroDECK Launcher" >> "$srm_log" 2>&1
-  rd_srm add >> "$srm_log" 2>&1
+  start::steam-rom-manager enable --names "RetroDECK Launcher" >> "$srm_log" 2>&1
+  start::steam-rom-manager add >> "$srm_log" 2>&1
   ) |
   rd_zenity --progress \
   --title="RetroDECK Configurator - Add RetroDECK to Steam" \
@@ -192,9 +192,9 @@ configurator_disable_steam_sync() {
   set_setting_value "$rd_conf" "steam_sync" "false" retrodeck "options"
   # Remove only synced favorites, leave RetroDECK shortcut if it exists
   (
-  rd_srm enable --names "RetroDECK Steam Sync" >> "$srm_log" 2>&1
-  rd_srm disable --names "RetroDECK Launcher" >> "$srm_log" 2>&1
-  rd_srm remove >> "$srm_log" 2>&1
+  start::steam-rom-manager enable --names "RetroDECK Steam Sync" >> "$srm_log" 2>&1
+  start::steam-rom-manager disable --names "RetroDECK Launcher" >> "$srm_log" 2>&1
+  start::steam-rom-manager remove >> "$srm_log" 2>&1
   ) |
   rd_zenity --progress \
   --title="Removing RetroDECK Sync from Steam" \
@@ -220,7 +220,7 @@ configurator_manual_steam_sync_dialog() {
 configurator_purge_steam_sync_dialog() {
   if [[ $(configurator_generic_question_dialog "RetroDECK Configurator - Steam Syncronization: Removal" "Warning: Are you sure you want to remove all Steam changes, including all ES-DE <span foreground='$purple'><b>Favorited</b></span> games from Steam?" ) == "true" ]]; then
     (
-    rd_srm nuke
+    start::steam-rom-manager nuke
     rm -f "$retrodeck_favorites_file"
     ) |
     rd_zenity --progress \
@@ -229,12 +229,12 @@ configurator_purge_steam_sync_dialog() {
     --text="<span foreground='$purple'><b>Removing all RetroDECK-related data from Steam</b></span>\n\n\The more data you have synchronized, the longer this process may take.\n\nPlease wait..." \
     --pulsate --width=500 --height=150 --auto-close --no-cancel
   fi
-  configurator_steam_tools_dialog
 }
 
-rd_srm() {
-  log d "Starting SRM"
-  /bin/bash /app/retrodeck/components/steam-rom-manager/component_launcher.sh "$@"
+start::steam-rom-manager() {
+  log d "Starting Steam ROM Manager"
+  local component_path="$(get_own_component_path)"
+  /bin/bash ${component_path}/component_launcher.sh "$@"
 }
 
 get_steam_user() {
@@ -469,9 +469,9 @@ steam_sync() {
 steam_sync_add() {
   if [[ "$CONFIGURATOR_GUI" == "zenity" ]]; then
     (
-    rd_srm disable --names "RetroDECK Launcher" >> "$srm_log" 2>&1
-    rd_srm enable --names "RetroDECK Steam Sync" >> "$srm_log" 2>&1
-    rd_srm add >> "$srm_log" 2>&1
+    start::steam-rom-manager disable --names "RetroDECK Launcher" >> "$srm_log" 2>&1
+    start::steam-rom-manager enable --names "RetroDECK Steam Sync" >> "$srm_log" 2>&1
+    start::steam-rom-manager add >> "$srm_log" 2>&1
     ) |
     rd_zenity --progress \
     --title="RetroDECK Configurator - Syncronizing with Steam" \
@@ -479,18 +479,18 @@ steam_sync_add() {
     --text="<span foreground='$purple'><b>Adding new favorited games to Steam</b></span>\n\n\<b>NOTE:</b> This may take a while depending on your library size.\n\Feel free to leave it running in the background and use another app." \
     --pulsate --width=500 --height=150 --auto-close --no-cancel
   else
-    rd_srm disable --names "RetroDECK Launcher" >> "$srm_log" 2>&1
-    rd_srm enable --names "RetroDECK Steam Sync" >> "$srm_log" 2>&1
-    rd_srm add >> "$srm_log" 2>&1
+    start::steam-rom-manager disable --names "RetroDECK Launcher" >> "$srm_log" 2>&1
+    start::steam-rom-manager enable --names "RetroDECK Steam Sync" >> "$srm_log" 2>&1
+    start::steam-rom-manager add >> "$srm_log" 2>&1
   fi
 }
 
 steam_sync_remove() {
   if [[ "$CONFIGURATOR_GUI" == "zenity" ]]; then
     (
-    rd_srm disable --names "RetroDECK Launcher" >> "$srm_log" 2>&1
-    rd_srm enable --names "RetroDECK Steam Sync" >> "$srm_log" 2>&1
-    rd_srm remove >> "$srm_log" 2>&1
+    start::steam-rom-manager disable --names "RetroDECK Launcher" >> "$srm_log" 2>&1
+    start::steam-rom-manager enable --names "RetroDECK Steam Sync" >> "$srm_log" 2>&1
+    start::steam-rom-manager remove >> "$srm_log" 2>&1
     ) |
     rd_zenity --progress \
     --title="RetroDECK Configurator - Syncronizing with Steam" \
@@ -498,9 +498,9 @@ steam_sync_remove() {
     --text="<span foreground='$purple'><b>Removing unfavorited games from Steam</b></span>\n\n\<b>NOTE:</b> This may take a while depending on your library size.\n\Feel free to leave it running in the background and use another app." \
     --pulsate --width=500 --height=150 --auto-close --no-cancel
   else
-    rd_srm disable --names "RetroDECK Launcher" >> "$srm_log" 2>&1
-    rd_srm enable --names "RetroDECK Steam Sync" >> "$srm_log" 2>&1
-    rd_srm remove >> "$srm_log" 2>&1
+    start::steam-rom-manager disable --names "RetroDECK Launcher" >> "$srm_log" 2>&1
+    start::steam-rom-manager enable --names "RetroDECK Steam Sync" >> "$srm_log" 2>&1
+    start::steam-rom-manager remove >> "$srm_log" 2>&1
   fi
 }
 
@@ -535,8 +535,8 @@ install_retrodeck_controller_profile() {
 add_retrodeck_to_steam() {
   (
     log i "RetroDECK has been added to Steam"
-    rd_srm enable --names "RetroDECK Launcher"
-    rd_srm add
+    start::steam-rom-manager enable --names "RetroDECK Launcher"
+    start::steam-rom-manager add
   ) |
   rd_zenity --progress --no-cancel --pulsate --auto-close \
     --window-icon="/app/share/icons/hicolor/scalable/apps/net.retrodeck.retrodeck.svg" \
