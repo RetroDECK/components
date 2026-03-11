@@ -124,6 +124,4 @@ configurator_portmaster_toggle_dialog() {
       --text="PortMaster is now <span foreground='$purple'><b>Visible</b></span> in ES-DE.\nPlease refresh your game list in ES-DE or restart RetroDECK to see the changes."
     fi
   fi
-
-  configurator_global_presets_and_settings_dialog
 }

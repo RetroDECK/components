@@ -29,7 +29,6 @@ update_rpcs3_firmware() {
   else
     configurator_generic_dialog "RetroDECK Configurator - Warning: Install RPCS3 Firmware - No Internet" "Warning: You do not appear to currently have Internet access, which is required by this tool.\n\nPlease try again when network access has been restored."
   fi
-  configurator_tools_dialog
 }
 
 finit_install_rpcs3_firmware_dialog() {
