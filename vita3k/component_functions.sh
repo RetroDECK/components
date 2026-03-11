@@ -29,7 +29,6 @@ update_vita3k_firmware() {
   else
     configurator_generic_dialog "RetroDECK Configurator - Warning: Install Vita3K Firmware - No Internet" "Warning: You do not appear to currently have Internet access, which is required by this tool.\n\nPlease try again when network access has been restored."
   fi
-  configurator_tools_dialog
 }
 
 finit_install_vita3k_firmware_dialog() {
