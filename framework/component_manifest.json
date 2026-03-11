@@ -2,6 +2,7 @@
   "retrodeck": {
     "name": "RetroDECK",
     "description": "RetroDECK Framework",
+    "core_framework_version": 1,
     "prepare_priority": {
       "startup": 0,
       "shutdown": 99
