@@ -125,6 +125,12 @@ _compress_game::rvz() {
   /bin/bash "$rd_components/dolphin/component_launcher.sh" rvz_compression convert -f rvz -b 131072 -c zstd -l 5 -i "$source_file" -o "$dest_file.rvz"
 }
 
+_post_compression_cleanup::rvz() {
+  local file_to_cleanup="$1"
+  log i "Removing $file_to_cleanup as part of post-compression cleanup"
+  rm -f "$file_to_cleanup"
+}
+
 _post_update::dolphin() {
 
   #######################################

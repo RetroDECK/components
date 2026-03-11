@@ -88,6 +88,12 @@ _compress_game::zip() {
   zip -jq9 "$dest_file.zip" "$source_file"
 }
 
+_post_compression_cleanup::zip() {
+  local file_to_cleanup="$1"
+  log i "Removing $file_to_cleanup as part of post-compression cleanup"
+  rm -f "$file_to_cleanup"
+}
+
 _prepare_component::retrodeck() {
   local action="$1"
   shift
