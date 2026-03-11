@@ -48,3 +48,26 @@ _prepare_component::ruffle() {
 
   esac
 }
+
+_post_update::ruffle() {
+  local previous_version="$1"
+
+}
+
+_post_update_legacy::ruffle() {
+  # This function is to cover users upgrading from prior to 0.11.0, when per-component versioning was introduced. It can be removed once we are confident all users are running 0.11.0 or higher
+  
+  local previous_version="$1"
+
+  if check_version_is_older_than "$previous_version" "0.9.0b"; then
+    log i "New components were added in this version, initializing them"
+    prepare_component "reset" "ruffle"
+  fi
+
+  if check_version_is_older_than "$previous_version" "0.10.0b"; then
+    # Fixes issue with save folder not being set, a full reset is needed.
+
+    log i "0.10.0b Upgrade - Reset: Ruffle"
+    prepare_component "reset" "ruffle"    
+  fi
+}
