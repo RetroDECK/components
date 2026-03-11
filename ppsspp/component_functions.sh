@@ -102,3 +102,57 @@ _prepare_component::ppsspp() {
 
   esac
 }
+
+_post_update::ppsspp() {
+  local previous_version="$1"
+
+}
+
+_post_update_legacy::ppsspp() {
+  # This function is to cover users upgrading from prior to 0.11.0, when per-component versioning was introduced. It can be removed once we are confident all users are running 0.11.0 or higher
+  
+  local previous_version="$1"
+
+  if check_version_is_older_than "$previous_version" "0.7.0b"; then
+    # In version 0.7.0b, the following changes were made that required config file updates/reset or other changes to the filesystem:
+    # - Move PPSSPP saves/states to appropriate folders
+
+    dir_prep "$saves_path/PSP/PPSSPP-SA" "$XDG_CONFIG_HOME/ppsspp/PSP/SAVEDATA"
+    dir_prep "$states_path/PSP/PPSSPP-SA" "$XDG_CONFIG_HOME/ppsspp/PSP/PPSSPP_STATE"
+
+    set_setting_value "$ppssppconf" "AutoLoadSaveState" "0" "ppsspp" "General"
+  fi
+
+  if check_version_is_older_than "$previous_version" "0.7.1b"; then
+    # In version 0.7.1b, the following changes were made that required config file updates/reset or other changes to the filesystem:
+    # - Force update PPSSPP standalone keybinds for L/R.
+    set_setting_value "$ppsspp_config_controls" "L" "1-45,10-193" "ppsspp" "ControlMapping"
+    set_setting_value "$ppsspp_config_controls" "R" "1-51,10-192" "ppsspp" "ControlMapping"
+  fi
+
+  if check_version_is_older_than "$previous_version" "0.9.1b"; then
+    log i "Preparing the cheats for PPSSPP-SA..."
+    create_dir -d "$cheats_path/PPSSPP"
+    dir_prep "$cheats_path/PPSSPP" "$ppsspp_cheats_path"
+    tar -xzf "/app/retrodeck/cheats/ppsspp.tar.gz" -C "$cheats_path/PPSSPP" --overwrite && log i "Cheats for PPSSPP installed"
+
+    set_setting_value "$rd_conf" "ppsspp" "$(get_setting_value "$rd_defaults" "ppsspp" "retrodeck" "cheevos")" "retrodeck" "cheevos"
+    set_setting_value "$rd_conf" "ppsspp" "$(get_setting_value "$rd_defaults" "ppsspp" "retrodeck" "cheevos_hardcore")" "retrodeck" "cheevos_hardcore"
+  fi
+
+  if check_version_is_older_than "$previous_version" "0.10.0b"; then
+    log i "0.10.0b Upgrade - Postmove: PPSSPP"
+
+    prepare_component "postmove" "ppsspp"
+    
+    set_setting_value "$ppsspp_config" "GraphicsBackend" "0 (OPENGL)" "ppsspp" "Graphics"
+    set_setting_value "$ppsspp_config" "InternalResolution" "3" "ppsspp" "Graphics"
+    unzip -q -o -j "$ppsspp_rd_extras_dir/CWCheat-Database-Plus--master.zip" "*/cheat.db" -d "$cheats_path/PPSSPP"
+  fi
+
+  if check_version_is_older_than "$previous_version" "0.10.3b"; then
+    log i "0.10.3b Upgrade - PPSSPP: Relink Shaders"
+
+    dir_prep "$shaders_path/PPSSPP" "$ppsspp_shaders_path"
+  fi
+}
