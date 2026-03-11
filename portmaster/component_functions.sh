@@ -59,6 +59,27 @@ _prepare_component::portmaster() {
   esac
 }
 
+_post_update::portmaster() {
+  local previous_version="$1"
+
+}
+
+_post_update_legacy::portmaster() {
+  # This function is to cover users upgrading from prior to 0.11.0, when per-component versioning was introduced. It can be removed once we are confident all users are running 0.11.0 or higher
+  
+  local previous_version="$1"
+
+  if check_version_is_older_than "$previous_version" "0.9.0b"; then
+    log i "New components were added in this version, initializing them"
+    prepare_component "reset" "portmaster"
+  fi
+
+  if check_version_is_older_than "$previous_version" "0.10.0b"; then
+    log i "PortMaster was redesigned, re-initializing it"
+    prepare_component "reset" "portmaster"
+  fi
+}
+
 portmaster_show() {
   log d "Setting PortMaster visibility in ES-DE"
   if [ "$1" = "true" ]; then
