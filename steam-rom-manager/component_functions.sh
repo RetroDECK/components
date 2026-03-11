@@ -66,6 +66,38 @@ _prepare_component::steam-rom-manager() {
   esac
 }
 
+_post_update::steam-rom-manager() {
+  local previous_version="$1"
+
+  #######################################
+  # These actions happen at every update
+  #######################################
+
+  if [[ ! -z $(find "$HOME/.steam/steam/controller_base/templates/" -maxdepth 1 -type f -iname "RetroDECK*.vdf") || ! -z $(find "$HOME/.var/app/com.valvesoftware.Steam/.steam/steam/controller_base/templates/" -maxdepth 1 -type f -iname "RetroDECK*.vdf") ]]; then # If RetroDECK controller profile has been previously installed
+    install_retrodeck_controller_profile
+  fi
+}
+
+_post_update_legacy::steam-rom-manager() {
+  # This function is to cover users upgrading from prior to 0.11.0, when per-component versioning was introduced. It can be removed once we are confident all users are running 0.11.0 or higher
+  
+  local previous_version="$1"
+
+  if check_version_is_older_than "$previous_version" "0.9.0b"; then
+    # New components preparation
+    log i "New components were added in this version, initializing them"
+    prepare_component "reset" "steam-rom-manager"
+  fi
+
+  #######################################
+  # These actions happen at every update
+  #######################################
+
+  if [[ ! -z $(find "$HOME/.steam/steam/controller_base/templates/" -maxdepth 1 -type f -iname "RetroDECK*.vdf") || ! -z $(find "$HOME/.var/app/com.valvesoftware.Steam/.steam/steam/controller_base/templates/" -maxdepth 1 -type f -iname "RetroDECK*.vdf") ]]; then # If RetroDECK controller profile has been previously installed
+    install_retrodeck_controller_profile
+  fi
+}
+
 configurator_steam_tools_dialog() {
   build_zenity_menu_array choices steam_tools # Build Zenity bash array for given menu type
 
