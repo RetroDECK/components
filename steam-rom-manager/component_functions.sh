@@ -57,7 +57,7 @@ _prepare_component::steam-rom-manager() {
       log i "Shutting down Steam ROM Manager"
       log i "--------------------------------"
 
-      if [[ $(get_setting_value "$rd_conf" "steam_sync" "retrodeck" "options") =~ (true|native|flatpak) ]]; then
+      if [[ $(get_component_option "steam-rom-manager" "steam_sync") =~ (true|native|flatpak) ]]; then
         steam_sync "zenity"
       fi
     ;;
@@ -127,7 +127,7 @@ configurator_add_retrodeck_to_steam_dialog() {
   --text="Adding RetroDECK to Steam...\n\n<span foreground='$purple'>Please wait until the operation is finished and you need to restart Steam afterwards.</span>" \
   --pulsate --width=500 --height=150 --auto-close --no-cancel
   
-  if [[ $(get_setting_value "$rd_conf" "steam_sync" retrodeck "options") =~ (flatpak) ]]; then # If Flatpak Steam, warn about permission
+  if [[ $(get_component_option "steam-rom-manager" "steam_sync") =~ (flatpak) ]]; then # If Flatpak Steam, warn about permission
     configurator_generic_dialog "RetroDeck Configurator - Steam Flatpak Warning" "You are using the <span foreground='purple'><b>Flatpak Version of Steam</b></span>.\n\n\To allow RetroDECK to launch, Steam must be granted the following permission:\n<span foreground='purple'><b>org.freedesktop.Flatpak</b></span>\n\n\Please read the RetroDECK wiki for instructions."
   fi
 }
@@ -142,7 +142,7 @@ configurator_install_retrodeck_controller_profile_dialog() {
 }
 
 configurator_automatic_steam_sync_dialog() {
-  if [[ $(get_setting_value "$rd_conf" "steam_sync" retrodeck "options") =~ (true|native|flatpak) ]]; then
+  if [[ $(get_component_option "steam-rom-manager" "steam_sync") =~ (true|native|flatpak) ]]; then
     zenity --question \
     --no-wrap --window-icon="/app/share/icons/hicolor/scalable/apps/net.retrodeck.retrodeck.svg" \
     --title "RetroDECK Configurator - Steam Syncronization" \
@@ -167,7 +167,7 @@ configurator_automatic_steam_sync_dialog() {
 
 configurator_enable_steam_sync() {
   if steam_type=$(get_steam_user "get_type"); then
-    set_setting_value "$rd_conf" "steam_sync" "$steam_type" retrodeck "options"
+    set_component_option "steam-rom-manager" "steam_sync" "$steam_type"
     steam_sync "zenity"
     zenity --icon-name=net.retrodeck.retrodeck --info --no-wrap --ok-label="OK"  \
         --window-icon="/app/share/icons/hicolor/scalable/apps/net.retrodeck.retrodeck.svg" \
@@ -182,7 +182,7 @@ configurator_enable_steam_sync() {
 }
 
 configurator_disable_steam_sync() {
-  set_setting_value "$rd_conf" "steam_sync" "false" retrodeck "options"
+  set_component_option "steam-rom-manager" "steam_sync" "false"
   # Remove only synced favorites, leave RetroDECK shortcut if it exists
   (
   start::steam-rom-manager enable --names "RetroDECK Steam Sync" >> "$srm_log" 2>&1
@@ -231,7 +231,7 @@ start::steam-rom-manager() {
 get_steam_user() {
   # This function populates environment variables with the actual logged Steam user data
   local mode="${1:-}"
-  local current_steam_sync_setting="$(get_setting_value "$rd_conf" "steam_sync" "retrodeck" "options")"
+  local current_steam_sync_setting="$(get_component_option "steam-rom-manager" "steam_sync")"
   if [[ "$current_steam_sync_setting" != "false" || "$mode" =~ (finit|get_type) ]]; then # Only grab Steam information if Steam Sync is enabled
     if [[ "$current_steam_sync_setting" == "native" ]]; then
       steam_userdata_current="$steam_userdata_native"
@@ -248,14 +248,14 @@ get_steam_user() {
     else
       if [[ -d "$steam_userdata_native" ]]; then
         steam_userdata_current="$steam_userdata_native"
-        set_setting_value "$rd_conf" "steam_sync" "native" "retrodeck" "options"
+        set_component_option "steam-rom-manager" "steam_sync" "native"
         if [[ "$mode" == "get_type" ]]; then
           echo "native"
           return 0
         fi
       elif [[ -d "$steam_userdata_flatpak" ]]; then
         steam_userdata_current="$steam_userdata_flatpak"
-        set_setting_value "$rd_conf" "steam_sync" "flatpak" "retrodeck" "options"
+        set_component_option "steam-rom-manager" "steam_sync" "flatpak"
         if [[ "$mode" == "get_type" ]]; then
           echo "flatpak"
           return 0
@@ -360,7 +360,7 @@ steam_sync() {
   echo "[]" > "${retrodeck_favorites_file}.new" # Initialize favorites JSON file
 
   # Static definitions for all JSON objects
-  local steam_mode=$(get_setting_value "$rd_conf" "steam_sync" "retrodeck" "options")
+  local steam_mode=$(get_component_option "steam-rom-manager" "steam_sync")
   if [[ "$steam_mode" =~ (true|native) ]]; then
     target="flatpak"
     launch_command="run net.retrodeck.retrodeck"
@@ -552,7 +552,7 @@ install_retrodeck_controller_profile_and_add_to_steam() {
   if [[ $? == 0 ]]; then
     configurator_enable_steam_sync
   fi
-  if [[ $(get_setting_value "$rd_conf" "steam_sync" retrodeck "options") =~ (flatpak) ]]; then # If Flatpak Steam, warn about permission
+  if [[ $(get_component_option "steam-rom-manager" "steam_sync") =~ (flatpak) ]]; then # If Flatpak Steam, warn about permission
     configurator_generic_dialog "RetroDeck Configurator - Steam Flatpak Warning" "You are using the <span foreground='purple'><b>Flatpak Version of Steam</b></span>.\n\nTo allow RetroDECK to launch, Steam must be granted the following permission:\n<span foreground='purple'><b>org.freedesktop.Flatpak</b></span>\n\nPlease read the RetroDECK wiki for instructions"
   fi
 }
