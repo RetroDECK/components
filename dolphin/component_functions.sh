@@ -124,3 +124,73 @@ _compress_game::rvz() {
   local dest_file="$2"
   /bin/bash "$rd_components/dolphin/component_launcher.sh" rvz_compression convert -f rvz -b 131072 -c zstd -l 5 -i "$source_file" -o "$dest_file.rvz"
 }
+
+_post_update::dolphin() {
+
+  #######################################
+  # These actions happen at every update
+  #######################################
+
+  if [[ -d "$dolphin_dynamic_input_textures_path" ]]; then # Refresh installed textures if they have been enabled
+    log i "Refreshing installed textures for Dolphin..."
+    rsync -rlD --delete --mkpath "$rd_components/shared-data/DynamicInputTextures/" "$dolphin_dynamic_input_textures_path/" && log i "Done"
+  fi
+}
+
+_post_update_legacy::dolphin() {
+  # This function is to cover users upgrading from prior to 0.11.0, when per-component versioning was introduced. It can be removed once we are confident all users are running 0.11.0 or higher
+  
+  local previous_version="$1"
+
+  if check_version_is_older_than "$previous_version" "0.6.3b"; then
+    # In version 0.6.3b, the following changes were made that required config file updates/reset:
+    # - Put Dolphin and Primehack save states in different folders inside $rdhome/states
+
+    dir_prep "$rdhome/states/dolphin" "$XDG_DATA_HOME/dolphin-emu/StateSaves"
+  fi
+
+  if check_version_is_older_than "$previous_version" "0.7.0b"; then
+    # In version 0.7.0b, the following changes were made that required config file updates/reset or other changes to the filesystem:
+    # - Move Dolphin and Primehack save folder names
+    # - Disable ask-on-exit in existing Citra / Dolphin / Duckstation / Primehack installs for proper preset functionality
+
+    dir_prep "$mods_path/Dolphin" "$XDG_DATA_HOME/dolphin-emu/Load/GraphicMods"
+    dir_prep "$texture_packs_path/Dolphin" "$XDG_DATA_HOME/dolphin-emu/Load/Textures"
+
+    mv "$saves_path/gc/dolphin/EUR" "$saves_path/gc/dolphin/EU"
+    mv "$saves_path/gc/dolphin/USA" "$saves_path/gc/dolphin/US"
+    mv "$saves_path/gc/dolphin/JAP" "$saves_path/gc/dolphin/JP"
+    dir_prep "$saves_path/gc/dolphin/EU" "$XDG_DATA_HOME/dolphin-emu/GC/EUR"
+    dir_prep "$saves_path/gc/dolphin/US" "$XDG_DATA_HOME/dolphin-emu/GC/USA"
+    dir_prep "$saves_path/gc/dolphin/JP" "$XDG_DATA_HOME/dolphin-emu/GC/JAP"
+
+    set_setting_value "$dolphin_config" "ConfirmStop" "False" "dolphin" "Interface"
+  fi
+
+  if check_version_is_older_than "$previous_version" "0.9.1b"; then
+    log i "Preparing the RetroAchievements for Dolphin..."
+    cp -vn "$config/dolphin/"* "$XDG_CONFIG_HOME/dolphin-emu/"
+  fi
+
+  if check_version_is_older_than "$previous_version" "0.10.0b"; then
+    log i "0.10.0b Upgrade - Postmove: Dolphin with Config Changes"
+
+    set_setting_value "$dolphin_config" "CPUThread" "False" "dolphin" "Core"
+    set_setting_value "$dolphin_config" "LanguageCode" " " "dolphin" "Interface"
+    set_setting_value "$dolphin_config" "SIDevice1" "6" "dolphin" "Core"
+    set_setting_value "$dolphin_config" "SIDevice2" "6" "dolphin" "Core"
+    set_setting_value "$dolphin_config" "SIDevice3" "6" "dolphin" "Core"
+
+    prepare_component "postmove" "dolphin"
+
+  fi
+
+  #######################################
+  # These actions happen at every update
+  #######################################
+
+  if [[ -d "$dolphin_dynamic_input_textures_path" ]]; then # Refresh installed textures if they have been enabled
+    log i "Refreshing installed textures for Dolphin..."
+    rsync -rlD --delete --mkpath "$rd_components/shared-data/DynamicInputTextures/" "$dolphin_dynamic_input_textures_path/" && log i "Done"
+  fi
+}
