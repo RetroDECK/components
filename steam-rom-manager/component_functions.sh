@@ -6,6 +6,8 @@ export retrodeck_favorites_file="$steamsync_folder/retrodeck_favorites.json"    
 export srm_log="$logs_path/srm_log.log"                                                                                      # Log file for capturing the output of the most recent SRM run, for debugging purposes
 export retrodeck_added_favorites="$steamsync_folder/retrodeck_added_favorites.json"                                            # Temporary manifest of any games that were newly added to the ES-DE favorites and should be added to Steam
 export retrodeck_removed_favorites="$steamsync_folder/retrodeck_removed_favorites.json"                                        # Temporary manifest of any games that were removed from the ES-DE favorites and should be removed from Steam
+export steam_controller_profiles_path="$rd_components/steam-rom-manager/controller_configs"
+export steam_controller_profiles_binding_icons_path="$rd_components/steam-rom-manager/res/binding_icons"
 
 export steam_userdata_native="$HOME/.steam/steam"
 export steam_userdata_flatpak="$HOME/.var/app/com.valvesoftware.Steam/.steam/steam"
@@ -521,12 +523,12 @@ install_retrodeck_controller_profile() {
   # USAGE: install_retrodeck_controller_profile
   if [[ -d "$HOME/.steam/steam/controller_base/templates/" || -d "$HOME/.var/app/com.valvesoftware.Steam/.steam/steam/controller_base/templates/" ]]; then
     if [[ -d "$HOME/.steam/steam/controller_base/templates/" ]]; then # If a normal binary Steam install exists
-      rsync -rlD --mkpath "/app/retrodeck/binding_icons/" "$HOME/.steam/steam/tenfoot/resource/images/library/controller/binding_icons/"
-      rsync -rlD --mkpath "$rd_core_files/controller_configs/" "$HOME/.steam/steam/controller_base/templates/"
+      rsync -rlD --mkpath "$steam_controller_profiles_binding_icons_path/" "$HOME/.steam/steam/tenfoot/resource/images/library/controller/binding_icons/"
+      rsync -rlD --mkpath "$steam_controller_profiles_path/" "$HOME/.steam/steam/controller_base/templates/"
     fi
     if [[ -d "$HOME/.var/app/com.valvesoftware.Steam/.steam/steam/controller_base/templates/" ]]; then # If a Flatpak Steam install exists
-      rsync -rlD --mkpath "/app/retrodeck/binding_icons/" "$HOME/.var/app/com.valvesoftware.Steam/.steam/steam/tenfoot/resource/images/library/controller/binding_icons/"
-      rsync -rlD --mkpath "$rd_core_files/controller_configs/" "$HOME/.var/app/com.valvesoftware.Steam/.steam/steam/controller_base/templates/"
+      rsync -rlD --mkpath "$steam_controller_profiles_binding_icons_path/" "$HOME/.var/app/com.valvesoftware.Steam/.steam/steam/tenfoot/resource/images/library/controller/binding_icons/"
+      rsync -rlD --mkpath "$steam_controller_profiles_path/" "$HOME/.var/app/com.valvesoftware.Steam/.steam/steam/controller_base/templates/"
     fi
   else
     configurator_generic_dialog "RetroDECK - Install: Steam Controller Templates" "The target directories for the controller profile do not exist.\n\nThis may occur if <span foreground='$purple'><b>Steam is not installed</b></span> or if the location does not have <span foreground='$purple'><b>read permissions</b></span>."
