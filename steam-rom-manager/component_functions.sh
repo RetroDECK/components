@@ -112,8 +112,6 @@ configurator_steam_tools_dialog() {
 
     launch_command "$choice"
     configurator_steam_tools_dialog
-  else # User hit cancel
-    configurator_welcome_dialog
   fi
 }
 
@@ -132,7 +130,6 @@ configurator_add_retrodeck_to_steam_dialog() {
   if [[ $(get_setting_value "$rd_conf" "steam_sync" retrodeck "options") =~ (flatpak) ]]; then # If Flatpak Steam, warn about permission
     configurator_generic_dialog "RetroDeck Configurator - Steam Flatpak Warning" "You are using the <span foreground='purple'><b>Flatpak Version of Steam</b></span>.\n\n\To allow RetroDECK to launch, Steam must be granted the following permission:\n<span foreground='purple'><b>org.freedesktop.Flatpak</b></span>\n\n\Please read the RetroDECK wiki for instructions."
   fi
-  configurator_steam_tools_dialog
 }
 
 configurator_install_retrodeck_controller_profile_dialog() {
@@ -142,8 +139,6 @@ configurator_install_retrodeck_controller_profile_dialog() {
       --no-wrap --window-icon="/app/share/icons/hicolor/scalable/apps/net.retrodeck.retrodeck.svg" \
       --title "RetroDECK Configurator - Install RetroDECK Controller Profiles" \
       --text="The RetroDECK Steam Controller Profiles are now <span foreground='$purple'><b>installed</b></span>."
-  
-  configurator_tools_dialog
 }
 
 configurator_automatic_steam_sync_dialog() {
@@ -168,7 +163,6 @@ configurator_automatic_steam_sync_dialog() {
       configurator_enable_steam_sync
     fi
   fi
-  configurator_steam_tools_dialog
 }
 
 configurator_enable_steam_sync() {
