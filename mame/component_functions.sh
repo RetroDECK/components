@@ -223,3 +223,54 @@ _compress_game::chd() {
     ;;
   esac
 }
+
+_post_update_legacy::mame() {
+  local previous_version="$1"
+
+}
+
+_post_update_legacy::mame() {
+  # This function is to cover users upgrading from prior to 0.11.0, when per-component versioning was introduced. It can be removed once we are confident all users are running 0.11.0 or higher
+  
+  local previous_version="$1"
+
+  if check_version_is_older_than "$previous_version" "0.8.0b"; then
+    log i "In version 0.8.0b, the following changes were made that required config file updates/reset or other changes to the filesystem:"
+    log i "- The following components are been added and need to be initialized: es-de 3.0, MAME-SA, Vita3K, GZDoom"
+
+    prepare_component "reset" "mame"
+  fi
+
+  if check_version_is_older_than "$previous_version" "0.8.1b"; then
+    log i "In version 0.8.1b, the following changes were made that required config file updates/reset or other changes to the filesystem:"
+
+    log i "MAME-SA, migrating samples to the new exposed folder: from \"$XDG_DATA_HOME/mame/assets/samples\" to \"$bios_path/mame-sa/samples\""
+    create_dir "$bios_path/mame-sa/samples"
+    mv -f "$XDG_DATA_HOME/mame/assets/samples/"* "$bios_path/mame-sa/samples"
+    set_setting_value "$mameconf" "samplepath" "$bios_path/mame-sa/samples" "mame"
+
+    log i "Placing cheats in \"$XDG_DATA_HOME/mame/cheat\""
+    unzip -j -o "$config/mame/cheat0264.zip" 'cheat.7z' -d "$XDG_DATA_HOME/mame/cheat"
+  fi
+
+  if check_version_is_older_than "$previous_version" "0.9.1b"; then
+    log i "Preparing the shaders folder for MAME..."
+    shaders_folder="$rdhome/shaders" && log i "Shaders folder set to \"$shaders_path\""
+    conf_write && log i "Done"
+    create_dir "$shaders_path/mame/bgfx"
+    set_setting_value "$mameconf" "bgfx_path" "$shaders_path/mame/bgfx/" "mame"
+    cp -fvr "/app/share/mame/bgfx/"* "$shaders_path/mame/bgfx"
+
+    log i "Preparing the cheats for MAME..."
+    create_dir "$cheats_path/mame"
+    set_setting_value "$mameconf" "cheatpath" "$cheats_path/mame" "mame"
+    unzip -j -o "$config/mame/cheat0264.zip" 'cheat.7z' -d "$cheats_path/mame" && log i "Cheats for MAME installed"
+    rm -rf "$XDG_DATA_HOME/mame/cheat"
+  fi
+
+  if check_version_is_older_than "$previous_version" "0.10.0b"; then
+    log i "0.10.0b Upgrade - Reset: MAME"
+
+    prepare_component "reset" "mame" # MAME needs to be reset because of major config changes.
+  fi
+}
