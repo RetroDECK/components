@@ -45,14 +45,11 @@ _prepare_component::steam-rom-manager() {
 
     startup)
       log i "--------------------------------"
-      log i "Starting ES-DE"
+      log i "Starting Steam ROM Manager"
       log i "--------------------------------"
       local component_path="$(get_own_component_path)"
 
-      splash_screen::es-de
-  
-      log i "Starting ES-DE"
-      /bin/bash "$component_path/es-de/component_launcher.sh" "$@"
+      get_steam_user
     ;;
 
     shutdown)
