@@ -64,9 +64,11 @@ get_latest_github_release_version() {
   local api_url="https://api.github.com/repos/$owner/$repo/releases/latest"
   local response
   if [[ -n "$GITHUB_TOKEN" ]]; then
+    log debug "GITHUB_TOKEN detected."
     response=$(curl -sS -D "$headers_file" -H "Authorization: token $GITHUB_TOKEN" "$api_url" 2>&1)
     local curl_exit=$?
   else
+    log debug "No GITHUB_TOKEN detected."
     response=$(curl -sS -D "$headers_file" "$api_url" 2>&1)
     local curl_exit=$?
   fi
@@ -109,9 +111,11 @@ get_newest_github_release_version() {
   local api_url="https://api.github.com/repos/$owner/$repo/releases"
   local response
   if [[ -n "$GITHUB_TOKEN" ]]; then
+    log debug "GITHUB_TOKEN detected."
     response=$(curl -sS -D "$headers_file" -H "Authorization: token $GITHUB_TOKEN" "$api_url" 2>&1)
     local curl_exit=$?
   else
+    log debug "No GITHUB_TOKEN detected."
     response=$(curl -sS -D "$headers_file" "$api_url" 2>&1)
     local curl_exit=$?
   fi
@@ -156,9 +160,11 @@ get_github_release_asset_url() {
   local api_url="https://api.github.com/repos/$owner/$repo/releases/tags/$version"
   local response
   if [[ -n "$GITHUB_TOKEN" ]]; then
+    log debug "GITHUB_TOKEN detected."
     response=$(curl -sS -D "$headers_file" -H "Authorization: token $GITHUB_TOKEN" "$api_url" 2>&1)
     local curl_exit=$?
   else
+    log debug "No GITHUB_TOKEN detected."
     response=$(curl -sS -D "$headers_file" "$api_url" 2>&1)
     local curl_exit=$?
   fi
