@@ -56,7 +56,7 @@ jobs:
     steps:
       - name: Checkout code
         if: github.event_name == 'push'
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           fetch-depth: 0
 
@@ -207,7 +207,7 @@ jobs:
           echo "=========================================="
 
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           ref: ${{ steps.config.outputs.branch }}
 
@@ -288,7 +288,7 @@ jobs:
 
       - name: Checkout main
         if: steps.check.outputs.is_main == 'true'
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           ref: main
           fetch-depth: 0
@@ -378,7 +378,7 @@ jobs:
       prev-versions-json: ${{ steps.get-prev.outputs.prev_versions }}
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           ref: ${{ needs.configure.outputs.branch }}
           fetch-depth: 0
@@ -539,7 +539,7 @@ jobs:
       build-matrix: ${{ steps.set-matrix.outputs.build }}
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           ref: ${{ needs.configure.outputs.branch }}
 
@@ -627,7 +627,7 @@ jobs:
       max-parallel: 20
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           ref: ${{ needs.configure.outputs.branch }}
           fetch-depth: 0
@@ -749,7 +749,7 @@ jobs:
       branch: ${{ needs.configure.outputs.branch }}
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           ref: ${{ needs.configure.outputs.branch }}
 
