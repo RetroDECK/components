@@ -109,9 +109,7 @@ configurator_steam_tools_dialog() {
 
   if [[ "$rc" -eq 0 && -n "$choice" ]]; then # User made a selection
     log d "choice: $choice"
-
-    launch_command "$choice"
-    configurator_steam_tools_dialog
+    configurator_nav="$choice"
   fi
 }
 
