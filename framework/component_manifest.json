@@ -162,7 +162,7 @@
           "name": "Repair RetroDECK Paths",
           "description": "Fix RetroDECK folder paths for missing or misconfigured directories.",
           "command": {
-            "zenity": "configurator_repair_paths_dialog"
+            "zenity": "repair_paths"
           }
         },
         "update_notification": {
