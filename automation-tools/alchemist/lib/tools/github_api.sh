@@ -57,18 +57,18 @@ handle_github_rate_limit() {
 get_latest_github_release_version() {
   local owner="$1"
   local repo="$2"
-  local GITHUB_TOKEN="${GITHUB_TOKEN:-}"
+  local GH_TOKEN="${GH_TOKEN:-}"
   local headers_file
   headers_file=$(mktemp)
 
   local api_url="https://api.github.com/repos/$owner/$repo/releases/latest"
   local response
-  if [[ -n "$GITHUB_TOKEN" ]]; then
-    log debug "GITHUB_TOKEN detected."
-    response=$(curl -sS -D "$headers_file" -H "Authorization: token $GITHUB_TOKEN" "$api_url" 2>&1)
+  if [[ -n "$GH_TOKEN" ]]; then
+    log debug "GH_TOKEN detected."
+    response=$(curl -sS -D "$headers_file" -H "Authorization: token $GH_TOKEN" "$api_url" 2>&1)
     local curl_exit=$?
   else
-    log debug "No GITHUB_TOKEN detected."
+    log debug "No GH_TOKEN detected."
     response=$(curl -sS -D "$headers_file" "$api_url" 2>&1)
     local curl_exit=$?
   fi
@@ -104,18 +104,18 @@ get_latest_github_release_version() {
 get_newest_github_release_version() {
   local owner="$1"
   local repo="$2"
-  local GITHUB_TOKEN="${GITHUB_TOKEN:-}"
+  local GH_TOKEN="${GH_TOKEN:-}"
   local headers_file
   headers_file=$(mktemp)
 
   local api_url="https://api.github.com/repos/$owner/$repo/releases"
   local response
-  if [[ -n "$GITHUB_TOKEN" ]]; then
-    log debug "GITHUB_TOKEN detected."
-    response=$(curl -sS -D "$headers_file" -H "Authorization: token $GITHUB_TOKEN" "$api_url" 2>&1)
+  if [[ -n "$GH_TOKEN" ]]; then
+    log debug "GH_TOKEN detected."
+    response=$(curl -sS -D "$headers_file" -H "Authorization: token $GH_TOKEN" "$api_url" 2>&1)
     local curl_exit=$?
   else
-    log debug "No GITHUB_TOKEN detected."
+    log debug "No GH_TOKEN detected."
     response=$(curl -sS -D "$headers_file" "$api_url" 2>&1)
     local curl_exit=$?
   fi
@@ -153,18 +153,18 @@ get_github_release_asset_url() {
   local repo="$2"
   local version="$3"
   local pattern="$4"
-  local GITHUB_TOKEN="${GITHUB_TOKEN:-}"
+  local GH_TOKEN="${GH_TOKEN:-}"
   local headers_file
   headers_file=$(mktemp)
 
   local api_url="https://api.github.com/repos/$owner/$repo/releases/tags/$version"
   local response
-  if [[ -n "$GITHUB_TOKEN" ]]; then
-    log debug "GITHUB_TOKEN detected."
-    response=$(curl -sS -D "$headers_file" -H "Authorization: token $GITHUB_TOKEN" "$api_url" 2>&1)
+  if [[ -n "$GH_TOKEN" ]]; then
+    log debug "GH_TOKEN detected."
+    response=$(curl -sS -D "$headers_file" -H "Authorization: token $GH_TOKEN" "$api_url" 2>&1)
     local curl_exit=$?
   else
-    log debug "No GITHUB_TOKEN detected."
+    log debug "No GH_TOKEN detected."
     response=$(curl -sS -D "$headers_file" "$api_url" 2>&1)
     local curl_exit=$?
   fi
