@@ -92,7 +92,7 @@ _validate_for_compression::xiso() {
   local file="$1"
   local normalized_filename=$(echo "$file" | tr '[:upper:]' '[:lower:]')
   if echo "$normalized_filename" | grep -qE '\.iso'; then
-    if [[ $(find "$file" -type f -size +2G 2>/dev/null) ]]; then
+    if [[ $(find "$file" -type f -size +6G 2>/dev/null) ]]; then
       return 0
     fi
   fi
