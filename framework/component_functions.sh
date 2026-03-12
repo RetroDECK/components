@@ -152,10 +152,8 @@ _prepare_component::retrodeck() {
       local preprod_update_skip=$(check_if_preprod)
 
       # Check for application or component updates
-      if [[ ! "$hard_version" == "$version" && ! "$preprod_update_skip" == "true" ]]; then
-        post_update "$version"
-      elif [[ ! "$preprod_update_skip" == "true" ]]; then
-        run_component_updates "$version"
+      if [[ ! "$preprod_update_skip" == "true" ]]; then
+        check_for_updates "$version"
       fi
 
       # if [[ $multi_user_mode == "true" ]]; then
