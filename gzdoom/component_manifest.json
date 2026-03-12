@@ -1,6 +1,8 @@
 {
   "gzdoom": {
     "name": "GZDoom",
+    "core_framework_compatibility": "1",
+    "component_version": "1.0.0",
     "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/gzdoom/gzdoom-guide/",
     "url_webpage": "https://zdoom.org/index",
     "url_donation_purchase": "",

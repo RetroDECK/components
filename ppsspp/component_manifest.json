@@ -1,6 +1,8 @@
 {
   "ppsspp": {
     "name": "PPSSPP",
+    "core_framework_compatibility": "1",
+    "component_version": "1.0.0",
     "description": "PPSSPP is a PlayStation Portable (psp) emulator.",
     "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/ppsspp/ppsspp-guide/",
     "url_webpage": "https://www.ppsspp.org/",

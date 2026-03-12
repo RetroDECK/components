@@ -1,6 +1,8 @@
 {
   "solarus": {
     "name": "Solarus",
+    "core_framework_compatibility": "1",
+    "component_version": "1.0.0",
     "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_engine_guides/solarus/solarus-guide/",
     "url_webpage": "https://www.solarus-games.org/",
     "url_donation_purchase": "https://liberapay.com/solarus-labs/donate",

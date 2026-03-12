@@ -1,7 +1,9 @@
 {
   "xemu": {
-    "description": "xemu is a Microsoft Xbox (xbox) emulator.",
     "name": "xemu",
+    "core_framework_compatibility": "1",
+    "component_version": "1.0.0",
+    "description": "xemu is a Microsoft Xbox (xbox) emulator.",
     "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/xemu/xemu-guide/",
     "url_webpage": "https://xemu.app/",
     "url_donation_purchase": "https://www.patreon.com/mborgerson",

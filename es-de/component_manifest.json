@@ -2,6 +2,8 @@
   "es-de": {
     "description": "ES-DE Frontend is a game-launcher frontend.",
     "name": "ES-DE",
+    "core_framework_compatibility": "1",
+    "component_version": "1.0.0",
     "component_type": "System",
     "prepare_priority": {
       "default": 50,
