@@ -10,9 +10,11 @@ get_latest_git_commit_version() {
 
   local response
   if [[ -n "$GITHUB_TOKEN" ]]; then
+    log debug "GITHUB_TOKEN detected."
     response=$(curl -s -H "Authorization: token $GITHUB_TOKEN" "https://api.github.com/repos/$owner/$repo/commits/HEAD" 2>&1)
     local curl_exit=$?
   else
+    log debug "No GITHUB_TOKEN detected."
     response=$(curl -s "https://api.github.com/repos/$owner/$repo/commits/HEAD" 2>&1)
     local curl_exit=$?
   fi
