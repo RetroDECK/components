@@ -134,7 +134,7 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # Link: https://flathub.org/en/apps/org.ppsspp.PPSSPP
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
-# Version: 1.19.3
+# Version: 1.20.2
   export PPSSPP_DESIRED_VERSION="f998ae83bb6e842635b6c32e8ca3298b7e2ac247ae559f3030c280863d2b5537"
 
 # COOKER (Override)
@@ -147,8 +147,8 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # Link: https://flathub.org/en/apps/net.rpcs3.RPCS3
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
-# Version: 0.0.39-1-ef
-  export RPCS3_DESIRED_VERSION="ee08049b192ac69e545eda3d4bc6b6a60e490b4e4df3417e2888d9ae80acb63c"
+# Version: 0.0.40-1-ef
+  export RPCS3_DESIRED_VERSION="44c3c7a62f50b658f2938a3f0d631147e2cb13d09d0315f95ed5900165c7f89b"
 
 # COOKER (Override)
 # export RPCS3_DESIRED_VERSION="latest"
