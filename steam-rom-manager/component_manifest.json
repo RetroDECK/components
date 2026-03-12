@@ -1,6 +1,8 @@
 {
   "steam-rom-manager": {
     "name": "Steam ROM Manager",
+    "core_framework_compatibility": "1",
+    "component_version": "1.0.0",
     "prepare_priority": {
       "default": 50,
       "startup": 98,

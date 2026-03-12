@@ -2,6 +2,8 @@
   "cemu": {
     "description": "Cemu is a Nintendo Wii U (wiiu) emulator.",
     "name": "Cemu",
+    "core_framework_compatibility": "1",
+    "component_version": "1.0.0",
     "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/cemu/cemu-guide/",
     "url_webpage": "https://cemu.info/",
     "url_donation_purchase": "https://www.patreon.com/cemu",

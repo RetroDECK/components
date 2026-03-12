@@ -2,6 +2,8 @@
   "portmaster": {
     "description": "PortMaster a port manager that simplifies installing and updating ports.",
     "name": "PortMaster",
+    "core_framework_compatibility": "1",
+    "component_version": "1.0.0",
     "prepare_priority": {
       "startup": 90
     },

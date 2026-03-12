@@ -2,6 +2,8 @@
   "mame": {
     "description": "MAME is a arcade machine multi-emulator.",
     "name": "MAME",
+    "core_framework_compatibility": "1",
+    "component_version": "1.0.0",
     "component_type": "Multi-Emulator",
     "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/mame/mame-guide/",
     "url_webpage": "https://www.mamedev.org/",

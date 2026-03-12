@@ -1,6 +1,8 @@
 {
   "dolphin": {
     "name": "Dolphin",
+    "core_framework_compatibility": "1",
+    "component_version": "1.0.0",
     "description": "Dolphin is a Nintendo Wii (wii) and Gamecube (gc) emulator.",
     "component_type": "Emulator",
     "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/dolphin-primehack/dolphin-primehack-guide/",

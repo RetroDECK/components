@@ -1,6 +1,8 @@
 {
   "flips": {
     "name": "flips",
+    "core_framework_compatibility": "1",
+    "component_version": "1.0.0",
     "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_tool_guides/flips/flips-guide/",
     "url_webpage": "https://github.com/Alcaro/Flips",
     "url_donation_purchase": "",
