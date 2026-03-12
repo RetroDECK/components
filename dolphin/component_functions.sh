@@ -120,9 +120,10 @@ _validate_for_compression::rvz() {
 }
 
 _compress_game::rvz() {
+  local component_path="$(get_component_path "dolphin")"
   local source_file="$1"
   local dest_file="$2"
-  /bin/bash "$rd_components/dolphin/component_launcher.sh" rvz_compression convert -f rvz -b 131072 -c zstd -l 5 -i "$source_file" -o "$dest_file.rvz"
+  /bin/bash "$component_path/component_launcher.sh" rvz_compression convert -f rvz -b 131072 -c zstd -l 5 -i "$source_file" -o "$dest_file.rvz"
 }
 
 _post_compression_cleanup::rvz() {
