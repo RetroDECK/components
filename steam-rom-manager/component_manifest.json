@@ -24,7 +24,7 @@
           "description": "Synchronize ES-DE Favorites or add RetroDECK to Steam.",
           "priority": 6,
           "command": {
-            "zenity": "configurator_about_retrodeck_dialog"
+            "zenity": "configurator_steam_tools_dialog"
           }
         }
       },
