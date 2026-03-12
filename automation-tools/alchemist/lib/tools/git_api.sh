@@ -6,15 +6,15 @@
 get_latest_git_commit_version() {
   local owner="$1"
   local repo="$2"
-  local GITHUB_TOKEN="${GITHUB_TOKEN:-}"
+  local GH_TOKEN="${GH_TOKEN:-}"
 
   local response
-  if [[ -n "$GITHUB_TOKEN" ]]; then
-    log debug "GITHUB_TOKEN detected."
-    response=$(curl -s -H "Authorization: token $GITHUB_TOKEN" "https://api.github.com/repos/$owner/$repo/commits/HEAD" 2>&1)
+  if [[ -n "$GH_TOKEN" ]]; then
+    log debug "GH_TOKEN detected."
+    response=$(curl -s -H "Authorization: token $GH_TOKEN" "https://api.github.com/repos/$owner/$repo/commits/HEAD" 2>&1)
     local curl_exit=$?
   else
-    log debug "No GITHUB_TOKEN detected."
+    log debug "No GH_TOKEN detected."
     response=$(curl -s "https://api.github.com/repos/$owner/$repo/commits/HEAD" 2>&1)
     local curl_exit=$?
   fi
