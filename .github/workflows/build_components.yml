@@ -505,7 +505,7 @@ jobs:
           echo "$metadata" | jq -r 'to_entries[] | "  \(.key): \(.value.version)"'
 
       - name: Upload metadata
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: components-metadata
           path: components_metadata.json
@@ -522,7 +522,7 @@ jobs:
           cat proposed_version_pins.sh
 
       - name: Upload proposed version pins
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: proposed-version-pins
           path: proposed_version_pins.sh
@@ -729,7 +729,7 @@ jobs:
           echo "Artifacts verified ($ARCHIVE_SIZE)"
 
       - name: Upload artifacts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: ${{ matrix.component }}-artifacts
           path: ${{ matrix.component }}/artifacts/
