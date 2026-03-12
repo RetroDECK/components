@@ -34,6 +34,8 @@ jobs:
   cleanup:
     name: Cleanup Old Releases
     runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ github.token }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v5
@@ -146,8 +148,6 @@ jobs:
           echo ""
           echo "Deleted $RELEASE_COUNT release(s) for deleted branch: $DELETED_BRANCH"
           echo "skip=false" >> $GITHUB_OUTPUT
-        env:
-          GH_TOKEN: ${{ github.token }}
 
       - name: Get all workflow releases
         id: get-releases
