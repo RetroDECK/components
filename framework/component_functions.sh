@@ -165,7 +165,7 @@ _prepare_component::retrodeck() {
         desktop_mode_warning
       fi
 
-      low_space_warning
+      check_low_space
 
       # Check if there is a new version of RetroDECK available, if update_check=true in retrodeck.cfg and there is network connectivity available.
       # log i "Check if there is a new version of RetroDECK available"
