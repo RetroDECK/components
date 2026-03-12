@@ -274,6 +274,8 @@ jobs:
     name: Auto-Pin Versions and Sync Epicure (main only)
     needs: configure
     runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ github.token }}
     steps:
       - name: Check if pinning is needed
         id: check
@@ -326,8 +328,6 @@ jobs:
             echo "No proposed_version_pins.sh found in release $LATEST_COOKER"
             echo "found=false" >> $GITHUB_OUTPUT
           fi
-        env:
-          GH_TOKEN: ${{ github.token }}
 
       - name: Commit version pins to main
         if: steps.check.outputs.is_main == 'true' && steps.fetch-pins.outputs.found == 'true'
@@ -373,6 +373,8 @@ jobs:
     name: Resolve Component Versions
     needs: [configure, auto-pin-versions]
     runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ github.token }}
     outputs:
       versions-json: ${{ steps.resolve.outputs.versions }}
       prev-versions-json: ${{ steps.get-prev.outputs.prev_versions }}
@@ -412,8 +414,6 @@ jobs:
             echo "No metadata found in previous release"
             echo "prev_versions={}" >> $GITHUB_OUTPUT
           fi
-        env:
-          GH_TOKEN: ${{ github.token }}
 
       - name: Install build dependencies
         if: matrix.can_reuse == false
@@ -620,6 +620,8 @@ jobs:
     name: Build ${{ matrix.component }}
     needs: [configure, setup-matrix]
     runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ github.token }}
     strategy:
       matrix:
         include: ${{ fromJSON(needs.setup-matrix.outputs.build-matrix) }}
@@ -691,8 +693,6 @@ jobs:
             -D "${COMPONENT}/artifacts/"
 
           echo "Reused assets downloaded"
-        env:
-          GH_TOKEN: ${{ github.token }}
 
       - name: Build component
         if: matrix.can_reuse == false
@@ -744,6 +744,8 @@ jobs:
     needs: [configure, resolve-versions, build-components]
     if: needs.configure.outputs.is_dry_run == 'false'
     runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ github.token }}
     outputs:
       release_tag: ${{ steps.tag.outputs.tag }}
       branch: ${{ needs.configure.outputs.branch }}
@@ -989,8 +991,6 @@ jobs:
           echo "Release created"
           echo "  URL: https://github.com/${{ github.repository }}/releases/tag/${RELEASE_TAG}"
           echo "=========================================="
-        env:
-          GH_TOKEN: ${{ github.token }}
 
   # ===========================================================================
   # Dry-run summary (when release is skipped)
