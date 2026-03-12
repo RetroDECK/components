@@ -56,7 +56,7 @@ jobs:
     steps:
       - name: Checkout code
         if: github.event_name == 'push'
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           fetch-depth: 0
 
@@ -207,7 +207,7 @@ jobs:
           echo "=========================================="
 
       - name: Checkout code
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           ref: ${{ steps.config.outputs.branch }}
 
@@ -290,7 +290,7 @@ jobs:
 
       - name: Checkout main
         if: steps.check.outputs.is_main == 'true'
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           ref: main
           fetch-depth: 0
@@ -380,7 +380,7 @@ jobs:
       prev-versions-json: ${{ steps.get-prev.outputs.prev_versions }}
     steps:
       - name: Checkout code
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           ref: ${{ needs.configure.outputs.branch }}
           fetch-depth: 0
@@ -505,7 +505,7 @@ jobs:
           echo "$metadata" | jq -r 'to_entries[] | "  \(.key): \(.value.version)"'
 
       - name: Upload metadata
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v7
         with:
           name: components-metadata
           path: components_metadata.json
@@ -522,7 +522,7 @@ jobs:
           cat proposed_version_pins.sh
 
       - name: Upload proposed version pins
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v7
         with:
           name: proposed-version-pins
           path: proposed_version_pins.sh
@@ -539,7 +539,7 @@ jobs:
       build-matrix: ${{ steps.set-matrix.outputs.build }}
     steps:
       - name: Checkout code
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           ref: ${{ needs.configure.outputs.branch }}
 
@@ -629,7 +629,7 @@ jobs:
       max-parallel: 20
     steps:
       - name: Checkout code
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           ref: ${{ needs.configure.outputs.branch }}
           fetch-depth: 0
@@ -729,7 +729,7 @@ jobs:
           echo "Artifacts verified ($ARCHIVE_SIZE)"
 
       - name: Upload artifacts
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v7
         with:
           name: ${{ matrix.component }}-artifacts
           path: ${{ matrix.component }}/artifacts/
@@ -751,7 +751,7 @@ jobs:
       branch: ${{ needs.configure.outputs.branch }}
     steps:
       - name: Checkout code
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           ref: ${{ needs.configure.outputs.branch }}
 
@@ -798,19 +798,19 @@ jobs:
           esac
 
       - name: Download all component artifacts
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           path: downloaded-artifacts/
           pattern: '*-artifacts'
 
       - name: Download components metadata
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           name: components-metadata
           path: downloaded-artifacts/
 
       - name: Download proposed version pins
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           name: proposed-version-pins
           path: downloaded-artifacts/
@@ -1002,7 +1002,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Download components metadata
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           name: components-metadata
           path: .
@@ -1079,7 +1079,7 @@ jobs:
     steps:
       - name: Download components metadata
         if: needs.build-components.result == 'success'
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           name: components-metadata
           path: .
