@@ -71,27 +71,67 @@
           "dest": "shared-libs"
         },
         {
-          "library": "libxml2.so.2",
-          "runtime_name": "org.kde.Platform",
-          "runtime_version": "6.9",
+          "library": "libGLU.so.1",
+          "source": "lib",
           "dest": "shared-libs"
         },
         {
-          "library": "libicui18n.so.75",
-          "runtime_name": "org.kde.Platform",
-          "runtime_version": "6.9",
+          "library": "libSDL3.so.0",
+          "source": "lib",
           "dest": "shared-libs"
         },
         {
-          "library": "libicuuc.so.75",
+          "library": "libQt6MultimediaWidgets.so.6",
           "runtime_name": "org.kde.Platform",
-          "runtime_version": "6.9",
+          "runtime_version": "6.10",
           "dest": "shared-libs"
         },
         {
-          "library": "libicudata.so.75",
+          "library": "libQt6Multimedia.so.6",
           "runtime_name": "org.kde.Platform",
-          "runtime_version": "6.9",
+          "runtime_version": "6.10",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libQt6Widgets.so.6",
+          "runtime_name": "org.kde.Platform",
+          "runtime_version": "6.10",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libQt6Gui.so.6",
+          "runtime_name": "org.kde.Platform",
+          "runtime_version": "6.10",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libQt6Core.so.6",
+          "runtime_name": "org.kde.Platform",
+          "runtime_version": "6.10",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libQt6Concurrent.so.6",
+          "runtime_name": "org.kde.Platform",
+          "runtime_version": "6.10",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libQt6SvgWidgets.so.6",
+          "runtime_name": "org.kde.Platform",
+          "runtime_version": "6.10",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libQt6Svg.so.6",
+          "runtime_name": "org.kde.Platform",
+          "runtime_version": "6.10",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libQt6DBus.so.6",
+          "runtime_name": "org.kde.Platform",
+          "runtime_version": "6.10",
           "dest": "shared-libs"
         }
       ]
