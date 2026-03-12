@@ -503,8 +503,6 @@ jobs:
           echo ""
           echo "Component versions:"
           echo "$metadata" | jq -r 'to_entries[] | "  \(.key): \(.value.version)"'
-        env:
-          GH_TOKEN: ${{ github.token }}
 
       - name: Upload metadata
         uses: actions/upload-artifact@v4
@@ -707,8 +705,6 @@ jobs:
           automation-tools/alchemist/alchemist.sh -f "${{ matrix.recipe }}"
 
           echo "Build complete"
-        env:
-          GH_TOKEN: ${{ github.token }}
 
       - name: Verify artifacts
         run: |
