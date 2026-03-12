@@ -160,7 +160,7 @@ jobs:
           echo "Fetching releases..."
 
           # Get all releases, filtering to only those matching our tag format
-          gh release list --limit 1000 --json tagName,createdAt,isDraft,isPrerelease | \
+          gh release list --limit 1000 --json tagName,publishedAt,isDraft,isPrerelease | \
             jq '[.[] | select(.tagName | test("[0-9]{8}-[0-9]{6}$"))]' \
             > all_releases.json
 
@@ -233,7 +233,7 @@ jobs:
             # Get releases for this branch sorted newest first
             BRANCH_RELEASES=$(jq -r --arg prefix "${branch_prefix}-" \
               '[.[] | select(.tagName | startswith($prefix))] |
-              sort_by(.createdAt) | reverse | .[].tagName' \
+              sort_by(.publishedAt) | reverse | .[].tagName' \
               all_releases.json)
 
             TOTAL=$(echo "$BRANCH_RELEASES" | grep -c . || true)
