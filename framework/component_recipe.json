@@ -27,11 +27,6 @@
           "dest": "$COMPONENT_ARTIFACT_ROOT"
         },
         {
-          "type": "file",
-          "source": "component_update.sh",
-          "dest": "$COMPONENT_ARTIFACT_ROOT"
-        },
-        {
           "type": "dir",
           "source": "rd_assets/helper_files",
           "dest": "helper_files"
