@@ -135,7 +135,7 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
 # Version: 1.19.3
-  export PPSSPP_DESIRED_VERSION="00d4ac93b5111818ad897284d70743e5d7e72af43ab1d660ee03356c88dda85e"
+  export PPSSPP_DESIRED_VERSION="f998ae83bb6e842635b6c32e8ca3298b7e2ac247ae559f3030c280863d2b5537"
 
 # COOKER (Override)
 # PPSSPP_DESIRED_VERSION="latest"
