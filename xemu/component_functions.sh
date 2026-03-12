@@ -88,6 +88,30 @@ _prepare_component::xemu() {
   esac
 }
 
+_validate_for_compression::xiso() {
+  local file="$1"
+  local normalized_filename=$(echo "$file" | tr '[:upper:]' '[:lower:]')
+  if echo "$normalized_filename" | grep -qE '\.iso'; then
+    if [[ $(find "$file" -type f -size +2G 2>/dev/null) ]]; then
+      return 0
+    fi
+  fi
+  
+  return 1
+}
+
+_compress_game::xiso() {
+  local source_file="$1"
+  local dest_file="$2"
+  dd if="$source_file" of="$dest_file" skip=387 bs=1M
+}
+
+_post_compression_cleanup::xiso() {
+  local file_to_cleanup="$1"
+  log i "Removing $file_to_cleanup as part of post-compression cleanup"
+  rm -f "$file_to_cleanup"
+}
+
 _post_update::xemu() {
   local previous_version="$1"
 

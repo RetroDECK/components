@@ -11,6 +11,13 @@
     "component_type": "Emulator",
     "system_friendly_name": "Xbox",
     "system": "xbox",
+    "compression": {
+      "xiso": {
+        "targets": [
+          "xbox"
+        ]
+      }
+    },
     "bios": [
       {
         "filename": "mcpx_1.0.bin",
