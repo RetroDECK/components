@@ -13,11 +13,9 @@ _set_setting_value::azahar() {
   local name=$(sed_escape_pattern "$2")
   local value=$(sed_escape_replacement "$3")
   local section="${4:-}"
-
   local sed_cmd
-  sed_cmd='s^'"$name"'=".*"^'"$name"'="'"$value"'"^; t end;'
-  sed_cmd+='s^'"$name"'=.*^'"$name"'='"$value"'^; :end'
-
+  sed_cmd='s^\^'"$name"'=".*"^'"$name"'="'"$value"'"^; t end;'
+  sed_cmd+='s^\^'"$name"'=.*^'"$name"'='"$value"'^; :end'
   if [[ -n "$section" ]]; then
     section=$(sed_escape_pattern "$section")
     sed -i '\^\['"$section"'\]^,\^\^'"$name"'=^{'"$sed_cmd"'}' "$file"

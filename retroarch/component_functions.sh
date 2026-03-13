@@ -11,12 +11,44 @@ _set_setting_value::retroarch() {
   local file="$1"
   local name=$(sed_escape_pattern "$2")
   local value=$(sed_escape_replacement "$3")
-  sed -i 's^'"$name"' = ".*"^'"$name"' = "'"$value"'"^' "$file"
+  sed -i 's^\^'"$name"' = ".*"^'"$name"' = "'"$value"'"^' "$file"
 }
 
 _get_setting_value::retroarch() {
   local file="$1" name="$2"
-  sed -n 's^'"$(sed_escape_pattern "$name")"' = "\(.*\)"^\1^p' "$file"
+  KEY="$name" awk -F'=' \
+    'BEGIN { key=ENVIRON["KEY"] }
+     index($0, key " =") == 1 {
+       val=substr($0, index($0,"=")+2)
+       gsub(/^"|"$/, "", val)
+       print val; exit
+     }' "$file"
+}
+
+_set_setting_value::retroarch_scummvm() {
+  local file="$1"
+  local name=$(sed_escape_pattern "$2")
+  local value=$(sed_escape_replacement "$3")
+  sed -i 's^\^'"$name"'=.*^'"$name"'='"$value"'^' "$file"
+}
+
+_get_setting_value::retroarch_scummvm() {
+  local file="$1" name="$2" section="${3:-}"
+  if [[ -n "$section" ]]; then
+    KEY="$name" SECTION="[$section]" awk -F'=' \
+      'BEGIN { key=ENVIRON["KEY"]; section=ENVIRON["SECTION"] }
+       $0 == section { in_section=1; next }
+       /^\[/ { in_section=0 }
+       in_section && index($0, key "=") == 1 {
+         print substr($0, index($0,"=")+1); exit
+       }' "$file"
+  else
+    KEY="$name" awk -F'=' \
+      'BEGIN { key=ENVIRON["KEY"] }
+       index($0, key "=") == 1 {
+         print substr($0, index($0,"=")+1); exit
+       }' "$file"
+  fi
 }
 
 _prepare_component::retroarch() {
@@ -142,11 +174,11 @@ _prepare_component::retroarch() {
       mv -f /tmp/scummvm/extra/* "$storage_path/retroarch/ScummVM/extra"
       mv -f /tmp/scummvm/theme/* "$storage_path/retroarch/ScummVM/theme"
       rm -rf /tmp/extra /tmp/theme /tmp/scummvm/extra /tmp/scummvm/theme
-      set_setting_value "$retroarch_config_scummvm" "iconspath" "$storage_path/retroarch/ScummVM/icons" "libretro_scummvm" "scummvm"
-      set_setting_value "$retroarch_config_scummvm" "extrapath" "$storage_path/retroarch/ScummVM/extra" "libretro_scummvm" "scummvm"
-      set_setting_value "$retroarch_config_scummvm" "themepath" "$storage_path/retroarch/ScummVM/theme" "libretro_scummvm" "scummvm"
-      set_setting_value "$retroarch_config_scummvm" "savepath" "$saves_path/scummvm" "libretro_scummvm" "scummvm"
-      set_setting_value "$retroarch_config_scummvm" "browser_lastpath" "$roms_path/scummvm" "libretro_scummvm" "scummvm"
+      set_setting_value "$retroarch_config_scummvm" "iconspath" "$storage_path/retroarch/ScummVM/icons" "retroarch_scummvm" "scummvm"
+      set_setting_value "$retroarch_config_scummvm" "extrapath" "$storage_path/retroarch/ScummVM/extra" "retroarch_scummvm" "scummvm"
+      set_setting_value "$retroarch_config_scummvm" "themepath" "$storage_path/retroarch/ScummVM/theme" "retroarch_scummvm" "scummvm"
+      set_setting_value "$retroarch_config_scummvm" "savepath" "$saves_path/scummvm" "retroarch_scummvm" "scummvm"
+      set_setting_value "$retroarch_config_scummvm" "browser_lastpath" "$roms_path/scummvm" "retroarch_scummvm" "scummvm"
 
       # Texture Packs
       dir_prep "$texture_packs_path/retroarch-core/Mesen/HdPacks" "$bios_path/HdPacks"
@@ -168,11 +200,11 @@ _prepare_component::retroarch() {
       log i "------------------------"
 
       # ScummVM
-      set_setting_value "$retroarch_config_scummvm" "iconspath" "$storage_path/retroarch/ScummVM/icons" "libretro_scummvm" "scummvm"
-      set_setting_value "$retroarch_config_scummvm" "extrapath" "$storage_path/retroarch/ScummVM/extra" "libretro_scummvm" "scummvm"
-      set_setting_value "$retroarch_config_scummvm" "themepath" "$storage_path/retroarch/ScummVM/theme" "libretro_scummvm" "scummvm"
-      set_setting_value "$retroarch_config_scummvm" "savepath" "$saves_path/scummvm" "libretro_scummvm" "scummvm"
-      set_setting_value "$retroarch_config_scummvm" "browser_lastpath" "$roms_path/scummvm" "libretro_scummvm" "scummvm"
+      set_setting_value "$retroarch_config_scummvm" "iconspath" "$storage_path/retroarch/ScummVM/icons" "retroarch_scummvm" "scummvm"
+      set_setting_value "$retroarch_config_scummvm" "extrapath" "$storage_path/retroarch/ScummVM/extra" "retroarch_scummvm" "scummvm"
+      set_setting_value "$retroarch_config_scummvm" "themepath" "$storage_path/retroarch/ScummVM/theme" "retroarch_scummvm" "scummvm"
+      set_setting_value "$retroarch_config_scummvm" "savepath" "$saves_path/scummvm" "retroarch_scummvm" "scummvm"
+      set_setting_value "$retroarch_config_scummvm" "browser_lastpath" "$roms_path/scummvm" "retroarch_scummvm" "scummvm"
 
       # BIOS
       set_setting_value "$retroarch_config" "system_directory" "$bios_path" "retroarch"

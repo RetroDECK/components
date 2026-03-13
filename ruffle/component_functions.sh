@@ -8,8 +8,7 @@ _set_setting_value::ruffle() {
   local file="$1"
   local name=$(sed_escape_pattern "$2")
   local value=$(sed_escape_replacement "$3")
-
-  sed -i 's^'"$name"' = ".*"^'"$name"' = "'"$value"'"^' "$file"
+  sed -i 's^\^'"$name"' = ".*"^'"$name"' = "'"$value"'"^' "$file"
 }
 
 _get_setting_value::ruffle() {
