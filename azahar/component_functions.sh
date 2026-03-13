@@ -28,10 +28,11 @@ _set_setting_value::azahar() {
 
 _get_setting_value::azahar() {
   local file="$1" name="$2" section="${3:-}"
-
+  
   if [[ -n "$section" ]]; then
-    awk -F'=' -v section="[$section]" -v key="$name" \
-      '$0 == section { in_section=1; next }
+    KEY="$name" SECTION="[$section]" awk -F'=' \
+      'BEGIN { key=ENVIRON["KEY"]; section=ENVIRON["SECTION"] }
+       $0 == section { in_section=1; next }
        /^\[/ { in_section=0 }
        in_section && $1 == key {
          val = substr($0, index($0,"=")+1)
@@ -39,8 +40,9 @@ _get_setting_value::azahar() {
          print val; exit
        }' "$file"
   else
-    awk -F'=' -v key="$name" \
-      '/^\[/ { exit }
+    KEY="$name" awk -F'=' \
+      'BEGIN { key=ENVIRON["KEY"] }
+       /^\[/ { exit }
        $1 == key {
          val = substr($0, index($0,"=")+1)
          gsub(/^"|"$/, "", val)

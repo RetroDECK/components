@@ -36,16 +36,18 @@ _get_setting_value::dolphin() {
   local file="$1" name="$2" section="${3:-}"
 
   if [[ -n "$section" ]]; then
-    awk -v section="[$section]" -v key="$name" \
-      '$0 == section { in_section=1; next }
+    KEY="$name" SECTION="[$section]" awk -F'=' \
+      'BEGIN { key=ENVIRON["KEY"]; section=ENVIRON["SECTION"] }
+       $0 == section { in_section=1; next }
        /^\[/ { in_section=0 }
        in_section && index($0, key " =") == 1 {
          print substr($0, index($0,"=")+2); exit
        }' "$file"
   else
-    awk -v key="$name" \
-      'index($0, key " =") == 1 {
-         print substr($0, index($0,"=")+2); exit
+    KEY="$name" awk -F'=' \
+      'BEGIN { key=ENVIRON["KEY"] }
+        index($0, key " =") == 1 {
+        print substr($0, index($0,"=")+2); exit
        }' "$file"
   fi
 }

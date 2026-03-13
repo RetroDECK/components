@@ -20,8 +20,9 @@ _set_setting_value::pico-8() {
 _get_setting_value::pico-8() {
   local file="$1" name="$2"
 
-  awk -v key="$name" \
-    'index($0, key " ") == 1 {
+  KEY="$name" SECTION="[$section]" awk -F'=' \
+      'BEGIN { key=ENVIRON["KEY"]; section=ENVIRON["SECTION"] }
+       index($0, key " ") == 1 {
        val = substr($0, length(key) + 2)
        idx = index(val, " //")
        if (idx > 0) val = substr(val, 1, idx - 1)
