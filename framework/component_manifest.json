@@ -4,6 +4,8 @@
     "description": "RetroDECK Framework",
     "core_framework_version": 1,
     "prepare_priority": {
+      "reset": 0,
+      "postmove" :0,
       "startup": 0,
       "shutdown": 99
     },
