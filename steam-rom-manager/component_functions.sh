@@ -237,21 +237,21 @@ get_steam_user() {
       fi
     else
       if [[ -d "$steam_userdata_native" ]]; then
-        steam_userdata_current="$steam_userdata_native"
-        set_component_option "steam-rom-manager" "steam_sync" "native"
         if [[ "$mode" == "get_type" ]]; then
           echo "native"
           return 0
         fi
+        steam_userdata_current="$steam_userdata_native"
+        set_component_option "steam-rom-manager" "steam_sync" "native"
       elif [[ -d "$steam_userdata_flatpak" ]]; then
-        steam_userdata_current="$steam_userdata_flatpak"
-        set_component_option "steam-rom-manager" "steam_sync" "flatpak"
         if [[ "$mode" == "get_type" ]]; then
           echo "flatpak"
           return 0
         fi
+        steam_userdata_current="$steam_userdata_flatpak"
+        set_component_option "steam-rom-manager" "steam_sync" "flatpak"
       else
-        log d "Steam Sync is enabled or this check was forced, but no Steam userdata information could be found."
+        log d "No Steam userdata information could be found."
         return 1
       fi
     fi
@@ -284,6 +284,7 @@ get_steam_user() {
       fi
     else
       log w "No Steam user found, proceeding"
+      return 1
     fi
   fi
 }
@@ -516,7 +517,7 @@ install_retrodeck_controller_profile() {
 
 add_retrodeck_to_steam() {
   (
-    log i "RetroDECK has been added to Steam"
+    log i "RetroDECK is being added to Steam"
     start::steam-rom-manager enable --names "RetroDECK Launcher"
     start::steam-rom-manager add
   ) |
@@ -543,11 +544,19 @@ install_retrodeck_controller_profile_and_add_to_steam() {
 }
 
 finit_install_controller_profile_dialog() {
-  get_steam_user "finit"
-  if [[ -n "$steam_id" ]]; then
+  if get_steam_user "get_type"; then
     rd_zenity --question --no-wrap --window-icon="/app/share/icons/hicolor/scalable/apps/net.retrodeck.retrodeck.svg" --title "RetroDECK Initial Install - Add to Steam" --cancel-label="No" --ok-label "Yes" \
     --text="Would you like to install the RetroDECK Steam Controller Templates and add RetroDECK to Steam?\n\nNeeded for <span foreground='$purple'><b>optimal controller support</b></span> via Steam Input.\n\n<span foreground='$purple'><b>Highly Recommended!</b></span>"
   else
     return 1
+  fi
+}
+
+finit_install_controller_profile_and_add_retrodeck_to_steam() {
+  if get_steam_user; then
+    install_retrodeck_controller_profile
+    add_retrodeck_to_steam
+  else
+    configurator_generic_dialog "RetroDECK - Install Controller Profiles and Add RetroDECK to Steam" "Your Steam username could not be determined.\n\nAlthough our initial checks have passed, something else is wrong.\nThere may be an issue with your Steam install."
   fi
 }
