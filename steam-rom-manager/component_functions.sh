@@ -500,18 +500,15 @@ decode_filename() {
 
 install_retrodeck_controller_profile() {
   # This function will install the needed files for the custom RetroDECK controller profile
-  # NOTE: These files need to be stored in shared locations for Steam, outside of the normal RetroDECK folders and should always be an optional user choice
-  # BIGGER NOTE: As part of this process, all emulators will need to have their configs hard-reset to match the controller mappings of the profile
   # USAGE: install_retrodeck_controller_profile
-  if [[ -d "$HOME/.steam/steam/controller_base/templates/" || -d "$HOME/.var/app/com.valvesoftware.Steam/.steam/steam/controller_base/templates/" ]]; then
-    if [[ -d "$HOME/.steam/steam/controller_base/templates/" ]]; then # If a normal binary Steam install exists
-      rsync -rlD --mkpath "$steam_controller_profiles_binding_icons_path/" "$HOME/.steam/steam/tenfoot/resource/images/library/controller/binding_icons/"
-      rsync -rlD --mkpath "$steam_controller_profiles_path/" "$HOME/.steam/steam/controller_base/templates/"
-    fi
-    if [[ -d "$HOME/.var/app/com.valvesoftware.Steam/.steam/steam/controller_base/templates/" ]]; then # If a Flatpak Steam install exists
-      rsync -rlD --mkpath "$steam_controller_profiles_binding_icons_path/" "$HOME/.var/app/com.valvesoftware.Steam/.steam/steam/tenfoot/resource/images/library/controller/binding_icons/"
-      rsync -rlD --mkpath "$steam_controller_profiles_path/" "$HOME/.var/app/com.valvesoftware.Steam/.steam/steam/controller_base/templates/"
-    fi
+  local current_steam_sync_setting="$(get_component_option "steam-rom-manager" "steam_sync")"
+
+  if [[ "$current_steam_sync_setting" == "native" && -d "$steam_userdata_native/controller_base/templates/" ]]; then
+    rsync -rlD --mkpath "$steam_controller_profiles_binding_icons_path/" "$steam_userdata_native/tenfoot/resource/images/library/controller/binding_icons/"
+    rsync -rlD --mkpath "$steam_controller_profiles_path/" "$steam_userdata_native/controller_base/templates/"
+  elif [[ "$current_steam_sync_setting" == "flatpak" && -d "$steam_userdata_flatpak/controller_base/templates/" ]]; then
+    rsync -rlD --mkpath "$steam_controller_profiles_binding_icons_path/" "$steam_userdata_flatpak/tenfoot/resource/images/library/controller/binding_icons/"
+    rsync -rlD --mkpath "$steam_controller_profiles_path/" "$steam_userdata_flatpak/controller_base/templates/"
   else
     configurator_generic_dialog "RetroDECK - Install: Steam Controller Templates" "The target directories for the controller profile do not exist.\n\nThis may occur if <span foreground='$purple'><b>Steam is not installed</b></span> or if the location does not have <span foreground='$purple'><b>read permissions</b></span>."
   fi
