@@ -6,7 +6,8 @@
     "component_version": "1.0.0",
     "component_type": "System",
     "prepare_priority": {
-      "default": 50,
+      "reset": 10,
+      "postmove": 10,
       "startup": 99,
       "shutdown": 10
     },
