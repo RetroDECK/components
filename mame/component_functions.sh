@@ -25,8 +25,9 @@ _get_setting_value::mame() {
   local file="$1" name="$2" section="${3:-}"
 
   if [[ "$file" =~ \.ini$ ]]; then
-    awk -v key="$name" \
-      '$1 == key { $1=""; print substr($0, index($0,$2)); exit }' "$file"
+    KEY="$name" SECTION="[$section]" awk -F'=' \
+      'BEGIN { key=ENVIRON["KEY"]; section=ENVIRON["SECTION"] }
+       $1 == key { $1=""; print substr($0, index($0,$2)); exit }' "$file"
   elif [[ "$file" =~ \.cfg$ ]]; then
     local xpath="/mameconfig/system[@name='${section}']/input/port[@type='${name}']/newseq[@type='standard']"
     xml sel -t -v "$xpath" "$file"

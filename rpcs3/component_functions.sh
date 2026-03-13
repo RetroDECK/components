@@ -74,15 +74,17 @@ _get_setting_value::rpcs3() {
 
   if [[ "$file" =~ \.ini$ ]]; then
     if [[ -n "$section" ]]; then
-      awk -F'=' -v section="[$section]" -v key="$name" \
-        '$0 == section { in_section=1; next }
+      KEY="$name" SECTION="[$section]" awk -F'=' \
+      'BEGIN { key=ENVIRON["KEY"]; section=ENVIRON["SECTION"] }
+       $0 == section { in_section=1; next }
          /^\[/ { in_section=0 }
          in_section && $1 == key {
            print substr($0, index($0,"=")+1); exit
          }' "$file"
     else
-      awk -F'=' -v key="$name" \
-        '$1 == key {
+      KEY="$name" awk -F'=' \
+      'BEGIN { key=ENVIRON["KEY"] }
+       $1 == key {
            print substr($0, index($0,"=")+1); exit
          }' "$file"
     fi
