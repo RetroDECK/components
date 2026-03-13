@@ -254,10 +254,9 @@ get_steam_user() {
         log d "Steam Sync is enabled or this check was forced, but no Steam userdata information could be found."
         return 1
       fi
-      prepare_component "reset" "steam-rom-manager"
     fi
 
-    if [ -f "$steam_userdata_current/config/loginusers.vdf" ]; then
+    if [[ -f "$steam_userdata_current/config/loginusers.vdf" ]]; then
       # Extract the Steam ID of the most recent user
       export steam_id=$(awk '
         /"users"/ {flag=1}
@@ -283,7 +282,6 @@ get_steam_user() {
       if [[ -d "$srm_userdata" ]]; then
         populate_steamuser_srm
       fi
-
     else
       log w "No Steam user found, proceeding"
     fi
