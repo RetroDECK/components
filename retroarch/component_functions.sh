@@ -292,8 +292,8 @@ _post_update_legacy::retroarch() {
       cp -f "/app/retrodeck/extras/Amiga/capsimg.so" "$bios_path/capsimg.so"
     fi
 
-    set_setting_value "$raconf" "savestate_auto_load" "false" "retroarch"
-    set_setting_value "$raconf" "savestate_auto_save" "false" "retroarch"
+    set_setting_value "$retroarch_config" "savestate_auto_load" "false" "retroarch"
+    set_setting_value "$retroarch_config" "savestate_auto_save" "false" "retroarch"
   fi
 
   if check_version_is_older_than "$version_being_updated" "0.8.0b"; then
@@ -301,7 +301,7 @@ _post_update_legacy::retroarch() {
     log i "- Force disable global rewind in RA in prep for preset system"
 
     log i "Force disabling rewind, you can re-enable it via the Configurator"
-    set_setting_value "$raconf" "rewind_enable" "false" "retroarch"
+    set_setting_value "$retroarch_config" "rewind_enable" "false" "retroarch"
   fi
 
   if check_version_is_older_than "$version_being_updated" "0.8.1b"; then
@@ -319,13 +319,13 @@ _post_update_legacy::retroarch() {
 
   if check_version_is_older_than "$version_being_updated" "0.9.0b"; then
     log i "Forcing RetroArch to use the new libretro info path"
-    set_setting_value "$raconf" "libretro_info_path" "$XDG_CONFIG_HOME/retroarch/cores" "retroarch"
+    set_setting_value "$retroarch_config" "libretro_info_path" "$XDG_CONFIG_HOME/retroarch/cores" "retroarch"
   fi
 
   if check_version_is_older_than "$version_being_updated" "0.9.1b"; then
     log i "Preparing the cheats for RetroArch..."
     create_dir "$cheats_path/retroarch"
-    set_setting_value "$raconf" "cheat_database_path" "$cheats_path/retroarch" "retroarch"
+    set_setting_value "$retroarch_config" "cheat_database_path" "$cheats_path/retroarch" "retroarch"
     tar --strip-components=1 -xzf "/app/retrodeck/cheats/retroarch.tar.gz" -C "$cheats_path/retroarch" --overwrite && log i "Cheats for RetroArch installed"
   fi
 
