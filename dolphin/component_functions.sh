@@ -37,7 +37,8 @@ _get_setting_value::dolphin() {
 
   if [[ -n "$section" ]]; then
     KEY="$name" SECTION="[$section]" awk -F'=' \
-      'BEGIN { key=ENVIRON["KEY"]; section=ENVIRON["SECTION"] }
+      'NR==1 { sub(/^\xEF\xBB\xBF/, "") }
+       BEGIN { key=ENVIRON["KEY"]; section=ENVIRON["SECTION"] }
        $0 == section { in_section=1; next }
        /^\[/ { in_section=0 }
        in_section && index($0, key " =") == 1 {
@@ -45,9 +46,10 @@ _get_setting_value::dolphin() {
        }' "$file"
   else
     KEY="$name" awk -F'=' \
-      'BEGIN { key=ENVIRON["KEY"] }
-        index($0, key " =") == 1 {
-        print substr($0, index($0,"=")+2); exit
+      'NR==1 { sub(/^\xEF\xBB\xBF/, "") }
+       BEGIN { key=ENVIRON["KEY"] }
+       index($0, key " =") == 1 {
+         print substr($0, index($0,"=")+2); exit
        }' "$file"
   fi
 }
