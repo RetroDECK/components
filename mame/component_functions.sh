@@ -13,8 +13,7 @@ _set_setting_value::mame() {
   if [[ "$file" =~ \.ini$ ]]; then
     local esc_name=$(sed_escape_pattern "$name")
     local esc_value=$(sed_escape_replacement "$value")
-    sed -i 's^\(^'"$esc_name"'\s\+\).*^\1'"$esc_value"'^' "$file"
-
+    sed -i 's^\(\^'"$esc_name"'\s\+\).*^\1'"$esc_value"'^' "$file"
   elif [[ "$file" =~ \.cfg$ ]]; then
     local xpath="/mameconfig/system[@name='${section}']/input/port[@type='${name}']/newseq[@type='standard']"
     xml ed -L -u "$xpath" -v "$value" "$file"
@@ -23,11 +22,10 @@ _set_setting_value::mame() {
 
 _get_setting_value::mame() {
   local file="$1" name="$2" section="${3:-}"
-
   if [[ "$file" =~ \.ini$ ]]; then
-    KEY="$name" SECTION="[$section]" awk -F'=' \
-      'BEGIN { key=ENVIRON["KEY"]; section=ENVIRON["SECTION"] }
-       $1 == key { $1=""; print substr($0, index($0,$2)); exit }' "$file"
+    KEY="$name" awk \
+      'BEGIN { key=ENVIRON["KEY"] }
+       $1 == key { sub(/^[[:space:]]*[^[:space:]]+[[:space:]]+/, ""); print; exit }' "$file"
   elif [[ "$file" =~ \.cfg$ ]]; then
     local xpath="/mameconfig/system[@name='${section}']/input/port[@type='${name}']/newseq[@type='standard']"
     xml sel -t -v "$xpath" "$file"
