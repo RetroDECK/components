@@ -116,8 +116,7 @@ _prepare_component::rpcs3() {
 
       create_dir -d "$XDG_CONFIG_HOME/rpcs3/"
       cp -fr "$component_config/"* "$XDG_CONFIG_HOME/rpcs3/"
-      # This is an unfortunate one-off because set_setting_value does not currently support settings with $ in the name.
-      sed -i 's^\^$(EmulatorDir): .*^$(EmulatorDir): '"$storage_path/rpcs3/"'^' "$rpcs3_config_vfs"
+      set_setting_value "$rpcs3_config_vfs" '$(EmulatorDir)' "$storage_path/rpcs3/" "rpcs3"
       set_setting_value "$rpcs3_config_vfs" "/games/" "$roms_path/ps3/" "rpcs3"
       dir_prep "$saves_path/ps3/rpcs3" "$storage_path/rpcs3/dev_hdd0/home/00000001/savedata"
       dir_prep "$states_path/ps3/rpcs3" "$XDG_CONFIG_HOME/rpcs3/savestates"
@@ -137,8 +136,7 @@ _prepare_component::rpcs3() {
       log i "Post-moving RPCS3"
       log i "------------------------"
 
-      # This is an unfortunate one-off because set_setting_value does not currently support settings with $ in the name.
-      sed -i 's^\^$(EmulatorDir): .*^$(EmulatorDir): '"$storage_path/rpcs3/"'^' "$rpcs3_config_vfs"
+      set_setting_value "$rpcs3_config_vfs" '$(EmulatorDir)' "$storage_path/rpcs3/" "rpcs3"
       set_setting_value "$rpcs3_config_vfs" "/games/" "$roms_path/ps3" "rpcs3"
       dir_prep "$saves_path/ps3/rpcs3" "$storage_path/rpcs3/dev_hdd0/home/00000001/savedata"
       dir_prep "$states_path/ps3/rpcs3" "$XDG_CONFIG_HOME/rpcs3/savestates"
