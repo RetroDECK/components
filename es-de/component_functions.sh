@@ -108,8 +108,9 @@ splash_screen::es-de() {
   current_time=$(date +"%H%M") # Read the current time in a format that can be calculated in ranges
 
   # Read the JSON file and extract splash screen data using jq
-  splash_screen=$(get_component_manifest_cache | jq -r --arg current_day "$current_day" --arg current_time "$current_time" '
-    .[] | .manifest | select(has("es-de")) | .["es-de"].splash_screens |
+  splash_screen=$(jq -r --arg current_day "$current_day" --arg current_time "$current_time" \
+    --slurpfile manifests "$component_manifest_cache_file" '
+    $manifests[0][] | .manifest | select(has("es-de")) | .["es-de"].splash_screens |
     to_entries[] |
     select(
       ($current_day | tonumber) >= (.value.start_date | tonumber) and
@@ -117,7 +118,7 @@ splash_screen::es-de() {
       ($current_time | tonumber) >= (.value.start_time | tonumber) and
       ($current_time | tonumber) <= (.value.end_time | tonumber)
     ) | .value.filename
-  ')
+  ' <<< 'null')
 
   # Determine the splash file to use
   if [[ -n "$splash_screen" ]]; then
