@@ -74,14 +74,13 @@
       }
     },
     "preset_actions": {
-      "config_file_format": "retroarch-all",
+      "config_file_format": "retroarch",
       "cheevos": [
         {
           "enabled_states": ["true"],
           "setting_name": "cheevos_enable",
           "action": "change",
           "new_setting_value": "true",
-          "section": "",
           "target_file": "$retroarch_config",
           "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
         },
@@ -90,7 +89,6 @@
           "setting_name": "cheevos_token",
           "action": "change",
           "new_setting_value": "$cheevos_token",
-          "section": "",
           "target_file": "$retroarch_config",
           "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
         },
@@ -99,7 +97,6 @@
           "setting_name": "cheevos_username",
           "action": "change",
           "new_setting_value": "$cheevos_username",
-          "section": "",
           "target_file": "$retroarch_config",
           "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
         }
@@ -110,7 +107,6 @@
           "setting_name": "cheevos_hardcore_mode_enable",
           "action": "change",
           "new_setting_value": "true",
-          "section": "",
           "target_file": "$retroarch_config",
           "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
         }
@@ -121,7 +117,6 @@
           "setting_name": "savestate_auto_save",
           "action": "change",
           "new_setting_value": "true",
-          "section": "",
           "target_file": "$retroarch_config",
           "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
         }
@@ -134,9 +129,8 @@
               "true"
             ],
             "setting_name": "input_overlay",
-            "action": "change",
+            "action": "add",
             "new_setting_value": "/var/config/retroarch/overlays/borders/pegasus/snes87.cfg",
-            "section": "",
             "target_file": "/var/config/retroarch/config/Snes9x/snes.cfg",
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           },
@@ -145,9 +139,8 @@
               "true"
             ],
             "setting_name": "input_overlay_aspect_adjust_landscape",
-            "action": "change",
+            "action": "add",
             "new_setting_value": "0.305000",
-            "section": "",
             "target_file": "/var/config/retroarch/config/Snes9x/snes.cfg",
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           },
@@ -156,9 +149,8 @@
               "true"
             ],
             "setting_name": "input_overlay_scale_landscape",
-            "action": "change",
+            "action": "add",
             "new_setting_value": "1.050000",
-            "section": "",
             "target_file": "/var/config/retroarch/config/Snes9x/snes.cfg",
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           },
@@ -167,9 +159,8 @@
               "true"
             ],
             "setting_name": "input_overlay_enable",
-            "action": "change",
+            "action": "add",
             "new_setting_value": "true",
-            "section": "",
             "target_file": "/var/config/retroarch/config/Snes9x/snes.cfg",
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           }
@@ -180,9 +171,8 @@
               "true"
             ],
             "setting_name": "aspect_ratio_index",
-            "action": "change",
+            "action": "add",
             "new_setting_value": "24",
-            "section": "",
             "target_file": "/var/config/retroarch/config/Snes9x/snes.cfg",
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           }
@@ -193,9 +183,8 @@
               "true"
             ],
             "setting_name": "rewind_enable",
-            "action": "change",
+            "action": "add",
             "new_setting_value": "true",
-            "section": "",
             "target_file": "/var/config/retroarch/config/Snes9x/snes.cfg",
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           }
@@ -206,9 +195,8 @@
               "true"
             ],
             "setting_name": "input_player1_a_btn",
-            "action": "change",
+            "action": "add",
             "new_setting_value": "0",
-            "section": "",
             "target_file": "/var/config/retroarch/config/remaps/Snes9x/snes.rmp",
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           },
@@ -217,9 +205,8 @@
               "true"
             ],
             "setting_name": "input_player1_b_btn",
-            "action": "change",
+            "action": "add",
             "new_setting_value": "8",
-            "section": "",
             "target_file": "/var/config/retroarch/config/remaps/Snes9x/snes.rmp",
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           },
@@ -228,9 +215,8 @@
               "true"
             ],
             "setting_name": "input_player1_x_btn",
-            "action": "change",
+            "action": "add",
             "new_setting_value": "1",
-            "section": "",
             "target_file": "/var/config/retroarch/config/remaps/Snes9x/snes.rmp",
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           },
@@ -239,9 +225,8 @@
               "true"
             ],
             "setting_name": "input_player1_y_btn",
-            "action": "change",
+            "action": "add",
             "new_setting_value": "9",
-            "section": "",
             "target_file": "/var/config/retroarch/config/remaps/Snes9x/snes.rmp",
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           }
@@ -255,9 +240,8 @@
               "true"
             ],
             "setting_name": "input_player1_a_btn",
-            "action": "change",
+            "action": "add",
             "new_setting_value": "0",
-            "section": "",
             "target_file": "/var/config/retroarch/config/remaps/Mesen/nes.rmp",
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           },
@@ -266,9 +250,8 @@
               "true"
             ],
             "setting_name": "input_player1_b_btn",
-            "action": "change",
+            "action": "add",
             "new_setting_value": "8",
-            "section": "",
             "target_file": "/var/config/retroarch/config/remaps/Mesen/nes.rmp",
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           }
@@ -282,9 +265,8 @@
               "true"
             ],
             "setting_name": "input_overlay",
-            "action": "change",
+            "action": "add",
             "new_setting_value": "/var/config/retroarch/overlays/borders/pegasus/N64.cfg",
-            "section": "",
             "target_file": "/var/config/retroarch/config/Mupen64Plus-Next/n64.cfg",
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           },
@@ -293,9 +275,8 @@
               "true"
             ],
             "setting_name": "input_overlay_aspect_adjust_landscape",
-            "action": "change",
+            "action": "add",
             "new_setting_value": "0.145000",
-            "section": "",
             "target_file": "/var/config/retroarch/config/Mupen64Plus-Next/n64.cfg",
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           },
@@ -304,9 +285,8 @@
               "true"
             ],
             "setting_name": "input_overlay_enable",
-            "action": "change",
+            "action": "add",
             "new_setting_value": "true",
-            "section": "",
             "target_file": "/var/config/retroarch/config/Mupen64Plus-Next/n64.cfg",
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           }
@@ -317,9 +297,8 @@
               "true"
             ],
             "setting_name": "aspect_ratio_index",
-            "action": "change",
+            "action": "add",
             "new_setting_value": "24",
-            "section": "",
             "target_file": "/var/config/retroarch/config/Mupen64Plus-Next/n64.cfg",
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           }
@@ -330,9 +309,8 @@
               "true"
             ],
             "setting_name": "input_player1_a_btn",
-            "action": "change",
+            "action": "add",
             "new_setting_value": "0",
-            "section": "",
             "target_file": "/var/config/retroarch/config/remaps/Mupen64Plus-Next/n64.rmp",
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           },
@@ -341,9 +319,8 @@
               "true"
             ],
             "setting_name": "input_player1_b_btn",
-            "action": "change",
+            "action": "add",
             "new_setting_value": "8",
-            "section": "",
             "target_file": "/var/config/retroarch/config/remaps/Mupen64Plus-Next/n64.rmp",
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           },
@@ -352,9 +329,8 @@
               "true"
             ],
             "setting_name": "input_player1_x_btn",
-            "action": "change",
+            "action": "add",
             "new_setting_value": "1",
-            "section": "",
             "target_file": "/var/config/retroarch/config/remaps/Mupen64Plus-Next/n64.rmp",
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           },
@@ -363,9 +339,8 @@
               "true"
             ],
             "setting_name": "input_player1_y_btn",
-            "action": "change",
+            "action": "add",
             "new_setting_value": "9",
-            "section": "",
             "target_file": "/var/config/retroarch/config/remaps/Mupen64Plus-Next/n64.rmp",
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           }
@@ -379,9 +354,8 @@
               "true"
             ],
             "setting_name": "input_overlay",
-            "action": "change",
+            "action": "add",
             "new_setting_value": "/var/config/retroarch/overlays/borders/pegasus/genesis.cfg",
-            "section": "",
             "target_file": "/var/config/retroarch/config/Genesis Plus GX/genesis.cfg",
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           },
@@ -390,9 +364,8 @@
               "true"
             ],
             "setting_name": "input_overlay_aspect_adjust_landscape",
-            "action": "change",
+            "action": "add",
             "new_setting_value": "0.100000",
-            "section": "",
             "target_file": "/var/config/retroarch/config/Genesis Plus GX/genesis.cfg",
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           },
@@ -401,9 +374,8 @@
               "true"
             ],
             "setting_name": "input_overlay_enable",
-            "action": "change",
+            "action": "add",
             "new_setting_value": "true",
-            "section": "",
             "target_file": "/var/config/retroarch/config/Genesis Plus GX/genesis.cfg",
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           },
@@ -412,9 +384,8 @@
               "true"
             ],
             "setting_name": "input_overlay_scale_landscape",
-            "action": "change",
+            "action": "add",
             "new_setting_value": "1.040000",
-            "section": "",
             "target_file": "/var/config/retroarch/config/Genesis Plus GX/genesis.cfg",
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           }
@@ -425,9 +396,8 @@
               "true"
             ],
             "setting_name": "aspect_ratio_index",
-            "action": "change",
+            "action": "add",
             "new_setting_value": "24",
-            "section": "",
             "target_file": "/var/config/retroarch/config/Genesis Plus GX/genesis.cfg",
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           }
@@ -438,9 +408,8 @@
               "true"
             ],
             "setting_name": "rewind_enable",
-            "action": "change",
+            "action": "add",
             "new_setting_value": "true",
-            "section": "",
             "target_file": "/var/config/retroarch/config/Genesis Plus GX/genesis.cfg",
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           }
@@ -454,9 +423,8 @@
               "true"
             ],
             "setting_name": "aspect_ratio_index",
-            "action": "change",
+            "action": "add",
             "new_setting_value": "23",
-            "section": "",
             "target_file": "/var/config/retroarch/config/Genesis Plus GX/gg.cfg",
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           },
@@ -465,9 +433,8 @@
               "true"
             ],
             "setting_name": "custom_viewport_height",
-            "action": "change",
+            "action": "add",
             "new_setting_value": "960",
-            "section": "",
             "target_file": "/var/config/retroarch/config/Genesis Plus GX/gg.cfg",
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           },
@@ -476,9 +443,8 @@
               "true"
             ],
             "setting_name": "custom_viewport_width",
-            "action": "change",
+            "action": "add",
             "new_setting_value": "720",
-            "section": "",
             "target_file": "/var/config/retroarch/config/Genesis Plus GX/gg.cfg",
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           },
@@ -487,9 +453,8 @@
               "true"
             ],
             "setting_name": "custom_viewport_x",
-            "action": "change",
+            "action": "add",
             "new_setting_value": "160",
-            "section": "",
             "target_file": "/var/config/retroarch/config/Genesis Plus GX/gg.cfg",
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           },
@@ -498,9 +463,8 @@
               "true"
             ],
             "setting_name": "custom_viewport_y",
-            "action": "change",
+            "action": "add",
             "new_setting_value": "24",
-            "section": "",
             "target_file": "/var/config/retroarch/config/Genesis Plus GX/gg.cfg",
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           },
@@ -509,9 +473,8 @@
               "true"
             ],
             "setting_name": "input_overlay",
-            "action": "change",
+            "action": "add",
             "new_setting_value": "/var/config/retroarch/overlays/borders/pegasus/gg.cfg",
-            "section": "",
             "target_file": "/var/config/retroarch/config/Genesis Plus GX/gg.cfg",
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           },
@@ -520,9 +483,8 @@
               "true"
             ],
             "setting_name": "input_overlay_aspect_adjust_landscape",
-            "action": "change",
+            "action": "add",
             "new_setting_value": "0.110000",
-            "section": "",
             "target_file": "/var/config/retroarch/config/Genesis Plus GX/gg.cfg",
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           },
@@ -531,9 +493,8 @@
               "true"
             ],
             "setting_name": "input_overlay_enable",
-            "action": "change",
+            "action": "add",
             "new_setting_value": "true",
-            "section": "",
             "target_file": "/var/config/retroarch/config/Genesis Plus GX/gg.cfg",
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           },
@@ -542,9 +503,8 @@
               "true"
             ],
             "setting_name": "input_overlay_scale_landscape",
-            "action": "change",
+            "action": "add",
             "new_setting_value": "1.350000",
-            "section": "",
             "target_file": "/var/config/retroarch/config/Genesis Plus GX/gg.cfg",
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           },
@@ -553,9 +513,8 @@
               "true"
             ],
             "setting_name": "input_overlay_y_offset_landscape",
-            "action": "change",
+            "action": "add",
             "new_setting_value": "0.020000",
-            "section": "",
             "target_file": "/var/config/retroarch/config/Genesis Plus GX/gg.cfg",
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           }
@@ -566,9 +525,8 @@
               "true"
             ],
             "setting_name": "rewind_enable",
-            "action": "change",
+            "action": "add",
             "new_setting_value": "true",
-            "section": "",
             "target_file": "/var/config/retroarch/config/Genesis Plus GX/gg.cfg",
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           }
@@ -582,9 +540,8 @@
               "true"
             ],
             "setting_name": "aspect_ratio_index",
-            "action": "change",
+            "action": "add",
             "new_setting_value": "23",
-            "section": "",
             "target_file": "/var/config/retroarch/config/Gambatte/gb.cfg",
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           },
@@ -593,9 +550,8 @@
               "true"
             ],
             "setting_name": "custom_viewport_height",
-            "action": "change",
+            "action": "add",
             "new_setting_value": "576",
-            "section": "",
             "target_file": "/var/config/retroarch/config/Gambatte/gb.cfg",
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           },
@@ -604,9 +560,8 @@
               "true"
             ],
             "setting_name": "custom_viewport_width",
-            "action": "change",
+            "action": "add",
             "new_setting_value": "640",
-            "section": "",
             "target_file": "/var/config/retroarch/config/Gambatte/gb.cfg",
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           },
@@ -615,9 +570,8 @@
               "true"
             ],
             "setting_name": "custom_viewport_x",
-            "action": "change",
+            "action": "add",
             "new_setting_value": "320",
-            "section": "",
             "target_file": "/var/config/retroarch/config/Gambatte/gb.cfg",
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           },
@@ -626,9 +580,8 @@
               "true"
             ],
             "setting_name": "custom_viewport_y",
-            "action": "change",
+            "action": "add",
             "new_setting_value": "20",
-            "section": "",
             "target_file": "/var/config/retroarch/config/Gambatte/gb.cfg",
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           },
@@ -637,9 +590,8 @@
               "true"
             ],
             "setting_name": "input_overlay",
-            "action": "change",
+            "action": "add",
             "new_setting_value": "/var/config/retroarch/overlays/borders/pegasus/gb.cfg",
-            "section": "",
             "target_file": "/var/config/retroarch/config/Gambatte/gb.cfg",
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           },
@@ -648,9 +600,8 @@
               "true"
             ],
             "setting_name": "input_overlay_aspect_adjust_landscape",
-            "action": "change",
+            "action": "add",
             "new_setting_value": "0.110000",
-            "section": "",
             "target_file": "/var/config/retroarch/config/Gambatte/gb.cfg",
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           },
@@ -659,9 +610,8 @@
               "true"
             ],
             "setting_name": "input_overlay_scale_landscape",
-            "action": "change",
+            "action": "add",
             "new_setting_value": "1.205000",
-            "section": "",
             "target_file": "/var/config/retroarch/config/Gambatte/gb.cfg",
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           },
@@ -670,9 +620,8 @@
               "true"
             ],
             "setting_name": "input_overlay_enable",
-            "action": "change",
+            "action": "add",
             "new_setting_value": "true",
-            "section": "",
             "target_file": "/var/config/retroarch/config/Gambatte/gb.cfg",
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           },
@@ -681,9 +630,8 @@
               "true"
             ],
             "setting_name": "input_overlay_y_offset_landscape",
-            "action": "change",
+            "action": "add",
             "new_setting_value": "0.005000",
-            "section": "",
             "target_file": "/var/config/retroarch/config/Gambatte/gb.cfg",
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           }
@@ -694,9 +642,8 @@
               "true"
             ],
             "setting_name": "rewind_enable",
-            "action": "change",
+            "action": "add",
             "new_setting_value": "true",
-            "section": "",
             "target_file": "/var/config/retroarch/config/Gambatte/gb.cfg",
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           }
@@ -707,9 +654,8 @@
               "true"
             ],
             "setting_name": "input_player1_a_btn",
-            "action": "change",
+            "action": "add",
             "new_setting_value": "0",
-            "section": "",
             "target_file": "/var/config/retroarch/config/remaps/Gambatte/gb.rmp",
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           },
@@ -718,9 +664,8 @@
               "true"
             ],
             "setting_name": "input_player1_b_btn",
-            "action": "change",
+            "action": "add",
             "new_setting_value": "8",
-            "section": "",
             "target_file": "/var/config/retroarch/config/remaps/Gambatte/gb.rmp",
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           },
@@ -729,9 +674,8 @@
               "true"
             ],
             "setting_name": "input_player1_x_btn",
-            "action": "change",
+            "action": "add",
             "new_setting_value": "1",
-            "section": "",
             "target_file": "/var/config/retroarch/config/remaps/Gambatte/gb.rmp",
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           },
@@ -740,9 +684,8 @@
               "true"
             ],
             "setting_name": "input_player1_y_btn",
-            "action": "change",
+            "action": "add",
             "new_setting_value": "9",
-            "section": "",
             "target_file": "/var/config/retroarch/config/remaps/Gambatte/gb.rmp",
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           }
@@ -756,9 +699,8 @@
               "true"
             ],
             "setting_name": "aspect_ratio_index",
-            "action": "change",
+            "action": "add",
             "new_setting_value": "23",
-            "section": "",
             "target_file": "/var/config/retroarch/config/Gambatte/gbc.cfg",
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           },
@@ -767,9 +709,8 @@
               "true"
             ],
             "setting_name": "custom_viewport_height",
-            "action": "change",
+            "action": "add",
             "new_setting_value": "576",
-            "section": "",
             "target_file": "/var/config/retroarch/config/Gambatte/gbc.cfg",
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           },
@@ -778,9 +719,8 @@
               "true"
             ],
             "setting_name": "custom_viewport_width",
-            "action": "change",
+            "action": "add",
             "new_setting_value": "640",
-            "section": "",
             "target_file": "/var/config/retroarch/config/Gambatte/gbc.cfg",
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           },
@@ -789,9 +729,8 @@
               "true"
             ],
             "setting_name": "custom_viewport_x",
-            "action": "change",
+            "action": "add",
             "new_setting_value": "320",
-            "section": "",
             "target_file": "/var/config/retroarch/config/Gambatte/gbc.cfg",
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           },
@@ -800,9 +739,8 @@
               "true"
             ],
             "setting_name": "custom_viewport_y",
-            "action": "change",
+            "action": "add",
             "new_setting_value": "20",
-            "section": "",
             "target_file": "/var/config/retroarch/config/Gambatte/gbc.cfg",
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           },
@@ -811,9 +749,8 @@
               "true"
             ],
             "setting_name": "input_overlay",
-            "action": "change",
+            "action": "add",
             "new_setting_value": "/var/config/retroarch/overlays/borders/pegasus/gbc.cfg",
-            "section": "",
             "target_file": "/var/config/retroarch/config/Gambatte/gbc.cfg",
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           },
@@ -822,9 +759,8 @@
               "true"
             ],
             "setting_name": "input_overlay_aspect_adjust_landscape",
-            "action": "change",
+            "action": "add",
             "new_setting_value": "0.110000",
-            "section": "",
             "target_file": "/var/config/retroarch/config/Gambatte/gbc.cfg",
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           },
@@ -833,9 +769,8 @@
               "true"
             ],
             "setting_name": "input_overlay_scale_landscape",
-            "action": "change",
+            "action": "add",
             "new_setting_value": "1.205000",
-            "section": "",
             "target_file": "/var/config/retroarch/config/Gambatte/gbc.cfg",
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           },
@@ -844,9 +779,8 @@
               "true"
             ],
             "setting_name": "input_overlay_enable",
-            "action": "change",
+            "action": "add",
             "new_setting_value": "true",
-            "section": "",
             "target_file": "/var/config/retroarch/config/Gambatte/gbc.cfg",
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           },
@@ -855,9 +789,8 @@
               "true"
             ],
             "setting_name": "input_overlay_y_offset_landscape",
-            "action": "change",
+            "action": "add",
             "new_setting_value": "-0.040000",
-            "section": "",
             "target_file": "/var/config/retroarch/config/Gambatte/gbc.cfg",
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           }
@@ -868,9 +801,8 @@
               "true"
             ],
             "setting_name": "rewind_enable",
-            "action": "change",
+            "action": "add",
             "new_setting_value": "true",
-            "section": "",
             "target_file": "/var/config/retroarch/config/Gambatte/gbc.cfg",
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           }
@@ -881,9 +813,8 @@
               "true"
             ],
             "setting_name": "input_player1_a_btn",
-            "action": "change",
+            "action": "add",
             "new_setting_value": "0",
-            "section": "",
             "target_file": "/var/config/retroarch/config/remaps/Gambatte/gbc.rmp",
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           },
@@ -892,9 +823,8 @@
               "true"
             ],
             "setting_name": "input_player1_b_btn",
-            "action": "change",
+            "action": "add",
             "new_setting_value": "8",
-            "section": "",
             "target_file": "/var/config/retroarch/config/remaps/Gambatte/gbc.rmp",
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           },
@@ -903,9 +833,8 @@
               "true"
             ],
             "setting_name": "input_player1_x_btn",
-            "action": "change",
+            "action": "add",
             "new_setting_value": "1",
-            "section": "",
             "target_file": "/var/config/retroarch/config/remaps/Gambatte/gbc.rmp",
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           },
@@ -914,9 +843,8 @@
               "true"
             ],
             "setting_name": "input_player1_y_btn",
-            "action": "change",
+            "action": "add",
             "new_setting_value": "9",
-            "section": "",
             "target_file": "/var/config/retroarch/config/remaps/Gambatte/gbc.rmp",
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           }
@@ -930,9 +858,8 @@
               "true"
             ],
             "setting_name": "aspect_ratio_index",
-            "action": "change",
+            "action": "add",
             "new_setting_value": "23",
-            "section": "",
             "target_file": "/var/config/retroarch/config/mGBA/gba.cfg",
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           },
@@ -941,9 +868,8 @@
               "true"
             ],
             "setting_name": "custom_viewport_height",
-            "action": "change",
+            "action": "add",
             "new_setting_value": "640",
-            "section": "",
             "target_file": "/var/config/retroarch/config/mGBA/gba.cfg",
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           },
@@ -952,9 +878,8 @@
               "true"
             ],
             "setting_name": "custom_viewport_width",
-            "action": "change",
+            "action": "add",
             "new_setting_value": "960",
-            "section": "",
             "target_file": "/var/config/retroarch/config/mGBA/gba.cfg",
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           },
@@ -963,9 +888,8 @@
               "true"
             ],
             "setting_name": "custom_viewport_x",
-            "action": "change",
+            "action": "add",
             "new_setting_value": "160",
-            "section": "",
             "target_file": "/var/config/retroarch/config/mGBA/gba.cfg",
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           },
@@ -974,9 +898,8 @@
               "true"
             ],
             "setting_name": "custom_viewport_y",
-            "action": "change",
+            "action": "add",
             "new_setting_value": "0",
-            "section": "",
             "target_file": "/var/config/retroarch/config/mGBA/gba.cfg",
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           },
@@ -985,9 +908,8 @@
               "true"
             ],
             "setting_name": "input_overlay",
-            "action": "change",
+            "action": "add",
             "new_setting_value": "/var/config/retroarch/overlays/borders/pegasus/gba.cfg",
-            "section": "",
             "target_file": "/var/config/retroarch/config/mGBA/gba.cfg",
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           },
@@ -996,9 +918,8 @@
               "true"
             ],
             "setting_name": "input_overlay_aspect_adjust_landscape",
-            "action": "change",
+            "action": "add",
             "new_setting_value": "0.110000",
-            "section": "",
             "target_file": "/var/config/retroarch/config/mGBA/gba.cfg",
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           },
@@ -1007,9 +928,8 @@
               "true"
             ],
             "setting_name": "input_overlay_scale_landscape",
-            "action": "change",
+            "action": "add",
             "new_setting_value": "1.2150000",
-            "section": "",
             "target_file": "/var/config/retroarch/config/mGBA/gba.cfg",
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           },
@@ -1018,9 +938,8 @@
               "true"
             ],
             "setting_name": "input_overlay_enable",
-            "action": "change",
+            "action": "add",
             "new_setting_value": "true",
-            "section": "",
             "target_file": "/var/config/retroarch/config/mGBA/gba.cfg",
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           },
@@ -1029,9 +948,8 @@
               "true"
             ],
             "setting_name": "input_overlay_y_offset_landscape",
-            "action": "change",
+            "action": "add",
             "new_setting_value": "0.020000",
-            "section": "",
             "target_file": "/var/config/retroarch/config/mGBA/gba.cfg",
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           }
@@ -1042,9 +960,8 @@
               "true"
             ],
             "setting_name": "rewind_enable",
-            "action": "change",
+            "action": "add",
             "new_setting_value": "true",
-            "section": "",
             "target_file": "/var/config/retroarch/config/mGBA/gba.cfg",
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           }
@@ -1055,9 +972,8 @@
               "true"
             ],
             "setting_name": "input_player1_a_btn",
-            "action": "change",
+            "action": "add",
             "new_setting_value": "0",
-            "section": "",
             "target_file": "/var/config/retroarch/config/remaps/mGBA/gba.rmp",
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           },
@@ -1066,9 +982,8 @@
               "true"
             ],
             "setting_name": "input_player1_b_btn",
-            "action": "change",
+            "action": "add",
             "new_setting_value": "8",
-            "section": "",
             "target_file": "/var/config/retroarch/config/remaps/mGBA/gba.rmp",
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           },
@@ -1077,9 +992,8 @@
               "true"
             ],
             "setting_name": "input_player1_x_btn",
-            "action": "change",
+            "action": "add",
             "new_setting_value": "1",
-            "section": "",
             "target_file": "/var/config/retroarch/config/remaps/mGBA/gba.rmp",
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           },
@@ -1088,9 +1002,8 @@
               "true"
             ],
             "setting_name": "input_player1_y_btn",
-            "action": "change",
+            "action": "add",
             "new_setting_value": "9",
-            "section": "",
             "target_file": "/var/config/retroarch/config/remaps/mGBA/gba.rmp",
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           }
@@ -1104,9 +1017,8 @@
               "true"
             ],
             "setting_name": "input_overlay",
-            "action": "change",
+            "action": "add",
             "new_setting_value": "/var/config/retroarch/overlays/borders/pegasus/psx.cfg",
-            "section": "",
             "target_file": "/var/config/retroarch/config/SwanStation/psx.cfg",
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           },
@@ -1115,9 +1027,8 @@
               "true"
             ],
             "setting_name": "input_overlay_aspect_adjust_landscape",
-            "action": "change",
+            "action": "add",
             "new_setting_value": "0.120000",
-            "section": "",
             "target_file": "/var/config/retroarch/config/SwanStation/psx.cfg",
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           },
@@ -1126,9 +1037,8 @@
               "true"
             ],
             "setting_name": "input_overlay_scale_landscape",
-            "action": "change",
+            "action": "add",
             "new_setting_value": "1.040000",
-            "section": "",
             "target_file": "/var/config/retroarch/config/SwanStation/psx.cfg",
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           },
@@ -1137,9 +1047,8 @@
               "true"
             ],
             "setting_name": "input_overlay_enable",
-            "action": "change",
+            "action": "add",
             "new_setting_value": "true",
-            "section": "",
             "target_file": "/var/config/retroarch/config/SwanStation/psx.cfg",
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           }
@@ -1150,9 +1059,8 @@
               "true"
             ],
             "setting_name": "aspect_ratio_index",
-            "action": "change",
+            "action": "add",
             "new_setting_value": "24",
-            "section": "",
             "target_file": "/var/config/retroarch/config/SwanStation/psx.cfg",
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           }
