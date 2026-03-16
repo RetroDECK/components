@@ -57,7 +57,7 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
 # Version: 2124.3
-  export AZAHAR_DESIRED_VERSION="e30fef66588957afa29ef13373e7f009590cfc08ce773b09aaf6974adafd6af8"
+  export AZAHAR_DESIRED_VERSION="56e56b4c5cd4668d99512f26ef89c3c7880d5c159b1e9f21d6540db0fd4d9420"
 
 # COOKER (Override)
 # export AZAHAR_DESIRED_VERSION="latest"
@@ -70,7 +70,7 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
 # Version: 2.6
-  export CEMU_DESIRED_VERSION="4a22a30407fd3b647165c651ffa785ae0da3ef66b3b5c5249880e793bbec2d6e"
+  export CEMU_DESIRED_VERSION="cbadbabac58e89f72a9dbd18b93ed19dbadf678f44412ffc8edb98e630ddec1f"
 
 # COOKER (Override)
 # export CEMU_DESIRED_VERSION="latest"
@@ -82,8 +82,8 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # Link: https://flathub.org/en/apps/org.DolphinEmu.dolphin-emu
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
-# # Version: 2512
-  export DOLPHIN_DESIRED_VERSION="4fa4752c90703c04e58e7f014be515e905c553c8a707b27ae35ffa5e41dbf6cf"
+# Version: 2603
+  export DOLPHIN_DESIRED_VERSION="f69d7247a393ff8a8a8f5b9606b897316191fa834bff97afb897e6ca52e11a72"
 
 # COOKER (Override)
 # export DOLPHIN_DESIRED_VERSION="latest"
@@ -147,8 +147,8 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # Link: https://flathub.org/en/apps/net.rpcs3.RPCS3
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
-# Version: 0.0.40-1-ef
-  export RPCS3_DESIRED_VERSION="44c3c7a62f50b658f2938a3f0d631147e2cb13d09d0315f95ed5900165c7f89b"
+# Version: 0.0.40-189
+  export RPCS3_DESIRED_VERSION="f77271ddeb6dee231a4fbca1a7c6eeaf8a132638f1eda9af288322fb2894eebc"
 
 # COOKER (Override)
 # export RPCS3_DESIRED_VERSION="latest"
@@ -160,8 +160,8 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # Link: https://flathub.org/en/apps/rs.ruffle.Ruffle
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
-# Version: 0.2.0-nightly.2026.2.27
- export RUFFLE_DESIRED_VERSION="cfc2b1578ca6df16b4d457d1f6c2e3302134ddf220062114d7b5391e80673b8d"
+# Version: 0.2.0-nightly.2026.3.12
+ export RUFFLE_DESIRED_VERSION="48a57600d24643d7267fe391177882376130654b588abafe1d31437f896b1488"
 
 # COOKER (Override)
 # export RUFFLE_DESIRED_VERSION="latest"
@@ -173,8 +173,8 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # Link: https://flathub.org/en/apps/com.steamgriddb.steam-rom-manager
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
-# Version: 2.5.33
-  export STEAM_ROM_MANAGER_DESIRED_VERSION="d0f60620a50ed0255e2657fcde6291db60afbaa56fc69ccac4c03b0733b3259c"
+# Version: 2.5.34
+  export STEAM_ROM_MANAGER_DESIRED_VERSION="b563c9f81ecad09e9a19f5093484fc00ba08fb375b81542e8d889b15fe9f7bff"
 
 # COOKER (Override)
 # export STEAM_ROM_MANAGER_DESIRED_VERSION="latest"
@@ -344,7 +344,7 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # Link: https://github.com/RetroDECK/Vita3K-bin/releases
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
-  export VITA3K_DESIRED_VERSION="3930"
+  export VITA3K_DESIRED_VERSION="3936"
 
 # COOKER (Override)
 # export VITA3K_DESIRED_VERSION="latest"
