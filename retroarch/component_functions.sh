@@ -25,6 +25,17 @@ _get_setting_value::retroarch() {
      }' "$file"
 }
 
+_add_setting::retroarch() {
+  local file="$1" name="$2" value="$3"
+  sed -i '$ a '"$name"' = "'"$value"'"' "$file"
+}
+
+_delete_setting::retroarch() {
+  local file="$1" name="$2"
+  sed -i '\^'"$name"'^d' "$file"
+  sed -i '/^$/d' "$file" # Cleanup empty lines left behind
+}
+
 _set_setting_value::retroarch_scummvm() {
   local file="$1"
   local name=$(sed_escape_pattern "$2")
