@@ -70,7 +70,7 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
 # Version: 2.6
-  export CEMU_DESIRED_VERSION="cbadbabac58e89f72a9dbd18b93ed19dbadf678f44412ffc8edb98e630ddec1f"
+  export CEMU_DESIRED_VERSION="4a22a30407fd3b647165c651ffa785ae0da3ef66b3b5c5249880e793bbec2d6e"
 
 # COOKER (Override)
 # export CEMU_DESIRED_VERSION="latest"
