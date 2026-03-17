@@ -83,6 +83,12 @@ _post_update_legacy::steam-rom-manager() {
   fi
 }
 
+start::steam-rom-manager() {
+  log d "Starting Steam ROM Manager"
+  local component_path="$(get_own_component_path)"
+  /bin/bash ${component_path}/component_launcher.sh "$@"
+}
+
 configurator_steam_tools_dialog() {
   build_zenity_menu_array choices steam_tools # Build Zenity bash array for given menu type
 
@@ -204,12 +210,6 @@ configurator_purge_steam_sync_dialog() {
     --text="<span foreground='$purple'><b>Removing all RetroDECK-related data from Steam</b></span>\n\n\The more data you have synchronized, the longer this process may take.\n\nPlease wait..." \
     --pulsate --width=500 --height=150 --auto-close --no-cancel
   fi
-}
-
-start::steam-rom-manager() {
-  log d "Starting Steam ROM Manager"
-  local component_path="$(get_own_component_path)"
-  /bin/bash ${component_path}/component_launcher.sh "$@"
 }
 
 get_steam_user() {
