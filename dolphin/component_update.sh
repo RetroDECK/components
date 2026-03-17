@@ -51,7 +51,7 @@ if [[ $(check_version_is_older_than "$version_being_updated" "0.10.7b") == "true
   log i "0.10.7b Upgrade - Dolphin - Triforce"
 
   dir_prep "$bios_path/Triforce" "$XDG_DATA_HOME/dolphin-emu/Triforce"
-
+  cp -fv "$component_config/GCPadNew.ini" "$XDG_CONFIG_HOME/dolphin-emu/"
 fi
 
 
