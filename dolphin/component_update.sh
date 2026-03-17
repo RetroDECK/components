@@ -47,6 +47,14 @@ if [[ $(check_version_is_older_than "$version_being_updated" "0.10.0b") == "true
 
 fi
 
+if [[ $(check_version_is_older_than "$version_being_updated" "0.10.7b") == "true" ]]; then
+  log i "0.10.7b Upgrade - Dolphin - Triforce"
+
+  dir_prep "$bios_path/Triforce" "$XDG_DATA_HOME/dolphin-emu/Triforce"
+
+fi
+
+
 #######################################
 # These actions happen at every update
 #######################################

@@ -27,6 +27,7 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
   dir_prep "$shaders_path/Dolphin" "$XDG_DATA_HOME/dolphin-emu/Shaders"
   dir_prep "$logs_path/Dolphin" "$XDG_DATA_HOME/dolphin-emu/Logs"
   dir_prep "$storage_path/Dolphin/Dump" "$XDG_DATA_HOME/dolphin-emu/Dump"
+  dir_prep "$bios_path/Triforce" "$XDG_DATA_HOME/dolphin-emu/Triforce"
 fi
 
 if [[ "$action" == "postmove" ]]; then # Run only post-move commands
@@ -45,6 +46,7 @@ if [[ "$action" == "postmove" ]]; then # Run only post-move commands
   dir_prep "$shaders_path/Dolphin" "$XDG_DATA_HOME/dolphin-emu/Shaders"
   dir_prep "$logs_path/Dolphin" "$XDG_DATA_HOME/dolphin-emu/Logs"
   dir_prep "$storage_path/Dolphin/Dump" "$XDG_DATA_HOME/dolphin-emu/Dump"
+  dir_prep "$bios_path/Triforce" "$XDG_DATA_HOME/dolphin-emu/Triforce"
   set_setting_value "$dolphin_config" "BIOS" "$bios_path" "dolphin" "GBA"
   set_setting_value "$dolphin_config" "SavesPath" "$saves_path/gba" "dolphin" "GBA"
   set_setting_value "$dolphin_config" "ISOPath0" "$roms_path/wii" "dolphin" "General"
