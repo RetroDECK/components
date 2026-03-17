@@ -696,4 +696,10 @@ _post_update::retrodeck() {
     jq 'del(.options.portmaster_reload_esde)' "$rd_conf" > "$rd_conf.tmp" && mv "$rd_conf.tmp" "$rd_conf"
     jq 'del(.options.portmaster_show)' "$rd_conf" > "$rd_conf.tmp" && mv "$rd_conf.tmp" "$rd_conf"
   fi
+
+  #######################################
+  # These actions happen at every update
+  #######################################
+
+  rsync -rlD --mkpath "/app/retrodeck/graphics/folder-iconsets/" "$folder_iconsets_dir"
 }
