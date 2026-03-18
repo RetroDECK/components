@@ -207,7 +207,13 @@ configurator_disable_steam_sync() {
 
 configurator_manual_steam_sync_dialog() {
   configurator_generic_dialog "RetroDeck Configurator - Steam Syncronization: Manual" "RetroDECK will now look for any <span foreground='$purple'><b>Favorited</b></span> games and sync them to your Steam library as individual entries if needed.\n\nIf Steam Sync has been run before and no favorites have been added or removed, you will be returned to the Steam Tools menu.\nIf changes are needed, you will see a progress dialog during the process."
-  steam_sync "zenity"
+  if [[ -n "$steam_username" ]]; then
+    steam_sync "zenity"
+  elif get_steam_user; then
+    steam_sync "zenity"
+  else
+    configurator_generic_dialog "RetroDeck Configurator - Steam Syncronization: Manual" "RetroDECK could not determine the logged-in Steam user information.\n\nManual Steam sync could not be performed."
+  fi
 }
 
 configurator_purge_steam_sync_dialog() {
