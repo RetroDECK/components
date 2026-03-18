@@ -31,6 +31,18 @@ _prepare_component::steam-rom-manager() {
       cp -fvr "$component_config/manifests" "$srm_userdata"
     ;;
 
+    postmove)
+      if [[ -n "$steam_userdata_current" ]]; then
+        local usersettings_temp=$(mktemp)
+
+        log i "Updating steamDirectory and romDirectory lines in $srm_userdata/userSettings.json"
+        jq --arg userdata_path "$steam_userdata_current" --arg rd_home_path "$rd_home_path" '
+          .environmentVariables.steamDirectory = $userdata_path |
+          .environmentVariables.romsDirectory = ($rd_home_path + "/.sync")
+        ' "$srm_userdata/userSettings.json" > "$usersettings_temp" && mv -f "$usersettings_temp" "$srm_userdata/userSettings.json"
+      fi
+    ;;
+
     startup)
       log i "--------------------------------"
       log i "Starting Steam ROM Manager"
