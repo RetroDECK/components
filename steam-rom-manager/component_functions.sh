@@ -366,106 +366,104 @@ steam_sync() {
   # Prepare fresh log file
   echo > "$srm_log"
 
-  # Prepare new favorites manifest
-  echo "[]" > "${retrodeck_favorites_file}.new" # Initialize favorites JSON file
+  # Determine launch configuration from component settings
+  local steam_mode
+  steam_mode=$(get_component_option "steam-rom-manager" "steam_sync")
 
-  # Static definitions for all JSON objects
-  local steam_mode=$(get_component_option "steam-rom-manager" "steam_sync")
-  if [[ "$steam_mode" =~ (true|native) ]]; then
-    target="flatpak"
-    launch_command="run net.retrodeck.retrodeck"
-    startIn=""
-  elif [[ "$steam_mode" == "flatpak" ]]; then
-    target="flatpak-spawn --host"
-    launch_command="flatpak run net.retrodeck.retrodeck"
-    startIn=""
-  else # Fallback to legacy default behavior
-    target="flatpak"
-    launch_command="run net.retrodeck.retrodeck"
-    startIn=""
-  fi
+  local target launch_command
+  case "$steam_mode" in
+    true|native)
+      target="flatpak"
+      launch_command="run net.retrodeck.retrodeck"
+      ;;
+    flatpak)
+      target="flatpak-spawn --host"
+      launch_command="flatpak run net.retrodeck.retrodeck"
+      ;;
+    *)  # Fallback to legacy default behavior
+      target="flatpak"
+      launch_command="run net.retrodeck.retrodeck"
+      ;;
+  esac
+
+  # Collect all favorite entries across all systems
+  local -a manifest_entries=()
 
   for system_path in "$rd_home_path/ES-DE/gamelists/"*/; do
-    # Skip the CLEANUP folder
-    if [[ "$system_path" == *"/CLEANUP/"* ]]; then
-      continue
-    fi
-    # Skip folders with no gamelists
-    if [[ ! -f "${system_path}gamelist.xml" ]]; then
-      continue
-    fi
-    system=$(basename "$system_path") # Extract the folder name as the system name
+    # Skip the CLEANUP folder and folders with no gamelist
+    [[ "$system_path" == *"/CLEANUP/"* ]] && continue
+    local gamelist="${system_path}gamelist.xml"
+    [[ ! -f "$gamelist" ]] && continue
+
+    local system
+    system=$(basename "$system_path")
     log d "Checking system $system for favorites..."
-    gamelist="${system_path}gamelist.xml"
-    # Use AWK instead of xmlstarlet because ES-DE can create invalid XML structures in some cases
-    system_favorites=$(awk 'BEGIN { RS="</game>"; FS="\n" }
-                            /<favorite>true<\/favorite>/ {
-                              if (match($0, /<path>([^<]+)<\/path>/, arr))
-                                print arr[1]
-     }' "$gamelist")
-    if [[ -n "$system_favorites" ]]; then
-      log d "Favorites found:"
-      log d "$system_favorites"
-      while read -r game_path; do
-        local game="${game_path#./}" # Remove leading ./
-        game=$(decode_filename "$game")
-        if [[ -f "$roms_path/$system/$game" ]]; then # Validate file exists and isn't a stale ES-DE entry for a removed file
-          # Construct launch options with the rom path in quotes, to handle spaces
-          local game_title=$(awk -v search_path="$game_path" 'BEGIN { RS="</game>"; FS="\n" }
-                                                              /<path>/ {
-                                                              if (match($0, /<path>([^<]+)<\/path>/, path) && path[1] == search_path) {
-                                                                if (match($0, /<name>([^<]+)<\/name>/, name))
-                                                                  print name[1]
-                                                                }
-                                                              }' "$gamelist")
-          local launchOptions="$launch_command -s $system \"$roms_path/$system/$game\""
-          log d "Adding entry $launchOptions to favorites manifest."
-          jq --arg title "$game_title" --arg target "$target" --arg launchOptions "$launchOptions" \
-          '. += [{"title": $title, "target": $target, "launchOptions": $launchOptions}]' "${retrodeck_favorites_file}.new" > "${retrodeck_favorites_file}.tmp" \
-          && mv "${retrodeck_favorites_file}.tmp" "${retrodeck_favorites_file}.new"
-        elif [[ -d "$roms_path/$system/$game" && -f "$roms_path/$system/$game/$game" ]]; then # If the favorite is an .m3u multi-disc parent folder, validate the actual .m3u file also exists
-          # Construct launch options with the rom path in quotes, to handle spaces
-          local game_title=$(awk -v search_path="$game_path" 'BEGIN { RS="</game>"; FS="\n" }
-                                                              /<path>/ {
-                                                              if (match($0, /<path>([^<]+)<\/path>/, path) && path[1] == search_path) {
-                                                                if (match($0, /<name>([^<]+)<\/name>/, name))
-                                                                  print name[1]
-                                                                }
-                                                              }' "$gamelist")
-          local launchOptions="$launch_command -s $system \"$roms_path/$system/$game/$game\""
-          log d "Adding entry $launchOptions to favorites manifest."
-          jq --arg title "$game_title" --arg target "$target" --arg launchOptions "$launchOptions" \
-          '. += [{"title": $title, "target": $target, "launchOptions": $launchOptions}]' "${retrodeck_favorites_file}.new" > "${retrodeck_favorites_file}.tmp" \
-          && mv "${retrodeck_favorites_file}.tmp" "${retrodeck_favorites_file}.new"
-        else
-          log d "Game file $roms_path/$system/$game not found, skipping..."
-        fi
-      done <<< "$system_favorites"
-    fi
+
+    local favorites_data
+    favorites_data=$(xmlstarlet sel -t \
+      -m '//game[favorite="true"]' \
+      -v 'path' -o $'\t' -v 'name' -n \
+      "$gamelist" 2>/dev/null) || true
+
+    [[ -z "$favorites_data" ]] && continue
+
+    log d "Favorites found in $system"
+
+    while IFS=$'\t' read -r game_path game_title; do
+      [[ -z "$game_path" ]] && continue
+      local game="${game_path#./}"  # Remove leading ./
+
+      # Resolve the actual launch path, handling both regular files and m3u multi-disc directories
+      local launch_path=""
+      if [[ -f "$roms_path/$system/$game" ]]; then
+        launch_path="$roms_path/$system/$game"
+      elif [[ -d "$roms_path/$system/$game" && -f "$roms_path/$system/$game/$game" ]]; then
+        launch_path="$roms_path/$system/$game/$game"
+      else
+        log d "Game file $roms_path/$system/$game not found, skipping..."
+        continue
+      fi
+
+      local launch_options="$launch_command -s $system \"$launch_path\""
+      log d "Adding entry $launch_options to favorites manifest."
+
+      # Collect as JSON
+      manifest_entries+=("$(jq -nc \
+        --arg title "$game_title" \
+        --arg target "$target" \
+        --arg launch_options "$launch_options" \
+        '{"title": $title, "target": $target, "launchOptions": $launch_options}')")
+    done <<< "$favorites_data"
   done
 
+  # Build the new manifest
+  local new_manifest="${retrodeck_favorites_file}.new"
+  if [[ ${#manifest_entries[@]} -gt 0 ]]; then
+    printf '%s\n' "${manifest_entries[@]}" | jq -s '.' > "$new_manifest"
+  else
+    echo '[]' > "$new_manifest"
+  fi
+
   # Decide if sync needs to happen
-  if [[ -f "$retrodeck_favorites_file" ]]; then # If an existing favorites manifest exists
-    if [[ ! "$(cat "${retrodeck_favorites_file}.new" | jq 'length')" -gt 0 ]]; then # If all favorites were removed from all gamelists, meaning new manifest is empty
+  if [[ -f "$retrodeck_favorites_file" ]]; then
+    if [[ ${#manifest_entries[@]} -eq 0 ]]; then
       log i "No favorites were found in current ES-DE gamelists, removing old entries"
       steam_sync_remove "$visibility"
-      # Old manifest cleanup
       rm "$retrodeck_favorites_file"
-      rm "${retrodeck_favorites_file}.new"
-    else # The new favorites manifest is not empty
-      if cmp -s "$retrodeck_favorites_file" "${retrodeck_favorites_file}.new"; then # See if the favorites manifests are the same, meaning there were no changes
-        log i "ES-DE favorites have not changed, no need to sync again"
-        rm "${retrodeck_favorites_file}.new"
-      else
-        # Make new favorites manifest the current one
-        mv "${retrodeck_favorites_file}.new" "$retrodeck_favorites_file"
-        steam_sync_add "$visibility"
-      fi
+      rm "$new_manifest"
+    elif cmp -s "$retrodeck_favorites_file" "$new_manifest"; then
+      log i "ES-DE favorites have not changed, no need to sync again"
+      rm "$new_manifest"
+    else
+      mv "$new_manifest" "$retrodeck_favorites_file"
+      steam_sync_add "$visibility"
     fi
-  elif [[ "$(cat "${retrodeck_favorites_file}.new" | jq 'length')" -gt 0 ]]; then # No existing favorites manifest was found, so check if new manifest has entries
+  elif [[ ${#manifest_entries[@]} -gt 0 ]]; then
     log d "First time building favorites manifest, running sync"
-    mv "${retrodeck_favorites_file}.new" "$retrodeck_favorites_file"
+    mv "$new_manifest" "$retrodeck_favorites_file"
     steam_sync_add "$visibility"
+  else
+    rm "$new_manifest"
   fi
 }
 
@@ -509,15 +507,6 @@ steam_sync_remove() {
     start::steam-rom-manager enable --names "RetroDECK Steam Sync" >> "$srm_log" 2>&1
     start::steam-rom-manager remove >> "$srm_log" 2>&1
   fi
-}
-
-decode_filename() {
-  echo "$1" | sed \
-      -e 's/&amp;/\&/g' \
-      -e 's/&lt;/</g' \
-      -e 's/&gt;/>/g' \
-      -e 's/&quot;/"/g' \
-      -e 's/&#39;/'"'"'/g'
 }
 
 install_retrodeck_controller_profile() {
