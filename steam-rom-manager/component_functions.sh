@@ -228,15 +228,15 @@ get_steam_user() {
   # This function populates environment variables with the actual logged Steam user data
   local mode="${1:-}"
   local current_steam_sync_setting="$(get_component_option "steam-rom-manager" "steam_sync")"
-  if [[ "$current_steam_sync_setting" != "false" || "$mode" =~ (finit|get_type) ]]; then # Only grab Steam information if Steam Sync is enabled
+  if [[ "$current_steam_sync_setting" != "false" || "$mode" =~ (get_type|manual) ]]; then # Only grab Steam information if Steam Sync is enabled or if otherwise overridden
     if [[ "$current_steam_sync_setting" == "native" ]]; then
-      steam_userdata_current="$steam_userdata_native"
+      export steam_userdata_current="$steam_userdata_native"
       if [[ "$mode" == "get_type" ]]; then
         echo "$current_steam_sync_setting"
         return 0
       fi
     elif [[ "$current_steam_sync_setting" == "flatpak" ]]; then
-      steam_userdata_current="$steam_userdata_flatpak"
+      export steam_userdata_current="$steam_userdata_flatpak"
       if [[ "$mode" == "get_type" ]]; then
         echo "$current_steam_sync_setting"
         return 0
@@ -247,15 +247,13 @@ get_steam_user() {
           echo "native"
           return 0
         fi
-        steam_userdata_current="$steam_userdata_native"
-        set_component_option "steam-rom-manager" "steam_sync" "native"
+        export steam_userdata_current="$steam_userdata_native"
       elif [[ -d "$steam_userdata_flatpak" ]]; then
         if [[ "$mode" == "get_type" ]]; then
           echo "flatpak"
           return 0
         fi
-        steam_userdata_current="$steam_userdata_flatpak"
-        set_component_option "steam-rom-manager" "steam_sync" "flatpak"
+        export steam_userdata_current="$steam_userdata_flatpak"
       else
         log d "No Steam userdata information could be found."
         return 1
@@ -285,8 +283,9 @@ get_steam_user() {
       log i "Username: $steam_username"
       log i "Name: $steam_prettyname"
 
-      if [[ -d "$srm_userdata" ]]; then
-        populate_steamuser_srm
+      if ! populate_steamuser_srm; then
+        log e "Steam username could not be populated in SRM config files."
+        return 1
       fi
     else
       log w "No Steam user found, proceeding"
