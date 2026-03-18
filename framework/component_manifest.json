@@ -71,6 +71,98 @@
         "location": "$roms_path/mugen"
       }
     },
+    "cli_commands": {
+      "help": {
+        "flag": "-h, --help",
+        "description": "Print this help",
+        "handler": "_cli_show_help::retrodeck",
+        "priority": 1
+      },
+      "version": {
+        "flag": "-v, --version",
+        "description": "Print RetroDECK version",
+        "handler": "_cli_show_version::retrodeck",
+        "priority": 2
+      },
+      "show-config": {
+        "flag": "--show-config",
+        "description": "Print information about the RetroDECK configuration file and its contents",
+        "handler": "_cli_show_config::retrodeck"
+      },
+      "configurator": {
+        "flag": "--configurator",
+        "description": "Starts the RetroDECK Configurator",
+        "handler": "_cli_open_configurator::retrodeck"
+      },
+      "compress-one": {
+        "flag": "--compress-one",
+        "description": "Compresses target file to a compatible format",
+        "handler": "_cli_compress_single_game::retrodeck",
+        "params": ["[file]"]
+      },
+      "compress-all": {
+        "flag": "--compress-all",
+        "description": "Compresses all supported games into a compatible format",
+        "handler": "_cli_compress_all_games::retrodeck",
+        "params": ["[format]"]
+      },
+      "repair-paths": {
+        "flag": "--repair-paths",
+        "description": "Reconfigure broken folder locations in RetroDECK without a full reset",
+        "handler": "_cli_repair_paths::retrodeck"
+      },
+      "reset": {
+        "flag": "--reset",
+        "description": "Reset one or more component/emulator configurations to default values.",
+        "handler": "_cli_reset_component::retrodeck",
+        "params": ["[component]"]
+      },
+      "factory-reset": {
+        "flag": "--factory-reset",
+        "description": "Factory Reset, triggers the initial setup.",
+        "handler": "_cli_factory_reset::retrodeck"
+      },
+      "test-upgrade": {
+        "flag": "--test-upgrade",
+        "description": "Test upgrading RetroDECK to a specific version, developer use only",
+        "handler": "_cli_test_upgrade::retrodeck",
+        "params": ["<version>"],
+        "hidden": true
+      },
+      "get": {
+        "flag": "--get",
+        "description": "Show the current status of a preset. Use --get-help for more information",
+        "handler": "_cli_get_preset::retrodeck",
+        "params": ["<preset>", "[system]"]
+      },
+      "get-help": {
+        "flag": "--get-help",
+        "handler": "_cli_get_help::retrodeck",
+        "hidden": true
+      },
+      "set": {
+        "flag": "--set",
+        "description": "Configure or toggle a preset. Use --set-help for more information",
+        "handler": "_cli_set_preset::retrodeck",
+        "params": ["<preset>", "<system/all>", "<value>"]
+      },
+      "set-help": {
+        "flag": "--set-help",
+        "handler": "_cli_set_help::retrodeck",
+        "hidden": true
+      },
+      "open": {
+        "flag": "--open",
+        "description": "Open a specific component or emulator. Use --open --list for available components",
+        "handler": "_cli_open_component::retrodeck",
+        "params": ["[component]"]
+      },
+      "api": {
+        "flag": "--api",
+        "description": "Start the RetroDECK API server",
+        "handler": "_cli_start_api::retrodeck"
+      }
+    },
     "configurator_menus": {
       "welcome": {
         "about_retrodeck": {
