@@ -536,7 +536,7 @@ add_retrodeck_to_steam() {
 }
 
 install_retrodeck_controller_profile_and_add_to_steam() {
-  install_retrodeck_controller_profile
+  install_retrodeck_controller_profile "manual"
   add_retrodeck_to_steam
   
   rd_zenity --question --no-wrap --window-icon="/app/share/icons/hicolor/scalable/apps/net.retrodeck.retrodeck.svg" --title "RetroDECK Initial Install - Steam Synchronization" --cancel-label="No" --ok-label "Yes" \
