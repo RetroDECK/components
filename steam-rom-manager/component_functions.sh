@@ -508,12 +508,13 @@ decode_filename() {
 install_retrodeck_controller_profile() {
   # This function will install the needed files for the custom RetroDECK controller profile
   # USAGE: install_retrodeck_controller_profile
+  local mode="{$1:-}"
   local current_steam_sync_setting="$(get_component_option "steam-rom-manager" "steam_sync")"
 
-  if [[ "$current_steam_sync_setting" == "native" && -d "$steam_userdata_native/controller_base/templates/" ]]; then
+  if [[ ("$current_steam_sync_setting" == "native" || "$mode" == "manual") && -d "$steam_userdata_native/controller_base/templates/" ]]; then
     rsync -rlD --mkpath "$steam_controller_profiles_binding_icons_path/" "$steam_userdata_native/tenfoot/resource/images/library/controller/binding_icons/"
     rsync -rlD --mkpath "$steam_controller_profiles_path/" "$steam_userdata_native/controller_base/templates/"
-  elif [[ "$current_steam_sync_setting" == "flatpak" && -d "$steam_userdata_flatpak/controller_base/templates/" ]]; then
+  elif [[ ("$current_steam_sync_setting" == "flatpak" || "$mode" == "manual") && -d "$steam_userdata_flatpak/controller_base/templates/" ]]; then
     rsync -rlD --mkpath "$steam_controller_profiles_binding_icons_path/" "$steam_userdata_flatpak/tenfoot/resource/images/library/controller/binding_icons/"
     rsync -rlD --mkpath "$steam_controller_profiles_path/" "$steam_userdata_flatpak/controller_base/templates/"
   else
