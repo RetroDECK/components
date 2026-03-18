@@ -559,9 +559,15 @@ finit_install_controller_profile_dialog() {
 }
 
 finit_install_controller_profile_and_add_retrodeck_to_steam() {
-  if get_steam_user; then
-    install_retrodeck_controller_profile
-    add_retrodeck_to_steam
+  if get_steam_user "manual"; then
+    log i "Updating steamDirectory and romDirectory lines in $srm_userdata/userSettings.json"
+    local usersettings_temp=$(mktemp)
+    jq --arg userdata_path "$steam_userdata_current" --arg rd_home_path "$rd_home_path" '
+      .environmentVariables.steamDirectory = $userdata_path |
+      .environmentVariables.romsDirectory = ($rd_home_path + "/.sync")
+    ' "$srm_userdata/userSettings.json" > "$usersettings_temp" && mv -f "$usersettings_temp" "$srm_userdata/userSettings.json"
+    
+    install_retrodeck_controller_profile_and_add_to_steam
   else
     configurator_generic_dialog "RetroDECK - Install Controller Profiles and Add RetroDECK to Steam" "Your Steam username could not be determined.\n\nAlthough our initial checks have passed, something else is wrong.\nThere may be an issue with your Steam install."
   fi
