@@ -17,6 +17,14 @@
     "component_options": {
       "steam_sync": "false"
     },
+    "cli_commands": {
+      "steam-sync": {
+        "flag": "--steam-sync",
+        "description": "Run the Steam ROM Manager sync process. Add \"purge\" to remove all SRM information from Steam",
+        "handler": "_cli_steam_sync::steam-rom-manager",
+        "params": ["[action]"]
+      }
+    },
     "configurator_menus": {
       "welcome": {
         "steam_tools": {

@@ -101,6 +101,21 @@ start::steam-rom-manager() {
   /bin/bash ${component_path}/component_launcher.sh "$@"
 }
 
+_cli_steam_sync::steam-rom-manager() {
+  local mode="${1:-}"
+  if [[ -n "$mode" ]]; then
+    if [[ "$mode" == "purge" ]]; then
+      rd_srm nuke
+      rm -f "$retrodeck_favorites_file"
+    else
+      echo "Unknown argument \"$mode\", please check the CLI help for more information."
+    fi
+  else
+    steam_sync
+  fi
+  return 0
+}
+
 configurator_steam_tools_dialog() {
   build_zenity_menu_array choices steam_tools # Build Zenity bash array for given menu type
 
