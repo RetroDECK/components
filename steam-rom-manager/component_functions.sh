@@ -295,37 +295,32 @@ get_steam_user() {
 }
 
 populate_steamuser_srm() {
-  config_file="$XDG_CONFIG_HOME/steam-rom-manager/userData/userConfigurations.json"
-  temp_file="${config_file}.tmp"
+  local temp_file=$(mktemp)
 
-  if [[ ! -f "$config_file" ]]; then
-    log e "Config file not found: $config_file"
+  if [[ ! -f "$srm_userdata/userSettings.json" ]]; then
+    log e "Config file not found: $srm_userdata/userSettings.json"
     return 1
   fi
 
-  log d "Validating $config_file..."
-  if ! jq empty "$config_file" >/dev/null 2>&1; then
-    log e "File is not valid JSON: $config_file"
+  log d "Validating $srm_userdata/userSettings.json..."
+  if ! jq empty "$srm_userdata/userSettings.json" >/dev/null 2>&1; then
+    log e "File is not valid JSON: $srm_userdata/userSettings.json"
     return 1
   fi
 
-  log d "Applying jq transformation with username: $steam_username"
-  jq --arg username "$steam_username" '
-    map(
-      if .userAccounts.specifiedAccounts then
-        .userAccounts.specifiedAccounts = [$username]
-      else
-        .
-      end
-    )
-  ' "$config_file" > "$temp_file"
-
-  if [[ $? -eq 0 ]]; then
-    mv "$temp_file" "$config_file"
-    log i "Successfully updated $config_file"
+  if [[ -n $steam_username ]]; then
+    log d "Updating Steam username $steam_username in $srm_userdata/userSettings.json"
+    jq --arg username "$steam_username" '
+      map(
+        if .userAccounts.specifiedAccounts then
+          .userAccounts.specifiedAccounts = [$username]
+        else
+          .
+        end
+      )
+    ' "$srm_userdata/userSettings.json" > "$temp_file" && mv -f "$temp_file" "$srm_userdata/userSettings.json"
   else
-    log e "jq failed to write output"
-    rm -f "$temp_file"
+    log e "Steam username not loaded, cannot populate values in $srm_userdata/userSettings.json"
     return 1
   fi
 }
