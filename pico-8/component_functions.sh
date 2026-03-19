@@ -33,7 +33,6 @@ _get_setting_value::pico-8() {
 
 _prepare_component::pico-8() {
   local action="$1"
-  shift
 
   local component_config="$(get_own_component_path)/rd_config"
 
@@ -52,6 +51,14 @@ _prepare_component::pico-8() {
       create_dir "$XDG_CONFIG_HOME/pico-8/"
       cp -fv "$component_config/config.txt" "$pico8_config"
       cp -fv "$component_config/sdl_controllers.txt" "$pico8_config_sdl_controllers"
+    ;;
+
+    startup)
+      log i "------------------------"
+      log i "Performing PICO-8 $action actions"
+      log i "------------------------"
+
+      rsync -rlD --delete --mkpath "$roms_path/pico8/" "$downloaded_media_path/pico8/covers/"
     ;;
 
   esac
