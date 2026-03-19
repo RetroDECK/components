@@ -82,8 +82,8 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # Link: https://flathub.org/en/apps/org.DolphinEmu.dolphin-emu
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
-# Version: 2603
-  export DOLPHIN_DESIRED_VERSION="f69d7247a393ff8a8a8f5b9606b897316191fa834bff97afb897e6ca52e11a72"
+# Version: 2603a
+  export DOLPHIN_DESIRED_VERSION="798fc13ec9f60c686a5478c0b1409901b375a4fd39a0a95139a3af662741423e"
 
 # COOKER (Override)
 # export DOLPHIN_DESIRED_VERSION="latest"
@@ -134,7 +134,7 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # Link: https://flathub.org/en/apps/org.ppsspp.PPSSPP
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
-# Version: 1.20.2
+# Version: 1.20.3
   export PPSSPP_DESIRED_VERSION="4c5bf795b50f8bcd29ae1e6365a6f1849a72148a302b1175c1dba200bd30bea6"
 
 # COOKER (Override)
