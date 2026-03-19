@@ -45,6 +45,7 @@ _prepare_component::pico-8() {
 
       if [[ -d "$roms_path/pico8" ]]; then
         dir_prep "$roms_path/pico8" "$bios_path/pico-8/carts" # Symlink default game location to RD roms for cleanliness (this location is overridden anyway by the --root_path launch argument anyway)
+        dir_prep "$roms_path/pico8" "$bios_path/pico-8/bbs/carts" # Symlink spolre download location to RD roms
       fi
       dir_prep "$bios_path/pico-8" "$HOME/.lexaloffle/pico-8" # Store binary and config files together. The .lexaloffle directory is a hard-coded location for the PICO-8 config file, cannot be changed
       dir_prep "$saves_path/pico-8" "$bios_path/pico-8/cdata"  # PICO-8 saves folder
