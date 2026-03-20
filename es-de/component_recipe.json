@@ -17,6 +17,15 @@
           "dest": "share"
         },
         {
+          "type": "cleanup-dir",
+          "source": "$COMPONENT_ARTIFACT_ROOT/share/es-de/resources/systems/linux"
+        },
+        {
+          "type": "symlink",
+          "source": "$COMPONENT_ARTIFACT_ROOT/share/es-de/resources/systems/linux",
+          "dest": "/var/config/ES-DE/systems"
+        },
+        {
           "type": "dir",
           "source": "usr/lib",
           "dest": "lib"
