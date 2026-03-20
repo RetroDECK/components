@@ -1,0 +1,3 @@
+https://wiki.scummvm.org/index.php/Engines
+
+AGS is avaiable in SCUMMVM
