@@ -68,7 +68,7 @@
         {
           "library": "libGLEW.so.2.2",
           "source": "lib",
-          "dest": "libs"
+          "dest": "lib"
         },
         {
           "library": "libGLU.so.1",
