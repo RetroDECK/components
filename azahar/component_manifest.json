@@ -11,6 +11,40 @@
     "system_friendly_name": "Nintendo 3DS",
     "component_type": "Emulator",
     "system": "n3ds",
+    "es_de_config": {
+      "es_find_rules": {
+        "emulators": [
+          {
+            "name": "AZAHAR",
+            "description": "Nintendo 3DS emulator Azahar",
+            "rules": [
+              {
+                "type": "staticpath",
+                "entries": [
+                  "/app/retrodeck/components/azahar/component_launcher.sh"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "es_systems": [
+        {
+          "name": "n3ds",
+          "fullname": "Nintendo 3DS",
+          "path": "%ROMPATH%/n3ds",
+          "extension": ".3ds .3DS .3dsx .3DSX .app .APP .axf .AXF .cci .CCI .cxi .CXI .desktop .elf .ELF .z3dsx .Z3DSX .zcci .ZCCI .zcxi .ZCXI .7z .7Z .zip .ZIP",
+          "commands": [
+            {
+              "label": "Azahar (Standalone)",
+              "command": "%EMULATOR_AZAHAR% %ROM%"
+            }
+          ],
+          "platform": "n3ds",
+          "theme": "n3ds"
+        }
+      ]
+    },
     "compatible_presets": {
       "abxy_button_swap": ["false", "true"],
       "ask_to_exit": ["false", "true"]
