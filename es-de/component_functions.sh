@@ -36,6 +36,8 @@ _prepare_component::es-de() {
       log i "--------------------------------"
 
       rm -rf "$XDG_CONFIG_HOME/ES-DE"
+      create_dir "$XDG_CONFIG_HOME/ES-DE/systems"
+      cp -f "$component_config/es_import_rules.xml" "$XDG_CONFIG_HOME/ES-DE/systems/es_import_rules.xml"
       create_dir "$XDG_CONFIG_HOME/ES-DE/settings"
       log d "Preparing es_settings.xml"
       cp -f "$component_config/es_settings.xml" "$es_de_config"
@@ -143,6 +145,243 @@ configurator_rebuild_esde_systems::es-de() {
             --title "RetroDECK Configurator Utility - Rebuilding Folder Iconsets In Progress"
   fi
   configurator_generic_dialog "RetroDECK Configurator - Rebuild System Folders" "<span foreground='$purple'><b>The rebuilding process is complete.</b></span>\n\nAll missing default system folders will now exist in <span foreground='$purple'><b>$roms_path</b></span>."
+}
+
+generate_es_find_rules_xml() {
+  # Generate es_find_rules.xml from component manifest cache data.
+  # Reads all es_de_config.es_find_rules entries, resolves bash variables in
+  # entry paths, validates uniqueness of emulator and core names, and writes
+  # the XML file. Duplicate names within a block type are logged as errors
+  # and the duplicate entry is skipped. Blocks with entries referencing unset
+  # or empty variables are skipped entirely.
+  # An emulator and a core may share the same name.
+  # USAGE: generate_es_find_rules_xml
+ 
+  local output_file="$es_find_rules"
+  local tmp_file="${output_file}.tmp"
+ 
+  if [[ -f "$es_find_rules" ]]; then
+    cp "$es_find_rules" "${es_find_rules}.bak"
+    log i "Backed up existing file: ${es_find_rules}.bak"
+  fi
+ 
+  # Extract all emulator and core entries as a flat JSON array, preserving manifest order.
+  # Each element: {block_type, name, description, rules[], component_key}
+  local all_entries
+  all_entries=$(jq -c '
+    [.[] | .manifest | to_entries[] |
+      .key as $component_key |
+      (.value.es_de_config.es_find_rules // {}) |
+      (
+        (.emulators // [] | .[] | {block_type: "emulator", name: .name, description: (.description // ""), rules: .rules, component_key: $component_key}),
+        (.cores // [] | .[] | {block_type: "core", name: .name, description: (.description // ""), rules: .rules, component_key: $component_key})
+      )
+    ]
+  ' "$component_manifest_cache_file")
+
+  # Resolve bash variables in entry paths (e.g. $rd_components).
+  # First validate that all referenced variables are set, then resolve.
+  # Blocks referencing unset or empty variables are filtered out before resolution.
+  local -a bad_vars=()
+  local all_var_refs
+  all_var_refs=$(printf '%s' "$all_entries" | grep -oE '\$\{?[a-zA-Z_][a-zA-Z0-9_]*\}?' | sed 's/[${}]//g' | sort -u)
+ 
+  local var_name
+  for var_name in $all_var_refs; do
+    if [[ -z "${!var_name:-}" ]]; then
+      log e "Unset or empty variable referenced in es_find_rules entries: \$$var_name"
+      bad_vars+=("\$${var_name}" "\${${var_name}}")
+    fi
+  done
+ 
+  if [[ ${#bad_vars[@]} -gt 0 ]]; then
+    local bad_json
+    bad_json=$(printf '%s\n' "${bad_vars[@]}" | jq -Rsc 'split("\n") | map(select(. != ""))')
+    local skipped_blocks
+    skipped_blocks=$(printf '%s' "$all_entries" | jq -r --argjson bad "$bad_json" '
+      [.[] | select([.rules[].entries[]] | any(. as $entries | $bad | any(. as $bad_entries | $entries | contains($bad_entries))))] |
+      .[] | "\(.block_type) \(.name) (component: \(.component_key))"
+    ')
+    if [[ -n "$skipped_blocks" ]]; then
+      while IFS= read -r skipped_line; do
+        log e "Skipping $skipped_line due to unresolvable variable"
+      done <<< "$skipped_blocks"
+    fi
+    all_entries=$(printf '%s' "$all_entries" | jq -c --argjson bad "$bad_json" '
+      [.[] | select([.rules[].entries[]] | any(. as $entries | $bad | any(. as $bad_entries | $entries | contains($bad_entries))) | not)]
+    ')
+  fi
+ 
+  all_entries=$(printf '%s' "$all_entries" | envsubst)
+ 
+  # Detect and report duplicates (same block_type + name appearing more than once)
+  local duplicate_report
+  duplicate_report=$(printf '%s' "$all_entries" | jq -r '
+    group_by(.block_type + ":" + .name) | .[] | select(length > 1) |
+    "Duplicate \(.[0].block_type) name: \(.[0].name) (defined by: \([.[].component_key] | join(", ")))"
+  ')
+ 
+  local errors=0
+  if [[ -n "$duplicate_report" ]]; then
+    while IFS= read -r dup_line; do
+      log e "$dup_line"
+      errors=$((errors + 1))
+    done <<< "$duplicate_report"
+  fi
+ 
+  # Generate XML, keeping only the first occurrence of each block_type+name pair.
+  # jq handles XML escaping via custom defs and outputs the complete document line by line.
+  printf '%s' "$all_entries" | jq -r '
+ 
+    # XML escaping functions
+    def xml_attr: gsub("&";"&amp;") | gsub("<";"&lt;") | gsub(">";"&gt;") | gsub("\"";"&quot;");
+    def xml_text: gsub("&";"&amp;") | gsub("<";"&lt;") | gsub(">";"&gt;");
+ 
+    # Deduplicate: group by block_type+name, keep first occurrence only
+    group_by(.block_type + ":" + .name) | map(.[0]) |
+ 
+    # Sort: emulators first, then cores, alphabetical within each group
+    sort_by([(.block_type | if . == "emulator" then "0" else "1" end), .name]) |
+ 
+    # Output XML
+    "<?xml version=\"1.0\"?>",
+    "<ruleList>",
+    (.[] |
+      "    <\(.block_type) name=\"\(.name | xml_attr)\">",
+      (if .description != "" then
+        "        <!-- \(.description | xml_text) -->"
+      else empty end),
+      (.rules[] |
+        "        <rule type=\"\(.type | xml_attr)\">",
+        (.entries[] | "            <entry>\(. | xml_text)</entry>"),
+        "        </rule>"
+      ),
+      "    </\(.block_type)>"
+    ),
+    "</ruleList>"
+ 
+  ' > "$tmp_file"
+ 
+  if [[ $? -ne 0 ]]; then
+    log e "Failed to generate es_find_rules.xml content"
+    rm -f "$tmp_file"
+    return 1
+  fi
+ 
+  # Format with xmlstarlet for consistent indentation
+  if xmlstarlet fo "$tmp_file" > "${tmp_file}.fmt" 2>/dev/null; then
+    mv "${tmp_file}.fmt" "$output_file"
+  else
+    log w "xmlstarlet formatting failed, using raw output"
+    mv "$tmp_file" "$output_file"
+  fi
+  rm -f "$tmp_file" "${tmp_file}.fmt"
+ 
+  if [[ $errors -gt 0 ]]; then
+    log w "es_find_rules.xml generated with $errors duplicate entries skipped"
+  else
+    log i "es_find_rules.xml generated successfully"
+  fi
+ 
+  return 0
+}
+
+generate_es_systems_xml() {
+  # Generate es_systems.xml from component manifest cache data.
+  # Reads all es_de_config.es_systems entries in all manifests and writes the XML file.
+  # When multiple components define the same system name:
+  #   - Metadata (fullname, path, extension, platform, theme) uses the first contributor
+  #   - Commands are merged from all contributors with labels annotated as "Label (ComponentName)"
+  # Systems contributed by a single component retain their original labels unmodified.
+  # USAGE: generate_es_systems_xml
+ 
+  local output_file="$es_systems"
+  local tmp_file="${output_file}.tmp"
+
+  if [[ -f "$es_systems" ]]; then
+    cp "$es_systems" "${es_systems}.bak"
+    log i "Backed up existing file: ${es_systems}.bak"
+  fi
+ 
+  # Extract all system entries as a flat JSON array, carrying the component's human-friendly name.
+  # Each element: {name, fullname, path, extension, commands[], platform, theme, component_name, component_key}
+  local all_systems
+  all_systems=$(jq -c '
+    [.[] | .manifest | to_entries[] |
+      .key as $component_key | .value.name as $component_name |
+      (.value.es_de_config.es_systems // [])[] |
+      . + {component_name: $component_name, component_key: $component_key}
+    ]
+  ' "$component_manifest_cache_file")
+ 
+  # Merge systems: group by name, merge commands, annotate labels for multi-contributor systems.
+  # The jq filter handles the entire merge logic and outputs the final merged array.
+  local merged_systems
+  merged_systems=$(printf '%s' "$all_systems" | jq -c '
+    group_by(.name) | map(
+      if length == 1 then
+        # Single contributor: use as-is, no label modification
+        .[0] | del(.component_name, .component_key)
+      else
+        # Multiple contributors: first wins for metadata, merge all commands with annotated labels,
+        # and merge extension lists (split, deduplicate, rejoin)
+        .[0] as $first |
+        {
+          name: $first.name,
+          fullname: $first.fullname,
+          path: $first.path,
+          extension: ([.[].extension | split(" ")[]] | unique | join(" ")),
+          commands: [.[] | .component_name as $component_name | .commands[] | .label = "\(.label) (\($component_name))"],
+          platform: $first.platform,
+          theme: $first.theme
+        }
+      end
+    ) | sort_by(.name)
+  ')
+ 
+  # Generate XML from the merged systems data
+  printf '%s' "$merged_systems" | jq -r '
+ 
+    # XML escaping functions
+    def xml_attr: gsub("&";"&amp;") | gsub("<";"&lt;") | gsub(">";"&gt;") | gsub("\"";"&quot;");
+    def xml_text: gsub("&";"&amp;") | gsub("<";"&lt;") | gsub(">";"&gt;");
+ 
+    "<?xml version=\"1.0\"?>",
+    "<systemList>",
+    (.[] |
+      "    <system>",
+      "        <name>\(.name | xml_text)</name>",
+      "        <fullname>\(.fullname | xml_text)</fullname>",
+      "        <path>\(.path | xml_text)</path>",
+      "        <extension>\(.extension | xml_text)</extension>",
+      (.commands[] |
+        "        <command label=\"\(.label | xml_attr)\">\(.command | xml_text)</command>"
+      ),
+      "        <platform>\(.platform | xml_text)</platform>",
+      "        <theme>\(.theme | xml_text)</theme>",
+      "    </system>"
+    ),
+    "</systemList>"
+ 
+  ' > "$tmp_file"
+ 
+  if [[ $? -ne 0 ]]; then
+    log e "Failed to generate es_systems.xml content"
+    rm -f "$tmp_file"
+    return 1
+  fi
+ 
+  # Format with xmlstarlet for consistent indentation
+  if xmlstarlet fo "$tmp_file" > "${tmp_file}.fmt" 2>/dev/null; then
+    mv "${tmp_file}.fmt" "$output_file"
+  else
+    log w "xmlstarlet formatting failed, using raw output"
+    mv "$tmp_file" "$output_file"
+  fi
+  rm -f "$tmp_file" "${tmp_file}.fmt"
+ 
+  log i "es_systems.xml generated successfully"
+  return 0
 }
 
 _post_update::es-de() {
