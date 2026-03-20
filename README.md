@@ -10,9 +10,9 @@ Please visit the [How-to: Add a Component to RetroDECK - A Cooking Philosophy](h
 
 Contributions are welcome! Please follow these steps:
 
-1. Fork the repository.
+1. Fork the repository cooker branch.
 2. Create a new branch for your changes.
-3. Submit a pull request.
+3. Submit a pull request to cooker.
 
 ## Highlighted Repositories:
 
