@@ -161,7 +161,7 @@ jobs:
 
           # Get all releases, filtering to only those matching our tag format
           gh release list --limit 1000 --json tagName,publishedAt,isDraft,isPrerelease | \
-            jq '[.[] | select(.tagName | test("[0-9]{8}-[0-9]{6}$"))]' \
+            jq '[.[] | select(.tagName | test("[0-9]{8}-[0-9]{4,6}$"))]' \
             > all_releases.json
 
           TOTAL=$(jq 'length' all_releases.json)
@@ -206,7 +206,7 @@ jobs:
 
           # Get unique branch prefixes from release tags
           BRANCH_PREFIXES=$(jq -r '.[].tagName' all_releases.json | \
-            sed 's/-[0-9]\{8\}-[0-9]\{6\}$//' | \
+            sed 's/-[0-9]\{8\}-[0-9]\{4,6\}$//' | \
             sort -u)
 
           TO_DELETE=""
