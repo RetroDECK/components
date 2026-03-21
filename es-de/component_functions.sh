@@ -316,35 +316,39 @@ generate_es_systems_xml() {
  
   # Merge systems: group by name, merge commands, annotate labels for multi-contributor systems.
   # The jq filter handles the entire merge logic and outputs the final merged array.
-    local merged_systems
-    merged_systems=$(printf '%s' "$all_systems" | jq -c '
-      group_by(.name) | map(
-        if length == 1 then
-          # Single contributor: use as-is, no label modification
-          .[0] | del(.component_name, .component_key)
-        else
-          # Multiple contributors: first wins for metadata, merge all commands,
-          # merge extension lists (split, deduplicate, rejoin),
-          # and annotate only labels that conflict (same label from different contributors)
-          .[0] as $first |
-          [.[] | .component_name as $component_name | .commands[] | {label, command, component_name: $component_name}] as $all_cmds |
-          # Find labels that appear more than once
-          [$all_cmds | group_by(.label) | .[] | select(length > 1) | .[0].label] as $dup_labels |
-          {
-            name: $first.name,
-            fullname: $first.fullname,
-            path: $first.path,
-            extension: ([.[].extension | split(" ")[]] | unique | join(" ")),
-            commands: [$all_cmds[] | {
-              label: (if (.label | IN($dup_labels[])) then "\(.label) (\(.component_name))" else .label end),
-              command
-            }],
-            platform: $first.platform,
-            theme: $first.theme
-          }
-        end
-      ) | sort_by(.name)
-    ')
+  local merged_systems
+  merged_systems=$(printf '%s' "$all_systems" | jq -c '
+    # Generate both lowercase and uppercase for each extension, then deduplicate
+    def expand_extensions: split(" ") | map(., ascii_downcase, ascii_upcase) | unique | join(" ");
+ 
+    group_by(.name) | map(
+      if length == 1 then
+        # Single contributor: use as-is, no label modification
+        .[0] | del(.component_name, .component_key) |
+        .extension |= expand_extensions
+      else
+        # Multiple contributors: first wins for metadata, merge all commands,
+        # merge extension lists across contributors then expand cases,
+        # and annotate only labels that conflict (same label from different contributors)
+        .[0] as $first |
+        [.[] | .component_name as $component_name | .commands[] | {label, command, component_name: $component_name}] as $all_cmds |
+        # Find labels that appear more than once
+        [$all_cmds | group_by(.label) | .[] | select(length > 1) | .[0].label] as $dup_labels |
+        {
+          name: $first.name,
+          fullname: $first.fullname,
+          path: $first.path,
+          extension: ([.[].extension | split(" ")[]] | unique | join(" ") | expand_extensions),
+          commands: [$all_cmds[] | {
+            label: (if (.label | IN($dup_labels[])) then "\(.label) (\(.component_name))" else .label end),
+            command
+          }],
+          platform: $first.platform,
+          theme: $first.theme
+        }
+      end
+    ) | sort_by(.name)
+  ')
  
   # Generate XML from the merged systems data
   printf '%s' "$merged_systems" | jq -r '
