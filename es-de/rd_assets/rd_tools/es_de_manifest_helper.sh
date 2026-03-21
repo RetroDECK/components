@@ -102,11 +102,14 @@ for sys_name in "${all_systems[@]}"; do
   for i in "${!cmd_values[@]}"; do
     if [[ "${cmd_values[$i]}" == *"$emu_placeholder"* ]]; then
       has_match="true"
+      # Priority based on global position in the original XML
+      priority=$(( (i + 1) * 10 ))
       matched_cmds_json=$(printf '%s' "$matched_cmds_json" | jq -c \
         --arg label "${cmd_labels[$i]}" \
         --arg command "${cmd_values[$i]}" \
-        '. + [{label: $label, command: $command}]')
-    
+        --argjson priority "$priority" \
+        '. + [{label: $label, command: $command, priority: $priority}]')
+
       echo "Emulator $emulator_name has a command line in system $sys_name"
     fi
   done
