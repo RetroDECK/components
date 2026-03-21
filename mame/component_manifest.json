@@ -114,7 +114,7 @@
       },
       {
         "filename": "3dobios.zip",
-        "md5": "3841ffa7a77349f650e6a9c78409a7a2",
+        "md5": "6c6c0c726cbf15e81785eb7592fdb51c",
         "system": "mame",
         "description": "3DO system BIOS",
         "required": "Required, for certain Arcade Boards and Games"
@@ -268,7 +268,7 @@
       },
       {
         "filename": "a2bus_byte8251.zip",
-        "md5": "4aceda4e6e17b113546f0d3eac859125",
+        "md5": "ee1ddb49aac890048dd441729965052d",
         "system": "mame",
         "description": "Amiga 2000 bus byte 8251 ROM",
         "required": "Required, for certain Arcade Boards and Games"
@@ -282,7 +282,7 @@
       },
       {
         "filename": "a2diskiing.zip",
-        "md5": "4399ac1df19dd3e3d6f5b1eff273939c",
+        "md5": "e07ffce4500ffeac9750c427d8309d9b",
         "system": "mame",
         "description": "Amiga 2000 Disk I/O ROM",
         "required": "Required, for certain Arcade Boards and Games"
@@ -310,7 +310,7 @@
       },
       {
         "filename": "a2cffa02.zip",
-        "md5": "66b6b4b20e40c7f9b46f4d33880fd6e2",
+        "md5": "c192973c9a3c06594f87908abaec0b66",
         "system": "mame",
         "description": "Amiga 2000 CFFA02 ROM",
         "required": "Required, for certain Arcade Boards and Games"
@@ -394,7 +394,7 @@
       },
       {
         "filename": "a2ssc.zip",
-        "md5": "aebd861a658a2f9edd93cfa8fb7ae7a5",
+        "md5": "2a708d20e9b1e5ed3e893eb3e2b0f324",
         "system": "mame",
         "description": "Amiga 2000 SSC interface ROM",
         "required": "Required, for certain Arcade Boards and Games"
@@ -912,14 +912,14 @@
       },
       {
         "filename": "acs8600_ics.zip",
-        "md5": "7fd5cfd063fda786f4149581852c515e",
+        "md5": "cdf7249af23a08895306f6ef7c09996e",
         "system": "mame",
         "description": "ACS 8600 ICS ROM",
         "required": "Required, for certain Arcade Boards and Games"
       },
       {
         "filename": "acorn_vib.zip",
-        "md5": "f167d21eadff30d779deb2d9137310b2",
+        "md5": "68babe6f7f88c8854436fac395f7126c",
         "system": "mame",
         "description": "Acorn VIB ROM",
         "required": "Required, for certain Arcade Boards and Games"
@@ -1003,7 +1003,7 @@
       },
       {
         "filename": "adam_spi.zip",
-        "md5": "b09ba6ae1661485c1e39a51000c7deec",
+        "md5": "e5d2c02af1924f9e25094dfc920277b1",
         "system": "mame",
         "description": "Coleco Adam SPI ROM",
         "required": "Required, for certain Arcade Boards and Games"
@@ -1080,7 +1080,7 @@
       },
       {
         "filename": "airlbios.zip",
-        "md5": "6a0ac75d702f8f7c1ca6c72aa2b0b7d8",
+        "md5": "7a11bfe0cc72886d032e386db68f890c",
         "system": "mame",
         "description": "Airline BIOS ROM",
         "required": "Required, for certain Arcade Boards and Games"
@@ -1094,14 +1094,14 @@
       },
       {
         "filename": "aleck64.zip",
-        "md5": "de240f38f9f6f0e99a011a1f9b677b2c",
+        "md5": "c266fc58905af1e246dffadc84301042",
         "system": "mame",
         "description": "Aleck 64 system ROM",
         "required": "Required, for certain Arcade Boards and Games"
       },
       {
         "filename": "3dobios.zip",
-        "md5": "3841ffa7a77349f650e6a9c78409a7a2",
+        "md5": "6c6c0c726cbf15e81785eb7592fdb51c",
         "system": "mame",
         "description": "3DO console BIOS",
         "required": "Required, for certain Arcade Boards and Games"
@@ -1115,14 +1115,14 @@
       },
       {
         "filename": "allied.zip",
-        "md5": "47e5305756ee9868e9b800d767721ba0",
+        "md5": "eb6a82c4cc942bf46970968bf331df1e",
         "system": "mame",
         "description": "Allied Electronics BIOS",
         "required": "Required, for certain Arcade Boards and Games"
       },
       {
         "filename": "alg_bios.zip",
-        "md5": "9edf49fe1c548a6b7159879a8747d6ab",
+        "md5": "0507c3a390e5b39d81dd9d10fdfc19eb",
         "system": "mame",
         "description": "Alg system BIOS",
         "required": "Required, for certain Arcade Boards and Games"
@@ -1143,7 +1143,7 @@
       },
       {
         "filename": "amiga_a2232.zip",
-        "md5": "4aceda4e6e17b113546f0d3eac859125",
+        "md5": "ee1ddb49aac890048dd441729965052d",
         "system": "mame",
         "description": "Amiga A2232 serial controller ROM",
         "required": "Required, for certain Arcade Boards and Games"
@@ -1234,21 +1234,21 @@
       },
       {
         "filename": "aprissi.zip",
-        "md5": "83de643817f2c64c8af469f69c0ab7dd",
+        "md5": "f4b7587f0e0989b04fe3320f1e0e4aed",
         "system": "mame",
         "description": "APRISSI system ROM",
         "required": "Required, for certain Arcade Boards and Games"
       },
       {
         "filename": "aquarius_c1541.zip",
-        "md5": "967aaba0ede89b802caf938794c4cdec",
+        "md5": "7948f793f552a9982bc79509e36a71c9",
         "system": "mame",
         "description": "Aquarius C1541 disk controller ROM",
         "required": "Required, for certain Arcade Boards and Games"
       },
       {
         "filename": "ar_bios.zip",
-        "md5": "37e9746f4491aa2df9a83729d1a93620",
+        "md5": "2bfe3a68f5261412b076d8baa92103d0",
         "system": "mame",
         "description": "AR system BIOS",
         "required": "Required, for certain Arcade Boards and Games"
@@ -1304,7 +1304,7 @@
       },
       {
         "filename": "arc_bbcio_aka10.zip",
-        "md5": "627a9f9c4165d074545679032136de8a",
+        "md5": "675bbf860feade874ccf819deca68b94",
         "system": "mame",
         "description": "ARC BBC IO card AKA10",
         "required": "Required, for certain Arcade Boards and Games"
@@ -1451,7 +1451,7 @@
       },
       {
         "filename": "arc_iomidi_aka15.zip",
-        "md5": "60dd4c3f4916b4a543b8746e1a102b35",
+        "md5": "0088378c10197d98ff289e03d87450f8",
         "system": "mame",
         "description": "ARC I/O MIDI AKA15",
         "required": "Required, for certain Arcade Boards and Games"
@@ -1486,7 +1486,7 @@
       },
       {
         "filename": "arc_rs423.zip",
-        "md5": "6aae14d6b2d9769db668d318d6b5ce66",
+        "md5": "e4521ce1a850ad7b754c7be0d7ac946a",
         "system": "mame",
         "description": "ARC RS423 serial interface",
         "required": "Required, for certain Arcade Boards and Games"
@@ -1591,7 +1591,7 @@
       },
       {
         "filename": "arc_serial.zip",
-        "md5": "425af18d93688cd0d15c91e5e843c503",
+        "md5": "a2adf6b7ffbfc3f1b40855c5f35805ee",
         "system": "mame",
         "description": "ARC Serial interface",
         "required": "Required, for certain Arcade Boards and Games"
@@ -1640,7 +1640,7 @@
       },
       {
         "filename": "aristmk5.zip",
-        "md5": "0181d7b7c6fb488ad6c77458e2449566",
+        "md5": "f6256abae7af17850202e8a5c82de58c",
         "system": "mame",
         "description": "Aristocrat MK5 expansion",
         "required": "Required, for certain Arcade Boards and Games"
@@ -1703,7 +1703,7 @@
       },
       {
         "filename": "atarisy1.zip",
-        "md5": "f4a3c76103d9a5e50de8fac468e835c8",
+        "md5": "8dc80333b1021bf1505908aec4d4482b",
         "system": "mame",
         "description": "Atari SY1 interface",
         "required": "Required, for certain Arcade Boards and Games"
@@ -1752,7 +1752,7 @@
       },
       {
         "filename": "aristmk6.zip",
-        "md5": "b49dd7316106e55df81f2bd36dbd00e5",
+        "md5": "88d047a27259a1dbd0f75bdb9ab45a4b",
         "system": "mame",
         "description": "Aristocrat MK6 expansion",
         "required": "Required, for certain Arcade Boards and Games"
@@ -1815,7 +1815,7 @@
       },
       {
         "filename": "bbc_24bbc.zip",
-        "md5": "02fe07655504fd1e738c0e6237c55972",
+        "md5": "41e77c5b3f12370aea7ffae038f109f9",
         "system": "mame",
         "description": "BBC 24BBC",
         "required": "Required, for certain Arcade Boards and Games"
@@ -1829,7 +1829,7 @@
       },
       {
         "filename": "bbc_acorn8271.zip",
-        "md5": "dbd7e471fe3b1aa4638f8d8327adcb3e",
+        "md5": "4c2027c59689fa0da2029e507a15ed0f",
         "system": "mame",
         "description": "Acorn 8271 Disc Interface",
         "required": "Required, for certain Arcade Boards and Games"
@@ -1843,7 +1843,7 @@
       },
       {
         "filename": "bbc_2ndserial.zip",
-        "md5": "02fe07655504fd1e738c0e6237c55972",
+        "md5": "41e77c5b3f12370aea7ffae038f109f9",
         "system": "mame",
         "description": "BBC Second Serial Interface",
         "required": "Required, for certain Arcade Boards and Games"
@@ -1878,7 +1878,7 @@
       },
       {
         "filename": "bbc_awhd.zip",
-        "md5": "02fe07655504fd1e738c0e6237c55972",
+        "md5": "41e77c5b3f12370aea7ffae038f109f9",
         "system": "mame",
         "description": "BBC AWHD Interface",
         "required": "Required, for certain Arcade Boards and Games"
@@ -1892,14 +1892,14 @@
       },
       {
         "filename": "bbc_b488.zip",
-        "md5": "6228cbda161e8ae6e322eb9682a8b47e",
+        "md5": "b4d32b41aa507ddac67dde16fc71d56c",
         "system": "mame",
         "description": "BBC B488 Interface",
         "required": "Required, for certain Arcade Boards and Games"
       },
       {
         "filename": "bbc_bitstik1.zip",
-        "md5": "e5953dc9d76b49ac607c6ac9443a6c23",
+        "md5": "0aeab3e1f3114ef52a55ff65485e1601",
         "system": "mame",
         "description": "BBC Bitstik 1 Joystick",
         "required": "Required, for certain Arcade Boards and Games"
@@ -1920,21 +1920,21 @@
       },
       {
         "filename": "bbc_bitstik2.zip",
-        "md5": "3fd080ed753a15cab71b01a835fc9d53",
+        "md5": "9e7f001f8e26be3413dc4206901a535f",
         "system": "mame",
         "description": "BBC Bitstik 2 Joystick",
         "required": "Required, for certain Arcade Boards and Games"
       },
       {
         "filename": "bbc_cc500.zip",
-        "md5": "02fe07655504fd1e738c0e6237c55972",
+        "md5": "41e77c5b3f12370aea7ffae038f109f9",
         "system": "mame",
         "description": "BBC CC500 Interface",
         "required": "Required, for certain Arcade Boards and Games"
       },
       {
         "filename": "bbc_beebide.zip",
-        "md5": "02fe07655504fd1e738c0e6237c55972",
+        "md5": "41e77c5b3f12370aea7ffae038f109f9",
         "system": "mame",
         "description": "BBC BeebIDE Interface",
         "required": "Required, for certain Arcade Boards and Games"
@@ -1997,7 +1997,7 @@
       },
       {
         "filename": "bbc_ieee488.zip",
-        "md5": "02fe07655504fd1e738c0e6237c55972",
+        "md5": "41e77c5b3f12370aea7ffae038f109f9",
         "system": "mame",
         "description": "BBC IEEE488 Interface",
         "required": "Required, for certain Arcade Boards and Games"
@@ -2011,14 +2011,14 @@
       },
       {
         "filename": "bbc_m3000.zip",
-        "md5": "02fe07655504fd1e738c0e6237c55972",
+        "md5": "41e77c5b3f12370aea7ffae038f109f9",
         "system": "mame",
         "description": "BBC M3000 Interface",
         "required": "Required, for certain Arcade Boards and Games"
       },
       {
         "filename": "bbc_m2000.zip",
-        "md5": "02fe07655504fd1e738c0e6237c55972",
+        "md5": "41e77c5b3f12370aea7ffae038f109f9",
         "system": "mame",
         "description": "BBC M2000 Interface",
         "required": "Required, for certain Arcade Boards and Games"
@@ -2032,14 +2032,14 @@
       },
       {
         "filename": "bbc_m500.zip",
-        "md5": "02fe07655504fd1e738c0e6237c55972",
+        "md5": "41e77c5b3f12370aea7ffae038f109f9",
         "system": "mame",
         "description": "BBC M500 Interface",
         "required": "Required, for certain Arcade Boards and Games"
       },
       {
         "filename": "bbc_m5000.zip",
-        "md5": "02fe07655504fd1e738c0e6237c55972",
+        "md5": "41e77c5b3f12370aea7ffae038f109f9",
         "system": "mame",
         "description": "BBC M5000 Interface",
         "required": "Required, for certain Arcade Boards and Games"
@@ -2067,14 +2067,14 @@
       },
       {
         "filename": "bbc_mertec.zip",
-        "md5": "8e2187db05b0eb389dd6b2ed0d188ac2",
+        "md5": "e76fac63c749215fdd0f0dc0b6a46a29",
         "system": "mame",
         "description": "BBC Mertec Interface",
         "required": "Required, for certain Arcade Boards and Games"
       },
       {
         "filename": "bbc_m87.zip",
-        "md5": "02fe07655504fd1e738c0e6237c55972",
+        "md5": "41e77c5b3f12370aea7ffae038f109f9",
         "system": "mame",
         "description": "BBC M87 Interface",
         "required": "Required, for certain Arcade Boards and Games"
@@ -2151,7 +2151,7 @@
       },
       {
         "filename": "bbc_ramdisc.zip",
-        "md5": "02fe07655504fd1e738c0e6237c55972",
+        "md5": "41e77c5b3f12370aea7ffae038f109f9",
         "system": "mame",
         "description": "BBC RAM Disc",
         "required": "Required, for certain Arcade Boards and Games"
@@ -2263,14 +2263,14 @@
       },
       {
         "filename": "beebopl.zip",
-        "md5": "02fe07655504fd1e738c0e6237c55972",
+        "md5": "41e77c5b3f12370aea7ffae038f109f9",
         "system": "mame",
         "description": "BBC OPL sound interface",
         "required": "Required, for certain Arcade Boards and Games"
       },
       {
         "filename": "beebsid.zip",
-        "md5": "02fe07655504fd1e738c0e6237c55972",
+        "md5": "41e77c5b3f12370aea7ffae038f109f9",
         "system": "mame",
         "description": "BBC SID sound interface",
         "required": "Required, for certain Arcade Boards and Games"
@@ -2319,7 +2319,7 @@
       },
       {
         "filename": "bk_irps.zip",
-        "md5": "4aceda4e6e17b113546f0d3eac859125",
+        "md5": "ee1ddb49aac890048dd441729965052d",
         "system": "mame",
         "description": "BK IRPS Interface",
         "required": "Required, for certain Arcade Boards and Games"
@@ -2424,7 +2424,7 @@
       },
       {
         "filename": "bubsys.zip",
-        "md5": "f81298afd68a1a24a49a1a2d9f087964",
+        "md5": "17cce3efe7b03d0e789744ed7dc4c619",
         "system": "mame",
         "description": "BUB System Interface",
         "required": "Required, for certain Arcade Boards and Games"
@@ -2543,7 +2543,7 @@
       },
       {
         "filename": "c2040.zip",
-        "md5": "26bb3571bb36316dffe2a54dd5d0d8ca",
+        "md5": "77223dff2641e1b95a2306e57af9eeed",
         "system": "mame",
         "description": "Commodore 2040 Floppy Disk Drive",
         "required": "Required, for certain Arcade Boards and Games"
@@ -2592,7 +2592,7 @@
       },
       {
         "filename": "c64_buscard.zip",
-        "md5": "79046a3ed69fe98e591f98e5284c6b81",
+        "md5": "bc5fc674ed02f4ef1b7cbdc44aca0526",
         "system": "mame",
         "description": "C64 Bus Card Interface",
         "required": "Required, for certain Arcade Boards and Games"
@@ -2606,7 +2606,7 @@
       },
       {
         "filename": "c64_ieee488.zip",
-        "md5": "79046a3ed69fe98e591f98e5284c6b81",
+        "md5": "bc5fc674ed02f4ef1b7cbdc44aca0526",
         "system": "mame",
         "description": "C64 IEEE-488 Interface",
         "required": "Required, for certain Arcade Boards and Games"
@@ -2620,21 +2620,21 @@
       },
       {
         "filename": "c64_buscard2.zip",
-        "md5": "79046a3ed69fe98e591f98e5284c6b81",
+        "md5": "bc5fc674ed02f4ef1b7cbdc44aca0526",
         "system": "mame",
         "description": "C64 Bus Card 2 Interface",
         "required": "Required, for certain Arcade Boards and Games"
       },
       {
         "filename": "c64_music64.zip",
-        "md5": "79046a3ed69fe98e591f98e5284c6b81",
+        "md5": "bc5fc674ed02f4ef1b7cbdc44aca0526",
         "system": "mame",
         "description": "C64 Music 64 Interface",
         "required": "Required, for certain Arcade Boards and Games"
       },
       {
         "filename": "c64_magic_voice.zip",
-        "md5": "79046a3ed69fe98e591f98e5284c6b81",
+        "md5": "bc5fc674ed02f4ef1b7cbdc44aca0526",
         "system": "mame",
         "description": "C64 Magic Voice Cartridge",
         "required": "Required, for certain Arcade Boards and Games"
@@ -2655,14 +2655,14 @@
       },
       {
         "filename": "c64_sfxse.zip",
-        "md5": "79046a3ed69fe98e591f98e5284c6b81",
+        "md5": "bc5fc674ed02f4ef1b7cbdc44aca0526",
         "system": "mame",
         "description": "C64 SFX Sound Interface",
         "required": "Required, for certain Arcade Boards and Games"
       },
       {
         "filename": "c64_swiftlink.zip",
-        "md5": "4aceda4e6e17b113546f0d3eac859125",
+        "md5": "ee1ddb49aac890048dd441729965052d",
         "system": "mame",
         "description": "C64 SwiftLink Serial Interface",
         "required": "Required, for certain Arcade Boards and Games"
@@ -2690,14 +2690,14 @@
       },
       {
         "filename": "c64_supercpu.zip",
-        "md5": "79046a3ed69fe98e591f98e5284c6b81",
+        "md5": "bc5fc674ed02f4ef1b7cbdc44aca0526",
         "system": "mame",
         "description": "C64 SuperCPU Cartridge",
         "required": "Required, for certain Arcade Boards and Games"
       },
       {
         "filename": "c64_tdos.zip",
-        "md5": "79046a3ed69fe98e591f98e5284c6b81",
+        "md5": "bc5fc674ed02f4ef1b7cbdc44aca0526",
         "system": "mame",
         "description": "C64 TDOS Interface",
         "required": "Required, for certain Arcade Boards and Games"
@@ -2725,7 +2725,7 @@
       },
       {
         "filename": "c64_turbo232.zip",
-        "md5": "4aceda4e6e17b113546f0d3eac859125",
+        "md5": "ee1ddb49aac890048dd441729965052d",
         "system": "mame",
         "description": "C64 Turbo232 Serial Interface",
         "required": "Required, for certain Arcade Boards and Games"
@@ -2781,7 +2781,7 @@
       },
       {
         "filename": "cbm_interpod.zip",
-        "md5": "7d53cdef249b91e56a28326d73875ddc",
+        "md5": "876b9d9542eda6c7763767d45a024759",
         "system": "mame",
         "description": "CBM InterPod Interface",
         "required": "Required, for certain Arcade Boards and Games"
@@ -2795,7 +2795,7 @@
       },
       {
         "filename": "cc90_232.zip",
-        "md5": "f167d21eadff30d779deb2d9137310b2",
+        "md5": "68babe6f7f88c8854436fac395f7126c",
         "system": "mame",
         "description": "CC90 RS-232 Interface",
         "required": "Required, for certain Arcade Boards and Games"
@@ -2830,7 +2830,7 @@
       },
       {
         "filename": "ccs7710.zip",
-        "md5": "cd986bebe6704fd2155d58f15faf0d8a",
+        "md5": "5aa34c6be17ca690bc5fb059533337eb",
         "system": "mame",
         "description": "CCS7710 Interface",
         "required": "Required, for certain Arcade Boards and Games"
@@ -2858,7 +2858,7 @@
       },
       {
         "filename": "cdibios.zip",
-        "md5": "709acce6e9c4043b851ea7429b8e7eff",
+        "md5": "849f709632ad9bdfb9af1b5a2acf8308",
         "system": "mame",
         "description": "CD Interface BIOS",
         "required": "Required, for certain Arcade Boards and Games"
@@ -2886,7 +2886,7 @@
       },
       {
         "filename": "cedmag.zip",
-        "md5": "cc95ab61df5e5b8214ed9a2778062210",
+        "md5": "4fbf5780a3c949b52e5796897f9ec993",
         "system": "mame",
         "description": "CED Mag Interface",
         "required": "Required, for certain Arcade Boards and Games"
@@ -3019,7 +3019,7 @@
       },
       {
         "filename": "chihiro.zip",
-        "md5": "7eff8eeab48f777c3cdd071c24aeea85",
+        "md5": "3e714dafd8a5efbd859de8ef64a3a0bb",
         "system": "mame",
         "description": "Chihiro Interface",
         "required": "Required, for certain Arcade Boards and Games"
@@ -3089,7 +3089,7 @@
       },
       {
         "filename": "cms_4080term.zip",
-        "md5": "47f5bbcb759ced4369f55f6d93dea38a",
+        "md5": "702f67dbc86dacb712b2761a5c621a7a",
         "system": "mame",
         "description": "CMS 4080 Terminal",
         "required": "Required, for certain Arcade Boards and Games"
@@ -3103,14 +3103,14 @@
       },
       {
         "filename": "cms_ieee.zip",
-        "md5": "6228cbda161e8ae6e322eb9682a8b47e",
+        "md5": "b4d32b41aa507ddac67dde16fc71d56c",
         "system": "mame",
         "description": "CMS IEEE Interface",
         "required": "Required, for certain Arcade Boards and Games"
       },
       {
         "filename": "coco_dcmodem.zip",
-        "md5": "9837b7b61efd46e3f6eada3fd1e42773",
+        "md5": "3cd646b289ab0951c92b7febabeaed0a",
         "system": "mame",
         "description": "Coco DC Modem",
         "required": "Required, for certain Arcade Boards and Games"
@@ -3138,14 +3138,14 @@
       },
       {
         "filename": "coco_multipack.zip",
-        "md5": "e97e1cc827cadabdda9176054dd87a07",
+        "md5": "fa88710047627398a0492bd039857097",
         "system": "mame",
         "description": "Coco Multipack Expansion",
         "required": "Required, for certain Arcade Boards and Games"
       },
       {
         "filename": "coco_rs232.zip",
-        "md5": "e80cd9b2e99820b359e11a9eb0dbdddc",
+        "md5": "5ea00bef246bd563a05865b592528461",
         "system": "mame",
         "description": "Coco RS-232 Interface",
         "required": "Required, for certain Arcade Boards and Games"
@@ -3159,7 +3159,7 @@
       },
       {
         "filename": "coco_ide.zip",
-        "md5": "e97e1cc827cadabdda9176054dd87a07",
+        "md5": "fa88710047627398a0492bd039857097",
         "system": "mame",
         "description": "Coco IDE Interface",
         "required": "Required, for certain Arcade Boards and Games"
@@ -3187,7 +3187,7 @@
       },
       {
         "filename": "coco_t4426.zip",
-        "md5": "d9cfa32ec68d01edafba81984fce750e",
+        "md5": "ba47d47fa51a8dc50b73ed98a77109ba",
         "system": "mame",
         "description": "Coco T4426 Interface",
         "required": "Required, for certain Arcade Boards and Games"
@@ -3215,14 +3215,14 @@
       },
       {
         "filename": "coh1000c.zip",
-        "md5": "5eafb41f51bef00af05f26f016b8ae87",
+        "md5": "323e38eb0fd48ff9c7357a29803a1170",
         "system": "mame",
         "description": "COH 1000C Cartridge",
         "required": "Required, for certain Arcade Boards and Games"
       },
       {
         "filename": "coh1000t.zip",
-        "md5": "cbd902afa92e18d69226d91f567ab88a",
+        "md5": "75ffe488ca17447fa5733203cf8f4aa2",
         "system": "mame",
         "description": "COH 1000T Tape Interface",
         "required": "Required, for certain Arcade Boards and Games"
@@ -3236,35 +3236,35 @@
       },
       {
         "filename": "coh1000w.zip",
-        "md5": "5653ef5db210495f8d5f1928dfb41b7e",
+        "md5": "bcb07e7741b549bc3f9a534c7041bfc2",
         "system": "mame",
         "description": "COH 1000W Expansion",
         "required": "Required, for certain Arcade Boards and Games"
       },
       {
         "filename": "coh1002e.zip",
-        "md5": "bd276c601adf0e25424824948e53ca3b",
+        "md5": "f80741db0a3dd44036481cb2af3655db",
         "system": "mame",
         "description": "COH 1002E Expansion Module",
         "required": "Required, for certain Arcade Boards and Games"
       },
       {
         "filename": "coh1002m.zip",
-        "md5": "800fc349d09fff31c038538f68b6d18e",
+        "md5": "b32edaed4a9ad6ab5b1093f4b9cfd09b",
         "system": "mame",
         "description": "COH 1002M Memory Module",
         "required": "Required, for certain Arcade Boards and Games"
       },
       {
         "filename": "coh1001l.zip",
-        "md5": "fcfb400f4d2360002fee1dc5b9e7c2af",
+        "md5": "2b243fedcfdd76f6b58664fa6f325fd1",
         "system": "mame",
         "description": "COH 1001L Logic Module",
         "required": "Required, for certain Arcade Boards and Games"
       },
       {
         "filename": "coh1002v.zip",
-        "md5": "322e7491b5797efa70f58bcf80b52eac",
+        "md5": "160b97fa78ad79a4a95fde1829e1ad95",
         "system": "mame",
         "description": "COH 1002V Video Module",
         "required": "Required, for certain Arcade Boards and Games"
@@ -3278,7 +3278,7 @@
       },
       {
         "filename": "coh3002c.zip",
-        "md5": "c324eab656fa780dcc3e23817a12fb3e",
+        "md5": "4f97958fe67444637b5c6700fb62849c",
         "system": "mame",
         "description": "COH 3002C Cartridge",
         "required": "Required, for certain Arcade Boards and Games"
@@ -3292,7 +3292,7 @@
       },
       {
         "filename": "coh3002t.zip",
-        "md5": "db439f9b2b8f244cf782450bbc924af3",
+        "md5": "40538ec41ce0e7ed66d9694bf1b1c2bf",
         "system": "mame",
         "description": "COH 3002T Tape Interface",
         "required": "Required, for certain Arcade Boards and Games"
@@ -3383,7 +3383,7 @@
       },
       {
         "filename": "cp31.zip",
-        "md5": "909a0d0fdebc390a82a4781dd5c4e68a",
+        "md5": "72d9191ab9c6a0140997bd9f9c16370c",
         "system": "mame",
         "description": "CP31 Module",
         "required": "Required, for certain Arcade Boards and Games"
@@ -3397,7 +3397,7 @@
       },
       {
         "filename": "cpc_ddi1.zip",
-        "md5": "acdbd83f209c06377feba8b4dca19080",
+        "md5": "b3b9afac5e39f4e9a4b59450afa5696a",
         "system": "mame",
         "description": "CPC DDI-1 Interface",
         "required": "Required, for certain Arcade Boards and Games"
@@ -3411,28 +3411,28 @@
       },
       {
         "filename": "cpc_dkspeech.zip",
-        "md5": "7dc79f11991f5c1e2cd9b730bcee3890",
+        "md5": "abdd71cf446e41f0c1e54abd14174425",
         "system": "mame",
         "description": "CPC DK Speech Module",
         "required": "Required, for certain Arcade Boards and Games"
       },
       {
         "filename": "cpc_mface2.zip",
-        "md5": "7dc79f11991f5c1e2cd9b730bcee3890",
+        "md5": "abdd71cf446e41f0c1e54abd14174425",
         "system": "mame",
         "description": "CPC MFace2 Module",
         "required": "Required, for certain Arcade Boards and Games"
       },
       {
         "filename": "cpc_playcity.zip",
-        "md5": "7dc79f11991f5c1e2cd9b730bcee3890",
+        "md5": "abdd71cf446e41f0c1e54abd14174425",
         "system": "mame",
         "description": "CPC PlayCity Module",
         "required": "Required, for certain Arcade Boards and Games"
       },
       {
         "filename": "cpc_rom.zip",
-        "md5": "7dc79f11991f5c1e2cd9b730bcee3890",
+        "md5": "abdd71cf446e41f0c1e54abd14174425",
         "system": "mame",
         "description": "CPC ROM Set",
         "required": "Required, for certain Arcade Boards and Games"
@@ -3446,14 +3446,14 @@
       },
       {
         "filename": "cpc_ser.zip",
-        "md5": "7dc79f11991f5c1e2cd9b730bcee3890",
+        "md5": "abdd71cf446e41f0c1e54abd14174425",
         "system": "mame",
         "description": "CPC Serial Interface",
         "required": "Required, for certain Arcade Boards and Games"
       },
       {
         "filename": "cpc_ssa1.zip",
-        "md5": "7dc79f11991f5c1e2cd9b730bcee3890",
+        "md5": "abdd71cf446e41f0c1e54abd14174425",
         "system": "mame",
         "description": "CPC SSA1 Module",
         "required": "Required, for certain Arcade Boards and Games"
@@ -3474,7 +3474,7 @@
       },
       {
         "filename": "cpc_serams.zip",
-        "md5": "7dc79f11991f5c1e2cd9b730bcee3890",
+        "md5": "abdd71cf446e41f0c1e54abd14174425",
         "system": "mame",
         "description": "CPC Serial RAM Expansion",
         "required": "Required, for certain Arcade Boards and Games"
@@ -3530,7 +3530,7 @@
       },
       {
         "filename": "crysbios.zip",
-        "md5": "f5b3fc7c33363d2db585e46f5b2d2dce",
+        "md5": "c7a4670b97149a702c2645f4e79b22db",
         "system": "mame",
         "description": "CrysBios ROM",
         "required": "Required, for certain Arcade Boards and Games"
@@ -3593,7 +3593,7 @@
       },
       {
         "filename": "cubo.zip",
-        "md5": "22cb9aae2f79f86349c9ef807e43e8ee",
+        "md5": "9baf61a62ba1f5407906cef06bcd7b7f",
         "system": "mame",
         "description": "CUBO Module",
         "required": "Required, for certain Arcade Boards and Games"
@@ -3635,7 +3635,7 @@
       },
       {
         "filename": "decocass.zip",
-        "md5": "9c915f8fc83b893e8e30273480a2c1a6",
+        "md5": "2b268f2f8960e5124f9a8cc6cfe86773",
         "system": "mame",
         "description": "Decocass System",
         "required": "Required, for certain Arcade Boards and Games"
@@ -3733,7 +3733,7 @@
       },
       {
         "filename": "dio98628.zip",
-        "md5": "a2575975f541a2fffd7a38aaf7da5062",
+        "md5": "f467d09dbadba52bd132abb712886ddd",
         "system": "mame",
         "description": "DIO 98628 Module",
         "required": "Required, for certain Arcade Boards and Games"
@@ -3782,21 +3782,21 @@
       },
       {
         "filename": "dio98644.zip",
-        "md5": "4aceda4e6e17b113546f0d3eac859125",
+        "md5": "ee1ddb49aac890048dd441729965052d",
         "system": "mame",
         "description": "DIO 98644 Module",
         "required": "Required, for certain Arcade Boards and Games"
       },
       {
         "filename": "dmv_k213.zip",
-        "md5": "4aceda4e6e17b113546f0d3eac859125",
+        "md5": "ee1ddb49aac890048dd441729965052d",
         "system": "mame",
         "description": "DMV K213 Module",
         "required": "Required, for certain Arcade Boards and Games"
       },
       {
         "filename": "dmv_k211.zip",
-        "md5": "4aceda4e6e17b113546f0d3eac859125",
+        "md5": "ee1ddb49aac890048dd441729965052d",
         "system": "mame",
         "description": "DMV K211 Module",
         "required": "Required, for certain Arcade Boards and Games"
@@ -3810,7 +3810,7 @@
       },
       {
         "filename": "dmv_k212.zip",
-        "md5": "4aceda4e6e17b113546f0d3eac859125",
+        "md5": "ee1ddb49aac890048dd441729965052d",
         "system": "mame",
         "description": "DMV K212 Module",
         "required": "Required, for certain Arcade Boards and Games"
@@ -3838,7 +3838,7 @@
       },
       {
         "filename": "dmv_k801.zip",
-        "md5": "4aceda4e6e17b113546f0d3eac859125",
+        "md5": "ee1ddb49aac890048dd441729965052d",
         "system": "mame",
         "description": "DMV K801 Module",
         "required": "Required, for certain Arcade Boards and Games"
@@ -3859,7 +3859,7 @@
       },
       {
         "filename": "dragon_claw.zip",
-        "md5": "214b9a31ca7e2ca83259034d2cbbef21",
+        "md5": "dcb7c4ff50e482748ae2ede8d1c018a0",
         "system": "mame",
         "description": "Dragon Claw Module",
         "required": "Required, for certain Arcade Boards and Games"
@@ -3894,14 +3894,14 @@
       },
       {
         "filename": "dragon_multipack.zip",
-        "md5": "214b9a31ca7e2ca83259034d2cbbef21",
+        "md5": "dcb7c4ff50e482748ae2ede8d1c018a0",
         "system": "mame",
         "description": "Dragon Multipack Module",
         "required": "Required, for certain Arcade Boards and Games"
       },
       {
         "filename": "dragon_serial.zip",
-        "md5": "b31fb1ada567dfbe55cc8eeb138d52c9",
+        "md5": "86197dbe84d849f57ba3773337100a54",
         "system": "mame",
         "description": "Dragon Serial Interface",
         "required": "Required, for certain Arcade Boards and Games"
@@ -3943,7 +3943,7 @@
       },
       {
         "filename": "dvk_ktlk.zip",
-        "md5": "4aceda4e6e17b113546f0d3eac859125",
+        "md5": "ee1ddb49aac890048dd441729965052d",
         "system": "mame",
         "description": "DVK KTLK Module",
         "required": "Required, for certain Arcade Boards and Games"
@@ -3999,7 +3999,7 @@
       },
       {
         "filename": "duodock.zip",
-        "md5": "f9eafa246a9d43207690550c45c3b176",
+        "md5": "4339077cc8ac64a0caca170c877b74ec",
         "system": "mame",
         "description": "DuoDock Module",
         "required": "Required, for certain Arcade Boards and Games"
@@ -4027,7 +4027,7 @@
       },
       {
         "filename": "egret.zip",
-        "md5": "a6e956e8c3cbf8cd5a8619adf29c8ca6",
+        "md5": "e2db7b7d1cf1420c7903206815d529d1",
         "system": "mame",
         "description": "Egret Module",
         "required": "Required, for certain Arcade Boards and Games"
@@ -4069,7 +4069,7 @@
       },
       {
         "filename": "electron_ap5.zip",
-        "md5": "1222cdfcccd48adbece5b4d34816172d",
+        "md5": "5a1ee4434eb50f5cf9a171f58331a816",
         "system": "mame",
         "description": "Electron AP5 Module",
         "required": "Required, for certain Arcade Boards and Games"
@@ -4090,7 +4090,7 @@
       },
       {
         "filename": "electron_m2105.zip",
-        "md5": "1ad2d95c3f89f8366b0ffd66a689753b",
+        "md5": "1462fb6dc2fe3ec15f743165f0e65810",
         "system": "mame",
         "description": "Electron M2105 Module",
         "required": "Required, for certain Arcade Boards and Games"
@@ -4111,14 +4111,14 @@
       },
       {
         "filename": "electron_mode7.zip",
-        "md5": "f60c266610092e163d2b7fc0001a9673",
+        "md5": "065d38dcf457c4c6eee988c3c180278c",
         "system": "mame",
         "description": "Electron Mode7 Module",
         "required": "Required, for certain Arcade Boards and Games"
       },
       {
         "filename": "electron_plus1.zip",
-        "md5": "e6d95b3f8cc28fdafbe135ccb49ef114",
+        "md5": "1e39c57fd872732aba1a9f18ad12305c",
         "system": "mame",
         "description": "Electron Plus1 Module",
         "required": "Required, for certain Arcade Boards and Games"
@@ -4132,21 +4132,21 @@
       },
       {
         "filename": "electron_plus3.zip",
-        "md5": "f60c266610092e163d2b7fc0001a9673",
+        "md5": "655dd4c749b8673f6271eb34bd7865aa",
         "system": "mame",
         "description": "Electron Plus3 Module",
         "required": "Required, for certain Arcade Boards and Games"
       },
       {
         "filename": "electron_rombox.zip",
-        "md5": "f60c266610092e163d2b7fc0001a9673",
+        "md5": "065d38dcf457c4c6eee988c3c180278c",
         "system": "mame",
         "description": "Electron RomBox Module",
         "required": "Required, for certain Arcade Boards and Games"
       },
       {
         "filename": "electron_plus2.zip",
-        "md5": "f60c266610092e163d2b7fc0001a9673",
+        "md5": "065d38dcf457c4c6eee988c3c180278c",
         "system": "mame",
         "description": "Electron Plus2 Module",
         "required": "Required, for certain Arcade Boards and Games"
@@ -4160,21 +4160,21 @@
       },
       {
         "filename": "electron_rs423.zip",
-        "md5": "4aceda4e6e17b113546f0d3eac859125",
+        "md5": "ee1ddb49aac890048dd441729965052d",
         "system": "mame",
         "description": "Electron RS423 Module",
         "required": "Required, for certain Arcade Boards and Games"
       },
       {
         "filename": "electron_sidewndr.zip",
-        "md5": "f60c266610092e163d2b7fc0001a9673",
+        "md5": "065d38dcf457c4c6eee988c3c180278c",
         "system": "mame",
         "description": "Electron SideWinder Module",
         "required": "Required, for certain Arcade Boards and Games"
       },
       {
         "filename": "electron_stlefs.zip",
-        "md5": "02fe07655504fd1e738c0e6237c55972",
+        "md5": "41e77c5b3f12370aea7ffae038f109f9",
         "system": "mame",
         "description": "Electron STLEFS Module",
         "required": "Required, for certain Arcade Boards and Games"
@@ -4391,14 +4391,14 @@
       },
       {
         "filename": "f355dlx.zip",
-        "md5": "6b26f22441740e4c79746806cc611a51",
+        "md5": "1028615bcac4c31634a3364ce5c04044",
         "system": "mame",
         "description": "F355 DLX Module",
         "required": "Required, for certain Arcade Boards and Games"
       },
       {
         "filename": "f355bios.zip",
-        "md5": "015337ea4a94c3fa77edfd56fc494b63",
+        "md5": "547f3d12aed389058ca06148f1cca0ed",
         "system": "mame",
         "description": "F355 BIOS Module",
         "required": "Required, for certain Arcade Boards and Games"
@@ -4510,7 +4510,7 @@
       },
       {
         "filename": "galgbios.zip",
-        "md5": "db09438cef97fc058a07def381c10e8e",
+        "md5": "a832488251f892f961a9afe125320adf",
         "system": "mame",
         "description": "GALG BIOS Module",
         "required": "Required, for certain Arcade Boards and Games"
@@ -4552,21 +4552,21 @@
       },
       {
         "filename": "gp_110.zip",
-        "md5": "d6938fbf3e2f187268c08e8fb1c00fb3",
+        "md5": "c45fdc9ceb6908110656940a86b72c56",
         "system": "mame",
         "description": "GP-110 Module",
         "required": "Required, for certain Arcade Boards and Games"
       },
       {
         "filename": "gq863.zip",
-        "md5": "e96083dc045febbda42475c6d7081ada",
+        "md5": "af5512431a3c23d8bb93057d17cff470",
         "system": "mame",
         "description": "GQ863 Module",
         "required": "Required, for certain Arcade Boards and Games"
       },
       {
         "filename": "grndctrl.zip",
-        "md5": "4aceda4e6e17b113546f0d3eac859125",
+        "md5": "ee1ddb49aac890048dd441729965052d",
         "system": "mame",
         "description": "Ground Control Module",
         "required": "Required, for certain Arcade Boards and Games"
@@ -4587,7 +4587,7 @@
       },
       {
         "filename": "gts1.zip",
-        "md5": "7b6e3f5c3d294ab8f9bb4fe1272ba788",
+        "md5": "8ef9b86ab13c70e519d2c02e5282c67b",
         "system": "mame",
         "description": "GTS1 Module",
         "required": "Required, for certain Arcade Boards and Games"
@@ -4629,21 +4629,21 @@
       },
       {
         "filename": "h89ha_88_3.zip",
-        "md5": "4aceda4e6e17b113546f0d3eac859125",
+        "md5": "ee1ddb49aac890048dd441729965052d",
         "system": "mame",
         "description": "H89HA 88-3 Module",
         "required": "Required, for certain Arcade Boards and Games"
       },
       {
         "filename": "h8_h_8_5.zip",
-        "md5": "4aceda4e6e17b113546f0d3eac859125",
+        "md5": "ee1ddb49aac890048dd441729965052d",
         "system": "mame",
         "description": "H8 H-8/5 Module",
         "required": "Required, for certain Arcade Boards and Games"
       },
       {
         "filename": "h89h_88_3.zip",
-        "md5": "4aceda4e6e17b113546f0d3eac859125",
+        "md5": "ee1ddb49aac890048dd441729965052d",
         "system": "mame",
         "description": "H89H 88-3 Module",
         "required": "Required, for certain Arcade Boards and Games"
@@ -4664,14 +4664,14 @@
       },
       {
         "filename": "harddrivc_board.zip",
-        "md5": "4aceda4e6e17b113546f0d3eac859125",
+        "md5": "ee1ddb49aac890048dd441729965052d",
         "system": "mame",
         "description": "HardDrivC Board",
         "required": "Required, for certain Arcade Boards and Games"
       },
       {
         "filename": "harddriv_board.zip",
-        "md5": "4aceda4e6e17b113546f0d3eac859125",
+        "md5": "ee1ddb49aac890048dd441729965052d",
         "system": "mame",
         "description": "HardDriv Board",
         "required": "Required, for certain Arcade Boards and Games"
@@ -4685,7 +4685,7 @@
       },
       {
         "filename": "hcpu30.zip",
-        "md5": "4174a971eba33c5cc036519afb2f5644",
+        "md5": "cd2fd3b28f0e4e36d6a38a66b48ba302",
         "system": "mame",
         "description": "HCPU30 Module",
         "required": "Required, for certain Arcade Boards and Games"
@@ -4720,7 +4720,7 @@
       },
       {
         "filename": "hdrivair_board.zip",
-        "md5": "4aceda4e6e17b113546f0d3eac859125",
+        "md5": "ee1ddb49aac890048dd441729965052d",
         "system": "mame",
         "description": "HDRIVAir Board",
         "required": "Required, for certain Arcade Boards and Games"
@@ -4734,7 +4734,7 @@
       },
       {
         "filename": "hdrivair0_board.zip",
-        "md5": "4aceda4e6e17b113546f0d3eac859125",
+        "md5": "ee1ddb49aac890048dd441729965052d",
         "system": "mame",
         "description": "HDRIVAir0 Board",
         "required": "Required, for certain Arcade Boards and Games"
@@ -4797,7 +4797,7 @@
       },
       {
         "filename": "heath_imaginator_tlb.zip",
-        "md5": "e39ecb805507b7ca01f3d454310588da",
+        "md5": "e3a16f202a8814d6ffb4624688d6b3fa",
         "system": "mame",
         "description": "Heath Imaginator TLB",
         "required": "Required, for certain Arcade Boards and Games"
@@ -4825,28 +4825,28 @@
       },
       {
         "filename": "hikaru.zip",
-        "md5": "ee8aece1625dcfb93320c2a14a6334b8",
+        "md5": "040f9b37a1f802d450379aaec106ec69",
         "system": "mame",
         "description": "Hikaru Module",
         "required": "Required, for certain Arcade Boards and Games"
       },
       {
         "filename": "heathrow.zip",
-        "md5": "4aceda4e6e17b113546f0d3eac859125",
+        "md5": "ee1ddb49aac890048dd441729965052d",
         "system": "mame",
         "description": "Heathrow Module",
         "required": "Required, for certain Arcade Boards and Games"
       },
       {
         "filename": "hk68v10.zip",
-        "md5": "eaba1bfaea9490461bf44447ee48c5f0",
+        "md5": "1ee500cdbbe68dcc0f309e74fbdb14e0",
         "system": "mame",
         "description": "HK68V10 Module",
         "required": "Required, for certain Arcade Boards and Games"
       },
       {
         "filename": "hp82919.zip",
-        "md5": "4aceda4e6e17b113546f0d3eac859125",
+        "md5": "ee1ddb49aac890048dd441729965052d",
         "system": "mame",
         "description": "HP82919 Module",
         "required": "Required, for certain Arcade Boards and Games"
@@ -4860,7 +4860,7 @@
       },
       {
         "filename": "hp82939.zip",
-        "md5": "80afc5465716d4693a1d378a175a47de",
+        "md5": "1892470f19d3ba97e1d63dbbbca711e7",
         "system": "mame",
         "description": "HP82939 Module",
         "required": "Required, for certain Arcade Boards and Games"
@@ -4881,7 +4881,7 @@
       },
       {
         "filename": "hod2bios.zip",
-        "md5": "0ec01786c10707acfa480f1d96c935ef",
+        "md5": "f4011d3116500354edf7302a90402711",
         "system": "mame",
         "description": "HOD2 BIOS",
         "required": "Required, for certain Arcade Boards and Games"
@@ -4902,7 +4902,7 @@
       },
       {
         "filename": "hp98036.zip",
-        "md5": "4aceda4e6e17b113546f0d3eac859125",
+        "md5": "ee1ddb49aac890048dd441729965052d",
         "system": "mame",
         "description": "HP98036 Module",
         "required": "Required, for certain Arcade Boards and Games"
@@ -4916,7 +4916,7 @@
       },
       {
         "filename": "hp98046.zip",
-        "md5": "881bcce1918a84e74406a0724c018e7a",
+        "md5": "a561fa520e06e2282280140add06e4f6",
         "system": "mame",
         "description": "HP98046 Module",
         "required": "Required, for certain Arcade Boards and Games"
@@ -4951,7 +4951,7 @@
       },
       {
         "filename": "hpblp.zip",
-        "md5": "8332a4f38fd5d22b911367bba59e282b",
+        "md5": "296161da75cb41fc1bba1780006a376a",
         "system": "mame",
         "description": "HPBLP Module",
         "required": "Required, for certain Arcade Boards and Games"
@@ -5014,7 +5014,7 @@
       },
       {
         "filename": "idpart_video.zip",
-        "md5": "9dfe3f5175dc257970e53c1d987b0122",
+        "md5": "8af1ac5b99978b3120e84432686e1495",
         "system": "mame",
         "description": "ID Part Video Module",
         "required": "Required, for certain Arcade Boards and Games"
@@ -5098,7 +5098,7 @@
       },
       {
         "filename": "ioc2g.zip",
-        "md5": "1681169294f6a60006ff2514ea416594",
+        "md5": "a0718b66c941c441830f4f6de86710fa",
         "system": "mame",
         "description": "IOC2G Module",
         "required": "Required, for certain Arcade Boards and Games"
@@ -5161,7 +5161,7 @@
       },
       {
         "filename": "ioc2f.zip",
-        "md5": "1681169294f6a60006ff2514ea416594",
+        "md5": "a0718b66c941c441830f4f6de86710fa",
         "system": "mame",
         "description": "IOC2F Module",
         "required": "Required, for certain Arcade Boards and Games"
@@ -5287,7 +5287,7 @@
       },
       {
         "filename": "isbc8024.zip",
-        "md5": "cd90864a740556601038dff8e9d8273d",
+        "md5": "4eff0337e0fe2791f228fb54bbe2dc44",
         "system": "mame",
         "description": "ISBC 8024 Module",
         "required": "Required, for certain Arcade Boards and Games"
@@ -5301,7 +5301,7 @@
       },
       {
         "filename": "iteagle_fpga.zip",
-        "md5": "4aceda4e6e17b113546f0d3eac859125",
+        "md5": "ee1ddb49aac890048dd441729965052d",
         "system": "mame",
         "description": "IT Eagle FPGA Module",
         "required": "Required, for certain Arcade Boards and Games"
@@ -5315,7 +5315,7 @@
       },
       {
         "filename": "k573kara.zip",
-        "md5": "2445050e54a5b1aac67bc52a12a012d0",
+        "md5": "61811c906696f6622d237bf1c0f8c227",
         "system": "mame",
         "description": "K573 Kara Module",
         "required": "Required, for certain Arcade Boards and Games"
@@ -5371,14 +5371,14 @@
       },
       {
         "filename": "iteagle.zip",
-        "md5": "fa000dfb262f8bbd99c3c9cb10489283",
+        "md5": "a8c8fe344adb352ea09166a7c43e33b0",
         "system": "mame",
         "description": "IT Eagle expansion module.",
         "required": "Required, for certain Arcade Boards and Games"
       },
       {
         "filename": "iteagle.zip",
-        "md5": "fa000dfb262f8bbd99c3c9cb10489283",
+        "md5": "a8c8fe344adb352ea09166a7c43e33b0",
         "system": "mame",
         "description": "IT Eagle Module",
         "required": "Required, for certain Arcade Boards and Games"
@@ -5490,7 +5490,7 @@
       },
       {
         "filename": "konamigv.zip",
-        "md5": "0ae0cea76cee8287e5a0b6d97a883793",
+        "md5": "361f60b1d3ce84e17f027f3e547e3091",
         "system": "mame",
         "description": "Konami GV system module.",
         "required": "Required, for certain Arcade Boards and Games"
@@ -5518,14 +5518,14 @@
       },
       {
         "filename": "kviper.zip",
-        "md5": "b446b6daa5cf4d381f856557f5a70c26",
+        "md5": "7a14456d6e8afaf540f2368fead25f26",
         "system": "mame",
         "description": "Viper expansion module.",
         "required": "Required, for certain Arcade Boards and Games"
       },
       {
         "filename": "labtam_8086cpu.zip",
-        "md5": "9a002dcf5616f51330cea76d66281771",
+        "md5": "4c6b4a91bffcafb3d51179383525d8d5",
         "system": "mame",
         "description": "Labtam 8086 CPU module.",
         "required": "Required, for certain Arcade Boards and Games"
@@ -5546,7 +5546,7 @@
       },
       {
         "filename": "labtam_vducom.zip",
-        "md5": "f76b9a78b3cfa0ac159179e01a465324",
+        "md5": "37aa6f1012337a2317255502dbc6bb96",
         "system": "mame",
         "description": "Labtam VDU communication module.",
         "required": "Required, for certain Arcade Boards and Games"
@@ -5602,7 +5602,7 @@
       },
       {
         "filename": "lindbios.zip",
-        "md5": "74a0ed6ae5a559eeaf2069cfda2c73c4",
+        "md5": "d048a9ff941041de45c26474a0da40aa",
         "system": "mame",
         "description": "Lind system BIOS.",
         "required": "Required, for certain Arcade Boards and Games"
@@ -5735,7 +5735,7 @@
       },
       {
         "filename": "macf108.zip",
-        "md5": "3eb3b1a4bfdbde0d704b074e7793715e",
+        "md5": "e7bf0ebfee9a01135888d172af15e006",
         "system": "mame",
         "description": "Mac F108 expansion module.",
         "required": "Required, for certain Arcade Boards and Games"
@@ -5805,7 +5805,7 @@
       },
       {
         "filename": "mackbd_m0120.zip",
-        "md5": "f53272ef8c98ba0c64036bdf1315ed5d",
+        "md5": "c54b17f59168048eb5bf99f83a1f0f4d",
         "system": "mame",
         "description": "Mac M0120 keyboard.",
         "required": "Required, for certain Arcade Boards and Games"
@@ -5833,14 +5833,14 @@
       },
       {
         "filename": "macsbios.zip",
-        "md5": "2d8bb01c90040684b5ff7c2636ec7574",
+        "md5": "34530e248d96e7171af19155af315378",
         "system": "mame",
         "description": "BIOS for Macintosh emulation.",
         "required": "Required, for certain Arcade Boards and Games"
       },
       {
         "filename": "maxaflex.zip",
-        "md5": "91b5c47c17119eb2850eca5d4b5047ec",
+        "md5": "b48fb4fb35dc348f4904a318dbf9a712",
         "system": "mame",
         "description": "Maxaflex module for system expansion.",
         "required": "Required, for certain Arcade Boards and Games"
@@ -5854,7 +5854,7 @@
       },
       {
         "filename": "md_jcart.zip",
-        "md5": "47ded6dee9e345c51c9b16d73b13dae1",
+        "md5": "7d04a618d9be084ee1b33baafc0a5087",
         "system": "mame",
         "description": "Mega Drive J-Cart with additional ports.",
         "required": "Required, for certain Arcade Boards and Games"
@@ -5882,14 +5882,14 @@
       },
       {
         "filename": "md_seprom_codemast.zip",
-        "md5": "47ded6dee9e345c51c9b16d73b13dae1",
+        "md5": "7d04a618d9be084ee1b33baafc0a5087",
         "system": "mame",
         "description": "Codemaster SEPROM for Mega Drive cartridges.",
         "required": "Required, for certain Arcade Boards and Games"
       },
       {
         "filename": "md_seprom_mm96.zip",
-        "md5": "47ded6dee9e345c51c9b16d73b13dae1",
+        "md5": "7d04a618d9be084ee1b33baafc0a5087",
         "system": "mame",
         "description": "MM96 SEPROM for Mega Drive cartridge support.",
         "required": "Required, for certain Arcade Boards and Games"
@@ -5903,7 +5903,7 @@
       },
       {
         "filename": "megadrive_rom_jcart_micromac2.zip",
-        "md5": "47ded6dee9e345c51c9b16d73b13dae1",
+        "md5": "7d04a618d9be084ee1b33baafc0a5087",
         "system": "mame",
         "description": "J-Cart Micromac2 for Mega Drive with extra controller ports.",
         "required": "Required, for certain Arcade Boards and Games"
@@ -5917,56 +5917,56 @@
       },
       {
         "filename": "megadrive_rom_jcart_micromac96.zip",
-        "md5": "47ded6dee9e345c51c9b16d73b13dae1",
+        "md5": "7d04a618d9be084ee1b33baafc0a5087",
         "system": "mame",
         "description": "J-Cart Micromac96 for Mega Drive with extra ports.",
         "required": "Required, for certain Arcade Boards and Games"
       },
       {
         "filename": "megadrive_rom_jcart_sampras.zip",
-        "md5": "47ded6dee9e345c51c9b16d73b13dae1",
+        "md5": "7d04a618d9be084ee1b33baafc0a5087",
         "system": "mame",
         "description": "J-Cart Sampras for Mega Drive with dual controller support.",
         "required": "Required, for certain Arcade Boards and Games"
       },
       {
         "filename": "megadrive_rom_jcart_sskid.zip",
-        "md5": "47ded6dee9e345c51c9b16d73b13dae1",
+        "md5": "7d04a618d9be084ee1b33baafc0a5087",
         "system": "mame",
         "description": "J-Cart SSKid for Mega Drive with extra controller ports.",
         "required": "Required, for certain Arcade Boards and Games"
       },
       {
         "filename": "megaplay.zip",
-        "md5": "1b5e4572439839af22bf682e409f9e8b",
+        "md5": "6bb005f55ba39bc5f6b330b663da1a58",
         "system": "mame",
         "description": "Arcade-to-home Mega Play module for game conversion.",
         "required": "Required, for certain Arcade Boards and Games"
       },
       {
         "filename": "megadrive_rom_jcart_micromac96.zip",
-        "md5": "47ded6dee9e345c51c9b16d73b13dae1",
+        "md5": "7d04a618d9be084ee1b33baafc0a5087",
         "system": "mame",
         "description": "Mega Drive J-Cart Micromac96: Special cartridge for Mega Drive.",
         "required": "Required, for certain Arcade Boards and Games"
       },
       {
         "filename": "megadrive_rom_jcart_sampras.zip",
-        "md5": "47ded6dee9e345c51c9b16d73b13dae1",
+        "md5": "7d04a618d9be084ee1b33baafc0a5087",
         "system": "mame",
         "description": "Mega Drive J-Cart Sampras: Sampras themed cartridge.",
         "required": "Required, for certain Arcade Boards and Games"
       },
       {
         "filename": "megadrive_rom_jcart_sskid.zip",
-        "md5": "47ded6dee9e345c51c9b16d73b13dae1",
+        "md5": "7d04a618d9be084ee1b33baafc0a5087",
         "system": "mame",
         "description": "Mega Drive J-Cart SSKid: SSKid themed cartridge.",
         "required": "Required, for certain Arcade Boards and Games"
       },
       {
         "filename": "megaplay.zip",
-        "md5": "1b5e4572439839af22bf682e409f9e8b",
+        "md5": "6bb005f55ba39bc5f6b330b663da1a58",
         "system": "mame",
         "description": "Mega Play Module: Mega Drive arcade unit module.",
         "required": "Required, for certain Arcade Boards and Games"
@@ -6015,7 +6015,7 @@
       },
       {
         "filename": "megatech.zip",
-        "md5": "0196924b2b5c08fff9a5a2daab763a9e",
+        "md5": "a502f86d5d16e00282173a901c26648b",
         "system": "mame",
         "description": "Megatech: Arcade module for MSX.",
         "required": "Required, for certain Arcade Boards and Games"
@@ -6029,7 +6029,7 @@
       },
       {
         "filename": "mindset_rs232_module.zip",
-        "md5": "4aceda4e6e17b113546f0d3eac859125",
+        "md5": "ee1ddb49aac890048dd441729965052d",
         "system": "mame",
         "description": "Mindset RS232: RS232 module for Mindset.",
         "required": "Required, for certain Arcade Boards and Games"
@@ -6085,7 +6085,7 @@
       },
       {
         "filename": "model1io2.zip",
-        "md5": "d127e8d24b7492566ec518f33bffa32e",
+        "md5": "db7ab55139955edc23b4f2ddd5a168fd",
         "system": "mame",
         "description": "Model 1 IO 2: Extended I/O module.",
         "required": "Required, for certain Arcade Boards and Games"
@@ -6155,7 +6155,7 @@
       },
       {
         "filename": "mpf1_iom_ip.zip",
-        "md5": "70a0d143ba02663ee9d936cd00ee7409",
+        "md5": "56610ca4ac9855c4143b399662c52db9",
         "system": "mame",
         "description": "MPF1 IOM IP: I/O module for MSX.",
         "required": "Required, for certain Arcade Boards and Games"
@@ -6274,7 +6274,7 @@
       },
       {
         "filename": "mshark.zip",
-        "md5": "d603d6d729ebd99386e212cec92b4df5",
+        "md5": "c5b84ed7d94f0010de3df9d6575182c0",
         "system": "mame",
         "description": "Mshark: Audio expansion for MSX.",
         "required": "Required, for certain Arcade Boards and Games"
@@ -6316,7 +6316,7 @@
       },
       {
         "filename": "msmt094.zip",
-        "md5": "85bb869cac6a1c21e84637cebffaadeed",
+        "md5": "85bb869cac6a1c21e84637cebffaaded",
         "system": "mame",
         "description": "MSMT094: MSX expansion module.",
         "required": "Required, for certain Arcade Boards and Games"
@@ -6365,14 +6365,14 @@
       },
       {
         "filename": "msx_segactrl.zip",
-        "md5": "47ded6dee9e345c51c9b16d73b13dae1",
+        "md5": "7d04a618d9be084ee1b33baafc0a5087",
         "system": "mame",
         "description": "MSX Segactrl: Controller interface for MSX systems.",
         "required": "Required, for certain Arcade Boards and Games"
       },
       {
         "filename": "msx_slot_rs232.zip",
-        "md5": "4aceda4e6e17b113546f0d3eac859125",
+        "md5": "ee1ddb49aac890048dd441729965052d",
         "system": "mame",
         "description": "MSX Slot RS232: RS232 serial interface for MSX.",
         "required": "Required, for certain Arcade Boards and Games"
@@ -6400,14 +6400,14 @@
       },
       {
         "filename": "msx_slot_rs232_mitsubishi.zip",
-        "md5": "4aceda4e6e17b113546f0d3eac859125",
+        "md5": "ee1ddb49aac890048dd441729965052d",
         "system": "mame",
         "description": "MSX Slot RS232 Mitsubishi: RS232 interface for MSX by Mitsubishi.",
         "required": "Required, for certain Arcade Boards and Games"
       },
       {
         "filename": "msx_slot_rs232_svi738.zip",
-        "md5": "4aceda4e6e17b113546f0d3eac859125",
+        "md5": "ee1ddb49aac890048dd441729965052d",
         "system": "mame",
         "description": "MSX Slot RS232 SVI738: RS232 interface for SVI738 MSX.",
         "required": "Required, for certain Arcade Boards and Games"
@@ -6421,14 +6421,14 @@
       },
       {
         "filename": "msx_slot_rs232_toshiba.zip",
-        "md5": "4aceda4e6e17b113546f0d3eac859125",
+        "md5": "ee1ddb49aac890048dd441729965052d",
         "system": "mame",
         "description": "MSX Slot RS232 Toshiba: RS232 expansion for Toshiba MSX.",
         "required": "Required, for certain Arcade Boards and Games"
       },
       {
         "filename": "msx_slot_rs232_sony.zip",
-        "md5": "4aceda4e6e17b113546f0d3eac859125",
+        "md5": "ee1ddb49aac890048dd441729965052d",
         "system": "mame",
         "description": "MSX Slot RS232 Sony: RS232 interface for Sony MSX.",
         "required": "Required, for certain Arcade Boards and Games"
@@ -6442,7 +6442,7 @@
       },
       {
         "filename": "msx_slot_rs232_toshiba_hx3x.zip",
-        "md5": "4aceda4e6e17b113546f0d3eac859125",
+        "md5": "ee1ddb49aac890048dd441729965052d",
         "system": "mame",
         "description": "MSX Slot RS232 Toshiba HX3X: RS232 expansion for Toshiba HX3X MSX.",
         "required": "Required, for certain Arcade Boards and Games"
@@ -6463,7 +6463,7 @@
       },
       {
         "filename": "mvme120.zip",
-        "md5": "56ab7546fbb0707a1d6214cfbdefb0d9",
+        "md5": "c77c25e182a049a57a8942007a0a5563",
         "system": "mame",
         "description": "MVME 120: Motorola MVME120 system for embedded applications.",
         "required": "Required, for certain Arcade Boards and Games"
@@ -6477,7 +6477,7 @@
       },
       {
         "filename": "msx_slot_rs232_toshiba_hx3x.zip",
-        "md5": "4aceda4e6e17b113546f0d3eac859125",
+        "md5": "ee1ddb49aac890048dd441729965052d",
         "system": "mame",
         "description": "MSX Slot RS232 Toshiba HX3X",
         "required": "Required, for certain Arcade Boards and Games"
@@ -6498,7 +6498,7 @@
       },
       {
         "filename": "mvme120.zip",
-        "md5": "56ab7546fbb0707a1d6214cfbdefb0d9",
+        "md5": "c77c25e182a049a57a8942007a0a5563",
         "system": "mame",
         "description": "MVME 120",
         "required": "Required, for certain Arcade Boards and Games"
@@ -6512,7 +6512,7 @@
       },
       {
         "filename": "mvme121.zip",
-        "md5": "56ab7546fbb0707a1d6214cfbdefb0d9",
+        "md5": "c77c25e182a049a57a8942007a0a5563",
         "system": "mame",
         "description": "MVME121 - VMEbus SBC from Motorola.",
         "required": "Required, for certain Arcade Boards and Games"
@@ -6526,28 +6526,28 @@
       },
       {
         "filename": "mvme122.zip",
-        "md5": "56ab7546fbb0707a1d6214cfbdefb0d9",
+        "md5": "c77c25e182a049a57a8942007a0a5563",
         "system": "mame",
         "description": "MVME122 - Compact VME-based SBC.",
         "required": "Required, for certain Arcade Boards and Games"
       },
       {
         "filename": "mvme123.zip",
-        "md5": "56ab7546fbb0707a1d6214cfbdefb0d9",
+        "md5": "c77c25e182a049a57a8942007a0a5563",
         "system": "mame",
         "description": "MVME123 - VMEbus SBC with high performance.",
         "required": "Required, for certain Arcade Boards and Games"
       },
       {
         "filename": "mvme147.zip",
-        "md5": "d727311df70f837576f5b8cda352d161",
+        "md5": "846002f4a3556e49ce3e02ae2e05f789",
         "system": "mame",
         "description": "MVME147 - VMEbus processor with Intel 80486.",
         "required": "Required, for certain Arcade Boards and Games"
       },
       {
         "filename": "mvme180.zip",
-        "md5": "0074c0b50741b52c5e0c3fd5feeb7c57",
+        "md5": "236c7dd3d3af022f17699973c06e4f32",
         "system": "mame",
         "description": "MVME180 - VMEbus processor module.",
         "required": "Required, for certain Arcade Boards and Games"
@@ -6568,7 +6568,7 @@
       },
       {
         "filename": "mvme187.zip",
-        "md5": "d4c5caa1e9cb341985e6e6d3e5c85875",
+        "md5": "408fdd0835f0a6fa73d2a2a94faa09cf",
         "system": "mame",
         "description": "MVME187 - VME processor for embedded use.",
         "required": "Required, for certain Arcade Boards and Games"
@@ -6589,14 +6589,14 @@
       },
       {
         "filename": "mvme181.zip",
-        "md5": "0ddc0a503b431c8e2fefaba0b297e851",
+        "md5": "ac9b0a31384de81bd173b02a2634771c",
         "system": "mame",
         "description": "MVME181 - VME processor for data-intensive tasks.",
         "required": "Required, for certain Arcade Boards and Games"
       },
       {
         "filename": "mzr8300.zip",
-        "md5": "4aceda4e6e17b113546f0d3eac859125",
+        "md5": "ee1ddb49aac890048dd441729965052d",
         "system": "mame",
         "description": "MZR8300 - I/O card for MZR systems.",
         "required": "Required, for certain Arcade Boards and Games"
@@ -6624,7 +6624,7 @@
       },
       {
         "filename": "nabupc_option_rs232.zip",
-        "md5": "4aceda4e6e17b113546f0d3eac859125",
+        "md5": "ee1ddb49aac890048dd441729965052d",
         "system": "mame",
         "description": "NABUPC RS232 option for serial communication.",
         "required": "Required, for certain Arcade Boards and Games"
@@ -6883,14 +6883,14 @@
       },
       {
         "filename": "naomigd.zip",
-        "md5": "82f3a8bea688b4863947722d2fcb07f7",
+        "md5": "e20b430bd7def78b45f61f238abab624",
         "system": "mame",
         "description": "Naomi GD-ROM - Disc-based arcade system.",
         "required": "Required"
       },
       {
         "filename": "naomi2.zip",
-        "md5": "339c59ece7d4d6803880c91bbb44ac93",
+        "md5": "c50072cbab75673e1b1a6b94355e6fa8",
         "system": "mame",
         "description": "Naomi 2 - Advanced arcade hardware system.",
         "required": "Required"
@@ -7065,14 +7065,14 @@
       },
       {
         "filename": "newbrain_fdc.zip",
-        "md5": "c3d3320428941ef81f5a5ebed338a48b",
+        "md5": "0fb3e93ff1983cf04c333f609f2aea02",
         "system": "mame",
         "description": "Newbrain FDC - Floppy disk controller for Newbrain.",
         "required": "Required, for certain Arcade Boards and Games"
       },
       {
         "filename": "newbrain_eim.zip",
-        "md5": "c3d3320428941ef81f5a5ebed338a48b",
+        "md5": "0fb3e93ff1983cf04c333f609f2aea02",
         "system": "mame",
         "description": "Newbrain EIM - Expansion interface for Newbrain.",
         "required": "Required, for certain Arcade Boards and Games"
@@ -7100,14 +7100,14 @@
       },
       {
         "filename": "nmk004.zip",
-        "md5": "f70b65623a99abd278f88707c3700b32",
+        "md5": "bfacf1a68792d5348f93cf724d2f1dda",
         "system": "mame",
         "description": "NMK004 - Arcade controller for various systems.",
         "required": "Required, for certain Arcade Boards and Games"
       },
       {
         "filename": "naomi.zip",
-        "md5": "b1e8f2b4b80206fe5c2db49fc18adf4c",
+        "md5": "526eda1e2a7920c92c88178789d71d84",
         "system": "mame",
         "description": "Naomi - Arcade system board with powerful graphics.",
         "required": "Required"
@@ -7121,7 +7121,7 @@
       },
       {
         "filename": "nss.zip",
-        "md5": "b8609ba5f2af2e8f8723b5c62a905a44",
+        "md5": "64477b600ad6436f3304624bf02f993f",
         "system": "mame",
         "description": "NSS - Networked system for arcade games.",
         "required": "Required, for certain Arcade Boards and Games"
@@ -7142,7 +7142,7 @@
       },
       {
         "filename": "ohare.zip",
-        "md5": "4aceda4e6e17b113546f0d3eac859125",
+        "md5": "ee1ddb49aac890048dd441729965052d",
         "system": "mame",
         "description": "O'Hare - Arcade game featuring a shooting mechanism.",
         "required": "Required, for certain Arcade Boards and Games"
@@ -7156,7 +7156,7 @@
       },
       {
         "filename": "omti8621isa.zip",
-        "md5": "74517bb5a9cfbafda7fd2454e8d3ce8e",
+        "md5": "55115e5ab1567226b7186e890932f198",
         "system": "mame",
         "description": "OMTI 8621 ISA - ISA card for arcade systems.",
         "required": "Required, for certain Arcade Boards and Games"
@@ -7240,7 +7240,7 @@
       },
       {
         "filename": "paddington.zip",
-        "md5": "4aceda4e6e17b113546f0d3eac859125",
+        "md5": "ee1ddb49aac890048dd441729965052d",
         "system": "mame",
         "description": "Paddington - Arcade game featuring platformer mechanics.",
         "required": "Required, for certain Arcade Boards and Games"
@@ -7331,7 +7331,7 @@
       },
       {
         "filename": "pc9801_26.zip",
-        "md5": "ecfa65a435856296c10fced96d32e536",
+        "md5": "b18d0380b4f8fa70ede0fb022e2bc87f",
         "system": "mame",
         "description": "PC-9801-26 - Another model in the NEC PC-9801 series.",
         "required": "Required, for certain Arcade Boards and Games"
@@ -7352,14 +7352,14 @@
       },
       {
         "filename": "pc9801_55u.zip",
-        "md5": "ed63de657f0047c620bc23fafeaa6613",
+        "md5": "e4c9a0b2e918e0e5914c158f3c0328a8",
         "system": "mame",
         "description": "PC-9801-55U - One of the high-end models of the PC-9801 series.",
         "required": "Required, for certain Arcade Boards and Games"
       },
       {
         "filename": "pc9801_55l.zip",
-        "md5": "a97fcb216eb705700a0cd8e3e6018a6a",
+        "md5": "44a25fd6749339ee3fda29117f0b5cbb",
         "system": "mame",
         "description": "PC-9801-55L - A compact model of NEC PC-9801 series.",
         "required": "Required, for certain Arcade Boards and Games"
@@ -7373,7 +7373,7 @@
       },
       {
         "filename": "pc9801_86.zip",
-        "md5": "1c18c73c7a2295a0070ca0fb95644359",
+        "md5": "9f2ce3adc21d8e2648478ef1e369098e",
         "system": "mame",
         "description": "PC-9801-86 - Latest model of the PC-9801 series.",
         "required": "Required, for certain Arcade Boards and Games"
@@ -7387,7 +7387,7 @@
       },
       {
         "filename": "pc98_otomichan_kai.zip",
-        "md5": "e85e09f5ea47a7c5aa1cbb99a4a25812",
+        "md5": "7018498d37f019e86d52087bee2dbb67",
         "system": "mame",
         "description": "PC-98 Otomichan Kai - Enhanced version of Otomichan for PC-98.",
         "required": "Required, for certain Arcade Boards and Games"
@@ -7422,14 +7422,14 @@
       },
       {
         "filename": "pce_multitap.zip",
-        "md5": "47ded6dee9e345c51c9b16d73b13dae1",
+        "md5": "7d04a618d9be084ee1b33baafc0a5087",
         "system": "mame",
         "description": "PCE Multitap - Multitap peripheral for the PC Engine.",
         "required": "Required, for certain Arcade Boards and Games"
       },
       {
         "filename": "pce_xhe3.zip",
-        "md5": "47ded6dee9e345c51c9b16d73b13dae1",
+        "md5": "7d04a618d9be084ee1b33baafc0a5087",
         "system": "mame",
         "description": "PCE XHE3 - Expanded hardware for the PC Engine.",
         "required": "Required, for certain Arcade Boards and Games"
@@ -7576,7 +7576,7 @@
       },
       {
         "filename": "pet_softbox.zip",
-        "md5": "1ce9786474ee9def073d02fa928b8546",
+        "md5": "cd6fd600b43c7ef64f4cec238445ac89",
         "system": "mame",
         "description": "PET Softbox - Software for the Commodore PET system.",
         "required": "Required, for certain Arcade Boards and Games"
@@ -7590,21 +7590,21 @@
       },
       {
         "filename": "pet_superpet.zip",
-        "md5": "6e92da7811500b95e168389e9ae558f1",
+        "md5": "069fea8d909bedc6c0f7f8b3b8555f86",
         "system": "mame",
         "description": "PET SuperPET - Expanded version of the Commodore PET.",
         "required": "Required, for certain Arcade Boards and Games"
       },
       {
         "filename": "pl6_fpga.zip",
-        "md5": "4aceda4e6e17b113546f0d3eac859125",
+        "md5": "ee1ddb49aac890048dd441729965052d",
         "system": "mame",
         "description": "PL6 FPGA - FPGA implementation for PL6-based systems.",
         "required": "Required, for certain Arcade Boards and Games"
       },
       {
         "filename": "playch10.zip",
-        "md5": "49f8475ae1aa30dc8b9ec8fc134ae8ff",
+        "md5": "0329b5c0eb126c6da029b09ae63e707c",
         "system": "mame",
         "description": "Playch10 - Video and sound hardware for retro systems.",
         "required": "Required, for certain Arcade Boards and Games"
@@ -7618,14 +7618,14 @@
       },
       {
         "filename": "pgm.zip",
-        "md5": "87cc944eef4c671aa2629a8ba48a08e0",
+        "md5": "68ef99a1f2847d08ff9242a90561d31b",
         "system": "mame",
         "description": "PGM - Programmable graphics module for arcade systems.",
         "required": "Required, for certain Arcade Boards and Games"
       },
       {
         "filename": "pofo_hpc102.zip",
-        "md5": "4aceda4e6e17b113546f0d3eac859125",
+        "md5": "ee1ddb49aac890048dd441729965052d",
         "system": "mame",
         "description": "Pofo HPC102 - Hardware peripheral for Pofo systems.",
         "required": "Required, for certain Arcade Boards and Games"
@@ -7646,14 +7646,14 @@
       },
       {
         "filename": "pofo_hpc104_2.zip",
-        "md5": "f167d21eadff30d779deb2d9137310b2",
+        "md5": "68babe6f7f88c8854436fac395f7126c",
         "system": "mame",
         "description": "Pofo HPC104 v2 - Enhanced version of the Pofo HPC104 hardware.",
         "required": "Required, for certain Arcade Boards and Games"
       },
       {
         "filename": "pofo_hpc104.zip",
-        "md5": "f167d21eadff30d779deb2d9137310b2",
+        "md5": "68babe6f7f88c8854436fac395f7126c",
         "system": "mame",
         "description": "Pofo HPC104 - Hardware peripheral for Pofo systems.",
         "required": "Required, for certain Arcade Boards and Games"
@@ -7723,7 +7723,7 @@
       },
       {
         "filename": "psion_3link_ser.zip",
-        "md5": "38903a93c83eef24d9732409864f27e0",
+        "md5": "91b1aed905a42884f62cc3d265795bca",
         "system": "mame",
         "description": "Psion 3Link SER - Serial link for Psion 3 devices.",
         "required": "Required, for certain Arcade Boards and Games"
@@ -7744,7 +7744,7 @@
       },
       {
         "filename": "psion_pclink.zip",
-        "md5": "4aceda4e6e17b113546f0d3eac859125",
+        "md5": "ee1ddb49aac890048dd441729965052d",
         "system": "mame",
         "description": "Psion PCLink - PC link software for Psion devices.",
         "required": "Required, for certain Arcade Boards and Games"
@@ -7758,14 +7758,14 @@
       },
       {
         "filename": "psion_serpar.zip",
-        "md5": "f167d21eadff30d779deb2d9137310b2",
+        "md5": "68babe6f7f88c8854436fac395f7126c",
         "system": "mame",
         "description": "Psion SerPar - Serial and parallel interface for Psion systems.",
         "required": "Required, for certain Arcade Boards and Games"
       },
       {
         "filename": "psion_siena_ssd.zip",
-        "md5": "f167d21eadff30d779deb2d9137310b2",
+        "md5": "68babe6f7f88c8854436fac395f7126c",
         "system": "mame",
         "description": "Psion Siena SSD - Solid-state drive for Psion Siena.",
         "required": "Required, for certain Arcade Boards and Games"
@@ -7849,7 +7849,7 @@
       },
       {
         "filename": "pumpitup.zip",
-        "md5": "6dca9007e2ff01e1f04cacc4141b48c6",
+        "md5": "91193c66d849c0ddd58c0074a55cbff1",
         "system": "mame",
         "description": "Pump It Up - Dance game hardware interface.",
         "required": "Required, for certain Arcade Boards and Games"
@@ -7926,7 +7926,7 @@
       },
       {
         "filename": "qsound.zip",
-        "md5": "758388893761ea3ff0d820f60344a38e",
+        "md5": "101163782d87442d74f5e98c50c9f912",
         "system": "mame",
         "description": "QSound - Sound system for retro gaming hardware.",
         "required": "Required, for certain Arcade Boards and Games"
@@ -7968,7 +7968,7 @@
       },
       {
         "filename": "qts1.zip",
-        "md5": "fc7c78e5d95eed9c2d719d04876f7fae",
+        "md5": "156488c33b33957a9e81aa8b92bae227",
         "system": "mame",
         "description": "QTS1 - Software for QTS systems.",
         "required": "Required, for certain Arcade Boards and Games"
@@ -7989,28 +7989,28 @@
       },
       {
         "filename": "racedrivb1_board.zip",
-        "md5": "4aceda4e6e17b113546f0d3eac859125",
+        "md5": "ee1ddb49aac890048dd441729965052d",
         "system": "mame",
         "description": "Racedriv B1 - Board for Racedriv arcade machine.",
         "required": "Required, for certain Arcade Boards and Games"
       },
       {
         "filename": "racedriv_board.zip",
-        "md5": "4aceda4e6e17b113546f0d3eac859125",
+        "md5": "ee1ddb49aac890048dd441729965052d",
         "system": "mame",
         "description": "Racedriv - Arcade racing game hardware board.",
         "required": "Required, for certain Arcade Boards and Games"
       },
       {
         "filename": "racedrivc1_board.zip",
-        "md5": "4aceda4e6e17b113546f0d3eac859125",
+        "md5": "ee1ddb49aac890048dd441729965052d",
         "system": "mame",
         "description": "Racedriv C1 - Board for Racedriv arcade machine.",
         "required": "Required, for certain Arcade Boards and Games"
       },
       {
         "filename": "racedrivc_board.zip",
-        "md5": "4aceda4e6e17b113546f0d3eac859125",
+        "md5": "ee1ddb49aac890048dd441729965052d",
         "system": "mame",
         "description": "Racedriv C - Arcade hardware for racing games.",
         "required": "Required, for certain Arcade Boards and Games"
@@ -8024,21 +8024,21 @@
       },
       {
         "filename": "racedrivc_panorama_side_board.zip",
-        "md5": "4aceda4e6e17b113546f0d3eac859125",
+        "md5": "ee1ddb49aac890048dd441729965052d",
         "system": "mame",
         "description": "Racedriv C - Panorama side board for arcade systems.",
         "required": "Required, for certain Arcade Boards and Games"
       },
       {
         "filename": "rc2014_dual_serial_40p.zip",
-        "md5": "4aceda4e6e17b113546f0d3eac859125",
+        "md5": "ee1ddb49aac890048dd441729965052d",
         "system": "mame",
         "description": "RC2014 - Dual serial interface with 40-pin connector.",
         "required": "Required, for certain Arcade Boards and Games"
       },
       {
         "filename": "rc2014_dual_serial.zip",
-        "md5": "4aceda4e6e17b113546f0d3eac859125",
+        "md5": "ee1ddb49aac890048dd441729965052d",
         "system": "mame",
         "description": "RC2014 - Dual serial interface board.",
         "required": "Required, for certain Arcade Boards and Games"
@@ -8052,7 +8052,7 @@
       },
       {
         "filename": "rc2014_micro.zip",
-        "md5": "4a0d8e9907c65b5c1fa9fb79e6041469",
+        "md5": "cfed1b5fefe70bc1cb7d8606bfd5ea2c",
         "system": "mame",
         "description": "RC2014 - Microcomputer interface board.",
         "required": "Required, for certain Arcade Boards and Games"
@@ -8094,42 +8094,42 @@
       },
       {
         "filename": "rc2014_sc111.zip",
-        "md5": "4aceda4e6e17b113546f0d3eac859125",
+        "md5": "ee1ddb49aac890048dd441729965052d",
         "system": "mame",
         "description": "RC2014 - SC111 interface module.",
         "required": "Required, for certain Arcade Boards and Games"
       },
       {
         "filename": "rc2014_mini_cpm.zip",
-        "md5": "15d393f531c0bbff94e74923b5237a70",
+        "md5": "be32d207b3753fc96e88df23f77bdc37",
         "system": "mame",
         "description": "RC2014 - Mini CP/M operating system for RC2014.",
         "required": "Required, for certain Arcade Boards and Games"
       },
       {
         "filename": "rc2014_sc107.zip",
-        "md5": "59b33a21886615300259c0eafa09f0e3",
+        "md5": "391b4935bf7da9645bd7b166266a2f85",
         "system": "mame",
         "description": "RC2014 - SC107 interface module.",
         "required": "Required, for certain Arcade Boards and Games"
       },
       {
         "filename": "rc2014_sc106.zip",
-        "md5": "59b33a21886615300259c0eafa09f0e3",
+        "md5": "391b4935bf7da9645bd7b166266a2f85",
         "system": "mame",
         "description": "RC2014 - SC106 interface module.",
         "required": "Required, for certain Arcade Boards and Games"
       },
       {
         "filename": "rc2014_sc141.zip",
-        "md5": "769959de16c7dd359cae227a6d493e60",
+        "md5": "ab426fd1b10cdabb420bd1fe07245128",
         "system": "mame",
         "description": "RC2014 - SC141 interface module.",
         "required": "Required, for certain Arcade Boards and Games"
       },
       {
         "filename": "rc2014_sc113.zip",
-        "md5": "59b33a21886615300259c0eafa09f0e3",
+        "md5": "391b4935bf7da9645bd7b166266a2f85",
         "system": "mame",
         "description": "RC2014 - SC113 interface module.",
         "required": "Required, for certain Arcade Boards and Games"
@@ -8143,21 +8143,21 @@
       },
       {
         "filename": "rf57_932.zip",
-        "md5": "4aceda4e6e17b113546f0d3eac859125",
+        "md5": "ee1ddb49aac890048dd441729965052d",
         "system": "mame",
         "description": "RF57 932 - RF interface for arcade hardware.",
         "required": "Required, for certain Arcade Boards and Games"
       },
       {
         "filename": "rc2014_sc147.zip",
-        "md5": "769959de16c7dd359cae227a6d493e60",
+        "md5": "ab426fd1b10cdabb420bd1fe07245128",
         "system": "mame",
         "description": "RC2014 - SC147 interface module.",
         "required": "Required, for certain Arcade Boards and Games"
       },
       {
         "filename": "rc2014_serial_io.zip",
-        "md5": "4aceda4e6e17b113546f0d3eac859125",
+        "md5": "ee1ddb49aac890048dd441729965052d",
         "system": "mame",
         "description": "RC2014 - Serial I/O module for communication.",
         "required": "Required, for certain Arcade Boards and Games"
@@ -8213,7 +8213,7 @@
       },
       {
         "filename": "robotron_k7070.zip",
-        "md5": "4463d9fae1ee8cc05f2c97c9affcd1eb",
+        "md5": "ba7e241e6a1301e9795e18c16ca53c5b",
         "system": "mame",
         "description": "Robotron K7070 - Arcade game control hardware.",
         "required": "Required, for certain Arcade Boards and Games"
@@ -8227,7 +8227,7 @@
       },
       {
         "filename": "rolm_smioc.zip",
-        "md5": "bab9a7544fa6717f12f2b2e69c9d22ee",
+        "md5": "df61e0b3ef6a412cb59a28c088978fa7",
         "system": "mame",
         "description": "ROLM SMIoC - Synchronous communication interface for ROLM systems.",
         "required": "Required, for certain Arcade Boards and Games"
@@ -8255,7 +8255,7 @@
       },
       {
         "filename": "rs232_patch_box.zip",
-        "md5": "4aceda4e6e17b113546f0d3eac859125",
+        "md5": "ee1ddb49aac890048dd441729965052d",
         "system": "mame",
         "description": "RS232 Patch Box - RS232 communication module for patching.",
         "required": "Required, for certain Arcade Boards and Games"
@@ -8283,7 +8283,7 @@
       },
       {
         "filename": "s100_am310.zip",
-        "md5": "803ce925054adb2bcf268dd119c8c80c",
+        "md5": "a58df87846103e177d75688a6000a055",
         "system": "mame",
         "description": "S100 - AM310 adapter board for S100 systems.",
         "required": "Required, for certain Arcade Boards and Games"
@@ -8311,7 +8311,7 @@
       },
       {
         "filename": "s100_wunderbus.zip",
-        "md5": "4aceda4e6e17b113546f0d3eac859125",
+        "md5": "ee1ddb49aac890048dd441729965052d",
         "system": "mame",
         "description": "S100 - Wunderbus expansion board for S100 systems.",
         "required": "Required, for certain Arcade Boards and Games"
@@ -8325,7 +8325,7 @@
       },
       {
         "filename": "s3_764.zip",
-        "md5": "736bdac01395158748bcfcb6b5f41750",
+        "md5": "e39b4752d725981f822ce151f2f439e8",
         "system": "mame",
         "description": "S3 764 - Graphics chipset for retro PCs.",
         "required": "Required, for certain Arcade Boards and Games"
@@ -8430,7 +8430,7 @@
       },
       {
         "filename": "sammymdl.zip",
-        "md5": "984f99b1b7aa332745677397b07a0b66",
+        "md5": "3f5f4c2626a2ff0b590ebba998a7d562",
         "system": "mame",
         "description": "Sammy MDL - Arcade hardware interface module.",
         "required": "Required, for certain Arcade Boards and Games"
@@ -8619,7 +8619,7 @@
       },
       {
         "filename": "segasp.zip",
-        "md5": "37fcc38e01ae06fdc6fbd7a56d7fe8b8",
+        "md5": "ca5f3a6d0fe963ec2db8f8f636f90ca7",
         "system": "mame",
         "description": "Sega SP - Arcade system processor for vintage games.",
         "required": "Required, for certain Arcade Boards and Games"
@@ -8633,14 +8633,14 @@
       },
       {
         "filename": "serial_heath_h19.zip",
-        "md5": "95a193d2164852943121a86c9f059cc7",
+        "md5": "082761553668cd3e981d8c2f93c5e5ed",
         "system": "mame",
         "description": "Heath H19 Serial Terminal - Serial interface for Heath H19 terminal.",
         "required": "Required, for certain Arcade Boards and Games"
       },
       {
         "filename": "sfd1001.zip",
-        "md5": "3f5b6fb4d038b55cd636abd26ac99353",
+        "md5": "7fd78cd3bdd2aa5551452c1ea6510e5e",
         "system": "mame",
         "description": "SFD1001 - Disk controller interface for retro systems.",
         "required": "Required, for certain Arcade Boards and Games"
@@ -8654,21 +8654,21 @@
       },
       {
         "filename": "sfcbox.zip",
-        "md5": "8e61c14fcbab6f583858e6fa86151eff",
+        "md5": "982982a7862ef09b996b777363e38989",
         "system": "mame",
         "description": "SFC Box - Soundbox for old arcade and PC systems.",
         "required": "Required, for certain Arcade Boards and Games"
       },
       {
         "filename": "serad.zip",
-        "md5": "2b2a8e7e93dfa6a195377670a491469f",
+        "md5": "6e63459c5e48182483c4c739be4b96fe",
         "system": "mame",
         "description": "Serad - Serial interface card for vintage systems.",
         "required": "Required, for certain Arcade Boards and Games"
       },
       {
         "filename": "sgi_gm1.zip",
-        "md5": "1c92701a4cccc228cf12dd87e3553a16",
+        "md5": "9b9a54b591e67da730493ab0a2b74dfa",
         "system": "mame",
         "description": "SGI GM1 - Graphics and multimedia card for SGI workstations.",
         "required": "Required, for certain Arcade Boards and Games"
@@ -8682,14 +8682,14 @@
       },
       {
         "filename": "shtzone.zip",
-        "md5": "bd5be6e90434032f918b6460ab221cc1",
+        "md5": "8c9049474f49ce0ed857b3f9670b2667",
         "system": "mame",
         "description": "SHT Zone - Interface for retro arcade systems.",
         "required": "Required, for certain Arcade Boards and Games"
       },
       {
         "filename": "sgi_ip4.zip",
-        "md5": "d6ed06a09982e43f7923dbca7a474b9f",
+        "md5": "76e80c018dff7105128aff9b73a906bd",
         "system": "mame",
         "description": "SGI IP4 - SGI network interface card.",
         "required": "Required, for certain Arcade Boards and Games"
@@ -8759,7 +8759,7 @@
       },
       {
         "filename": "skns.zip",
-        "md5": "3f956c4e7008804cb47cbde49bd5b908",
+        "md5": "49e192febe2f011d9be44ebc69129080",
         "system": "mame",
         "description": "SKNS - Serial keyboard interface for older systems.",
         "required": "Required, for certain Arcade Boards and Games"
@@ -8773,28 +8773,28 @@
       },
       {
         "filename": "sms_rapid_fire.zip",
-        "md5": "47ded6dee9e345c51c9b16d73b13dae1",
+        "md5": "7d04a618d9be084ee1b33baafc0a5087",
         "system": "mame",
         "description": "SMS Rapid Fire - Rapid fire mod for Sega Master System.",
         "required": "Required, for certain Arcade Boards and Games"
       },
       {
         "filename": "sms_rs232.zip",
-        "md5": "4aceda4e6e17b113546f0d3eac859125",
+        "md5": "ee1ddb49aac890048dd441729965052d",
         "system": "mame",
         "description": "SMS RS232 - Serial port interface for Sega Master System.",
         "required": "Required, for certain Arcade Boards and Games"
       },
       {
         "filename": "sms_teamplayer.zip",
-        "md5": "47ded6dee9e345c51c9b16d73b13dae1",
+        "md5": "7d04a618d9be084ee1b33baafc0a5087",
         "system": "mame",
         "description": "SMS Teamplayer - Multiplayer expansion for Sega Master System.",
         "required": "Required, for certain Arcade Boards and Games"
       },
       {
         "filename": "smvme2000.zip",
-        "md5": "25a5ebe8dbf211b39d52b546ab0077ca",
+        "md5": "b5a5c621e448ad342df25b389582c427",
         "system": "mame",
         "description": "SMVME2000 - VME bus interface for retro systems.",
         "required": "Required, for certain Arcade Boards and Games"
@@ -8892,7 +8892,7 @@
       },
       {
         "filename": "sound_pc9821ce.zip",
-        "md5": "07bae82949054f7d4c8b20354185e318",
+        "md5": "9dbc3cf692c5f9ef363a6882c783b2cf",
         "system": "mame",
         "description": "PC-9821CE Sound - Sound card for NEC PC-9821 series.",
         "required": "Required, for certain Arcade Boards and Games"
@@ -8913,49 +8913,49 @@
       },
       {
         "filename": "speakboard.zip",
-        "md5": "e85e09f5ea47a7c5aa1cbb99a4a25812",
+        "md5": "7018498d37f019e86d52087bee2dbb67",
         "system": "mame",
         "description": "Speakboard - Speech synthesis board for retro systems.",
         "required": "Required, for certain Arcade Boards and Games"
       },
       {
         "filename": "spectrum_betacbi.zip",
-        "md5": "c5973118c439b27a69d1440c87a8ad60",
+        "md5": "389e7c7215dcef2217d9c905b236df94",
         "system": "mame",
         "description": "Beta CBI - Interface for the ZX Spectrum.",
         "required": "Required, for certain Arcade Boards and Games"
       },
       {
         "filename": "spectrum_betaplus.zip",
-        "md5": "c5973118c439b27a69d1440c87a8ad60",
+        "md5": "389e7c7215dcef2217d9c905b236df94",
         "system": "mame",
         "description": "Beta Plus - Expansion for ZX Spectrum.",
         "required": "Required, for certain Arcade Boards and Games"
       },
       {
         "filename": "spectrum_betav3.zip",
-        "md5": "c5973118c439b27a69d1440c87a8ad60",
+        "md5": "389e7c7215dcef2217d9c905b236df94",
         "system": "mame",
         "description": "Beta V3 - ZX Spectrum interface version 3.",
         "required": "Required, for certain Arcade Boards and Games"
       },
       {
         "filename": "spectrum_betav2.zip",
-        "md5": "c5973118c439b27a69d1440c87a8ad60",
+        "md5": "389e7c7215dcef2217d9c905b236df94",
         "system": "mame",
         "description": "Beta V2 - ZX Spectrum interface version 2.",
         "required": "Required, for certain Arcade Boards and Games"
       },
       {
         "filename": "spectrum_beta128.zip",
-        "md5": "c5973118c439b27a69d1440c87a8ad60",
+        "md5": "389e7c7215dcef2217d9c905b236df94",
         "system": "mame",
         "description": "Beta 128 - ZX Spectrum 128 interface.",
         "required": "Required, for certain Arcade Boards and Games"
       },
       {
         "filename": "spectrum_betaclone.zip",
-        "md5": "c5973118c439b27a69d1440c87a8ad60",
+        "md5": "389e7c7215dcef2217d9c905b236df94",
         "system": "mame",
         "description": "Beta Clone - Clone interface for ZX Spectrum.",
         "required": "Required, for certain Arcade Boards and Games"
@@ -8983,7 +8983,7 @@
       },
       {
         "filename": "spectrum_disciple.zip",
-        "md5": "c5973118c439b27a69d1440c87a8ad60",
+        "md5": "389e7c7215dcef2217d9c905b236df94",
         "system": "mame",
         "description": "Disciple - Disc system interface for ZX Spectrum.",
         "required": "Required, for certain Arcade Boards and Games"
@@ -9004,28 +9004,28 @@
       },
       {
         "filename": "spectrum_fuller.zip",
-        "md5": "c5973118c439b27a69d1440c87a8ad60",
+        "md5": "389e7c7215dcef2217d9c905b236df94",
         "system": "mame",
         "description": "Fuller - Interface expansion for ZX Spectrum.",
         "required": "Required, for certain Arcade Boards and Games"
       },
       {
         "filename": "spectrum_intf1.zip",
-        "md5": "c5973118c439b27a69d1440c87a8ad60",
+        "md5": "389e7c7215dcef2217d9c905b236df94",
         "system": "mame",
         "description": "INTF1 - Interface for ZX Spectrum peripherals.",
         "required": "Required, for certain Arcade Boards and Games"
       },
       {
         "filename": "spectrum_gamma.zip",
-        "md5": "c5973118c439b27a69d1440c87a8ad60",
+        "md5": "389e7c7215dcef2217d9c905b236df94",
         "system": "mame",
         "description": "Gamma - Expansion module for ZX Spectrum.",
         "required": "Required, for certain Arcade Boards and Games"
       },
       {
         "filename": "spectrum_flpone.zip",
-        "md5": "c5973118c439b27a69d1440c87a8ad60",
+        "md5": "389e7c7215dcef2217d9c905b236df94",
         "system": "mame",
         "description": "FLPONE - Floppy disk interface for ZX Spectrum.",
         "required": "Required, for certain Arcade Boards and Games"
@@ -9046,42 +9046,42 @@
       },
       {
         "filename": "spectrum_kempdisc.zip",
-        "md5": "c5973118c439b27a69d1440c87a8ad60",
+        "md5": "389e7c7215dcef2217d9c905b236df94",
         "system": "mame",
         "description": "Kempston Disc - Disc interface for ZX Spectrum.",
         "required": "Required, for certain Arcade Boards and Games"
       },
       {
         "filename": "spectrum_melodik.zip",
-        "md5": "c5973118c439b27a69d1440c87a8ad60",
+        "md5": "389e7c7215dcef2217d9c905b236df94",
         "system": "mame",
         "description": "Melodik - Sound expansion for ZX Spectrum.",
         "required": "Required, for certain Arcade Boards and Games"
       },
       {
         "filename": "spectrum_mface1.zip",
-        "md5": "c5973118c439b27a69d1440c87a8ad60",
+        "md5": "389e7c7215dcef2217d9c905b236df94",
         "system": "mame",
         "description": "Mface 1 - Interface module for ZX Spectrum.",
         "required": "Required, for certain Arcade Boards and Games"
       },
       {
         "filename": "spectrum_mface128v1.zip",
-        "md5": "c5973118c439b27a69d1440c87a8ad60",
+        "md5": "389e7c7215dcef2217d9c905b236df94",
         "system": "mame",
         "description": "Mface 128 V1 - First version of the Mface 128 interface.",
         "required": "Required, for certain Arcade Boards and Games"
       },
       {
         "filename": "spectrum_mface128.zip",
-        "md5": "c5973118c439b27a69d1440c87a8ad60",
+        "md5": "389e7c7215dcef2217d9c905b236df94",
         "system": "mame",
         "description": "Mface 128 - ZX Spectrum interface for peripherals.",
         "required": "Required, for certain Arcade Boards and Games"
       },
       {
         "filename": "spectrum_mface1v1.zip",
-        "md5": "c5973118c439b27a69d1440c87a8ad60",
+        "md5": "389e7c7215dcef2217d9c905b236df94",
         "system": "mame",
         "description": "Mface 1 V1 - Initial version of the Mface interface.",
         "required": "Required, for certain Arcade Boards and Games"
@@ -9095,7 +9095,7 @@
       },
       {
         "filename": "spectrum_mface1v2.zip",
-        "md5": "c5973118c439b27a69d1440c87a8ad60",
+        "md5": "389e7c7215dcef2217d9c905b236df94",
         "system": "mame",
         "description": "Mface 1 V2 - Updated version of the Mface 1 interface.",
         "required": "Required, for certain Arcade Boards and Games"
@@ -9109,14 +9109,14 @@
       },
       {
         "filename": "spectrum_mface1v3.zip",
-        "md5": "c5973118c439b27a69d1440c87a8ad60",
+        "md5": "389e7c7215dcef2217d9c905b236df94",
         "system": "mame",
         "description": "Mface 1 V3 - Third version of the Mface 1 interface.",
         "required": "Required, for certain Arcade Boards and Games"
       },
       {
         "filename": "spectrum_lprint3.zip",
-        "md5": "c5973118c439b27a69d1440c87a8ad60",
+        "md5": "389e7c7215dcef2217d9c905b236df94",
         "system": "mame",
         "description": "Lprint 3 - Enhanced printer interface for ZX Spectrum.",
         "required": "Required, for certain Arcade Boards and Games"
@@ -9137,21 +9137,21 @@
       },
       {
         "filename": "spectrum_opus.zip",
-        "md5": "c5973118c439b27a69d1440c87a8ad60",
+        "md5": "389e7c7215dcef2217d9c905b236df94",
         "system": "mame",
         "description": "Opus - ZX Spectrum expansion module.",
         "required": "Required, for certain Arcade Boards and Games"
       },
       {
         "filename": "spectrum_mprint.zip",
-        "md5": "c5973118c439b27a69d1440c87a8ad60",
+        "md5": "389e7c7215dcef2217d9c905b236df94",
         "system": "mame",
         "description": "Mprint - Mini printer interface for ZX Spectrum.",
         "required": "Required, for certain Arcade Boards and Games"
       },
       {
         "filename": "spectrum_sdi.zip",
-        "md5": "045741bd951619fe27ab1aef6d7338fd",
+        "md5": "38902ec49ecc6c27ff7d35e0b9773e4f",
         "system": "mame",
         "description": "SDI - Serial data interface for ZX Spectrum.",
         "required": "Required, for certain Arcade Boards and Games"
@@ -9165,35 +9165,35 @@
       },
       {
         "filename": "spectrum_proceed.zip",
-        "md5": "3448a2aa0e94edc02aa670e3a2dca8d5",
+        "md5": "e259c7bdf15c20b0790e39c02c740708",
         "system": "mame",
         "description": "Proceed - Advanced interface for ZX Spectrum.",
         "required": "Required, for certain Arcade Boards and Games"
       },
       {
         "filename": "spectrum_speccydos.zip",
-        "md5": "c5973118c439b27a69d1440c87a8ad60",
+        "md5": "389e7c7215dcef2217d9c905b236df94",
         "system": "mame",
         "description": "SpeccyDOS - ZX Spectrum disk operating system.",
         "required": "Required, for certain Arcade Boards and Games"
       },
       {
         "filename": "spectrum_spdos.zip",
-        "md5": "c5973118c439b27a69d1440c87a8ad60",
+        "md5": "389e7c7215dcef2217d9c905b236df94",
         "system": "mame",
         "description": "SPDOS - Disk operating system for ZX Spectrum.",
         "required": "Required, for certain Arcade Boards and Games"
       },
       {
         "filename": "spectrum_specmate.zip",
-        "md5": "c5973118c439b27a69d1440c87a8ad60",
+        "md5": "389e7c7215dcef2217d9c905b236df94",
         "system": "mame",
         "description": "SpecMate - ZX Spectrum expansion module.",
         "required": "Required, for certain Arcade Boards and Games"
       },
       {
         "filename": "spectrum_uslot.zip",
-        "md5": "c5973118c439b27a69d1440c87a8ad60",
+        "md5": "389e7c7215dcef2217d9c905b236df94",
         "system": "mame",
         "description": "USlot - Universal slot expansion for ZX Spectrum.",
         "required": "Required, for certain Arcade Boards and Games"
@@ -9207,7 +9207,7 @@
       },
       {
         "filename": "spectrum_swiftdisc2.zip",
-        "md5": "c5973118c439b27a69d1440c87a8ad60",
+        "md5": "389e7c7215dcef2217d9c905b236df94",
         "system": "mame",
         "description": "SwiftDisc 2 - ZX Spectrum second generation disc interface.",
         "required": "Required, for certain Arcade Boards and Games"
@@ -9221,14 +9221,14 @@
       },
       {
         "filename": "ss50_mpc.zip",
-        "md5": "4aceda4e6e17b113546f0d3eac859125",
+        "md5": "ee1ddb49aac890048dd441729965052d",
         "system": "mame",
         "description": "MPC Interface for SS50 system.",
         "required": "Required, for certain Arcade Boards and Games"
       },
       {
         "filename": "ss50_mps.zip",
-        "md5": "4aceda4e6e17b113546f0d3eac859125",
+        "md5": "ee1ddb49aac890048dd441729965052d",
         "system": "mame",
         "description": "MPS Interface for SS50 system.",
         "required": "Required, for certain Arcade Boards and Games"
@@ -9242,28 +9242,28 @@
       },
       {
         "filename": "spectrum_vtx5000.zip",
-        "md5": "c5973118c439b27a69d1440c87a8ad60",
+        "md5": "389e7c7215dcef2217d9c905b236df94",
         "system": "mame",
         "description": "VTX5000 - ZX Spectrum interface for external devices.",
         "required": "Required, for certain Arcade Boards and Games"
       },
       {
         "filename": "spectrum_swiftdisc.zip",
-        "md5": "c5973118c439b27a69d1440c87a8ad60",
+        "md5": "389e7c7215dcef2217d9c905b236df94",
         "system": "mame",
         "description": "SwiftDisc - ZX Spectrum floppy disk interface.",
         "required": "Required, for certain Arcade Boards and Games"
       },
       {
         "filename": "spectrum_wafa.zip",
-        "md5": "c5973118c439b27a69d1440c87a8ad60",
+        "md5": "389e7c7215dcef2217d9c905b236df94",
         "system": "mame",
         "description": "Wafa - Spectrum peripheral expansion.",
         "required": "Required, for certain Arcade Boards and Games"
       },
       {
         "filename": "ss50_mps2.zip",
-        "md5": "4aceda4e6e17b113546f0d3eac859125",
+        "md5": "ee1ddb49aac890048dd441729965052d",
         "system": "mame",
         "description": "MPS2 Interface for SS50 system.",
         "required": "Required, for certain Arcade Boards and Games"
@@ -9284,7 +9284,7 @@
       },
       {
         "filename": "steeltalp_board.zip",
-        "md5": "4aceda4e6e17b113546f0d3eac859125",
+        "md5": "ee1ddb49aac890048dd441729965052d",
         "system": "mame",
         "description": "Steel Talp Board - Interface expansion.",
         "required": "Required, for certain Arcade Boards and Games"
@@ -9305,7 +9305,7 @@
       },
       {
         "filename": "steeltal_board.zip",
-        "md5": "4aceda4e6e17b113546f0d3eac859125",
+        "md5": "ee1ddb49aac890048dd441729965052d",
         "system": "mame",
         "description": "Steel Talp Board interface module.",
         "required": "Required, for certain Arcade Boards and Games"
@@ -9319,7 +9319,7 @@
       },
       {
         "filename": "steeltal_board.zip",
-        "md5": "4aceda4e6e17b113546f0d3eac859125",
+        "md5": "ee1ddb49aac890048dd441729965052d",
         "system": "mame",
         "description": "Steel Talp interface board for expansions and peripherals.",
         "required": "Required, for certain Arcade Boards and Games"
@@ -9333,35 +9333,35 @@
       },
       {
         "filename": "steeltal1_board.zip",
-        "md5": "4aceda4e6e17b113546f0d3eac859125",
+        "md5": "ee1ddb49aac890048dd441729965052d",
         "system": "mame",
         "description": "First version of the Steel Talp expansion board.",
         "required": "Required, for certain Arcade Boards and Games"
       },
       {
         "filename": "su2000.zip",
-        "md5": "9a3e9ef9fe9d504b01511e23b1f12986",
+        "md5": "69d93ad80b3f167d24cd31b72f9d4039",
         "system": "mame",
         "description": "SU2000 module adds extra hardware capabilities.",
         "required": "Required, for certain Arcade Boards and Games"
       },
       {
         "filename": "strtdriv_board.zip",
-        "md5": "4aceda4e6e17b113546f0d3eac859125",
+        "md5": "ee1ddb49aac890048dd441729965052d",
         "system": "mame",
         "description": "Interface board for connecting boot or storage devices.",
         "required": "Required, for certain Arcade Boards and Games"
       },
       {
         "filename": "stunrun_board.zip",
-        "md5": "4aceda4e6e17b113546f0d3eac859125",
+        "md5": "ee1ddb49aac890048dd441729965052d",
         "system": "mame",
         "description": "Stunrun expansion board for extra modules.",
         "required": "Required, for certain Arcade Boards and Games"
       },
       {
         "filename": "stvbios.zip",
-        "md5": "5e73dbf39b3c7b8ed429cb3f053912ce",
+        "md5": "c105e2d063aeb0f9b60c45fad6969265",
         "system": "mame",
         "description": "BIOS ROM for STVB systems to boot and run firmware.",
         "required": "Required, for certain Arcade Boards and Games"
@@ -9375,14 +9375,14 @@
       },
       {
         "filename": "sun1cpu.zip",
-        "md5": "6fc640737d1e11d7e80a97fd16568561",
+        "md5": "71236f39d98b527128817602479d401c",
         "system": "mame",
         "description": "CPU ROM for Sun-1 with boot and system routines.",
         "required": "Required, for certain Arcade Boards and Games"
       },
       {
         "filename": "sv602.zip",
-        "md5": "891e4934d762070be972e594d80937e9",
+        "md5": "13598a446d3096c28bc786691b765e4d",
         "system": "mame",
         "description": "SV602 system file for video interface.",
         "required": "Required, for certain Arcade Boards and Games"
@@ -9403,14 +9403,14 @@
       },
       {
         "filename": "sv601.zip",
-        "md5": "891e4934d762070be972e594d80937e9",
+        "md5": "13598a446d3096c28bc786691b765e4d",
         "system": "mame",
         "description": "SV601 video system for video playback.",
         "required": "Required, for certain Arcade Boards and Games"
       },
       {
         "filename": "sv805.zip",
-        "md5": "4aceda4e6e17b113546f0d3eac859125",
+        "md5": "ee1ddb49aac890048dd441729965052d",
         "system": "mame",
         "description": "SV805 system expansion module.",
         "required": "Required, for certain Arcade Boards and Games"
@@ -9445,7 +9445,7 @@
       },
       {
         "filename": "sys246.zip",
-        "md5": "a442b457c23ac48464b22561c19d7c3c",
+        "md5": "20c241b5bf924f2338d79dd1d37769d5",
         "system": "mame",
         "description": "SYS246 system expansion.",
         "required": "Required, for certain Arcade Boards and Games"
@@ -9459,21 +9459,21 @@
       },
       {
         "filename": "sys256.zip",
-        "md5": "6bdb9c93292bc25cdbc41131cd529ec6",
+        "md5": "8c11c3ead979857c38177a270382bd84",
         "system": "mame",
         "description": "SYS256 system interface for expansion.",
         "required": "Required, for certain Arcade Boards and Games"
       },
       {
         "filename": "sys68k_cpu20.zip",
-        "md5": "ab0da066a3b241d252f3bdfefd86ed08",
+        "md5": "49bdad0a8d7b2b65df000952e59e38bf",
         "system": "mame",
         "description": "System 68k CPU version 20.",
         "required": "Required, for certain Arcade Boards and Games"
       },
       {
         "filename": "sys68k_cpu1.zip",
-        "md5": "50a561166b71e52b397b1f9077546c52",
+        "md5": "7556cb0c3152192ac1dfc17dd48d3af0",
         "system": "mame",
         "description": "System 68k CPU version 1.",
         "required": "Required, for certain Arcade Boards and Games"
@@ -9522,14 +9522,14 @@
       },
       {
         "filename": "taitotz.zip",
-        "md5": "4206eebec4342ee2f91c877515135587",
+        "md5": "1db596446ab192aba7209c9893a0180c",
         "system": "mame",
         "description": "Taito TZ system interface.",
         "required": "Required, for certain Arcade Boards and Games"
       },
       {
         "filename": "tanbus_tandos.zip",
-        "md5": "ff9be86b5dc26939181d5eecdd685bdf",
+        "md5": "1ba2bf72c5da79648c1717ccb4d8bb97",
         "system": "mame",
         "description": "Tanbus TANDOS operating system interface.",
         "required": "Required, for certain Arcade Boards and Games"
@@ -9543,14 +9543,14 @@
       },
       {
         "filename": "tanbus_tanex.zip",
-        "md5": "dec9b064556c158c1ed54f0958f5286c",
+        "md5": "22ac4ff1559e5756ac8459962fb8613a",
         "system": "mame",
         "description": "Tanbus TANEX peripheral interface.",
         "required": "Required, for certain Arcade Boards and Games"
       },
       {
         "filename": "tandberg_tdv2100_disp_logic.zip",
-        "md5": "012e5c8a16d4523a8ee7acaf52434608",
+        "md5": "d967e32d79b50ea303defac079feb5d9",
         "system": "mame",
         "description": "Tandberg TDV2100 display logic module.",
         "required": "Required, for certain Arcade Boards and Games"
@@ -9627,7 +9627,7 @@
       },
       {
         "filename": "ti8x_glinkhle.zip",
-        "md5": "4aceda4e6e17b113546f0d3eac859125",
+        "md5": "ee1ddb49aac890048dd441729965052d",
         "system": "mame",
         "description": "TI-8X GLINK HLE software emulation.",
         "required": "Required, for certain Arcade Boards and Games"
@@ -9655,7 +9655,7 @@
       },
       {
         "filename": "ti8x_tconn.zip",
-        "md5": "4aceda4e6e17b113546f0d3eac859125",
+        "md5": "ee1ddb49aac890048dd441729965052d",
         "system": "mame",
         "description": "TI-8X TConn connection.",
         "required": "Required, for certain Arcade Boards and Games"
@@ -9746,7 +9746,7 @@
       },
       {
         "filename": "ti99_speech.zip",
-        "md5": "9ca62f89005e566b10bc1e3aaaf0d30e",
+        "md5": "42f768a66fa8b27dadb8361dd2e2e012",
         "system": "mame",
         "description": "TI99 Speech synthesis module.",
         "required": "Required, for certain Arcade Boards and Games"
@@ -9823,21 +9823,21 @@
       },
       {
         "filename": "tourvis.zip",
-        "md5": "07c1c17a3b8c575bcaee8cb1fa896b74",
+        "md5": "7cd948f18be92ef66e271ab9df3852da",
         "system": "mame",
         "description": "TourVis display system.",
         "required": "Required, for certain Arcade Boards and Games"
       },
       {
         "filename": "tp880v.zip",
-        "md5": "92b41391280f7196495e0eba912a9aeb",
+        "md5": "fa1855080bd03219c0e3f828f9dfa3e5",
         "system": "mame",
         "description": "TP880V system interface.",
         "required": "Required, for certain Arcade Boards and Games"
       },
       {
         "filename": "tp881v.zip",
-        "md5": "98ff7d900ece4f6f0e58b87033019a94",
+        "md5": "2bc581d9c1c6295c85bc68b27ac2fa79",
         "system": "mame",
         "description": "TP881V system interface.",
         "required": "Required, for certain Arcade Boards and Games"
@@ -9858,7 +9858,7 @@
       },
       {
         "filename": "tsvme104.zip",
-        "md5": "b76ce2f18cfa7f3b9fb50c2e1152ef86",
+        "md5": "780818e934c27fb1cd68c849d23f35b2",
         "system": "mame",
         "description": "TSVME104 system interface.",
         "required": "Required, for certain Arcade Boards and Games"
@@ -9872,7 +9872,7 @@
       },
       {
         "filename": "triforce.zip",
-        "md5": "d98d6ab4b9de60efe13c45968d936cd2",
+        "md5": "8fbf2c97f256a665f8f40032c4f9e9f2",
         "system": "mame",
         "description": "Triforce arcade system emulation.",
         "required": "Required, for certain Arcade Boards and Games"
@@ -9977,7 +9977,7 @@
       },
       {
         "filename": "v4bios.zip",
-        "md5": "5c4e07b9dedce435379ad35c56c18bb2",
+        "md5": "ffc0375b75ad461cef55aa3905ff00c8",
         "system": "mame",
         "description": "V4 BIOS for system emulation.",
         "required": "Required, for certain Arcade Boards and Games"
@@ -10033,14 +10033,14 @@
       },
       {
         "filename": "vic1011.zip",
-        "md5": "4aceda4e6e17b113546f0d3eac859125",
+        "md5": "ee1ddb49aac890048dd441729965052d",
         "system": "mame",
         "description": "Vic-1011 system.",
         "required": "Required, for certain Arcade Boards and Games"
       },
       {
         "filename": "vic1112.zip",
-        "md5": "6228cbda161e8ae6e322eb9682a8b47e",
+        "md5": "b4d32b41aa507ddac67dde16fc71d56c",
         "system": "mame",
         "description": "Vic-1112 system.",
         "required": "Required, for certain Arcade Boards and Games"
@@ -10180,14 +10180,14 @@
       },
       {
         "filename": "vrc5074.zip",
-        "md5": "4aceda4e6e17b113546f0d3eac859125",
+        "md5": "ee1ddb49aac890048dd441729965052d",
         "system": "mame",
         "description": "VRC5074 system.",
         "required": "Required, for certain Arcade Boards and Games"
       },
       {
         "filename": "vtech_fdc.zip",
-        "md5": "5f9eea883d9a5dbab14eea5ed1585c96",
+        "md5": "fc2db49f8da6c729121cbeebdfb4069c",
         "system": "mame",
         "description": "VTech FDC peripheral.",
         "required": "Required, for certain Arcade Boards and Games"
@@ -10201,7 +10201,7 @@
       },
       {
         "filename": "vtech_rs232.zip",
-        "md5": "303f7e45b9bfb07ed1ecaf226c8c878e",
+        "md5": "dac5d28deb3697299a63b212cf5804c6",
         "system": "mame",
         "description": "VTech RS232 interface.",
         "required": "Required, for certain Arcade Boards and Games"
@@ -10397,7 +10397,7 @@
       },
       {
         "filename": "ym2608.zip",
-        "md5": "79ae0d2bb1901b7e606b6dc339b79a97",
+        "md5": "ddb8aacffffffa608ddbb4a6d6dda5ec",
         "system": "mame",
         "description": "YM2608 sound chip.",
         "required": "Required, for certain Arcade Boards and Games"
@@ -10418,7 +10418,7 @@
       },
       {
         "filename": "ym2413.zip",
-        "md5": "21ba73df83aab5f2c82f986abdd5e22a",
+        "md5": "9d9f45a4acb8bb7a1fe51bece1a9fda1",
         "system": "mame",
         "description": "YM2413 sound chip.",
         "required": "Required, for certain Arcade Boards and Games"
@@ -10460,7 +10460,7 @@
       },
       {
         "filename": "z_89_11.zip",
-        "md5": "4aceda4e6e17b113546f0d3eac859125",
+        "md5": "ee1ddb49aac890048dd441729965052d",
         "system": "mame",
         "description": "Z-89-11 interface.",
         "required": "Required, for certain Arcade Boards and Games"
