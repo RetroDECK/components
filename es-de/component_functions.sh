@@ -316,8 +316,8 @@ generate_es_systems_xml() {
     ]
   ' "$component_manifest_cache_file")
  
-  # Merge systems: group by name, merge commands, annotate labels for multi-contributor systems.
-  # The jq filter handles the entire merge logic and outputs the final merged array.
+  # Merge systems: group by name, merge commands sorted by priority.
+  # Commands without a priority field default to 999 (sort last).
   local merged_systems
   merged_systems=$(printf '%s' "$all_systems" | jq -c '
     # Generate both lowercase and uppercase for each extension, then deduplicate
@@ -325,15 +325,16 @@ generate_es_systems_xml() {
  
     group_by(.name) | map(
       if length == 1 then
-        # Single contributor: use as-is, no label modification
+        # Single contributor: sort commands by priority, then clean up
         .[0] | del(.component_name, .component_key) |
-        .extension |= expand_extensions
+        .extension |= expand_extensions |
+        .commands |= (sort_by(.priority // 999) | [.[] | del(.priority)])
       else
         # Multiple contributors: first wins for metadata, merge all commands,
         # merge extension lists across contributors then expand cases,
         # and annotate only labels that conflict (same label from different contributors)
         .[0] as $first |
-        [.[] | .component_name as $component_name | .commands[] | {label, command, component_name: $component_name}] as $all_cmds |
+        [.[] | .component_name as $component_name | .commands[] | {label, command, priority: (.priority // 999), component_name: $component_name}] as $all_cmds |
         # Find labels that appear more than once
         [$all_cmds | group_by(.label) | .[] | select(length > 1) | .[0].label] as $dup_labels |
         {
@@ -341,7 +342,7 @@ generate_es_systems_xml() {
           fullname: $first.fullname,
           path: $first.path,
           extension: ([.[].extension | split(" ")[]] | unique | join(" ") | expand_extensions),
-          commands: [$all_cmds[] | {
+          commands: [$all_cmds | sort_by(.priority) | .[] | {
             label: (if (.label | IN($dup_labels[])) then "\(.label) (\(.component_name))" else .label end),
             command
           }],
