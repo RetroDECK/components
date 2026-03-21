@@ -3,11 +3,13 @@
 export es_de_appdata_path="$XDG_CONFIG_HOME/ES-DE"
 export es_de_config="$XDG_CONFIG_HOME/ES-DE/settings/es_settings.xml"
 export es_de_logs_path="$XDG_CONFIG_HOME/ES-DE/logs"
-export es_systems="$rd_components/es-de/share/es-de/resources/systems/linux/es_systems.xml"                                     # ES-DE supported system list
-export es_find_rules="$rd_components/es-de/share/es-de/resources/systems/linux/es_find_rules.xml"                               # ES-DE emulator find rules
+export es_systems="$rd_components/es-de/share/es-de/resources/systems/linux/es_systems.xml"         # RetroDECK-generated ES-DE supported system list
+export es_find_rules="$rd_components/es-de/share/es-de/resources/systems/linux/es_find_rules.xml"   # RetroDECK-generated ES-DE emulator find rules
+export $es_find_rules_official="$rd_components/es-de/rd_config/es_find_rules_official.xml"          # Official es_find_rules file from upstream ES-DE
+export $es_systems_official="$rd_components/es-de/rd_config/es_find_rules_official.xml"             # Official es_systems file from upstream ES-DE
 export splashscreen_dir="$rd_components/es-de/res/extra_splashes"                                   # The default location of extra splash screens
-export current_splash_file="$XDG_CONFIG_HOME/ES-DE/resources/graphics/splash.svg"                                    # The active splash file that will be shown on boot
-export default_splash_file="$rd_components/es-de/res/splash.svg"                               # The default RetroDECK splash screen
+export current_splash_file="$XDG_CONFIG_HOME/ES-DE/resources/graphics/splash.svg"                   # The active splash file that will be shown on boot
+export default_splash_file="$rd_components/es-de/res/splash.svg"                                    # The default RetroDECK splash screen
 
 _set_setting_value::es-de() {
   local file="$1"
@@ -392,6 +394,159 @@ generate_es_systems_xml() {
   rm -f "$tmp_file" "${tmp_file}.fmt"
  
   log i "es_systems.xml generated successfully"
+  return 0
+}
+
+generate_es_de_diff_report() {
+  # Compare generated es_find_rules.xml and es_systems.xml against official
+  # upstream ES-DE files and produce a report of additions and differences.
+  # USAGE: generate_es_de_diff_report
+ 
+  local report=""
+  local section_count=0
+  local tmp_gen tmp_off
+ 
+  tmp_gen=$(mktemp)
+  tmp_off=$(mktemp)
+ 
+  # es_find_rules.xml comparison
+  if [[ -f "$es_find_rules" && -f "$es_find_rules_official" ]]; then
+    local fr_header="false"
+ 
+    # Check emulator blocks
+    local gen_emulators off_emulators
+    mapfile -t gen_emulators < <(xmlstarlet sel -t -m '//emulator' -v '@name' -n "$es_find_rules" 2>/dev/null)
+    mapfile -t off_emulators < <(xmlstarlet sel -t -m '//emulator' -v '@name' -n "$es_find_rules_official" 2>/dev/null)
+ 
+    for emu_name in "${gen_emulators[@]}"; do
+      [[ -z "$emu_name" ]] && continue
+      if ! printf '%s\n' "${off_emulators[@]}" | grep -qxF "$emu_name"; then
+        # Emulator only in generated file
+        if [[ "$fr_header" == "false" ]]; then
+          report+=$'\n'"=========================================="$'\n'
+          report+="es_find_rules.xml differences"$'\n'
+          report+="=========================================="$'\n'
+          fr_header="true"
+        fi
+        report+=$'\n'"ADDITIONAL emulator: $emu_name"$'\n'
+        local block_content
+        block_content=$(xmlstarlet sel -t -c "//emulator[@name='$emu_name']" "$es_find_rules" 2>/dev/null | xmlstarlet fo 2>/dev/null | sed 's/^/+ /')
+        report+="$block_content"$'\n' 
+        section_count=$((section_count + 1))
+      else
+        # Emulator in both: compare content
+        xmlstarlet sel -t -c "//emulator[@name='$emu_name']" "$es_find_rules" 2>/dev/null | xmlstarlet fo 2>/dev/null > "$tmp_gen"
+        xmlstarlet sel -t -c "//emulator[@name='$emu_name']" "$es_find_rules_official" 2>/dev/null | xmlstarlet fo 2>/dev/null > "$tmp_off"
+        if ! diff -q "$tmp_gen" "$tmp_off" > /dev/null 2>&1; then
+          if [[ "$fr_header" == "false" ]]; then
+            report+=$'\n'"=========================================="$'\n'
+            report+="es_find_rules.xml differences"$'\n'
+            report+="=========================================="$'\n'
+            fr_header="true"
+          fi
+          report+=$'\n'"DIFFERS emulator: $emu_name"$'\n'
+          local diff_content
+          diff_content=$(diff --unified=1 "$tmp_off" "$tmp_gen" 2>/dev/null | tail -n +3)
+          report+="$diff_content"$'\n' 
+          section_count=$((section_count + 1))
+        fi
+      fi
+    done
+ 
+    # Check core blocks
+    local gen_cores off_cores
+    mapfile -t gen_cores < <(xmlstarlet sel -t -m '//core' -v '@name' -n "$es_find_rules" 2>/dev/null)
+    mapfile -t off_cores < <(xmlstarlet sel -t -m '//core' -v '@name' -n "$es_find_rules_official" 2>/dev/null)
+ 
+    for core_name in "${gen_cores[@]}"; do
+      [[ -z "$core_name" ]] && continue
+      if ! printf '%s\n' "${off_cores[@]}" | grep -qxF "$core_name"; then
+        if [[ "$fr_header" == "false" ]]; then
+          report+=$'\n'"=========================================="$'\n'
+          report+="es_find_rules.xml differences"$'\n'
+          report+="=========================================="$'\n'
+          fr_header="true"
+        fi
+        report+=$'\n'"ADDITIONAL core: $core_name"$'\n'
+        local block_content
+        block_content=$(xmlstarlet sel -t -c "//core[@name='$core_name']" "$es_find_rules" 2>/dev/null | xmlstarlet fo 2>/dev/null | sed 's/^/+ /')
+        report+="$block_content"$'\n' 
+        section_count=$((section_count + 1))
+      else
+        xmlstarlet sel -t -c "//core[@name='$core_name']" "$es_find_rules" 2>/dev/null | xmlstarlet fo 2>/dev/null > "$tmp_gen"
+        xmlstarlet sel -t -c "//core[@name='$core_name']" "$es_find_rules_official" 2>/dev/null | xmlstarlet fo 2>/dev/null > "$tmp_off"
+        if ! diff -q "$tmp_gen" "$tmp_off" > /dev/null 2>&1; then
+          if [[ "$fr_header" == "false" ]]; then
+            report+=$'\n'"=========================================="$'\n'
+            report+="es_find_rules.xml differences"$'\n'
+            report+="=========================================="$'\n'
+            fr_header="true"
+          fi
+          report+=$'\n'"DIFFERS core: $core_name"$'\n'
+          local diff_content
+          diff_content=$(diff --unified=1 "$tmp_off" "$tmp_gen" 2>/dev/null | tail -n +3)
+          report+="$diff_content"$'\n' 
+          section_count=$((section_count + 1))
+        fi
+      fi
+    done
+  else
+    log w "Skipping es_find_rules.xml comparison: generated or official file not found"
+  fi
+ 
+  # es_systems.xml comparison 
+  if [[ -f "$es_systems" && -f "$es_systems_official" ]]; then
+    local sys_header="false"
+ 
+    local gen_systems off_systems
+    mapfile -t gen_systems < <(xmlstarlet sel -t -m '//system/name' -v '.' -n "$es_systems" 2>/dev/null)
+    mapfile -t off_systems < <(xmlstarlet sel -t -m '//system/name' -v '.' -n "$es_systems_official" 2>/dev/null)
+ 
+    for sys_name in "${gen_systems[@]}"; do
+      [[ -z "$sys_name" ]] && continue
+      if ! printf '%s\n' "${off_systems[@]}" | grep -qxF "$sys_name"; then
+        if [[ "$sys_header" == "false" ]]; then
+          report+=$'\n'"=========================================="$'\n'
+          report+="es_systems.xml differences"$'\n'
+          report+="=========================================="$'\n'
+          sys_header="true"
+        fi
+        report+=$'\n'"ADDITIONAL system: $sys_name"$'\n'
+        local block_content
+        block_content=$(xmlstarlet sel -t -c "//system[name='$sys_name']" "$es_systems" 2>/dev/null | xmlstarlet fo 2>/dev/null | sed 's/^/+ /')
+        report+="$block_content"$'\n' 
+        section_count=$((section_count + 1))
+      else
+        xmlstarlet sel -t -c "//system[name='$sys_name']" "$es_systems" 2>/dev/null | xmlstarlet fo 2>/dev/null > "$tmp_gen"
+        xmlstarlet sel -t -c "//system[name='$sys_name']" "$es_systems_official" 2>/dev/null | xmlstarlet fo 2>/dev/null > "$tmp_off"
+        if ! diff -q "$tmp_gen" "$tmp_off" > /dev/null 2>&1; then
+          if [[ "$sys_header" == "false" ]]; then
+            report+=$'\n'"=========================================="$'\n'
+            report+="es_systems.xml differences"$'\n'
+            report+="=========================================="$'\n'
+            sys_header="true"
+          fi
+          report+=$'\n'"DIFFERS system: $sys_name"$'\n'
+          local diff_content
+          diff_content=$(diff --unified=1 "$tmp_off" "$tmp_gen" 2>/dev/null | tail -n +3)
+          report+="$diff_content"$'\n' 
+          section_count=$((section_count + 1))
+        fi
+      fi
+    done
+  else
+    log w "Skipping es_systems.xml comparison: generated or official file not found"
+  fi
+ 
+  rm -f "$tmp_gen" "$tmp_off"
+ 
+  if [[ $section_count -gt 0 ]]; then
+    log i "ES-DE diff report: $section_count difference(s) found"
+    printf '%s' "$report"
+  else
+    log i "ES-DE diff report: generated files match official files (no additions or differences)"
+  fi
+ 
   return 0
 }
 
