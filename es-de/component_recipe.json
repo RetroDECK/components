@@ -42,6 +42,11 @@
         },
         {
           "type": "dir",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/rd_assets/rd_tools",
+          "dest": "rd_tools"
+        },
+        {
+          "type": "dir",
           "source": "$REPO_ROOT/$COMPONENT_NAME/rd_assets/helper_files",
           "dest": "$COMPONENT_ARTIFACT_ROOT/helper_files"
         },
@@ -81,6 +86,30 @@
           "type": "dir",
           "source": "$EXTRACTED_PATH",
           "dest": "$COMPONENT_ARTIFACT_ROOT/share/es-de/themes"
+        }
+      ]
+    },
+    {
+      "source_url": "https://gitlab.com/es-de/emulationstation-de/-/raw/master/resources/systems/linux/es_find_rules.xml",
+      "source_type": "http",
+      "extraction_type": "local",
+      "assets": [
+        {
+          "type": "file-rename",
+          "source": "$EXTRACTED_PATH",
+          "dest": "rd_config/es_find_rules_official.xml"
+        }
+      ]
+    },
+    {
+      "source_url": "https://gitlab.com/es-de/emulationstation-de/-/raw/master/resources/systems/linux/es_systems.xml",
+      "source_type": "http",
+      "extraction_type": "local",
+      "assets": [
+        {
+          "type": "file-rename",
+          "source": "$EXTRACTED_PATH",
+          "dest": "rd_config/es_systems_official.xml"
         }
       ]
     }
