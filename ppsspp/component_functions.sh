@@ -65,6 +65,10 @@ _prepare_component::ppsspp() {
       create_dir -d "$XDG_CONFIG_HOME/ppsspp/PSP/SYSTEM/"
       cp -fv "$component_config/"* "$XDG_CONFIG_HOME/ppsspp/PSP/SYSTEM/"
       set_setting_value "$ppsspp_config" "CurrentDirectory" "$roms_path/psp" "ppsspp" "General"
+      if [[ "$XDG_SESSION_TYPE" == "wayland" ]]; then
+        log d "Wayland compositor detected, changing rendered to OpenGL as a workaround"
+        set_setting_value "$ppsspp_config" "GraphicsBackend" "0 (OPENGL)" "ppsspp" "Graphics"
+      fi
       dir_prep "$saves_path/PSP/PPSSPP-SA" "$XDG_CONFIG_HOME/ppsspp/PSP/SAVEDATA"
       dir_prep "$states_path/PSP/PPSSPP-SA" "$XDG_CONFIG_HOME/ppsspp/PSP/PPSSPP_STATE"
       dir_prep "$texture_packs_path/PPSSPP/TEXTURES" "$ppsspp_textures_path"
@@ -109,6 +113,13 @@ _prepare_component::ppsspp() {
 
 _post_update::ppsspp() {
   local previous_version="$1"
+
+  if check_version_is_older_than "$previous_version" "1.0.0"; then
+    if [[ "$XDG_SESSION_TYPE" == "wayland" ]]; then
+      log d "Wayland compositor detected, changing rendered to OpenGL as a workaround"
+      set_setting_value "$ppsspp_config" "GraphicsBackend" "0 (OPENGL)" "ppsspp" "Graphics"
+    fi
+  fi
 
 }
 
