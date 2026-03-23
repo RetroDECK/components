@@ -414,4 +414,8 @@ retroarch_updater() {
   log i "Updating cheats..."
   create_dir "$cheats_path/retroarch"
   tar -h -xzf "$retroarch_extras_path/cheats.tar.gz" -C "$cheats_path/retroarch" --overwrite && log d "RetroArch cheats updated correctly"
+
+  log i "Updating autoconfig..."
+  create_dir "$XDG_CONFIG_HOME/retroarch/autoconfig"
+  tar -h -xzf "$retroarch_extras_path/autoconfig.tar.gz" -C "$XDG_CONFIG_HOME/retroarch/autoconfig" --overwrite && log d "RetroArch autoconfig updated correctly"
 }
