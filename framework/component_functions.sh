@@ -171,8 +171,7 @@ _prepare_component::retrodeck() {
       # log i "Check if there is a new version of RetroDECK available"
       # if [[ $update_check == "true" ]]; then
       #   if check_network_connectivity; then
-      #     log d "Running function check_for_version_update"
-      #     check_for_version_update
+      #     check_for_online_update
       #   fi
       #   log i "You're running the latest version"
       # fi
