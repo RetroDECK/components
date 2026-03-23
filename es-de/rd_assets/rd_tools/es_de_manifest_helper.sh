@@ -49,8 +49,7 @@ component_key=$(printf '%s' "$emulator_name" | tr '[:upper:]' '[:lower:]')
 emu_description=$(xmlstarlet sel -t -m "//emulator[@name='$emulator_name']/comment()" -v '.' "$find_rules_file" 2>/dev/null | sed 's/^ *//;s/ *$//' | head -1 || true)
 
 # Build a single staticpath rule with the default component launcher path.
-emu_rules_json=$(jq -nc --arg component_key "$component_key" \
-  '[{type: "staticpath", entries: ["$rd_components/\($component_key)/component_launcher.sh"]}]')
+emu_rules_json='[{"type": "staticpath", "entries": ["%COMPONENT_PATH%/launcher.sh"]}]'
 
 emulators_json=$(jq -nc \
   --arg name "$emulator_name" \

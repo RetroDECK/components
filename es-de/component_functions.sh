@@ -174,18 +174,21 @@ generate_es_find_rules_xml() {
  
   # Extract all emulator and core entries as a flat JSON array, preserving manifest order.
   # Each element: {block_type, name, description, rules[], component_key}
-  local all_entries
+  # The %COMPONENT_PATH% placeholder in entries is resolved to the component's install path from the cache.
   all_entries=$(jq -c '
-    [.[] | .manifest | to_entries[] |
+    [.[] |
+      .component_path as $component_path |
+      .manifest | to_entries[] |
       .key as $component_key |
       (.value.es_de_config.es_find_rules // {}) |
       (
         (.emulators // [] | .[] | {block_type: "emulator", name: .name, description: (.description // ""), rules: .rules, component_key: $component_key}),
         (.cores // [] | .[] | {block_type: "core", name: .name, description: (.description // ""), rules: .rules, component_key: $component_key})
-      )
+      ) |
+      .rules |= [.[] | .entries |= [.[] | gsub("%COMPONENT_PATH%"; $component_path)]]
     ]
   ' "$component_manifest_cache_file")
-
+ 
   # Resolve bash variables in entry paths (e.g. $rd_components).
   # First validate that all referenced variables are set, then resolve.
   # Blocks referencing unset or empty variables are filtered out before resolution.
