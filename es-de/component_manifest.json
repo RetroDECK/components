@@ -15,6 +15,9 @@
     "url_webpage": "https://es-de.org/",
     "url_donation_purchase": "https://www.patreon.com/es_de/",
     "url_source": "https://gitlab.com/es-de/emulationstation-de",
+    "component_options": {
+      "esde_engine_launch_scripts": "false"
+    },
     "configurator_menus": {
       "data_management": {
         "rebuild_esde_systems": {
