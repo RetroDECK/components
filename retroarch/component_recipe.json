@@ -28,11 +28,6 @@
         },
         {
           "type": "dir",
-          "source": "RetroArch-Linux-x86_64/RetroArch-Linux-x86_64.AppImage.home/.config/retroarch/autoconfig",
-          "dest": "autoconfig"
-        },
-        {
-          "type": "dir",
           "source": "RetroArch-Linux-x86_64/RetroArch-Linux-x86_64.AppImage.home/.config/retroarch/database/cursors",
           "dest": "database/cursors"
         },
@@ -328,6 +323,81 @@
           "type": "tar.gz",
           "source": "overlays/.",
           "dest": "rd_extras/overlays"
+        }
+      ]
+    },
+    {
+      "source_url": "https://github.com/libretro/retroarch-joypad-autoconfig",
+      "source_type": "git",
+      "version": "latest",
+      "extraction_type": "local",
+      "assets": [
+        {
+          "type": "dir",
+          "source": "android",
+          "dest": "$WORKDIR/autoconfig/android"
+        },
+        {
+          "type": "dir",
+          "source": "dinput",
+          "dest": "$WORKDIR/autoconfig/dinput"
+        },
+        {
+          "type": "dir",
+          "source": "hid",
+          "dest": "$WORKDIR/autoconfig/hid"
+        },
+        {
+          "type": "dir",
+          "source": "linuxraw",
+          "dest": "$WORKDIR/autoconfig/linuxraw"
+        },
+        {
+          "type": "dir",
+          "source": "mfi",
+          "dest": "$WORKDIR/autoconfig/mfi"
+        },
+        {
+          "type": "dir",
+          "source": "parport",
+          "dest": "$WORKDIR/autoconfig/parport"
+        },
+        {
+          "type": "dir",
+          "source": "qnx",
+          "dest": "$WORKDIR/autoconfig/qnx"
+        },
+        {
+          "type": "dir",
+          "source": "sdl2",
+          "dest": "$WORKDIR/autoconfig/sdl2"
+        },
+        {
+          "type": "dir",
+          "source": "udev",
+          "dest": "$WORKDIR/autoconfig/udev"
+        },
+        {
+          "type": "dir",
+          "source": "x",
+          "dest": "$WORKDIR/autoconfig/x"
+        },
+        {
+          "type": "dir",
+          "source": "xinput",
+          "dest": "$WORKDIR/autoconfig/xinput"
+        }
+      ]
+    },
+    {
+      "source_url": "$WORKDIR",
+      "source_type": "local",
+      "extraction_type": "local",
+      "assets": [
+        {
+          "type": "tar.gz",
+          "source": "autoconfig/.",
+          "dest": "rd_extras/autoconfig"
         }
       ]
     }
