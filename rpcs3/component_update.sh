@@ -70,9 +70,9 @@ fi
 
 if [[ $(check_version_is_older_than "$version_being_updated" "0.10.7b") == "true" ]]; then
 
-  log i "0.10.7b Upgrade - RPCS3: Default.yml"
+  log i "0.10.7b Upgrade - RPCS3: Resetl"
 
-  cp -f "$config/rpcs3/input_configs/global/Default.yml" "$XDG_CONFIG_HOME/rpcs3/input_configs/global/Default.yml"
+  prepare_component "reset" "rpcs3"
 
 fi
 
