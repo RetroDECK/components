@@ -17,6 +17,3465 @@
     "system": "retroarch",
     "component_type": "Multi-Emulator",
     "system_friendly_name": "Multiple Retro Systems",
+    "es_de_config": {
+      "es_find_rules": {
+        "emulators": [
+          {
+            "name": "RETROARCH",
+            "description": "",
+            "rules": [
+              {
+                "type": "staticpath",
+                "entries": [
+                  "%COMPONENT_PATH%/component_launcher.sh"
+                ]
+              }
+            ]
+          }
+        ],
+        "cores": [
+          {
+            "name": "RETROARCH",
+            "description": "",
+            "rules": [
+              {
+                "type": "corepath",
+                "entries": [
+                  "/var/config/retroarch/cores"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "es_systems": [
+        {
+          "name": "3do",
+          "fullname": "3DO Interactive Multiplayer",
+          "path": "%ROMPATH%/3do",
+          "extension": ".7z .bin .chd .cue .iso .zip",
+          "commands": [
+            {
+              "label": "Opera",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/opera_libretro.so %ROM%",
+              "priority": 10
+            }
+          ],
+          "platform": "3do",
+          "theme": "3do"
+        },
+        {
+          "name": "amiga",
+          "fullname": "Commodore Amiga",
+          "path": "%ROMPATH%/amiga",
+          "extension": ".7z .adf .adz .ccd .chd .cue .dms .fdi .hdf .hdz .ipf .iso .lha .m3u .mds .nrg .rp9 .uae .zip",
+          "commands": [
+            {
+              "label": "PUAE",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/puae_libretro.so %ROM%",
+              "priority": 10
+            },
+            {
+              "label": "PUAE 2021",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/puae2021_libretro.so %ROM%",
+              "priority": 20
+            }
+          ],
+          "platform": "amiga",
+          "theme": "amiga"
+        },
+        {
+          "name": "amiga1200",
+          "fullname": "Commodore Amiga 1200",
+          "path": "%ROMPATH%/amiga1200",
+          "extension": ".7z .adf .adz .ccd .chd .cue .dms .fdi .hdf .hdz .ipf .iso .lha .m3u .mds .nrg .rp9 .uae .zip",
+          "commands": [
+            {
+              "label": "PUAE",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/puae_libretro.so %ROM%",
+              "priority": 10
+            },
+            {
+              "label": "PUAE 2021",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/puae2021_libretro.so %ROM%",
+              "priority": 20
+            }
+          ],
+          "platform": "amiga",
+          "theme": "amiga1200"
+        },
+        {
+          "name": "amiga600",
+          "fullname": "Commodore Amiga 600",
+          "path": "%ROMPATH%/amiga600",
+          "extension": ".7z .adf .adz .ccd .chd .cue .dms .fdi .hdf .hdz .ipf .iso .lha .m3u .mds .nrg .rp9 .uae .zip",
+          "commands": [
+            {
+              "label": "PUAE",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/puae_libretro.so %ROM%",
+              "priority": 10
+            },
+            {
+              "label": "PUAE 2021",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/puae2021_libretro.so %ROM%",
+              "priority": 20
+            }
+          ],
+          "platform": "amiga",
+          "theme": "amiga600"
+        },
+        {
+          "name": "amigacd32",
+          "fullname": "Commodore Amiga CD32",
+          "path": "%ROMPATH%/amigacd32",
+          "extension": ".7z .adf .adz .ccd .chd .cue .dms .fdi .hdf .hdz .ipf .iso .lha .m3u .mds .nrg .rp9 .uae .zip",
+          "commands": [
+            {
+              "label": "PUAE",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/puae_libretro.so %ROM%",
+              "priority": 10
+            },
+            {
+              "label": "PUAE 2021",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/puae2021_libretro.so %ROM%",
+              "priority": 20
+            }
+          ],
+          "platform": "amigacd32",
+          "theme": "amigacd32"
+        },
+        {
+          "name": "amstradcpc",
+          "fullname": "Amstrad CPC",
+          "path": "%ROMPATH%/amstradcpc",
+          "extension": ".7z .cdt .cpr .dsk .kcr .m3u .sna .tap .tar .voc .zip",
+          "commands": [
+            {
+              "label": "Caprice32",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/cap32_libretro.so %ROM%",
+              "priority": 10
+            },
+            {
+              "label": "CrocoDS",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/crocods_libretro.so %ROM%",
+              "priority": 20
+            }
+          ],
+          "platform": "amstradcpc",
+          "theme": "amstradcpc"
+        },
+        {
+          "name": "apple2",
+          "fullname": "Apple II",
+          "path": "%ROMPATH%/apple2",
+          "extension": ".do .dsk .nib .po",
+          "commands": [
+            {
+              "label": "MAME - Current",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame_libretro.so \"apple2e -rompath \\\"%GAMEDIRRAW%;%ROMPATH%/apple2\\\" -gameio joy -flop1 \\\"%GAMEDIRRAW%/%FILENAME%\\\"\"",
+              "priority": 10
+            }
+          ],
+          "platform": "apple2",
+          "theme": "apple2"
+        },
+        {
+          "name": "apple2gs",
+          "fullname": "Apple IIGS",
+          "path": "%ROMPATH%/apple2gs",
+          "extension": ".2mg .7z .zip",
+          "commands": [
+            {
+              "label": "MAME - Current",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame_libretro.so \"apple2gs -rompath \\\"%GAMEDIRRAW%;%ROMPATH%/apple2gs\\\" -gameio joy -flop3 \\\"%GAMEDIRRAW%/%FILENAME%\\\"\"",
+              "priority": 10
+            }
+          ],
+          "platform": "apple2gs",
+          "theme": "apple2gs"
+        },
+        {
+          "name": "arcade",
+          "fullname": "Arcade",
+          "path": "%ROMPATH%/arcade",
+          "extension": ".7z .cmd .desktop .gam .lindbergh .neo .sh .zip",
+          "commands": [
+            {
+              "label": "MAME - Current",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame_libretro.so %ROM%",
+              "priority": 10
+            },
+            {
+              "label": "MAME 2010",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2010_libretro.so %ROM%",
+              "priority": 20
+            },
+            {
+              "label": "MAME 2003-Plus",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2003_plus_libretro.so %ROM%",
+              "priority": 30
+            },
+            {
+              "label": "MAME 2003",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2003_libretro.so %ROM%",
+              "priority": 40
+            },
+            {
+              "label": "MAME 2000",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2000_libretro.so %ROM%",
+              "priority": 50
+            },
+            {
+              "label": "FinalBurn Neo",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/fbneo_libretro.so %ROM%",
+              "priority": 70
+            },
+            {
+              "label": "FB Alpha 2012",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/fbalpha2012_libretro.so %ROM%",
+              "priority": 80
+            },
+            {
+              "label": "Geolith",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/geolith_libretro.so %ROM%",
+              "priority": 90
+            },
+            {
+              "label": "Flycast",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/flycast_libretro.so %ROM%",
+              "priority": 100
+            },
+            {
+              "label": "Kronos",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/kronos_libretro.so %ROM%",
+              "priority": 110
+            },
+            {
+              "label": "DICE",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/dice_libretro.so %ROM%",
+              "priority": 120
+            }
+          ],
+          "platform": "arcade",
+          "theme": "arcade"
+        },
+        {
+          "name": "arcadia",
+          "fullname": "Emerson Arcadia 2001",
+          "path": "%ROMPATH%/arcadia",
+          "extension": ".7z .bin .zip",
+          "commands": [
+            {
+              "label": "MAME - Current",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame_libretro.so \"arcadia -rompath \\\"%GAMEDIRRAW%;%ROMPATH%/arcadia\\\" -cart \\\"%ROMRAW%\\\"\"",
+              "priority": 10
+            }
+          ],
+          "platform": "arcadia",
+          "theme": "arcadia"
+        },
+        {
+          "name": "arduboy",
+          "fullname": "Arduboy Miniature Game System",
+          "path": "%ROMPATH%/arduboy",
+          "extension": ".7z .arduboy .hex .zip",
+          "commands": [
+            {
+              "label": "Arduous",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/arduous_libretro.so %ROM%",
+              "priority": 10
+            },
+            {
+              "label": "Ardens",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/ardens_libretro.so %ROM%",
+              "priority": 20
+            }
+          ],
+          "platform": "arduboy",
+          "theme": "arduboy"
+        },
+        {
+          "name": "astrocde",
+          "fullname": "Bally Astrocade",
+          "path": "%ROMPATH%/astrocde",
+          "extension": ".7z .zip",
+          "commands": [
+            {
+              "label": "MAME - Current",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame_libretro.so \"astrocde -rompath \\\"%GAMEDIRRAW%;%ROMPATH%/astrocde\\\" -cart \\\"%ROMRAW%\\\"\"",
+              "priority": 10
+            }
+          ],
+          "platform": "astrocde",
+          "theme": "astrocade"
+        },
+        {
+          "name": "atari2600",
+          "fullname": "Atari 2600",
+          "path": "%ROMPATH%/atari2600",
+          "extension": ".7z .a26 .bin .zip",
+          "commands": [
+            {
+              "label": "Stella",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/stella_libretro.so %ROM%",
+              "priority": 10
+            },
+            {
+              "label": "Stella 2014",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/stella2014_libretro.so %ROM%",
+              "priority": 20
+            },
+            {
+              "label": "Stella 2023",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/stella2023_libretro.so %ROM%",
+              "priority": 30
+            }
+          ],
+          "platform": "atari2600",
+          "theme": "atari2600"
+        },
+        {
+          "name": "atari5200",
+          "fullname": "Atari 5200",
+          "path": "%ROMPATH%/atari5200",
+          "extension": ".7z .a52 .atr .atx .bin .car .cas .cdm .rom .xex .xfd .zip",
+          "commands": [
+            {
+              "label": "a5200",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/a5200_libretro.so %ROM%",
+              "priority": 10
+            },
+            {
+              "label": "Atari800",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/atari800_libretro.so %ROM%",
+              "priority": 20
+            }
+          ],
+          "platform": "atari5200",
+          "theme": "atari5200"
+        },
+        {
+          "name": "atari7800",
+          "fullname": "Atari 7800 ProSystem",
+          "path": "%ROMPATH%/atari7800",
+          "extension": ".7z .a78 .bin .zip",
+          "commands": [
+            {
+              "label": "ProSystem",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/prosystem_libretro.so %ROM%",
+              "priority": 10
+            },
+            {
+              "label": "MAME - Current",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame_libretro.so \"a7800 -rompath \\\"%GAMEDIRRAW%;%ROMPATH%/atari7800\\\" -cart \\\"%ROMRAW%\\\"\"",
+              "priority": 20
+            }
+          ],
+          "platform": "atari7800",
+          "theme": "atari7800"
+        },
+        {
+          "name": "atari800",
+          "fullname": "Atari 800",
+          "path": "%ROMPATH%/atari800",
+          "extension": ".7z .a52 .atr .atx .bin .car .cas .cdm .com .rom .xex .xfd .zip",
+          "commands": [
+            {
+              "label": "Atari800",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/atari800_libretro.so %ROM%",
+              "priority": 10
+            }
+          ],
+          "platform": "atari800",
+          "theme": "atari800"
+        },
+        {
+          "name": "atarijaguar",
+          "fullname": "Atari Jaguar",
+          "path": "%ROMPATH%/atarijaguar",
+          "extension": ".7z .abs .bigpimg .bin .cdi .cof .cue .j64 .jag .prg .rom .zip",
+          "commands": [
+            {
+              "label": "Virtual Jaguar",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/virtualjaguar_libretro.so %ROM%",
+              "priority": 10
+            }
+          ],
+          "platform": "atarijaguar",
+          "theme": "atarijaguar"
+        },
+        {
+          "name": "atarilynx",
+          "fullname": "Atari Lynx",
+          "path": "%ROMPATH%/atarilynx",
+          "extension": ".7z .lnx .lyx .o .zip",
+          "commands": [
+            {
+              "label": "Handy",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/handy_libretro.so %ROM%",
+              "priority": 10
+            },
+            {
+              "label": "Beetle Lynx",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mednafen_lynx_libretro.so %ROM%",
+              "priority": 20
+            },
+            {
+              "label": "Holani",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/holani_libretro.so %ROM%",
+              "priority": 30
+            }
+          ],
+          "platform": "atarilynx",
+          "theme": "atarilynx"
+        },
+        {
+          "name": "atarist",
+          "fullname": "Atari ST",
+          "path": "%ROMPATH%/atarist",
+          "extension": ".7z .dim .ipf .m3u .msa .st .stx .zip",
+          "commands": [
+            {
+              "label": "Hatari",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/hatari_libretro.so %ROM%",
+              "priority": 10
+            }
+          ],
+          "platform": "atarist",
+          "theme": "atarist"
+        },
+        {
+          "name": "atarixe",
+          "fullname": "Atari XE",
+          "path": "%ROMPATH%/atarixe",
+          "extension": ".7z .a52 .atr .atx .bin .car .cas .cdm .com .rom .xex .xfd .zip",
+          "commands": [
+            {
+              "label": "Atari800",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/atari800_libretro.so %ROM%",
+              "priority": 10
+            }
+          ],
+          "platform": "atarixe",
+          "theme": "atarixe"
+        },
+        {
+          "name": "atomiswave",
+          "fullname": "Sammy Corporation Atomiswave",
+          "path": "%ROMPATH%/atomiswave",
+          "extension": ".7z .bin .dat .elf .lst .zip",
+          "commands": [
+            {
+              "label": "Flycast",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/flycast_libretro.so %ROM%",
+              "priority": 10
+            }
+          ],
+          "platform": "arcade",
+          "theme": "atomiswave"
+        },
+        {
+          "name": "bbcmicro",
+          "fullname": "Acorn Computers BBC Micro",
+          "path": "%ROMPATH%/bbcmicro",
+          "extension": ".7z .dsd .img .ssd .zip",
+          "commands": [
+            {
+              "label": "b2",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/b2_libretro.so %ROM%",
+              "priority": 20
+            }
+          ],
+          "platform": "bbcmicro",
+          "theme": "bbcmicro"
+        },
+        {
+          "name": "c64",
+          "fullname": "Commodore 64",
+          "path": "%ROMPATH%/c64",
+          "extension": ".7z .bin .cmd .crt .d2m .d4m .d64 .d6z .d71 .d7z .d80 .d81 .d82 .d8z .g41 .g4z .g64 .g6z .gz .lnx .m3u .nbz .nib .p00 .prg .t64 .tap .vfl .vsf .x64 .x6z .zip",
+          "commands": [
+            {
+              "label": "VICE x64sc Accurate",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/vice_x64sc_libretro.so %ROM%",
+              "priority": 10
+            },
+            {
+              "label": "VICE x64 Fast",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/vice_x64_libretro.so %ROM%",
+              "priority": 20
+            },
+            {
+              "label": "VICE x64 SuperCPU",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/vice_xscpu64_libretro.so %ROM%",
+              "priority": 30
+            },
+            {
+              "label": "VICE x128",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/vice_x128_libretro.so %ROM%",
+              "priority": 40
+            },
+            {
+              "label": "Frodo",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/frodo_libretro.so %ROM%",
+              "priority": 50
+            }
+          ],
+          "platform": "c64",
+          "theme": "c64"
+        },
+        {
+          "name": "cdimono1",
+          "fullname": "Philips CD-i",
+          "path": "%ROMPATH%/cdimono1",
+          "extension": ".chd .cue .iso",
+          "commands": [
+            {
+              "label": "SAME CDi",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/same_cdi_libretro.so %ROM%",
+              "priority": 10
+            },
+            {
+              "label": "CDi 2015",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/cdi2015_libretro.so %ROM%",
+              "priority": 20
+            }
+          ],
+          "platform": "cdimono1",
+          "theme": "cdimono1"
+        },
+        {
+          "name": "cdtv",
+          "fullname": "Commodore CDTV",
+          "path": "%ROMPATH%/cdtv",
+          "extension": ".7z .adf .adz .ccd .chd .cue .dms .fdi .hdf .hdz .ipf .iso .lha .m3u .mds .nrg .rp9 .uae .zip",
+          "commands": [
+            {
+              "label": "PUAE",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/puae_libretro.so %ROM%",
+              "priority": 10
+            },
+            {
+              "label": "PUAE 2021",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/puae2021_libretro.so %ROM%",
+              "priority": 20
+            }
+          ],
+          "platform": "cdtv",
+          "theme": "cdtv"
+        },
+        {
+          "name": "chailove",
+          "fullname": "ChaiLove Game Engine",
+          "path": "%ROMPATH%/chailove",
+          "extension": ".7z .chai .chailove .zip",
+          "commands": [
+            {
+              "label": "ChaiLove",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/chailove_libretro.so %ROM%",
+              "priority": 10
+            }
+          ],
+          "platform": "love",
+          "theme": "chailove"
+        },
+        {
+          "name": "channelf",
+          "fullname": "Fairchild Channel F",
+          "path": "%ROMPATH%/channelf",
+          "extension": ".7z .bin .chf .zip",
+          "commands": [
+            {
+              "label": "FreeChaF",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/freechaf_libretro.so %ROM%",
+              "priority": 10
+            },
+            {
+              "label": "MAME - Current",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame_libretro.so \"channelf -rompath \\\"%GAMEDIRRAW%;%ROMPATH%/channelf\\\" -cart \\\"%ROMRAW%\\\"\"",
+              "priority": 20
+            }
+          ],
+          "platform": "channelf",
+          "theme": "channelf"
+        },
+        {
+          "name": "colecovision",
+          "fullname": "Coleco ColecoVision",
+          "path": "%ROMPATH%/colecovision",
+          "extension": ".7z .bin .cas .col .cv .dsk .m3u .mx1 .mx2 .ri .rom .sc .sg .zip",
+          "commands": [
+            {
+              "label": "blueMSX",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bluemsx_libretro.so %ROM%",
+              "priority": 10
+            },
+            {
+              "label": "Gearcoleco",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/gearcoleco_libretro.so %ROM%",
+              "priority": 20
+            }
+          ],
+          "platform": "colecovision",
+          "theme": "colecovision"
+        },
+        {
+          "name": "consolearcade",
+          "fullname": "Console Arcade Systems",
+          "path": "%ROMPATH%/consolearcade",
+          "extension": ".7z .arcadedef .desktop .iso .ps3 .sh .xbe .zip",
+          "commands": [
+            {
+              "label": "MAME - Current",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame_libretro.so %ROM%",
+              "priority": 10
+            },
+            {
+              "label": "Flycast",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/flycast_libretro.so %ROM%",
+              "priority": 30
+            },
+            {
+              "label": "Kronos",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/kronos_libretro.so %ROM%",
+              "priority": 40
+            }
+          ],
+          "platform": "arcade",
+          "theme": "consolearcade"
+        },
+        {
+          "name": "cps",
+          "fullname": "Capcom Play System",
+          "path": "%ROMPATH%/cps",
+          "extension": ".7z .zip",
+          "commands": [
+            {
+              "label": "MAME - Current",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame_libretro.so %ROM%",
+              "priority": 10
+            },
+            {
+              "label": "MAME 2010",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2010_libretro.so %ROM%",
+              "priority": 20
+            },
+            {
+              "label": "MAME 2003-Plus",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2003_plus_libretro.so %ROM%",
+              "priority": 30
+            },
+            {
+              "label": "MAME 2003",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2003_libretro.so %ROM%",
+              "priority": 40
+            },
+            {
+              "label": "MAME 2000",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2000_libretro.so %ROM%",
+              "priority": 50
+            },
+            {
+              "label": "FinalBurn Neo",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/fbneo_libretro.so %ROM%",
+              "priority": 70
+            },
+            {
+              "label": "FB Alpha 2012",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/fbalpha2012_libretro.so %ROM%",
+              "priority": 80
+            },
+            {
+              "label": "FB Alpha 2012 CPS-1",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/fbalpha2012_cps1_libretro.so %ROM%",
+              "priority": 90
+            },
+            {
+              "label": "FB Alpha 2012 CPS-2",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/fbalpha2012_cps2_libretro.so %ROM%",
+              "priority": 100
+            },
+            {
+              "label": "FB Alpha 2012 CPS-3",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/fbalpha2012_cps3_libretro.so %ROM%",
+              "priority": 110
+            }
+          ],
+          "platform": "arcade",
+          "theme": "cps"
+        },
+        {
+          "name": "cps1",
+          "fullname": "Capcom Play System I",
+          "path": "%ROMPATH%/cps1",
+          "extension": ".7z .zip",
+          "commands": [
+            {
+              "label": "MAME - Current",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame_libretro.so %ROM%",
+              "priority": 10
+            },
+            {
+              "label": "MAME 2010",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2010_libretro.so %ROM%",
+              "priority": 20
+            },
+            {
+              "label": "MAME 2003-Plus",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2003_plus_libretro.so %ROM%",
+              "priority": 30
+            },
+            {
+              "label": "MAME 2003",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2003_libretro.so %ROM%",
+              "priority": 40
+            },
+            {
+              "label": "MAME 2000",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2000_libretro.so %ROM%",
+              "priority": 50
+            },
+            {
+              "label": "FinalBurn Neo",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/fbneo_libretro.so %ROM%",
+              "priority": 70
+            },
+            {
+              "label": "FB Alpha 2012",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/fbalpha2012_libretro.so %ROM%",
+              "priority": 80
+            },
+            {
+              "label": "FB Alpha 2012 CPS-1",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/fbalpha2012_cps1_libretro.so %ROM%",
+              "priority": 90
+            }
+          ],
+          "platform": "arcade",
+          "theme": "cps1"
+        },
+        {
+          "name": "cps2",
+          "fullname": "Capcom Play System II",
+          "path": "%ROMPATH%/cps2",
+          "extension": ".7z .zip",
+          "commands": [
+            {
+              "label": "MAME - Current",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame_libretro.so %ROM%",
+              "priority": 10
+            },
+            {
+              "label": "MAME 2010",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2010_libretro.so %ROM%",
+              "priority": 20
+            },
+            {
+              "label": "MAME 2003-Plus",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2003_plus_libretro.so %ROM%",
+              "priority": 30
+            },
+            {
+              "label": "MAME 2003",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2003_libretro.so %ROM%",
+              "priority": 40
+            },
+            {
+              "label": "MAME 2000",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2000_libretro.so %ROM%",
+              "priority": 50
+            },
+            {
+              "label": "FinalBurn Neo",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/fbneo_libretro.so %ROM%",
+              "priority": 70
+            },
+            {
+              "label": "FB Alpha 2012",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/fbalpha2012_libretro.so %ROM%",
+              "priority": 80
+            },
+            {
+              "label": "FB Alpha 2012 CPS-2",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/fbalpha2012_cps2_libretro.so %ROM%",
+              "priority": 90
+            }
+          ],
+          "platform": "arcade",
+          "theme": "cps2"
+        },
+        {
+          "name": "cps3",
+          "fullname": "Capcom Play System III",
+          "path": "%ROMPATH%/cps3",
+          "extension": ".7z .zip",
+          "commands": [
+            {
+              "label": "MAME - Current",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame_libretro.so %ROM%",
+              "priority": 10
+            },
+            {
+              "label": "MAME 2010",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2010_libretro.so %ROM%",
+              "priority": 20
+            },
+            {
+              "label": "MAME 2003-Plus",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2003_plus_libretro.so %ROM%",
+              "priority": 30
+            },
+            {
+              "label": "MAME 2003",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2003_libretro.so %ROM%",
+              "priority": 40
+            },
+            {
+              "label": "MAME 2000",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2000_libretro.so %ROM%",
+              "priority": 50
+            },
+            {
+              "label": "FinalBurn Neo",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/fbneo_libretro.so %ROM%",
+              "priority": 70
+            },
+            {
+              "label": "FB Alpha 2012",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/fbalpha2012_libretro.so %ROM%",
+              "priority": 80
+            },
+            {
+              "label": "FB Alpha 2012 CPS-3",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/fbalpha2012_cps3_libretro.so %ROM%",
+              "priority": 90
+            }
+          ],
+          "platform": "arcade",
+          "theme": "cps3"
+        },
+        {
+          "name": "crvision",
+          "fullname": "VTech CreatiVision",
+          "path": "%ROMPATH%/crvision",
+          "extension": ".7z .bin .rom .zip",
+          "commands": [
+            {
+              "label": "MAME - Current",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame_libretro.so \"crvision -rompath \\\"%GAMEDIRRAW%;%ROMPATH%/crvision\\\" -cart \\\"%ROMRAW%\\\"\"",
+              "priority": 10
+            }
+          ],
+          "platform": "crvision",
+          "theme": "crvision"
+        },
+        {
+          "name": "daphne",
+          "fullname": "Daphne Arcade LaserDisc Emulator",
+          "path": "%ROMPATH%/daphne",
+          "extension": ".7z .daphne .dirksimple .mmi .ogv .singe .zip",
+          "commands": [
+            {
+              "label": "MAME - Current",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame_libretro.so %ROM%",
+              "priority": 10
+            },
+            {
+              "label": "DirkSimple",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/dirksimple_libretro.so %ROM%",
+              "priority": 30
+            }
+          ],
+          "platform": "daphne, arcade",
+          "theme": "daphne"
+        },
+        {
+          "name": "doom",
+          "fullname": "Doom",
+          "path": "%ROMPATH%/doom",
+          "extension": ".desktop .doom .ipk3 .iwad .pk3 .pk4 .pwad .sh .wad",
+          "commands": [
+            {
+              "label": "PrBoom",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/prboom_libretro.so %ROM%",
+              "priority": 20
+            },
+            {
+              "label": "Boom 3",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/boom3_libretro.so %ROM%",
+              "priority": 30
+            },
+            {
+              "label": "Boom 3 xp",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/boom3_xp_libretro.so %ROM%",
+              "priority": 40
+            }
+          ],
+          "platform": "pc, pcwindows",
+          "theme": "doom"
+        },
+        {
+          "name": "dos",
+          "fullname": "DOS (PC)",
+          "path": "%ROMPATH%/dos",
+          "extension": ".7z .bat .com .conf .cue .dosz .exe .img .iso .zip",
+          "commands": [
+            {
+              "label": "DOSBox-Pure",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/dosbox_pure_libretro.so %ROM%",
+              "priority": 10
+            },
+            {
+              "label": "DOSBox-Core",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/dosbox_core_libretro.so %ROM%",
+              "priority": 20
+            },
+            {
+              "label": "DOSBox-SVN",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/dosbox_svn_libretro.so %ROM%",
+              "priority": 30
+            },
+            {
+              "label": "VirtualXT",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/virtualxt_libretro.so %ROM%",
+              "priority": 40
+            }
+          ],
+          "platform": "dos",
+          "theme": "dos"
+        },
+        {
+          "name": "dreamcast",
+          "fullname": "Sega Dreamcast",
+          "path": "%ROMPATH%/dreamcast",
+          "extension": ".7z .cdi .chd .cue .dat .elf .gdi .iso .lst .m3u .zip",
+          "commands": [
+            {
+              "label": "Flycast",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/flycast_libretro.so %ROM%",
+              "priority": 10
+            }
+          ],
+          "platform": "dreamcast",
+          "theme": "dreamcast"
+        },
+        {
+          "name": "easyrpg",
+          "fullname": "EasyRPG Game Engine",
+          "path": "%ROMPATH%/easyrpg",
+          "extension": ".easyrpg .zip",
+          "commands": [
+            {
+              "label": "EasyRPG",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/easyrpg_libretro.so %ROM%",
+              "priority": 10
+            }
+          ],
+          "platform": "easyrpg",
+          "theme": "easyrpg"
+        },
+        {
+          "name": "famicom",
+          "fullname": "Nintendo Family Computer",
+          "path": "%ROMPATH%/famicom",
+          "extension": ".3dsen .7z .fds .nes .unf .unif .zip",
+          "commands": [
+            {
+              "label": "Mesen",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mesen_libretro.so %ROM%",
+              "priority": 10
+            },
+            {
+              "label": "Nestopia UE",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/nestopia_libretro.so %ROM%",
+              "priority": 20
+            },
+            {
+              "label": "FCEUmm",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/fceumm_libretro.so %ROM%",
+              "priority": 30
+            },
+            {
+              "label": "QuickNES",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/quicknes_libretro.so %ROM%",
+              "priority": 40
+            }
+          ],
+          "platform": "famicom",
+          "theme": "famicom"
+        },
+        {
+          "name": "fba",
+          "fullname": "FinalBurn Alpha",
+          "path": "%ROMPATH%/fba",
+          "extension": ".7z .iso .zip",
+          "commands": [
+            {
+              "label": "FB Alpha 2012",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/fbalpha2012_libretro.so %ROM%",
+              "priority": 10
+            },
+            {
+              "label": "FB Alpha 2012 Neo Geo",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/fbalpha2012_neogeo_libretro.so %ROM%",
+              "priority": 20
+            },
+            {
+              "label": "FB Alpha 2012 CPS-1",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/fbalpha2012_cps1_libretro.so %ROM%",
+              "priority": 30
+            },
+            {
+              "label": "FB Alpha 2012 CPS-2",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/fbalpha2012_cps2_libretro.so %ROM%",
+              "priority": 40
+            },
+            {
+              "label": "FB Alpha 2012 CPS-3",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/fbalpha2012_cps3_libretro.so %ROM%",
+              "priority": 50
+            }
+          ],
+          "platform": "arcade",
+          "theme": "fba"
+        },
+        {
+          "name": "fbneo",
+          "fullname": "FinalBurn Neo",
+          "path": "%ROMPATH%/fbneo",
+          "extension": ".7z .zip",
+          "commands": [
+            {
+              "label": "FinalBurn Neo",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/fbneo_libretro.so %ROM%",
+              "priority": 10
+            }
+          ],
+          "platform": "arcade",
+          "theme": "fbneo"
+        },
+        {
+          "name": "fds",
+          "fullname": "Nintendo Famicom Disk System",
+          "path": "%ROMPATH%/fds",
+          "extension": ".7z .fds .nes .unf .unif .zip",
+          "commands": [
+            {
+              "label": "Mesen",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mesen_libretro.so %ROM%",
+              "priority": 10
+            },
+            {
+              "label": "Nestopia UE",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/nestopia_libretro.so %ROM%",
+              "priority": 20
+            },
+            {
+              "label": "FCEUmm",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/fceumm_libretro.so %ROM%",
+              "priority": 30
+            }
+          ],
+          "platform": "fds",
+          "theme": "fds"
+        },
+        {
+          "name": "fmtowns",
+          "fullname": "Fujitsu FM Towns",
+          "path": "%ROMPATH%/fmtowns",
+          "extension": ".cdr .chd .cue .gdi .iso",
+          "commands": [
+            {
+              "label": "MAME - Current",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame_libretro.so \"fmtownshr -rompath \\\"%GAMEDIRRAW%;%ROMPATH%/fmtowns\\\" -cdrom \\\"%GAMEDIRRAW%/%FILENAME%\\\"\"",
+              "priority": 10
+            }
+          ],
+          "platform": "fmtowns",
+          "theme": "fmtowns"
+        },
+        {
+          "name": "gamate",
+          "fullname": "Bit Corporation Gamate",
+          "path": "%ROMPATH%/gamate",
+          "extension": ".7z .bin .zip",
+          "commands": [
+            {
+              "label": "MAME - Current",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame_libretro.so \"gamate -rompath \\\"%GAMEDIRRAW%;%ROMPATH%/gamate\\\" -cart \\\"%ROMRAW%\\\"\"",
+              "priority": 10
+            }
+          ],
+          "platform": "gamate",
+          "theme": "gamate"
+        },
+        {
+          "name": "gameandwatch",
+          "fullname": "Nintendo Game and Watch",
+          "path": "%ROMPATH%/gameandwatch",
+          "extension": ".7z .mgw .zip",
+          "commands": [
+            {
+              "label": "MAME - Current",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame_libretro.so %ROM%",
+              "priority": 10
+            },
+            {
+              "label": "Handheld Electronic (GW)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/gw_libretro.so %ROM%",
+              "priority": 40
+            }
+          ],
+          "platform": "gameandwatch",
+          "theme": "gameandwatch"
+        },
+        {
+          "name": "gamecom",
+          "fullname": "Tiger Electronics Game.com",
+          "path": "%ROMPATH%/gamecom",
+          "extension": ".7z .tgc .zip",
+          "commands": [
+            {
+              "label": "MAME - Current",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame_libretro.so \"gamecom -rompath \\\"%GAMEDIRRAW%;%ROMPATH%/gamecom\\\" -cartridge1 \\\"%ROMRAW%\\\"\"",
+              "priority": 10
+            }
+          ],
+          "platform": "gamecom",
+          "theme": "gamecom"
+        },
+        {
+          "name": "gamegear",
+          "fullname": "Sega Game Gear",
+          "path": "%ROMPATH%/gamegear",
+          "extension": ".68k .7z .bin .bms .chd .col .cue .gen .gg .iso .m3u .md .mdx .rom .sg .sgd .smd .sms .zip",
+          "commands": [
+            {
+              "label": "Genesis Plus GX",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/genesis_plus_gx_libretro.so %ROM%",
+              "priority": 10
+            },
+            {
+              "label": "Genesis Plus GX Wide",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/genesis_plus_gx_wide_libretro.so %ROM%",
+              "priority": 20
+            },
+            {
+              "label": "Gearsystem",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/gearsystem_libretro.so %ROM%",
+              "priority": 30
+            },
+            {
+              "label": "SMS Plus GX",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/smsplus_libretro.so %ROM%",
+              "priority": 40
+            },
+            {
+              "label": "PicoDrive",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/picodrive_libretro.so %ROM%",
+              "priority": 50
+            }
+          ],
+          "platform": "gamegear",
+          "theme": "gamegear"
+        },
+        {
+          "name": "gb",
+          "fullname": "Nintendo Game Boy",
+          "path": "%ROMPATH%/gb",
+          "extension": ".7z .bs .cgb .dmg .gb .gbc .sfc .sgb .smc .zip",
+          "commands": [
+            {
+              "label": "Gambatte",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/gambatte_libretro.so %ROM%",
+              "priority": 10
+            },
+            {
+              "label": "SameBoy",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/sameboy_libretro.so %ROM%",
+              "priority": 20
+            },
+            {
+              "label": "Gearboy",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/gearboy_libretro.so %ROM%",
+              "priority": 30
+            },
+            {
+              "label": "TGB Dual",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/tgbdual_libretro.so %ROM%",
+              "priority": 40
+            },
+            {
+              "label": "DoubleCherryGB",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/DoubleCherryGB_libretro.so %ROM%",
+              "priority": 50
+            },
+            {
+              "label": "Mesen-S",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mesen-s_libretro.so %ROM%",
+              "priority": 60
+            },
+            {
+              "label": "bsnes",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes_libretro.so %ROM%",
+              "priority": 70
+            },
+            {
+              "label": "mGBA",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mgba_libretro.so %ROM%",
+              "priority": 80
+            },
+            {
+              "label": "VBA-M",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/vbam_libretro.so %ROM%",
+              "priority": 90
+            }
+          ],
+          "platform": "gb",
+          "theme": "gb"
+        },
+        {
+          "name": "gba",
+          "fullname": "Nintendo Game Boy Advance",
+          "path": "%ROMPATH%/gba",
+          "extension": ".7z .agb .bin .cgb .dmg .gb .gba .gbc .sgb .zip",
+          "commands": [
+            {
+              "label": "mGBA",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mgba_libretro.so %ROM%",
+              "priority": 10
+            },
+            {
+              "label": "VBA-M",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/vbam_libretro.so %ROM%",
+              "priority": 20
+            },
+            {
+              "label": "VBA Next",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/vba_next_libretro.so %ROM%",
+              "priority": 30
+            },
+            {
+              "label": "gpSP",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/gpsp_libretro.so %ROM%",
+              "priority": 40
+            },
+            {
+              "label": "NooDS",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/noods_libretro.so %ROM%",
+              "priority": 50
+            }
+          ],
+          "platform": "gba",
+          "theme": "gba"
+        },
+        {
+          "name": "gbc",
+          "fullname": "Nintendo Game Boy Color",
+          "path": "%ROMPATH%/gbc",
+          "extension": ".7z .bs .cgb .dmg .gb .gbc .sfc .sgb .smc .zip",
+          "commands": [
+            {
+              "label": "Gambatte",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/gambatte_libretro.so %ROM%",
+              "priority": 10
+            },
+            {
+              "label": "SameBoy",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/sameboy_libretro.so %ROM%",
+              "priority": 20
+            },
+            {
+              "label": "Gearboy",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/gearboy_libretro.so %ROM%",
+              "priority": 30
+            },
+            {
+              "label": "TGB Dual",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/tgbdual_libretro.so %ROM%",
+              "priority": 40
+            },
+            {
+              "label": "DoubleCherryGB",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/DoubleCherryGB_libretro.so %ROM%",
+              "priority": 50
+            },
+            {
+              "label": "Mesen-S",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mesen-s_libretro.so %ROM%",
+              "priority": 60
+            },
+            {
+              "label": "bsnes",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes_libretro.so %ROM%",
+              "priority": 70
+            },
+            {
+              "label": "mGBA",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mgba_libretro.so %ROM%",
+              "priority": 80
+            },
+            {
+              "label": "VBA-M",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/vbam_libretro.so %ROM%",
+              "priority": 90
+            }
+          ],
+          "platform": "gbc",
+          "theme": "gbc"
+        },
+        {
+          "name": "gc",
+          "fullname": "Nintendo GameCube",
+          "path": "%ROMPATH%/gc",
+          "extension": ".7z .ciso .dff .dol .elf .gcm .gcz .iso .json .m3u .rvz .tgc .wad .wbfs .wia .zip",
+          "commands": [
+            {
+              "label": "Dolphin",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/dolphin_libretro.so %ROM%",
+              "priority": 20
+            }
+          ],
+          "platform": "gc",
+          "theme": "gc"
+        },
+        {
+          "name": "genesis",
+          "fullname": "Sega Genesis",
+          "path": "%ROMPATH%/genesis",
+          "extension": ".32x .68k .7z .bin .bms .chd .cue .gen .gg .iso .m3u .md .mdx .sg .sgd .smd .sms .zip",
+          "commands": [
+            {
+              "label": "Genesis Plus GX",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/genesis_plus_gx_libretro.so %ROM%",
+              "priority": 10
+            },
+            {
+              "label": "Genesis Plus GX Wide",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/genesis_plus_gx_wide_libretro.so %ROM%",
+              "priority": 20
+            },
+            {
+              "label": "PicoDrive",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/picodrive_libretro.so %ROM%",
+              "priority": 30
+            },
+            {
+              "label": "BlastEm",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/blastem_libretro.so %ROM%",
+              "priority": 40
+            }
+          ],
+          "platform": "genesis",
+          "theme": "genesis"
+        },
+        {
+          "name": "gmaster",
+          "fullname": "Hartung Game Master",
+          "path": "%ROMPATH%/gmaster",
+          "extension": ".7z .bin .zip",
+          "commands": [
+            {
+              "label": "MAME - Current",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame_libretro.so \"gmaster -rompath \\\"%GAMEDIRRAW%;%ROMPATH%/gmaster\\\" -cart \\\"%ROMRAW%\\\"\"",
+              "priority": 10
+            }
+          ],
+          "platform": "gmaster",
+          "theme": "gmaster"
+        },
+        {
+          "name": "gx4000",
+          "fullname": "Amstrad GX4000",
+          "path": "%ROMPATH%/gx4000",
+          "extension": ".7z .bin .cdt .cpr .dsk .kcr .m3u .sna .tap .tar .voc .zip",
+          "commands": [
+            {
+              "label": "Caprice32",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/cap32_libretro.so %ROM%",
+              "priority": 10
+            },
+            {
+              "label": "CrocoDS",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/crocods_libretro.so %ROM%",
+              "priority": 20
+            }
+          ],
+          "platform": "gx4000",
+          "theme": "gx4000"
+        },
+        {
+          "name": "intellivision",
+          "fullname": "Mattel Electronics Intellivision",
+          "path": "%ROMPATH%/intellivision",
+          "extension": ".7z .bin .int .rom .zip",
+          "commands": [
+            {
+              "label": "FreeIntv",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/freeintv_libretro.so %ROM%",
+              "priority": 10
+            },
+            {
+              "label": "MAME - Current",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame_libretro.so \"intv -rompath \\\"%GAMEDIRRAW%;%ROMPATH%/intellivision\\\" -cart \\\"%ROMRAW%\\\"\"",
+              "priority": 20
+            }
+          ],
+          "platform": "intellivision",
+          "theme": "intellivision"
+        },
+        {
+          "name": "j2me",
+          "fullname": "Java 2 Micro Edition (J2ME)",
+          "path": "%ROMPATH%/j2me",
+          "extension": ".7z .jar .zip",
+          "commands": [
+            {
+              "label": "SquirrelJME",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/squirreljme_libretro.so %ROM%",
+              "priority": 10
+            }
+          ],
+          "platform": "android",
+          "theme": "j2me"
+        },
+        {
+          "name": "laserdisc",
+          "fullname": "LaserDisc Games",
+          "path": "%ROMPATH%/laserdisc",
+          "extension": ".7z .daphne .dirksimple .mmi .ogv .singe .zip",
+          "commands": [
+            {
+              "label": "MAME - Current",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame_libretro.so %ROM%",
+              "priority": 10
+            },
+            {
+              "label": "DirkSimple",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/dirksimple_libretro.so %ROM%",
+              "priority": 30
+            }
+          ],
+          "platform": "daphne, arcade",
+          "theme": "laserdisc"
+        },
+        {
+          "name": "lcdgames",
+          "fullname": "LCD Handheld Games",
+          "path": "%ROMPATH%/lcdgames",
+          "extension": ".7z .mgw .zip",
+          "commands": [
+            {
+              "label": "MAME - Current",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame_libretro.so %ROM%",
+              "priority": 10
+            },
+            {
+              "label": "Handheld Electronic (GW)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/gw_libretro.so %ROM%",
+              "priority": 40
+            }
+          ],
+          "platform": "lcdgames, gameandwatch",
+          "theme": "lcdgames"
+        },
+        {
+          "name": "lowresnx",
+          "fullname": "LowRes NX Fantasy Console",
+          "path": "%ROMPATH%/lowresnx",
+          "extension": ".nx",
+          "commands": [
+            {
+              "label": "LowRes NX",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/lowresnx_libretro.so %ROM%",
+              "priority": 10
+            }
+          ],
+          "platform": "lowresnx",
+          "theme": "lowresnx"
+        },
+        {
+          "name": "lutro",
+          "fullname": "Lutro Game Engine",
+          "path": "%ROMPATH%/lutro",
+          "extension": ".7z .lua .lutro .zip",
+          "commands": [
+            {
+              "label": "Lutro",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/lutro_libretro.so %ROM%",
+              "priority": 10
+            }
+          ],
+          "platform": "lutro",
+          "theme": "lutro"
+        },
+        {
+          "name": "mame",
+          "fullname": "Multiple Arcade Machine Emulator",
+          "path": "%ROMPATH%/mame",
+          "extension": ".7z .cmd .desktop .gam .lindbergh .neo .sh .zip",
+          "commands": [
+            {
+              "label": "MAME - Current",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame_libretro.so %ROM%",
+              "priority": 10
+            },
+            {
+              "label": "MAME 2010",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2010_libretro.so %ROM%",
+              "priority": 20
+            },
+            {
+              "label": "MAME 2003-Plus",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2003_plus_libretro.so %ROM%",
+              "priority": 30
+            },
+            {
+              "label": "MAME 2003",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2003_libretro.so %ROM%",
+              "priority": 40
+            },
+            {
+              "label": "MAME 2000",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2000_libretro.so %ROM%",
+              "priority": 50
+            },
+            {
+              "label": "FinalBurn Neo",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/fbneo_libretro.so %ROM%",
+              "priority": 70
+            },
+            {
+              "label": "FB Alpha 2012",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/fbalpha2012_libretro.so %ROM%",
+              "priority": 80
+            },
+            {
+              "label": "Geolith",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/geolith_libretro.so %ROM%",
+              "priority": 90
+            },
+            {
+              "label": "Flycast",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/flycast_libretro.so %ROM%",
+              "priority": 100
+            },
+            {
+              "label": "Kronos",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/kronos_libretro.so %ROM%",
+              "priority": 110
+            },
+            {
+              "label": "DICE",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/dice_libretro.so %ROM%",
+              "priority": 120
+            }
+          ],
+          "platform": "arcade",
+          "theme": "mame"
+        },
+        {
+          "name": "mark3",
+          "fullname": "Sega Mark III",
+          "path": "%ROMPATH%/mark3",
+          "extension": ".68k .7z .bin .bms .chd .col .cue .gen .gg .iso .m3u .md .mdx .rom .sg .sgd .smd .sms .zip",
+          "commands": [
+            {
+              "label": "Genesis Plus GX",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/genesis_plus_gx_libretro.so %ROM%",
+              "priority": 10
+            },
+            {
+              "label": "Genesis Plus GX Wide",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/genesis_plus_gx_wide_libretro.so %ROM%",
+              "priority": 20
+            },
+            {
+              "label": "SMS Plus GX",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/smsplus_libretro.so %ROM%",
+              "priority": 30
+            },
+            {
+              "label": "Gearsystem",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/gearsystem_libretro.so %ROM%",
+              "priority": 40
+            },
+            {
+              "label": "PicoDrive",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/picodrive_libretro.so %ROM%",
+              "priority": 50
+            }
+          ],
+          "platform": "mastersystem",
+          "theme": "mark3"
+        },
+        {
+          "name": "mastersystem",
+          "fullname": "Sega Master System",
+          "path": "%ROMPATH%/mastersystem",
+          "extension": ".68k .7z .bin .bms .chd .col .cue .gen .gg .iso .m3u .md .mdx .rom .sg .sgd .smd .sms .zip",
+          "commands": [
+            {
+              "label": "Genesis Plus GX",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/genesis_plus_gx_libretro.so %ROM%",
+              "priority": 10
+            },
+            {
+              "label": "Genesis Plus GX Wide",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/genesis_plus_gx_wide_libretro.so %ROM%",
+              "priority": 20
+            },
+            {
+              "label": "SMS Plus GX",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/smsplus_libretro.so %ROM%",
+              "priority": 30
+            },
+            {
+              "label": "Gearsystem",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/gearsystem_libretro.so %ROM%",
+              "priority": 40
+            },
+            {
+              "label": "PicoDrive",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/picodrive_libretro.so %ROM%",
+              "priority": 50
+            }
+          ],
+          "platform": "mastersystem",
+          "theme": "mastersystem"
+        },
+        {
+          "name": "megacd",
+          "fullname": "Sega Mega-CD",
+          "path": "%ROMPATH%/megacd",
+          "extension": ".68k .7z .bin .bms .chd .cue .gen .gg .iso .m3u .md .mdx .sg .sgd .smd .sms .zip",
+          "commands": [
+            {
+              "label": "Genesis Plus GX",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/genesis_plus_gx_libretro.so %ROM%",
+              "priority": 10
+            },
+            {
+              "label": "Genesis Plus GX Wide",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/genesis_plus_gx_wide_libretro.so %ROM%",
+              "priority": 20
+            },
+            {
+              "label": "PicoDrive",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/picodrive_libretro.so %ROM%",
+              "priority": 30
+            }
+          ],
+          "platform": "segacd",
+          "theme": "megacd"
+        },
+        {
+          "name": "megacdjp",
+          "fullname": "Sega Mega-CD",
+          "path": "%ROMPATH%/megacdjp",
+          "extension": ".68k .7z .bin .bms .chd .cue .gen .gg .iso .m3u .md .mdx .sg .sgd .smd .sms .zip",
+          "commands": [
+            {
+              "label": "Genesis Plus GX",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/genesis_plus_gx_libretro.so %ROM%",
+              "priority": 10
+            },
+            {
+              "label": "Genesis Plus GX Wide",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/genesis_plus_gx_wide_libretro.so %ROM%",
+              "priority": 20
+            },
+            {
+              "label": "PicoDrive",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/picodrive_libretro.so %ROM%",
+              "priority": 30
+            }
+          ],
+          "platform": "segacd",
+          "theme": "megacdjp"
+        },
+        {
+          "name": "megadrive",
+          "fullname": "Sega Mega Drive",
+          "path": "%ROMPATH%/megadrive",
+          "extension": ".32x .68k .7z .bin .bms .chd .cue .gen .gg .iso .m3u .md .mdx .sg .sgd .smd .sms .zip",
+          "commands": [
+            {
+              "label": "Genesis Plus GX",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/genesis_plus_gx_libretro.so %ROM%",
+              "priority": 10
+            },
+            {
+              "label": "Genesis Plus GX Wide",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/genesis_plus_gx_wide_libretro.so %ROM%",
+              "priority": 20
+            },
+            {
+              "label": "PicoDrive",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/picodrive_libretro.so %ROM%",
+              "priority": 30
+            },
+            {
+              "label": "BlastEm",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/blastem_libretro.so %ROM%",
+              "priority": 40
+            },
+            {
+              "label": "Genesis Plus GX [Expanded Rom Size] (Paprium)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/genesis-plus-gx-expanded-rom-size-paprium_libretro.so %ROM%",
+              "priority": 50
+            }
+          ],
+          "platform": "megadrive",
+          "theme": "megadrive"
+        },
+        {
+          "name": "megadrivejp",
+          "fullname": "Sega Mega Drive",
+          "path": "%ROMPATH%/megadrivejp",
+          "extension": ".32x .68k .7z .bin .bms .chd .cue .gen .gg .iso .m3u .md .mdx .sg .sgd .smd .sms .zip",
+          "commands": [
+            {
+              "label": "Genesis Plus GX",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/genesis_plus_gx_libretro.so %ROM%",
+              "priority": 10
+            },
+            {
+              "label": "Genesis Plus GX Wide",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/genesis_plus_gx_wide_libretro.so %ROM%",
+              "priority": 20
+            },
+            {
+              "label": "PicoDrive",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/picodrive_libretro.so %ROM%",
+              "priority": 30
+            },
+            {
+              "label": "BlastEm",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/blastem_libretro.so %ROM%",
+              "priority": 40
+            },
+            {
+              "label": "Genesis Plus GX [Expanded Rom Size] (Paprium)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/genesis-plus-gx-expanded-rom-size-paprium_libretro.so %ROM%",
+              "priority": 50
+            }
+          ],
+          "platform": "megadrive",
+          "theme": "megadrivejp"
+        },
+        {
+          "name": "megaduck",
+          "fullname": "Creatronic Mega Duck",
+          "path": "%ROMPATH%/megaduck",
+          "extension": ".7z .bin .zip",
+          "commands": [
+            {
+              "label": "SameDuck",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/sameduck_libretro.so %ROM%",
+              "priority": 10
+            },
+            {
+              "label": "MAME - Current",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame_libretro.so \"megaduck -rompath \\\"%GAMEDIRRAW%;%ROMPATH%/megaduck\\\" -cart \\\"%ROMRAW%\\\"\"",
+              "priority": 20
+            }
+          ],
+          "platform": "megaduck",
+          "theme": "megaduck"
+        },
+        {
+          "name": "mess",
+          "fullname": "Multi Emulator Super System",
+          "path": "%ROMPATH%/mess",
+          "extension": ".7z .chd .zip",
+          "commands": [
+            {
+              "label": "MESS 2015",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mess2015_libretro.so %ROM%",
+              "priority": 10
+            }
+          ],
+          "platform": "mess",
+          "theme": "mess"
+        },
+        {
+          "name": "model2",
+          "fullname": "Sega Model 2",
+          "path": "%ROMPATH%/model2",
+          "extension": ".7z .zip",
+          "commands": [
+            {
+              "label": "MAME - Current",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame_libretro.so %ROM%",
+              "priority": 10
+            }
+          ],
+          "platform": "arcade",
+          "theme": "model2"
+        },
+        {
+          "name": "moto",
+          "fullname": "Thomson MO/TO Series",
+          "path": "%ROMPATH%/moto",
+          "extension": ".7z .fd .k7 .m5 .m7 .rom .sap .zip",
+          "commands": [
+            {
+              "label": "Theodore",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/theodore_libretro.so %ROM%",
+              "priority": 10
+            }
+          ],
+          "platform": "moto",
+          "theme": "moto"
+        },
+        {
+          "name": "msx",
+          "fullname": "MSX",
+          "path": "%ROMPATH%/msx",
+          "extension": ".7z .cas .col .di1 .di2 .dmk .dsk .fd1 .fd2 .m3u .mx1 .mx2 .ogv .ri .rom .sc .sg .wav .xsa .zip",
+          "commands": [
+            {
+              "label": "blueMSX",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bluemsx_libretro.so %ROM%",
+              "priority": 10
+            },
+            {
+              "label": "fMSX",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/fmsx_libretro.so %ROM%",
+              "priority": 20
+            }
+          ],
+          "platform": "msx",
+          "theme": "msx"
+        },
+        {
+          "name": "msx1",
+          "fullname": "MSX1",
+          "path": "%ROMPATH%/msx1",
+          "extension": ".7z .cas .col .di1 .di2 .dmk .dsk .fd1 .fd2 .m3u .mx1 .mx2 .ogv .ri .rom .sc .sg .wav .xsa .zip",
+          "commands": [
+            {
+              "label": "blueMSX",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bluemsx_libretro.so %ROM%",
+              "priority": 10
+            },
+            {
+              "label": "fMSX",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/fmsx_libretro.so %ROM%",
+              "priority": 20
+            }
+          ],
+          "platform": "msx",
+          "theme": "msx1"
+        },
+        {
+          "name": "msx2",
+          "fullname": "MSX2",
+          "path": "%ROMPATH%/msx2",
+          "extension": ".7z .cas .col .di1 .di2 .dmk .dsk .fd1 .fd2 .m3u .mx1 .mx2 .ogv .ri .rom .sc .sg .wav .xsa .zip",
+          "commands": [
+            {
+              "label": "blueMSX",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bluemsx_libretro.so %ROM%",
+              "priority": 10
+            },
+            {
+              "label": "fMSX",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/fmsx_libretro.so %ROM%",
+              "priority": 20
+            }
+          ],
+          "platform": "msx2",
+          "theme": "msx2"
+        },
+        {
+          "name": "msxturbor",
+          "fullname": "MSX Turbo R",
+          "path": "%ROMPATH%/msxturbor",
+          "extension": ".7z .cas .col .di1 .di2 .dmk .dsk .fd1 .fd2 .m3u .mx1 .mx2 .ogv .ri .rom .sc .sg .wav .xsa .zip",
+          "commands": [
+            {
+              "label": "blueMSX",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bluemsx_libretro.so %ROM%",
+              "priority": 10
+            }
+          ],
+          "platform": "msxturbor",
+          "theme": "msxturbor"
+        },
+        {
+          "name": "multivision",
+          "fullname": "Othello Multivision",
+          "path": "%ROMPATH%/multivision",
+          "extension": ".7z .bin .gg .rom .sg .sms .zip",
+          "commands": [
+            {
+              "label": "Gearsystem",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/gearsystem_libretro.so %ROM%",
+              "priority": 10
+            }
+          ],
+          "platform": "sg-1000",
+          "theme": "multivision"
+        },
+        {
+          "name": "n3ds",
+          "fullname": "Nintendo 3DS",
+          "path": "%ROMPATH%/n3ds",
+          "extension": ".3ds .3dsx .7z .app .axf .cci .cxi .desktop .elf .z3dsx .zcci .zcxi .zip",
+          "commands": [
+            {
+              "label": "Citra",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/citra_libretro.so %ROM%",
+              "priority": 20
+            },
+            {
+              "label": "Citra 2018",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/citra2018_libretro.so %ROM%",
+              "priority": 30
+            },
+            {
+              "label": "Panda3DS",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/panda3ds_libretro.so %ROM%",
+              "priority": 40
+            }
+          ],
+          "platform": "n3ds",
+          "theme": "n3ds"
+        },
+        {
+          "name": "n64",
+          "fullname": "Nintendo 64",
+          "path": "%ROMPATH%/n64",
+          "extension": ".7z .appimage .bin .d64 .desktop .n64 .ndd .sh .u1 .v64 .z64 .zip",
+          "commands": [
+            {
+              "label": "Mupen64Plus-Next",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mupen64plus_next_libretro.so %ROM%",
+              "priority": 10
+            },
+            {
+              "label": "ParaLLEl N64",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/parallel_n64_libretro.so %ROM%",
+              "priority": 20
+            }
+          ],
+          "platform": "n64",
+          "theme": "n64"
+        },
+        {
+          "name": "n64dd",
+          "fullname": "Nintendo 64DD",
+          "path": "%ROMPATH%/n64dd",
+          "extension": ".7z .bin .d64 .n64 .ndd .u1 .v64 .z64 .zip",
+          "commands": [
+            {
+              "label": "ParaLLEl N64",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/parallel_n64_libretro.so %ROM%",
+              "priority": 10
+            },
+            {
+              "label": "Mupen64Plus-Next",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mupen64plus_next_libretro.so %ROM%",
+              "priority": 20
+            }
+          ],
+          "platform": "n64",
+          "theme": "n64dd"
+        },
+        {
+          "name": "naomi",
+          "fullname": "Sega NAOMI",
+          "path": "%ROMPATH%/naomi",
+          "extension": ".7z .bin .dat .elf .lst .zip",
+          "commands": [
+            {
+              "label": "Flycast",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/flycast_libretro.so %ROM%",
+              "priority": 10
+            }
+          ],
+          "platform": "arcade",
+          "theme": "naomi"
+        },
+        {
+          "name": "naomi2",
+          "fullname": "Sega NAOMI 2",
+          "path": "%ROMPATH%/naomi2",
+          "extension": ".7z .bin .dat .elf .lst .zip",
+          "commands": [
+            {
+              "label": "Flycast",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/flycast_libretro.so %ROM%",
+              "priority": 10
+            }
+          ],
+          "platform": "arcade",
+          "theme": "naomi2"
+        },
+        {
+          "name": "naomigd",
+          "fullname": "Sega NAOMI GD-ROM",
+          "path": "%ROMPATH%/naomigd",
+          "extension": ".7z .bin .dat .elf .lst .zip",
+          "commands": [
+            {
+              "label": "Flycast",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/flycast_libretro.so %ROM%",
+              "priority": 10
+            }
+          ],
+          "platform": "arcade",
+          "theme": "naomigd"
+        },
+        {
+          "name": "nds",
+          "fullname": "Nintendo DS",
+          "path": "%ROMPATH%/nds",
+          "extension": ".7z .app .bin .nds .zip",
+          "commands": [
+            {
+              "label": "DeSmuME",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/desmume_libretro.so %ROM%",
+              "priority": 10
+            },
+            {
+              "label": "DeSmuME 2015",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/desmume2015_libretro.so %ROM%",
+              "priority": 20
+            },
+            {
+              "label": "melonDS DS",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/melondsds_libretro.so %ROM%",
+              "priority": 30
+            },
+            {
+              "label": "melonDS",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/melonds_libretro.so %ROM%",
+              "priority": 40
+            }
+          ],
+          "platform": "nds",
+          "theme": "nds"
+        },
+        {
+          "name": "neogeo",
+          "fullname": "SNK Neo Geo",
+          "path": "%ROMPATH%/neogeo",
+          "extension": ".7z .neo .zip",
+          "commands": [
+            {
+              "label": "FinalBurn Neo",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/fbneo_libretro.so %ROM%",
+              "priority": 10
+            },
+            {
+              "label": "Geolith",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/geolith_libretro.so %ROM%",
+              "priority": 20
+            }
+          ],
+          "platform": "neogeo",
+          "theme": "neogeo"
+        },
+        {
+          "name": "neogeocd",
+          "fullname": "SNK Neo Geo CD",
+          "path": "%ROMPATH%/neogeocd",
+          "extension": ".chd .cue",
+          "commands": [
+            {
+              "label": "NeoCD",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/neocd_libretro.so %ROM%",
+              "priority": 10
+            },
+            {
+              "label": "FinalBurn Neo",
+              "command": "%EMULATOR_RETROARCH% --subsystem neocd -L %CORE_RETROARCH%/fbneo_libretro.so %ROM%",
+              "priority": 20
+            }
+          ],
+          "platform": "neogeocd",
+          "theme": "neogeocd"
+        },
+        {
+          "name": "neogeocdjp",
+          "fullname": "SNK Neo Geo CD",
+          "path": "%ROMPATH%/neogeocdjp",
+          "extension": ".chd .cue",
+          "commands": [
+            {
+              "label": "NeoCD",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/neocd_libretro.so %ROM%",
+              "priority": 10
+            },
+            {
+              "label": "FinalBurn Neo",
+              "command": "%EMULATOR_RETROARCH% --subsystem neocd -L %CORE_RETROARCH%/fbneo_libretro.so %ROM%",
+              "priority": 20
+            }
+          ],
+          "platform": "neogeocd",
+          "theme": "neogeocdjp"
+        },
+        {
+          "name": "nes",
+          "fullname": "Nintendo Entertainment System",
+          "path": "%ROMPATH%/nes",
+          "extension": ".3dsen .7z .fds .nes .unf .unif .zip",
+          "commands": [
+            {
+              "label": "Mesen",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mesen_libretro.so %ROM%",
+              "priority": 10
+            },
+            {
+              "label": "Nestopia UE",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/nestopia_libretro.so %ROM%",
+              "priority": 20
+            },
+            {
+              "label": "FCEUmm",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/fceumm_libretro.so %ROM%",
+              "priority": 30
+            },
+            {
+              "label": "QuickNES",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/quicknes_libretro.so %ROM%",
+              "priority": 40
+            }
+          ],
+          "platform": "nes",
+          "theme": "nes"
+        },
+        {
+          "name": "ngp",
+          "fullname": "SNK Neo Geo Pocket",
+          "path": "%ROMPATH%/ngp",
+          "extension": ".7z .ngc .ngp .ngpc .npc .zip",
+          "commands": [
+            {
+              "label": "Beetle NeoPop",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mednafen_ngp_libretro.so %ROM%",
+              "priority": 10
+            },
+            {
+              "label": "RACE",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/race_libretro.so %ROM%",
+              "priority": 20
+            }
+          ],
+          "platform": "ngp",
+          "theme": "ngp"
+        },
+        {
+          "name": "ngpc",
+          "fullname": "SNK Neo Geo Pocket Color",
+          "path": "%ROMPATH%/ngpc",
+          "extension": ".7z .ngc .ngp .ngpc .npc .zip",
+          "commands": [
+            {
+              "label": "Beetle NeoPop",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mednafen_ngp_libretro.so %ROM%",
+              "priority": 10
+            },
+            {
+              "label": "RACE",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/race_libretro.so %ROM%",
+              "priority": 20
+            }
+          ],
+          "platform": "ngpc",
+          "theme": "ngpc"
+        },
+        {
+          "name": "odyssey2",
+          "fullname": "Magnavox Odyssey 2",
+          "path": "%ROMPATH%/odyssey2",
+          "extension": ".7z .bin .zip",
+          "commands": [
+            {
+              "label": "O2EM",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/o2em_libretro.so %ROM%",
+              "priority": 10
+            },
+            {
+              "label": "MAME - Current",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame_libretro.so \"odyssey2 -rompath \\\"%GAMEDIRRAW%;%ROMPATH%/odyssey2\\\" -cart \\\"%ROMRAW%\\\"\"",
+              "priority": 20
+            }
+          ],
+          "platform": "odyssey2",
+          "theme": "odyssey2"
+        },
+        {
+          "name": "palm",
+          "fullname": "Palm OS",
+          "path": "%ROMPATH%/palm",
+          "extension": ".7z .img .pqa .prc .zip",
+          "commands": [
+            {
+              "label": "Mu",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mu_libretro.so %ROM%",
+              "priority": 10
+            }
+          ],
+          "platform": "palm",
+          "theme": "palm"
+        },
+        {
+          "name": "pc",
+          "fullname": "IBM PC",
+          "path": "%ROMPATH%/pc",
+          "extension": ".7z .bat .com .conf .cue .dosz .exe .img .iso .zip",
+          "commands": [
+            {
+              "label": "DOSBox-Pure",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/dosbox_pure_libretro.so %ROM%",
+              "priority": 10
+            },
+            {
+              "label": "DOSBox-Core",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/dosbox_core_libretro.so %ROM%",
+              "priority": 20
+            },
+            {
+              "label": "DOSBox-SVN",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/dosbox_svn_libretro.so %ROM%",
+              "priority": 30
+            },
+            {
+              "label": "VirtualXT",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/virtualxt_libretro.so %ROM%",
+              "priority": 40
+            }
+          ],
+          "platform": "pc",
+          "theme": "pc"
+        },
+        {
+          "name": "pc88",
+          "fullname": "NEC PC-8800 Series",
+          "path": "%ROMPATH%/pc88",
+          "extension": ".88d .cmt .d88 .m3u .t88 .u88",
+          "commands": [
+            {
+              "label": "QUASI88",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/quasi88_libretro.so %ROM%",
+              "priority": 10
+            }
+          ],
+          "platform": "pc88",
+          "theme": "pc88"
+        },
+        {
+          "name": "pc98",
+          "fullname": "NEC PC-9800 Series",
+          "path": "%ROMPATH%/pc98",
+          "extension": ".2hd .7z .88d .98d .cmd .d88 .d98 .dup .fdd .fdi .hdd .hdi .hdm .hdn .m3u .nhd .tfd .thd .xdf .zip",
+          "commands": [
+            {
+              "label": "Neko Project II Kai",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/np2kai_libretro.so %ROM%",
+              "priority": 10
+            },
+            {
+              "label": "Neko Project II",
+              "command": "%STARTDIR%=%GAMEDIR% %EMULATOR_RETROARCH% -L %CORE_RETROARCH%/nekop2_libretro.so %ROM%",
+              "priority": 20
+            }
+          ],
+          "platform": "pc98",
+          "theme": "pc98"
+        },
+        {
+          "name": "pcengine",
+          "fullname": "NEC PC Engine",
+          "path": "%ROMPATH%/pcengine",
+          "extension": ".7z .ccd .chd .cue .img .iso .m3u .pce .rom .sgx .toc .zip",
+          "commands": [
+            {
+              "label": "Beetle PCE",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mednafen_pce_libretro.so %ROM%",
+              "priority": 10
+            },
+            {
+              "label": "Beetle PCE FAST",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mednafen_pce_fast_libretro.so %ROM%",
+              "priority": 20
+            }
+          ],
+          "platform": "pcengine",
+          "theme": "pcengine"
+        },
+        {
+          "name": "pcenginecd",
+          "fullname": "NEC PC Engine CD",
+          "path": "%ROMPATH%/pcenginecd",
+          "extension": ".7z .ccd .chd .cue .img .iso .m3u .pce .sgx .toc .zip",
+          "commands": [
+            {
+              "label": "Beetle PCE",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mednafen_pce_libretro.so %ROM%",
+              "priority": 10
+            },
+            {
+              "label": "Beetle PCE FAST",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mednafen_pce_fast_libretro.so %ROM%",
+              "priority": 20
+            }
+          ],
+          "platform": "pcenginecd",
+          "theme": "pcenginecd"
+        },
+        {
+          "name": "pcfx",
+          "fullname": "NEC PC-FX",
+          "path": "%ROMPATH%/pcfx",
+          "extension": ".7z .ccd .chd .cue cue .m3u .toc .zip",
+          "commands": [
+            {
+              "label": "Beetle PC-FX",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mednafen_pcfx_libretro.so %ROM%",
+              "priority": 10
+            }
+          ],
+          "platform": "pcfx",
+          "theme": "pcfx"
+        },
+        {
+          "name": "pico8",
+          "fullname": "PICO-8 Fantasy Console",
+          "path": "%ROMPATH%/pico8",
+          "extension": ".p8 .png",
+          "commands": [
+            {
+              "label": "Retro8",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/retro8_libretro.so %ROM%",
+              "priority": 30
+            }
+          ],
+          "platform": "pico8",
+          "theme": "pico8"
+        },
+        {
+          "name": "plus4",
+          "fullname": "Commodore Plus/4",
+          "path": "%ROMPATH%/plus4",
+          "extension": ".7z .bin .cmd .crt .d2m .d4m .d64 .d6z .d71 .d7z .d80 .d81 .d82 .d8z .g41 .g4z .g64 .g6z .gz .lnx .m3u .nbz .nib .p00 .prg .t64 .tap .vfl .vsf .x64 .x6z .zip",
+          "commands": [
+            {
+              "label": "VICE xplus4",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/vice_xplus4_libretro.so %ROM%",
+              "priority": 10
+            }
+          ],
+          "platform": "plus4",
+          "theme": "plus4"
+        },
+        {
+          "name": "pokemini",
+          "fullname": "Nintendo Pokￃﾩmon Mini",
+          "path": "%ROMPATH%/pokemini",
+          "extension": ".7z .min .zip",
+          "commands": [
+            {
+              "label": "PokeMini",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/pokemini_libretro.so %ROM%",
+              "priority": 10
+            }
+          ],
+          "platform": "pokemini",
+          "theme": "pokemini"
+        },
+        {
+          "name": "ports",
+          "fullname": "Ports",
+          "path": "%ROMPATH%/ports",
+          "extension": ".appimage .desktop .exe .game .phd .psx .sh",
+          "commands": [
+            {
+              "label": "ECWolf (Wolfenstein 3D)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/ecwolf_libretro.so %ROM%",
+              "priority": 10
+            },
+            {
+              "label": "CannonBall (OutRun)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/cannonball_libretro.so %ROM%",
+              "priority": 20
+            },
+            {
+              "label": "Mr.Boom (Bomberman)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mrboom_libretro.so %INJECT%=nothing",
+              "priority": 30
+            },
+            {
+              "label": "NXEngine (Cave Story)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/nxengine_libretro.so %ROM%",
+              "priority": 40
+            },
+            {
+              "label": "OpenLara (Tomb Raider)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/openlara_libretro.so %ROM%",
+              "priority": 50
+            },
+            {
+              "label": "Super Bros War",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/superbroswar_libretro.so %ROM%",
+              "priority": 60
+            }
+          ],
+          "platform": "pc, pcwindows",
+          "theme": "ports"
+        },
+        {
+          "name": "ps2",
+          "fullname": "Sony PlayStation 2",
+          "path": "%ROMPATH%/ps2",
+          "extension": ".bin .chd .ciso .cso .desktop .dump .elf .gz .img .iso .isz .m3u .mdf .ngr .nrg .zso",
+          "commands": [
+            {
+              "label": "LRPS2",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/pcsx2_libretro.so %ROM%",
+              "priority": 20
+            },
+            {
+              "label": "PCSX2",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/pcsx2_libretro.so %ROM%",
+              "priority": 30
+            }
+          ],
+          "platform": "ps2",
+          "theme": "ps2"
+        },
+        {
+          "name": "psp",
+          "fullname": "Sony PlayStation Portable",
+          "path": "%ROMPATH%/psp",
+          "extension": ".7z .chd .cso .elf .iso .pbp .prx .zip",
+          "commands": [
+            {
+              "label": "PPSSPP",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/ppsspp_libretro.so %ROM%",
+              "priority": 20
+            }
+          ],
+          "platform": "psp",
+          "theme": "psp"
+        },
+        {
+          "name": "psx",
+          "fullname": "Sony PlayStation",
+          "path": "%ROMPATH%/psx",
+          "extension": ".7z .bin .cbn .ccd .chd .cue .ecm .exe .img .iso .m3u .mdf .mds .minipsf .pbp .psexe .psf .toc .z .zip .znx",
+          "commands": [
+            {
+              "label": "SwanStation",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/swanstation_libretro.so %ROM%",
+              "priority": 10
+            },
+            {
+              "label": "Beetle PSX",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mednafen_psx_libretro.so %ROM%",
+              "priority": 20
+            },
+            {
+              "label": "Beetle PSX HW",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mednafen_psx_hw_libretro.so %ROM%",
+              "priority": 30
+            },
+            {
+              "label": "PCSX ReARMed",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/pcsx_rearmed_libretro.so %ROM%",
+              "priority": 40
+            }
+          ],
+          "platform": "psx",
+          "theme": "psx"
+        },
+        {
+          "name": "pv1000",
+          "fullname": "Casio PV-1000",
+          "path": "%ROMPATH%/pv1000",
+          "extension": ".7z .bin .zip",
+          "commands": [
+            {
+              "label": "MAME - Current",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame_libretro.so \"pv1000 -rompath \\\"%GAMEDIRRAW%;%ROMPATH%/pv1000\\\" -cart \\\"%ROMRAW%\\\"\"",
+              "priority": 10
+            }
+          ],
+          "platform": "pv1000",
+          "theme": "pv1000"
+        },
+        {
+          "name": "quake",
+          "fullname": "Quake",
+          "path": "%ROMPATH%/quake",
+          "extension": ".desktop .pak .pk3 .sh",
+          "commands": [
+            {
+              "label": "TyrQuake",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/tyrquake_libretro.so %ROM%",
+              "priority": 10
+            },
+            {
+              "label": "vitaQuake 2",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/vitaquake2_libretro.so %ROM%",
+              "priority": 20
+            },
+            {
+              "label": "vitaQuake 2 [Rogue]",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/vitaquake2-rogue_libretro.so %ROM%",
+              "priority": 30
+            },
+            {
+              "label": "vitaQuake 2 [Xatrix]",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/vitaquake2-xatrix_libretro.so %ROM%",
+              "priority": 40
+            },
+            {
+              "label": "vitaQuake 2 [Zaero]",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/vitaquake2-zaero_libretro.so %ROM%",
+              "priority": 50
+            },
+            {
+              "label": "vitaQuake 3",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/vitaquake3_libretro.so %ROM%",
+              "priority": 60
+            }
+          ],
+          "platform": "pc, pcwindows",
+          "theme": "quake"
+        },
+        {
+          "name": "satellaview",
+          "fullname": "Nintendo Satellaview",
+          "path": "%ROMPATH%/satellaview",
+          "extension": ".7z .bml .bs .fig .sfc .smc .st .swc .zip",
+          "commands": [
+            {
+              "label": "Snes9x - Current",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/snes9x_libretro.so %ROM%",
+              "priority": 10
+            },
+            {
+              "label": "Snes9x 2010",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/snes9x2010_libretro.so %ROM%",
+              "priority": 20
+            },
+            {
+              "label": "Snes9x 2005 Plus",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/snes9x2005_plus_libretro.so %ROM%",
+              "priority": 30
+            },
+            {
+              "label": "bsnes",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes_libretro.so %ROM%",
+              "priority": 40
+            },
+            {
+              "label": "bsnes-hd",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes_hd_beta_libretro.so %ROM%",
+              "priority": 50
+            },
+            {
+              "label": "bsnes-jg",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes-jg_libretro.so %ROM%",
+              "priority": 60
+            },
+            {
+              "label": "bsnes-mercury Accuracy",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes_mercury_accuracy_libretro.so %ROM%",
+              "priority": 70
+            },
+            {
+              "label": "Mesen-S",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mesen-s_libretro.so %ROM%",
+              "priority": 80
+            }
+          ],
+          "platform": "satellaview",
+          "theme": "satellaview"
+        },
+        {
+          "name": "saturn",
+          "fullname": "Sega Saturn",
+          "path": "%ROMPATH%/saturn",
+          "extension": ".7z .bin .ccd .chd .cue .iso .m3u .mds .toc .zip",
+          "commands": [
+            {
+              "label": "Beetle Saturn",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mednafen_saturn_libretro.so %ROM%",
+              "priority": 10
+            },
+            {
+              "label": "Kronos",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/kronos_libretro.so %ROM%",
+              "priority": 20
+            },
+            {
+              "label": "YabaSanshiro",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/yabasanshiro_libretro.so %ROM%",
+              "priority": 30
+            },
+            {
+              "label": "Yabause",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/yabause_libretro.so %ROM%",
+              "priority": 40
+            }
+          ],
+          "platform": "saturn",
+          "theme": "saturn"
+        },
+        {
+          "name": "saturnjp",
+          "fullname": "Sega Saturn",
+          "path": "%ROMPATH%/saturnjp",
+          "extension": ".7z .bin .ccd .chd .cue .iso .m3u .mds .toc .zip",
+          "commands": [
+            {
+              "label": "Beetle Saturn",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mednafen_saturn_libretro.so %ROM%",
+              "priority": 10
+            },
+            {
+              "label": "Kronos",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/kronos_libretro.so %ROM%",
+              "priority": 20
+            },
+            {
+              "label": "YabaSanshiro",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/yabasanshiro_libretro.so %ROM%",
+              "priority": 30
+            },
+            {
+              "label": "Yabause",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/yabause_libretro.so %ROM%",
+              "priority": 40
+            }
+          ],
+          "platform": "saturn",
+          "theme": "saturnjp"
+        },
+        {
+          "name": "scummvm",
+          "fullname": "ScummVM Game Engine",
+          "path": "%ROMPATH%/scummvm",
+          "extension": ".scummvm .svm",
+          "commands": [
+            {
+              "label": "ScummVM",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/scummvm_libretro.so %ROM%",
+              "priority": 10
+            }
+          ],
+          "platform": "scummvm",
+          "theme": "scummvm"
+        },
+        {
+          "name": "scv",
+          "fullname": "Epoch Super Cassette Vision",
+          "path": "%ROMPATH%/scv",
+          "extension": ".0 .7z .bin .zip",
+          "commands": [
+            {
+              "label": "MAME - Current",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame_libretro.so \"scv -rompath \\\"%GAMEDIRRAW%;%ROMPATH%/scv\\\" -cart \\\"%ROMRAW%\\\"\"",
+              "priority": 10
+            }
+          ],
+          "platform": "scv",
+          "theme": "scv"
+        },
+        {
+          "name": "sega32x",
+          "fullname": "Sega Mega Drive 32X",
+          "path": "%ROMPATH%/sega32x",
+          "extension": ".32x .68k .7z .bin .chd .cue .gen .iso .m3u .md .smd .sms .zip",
+          "commands": [
+            {
+              "label": "PicoDrive",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/picodrive_libretro.so %ROM%",
+              "priority": 10
+            }
+          ],
+          "platform": "sega32x",
+          "theme": "sega32x"
+        },
+        {
+          "name": "sega32xjp",
+          "fullname": "Sega Super 32X",
+          "path": "%ROMPATH%/sega32xjp",
+          "extension": ".32x .68k .7z .bin .chd .cue .gen .iso .m3u .md .smd .sms .zip",
+          "commands": [
+            {
+              "label": "PicoDrive",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/picodrive_libretro.so %ROM%",
+              "priority": 10
+            }
+          ],
+          "platform": "sega32x",
+          "theme": "sega32xjp"
+        },
+        {
+          "name": "sega32xna",
+          "fullname": "Sega Genesis 32X",
+          "path": "%ROMPATH%/sega32xna",
+          "extension": ".32x .68k .7z .bin .chd .cue .gen .iso .m3u .md .smd .sms .zip",
+          "commands": [
+            {
+              "label": "PicoDrive",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/picodrive_libretro.so %ROM%",
+              "priority": 10
+            }
+          ],
+          "platform": "sega32x",
+          "theme": "sega32xna"
+        },
+        {
+          "name": "segacd",
+          "fullname": "Sega CD",
+          "path": "%ROMPATH%/segacd",
+          "extension": ".68k .7z .bin .bms .chd .cue .gen .gg .iso .m3u .md .mdx .sg .sgd .smd .sms .zip",
+          "commands": [
+            {
+              "label": "Genesis Plus GX",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/genesis_plus_gx_libretro.so %ROM%",
+              "priority": 10
+            },
+            {
+              "label": "Genesis Plus GX Wide",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/genesis_plus_gx_wide_libretro.so %ROM%",
+              "priority": 20
+            },
+            {
+              "label": "PicoDrive",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/picodrive_libretro.so %ROM%",
+              "priority": 30
+            }
+          ],
+          "platform": "segacd",
+          "theme": "segacd"
+        },
+        {
+          "name": "sfc",
+          "fullname": "Nintendo SFC (Super Famicom)",
+          "path": "%ROMPATH%/sfc",
+          "extension": ".7z .bin .bml .bs .bsx .dx2 .fig .gd3 .gd7 .mgd .sfc .smc .st .swc .zip",
+          "commands": [
+            {
+              "label": "Snes9x - Current",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/snes9x_libretro.so %ROM%",
+              "priority": 10
+            },
+            {
+              "label": "Snes9x 2010",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/snes9x2010_libretro.so %ROM%",
+              "priority": 20
+            },
+            {
+              "label": "Snes9x 2005 Plus",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/snes9x2005_plus_libretro.so %ROM%",
+              "priority": 30
+            },
+            {
+              "label": "bsnes",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes_libretro.so %ROM%",
+              "priority": 40
+            },
+            {
+              "label": "bsnes-hd",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes_hd_beta_libretro.so %ROM%",
+              "priority": 50
+            },
+            {
+              "label": "bsnes-jg",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes-jg_libretro.so %ROM%",
+              "priority": 60
+            },
+            {
+              "label": "bsnes-mercury Accuracy",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes_mercury_accuracy_libretro.so %ROM%",
+              "priority": 70
+            },
+            {
+              "label": "Beetle Supafaust",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mednafen_supafaust_libretro.so %ROM%",
+              "priority": 80
+            },
+            {
+              "label": "Mesen-S",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mesen-s_libretro.so %ROM%",
+              "priority": 90
+            }
+          ],
+          "platform": "snes",
+          "theme": "sfc"
+        },
+        {
+          "name": "sg-1000",
+          "fullname": "Sega SG-1000",
+          "path": "%ROMPATH%/sg-1000",
+          "extension": ".68k .7z .bin .bms .chd .cue .gen .gg .iso .m3u .md .mdx .ri .rom .sg .sgd .smd .sms .zip",
+          "commands": [
+            {
+              "label": "Genesis Plus GX",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/genesis_plus_gx_libretro.so %ROM%",
+              "priority": 10
+            },
+            {
+              "label": "Genesis Plus GX Wide",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/genesis_plus_gx_wide_libretro.so %ROM%",
+              "priority": 20
+            },
+            {
+              "label": "Gearsystem",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/gearsystem_libretro.so %ROM%",
+              "priority": 30
+            },
+            {
+              "label": "blueMSX",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bluemsx_libretro.so %ROM%",
+              "priority": 40
+            }
+          ],
+          "platform": "sg-1000",
+          "theme": "sg-1000"
+        },
+        {
+          "name": "sgb",
+          "fullname": "Nintendo Super Game Boy",
+          "path": "%ROMPATH%/sgb",
+          "extension": ".7z .gb .gbc .sgb .zip",
+          "commands": [
+            {
+              "label": "Mesen-S",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mesen-s_libretro.so %ROM%",
+              "priority": 10
+            },
+            {
+              "label": "SameBoy",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/sameboy_libretro.so %ROM%",
+              "priority": 20
+            },
+            {
+              "label": "mGBA",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mgba_libretro.so %ROM%",
+              "priority": 30
+            }
+          ],
+          "platform": "sgb",
+          "theme": "sgb"
+        },
+        {
+          "name": "snes",
+          "fullname": "Nintendo SNES (Super Nintendo)",
+          "path": "%ROMPATH%/snes",
+          "extension": ".7z .bin .bml .bs .bsx .dx2 .fig .gd3 .gd7 .mgd .sfc .smc .st .swc .zip",
+          "commands": [
+            {
+              "label": "Snes9x - Current",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/snes9x_libretro.so %ROM%",
+              "priority": 10
+            },
+            {
+              "label": "Snes9x 2010",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/snes9x2010_libretro.so %ROM%",
+              "priority": 20
+            },
+            {
+              "label": "Snes9x 2005 Plus",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/snes9x2005_plus_libretro.so %ROM%",
+              "priority": 30
+            },
+            {
+              "label": "bsnes",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes_libretro.so %ROM%",
+              "priority": 40
+            },
+            {
+              "label": "bsnes-hd",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes_hd_beta_libretro.so %ROM%",
+              "priority": 50
+            },
+            {
+              "label": "bsnes-jg",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes-jg_libretro.so %ROM%",
+              "priority": 60
+            },
+            {
+              "label": "bsnes-mercury Accuracy",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes_mercury_accuracy_libretro.so %ROM%",
+              "priority": 70
+            },
+            {
+              "label": "Beetle Supafaust",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mednafen_supafaust_libretro.so %ROM%",
+              "priority": 80
+            },
+            {
+              "label": "Mesen-S",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mesen-s_libretro.so %ROM%",
+              "priority": 90
+            }
+          ],
+          "platform": "snes",
+          "theme": "snes"
+        },
+        {
+          "name": "snesna",
+          "fullname": "Nintendo SNES (Super Nintendo)",
+          "path": "%ROMPATH%/snesna",
+          "extension": ".7z .bin .bml .bs .bsx .dx2 .fig .gd3 .gd7 .mgd .sfc .smc .st .swc .zip",
+          "commands": [
+            {
+              "label": "Snes9x - Current",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/snes9x_libretro.so %ROM%",
+              "priority": 10
+            },
+            {
+              "label": "Snes9x 2010",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/snes9x2010_libretro.so %ROM%",
+              "priority": 20
+            },
+            {
+              "label": "Snes9x 2005 Plus",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/snes9x2005_plus_libretro.so %ROM%",
+              "priority": 30
+            },
+            {
+              "label": "bsnes",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes_libretro.so %ROM%",
+              "priority": 40
+            },
+            {
+              "label": "bsnes-hd",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes_hd_beta_libretro.so %ROM%",
+              "priority": 50
+            },
+            {
+              "label": "bsnes-jg",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes-jg_libretro.so %ROM%",
+              "priority": 60
+            },
+            {
+              "label": "bsnes-mercury Accuracy",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes_mercury_accuracy_libretro.so %ROM%",
+              "priority": 70
+            },
+            {
+              "label": "Beetle Supafaust",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mednafen_supafaust_libretro.so %ROM%",
+              "priority": 80
+            },
+            {
+              "label": "Mesen-S",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mesen-s_libretro.so %ROM%",
+              "priority": 90
+            }
+          ],
+          "platform": "snes",
+          "theme": "snesna"
+        },
+        {
+          "name": "spectravideo",
+          "fullname": "Spectravideo",
+          "path": "%ROMPATH%/spectravideo",
+          "extension": ".7z .cas .col .dsk .m3u .mx1 .mx2 .ri .rom .sc .sg .zip",
+          "commands": [
+            {
+              "label": "blueMSX",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bluemsx_libretro.so %ROM%",
+              "priority": 10
+            }
+          ],
+          "platform": "spectravideo",
+          "theme": "spectravideo"
+        },
+        {
+          "name": "stv",
+          "fullname": "Sega Titan Video Game System",
+          "path": "%ROMPATH%/stv",
+          "extension": ".7z .zip",
+          "commands": [
+            {
+              "label": "Kronos",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/kronos_libretro.so %ROM%",
+              "priority": 10
+            },
+            {
+              "label": "MAME - Current",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame_libretro.so %ROM%",
+              "priority": 20
+            }
+          ],
+          "platform": "arcade",
+          "theme": "stv"
+        },
+        {
+          "name": "sufami",
+          "fullname": "Bandai SuFami Turbo",
+          "path": "%ROMPATH%/sufami",
+          "extension": ".7z .bml .bs .fig .sfc .smc .st .zip",
+          "commands": [
+            {
+              "label": "Snes9x - Current",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/snes9x_libretro.so %ROM%",
+              "priority": 10
+            },
+            {
+              "label": "Snes9x 2010",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/snes9x2010_libretro.so %ROM%",
+              "priority": 20
+            },
+            {
+              "label": "Snes9x 2005 Plus",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/snes9x2005_plus_libretro.so %ROM%",
+              "priority": 30
+            },
+            {
+              "label": "bsnes",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes_libretro.so %ROM%",
+              "priority": 40
+            },
+            {
+              "label": "bsnes-hd",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes_hd_beta_libretro.so %ROM%",
+              "priority": 50
+            },
+            {
+              "label": "bsnes-jg",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes-jg_libretro.so %ROM%",
+              "priority": 60
+            },
+            {
+              "label": "bsnes-mercury Accuracy",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes_mercury_accuracy_libretro.so %ROM%",
+              "priority": 70
+            }
+          ],
+          "platform": "sufami",
+          "theme": "sufami"
+        },
+        {
+          "name": "supergrafx",
+          "fullname": "NEC SuperGrafx",
+          "path": "%ROMPATH%/supergrafx",
+          "extension": ".7z .ccd .chd .cue .pce .rom .sgx .zip",
+          "commands": [
+            {
+              "label": "Beetle SuperGrafx",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mednafen_supergrafx_libretro.so %ROM%",
+              "priority": 10
+            },
+            {
+              "label": "Beetle PCE",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mednafen_pce_libretro.so %ROM%",
+              "priority": 20
+            },
+            {
+              "label": "Geargrafx",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/geargrafx_libretro.so %ROM%",
+              "priority": 30
+            }
+          ],
+          "platform": "supergrafx",
+          "theme": "supergrafx"
+        },
+        {
+          "name": "supervision",
+          "fullname": "Watara Supervision",
+          "path": "%ROMPATH%/supervision",
+          "extension": ".7z .bin .sv .zip",
+          "commands": [
+            {
+              "label": "Potator",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/potator_libretro.so %ROM%",
+              "priority": 10
+            },
+            {
+              "label": "MAME - Current",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame_libretro.so \"svision -rompath \\\"%GAMEDIRRAW%;%ROMPATH%/supervision\\\" -cart \\\"%ROMRAW%\\\"\"",
+              "priority": 20
+            }
+          ],
+          "platform": "supervision",
+          "theme": "supervision"
+        },
+        {
+          "name": "supracan",
+          "fullname": "Funtech Super A'Can",
+          "path": "%ROMPATH%/supracan",
+          "extension": ".7z .bin .zip",
+          "commands": [
+            {
+              "label": "MAME - Current",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame_libretro.so \"supracan -rompath \\\"%GAMEDIRRAW%;%ROMPATH%/supracan\\\" -cart \\\"%ROMRAW%\\\"\"",
+              "priority": 10
+            }
+          ],
+          "platform": "supracan",
+          "theme": "supracan"
+        },
+        {
+          "name": "tg16",
+          "fullname": "NEC TurboGrafx-16",
+          "path": "%ROMPATH%/tg16",
+          "extension": ".7z .ccd .chd .cue .img .iso .m3u .pce .sgx .toc .zip",
+          "commands": [
+            {
+              "label": "Beetle PCE",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mednafen_pce_libretro.so %ROM%",
+              "priority": 10
+            },
+            {
+              "label": "Beetle PCE FAST",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mednafen_pce_fast_libretro.so %ROM%",
+              "priority": 20
+            },
+            {
+              "label": "Beetle SuperGrafx",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mednafen_supergrafx_libretro.so %ROM%",
+              "priority": 30
+            }
+          ],
+          "platform": "pcengine",
+          "theme": "tg16"
+        },
+        {
+          "name": "tg-cd",
+          "fullname": "NEC TurboGrafx-CD",
+          "path": "%ROMPATH%/tg-cd",
+          "extension": ".7z .ccd .chd .cue .img .iso .m3u .pce .sgx .toc .zip",
+          "commands": [
+            {
+              "label": "Beetle PCE",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mednafen_pce_libretro.so %ROM%",
+              "priority": 10
+            },
+            {
+              "label": "Beetle PCE FAST",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mednafen_pce_fast_libretro.so %ROM%",
+              "priority": 20
+            }
+          ],
+          "platform": "pcenginecd",
+          "theme": "tg-cd"
+        },
+        {
+          "name": "tic80",
+          "fullname": "TIC-80 Fantasy Computer",
+          "path": "%ROMPATH%/tic80",
+          "extension": ".png .tic",
+          "commands": [
+            {
+              "label": "TIC-80",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/tic80_libretro.so %ROM%",
+              "priority": 10
+            }
+          ],
+          "platform": "tic80",
+          "theme": "tic80"
+        },
+        {
+          "name": "to8",
+          "fullname": "Thomson TO8",
+          "path": "%ROMPATH%/to8",
+          "extension": ".7z .fd .k7 .m5 .m7 .rom .sap .zip",
+          "commands": [
+            {
+              "label": "Theodore",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/theodore_libretro.so %ROM%",
+              "priority": 10
+            }
+          ],
+          "platform": "moto",
+          "theme": "to8"
+        },
+        {
+          "name": "uzebox",
+          "fullname": "Uzebox Open Source Console",
+          "path": "%ROMPATH%/uzebox",
+          "extension": ".7z .uze .zip",
+          "commands": [
+            {
+              "label": "Uzem",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/uzem_libretro.so %ROM%",
+              "priority": 10
+            }
+          ],
+          "platform": "uzebox",
+          "theme": "uzebox"
+        },
+        {
+          "name": "vectrex",
+          "fullname": "GCE Vectrex",
+          "path": "%ROMPATH%/vectrex",
+          "extension": ".7z .bin .gam .vc .vec .zip",
+          "commands": [
+            {
+              "label": "vecx",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/vecx_libretro.so %ROM%",
+              "priority": 10
+            },
+            {
+              "label": "MAME - Current",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame_libretro.so \"vectrex -rompath \\\"%GAMEDIRRAW%;%ROMPATH%/vectrex\\\" -cart \\\"%ROMRAW%\\\"\"",
+              "priority": 20
+            }
+          ],
+          "platform": "vectrex",
+          "theme": "vectrex"
+        },
+        {
+          "name": "vic20",
+          "fullname": "Commodore VIC-20",
+          "path": "%ROMPATH%/vic20",
+          "extension": ".7z .bin .cmd .crt .d2m .d4m .d64 .d6z .d71 .d7z .d80 .d81 .d82 .d8z .g41 .g4z .g64 .g6z .gz .lnx .m3u .nbz .nib .p00 .prg .t64 .tap .vfl .vsf .x64 .x6z .zip",
+          "commands": [
+            {
+              "label": "VICE xvic",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/vice_xvic_libretro.so %ROM%",
+              "priority": 10
+            }
+          ],
+          "platform": "vic20",
+          "theme": "vic20"
+        },
+        {
+          "name": "videopac",
+          "fullname": "Philips Videopac G7000",
+          "path": "%ROMPATH%/videopac",
+          "extension": ".7z .bin .zip",
+          "commands": [
+            {
+              "label": "O2EM",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/o2em_libretro.so %ROM%",
+              "priority": 10
+            },
+            {
+              "label": "MAME - Current",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame_libretro.so \"videopac -rompath \\\"%GAMEDIRRAW%;%ROMPATH%/videopac\\\" -cart \\\"%ROMRAW%\\\"\"",
+              "priority": 20
+            }
+          ],
+          "platform": "odyssey2",
+          "theme": "videopac"
+        },
+        {
+          "name": "vircon32",
+          "fullname": "Vircon32 Virtual Console",
+          "path": "%ROMPATH%/vircon32",
+          "extension": ".7z .v32 .zip",
+          "commands": [
+            {
+              "label": "Vircon32",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/vircon32_libretro.so %ROM%",
+              "priority": 10
+            }
+          ],
+          "platform": "vircon32",
+          "theme": "vircon32"
+        },
+        {
+          "name": "virtualboy",
+          "fullname": "Nintendo Virtual Boy",
+          "path": "%ROMPATH%/virtualboy",
+          "extension": ".7z .bin .vb .vboy .zip",
+          "commands": [
+            {
+              "label": "Beetle VB",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mednafen_vb_libretro.so %ROM%",
+              "priority": 10
+            }
+          ],
+          "platform": "virtualboy",
+          "theme": "virtualboy"
+        },
+        {
+          "name": "vsmile",
+          "fullname": "VTech V.Smile",
+          "path": "%ROMPATH%/vsmile",
+          "extension": ".7z .bin .zip",
+          "commands": [
+            {
+              "label": "MAME - Current",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame_libretro.so \"vsmile -rompath \\\"%GAMEDIRRAW%;%ROMPATH%/vsmile\\\" -cart \\\"%ROMRAW%\\\"\"",
+              "priority": 10
+            }
+          ],
+          "platform": "vsmile",
+          "theme": "vsmile"
+        },
+        {
+          "name": "wasm4",
+          "fullname": "WASM-4 Fantasy Console",
+          "path": "%ROMPATH%/wasm4",
+          "extension": ".wasm",
+          "commands": [
+            {
+              "label": "WASM-4",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/wasm4_libretro.so %ROM%",
+              "priority": 10
+            }
+          ],
+          "platform": "wasm4",
+          "theme": "wasm4"
+        },
+        {
+          "name": "wii",
+          "fullname": "Nintendo Wii",
+          "path": "%ROMPATH%/wii",
+          "extension": ".7z .ciso .dff .dol .elf .gcm .gcz .iso .json .m3u .rvz .tgc .wad .wbfs .wia .zip",
+          "commands": [
+            {
+              "label": "Dolphin",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/dolphin_libretro.so %ROM%",
+              "priority": 20
+            }
+          ],
+          "platform": "wii",
+          "theme": "wii"
+        },
+        {
+          "name": "windows3x",
+          "fullname": "Microsoft Windows 3.x",
+          "path": "%ROMPATH%/windows3x",
+          "extension": ".7z .appimage .bat .desktop .dosz .sh .zip",
+          "commands": [
+            {
+              "label": "DOSBox-Pure",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/dosbox_pure_libretro.so %ROM%",
+              "priority": 10
+            }
+          ],
+          "platform": "windows3x",
+          "theme": "windows3x"
+        },
+        {
+          "name": "windows9x",
+          "fullname": "Microsoft Windows 9x",
+          "path": "%ROMPATH%/windows9x",
+          "extension": ".7z .appimage .bat .desktop .dosz .sh .zip",
+          "commands": [
+            {
+              "label": "DOSBox-Pure",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/dosbox_pure_libretro.so %ROM%",
+              "priority": 10
+            }
+          ],
+          "platform": "pcwindows",
+          "theme": "windows9x"
+        },
+        {
+          "name": "wonderswan",
+          "fullname": "Bandai WonderSwan",
+          "path": "%ROMPATH%/wonderswan",
+          "extension": ".7z .pc2 .ws .zip",
+          "commands": [
+            {
+              "label": "Beetle Cygne",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mednafen_wswan_libretro.so %ROM%",
+              "priority": 10
+            }
+          ],
+          "platform": "wonderswan",
+          "theme": "wonderswan"
+        },
+        {
+          "name": "wonderswancolor",
+          "fullname": "Bandai WonderSwan Color",
+          "path": "%ROMPATH%/wonderswancolor",
+          "extension": ".7z .pc2 .ws .wsc .zip",
+          "commands": [
+            {
+              "label": "Beetle Cygne",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mednafen_wswan_libretro.so %ROM%",
+              "priority": 10
+            }
+          ],
+          "platform": "wonderswancolor",
+          "theme": "wonderswancolor"
+        },
+        {
+          "name": "x1",
+          "fullname": "Sharp X1",
+          "path": "%ROMPATH%/x1",
+          "extension": ".2d .2hd .7z .88d .cmd .d88 .dup .dx1 .hdm .tap .tfd .xdf .zip",
+          "commands": [
+            {
+              "label": "X Millennium",
+              "command": "%STARTDIR%=%GAMEDIR% %EMULATOR_RETROARCH% -L %CORE_RETROARCH%/x1_libretro.so %ROM%",
+              "priority": 10
+            }
+          ],
+          "platform": "x1",
+          "theme": "x1"
+        },
+        {
+          "name": "x68000",
+          "fullname": "Sharp X68000",
+          "path": "%ROMPATH%/x68000",
+          "extension": ".2hd .7z .88d .cmd .d88 .dim .dup .hdf .hdm .img .m3u .xdf .zip",
+          "commands": [
+            {
+              "label": "PX68k",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/px68k_libretro.so %ROM%",
+              "priority": 10
+            }
+          ],
+          "platform": "x68000",
+          "theme": "x68000"
+        },
+        {
+          "name": "zmachine",
+          "fullname": "Infocom Z-machine",
+          "path": "%ROMPATH%/zmachine",
+          "extension": ".dat .z1 .z2 .z3 .z4 .z5 .z6 .z7 .z8 .zblorb .zlb",
+          "commands": [
+            {
+              "label": "MojoZork",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mojozork_libretro.so %ROM%",
+              "priority": 10
+            }
+          ],
+          "platform": "zmachine",
+          "theme": "zmachine"
+        },
+        {
+          "name": "zx81",
+          "fullname": "Sinclair ZX81",
+          "path": "%ROMPATH%/zx81",
+          "extension": ".7z .p .tzx .zip",
+          "commands": [
+            {
+              "label": "EightyOne",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/81_libretro.so %ROM%",
+              "priority": 10
+            }
+          ],
+          "platform": "zx81",
+          "theme": "zx81"
+        },
+        {
+          "name": "zxspectrum",
+          "fullname": "Sinclair ZX Spectrum",
+          "path": "%ROMPATH%/zxspectrum",
+          "extension": ".7z .dsk .gz .img .mgt .rzx .scl .sh .sna .szx .tap .trd .tzx .udi .z80 .zip",
+          "commands": [
+            {
+              "label": "Fuse",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/fuse_libretro.so %ROM%",
+              "priority": 10
+            }
+          ],
+          "platform": "zxspectrum",
+          "theme": "zxspectrum"
+        }
+      ]
+    },
     "helper_files": {
       "scummvm_guide": {
         "filename": "scummvm_guide.txt",

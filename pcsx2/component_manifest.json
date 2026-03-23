@@ -11,6 +11,41 @@
     "component_type": "Emulator",
     "system_friendly_name": "PlayStation 2",
     "system": "ps2",
+    "es_de_config": {
+      "es_find_rules": {
+        "emulators": [
+          {
+            "name": "PCSX2",
+            "description": "Sony PlayStation 2 emulator PCSX2",
+            "rules": [
+              {
+                "type": "staticpath",
+                "entries": [
+                  "%COMPONENT_PATH%/component_launcher.sh"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "es_systems": [
+        {
+          "name": "ps2",
+          "fullname": "Sony PlayStation 2",
+          "path": "%ROMPATH%/ps2",
+          "extension": ".bin .chd .ciso .cso .desktop .dump .elf .gz .img .iso .isz .m3u .mdf .ngr .nrg .zso",
+          "commands": [
+            {
+              "label": "PCSX2 (Standalone)",
+              "command": "%EMULATOR_PCSX2% -batch %ROM%",
+              "priority": 10
+            }
+          ],
+          "platform": "ps2",
+          "theme": "ps2"
+        }
+      ]
+    },
     "compatible_presets": {
       "ask_to_exit": ["false", "true"],
       "cheevos": ["false", "true"],

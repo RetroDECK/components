@@ -13,6 +13,71 @@
       "gc",
       "wii"
     ],
+    "es_de_config": {
+      "es_find_rules": {
+        "emulators": [
+          {
+            "name": "PRIMEHACK",
+            "description": "PrimeHack, fork of Nintendo GameCube and Wii emulator Dolphin",
+            "rules": [
+              {
+                "type": "staticpath",
+                "entries": [
+                  "%COMPONENT_PATH%/component_launcher.sh"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "es_systems": [
+        {
+          "name": "gc",
+          "fullname": "Nintendo GameCube",
+          "path": "%ROMPATH%/gc",
+          "extension": ".7z .ciso .dff .dol .elf .gcm .gcz .iso .json .m3u .rvz .tgc .wad .wbfs .wia .zip",
+          "commands": [
+            {
+              "label": "PrimeHack (Standalone)",
+              "command": "env QT_QPA_PLATFORM=xcb %EMULATOR_PRIMEHACK% -b -e %ROM%",
+              "priority": 30
+            }
+          ],
+          "platform": "gc",
+          "theme": "gc"
+        },
+        {
+          "name": "primehack",
+          "fullname": "PrimeHack",
+          "path": "%ROMPATH%/primehack",
+          "extension": ".7z .ciso .dff .dol .elf .gcm .gcz .iso .json .m3u .rvz .tgc .wad .wbfs .wia .zip",
+          "commands": [
+            {
+              "label": "PrimeHack (Standalone)",
+              "command": "env QT_QPA_PLATFORM=xcb %EMULATOR_PRIMEHACK% -b -e %ROM%",
+              "priority": 10
+            }
+          ],
+          "platform": "wii",
+          "theme": "primehack"
+        },
+        {
+          "name": "wii",
+          "fullname": "Nintendo Wii",
+          "path": "%ROMPATH%/wii",
+          "extension": ".7z .ciso .dff .dol .elf .gcm .gcz .iso .json .m3u .rvz .tgc .wad .wbfs .wia .zip",
+          "commands": [
+            {
+              "label": "PrimeHack (Standalone)",
+              "command": "env QT_QPA_PLATFORM=xcb %EMULATOR_PRIMEHACK% -b -e %ROM%",
+              "priority": 30
+            }
+          ],
+          "platform": "wii",
+          "theme": "wii"
+        }
+      ]
+    },
     "compatible_presets": {
       "ask_to_exit": ["false", "true"],
       "universal_dyn_input": ["false", "true"]

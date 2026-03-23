@@ -11,6 +11,41 @@
     "component_type": "Emulator",
     "system": "psp",
     "system_friendly_name": "Playstation Portable",
+    "es_de_config": {
+      "es_find_rules": {
+        "emulators": [
+          {
+            "name": "PPSSPP",
+            "description": "Sony PlayStation Portable emulator PPSSPP",
+            "rules": [
+              {
+                "type": "staticpath",
+                "entries": [
+                  "%COMPONENT_PATH%/component_launcher.sh"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "es_systems": [
+        {
+          "name": "psp",
+          "fullname": "Sony PlayStation Portable",
+          "path": "%ROMPATH%/psp",
+          "extension": ".7z .chd .cso .elf .iso .pbp .prx .zip",
+          "commands": [
+            {
+              "label": "PPSSPP (Standalone)",
+              "command": "%EMULATOR_PPSSPP% %ROM%",
+              "priority": 10
+            }
+          ],
+          "platform": "psp",
+          "theme": "psp"
+        }
+      ]
+    },
     "compatible_presets": {
       "savestate_auto_load": ["false", "true"],
       "cheevos": ["false", "true"],

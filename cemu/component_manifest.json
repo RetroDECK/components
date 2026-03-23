@@ -10,6 +10,41 @@
     "url_source": "https://github.com/cemu-project/Cemu",
     "system": "wiiu",
     "component_type": "Emulator",
-    "system_friendly_name": "Wii U"
+    "system_friendly_name": "Wii U",
+    "es_de_config": {
+      "es_find_rules": {
+        "emulators": [
+          {
+            "name": "CEMU",
+            "description": "Nintendo Wii U emulator Cemu",
+            "rules": [
+              {
+                "type": "staticpath",
+                "entries": [
+                  "%COMPONENT_PATH%/component_launcher.sh"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "es_systems": [
+        {
+          "name": "wiiu",
+          "fullname": "Nintendo Wii U",
+          "path": "%ROMPATH%/wiiu",
+          "extension": ".elf .rpx .tmd .wua .wud .wuhb .wux",
+          "commands": [
+            {
+              "label": "Cemu (Standalone)",
+              "command": "%EMULATOR_CEMU% -g %ROM%",
+              "priority": 10
+            }
+          ],
+          "platform": "wiiu",
+          "theme": "wiiu"
+        }
+      ]
+    }
   }
 }

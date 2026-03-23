@@ -21,7 +21,7 @@
               {
                 "type": "staticpath",
                 "entries": [
-                  "/app/retrodeck/components/azahar/component_launcher.sh"
+                  "%COMPONENT_PATH%/component_launcher.sh"
                 ]
               }
             ]

@@ -10,6 +10,41 @@
     "description": "Ruffle is a Flash Player (flash) emulator.",
     "component_type": "Emulator",
     "system_friendly_name": "Flash Player Emulator",
-    "system": "flash"
+    "system": "flash",
+    "es_de_config": {
+      "es_find_rules": {
+        "emulators": [
+          {
+            "name": "RUFFLE",
+            "description": "Adobe Flash player Ruffle",
+            "rules": [
+              {
+                "type": "staticpath",
+                "entries": [
+                  "%COMPONENT_PATH%/component_launcher.sh"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "es_systems": [
+        {
+          "name": "flash",
+          "fullname": "Adobe Flash",
+          "path": "%ROMPATH%/flash",
+          "extension": ".ruf .swf",
+          "commands": [
+            {
+              "label": "Ruffle (Standalone)",
+              "command": "%EMULATOR_RUFFLE% --fullscreen %ROM%",
+              "priority": 10
+            }
+          ],
+          "platform": "flash",
+          "theme": "flash"
+        }
+      ]
+    }
   }
 }

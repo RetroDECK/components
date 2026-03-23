@@ -11,6 +11,41 @@
     "component_type": "Emulator",
     "system_friendly_name": "PlayStation Vita",
     "system": "psvita",
+    "es_de_config": {
+      "es_find_rules": {
+        "emulators": [
+          {
+            "name": "VITA3K",
+            "description": "Sony PlayStation Vita emulator Vita3K",
+            "rules": [
+              {
+                "type": "staticpath",
+                "entries": [
+                  "%COMPONENT_PATH%/component_launcher.sh"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "es_systems": [
+        {
+          "name": "psvita",
+          "fullname": "Sony PlayStation Vita",
+          "path": "%ROMPATH%/psvita",
+          "extension": ".psvita",
+          "commands": [
+            {
+              "label": "Vita3K (Standalone)",
+              "command": "%EMULATOR_VITA3K% -r %INJECT%=%BASENAME%.psvita",
+              "priority": 10
+            }
+          ],
+          "platform": "psvita",
+          "theme": "psvita"
+        }
+      ]
+    },
     "helper_files": {
       "vita3k_guide": {
         "filename": "vita3k_guide.txt",
