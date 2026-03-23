@@ -242,20 +242,6 @@
       ]
     },
     {
-      "source_url": "https://github.com/RapidEdwin08/Genesis-Plus-GX-Expanded-Rom-Size",
-      "source_type": "git",
-      "version": "latest",
-      "dest": "Genesis-Plus-GX-Expanded-Rom-Size",
-      "extraction_type": "local",
-      "assets": [
-        {
-          "type": "file",
-          "source": "builds/Linux_so64/genesis_plus_gx_libretro.so",
-          "dest": "$WORKDIR/cores"
-        }
-      ]
-    },
-    {
       "source_url": "https://buildbot.libretro.com/{VERSION}/linux/x86_64/RetroArch_cores.7z",
       "source_type": "http",
       "version": "nightly",
