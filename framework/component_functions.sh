@@ -508,6 +508,7 @@ _cli_set_help::retrodeck() {
 
 _cli_open_component::retrodeck() {
   local component="$1"
+  shift
 
   if [[ "$component" == "--list" ]]; then
     echo "Installed components:"
