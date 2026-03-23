@@ -109,6 +109,10 @@ _prepare_component::retroarch() {
       set_setting_value "$retroarch_config" "video_shader_dir" "$shaders_path/retroarch/shaders" "retroarch"
       set_setting_value "$retroarch_config" "overlay_directory" "$borders_path/retroarch" "retroarch"
       set_setting_value "$retroarch_config" "system_directory" "$bios_path" "retroarch"
+      if [[ "$XDG_SESSION_TYPE" == "wayland" ]]; then
+        log d "Wayland compositor detected, changing rendered to OpenGL as a workaround"
+        set_setting_value "$retroarch_config" "video_driver" "gl" "retroarch"
+      fi
 
       # Video
       create_dir "$videos_path/retroarch"
@@ -270,6 +274,13 @@ _prepare_component::retroarch() {
 
 _post_update::retroarch() {
   local previous_version="$1"
+  
+  if check_version_is_older_than "$previous_version" "1.0.0"; then
+    if [[ "$XDG_SESSION_TYPE" == "wayland" ]]; then
+      log d "Wayland compositor detected, changing rendered to OpenGL as a workaround"
+      set_setting_value "$retroarch_config" "video_driver" "gl" "retroarch"
+    fi
+  fi
 
   #######################################
   # These actions happen at every update
