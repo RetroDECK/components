@@ -14,6 +14,61 @@
     "system_friendly_name": "PlayStation 3",
     "component_type": "Emulator",
     "system": "ps3",
+    "es_de_config": {
+      "es_find_rules": {
+        "emulators": [
+          {
+            "name": "RPCS3",
+            "description": "Sony PlayStation 3 emulator RPCS3",
+            "rules": [
+              {
+                "type": "staticpath",
+                "entries": [
+                  "%COMPONENT_PATH%/component_launcher.sh"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "es_systems": [
+        {
+          "name": "consolearcade",
+          "fullname": "Console Arcade Systems",
+          "path": "%ROMPATH%/consolearcade",
+          "extension": ".7z .arcadedef .desktop .iso .ps3 .sh .xbe .zip",
+          "commands": [
+            {
+              "label": "RPCS3 Game Serial (Standalone)",
+              "command": "%EMULATOR_RPCS3% --di-gui %RPCS3_GAMEID%:%INJECT%=%BASENAME%.ps3",
+              "priority": 60
+            }
+          ],
+          "platform": "arcade",
+          "theme": "consolearcade"
+        },
+        {
+          "name": "ps3",
+          "fullname": "Sony PlayStation 3",
+          "path": "%ROMPATH%/ps3",
+          "extension": ".desktop .ps3 .ps3dir",
+          "commands": [
+            {
+              "label": "RPCS3 Game Serial (Standalone)",
+              "command": "%EMULATOR_RPCS3% --no-gui %RPCS3_GAMEID%:%INJECT%=%BASENAME%.ps3",
+              "priority": 20
+            },
+            {
+              "label": "RPCS3 Directory (Standalone)",
+              "command": "%EMULATOR_RPCS3% --no-gui %ROM%",
+              "priority": 30
+            }
+          ],
+          "platform": "ps3",
+          "theme": "ps3"
+        }
+      ]
+    },
     "helper_files": {
       "rpcs3_guide": {
         "filename": "rpcs3_guide.txt",

@@ -29,6 +29,41 @@
         }
       }
     },
+    "es_de_config": {
+      "es_find_rules": {
+        "emulators": [
+          {
+            "name": "PORTMASTER",
+            "description": "PORTMASTER",
+            "rules": [
+              {
+                "type": "staticpath",
+                "entries": [
+                  "%COMPONENT_PATH%/component_launcher.sh"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "es_systems": [
+        {
+          "name": "portmaster",
+          "fullname": "PortMaster",
+          "path": "%ROMPATH%/portmaster",
+          "extension": ".sh",
+          "commands": [
+            {
+              "label": "PortMaster",
+              "command": "%ENABLESHORTCUTS% %EMULATOR_PORTMASTER% %ROM%",
+              "priority": 10
+            }
+          ],
+          "platform": "portmaster",
+          "theme": "portmaster"
+        }
+      ]
+    },
     "helper_files": {
       "portmaster_guide": {
         "filename": "portmaster_guide.txt",

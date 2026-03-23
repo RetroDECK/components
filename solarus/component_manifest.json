@@ -10,6 +10,41 @@
     "description": "Solarus is a game engine for playing 2D action-RPGs, inspired by classic Zelda-style games.",
     "component_type": "Engine",
     "system_friendly_name": "Solarus Game Engine",
-    "system": "solarus"
+    "system": "solarus",
+    "es_de_config": {
+      "es_find_rules": {
+        "emulators": [
+          {
+            "name": "SOLARUS",
+            "description": "Solarus game engine",
+            "rules": [
+              {
+                "type": "staticpath",
+                "entries": [
+                  "%COMPONENT_PATH%/component_launcher.sh"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "es_systems": [
+        {
+          "name": "solarus",
+          "fullname": "Solarus Game Engine",
+          "path": "%ROMPATH%/solarus",
+          "extension": ".solarus",
+          "commands": [
+            {
+              "label": "Solarus (Standalone)",
+              "command": "%EMULATOR_SOLARUS% %ROM%",
+              "priority": 10
+            }
+          ],
+          "platform": "solarus",
+          "theme": "solarus"
+        }
+      ]
+    }
   }
 }

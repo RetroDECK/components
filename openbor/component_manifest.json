@@ -11,6 +11,41 @@
     "url_source": "https://github.com/DCurrent/openbor",
     "system_friendly_name": "OpenBOR",
     "system": "openbor",
+    "es_de_config": {
+      "es_find_rules": {
+        "emulators": [
+          {
+            "name": "OPENBOR",
+            "description": "OpenBOR Game Engine",
+            "rules": [
+              {
+                "type": "staticpath",
+                "entries": [
+                  "%COMPONENT_PATH%/component_launcher.sh"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "es_systems": [
+        {
+          "name": "openbor",
+          "fullname": "OpenBOR Game Engine",
+          "path": "%ROMPATH%/openbor",
+          "extension": ".bor .openbor",
+          "commands": [
+            {
+              "label": "OpenBOR (Standalone)",
+              "command": "%STARTDIR%=%GAMEDIR% %EMULATOR_OPENBOR% -c \"%ROM%\"",
+              "priority": 10
+            }
+          ],
+          "platform": "openbor",
+          "theme": "openbor"
+        }
+      ]
+    },
     "helper_files": {
       "openbor_guide": {
         "filename": "openbor_guide.txt",

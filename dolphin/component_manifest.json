@@ -17,6 +17,71 @@
       "GameCube",
       "Wii"
     ],
+    "es_de_config": {
+      "es_find_rules": {
+        "emulators": [
+          {
+            "name": "DOLPHIN",
+            "description": "Nintendo GameCube and Wii emulator Dolphin",
+            "rules": [
+              {
+                "type": "staticpath",
+                "entries": [
+                  "%COMPONENT_PATH%/component_launcher.sh"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "es_systems": [
+        {
+          "name": "gc",
+          "fullname": "Nintendo GameCube",
+          "path": "%ROMPATH%/gc",
+          "extension": ".7z .ciso .dff .dol .elf .gcm .gcz .iso .json .m3u .rvz .tgc .wad .wbfs .wia .zip",
+          "commands": [
+            {
+              "label": "Dolphin (Standalone)",
+              "command": "env QT_QPA_PLATFORM=xcb %EMULATOR_DOLPHIN% -b -e %ROM%",
+              "priority": 10
+            }
+          ],
+          "platform": "gc",
+          "theme": "gc"
+        },
+        {
+          "name": "triforce",
+          "fullname": "Namco-Sega-Nintendo Triforce",
+          "path": "%ROMPATH%/triforce",
+          "extension": ".7z .ciso .dff .dol .elf .gcm .gcz .iso .json .m3u .rvz .tgc .wad .wbfs .wia .zip",
+          "commands": [
+            {
+              "label": "Dolphin (Standalone)",
+              "command": "env QT_QPA_PLATFORM=xcb %EMULATOR_DOLPHIN% -b -e %ROM%",
+              "priority": 10
+            }
+          ],
+          "platform": "arcade",
+          "theme": "triforce"
+        },
+        {
+          "name": "wii",
+          "fullname": "Nintendo Wii",
+          "path": "%ROMPATH%/wii",
+          "extension": ".7z .ciso .dff .dol .elf .gcm .gcz .iso .json .m3u .rvz .tgc .wad .wbfs .wia .zip",
+          "commands": [
+            {
+              "label": "Dolphin (Standalone)",
+              "command": "env QT_QPA_PLATFORM=xcb %EMULATOR_DOLPHIN% -b -e %ROM%",
+              "priority": 10
+            }
+          ],
+          "platform": "wii",
+          "theme": "wii"
+        }
+      ]
+    },
     "compatible_presets": {
       "ask_to_exit": ["false", "true"],
       "cheevos": ["false", "true"],

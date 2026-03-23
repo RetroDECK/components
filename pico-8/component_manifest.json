@@ -10,6 +10,46 @@
     "system_friendly_name": "PICO-8 Fantasy Console",
     "component_type": "Emulator",
     "system": "pico8",
+    "es_de_config": {
+      "es_find_rules": {
+        "emulators": [
+          {
+            "name": "PICO-8",
+            "description": "PICO-8 Fantasy Console (game engine)",
+            "rules": [
+              {
+                "type": "staticpath",
+                "entries": [
+                  "%COMPONENT_PATH%/component_launcher.sh"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "es_systems": [
+        {
+          "name": "pico8",
+          "fullname": "PICO-8 Fantasy Console",
+          "path": "%ROMPATH%/pico8",
+          "extension": ".p8 .png",
+          "commands": [
+            {
+              "label": "PICO-8 (Standalone)",
+              "command": "%EMULATOR_PICO-8% -root_path %GAMEDIR% -run %ROM%",
+              "priority": 10
+            },
+            {
+              "label": "PICO-8 Splore (Standalone)",
+              "command": "%EMULATOR_PICO-8% -root_path %GAMEDIR% -splore",
+              "priority": 20
+            }
+          ],
+          "platform": "pico8",
+          "theme": "pico8"
+        }
+      ]
+    },
     "bios": [
       {
         "filename": "pico8",

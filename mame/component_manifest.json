@@ -15,6 +15,956 @@
       "arcade",
       "mame"
     ],
+    "es_de_config": {
+      "es_find_rules": {
+        "emulators": [
+          {
+            "name": "MAME",
+            "description": "Arcade emulator MAME",
+            "rules": [
+              {
+                "type": "staticpath",
+                "entries": [
+                  "%COMPONENT_PATH%/component_launcher.sh"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "es_systems": [
+        {
+          "name": "adam",
+          "fullname": "Coleco Adam",
+          "path": "%ROMPATH%/adam",
+          "extension": ".1dd .7z .bin .col .cqi .cqm .d77 .d88 .ddp .dfi .dsk .hfe .imd .mfi .mfm .rom .td0 .wav .zip",
+          "commands": [
+            {
+              "label": "MAME [Diskette] (Standalone)",
+              "command": "%STARTDIR%=~/.mame %EMULATOR_MAME% -inipath /var/config/mame/ini -rompath %GAMEDIR%\\;%ROMPATH%/adam adam -flop1 %ROM%",
+              "priority": 10
+            },
+            {
+              "label": "MAME [Tape] (Standalone)",
+              "command": "%STARTDIR%=~/.mame %EMULATOR_MAME% -inipath /var/config/mame/ini -rompath %GAMEDIR%\\;%ROMPATH%/adam adam -cass1 %ROM%",
+              "priority": 20
+            },
+            {
+              "label": "MAME [Cartridge] (Standalone)",
+              "command": "%STARTDIR%=~/.mame %EMULATOR_MAME% -inipath /var/config/mame/ini -rompath %GAMEDIR%\\;%ROMPATH%/adam adam -cart1 %ROM%",
+              "priority": 30
+            },
+            {
+              "label": "MAME [Software list] (Standalone)",
+              "command": "%STARTDIR%=~/.mame %EMULATOR_MAME% -inipath /var/config/mame/ini -rompath %GAMEDIR%\\;%ROMPATH%/adam adam %BASENAME%",
+              "priority": 40
+            }
+          ],
+          "platform": "adam",
+          "theme": "adam"
+        },
+        {
+          "name": "amstradcpc",
+          "fullname": "Amstrad CPC",
+          "path": "%ROMPATH%/amstradcpc",
+          "extension": ".7z .cdt .cpr .dsk .kcr .m3u .sna .tap .tar .voc .zip",
+          "commands": [
+            {
+              "label": "MAME (Standalone)",
+              "command": "%STARTDIR%=~/.mame %EMULATOR_MAME% -inipath /var/config/mame/ini -rompath %GAMEDIR%\\;%ROMPATH%/amstradcpc cpc6128 -flop1 %ROM%",
+              "priority": 30
+            }
+          ],
+          "platform": "amstradcpc",
+          "theme": "amstradcpc"
+        },
+        {
+          "name": "apple2",
+          "fullname": "Apple II",
+          "path": "%ROMPATH%/apple2",
+          "extension": ".do .dsk .nib .po",
+          "commands": [
+            {
+              "label": "MAME (Standalone)",
+              "command": "%STARTDIR%=~/.mame %EMULATOR_MAME% -inipath /var/config/mame/ini -rompath %GAMEDIR%\\;%ROMPATH%/apple2 apple2e -gameio joy -flop1 %ROM%",
+              "priority": 20
+            }
+          ],
+          "platform": "apple2",
+          "theme": "apple2"
+        },
+        {
+          "name": "apple2gs",
+          "fullname": "Apple IIGS",
+          "path": "%ROMPATH%/apple2gs",
+          "extension": ".2mg .7z .zip",
+          "commands": [
+            {
+              "label": "MAME (Standalone)",
+              "command": "%STARTDIR%=~/.mame %EMULATOR_MAME% -rompath %GAMEDIR%\\;%ROMPATH%/apple2gs apple2gs -gameio joy -flop3 %ROM%",
+              "priority": 20
+            }
+          ],
+          "platform": "apple2gs",
+          "theme": "apple2gs"
+        },
+        {
+          "name": "arcade",
+          "fullname": "Arcade",
+          "path": "%ROMPATH%/arcade",
+          "extension": ".7z .cmd .desktop .gam .lindbergh .neo .sh .zip",
+          "commands": [
+            {
+              "label": "MAME (Standalone)",
+              "command": "%EMULATOR_MAME% -inipath /var/config/mame/ini -rompath %GAMEDIR%\\;%ROMPATH%/arcade %BASENAME%",
+              "priority": 60
+            }
+          ],
+          "platform": "arcade",
+          "theme": "arcade"
+        },
+        {
+          "name": "arcadia",
+          "fullname": "Emerson Arcadia 2001",
+          "path": "%ROMPATH%/arcadia",
+          "extension": ".7z .bin .zip",
+          "commands": [
+            {
+              "label": "MAME (Standalone)",
+              "command": "%EMULATOR_MAME% -inipath /var/config/mame/ini -rompath %GAMEDIR%\\;%ROMPATH%/arcadia arcadia -cart %ROM%",
+              "priority": 20
+            }
+          ],
+          "platform": "arcadia",
+          "theme": "arcadia"
+        },
+        {
+          "name": "archimedes",
+          "fullname": "Acorn Archimedes",
+          "path": "%ROMPATH%/archimedes",
+          "extension": ".1dd .360 .7z .adf .adl .adm .ads .apd .bbc .chd .cqi .cqm .d77 .d88 .dfi .dsd .dsk .hfe .ima .imd .img .ipf .jfd .mfi .mfm .msa .ssd .st .td0 .ufi .zip",
+          "commands": [
+            {
+              "label": "MAME [Model A440/1] (Standalone)",
+              "command": "%EMULATOR_MAME% -inipath /var/config/mame/ini -rompath %GAMEDIR%\\;%ROMPATH%/archimedes aa4401 -flop1 %ROM%",
+              "priority": 10
+            },
+            {
+              "label": "MAME [Model A3000] (Standalone)",
+              "command": "%EMULATOR_MAME% -inipath /var/config/mame/ini -rompath %GAMEDIR%\\;%ROMPATH%/archimedes aa3000 -flop1 %ROM%",
+              "priority": 20
+            },
+            {
+              "label": "MAME [Model A310] (Standalone)",
+              "command": "%EMULATOR_MAME% -inipath /var/config/mame/ini -rompath %GAMEDIR%\\;%ROMPATH%/archimedes aa310 -flop1 %ROM%",
+              "priority": 30
+            },
+            {
+              "label": "MAME [Model A540] (Standalone)",
+              "command": "%EMULATOR_MAME% -inipath /var/config/mame/ini -rompath %GAMEDIR%\\;%ROMPATH%/archimedes aa540 -flop1 %ROM%",
+              "priority": 40
+            }
+          ],
+          "platform": "archimedes",
+          "theme": "archimedes"
+        },
+        {
+          "name": "astrocde",
+          "fullname": "Bally Astrocade",
+          "path": "%ROMPATH%/astrocde",
+          "extension": ".7z .zip",
+          "commands": [
+            {
+              "label": "MAME (Standalone)",
+              "command": "%EMULATOR_MAME% -inipath /var/config/mame/ini -rompath %GAMEDIR%\\;%ROMPATH%/astrocde astrocde -cart %BASENAME%",
+              "priority": 20
+            }
+          ],
+          "platform": "astrocde",
+          "theme": "astrocade"
+        },
+        {
+          "name": "atari7800",
+          "fullname": "Atari 7800 ProSystem",
+          "path": "%ROMPATH%/atari7800",
+          "extension": ".7z .a78 .bin .zip",
+          "commands": [
+            {
+              "label": "MAME (Standalone)",
+              "command": "%STARTDIR%=~/.mame %EMULATOR_MAME% -rompath %GAMEDIR%\\;%ROMPATH%/atari7800 a7800 -cart %ROM%",
+              "priority": 30
+            }
+          ],
+          "platform": "atari7800",
+          "theme": "atari7800"
+        },
+        {
+          "name": "atarijaguar",
+          "fullname": "Atari Jaguar",
+          "path": "%ROMPATH%/atarijaguar",
+          "extension": ".7z .abs .bigpimg .bin .cdi .cof .cue .j64 .jag .prg .rom .zip",
+          "commands": [
+            {
+              "label": "MAME (Standalone)",
+              "command": "%STARTDIR%=~/.mame %EMULATOR_MAME% -inipath /var/config/mame/ini -rompath %GAMEDIR%\\;%ROMPATH%/atarijaguar jaguar -cart %ROM%",
+              "priority": 20
+            }
+          ],
+          "platform": "atarijaguar",
+          "theme": "atarijaguar"
+        },
+        {
+          "name": "bbcmicro",
+          "fullname": "Acorn Computers BBC Micro",
+          "path": "%ROMPATH%/bbcmicro",
+          "extension": ".7z .dsd .img .ssd .zip",
+          "commands": [
+            {
+              "label": "MAME (Standalone)",
+              "command": "%STARTDIR%=~/.mame %EMULATOR_MAME% -rompath %GAMEDIR%\\;%ROMPATH%/bbcmicro bbcb -autoboot_delay \"2\" -autoboot_command \"*cat\\n\\n*exec !boot\\n\" -analogue acornjoy -flop1 %ROM%",
+              "priority": 10
+            }
+          ],
+          "platform": "bbcmicro",
+          "theme": "bbcmicro"
+        },
+        {
+          "name": "cdimono1",
+          "fullname": "Philips CD-i",
+          "path": "%ROMPATH%/cdimono1",
+          "extension": ".chd .cue .iso",
+          "commands": [
+            {
+              "label": "MAME (Standalone)",
+              "command": "%EMULATOR_MAME% -inipath /var/config/mame/ini -rompath %GAMEDIR%\\;%ROMPATH%/cdimono1 cdimono1 -cdrom %ROM%",
+              "priority": 30
+            }
+          ],
+          "platform": "cdimono1",
+          "theme": "cdimono1"
+        },
+        {
+          "name": "channelf",
+          "fullname": "Fairchild Channel F",
+          "path": "%ROMPATH%/channelf",
+          "extension": ".7z .bin .chf .zip",
+          "commands": [
+            {
+              "label": "MAME (Standalone)",
+              "command": "%EMULATOR_MAME% -inipath /var/config/mame/ini -rompath %GAMEDIR%\\;%ROMPATH%/channelf channelf -cart %ROM%",
+              "priority": 30
+            }
+          ],
+          "platform": "channelf",
+          "theme": "channelf"
+        },
+        {
+          "name": "coco",
+          "fullname": "Tandy Color Computer",
+          "path": "%ROMPATH%/coco",
+          "extension": ".cas .ccc .dsk .rom",
+          "commands": [
+            {
+              "label": "MAME [Cartridge] (Standalone)",
+              "command": "%STARTDIR%=~/.mame %EMULATOR_MAME% -inipath /var/config/mame/ini -rompath %GAMEDIR%\\;%ROMPATH%/coco coco -cart %ROM%",
+              "priority": 30
+            },
+            {
+              "label": "MAME [Tape] (Standalone)",
+              "command": "%STARTDIR%=~/.mame %EMULATOR_MAME% -inipath /var/config/mame/ini -rompath %GAMEDIR%\\;%ROMPATH%/coco coco -autoboot_delay \"2\" -autoboot_command \"cloadm:exec\\n\" -cass %ROM%",
+              "priority": 40
+            }
+          ],
+          "platform": "coco",
+          "theme": "coco"
+        },
+        {
+          "name": "consolearcade",
+          "fullname": "Console Arcade Systems",
+          "path": "%ROMPATH%/consolearcade",
+          "extension": ".7z .arcadedef .desktop .iso .ps3 .sh .xbe .zip",
+          "commands": [
+            {
+              "label": "MAME (Standalone)",
+              "command": "%EMULATOR_MAME% -inipath /var/config/mame/ini -rompath %GAMEDIR%\\;%ROMPATH%/consolearcade %BASENAME%",
+              "priority": 20
+            }
+          ],
+          "platform": "arcade",
+          "theme": "consolearcade"
+        },
+        {
+          "name": "cps",
+          "fullname": "Capcom Play System",
+          "path": "%ROMPATH%/cps",
+          "extension": ".7z .zip",
+          "commands": [
+            {
+              "label": "MAME (Standalone)",
+              "command": "%EMULATOR_MAME% -inipath /var/config/mame/ini -rompath %GAMEDIR%\\;%ROMPATH%/cps %BASENAME%",
+              "priority": 60
+            }
+          ],
+          "platform": "arcade",
+          "theme": "cps"
+        },
+        {
+          "name": "cps1",
+          "fullname": "Capcom Play System I",
+          "path": "%ROMPATH%/cps1",
+          "extension": ".7z .zip",
+          "commands": [
+            {
+              "label": "MAME (Standalone)",
+              "command": "%EMULATOR_MAME% -inipath /var/config/mame/ini -rompath %GAMEDIR%\\;%ROMPATH%/cps1 %BASENAME%",
+              "priority": 60
+            }
+          ],
+          "platform": "arcade",
+          "theme": "cps1"
+        },
+        {
+          "name": "cps2",
+          "fullname": "Capcom Play System II",
+          "path": "%ROMPATH%/cps2",
+          "extension": ".7z .zip",
+          "commands": [
+            {
+              "label": "MAME (Standalone)",
+              "command": "%EMULATOR_MAME% -inipath /var/config/mame/ini -rompath %GAMEDIR%\\;%ROMPATH%/cps2 %BASENAME%",
+              "priority": 60
+            }
+          ],
+          "platform": "arcade",
+          "theme": "cps2"
+        },
+        {
+          "name": "cps3",
+          "fullname": "Capcom Play System III",
+          "path": "%ROMPATH%/cps3",
+          "extension": ".7z .zip",
+          "commands": [
+            {
+              "label": "MAME (Standalone)",
+              "command": "%EMULATOR_MAME% -inipath /var/config/mame/ini -rompath %GAMEDIR%\\;%ROMPATH%/cps3 %BASENAME%",
+              "priority": 60
+            }
+          ],
+          "platform": "arcade",
+          "theme": "cps3"
+        },
+        {
+          "name": "crvision",
+          "fullname": "VTech CreatiVision",
+          "path": "%ROMPATH%/crvision",
+          "extension": ".7z .bin .rom .zip",
+          "commands": [
+            {
+              "label": "MAME (Standalone)",
+              "command": "%EMULATOR_MAME% -inipath /var/config/mame/ini -rompath %GAMEDIR%\\;%ROMPATH%/crvision crvision -cart %ROM%",
+              "priority": 20
+            }
+          ],
+          "platform": "crvision",
+          "theme": "crvision"
+        },
+        {
+          "name": "daphne",
+          "fullname": "Daphne Arcade LaserDisc Emulator",
+          "path": "%ROMPATH%/daphne",
+          "extension": ".7z .daphne .dirksimple .mmi .ogv .singe .zip",
+          "commands": [
+            {
+              "label": "MAME (Standalone)",
+              "command": "%EMULATOR_MAME% -inipath /var/config/mame/ini -rompath %GAMEDIR%\\;%ROMPATH%/daphne %BASENAME%",
+              "priority": 20
+            }
+          ],
+          "platform": "daphne, arcade",
+          "theme": "daphne"
+        },
+        {
+          "name": "dragon32",
+          "fullname": "Dragon Data Dragon 32",
+          "path": "%ROMPATH%/dragon32",
+          "extension": ".7z .cas .ccc .dsk .rom .zip",
+          "commands": [
+            {
+              "label": "MAME Dragon 32 [Tape] (Standalone)",
+              "command": "%STARTDIR%=~/.mame %EMULATOR_MAME% -rompath %GAMEDIR%\\;%ROMPATH%/dragon32 dragon32 -autoboot_delay \"4\" -autoboot_command \"cloadm\\\"\\\"\\n\" -cass %ROM%",
+              "priority": 30
+            },
+            {
+              "label": "MAME Dragon 32 [Cartridge] (Standalone)",
+              "command": "%STARTDIR%=~/.mame %EMULATOR_MAME% -rompath %GAMEDIR%\\;%ROMPATH%/dragon32 dragon32 -cart %ROM%",
+              "priority": 40
+            },
+            {
+              "label": "MAME Dragon 64 [Tape] (Standalone)",
+              "command": "%STARTDIR%=~/.mame %EMULATOR_MAME% -rompath %GAMEDIR%\\;%ROMPATH%/dragon32 dragon64 -autoboot_delay \"4\" -autoboot_command \"cloadm\\\"\\\"\\n\" -cass %ROM%",
+              "priority": 50
+            },
+            {
+              "label": "MAME Dragon 64 [Cartridge] (Standalone)",
+              "command": "%STARTDIR%=~/.mame %EMULATOR_MAME% -rompath %GAMEDIR%\\;%ROMPATH%/dragon32 dragon64 -cart %ROM%",
+              "priority": 60
+            }
+          ],
+          "platform": "dragon32",
+          "theme": "dragon32"
+        },
+        {
+          "name": "electron",
+          "fullname": "Acorn Electron",
+          "path": "%ROMPATH%/electron",
+          "extension": ".1dd .7z .adf .adl .adm .ads .bbc .bin .cqi .cqm .csw .d77 .d88 .dfi .dsd .dsk .hfe .imd .img .mfi .mfm .rom .ssd .td0 .uef .wav .zip",
+          "commands": [
+            {
+              "label": "MAME [Tape] (Standalone)",
+              "command": "%EMULATOR_MAME% -inipath /var/config/mame/ini -rompath %GAMEDIR%\\;%ROMPATH%/electron electron64 -autoboot_delay \"2\" -autoboot_command \"*T.\\nCH.\\\"\\\"\\n\" -cass1 %ROM%",
+              "priority": 10
+            },
+            {
+              "label": "MAME [Diskette DFS] (Standalone)",
+              "command": "%EMULATOR_MAME% -inipath /var/config/mame/ini -rompath %GAMEDIR%\\;%ROMPATH%/electron electron64 -exp plus1 -cart1 seds -autoboot_delay \"2\" -autoboot_command \"*CAT\\n\\n\\n\\n\\n\\n*EXEC !BOOT\\n\" -flop1 %ROM%",
+              "priority": 20
+            },
+            {
+              "label": "MAME [Diskette ADFS] (Standalone)",
+              "command": "%EMULATOR_MAME% -inipath /var/config/mame/ini -rompath %GAMEDIR%\\;%ROMPATH%/electron electron64 -exp plus3 -exp:plus3:fdc:1 35dd -autoboot_delay \"2\" -autoboot_command \"*CAT\\n\\n\\n\\n\\n\\n*RUN !BOOT\\n\" -flop1 %ROM%",
+              "priority": 30
+            }
+          ],
+          "platform": "electron",
+          "theme": "electron"
+        },
+        {
+          "name": "fm7",
+          "fullname": "Fujitsu FM-7",
+          "path": "%ROMPATH%/fm7",
+          "extension": ".1dd .7z .cqi .cqm .d77 .d88 .dfi .dsk .hfe .imd .mfi .mfm .t77 .td0 .wav .zip",
+          "commands": [
+            {
+              "label": "MAME [FM-7 Diskette] (Standalone)",
+              "command": "%EMULATOR_MAME% -inipath /var/config/mame/ini -rompath %GAMEDIR%\\;%ROMPATH%/fm7 fm7 -flop1 %ROM%",
+              "priority": 10
+            },
+            {
+              "label": "MAME [FM-7 Tape] (Standalone)",
+              "command": "%EMULATOR_MAME% -inipath /var/config/mame/ini -rompath %GAMEDIR%\\;%ROMPATH%/fm7 fm7 -autoboot_delay \"5\" -autoboot_command \"load\\n\\n\\nrun\\n\" -cass1 %ROM%",
+              "priority": 20
+            },
+            {
+              "label": "MAME [FM-7 Software list] (Standalone)",
+              "command": "%EMULATOR_MAME% -inipath /var/config/mame/ini -rompath %GAMEDIR%\\;%ROMPATH%/fm7 fm7 %BASENAME%",
+              "priority": 30
+            },
+            {
+              "label": "MAME [FM77AV Diskette] (Standalone)",
+              "command": "%EMULATOR_MAME% -inipath /var/config/mame/ini -rompath %GAMEDIR%\\;%ROMPATH%/fm7 fm77av -flop1 %ROM%",
+              "priority": 40
+            },
+            {
+              "label": "MAME [FM77AV Tape] (Standalone)",
+              "command": "%EMULATOR_MAME% -inipath /var/config/mame/ini -rompath %GAMEDIR%\\;%ROMPATH%/fm7 fm77av -autoboot_delay \"5\" -autoboot_command \"load\\n\\n\\nrun\\n\" -cass1 %ROM%",
+              "priority": 50
+            },
+            {
+              "label": "MAME [FM77AV Software list] (Standalone)",
+              "command": "%EMULATOR_MAME% -inipath /var/config/mame/ini -rompath %GAMEDIR%\\;%ROMPATH%/fm7 fm77av %BASENAME%",
+              "priority": 60
+            }
+          ],
+          "platform": "fm7",
+          "theme": "fm7"
+        },
+        {
+          "name": "fmtowns",
+          "fullname": "Fujitsu FM Towns",
+          "path": "%ROMPATH%/fmtowns",
+          "extension": ".cdr .chd .cue .gdi .iso",
+          "commands": [
+            {
+              "label": "MAME (Standalone)",
+              "command": "%STARTDIR%=~/.mame %EMULATOR_MAME% -rompath %GAMEDIR%\\;%ROMPATH%/fmtowns fmtownshr -cdrom %ROM%",
+              "priority": 20
+            }
+          ],
+          "platform": "fmtowns",
+          "theme": "fmtowns"
+        },
+        {
+          "name": "gamate",
+          "fullname": "Bit Corporation Gamate",
+          "path": "%ROMPATH%/gamate",
+          "extension": ".7z .bin .zip",
+          "commands": [
+            {
+              "label": "MAME (Standalone)",
+              "command": "%EMULATOR_MAME% -inipath /var/config/mame/ini -rompath %GAMEDIR%\\;%ROMPATH%/gamate gamate -cart %ROM%",
+              "priority": 20
+            }
+          ],
+          "platform": "gamate",
+          "theme": "gamate"
+        },
+        {
+          "name": "gameandwatch",
+          "fullname": "Nintendo Game and Watch",
+          "path": "%ROMPATH%/gameandwatch",
+          "extension": ".7z .mgw .zip",
+          "commands": [
+            {
+              "label": "MAME Local Artwork (Standalone)",
+              "command": "%EMULATOR_MAME% -inipath /var/config/mame/ini -artpath %ROMPATH%/gameandwatch/artwork -rompath %GAMEDIR%\\;%ROMPATH%/gameandwatch %BASENAME%",
+              "priority": 20
+            },
+            {
+              "label": "MAME (Standalone)",
+              "command": "%EMULATOR_MAME% -inipath /var/config/mame/ini -rompath %GAMEDIR%\\;%ROMPATH%/gameandwatch %BASENAME%",
+              "priority": 30
+            }
+          ],
+          "platform": "gameandwatch",
+          "theme": "gameandwatch"
+        },
+        {
+          "name": "gamecom",
+          "fullname": "Tiger Electronics Game.com",
+          "path": "%ROMPATH%/gamecom",
+          "extension": ".7z .tgc .zip",
+          "commands": [
+            {
+              "label": "MAME (Standalone)",
+              "command": "%EMULATOR_MAME% -inipath /var/config/mame/ini -rompath %GAMEDIR%\\;%ROMPATH%/gamecom gamecom -cartridge1 %ROM%",
+              "priority": 20
+            }
+          ],
+          "platform": "gamecom",
+          "theme": "gamecom"
+        },
+        {
+          "name": "gmaster",
+          "fullname": "Hartung Game Master",
+          "path": "%ROMPATH%/gmaster",
+          "extension": ".7z .bin .zip",
+          "commands": [
+            {
+              "label": "MAME (Standalone)",
+              "command": "%EMULATOR_MAME% -inipath /var/config/mame/ini -rompath %GAMEDIR%\\;%ROMPATH%/gmaster gmaster -cart %ROM%",
+              "priority": 20
+            }
+          ],
+          "platform": "gmaster",
+          "theme": "gmaster"
+        },
+        {
+          "name": "gx4000",
+          "fullname": "Amstrad GX4000",
+          "path": "%ROMPATH%/gx4000",
+          "extension": ".7z .bin .cdt .cpr .dsk .kcr .m3u .sna .tap .tar .voc .zip",
+          "commands": [
+            {
+              "label": "MAME (Standalone)",
+              "command": "%EMULATOR_MAME% -inipath /var/config/mame/ini -rompath %GAMEDIR%\\;%ROMPATH%/gx4000 gx4000 -cart %ROM%",
+              "priority": 30
+            }
+          ],
+          "platform": "gx4000",
+          "theme": "gx4000"
+        },
+        {
+          "name": "intellivision",
+          "fullname": "Mattel Electronics Intellivision",
+          "path": "%ROMPATH%/intellivision",
+          "extension": ".7z .bin .int .rom .zip",
+          "commands": [
+            {
+              "label": "MAME (Standalone)",
+              "command": "%EMULATOR_MAME% -inipath /var/config/mame/ini -rompath %GAMEDIR%\\;%ROMPATH%/intellivision intv -cart %ROM%",
+              "priority": 30
+            }
+          ],
+          "platform": "intellivision",
+          "theme": "intellivision"
+        },
+        {
+          "name": "laserdisc",
+          "fullname": "LaserDisc Games",
+          "path": "%ROMPATH%/laserdisc",
+          "extension": ".7z .daphne .dirksimple .mmi .ogv .singe .zip",
+          "commands": [
+            {
+              "label": "MAME (Standalone)",
+              "command": "%EMULATOR_MAME% -inipath /var/config/mame/ini -rompath %GAMEDIR%\\;%ROMPATH%/laserdisc %BASENAME%",
+              "priority": 20
+            }
+          ],
+          "platform": "daphne, arcade",
+          "theme": "laserdisc"
+        },
+        {
+          "name": "lcdgames",
+          "fullname": "LCD Handheld Games",
+          "path": "%ROMPATH%/lcdgames",
+          "extension": ".7z .mgw .zip",
+          "commands": [
+            {
+              "label": "MAME Local Artwork (Standalone)",
+              "command": "%EMULATOR_MAME% -inipath /var/config/mame/ini -artpath %ROMPATH%/lcdgames/artwork -rompath %GAMEDIR%\\;%ROMPATH%/lcdgames %BASENAME%",
+              "priority": 20
+            },
+            {
+              "label": "MAME (Standalone)",
+              "command": "%EMULATOR_MAME% -inipath /var/config/mame/ini -rompath %GAMEDIR%\\;%ROMPATH%/lcdgames %BASENAME%",
+              "priority": 30
+            }
+          ],
+          "platform": "lcdgames, gameandwatch",
+          "theme": "lcdgames"
+        },
+        {
+          "name": "macintosh",
+          "fullname": "Apple Macintosh",
+          "path": "%ROMPATH%/macintosh",
+          "extension": ".dsk .game",
+          "commands": [
+            {
+              "label": "MAME Mac SE Bootable (Standalone)",
+              "command": "%EMULATOR_MAME% -inipath /var/config/mame/ini -rompath %GAMEDIR%\\;%ROMPATH%/macintosh macse -flop1 %ROM%",
+              "priority": 10
+            },
+            {
+              "label": "MAME Mac SE Boot Disk (Standalone)",
+              "command": "%EMULATOR_MAME% -inipath /var/config/mame/ini -rompath %GAMEDIR%\\;%ROMPATH%/macintosh macse -flop1 %GAMEDIR%/boot.dsk -flop2 %ROM%",
+              "priority": 20
+            },
+            {
+              "label": "MAME Mac Plus Bootable (Standalone)",
+              "command": "%EMULATOR_MAME% -inipath /var/config/mame/ini -rompath %GAMEDIR%\\;%ROMPATH%/macintosh macplus -flop1 %ROM%",
+              "priority": 30
+            },
+            {
+              "label": "MAME Mac Plus Boot Disk (Standalone)",
+              "command": "%EMULATOR_MAME% -inipath /var/config/mame/ini -rompath %GAMEDIR%\\;%ROMPATH%/macintosh macplus -flop1 %GAMEDIR%/boot.dsk -flop2 %ROM%",
+              "priority": 40
+            }
+          ],
+          "platform": "macintosh",
+          "theme": "macintosh"
+        },
+        {
+          "name": "mame",
+          "fullname": "Multiple Arcade Machine Emulator",
+          "path": "%ROMPATH%/mame",
+          "extension": ".7z .cmd .desktop .gam .lindbergh .neo .sh .zip",
+          "commands": [
+            {
+              "label": "MAME (Standalone)",
+              "command": "%EMULATOR_MAME% -inipath /var/config/mame/ini -rompath %GAMEDIR%\\;%ROMPATH%/mame %BASENAME%",
+              "priority": 60
+            }
+          ],
+          "platform": "arcade",
+          "theme": "mame"
+        },
+        {
+          "name": "megaduck",
+          "fullname": "Creatronic Mega Duck",
+          "path": "%ROMPATH%/megaduck",
+          "extension": ".7z .bin .zip",
+          "commands": [
+            {
+              "label": "MAME (Standalone)",
+              "command": "%EMULATOR_MAME% -inipath /var/config/mame/ini -rompath %GAMEDIR%\\;%ROMPATH%/megaduck megaduck -cart %ROM%",
+              "priority": 30
+            }
+          ],
+          "platform": "megaduck",
+          "theme": "megaduck"
+        },
+        {
+          "name": "model2",
+          "fullname": "Sega Model 2",
+          "path": "%ROMPATH%/model2",
+          "extension": ".7z .zip",
+          "commands": [
+            {
+              "label": "MAME (Standalone)",
+              "command": "%EMULATOR_MAME% -inipath /var/config/mame/ini -rompath %GAMEDIR%\\;%ROMPATH%/model2 %BASENAME%",
+              "priority": 20
+            }
+          ],
+          "platform": "arcade",
+          "theme": "model2"
+        },
+        {
+          "name": "neogeo",
+          "fullname": "SNK Neo Geo",
+          "path": "%ROMPATH%/neogeo",
+          "extension": ".7z .neo .zip",
+          "commands": [
+            {
+              "label": "MAME (Standalone)",
+              "command": "%EMULATOR_MAME% -inipath /var/config/mame/ini -rompath %GAMEDIR%\\;%ROMPATH%/neogeo %BASENAME%",
+              "priority": 30
+            }
+          ],
+          "platform": "neogeo",
+          "theme": "neogeo"
+        },
+        {
+          "name": "neogeocd",
+          "fullname": "SNK Neo Geo CD",
+          "path": "%ROMPATH%/neogeocd",
+          "extension": ".chd .cue",
+          "commands": [
+            {
+              "label": "MAME (Standalone)",
+              "command": "%EMULATOR_MAME% -inipath /var/config/mame/ini -rompath %GAMEDIR%\\;%ROMPATH%/neogeocd neocdz -cdrm %ROM%",
+              "priority": 30
+            }
+          ],
+          "platform": "neogeocd",
+          "theme": "neogeocd"
+        },
+        {
+          "name": "neogeocdjp",
+          "fullname": "SNK Neo Geo CD",
+          "path": "%ROMPATH%/neogeocdjp",
+          "extension": ".chd .cue",
+          "commands": [
+            {
+              "label": "MAME (Standalone)",
+              "command": "%EMULATOR_MAME% -inipath /var/config/mame/ini -rompath %GAMEDIR%\\;%ROMPATH%/neogeocdjp neocdz -cdrm %ROM%",
+              "priority": 30
+            }
+          ],
+          "platform": "neogeocd",
+          "theme": "neogeocdjp"
+        },
+        {
+          "name": "odyssey2",
+          "fullname": "Magnavox Odyssey 2",
+          "path": "%ROMPATH%/odyssey2",
+          "extension": ".7z .bin .zip",
+          "commands": [
+            {
+              "label": "MAME (Standalone)",
+              "command": "%EMULATOR_MAME% -inipath /var/config/mame/ini -rompath %GAMEDIR%\\;%ROMPATH%/odyssey2 odyssey2 -cart %ROM%",
+              "priority": 30
+            }
+          ],
+          "platform": "odyssey2",
+          "theme": "odyssey2"
+        },
+        {
+          "name": "oric",
+          "fullname": "Tangerine Computer Systems Oric",
+          "path": "%ROMPATH%/oric",
+          "extension": ".dsk .ort .tap .wav",
+          "commands": [
+            {
+              "label": "MAME (Standalone)",
+              "command": "%STARTDIR%=~/.mame %EMULATOR_MAME% -inipath /var/config/mame/ini -rompath %GAMEDIR%\\;%ROMPATH%/oric oric1 -autoboot_delay \"4\" -autoboot_command \"cload\\\"\\\"\\n\" -cass %ROM%",
+              "priority": 10
+            }
+          ],
+          "platform": "oric",
+          "theme": "oric"
+        },
+        {
+          "name": "pv1000",
+          "fullname": "Casio PV-1000",
+          "path": "%ROMPATH%/pv1000",
+          "extension": ".7z .bin .zip",
+          "commands": [
+            {
+              "label": "MAME (Standalone)",
+              "command": "%EMULATOR_MAME% -inipath /var/config/mame/ini -rompath %GAMEDIR%\\;%ROMPATH%/pv1000 pv1000 -cart %ROM%",
+              "priority": 20
+            }
+          ],
+          "platform": "pv1000",
+          "theme": "pv1000"
+        },
+        {
+          "name": "scv",
+          "fullname": "Epoch Super Cassette Vision",
+          "path": "%ROMPATH%/scv",
+          "extension": ".0 .7z .bin .zip",
+          "commands": [
+            {
+              "label": "MAME (Standalone)",
+              "command": "%EMULATOR_MAME% -inipath /var/config/mame/ini -rompath %GAMEDIR%\\;%ROMPATH%/scv scv -cart %ROM%",
+              "priority": 20
+            }
+          ],
+          "platform": "scv",
+          "theme": "scv"
+        },
+        {
+          "name": "stv",
+          "fullname": "Sega Titan Video Game System",
+          "path": "%ROMPATH%/stv",
+          "extension": ".7z .zip",
+          "commands": [
+            {
+              "label": "MAME (Standalone)",
+              "command": "%EMULATOR_MAME% -inipath /var/config/mame/ini -rompath %GAMEDIR%\\;%ROMPATH%/stv %BASENAME%",
+              "priority": 30
+            }
+          ],
+          "platform": "arcade",
+          "theme": "stv"
+        },
+        {
+          "name": "supervision",
+          "fullname": "Watara Supervision",
+          "path": "%ROMPATH%/supervision",
+          "extension": ".7z .bin .sv .zip",
+          "commands": [
+            {
+              "label": "MAME (Standalone)",
+              "command": "%EMULATOR_MAME% -inipath /var/config/mame/ini -rompath %GAMEDIR%\\;%ROMPATH%/supervision svision -cart %ROM%",
+              "priority": 30
+            }
+          ],
+          "platform": "supervision",
+          "theme": "supervision"
+        },
+        {
+          "name": "supracan",
+          "fullname": "Funtech Super A'Can",
+          "path": "%ROMPATH%/supracan",
+          "extension": ".7z .bin .zip",
+          "commands": [
+            {
+              "label": "MAME (Standalone)",
+              "command": "%EMULATOR_MAME% -inipath /var/config/mame/ini -rompath %GAMEDIR%\\;%ROMPATH%/supracan supracan -cart %ROM%",
+              "priority": 20
+            }
+          ],
+          "platform": "supracan",
+          "theme": "supracan"
+        },
+        {
+          "name": "tanodragon",
+          "fullname": "Tano Dragon",
+          "path": "%ROMPATH%/tanodragon",
+          "extension": ".7z .cas .ccc .dsk .rom .zip",
+          "commands": [
+            {
+              "label": "MAME [Tape] (Standalone)",
+              "command": "%STARTDIR%=~/.mame %EMULATOR_MAME% -rompath %GAMEDIR%\\;%ROMPATH%/dragon32 tanodr64 -autoboot_delay \"4\" -autoboot_command \"cloadm\\\"\\\"\\n\" -cass %ROM%",
+              "priority": 20
+            },
+            {
+              "label": "MAME [Cartridge] (Standalone)",
+              "command": "%STARTDIR%=~/.mame %EMULATOR_MAME% -rompath %GAMEDIR%\\;%ROMPATH%/dragon32 tanodr64 -cart %ROM%",
+              "priority": 30
+            }
+          ],
+          "platform": "dragon32",
+          "theme": "tanodragon"
+        },
+        {
+          "name": "ti99",
+          "fullname": "Texas Instruments TI-99",
+          "path": "%ROMPATH%/ti99",
+          "extension": ".7z .rpk .zip",
+          "commands": [
+            {
+              "label": "MAME (Standalone)",
+              "command": "%STARTDIR%=~/.mame %EMULATOR_MAME% -inipath /var/config/mame/ini -rompath %GAMEDIR%\\;%ROMPATH%/ti99 ti99_4a -ioport peb -ioport:peb:slot3 speechadapter -cart %BASENAME%",
+              "priority": 10
+            }
+          ],
+          "platform": "ti99",
+          "theme": "ti99"
+        },
+        {
+          "name": "vectrex",
+          "fullname": "GCE Vectrex",
+          "path": "%ROMPATH%/vectrex",
+          "extension": ".7z .bin .gam .vc .vec .zip",
+          "commands": [
+            {
+              "label": "MAME (Standalone)",
+              "command": "%EMULATOR_MAME% -inipath /var/config/mame/ini -rompath %GAMEDIR%\\;%ROMPATH%/vectrex vectrex -cart %ROM%",
+              "priority": 30
+            }
+          ],
+          "platform": "vectrex",
+          "theme": "vectrex"
+        },
+        {
+          "name": "videopac",
+          "fullname": "Philips Videopac G7000",
+          "path": "%ROMPATH%/videopac",
+          "extension": ".7z .bin .zip",
+          "commands": [
+            {
+              "label": "MAME (Standalone)",
+              "command": "%EMULATOR_MAME% -inipath /var/config/mame/ini -rompath %GAMEDIR%\\;%ROMPATH%/videopac videopac -cart %ROM%",
+              "priority": 30
+            }
+          ],
+          "platform": "odyssey2",
+          "theme": "videopac"
+        },
+        {
+          "name": "vsmile",
+          "fullname": "VTech V.Smile",
+          "path": "%ROMPATH%/vsmile",
+          "extension": ".7z .bin .zip",
+          "commands": [
+            {
+              "label": "MAME (Standalone)",
+              "command": "%EMULATOR_MAME% -inipath /var/config/mame/ini -rompath %GAMEDIR%\\;%ROMPATH%/vsmile vsmile -cart %ROM%",
+              "priority": 20
+            }
+          ],
+          "platform": "vsmile",
+          "theme": "vsmile"
+        },
+        {
+          "name": "x1",
+          "fullname": "Sharp X1",
+          "path": "%ROMPATH%/x1",
+          "extension": ".2d .2hd .7z .88d .cmd .d88 .dup .dx1 .hdm .tap .tfd .xdf .zip",
+          "commands": [
+            {
+              "label": "MAME [Diskette] (Standalone)",
+              "command": "%EMULATOR_MAME% -inipath /var/config/mame/ini -rompath %GAMEDIR%\\;%ROMPATH%/x1 x1 -flop1 %ROM%",
+              "priority": 20
+            },
+            {
+              "label": "MAME [Tape] (Standalone)",
+              "command": "%EMULATOR_MAME% -inipath /var/config/mame/ini -rompath %GAMEDIR%\\;%ROMPATH%/x1 x1 -cass1 %ROM%",
+              "priority": 30
+            }
+          ],
+          "platform": "x1",
+          "theme": "x1"
+        },
+        {
+          "name": "x68000",
+          "fullname": "Sharp X68000",
+          "path": "%ROMPATH%/x68000",
+          "extension": ".2hd .7z .88d .cmd .d88 .dim .dup .hdf .hdm .img .m3u .xdf .zip",
+          "commands": [
+            {
+              "label": "MAME (Standalone)",
+              "command": "%STARTDIR%=~/.mame %EMULATOR_MAME% -rompath %GAMEDIR%\\;%ROMPATH%/x68000 x68000 -flop1 %ROM%",
+              "priority": 20
+            }
+          ],
+          "platform": "x68000",
+          "theme": "x68000"
+        }
+      ]
+    },
     "compression": {
       "chd": {
         "targets": [

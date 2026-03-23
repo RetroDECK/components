@@ -11,6 +11,41 @@
     "description": "GZDoom is a modern, enhanced source port engine of classic DOOM and DOOM engine games.",
     "system_friendly_name": "Doom",
     "system": "doom",
+    "es_de_config": {
+      "es_find_rules": {
+        "emulators": [
+          {
+            "name": "GZDOOM",
+            "description": "GZDoom Game Engine",
+            "rules": [
+              {
+                "type": "staticpath",
+                "entries": [
+                  "%COMPONENT_PATH%/component_launcher.sh"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "es_systems": [
+        {
+          "name": "doom",
+          "fullname": "Doom",
+          "path": "%ROMPATH%/doom",
+          "extension": ".desktop .doom .ipk3 .iwad .pk3 .pk4 .pwad .sh .wad",
+          "commands": [
+            {
+              "label": "GZDoom (Standalone)",
+              "command": "%EMULATOR_GZDOOM% %ROM%",
+              "priority": 10
+            }
+          ],
+          "platform": "pc, pcwindows",
+          "theme": "doom"
+        }
+      ]
+    },
     "helper_files": {
       "doom_guide": {
         "filename": "doom_guide.txt",

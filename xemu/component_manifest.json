@@ -11,6 +11,56 @@
     "component_type": "Emulator",
     "system_friendly_name": "Xbox",
     "system": "xbox",
+    "es_de_config": {
+      "es_find_rules": {
+        "emulators": [
+          {
+            "name": "XEMU",
+            "description": "Microsoft Xbox emulator xemu",
+            "rules": [
+              {
+                "type": "staticpath",
+                "entries": [
+                  "%COMPONENT_PATH%/component_launcher.sh"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "es_systems": [
+        {
+          "name": "consolearcade",
+          "fullname": "Console Arcade Systems",
+          "path": "%ROMPATH%/consolearcade",
+          "extension": ".7z .arcadedef .desktop .iso .ps3 .sh .xbe .zip",
+          "commands": [
+            {
+              "label": "xemu (Standalone)",
+              "command": "%INJECT%=%BASENAME%.esprefix %EMULATOR_XEMU% -dvd_path %ROM%",
+              "priority": 70
+            }
+          ],
+          "platform": "arcade",
+          "theme": "consolearcade"
+        },
+        {
+          "name": "xbox",
+          "fullname": "Microsoft Xbox",
+          "path": "%ROMPATH%/xbox",
+          "extension": ".iso",
+          "commands": [
+            {
+              "label": "xemu (Standalone)",
+              "command": "%INJECT%=%BASENAME%.esprefix %EMULATOR_XEMU% -dvd_path %ROM%",
+              "priority": 10
+            }
+          ],
+          "platform": "xbox",
+          "theme": "xbox"
+        }
+      ]
+    },
     "compression": {
       "xiso": {
         "targets": [

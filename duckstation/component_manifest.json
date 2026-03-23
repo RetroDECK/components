@@ -9,6 +9,41 @@
     "url_donation_purchase": "",
     "system_friendly_name": "Playstation 1 (PSX)",
     "system": "psx",
+    "es_de_config": {
+      "es_find_rules": {
+        "emulators": [
+          {
+            "name": "DUCKSTATION",
+            "description": "Sony PlayStation 1 emulator DuckStation",
+            "rules": [
+              {
+                "type": "staticpath",
+                "entries": [
+                  "%COMPONENT_PATH%/component_launcher.sh"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "es_systems": [
+        {
+          "name": "psx",
+          "fullname": "Sony PlayStation",
+          "path": "%ROMPATH%/psx",
+          "extension": ".7z .bin .cbn .ccd .chd .cue .ecm .exe .img .iso .m3u .mdf .mds .minipsf .pbp .psexe .psf .toc .z .zip .znx",
+          "commands": [
+            {
+              "label": "DuckStation (Legacy) (Standalone)",
+              "command": "%EMULATOR_DUCKSTATION% -batch %ROM%",
+              "priority": 50
+            }
+          ],
+          "platform": "psx",
+          "theme": "psx"
+        }
+      ]
+    },
     "compatible_presets": {
       "cheevos": ["false", "true"],
       "cheevos_hardcore": ["false", "true"],

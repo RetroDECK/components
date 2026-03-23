@@ -27,6 +27,81 @@
       "dragon32",
       "tanodragon"
     ],
+    "es_de_config": {
+      "es_find_rules": {
+        "emulators": [
+          {
+            "name": "XROAR",
+            "description": "Dragon and Tandy 8-bit computer emulator XRoar",
+            "rules": [
+              {
+                "type": "staticpath",
+                "entries": [
+                  "%COMPONENT_PATH%/component_launcher.sh"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "es_systems": [
+        {
+          "name": "coco",
+          "fullname": "Tandy Color Computer",
+          "path": "%ROMPATH%/coco",
+          "extension": ".cas .ccc .dsk .rom",
+          "commands": [
+            {
+              "label": "XRoar CoCo 2 NTSC (Standalone)",
+              "command": "%EMULATOR_XROAR% -fs -default-machine coco2bus %ROM%",
+              "priority": 10
+            },
+            {
+              "label": "XRoar CoCo 2 PAL (Standalone)",
+              "command": "%EMULATOR_XROAR% -fs -default-machine coco2b %ROM%",
+              "priority": 20
+            }
+          ],
+          "platform": "coco",
+          "theme": "coco"
+        },
+        {
+          "name": "dragon32",
+          "fullname": "Dragon Data Dragon 32",
+          "path": "%ROMPATH%/dragon32",
+          "extension": ".7z .cas .ccc .dsk .rom .zip",
+          "commands": [
+            {
+              "label": "XRoar Dragon 32 (Standalone)",
+              "command": "%EMULATOR_XROAR% -fs -default-machine dragon32 %ROM%",
+              "priority": 10
+            },
+            {
+              "label": "XRoar Dragon 64 (Standalone)",
+              "command": "%EMULATOR_XROAR% -fs -default-machine dragon64 %ROM%",
+              "priority": 20
+            }
+          ],
+          "platform": "dragon32",
+          "theme": "dragon32"
+        },
+        {
+          "name": "tanodragon",
+          "fullname": "Tano Dragon",
+          "path": "%ROMPATH%/tanodragon",
+          "extension": ".7z .cas .ccc .dsk .rom .zip",
+          "commands": [
+            {
+              "label": "XRoar (Standalone)",
+              "command": "%EMULATOR_XROAR% -fs -default-machine tano %ROM%",
+              "priority": 10
+            }
+          ],
+          "platform": "dragon32",
+          "theme": "tanodragon"
+        }
+      ]
+    },
     "bios": [
       {
         "filename": "d32.rom",

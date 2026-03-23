@@ -14,6 +14,41 @@
     "url_source": "https://github.com/melonDS-emu/melonDS",
     "system_friendly_name": "Nintendo DS",
     "system": "nds",
+    "es_de_config": {
+      "es_find_rules": {
+        "emulators": [
+          {
+            "name": "MELONDS",
+            "description": "Nintendo DS and DSi emulator melonDS",
+            "rules": [
+              {
+                "type": "staticpath",
+                "entries": [
+                  "%COMPONENT_PATH%/component_launcher.sh"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "es_systems": [
+        {
+          "name": "nds",
+          "fullname": "Nintendo DS",
+          "path": "%ROMPATH%/nds",
+          "extension": ".7z .app .bin .nds .zip",
+          "commands": [
+            {
+              "label": "melonDS (Standalone)",
+              "command": "%EMULATOR_MELONDS% %ROM%",
+              "priority": 50
+            }
+          ],
+          "platform": "nds",
+          "theme": "nds"
+        }
+      ]
+    },
     "bios": [
       {
         "filename": "bios7.bin",
