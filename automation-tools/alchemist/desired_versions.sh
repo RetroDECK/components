@@ -147,8 +147,8 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # Link: https://flathub.org/en/apps/net.rpcs3.RPCS3
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
-# Version: 0.0.40-189
-  export RPCS3_DESIRED_VERSION="f77271ddeb6dee231a4fbca1a7c6eeaf8a132638f1eda9af288322fb2894eebc"
+# Version: 0.0.40-190
+  export RPCS3_DESIRED_VERSION="bbfc8350f2e6e6e2eda3157f264486717ee68fe6f9d238d6ab46901d00c2d958"
 
 # COOKER (Override)
 # export RPCS3_DESIRED_VERSION="latest"
