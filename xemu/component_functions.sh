@@ -103,7 +103,7 @@ _validate_for_compression::xiso() {
 _compress_game::xiso() {
   local source_file="$1"
   local dest_file="$2"
-  dd if="$source_file" of="$dest_file" skip=387 bs=1M
+  /app/retrodeck/components/xemu/bin/xdvdfs compress "$source_file" "$dest_file"
 }
 
 _post_compression_cleanup::xiso() {
