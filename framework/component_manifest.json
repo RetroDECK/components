@@ -221,6 +221,13 @@
           "command": {
             "zenity": "configurator_iconset_toggle_dialog"
           }
+        },
+        "process_run_game_event_scripts": {
+          "name": "Process RetroENGINE event scripts",
+          "description": "Enable or disable: RetroENGINE event script processing",
+          "command": {
+            "zenity": "configurator_toggle_retroengine_event_scripts_dialog"
+          }
         }
       },
       "tools": {
