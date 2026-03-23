@@ -260,7 +260,7 @@ Video:
   Vblank NTSC Fixup: false
   Vblank Rate: 60
   Vulkan:
-    Adapter: AMD Custom GPU 0405 (RADV VANGOGH)
+    Adapter: AMD Custom GPU 0932 (RADV VANGOGH)
     Asynchronous Queue Scheduler: Safe
     Asynchronous Texture Streaming: false
     Asynchronous Texture Streaming 2: false
