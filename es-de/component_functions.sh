@@ -413,147 +413,161 @@ generate_es_de_diff_report() {
  
   local report=""
   local section_count=0
-  local tmp_gen tmp_off
  
-  tmp_gen=$(mktemp)
-  tmp_off=$(mktemp)
- 
-  # es_find_rules.xml comparison
+  # es_find_rules.xml: report upstream names missing from generated 
   if [[ -f "$es_find_rules" && -f "$es_find_rules_official" ]]; then
-    local fr_header="false"
+    local -a gen_emulators off_emulators gen_cores off_cores missing_names=()
  
-    # Check emulator blocks
-    local gen_emulators off_emulators
     mapfile -t gen_emulators < <(xmlstarlet sel -t -m '//emulator' -v '@name' -n "$es_find_rules" 2>/dev/null)
     mapfile -t off_emulators < <(xmlstarlet sel -t -m '//emulator' -v '@name' -n "$es_find_rules_official" 2>/dev/null)
- 
-    for emu_name in "${gen_emulators[@]}"; do
-      [[ -z "$emu_name" ]] && continue
-      if ! printf '%s\n' "${off_emulators[@]}" | grep -qxF "$emu_name"; then
-        # Emulator only in generated file
-        if [[ "$fr_header" == "false" ]]; then
-          report+=$'\n'"=========================================="$'\n'
-          report+="es_find_rules.xml differences"$'\n'
-          report+="=========================================="$'\n'
-          fr_header="true"
-        fi
-        report+=$'\n'"ADDITIONAL emulator: $emu_name"$'\n'
-        local block_content
-        block_content=$(xmlstarlet sel -t -c "//emulator[@name='$emu_name']" "$es_find_rules" 2>/dev/null | xmlstarlet fo 2>/dev/null | sed 's/^/+ /')
-        report+="$block_content"$'\n' 
-        section_count=$((section_count + 1))
-      else
-        # Emulator in both: compare content
-        xmlstarlet sel -t -c "//emulator[@name='$emu_name']" "$es_find_rules" 2>/dev/null | xmlstarlet fo 2>/dev/null > "$tmp_gen"
-        xmlstarlet sel -t -c "//emulator[@name='$emu_name']" "$es_find_rules_official" 2>/dev/null | xmlstarlet fo 2>/dev/null > "$tmp_off"
-        if ! diff -q "$tmp_gen" "$tmp_off" > /dev/null 2>&1; then
-          if [[ "$fr_header" == "false" ]]; then
-            report+=$'\n'"=========================================="$'\n'
-            report+="es_find_rules.xml differences"$'\n'
-            report+="=========================================="$'\n'
-            fr_header="true"
-          fi
-          report+=$'\n'"DIFFERS emulator: $emu_name"$'\n'
-          local diff_content
-          diff_content=$(diff --unified=1 "$tmp_off" "$tmp_gen" 2>/dev/null | tail -n +3)
-          report+="$diff_content"$'\n' 
-          section_count=$((section_count + 1))
-        fi
-      fi
-    done
- 
-    # Check core blocks
-    local gen_cores off_cores
     mapfile -t gen_cores < <(xmlstarlet sel -t -m '//core' -v '@name' -n "$es_find_rules" 2>/dev/null)
     mapfile -t off_cores < <(xmlstarlet sel -t -m '//core' -v '@name' -n "$es_find_rules_official" 2>/dev/null)
  
-    for core_name in "${gen_cores[@]}"; do
-      [[ -z "$core_name" ]] && continue
-      if ! printf '%s\n' "${off_cores[@]}" | grep -qxF "$core_name"; then
-        if [[ "$fr_header" == "false" ]]; then
-          report+=$'\n'"=========================================="$'\n'
-          report+="es_find_rules.xml differences"$'\n'
-          report+="=========================================="$'\n'
-          fr_header="true"
-        fi
-        report+=$'\n'"ADDITIONAL core: $core_name"$'\n'
-        local block_content
-        block_content=$(xmlstarlet sel -t -c "//core[@name='$core_name']" "$es_find_rules" 2>/dev/null | xmlstarlet fo 2>/dev/null | sed 's/^/+ /')
-        report+="$block_content"$'\n' 
-        section_count=$((section_count + 1))
-      else
-        xmlstarlet sel -t -c "//core[@name='$core_name']" "$es_find_rules" 2>/dev/null | xmlstarlet fo 2>/dev/null > "$tmp_gen"
-        xmlstarlet sel -t -c "//core[@name='$core_name']" "$es_find_rules_official" 2>/dev/null | xmlstarlet fo 2>/dev/null > "$tmp_off"
-        if ! diff -q "$tmp_gen" "$tmp_off" > /dev/null 2>&1; then
-          if [[ "$fr_header" == "false" ]]; then
-            report+=$'\n'"=========================================="$'\n'
-            report+="es_find_rules.xml differences"$'\n'
-            report+="=========================================="$'\n'
-            fr_header="true"
-          fi
-          report+=$'\n'"DIFFERS core: $core_name"$'\n'
-          local diff_content
-          diff_content=$(diff --unified=1 "$tmp_off" "$tmp_gen" 2>/dev/null | tail -n +3)
-          report+="$diff_content"$'\n' 
-          section_count=$((section_count + 1))
-        fi
+    for emu_name in "${off_emulators[@]}"; do
+      [[ -z "$emu_name" ]] && continue
+      if ! printf '%s\n' "${gen_emulators[@]}" | grep -qxF "$emu_name"; then
+        missing_names+=("emulator: $emu_name")
       fi
     done
+ 
+    for core_name in "${off_cores[@]}"; do
+      [[ -z "$core_name" ]] && continue
+      if ! printf '%s\n' "${gen_cores[@]}" | grep -qxF "$core_name"; then
+        missing_names+=("core: $core_name")
+      fi
+    done
+ 
+    if [[ ${#missing_names[@]} -gt 0 ]]; then
+      report+=$'\n'"=========================================="$'\n'
+      report+="es_find_rules.xml: upstream names not in generated file (${#missing_names[@]})"$'\n'
+      report+="=========================================="$'\n'
+      for missing in "${missing_names[@]}"; do
+        report+="  $missing"$'\n'
+      done
+      section_count=$((section_count + ${#missing_names[@]}))
+    fi
   else
     log w "Skipping es_find_rules.xml comparison: generated or official file not found"
   fi
  
-  # es_systems.xml comparison 
-  if [[ -f "$es_systems" && -f "$es_systems_official" ]]; then
+  # es_systems.xml: detailed per-system comparison 
+  if [[ -f "$es_systems" && -f "$es_systems_official" && -f "$es_find_rules" ]]; then
     local sys_header="false"
  
-    local gen_systems off_systems
+    # Build set of known emulator names from the generated find_rules for command filtering
+    local -a known_emulators
+    mapfile -t known_emulators < <(xmlstarlet sel -t -m '//emulator' -v '@name' -n "$es_find_rules" 2>/dev/null)
+ 
+    local -a gen_systems off_systems
     mapfile -t gen_systems < <(xmlstarlet sel -t -m '//system/name' -v '.' -n "$es_systems" 2>/dev/null)
     mapfile -t off_systems < <(xmlstarlet sel -t -m '//system/name' -v '.' -n "$es_systems_official" 2>/dev/null)
  
     for sys_name in "${gen_systems[@]}"; do
       [[ -z "$sys_name" ]] && continue
+      local sys_issues=""
+ 
       if ! printf '%s\n' "${off_systems[@]}" | grep -qxF "$sys_name"; then
+        # System only in generated file
         if [[ "$sys_header" == "false" ]]; then
           report+=$'\n'"=========================================="$'\n'
           report+="es_systems.xml differences"$'\n'
           report+="=========================================="$'\n'
           sys_header="true"
         fi
-        report+=$'\n'"ADDITIONAL system: $sys_name"$'\n'
-        local block_content
-        block_content=$(xmlstarlet sel -t -c "//system[name='$sys_name']" "$es_systems" 2>/dev/null | xmlstarlet fo 2>/dev/null | sed 's/^/+ /')
-        report+="$block_content"$'\n' 
+        report+=$'\n'"ADDITIONAL system: $sys_name (not in official file)"$'\n'
         section_count=$((section_count + 1))
-      else
-        xmlstarlet sel -t -c "//system[name='$sys_name']" "$es_systems" 2>/dev/null | xmlstarlet fo 2>/dev/null > "$tmp_gen"
-        xmlstarlet sel -t -c "//system[name='$sys_name']" "$es_systems_official" 2>/dev/null | xmlstarlet fo 2>/dev/null > "$tmp_off"
-        if ! diff -q "$tmp_gen" "$tmp_off" > /dev/null 2>&1; then
-          if [[ "$sys_header" == "false" ]]; then
-            report+=$'\n'"=========================================="$'\n'
-            report+="es_systems.xml differences"$'\n'
-            report+="=========================================="$'\n'
-            sys_header="true"
-          fi
-          report+=$'\n'"DIFFERS system: $sys_name"$'\n'
-          local diff_content
-          diff_content=$(diff --unified=1 "$tmp_off" "$tmp_gen" 2>/dev/null | tail -n +3)
-          report+="$diff_content"$'\n' 
-          section_count=$((section_count + 1))
+        continue
+      fi
+ 
+      # Extension comparison
+      # Normalize both to sorted lowercase sets for comparison
+      local gen_ext off_ext gen_ext_norm off_ext_norm
+      gen_ext=$(xmlstarlet sel -t -v "//system[name='$sys_name']/extension" "$es_systems" 2>/dev/null)
+      off_ext=$(xmlstarlet sel -t -v "//system[name='$sys_name']/extension" "$es_systems_official" 2>/dev/null)
+      gen_ext_norm=$(printf '%s' "$gen_ext" | tr ' ' '\n' | awk '{print tolower($0)}' | sort -u)
+      off_ext_norm=$(printf '%s' "$off_ext" | tr ' ' '\n' | awk '{print tolower($0)}' | sort -u)
+ 
+      local ext_missing ext_extra
+      ext_missing=$(comm -23 <(echo "$off_ext_norm") <(echo "$gen_ext_norm") | tr '\n' ' ' | sed 's/ $//')
+      ext_extra=$(comm -13 <(echo "$off_ext_norm") <(echo "$gen_ext_norm") | tr '\n' ' ' | sed 's/ $//')
+ 
+      if [[ -n "$ext_missing" ]]; then
+        sys_issues+="  Extensions in official but not generated: $ext_missing"$'\n'
+      fi
+      if [[ -n "$ext_extra" ]]; then
+        sys_issues+="  Extensions in generated but not official: $ext_extra"$'\n'
+      fi
+ 
+      # Command comparison
+      # Extract labels and commands from both files for this system
+      local -a gen_labels gen_commands off_labels off_commands
+      mapfile -t gen_labels < <(xmlstarlet sel -t -m "//system[name='$sys_name']/command" -v '@label' -n "$es_systems" 2>/dev/null)
+      mapfile -t gen_commands < <(xmlstarlet sel -t -m "//system[name='$sys_name']/command" -v '.' -n "$es_systems" 2>/dev/null)
+      mapfile -t off_labels < <(xmlstarlet sel -t -m "//system[name='$sys_name']/command" -v '@label' -n "$es_systems_official" 2>/dev/null)
+      mapfile -t off_commands < <(xmlstarlet sel -t -m "//system[name='$sys_name']/command" -v '.' -n "$es_systems_official" 2>/dev/null)
+ 
+      # Check each official command against generated
+      local oi
+      for oi in "${!off_labels[@]}"; do
+        local off_label="${off_labels[$oi]}"
+        local off_cmd="${off_commands[$oi]}"
+        [[ -z "$off_label" ]] && continue
+ 
+        # Extract emulator name from the command
+        local cmd_emu=""
+        if [[ "$off_cmd" =~ %EMULATOR_([^%]+)% ]]; then
+          cmd_emu="${BASH_REMATCH[1]}"
         fi
+ 
+        # Skip commands referencing emulators not in our generated find_rules
+        if [[ -n "$cmd_emu" ]] && ! printf '%s\n' "${known_emulators[@]}" | grep -qxF "$cmd_emu"; then
+          continue
+        fi
+ 
+        # Check if this label exists in the generated file
+        local found_match="false"
+        local gen_index
+        for gen_index in "${!gen_labels[@]}"; do
+          if [[ "${gen_labels[$gen_index]}" == "$off_label" ]]; then
+            found_match="true"
+            # Label matches: compare command content
+            if [[ "${gen_commands[$gen_index]}" != "$off_cmd" ]]; then
+              sys_issues+="  Command label \"$off_label\" differs:"$'\n'
+              sys_issues+="    official:  $off_cmd"$'\n'
+              sys_issues+="    generated: ${gen_commands[$gen_index]}"$'\n'
+            fi
+            break
+          fi
+        done
+ 
+        if [[ "$found_match" == "false" ]]; then
+          sys_issues+="  Missing command: \"$off_label\""$'\n'
+          sys_issues+="    $off_cmd"$'\n'
+        fi
+      done
+ 
+      # Report if any issues were found for this system
+      if [[ -n "$sys_issues" ]]; then
+        if [[ "$sys_header" == "false" ]]; then
+          report+=$'\n'"=========================================="$'\n'
+          report+="es_systems.xml differences"$'\n'
+          report+="=========================================="$'\n'
+          sys_header="true"
+        fi
+        report+=$'\n'"System: $sys_name"$'\n'
+        report+="$sys_issues"
+        section_count=$((section_count + 1))
       fi
     done
   else
     log w "Skipping es_systems.xml comparison: generated or official file not found"
   fi
  
-  rm -f "$tmp_gen" "$tmp_off"
- 
   if [[ $section_count -gt 0 ]]; then
-    log i "ES-DE diff report: $section_count difference(s) found"
+    log i "ES-DE diff report: $section_count item(s) found"
     printf '%s' "$report"
   else
-    log i "ES-DE diff report: generated files match official files (no additions or differences)"
+    log i "ES-DE diff report: no differences found"
   fi
  
   return 0
