@@ -53,8 +53,12 @@ detect_wolf3d_version() {
     vswap_file=$(find "$folder" -maxdepth 1 -type f -iname "vswap.$version" -print -quit 2>/dev/null)
 
     if [[ -n "$gamemaps_file" && -n "$maphead_file" && -n "$vswap_file" ]]; then
-      printf '%s' "$version"
-      return 0
+      if validate_wolf3d_version_hash "$folder" "$version"; then
+        printf '%s' "$version"
+        return 0
+      else
+        log d "Version '$version' rejected for '$folder' because hash validation failed"
+      fi
     fi
   done
 
@@ -74,6 +78,99 @@ pretty_wolf3d_version() {
     n3d) echo "Super 3D Noah’s Ark" ;;
     *) echo "Unknown Wolf3D version: $version" ;;
   esac
+}
+
+# Known IWAD hash fixtures for core file trio to avoid false positives in mod folders.
+# (Source: ECWolf docs, checked on Wolfenstein 3D / Spear of Destiny / Noah's Ark)
+declare -A wolf3d_data_hashes
+wolf3d_data_hashes=(
+  [wl6.gamemaps]="a4e73706e100dc0cadfb02d23de46481"
+  [wl6.maphead]="b8d2a78bc7c50da7ec9ab1d94f7975e1"
+  # Support both canonical and alternate WL6 vswap variants observed in field
+  [wl6.vswap]="b8ff4997461bafa5ef2a94c11f9de001 a6d901dfb455dfac96db5e4705837cdb"
+
+  [wl1.gamemaps]="30fecd7cce6bc70402651ec922d2da3d"
+  [wl1.maphead]="7b6dd4e55c33c33a41d1600be5df3228"
+  [wl1.vswap]="6efa079414b817c97db779cecfb081c9"
+
+  [sdm.gamemaps]="4eb2f538aab6e4061dadbc3b73837762"
+  [sdm.maphead]="40fa03caf7a1a4dbd22da4321c6e10d4"
+  [sdm.vswap]="35afda760bea840b547d686a930322dc"
+
+  [sod.gamemaps]="04f16534235b4b57fc379d5709f88f4a"
+  [sod.maphead]="276c79a4a6419db6b23e7699e41cb9fa"
+  [sod.vswap]="b1dac0a8786c7cdbb09331a4eba00652"
+
+  [sd2.gamemaps]="d55508cd58e2e61076ac81b98aeb9269"
+  [sd2.maphead]="25d92ac0ba012a1e9335c747eb4ab177"
+  [sd2.vswap]="fa5752c5b1e25ee5c4a9ec0e9d4013a9"
+
+  [sd3.gamemaps]="4219d83568d770b1c6ac9c2d4d1dfb9e"
+  [sd3.maphead]="52fd50245a77e61dc1df91110c186195"
+  [sd3.vswap]="e3e87518f51414872c454b7d72a45af6"
+
+  [sd3-alt.gamemaps]="29860b87c31348e163e10f8aa6f19295"
+  [sd3-alt.maphead]="a8b24dd3d3271e0b7fc6f2f995915f27"
+  [sd3-alt.vswap]="94aeef7980ef640c448087f92be16d83"
+
+  [n3d.gamemaps]="d35ce2257a4fb56f61529df5f7f77adb"
+  [n3d.maphead]="2eaab4dd50856abeaebe75a8bcbbab42"
+  [n3d.vswap]="8c61a9b3bb38a598990ccb743d2679fa"
+)
+
+expected_wolf3d_hash() {
+  local version="$1" file="$2" key
+  key="$version.$file"
+  # support alternate sd3 variant too
+  [[ -n "${wolf3d_data_hashes[$key]:-}" ]] && printf '%s' "${wolf3d_data_hashes[$key]}" && return 0
+  if [[ "$version" == "sd3" ]]; then
+    key="sd3-alt.$file"
+    [[ -n "${wolf3d_data_hashes[$key]:-}" ]] && printf '%s' "${wolf3d_data_hashes[$key]}" && return 0
+  fi
+  return 1
+}
+
+validate_wolf3d_version_hash() {
+  local folder="$1" version="$2"
+  local md5cmd
+  md5cmd=$(command -v md5sum || true)
+  if [[ -z "$md5cmd" ]]; then
+    log w "md5sum not found, version detection will proceed by filenames only"
+    return 0
+  fi
+
+  for file in gamemaps maphead vswap; do
+    # case-insensitive path resolution, because actual files may use uppercase extensions/names
+    local path
+    path=$(find "$folder" -maxdepth 1 -type f -iname "${file}.${version}" -print -quit 2>/dev/null)
+    [[ -n "$path" ]] || return 1
+
+    local expected
+    expected=$(expected_wolf3d_hash "$version" "$file")
+    if [[ -z "$expected" ]]; then
+      log d "Hash not available for $file.$version, rejecting wildcard match to avoid mod false positive"
+      return 1
+    fi
+
+    local actual
+    actual=$($md5cmd "$path" | awk '{print tolower($1)}')
+
+    local match=0
+    for allowed in $expected; do
+      if [[ "$actual" == "$allowed" ]]; then
+        match=1
+        break
+      fi
+    done
+
+    if (( match == 0 )); then
+      log d "Hash mismatch for $path ($version): expected one of [$expected], got $actual"
+      return 1
+    fi
+  done
+
+  # If we reached here, all three core files matched expected hashes
+  return 0
 }
 
 # Normalize user-provided Wolf3D version keys from .wolf data= values.
@@ -211,12 +308,13 @@ if [[ -f "$input_path" && "${input_path##*.}" == "wolf" ]]; then
   wolf3d_data_version_pretty="$(pretty_wolf3d_version "$version")"
   log i "Mod mode: base IWAD set to '$iwad_folder' (found $wolf3d_data_version_pretty)"
 
+  requested_mod_files=()
   if [[ ${#mod_files[@]} -gt 0 ]]; then
     for mod_entry in "${mod_files[@]}"; do
       if [[ "$mod_entry" == /* ]]; then
-        args+=( --file "$mod_entry" )
+        requested_mod_files+=( --file "$mod_entry" )
       else
-        args+=( --file "$mod_folder/$mod_entry" )
+        requested_mod_files+=( --file "$mod_folder/$mod_entry" )
       fi
     done
     launch_folder="$iwad_folder"
@@ -277,6 +375,10 @@ fi
 
 # Always use requested base options and preserved args.
 args=( "${raw_args[@]}" )
+
+if [[ ${#requested_mod_files[@]} -gt 0 ]]; then
+  args+=( "${requested_mod_files[@]}" )
+fi
 
 if [[ -n "$main_game" ]]; then
   args+=( "$main_game" )
