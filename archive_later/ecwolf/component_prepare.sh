@@ -3,6 +3,7 @@
 # Setting component name and path based on the directory name
 component_name="$(basename "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")")"
 component_config="/app/retrodeck/components/$component_name/rd_config"
+ecwolf_rd_cfg="$XDG_CONFIG_HOME/$component_name/ecwolf_rd.cfg"
 
 if [[ "$action" == "reset" ]]; then # Run reset-only commands
   log i "----------------------"
@@ -10,6 +11,8 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
   log i "----------------------"
 
   dir_prep "$saves_path/ecwolf" "$ecwolf_saves_path"
+  rm -vrf "$ecwolf_rd_cfg"
+  cp -v "$component_config/ecwolf_rd.cfg" "$ecwolf_rd_cfg"
 
 fi
 
