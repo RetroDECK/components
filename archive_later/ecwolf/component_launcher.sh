@@ -12,4 +12,16 @@ log d "QT plugin path is: $QT_PLUGIN_PATH"
 log d "QT QPA PLATFORM plugin path is: $QT_QPA_PLATFORM_PLUGIN_PATH"
 
 # Launch
-exec "$component_path/bin/ecwolf" --fullscreen --nowait --config /var/config/ecwolf/ecwolf_rd.cfg --savesdir /var/data/ecwolf/saves  "$@"
+log i "RetroDECK ECWolf Runner"
+path="${@: -1}" # getting the last argument as game path
+args="${@:1:$#-1}" # getting all the other passed args
+cd "$path"
+log i "Running from $path"
+
+# Logging args
+if [ ! -v $args ]; then
+    log i "With args: $args"
+fi
+
+exec "$component_path/bin/ecwolf" --fullscreen --nowait --config /var/config/ecwolf/ecwolf_rd.cfg --savedir /var/data/ecwolf/saves $args
+cd -
