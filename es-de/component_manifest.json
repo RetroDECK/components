@@ -18,6 +18,22 @@
     "component_options": {
       "esde_engine_launch_scripts": "false"
     },
+    "backup_data": {
+      "core": [
+        "$rd_home_path/ES-DE/gamelists",
+        "$rd_home_path/ES-DE/collections",
+        "$rd_home_path/ES-DE/custom_systems",
+        "$rd_home_path/ES-DE/scripts"
+      ],
+      "complete": [
+        "$rd_home_path/ES-DE/gamelists",
+        "$rd_home_path/ES-DE/collections",
+        "$rd_home_path/ES-DE/custom_systems",
+        "$rd_home_path/ES-DE/downloaded_media",
+        "$rd_home_path/ES-DE/scripts",
+        "$rd_home_path/ES-DE/screensavers"
+      ]
+    },
     "configurator_menus": {
       "data_management": {
         "rebuild_esde_systems": {
