@@ -71,6 +71,18 @@
         "location": "$roms_path/mugen"
       }
     },
+    "backup_data": {
+      "core": [
+        "$saves_path",
+        "$states_path"
+      ],
+      "complete": [
+        "$saves_path",
+        "$states_path",
+        "$screenshots_path",
+        "$mods_path"
+      ]
+    },
     "cli_commands": {
       "help": {
         "flag": "-h, --help",
