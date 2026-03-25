@@ -4,6 +4,7 @@ export es_de_appdata_path="$XDG_CONFIG_HOME/ES-DE"
 export es_de_config="$XDG_CONFIG_HOME/ES-DE/settings/es_settings.xml"
 export es_de_logs_path="$XDG_CONFIG_HOME/ES-DE/logs"
 export es_scripts_dir="$XDG_CONFIG_HOME/ES-DE/scripts"
+export es_gamelists_dir="$rd_home_path/ES-DE/gamelists"
 export es_systems="$rd_components/es-de/share/es-de/resources/systems/linux/es_systems.xml"         # RetroDECK-generated ES-DE supported system list
 export es_find_rules="$rd_components/es-de/share/es-de/resources/systems/linux/es_find_rules.xml"   # RetroDECK-generated ES-DE emulator find rules
 export es_find_rules_official="$rd_components/es-de/rd_config/es_find_rules_official.xml"           # Official es_find_rules file from upstream ES-DE
@@ -571,6 +572,305 @@ generate_es_de_diff_report() {
   fi
  
   return 0
+}
+
+check_duplicate_gamelist_entry() {
+  # Checks if a <game> entry with a matching <path> already exists in the target gamelist.xml
+  # USAGE: check_gamelist_entry "$component" "$entry_key"
+  
+  local component="$1"
+  local entry_key="$2"
+
+  local entry_data
+  entry_data=$(jq -r --arg component "$component" --arg entry_key "$entry_key" \
+    '.[] | .manifest | select(has($component)) | .[$component].es_de_gamelist_entries.entries[$entry_key]' \
+    "$component_manifest_cache_file")
+
+  if [[ -z "$entry_data" || "$entry_data" == "null" ]]; then
+    log e "Gamelist entry \"$entry_key\" not found in manifest for component \"$component\""
+    return 1
+  fi
+
+  local system
+  system=$(jq -r '.system' <<< "$entry_data")
+  local path
+  path=$(jq -r '.gamelist_data.path' <<< "$entry_data")
+
+  [[ "$path" != ./* ]] && path="./$path"
+
+  local gamelist_file="$es_gamelists_dir/$system/gamelist.xml"
+
+  if [[ ! -f "$gamelist_file" ]]; then
+    return 1
+  fi
+
+  local match_count
+  match_count=$(xmlstarlet sel -t -v "count(/gameList/game[path='$path'])" "$gamelist_file")
+
+  if [[ "$match_count" -gt 0 ]]; then
+    return 0
+  else
+    return 1
+  fi
+}
+
+create_gamelist_entry() {
+  # Creates a <game> entry in the target gamelist.xml using data from the component manifest
+  # Creates the gamelist.xml file and parent directory if they do not exist
+  # Handles file creation (create_file), file copying (source_file/dest_file), and media deployment (image_root) from optional manifest data
+  # USAGE: create_gamelist_entry "$component" "$entry_key"
+
+  local component="$1"
+  local entry_key="$2"
+
+  local gamelist_block
+  gamelist_block=$(jq -r --arg component "$component" \
+  '.[] | .manifest | select(has($component)) | .[$component].es_de_gamelist_entries' \
+  "$component_manifest_cache_file")
+
+  if [[ -z "$gamelist_block" || "$gamelist_block" == "null" ]]; then
+    log e "No es_de_gamelist_entries found in manifest for component \"$component\""
+    return 1
+  fi
+
+  local entry_data
+  entry_data=$(jq -r --arg component "$component" --arg entry_key "$entry_key" \
+    '.[] | .manifest | select(has($component)) | .[$component].es_de_gamelist_entries.entries[$entry_key]' \
+    "$component_manifest_cache_file")
+
+  if [[ -z "$entry_data" || "$entry_data" == "null" ]]; then
+    log e "Gamelist entry \"$entry_key\" not found in manifest for component \"$component\""
+    return 1
+  fi
+
+  local system
+  system=$(jq -r '.system' <<< "$entry_data")
+
+  if ! check_duplicate_gamelist_entry "$component" "$entry_key"; then
+
+    local gamelist_dir="$es_gamelists_dir/$system"
+    local gamelist_file="$gamelist_dir/gamelist.xml"
+
+    mkdir -p "$gamelist_dir"
+
+    if [[ ! -f "$gamelist_file" ]]; then
+      printf '<?xml version="1.0"?>\n<gameList>\n</gameList>\n' > "$gamelist_file"
+    fi
+
+    local -a xml_args=("-L" "-s" "/gameList" "-t" "elem" "-n" "game" "-v" "")
+
+    while IFS=$'\t' read -r key value; do
+      if [[ "$key" == "path" && "$value" != ./* ]]; then
+        value="./$value"
+      fi
+      xml_args+=("-s" "/gameList/game[last()]" "-t" "elem" "-n" "$key" "-v" "$value")
+    done < <(jq -r '.gamelist_data | to_entries[] | "\(.key)\t\(.value)"' <<< "$entry_data")
+
+    xmlstarlet ed "${xml_args[@]}" "$gamelist_file"
+    xmlstarlet fo -t "$gamelist_file" > "${gamelist_file}.tmp" && mv "${gamelist_file}.tmp" "$gamelist_file"
+
+    log i "Created gamelist entry \"$entry_key\" in $gamelist_file"
+
+    # Handle file creation
+    local create_file_path
+    create_file_path=$(jq -r '.create_file // empty' <<< "$entry_data")
+
+    if [[ -n "$create_file_path" ]]; then
+      local resolved_create_path
+      if resolved_create_path=$(resolve_path "$component" "$create_file_path"); then
+        mkdir -p "$(dirname "$resolved_create_path")"
+        if touch "$resolved_create_path"; then
+          log i "Created file: $resolved_create_path"
+        else
+          log e "Failed to create file at $resolved_create_path"
+          return 1
+        fi
+      else
+        log e "Failed to resolve create_file path for entry \"$entry_key\""
+        return 1
+      fi
+    fi
+
+    # Handle file copying
+    local source_file_path
+    source_file_path=$(jq -r '.source_file // empty' <<< "$entry_data")
+    local dest_file_path
+    dest_file_path=$(jq -r '.dest_file // empty' <<< "$entry_data")
+
+    if [[ -n "$source_file_path" && -n "$dest_file_path" ]]; then
+      local resolved_source_path resolved_dest_path
+      if resolved_source_path=$(resolve_path "$component" "$source_file_path") && \
+        resolved_dest_path=$(resolve_path "$component" "$dest_file_path"); then
+        if [[ -f "$resolved_source_path" ]]; then
+          mkdir -p "$(dirname "$resolved_dest_path")"
+          if cp "$resolved_source_path" "$resolved_dest_path"; then
+            log i "Copied file: $resolved_source_path to $resolved_dest_path"
+          else
+            log e "Could not copy $resolved_source_path to $resolved_dest_path"
+          fi
+        else
+          log e "Source file not found: $resolved_source_path"
+          return 1
+        fi
+      else
+        log e "Failed to resolve source_file/dest_file paths for entry \"$entry_key\""
+        return 1
+      fi
+    fi
+
+    # Handle media deployment
+    local image_root
+    image_root=$(jq -r '.image_root // empty' <<< "$gamelist_block")
+
+    if [[ -n "$image_root" ]]; then
+      local resolved_image_root
+      if resolved_image_root=$(resolve_path "$component" "$image_root"); then
+        local path_value
+        path_value=$(jq -r '.gamelist_data.path' <<< "$entry_data")
+        [[ "$path_value" == ./* ]] && path_value="${path_value#./}"
+
+        local source_media_dir="$resolved_image_root/$entry_key"
+
+        if [[ -d "$source_media_dir" ]]; then
+          while IFS= read -r source_file; do
+            local relative_path="${source_file#"$source_media_dir"/}"
+            local dest_dir="$downloaded_media_path/$system/$(dirname "$relative_path")"
+            mkdir -p "$dest_dir"
+            rsync -a "$source_file" "$dest_dir/"
+            log i "Deployed media: $source_file -> $dest_dir/$path_value"
+          done < <(find "$source_media_dir" -type f -name "$path_value")
+        else
+          log w "Media source directory not found: $source_media_dir"
+        fi
+      else
+        log e "Failed to resolve image_root path for component \"$component\""
+      fi
+    fi
+  else
+    log e "Cannot create gamelist entry for \"$entry_key\" because it already exists in the $system gamelist."
+  fi
+}
+
+remove_gamelist_entry() {
+  # Removes a <game> entry from the target gamelist.xml matching the <path> from the component manifest
+  # Removes associated files and media created by create_gamelist_entry
+  # Removes the gamelist.xml file and parent directory if no content remains
+  # USAGE: remove_gamelist_entry "$component" "$entry_key"
+
+  local component="$1"
+  local entry_key="$2"
+
+  local gamelist_block
+  gamelist_block=$(jq -r --arg component "$component" \
+    '.[] | .manifest | select(has($component)) | .[$component].es_de_gamelist_entries' \
+    "$component_manifest_cache_file")
+
+  if [[ -z "$gamelist_block" || "$gamelist_block" == "null" ]]; then
+    log e "No es_de_gamelist_entries found in manifest for component \"$component\""
+    return 1
+  fi
+
+  local entry_data
+  entry_data=$(jq -r --arg component "$component" --arg entry_key "$entry_key" \
+    '.[] | .manifest | select(has($component)) | .[$component].es_de_gamelist_entries.entries[$entry_key]' \
+    "$component_manifest_cache_file")
+
+  if [[ -z "$entry_data" || "$entry_data" == "null" ]]; then
+    log e "Gamelist entry \"$entry_key\" not found in manifest for component \"$component\""
+    return 1
+  fi
+
+  local system
+  system=$(jq -r '.system' <<< "$entry_data")
+  local path
+  path=$(jq -r '.gamelist_data.path' <<< "$entry_data")
+  [[ "$path" != ./* ]] && path="./$path"
+
+  local gamelist_dir="$es_gamelists_dir/$system"
+  local gamelist_file="$gamelist_dir/gamelist.xml"
+
+  if [[ ! -f "$gamelist_file" ]]; then
+    log w "Gamelist file not found: $gamelist_file"
+    return 1
+  fi
+
+  xmlstarlet ed -L -d "/gameList/game[path='$path']" "$gamelist_file"
+  xmlstarlet fo -t "$gamelist_file" > "${gamelist_file}.tmp" && mv "${gamelist_file}.tmp" "$gamelist_file"
+
+  log i "Removed gamelist entry \"$entry_key\" from $gamelist_file"
+
+  # Remove associated created file
+  local create_file_path
+  create_file_path=$(jq -r '.create_file // empty' <<< "$entry_data")
+
+  if [[ -n "$create_file_path" ]]; then
+    local resolved_create_path
+    if resolved_create_path=$(resolve_path "$component" "$create_file_path"); then
+      if [[ -f "$resolved_create_path" ]]; then
+        rm -f "$resolved_create_path"
+        log i "Removed created file: $resolved_create_path"
+      fi
+    fi
+  fi
+
+  # Remove associated copied file
+  local dest_file_path
+  dest_file_path=$(jq -r '.dest_file // empty' <<< "$entry_data")
+
+  if [[ -n "$dest_file_path" ]]; then
+    local resolved_dest_path
+    if resolved_dest_path=$(resolve_path "$component" "$dest_file_path"); then
+      if [[ -f "$resolved_dest_path" ]]; then
+        rm -f "$resolved_dest_path"
+        log i "Removed copied file: $resolved_dest_path"
+      fi
+    fi
+  fi
+
+  # Remove associated media files
+  local image_root
+  image_root=$(jq -r '.image_root // empty' <<< "$gamelist_block")
+
+  if [[ -n "$image_root" ]]; then
+    local resolved_image_root
+    if resolved_image_root=$(resolve_path "$component" "$image_root"); then
+      local path_value="$path"
+      [[ "$path_value" == ./* ]] && path_value="${path_value#./}"
+
+      local source_media_dir="$resolved_image_root/$entry_key"
+
+      if [[ -d "$source_media_dir" ]]; then
+        while IFS= read -r source_file; do
+          local relative_path="${source_file#"$source_media_dir"/}"
+          local dest_file="$downloaded_media_path/$system/$relative_path"
+
+          if [[ -f "$dest_file" ]]; then
+            rm -f "$dest_file"
+            log i "Removed media file: $dest_file"
+
+            local parent_dir
+            parent_dir=$(dirname "$dest_file")
+            prune_empty_parents "$parent_dir" "$downloaded_media_path/$system"
+          fi
+        done < <(find "$source_media_dir" -type f -name "$path_value")
+      fi
+    fi
+  fi
+
+  # Check if gamelist.xml should be cleaned up
+  local child_count
+  child_count=$(xmlstarlet sel -t -v "count(/gameList/*)" "$gamelist_file")
+
+  if [[ "$child_count" -eq 0 ]]; then
+    local text_content
+    text_content=$(xmlstarlet sel -t -v "normalize-space(/gameList)" "$gamelist_file")
+
+    if [[ -z "$text_content" ]]; then
+      rm -f "$gamelist_file"
+      rmdir "$gamelist_dir" 2>/dev/null || true
+      log i "Removed empty gamelist file and directory: $gamelist_dir"
+    fi
+  fi
 }
 
 _post_update::es-de() {
