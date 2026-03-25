@@ -40,7 +40,7 @@
           "name": "ROMs Folder: Rebuild Systems",
           "description": "Recreate any missing system folders in the roms directory.",
           "command": {
-            "zenity": "configurator_rebuild_esde_systems"
+            "zenity": "configurator_rebuild_esde_systems::es-de"
           }
         }
       }
