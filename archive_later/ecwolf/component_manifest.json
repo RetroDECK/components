@@ -9,6 +9,41 @@
     "component_type": "Engine",
     "system": "wolf",
     "system_friendly_name": "ECWolf",
+    "es_de_config": {
+      "es_find_rules": {
+        "emulators": [
+          {
+            "name": "ECWOLF",
+            "description": "ECWolf is a Wolfenstein 3D engine based of Wolf4SDL",
+            "rules": [
+              {
+                "type": "staticpath",
+                "entries": [
+                  "%COMPONENT_PATH%/component_launcher.sh"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "es_systems": [
+          {
+            "name": "wolf",
+            "fullname": "Wolfenstein 3D",
+            "path": "%ROMPATH%/wolf",
+            "extension": ".wolf",
+            "commands": [
+              {
+                "label": "ECWolf (Standalone)",
+                "command": "%EMULATOR_ECWOLF% %ROM%",
+                "priority": 50
+              }
+            ],
+            "platform": "wolf",
+            "theme": "wolf"
+          }
+      ]
+    },
     "bios": [
       {
         "filename": "AUDIOHED.WL6",
