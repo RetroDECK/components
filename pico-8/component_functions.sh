@@ -102,3 +102,39 @@ _post_update_legacy::pico-8() {
     prepare_component "reset" "pico-8"
   fi
 }
+
+configurator_splore_toggle_dialog() {
+  if [[ ! $(get_component_option "pico-8" "splore_visible") == "false" ]]; then
+    rd_zenity --question \
+    --no-wrap --window-icon="/app/share/icons/hicolor/scalable/apps/net.retrodeck.retrodeck.svg" \
+    --title "RetroDECK Configurator - PICO-8 Splore Visibility" \
+    --text="PICO-8 Splore visibility is currently <span foreground='$purple'><b>Enabled</b></span>. Do you want to disable it?"
+    
+    if [ $? == 0 ] # User clicked "Yes"
+    then
+      remove_gamelist_entry "pico-8" "pico8_splore"
+      set_component_option "pico-8" "splore_visible" "false"
+      
+      rd_zenity --info \
+      --no-wrap --window-icon="/app/share/icons/hicolor/scalable/apps/net.retrodeck.retrodeck.svg" \
+      --title "RetroDECK Configurator - PICO-8 Splore Visibility" \
+      --text="PICO-8 Splore visibility is now <span foreground='$purple'><b>Disabled</b></span>."
+    fi
+  else
+    rd_zenity --question \
+    --no-wrap --window-icon="/app/share/icons/hicolor/scalable/apps/net.retrodeck.retrodeck.svg" \
+    --title "RetroDECK Configurator - PICO-8 Splore Visibility" \
+    --text="PICO-8 Splore visibility is currently <span foreground='$purple'><b>Disabled</b></span>. Do you want to enable it?"
+
+    if [ $? == 0 ] # User clicked "Yes"
+    then
+      create_gamelist_entry "pico-8" "pico8_splore"
+      set_component_option "pico-8" "splore_visible" "true"
+
+      rd_zenity --info \
+      --no-wrap --window-icon="/app/share/icons/hicolor/scalable/apps/net.retrodeck.retrodeck.svg" \
+      --title "RetroDECK Configurator - PICO-8 Splore Visibility" \
+      --text="PICO-8 Splore visibility is now <span foreground='$purple'><b>Enabled</b></span>."
+    fi
+  fi
+}
