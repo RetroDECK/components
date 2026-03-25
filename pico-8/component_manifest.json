@@ -10,6 +10,20 @@
     "system_friendly_name": "PICO-8 Fantasy Console",
     "component_type": "Emulator",
     "system": "pico8",
+    "component_options": {
+      "splore_visible": "false"
+    },
+    "configurator_menus": {
+      "settings": {
+        "splore_show_hide": {
+          "name": "PICO-8 Splore Visibility",
+          "description": "Enable or disable: PICO-8 Splore entry visibility.",
+          "command": {
+            "zenity": "configurator_splore_toggle_dialog"
+          }
+        }
+      }
+    },
     "es_de_config": {
       "es_find_rules": {
         "emulators": [
@@ -49,6 +63,26 @@
           "theme": "pico8"
         }
       ]
+    },
+    "es_de_gamelist_entries": {
+      "image_root": "%COMPONENT_PATH%/rd_extras/es_de_media",
+      "entries": {
+        "pico8_splore": {
+          "system": "pico8",
+          "create_file": "$roms_path/pico8/splore.png",
+          "gamelist_data": {
+            "path": "splore.png",
+            "name": "PICO-8 Splore",
+            "desc": "Splore is a graphical interface for exploring PICO-8 cartridges. You can use Splore to browse, search, and play cartridges published to the forum (BBS) directly over the Internet. You can also use Splore to navigate the cartridge storage area, with or without an Internet connection.",
+            "releasedate": "20150401T000000",
+            "developer": "Lexaloffle",
+            "publisher": "Lexaloffle",
+            "genre": "Various / Utilities",
+            "players": "1",
+            "altemulator": "PICO-8 Splore (Standalone)"
+          }
+        }
+      }
     },
     "bios": [
       {
