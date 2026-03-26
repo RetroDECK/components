@@ -73,14 +73,14 @@
     },
     "backup_data": {
       "core": [
-        "$saves_path",
-        "$states_path"
+        {"path": "$saves_path"},
+        {"path": "$states_path"}
       ],
       "complete": [
-        "$saves_path",
-        "$states_path",
-        "$screenshots_path",
-        "$mods_path"
+        {"path": "$saves_path"},
+        {"path": "$states_path"},
+        {"path": "$screenshots_path"},
+        {"path": "$mods_path"}
       ]
     },
     "cli_commands": {
