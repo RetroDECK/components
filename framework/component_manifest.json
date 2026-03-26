@@ -284,6 +284,13 @@
           "command": {
             "zenity": "configurator_update_notify_dialog"
           }
+        },
+        "usb_import": {
+          "name": "Tool: USB Import",
+          "description": "Import or export RetroDECK data using a USB storage device.",
+          "command": {
+            "zenity": "configurator_usb_import_dialog"
+          }
         }
       },
       "data_management": {
@@ -429,13 +436,6 @@
           "description": "Install a specific cooker release or the latest main version of RetroDECK.",
           "command": {
             "zenity": "configurator_online_update_channel_dialog"
-          }
-        },
-        "usb_import": {
-          "name": "Tool: USB Import",
-          "description": "Import or export RetroDECK data using a USB storage device.",
-          "command": {
-            "zenity": "configurator_version_history_dialog"
           }
         }
       }
