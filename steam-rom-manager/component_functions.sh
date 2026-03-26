@@ -1,7 +1,9 @@
 #!/bin/bash
 
 export steamsync_folder="$rd_home_path/.sync"                                                                                        # Folder containing favorites manifest for SRM
-export srm_userdata="$XDG_CONFIG_HOME/steam-rom-manager/userData"                                                              # SRM userdata folder, holding 
+export srm_userdata="$XDG_CONFIG_HOME/steam-rom-manager/userData"                                                              # SRM userdata folder
+export srm_usersettings_file="$srm_userdata/userSettings.json"
+export srm_userconfig_file="$srm_userdata/userConfigurations.json"
 export retrodeck_favorites_file="$steamsync_folder/retrodeck_favorites.json"                                                   # The current SRM manifest of all games that have been favorited in ES-DE
 export srm_log="$logs_path/srm_log.log"                                                                                      # Log file for capturing the output of the most recent SRM run, for debugging purposes
 export retrodeck_added_favorites="$steamsync_folder/retrodeck_added_favorites.json"                                            # Temporary manifest of any games that were newly added to the ES-DE favorites and should be added to Steam
@@ -29,10 +31,8 @@ _prepare_component::steam-rom-manager() {
       create_dir -d "$srm_userdata"
       cp -fv "$component_config/"*.json "$srm_userdata"
       cp -fvr "$component_config/manifests" "$srm_userdata"
-    ;;
 
-    postmove)
-      if [[ -n "$steam_userdata_current" ]]; then
+      if get_steam_user "get_type"; then
         local usersettings_temp=$(mktemp)
 
         log i "Updating steamDirectory and romDirectory lines in $srm_userdata/userSettings.json"
@@ -40,6 +40,18 @@ _prepare_component::steam-rom-manager() {
           .environmentVariables.steamDirectory = $userdata_path |
           .environmentVariables.romsDirectory = ($rd_home_path + "/.sync")
         ' "$srm_userdata/userSettings.json" > "$usersettings_temp" && mv -f "$usersettings_temp" "$srm_userdata/userSettings.json"
+      fi
+    ;;
+
+    postmove)
+      if [[ -n "$steam_userdata_current" ]]; then
+        local usersettings_temp=$(mktemp)
+
+        log i "Updating steamDirectory and romDirectory lines in $srm_usersettings_file"
+        jq --arg userdata_path "$steam_userdata_current" --arg rd_home_path "$rd_home_path" '
+          .environmentVariables.steamDirectory = $userdata_path |
+          .environmentVariables.romsDirectory = ($rd_home_path + "/.sync")
+        ' "$srm_usersettings_file" > "$usersettings_temp" && mv -f "$usersettings_temp" "$srm_usersettings_file"
       fi
     ;;
 
@@ -232,7 +244,7 @@ configurator_manual_steam_sync_dialog() {
 }
 
 configurator_purge_steam_sync_dialog() {
-  if [[ $(configurator_generic_question_dialog "RetroDECK Configurator - Steam Syncronization: Removal" "Warning: Are you sure you want to remove all Steam changes, including all ES-DE <span foreground='$purple'><b>Favorited</b></span> games from Steam?" ) == "true" ]]; then
+  if configurator_generic_question_dialog "RetroDECK Configurator - Steam Syncronization: Removal" "Warning: Are you sure you want to remove all Steam changes, including all ES-DE <span foreground='$purple'><b>Favorited</b></span> games from Steam?"; then
     (
     start::steam-rom-manager nuke
     rm -f "$retrodeck_favorites_file"
@@ -318,19 +330,19 @@ get_steam_user() {
 populate_steamuser_srm() {
   local temp_file=$(mktemp)
 
-  if [[ ! -f "$srm_userdata/userSettings.json" ]]; then
-    log e "Config file not found: $srm_userdata/userSettings.json"
+  if [[ ! -f "$srm_userconfig_file" ]]; then
+    log e "Config file not found: $srm_userconfig_file"
     return 1
   fi
 
-  log d "Validating $srm_userdata/userSettings.json..."
-  if ! jq empty "$srm_userdata/userSettings.json" >/dev/null 2>&1; then
-    log e "File is not valid JSON: $srm_userdata/userSettings.json"
+  log d "Validating $srm_userconfig_file..."
+  if ! jq empty "$srm_userconfig_file" >/dev/null 2>&1; then
+    log e "File is not valid JSON: $srm_userconfig_file"
     return 1
   fi
 
   if [[ -n $steam_username ]]; then
-    log d "Updating Steam username $steam_username in $srm_userdata/userSettings.json"
+    log d "Updating Steam username $steam_username in $srm_userconfig_file"
     jq --arg username "$steam_username" '
       map(
         if .userAccounts.specifiedAccounts then
@@ -339,9 +351,9 @@ populate_steamuser_srm() {
           .
         end
       )
-    ' "$srm_userdata/userSettings.json" > "$temp_file" && mv -f "$temp_file" "$srm_userdata/userSettings.json"
+    ' "$srm_userconfig_file" > "$temp_file" && mv -f "$temp_file" "$srm_userconfig_file"
   else
-    log e "Steam username not loaded, cannot populate values in $srm_userdata/userSettings.json"
+    log e "Steam username not loaded, cannot populate values in $srm_userconfig_file"
     return 1
   fi
 }
@@ -565,12 +577,12 @@ finit_install_controller_profile_dialog() {
 
 finit_install_controller_profile_and_add_retrodeck_to_steam() {
   if get_steam_user "manual"; then
-    log i "Updating steamDirectory and romDirectory lines in $srm_userdata/userSettings.json"
+    log i "Updating steamDirectory and romDirectory lines in $srm_usersettings_file"
     local usersettings_temp=$(mktemp)
     jq --arg userdata_path "$steam_userdata_current" --arg rd_home_path "$rd_home_path" '
       .environmentVariables.steamDirectory = $userdata_path |
       .environmentVariables.romsDirectory = ($rd_home_path + "/.sync")
-    ' "$srm_userdata/userSettings.json" > "$usersettings_temp" && mv -f "$usersettings_temp" "$srm_userdata/userSettings.json"
+    ' "$srm_usersettings_file" > "$usersettings_temp" && mv -f "$usersettings_temp" "$srm_usersettings_file"
     
     install_retrodeck_controller_profile_and_add_to_steam
   else
