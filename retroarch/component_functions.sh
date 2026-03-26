@@ -147,7 +147,8 @@ _prepare_component::retroarch() {
 
       # Avoid these paths being clobbered by the updater
       ln -s "$retroarch_extras_path/cores" "$XDG_CONFIG_HOME/retroarch/cores" # Link RO cores to RA config dir so ES-DE can find it
-      
+      dir_prep "$borders_path/retroarch/overlays" "$XDG_CONFIG_HOME/retroarch/overlays"
+
       # FBNEO
       log i "--------------------------------"
       log i "Preparing FBNEO_LIBRETRO"
