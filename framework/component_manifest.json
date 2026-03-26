@@ -424,13 +424,6 @@
             "zenity": "configurator_browse_retrodeck_wiki_dialog"
           }
         },
-        "install_retrodeck_starter_pack": {
-          "name": "Install: RetroDECK Starter Pack",
-          "description": "Install the optional RetroDECK starter pack.",
-          "command": {
-            "zenity": "configurator_version_history_dialog"
-          }
-        },
         "install_specific_release": {
           "name": "RetroDECK: Install Specific Release",
           "description": "Install a specific cooker release or the latest main version of RetroDECK.",
