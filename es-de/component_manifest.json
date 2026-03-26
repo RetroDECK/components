@@ -20,18 +20,18 @@
     },
     "backup_data": {
       "core": [
-        "$rd_home_path/ES-DE/gamelists",
-        "$rd_home_path/ES-DE/collections",
-        "$rd_home_path/ES-DE/custom_systems",
-        "$rd_home_path/ES-DE/scripts"
+        {"path": "$rd_home_path/ES-DE/gamelists"},
+        {"path": "$rd_home_path/ES-DE/collections"},
+        {"path": "$rd_home_path/ES-DE/custom_systems"},
+        {"path": "$rd_home_path/ES-DE/scripts"}
       ],
       "complete": [
-        "$rd_home_path/ES-DE/gamelists",
-        "$rd_home_path/ES-DE/collections",
-        "$rd_home_path/ES-DE/custom_systems",
-        "$rd_home_path/ES-DE/downloaded_media",
-        "$rd_home_path/ES-DE/scripts",
-        "$rd_home_path/ES-DE/screensavers"
+        {"path": "$rd_home_path/ES-DE/gamelists"},
+        {"path": "$rd_home_path/ES-DE/collections"},
+        {"path": "$rd_home_path/ES-DE/custom_systems"},
+        {"path": "$rd_home_path/ES-DE/downloaded_media"},
+        {"path": "$rd_home_path/ES-DE/scripts"},
+        {"path": "$rd_home_path/ES-DE/screensavers"}
       ]
     },
     "configurator_menus": {
