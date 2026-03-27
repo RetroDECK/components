@@ -7,7 +7,7 @@ asset_handler_info() {
 handle_asset() {
   local type="$1"
   local source="$2"
-  local contents"$4"
+  local contents"${4:-}"
 
   local final_source="$source"
 
@@ -43,9 +43,16 @@ handle_asset() {
 
   log info "Running script: $final_source"
 
-  if ! process_asset_cmd "$final_source" "$contents"; then
-    log error "Asset script \"$final_source\" could not be processed."
-    return 1
+  if [[ "$type" == "execute" ]]; then
+    if ! process_asset_cmd "$final_source" "$contents"; then
+      log error "Asset script \"$final_source\" could not be processed."
+      return 1
+    fi
+  else
+    if ! process_asset_cmd "$final_source"; then
+      log error "Asset script \"$final_source\" could not be processed."
+      return 1
+    fi
   fi
 
   log info "Asset script \"$final_source\" successfully run."
