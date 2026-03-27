@@ -25,6 +25,11 @@
           "type": "dir",
           "source": "rd_assets/rd_tools",
           "dest": "rd_tools"
+        },
+        {
+          "type": "file",
+          "source": "rd_assets/rd_libexec/api_connection_handler.sh",
+          "dest": "libexec"
         }
       ]
     }
