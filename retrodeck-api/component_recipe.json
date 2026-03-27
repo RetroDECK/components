@@ -27,23 +27,6 @@
           "dest": "rd_tools"
         }
       ]
-    },
-    {
-      "source_url": "http://www.dest-unreach.org/socat/download/socat-{VERSION}.tar.gz",
-      "source_type": "http",
-      "extraction_type": "archive",
-      "version": "1.8.1.1",
-      "assets": [
-        {
-          "type": "script",
-          "source": "$REPO_ROOT/$COMPONENT_NAME/rd_assets/scripts/build_socat.sh"
-        },
-        {
-          "type": "file",
-          "source": "$EXTRACTED_PATH/socat-$SOURCE_VERSION/socat",
-          "dest": "bin"
-        }
-      ]
     }
   ]
 }
