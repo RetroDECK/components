@@ -1,0 +1,156 @@
+{
+  "retrodeck-api": {
+    "name": "RetroDECK API",
+    "description": "RetroDECK API",
+    "core_framework_version": 1,
+    "api_endpoints": {
+      "get::retrodeck_settings": {
+        "function": "api_get_retrodeck_settings",
+        "description": "Get all RetroDECK settings as a JSON object"
+      },
+      "get::setting_value": {
+        "function": "api_get_setting_value",
+        "description": "Get a specific setting value from a configuration file",
+        "required_fields": [
+          "setting_file",
+          "setting_name",
+          "system_name"
+        ],
+        "optional_fields": [
+          "section_name"
+        ]
+      },
+      "get::component": {
+        "function": "api_get_component",
+        "description": "Get information about a specific component",
+        "required_fields": [
+          "component"
+        ]
+      },
+      "get::incompatible_presets": {
+        "function": "api_get_incompatible_presets",
+        "description": "Get the list of incompatible preset combinations"
+      },
+      "get::current_preset_state": {
+        "function": "api_get_current_preset_state",
+        "description": "Get the current state of a preset for a component",
+        "required_fields": [
+          "preset"
+        ],
+        "optional_fields": [
+          "component"
+        ]
+      },
+      "get::bios_file_status": {
+        "function": "api_get_bios_file_status",
+        "description": "Get the status of all BIOS files"
+      },
+      "get::multifile_game_structure": {
+        "function": "api_get_multifile_game_structure",
+        "description": "Get the multifile game directory structure"
+      },
+      "get::empty_rom_folders": {
+        "function": "api_get_empty_rom_folders",
+        "description": "Get the list of empty ROM folders"
+      },
+      "get::retrodeck_credits": {
+        "function": "api_get_retrodeck_credits",
+        "description": "Get RetroDECK project credits"
+      },
+      "get::retrodeck_versions": {
+        "function": "api_get_retrodeck_versions",
+        "description": "Get version information for RetroDECK and its components"
+      },
+      "get::retrodeck_changelog": {
+        "function": "api_get_retrodeck_changelog",
+        "description": "Get the changelog for a specific RetroDECK version",
+        "required_fields": [
+          "version"
+        ]
+      },
+      "get::compressible_games": {
+        "function": "api_get_compressible_games",
+        "description": "Get a list of games that can be compressed into a specific format",
+        "required_fields": [
+          "format"
+        ]
+      },
+      "set::setting_value": {
+        "function": "api_set_setting_value",
+        "description": "Set a specific setting value in a configuration file",
+        "required_fields": [
+          "setting_file",
+          "setting_name",
+          "setting_value",
+          "system_name"
+        ],
+        "optional_fields": [
+          "section_name"
+        ]
+      },
+      "set::retrodeck_setting": {
+        "function": "api_set_retrodeck_setting",
+        "description": "Set a RetroDECK application setting",
+        "required_fields": [
+          "setting_name",
+          "setting_value",
+          "section_name"
+        ]
+      },
+      "set::preset_state": {
+        "function": "api_set_preset_state",
+        "description": "Enable or disable a preset for a component",
+        "required_fields": [
+          "component",
+          "preset",
+          "state"
+        ],
+        "optional_fields": [
+          "cheevos_username",
+          "cheevos_token",
+          "cheevos_login_timestamp"
+        ]
+      },
+      "do::compress_games": {
+        "function": "api_do_compress_games",
+        "description": "Compress games into specified formats",
+        "required_fields": [
+          "game_objects"
+        ],
+        "optional_fields": [
+          "post_compression_cleanup"
+        ]
+      },
+      "do::reset_component": {
+        "function": "api_do_reset_component",
+        "description": "Reset a component to its default configuration",
+        "required_fields": [
+          "component_name"
+        ]
+      },
+      "do::move_rd_directory": {
+        "function": "api_do_move_retrodeck_directory",
+        "description": "Move a RetroDECK directory to a new location",
+        "required_fields": [
+          "rd_dir",
+          "dest"
+        ]
+      },
+      "do::install": {
+        "function": "api_do_install_retrodeck_package",
+        "description": "Install a RetroDECK package",
+        "required_fields": [
+          "package_name"
+        ]
+      },
+      "do::cheevos_login": {
+        "function": "api_do_cheevos_login",
+        "description": "Log in to RetroAchievements",
+        "required_fields": [
+          "username",
+          "password"
+        ]
+      }
+    }
+  }
+}
