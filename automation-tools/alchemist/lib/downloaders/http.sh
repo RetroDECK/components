@@ -73,6 +73,7 @@ download() {
   fi
 
   log info "Download completed successfully"
+  echo "DOWNLOADED_VERSION=$version"
   echo "DOWNLOADED_FILE=$final_dest"
   return 0
 }
