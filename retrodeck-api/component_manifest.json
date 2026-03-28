@@ -9,7 +9,7 @@
         "description": "Get all RetroDECK settings as a JSON object"
       },
       "get::setting_value": {
-        "function": "api_get_setting_value",
+        "function": "get_setting_value",
         "description": "Get a specific setting value from a configuration file",
         "required_fields": [
           "setting_file",
@@ -76,7 +76,7 @@
         ]
       },
       "set::setting_value": {
-        "function": "api_set_setting_value",
+        "function": "set_setting_value",
         "description": "Set a specific setting value in a configuration file",
         "required_fields": [
           "setting_file",
