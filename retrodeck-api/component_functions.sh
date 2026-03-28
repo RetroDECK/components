@@ -156,11 +156,11 @@ api_handle_request() {
     return
   fi
 
-  api_handle_request "$action" "$request" "$request_data" "$request_id"
+  api_dispatch_request "$action" "$request" "$request_data" "$request_id"
 }
 
-api_handle_request() {
-  # USAGE: api_handle_request "$action" "$request" "$request_data" "$request_id"
+api_dispatch_request() {
+  # USAGE: api_dispatch_request "$action" "$request" "$request_data" "$request_id"
 
   local action="$1"
   local request="$2"
