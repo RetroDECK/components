@@ -172,7 +172,7 @@ api_dispatch_request() {
   # Look up endpoint definition across all component manifests
   local endpoint_def
   endpoint_def=$(jq -r --arg key "$endpoint_key" '
-    [.[] | .manifest.api_endpoints // {} | .[$key] // empty]
+    [.[] | .manifest[] | .api_endpoints // {} | .[$key] // empty]
     | if length > 0 then first else empty end
   ' "$component_manifest_cache_file" 2>/dev/null)
 
@@ -309,18 +309,14 @@ api_builtin_list_endpoints() {
   jq -c '{
     "built_in": {
       "check_status": {
-        "description": "Check if the API server is running",
-        "required_fields": [],
-        "optional_fields": []
+        "description": "Check if the API server is running"
       },
       "list_endpoints": {
-        "description": "List all available API endpoints",
-        "required_fields": [],
-        "optional_fields": []
+        "description": "List all available API endpoints"
       }
     },
     "endpoints": (
-      [.[] | .manifest.api_endpoints // {} | to_entries[]]
+      [.[] | .manifest[] | .api_endpoints // {} | to_entries[]]
       | group_by(.key)
       | map({
           key: first.key,
@@ -336,7 +332,7 @@ api_check_duplicate_endpoints() {
 
   local duplicates
   duplicates=$(jq -r '
-    [.[] | .manifest.component_name as $comp | (.manifest.api_endpoints // {} | keys[]) as $ep | {component: $comp, endpoint: $ep}]
+    [.[] | .manifest[] | .name as $comp | (.api_endpoints // {} | keys[]) as $ep | {component: $comp, endpoint: $ep}]
     | group_by(.endpoint)
     | map(select(length > 1))
     | .[]
