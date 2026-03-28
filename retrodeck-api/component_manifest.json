@@ -39,7 +39,10 @@
       },
       "get::bios_file_status": {
         "function": "api_get_bios_file_status",
-        "description": "Get the status of all BIOS files"
+        "description": "Get the status of all BIOS files",
+        "optional_fields": [
+          "json_array_of_systems"
+        ]
       },
       "get::multifile_game_structure": {
         "function": "api_get_multifile_game_structure",
