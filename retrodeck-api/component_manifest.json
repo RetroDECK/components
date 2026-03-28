@@ -27,10 +27,6 @@
           "component"
         ]
       },
-      "get::incompatible_presets": {
-        "function": "api_get_incompatible_presets",
-        "description": "Get the list of incompatible preset combinations"
-      },
       "get::current_preset_state": {
         "function": "api_get_current_preset_state",
         "description": "Get the current state of a preset for a component",
@@ -134,13 +130,6 @@
         "required_fields": [
           "rd_dir",
           "dest"
-        ]
-      },
-      "do::install": {
-        "function": "api_do_install_retrodeck_package",
-        "description": "Install a RetroDECK package",
-        "required_fields": [
-          "package_name"
         ]
       },
       "do::cheevos_login": {
