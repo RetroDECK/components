@@ -247,7 +247,7 @@
           "name": "BIOS Checker",
           "description": "Checks BIOS and firmware availability and displays key details.",
           "command": {
-            "zenity": "configurator_bios_checker_dialog"
+            "zenity": "configurator_bios_system_selection_dialog"
           }
         },
         "change_rd_logging_level": {
