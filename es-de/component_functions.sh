@@ -145,12 +145,25 @@ configurator_rebuild_esde_systems::es-de() {
   start::es-de --create-system-dirs
   local current_iconset=$(get_setting_value "$rd_conf" "iconset" "retrodeck" "options")
   if [[ ! "$current_iconset" == "false" ]]; then
-    (
-    handle_folder_iconsets "$current_iconset"
-    ) |
+    local progress_pipe
+    progress_pipe=$(mktemp -u)
+    mkfifo "$progress_pipe"
+
     rd_zenity --icon-name=net.retrodeck.retrodeck --progress --no-cancel --auto-close \
-            --window-icon="/app/share/icons/hicolor/scalable/apps/net.retrodeck.retrodeck.svg" \
-            --title "RetroDECK Configurator Utility - Rebuilding Folder Iconsets In Progress"
+      --window-icon="/app/share/icons/hicolor/scalable/apps/net.retrodeck.retrodeck.svg" \
+      --title "RetroDECK Configurator Utility - Rebuilding Folder Iconsets In Progress" < "$progress_pipe" &
+    local zenity_pid=$!
+
+    local progress_fd
+    exec {progress_fd}>"$progress_pipe"
+
+    handle_folder_iconsets "$current_iconset"
+
+    echo "100" >&$progress_fd
+
+    exec {progress_fd}>&-
+    wait "$zenity_pid" 2>/dev/null
+    rm -f "$progress_pipe"    
   fi
   configurator_generic_dialog "RetroDECK Configurator - Rebuild System Folders" "<span foreground='$purple'><b>The rebuilding process is complete.</b></span>\n\nAll missing default system folders will now exist in <span foreground='$purple'><b>$roms_path</b></span>."
 }
