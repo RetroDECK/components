@@ -13,19 +13,32 @@ export rpcs3_firmware="http://dus01.ps3.update.playstation.net/update/ps3/image/
 update_rpcs3_firmware() {
   if check_network_connectivity; then
     configurator_generic_dialog "RetroDECK Configurator - Install: RPCS3 Firmware" "This tool will download the <span foreground='$purple'><b>firmware required by RPCS3</b></span>.\n\nThe process may take several minutes, and the emulator will start to complete the installation.\n\n<span foreground='$purple'><b>Please close RPCS3 manually</b></span> once the installation is finished."
-    (
-      create_dir "$roms_path/ps3/tmp"
-      chmod 777 "$roms_path/ps3/tmp"
-      download_file "$rpcs3_firmware" "$roms_path/ps3/tmp/PS3UPDAT.PUP" "RPCS3 Firmware"
-      bash "$rpcs3_component_dir/component_launcher.sh" --installfw "$roms_path/ps3/tmp/PS3UPDAT.PUP"
-      rm -rf "$roms_path/ps3/tmp"
-    ) |
+    local progress_pipe
+    progress_pipe=$(mktemp -u)
+    mkfifo "$progress_pipe"
+
     rd_zenity --progress --no-cancel --pulsate --auto-close \
     --icon-name=net.retrodeck.retrodeck \
     --window-icon="/app/share/icons/hicolor/scalable/apps/net.retrodeck.retrodeck.svg" \
     --title="Downloading: RPCS3 Firmware" \
     --width=400 --height=200 \
-    --text="Downloading and installing RPCS3 Firmware, please be patient.\n\n<span foreground='$purple' size="larger"><b>NOTICE - If the process is taking too long:</b></span>\n\nSome windows may be running in the background that require your attention, such as popups from emulators or the upgrade itself that needs user input to continue.\n\n<span foreground='$purple'><b>Please finish these processes and close the windows to continue.</b></span>>"
+    --text="Downloading and installing RPCS3 Firmware, please be patient.\n\n<span foreground='$purple' size="larger"><b>NOTICE - If the process is taking too long:</b></span>\n\nSome windows may be running in the background that require your attention, such as popups from emulators or the upgrade itself that needs user input to continue.\n\n<span foreground='$purple'><b>Please finish these processes and close the windows to continue.</b></span>>" < "$progress_pipe" &
+    local zenity_pid=$!
+
+    local progress_fd
+    exec {progress_fd}>"$progress_pipe"
+    
+    create_dir "$roms_path/ps3/tmp"
+    chmod 777 "$roms_path/ps3/tmp"
+    download_file "$rpcs3_firmware" "$roms_path/ps3/tmp/PS3UPDAT.PUP" "RPCS3 Firmware"
+    bash "$rpcs3_component_dir/component_launcher.sh" --installfw "$roms_path/ps3/tmp/PS3UPDAT.PUP"
+    rm -rf "$roms_path/ps3/tmp"
+
+    echo "100" >&$progress_fd
+
+    exec {progress_fd}>&-
+    wait "$zenity_pid" 2>/dev/null
+    rm -f "$progress_pipe"
   else
     configurator_generic_dialog "RetroDECK Configurator - Warning: Install RPCS3 Firmware - No Internet" "Warning: You do not appear to currently have Internet access, which is required by this tool.\n\nPlease try again when network access has been restored."
   fi

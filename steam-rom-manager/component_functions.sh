@@ -145,17 +145,30 @@ configurator_steam_tools_dialog() {
 }
 
 configurator_add_retrodeck_to_steam_dialog() {
-  (
-  # Add RetroDECK launcher to Steam
-  start::steam-rom-manager enable --names "RetroDECK Launcher" >> "$srm_log" 2>&1
-  start::steam-rom-manager add >> "$srm_log" 2>&1
-  ) |
+  local progress_pipe
+  progress_pipe=$(mktemp -u)
+  mkfifo "$progress_pipe"
+
   rd_zenity --progress \
   --title="RetroDECK Configurator - Add RetroDECK to Steam" \
   --window-icon="/app/share/icons/hicolor/scalable/apps/net.retrodeck.retrodeck.svg" \
   --text="Adding RetroDECK to Steam...\n\n<span foreground='$purple'>Please wait until the operation is finished and you need to restart Steam afterwards.</span>" \
-  --pulsate --width=500 --height=150 --auto-close --no-cancel
+  --pulsate --width=500 --height=150 --auto-close --no-cancel < "$progress_pipe" &
+  local zenity_pid=$!
+
+  local progress_fd
+  exec {progress_fd}>"$progress_pipe"
   
+  # Add RetroDECK launcher to Steam
+  start::steam-rom-manager enable --names "RetroDECK Launcher" >> "$srm_log" 2>&1
+  start::steam-rom-manager add >> "$srm_log" 2>&1
+  
+  echo "100" >&$progress_fd
+
+  exec {progress_fd}>&-
+  wait "$zenity_pid" 2>/dev/null
+  rm -f "$progress_pipe"
+
   if [[ $(get_component_option "steam-rom-manager" "steam_sync") =~ (flatpak) ]]; then # If Flatpak Steam, warn about permission
     configurator_generic_dialog "RetroDeck Configurator - Steam Flatpak Warning" "You are using the <span foreground='purple'><b>Flatpak Version of Steam</b></span>.\n\n\To allow RetroDECK to launch, Steam must be granted the following permission:\n<span foreground='purple'><b>org.freedesktop.Flatpak</b></span>\n\n\Please read the RetroDECK wiki for instructions."
   fi
@@ -213,16 +226,31 @@ configurator_enable_steam_sync() {
 configurator_disable_steam_sync() {
   set_component_option "steam-rom-manager" "steam_sync" "false"
   # Remove only synced favorites, leave RetroDECK shortcut if it exists
-  (
-  start::steam-rom-manager enable --names "RetroDECK Steam Sync" >> "$srm_log" 2>&1
-  start::steam-rom-manager disable --names "RetroDECK Launcher" >> "$srm_log" 2>&1
-  start::steam-rom-manager remove >> "$srm_log" 2>&1
-  ) |
+
+  local progress_pipe
+  progress_pipe=$(mktemp -u)
+  mkfifo "$progress_pipe"
+
   rd_zenity --progress \
   --title="Removing RetroDECK Sync from Steam" \
   --window-icon="/app/share/icons/hicolor/scalable/apps/net.retrodeck.retrodeck.svg" \
   --text="Removing synced entries from Steam, please wait..." \
-  --pulsate --width=500 --height=150 --auto-close --no-cancel
+  --pulsate --width=500 --height=150 --auto-close --no-cancel < "$progress_pipe" &
+  local zenity_pid=$!
+
+  local progress_fd
+  exec {progress_fd}>"$progress_pipe"
+
+  start::steam-rom-manager enable --names "RetroDECK Steam Sync" >> "$srm_log" 2>&1
+  start::steam-rom-manager disable --names "RetroDECK Launcher" >> "$srm_log" 2>&1
+  start::steam-rom-manager remove >> "$srm_log" 2>&1
+
+  echo "100" >&$progress_fd
+
+  exec {progress_fd}>&-
+  wait "$zenity_pid" 2>/dev/null
+  rm -f "$progress_pipe"
+  
   if [[ -f "$retrodeck_favorites_file" ]]; then
     rm -f "$retrodeck_favorites_file"
   fi
@@ -245,15 +273,29 @@ configurator_manual_steam_sync_dialog() {
 
 configurator_purge_steam_sync_dialog() {
   if configurator_generic_question_dialog "RetroDECK Configurator - Steam Syncronization: Removal" "Warning: Are you sure you want to remove all Steam changes, including all ES-DE <span foreground='$purple'><b>Favorited</b></span> games from Steam?"; then
-    (
-    start::steam-rom-manager nuke
-    rm -f "$retrodeck_favorites_file"
-    ) |
+
+    local progress_pipe
+    progress_pipe=$(mktemp -u)
+    mkfifo "$progress_pipe"
+
     rd_zenity --progress \
     --title="RetroDECK Configurator - Steam Syncronization: Removing all RetroDECK data" \
     --window-icon="/app/share/icons/hicolor/scalable/apps/net.retrodeck.retrodeck.svg" \
     --text="<span foreground='$purple'><b>Removing all RetroDECK-related data from Steam</b></span>\n\n\The more data you have synchronized, the longer this process may take.\n\nPlease wait..." \
-    --pulsate --width=500 --height=150 --auto-close --no-cancel
+    --pulsate --width=500 --height=150 --auto-close --no-cancel < "$progress_pipe" &
+    local zenity_pid=$!
+
+    local progress_fd
+    exec {progress_fd}>"$progress_pipe"
+
+    start::steam-rom-manager nuke
+    rm -f "$retrodeck_favorites_file"
+
+    echo "100" >&$progress_fd
+
+    exec {progress_fd}>&-
+    wait "$zenity_pid" 2>/dev/null
+    rm -f "$progress_pipe"
   fi
 }
 
@@ -483,41 +525,63 @@ steam_sync_add() {
   local visibility="${1:-}"
   
   if [[ "$visibility" == "zenity" ]]; then
-    (
-    start::steam-rom-manager disable --names "RetroDECK Launcher" >> "$srm_log" 2>&1
-    start::steam-rom-manager enable --names "RetroDECK Steam Sync" >> "$srm_log" 2>&1
-    start::steam-rom-manager add >> "$srm_log" 2>&1
-    ) |
+    local progress_pipe
+    progress_pipe=$(mktemp -u)
+    mkfifo "$progress_pipe"
+
     rd_zenity --progress \
     --title="RetroDECK Configurator - Syncronizing with Steam" \
     --window-icon="/app/share/icons/hicolor/scalable/apps/net.retrodeck.retrodeck.svg" \
     --text="<span foreground='$purple'><b>Adding new favorited games to Steam</b></span>\n\n\<b>NOTE:</b> This may take a while depending on your library size.\n\Feel free to leave it running in the background and use another app." \
-    --pulsate --width=500 --height=150 --auto-close --no-cancel
-  else
+    --pulsate --width=500 --height=150 --auto-close --no-cancel < "$progress_pipe" &
+    local zenity_pid=$!
+
+    local progress_fd
+    exec {progress_fd}>"$progress_pipe"
+  fi
+
     start::steam-rom-manager disable --names "RetroDECK Launcher" >> "$srm_log" 2>&1
     start::steam-rom-manager enable --names "RetroDECK Steam Sync" >> "$srm_log" 2>&1
     start::steam-rom-manager add >> "$srm_log" 2>&1
+    
+  if [[ "$visibility" == "zenity" ]]; then
+    echo "100" >&$progress_fd
+
+    exec {progress_fd}>&-
+    wait "$zenity_pid" 2>/dev/null
+    rm -f "$progress_pipe"
   fi
 }
 
 steam_sync_remove() {
   local visibility="${1:-}"
-
+  
   if [[ "$visibility" == "zenity" ]]; then
-    (
-    start::steam-rom-manager disable --names "RetroDECK Launcher" >> "$srm_log" 2>&1
-    start::steam-rom-manager enable --names "RetroDECK Steam Sync" >> "$srm_log" 2>&1
-    start::steam-rom-manager remove >> "$srm_log" 2>&1
-    ) |
+    local progress_pipe
+    progress_pipe=$(mktemp -u)
+    mkfifo "$progress_pipe"
+    
     rd_zenity --progress \
     --title="RetroDECK Configurator - Syncronizing with Steam" \
     --window-icon="/app/share/icons/hicolor/scalable/apps/net.retrodeck.retrodeck.svg" \
     --text="<span foreground='$purple'><b>Removing unfavorited games from Steam</b></span>\n\n\<b>NOTE:</b> This may take a while depending on your library size.\n\Feel free to leave it running in the background and use another app." \
-    --pulsate --width=500 --height=150 --auto-close --no-cancel
-  else
-    start::steam-rom-manager disable --names "RetroDECK Launcher" >> "$srm_log" 2>&1
-    start::steam-rom-manager enable --names "RetroDECK Steam Sync" >> "$srm_log" 2>&1
-    start::steam-rom-manager remove >> "$srm_log" 2>&1
+    --pulsate --width=500 --height=150 --auto-close --no-cancel < "$progress_pipe" &
+    local zenity_pid=$!
+
+    local progress_fd
+    exec {progress_fd}>"$progress_pipe"
+  fi
+
+  start::steam-rom-manager disable --names "RetroDECK Launcher" >> "$srm_log" 2>&1
+  start::steam-rom-manager enable --names "RetroDECK Steam Sync" >> "$srm_log" 2>&1
+  start::steam-rom-manager remove >> "$srm_log" 2>&1
+
+  if [[ "$visibility" == "zenity" ]]; then
+    echo "100" >&$progress_fd
+
+    exec {progress_fd}>&-
+    wait "$zenity_pid" 2>/dev/null
+    rm -f "$progress_pipe"
   fi
 }
 
@@ -539,15 +603,29 @@ install_retrodeck_controller_profile() {
 }
 
 add_retrodeck_to_steam() {
-  (
-    log i "RetroDECK is being added to Steam"
-    start::steam-rom-manager enable --names "RetroDECK Launcher"
-    start::steam-rom-manager add
-  ) |
+  local progress_pipe
+  progress_pipe=$(mktemp -u)
+  mkfifo "$progress_pipe"
+
   rd_zenity --progress --no-cancel --pulsate --auto-close \
-    --window-icon="/app/share/icons/hicolor/scalable/apps/net.retrodeck.retrodeck.svg" \
-    --title "RetroDECK Configurator - Adding RetroDECK to Steam" \
-    --text="RetroDECK is being added to Steam.\n\n<span foreground='$purple'><b>Please wait while the process finishes...</b></span>"
+  --window-icon="/app/share/icons/hicolor/scalable/apps/net.retrodeck.retrodeck.svg" \
+  --title "RetroDECK Configurator - Adding RetroDECK to Steam" \
+  --text="RetroDECK is being added to Steam.\n\n<span foreground='$purple'><b>Please wait while the process finishes...</b></span>" < "$progress_pipe" &
+  local zenity_pid=$!
+  
+  local progress_fd
+  exec {progress_fd}>"$progress_pipe"
+  
+  log i "RetroDECK is being added to Steam"
+  start::steam-rom-manager enable --names "RetroDECK Launcher"
+  start::steam-rom-manager add
+
+  echo "100" >&$progress_fd
+
+  exec {progress_fd}>&-
+  wait "$zenity_pid" 2>/dev/null
+  rm -f "$progress_pipe"
+  
   rd_zenity --info --no-wrap --window-icon="/app/share/icons/hicolor/scalable/apps/net.retrodeck.retrodeck.svg" --title "RetroDECK" --text="RetroDECK has been added to Steam.\n\n\<span foreground='$purple'><b>Please restart Steam to see the changes.</b></span>"
 }
 

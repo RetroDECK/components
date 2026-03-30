@@ -14,18 +14,32 @@ export vita3k_rd_config_dir="$rd_components/vita3k/rd_config"
 update_vita3k_firmware() {
   if check_network_connectivity; then
     configurator_generic_dialog "RetroDECK Configurator - Install: Vita3K firmware" "This tool will download the <span foreground='$purple'><b>firmware required by Vita3K</b></span>.\n\nThe process may take several minutes"
-    (
-      download_file "$vita3k_vu_firmware_url" "/tmp/PSVUPDAT.PUP" "Vita3K Firmware file: PSVUPDAT.PUP"
-      download_file "$vita3k_2u_firmware_url" "/tmp/PSP2UPDAT.PUP" "Vita3K Firmware file: PSP2UPDAT.PUP"
-      bash "$vita3k_component_dir/component_launcher.sh" --firmware /tmp/PSVUPDAT.PUP
-      bash "$vita3k_component_dir/component_launcher.sh" --firmware /tmp/PSP2UPDAT.PUP
-    ) |
+
+    local progress_pipe
+    progress_pipe=$(mktemp -u)
+    mkfifo "$progress_pipe"
+
     rd_zenity --progress --pulsate \
     --icon-name=net.retrodeck.retrodeck \
     --window-icon="/app/share/icons/hicolor/scalable/apps/net.retrodeck.retrodeck.svg" \
     --title="Downloading: Vita3K Firmware" \
     --no-cancel \
-    --auto-close
+    --auto-close < "$progress_pipe" &
+    local zenity_pid=$!
+    
+    local progress_fd
+    exec {progress_fd}>"$progress_pipe"
+
+    download_file "$vita3k_vu_firmware_url" "/tmp/PSVUPDAT.PUP" "Vita3K Firmware file: PSVUPDAT.PUP"
+    download_file "$vita3k_2u_firmware_url" "/tmp/PSP2UPDAT.PUP" "Vita3K Firmware file: PSP2UPDAT.PUP"
+    bash "$vita3k_component_dir/component_launcher.sh" --firmware /tmp/PSVUPDAT.PUP
+    bash "$vita3k_component_dir/component_launcher.sh" --firmware /tmp/PSP2UPDAT.PUP
+
+    echo "100" >&$progress_fd
+
+    exec {progress_fd}>&-
+    wait "$zenity_pid" 2>/dev/null
+    rm -f "$progress_pipe"
   else
     configurator_generic_dialog "RetroDECK Configurator - Warning: Install Vita3K Firmware - No Internet" "Warning: You do not appear to currently have Internet access, which is required by this tool.\n\nPlease try again when network access has been restored."
   fi
