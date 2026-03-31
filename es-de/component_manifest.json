@@ -26,13 +26,42 @@
         {"path": "$rd_home_path/ES-DE/scripts"}
       ],
       "complete": [
-        {"path": "$rd_home_path/ES-DE/gamelists"},
-        {"path": "$rd_home_path/ES-DE/collections"},
-        {"path": "$rd_home_path/ES-DE/custom_systems"},
-        {"path": "$rd_home_path/ES-DE/downloaded_media"},
-        {"path": "$rd_home_path/ES-DE/scripts"},
-        {"path": "$rd_home_path/ES-DE/screensavers"}
-      ]
+    "component_paths": {
+      "esde_downloaded_media_path": {
+        "path": "$rd_home_path/ES-DE/downloaded_media",
+        "recommended_scope": "shared",
+        "description": "Scraped game artwork and media"
+      },
+      "esde_themes_path": {
+        "path": "$rd_home_path/ES-DE/themes",
+        "recommended_scope": "shared",
+        "description": "ES-DE frontend themes"
+      },
+      "esde_gamelists_path": {
+        "path": "$rd_home_path/ES-DE/gamelists",
+        "recommended_scope": "per-user",
+        "description": "Game metadata, favorites, and play history"
+      },
+      "esde_collections_path": {
+        "path": "$rd_home_path/ES-DE/collections",
+        "recommended_scope": "per-user",
+        "description": "User-curated game collections"
+      },
+      "esde_custom_systems_path": {
+        "path": "$rd_home_path/ES-DE/custom_systems",
+        "recommended_scope": "shared",
+        "description": "Custom system definitions for ES-DE"
+      },
+      "esde_scripts_path": {
+        "path": "$rd_home_path/ES-DE/scripts",
+        "recommended_scope": "shared",
+        "description": "ES-DE event scripts"
+      },
+      "esde_screensavers_path": {
+        "path": "$rd_home_path/ES-DE/screensavers",
+        "recommended_scope": "shared",
+        "description": "ES-DE screensaver media"
+      }
     },
     "configurator_menus": {
       "data_management": {
