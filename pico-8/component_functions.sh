@@ -59,7 +59,7 @@ _prepare_component::pico-8() {
       log i "Performing PICO-8 $action actions"
       log i "------------------------"
 
-      rsync -rlD --delete --mkpath "$roms_path/pico8/" "$downloaded_media_path/pico8/covers/"
+      rsync -rlD --delete --mkpath "$roms_path/pico8/" "$esde_downloaded_media_path/pico8/covers/"
     ;;
 
   esac

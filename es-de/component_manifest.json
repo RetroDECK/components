@@ -20,12 +20,20 @@
     },
     "backup_data": {
       "core": [
-        {"path": "$rd_home_path/ES-DE/gamelists"},
-        {"path": "$rd_home_path/ES-DE/collections"},
-        {"path": "$rd_home_path/ES-DE/custom_systems"},
-        {"path": "$rd_home_path/ES-DE/scripts"}
+        {"path": "$esde_gamelists_path"},
+        {"path": "$esde_collections_path"},
+        {"path": "$esde_custom_systems_path"},
+        {"path": "$esde_scripts_path"}
       ],
       "complete": [
+        {"path": "$esde_gamelists_path"},
+        {"path": "$esde_collections_path"},
+        {"path": "$esde_custom_systems_path"},
+        {"path": "$esde_downloaded_media_path"},
+        {"path": "$esde_scripts_path"},
+        {"path": "$esde_screensavers_path"}
+      ]
+    },
     "component_paths": {
       "esde_downloaded_media_path": {
         "path": "$rd_home_path/ES-DE/downloaded_media",
@@ -77,11 +85,11 @@
     "helper_files": {
       "custom_systems_es_find_rules": {
         "filename": "es_find_rules.xml",
-        "location": "$rd_home_path/ES-DE/custom_systems"
+        "location": "$esde_custom_systems_path"
       },
       "custom_systems_es_systems": {
         "filename": "es_systems.xml",
-        "location": "$rd_home_path/ES-DE/custom_systems"
+        "location": "$esde_custom_systems_path"
       }
     },
     "splash_screens": {

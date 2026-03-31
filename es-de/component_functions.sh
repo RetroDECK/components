@@ -51,13 +51,13 @@ _prepare_component::es-de() {
       cp -f "$component_config/es_settings.xml" "$es_de_config"
       set_setting_value "$es_de_config" "Theme" "RetroDECK-theme-main" "es-de"
       set_setting_value "$es_de_config" "ROMDirectory" "$roms_path" "es-de"
-      set_setting_value "$es_de_config" "MediaDirectory" "$downloaded_media_path" "es-de"
-      set_setting_value "$es_de_config" "UserThemeDirectory" "$themes_path" "es-de"
-      dir_prep "$rd_home_path/ES-DE/gamelists" "$XDG_CONFIG_HOME/ES-DE/gamelists"
-      dir_prep "$rd_home_path/ES-DE/collections" "$XDG_CONFIG_HOME/ES-DE/collections"
-      dir_prep "$rd_home_path/ES-DE/scripts" "$XDG_CONFIG_HOME/ES-DE/scripts"
-      dir_prep "$rd_home_path/ES-DE/screensavers" "$XDG_CONFIG_HOME/ES-DE/screensavers"
-      dir_prep "$rd_home_path/ES-DE/custom_systems" "$XDG_CONFIG_HOME/ES-DE/custom_systems"
+      set_setting_value "$es_de_config" "MediaDirectory" "$esde_downloaded_media_path" "es-de"
+      set_setting_value "$es_de_config" "UserThemeDirectory" "$esde_themes_path" "es-de"
+      dir_prep "$esde_gamelists_path" "$XDG_CONFIG_HOME/ES-DE/gamelists"
+      dir_prep "$esde_collections_path" "$XDG_CONFIG_HOME/ES-DE/collections"
+      dir_prep "$esde_scripts_path" "$XDG_CONFIG_HOME/ES-DE/scripts"
+      dir_prep "$esde_screensavers_path" "$XDG_CONFIG_HOME/ES-DE/screensavers"
+      dir_prep "$esde_custom_systems_path" "$XDG_CONFIG_HOME/ES-DE/custom_systems"
       dir_prep "$logs_path/ES-DE" "$XDG_CONFIG_HOME/ES-DE/logs"
       log d "Generating roms system folders"
       start::es-de --create-system-dirs
@@ -69,13 +69,13 @@ _prepare_component::es-de() {
       log i "--------------------------------"
 
       set_setting_value "$es_de_config" "ROMDirectory" "$roms_path" "es-de"
-      set_setting_value "$es_de_config" "MediaDirectory" "$downloaded_media_path" "es-de"
-      set_setting_value "$es_de_config" "UserThemeDirectory" "$themes_path" "es-de"
-      dir_prep "$rd_home_path/ES-DE/gamelists" "$XDG_CONFIG_HOME/ES-DE/gamelists"
-      dir_prep "$rd_home_path/ES-DE/collections" "$XDG_CONFIG_HOME/ES-DE/collections"
-      dir_prep "$rd_home_path/ES-DE/scripts" "$XDG_CONFIG_HOME/ES-DE/scripts"
-      dir_prep "$rd_home_path/ES-DE/screensavers" "$XDG_CONFIG_HOME/ES-DE/screensavers"
-      dir_prep "$rd_home_path/ES-DE/custom_systems" "$XDG_CONFIG_HOME/ES-DE/custom_systems"
+      set_setting_value "$es_de_config" "MediaDirectory" "$esde_downloaded_media_path" "es-de"
+      set_setting_value "$es_de_config" "UserThemeDirectory" "$esde_themes_path" "es-de"
+      dir_prep "$esde_gamelists_path" "$XDG_CONFIG_HOME/ES-DE/gamelists"
+      dir_prep "$esde_collections_path" "$XDG_CONFIG_HOME/ES-DE/collections"
+      dir_prep "$esde_scripts_path" "$XDG_CONFIG_HOME/ES-DE/scripts"
+      dir_prep "$esde_screensavers_path" "$XDG_CONFIG_HOME/ES-DE/screensavers"
+      dir_prep "$esde_custom_systems_path" "$XDG_CONFIG_HOME/ES-DE/custom_systems"
       dir_prep "$logs_path/ES-DE" "$XDG_CONFIG_HOME/ES-DE/logs"
     ;;
 
@@ -611,7 +611,7 @@ check_duplicate_gamelist_entry() {
 
   [[ "$path" != ./* ]] && path="./$path"
 
-  local gamelist_file="$es_gamelists_dir/$system/gamelist.xml"
+  local gamelist_file="$esde_gamelists_dir/$system/gamelist.xml"
 
   if [[ ! -f "$gamelist_file" ]]; then
     return 1
@@ -661,7 +661,7 @@ create_gamelist_entry() {
 
   if ! check_duplicate_gamelist_entry "$component" "$entry_key"; then
 
-    local gamelist_dir="$es_gamelists_dir/$system"
+    local gamelist_dir="$esde_gamelists_dir/$system"
     local gamelist_file="$gamelist_dir/gamelist.xml"
 
     mkdir -p "$gamelist_dir"
@@ -747,7 +747,7 @@ create_gamelist_entry() {
         if [[ -d "$source_media_dir" ]]; then
           while IFS= read -r source_file; do
             local relative_path="${source_file#"$source_media_dir"/}"
-            local dest_dir="$downloaded_media_path/$system/$(dirname "$relative_path")"
+            local dest_dir="$esde_downloaded_media_path/$system/$(dirname "$relative_path")"
             mkdir -p "$dest_dir"
             rsync -a "$source_file" "$dest_dir/"
             log i "Deployed media: $source_file -> $dest_dir/$path_value"
@@ -799,7 +799,7 @@ remove_gamelist_entry() {
   path=$(jq -r '.gamelist_data.path' <<< "$entry_data")
   [[ "$path" != ./* ]] && path="./$path"
 
-  local gamelist_dir="$es_gamelists_dir/$system"
+  local gamelist_dir="$esde_gamelists_dir/$system"
   local gamelist_file="$gamelist_dir/gamelist.xml"
 
   if [[ ! -f "$gamelist_file" ]]; then
@@ -855,7 +855,7 @@ remove_gamelist_entry() {
       if [[ -d "$source_media_dir" ]]; then
         while IFS= read -r source_file; do
           local relative_path="${source_file#"$source_media_dir"/}"
-          local dest_file="$downloaded_media_path/$system/$relative_path"
+          local dest_file="$esde_downloaded_media_path/$system/$relative_path"
 
           if [[ -f "$dest_file" ]]; then
             rm -f "$dest_file"
@@ -863,7 +863,7 @@ remove_gamelist_entry() {
 
             local parent_dir
             parent_dir=$(dirname "$dest_file")
-            prune_empty_parents "$parent_dir" "$downloaded_media_path/$system"
+            prune_empty_parents "$parent_dir" "$esde_downloaded_media_path/$system"
           fi
         done < <(find "$source_media_dir" -type f -name "$path_value")
       fi
@@ -911,7 +911,7 @@ _post_update_legacy::es-de() {
     set_setting_value "$es_settings" "ROMDirectory" "$roms_path" "es-de"
     set_setting_value "$es_settings" "MediaDirectory" "$media_path" "es-de"
     sed -i '$ a <string name="UserThemeDirectory" value="" />' "$es_settings" # Add new default line to existing file
-    set_setting_value "$es_settings" "UserThemeDirectory" "$themes_path" "es-de"
+    set_setting_value "$es_settings" "UserThemeDirectory" "$esde_themes_path" "es-de"
     unlink "$XDG_CONFIG_HOME/emulationstation/ROMs"
     unlink "$XDG_CONFIG_HOME/emulationstation/ES-DE/downloaded_media"
     unlink "$XDG_CONFIG_HOME/emulationstation/ES-DE/themes"
