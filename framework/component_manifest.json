@@ -83,6 +83,52 @@
         {"path": "$mods_path"}
       ]
     },
+    "component_paths": {
+      "saves_path": {
+        "recommended_scope": "per-user",
+        "description": "Emulator save data"
+      },
+      "states_path": {
+        "recommended_scope": "per-user",
+        "description": "Emulator save states"
+      },
+      "screenshots_path": {
+        "recommended_scope": "per-user",
+        "description": "Captured screenshots"
+      },
+      "videos_path": {
+        "recommended_scope": "per-user",
+        "description": "Captured gameplay videos"
+      },
+      "roms_path": {
+        "recommended_scope": "shared",
+        "description": "Game ROM files"
+      },
+      "bios_path": {
+        "recommended_scope": "shared",
+        "description": "System BIOS files"
+      },
+      "shaders_path": {
+        "recommended_scope": "shared",
+        "description": "Graphics shader files"
+      },
+      "mods_path": {
+        "recommended_scope": "shared",
+        "description": "Game mod files"
+      },
+      "texture_packs_path": {
+        "recommended_scope": "shared",
+        "description": "Custom texture packs"
+      },
+      "borders_path": {
+        "recommended_scope": "shared",
+        "description": "Screen border overlays"
+      },
+      "cheats_path": {
+        "recommended_scope": "shared",
+        "description": "Cheat code files"
+      }
+    },
     "cli_commands": {
       "help": {
         "flag": "-h, --help",
