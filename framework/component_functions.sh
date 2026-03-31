@@ -1039,6 +1039,10 @@ _post_update::retrodeck() {
     jq 'del(.paths.portmaster_path)' "$rd_conf" > "$rd_conf.tmp" && mv "$rd_conf.tmp" "$rd_conf"
     jq 'del(.options.portmaster_reload_esde)' "$rd_conf" > "$rd_conf.tmp" && mv "$rd_conf.tmp" "$rd_conf"
     jq 'del(.options.portmaster_show)' "$rd_conf" > "$rd_conf.tmp" && mv "$rd_conf.tmp" "$rd_conf"
+
+    migrate_path_to_component_paths "es-de" "downloaded_media_path" "esde_downloaded_media_path"
+    migrate_path_to_component_paths "es-de" "themes_path" "esde_themes_path"
+    init_component_paths
   fi
 
   #######################################
