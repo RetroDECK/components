@@ -50,7 +50,7 @@ _set_setting_value::retrodeck() {
   fi
 
   # Export to memory if this is a core application setting
-  if [[ -z "$section" || "$section" == "paths" || "$section" == "options" ]]; then
+  if [[ -z "$section" || "$section" == "paths" || "$section" == "options" || "$section" == "component_paths" ]]; then
     log d "Exporting value of setting $setting_name as $setting_value"
     declare -g "$setting_name=$setting_value"
     export "$setting_name"
