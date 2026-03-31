@@ -2,9 +2,6 @@
 
 export es_de_appdata_path="$XDG_CONFIG_HOME/ES-DE"
 export es_de_config="$XDG_CONFIG_HOME/ES-DE/settings/es_settings.xml"
-export es_de_logs_path="$XDG_CONFIG_HOME/ES-DE/logs"
-export es_scripts_dir="$XDG_CONFIG_HOME/ES-DE/scripts"
-export es_gamelists_dir="$XDG_CONFIG_HOME/ES-DE/gamelists"
 export es_systems="$rd_components/es-de/share/es-de/resources/systems/linux/es_systems.xml"         # RetroDECK-generated ES-DE supported system list
 export es_find_rules="$rd_components/es-de/share/es-de/resources/systems/linux/es_find_rules.xml"   # RetroDECK-generated ES-DE emulator find rules
 export es_find_rules_official="$rd_components/es-de/rd_config/es_find_rules_official.xml"           # Official es_find_rules file from upstream ES-DE
