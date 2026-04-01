@@ -129,6 +129,20 @@
         "description": "Cheat code files"
       }
     },
+    "identity_resolvers": [
+      {
+        "type": "steam",
+        "default_priority": 1,
+        "default_enabled": true,
+        "description": "Use your Steam username (recommended for Steam Deck)"
+      },
+      {
+        "type": "system",
+        "default_priority": 99,
+        "default_enabled": true,
+        "description": "Use your current system username"
+      }
+    ],
     "cli_commands": {
       "help": {
         "flag": "-h, --help",
