@@ -41,7 +41,9 @@ _prepare_component::es-de() {
       cp -f "$component_config/es_import_rules.xml" "$XDG_CONFIG_HOME/ES-DE/systems/es_import_rules.xml"
       generate_es_find_rules_xml
       generate_es_systems_xml
-      generate_es_de_diff_report > "$logs_path/es_de_gen_report.txt"
+      if [[ "$rd_logging_level" == "debug"]]
+        generate_es_de_diff_report > "$logs_path/es_de_gen_report.txt"
+      fi
 
       create_dir "$XDG_CONFIG_HOME/ES-DE/settings"
       log d "Preparing es_settings.xml"
