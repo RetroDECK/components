@@ -146,10 +146,6 @@ _prepare_component::retrodeck() {
         check_for_updates "$version"
       fi
 
-      # if [[ $multi_user_mode == "true" ]]; then
-      #   multi_user_determine_current_user
-      # fi
-
       # Run optional startup checks
       if check_is_steam_deck; then # Only warn about Desktop Mode on Steam Deck, ignore for other platforms
         desktop_mode_warning
