@@ -135,16 +135,6 @@ _prepare_component::retrodeck() {
       log i "Post-moving RetroDECK Framework"
       log i "--------------------------------"
 
-      while IFS=$'\t' read -r setting_name setting_value; do
-        [[ -z "$setting_name" ]] && continue
-        [[ "$setting_name" =~ ^(rd_home_path|sdcard)$ ]] && continue
-
-        local new_path="$rd_home_path/${setting_value#*retrodeck/}"
-        if [[ -d "$new_path" ]]; then
-          set_setting_value "$rd_conf" "$setting_name" "$new_path" "retrodeck" "paths"
-        fi
-      done < <(jq -r '.paths | to_entries[] | [.key, (.value | tostring)] | @tsv' "$rd_conf")
-
       dir_prep "$rd_xdg_config_logs_path" "$logs_path"
     ;;
 
