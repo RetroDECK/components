@@ -199,7 +199,7 @@
         "description": "Test upgrading RetroDECK to a specific version, developer use only",
         "handler": "_cli_test_upgrade::retrodeck",
         "params": ["<version>"],
-        "hidden": true
+        "dev_tool": true
       },
       "get": {
         "flag": "--get",
