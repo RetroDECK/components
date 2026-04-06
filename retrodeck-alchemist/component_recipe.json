@@ -1,0 +1,27 @@
+{
+  "retrodeck-alchemist": [
+    {
+      "source_url": "$REPO_ROOT/automation-tools",
+      "source_type": "local",
+      "extraction_type": "local",
+      "version": "latest",
+      "assets": [
+        {
+          "type": "file",
+          "source": "component_manifest.json",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "component_functions.sh",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "dir",
+          "source": "alchemist",
+          "dest": "rd_tools/alchemist"
+        }
+      ]
+    }
+  ]
+}
