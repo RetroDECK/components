@@ -23,6 +23,11 @@
         },
         {
           "type": "file",
+          "source": "rd_assets/rd_libexec/api_server.sh",
+          "dest": "libexec"
+        },
+        {
+          "type": "file",
           "source": "rd_assets/rd_libexec/api_connection_handler.sh",
           "dest": "libexec"
         }
