@@ -27,6 +27,37 @@ _get_setting_value::retroarch() {
 
 _add_setting::retroarch() {
   local file="$1" name="$2" value="$3"
+  local token ref_val calculated_value ref_resolution ref_w ref_h
+
+  if [[ "$value" == *:* ]]; then
+    token="${value%%:*}"
+    ref_val="${value#*:}"
+
+    case "$token" in
+      pixel_w|pixel_h|ar_adjust|overlay_scale)
+        ref_resolution="$(jq -r '.[] | .manifest | .retroarch.preset_variables.borders_ref_resolution // empty' "$component_manifest_cache_file")"
+        ref_w="${ref_resolution%%x*}"
+        ref_h="${ref_resolution##*x}"
+
+        case "$token" in
+          pixel_w)
+            calculated_value="$(awk "BEGIN { printf \"%d\", int($ref_val * $system_display_width / $ref_w + 0.5) }")"
+            ;;
+          pixel_h)
+            calculated_value="$(awk "BEGIN { printf \"%d\", int($ref_val * $system_display_height / $ref_h + 0.5) }")"
+            ;;
+          ar_adjust)
+            calculated_value="$(awk "BEGIN { printf \"%.6f\", (1 + $ref_val) * ($ref_w / $ref_h) / ($system_display_width / $system_display_height) - 1 }")"
+            ;;
+          overlay_scale)
+            calculated_value="$ref_val"
+            ;;
+        esac
+        value="$calculated_value"
+        ;;
+      esac
+  fi
+
   sed -i '$ a '"$name"' = "'"$value"'"' "$file"
 }
 
