@@ -3485,6 +3485,9 @@
     "conflicting_presets": [
       ["borders", "widescreen"]
     ],
+    "preset_variables": {
+      "borders_ref_resolution": "1280x800"
+    },
     "compatible_presets": {
       "cheevos": ["false", "true"],
       "cheevos_hardcore": ["false", "true"],
