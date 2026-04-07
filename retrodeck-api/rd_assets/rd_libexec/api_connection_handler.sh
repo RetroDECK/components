@@ -4,7 +4,8 @@
 # This script is executed by socat for each incoming client connection.
 
 # Source the function libraries to load all function definitions
-source /app/libexec/all_vars.sh
+source /app/libexec/static_vars.sh
+source /app/libexec/dyn_vars.sh
 source /app/libexec/api_data_processing.sh
 source /app/libexec/checks.sh
 source /app/libexec/components.sh
