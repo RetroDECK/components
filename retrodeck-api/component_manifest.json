@@ -3,6 +3,28 @@
     "name": "RetroDECK API",
     "description": "RetroDECK API",
     "core_framework_version": 1,
+    "component_options": {
+      "rd_api_enabled": "false"
+    },
+    "cli_commands": {
+      "start_retrodeck_api": {
+        "flag": "--api",
+        "description": "Start the RetroDECK API manually",
+        "handler": "api_start_server::retrodeck-api",
+        "dev_tool": true
+      }
+    },
+    "configurator_menus": {
+      "settings": {
+        "api_enable_disable": {
+          "name": "RetroDECK API Access",
+          "description": "Enable or disable: RetroDECK API external access.",
+          "command": {
+            "zenity": "configurator_rd_api_toggle_dialog"
+          }
+        }
+      }
+    },
     "api_endpoints": {
       "get::retrodeck_settings": {
         "function": "api_get_retrodeck_settings",
