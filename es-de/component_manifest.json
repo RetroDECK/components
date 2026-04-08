@@ -72,26 +72,26 @@
       }
     },
     "configurator_menus": {
-      "data_management": {
-        "rebuild_esde_systems": {
+      "data_management": [
+        {
           "name": "ROMs Folder: Rebuild Systems",
           "description": "Recreate any missing system folders in the roms directory.",
           "command": {
             "zenity": "configurator_rebuild_esde_systems::es-de"
           }
         }
-      }
+      ]
     },
-    "helper_files": {
-      "custom_systems_es_find_rules": {
+    "helper_files": [
+      {
         "filename": "es_find_rules.xml",
         "location": "$esde_custom_systems_path"
       },
-      "custom_systems_es_systems": {
+      {
         "filename": "es_systems.xml",
         "location": "$esde_custom_systems_path"
       }
-    },
+    ],
     "splash_screens": {
       "new_year": {
         "start_date": "1231",
