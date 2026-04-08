@@ -5,14 +5,14 @@
     "component_version": "1.0.0",
     "description": "The RetroDECK Alchemist is the automation tool used for generating component artifacts.",
     "component_type": "Tool",
-    "cli_commands": {
-      "run-alchemist": {
+    "cli_commands": [
+      {
         "flag": "--alchemist",
         "description": "Run the RetroDECK Alchemist locally, to test your component recipes.",
         "handler": "_cli_run::retrodeck-alchemist",
         "params": ["[-f recipe file]","[-o output dir]","[--dry-run]"],
         "dev_tool": true
       }
-    }
+    ]
   }
 }
