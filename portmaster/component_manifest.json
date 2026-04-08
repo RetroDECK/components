@@ -26,15 +26,15 @@
       },
     },
     "configurator_menus": {
-      "settings": {
-        "portmaster_show_hide": {
+      "settings": [
+        {
           "name": "PortMaster in ES-DE",
           "description": "Enable or disable: PortMaster entry in ES-DE.",
           "command": {
             "zenity": "configurator_portmaster_toggle_dialog"
           }
         }
-      }
+      ]
     },
     "es_de_config": {
       "es_find_rules": {
