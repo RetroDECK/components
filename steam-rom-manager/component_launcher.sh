@@ -11,11 +11,10 @@ export LD_LIBRARY_PATH="$component_path/lib:$rd_shared_libs/org.gnome.Platform/4
 export QT_PLUGIN_PATH="${QT_PLUGIN_PATH}"
 export QT_QPA_PLATFORM_PLUGIN_PATH="${QT_QPA_PLATFORM_PLUGIN_PATH}"
 
+APPDIR="$component_path"
 
 log i "RetroDECK is now launching $component_name"
 log d "Library path is: $LD_LIBRARY_PATH"
 log d "AppDir is: $APPDIR"
-
-APPDIR="$component_path"
 
 exec "$component_path/srm/steam-rom-manager" --no-sandbox "$@"
