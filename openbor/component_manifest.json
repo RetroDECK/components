@@ -46,11 +46,11 @@
         }
       ]
     },
-    "helper_files": {
-      "openbor_guide": {
+    "helper_files": [
+      {
         "filename": "openbor_guide.txt",
         "location": "$roms_path/openbor"
       }
-    }
+    ]
   }
 }
