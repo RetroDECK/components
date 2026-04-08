@@ -11,45 +11,6 @@ export vita3k_patch_path="$XDG_DATA_HOME/Vita3K/patch"
 export vita3k_shaders_path="$XDG_CACHE_HOME/Vita3K/shaders"
 export vita3k_rd_config_dir="$rd_components/vita3k/rd_config"
 
-update_vita3k_firmware() {
-  if check_network_connectivity; then
-    configurator_generic_dialog "RetroDECK Configurator - Install: Vita3K firmware" "This tool will download the <span foreground='$purple'><b>firmware required by Vita3K</b></span>.\n\nThe process may take several minutes"
-
-    local progress_pipe
-    progress_pipe=$(mktemp -u)
-    mkfifo "$progress_pipe"
-
-    rd_zenity --progress --pulsate \
-    --icon-name=net.retrodeck.retrodeck \
-    --window-icon="/app/share/icons/hicolor/scalable/apps/net.retrodeck.retrodeck.svg" \
-    --title="Downloading: Vita3K Firmware" \
-    --no-cancel \
-    --auto-close < "$progress_pipe" &
-    local zenity_pid=$!
-    
-    local progress_fd
-    exec {progress_fd}>"$progress_pipe"
-
-    download_file "$vita3k_vu_firmware_url" "/tmp/PSVUPDAT.PUP" "Vita3K Firmware file: PSVUPDAT.PUP"
-    download_file "$vita3k_2u_firmware_url" "/tmp/PSP2UPDAT.PUP" "Vita3K Firmware file: PSP2UPDAT.PUP"
-    bash "$vita3k_component_dir/component_launcher.sh" --firmware /tmp/PSVUPDAT.PUP
-    bash "$vita3k_component_dir/component_launcher.sh" --firmware /tmp/PSP2UPDAT.PUP
-
-    echo "100" >&$progress_fd
-
-    exec {progress_fd}>&-
-    wait "$zenity_pid" 2>/dev/null
-    rm -f "$progress_pipe"
-  else
-    configurator_generic_dialog "RetroDECK Configurator - Warning: Install Vita3K Firmware - No Internet" "Warning: You do not appear to currently have Internet access, which is required by this tool.\n\nPlease try again when network access has been restored."
-  fi
-}
-
-finit_install_vita3k_firmware_dialog() {
-  rd_zenity --question --no-wrap --window-icon="/app/share/icons/hicolor/scalable/apps/net.retrodeck.retrodeck.svg" --title "RetroDECK Initial Install - Vita3K Firmware" --cancel-label="No " --ok-label "Yes" \
-  --text="Would you like to install the Vita3K firmware as part of the initial RetroDECK setup?\n\n\This process may take several minutes and requires an active internet connection.\n\n\<span foreground='$purple'><b>Vita3K will launch automatically</b></span> at the end of the RetroDECK setup.\nAfter the firmware installation is complete,<span foreground='$purple'><b> please close the emulator window</b></span> to finish the process if needed."
-}
-
 _set_setting_value::vita3k() {
   local file="$1" name="$2" value="$3"
 
@@ -103,6 +64,45 @@ _prepare_component::vita3k() {
     ;;
 
   esac
+}
+
+update_vita3k_firmware() {
+  if check_network_connectivity; then
+    configurator_generic_dialog "RetroDECK Configurator - Install: Vita3K firmware" "This tool will download the <span foreground='$purple'><b>firmware required by Vita3K</b></span>.\n\nThe process may take several minutes"
+
+    local progress_pipe
+    progress_pipe=$(mktemp -u)
+    mkfifo "$progress_pipe"
+
+    rd_zenity --progress --pulsate \
+    --icon-name=net.retrodeck.retrodeck \
+    --window-icon="/app/share/icons/hicolor/scalable/apps/net.retrodeck.retrodeck.svg" \
+    --title="Downloading: Vita3K Firmware" \
+    --no-cancel \
+    --auto-close < "$progress_pipe" &
+    local zenity_pid=$!
+    
+    local progress_fd
+    exec {progress_fd}>"$progress_pipe"
+
+    download_file "$vita3k_vu_firmware_url" "/tmp/PSVUPDAT.PUP" "Vita3K Firmware file: PSVUPDAT.PUP"
+    download_file "$vita3k_2u_firmware_url" "/tmp/PSP2UPDAT.PUP" "Vita3K Firmware file: PSP2UPDAT.PUP"
+    bash "$vita3k_component_dir/component_launcher.sh" --firmware /tmp/PSVUPDAT.PUP
+    bash "$vita3k_component_dir/component_launcher.sh" --firmware /tmp/PSP2UPDAT.PUP
+
+    echo "100" >&$progress_fd
+
+    exec {progress_fd}>&-
+    wait "$zenity_pid" 2>/dev/null
+    rm -f "$progress_pipe"
+  else
+    configurator_generic_dialog "RetroDECK Configurator - Warning: Install Vita3K Firmware - No Internet" "Warning: You do not appear to currently have Internet access, which is required by this tool.\n\nPlease try again when network access has been restored."
+  fi
+}
+
+finit_install_vita3k_firmware_dialog() {
+  rd_zenity --question --no-wrap --window-icon="/app/share/icons/hicolor/scalable/apps/net.retrodeck.retrodeck.svg" --title "RetroDECK Initial Install - Vita3K Firmware" --cancel-label="No " --ok-label "Yes" \
+  --text="Would you like to install the Vita3K firmware as part of the initial RetroDECK setup?\n\n\This process may take several minutes and requires an active internet connection.\n\n\<span foreground='$purple'><b>Vita3K will launch automatically</b></span> at the end of the RetroDECK setup.\nAfter the firmware installation is complete,<span foreground='$purple'><b> please close the emulator window</b></span> to finish the process if needed."
 }
 
 _post_update::vita3k() {
