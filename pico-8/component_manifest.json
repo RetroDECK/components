@@ -14,15 +14,15 @@
       "splore_visible": "false"
     },
     "configurator_menus": {
-      "settings": {
-        "splore_show_hide": {
+      "settings": [
+        {
           "name": "PICO-8 Splore Visibility",
           "description": "Enable or disable: PICO-8 Splore entry visibility.",
           "command": {
             "zenity": "configurator_splore_toggle_dialog"
           }
         }
-      }
+      ]
     },
     "es_de_config": {
       "es_find_rules": {
