@@ -364,10 +364,10 @@
           }
         },
         {
-          "name": "Move: All of RetroDECK",
-          "description": "Move the entire RetroDECK data folder: retrodeck to a new location.",
+          "name": "Move: All of RetroDECK or specific paths",
+          "description": "Move the entire RetroDECK data folder or individual subfolders to a new location.",
           "command": {
-            "zenity": "configurator_move_folder_dialog rd_home_path"
+            "zenity": "configurator_move_folder_choice_dialog"
           }
         }
       ],
