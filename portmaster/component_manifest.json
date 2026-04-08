@@ -71,11 +71,11 @@
         }
       ]
     },
-    "helper_files": {
-      "portmaster_guide": {
+    "helper_files": [
+      {
         "filename": "portmaster_guide.txt",
         "location": "$portmaster_path"
       }
-    }
+    ]
   }
 }
