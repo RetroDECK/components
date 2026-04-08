@@ -3476,12 +3476,12 @@
         }
       ]
     },
-    "helper_files": {
-      "scummvm_guide": {
+    "helper_files": [
+      {
         "filename": "scummvm_guide.txt",
         "location": "$roms_path/scummvm"
       }
-    },
+    ],
     "conflicting_presets": [
       ["borders", "widescreen"]
     ],
