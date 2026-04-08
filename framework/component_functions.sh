@@ -2,9 +2,10 @@
 
 _set_setting_value::retrodeck() {
   # Set a value in the RetroDECK JSON config file. Only updates existing settings, does not create new ones.
-  # Settings in the version, paths, or options sections are also exported to memory as global variables.
+  # Settings in the version, paths, options, or component_paths sections are also exported to memory as global variables.
+  # The section argument may be dot-delimited to address nested objects (e.g., "component_paths.es-de").
   # USAGE: _set_setting_value::retrodeck "$file" "$setting_name" "$setting_value" "$section(optional)"
-
+  
   local file="$1"
   local setting_name="$2"
   local setting_value="$3"
@@ -39,18 +40,23 @@ _set_setting_value::retrodeck() {
       jq --arg section "$section" --arg parent "$parent_key" --arg setting "$setting_name" --arg newval "$setting_value" \
         '.presets[$section][$parent][$setting] = $newval' "$file" > "$file.tmp" && mv "$file.tmp" "$file"
     fi
-
   else
-    if ! jq -e --arg section "$section" --arg setting "$setting_name" '.[$section] | has($setting)' "$file" > /dev/null 2>&1; then
+    # Split dot-delimited section into a JSON array of path components for jq's getpath/setpath.
+    local section_parts section_json
+    IFS='.' read -ra section_parts <<< "$section"
+    section_json=$(printf '%s\n' "${section_parts[@]}" | jq -R . | jq -sc .)
+    if ! jq -e --argjson path "$section_json" --arg setting "$setting_name" \
+      '(getpath($path) // {}) | has($setting)' "$file" > /dev/null 2>&1; then
       log w "Setting $setting_name not found in section $section of $file, skipping"
       return 1
     fi
-    jq --arg section "$section" --arg setting "$setting_name" --arg newval "$setting_value" \
-      '.[$section][$setting] = $newval' "$file" > "$file.tmp" && mv "$file.tmp" "$file"
+    jq --argjson path "$section_json" --arg setting "$setting_name" --arg newval "$setting_value" \
+      'setpath($path + [$setting]; $newval)' "$file" > "$file.tmp" && mv "$file.tmp" "$file"
   fi
 
   # Export to memory if this is a core application setting
-  if [[ -z "$section" || "$section" == "paths" || "$section" == "options" || "$section" == "component_paths" ]]; then
+  local top_section="${section%%.*}"
+  if [[ -z "$section" || "$top_section" == "paths" || "$top_section" == "options" || "$top_section" == "component_paths" ]]; then
     log d "Exporting value of setting $setting_name as $setting_value"
     declare -g "$setting_name=$setting_value"
     export "$setting_name"
