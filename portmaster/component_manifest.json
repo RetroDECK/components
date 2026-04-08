@@ -23,7 +23,7 @@
         "path": "$rd_home_path/PortMaster",
         "recommended_scope": "shared",
         "description": "PortMaster core directory"
-      },
+      }
     },
     "configurator_menus": {
       "settings": [
