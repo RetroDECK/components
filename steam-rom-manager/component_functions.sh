@@ -1,19 +1,17 @@
 #!/bin/bash
 
-export steamsync_folder="$rd_home_path/.sync"                                                                                        # Folder containing favorites manifest for SRM
+export srm_steamsync_folder="$rd_home_path/.sync"                                                                                        # Folder containing favorites manifest for SRM
 export srm_userdata="$XDG_CONFIG_HOME/steam-rom-manager/userData"                                                              # SRM userdata folder
 export srm_usersettings_file="$srm_userdata/userSettings.json"
 export srm_userconfig_file="$srm_userdata/userConfigurations.json"
-export retrodeck_favorites_file="$steamsync_folder/retrodeck_favorites.json"                                                   # The current SRM manifest of all games that have been favorited in ES-DE
+export srm_retrodeck_favorites_file="$srm_steamsync_folder/retrodeck_favorites.json"                                                   # The current SRM manifest of all games that have been favorited in ES-DE
 export srm_log="$logs_path/srm_log.log"                                                                                      # Log file for capturing the output of the most recent SRM run, for debugging purposes
-export retrodeck_added_favorites="$steamsync_folder/retrodeck_added_favorites.json"                                            # Temporary manifest of any games that were newly added to the ES-DE favorites and should be added to Steam
-export retrodeck_removed_favorites="$steamsync_folder/retrodeck_removed_favorites.json"                                        # Temporary manifest of any games that were removed from the ES-DE favorites and should be removed from Steam
-export steam_controller_profiles_path="$rd_components/steam-rom-manager/controller_configs"
-export steam_controller_profiles_binding_icons_path="$rd_components/steam-rom-manager/res/binding_icons"
+export srm_steam_controller_profiles_path="$rd_components/steam-rom-manager/controller_configs"
+export srm_steam_controller_profiles_binding_icons_path="$rd_components/steam-rom-manager/res/binding_icons"
 
-export steam_userdata_native="$HOME/.steam/steam"
-export steam_userdata_flatpak="$HOME/.var/app/com.valvesoftware.Steam/.steam/steam"
-export steam_userdata_current=""
+export srm_steam_userdata_native="$HOME/.steam/steam"
+export srm_steam_userdata_flatpak="$HOME/.var/app/com.valvesoftware.Steam/.steam/steam"
+export srm_steam_userdata_current=""
 
 _prepare_component::steam-rom-manager() {
   local action="$1"
@@ -36,7 +34,7 @@ _prepare_component::steam-rom-manager() {
         local usersettings_temp=$(mktemp)
 
         log i "Updating steamDirectory and romDirectory lines in $srm_userdata/userSettings.json"
-        jq --arg userdata_path "$steam_userdata_current" --arg rd_home_path "$rd_home_path" '
+        jq --arg userdata_path "$srm_steam_userdata_current" --arg rd_home_path "$rd_home_path" '
           .environmentVariables.steamDirectory = $userdata_path |
           .environmentVariables.romsDirectory = ($rd_home_path + "/.sync")
         ' "$srm_userdata/userSettings.json" > "$usersettings_temp" && mv -f "$usersettings_temp" "$srm_userdata/userSettings.json"
@@ -44,11 +42,11 @@ _prepare_component::steam-rom-manager() {
     ;;
 
     postmove)
-      if [[ -n "$steam_userdata_current" ]]; then
+      if [[ -n "$srm_steam_userdata_current" ]]; then
         local usersettings_temp=$(mktemp)
 
         log i "Updating steamDirectory and romDirectory lines in $srm_usersettings_file"
-        jq --arg userdata_path "$steam_userdata_current" --arg rd_home_path "$rd_home_path" '
+        jq --arg userdata_path "$srm_steam_userdata_current" --arg rd_home_path "$rd_home_path" '
           .environmentVariables.steamDirectory = $userdata_path |
           .environmentVariables.romsDirectory = ($rd_home_path + "/.sync")
         ' "$srm_usersettings_file" > "$usersettings_temp" && mv -f "$usersettings_temp" "$srm_usersettings_file"
@@ -118,7 +116,7 @@ _cli_steam_sync::steam-rom-manager() {
   if [[ -n "$mode" ]]; then
     if [[ "$mode" == "purge" ]]; then
       rd_srm nuke
-      rm -f "$retrodeck_favorites_file"
+      rm -f "$srm_retrodeck_favorites_file"
     else
       echo "Unknown argument \"$mode\", please check the CLI help for more information."
     fi
@@ -251,8 +249,8 @@ configurator_disable_steam_sync() {
   wait "$zenity_pid" 2>/dev/null
   rm -f "$progress_pipe"
   
-  if [[ -f "$retrodeck_favorites_file" ]]; then
-    rm -f "$retrodeck_favorites_file"
+  if [[ -f "$srm_retrodeck_favorites_file" ]]; then
+    rm -f "$srm_retrodeck_favorites_file"
   fi
   zenity --icon-name=net.retrodeck.retrodeck --info --no-wrap --ok-label="OK"  \
       --window-icon="/app/share/icons/hicolor/scalable/apps/net.retrodeck.retrodeck.svg" \
@@ -289,7 +287,7 @@ configurator_purge_steam_sync_dialog() {
     exec {progress_fd}>"$progress_pipe"
 
     start::steam-rom-manager nuke
-    rm -f "$retrodeck_favorites_file"
+    rm -f "$srm_retrodeck_favorites_file"
 
     echo "100" >&$progress_fd
 
@@ -305,52 +303,52 @@ get_steam_user() {
   local current_steam_sync_setting="$(get_component_option "steam-rom-manager" "steam_sync")"
   if [[ "$current_steam_sync_setting" != "false" || "$mode" =~ (get_type|manual) ]]; then # Only grab Steam information if Steam Sync is enabled or if otherwise overridden
     if [[ "$current_steam_sync_setting" == "native" ]]; then
-      export steam_userdata_current="$steam_userdata_native"
+      export srm_steam_userdata_current="$srm_steam_userdata_native"
       if [[ "$mode" == "get_type" ]]; then
         echo "$current_steam_sync_setting"
         return 0
       fi
     elif [[ "$current_steam_sync_setting" == "flatpak" ]]; then
-      export steam_userdata_current="$steam_userdata_flatpak"
+      export srm_steam_userdata_current="$srm_steam_userdata_flatpak"
       if [[ "$mode" == "get_type" ]]; then
         echo "$current_steam_sync_setting"
         return 0
       fi
     else
-      if [[ -d "$steam_userdata_native" ]]; then
+      if [[ -d "$srm_steam_userdata_native" ]]; then
         if [[ "$mode" == "get_type" ]]; then
           echo "native"
           return 0
         fi
-        export steam_userdata_current="$steam_userdata_native"
-      elif [[ -d "$steam_userdata_flatpak" ]]; then
+        export srm_steam_userdata_current="$srm_steam_userdata_native"
+      elif [[ -d "$srm_steam_userdata_flatpak" ]]; then
         if [[ "$mode" == "get_type" ]]; then
           echo "flatpak"
           return 0
         fi
-        export steam_userdata_current="$steam_userdata_flatpak"
+        export srm_steam_userdata_current="$srm_steam_userdata_flatpak"
       else
         log d "No Steam userdata information could be found."
         return 1
       fi
     fi
 
-    if [[ -f "$steam_userdata_current/config/loginusers.vdf" ]]; then
+    if [[ -f "$srm_steam_userdata_current/config/loginusers.vdf" ]]; then
       # Extract the Steam ID of the most recent user
       export steam_id=$(awk '
         /"users"/ {flag=1}
         flag && /^[ \t]*"[0-9]+"/ {id=$1}
-        flag && /"MostRecent".*"1"/ {print id; exit}' "$steam_userdata_current/config/loginusers.vdf" | tr -d '"')
+        flag && /"MostRecent".*"1"/ {print id; exit}' "$srm_steam_userdata_current/config/loginusers.vdf" | tr -d '"')
 
       # Extract the Steam username (AccountName)
       export steam_username=$(awk -v steam_id="$steam_id" '
         $0 ~ steam_id {flag=1}
-        flag && /"AccountName"/ {gsub(/"/, "", $2); print $2; exit}' "$steam_userdata_current/config/loginusers.vdf")
+        flag && /"AccountName"/ {gsub(/"/, "", $2); print $2; exit}' "$srm_steam_userdata_current/config/loginusers.vdf")
 
       # Extract the Steam pretty name (PersonaName)
       export steam_prettyname=$(awk -v steam_id="$steam_id" '
         $0 ~ steam_id {flag=1}
-        flag && /"PersonaName"/ {gsub(/"/, "", $2); print $2; exit}' "$steam_userdata_current/config/loginusers.vdf")
+        flag && /"PersonaName"/ {gsub(/"/, "", $2); print $2; exit}' "$srm_steam_userdata_current/config/loginusers.vdf")
 
       # Log success
       log i "Steam user found:"
@@ -410,7 +408,7 @@ steam_sync() {
   local visibility="${1:-}"
 
   log "i" "Starting Steam Sync"
-  create_dir "$steamsync_folder"
+  create_dir "$srm_steamsync_folder"
 
   if [[ ! -d "$srm_userdata" ]]; then
     log "e" "Steam ROM Manager configuration not initialized! Initializing now."
@@ -491,7 +489,7 @@ steam_sync() {
   done
 
   # Build the new manifest
-  local new_manifest="${retrodeck_favorites_file}.new"
+  local new_manifest="${srm_retrodeck_favorites_file}.new"
   if [[ ${#manifest_entries[@]} -gt 0 ]]; then
     printf '%s\n' "${manifest_entries[@]}" | jq -s '.' > "$new_manifest"
   else
@@ -499,22 +497,22 @@ steam_sync() {
   fi
 
   # Decide if sync needs to happen
-  if [[ -f "$retrodeck_favorites_file" ]]; then
+  if [[ -f "$srm_retrodeck_favorites_file" ]]; then
     if [[ ${#manifest_entries[@]} -eq 0 ]]; then
       log i "No favorites were found in current ES-DE gamelists, removing old entries"
       steam_sync_remove "$visibility"
-      rm "$retrodeck_favorites_file"
+      rm "$srm_retrodeck_favorites_file"
       rm "$new_manifest"
-    elif cmp -s "$retrodeck_favorites_file" "$new_manifest"; then
+    elif cmp -s "$srm_retrodeck_favorites_file" "$new_manifest"; then
       log i "ES-DE favorites have not changed, no need to sync again"
       rm "$new_manifest"
     else
-      mv "$new_manifest" "$retrodeck_favorites_file"
+      mv "$new_manifest" "$srm_retrodeck_favorites_file"
       steam_sync_add "$visibility"
     fi
   elif [[ ${#manifest_entries[@]} -gt 0 ]]; then
     log d "First time building favorites manifest, running sync"
-    mv "$new_manifest" "$retrodeck_favorites_file"
+    mv "$new_manifest" "$srm_retrodeck_favorites_file"
     steam_sync_add "$visibility"
   else
     rm "$new_manifest"
@@ -591,12 +589,12 @@ install_retrodeck_controller_profile() {
   local mode="{$1:-}"
   local current_steam_sync_setting="$(get_component_option "steam-rom-manager" "steam_sync")"
 
-  if [[ ("$current_steam_sync_setting" == "native" || "$mode" == "manual") && -d "$steam_userdata_native/controller_base/templates/" ]]; then
-    rsync -rlD --mkpath "$steam_controller_profiles_binding_icons_path/" "$steam_userdata_native/tenfoot/resource/images/library/controller/binding_icons/"
-    rsync -rlD --mkpath "$steam_controller_profiles_path/" "$steam_userdata_native/controller_base/templates/"
-  elif [[ ("$current_steam_sync_setting" == "flatpak" || "$mode" == "manual") && -d "$steam_userdata_flatpak/controller_base/templates/" ]]; then
-    rsync -rlD --mkpath "$steam_controller_profiles_binding_icons_path/" "$steam_userdata_flatpak/tenfoot/resource/images/library/controller/binding_icons/"
-    rsync -rlD --mkpath "$steam_controller_profiles_path/" "$steam_userdata_flatpak/controller_base/templates/"
+  if [[ ("$current_steam_sync_setting" == "native" || "$mode" == "manual") && -d "$srm_steam_userdata_native/controller_base/templates/" ]]; then
+    rsync -rlD --mkpath "$srm_steam_controller_profiles_binding_icons_path/" "$srm_steam_userdata_native/tenfoot/resource/images/library/controller/binding_icons/"
+    rsync -rlD --mkpath "$srm_steam_controller_profiles_path/" "$srm_steam_userdata_native/controller_base/templates/"
+  elif [[ ("$current_steam_sync_setting" == "flatpak" || "$mode" == "manual") && -d "$srm_steam_userdata_flatpak/controller_base/templates/" ]]; then
+    rsync -rlD --mkpath "$srm_steam_controller_profiles_binding_icons_path/" "$srm_steam_userdata_flatpak/tenfoot/resource/images/library/controller/binding_icons/"
+    rsync -rlD --mkpath "$srm_steam_controller_profiles_path/" "$srm_steam_userdata_flatpak/controller_base/templates/"
   else
     configurator_generic_dialog "RetroDECK - Install: Steam Controller Templates" "The target directories for the controller profile do not exist.\n\nThis may occur if <span foreground='$purple'><b>Steam is not installed</b></span> or if the location does not have <span foreground='$purple'><b>read permissions</b></span>."
   fi
@@ -657,7 +655,7 @@ finit_install_controller_profile_and_add_retrodeck_to_steam() {
   if get_steam_user "manual"; then
     log i "Updating steamDirectory and romDirectory lines in $srm_usersettings_file"
     local usersettings_temp=$(mktemp)
-    jq --arg userdata_path "$steam_userdata_current" --arg rd_home_path "$rd_home_path" '
+    jq --arg userdata_path "$srm_steam_userdata_current" --arg rd_home_path "$rd_home_path" '
       .environmentVariables.steamDirectory = $userdata_path |
       .environmentVariables.romsDirectory = ($rd_home_path + "/.sync")
     ' "$srm_usersettings_file" > "$usersettings_temp" && mv -f "$usersettings_temp" "$srm_usersettings_file"
