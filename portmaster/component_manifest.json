@@ -18,6 +18,13 @@
       "portmaster_reload_esde": "true",
       "portmaster_show": "true"
     },
+    "component_paths": {
+      "portmaster_path": {
+        "path": "$rd_home_path/PortMaster",
+        "recommended_scope": "shared",
+        "description": "PortMaster core directory"
+      },
+    },
     "configurator_menus": {
       "settings": {
         "portmaster_show_hide": {
