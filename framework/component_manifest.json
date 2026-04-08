@@ -228,13 +228,8 @@
         "description": "Open a specific component or emulator. Use --open --list for available components",
         "handler": "_cli_open_component::retrodeck",
         "params": ["[component]"]
-      },
-      "api": {
-        "flag": "--api",
-        "description": "Start the RetroDECK API server",
-        "handler": "_cli_start_api::retrodeck"
       }
-    },
+    ],
     "configurator_menus": {
       "welcome": [
         {
