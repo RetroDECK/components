@@ -208,6 +208,7 @@ configurator_automatic_steam_sync_dialog() {
 configurator_enable_steam_sync() {
   if steam_type=$(get_steam_user "get_type"); then
     set_component_option "steam-rom-manager" "steam_sync" "$steam_type"
+    get_steam_user
     steam_sync "zenity"
     zenity --icon-name=net.retrodeck.retrodeck --info --no-wrap --ok-label="OK"  \
         --window-icon="/app/share/icons/hicolor/scalable/apps/net.retrodeck.retrodeck.svg" \
