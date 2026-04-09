@@ -345,3 +345,55 @@ api_check_duplicate_endpoints::retrodeck-api() {
     done <<< "$duplicates"
   fi
 }
+
+_cli_api_start_server::retrodeck-api() {
+  if [[ -f "$api_pid_file" ]] && kill -0 "$(cat "$api_pid_file")" 2>/dev/null; then
+    log d "API server is already running (PID: $(cat "$api_pid_file"))"
+    return 1
+  fi
+
+  local socket_dir
+  socket_dir=$(dirname "$api_socket_path")
+  mkdir -p "$socket_dir"
+
+  # Clean up stale socket from previous unclean shutdown
+  rm -f "$api_socket_path"
+
+  # Verify connection handler script exists
+  if [[ ! -f "$api_connection_handler_path" ]]; then
+    log e "API connection handler not found at: $api_connection_handler_path"
+    return 1
+  fi
+
+  # Check for duplicate endpoints across manifests
+  api_check_duplicate_endpoints::retrodeck-api
+
+  api_run_server::retrodeck-api &
+  local server_pid=$!
+  echo "$server_pid" > "$api_pid_file"
+  log d "API server started (PID: $server_pid) on socket: $api_socket_path"
+  wait
+}
+
+_cli_api_stop_server::retrodeck-api() {
+  if [[ -f "$api_pid_file" ]]; then
+    local pid
+    pid=$(cat "$api_pid_file")
+    if kill "$pid" 2>/dev/null; then
+      log d "Stopping API server (PID: $pid)..."
+      # Kill any child handler processes in the same process group
+      kill -- -"$pid" 2>/dev/null
+      rm -f "$api_pid_file" "$api_socket_path"
+      return 0
+    else
+      log d "API server not running; cleaning up residual files"
+      rm -f "$api_pid_file" "$api_socket_path"
+      return 1
+    fi
+  else
+    log d "No running API server found"
+    return 1
+  fi
+}
+
+register_cleanup _cli_api_stop_server::retrodeck-api

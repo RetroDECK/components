@@ -10,7 +10,7 @@
       {
         "flag": "--api",
         "description": "Start the RetroDECK API manually",
-        "handler": "api_start_server::retrodeck-api",
+        "handler": "_cli_api_start_server::retrodeck-api",
         "dev_tool": true
       }
     ],
