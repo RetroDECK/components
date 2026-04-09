@@ -441,7 +441,7 @@ steam_sync() {
   # Collect all favorite entries across all systems
   local -a manifest_entries=()
 
-  for system_path in "$esde_gamelists_dir/"*/; do
+  for system_path in "$esde_gamelists_path/"*/; do
     # Skip the CLEANUP folder and folders with no gamelist
     [[ "$system_path" == *"/CLEANUP/"* ]] && continue
     local gamelist="${system_path}gamelist.xml"

@@ -610,7 +610,7 @@ check_duplicate_gamelist_entry() {
 
   [[ "$path" != ./* ]] && path="./$path"
 
-  local gamelist_file="$esde_gamelists_dir/$system/gamelist.xml"
+  local gamelist_file="$esde_gamelists_path/$system/gamelist.xml"
 
   if [[ ! -f "$gamelist_file" ]]; then
     return 1
@@ -660,7 +660,7 @@ create_gamelist_entry() {
 
   if ! check_duplicate_gamelist_entry "$component" "$entry_key"; then
 
-    local gamelist_dir="$esde_gamelists_dir/$system"
+    local gamelist_dir="$esde_gamelists_path/$system"
     local gamelist_file="$gamelist_dir/gamelist.xml"
 
     mkdir -p "$gamelist_dir"
@@ -798,7 +798,7 @@ remove_gamelist_entry() {
   path=$(jq -r '.gamelist_data.path' <<< "$entry_data")
   [[ "$path" != ./* ]] && path="./$path"
 
-  local gamelist_dir="$esde_gamelists_dir/$system"
+  local gamelist_dir="$esde_gamelists_path/$system"
   local gamelist_file="$gamelist_dir/gamelist.xml"
 
   if [[ ! -f "$gamelist_file" ]]; then
