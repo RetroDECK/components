@@ -65,6 +65,7 @@ _set_setting_value::retrodeck() {
 
 _get_setting_value::retrodeck() {
   # Get a value from the RetroDECK JSON config file.
+  # The section argument may be dot-delimited to address nested objects (e.g., "component_paths.es-de").
   # USAGE: _get_setting_value::retrodeck "$file" "$setting_name" ["$section"]
 
   local file="$1"
@@ -77,8 +78,11 @@ _get_setting_value::retrodeck() {
     jq -r --arg section "$section" --arg setting "$setting_name" \
       '.presets[$section] | .. | objects | select(has($setting)) | .[$setting] // empty' "$file"
   else
-    jq -r --arg section "$section" --arg setting "$setting_name" \
-      '.[$section][$setting] // empty' "$file"
+    local section_parts section_json
+    IFS='.' read -ra section_parts <<< "$section"
+    section_json=$(printf '%s\n' "${section_parts[@]}" | jq -R . | jq -sc .)
+    jq -r --argjson path "$section_json" --arg setting "$setting_name" \
+      'getpath($path + [$setting]) // empty' "$file"
   fi
 }
 
