@@ -14,12 +14,20 @@ _prepare_component::retrodeck-api() {
 
     startup)
       if [[ $(get_component_option "retrodeck-api" "rd_api_enabled") == "true" ]]; then
+        log i "------------------------"
+        log i "Performing RetroDECK API $action actions"
+        log i "------------------------"
+
         retrodeck_api "start"
       fi
     ;;
 
     shutdown)
       if [[ $(get_component_option "retrodeck-api" "rd_api_enabled") == "true" ]]; then
+        log i "------------------------"
+        log i "Performing RetroDECK API $action actions"
+        log i "------------------------"
+        
         retrodeck_api "stop"
       fi
     ;;
