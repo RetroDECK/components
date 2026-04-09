@@ -71,6 +71,14 @@
         "description": "ES-DE screensaver media"
       }
     },
+    "cli_commands": [
+      {
+        "flag": "--generate-esde-diff",
+        "description": "Generate a diff report comparing the RetroDECK-generated ES-DE files and official upstream versions.",
+        "handler": "generate_es_de_diff_report",
+        "dev_tool": true
+      }
+    ],
     "configurator_menus": {
       "data_management": [
         {
