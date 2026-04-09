@@ -113,15 +113,20 @@ start::steam-rom-manager() {
 
 _cli_steam_sync::steam-rom-manager() {
   local mode="${1:-}"
-  if [[ -n "$mode" ]]; then
-    if [[ "$mode" == "purge" ]]; then
-      rd_srm nuke
-      rm -f "$srm_retrodeck_favorites_file"
+
+  if get_steam_user "manual"; then
+    if [[ -n "$mode" ]]; then
+      if [[ "$mode" == "purge" ]]; then
+        start::steam-rom-manager nuke
+        rm -f "$srm_retrodeck_favorites_file"
+      else
+        echo "Unknown argument \"$mode\", please check the CLI help for more information."
+      fi
     else
-      echo "Unknown argument \"$mode\", please check the CLI help for more information."
+      steam_sync
     fi
   else
-    steam_sync
+    echo "Current Steam user could not be determined, cannot proceed."
   fi
   return 0
 }
