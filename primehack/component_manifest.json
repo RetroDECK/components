@@ -13,6 +13,10 @@
       "gc",
       "wii"
     ],
+    "system_friendly_name": [
+      "GameCube",
+      "Wii"
+    ],
     "es_de_config": {
       "es_find_rules": {
         "emulators": [
