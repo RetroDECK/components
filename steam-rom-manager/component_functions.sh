@@ -357,6 +357,13 @@ get_steam_user() {
       log i "Username: $steam_username"
       log i "Name: $steam_prettyname"
 
+      log i "Updating steamDirectory and romDirectory lines in $srm_userdata/userSettings.json"
+      local usersettings_temp=$(mktemp)
+      jq --arg userdata_path "$srm_steam_userdata_current" --arg rd_home_path "$rd_home_path" '
+        .environmentVariables.steamDirectory = $userdata_path |
+        .environmentVariables.romsDirectory = ($rd_home_path + "/.sync")
+      ' "$srm_userdata/userSettings.json" > "$usersettings_temp" && mv -f "$usersettings_temp" "$srm_userdata/userSettings.json"
+
       if ! populate_steamuser_srm; then
         log e "Steam username could not be populated in SRM config files."
         return 1
