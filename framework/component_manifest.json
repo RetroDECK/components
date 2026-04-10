@@ -80,7 +80,14 @@
         {"path": "$saves_path", "follow_symlinks": false},
         {"path": "$states_path", "follow_symlinks": false},
         {"path": "$screenshots_path", "follow_symlinks": false},
-        {"path": "$mods_path", "follow_symlinks": false}
+        {"path": "$videos_path", "follow_symlinks": false},
+        {"path": "$roms_path", "follow_symlinks": false},
+        {"path": "$bios_path", "follow_symlinks": false},
+        {"path": "$shaders_path", "follow_symlinks": false},
+        {"path": "$mods_path", "follow_symlinks": false},
+        {"path": "$texture_packs_path", "follow_symlinks": false},
+        {"path": "$borders_path", "follow_symlinks": false},
+        {"path": "$cheats_path", "follow_symlinks": false},
       ]
     },
     "component_paths": {
