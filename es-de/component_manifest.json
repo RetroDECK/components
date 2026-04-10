@@ -31,7 +31,8 @@
         {"path": "$esde_custom_systems_path"},
         {"path": "$esde_downloaded_media_path"},
         {"path": "$esde_scripts_path"},
-        {"path": "$esde_screensavers_path"}
+        {"path": "$esde_screensavers_path"},
+        {"path": "$esde_themes_path"}
       ]
     },
     "component_paths": {
