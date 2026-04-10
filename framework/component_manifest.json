@@ -253,7 +253,7 @@
           "description": "Manually launch and configure individual components. Advanced Users Only.",
           "priority": 3,
           "command": {
-            "zenity": "configurator_power_user_warning_dialog"
+            "zenity": "configurator_open_component_dialog"
           }
         },
         {
