@@ -50,3 +50,13 @@ if [[ $(check_version_is_older_than "$version_being_updated" "0.10.3b") == "true
 
 fi
 
+if [[ $(check_version_is_older_than "$version_being_updated" "0.10.7b") == "true" ]]; then
+
+  # PPSSPP has added 344 new config lines warranting a RESET
+
+  log i "0.10.7b Upgrade - PPSSPP: Reset"
+
+  prepare_component "reset" "ppsspp"
+
+fi
+

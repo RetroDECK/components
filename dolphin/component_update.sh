@@ -47,6 +47,15 @@ if [[ $(check_version_is_older_than "$version_being_updated" "0.10.0b") == "true
 
 fi
 
+if [[ $(check_version_is_older_than "$version_being_updated" "0.10.7b") == "true" ]]; then
+  log i "0.10.7b Upgrade - Reset - Dolphin add Triforce"
+
+prepare_component "reset" "dolphin"
+create_dir -d "$roms_path/triforce"
+
+fi
+
+
 #######################################
 # These actions happen at every update
 #######################################

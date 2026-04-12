@@ -1632,7 +1632,7 @@
         },
         {
           "filename": "ROM_BASIC_C",
-          "md5": "(Alternative Name) 0bac0c6a50104045d902df4503a4c30b",
+          "md5": "0bac0c6a50104045d902df4503a4c30b",
           "system": "atari5200",
           "description": "Atari BASIC for 800XL/XE/XEGS"
         },
@@ -1925,66 +1925,6 @@
           "system": "fbneo",
           "description": "Neo Geo CDZ BIOS",
           "required": "Required"
-        },
-        {
-          "filename": "neocd_f.rom",
-          "md5": "a5f4a7a627b3083c979f6ebe1fabc5d2df6d083b",
-          "system": "neogeocd",
-          "description": "Neo Geo CD"
-        },
-        {
-          "filename": "neocd_sf.rom",
-          "md5": "4a94719ee5d0e3f2b981498f70efc1b8f1cef325",
-          "system": "neogeocd",
-          "description": "Neo Geo CD"
-        },
-        {
-          "filename": "neocd_t.rom",
-          "md5": "cc92b54a18a8bff6e595aabe8e5c360ba9e62eb5",
-          "system": "neogeocd",
-          "description": "Neo Geo CD"
-        },
-        {
-          "filename": "neocd_st.rom",
-          "md5": "19729b51bdab60c42aafef6e20ea9234c7eb8410",
-          "system": "neogeocd",
-          "description": "Neo Geo CD"
-        },
-        {
-          "filename": "neocd_z.rom",
-          "md5": "b0f1c4fa8d4492a04431805f6537138b842b549f",
-          "system": "neogeocd",
-          "description": "Neo Geo CD"
-        },
-        {
-          "filename": "neocd_sz.rom",
-          "md5": "6a947457031dd3a702a296862446d7485aa89dbb",
-          "system": "neogeocd",
-          "description": "Neo Geo CD"
-        },
-        {
-          "filename": "front-sp1.bin",
-          "md5": "53bc1f283cdf00fa2efbb79f2e36d4c8038d743a",
-          "system": "neogeocd",
-          "description": "Neo Geo CD"
-        },
-        {
-          "filename": "top-sp1.bin",
-          "md5": "235f4d1d74364415910f73c10ae5482d90b4274f",
-          "system": "neogeocd",
-          "description": "Neo Geo CD"
-        },
-        {
-          "filename": "neocd.bin",
-          "md5": "7bb26d1e5d1e930515219cb18bcde5b7b23e2eda",
-          "system": "neogeocd",
-          "description": "Neo Geo CD"
-        },
-        {
-          "filename": "uni-bioscd.rom",
-          "md5": "5142f205912869b673a71480c5828b1eaed782a8",
-          "system": "neogeocd",
-          "description": "Neo Geo CD"
         },
         {
           "filename": "decocass.zip",
@@ -3002,7 +2942,7 @@
         },
         {
           "filename": "Atari Jaguar (World).j64",
-          "md5": "cb492f093cd9e22a913d158741e8f00a",
+          "md5": "bcfe348c565d9dedb173822ee6850dea",
           "system": "atarijaguar",
           "description": "Atari Jaguar"
         },
@@ -3879,14 +3819,14 @@
         },
         {
           "filename": "scummvm.zip",
-          "md5": "a17e0e0150155400d8cced329563d9c8",
+          "md5": "368bdb1816a02640f873310faa9dedf7",
           "system": "scummvm",
           "description": "SCUMMVM Assets",
           "required": "Yes, for RetroArch ScummVM Core"
         },
         {
           "filename": "cpc464.rom",
-          "md5": "a17e0e0150155400d8cced329563d9c8",
+          "md5": "a993f85b88ac4350cf4d41554e87fe4f",
           "system": "amstradcpc",
           "description": "Amstrad CPC 464 BIOS"
         },
@@ -4406,31 +4346,31 @@
         },
         {
           "filename": "nms8250_disk.rom",
-          "md5": "dab3e6f36843392665b71b04178aadd",
+          "md5": "01dd1d72ed9bb6afe8a9b441c198a1cd",
           "system": "msx",
           "description": "Disk ROM for NMS8250 MSX"
         },
         {
           "filename": "nms8250_basic-bios2.rom",
-          "md5": "6103b39f1e38d1aa2d84b1c3219c44f1",
+          "md5": "ec3a01c91f24fbddcbcab0ad301bc9ef",
           "system": "msx",
           "description": "BASIC BIOS v2 for NMS8250"
         },
         {
           "filename": "nms8250_msx2sub.rom",
-          "md5": "5c1f9c7fb655e43d38e5dd1fcc6b942b",
+          "md5": "2183c2aff17cf4297bdb496de78c2e8a",
           "system": "msx",
           "description": "MSX2 Sub BIOS for NMS8250"
         },
         {
           "filename": "fmpac.rom",
-          "md5": "9d789166e3caf28e4742fe933d962e99",
+          "md5": "6f69cc8b5ed761b03afd78000dfb0e19",
           "system": "msx",
           "description": "FMPAC Music/Sound ROM for Yamaha FM-PAC"
         },
         {
           "filename": "phc-70fd2_basickun.rom",
-          "md5": "22b3191d865010264001b9d896186a98",
+          "md5": "2ce20986da024e9a0e271961c6bc9f01",
           "system": "msx",
           "description": "BASIC-Kun ROM for PHC-70FD2"
         },
@@ -4442,164 +4382,164 @@
         },
         {
           "filename": "fs-a1wsx_kanjifont.rom",
-          "md5": "5aff2d9b6efc723bc395b0f96f0adfa8",
+          "md5": "acf53887c2d2783dc059a9b442c86b90",
           "system": "msx",
           "description": "Kanji font ROM for FS-A1WSX MSX2+",
           "required": "Required for some Japanese games."
         },
         {
           "filename": "fs-a1wsx_basic-bios2p.rom",
-          "md5": "f4433752d3bf876bfefb363c749d4d2e",
+          "md5": "c5c26c3e8bc6c485424818057f0507b9",
           "system": "msx",
           "description": "BASIC BIOS 2P for FS-A1WSX MSX2+"
         },
         {
           "filename": "fs-a1wsx_fmbasic.rom",
-          "md5": "aad42ba4289b33d8eed225d42cea930b",
+          "md5": "0c40e7db1c1fcc2405e4d0cdd215adb4",
           "system": "msx",
           "description": "FM-BASIC ROM for FS-A1WSX MSX2+"
         },
         {
           "filename": "fs-a1wsx_msx2psub.rom",
-          "md5": "fe0254cbfc11405b79e7c86c7769bd6",
+          "md5": "7c8243c71d8f143b2531f01afa6a05dc",
           "system": "msx",
           "description": "MSX2+ Sub BIOS for FS-A1WSX"
         },
         {
           "filename": "fs-a1wsx_kanjibasic.rom",
-          "md5": "dcc3a67732aa01c4f2ee8d1ad886444a",
+          "md5": "9dfdebfaa6b547222a40aab8bb2e29f8",
           "system": "msx",
           "description": "Kanji BASIC extension ROM for FS-A1WSX MSX2+"
         },
         {
           "filename": "fs-a1wsx_disk.rom",
-          "md5": "7ed7c55e0359737ac5e68d38cb6903f9",
+          "md5": "00aa02b6077de40a0b51d71a3c3e1d5f",
           "system": "msx",
           "description": "Disk ROM for FS-A1WSX MSX2+"
         },
         {
           "filename": "fs-a1wsx_firmware.rom",
-          "md5": "3330d9b6b76e3c4ccb7cf252496ed15d",
+          "md5": "fa8e7d4b999af058fe2864a5f2e014ec",
           "system": "msx",
           "description": "System firmware for FS-A1WSX MSX2+"
         },
         {
           "filename": "fs-a1gt_firmware.rom",
-          "md5": "e779c338eb91a7dea3ff75f3fde76b8a",
+          "md5": "af17a344bcc177b97a4888c4c559f3ae",
           "system": "msx",
           "description": "TurboR firmware for FS-A1GT"
         },
         {
           "filename": "fs-a1gt_kanjifont.rom",
-          "md5": "5aff2d9b6efc723bc395b0f96f0adfa8",
+          "md5": "acf53887c2d2783dc059a9b442c86b90",
           "system": "msx",
           "description": "Kanji font ROM for FS-A1GT TurboR"
         },
         {
           "filename": "N88.ROM",
-          "md5": "3b31fc68fa7f47b21c1a1cb027b86b9e",
+          "md5": "4f984e04a99d56c4cfe36115415d6eb8",
           "system": "pc8800",
           "description": "Main PC-8800 system BIOS"
         },
         {
           "filename": "N88SUB.ROM",
-          "md5": "bb7103a0818850a039c67ff666a31ce4",
+          "md5": "793f86784e5608352a5d7f03f03e0858",
           "system": "pc8800",
           "description": "PC-8800 disk controller BIOS"
         },
         {
           "filename": "DISK.ROM",
-          "md5": "bb7103a0818850a039c67ff666a31ce4",
+          "md5": "793f86784e5608352a5d7f03f03e0858",
           "system": "pc8800",
           "description": "Alternate name for N88SUB.ROM"
         },
         {
           "filename": "N88N.ROM",
-          "md5": "5b922ed9de07d2a729bdf1da7b57c50d",
+          "md5": "2ff07b8769367321128e03924af668a0",
           "system": "pc8800",
           "description": "PC-8800 N80 BIOS"
         },
         {
           "filename": "N80.ROM",
-          "md5": "5b922ed9de07d2a729bdf1da7b57c50d",
+          "md5": "2ff07b8769367321128e03924af668a0",
           "system": "pc8800",
           "description": "Alternate name for N88N.ROM"
         },
         {
           "filename": "N88EXT0.ROM",
-          "md5": "d239c26ad7ac5efac6e947b0e9549b15",
+          "md5": "d675a2ca186c6efcd6277b835de4c7e5",
           "system": "pc8800",
           "description": "PC-8800 extension ROM 0"
         },
         {
           "filename": "N88_0.ROM",
-          "md5": "d239c26ad7ac5efac6e947b0e9549b15",
+          "md5": "d675a2ca186c6efcd6277b835de4c7e5",
           "system": "pc8800",
           "description": "Alternate name for N88EXT0.ROM"
         },
         {
           "filename": "N88EXT1.ROM",
-          "md5": "8528eef7946edf6501a6ccb1f416b60c",
+          "md5": "e844534dfe5744b381444dbe61ef1b66",
           "system": "pc8800",
           "description": "PC-8800 extension ROM 1"
         },
         {
           "filename": "N88_1.ROM",
-          "md5": "8528eef7946edf6501a6ccb1f416b60c",
+          "md5": "e844534dfe5744b381444dbe61ef1b66",
           "system": "pc8800",
           "description": "Alternate name for N88EXT1.ROM"
         },
         {
           "filename": "N88EXT2.ROM",
-          "md5": "b7c8bcea219b77d9cc3ee0efafe343cc",
+          "md5": "6548fa45061274dee1ea8ae1e9e93910",
           "system": "pc8800",
           "description": "PC-8800 extension ROM 2"
         },
         {
           "filename": "N88_2.ROM",
-          "md5": "b7c8bcea219b77d9cc3ee0efafe343cc",
+          "md5": "6548fa45061274dee1ea8ae1e9e93910",
           "system": "pc8800",
           "description": "Alternate name for N88EXT2.ROM"
         },
         {
           "filename": "N88EXT3.ROM",
-          "md5": "efce0b51cab9f0da6cf68507757f1245",
+          "md5": "fc4b76a402ba501e6ba6de4b3e8b4273",
           "system": "pc8800",
           "description": "PC-8800 extension ROM 3"
         },
         {
           "filename": "N88_3.ROM",
-          "md5": "efce0b51cab9f0da6cf68507757f1245",
+          "md5": "fc4b76a402ba501e6ba6de4b3e8b4273",
           "system": "pc8800",
           "description": "Alternate name for N88EXT3.ROM"
         },
         {
           "filename": "N88KNJ1.ROM",
-          "md5": "82e11a177af6a5091dd67f50a2f4bafd",
+          "md5": "d81c6d5d7ad1a4bbbd6ae22a01257603",
           "system": "pc8800",
           "description": "PC-8800 Kanji font ROM 1"
         },
         {
           "filename": "KANJI1.ROM",
-          "md5": "82e11a177af6a5091dd67f50a2f4bafd",
+          "md5": "d81c6d5d7ad1a4bbbd6ae22a01257603",
           "system": "pc8800",
           "description": "Alternate name N88KNJ1.ROM"
         },
         {
           "filename": "N88KNJ2.ROM",
-          "md5": "7e6591cd465cbb35d6d3446c5a83b46d",
+          "md5": "41d2e2c0c0edfccf76fa1c3e38bc1cf2",
           "system": "pc8800",
           "description": "PC-8800 Kanji font ROM 2 "
         },
         {
           "filename": "N88JISHO.ROM",
-          "md5": "deef0cc2a9734ba891a6d6c022aa70ff",
+          "md5": "2e548679423370262f36cbde38a22789",
           "system": "pc8800",
           "description": "PC-8800 Jisho dictionary ROM - Japanese"
         },
         {
           "filename": "JISYO.ROM",
-          "md5": "deef0cc2a9734ba891a6d6c022aa70ff",
+          "md5": "2e548679423370262f36cbde38a22789",
           "system": "pc8800",
           "description": "Alternate name for N88JISHO.ROM"
         },

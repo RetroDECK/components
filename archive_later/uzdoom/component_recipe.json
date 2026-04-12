@@ -1,24 +1,25 @@
 {
   "uzdoom": [
     {
-      "source_url": "https://github.com/UZDoom/UZDoom/releases/download/{VERSION}/Linux-UZDoom-*.AppImage",
-      "source_type": "github_release",
+      "source_url": "org.zdoom.UZDoom",
+      "source_type": "flatpak_id",
       "version": "$UZDOOM_DESIRED_VERSION",
-      "extraction_type": "appimage",
+      "dest": "user",
+      "extraction_type": "flatpak",
       "assets": [
         {
           "type": "dir",
-          "source": "usr/bin",
+          "source": "bin",
           "dest": "bin"
         },
         {
           "type": "dir",
-          "source": "usr/share/doc/uzdoom/licenses",
+          "source": "share/licenses",
           "dest": "doc"
         },
         {
           "type": "dir",
-          "source": "usr/share/games/uzdoom/",
+          "source": "share/games/uzdoom/",
           "dest": "share/games/uzdoom/"
         },
         {
@@ -70,7 +71,7 @@
       "libs": [
         {
           "library": "libzmusic.so.1",
-          "source": "usr/lib/x86_64-linux-gnu/",
+          "source": "lib",
           "dest": "shared-libs"
         }
       ]

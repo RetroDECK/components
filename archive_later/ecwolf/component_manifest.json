@@ -8,6 +8,115 @@
     "description": "ECWolf is a Wolfenstein 3D engine based of Wolf4SDL",
     "component_type": "Engine",
     "system": "wolf",
-    "system_friendly_name": "ECWolf"
+    "system_friendly_name": "ECWolf",
+    "es_de_config": {
+      "es_find_rules": {
+        "emulators": [
+          {
+            "name": "ECWOLF",
+            "description": "ECWolf is a Wolfenstein 3D engine based of Wolf4SDL",
+            "rules": [
+              {
+                "type": "staticpath",
+                "entries": [
+                  "%COMPONENT_PATH%/component_launcher.sh"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "es_systems": [
+          {
+            "name": "wolf",
+            "fullname": "Wolfenstein 3D",
+            "path": "%ROMPATH%/wolf",
+            "extension": ".wolf",
+            "commands": [
+              {
+                "label": "ECWolf (Standalone)",
+                "command": "%EMULATOR_ECWOLF% %ROM%",
+                "priority": 50
+              }
+            ],
+            "platform": "wolf",
+            "theme": "wolf"
+          }
+      ]
+    },
+    "bios": [
+      {
+        "filename": "AUDIOHED.WL6",
+        "md5": "a41af25a2f193e7d4afbcc4301b3d1ce",
+        "system": "wolf3d",
+        "description": "Audio header file that indexes sound data",
+        "required": "required",
+        "paths": "$roms_path/wolf/*.wolf"
+      },
+      {
+        "filename": "AUDIOT.WL6",
+        "md5": "2385b488b18f8721633e5b2bdf054853",
+        "system": "wolf3d",
+        "description": "Contains digitized sound effects and AdLib audio data",
+        "required": "required",
+        "paths": "$roms_path/wolf/*.wolf"
+      },
+      {
+        "filename": "CONFIG.WL6",
+        "md5": "aa75133df873b660d2058425ca8539b3",
+        "system": "wolf3d",
+        "description": "Stores game configuration settings",
+        "required": "required",
+        "paths": "$roms_path/wolf/*.wolf"
+      },
+      {
+        "filename": "GAMEMAPS.WL6",
+        "md5": "a4e73706e100dc0cadfb02d23de46481",
+        "system": "wolf3d",
+        "description": "Contains all level map data",
+        "required": "required",
+        "paths": "$roms_path/wolf/*.wolf"
+      },
+      {
+        "filename": "MAPHEAD.WL6",
+        "md5": "b8d2a78bc7c50da7ec9ab1d94f7975e1",
+        "system": "wolf3d",
+        "description": "Map header information for level lookup",
+        "required": "required",
+        "paths": "$roms_path/wolf/*.wolf"
+      },
+      {
+        "filename": "VGADICT.WL6",
+        "md5": "dec8939cff5a4ec27ae7b43e8f52ec28",
+        "system": "wolf3d",
+        "description": "VGA graphics dictionary for decompression",
+        "required": "required",
+        "paths": "$roms_path/wolf/*.wolf"
+      },
+      {
+        "filename": "VGAGRAPH.WL6",
+        "md5": "8b40b5b785f898e229bf1c2f2e3ee003",
+        "system": "wolf3d",
+        "description": "Compressed graphics data (sprites, UI, textures)",
+        "required": "required",
+        "paths": "$roms_path/wolf/*.wolf"
+      },
+      {
+        "filename": "VGAHEAD.WL6",
+        "md5": "8e75e3ffb842ed3d08abe6ffea97b231",
+        "system": "wolf3d",
+        "description": "Header for VGA graphics data",
+        "required": "required",
+        "paths": "$roms_path/wolf/*.wolf"
+      },
+      {
+        "filename": "VSAP.WL6",
+        "md5": [ "b8ff4997461bafa5ef2a94c11f9de001", "a6d901dfb455dfac96db5e4705837cdb" ],
+        "system": "wolf3d",
+        "description": "Main asset container (sprites, walls, sounds)",
+        "required": "required",
+        "paths": "$roms_path/wolf/*.wolf"
+      }
+    ]
   }
 }

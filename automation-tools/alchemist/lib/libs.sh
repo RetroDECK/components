@@ -99,6 +99,11 @@ gather_lib() {
     fi
     if [[ ! -e "$EXTRACTED_PATH/$source/$name" ]]; then
       log error "Library $name not found at defined source $EXTRACTED_PATH/$source/$name"
+      local library_basename="${name%%.*}"
+      if [[ $(find "$EXTRACTED_PATH/$source" -iname "$library_basename"* ) ]]; then
+        log info "However, a file with a matching name was found. The source may need to be adjusted in the recipe file."
+        log info $(find "$EXTRACTED_PATH/$source" -iname "$library_basename"*)
+      fi
       return 1
     fi
     final_source="$EXTRACTED_PATH/$source/$lib_basename"
