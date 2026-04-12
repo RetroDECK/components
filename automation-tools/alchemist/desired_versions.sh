@@ -108,8 +108,8 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # Link: https://flathub.org/en/apps/org.mamedev.MAME
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
-# Version: 0.286
- export MAME_DESIRED_VERSION="a5f7ddbc14ffd38bd9bc09f60c73204cf9e64dd361666f0e59b3247eb2c23395"
+# Version: 0.287
+ export MAME_DESIRED_VERSION="3dbe7b7f802da3b0c1628d604bee9925d67174a5efb7e4ae2235266ce2946739"
 
 # COOKER (Override)
 #  export MAME_DESIRED_VERSION="latest"
@@ -147,8 +147,8 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # Link: https://flathub.org/en/apps/net.rpcs3.RPCS3
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
-# Version: 0.0.40-190
-  export RPCS3_DESIRED_VERSION="bbfc8350f2e6e6e2eda3157f264486717ee68fe6f9d238d6ab46901d00c2d958"
+# Version: 0.0.40-191
+  export RPCS3_DESIRED_VERSION="0713512d383febae08dae58b6cc10eeb974d993e80765d94cabe9ee3e83416ca"
 
 # COOKER (Override)
 # export RPCS3_DESIRED_VERSION="latest"
@@ -160,8 +160,8 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # Link: https://flathub.org/en/apps/rs.ruffle.Ruffle
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
-# Version: 0.2.0-nightly.2026.3.12
- export RUFFLE_DESIRED_VERSION="48a57600d24643d7267fe391177882376130654b588abafe1d31437f896b1488"
+# Version: 0.2.0-nightly.2026.4.9
+ export RUFFLE_DESIRED_VERSION="2b9a6e77082e1f8c97d0d39f71a2a2443ea08cc198139b068ec9c765d820378e"
 
 # COOKER (Override)
 # export RUFFLE_DESIRED_VERSION="latest"
@@ -244,7 +244,7 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # Link: https://gitlab.com/solarus-games/solarus/-/releases/
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
-  export SOLARUS_DESIRED_VERSION="v2.0.3"
+  export SOLARUS_DESIRED_VERSION="v2.0.4"
 
 # COOKER (Override)
 # export SOLARUS_DESIRED_VERSION="latest"
@@ -344,7 +344,7 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # Link: https://github.com/RetroDECK/Vita3K-bin/releases
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
-  export VITA3K_DESIRED_VERSION="3936"
+  export VITA3K_DESIRED_VERSION="3949"
 
 # COOKER (Override)
 # export VITA3K_DESIRED_VERSION="latest"
