@@ -74,12 +74,11 @@
     ],
     "backup_data": {
       "core": [
+        {"path": "$XDG_CONFIG_HOME/retrodeck", "follow_symlinks": false},
         {"path": "$saves_path", "follow_symlinks": false},
         {"path": "$states_path", "follow_symlinks": false}
       ],
       "complete": [
-        {"path": "$saves_path", "follow_symlinks": false},
-        {"path": "$states_path", "follow_symlinks": false},
         {"path": "$screenshots_path", "follow_symlinks": false},
         {"path": "$videos_path", "follow_symlinks": false},
         {"path": "$roms_path", "follow_symlinks": false},
