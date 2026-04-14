@@ -18,6 +18,11 @@
     "system": "retroarch",
     "component_type": "Multi-Emulator",
     "system_friendly_name": "Multiple Retro Systems",
+    "backup_data": {
+      "core": [
+        {"path": "$XDG_CONFIG_HOME/retroarch"}
+      ]
+    },
     "es_de_config": {
       "es_find_rules": {
         "emulators": [

@@ -10,6 +10,11 @@
     "url_donation_purchase": "",
     "system_friendly_name": "Playstation 1 (PSX)",
     "system": "psx",
+    "backup_data": {
+      "core": [
+        {"path": "$XDG_CONFIG_HOME/duckstation"}
+      ]
+    },
     "es_de_config": {
       "es_find_rules": {
         "emulators": [

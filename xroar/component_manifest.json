@@ -28,6 +28,11 @@
       "dragon32",
       "tanodragon"
     ],
+    "backup_data": {
+      "core": [
+        {"path": "$XDG_CONFIG_HOME/xroar"}
+      ]
+    },
     "es_de_config": {
       "es_find_rules": {
         "emulators": [
