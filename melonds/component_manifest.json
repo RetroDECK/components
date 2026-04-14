@@ -4,6 +4,7 @@
     "name": "melonDS",
     "core_framework_compatibility": "1",
     "component_version": "1.0.0",
+    "capabilities": ["reset","open"],
     "component_type": "Emulator",
     "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/melonds/melonds-guide/",
     "url_webpage": "https://melonds.kuribo64.net/",

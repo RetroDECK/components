@@ -3,6 +3,7 @@
     "name": "RetroDECK",
     "description": "RetroDECK Framework",
     "core_framework_version": 1,
+    "capabilities": ["reset"],
     "prepare_priority": {
       "reset": 0,
       "postmove" :0,

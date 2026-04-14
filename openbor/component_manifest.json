@@ -3,6 +3,7 @@
     "name": "OpenBOR",
     "core_framework_compatibility": "1",
     "component_version": "1.0.0",
+    "capabilities": ["reset","open"],
     "description": "OpenBOR is a engine for playing side-scrolling beat em up games.",
     "component_type": "Engine",
     "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_engine_guides/openbor/openbor-guide/",

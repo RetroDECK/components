@@ -3,6 +3,7 @@
     "name": "PCSX2",
     "core_framework_compatibility": "1",
     "component_version": "1.0.0",
+    "capabilities": ["reset","open"],
     "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/pcsx2/pcsx2-guide/",
     "url_webpage": "https://pcsx2.net/",
     "url_donation_purchase": "",
