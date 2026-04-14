@@ -3,6 +3,7 @@
     "name": "PrimeHack",
     "core_framework_compatibility": "1",
     "component_version": "1.0.0",
+    "capabilities": ["reset","open"],
     "description": "PrimeHack is a modified fork of Dolphin for playing Metroid Prime with modern controls.",
     "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/dolphin-primehack/dolphin-primehack-guide/",
     "url_webpage": "https://github.com/shiiion/dolphin/wiki/",

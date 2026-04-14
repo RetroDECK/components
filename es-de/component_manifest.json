@@ -4,6 +4,7 @@
     "name": "ES-DE",
     "core_framework_compatibility": "1",
     "component_version": "1.0.0",
+    "capabilities": ["reset"],
     "component_type": "System",
     "prepare_priority": {
       "reset": 10,

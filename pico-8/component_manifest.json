@@ -3,6 +3,7 @@
     "name": "PICO-8",
     "core_framework_compatibility": "1",
     "component_version": "1.0.0",
+    "capabilities": ["reset","open"],
     "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/pico-8/pico-8-guide/",
     "url_webpage": "https://www.lexaloffle.com/pico-8.php",
     "url_donation_purchase": "",

@@ -3,6 +3,7 @@
     "name": "Ruffle",
     "core_framework_compatibility": "1",
     "component_version": "1.0.0",
+    "capabilities": ["reset","open"],
     "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/ruffle/ruffle-guide/",
     "url_webpage": "https://ruffle.rs/",
     "url_donation_purchase": "https://opencollective.com/ruffle",

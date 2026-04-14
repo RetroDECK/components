@@ -3,6 +3,7 @@
     "name": "RPCS3",
     "core_framework_compatibility": "1",
     "component_version": "1.0.0",
+    "capabilities": ["reset","open"],
     "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/rpcs3/rpcs3-guide/",
     "url_webpage": "https://rpcs3.net/",
     "url_donation_purchase": [

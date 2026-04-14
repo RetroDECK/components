@@ -3,6 +3,7 @@
     "name": "Duckstation (Legacy)",
     "core_framework_compatibility": "1",
     "component_version": "1.0.0",
+    "capabilities": ["reset","open"],
     "description": "Duckstation is a Playstation 1 (psx) emulator.",
     "component_type": "Emulator",
     "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/duckstation/duckstation-guide/",
