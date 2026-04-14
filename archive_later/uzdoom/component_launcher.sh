@@ -7,7 +7,7 @@ component_path="$(cd "$(dirname "${BASH_SOURCE[0]}" )" && pwd)"
 export LD_LIBRARY_PATH="$rd_shared_libs:${DEFAULT_LD_LIBRARY_PATH}"
 export QT_PLUGIN_PATH="${QT_PLUGIN_PATH}"
 export QT_QPA_PLATFORM_PLUGIN_PATH="${QT_QPA_PLATFORM_PLUGIN_PATH}"
-export DOOMWADDIR="$component_path/share/games/doom"
+export DOOMWADDIR="$component_path/share/games/uzdoom"
 
 log i "RetroDECK is now launching $component_name"
 log d "Library path is: $LD_LIBRARY_PATH"
