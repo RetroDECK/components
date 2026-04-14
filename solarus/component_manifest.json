@@ -12,6 +12,11 @@
     "component_type": "Engine",
     "system_friendly_name": "Solarus Game Engine",
     "system": "solarus",
+    "backup_data": {
+      "core": [
+        {"path": "$XDG_CONFIG_HOME/solarus"}
+      ]
+    },
     "es_de_config": {
       "es_find_rules": {
         "emulators": [

@@ -12,6 +12,12 @@
     "system_friendly_name": "Nintendo 3DS",
     "component_type": "Emulator",
     "system": "n3ds",
+    "backup_data": {
+      "core": [
+        {"path": "$XDG_CONFIG_HOME/azahar-emu"},
+        {"path": "$XDG_DATA_HOME/azahar-emu"}
+      ]
+    },
     "es_de_config": {
       "es_find_rules": {
         "emulators": [

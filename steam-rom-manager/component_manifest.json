@@ -15,6 +15,11 @@
     "url_source": "https://github.com/SteamGridDB/steam-rom-manager",
     "description": "Steam Rom Manager (SRM) is a system that adds games to your Steam library.",
     "component_type": "System",
+    "backup_data": {
+      "core": [
+        {"path": "$XDG_CONFIG_HOME/steam-rom-manager"}
+      ]
+    },
     "component_options": {
       "steam_sync": "false"
     },

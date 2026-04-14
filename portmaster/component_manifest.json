@@ -15,6 +15,11 @@
     "system_friendly_name": "PortMaster",
     "component_type": "System",
     "system": "portmaster",
+    "backup_data": {
+      "core": [
+        {"path": "$XDG_DATA_HOME/PortMaster"}
+      ]
+    },
     "component_options": {
       "portmaster_reload_esde": "true",
       "portmaster_show": "true"

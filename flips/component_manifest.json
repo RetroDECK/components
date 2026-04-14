@@ -10,6 +10,11 @@
     "url_source": "https://github.com/Alcaro/Flips",
     "description": "Floating IPS patcher (or Flips) is a system for patching .ips and .bps files.",
     "component_type": "System",
-    "system_friendly_name": "Floating IPS patcher (Flips)"
+    "system_friendly_name": "Floating IPS patcher (Flips)",
+    "backup_data": {
+      "core": [
+        {"path": "$XDG_CONFIG_HOME/flips"}
+      ]
+    }
   }
 }

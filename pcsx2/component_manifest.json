@@ -12,6 +12,11 @@
     "component_type": "Emulator",
     "system_friendly_name": "PlayStation 2",
     "system": "ps2",
+    "backup_data": {
+      "core": [
+        {"path": "$XDG_CONFIG_HOME/PCSX2"}
+      ]
+    },
     "es_de_config": {
       "es_find_rules": {
         "emulators": [

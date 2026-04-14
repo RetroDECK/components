@@ -21,6 +21,7 @@
     },
     "backup_data": {
       "core": [
+        {"path": "$XDG_CONFIG_HOME/ES-DE"},
         {"path": "$esde_gamelists_path"},
         {"path": "$esde_collections_path"},
         {"path": "$esde_custom_systems_path"},

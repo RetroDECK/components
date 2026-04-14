@@ -12,6 +12,12 @@
     "component_type": "Emulator",
     "system_friendly_name": "Xbox",
     "system": "xbox",
+    "backup_data": {
+      "core": [
+        {"path": "$XDG_CONFIG_HOME/xemu"},
+        {"path": "$XDG_DATA_HOME/xemu"}
+      ]
+    },
     "es_de_config": {
       "es_find_rules": {
         "emulators": [

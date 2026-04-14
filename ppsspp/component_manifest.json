@@ -12,6 +12,11 @@
     "component_type": "Emulator",
     "system": "psp",
     "system_friendly_name": "Playstation Portable",
+    "backup_data": {
+      "core": [
+        {"path": "$XDG_CONFIG_HOME/ppsspp"}
+      ]
+    },
     "es_de_config": {
       "es_find_rules": {
         "emulators": [

@@ -12,6 +12,12 @@
     "system": "wiiu",
     "component_type": "Emulator",
     "system_friendly_name": "Wii U",
+    "backup_data": {
+      "core": [
+        {"path": "$XDG_CONFIG_HOME/Cemu"},
+        {"path": "$XDG_DATA_HOME/Cemu"}
+      ]
+    },
     "es_de_config": {
       "es_find_rules": {
         "emulators": [

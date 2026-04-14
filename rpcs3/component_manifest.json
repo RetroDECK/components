@@ -15,6 +15,11 @@
     "system_friendly_name": "PlayStation 3",
     "component_type": "Emulator",
     "system": "ps3",
+    "backup_data": {
+      "core": [
+        {"path": "$XDG_CONFIG_HOME/rpcs3"}
+      ]
+    },
     "es_de_config": {
       "es_find_rules": {
         "emulators": [

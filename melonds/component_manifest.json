@@ -15,6 +15,11 @@
     "url_source": "https://github.com/melonDS-emu/melonDS",
     "system_friendly_name": "Nintendo DS",
     "system": "nds",
+    "backup_data": {
+      "core": [
+        {"path": "$XDG_CONFIG_HOME/melonDS"}
+      ]
+    },
     "es_de_config": {
       "es_find_rules": {
         "emulators": [

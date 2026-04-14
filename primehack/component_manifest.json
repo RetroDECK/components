@@ -18,6 +18,12 @@
       "GameCube",
       "Wii"
     ],
+    "backup_data": {
+      "core": [
+        {"path": "$XDG_CONFIG_HOME/primehack"},
+        {"path": "$XDG_DATA_HOME/primehack"}
+      ]
+    },
     "es_de_config": {
       "es_find_rules": {
         "emulators": [

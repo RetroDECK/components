@@ -18,6 +18,12 @@
       "GameCube",
       "Wii"
     ],
+    "backup_data": {
+      "core": [
+        {"path": "$XDG_CONFIG_HOME/dolphin-emu"},
+        {"path": "$XDG_DATA_HOME/dolphin-emu"}
+      ]
+    },
     "es_de_config": {
       "es_find_rules": {
         "emulators": [

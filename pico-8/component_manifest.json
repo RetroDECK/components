@@ -11,6 +11,11 @@
     "system_friendly_name": "PICO-8 Fantasy Console",
     "component_type": "Emulator",
     "system": "pico8",
+    "backup_data": {
+      "core": [
+        {"path": "$XDG_CONFIG_HOME/pico-8"}
+      ]
+    },
     "component_options": {
       "splore_visible": "false"
     },
