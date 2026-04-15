@@ -92,11 +92,9 @@
         {
           "enabled_states": ["true"],
           "setting_name": "cheevos_token",
-          "action": "change",
+          "action": "add",
           "new_setting_value": "$cheevos_token",
-          "section": "",
-          "target_file": "$ppsspp_retroachievements_dat",
-          "defaults_file": "$ppsspp_rd_config_dir/ppsspp_retroachievements.dat"
+          "target_file": "$ppsspp_retroachievements_dat"
         }
       ],
       "cheevos_hardcore": [
