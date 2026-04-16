@@ -2,7 +2,7 @@
   "retrodeck-api": {
     "name": "RetroDECK API",
     "description": "RetroDECK API",
-    "core_framework_version": 1,
+    "core_framework_compatibility": "1",
     "component_options": {
       "rd_api_enabled": "false"
     },
