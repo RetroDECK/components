@@ -95,11 +95,11 @@
     },
     "helper_files": [
       {
-        "filename": "es_find_rules.xml",
+        "filename": "es_find_rules_template.xml",
         "location": "$esde_custom_systems_path"
       },
       {
-        "filename": "es_systems.xml",
+        "filename": "es_systems_template.xml",
         "location": "$esde_custom_systems_path"
       }
     ],
