@@ -308,14 +308,17 @@ get_steam_user() {
   local mode="${1:-}"
   local current_steam_sync_setting="$(get_component_option "steam-rom-manager" "steam_sync")"
   if [[ "$current_steam_sync_setting" != "false" || "$mode" =~ (get_type|manual) ]]; then # Only grab Steam information if Steam Sync is enabled or if otherwise overridden
+    local srm_rd_manifest_target
     if [[ "$current_steam_sync_setting" == "native" ]]; then
       export srm_steam_userdata_current="$srm_steam_userdata_native"
+      srm_rd_manifest_target="flatpak"
       if [[ "$mode" == "get_type" ]]; then
         echo "$current_steam_sync_setting"
         return 0
       fi
     elif [[ "$current_steam_sync_setting" == "flatpak" ]]; then
       export srm_steam_userdata_current="$srm_steam_userdata_flatpak"
+      srm_rd_manifest_target="flatpak-spawn --host"
       if [[ "$mode" == "get_type" ]]; then
         echo "$current_steam_sync_setting"
         return 0
@@ -368,6 +371,12 @@ get_steam_user() {
         .environmentVariables.steamDirectory = $userdata_path |
         .environmentVariables.romsDirectory = ($rd_home_path + "/.sync")
       ' "$srm_userdata/userSettings.json" > "$usersettings_temp" && mv -f "$usersettings_temp" "$srm_userdata/userSettings.json"
+
+      log i "Updating launch target in $srm_userdata/manifests/RetroDECK.json"
+      local srm_rd_manifest_temp=$(mktemp)
+      jq --arg target "$srm_rd_manifest_target" '
+        .target = $target
+      ' "$srm_userdata/manifests/RetroDECK.json" > "$srm_rd_manifest_temp" && mv -f "$srm_rd_manifest_temp" "$srm_userdata/manifests/RetroDECK.json"
 
       if ! populate_steamuser_srm; then
         log e "Steam username could not be populated in SRM config files."
