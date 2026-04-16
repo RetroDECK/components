@@ -68,7 +68,7 @@ _prepare_component::vita3k() {
 
 update_vita3k_firmware() {
   if check_network_connectivity; then
-    configurator_generic_dialog "RetroDECK Configurator - Install: Vita3K firmware" "This tool will download the <span foreground='$purple'><b>firmware required by Vita3K</b></span>.\n\nThe process may take several minutes"
+    configurator_generic_dialog "RetroDECK Configurator - Install: Vita3K firmware" "This tool will download the <span foreground='$purple'><b>firmware required by Vita3K</b></span>.\n\nThe process may take several minutes."
 
     local progress_pipe
     progress_pipe=$(mktemp -u)
@@ -95,6 +95,7 @@ update_vita3k_firmware() {
     exec {progress_fd}>&-
     wait "$zenity_pid" 2>/dev/null
     rm -f "$progress_pipe"
+    configurator_generic_dialog "RetroDECK Configurator - Install: Vita3K firmware" "The Vita3K firmware install process is complete."
   else
     configurator_generic_dialog "RetroDECK Configurator - Warning: Install Vita3K Firmware - No Internet" "Warning: You do not appear to currently have Internet access, which is required by this tool.\n\nPlease try again when network access has been restored."
   fi
