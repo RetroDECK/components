@@ -2042,18 +2042,18 @@
           "extension": ".7z .app .bin .nds .zip",
           "commands": [
             {
+              "label": "melonDS DS",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/melondsds_libretro.so %ROM%",
+              "priority": 10
+            },
+            {
               "label": "DeSmuME",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/desmume_libretro.so %ROM%",
-              "priority": 10
+              "priority": 20
             },
             {
               "label": "DeSmuME 2015",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/desmume2015_libretro.so %ROM%",
-              "priority": 20
-            },
-            {
-              "label": "melonDS DS",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/melondsds_libretro.so %ROM%",
               "priority": 30
             },
             {
