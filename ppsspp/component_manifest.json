@@ -91,8 +91,7 @@
         },
         {
           "enabled_states": ["true"],
-          "setting_name": "cheevos_token",
-          "action": "add",
+          "action": "raw_write",
           "new_setting_value": "$cheevos_token",
           "target_file": "$ppsspp_retroachievements_dat"
         }
