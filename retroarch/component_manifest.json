@@ -3534,6 +3534,7 @@
         "abxy_button_swap": ["false", "true"]
       },
       "mesen_libretro": {
+        "borders": ["false", "true"],
         "abxy_button_swap": ["false", "true"]
       },
       "swanstation_libretro": {
@@ -3702,6 +3703,48 @@
       },
       "mesen_libretro": {
         "config_file_format": "retroarch",
+        "borders": [
+          {
+            "enabled_states": [
+              "true"
+            ],
+            "setting_name": "input_overlay",
+            "action": "add",
+            "new_setting_value": "/var/config/retroarch/overlays/borders/pegasus/nes.cfg",
+            "target_file": "/var/config/retroarch/config/Mesen/nes.cfg",
+            "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
+          },
+          {
+            "enabled_states": [
+              "true"
+            ],
+            "setting_name": "input_overlay_aspect_adjust_landscape",
+            "action": "add",
+            "new_setting_value": "ar_adjust:0.005000",
+            "target_file": "/var/config/retroarch/config/Mesen/nes.cfg",
+            "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
+          },
+          {
+            "enabled_states": [
+              "true"
+            ],
+            "setting_name": "input_overlay_scale_landscape",
+            "action": "add",
+            "new_setting_value": "overlay_scale:1.060000",
+            "target_file": "/var/config/retroarch/config/Mesen/nes.cfg",
+            "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
+          },
+          {
+            "enabled_states": [
+              "true"
+            ],
+            "setting_name": "input_overlay_enable",
+            "action": "add",
+            "new_setting_value": "true",
+            "target_file": "/var/config/retroarch/config/Mesen/nes.cfg",
+            "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
+          }
+        ],
         "abxy_button_swap": [
           {
             "enabled_states": [
