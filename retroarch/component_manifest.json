@@ -3890,60 +3890,10 @@
             "enabled_states": [
               "true"
             ],
-            "setting_name": "aspect_ratio_index",
-            "action": "add",
-            "new_setting_value": "23",
-            "target_file": "/var/config/retroarch/config/Genesis Plus GX/gg.cfg",
-            "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
-          },
-          {
-            "enabled_states": [
-              "true"
-            ],
-            "setting_name": "custom_viewport_height",
-            "action": "add",
-            "new_setting_value": "960",
-            "target_file": "/var/config/retroarch/config/Genesis Plus GX/gg.cfg",
-            "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
-          },
-          {
-            "enabled_states": [
-              "true"
-            ],
-            "setting_name": "custom_viewport_width",
-            "action": "add",
-            "new_setting_value": "720",
-            "target_file": "/var/config/retroarch/config/Genesis Plus GX/gg.cfg",
-            "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
-          },
-          {
-            "enabled_states": [
-              "true"
-            ],
-            "setting_name": "custom_viewport_x",
-            "action": "add",
-            "new_setting_value": "160",
-            "target_file": "/var/config/retroarch/config/Genesis Plus GX/gg.cfg",
-            "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
-          },
-          {
-            "enabled_states": [
-              "true"
-            ],
-            "setting_name": "custom_viewport_y",
-            "action": "add",
-            "new_setting_value": "24",
-            "target_file": "/var/config/retroarch/config/Genesis Plus GX/gg.cfg",
-            "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
-          },
-          {
-            "enabled_states": [
-              "true"
-            ],
             "setting_name": "input_overlay",
             "action": "add",
             "new_setting_value": "/var/config/retroarch/overlays/borders/pegasus/gg.cfg",
-            "target_file": "/var/config/retroarch/config/Genesis Plus GX/gg.cfg",
+            "target_file": "/var/config/retroarch/config/Genesis Plus GX/gamegear.cfg",
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           },
           {
@@ -3952,8 +3902,8 @@
             ],
             "setting_name": "input_overlay_aspect_adjust_landscape",
             "action": "add",
-            "new_setting_value": "0.110000",
-            "target_file": "/var/config/retroarch/config/Genesis Plus GX/gg.cfg",
+            "new_setting_value": "ar_adjust:0.110000",
+            "target_file": "/var/config/retroarch/config/Genesis Plus GX/gamegear.cfg",
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           },
           {
@@ -3963,7 +3913,7 @@
             "setting_name": "input_overlay_enable",
             "action": "add",
             "new_setting_value": "true",
-            "target_file": "/var/config/retroarch/config/Genesis Plus GX/gg.cfg",
+            "target_file": "/var/config/retroarch/config/Genesis Plus GX/gamegear.cfg",
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           },
           {
@@ -3972,18 +3922,8 @@
             ],
             "setting_name": "input_overlay_scale_landscape",
             "action": "add",
-            "new_setting_value": "1.350000",
-            "target_file": "/var/config/retroarch/config/Genesis Plus GX/gg.cfg",
-            "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
-          },
-          {
-            "enabled_states": [
-              "true"
-            ],
-            "setting_name": "input_overlay_y_offset_landscape",
-            "action": "add",
-            "new_setting_value": "0.020000",
-            "target_file": "/var/config/retroarch/config/Genesis Plus GX/gg.cfg",
+            "new_setting_value": "overlay_scale:1.495000",
+            "target_file": "/var/config/retroarch/config/Genesis Plus GX/gamegear.cfg",
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           }
         ],
