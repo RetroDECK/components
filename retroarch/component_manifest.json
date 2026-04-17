@@ -3662,7 +3662,7 @@
             "enabled_states": [
               "true"
             ],
-            "setting_name": "input_player1_a_btn",
+            "setting_name": "input_player1_btn_a",
             "action": "add",
             "new_setting_value": "0",
             "target_file": "/var/config/retroarch/config/remaps/Snes9x/snes.rmp",
@@ -3672,7 +3672,7 @@
             "enabled_states": [
               "true"
             ],
-            "setting_name": "input_player1_b_btn",
+            "setting_name": "input_player1_btn_b",
             "action": "add",
             "new_setting_value": "8",
             "target_file": "/var/config/retroarch/config/remaps/Snes9x/snes.rmp",
@@ -3682,7 +3682,7 @@
             "enabled_states": [
               "true"
             ],
-            "setting_name": "input_player1_x_btn",
+            "setting_name": "input_player1_btn_x",
             "action": "add",
             "new_setting_value": "1",
             "target_file": "/var/config/retroarch/config/remaps/Snes9x/snes.rmp",
@@ -3692,7 +3692,7 @@
             "enabled_states": [
               "true"
             ],
-            "setting_name": "input_player1_y_btn",
+            "setting_name": "input_player1_btn_y",
             "action": "add",
             "new_setting_value": "9",
             "target_file": "/var/config/retroarch/config/remaps/Snes9x/snes.rmp",
@@ -3707,7 +3707,7 @@
             "enabled_states": [
               "true"
             ],
-            "setting_name": "input_player1_a_btn",
+            "setting_name": "input_player1_btn_a",
             "action": "add",
             "new_setting_value": "0",
             "target_file": "/var/config/retroarch/config/remaps/Mesen/nes.rmp",
@@ -3717,7 +3717,7 @@
             "enabled_states": [
               "true"
             ],
-            "setting_name": "input_player1_b_btn",
+            "setting_name": "input_player1_btn_b",
             "action": "add",
             "new_setting_value": "8",
             "target_file": "/var/config/retroarch/config/remaps/Mesen/nes.rmp",
@@ -3776,7 +3776,7 @@
             "enabled_states": [
               "true"
             ],
-            "setting_name": "input_player1_a_btn",
+            "setting_name": "input_player1_btn_a",
             "action": "add",
             "new_setting_value": "0",
             "target_file": "/var/config/retroarch/config/remaps/Mupen64Plus-Next/n64.rmp",
@@ -3786,7 +3786,7 @@
             "enabled_states": [
               "true"
             ],
-            "setting_name": "input_player1_b_btn",
+            "setting_name": "input_player1_btn_b",
             "action": "add",
             "new_setting_value": "8",
             "target_file": "/var/config/retroarch/config/remaps/Mupen64Plus-Next/n64.rmp",
@@ -3796,7 +3796,7 @@
             "enabled_states": [
               "true"
             ],
-            "setting_name": "input_player1_x_btn",
+            "setting_name": "input_player1_btn_x",
             "action": "add",
             "new_setting_value": "1",
             "target_file": "/var/config/retroarch/config/remaps/Mupen64Plus-Next/n64.rmp",
@@ -3806,7 +3806,7 @@
             "enabled_states": [
               "true"
             ],
-            "setting_name": "input_player1_y_btn",
+            "setting_name": "input_player1_btn_y",
             "action": "add",
             "new_setting_value": "9",
             "target_file": "/var/config/retroarch/config/remaps/Mupen64Plus-Next/n64.rmp",
@@ -4121,7 +4121,7 @@
             "enabled_states": [
               "true"
             ],
-            "setting_name": "input_player1_a_btn",
+            "setting_name": "input_player1_btn_a",
             "action": "add",
             "new_setting_value": "0",
             "target_file": "/var/config/retroarch/config/remaps/Gambatte/gb.rmp",
@@ -4131,7 +4131,7 @@
             "enabled_states": [
               "true"
             ],
-            "setting_name": "input_player1_b_btn",
+            "setting_name": "input_player1_btn_b",
             "action": "add",
             "new_setting_value": "8",
             "target_file": "/var/config/retroarch/config/remaps/Gambatte/gb.rmp",
@@ -4141,7 +4141,7 @@
             "enabled_states": [
               "true"
             ],
-            "setting_name": "input_player1_x_btn",
+            "setting_name": "input_player1_btn_x",
             "action": "add",
             "new_setting_value": "1",
             "target_file": "/var/config/retroarch/config/remaps/Gambatte/gb.rmp",
@@ -4151,7 +4151,7 @@
             "enabled_states": [
               "true"
             ],
-            "setting_name": "input_player1_y_btn",
+            "setting_name": "input_player1_btn_y",
             "action": "add",
             "new_setting_value": "9",
             "target_file": "/var/config/retroarch/config/remaps/Gambatte/gb.rmp",
@@ -4280,7 +4280,7 @@
             "enabled_states": [
               "true"
             ],
-            "setting_name": "input_player1_a_btn",
+            "setting_name": "input_player1_btn_a",
             "action": "add",
             "new_setting_value": "0",
             "target_file": "/var/config/retroarch/config/remaps/Gambatte/gbc.rmp",
@@ -4290,7 +4290,7 @@
             "enabled_states": [
               "true"
             ],
-            "setting_name": "input_player1_b_btn",
+            "setting_name": "input_player1_btn_b",
             "action": "add",
             "new_setting_value": "8",
             "target_file": "/var/config/retroarch/config/remaps/Gambatte/gbc.rmp",
@@ -4300,7 +4300,7 @@
             "enabled_states": [
               "true"
             ],
-            "setting_name": "input_player1_x_btn",
+            "setting_name": "input_player1_btn_x",
             "action": "add",
             "new_setting_value": "1",
             "target_file": "/var/config/retroarch/config/remaps/Gambatte/gbc.rmp",
@@ -4310,7 +4310,7 @@
             "enabled_states": [
               "true"
             ],
-            "setting_name": "input_player1_y_btn",
+            "setting_name": "input_player1_btn_y",
             "action": "add",
             "new_setting_value": "9",
             "target_file": "/var/config/retroarch/config/remaps/Gambatte/gbc.rmp",
@@ -4439,7 +4439,7 @@
             "enabled_states": [
               "true"
             ],
-            "setting_name": "input_player1_a_btn",
+            "setting_name": "input_player1_btn_a",
             "action": "add",
             "new_setting_value": "0",
             "target_file": "/var/config/retroarch/config/remaps/mGBA/gba.rmp",
@@ -4449,7 +4449,7 @@
             "enabled_states": [
               "true"
             ],
-            "setting_name": "input_player1_b_btn",
+            "setting_name": "input_player1_btn_b",
             "action": "add",
             "new_setting_value": "8",
             "target_file": "/var/config/retroarch/config/remaps/mGBA/gba.rmp",
@@ -4459,7 +4459,7 @@
             "enabled_states": [
               "true"
             ],
-            "setting_name": "input_player1_x_btn",
+            "setting_name": "input_player1_btn_x",
             "action": "add",
             "new_setting_value": "1",
             "target_file": "/var/config/retroarch/config/remaps/mGBA/gba.rmp",
@@ -4469,7 +4469,7 @@
             "enabled_states": [
               "true"
             ],
-            "setting_name": "input_player1_y_btn",
+            "setting_name": "input_player1_btn_y",
             "action": "add",
             "new_setting_value": "9",
             "target_file": "/var/config/retroarch/config/remaps/mGBA/gba.rmp",
