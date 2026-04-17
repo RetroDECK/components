@@ -3787,7 +3787,7 @@
             ],
             "setting_name": "input_overlay_aspect_adjust_landscape",
             "action": "add",
-            "new_setting_value": "0.145000",
+            "new_setting_value": "ar_adjust:0.085000",
             "target_file": "/var/config/retroarch/config/Mupen64Plus-Next/n64.cfg",
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           },
@@ -3798,6 +3798,16 @@
             "setting_name": "input_overlay_enable",
             "action": "add",
             "new_setting_value": "true",
+            "target_file": "/var/config/retroarch/config/Mupen64Plus-Next/n64.cfg",
+            "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
+          },
+          {
+            "enabled_states": [
+              "true"
+            ],
+            "setting_name": "input_overlay_scale_landscape",
+            "action": "add",
+            "new_setting_value": "overlay_scale:1.055000",
             "target_file": "/var/config/retroarch/config/Mupen64Plus-Next/n64.cfg",
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           }
