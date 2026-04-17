@@ -3608,7 +3608,7 @@
             ],
             "setting_name": "input_overlay_aspect_adjust_landscape",
             "action": "add",
-            "new_setting_value": "0.305000",
+            "new_setting_value": "ar_adjust:0.295000",
             "target_file": "/var/config/retroarch/config/Snes9x/snes.cfg",
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           },
@@ -3618,7 +3618,7 @@
             ],
             "setting_name": "input_overlay_scale_landscape",
             "action": "add",
-            "new_setting_value": "1.050000",
+            "new_setting_value": "overlay_scale:1.060000",
             "target_file": "/var/config/retroarch/config/Snes9x/snes.cfg",
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           },
