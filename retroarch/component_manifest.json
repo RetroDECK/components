@@ -4286,7 +4286,7 @@
             ],
             "setting_name": "input_overlay_aspect_adjust_landscape",
             "action": "add",
-            "new_setting_value": "0.120000",
+            "new_setting_value": "ar_adjust:0.110000",
             "target_file": "/var/config/retroarch/config/SwanStation/psx.cfg",
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           },
@@ -4296,7 +4296,7 @@
             ],
             "setting_name": "input_overlay_scale_landscape",
             "action": "add",
-            "new_setting_value": "1.040000",
+            "new_setting_value": "overlay_scale:1.055000",
             "target_file": "/var/config/retroarch/config/SwanStation/psx.cfg",
             "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
           },
