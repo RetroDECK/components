@@ -379,6 +379,13 @@ export XENIA_EDGE_VERSION_POLICY="newest"
 # ------------------------------------------------------------------------------
 export ZESARUX_VERSION_POLICY="latest"
 
+# ------------------------------------------------------------------------------
+# Satellaview - Super Famicom Add-on
+# ------------------------------------------------------------------------------
+export SATELLAVIEW_VERSION_POLICY="V5"
+export SATELLAVIEW_SNES9X_VERSION_POLICY="latest"
+
+
 
 
 # ==============================================================================

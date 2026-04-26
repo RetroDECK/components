@@ -1,0 +1,85 @@
+{
+  "satellaview": [
+    {
+      "source_url": "https://satellaview-plus.com/client/linux-x64/Satellaview+_{VERSION}.AppImage",
+      "source_type": "http",
+      "version": "$SATELLAVIEW_DESIRED_VERSION",
+      "extraction_type": "appimage",
+      "assets": [
+        {
+          "type": "file",
+          "source": "AppRun",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "AppRun.env",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "dir",
+          "source": "lib",
+          "dest": "lib"
+        },
+        {
+          "type": "dir",
+          "source": "runtime",
+          "dest": "runtime"
+        },
+        {
+          "type": "file",
+          "source": "SatellaviewPlusV5.png",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "dir",
+          "source": "usr",
+          "dest": "usr"
+        },
+        {
+          "type": "dir",
+          "source": "$PWD",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "dir",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/rd_assets/rd_config",
+          "dest": "rd_config"
+        },
+        {
+          "type": "file",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/component_launcher.sh",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        }
+      ]
+    },
+    {
+      "source_url": "https://github.com/snes9xgit/snes9x/releases/download/{VERSION}/Snes9x-{VERSION}-x86_64.AppImage",
+      "version": "$SATELLAVIEW_SNES9X_VERSION",
+      "source_type": "github-release",
+      "extraction_type": "appimage",
+      "assets": [
+        {
+          "type": "dir",
+          "source": "usr/bin",
+          "dest": "bin"
+        },
+        {
+          "type": "dir",
+          "source": "usr/lib",
+          "dest": "lib"
+        },
+        {
+          "type": "dir",
+          "source": "usr/share",
+          "dest": "share"
+        },
+        {
+          "type": "dir",
+          "source": "$PWD",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        }
+      ]
+    }
+  ]
+}

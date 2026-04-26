@@ -1,0 +1,68 @@
+{
+  "satellaview": {
+    "name": "Satellaview+",
+    "core_framework_compatibility": "1",
+    "component_version": "5.0.0",
+    "capabilities": ["reset","open"],
+    "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/satellaview/satellaview-guide/",
+    "url_webpage": "https://satellaviewplus.github.io",
+    "url_donation_purchase": "",
+    "url_source": "https://github.com/SatellaviewPlus/Satellaview-",
+    "description": "Satellaview+ Satellaview+ is the revival service to St. Giga's sattelite service, Satellaview, which allows you to play special Satellaview games, read magazines, and more!.",
+    "system_friendly_name": "Satellaview+",
+    "component_type": "Emulator",
+    "system": "satellaview",
+    "backup_data": {
+      "core": [
+        {"path": "$XDG_CONFIG_HOME/satellaview"},
+        {"path": "$XDG_DATA_HOME/satellaview"}
+      ]
+    },
+    "es_de_config": {
+      "es_find_rules": {
+        "emulators": [
+          {
+            "name": "SATELLAVIEW",
+            "description": "Satellaview+",
+            "rules": [
+              {
+                "type": "staticpath",
+                "entries": [
+                  "%COMPONENT_PATH%/component_launcher.sh"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "es_systems": [
+        {
+          "name": "satellaview",
+          "fullname": "Satellaview+",
+          "path": "%ROMPATH%/satellaview",
+          "extension": ".sh",
+          "commands": [
+            {
+              "label": "Snes9x (Satellaview+)",
+              "command": "%EMULATOR_SATELLAVIEW% %ROM%"
+            }
+          ],
+          "platform": "satellaview",
+          "theme": "satellaview"
+        }
+      ]
+    }
+  },
+  "bios": [
+    {
+      "filename": "bs-x.sfc",
+      "md5": "UNKNOWN",
+      "system": "satellaview",
+      "paths": [
+        "$roms_path/satellaview/"
+      ],
+      "description": "Satellaview+ ROM",
+      "required": "Required"
+    }
+  ]
+}
