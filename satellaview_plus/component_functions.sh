@@ -153,6 +153,7 @@ _prepare_component::satellaview_plus() {
       log i "Initializing Satellaview+ Launcher configuration"
       create_dir -d "$satellaview_plus_config_path"
       cp -fv "$satellaview_plus_rd_config_dir/config.json" "$satellaview_plus_config_file"
+      set_setting_value "$satellaview_plus_config_file" "DownloadLocation" "$satellaview_plus_satdata_path" "satellaview_plus"
 
       log i "Initializing Snes9x configuration for Satellaview+"
       create_dir -d "$(dirname "$satellaview_plus_snes9x_config")"
