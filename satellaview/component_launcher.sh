@@ -21,5 +21,8 @@ export QT_QPA_PLATFORM_PLUGIN_PATH="${QT_QPA_PLATFORM_PLUGIN_PATH}"
 log i "RetroDECK is now launching $component_name"
 log d "Library path is: $LD_LIBRARY_PATH"
 
-cd "$satellaview_config_path" # We move here because the config file is red from ./
-exec "$component_path/bin/snes9x-gtk" "$satellaview_bsx_path/bs-x.sfc"
+# We move here because the config file is read from ./
+cd "$satellaview_config_path"
+
+# This is merely a wrapper for .sh launchers
+exec "$@"
