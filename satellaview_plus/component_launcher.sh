@@ -27,11 +27,14 @@ case $command in
 
   run)
 
+    export satellaview_plus_download_path="$storage_path/satellaview_plus/"
+    export satellaview_plus_bsx_path="$storage_path/satellaview_plus/roms/bs-x"
+
     cd "$storage_path/satellaview_plus/"
 
     # WORKAROUND: the launcher is supposed to move the doiwnloaded satdata into the rom folder (in storage) but is not doing it,
     # so we are symlinking it by ourselves before launching the game and cleaning it up later
-    ln -s "$satellaview_plus_satdata_path"/* "$satellaview_plus_bsx_path"/
+    ln -s "$satellaview_plus_download_path/satdata/"* "$satellaview_plus_bsx_path/"
 
     XDG_CONFIG_HOME="$XDG_CONFIG_HOME/satellaview_plus/snes9x" "$component_path/bin/snes9x-gtk" "$satellaview_plus_bsx_path/bs-x.sfc"
 

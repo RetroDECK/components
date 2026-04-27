@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export satellaview_plus_satdata_path="$storage_path/satellaview_plus/"
+export satellaview_plus_download_path="$storage_path/satellaview_plus/"
 export satellaview_plus_bsx_path="$storage_path/satellaview_plus/roms/bs-x"
 export satellaview_plus_config_path="$XDG_CONFIG_HOME/satellaview_plus"
 export satellaview_plus_rd_config_dir="$rd_components/satellaview_plus/rd_config"
@@ -145,7 +145,7 @@ _prepare_component::satellaview_plus() {
       log i "-----------------------"
 
       log i "Clearing BS-X satellite data directory"
-      create_dir -d "$satellaview_plus_satdata_path"
+      create_dir -d "$satellaview_plus_download_path"
 
       log i "Clearing BS-X ROM directory"
       create_dir -d "$satellaview_plus_bsx_path"
@@ -153,7 +153,7 @@ _prepare_component::satellaview_plus() {
       log i "Initializing Satellaview+ Launcher configuration"
       create_dir -d "$satellaview_plus_config_path"
       cp -fv "$satellaview_plus_rd_config_dir/config.json" "$satellaview_plus_config_file"
-      set_setting_value "$satellaview_plus_config_file" "DownloadLocation" "$satellaview_plus_satdata_path" "satellaview_plus"
+      set_setting_value "$satellaview_plus_config_file" "DownloadLocation" "$satellaview_plus_download_path" "satellaview_plus"
 
       log i "Initializing Snes9x configuration for Satellaview+"
       create_dir -d "$(dirname "$satellaview_plus_snes9x_config")"
