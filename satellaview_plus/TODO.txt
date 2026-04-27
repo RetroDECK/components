@@ -1,5 +1,4 @@
 snes9x:
-- config (save path)
 - controller config
 
 what about load/save state?

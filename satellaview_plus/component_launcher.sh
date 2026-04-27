@@ -26,7 +26,7 @@ command=$(cat "$1")
 
 case $command in
   run)
-    exec "$component_path/bin/snes9x-gtk" "$satellaview_plus_bsx_path/bs-x.sfc"
+    XDG_CONFIG_HOME="$XDG_CONFIG_HOME/satellaview_plus/snes9x" exec "$component_path/bin/snes9x-gtk" "$satellaview_plus_bsx_path/bs-x.sfc"
     ;;
   tuner)
     # We move here because the config file is read from ./
