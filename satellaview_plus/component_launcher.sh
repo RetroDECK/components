@@ -14,7 +14,7 @@ fi
 component_name="$(basename "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")")"
 component_path="$(cd "$(dirname "${BASH_SOURCE[0]}" )" && pwd)"
 
-export LD_LIBRARY_PATH="$rd_shared_libs:${DEFAULT_LD_LIBRARY_PATH}"
+export LD_LIBRARY_PATH="$component_path/usr/lib/:$component_path/lib:$rd_shared_libs:${DEFAULT_LD_LIBRARY_PATH}"
 export QT_PLUGIN_PATH="${QT_PLUGIN_PATH}"
 export QT_QPA_PLATFORM_PLUGIN_PATH="${QT_QPA_PLATFORM_PLUGIN_PATH}"
 

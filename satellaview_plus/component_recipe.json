@@ -90,8 +90,8 @@
           "dest": "lib"
         },
         {
-          "type": "file",
-          "source": "$REPO_ROOT/$COMPONENT_NAME/rd_assets/lib/*",
+          "type": "dir",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/rd_assets/lib",
           "dest": "lib"
         },
         {
