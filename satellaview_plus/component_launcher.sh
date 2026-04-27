@@ -6,7 +6,7 @@ if [[ ! -f "$satellaview_plus_bsx_path/bs-x.sfc" ]]; then
   rd_zenity --error --no-wrap \
         --window-icon="/app/share/icons/hicolor/scalable/apps/net.retrodeck.retrodeck.svg" \
         --title "RetroDECK: Satellaview+ - Error: ROM not found" \
-        --text="Satellaview+ ROM not found. Please provide the 'bs-x.sfc' ROM file in the '$satellaview_plus_bsx_path' directory and try again."
+        --text="Satellaview+ ROM not found.\n\nPlease provide the 'bs-x.sfc' ROM file in the\n'$satellaview_plus_bsx_path'\n\ndirectory and try again."
   exit 1
 fi
 
@@ -21,8 +21,20 @@ export QT_QPA_PLATFORM_PLUGIN_PATH="${QT_QPA_PLATFORM_PLUGIN_PATH}"
 log i "RetroDECK is now launching $component_name"
 log d "Library path is: $LD_LIBRARY_PATH"
 
-# We move here because the config file is read from ./
-cd "$satellaview_plus_config_path"
-
 # This is merely a wrapper for .sh launchers
-exec "$@"
+command=$(cat "$1")
+
+case $command in
+  run)
+    exec "$component_path/bin/snes9x-gtk" "$satellaview_plus_bsx_path/bs-x.sfc"
+    ;;
+  tuner)
+    # We move here because the config file is read from ./
+    cd "$satellaview_plus_config_path"
+    exec "$component_path/AppRun"
+    ;;
+  *)
+    log e "Unknown command '$command' in launcher script '$1'"
+    exit 1
+    ;;
+esac
