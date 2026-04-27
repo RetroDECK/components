@@ -26,7 +26,18 @@ command=$(cat "$1")
 case $command in
 
   run)
-    XDG_CONFIG_HOME="$XDG_CONFIG_HOME/satellaview_plus/snes9x" exec "$component_path/bin/snes9x-gtk" "$satellaview_plus_bsx_path/bs-x.sfc"
+
+    cd "$storage_path/satellaview_plus/"
+
+    # WORKAROUND: the launcher is supposed to move the doiwnloaded satdata into the rom folder (in storage) but is not doing it,
+    # so we are symlinking it by ourselves before launching the game and cleaning it up later
+    ln -s "$satellaview_plus_satdata_path"/* "$satellaview_plus_bsx_path"/
+
+    XDG_CONFIG_HOME="$XDG_CONFIG_HOME/satellaview_plus/snes9x" "$component_path/bin/snes9x-gtk" "$satellaview_plus_bsx_path/bs-x.sfc"
+
+    # Cleanup the symlinks after the game is closed
+    log d "Cleaning up symlinks in BS-X ROM directory"
+    find "$satellaview_plus_bsx_path" -type l -delete
     ;;
 
   tuner)
