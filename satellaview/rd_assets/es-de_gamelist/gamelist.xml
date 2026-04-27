@@ -1,0 +1,12 @@
+<gameList>
+    <game>
+        <path>./Satellaview Channel Tuner.sh</path>
+        <name>Satellaview Channel Tuner</name>
+        <desc>Launches the Satellaview Channel Tuner, which allows you to update Satellaview+ channels data and see broadcast schedules.\nYou must run this tool before accessing any Satellaview+ content.</desc>
+    </game>
+    <game>
+        <path>./Start Satellaview.sh</path>
+        <name>Start Satellaview+</name>
+        <desc>Launches the Satellaview+, allowing you to play Satellaview+ content. Run the Satellaview Channel Tuner first to update channels data and see broadcast schedules.</desc>
+    </game>
+</gameList>
