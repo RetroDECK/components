@@ -1,3 +1,5 @@
-on ES-DE on the System Called Satellaview+, will need tow .sh launchers:
-- Channel Tuner (launches Satellaview+ launcher)
-- Start Satellaview+ (Launches snes9x with rom)
+snes9x:
+- config (save path)
+- controller config
+
+what about load/save state?
