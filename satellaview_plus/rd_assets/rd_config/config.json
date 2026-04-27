@@ -1,5 +1,5 @@
 {
-  "DownloadLocation": "",
+  "DownloadLocation": "/home/deck/retrodeck/storage/satellaview_plus",
   "Emulator": "SNES9X",
   "StartMinimized": false,
   "ExitOnClose": true

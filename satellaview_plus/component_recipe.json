@@ -1,9 +1,9 @@
 {
-  "satellaview": [
+  "satellaview_plus": [
     {
       "source_url": "https://satellaview-plus.com/client/linux-x64/Satellaview+_{VERSION}.AppImage",
       "source_type": "http",
-      "version": "$SATELLAVIEW_DESIRED_VERSION",
+      "version": "$SATELLAVIEW_PLUS_DESIRED_VERSION",
       "extraction_type": "appimage",
       "assets": [
         {
@@ -43,8 +43,13 @@
         },
         {
           "type": "dir",
-          "source": "$REPO_ROOT/$COMPONENT_NAME/rd_assets",
-          "dest": "rd_assets"
+          "source": "$REPO_ROOT/$COMPONENT_NAME/rd_assets/rd_config",
+          "dest": "rd_config"
+        },
+        {
+          "type": "dir",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/rd_assets/es-de",
+          "dest": "es-de"
         },
         {
           "type": "file",
@@ -70,7 +75,7 @@
     },
     {
       "source_url": "https://github.com/snes9xgit/snes9x/releases/download/{VERSION}/Snes9x-{VERSION}-x86_64.AppImage",
-      "version": "$SATELLAVIEW_SNES9X_DESIRED_VERSION",
+      "version": "$SATELLAVIEW_PLUS_SNES9X_DESIRED_VERSION",
       "source_type": "github-release",
       "extraction_type": "appimage",
       "assets": [
