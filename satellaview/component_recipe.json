@@ -43,19 +43,34 @@
         },
         {
           "type": "dir",
-          "source": "$REPO_ROOT/$COMPONENT_NAME/rd_assets/rd_config",
-          "dest": "rd_config"
+          "source": "$REPO_ROOT/$COMPONENT_NAME/rd_assets",
+          "dest": "rd_assets"
+        },
+        {
+          "type": "file",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/component_functions.sh",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
         },
         {
           "type": "file",
           "source": "$REPO_ROOT/$COMPONENT_NAME/component_launcher.sh",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/component_manifest.json",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/component_recipe.json",
           "dest": "$COMPONENT_ARTIFACT_ROOT"
         }
       ]
     },
     {
       "source_url": "https://github.com/snes9xgit/snes9x/releases/download/{VERSION}/Snes9x-{VERSION}-x86_64.AppImage",
-      "version": "$SATELLAVIEW_SNES9X_VERSION",
+      "version": "$SATELLAVIEW_SNES9X_DESIRED_VERSION",
       "source_type": "github-release",
       "extraction_type": "appimage",
       "assets": [
