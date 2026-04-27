@@ -170,6 +170,10 @@ _prepare_component::satellaview_plus() {
       local dest_gamelist="$rd_home_path/ES-DE/gamelists/satellaview_plus/gamelist.xml"
       create_dir "$(dirname "$dest_gamelist")"
       _merge_esde_gamelist "$source_gamelist" "$dest_gamelist"
+
+      log i "Populating ES-DE media assets"
+      create_dir "$rd_home_path/ES-DE/downloaded_media/satellaview_plus"
+      cp -rfv "$satellaview_plus_esde_assets_dir/downloaded_media/satellaview_plus/"* "$rd_home_path/ES-DE/downloaded_media/satellaview_plus/"
     ;;
 
   esac
