@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export satellaview_plus_satdata_path="$storage_path/satellaview_plus/satdata"
+export satellaview_plus_satdata_path="$storage_path/satellaview_plus/"
 export satellaview_plus_bsx_path="$storage_path/satellaview_plus/roms/bs-x"
 export satellaview_plus_config_path="$XDG_CONFIG_HOME/satellaview_plus"
 export satellaview_plus_rd_config_dir="$rd_components/satellaview_plus/rd_config"
