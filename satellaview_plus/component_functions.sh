@@ -144,13 +144,13 @@ _prepare_component::satellaview_plus() {
       log i "Resetting Satellaview+"
       log i "-----------------------"
 
-      rm -rf "$satellaview_plus_satdata_path"
+      log i "Clearing BS-X satellite data directory"
       create_dir -d "$satellaview_plus_satdata_path"
 
-      rm -rf "$satellaview_plus_bsx_path"
+      log i "Clearing BS-X ROM directory"
       create_dir -d "$satellaview_plus_bsx_path"
 
-      rm -rf "$satellaview_plus_config_path"
+      log i "Initializing Satellaview+ Launcher configuration"
       create_dir -d "$satellaview_plus_config_path"
       cp -fv "$satellaview_plus_rd_config_dir/config.json" "$satellaview_plus_config_file"
 
@@ -160,9 +160,11 @@ _prepare_component::satellaview_plus() {
       set_setting_value "$satellaview_plus_snes9x_config" "SRAMDirectory" "$saves_path/satellaview_plus" "snes9x" "Files"
       set_setting_value "$satellaview_plus_snes9x_config" "SaveStateDirectory" "$states_path/satellaview_plus" "snes9x" "Files"
 
+      log i "Creating ROMs directory and copying launchers"
       create_dir "$roms_path/satellaview_plus"
       cp -rfv "$satellaview_plus_esde_assets_dir/launchers/"* "$roms_path/satellaview_plus/"
 
+      log i "Populating gamelist.xml for ES-DE"
       local source_gamelist="$component_path/es-de/gamelist/gamelist.xml"
       local dest_gamelist="$rd_home_path/ES-DE/gamelists/satellaview_plus/gamelist.xml"
       create_dir "$(dirname "$dest_gamelist")"
