@@ -107,6 +107,12 @@ if [[ $(check_version_is_older_than "$version_being_updated" "0.10.3b") == "true
   set_setting_value "$retroarch_config" "system_directory" "$bios_path" "retroarch"
 fi
 
+
+if [[ $(check_version_is_older_than "$version_being_updated" "0.10.9b") == "true" ]]; then
+  create_dir "$screenshots_path/retroarch"
+  set_setting_value "$retroarch_config" "screenshot_directory" "$screenshots_path/retroarch" "retroarch"
+fi
+
 #######################################
 # These actions happen at every update
 #######################################

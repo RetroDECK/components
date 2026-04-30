@@ -43,8 +43,9 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
   set_setting_value "$retroarch_config" "overlay_directory" "$borders_path/retroarch" "retroarch"
   set_setting_value "$retroarch_config" "system_directory" "$bios_path" "retroarch"
 
-  # Video
+  # Video Screenshots
   create_dir "$videos_path/retroarch"
+  create_dir "$screenshots_path/retroarch"
 
   # BIOS Directories
   create_dir "$bios_path/np2kai"
