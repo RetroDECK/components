@@ -63,46 +63,46 @@
         "description": "Satellaview+ ROM",
         "required": "Required"
       }
-    ]
-  },
-  "presets_actions": {
-    "abxy_button_swap": [
-      {
-        "enabled_states": ["true"],
-        "setting_name": "A",
-        "action": "change",
-        "new_setting_value": "TODO",
-        "section": "Joypad 0",
-        "target_file": "$satellaview_plus_snes9x_config",
-        "defaults_file": "$rd_components/satellaview_plus/rd_config/snes9x-config.ini"
-      },
-      {
-        "enabled_states": ["true"],
-        "setting_name": "B",
-        "action": "change",
-        "new_setting_value": "TODO",
-        "section": "Joypad 0",
-        "target_file": "$satellaview_plus_snes9x_config",
-        "defaults_file": "$rd_components/satellaview_plus/rd_config/snes9x-config.ini"
-      },
-      {
-        "enabled_states": ["true"],
-        "setting_name": "X",
-        "action": "change",
-        "new_setting_value": "TODO",
-        "section": "Joypad 0",
-        "target_file": "$satellaview_plus_snes9x_config",
-        "defaults_file": "$rd_components/satellaview_plus/rd_config/snes9x-config.ini"
-      },
-      {
-        "enabled_states": ["true"],
-        "setting_name": "Y",
-        "action": "change",
-        "new_setting_value": "TODO",
-        "section": "Joypad 0",
-        "target_file": "$satellaview_plus_snes9x_config",
-        "defaults_file": "$rd_components/satellaview_plus/rd_config/snes9x-config.ini"
-      }
-    ]
-  }
+    ],
+    "presets_actions": {
+      "abxy_button_swap": [
+        {
+          "enabled_states": ["true"],
+          "setting_name": "A",
+          "action": "change",
+          "new_setting_value": "TODO",
+          "section": "Joypad 0",
+          "target_file": "$satellaview_plus_snes9x_config",
+          "defaults_file": "$rd_components/satellaview_plus/rd_config/snes9x-config.ini"
+        },
+        {
+          "enabled_states": ["true"],
+          "setting_name": "B",
+          "action": "change",
+          "new_setting_value": "TODO",
+          "section": "Joypad 0",
+          "target_file": "$satellaview_plus_snes9x_config",
+          "defaults_file": "$rd_components/satellaview_plus/rd_config/snes9x-config.ini"
+        },
+        {
+          "enabled_states": ["true"],
+          "setting_name": "X",
+          "action": "change",
+          "new_setting_value": "TODO",
+          "section": "Joypad 0",
+          "target_file": "$satellaview_plus_snes9x_config",
+          "defaults_file": "$rd_components/satellaview_plus/rd_config/snes9x-config.ini"
+        },
+        {
+          "enabled_states": ["true"],
+          "setting_name": "Y",
+          "action": "change",
+          "new_setting_value": "TODO",
+          "section": "Joypad 0",
+          "target_file": "$satellaview_plus_snes9x_config",
+          "defaults_file": "$rd_components/satellaview_plus/rd_config/snes9x-config.ini"
+        }
+      ]
+    }
+  }  
 }
