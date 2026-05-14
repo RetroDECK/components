@@ -55,7 +55,7 @@
     "bios": [
       {
         "filename": "bs-x.sfc",
-        "md5": "UNKNOWN",
+        "md5": ["96cf17bf589fcbfa6f8de2dc84f19fa2", "d5af0ab2545c053b90ffa0866074ecf1"],
         "system": "satellaview_plus",
         "paths": [
           "$roms_path/satellaview_plus/"
