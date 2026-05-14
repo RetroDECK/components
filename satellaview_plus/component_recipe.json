@@ -38,11 +38,6 @@
         },
         {
           "type": "dir",
-          "source": "$PWD",
-          "dest": "$COMPONENT_ARTIFACT_ROOT"
-        },
-        {
-          "type": "dir",
           "source": "$REPO_ROOT/$COMPONENT_NAME/rd_assets/rd_config",
           "dest": "rd_config"
         },
@@ -98,11 +93,6 @@
           "type": "dir",
           "source": "usr/share",
           "dest": "share"
-        },
-        {
-          "type": "dir",
-          "source": "$PWD",
-          "dest": "$COMPONENT_ARTIFACT_ROOT"
         }
       ]
     }
