@@ -9,48 +9,72 @@ export satellaview_plus_config_file="$satellaview_plus_config_path/config.json"
 export satellaview_plus_snes9x_config="$XDG_CONFIG_HOME/satellaview_plus/snes9x/snes9x/snes9x.conf"
 
 _set_setting_value::satellaview_plus() {
+
   local file="$1"
-  local name="$2"
-  local value="$3"
-  local tmp_file
-  tmp_file="$(mktemp)"
-  jq --arg name "$name" --arg value "$value" '.[$name] = $value' "$file" > "$tmp_file" && mv -f "$tmp_file" "$file"
+
+  if [[ "$file" =~ \.json$ ]]; then
+
+    local name="$2" value="$3"
+
+    local tmp_file
+    tmp_file="$(mktemp)"
+
+    jq --arg name "$name" --arg value "$value" '.[$name] = $value' "$file" > "$tmp_file" && mv -f "$tmp_file" "$file"
+
+  elif [[ "$file" =~ \.conf$ ]]; then
+
+    local name=$(sed_escape_pattern "$2") value=$(sed_escape_replacement "$3") section="${4:-}"
+
+    if [[ -n "$section" ]]; then
+      section=$(sed_escape_pattern "$section")
+      sed -i '\^\['"$section"'\]^,\^\^'"$name"'[[:space:]]*=^s^\^'"$name"'[[:space:]]*=.*^'"$name"' = '"$value"'^' "$file"
+    else
+      sed -i 's^\^'"$name"'[[:space:]]*=.*^'"$name"' = '"$value"'^' "$file"
+    fi
+
+  fi
+
 }
 
 _get_setting_value::satellaview_plus() {
   local file="$1" name="$2" section="${3:-}"
+  
+  if [[ "$file" =~ \.json$ ]]; then
 
-  if [[ -z "$section" ]]; then
-    jq -r --arg name "$name" '.[$name] // empty' "$file"
-  elif jq -e --arg section "$section" '.presets | has($section)' "$file" > /dev/null 2>&1; then
-    jq -r --arg section "$section" --arg name "$name" \
-      '.presets[$section] | .. | objects | select(has($name)) | .[$name] // empty' "$file"
-  else
-    local section_parts section_json
-    IFS='.' read -ra section_parts <<< "$section"
-    section_json=$(printf '%s\n' "${section_parts[@]}" | jq -R . | jq -sc .)
-    jq -r --argjson path "$section_json" --arg name "$name" \
-      'getpath($path + [$name]) // empty' "$file"
-  fi
-}
+    if [[ -z "$section" ]]; then
+      jq -r --arg name "$name" '.[$name] // empty' "$file"
+    elif jq -e --arg section "$section" '.presets | has($section)' "$file" > /dev/null 2>&1; then
+      jq -r --arg section "$section" --arg name "$name" \
+        '.presets[$section] | .. | objects | select(has($name)) | .[$name] // empty' "$file"
+    else
+      local section_parts section_json
+      IFS='.' read -ra section_parts <<< "$section"
+      section_json=$(printf '%s\n' "${section_parts[@]}" | jq -R . | jq -sc .)
+      jq -r --argjson path "$section_json" --arg name "$name" \
+        'getpath($path + [$name]) // empty' "$file"
+    fi
 
-_set_setting_value::snes9x() {
-  local file="$1"
-  local name=$(sed_escape_pattern "$2")
-  local value=$(sed_escape_replacement "$3")
-  local section="${4:-}"
+  elif [[ "$file" =~ \.conf$ ]]; then
 
-  if [[ -n "$section" ]]; then
-    section=$(sed_escape_pattern "$section")
-    sed -i '\^\['"$section"'\]^,\^\^'"$name"'[[:space:]]*=^s^\^'"$name"'[[:space:]]*=.*^'"$name"' = '"$value"'^' "$file"
-  else
-    sed -i 's^\^'"$name"'[[:space:]]*=.*^'"$name"' = '"$value"'^' "$file"
-  fi
-}
-
-_get_setting_value::snes9x() {
-  local file="$1" name="$2" section="${3:-}"
-
+    if [[ -n "$section" ]]; then
+      KEY="$name" SECTION="[$section]" awk -F'=' \
+        'NR==1 { sub(/^\xEF\xBB\xBF/, "") }
+        BEGIN { key=ENVIRON["KEY"]; section=ENVIRON["SECTION"] }
+        $0 == section { in_section=1; next }
+        /^\[/ { in_section=0 }
+        in_section && $0 ~ "^" key "[[:space:]]*=" {
+          gsub(/^[[:space:]]*/, "", $2)
+          print $2; exit
+        }' "$file"
+    else
+      KEY="$name" awk -F'=' \
+        'NR==1 { sub(/^\xEF\xBB\xBF/, "") }
+        BEGIN { key=ENVIRON["KEY"] }
+        $0 ~ "^" key "[[:space:]]*=" {
+          gsub(/^[[:space:]]*/, "", $2)
+          print $2; exit
+        }' "$file"
+    fi
 
   fi
 }
@@ -82,8 +106,8 @@ _prepare_component::satellaview_plus() {
       log i "Initializing Snes9x configuration for Satellaview+"
       create_dir -d "$(dirname "$satellaview_plus_snes9x_config")"
       cp -fv "$satellaview_plus_rd_config_dir/snes9x.conf" "$satellaview_plus_snes9x_config"
-      set_setting_value "$satellaview_plus_snes9x_config" "SRAMDirectory" "$saves_path/satellaview_plus" "snes9x" "Files"
-      set_setting_value "$satellaview_plus_snes9x_config" "SaveStateDirectory" "$states_path/satellaview_plus" "snes9x" "Files"
+      set_setting_value "$satellaview_plus_snes9x_config" "SRAMDirectory" "$saves_path/satellaview_plus" "satellaview_plus" "Files"
+      set_setting_value "$satellaview_plus_snes9x_config" "SaveStateDirectory" "$states_path/satellaview_plus" "satellaview_plus" "Files"
 
       log i "Creating ROMs directory and copying launchers"
       create_dir "$roms_path/satellaview_plus"
@@ -93,7 +117,6 @@ _prepare_component::satellaview_plus() {
       local source_gamelist="$component_path/es-de/gamelist/gamelist.xml"
       local dest_gamelist="$rd_home_path/ES-DE/gamelists/satellaview_plus/gamelist.xml"
       create_dir "$(dirname "$dest_gamelist")"
-      _merge_esde_gamelist "$source_gamelist" "$dest_gamelist"
 
       log i "Populating ES-DE media assets"
       create_dir "$rd_home_path/ES-DE/downloaded_media/satellaview_plus"
