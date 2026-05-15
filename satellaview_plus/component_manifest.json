@@ -17,6 +17,9 @@
         {"path": "$XDG_CONFIG_HOME/satellaview_plus"}
       ]
     },
+    "component_options": {
+      "satellaview_plus_soundlink_stream_toggle": "true"
+    },
     "es_de_config": {
       "es_find_rules": {
         "emulators": [
@@ -75,6 +78,17 @@
           }
         }
       }
+    },
+    "configurator_menus": {
+      "settings": [
+        {
+          "name": "Satellaview SoundLink Toggle",
+          "description": "Enable or disable: Satellaview SoundLink streaming while playing.",
+          "command": {
+            "zenity": "satellaview_toggle_soundlink"
+          }
+        }
+      ]
     },
     "bios": [
       {
