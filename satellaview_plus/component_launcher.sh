@@ -20,15 +20,26 @@ component_path="$(cd "$(dirname "${BASH_SOURCE[0]}" )" && pwd)"
 log i "RetroDECK is now launching $component_name"
 log d "Library path is: $LD_LIBRARY_PATH"
 
-# This is merely a wrapper for .sh launchers
-command=$(cat "$1")
+satellaview_tuner() {
 
-case $command in
+    export LD_LIBRARY_PATH="$component_path/usr/lib/:$component_path/lib:$rd_shared_libs:${DEFAULT_LD_LIBRARY_PATH}"
+    export QT_PLUGIN_PATH="${QT_PLUGIN_PATH}"
+    export QT_QPA_PLATFORM_PLUGIN_PATH="${QT_QPA_PLATFORM_PLUGIN_PATH}"
 
-  run)
+    log i "Opening Satellaview+ Tuner command"
+
+    # We move here because the config file is read from ./
+    cd "$satellaview_plus_config_path"
+    exec "$component_path/AppRun"
+
+}
+
+run_satellaview(){
 
     export satellaview_plus_download_path="$storage_path/satellaview_plus/"
     export satellaview_plus_bsx_path="$storage_path/satellaview_plus/roms/bs-x"
+
+    log i "Running Satellaview+ SNES9X"
 
     cd "$storage_path/satellaview_plus/"
 
@@ -60,20 +71,26 @@ case $command in
     # Cleanup the symlinks after the game is closed
     log d "Cleaning up symlinks in BS-X ROM directory"
     find "$satellaview_plus_bsx_path" -type l -delete
-    ;;
+
+}
+
+# This is merely a wrapper for .sh launchers
+command=$(cat "$1")
+
+case $command in
 
   tuner)
+    satellaview_tuner
+  ;;
 
-    export LD_LIBRARY_PATH="$component_path/usr/lib/:$component_path/lib:$rd_shared_libs:${DEFAULT_LD_LIBRARY_PATH}"
-    export QT_PLUGIN_PATH="${QT_PLUGIN_PATH}"
-    export QT_QPA_PLATFORM_PLUGIN_PATH="${QT_QPA_PLATFORM_PLUGIN_PATH}"
+  run)
+    run_satellaview
+  ;;
 
-    # We move here because the config file is read from ./
-    cd "$satellaview_plus_config_path"
-    exec "$component_path/AppRun"
-    ;;
   *)
     log e "Unknown command '$command' in launcher script '$1'"
-    exit 1
-    ;;
+    log w "Falling back to Satellaview+ run command"
+    run_satellaview
+  ;;
+
 esac
