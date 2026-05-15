@@ -3,7 +3,7 @@
 source /app/libexec/launcher_functions.sh
 
 if [[ ! -f "$roms_path/satellaview_plus/bs-x.sfc" ]]; then
-  rd_zenity --error --no-wrap \
+  zenity --error --no-wrap \
         --window-icon="/app/share/icons/hicolor/scalable/apps/net.retrodeck.retrodeck.svg" \
         --title "RetroDECK: Satellaview+ - Error: ROM not found" \
         --text="Satellaview+ ROM not found.\n\nPlease provide the 'bs-x.sfc' ROM file in the\n\n'$roms_path/satellaview_plus'\n\ndirectory and try again.\n\nNote: you would need either an \"English + No DRM\" or \"Japanese + No DRM\" version to work with Satellaview+.\nRun the BIOS Checker Tool in the Configurator for more information about the required ROMs and their checksums."
