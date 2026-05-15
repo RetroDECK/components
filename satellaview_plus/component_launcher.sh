@@ -1,6 +1,7 @@
 #!/bin/bash
 
 source /app/libexec/launcher_functions.sh
+source /app/libexec/components.sh
 
 if [[ ! -f "$roms_path/satellaview_plus/bs-x.sfc" ]]; then
   zenity --error --no-wrap \
@@ -47,7 +48,7 @@ run_satellaview(){
     # so we are symlinking it by ourselves before launching the game and cleaning it up later
     ln -s "$satellaview_plus_download_path/satdata/"* "$satellaview_plus_bsx_path/"
 
-    if [ "$(get_component_option satellaview_plus satellaview_plus_soundlink_stream_toggle):-true" == "true" ]; then
+    if [ "$(get_component_option satellaview_plus satellaview_plus_soundlink_stream_toggle)" == "true" ]; then
 
       log i "Soundlink stream toggle is enabled, starting the stream"
 
