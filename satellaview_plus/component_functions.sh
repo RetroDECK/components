@@ -7,6 +7,7 @@ export satellaview_plus_rd_config_dir="$rd_components/satellaview_plus/rd_config
 export satellaview_plus_esde_assets_dir="$rd_components/satellaview_plus/es-de"
 export satellaview_plus_config_file="$satellaview_plus_config_path/config.json"
 export satellaview_plus_snes9x_config="$XDG_CONFIG_HOME/satellaview_plus/snes9x/snes9x/snes9x.conf"
+export satellaview_soundlink_stream="https://howlingf-gecko.radioca.st/stream"
 
 _set_setting_value::satellaview_plus() {
 

@@ -36,6 +36,17 @@ case $command in
     # so we are symlinking it by ourselves before launching the game and cleaning it up later
     ln -s "$satellaview_plus_download_path/satdata/"* "$satellaview_plus_bsx_path/"
 
+    # Start soundlink streaming in the background
+    ffplay -nodisp -autoexit "$satellaview_soundlink_stream" >/dev/null 2>&1 &
+    STREAM_PID=$!
+
+    # Auto cleanup the stream when the game is closed
+    cleanup() {
+        kill "$STREAM_PID" 2>/dev/null
+    }
+
+trap cleanup EXIT INT TERM
+
     XDG_CONFIG_HOME="$XDG_CONFIG_HOME/satellaview_plus/snes9x" "$component_path/bin/snes9x-gtk" "$satellaview_plus_bsx_path/bs-x.sfc"
 
     # Cleanup the symlinks after the game is closed
