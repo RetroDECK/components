@@ -137,24 +137,24 @@ satellaview_toggle_soundlink(){
 
   zenity --question --no-wrap \
           --window-icon="/app/share/icons/hicolor/scalable/apps/net.retrodeck.retrodeck.svg" \
-          --title "RetroDECK: Satellaview+ - Toggle Soundlink Stream" \
-          --text="Soundlink stream is currently $status.\n\nDo you want to toggle it?"
+          --title "RetroDECK: Satellaview+ - Toggle Soundlink+ Stream" \
+          --text="Soundlink+ stream is currently $status.\n\nDo you want to toggle it?"
 
   # If not cancel
   if [[ $? -eq 0 ]]; then
 
     if [[ "$(get_component_option satellaview_plus satellaview_plus_soundlink_stream_toggle)" == "true" ]]; then
-      set_component_option "satellaview_plus" "satellaview_plus_soundlink_stream_toggle" "false" && log i "Soundlink stream disabled"
+      set_component_option "satellaview_plus" "satellaview_plus_soundlink_stream_toggle" "false" && log i "Soundlink+ stream disabled"
       zenity --info --no-wrap \
             --window-icon="/app/share/icons/hicolor/scalable/apps/net.retrodeck.retrodeck.svg" \
-            --title "RetroDECK: Satellaview+ - Soundlink Stream" \
-            --text="Soundlink stream is now disabled.\n\nYou should start hearing the music within a few seconds after launching a game.\n\nMake sure to have your audio output set up correctly and enjoy the authentic Satellaview experience!"
+            --title "RetroDECK: Satellaview+ - Soundlink+ Stream" \
+            --text="Soundlink+ stream is now disabled.\n\nYou should start hearing the music within a few seconds after launching a game.\n\nMake sure to have your audio output set up correctly and enjoy the authentic Satellaview+ experience!"
     else
-      set_component_option "satellaview_plus" "satellaview_plus_soundlink_stream_toggle" "true" && log i "Soundlink stream enabled"
+      set_component_option "satellaview_plus" "satellaview_plus_soundlink_stream_toggle" "true" && log i "Soundlink+ stream enabled"
       zenity --info --no-wrap \
             --window-icon="/app/share/icons/hicolor/scalable/apps/net.retrodeck.retrodeck.svg" \
-            --title "RetroDECK: Satellaview+ - Soundlink Stream" \
-            --text="Soundlink stream is now enabled.\n\nYou will no longer hear the music from the Soundlink stream when launching a game."
+            --title "RetroDECK: Satellaview+ - Soundlink+ Stream" \
+            --text="Soundlink+ stream is now enabled.\n\nYou will no longer hear the music from the Soundlink+ stream when launching a game."
     fi
 
   fi

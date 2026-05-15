@@ -50,9 +50,9 @@ run_satellaview(){
 
     if [ "$(get_component_option satellaview_plus satellaview_plus_soundlink_stream_toggle)" == "true" ]; then
 
-      log i "Soundlink stream toggle is enabled, starting the stream"
+      log i "Soundlink+ stream toggle is enabled, starting the stream"
 
-      # Start soundlink streaming in the background
+      # Start soundlink+ streaming in the background
       ffplay -nodisp -autoexit "$satellaview_soundlink_stream" >/dev/null 2>&1 &
       STREAM_PID=$!
 
@@ -64,7 +64,7 @@ run_satellaview(){
       trap cleanup EXIT INT TERM
 
     else
-      log i "Soundlink stream toggle is disabled, skipping the stream"
+      log i "Soundlink+ stream toggle is disabled, skipping the stream"
     fi
 
     XDG_CONFIG_HOME="$XDG_CONFIG_HOME/satellaview_plus/snes9x" "$component_path/bin/snes9x-gtk" "$satellaview_plus_bsx_path/bs-x.sfc"
