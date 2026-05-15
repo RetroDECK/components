@@ -75,17 +75,34 @@ run_satellaview(){
 
 }
 
-# This is merely a wrapper for .sh launchers
-command=$(cat "$1")
+# This function is called by the .sh launchers in the rom folder and it decides which command to run based on the content of the launcher script
+if [[ -f "$1" ]]; then
+  log i "Reading command from file '$1'"
+    command=$(cat "$1")
+    log i "Command read from file '$1': $command"
+elif [[ -n "$1" ]]; then
+    log i "\"$1\" appears to be a command argument. Using the argument as command."
+    command="$1"
+else
+    log w "Command file '$1' not found, falling back to default run command"
+    command="run"
+fi
 
 case $command in
 
-  tuner)
+  tuner|--tuner|-t)
     satellaview_tuner
   ;;
 
-  run)
+  run|--run|-r)
     run_satellaview
+  ;;
+
+  help|--help|-h)
+    log i "Available commands in the launcher script:"
+    log i "  tuner, --tuner, -t: Launch the Satellaview+ Tuner"
+    log i "  run, --run, -r: Run the Satellaview+ SNES9X emulator"
+    log i "  help, --help, -h: Show this help message"
   ;;
 
   *)
