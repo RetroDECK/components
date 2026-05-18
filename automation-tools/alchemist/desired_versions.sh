@@ -57,7 +57,7 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
 # Version: 2125.1.1
-  export AZAHAR_DESIRED_VERSION="fd0b3050e4da6a7df8915f63fb8c1d551c7ca8c684568dc62c1681fd31"
+  export AZAHAR_DESIRED_VERSION="fd0b3050e4da6a7df8915f63fb8c1d551c7ca8c684568dc62c1681fd316a288c"
 
 # COOKER (Override)
 # export AZAHAR_DESIRED_VERSION="latest"
@@ -148,7 +148,7 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
 # Version: 0.0.40-19371
-  export RPCS3_DESIRED_VERSION="3c411e945d5a87d5d821f2ebd06ec092ef14a87acf8cf4d3b5f91c0eb1"
+  export RPCS3_DESIRED_VERSION="3c411e945d5a87d5d821f2ebd06ec092ef14a87acf8cf4d3b5f91c0eb149e2f2"
 
 # COOKER (Override)
 # export RPCS3_DESIRED_VERSION="latest"
@@ -161,7 +161,7 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
 # Version: 0.2.0
- export RUFFLE_DESIRED_VERSION="37f584d0df86cb04ea4479f0c0f274241adc8692a16a6dc1b0b9d293b7"
+ export RUFFLE_DESIRED_VERSION="37f584d0df86cb04ea4479f0c0f274241adc8692a16a6dc1b0b9d293b7f72685"
 
 # COOKER (Override)
 # export RUFFLE_DESIRED_VERSION="latest"
@@ -187,7 +187,7 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
 # Version: 0.8.134
- export XEMU_DESIRED_VERSION="0739a75dec8215f73d58e19e492a6f9f6a796d1f73842d40da56e7f51a81cbad"
+ export XEMU_DESIRED_VERSION="c8477e00eb87e65315aa72a2ba58d6d6f02a5c23c117a445b108756a4af2a746"
 
 # COOKER (Override)
 # export XEMU_DESIRED_VERSION="latest"
