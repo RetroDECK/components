@@ -56,8 +56,8 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # Link: https://flathub.org/en/apps/org.azahar_emu.Azahar
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
-# Version: 2124.3
-  export AZAHAR_DESIRED_VERSION="56e56b4c5cd4668d99512f26ef89c3c7880d5c159b1e9f21d6540db0fd4d9420"
+# Version: 2125.1.1
+  export AZAHAR_DESIRED_VERSION="fd0b3050e4da6a7df8915f63fb8c1d551c7ca8c684568dc62c1681fd31"
 
 # COOKER (Override)
 # export AZAHAR_DESIRED_VERSION="latest"
@@ -147,8 +147,8 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # Link: https://flathub.org/en/apps/net.rpcs3.RPCS3
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
-# Version: 0.0.40-191
-  export RPCS3_DESIRED_VERSION="0713512d383febae08dae58b6cc10eeb974d993e80765d94cabe9ee3e83416ca"
+# Version: 0.0.40-19371
+  export RPCS3_DESIRED_VERSION="3c411e945d5a87d5d821f2ebd06ec092ef14a87acf8cf4d3b5f91c0eb1"
 
 # COOKER (Override)
 # export RPCS3_DESIRED_VERSION="latest"
@@ -160,8 +160,8 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # Link: https://flathub.org/en/apps/rs.ruffle.Ruffle
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
-# Version: 0.2.0-nightly.2026.4.9
- export RUFFLE_DESIRED_VERSION="2b9a6e77082e1f8c97d0d39f71a2a2443ea08cc198139b068ec9c765d820378e"
+# Version: 0.2.0
+ export RUFFLE_DESIRED_VERSION="37f584d0df86cb04ea4479f0c0f274241adc8692a16a6dc1b0b9d293b7"
 
 # COOKER (Override)
 # export RUFFLE_DESIRED_VERSION="latest"
@@ -344,7 +344,7 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # Link: https://github.com/RetroDECK/Vita3K-bin/releases
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
-  export VITA3K_DESIRED_VERSION="3949"
+  export VITA3K_DESIRED_VERSION="4002"
 
 # COOKER (Override)
 # export VITA3K_DESIRED_VERSION="latest"
