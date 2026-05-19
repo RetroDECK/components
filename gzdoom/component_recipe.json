@@ -1,14 +1,14 @@
 {
   "gzdoom": [
     {
-      "source_url": "org.zdoom.GZDoom",
-      "source_type": "flatpak_id",
+      "source_url": "$REPO_ROOT/$COMPONENT_NAME",
+      "source_type": "local",
       "version": "$GZDOOM_DESIRED_VERSION",
-      "extraction_type": "flatpak",
+      "extraction_type": "local",
       "assets": [
         {
           "type": "dir",
-          "source": "bin",
+          "source": "rd_assets/gzdoom_release/bin",
           "dest": "bin"
         },
         {
@@ -57,56 +57,24 @@
           "dest": "$COMPONENT_ARTIFACT_ROOT"
         },
         {
-          "type": "file",
-          "source": "lib/libgme.a",
-          "dest": "lib"
-        },
-        {
-          "type": "file",
-          "source": "lib/libsndfile.a",
+          "type": "dir",
+          "source": "rd_assets/gzdoom_release/lib",
           "dest": "lib"
         },
         {
           "type": "dir",
-          "source": "lib/pkgconfig",
-          "dest": "lib/pkgconfig"
+          "source": "rd_assets/gzdoom_release/share",
+          "dest": "share"
         },
         {
           "type": "dir",
-          "source": "lib/cmake",
-          "dest": "lib/cmake"
+          "source": "rd_assets/gzdoom_release/shared-libs",
+          "dest": "shared-libs"
         },
         {
           "type": "dir",
-          "source": "share/games/doom/",
-          "dest": "share/games/doom/"
-        },
-        {
-          "type": "dir",
-          "source": "share/licenses/org.zdoom.GZDoom/",
+          "source": "rd_assets/gzdoom_release/doc",
           "dest": "doc"
-        }
-      ],
-      "libs": [
-        {
-          "library": "libzmusic.so.1",
-          "source": "lib",
-          "dest": "shared-libs"
-        },
-        {
-          "library": "libfluidsynth.so.3",
-          "source": "lib",
-          "dest": "shared-libs"
-        },
-        {
-          "library": "libinstpatch-1.0.so.2",
-          "source": "lib",
-          "dest": "shared-libs"
-        },
-        {
-          "library": "libzmusiclite.so.1",
-          "source": "lib",
-          "dest": "shared-libs"
         }
       ]
     }
