@@ -186,8 +186,8 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # Link: https://flathub.org/en/apps/app.xemu.xemu
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
-# Version: 0.8.134
- export XEMU_DESIRED_VERSION="c8477e00eb87e65315aa72a2ba58d6d6f02a5c23c117a445b108756a4af2a746"
+# Version: 0.8.135
+ export XEMU_DESIRED_VERSION="998fb7d93048da8b4dc98665d09f7e81ff4e73bedb732b67b7ad97a6f55d4316"
 
 # COOKER (Override)
 # export XEMU_DESIRED_VERSION="latest"
