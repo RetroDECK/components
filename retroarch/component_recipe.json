@@ -279,24 +279,6 @@
       ]
     },
     {
-      "source_url": "http://bluemsx.msxblue.com/rel_download/blueMSXv{VERSION}full.zip",
-      "source_type": "http",
-      "version": "282",
-      "extraction_type": "archive",
-      "assets": [
-        {
-          "type": "dir",
-          "source": "Machines",
-          "dest": "rd_extras/MSX/Machines"
-        },
-        {
-          "type": "dir",
-          "source": "Databases",
-          "dest": "rd_extras/MSX/Databases"
-        }
-      ]
-    },
-    {
       "source_url": "https://github.com/rsn8887/capsimg/releases/download/{VERSION}/Capsimg_for_Retroarch.zip",
       "source_type": "github-release",
       "version": "1.1",
