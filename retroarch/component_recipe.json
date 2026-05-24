@@ -27,11 +27,6 @@
           "dest": "$WORKDIR/cores"
         },
         {
-          "type": "merge",
-          "source": "$REPO_ROOT/$COMPONENT_NAME/rd_assets/rd_extras/genesis-plus-gx-expanded-rom-size-paprium_libretro",
-          "dest": "$WORKDIR/cores"
-        },
-        {
           "type": "dir",
           "source": "RetroArch-Linux-x86_64/RetroArch-Linux-x86_64.AppImage.home/.config/retroarch/assets",
           "dest": "assets"
@@ -65,11 +60,6 @@
           "type": "dir",
           "source": "$REPO_ROOT/$COMPONENT_NAME/rd_assets/rd_config",
           "dest": "rd_config"
-        },
-        {
-          "type": "file",
-          "source": "$REPO_ROOT/$COMPONENT_NAME/rd_assets/rd_extras/ScummVM.zip",
-          "dest": "rd_extras"
         },
         {
           "type": "create",
@@ -304,6 +294,119 @@
       ]
     },
     {
+      "source_url": "https://buildbot.libretro.com/assets/system/blueMSX.zip",
+      "source_type": "http",
+      "extraction_type": "archive",
+      "assets": [
+        {
+          "type": "dir",
+          "source": "Machines",
+          "dest": "rd_extras/MSX/Machines"
+        },
+        {
+          "type": "dir",
+          "source": "Databases",
+          "dest": "rd_extras/MSX/Databases"
+        }
+      ]
+    },
+    {
+      "source_url": "https://buildbot.libretro.com/assets/system/Cannonball%20%28ROMs%20Required%29.zip",
+      "source_type": "http",
+      "extraction_type": "archive",
+      "assets": [
+        {
+          "type": "dir",
+          "source": "cannonball",
+          "dest": "rd_extras/cannonball"
+        }
+      ]
+    },
+    {
+      "source_url": "https://buildbot.libretro.com/assets/system/Dinothawr.zip",
+      "source_type": "http",
+      "extraction_type": "archive",
+      "assets": [
+        {
+          "type": "dir",
+          "source": "dinothawr",
+          "dest": "rd_extras/dinothawr"
+        }
+      ]
+    },
+    {
+      "source_url": "https://buildbot.libretro.com/assets/system/DirkSimple.zip",
+      "source_type": "http",
+      "extraction_type": "archive",
+      "assets": [
+        {
+          "type": "dir",
+          "source": "DirkSimple",
+          "dest": "rd_extras/DirkSimple"
+        }
+      ]
+    },
+    {
+      "source_url": "https://buildbot.libretro.com/assets/system/Dolphin.zip",
+      "source_type": "http",
+      "extraction_type": "archive",
+      "assets": [
+        {
+          "type": "dir",
+          "source": "dolphin-emu",
+          "dest": "rd_extras/dolphin-emu"
+        }
+      ]
+    },
+    {
+      "source_url": "https://buildbot.libretro.com/assets/system/ECWolf.zip",
+      "source_type": "http",
+      "extraction_type": "archive",
+      "assets": [
+        {
+          "type": "file",
+          "source": "ecwolf.pk3",
+          "dest": "rd_extras"
+        }
+      ]
+    },
+    {
+      "source_url": "https://buildbot.libretro.com/assets/system/FinalBurn%20Neo%20%28hiscore%29.zip",
+      "source_type": "http",
+      "extraction_type": "archive",
+      "assets": [
+        {
+          "type": "dir",
+          "source": "fbneo",
+          "dest": "rd_extras/fbneo"
+        }
+      ]
+    },
+    {
+      "source_url": "https://buildbot.libretro.com/assets/system/ScummVM.zip",
+      "source_type": "http",
+      "extraction_type": "local",
+      "assets": [
+        {
+          "type": "file",
+          "source": "$WORKDIR/ScummVM.zip",
+          "dest": "rd_extras"
+        }
+      ]
+    },
+    {
+      "source_url": "https://buildbot.libretro.com/assets/system/LRPS2.zip",
+      "source_type": "http",
+      "extraction_type": "archive",
+      "assets": [
+        {
+          "type": "dir",
+          "source": "pcsx2",
+          "dest": "rd_extras/pcsx2"
+        }
+      ]
+    },
+    {
       "source_url": "https://github.com/libretro/mame2003-plus-libretro",
       "source_type": "git",
       "version": "latest",
@@ -313,6 +416,90 @@
           "type": "tar.gz",
           "source": "metadata/.",
           "dest": "rd_extras/mame2003-plus"
+        }
+      ]
+    },
+    {
+      "source_url": "https://buildbot.libretro.com/assets/system/MAME%202003-Plus.zip",
+      "source_type": "http",
+      "extraction_type": "archive",
+      "assets": [
+        {
+          "type": "dir",
+          "source": "mame2003-plus",
+          "dest": "rd_extras/mame2003-plus"
+        }
+      ]
+    },
+    {
+      "source_url": "https://buildbot.libretro.com/assets/system/MAME%202003.zip",
+      "source_type": "http",
+      "extraction_type": "archive",
+      "assets": [
+        {
+          "type": "dir",
+          "source": "mame2003",
+          "dest": "rd_extras/mame2003"
+        }
+      ]
+    },
+    {
+      "source_url": "https://buildbot.libretro.com/assets/system/NXEngine%20%28Cave%20Story%29.zip",
+      "source_type": "http",
+      "extraction_type": "archive",
+      "assets": [
+        {
+          "type": "dir",
+          "source": "nxengine",
+          "dest": "rd_extras/nxengine"
+        }
+      ]
+    },
+    {
+      "source_url": "https://buildbot.libretro.com/assets/system/PPSSPP.zip",
+      "source_type": "http",
+      "extraction_type": "archive",
+      "assets": [
+        {
+          "type": "dir",
+          "source": "PPSSPP",
+          "dest": "rd_extras/PPSSPP"
+        }
+      ]
+    },
+    {
+      "source_url": "https://buildbot.libretro.com/assets/system/PrBoom.zip",
+      "source_type": "http",
+      "extraction_type": "archive",
+      "assets": [
+        {
+          "type": "file",
+          "source": "prboom.wad",
+          "dest": "rd_extras"
+        }
+      ]
+    },
+    {
+      "source_url": "https://buildbot.libretro.com/assets/system/QEMU.zip",
+      "source_type": "http",
+      "extraction_type": "archive",
+      "assets": [
+        {
+          "type": "dir",
+          "source": "qemu",
+          "dest": "rd_extras/qemu"
+        }
+      ]
+    },
+    {
+      "source_url": "https://buildbot.libretro.com/assets/system/XRick%20%28Rick%20Dangerous%29.zip",
+      "source_type": "http",
+      "extraction_type": "archive",
+      "assets": [
+        {
+          "type": "dir",
+          "source": "xrick",
+          "dest": "rd_extras/xrick"
         }
       ]
     },
