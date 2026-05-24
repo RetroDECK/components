@@ -111,6 +111,17 @@ fi
 if [[ $(check_version_is_older_than "$version_being_updated" "0.10.9b") == "true" ]]; then
   create_dir "$screenshots_path/retroarch"
   set_setting_value "$retroarch_config" "screenshot_directory" "$screenshots_path/retroarch" "retroarch"
+  cp -rf "$retroarch_extras_path/cannonball" "$bios_path/cannonball"
+  cp -rf "$retroarch_extras_path/dinothawr" "$bios_path/dinothawr"
+  cp -rf "$retroarch_extras_path/DirkSimple" "$bios_path/DirkSimple"
+  cp -rf "$retroarch_extras_path/dolphin-emu" "$bios_path/dolphin-emu"
+  cp -rf "$retroarch_extras_path/ecwolf.pk3" "$bios_path/ecwolf.pk3"
+  cp -rf "$retroarch_extras_path/nxengine" "$bios_path/nxengine"
+  cp -rf "$retroarch_extras_path/prboom.wad" "$bios_path/prboom.wad"
+  cp -rf "$retroarch_extras_path/qemu" "$bios_path/qemu"
+  cp -rf "$retroarch_extras_path/xrick" "$bios_path/xrick"
+  cp -rf "$retroarch_extras_path/pcsx2" "$bios_path/pcsx2"
+  dir_prep "$bios_path" "$bios_path/pcsx2/bios"
 fi
 
 #######################################
