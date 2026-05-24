@@ -122,6 +122,13 @@ if [[ $(check_version_is_older_than "$version_being_updated" "0.10.9b") == "true
   cp -rf "$retroarch_extras_path/xrick" "$bios_path/xrick"
   cp -rf "$retroarch_extras_path/pcsx2" "$bios_path/pcsx2"
   dir_prep "$bios_path" "$bios_path/pcsx2/bios"
+  dir_prep "$saves_path/ps2/retroarch-core/LRPS2/memcards" "$bios_path/pcsx2/memcards"
+  dir_prep "$logs_path/retroarch-core/LRPS2/" "$bios_path/pcsx2/logs"
+  dir_prep "$shaders_path/retroarch-core/LRPS2/shaders" "$bios_path/pcsx2/shaders"
+  dir_prep "$cheats_path/retroarch-core/LRPS2/cheats" "$bios_path/pcsx2/cheats"
+  dir_prep "$cheats_path/retroarch-core/LRPS2/cheats_ws" "$bios_path/pcsx2/cheats_ws"
+  dir_prep "$cheats_path/retroarch-core/LRPS2/cheats_ni" "$bios_path/pcsx2/cheats_ni"
+  dir_prep "$textures_path/retroarch-core/LRPS2/textures" "$bios_path/pcsx2/textures"
 fi
 
 #######################################
