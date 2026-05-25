@@ -134,8 +134,8 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # Link: https://flathub.org/en/apps/org.ppsspp.PPSSPP
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
-# Version: 1.20.3
-  export PPSSPP_DESIRED_VERSION="4c5bf795b50f8bcd29ae1e6365a6f1849a72148a302b1175c1dba200bd30bea6"
+# Version: 1.20.4
+  export PPSSPP_DESIRED_VERSION="193bbe95656ed696c8e5a5e42831ee8017d53514e9e0e0acaa3e1235e22089d3"
 
 # COOKER (Override)
 # PPSSPP_DESIRED_VERSION="latest"

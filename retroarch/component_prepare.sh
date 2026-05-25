@@ -100,7 +100,7 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
   dir_prep "$cheats_path/retroarch-core/LRPS2/cheats" "$bios_path/pcsx2/cheats"
   dir_prep "$cheats_path/retroarch-core/LRPS2/cheats_ws" "$bios_path/pcsx2/cheats_ws"
   dir_prep "$cheats_path/retroarch-core/LRPS2/cheats_ni" "$bios_path/pcsx2/cheats_ni"
-  dir_prep "$textures_path/retroarch-core/LRPS2/textures" "$bios_path/pcsx2/textures"
+  dir_prep "$texture_packs_path/retroarch-core/LRPS2/textures" "$bios_path/pcsx2/textures"
 
   # FBNEO
   log i "--------------------------------"
