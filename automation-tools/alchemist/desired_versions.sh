@@ -56,8 +56,8 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # Link: https://flathub.org/en/apps/org.azahar_emu.Azahar
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
-# Version: 2124.3
-  export AZAHAR_DESIRED_VERSION="56e56b4c5cd4668d99512f26ef89c3c7880d5c159b1e9f21d6540db0fd4d9420"
+# Version: 2125.1.1
+  export AZAHAR_DESIRED_VERSION="fd0b3050e4da6a7df8915f63fb8c1d551c7ca8c684568dc62c1681fd316a288c"
 
 # COOKER (Override)
 # export AZAHAR_DESIRED_VERSION="latest"
@@ -134,8 +134,8 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # Link: https://flathub.org/en/apps/org.ppsspp.PPSSPP
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
-# Version: 1.20.3
-  export PPSSPP_DESIRED_VERSION="4c5bf795b50f8bcd29ae1e6365a6f1849a72148a302b1175c1dba200bd30bea6"
+# Version: 1.20.4
+  export PPSSPP_DESIRED_VERSION="193bbe95656ed696c8e5a5e42831ee8017d53514e9e0e0acaa3e1235e22089d3"
 
 # COOKER (Override)
 # PPSSPP_DESIRED_VERSION="latest"
@@ -147,8 +147,8 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # Link: https://flathub.org/en/apps/net.rpcs3.RPCS3
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
-# Version: 0.0.40-191
-  export RPCS3_DESIRED_VERSION="0713512d383febae08dae58b6cc10eeb974d993e80765d94cabe9ee3e83416ca"
+# Version: 0.0.40-19371
+  export RPCS3_DESIRED_VERSION="3c411e945d5a87d5d821f2ebd06ec092ef14a87acf8cf4d3b5f91c0eb149e2f2"
 
 # COOKER (Override)
 # export RPCS3_DESIRED_VERSION="latest"
@@ -160,8 +160,8 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # Link: https://flathub.org/en/apps/rs.ruffle.Ruffle
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
-# Version: 0.2.0-nightly.2026.4.9
- export RUFFLE_DESIRED_VERSION="2b9a6e77082e1f8c97d0d39f71a2a2443ea08cc198139b068ec9c765d820378e"
+# Version: 0.2.0
+ export RUFFLE_DESIRED_VERSION="37f584d0df86cb04ea4479f0c0f274241adc8692a16a6dc1b0b9d293b7f72685"
 
 # COOKER (Override)
 # export RUFFLE_DESIRED_VERSION="latest"
@@ -186,8 +186,8 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # Link: https://flathub.org/en/apps/app.xemu.xemu
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
-# Version: 0.8.134
- export XEMU_DESIRED_VERSION="0739a75dec8215f73d58e19e492a6f9f6a796d1f73842d40da56e7f51a81cbad"
+# Version: 0.8.135
+ export XEMU_DESIRED_VERSION="998fb7d93048da8b4dc98665d09f7e81ff4e73bedb732b67b7ad97a6f55d4316"
 
 # COOKER (Override)
 # export XEMU_DESIRED_VERSION="latest"
@@ -344,7 +344,7 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # Link: https://github.com/RetroDECK/Vita3K-bin/releases
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
-  export VITA3K_DESIRED_VERSION="3949"
+  export VITA3K_DESIRED_VERSION="4022"
 
 # COOKER (Override)
 # export VITA3K_DESIRED_VERSION="latest"

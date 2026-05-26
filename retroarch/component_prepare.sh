@@ -43,19 +43,32 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
   set_setting_value "$retroarch_config" "overlay_directory" "$borders_path/retroarch" "retroarch"
   set_setting_value "$retroarch_config" "system_directory" "$bios_path" "retroarch"
 
-  # Video
+  # Video Screenshots
   create_dir "$videos_path/retroarch"
+  create_dir "$screenshots_path/retroarch"
 
-  # BIOS Directories
+  # MISC BIOS Directories
   create_dir "$bios_path/np2kai"
   create_dir "$bios_path/dc"
   create_dir "$bios_path/Mupen64plus"
   create_dir "$bios_path/quasi88"
 
-  # BIOS MAME Directories
-  create_dir "$bios_path/mame2003/samples"
+  # MISC Assets
+
+  cp -rf "$retroarch_extras_path/cannonball" "$bios_path/cannonball"
+  cp -rf "$retroarch_extras_path/dinothawr" "$bios_path/dinothawr"
+  cp -rf "$retroarch_extras_path/DirkSimple" "$bios_path/DirkSimple"
+  cp -rf "$retroarch_extras_path/dolphin-emu" "$bios_path/dolphin-emu"
+  cp -rf "$retroarch_extras_path/ecwolf.pk3" "$bios_path/ecwolf.pk3"
+  cp -rf "$retroarch_extras_path/nxengine" "$bios_path/nxengine"
+  cp -rf "$retroarch_extras_path/PPSSPP" "$bios_path/PPSSPP"
+  cp -rf "$retroarch_extras_path/prboom.wad" "$bios_path/prboom.wad"
+  cp -rf "$retroarch_extras_path/qemu" "$bios_path/qemu"
+  cp -rf "$retroarch_extras_path/xrick" "$bios_path/xrick"
+
+  # MAME BIOS Directories
+  cp -rf "$retroarch_extras_path/mame2003" "$bios_path/mame2003"
   create_dir "$bios_path/mame2003/artwork"
-  create_dir "$bios_path/mame2003-plus/samples"
   create_dir "$bios_path/mame2003-plus/artwork"
   create_dir "$bios_path/mame2010/samples"
   create_dir "$bios_path/mame2010/artwork"
@@ -71,16 +84,29 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
     log i "MAME 2003-Plus BIOS data backed up to $backup_file"
   fi
   tar -xzf "$retroarch_extras_path/mame2003-plus.tar.gz" -C "$bios_path/mame2003-plus" --overwrite
+  cp -rf "$retroarch_extras_path/mame2003-plus" "$bios_path/mame2003-plus"
 
   retroarch_updater
 
   # Avoid these paths being clobbered by the updater
   ln -s "$retroarch_extras_path/cores" "$XDG_CONFIG_HOME/retroarch/cores" # Link RO cores to RA config dir so ES-DE can find it
-  
+ 
+  # LRPS2
+  cp -rf "$retroarch_extras_path/pcsx2" "$bios_path/pcsx2"
+  dir_prep "$bios_path" "$bios_path/pcsx2/bios"
+  dir_prep "$saves_path/ps2/retroarch-core/LRPS2/memcards" "$bios_path/pcsx2/memcards"
+  dir_prep "$logs_path/retroarch-core/LRPS2/" "$bios_path/pcsx2/logs"
+  dir_prep "$shaders_path/retroarch-core/LRPS2/shaders" "$bios_path/pcsx2/shaders"
+  dir_prep "$cheats_path/retroarch-core/LRPS2/cheats" "$bios_path/pcsx2/cheats"
+  dir_prep "$cheats_path/retroarch-core/LRPS2/cheats_ws" "$bios_path/pcsx2/cheats_ws"
+  dir_prep "$cheats_path/retroarch-core/LRPS2/cheats_ni" "$bios_path/pcsx2/cheats_ni"
+  dir_prep "$texture_packs_path/retroarch-core/LRPS2/textures" "$bios_path/pcsx2/textures"
+
   # FBNEO
   log i "--------------------------------"
   log i "Preparing FBNEO_LIBRETRO"
   log i "--------------------------------"
+  cp -rf "$retroarch_extras_path/fbneo" "$bios_path/fbneo"
   create_dir "$bios_path/fbneo/samples"
   dir_prep "$cheats_path/retroarch-core/fbneo" "$bios_path/fbneo/cheats"
   dir_prep "$shaders_path/retroarch-core/fbneo/blend" "$bios_path/fbneo/blend"

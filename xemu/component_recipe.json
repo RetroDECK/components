@@ -12,11 +12,6 @@
           "dest": "bin"
         },
         {
-          "type": "file",
-          "source": "lib/libxxhash.a",
-          "dest": "lib"
-        },
-        {
           "type": "create",
           "dest": "component_version",
           "contents": "$SOURCE_VERSION"
@@ -85,6 +80,19 @@
           "type": "file",
           "source": "xbox_hdd.qcow2",
           "dest": "rd_extras"
+        }
+      ]
+    },
+    {
+      "source_url": "https://github.com/antangelo/xdvdfs/releases/download/{VERSION}/xdvdfs-linux-*.zip",
+      "source_type": "github-release",
+      "version": "latest",
+      "extraction_type": "archive",
+      "assets": [
+        {
+          "type": "file",
+          "source": "xdvdfs",
+          "dest": "bin"
         }
       ]
     }
