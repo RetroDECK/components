@@ -148,7 +148,7 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
 # Version: 0.0.40-191
-  export RPCS3_DESIRED_VERSION="a0713512d383febae08dae58b6cc10eeb974d993e80765d94cabe9ee3e83416ca"
+  export RPCS3_DESIRED_VERSION="0713512d383febae08dae58b6cc10eeb974d993e80765d94cabe9ee3e83416ca"
 
 # COOKER (Override)
 # export RPCS3_DESIRED_VERSION="latest"
