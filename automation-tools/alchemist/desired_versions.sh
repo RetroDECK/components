@@ -147,8 +147,8 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # Link: https://flathub.org/en/apps/net.rpcs3.RPCS3
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
-# Version: 0.0.40-19371
-  export RPCS3_DESIRED_VERSION="3c411e945d5a87d5d821f2ebd06ec092ef14a87acf8cf4d3b5f91c0eb149e2f2"
+# Version: 0.0.40-19389
+  export RPCS3_DESIRED_VERSION="a386a9af83adc5581f451750a657efff996ed7772d7bad39667b1fd3c125f192"
 
 # COOKER (Override)
 # export RPCS3_DESIRED_VERSION="latest"
@@ -344,7 +344,7 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # Link: https://github.com/RetroDECK/Vita3K-bin/releases
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
-  export VITA3K_DESIRED_VERSION="4022"
+  export VITA3K_DESIRED_VERSION="4031"
 
 # COOKER (Override)
 # export VITA3K_DESIRED_VERSION="latest"
