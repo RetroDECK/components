@@ -1,0 +1,4 @@
+rpcs3-v0.0.40-19396-a87d1752_linux64.appimage
+
+Build 0.0.40-19396
+This build was released on 2026-05-27 
