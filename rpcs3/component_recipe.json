@@ -1,16 +1,25 @@
 {
   "rpcs3": [
     {
-      "source_url": "net.rpcs3.RPCS3",
-      "source_type": "flatpak_id",
+      "source_url": "https://github.com/RPCS3/rpcs3-binaries-linux/releases/download/{VERSION}/rpcs3-*linux64.AppImage",
+      "source_type": "github_release",
       "version": "$RPCS3_DESIRED_VERSION",
-      "dest": "user",
-      "extraction_type": "flatpak",
+      "extraction_type": "appimage",
       "assets": [
         {
           "type": "dir",
-          "source": "bin",
+          "source": "usr/bin",
           "dest": "bin"
+        },
+        {
+          "type": "dir",
+          "source": "usr/lib",
+          "dest": "lib"
+        },
+        {
+          "type": "dir",
+          "source": "usr/plugins",
+          "dest": "plugins"
         },
         {
           "type": "create",
@@ -53,28 +62,7 @@
           "dest": "$COMPONENT_ARTIFACT_ROOT"
         }
       ],
-      "libs": [
-        {
-          "library": "libLLVM.so.20.1",
-          "source": "lib",
-          "dest": "lib"
-        },
-        {
-          "library": "libGLEW.so.2.2",
-          "source": "lib",
-          "dest": "lib"
-        },
-        {
-          "library": "libGLU.so.1",
-          "source": "lib",
-          "dest": "lib"
-        },
-        {
-          "library": "libSDL3.so.0",
-          "source": "lib",
-          "dest": "lib"
-        }
-      ]
+      "libs": []
     }
   ]
 }
