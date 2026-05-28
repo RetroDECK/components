@@ -141,17 +141,7 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # PPSSPP_DESIRED_VERSION="latest"
 
 
-# ------------------------------------------------------------------------------
-# RPCS3 - PlayStation 3 Emulator
-# Source: Flatpak - Flathub
-# Link: https://flathub.org/en/apps/net.rpcs3.RPCS3
-# ------------------------------------------------------------------------------
-# MAIN (Stable)
-# Version: 0.0.40-191
-  export RPCS3_DESIRED_VERSION="0713512d383febae08dae58b6cc10eeb974d993e80765d94cabe9ee3e83416ca"
 
-# COOKER (Override)
-# export RPCS3_DESIRED_VERSION="latest"
 
 
 # ------------------------------------------------------------------------------
@@ -201,6 +191,18 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 #
 #  Versions should be explicitly defined to ensure reproducible builds.
 # ==============================================================================
+
+# ------------------------------------------------------------------------------
+# RPCS3 - PlayStation 3 Emulator
+# Source: AppImage
+# Link: https://github.com/RPCS3/rpcs3-binaries-linux/
+# ------------------------------------------------------------------------------
+# MAIN (Stable)
+# Version: 0.0.40-19397
+  export RPCS3_DESIRED_VERSION="latest"
+
+# COOKER (Override)
+# export RPCS3_DESIRED_VERSION="latest"
 
 
 # ------------------------------------------------------------------------------
