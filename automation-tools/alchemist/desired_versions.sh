@@ -141,17 +141,7 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # PPSSPP_DESIRED_VERSION="latest"
 
 
-# ------------------------------------------------------------------------------
-# RPCS3 - PlayStation 3 Emulator
-# Source: Flatpak - Flathub
-# Link: https://flathub.org/en/apps/net.rpcs3.RPCS3
-# ------------------------------------------------------------------------------
-# MAIN (Stable)
-# Version: 0.0.40-19371
-  export RPCS3_DESIRED_VERSION="3c411e945d5a87d5d821f2ebd06ec092ef14a87acf8cf4d3b5f91c0eb149e2f2"
 
-# COOKER (Override)
-# export RPCS3_DESIRED_VERSION="latest"
 
 
 # ------------------------------------------------------------------------------
@@ -201,6 +191,18 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 #
 #  Versions should be explicitly defined to ensure reproducible builds.
 # ==============================================================================
+
+# ------------------------------------------------------------------------------
+# RPCS3 - PlayStation 3 Emulator
+# Source: AppImage
+# Link: https://github.com/RPCS3/rpcs3-binaries-linux/
+# ------------------------------------------------------------------------------
+# MAIN (Stable)
+# Version: 0.0.40-19397
+  export RPCS3_DESIRED_VERSION="latest"
+
+# COOKER (Override)
+# export RPCS3_DESIRED_VERSION="latest"
 
 
 # ------------------------------------------------------------------------------
@@ -344,7 +346,7 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # Link: https://github.com/RetroDECK/Vita3K-bin/releases
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
-  export VITA3K_DESIRED_VERSION="4022"
+  export VITA3K_DESIRED_VERSION="3996"
 
 # COOKER (Override)
 # export VITA3K_DESIRED_VERSION="latest"
