@@ -7,10 +7,7 @@ if [ "$CALL_SOURCE" != "WINPLAY" ]; then
     exit 1
 fi
 
-generate_autoexec_install_os() {
-
-local conf_file="${1:-$dosbox_x_generated_conf}"
-
+generate_autoexec_headers() {
 # Mount the OS image as a hard disk (VHD) for installation
 cat <<EOF >> "$conf_file"
 IMGMOUNT C "$OS_IMAGE" -t hdd
@@ -22,12 +19,18 @@ cat <<EOF >> "$conf_file"
 ${MOUNT_MAP}
 EOF
 
+}
+
+generate_autoexec_install_os() {
+
+generate_autoexec_headers
+
 # Copy drivers from the CD to the Windows system directory to reduce prompts during installation.
-cat <<'EOF' >> "$conf_file"
+cat <<EOF >> "$conf_file"
 REM Copy as many files as possible from the CD to C:\WINDOWS\SYSTEM
 IF NOT EXIST C:\WINDOWS\SYSTEM MD C:\WINDOWS\SYSTEM
-REM Copy full WIN98 and DRIVERS directories (recursive copy where available)
-IF EXIST D:\WIN98 XCOPY D:\WIN98 C:\WINDOWS\SYSTEM /E /Y >NUL 2>NUL
+REM Copy full $SYSTEM and DRIVERS directories (recursive copy where available)
+IF EXIST D:\${SYSTEM} XCOPY D:\${SYSTEM} C:\WINDOWS\SYSTEM /E /Y >NUL 2>NUL
 IF EXIST D:\DRIVERS XCOPY D:\DRIVERS C:\WINDOWS\SYSTEM /E /Y >NUL 2>NUL
 REM Also copy any root-level device files that might be directly requested
 IF EXIST D:\*.VXD COPY /Y D:\*.VXD C:\WINDOWS\SYSTEM >NUL 2>NUL
@@ -54,6 +57,33 @@ C:
 RUNDLL32.EXE USER.EXE,ExitWindows
 EOF
 
-log i "Setup: VHD mounted, ready for installation"
+log i "Setup: first phase of installation complete. Rebooting to finish the installation."
 
+}
+
+generate_autoexec_os_run() {
+    generate_autoexec_headers
+}
+
+generate_autoexec_game_install() {
+    mk_gamehd
+    generate_autoexec_headers
+
+    # TODO
+}
+
+generate_autoexec_game_run() {
+    generate_autoexec_headers
+
+    # TODO: add the autoexec that runs the actual game file defined during the installation
+}
+
+clear_autoexec(){
+    local conf_file="${1:-$dosbox_x_generated_conf}"
+
+    # Clear the autoexec section of the generated config file
+    sed -i '/^\[autoexec\]$/,$d' "$generated_conf"
+
+    # Replace it with the system defult one
+    sed -n '/^\[autoexec\]$/,$p' "$dosbox_x_os_configs_dir/${SYSTEM}.conf" >> "$generated_conf"
 }
