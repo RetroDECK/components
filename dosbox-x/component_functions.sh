@@ -3,9 +3,10 @@
 component_name="$(basename "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")")"
 component_config="/app/retrodeck/components/$component_name/rd_config"
 
-dosbox_x_config="$XDG_CONFIG_HOME/dosbox-x/dosbox-x.conf"
-dosbox_x_mapper="$XDG_CONFIG_HOME/dosbox-x/mapper-dosbox-x.map"
-dosbox_x_os_configs_dir="$component_config/os_configs"
+dosbox_x_config="$XDG_CONFIG_HOME/dosbox-x/dosbox-x.conf"        # Base config always appended to the WinPlay! calls. If we need to tweak something globally for all systems, this is the spot.
+dosbox_x_mapper="$XDG_CONFIG_HOME/dosbox-x/mapper-dosbox-x.map"  # DosBox-X default controls mapper file
+dosbox_x_os_configs_dir="$component_config/os_configs"           # WinPlay! will use the configs in this folder as pre-configured templates to generate temporary configs for OS installation and running, if we need to tweak something globally for a system, this is the spot
+dosbox_x_generated_conf="$dosbox_x_config/generated.conf"        # Used by WinPlay! to generate temporary configs for OS installation and running, this is disposable and will be delete/overwritten multiple times
 winplay="open_component dosbox-x"
 
 _prepare_component::dosbox-x() {

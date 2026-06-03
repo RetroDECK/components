@@ -18,8 +18,8 @@
           "contents": "$SOURCE_VERSION"
         },
         {
-          "type": "file",
-          "source": "$REPO_ROOT/$COMPONENT_NAME/rd_assets/winplay.sh",
+          "type": "dir",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/rd_assets/winplay",
           "dest": "bin"
         },
         {
