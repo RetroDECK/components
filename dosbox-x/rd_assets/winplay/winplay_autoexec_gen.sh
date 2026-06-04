@@ -10,6 +10,9 @@ fi
 generate_autoexec_headers() {
 # Mount the OS image as a hard disk (VHD) for installation
 log d "Generating autoexec headers"
+log d "Checking if \"$dosbox_x_generated_conf\" exists"
+log d "$(ls -l "$dosbox_x_generated_conf")"
+
 cat <<EOF >> "$dosbox_x_generated_conf"
 IMGMOUNT C "$OS_IMAGE" -t hdd
 EOF
@@ -31,12 +34,12 @@ generate_autoexec_headers
 cat <<EOF >> "$dosbox_x_generated_conf"
 REM Copy as many files as possible from the CD to C:\WINDOWS\SYSTEM
 IF NOT EXIST C:\WINDOWS\SYSTEM MD C:\WINDOWS\SYSTEM
-REM Copy full $SYSTEM and DRIVERS directories (recursive copy where available)
-IF EXIST D:\${SYSTEM} XCOPY D:\${SYSTEM} C:\WINDOWS\SYSTEM /E /Y >NUL 2>NUL
-IF EXIST D:\DRIVERS XCOPY D:\DRIVERS C:\WINDOWS\SYSTEM /E /Y >NUL 2>NUL
+REM Copy full $PRETTY_SYSTEM_NAME and DRIVERS directories (recursive copy where available)
+IF EXIST E:\${SYSTEM} XCOPY E:\${SYSTEM} C:\WINDOWS\SYSTEM /E /Y >NUL 2>NUL
+IF EXIST E:\DRIVERS XCOPY E:\DRIVERS C:\WINDOWS\SYSTEM /E /Y >NUL 2>NUL
 REM Also copy any root-level device files that might be directly requested
-IF EXIST D:\*.VXD COPY /Y D:\*.VXD C:\WINDOWS\SYSTEM >NUL 2>NUL
-IF EXIST D:\*.DRV COPY /Y D:\*.DRV C:\WINDOWS\SYSTEM >NUL 2>NUL
+IF EXIST E:\*.VXD COPY /Y E:\*.VXD C:\WINDOWS\SYSTEM >NUL 2>NUL
+IF EXIST E:\*.DRV COPY /Y E:\*.DRV C:\WINDOWS\SYSTEM >NUL 2>NUL
 EOF
 
 # Add autoexec commands to run the Windows setup from the mounted CD-ROM
@@ -48,7 +51,7 @@ DEL /F /Q "C:\\WINDOWS\\STARTM~1\\PROGRAMS\\STARTUP\\run_game.bat" 2>NUL
 DEL /F /Q "C:\\WINDOWS\\Start Menu\\Programs\\Startup\\run_game.bat" 2>NUL
 DIR "C:\\WINDOWS\\STARTM~1\\PROGRAMS\\STARTUP\\run_game.bat"
 DIR "C:\\WINDOWS\\Start Menu\\Programs\\Startup\\run_game.bat"
-D:
+E:
 SETUP.EXE
 GOTO END_INSTALL
 :WINDOWS_FOUND
