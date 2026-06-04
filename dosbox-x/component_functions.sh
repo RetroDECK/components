@@ -28,11 +28,11 @@ _prepare_component::dosbox-x() {
 
         # Default General Storage
         create_dir "$storage_path/windows/dosbox-x"
-        set_setting_value "$dosbox_x_config" "working directory default" "$storage_path/windows/dosbox-x" "dosbox-x"
+        set_setting_value "$dosbox_x_config" "working directory default" "$storage_path/windows/dosbox-x" "dosbox-x" # TODO: set category
 
         # Logs path
         create_dir "$logs_path/dosbox-x"
-        set_setting_value "$dosbox_x_config" "logfile" "$logs_path/dosbox-x/dosbox-x.log" "dosbox-x"
+        set_setting_value "$dosbox_x_config" "logfile" "$logs_path/dosbox-x/dosbox-x.log" "dosbox-x" # TODO: set category
     ;;
 
     esac
