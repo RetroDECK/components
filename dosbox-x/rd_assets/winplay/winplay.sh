@@ -13,42 +13,37 @@
 # Run the installed Windows 98:
 # winplay --os-run win98
 
-SYSTEM=""               # The system to install or run, e.g. win98
-GAME_NAME=""            # Serves as a game ID
-CALL_SOURCE="WINPLAY"   # The scripts will know that they are called from winplay.sh and not directly, so they can check this variable to prevent direct execution.
-DOSBOX_X_ARGS=""        # This variable will be built up with the arguments to pass to DosBox-X, such as --cdrom and --floppy, based on the provided arguments.
-MOUNT_MAP=""            # Defines which CD-ROMs and Floppy disks are mounted.
+SYSTEM="UNKNOWN"               # The system to install or run, e.g. win98
+GAME_NAME="UNKNOWN"            # Serves as a game ID
+GAME_PATH="UNKNOWN"            # Path to the game VHD file
+CALL_SOURCE="WINPLAY"          # The scripts will know that they are called from winplay.sh and not directly, so they can check this variable to prevent direct execution.
+DOSBOX_X_ARGS=""               # This variable will be built up with the arguments to pass to DosBox-X, such as --cdrom and --floppy, based on the provided arguments.
+MOUNT_MAP=""                   # Defines which CD-ROMs and Floppy disks are mounted.
 
 SCRIPT_DIR="$(cd "$(dirname -- "${BASH_SOURCE:-$0}")" &> /dev/null && pwd)"
 DOSBOX_X_EXEC="$SCRIPT_DIR/../bin/dosbox-x"
 
 # TODO: only for local testing, remove me later
-log(){
-        if [ "$1" == "i" ]; then
-            level="INFO"
-        elif [ "$1" == "d" ]; then
-            level="DEBUG"
-        elif [ "$1" == "e" ]; then
-            level="ERROR"
-        elif [ "$1" == "w" ]; then
-            level="WARNING"
-        else
-            level="LOG"
-        fi
-        echo "[$(date +'%Y-%m-%d %H:%M:%S')] [${level}]: $2"
-}
+# log(){
+#         if [ "$1" == "i" ]; then
+#             level="INFO"
+#         elif [ "$1" == "d" ]; then
+#             level="DEBUG"
+#         elif [ "$1" == "e" ]; then
+#             level="ERROR"
+#         elif [ "$1" == "w" ]; then
+#             level="WARNING"
+#         else
+#             level="LOG"
+#         fi
+#         echo "[$(date +'%Y-%m-%d %H:%M:%S')] [${level}]: $2"
+# }
 
-REBOOT_WINDOWS="false"
+log d "Starting WinPlay! with arguments: $*"
+
 reboot_windows() {
     log i "Windows reboot was requested."
     REBOOT_WINDOWS="true"
-}
-
-# TODO: do we need this?
-SHUTDOWN_WINDOWS="false"
-shutdown_windows() {
-    log i "Windows shutdown was requested."
-    SHUTDOWN_WINDOWS="true"
 }
 
 imgmount_map() {
@@ -70,6 +65,8 @@ imgmount_map() {
     local letter=""
     local candidate
 
+    log d "Generating IMGMOUNT command for type: $type, image: $image"
+
     case "$type" in
         FLOPPY)
             for candidate in A B; do
@@ -77,6 +74,7 @@ imgmount_map() {
                 letter="$candidate"
                 break
             done
+            local mount_type="-t floppy"
         ;;
 
         CDROM | CD-ROM)
@@ -85,6 +83,7 @@ imgmount_map() {
                 letter="$candidate"
                 break
             done
+            local mount_type="-t cdrom"
         ;;
 
         *)
@@ -100,7 +99,9 @@ imgmount_map() {
 
     IMGMOUNT_USED["$letter"]=1
 
-    printf 'IMGMOUNT %s "%s"\n' "$letter" "$image"
+    log d "Assigned drive letter $letter for $type image: $image"
+
+    printf 'IMGMOUNT %s "%s" %s\n' "$letter" "$image" "$mount_type"
 }
 
 show_help(){
@@ -117,7 +118,9 @@ show_help(){
     echo "  --os-run                    Run the installed Windows 9x on DosBox-X"
     echo "  --game-install <game_name>  Install a game on an installed Windows 9x. Game name serves as game identifier."
     echo "                              Game is installed in $roms_path/windows*/game_name directory."
-    echo "  --game-run <game_name>      Run a game on the installed Windows 9x"
+    echo "                              Game name should match the wished executable target,for example OMF to launch OMF.EXE."
+    echo "  --game-run <vhd_path>       Run a game from a specified VHD file."
+    echo "                              the VHD base name (without extension) should match the wished executable target, for example OMF.vhd will search and launch OMF.EXE."
     echo "  -h, --help                  Show this help message and exit"
     echo ""
     echo "Supported systems:"
@@ -128,8 +131,32 @@ show_help(){
     echo "Example usages:"
     echo "  winplay --os-install --system win98 --cdrom /path/to/windows98.iso --floppy /path/to/floppy.img"
     echo "  winplay --os-run --system win98"
-    echo "  winplay --game-install --system win98 --game OMF2097 --cdrom /path/to/OMF2097.iso"
-    echo "  winplay --game-run --system win98 --game OMF2097"
+    echo "  winplay --game-install --system win98 --game OMF --cdrom /path/to/OMF2097.iso"
+    echo "  winplay --game-run --system win98 --game /home/deck/retrodeck/roms/windows9x/OMF.vhd"
+}
+
+# TODO: not yet used
+dos_name_sanitizer(){
+    # Replace path separators with underscores and collapse any sequence of
+    # characters that are not a-zA-Z0-9, dot, underscore or hyphen into a single '_'
+
+    # Usage: sanitized=$(sanitize_name "Some Name/With*Invalid|Chars")
+    # Output: Some_Name_With_Invalid_Chars
+
+    local name="$1"
+
+    [[ -z "$name" ]] && {
+        printf 'GAME'
+        return
+    }
+
+    local safe
+    safe=$(printf '%s' "$name" \
+        | sed -E 's|/|_|g' \
+        | sed -E 's/[^A-Za-z0-9_-]+/_/g' \
+        | sed -E 's/^_+|_+$//g')
+
+    printf '%s' "${safe^^}"
 }
 
 load_system_config(){
@@ -159,10 +186,18 @@ os_run() {
 
 game_run(){
     # Run the game on defined system and game name
-    log i "Running game $GAME_NAME on $PRETTY_SYSTEM_NAME in DosBox-X"
+    log i "Running game $GAME_PATH on $PRETTY_SYSTEM_NAME in DosBox-X"
+
+    if [[ -z "$GAME_PATH" ]]; then
+        log e "Game path is not specified for game_run"
+        exit 1
+    fi
+
     source "$SCRIPT_DIR/winplay_autoexec_gen.sh"
     load_system_config  # this cleans the autoexec
     generate_autoexec_game_run
+
+    # TODO
 }
 
 parse_arguments() {
@@ -174,12 +209,17 @@ parse_arguments() {
     fi
 
     while [[ $# -gt 0 ]]; do
+
+        log d "Evaluating argument: $1"
+
         case "$1" in
 
         "--system")
-            if [ -n "$2" ]; then
+            if [ -n "$1" ]; then
+
+                log d "Found \"$2\" as system name for installation or running"
+
                 SYSTEM="$2"
-                shift
 
                 case "$SYSTEM" in
                     "win95")
@@ -188,9 +228,11 @@ parse_arguments() {
                     ;;
 
                     "win98")
+                        log d "Selected system: Windows 98"
+                        log d "Setting SYSTEM variable to \"win98\" for internal use"
+                        log d "Setting PRETTY_SYSTEM_NAME variable to \"Windows 98\" for user-friendly display"
                         SYSTEM="win98"
                         PRETTY_SYSTEM_NAME="Windows 98"
-                        break
                     ;;
                     "win31")
                         log w "Windows 3.1 installation is not implemented yet"
@@ -211,13 +253,14 @@ parse_arguments() {
 
         ;;
         "--floppy")
+            log d "Processing floppy argument"
             if [ -n "$2" ]; then
                 if [ ! -f "$2" ]; then
                     log e "Floppy image file not found: $2"
                     exit 1
                 fi
                 FLOPPY_IMAGE="$2"
-                DOSBOX_X_ARGS+=" --floppy \"$FLOPPY_IMAGE\""
+                # DOSBOX_X_ARGS+=" --floppy \"$FLOPPY_IMAGE\"" # Not needed, we just set it in the config
                 MOUNT_MAP+="$(imgmount_map "FLOPPY" "$FLOPPY_IMAGE")"
                 log i "Loaded floppy image: $FLOPPY_IMAGE"
                 shift
@@ -228,6 +271,7 @@ parse_arguments() {
             fi
         ;;
         "--cdrom" | "--cd-rom")
+            log d "Processing CD-ROM argument"
             if [ -n "$2" ]; then
                 # For CD-ROM images, we allow both files and directories, so we check if the path exists.
                 if [ ! -f "$2" ] && [ ! -d "$2" ]; then
@@ -235,7 +279,7 @@ parse_arguments() {
                     exit 1
                 fi
                 CDROM_IMAGE="$2"
-                DOSBOX_X_ARGS+=" --cdrom \"$CDROM_IMAGE\""
+                # DOSBOX_X_ARGS+=" --cdrom \"$CDROM_IMAGE\"" # Not needed, we just set it in the config
                 MOUNT_MAP+="$(imgmount_map "CD-ROM" "$CDROM_IMAGE")"
                 log i "Loaded CD-ROM image: $CDROM_IMAGE"
                 shift
@@ -245,40 +289,35 @@ parse_arguments() {
             fi
         ;;
         "--os-install")
-            source "$SCRIPT_DIR/winplay_install.sh"
+            log d "Selected action: OS install"
             ACTION="os_install"
-            shift
-            break
         ;;
         "--os-run")
+            log d "Selected action: OS run"
             ACTION="os_run"
-            shift
-            break
         ;;
         "--game-install")
-            if [[ -z "$GAME_NAME" || "$GAME_NAME" == --* ]]; then
+            log d "Selected action: Game install"
+            log d "Found \"$2\" as game name for installation"
+            if [[ -z "$2" || "$2" == --* ]]; then
                 log e "Missing game name after --game-install"
                 exit 1
             else
                 GAME_NAME="$2"
-                shift
             fi
             source "$SCRIPT_DIR/winplay_install.sh"
             ACTION="game_install"
-            shift
-            break
         ;;
         "--game-run")
-            if [[ -z "$GAME_NAME" || "$GAME_NAME" == --* ]]; then
-                log e "Missing game name after --game-run"
+            log d "Found \"$2\" as game path"
+            if [[ -z "$2" || "$2" == --* ]]; then
+                log e "Missing game path after --game-run"
                 exit 1
             else
-                GAME_NAME="$2"
-                shift
+                GAME_PATH="$2"
+                GAME_NAME="$(basename "${GAME_PATH%.*}")"
             fi
             ACTION="game_run"
-            shift
-            break
         ;;
         "--help" | "-h")
             show_help
@@ -294,7 +333,12 @@ parse_arguments() {
 done
 }
 
-parse_arguments "$@"
+if [ "$REBOOT_WINDOWS" == "true" ]; then
+    log d "Reboot flag is set, discarding arguments as environment is already build."
+else
+    log d "Parsing arguments..."
+    parse_arguments "$@"
+fi
 
 case "$ACTION" in
     os_install)
@@ -317,14 +361,24 @@ case "$ACTION" in
         ;;
 esac
 
+log d "Finished setting environment for DosBox-X execution."
+log d "SYSTEM=$SYSTEM"
+log d "PRETTY_SYSTEM_NAME=$PRETTY_SYSTEM_NAME"
+log d "GAME_NAME=$GAME_NAME"
+log d "GAME_PATH=$GAME_PATH"
+log d "action=$ACTION"
+
 log d "Calling DosBox-X"
 log d "Command: $DOSBOX_X_EXEC $DOSBOX_X_CONF_ARGS $DOSBOX_X_ARGS"
+
+log d "Config file content:"
+log d "$(<$dosbox_x_generated_conf)"
 
 # At this point, all the arguments have been parsed, the config file is built and the environment is prepared.
 # We can now call DosBox-X with the generated config and arguments.
 # By default the dosbox-x.conf will be passed as the system .conf files are just overrides and don't include the full config stack.
 
-exec "$DOSBOX_X_EXEC" $DOSBOX_X_CONF_ARGS $DOSBOX_X_ARGS
+"$DOSBOX_X_EXEC" $DOSBOX_X_CONF_ARGS $DOSBOX_X_ARGS
 
 # Sometimes we need to reboot Windows during the installation process.
 # Since we are running DosBox-X with exec, we can not just call exec again to reboot, so we set a flag and check it after DosBox-X exits.
@@ -333,5 +387,5 @@ exec "$DOSBOX_X_EXEC" $DOSBOX_X_CONF_ARGS $DOSBOX_X_ARGS
 if [ "$REBOOT_WINDOWS" == "true" ]; then
     log i "Rebooting Windows as requested..."
     REBOOT_WINDOWS="false"
-    exec "$DOSBOX_X_EXEC" $DOSBOX_X_CONF_ARGS $DOSBOX_X_ARGS
+    "$DOSBOX_X_EXEC" $DOSBOX_X_CONF_ARGS $DOSBOX_X_ARGS
 fi

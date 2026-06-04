@@ -9,13 +9,15 @@ fi
 
 generate_autoexec_headers() {
 # Mount the OS image as a hard disk (VHD) for installation
-cat <<EOF >> "$conf_file"
+log d "Generating autoexec headers"
+cat <<EOF >> "$dosbox_x_generated_conf"
 IMGMOUNT C "$OS_IMAGE" -t hdd
 EOF
     
 # Mount any additional media (floppy, CD-ROM) if specified, and build up the MOUNT_MAP for later inclusion in the config
-log d "Appending generated MOUNT_MAP for autoexec:\n$MOUNT_MAP"
-cat <<EOF >> "$conf_file"
+log d "Appending generated MOUNT_MAP for autoexec:"
+log d "$MOUNT_MAP"
+cat <<EOF >> "$dosbox_x_generated_conf"
 ${MOUNT_MAP}
 EOF
 
@@ -26,7 +28,7 @@ generate_autoexec_install_os() {
 generate_autoexec_headers
 
 # Copy drivers from the CD to the Windows system directory to reduce prompts during installation.
-cat <<EOF >> "$conf_file"
+cat <<EOF >> "$dosbox_x_generated_conf"
 REM Copy as many files as possible from the CD to C:\WINDOWS\SYSTEM
 IF NOT EXIST C:\WINDOWS\SYSTEM MD C:\WINDOWS\SYSTEM
 REM Copy full $SYSTEM and DRIVERS directories (recursive copy where available)
@@ -39,7 +41,7 @@ EOF
 
 # Add autoexec commands to run the Windows setup from the mounted CD-ROM
 # In this phase we make sure that there is no run_game.bat in the startup folders
-cat <<EOF >> "$conf_file"
+cat <<EOF >> "$dosbox_x_generated_conf"
 DIR "C:\\WINDOWS\\STARTM~1\\PROGRAMS\\STARTUP\\run_game.bat"
 DIR "C:\\WINDOWS\\Start Menu\\Programs\\Startup\\run_game.bat"
 DEL /F /Q "C:\\WINDOWS\\STARTM~1\\PROGRAMS\\STARTUP\\run_game.bat" 2>NUL
@@ -66,24 +68,97 @@ generate_autoexec_os_run() {
 }
 
 generate_autoexec_game_install() {
-    mk_gamehd
     generate_autoexec_headers
-
-    # TODO
 }
 
 generate_autoexec_game_run() {
-    generate_autoexec_headers
 
-    # TODO: add the autoexec that runs the actual game file defined during the installation
+generate_autoexec_headers
+
+cat > "$dosbox_x_generated_conf" << EOF
+
+IMGMOUNT D "$GAME_PATH" -t hdd
+
+@ECHO OFF
+CLS
+COLOR 1F
+
+REM -----------------------------------------------------------------
+REM WINPLAY
+REM -----------------------------------------------------------------
+
+IF EXIST D:\\WINPLAY.CFG GOTO LOADCFG
+
+SET TARGET=${GAME_NAME}.EXE
+GOTO FIND_DEFAULT
+
+:LOADCFG
+
+FOR /F "tokens=1,* delims==" %%A IN (D:\WINPLAY.CFG) DO SET EXEC_PATH=%%B
+
+IF EXIST "%EXEC_PATH%" (
+    START /WAIT "" "%EXEC_PATH%"
+    GOTO END
+)
+
+:FIND_DEFAULT
+
+SET FOUND=
+
+FOR /R D:\ %%F IN (%TARGET%) DO (
+    SET FOUND=%%F
+)
+
+IF NOT "%FOUND%"=="" (
+    START /WAIT "" "%FOUND%"
+    GOTO END
+)
+
+:NOT_FOUND
+
+CLS
+COLOR 1F
+
+ECHO.
+ECHO ============================================================
+ECHO                           WINPLAY
+ECHO ============================================================
+ECHO.
+ECHO Could not determine which executable to launch.
+ECHO.
+ECHO WinPlay searched for:
+ECHO.
+ECHO     %TARGET%
+ECHO.
+ECHO To fix this, either:
+ECHO.
+ECHO  1. Rename the VHD file so that its name matches the EXE
+ECHO.
+ECHO     Example:
+ECHO         OMF.VHD searches for OMF.EXE
+ECHO.
+ECHO  2. Create D:\WINPLAY.CFG containing:
+ECHO.
+ECHO     EXEC=D:\PATH\TO\GAME.EXE
+ECHO.
+ECHO Press any key to exit.
+ECHO.
+ECHO ============================================================
+
+PAUSE >NUL
+GOTO END
+
+:END
+RUNDLL32.EXE USER.EXE,ExitWindows
+EOF
 }
 
 clear_autoexec(){
     local conf_file="${1:-$dosbox_x_generated_conf}"
 
     # Clear the autoexec section of the generated config file
-    sed -i '/^\[autoexec\]$/,$d' "$generated_conf"
+    sed -i '/^\[autoexec\]$/,$d' "$dosbox_x_generated_conf"
 
     # Replace it with the system defult one
-    sed -n '/^\[autoexec\]$/,$p' "$dosbox_x_os_configs_dir/${SYSTEM}.conf" >> "$generated_conf"
+    sed -n '/^\[autoexec\]$/,$p' "$dosbox_x_os_configs_dir/${SYSTEM}.conf" >> "$dosbox_x_generated_conf"
 }
