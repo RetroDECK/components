@@ -32,9 +32,12 @@ os_install() {
     source "$SCRIPT_DIR/winplay_autoexec_gen.sh"
     generate_autoexec_install_os
 
+    log i "Starting DosBox-X to run the Phase 1 installation of $PRETTY_SYSTEM_NAME"
+    run_dosbox_x --force-turbo
+
+    log i "Rebooting $PRETTY_SYSTEM_NAME to complete installation (Phase 2)"
     log d "Setting action variable to \"os_run\" before rebooting the system."
     action="os_run"
-    reboot_windows
     os_run
 
     clear_autoexec
@@ -56,7 +59,7 @@ create_vhd() {
     if [[ -f "$IMAGE_PATH" ]]; then
         log e "VHD already exists: $IMAGE_PATH (skipping)"
         log e "If you want to create a new VHD, please delete the existing one at \"$IMAGE_PATH\" and run the installation again."
-        exit 1
+        log w "Skipping VHD creation for \"$IMAGE_PATH\" and proceeding with existing file. This may cause issues if the existing VHD is not properly set up."
     fi
 
     mkdir -p "$(dirname "$IMAGE_PATH")"
@@ -65,7 +68,7 @@ create_vhd() {
 
     # Use DOSBox-X imgmake to create a dynamic VHD
     # This is native to DOSBox-X and fully compatible
-    if ! "$component_path/bin/dosbox-x" -c "imgmake -t hd -size $size_mb \"$IMAGE_PATH\"" -c "exit" > /dev/null 2>&1; then
+    if ! "$component_path/bin/dosbox-x" -silent -c "imgmake -t hd -size $size_mb \"$IMAGE_PATH\"" -c "exit" > /dev/null 2>&1; then
         log e "Failed to create VHD with imgmake"
         rm -f "$IMAGE_PATH"
         return 1

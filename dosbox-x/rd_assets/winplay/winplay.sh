@@ -148,6 +148,43 @@ show_help(){
     echo "  winplay --game-run --system win98 --game /home/deck/retrodeck/roms/windows9x/OMF.vhd"
 }
 
+run_dosbox_x() {
+
+    if "$1" == "--force-turbo"; then
+        FORCE_TURBO="true"
+
+        # TODO
+        former_turbo_break_setting=$(get_setting_value "$dosbox_x_generated_conf" "stop turbo on key" "dosbox-x" "cpu")
+        former_turbo_setting=$(get_setting_value "$dosbox_x_generated_conf" "turbo" "dosbox-x" "cpu")
+
+        set_setting_value "$dosbox_x_generated_conf" "stop turbo on key" "false" "dosbox-x" "cpu"
+        set_setting_value "$dosbox_x_generated_conf" "turbo" "true" "dosbox-x" "cpu"
+
+        log w "Force Turbo mode enabled for DosBox-X execution. This may cause instability during Windows installation, but can speed it up significantly. Use with caution."
+    fi
+
+    log d "Finished setting environment for DosBox-X execution."
+    log d "SYSTEM=$SYSTEM"
+    log d "PRETTY_SYSTEM_NAME=$PRETTY_SYSTEM_NAME"
+    log d "GAME_NAME=$GAME_NAME"
+    log d "GAME_PATH=$GAME_PATH"
+    log d "action=$ACTION"
+
+    log d "Calling DosBox-X"
+    log d "Command: $DOSBOX_X_EXEC $DOSBOX_X_CONF_ARGS $DOSBOX_X_ARGS"
+
+    log d "Config file content:"
+    log d "$(cat $dosbox_x_generated_conf)"
+
+    "$DOSBOX_X_EXEC" $DOSBOX_X_CONF_ARGS $DOSBOX_X_ARGS
+
+    if [[ "$FORCE_TURBO" == "true" ]]; then
+        set_setting_value "$dosbox_x_generated_conf" "stop turbo on key" "$former_turbo_break_setting" "dosbox-x" "cpu"
+        set_setting_value "$dosbox_x_generated_conf" "turbo" "$former_turbo_setting" "dosbox-x" "cpu"
+        FORCE_TURBO="false"
+    fi
+}
+
 # TODO: not yet used
 dos_name_sanitizer(){
     # Replace path separators with underscores and collapse any sequence of
@@ -374,31 +411,9 @@ case "$ACTION" in
         ;;
 esac
 
-log d "Finished setting environment for DosBox-X execution."
-log d "SYSTEM=$SYSTEM"
-log d "PRETTY_SYSTEM_NAME=$PRETTY_SYSTEM_NAME"
-log d "GAME_NAME=$GAME_NAME"
-log d "GAME_PATH=$GAME_PATH"
-log d "action=$ACTION"
-
-log d "Calling DosBox-X"
-log d "Command: $DOSBOX_X_EXEC $DOSBOX_X_CONF_ARGS $DOSBOX_X_ARGS"
-
-log d "Config file content:"
-log d "$(<$dosbox_x_generated_conf)"
-
 # At this point, all the arguments have been parsed, the config file is built and the environment is prepared.
 # We can now call DosBox-X with the generated config and arguments.
 # By default the dosbox-x.conf will be passed as the system .conf files are just overrides and don't include the full config stack.
 
-"$DOSBOX_X_EXEC" $DOSBOX_X_CONF_ARGS $DOSBOX_X_ARGS
+run_dosbox_x
 
-# Sometimes we need to reboot Windows during the installation process.
-# Since we are running DosBox-X with exec, we can not just call exec again to reboot, so we set a flag and check it after DosBox-X exits.
-# If the flag is set, we call exec again to restart DosBox-X, even with updated environment.
-
-if [ "$REBOOT_WINDOWS" == "true" ]; then
-    log i "Rebooting Windows as requested..."
-    REBOOT_WINDOWS="false"
-    "$DOSBOX_X_EXEC" $DOSBOX_X_CONF_ARGS $DOSBOX_X_ARGS
-fi
