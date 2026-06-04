@@ -13,6 +13,19 @@
 # Run the installed Windows 98:
 # winplay --os-run win98
 
+echo "###########################################################"
+echo "#                                                         #"
+echo "#                 RetroDECK Presents                      #"
+echo "#    __        ___       ____  _             _            #"
+echo "#    \\ \\      / (_)_ __ |  _ \\| | __ _ _   _| |           #"
+echo "#     \\ \\ /\\ / /| | '_ \\| |_) | |/ _\` | | | | |           #"
+echo "#      \\ V  V / | | | | |  __/| | (_| | |_| |_|           #"
+echo "#       \\_/\\_/  |_|_| |_|_|   |_|\\__,_|\\__, (_)           #"
+echo "#                                      |___/              #"
+echo "#                                                         #"
+echo "###########################################################"
+
+
 SYSTEM="UNKNOWN"               # The system to install or run, e.g. win98
 GAME_NAME="UNKNOWN"            # Serves as a game ID
 GAME_PATH="UNKNOWN"            # Path to the game VHD file
