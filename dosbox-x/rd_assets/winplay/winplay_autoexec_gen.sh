@@ -10,9 +10,7 @@ fi
 generate_autoexec_headers() {
 # Mount the OS image as a hard disk (VHD) for installation
 log d "Generating autoexec headers"
-log d "Checking if \"$dosbox_x_generated_conf\" exists"
-log d "$(ls -l "$dosbox_x_generated_conf")"
-
+log d "Mounting \"$OS_IMAGE\" as OS image."
 cat <<EOF >> "$dosbox_x_generated_conf"
 IMGMOUNT C "$OS_IMAGE" -t hdd
 EOF
@@ -55,6 +53,11 @@ EOF
 
 generate_autoexec_os_run() {
     generate_autoexec_headers
+cat <<EOF >> "$dosbox_x_generated_conf"
+C:
+CD WINDOWS
+WIN
+EOF 
 }
 
 generate_autoexec_game_install() {

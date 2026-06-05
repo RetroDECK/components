@@ -159,7 +159,7 @@ show_help(){
 
 run_dosbox_x() {
 
-    if "$1" == "--force-turbo"; then
+    if [[ "$1" == "force-turbo" ]]; then
         FORCE_TURBO="true"
 
         # TODO
@@ -283,6 +283,9 @@ parse_arguments() {
                 case "$SYSTEM" in
                     "win95")
                         log w "Windows 95 installation is not implemented yet"
+                        SYSTEM="win95"
+                        PRETTY_SYSTEM_NAME="Windows 95"
+                        OS_IMAGE="$storage_path/dosbox-x/${SYSTEM}.vhd"
                         exit 1
                     ;;
 
@@ -292,9 +295,13 @@ parse_arguments() {
                         log d "Setting PRETTY_SYSTEM_NAME variable to \"Windows 98\" for user-friendly display"
                         SYSTEM="win98"
                         PRETTY_SYSTEM_NAME="Windows 98"
+                        OS_IMAGE="$storage_path/dosbox-x/${SYSTEM}.vhd"
                     ;;
                     "win31")
                         log w "Windows 3.1 installation is not implemented yet"
+                        SYSTEM="win31"
+                        PRETTY_SYSTEM_NAME="Windows 3.1"
+                        OS_IMAGE="$storage_path/dosbox-x/${SYSTEM}.vhd"
                         exit 1
                     ;;
                     *)

@@ -25,15 +25,16 @@ os_install() {
     load_system_config # This already cleans the autoexec
 
     log d "Calling mkfs to create virtual hard disk for $PRETTY_SYSTEM_NAME installation"
-    OS_IMAGE="$storage_path/dosbox-x/${SYSTEM}.vhd"
     mkfs
 
     log d "Calling AUTOEXEC generator for $PRETTY_SYSTEM_NAME installation"
     source "$SCRIPT_DIR/winplay_autoexec_gen.sh"
     generate_autoexec_install_os
 
+    set_setting_value "$dosbox_x_generated_conf" "core" "full" "dosbox-x" "cpu"
+
     log i "Starting DosBox-X to run the Phase 1 installation of $PRETTY_SYSTEM_NAME"
-    run_dosbox_x --force-turbo
+    run_dosbox_x
 
     log i "Rebooting $PRETTY_SYSTEM_NAME to complete installation (Phase 2)"
     log d "Setting action variable to \"os_run\" before rebooting the system."
@@ -49,36 +50,35 @@ create_vhd() {
     # Create a VHD (Virtual Hard Disk) file to be used as the virtual hard drive for the Windows installation or GAME HD.
     # Usage: create_vhd <vhd_path> <size_mb> <fs_type>
 
-    local IMAGE_PATH="$1"
-    local size_mb="$2"
-    local fs_type="$3"
-
-    log d "Creating VHD at \"$IMAGE_PATH\" with size ${size_mb}MB and filesystem $fs_type"
-
-
     if [[ -f "$IMAGE_PATH" ]]; then
         log e "VHD already exists: $IMAGE_PATH (skipping)"
         log e "If you want to create a new VHD, please delete the existing one at \"$IMAGE_PATH\" and run the installation again."
         log w "Skipping VHD creation for \"$IMAGE_PATH\" and proceeding with existing file. This may cause issues if the existing VHD is not properly set up."
+    else
+        local IMAGE_PATH="$1"
+        local size_mb="$2"
+        local fs_type="$3"
+
+    log d "Creating VHD at \"$IMAGE_PATH\" with size ${size_mb}MB and filesystem $fs_type"
+
+        mkdir -p "$(dirname "$IMAGE_PATH")"
+
+        log i "Creating VHD: \"$IMAGE_PATH\" (${size_mb}MB, $fs_type)"
+
+        # Use DOSBox-X imgmake to create a dynamic VHD
+        # This is native to DOSBox-X and fully compatible
+        if ! "$component_path/bin/dosbox-x" -silent -c "imgmake -t hd -size $size_mb \"$IMAGE_PATH\"" -c "exit" > /dev/null 2>&1; then
+            log e "Failed to create VHD with imgmake"
+            rm -f "$IMAGE_PATH"
+            return 1
+        fi
+        local disk_blocks=$(stat -c%b "$OS_IMAGE" 2>/dev/null || echo 0)
+        local disk_usage_kb=$((disk_blocks * 512 / 1024))
+        local size_str=$([[ $disk_usage_kb -lt 1024 ]] && echo "${disk_usage_kb}KB" || echo "$((disk_usage_kb / 1024))MB")
+
+        log i "VHD created (sparse: ~${size_str} on disk)"
     fi
 
-    mkdir -p "$(dirname "$IMAGE_PATH")"
-
-    log i "Creating VHD: \"$IMAGE_PATH\" (${size_mb}MB, $fs_type)"
-
-    # Use DOSBox-X imgmake to create a dynamic VHD
-    # This is native to DOSBox-X and fully compatible
-    if ! "$component_path/bin/dosbox-x" -silent -c "imgmake -t hd -size $size_mb \"$IMAGE_PATH\"" -c "exit" > /dev/null 2>&1; then
-        log e "Failed to create VHD with imgmake"
-        rm -f "$IMAGE_PATH"
-        return 1
-    fi
-
-    local disk_blocks=$(stat -c%b "$OS_IMAGE" 2>/dev/null || echo 0)
-    local disk_usage_kb=$((disk_blocks * 512 / 1024))
-    local size_str=$([[ $disk_usage_kb -lt 1024 ]] && echo "${disk_usage_kb}KB" || echo "$((disk_usage_kb / 1024))MB")
-
-    log i "VHD created (sparse: ~${size_str} on disk)"
 }
 
 mkfs() {
