@@ -35,24 +35,13 @@ cat <<EOF >> "$dosbox_x_generated_conf"
 REM Copy as many files as possible from the CD to C:\WINDOWS\SYSTEM
 IF NOT EXIST C:\WINDOWS\SYSTEM MD C:\WINDOWS\SYSTEM
 REM Copy full $PRETTY_SYSTEM_NAME and DRIVERS directories (recursive copy where available)
-IF EXIST E:\${SYSTEM} XCOPY E:\${SYSTEM} C:\WINDOWS\SYSTEM /E /Y >NUL 2>NUL
-IF EXIST E:\DRIVERS XCOPY E:\DRIVERS C:\WINDOWS\SYSTEM /E /Y >NUL 2>NUL
+IF EXIST D:\${SYSTEM} XCOPY D:\${SYSTEM} C:\WINDOWS\SYSTEM /E /Y >NUL 2>NUL
+IF EXIST D:\DRIVERS XCOPY D:\DRIVERS C:\WINDOWS\SYSTEM /E /Y >NUL 2>NUL
 REM Also copy any root-level device files that might be directly requested
-IF EXIST E:\*.VXD COPY /Y E:\*.VXD C:\WINDOWS\SYSTEM >NUL 2>NUL
-IF EXIST E:\*.DRV COPY /Y E:\*.DRV C:\WINDOWS\SYSTEM >NUL 2>NUL
-EOF
-
-# Add autoexec commands to run the Windows setup from the mounted CD-ROM
-# In this phase we make sure that there is no run_game.bat in the startup folders
-cat <<EOF >> "$dosbox_x_generated_conf"
-DIR "C:\\WINDOWS\\STARTM~1\\PROGRAMS\\STARTUP\\run_game.bat"
-DIR "C:\\WINDOWS\\Start Menu\\Programs\\Startup\\run_game.bat"
-DEL /F /Q "C:\\WINDOWS\\STARTM~1\\PROGRAMS\\STARTUP\\run_game.bat" 2>NUL
-DEL /F /Q "C:\\WINDOWS\\Start Menu\\Programs\\Startup\\run_game.bat" 2>NUL
-DIR "C:\\WINDOWS\\STARTM~1\\PROGRAMS\\STARTUP\\run_game.bat"
-DIR "C:\\WINDOWS\\Start Menu\\Programs\\Startup\\run_game.bat"
-E:
-SETUP.EXE
+IF EXIST D:\*.VXD COPY /Y D:\*.VXD C:\WINDOWS\SYSTEM >NUL 2>NUL
+IF EXIST D:\*.DRV COPY /Y D:\*.DRV C:\WINDOWS\SYSTEM >NUL 2>NUL
+D:
+SETUP.EXE /D /ID /IE /IF /IM /IS /NR /IW
 GOTO END_INSTALL
 :WINDOWS_FOUND
 ECHO Windows installation detected, booting it
@@ -61,8 +50,6 @@ BOOT C:
 C:
 RUNDLL32.EXE USER.EXE,ExitWindows
 EOF
-
-log i "Setup: first phase of installation complete. Rebooting to finish the installation."
 
 }
 

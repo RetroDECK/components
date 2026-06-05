@@ -91,11 +91,20 @@ imgmount_map() {
         ;;
 
         CDROM | CD-ROM)
-            for candidate in E F G H I J K L M N O P Q R S T U V W X Y Z; do
-                [[ -n "${IMGMOUNT_USED[$candidate]}" ]] && continue
-                letter="$candidate"
-                break
-            done
+            # If we are installing the OS, we want to reserve D for the CD-ROM to make sure the setup process can find the drivers and files it needs.
+            if [[ "$ACTION" == "os_install" ]]; then
+                for candidate in D E F G H I J K L M N O P Q R S T U V W X Y Z; do
+                    [[ -n "${IMGMOUNT_USED[$candidate]}" ]] && continue
+                    letter="$candidate"
+                    break
+                done
+            else
+                for candidate in E F G H I J K L M N O P Q R S T U V W X Y Z; do
+                    [[ -n "${IMGMOUNT_USED[$candidate]}" ]] && continue
+                    letter="$candidate"
+                    break
+                done
+            fi
             local mount_type="-t cdrom"
         ;;
 
