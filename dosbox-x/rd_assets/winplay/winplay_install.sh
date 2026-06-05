@@ -36,12 +36,13 @@ os_install() {
     log i "Starting DosBox-X to run the Phase 1 installation of $PRETTY_SYSTEM_NAME"
     run_dosbox_x
 
-    log i "Rebooting $PRETTY_SYSTEM_NAME to complete installation (Phase 2)"
-    log d "Setting action variable to \"os_run\" before rebooting the system."
-    action="os_run"
-    os_run
-
     clear_autoexec
+
+    log i "Rebooting $PRETTY_SYSTEM_NAME to complete installation (Phase 2)"
+    
+    log d "Setting action variable to \"os_run\" before rebooting the system."
+    ACTION="os_run"
+    os_run
 
 }
 

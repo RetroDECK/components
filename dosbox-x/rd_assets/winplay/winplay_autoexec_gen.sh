@@ -52,7 +52,7 @@ EOF
 }
 
 generate_autoexec_os_run() {
-    generate_autoexec_headers
+generate_autoexec_headers
 cat <<EOF >> "$dosbox_x_generated_conf"
 C:
 CD WINDOWS
@@ -147,6 +147,9 @@ EOF
 }
 
 clear_autoexec(){
+
+    log d "Clearing autoexec section of generated config file at \"$dosbox_x_generated_conf\""
+
     local conf_file="${1:-$dosbox_x_generated_conf}"
 
     # Clear the autoexec section of the generated config file
