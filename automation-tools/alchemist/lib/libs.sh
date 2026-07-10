@@ -105,12 +105,12 @@ gather_lib() {
       log info "Library $name already exists at $final_dest, skipping..."
       return 0
     fi
-    if [[ ! -e "$EXTRACTED_PATH/$source/$name" ]]; then
-      log error "Library $name not found at defined source $EXTRACTED_PATH/$source/$name"
+    if [[ ! -e "$source/$name" ]]; then
+      log error "Library $name not found at defined source $source/$name"
       local library_basename="${name%%.*}"
-      if [[ $(find "$EXTRACTED_PATH/$source" -iname "$library_basename"* ) ]]; then
+      if [[ $(find "$source" -iname "$library_basename"* ) ]]; then
         log info "However, a file with a matching name was found. The source may need to be adjusted in the recipe file."
-        log info $(find "$EXTRACTED_PATH/$source" -iname "$library_basename"*)
+        log info $(find "$source" -iname "$library_basename"*)
       fi
       return 1
     fi
