@@ -1,0 +1,17 @@
+{
+  "ludusavi": {
+    "name": "Ludusavi",
+    "core_framework_compatibility": "1",
+    "component_version": "1.0.0",
+    "description": "Ludusavi provides save and state backup options for RetroDECK.",
+    "component_type": "Tool",
+    "cli_commands": [
+      {
+        "flag": "--save-sync",
+        "description": "Run Ludusavi manually to sync saves, states or both.",
+        "handler": "_cli_run::ludusavi",
+        "params": ["[--saves],[--states],[--dry-run]"]
+      }
+    ]
+  }
+}
