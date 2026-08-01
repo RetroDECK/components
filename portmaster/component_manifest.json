@@ -13,7 +13,7 @@
     "url_donation_purchase": "https://opencollective.com/portmaster",
     "url_source": "https://github.com/PortsMaster/PortMaster-New",
     "system_friendly_name": "PortMaster",
-    "component_type": "System",
+    "component_type": "Utility",
     "system": "portmaster",
     "backup_data": {
       "core": [

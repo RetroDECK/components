@@ -10,7 +10,7 @@
     "url_flathub": "https://flathub.org/en/apps/io.github.marco_calautti.DeltaPatcher",
     "url_donation_purchase": "",
     "description": "Delta Patcher is a system for patching .xdelta files.",
-    "component_type": "System",
+    "component_type": "Utility",
     "system_friendly_name": "Delta Patcher"
   }
 }
