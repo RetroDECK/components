@@ -3,13 +3,14 @@
     "name": "Delta Patcher",
     "core_framework_compatibility": "1",
     "component_version": "1.0.0",
-    "capabilities": "open",
+    "capabilities": [
+      "open"
+    ],
     "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_system_guides/delta-patcher/delta-patcher-guide/",
     "url_webpage": "https://github.com/marco-calautti/DeltaPatcher",
     "url_source": "https://github.com/marco-calautti/DeltaPatcher",
     "url_flathub": "https://flathub.org/en/apps/io.github.marco_calautti.DeltaPatcher",
-    "url_donation_purchase": "",
-    "description": "Delta Patcher is a system for patching .xdelta files.",
+    "description": "Delta Patcher is a utility for patching .xdelta files.",
     "component_type": "Utility",
     "system_friendly_name": "Delta Patcher"
   }
