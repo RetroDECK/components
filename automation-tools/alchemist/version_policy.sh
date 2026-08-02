@@ -74,6 +74,13 @@ export CEMU_VERSION_POLICY="latest"
 export DOLPHIN_VERSION_POLICY="latest"
 
 # ------------------------------------------------------------------------------
+# Delta-Patcher - .xdelta Patch Utility
+# Source: Flatpak - Flathub
+# Link: https://flathub.org/en/apps/io.github.marco_calautti.DeltaPatcher
+# ------------------------------------------------------------------------------
+export DELTA_PATCHER_VERSION_POLICY="latest"
+
+# ------------------------------------------------------------------------------
 # GZDoom - Modern Doom Engine
 # Source: Flatpak - Flathub
 # Link: https://flathub.org/en/apps/org.zdoom.GZDoom

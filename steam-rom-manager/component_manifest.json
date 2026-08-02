@@ -14,7 +14,7 @@
     "url_donation_purchase": "https://www.patreon.com/steamgriddb",
     "url_source": "https://github.com/SteamGridDB/steam-rom-manager",
     "description": "Steam Rom Manager (SRM) is a system that adds games to your Steam library.",
-    "component_type": "System",
+    "component_type": "Utility",
     "backup_data": {
       "core": [
         {"path": "$XDG_CONFIG_HOME/steam-rom-manager"}
