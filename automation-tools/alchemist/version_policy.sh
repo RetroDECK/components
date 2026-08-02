@@ -102,6 +102,13 @@ export MAME_VERSION_POLICY="latest"
 export MELONDS_VERSION_POLICY="latest"
 
 # ------------------------------------------------------------------------------
+# Open Surge - 2D Sonic Platformer Retro Game Engine 
+# Source: Flatpak - Flathub
+# Link: https://flathub.org/en/apps/org.opensurge2d.OpenSurge
+# ------------------------------------------------------------------------------
+export OPENSURGE_VERSION_POLICY="latest"
+
+# ------------------------------------------------------------------------------
 # PPSSPP - PlayStation Portable Emulator
 # Source: Flatpak - Flathub
 # Link: https://flathub.org/en/apps/org.ppsspp.PPSSPP
