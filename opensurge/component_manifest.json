@@ -1,6 +1,6 @@
 {
   "opensurge": {
-    "name": "opensurge",
+    "name": "Open Surge",
     "core_framework_compatibility": "1",
     "component_version": "1.0.0",
     "capabilities": [
@@ -10,7 +10,7 @@
     "url_webpage": "https://opensurge2d.org/",
     "url_donation_purchase": "",
     "url_source": "https://github.com/alemart/opensurge",
-    "description": "Open Surge is a 2D retro game engine in the spirit of classic 16-bit Sonic platformers.",
+    "description": "Open Surge is a 2D retro game engine for 16-bit Sonic style platformers.",
     "component_type": "Engine",
     "system_friendly_name": "Open Surge Engine",
     "system": "opensurge"
@@ -40,7 +40,7 @@
         "extension": ".surge .lev .qst",
         "commands": [
           {
-            "label": "Open Surge (Game) (Standalone)",
+            "label": "Open Surge (Standalone)",
             "command": "%EMULATOR_OPENSURGE% --fullscreen --quality high --game "%ROM%"",
             "priority": 10
           },
