@@ -1,0 +1,3 @@
+Gargoyle is missing some libs, unkown what they are.
+
+But if you move the entire lib folder from the appimage it starts
