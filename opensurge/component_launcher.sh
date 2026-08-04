@@ -18,4 +18,4 @@ log d "QT QPA Platform Plugin Path is: $QT_QPA_PLATFORM_PLUGIN_PATH"
 
 
 
-exec "$component_path/bin/opensurge $OPENSURGE_USER_PATH" "$@"
+exec "$component_path/bin/opensurge" "$@"
