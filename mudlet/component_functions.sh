@@ -18,7 +18,7 @@ _prepare_component::mudlet() {
 
         create_dir "$XDG_CONFIG_HOME/mudlet"
         create_dir "$XDG_DATA_HOME/mudlet"
-        dir_prep "$mudlet_roms_folder_path" "$XDG_DATA_HOME/mudlet/portable/profiles"
+        dir_prep "$mudlet_roms_folder_path" "$XDG_DATA_HOME/mudlet/profiles"
         dir_prep "$mods_path/mudlet/plugins" "$XDG_DATA_HOME/mudlet/plugins/"
     ;;
 
