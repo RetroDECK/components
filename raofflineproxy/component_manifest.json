@@ -1,0 +1,15 @@
+{
+  "raofflineproxy": {
+    "name": "RAOfflineProxy",
+    "core_framework_compatibility": "1",
+    "component_version": "1.0.0",
+    "capabilities": ["reset","open"],
+    "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_utility_guides/raofflineproxy/raofflineproxy-guide.md",
+    "url_webpage": "https://raofflineproxy.com/",
+    "url_donation_purchase": "https://ko-fi.com/misantronic",
+    "url_source": "https://github.com/misantronic/RAOfflineProxy",
+    "description": "RAOfflineProxy enables offline casual achievement earning with automatic synchronization to RetroAchievements upon reconnection.",
+    "component_type": "Utility",
+    "system_friendly_name": "RAOfflineProxy"
+  }
+}

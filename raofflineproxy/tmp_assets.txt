@@ -1,0 +1,14 @@
+## Note
+
+TMP asset until we can pull from github
+
+raofflineproxy-retrodeck.zip
+
+
+## Current Version
+
+v1.9.0-alpha1 
+
+https://github.com/misantronic/RAOfflineProxy/releases
+
+

@@ -175,6 +175,13 @@ export OPENBOR_VERSION_POLICY="latest"
 export PCSX2_VERSION_POLICY="latest"
 
 # ------------------------------------------------------------------------------
+# RAOfflineProxy - RetroAchievements - Offline Proxy. 
+# Source: Binary (Python)
+# Link: https://github.com/misantronic/RAOfflineProxy/releases
+# ------------------------------------------------------------------------------
+export RAOFFLINEPROXY_VERSION_POLICY="latest"
+
+# ------------------------------------------------------------------------------
 # RetroArch - Multi-System Front-End
 # Source: AppImage
 # Link: https://buildbot.libretro.com/stable/
