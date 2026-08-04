@@ -53,6 +53,17 @@
         "platform": "opensurge",
         "theme": "opensurge"
       }
-    ]
+    ],
+    "configurator_menus": {
+      "settings": [
+        {
+          "name": "Open Surge: Surge the Rabbit Game",
+          "description": "Enable or disable the built-in game in Open Surge.",
+          "command": {
+            "zenity": "opensurge_surgetherabbit_toggle"
+          }
+        }
+      ]
+    }
   }
 }
