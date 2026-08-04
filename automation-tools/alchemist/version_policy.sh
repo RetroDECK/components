@@ -67,6 +67,13 @@ export AZAHAR_VERSION_POLICY="latest"
 export CEMU_VERSION_POLICY="latest"
 
 # ------------------------------------------------------------------------------
+# Gargoyle - Interactive Fiction Player
+# Source: Flatpak - Flathub
+# Link: https://flathub.org/en/apps/io.github.garglk.Gargoyle
+# ------------------------------------------------------------------------------
+export GARGOYLE_VERSION_POLICY="latest"
+
+# ------------------------------------------------------------------------------
 # Dolphin - GameCube / Wii Emulator
 # Source: Flatpak - Flathub
 # Link: https://flathub.org/en/apps/org.DolphinEmu.dolphin-emu
@@ -299,11 +306,6 @@ export FS_UAE_VERSION_POLICY="latest"
 # Flycast - Dreamcast Emulator
 # ------------------------------------------------------------------------------
 export FLYCAST_VERSION_POLICY="latest"
-
-# ------------------------------------------------------------------------------
-# Gargoyle - Interactive Fiction Emulator
-# ------------------------------------------------------------------------------
-export GARGOYLE_VERSION_POLICY="latest"
 
 # ------------------------------------------------------------------------------
 # Hypseus - Laser Disc Arcade Emulator
