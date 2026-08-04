@@ -17,8 +17,9 @@ _prepare_component::mudlet() {
       log i "----------------------"
 
         create_dir "$XDG_CONFIG_HOME/mudlet"
-        dir_prep "$mudlet_roms_folder_path" "$XDG_CONFIG_HOME/mudlet/portable/profiles"
-        dir_prep "$mods_path/mudlet/plugins" "$XDG_CONFIG_HOME/mudlet/plugins/"
+        create_dir "$XDG_DATA_HOME/mudlet"
+        dir_prep "$mudlet_roms_folder_path" "$XDG_DATA_HOME/mudlet/portable/profiles"
+        dir_prep "$mods_path/mudlet/plugins" "$XDG_DATA_HOME/mudlet/plugins/"
     ;;
 
       esac
