@@ -40,8 +40,8 @@
         "extension": ".surge .lev .qst",
         "commands": [
           {
-            "label": "Open Surge (Standalone)",
-            "command": "%EMULATOR_OPENSURGE% --fullscreen --quality high --game "%ROM%"",
+            "label": "Open Surge (Game) (Standalone)",
+            "command": "%EMULATOR_OPENSURGE% --fullscreen --quality high --game-folder %ROM%",
             "priority": 10
           },
           {
