@@ -1,3 +1,6 @@
-Gargoyle is missing some libs, unkown what they are.
+Gargoyle is missing several shared libraries with unclear dependencies. 
 
-But if you move the entire lib folder from the appimage it starts
+Moving the entire lib folder from the AppImage fixes the problem. We need to track them down manually. *sigh*
+
+Additionally, config files are created directly under $XDG_CONFIG_HOME instead of $XDG_CONFIG_HOME/gargoyle, 
+which violates expected XDG structure (https://github.com/garglk/garglk/issues/998).

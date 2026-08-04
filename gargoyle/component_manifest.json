@@ -48,6 +48,21 @@
         ],
         "platform": "zmachine",
         "theme": "zmachine"
+      },
+      {
+        "name": "if",
+        "fullname": "Interactive Fiction",
+        "path": "%ROMPATH%/if",
+        "extension": ".dat .z1 .z2 .z3 .z4 .z5 .z6 .z7 .z8 .zlb .zblorb .agx, .d$$, .acd, .a3c, .ulx, .blb, .gblorb, .glb, .hex, .hdx, .blorb, .j2, .jacl, .l9, .mag, .gfx, .taf, .saga, .gam, .t3",
+        "commands": [
+          {
+            "label": "Gargoyle (Standalone)",
+            "command": "%EMULATOR_GARGOYLE% %ROM%",
+            "priority": 10
+          }
+        ],
+        "platform": "if",
+        "theme": "if"
       }
     ]
   }
