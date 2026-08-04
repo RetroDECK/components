@@ -66,12 +66,6 @@ export AZAHAR_VERSION_POLICY="latest"
 # ------------------------------------------------------------------------------
 export CEMU_VERSION_POLICY="latest"
 
-# ------------------------------------------------------------------------------
-# Gargoyle - Interactive Fiction Player
-# Source: Flatpak - Flathub
-# Link: https://flathub.org/en/apps/io.github.garglk.Gargoyle
-# ------------------------------------------------------------------------------
-export GARGOYLE_VERSION_POLICY="latest"
 
 # ------------------------------------------------------------------------------
 # Dolphin - GameCube / Wii Emulator
@@ -160,6 +154,13 @@ export XEMU_VERSION_POLICY="latest"
 #
 #  Versions should be explicitly defined to ensure reproducible builds.
 # ==============================================================================
+
+# ------------------------------------------------------------------------------
+# Gargoyle - Interactive Fiction Player
+# Source: AppImage
+# Link: https://github.com/garglk/garglk/releases/
+# ------------------------------------------------------------------------------
+export GARGOYLE_VERSION_POLICY="latest"
 
 # ------------------------------------------------------------------------------
 # RPCS3 - PlayStation 3 Emulator
