@@ -1,0 +1,69 @@
+{
+  "opensurge": {
+    "name": "Open Surge",
+    "core_framework_compatibility": "1",
+    "component_version": "1.0.0",
+    "capabilities": [
+      "open"
+    ],
+    "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_engine_guides/opensurge/opensurge-guide/",
+    "url_webpage": "https://opensurge2d.org/",
+    "url_donation_purchase": "",
+    "url_source": "https://github.com/alemart/opensurge",
+    "description": "Open Surge is a 2D retro game engine for 16-bit Sonic style platformers.",
+    "component_type": "Engine",
+    "system_friendly_name": "Open Surge Engine",
+    "system": "opensurge"
+  },
+  "es_de_config": {
+    "es_find_rules": {
+      "emulators": [
+        {
+          "name": "OPENSURGE",
+          "description": "Open Surge 2D retro game engine.",
+          "rules": [
+            {
+              "type": "staticpath",
+              "entries": [
+                "%COMPONENT_PATH%/component_launcher.sh"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "es_systems": [
+      {
+        "name": "opensurge",
+        "fullname": "Open Surge",
+        "path": "%ROMPATH%/opensurge",
+        "extension": ".surge .lev .qst",
+        "commands": [
+          {
+            "label": "Open Surge (Game) (Standalone)",
+            "command": "%EMULATOR_OPENSURGE% --fullscreen --quality high --game-folder %ROM%",
+            "priority": 10
+          },
+          {
+            "label": "Open Surge - Surge the Rabbit (Standalone)",
+            "command": "%EMULATOR_OPENSURGE% --fullscreen --quality high --game-folder /app/retrodeck/components/opensurge/opensurge",
+            "priority": 20
+          }
+        ],
+        "platform": "opensurge",
+        "theme": "opensurge"
+      }
+    ],
+    "configurator_menus": {
+      "settings": [
+        {
+          "name": "Open Surge: Surge the Rabbit Game",
+          "description": "Enable or disable the built-in game in Open Surge.",
+          "command": {
+            "zenity": "opensurge_surgetherabbit_toggle"
+          }
+        }
+      ]
+    }
+  }
+}
