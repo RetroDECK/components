@@ -261,6 +261,12 @@ export PRIMEHACK_VERSION_POLICY="master-230724.27"
 # ------------------------------------------------------------------------------
 export VITA3K_VERSION_POLICY="latest"
 
+# ------------------------------------------------------------------------------
+# Mudlet - MUD Client
+# Source: AppImage
+# Link: https://github.com/RetroDECK/components/tree/cooker/mudlet/tmp_assets
+# ------------------------------------------------------------------------------
+export MUDLET_VERSION_POLICY="latest"
 
 
 # ==============================================================================
