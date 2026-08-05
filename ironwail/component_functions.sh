@@ -13,6 +13,7 @@ _prepare_component::ironwail() {
       log i "Resetting Ironwail"
       log i "----------------------"
 
+      cp -fr "$component_config/"* "$XDG_CONFIG_HOME/ironwail/id1"
       dir_prep "$roms_path/quake/ironwail/id1" "$XDG_CONFIG_HOME/ironwail/id1"
       dir_prep "$roms_path/quake/ironwail/mods/bbelief" "$XDG_CONFIG_HOME/ironwail/bbelief"
       dir_prep "$roms_path/quake/ironwail/mods/contract" "$XDG_CONFIG_HOME/ironwail/contract"
