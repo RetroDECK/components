@@ -1,0 +1,40 @@
+{
+  "zesarux": [
+    {
+      "source_url": "https://github.com/chernandezba/zesarux/releases/download/{VERSION}/*fedora42_x86_64.tar.gz",
+      "source_type": "github_release",
+      "version": "$ZESARUX_DESIRED_VERSION",
+      "extraction_type": "archive",
+      "assets": [
+        {
+          "type": "create",
+          "dest": "component_version",
+          "contents": "$FRAMEWORK_DESIRED_VERSION"
+        },
+        {
+          "type": "dir",
+          "source": "ZEsarUX-13.0",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        }
+      ],
+      "libs": []
+    },
+    {
+      "source_url": "$REPO_ROOT/$COMPONENT_NAME/rd_assets/libSDL-1.tar.gz",
+      "source_type": "local",
+      "extraction_type": "archive",
+      "assets": [
+        {
+          "type": "file",
+          "source": "$EXTRACTED_PATH/libSDL-1.2.so.0",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "$EXTRACTED_PATH/libSDL-1.2.so.1.2.68",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        }
+      ]
+    }
+  ]
+}
