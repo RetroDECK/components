@@ -3,7 +3,7 @@
     "name": "MVEM",
     "core_framework_compatibility": "1",
     "component_version": "1.0.0",
-    "capabilities": ["reset","open"],
+    "capabilities": ["reset"],
     "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/mvem/mvem-guide/",
     "url_source": "https://www.raphkoster.com/2017/05/07/microvision-emulator-release/",
     "url_source_2": "https://github.com/slaminger/Microvision-Emulation",
