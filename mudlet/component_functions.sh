@@ -15,10 +15,9 @@ _prepare_component::mudlet() {
       log i "Resetting Mudlet"
       log i "----------------------"
 
-        create_dir "$XDG_CONFIG_HOME/mudlet"
         create_dir "$XDG_DATA_HOME/mudlet"
         dir_prep "$roms_path/muds" "$XDG_DATA_HOME/mudlet/profiles"
-        dir_prep "$mods_path/mudlet/plugins" "$XDG_DATA_HOME/mudlet/plugins/"
+        dir_prep "$storage_path/mudlet/plugins" "$XDG_DATA_HOME/mudlet/plugins/"
     ;;
 
         postmove)
@@ -27,7 +26,7 @@ _prepare_component::mudlet() {
       log i "------------------------"
 
         dir_prep "$roms_path/muds" "$XDG_DATA_HOME/mudlet/profiles"
-        dir_prep "$mods_path/mudlet/plugins" "$XDG_DATA_HOME/mudlet/plugins/"
+        dir_prep "$storage_path/mudlet/plugins" "$XDG_DATA_HOME/mudlet/plugins/"
     ;;
 
   esac
