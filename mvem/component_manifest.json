@@ -1,0 +1,50 @@
+{
+  "mvem": {
+    "name": "MVEM",
+    "core_framework_compatibility": "1",
+    "component_version": "1.0.0",
+    "capabilities": ["reset","open"],
+    "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/mvem/mvem-guide/",
+    "url_source": "https://www.raphkoster.com/2017/05/07/microvision-emulator-release/",
+    "url_source_2": "https://github.com/slaminger/Microvision-Emulation",
+    "url_source_3": "https://mbmicrovision.blogspot.com/",
+    "description": "MVEM is a Milton-Bradley Microvision Emulator.",
+    "component_type": "Emulator",
+    "system_friendly_name": "Microvision",
+    "system": "microvision"
+  },
+  "es_de_config": {
+    "es_find_rules": {
+      "emulators": [
+        {
+          "name": "MVEM",
+          "description": "MVEM Milton-Bradley Microvision Emulator",
+          "rules": [
+            {
+              "type": "staticpath",
+              "entries": [
+                "%COMPONENT_PATH%/component_launcher.sh"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "es_systems": [
+      {
+        "name": "microvision",
+        "fullname": "Milton-Bradley Microvision",
+        "path": "%ROMPATH%/microvision",
+        "extension": ".bin",
+        "commands": [
+          {
+            "label": "MVEM (Standalone)",
+            "command": "%EMULATOR_MVEM% %ROM%"
+          }
+        ],
+        "platform": "microvision",
+        "theme": "microvision"
+      }
+    ]
+  }
+}
