@@ -166,6 +166,13 @@ export XEMU_VERSION_POLICY="latest"
 # COOKER (Override)
 # export RPCS3_DESIRED_VERSION="latest"
 
+# ------------------------------------------------------------------------------
+# Ironwail - Quake Engine
+# Source: Binary
+# Link: https://github.com/andrei-drexler/ironwail/releases/
+# ------------------------------------------------------------------------------
+export IRONWAIL_VERSION_POLICY="latest"
+
 
 # ------------------------------------------------------------------------------
 # OpenBOR - Open Beat 'em Up Engine
@@ -310,10 +317,6 @@ export GARGOYLE_VERSION_POLICY="latest"
 # ------------------------------------------------------------------------------
 export HYPSEUS_VERSION_POLICY="latest"
 
-# ------------------------------------------------------------------------------
-# Ironwail - Quake Engine
-# ------------------------------------------------------------------------------
-export IRONWAIL_VERSION_POLICY="latest"
 
 # ------------------------------------------------------------------------------
 # Ikeman Go - Fighting Engine
