@@ -268,6 +268,13 @@ export VITA3K_VERSION_POLICY="latest"
 # ------------------------------------------------------------------------------
 export MUDLET_VERSION_POLICY="latest"
 
+# ------------------------------------------------------------------------------
+# SDL2TRS - TRS-80 Model I/III/4/4P Emulator
+# Source: Binary (RetroDECK-built) - Build SDL2 Version
+# Link: https://gitlab.com/jengun/sdltrs/-/blob/master/BUILDING.md
+# ------------------------------------------------------------------------------
+export SDL2TRS_VERSION_POLICY="latest"
+
 
 # ==============================================================================
 #  Component Policies - In Development
@@ -369,10 +376,7 @@ export RAZE_VERSION_POLICY="latest"
 # ------------------------------------------------------------------------------
 export SCUMMVM_VERSION_POLICY="latest"
 
-# ------------------------------------------------------------------------------
-# SDL2TRS - TRS-80 Model I/III/4/4P Emulator
-# ------------------------------------------------------------------------------
-export SDL2TRS_VERSION_POLICY="latest"
+
 
 # ------------------------------------------------------------------------------
 # ShadPS4 - PlayStation 4 Emulator
