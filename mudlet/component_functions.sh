@@ -18,6 +18,7 @@ _prepare_component::mudlet() {
         create_dir "$XDG_DATA_HOME/mudlet"
         dir_prep "$roms_path/muds" "$XDG_DATA_HOME/mudlet/profiles"
         dir_prep "$storage_path/mudlet/plugins" "$XDG_DATA_HOME/mudlet/plugins/"
+        cp -fr "$component_config/"* "$XDG_DATA_HOME/mudlet/"
     ;;
 
         postmove)

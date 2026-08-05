@@ -42,8 +42,7 @@
         "commands": [
           {
             "label": "Mudlet (Standalone)",
-            "command": "%EMULATOR_MUDLET% --fullscreen --steammode --profile="%BASENAME%"",
-            "priority": 10
+            "command": "%EMULATOR_MUDLET% --fullscreen --steammode --profile=%BASENAME%"
           }
         ],
         "platform": "muds",
