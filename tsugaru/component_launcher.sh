@@ -12,4 +12,4 @@ export LD_LIBRARY_PATH="$component_path/lib:$ffmpeg_path/25.08:$rd_shared_libs/o
 log i "RetroDECK is now launching $component_name"
 log d "Library path is: $LD_LIBRARY_PATH"
 
-exec "$component_path/Tsugaru_CUI" "$@"
+exec "$component_path/Tsugaru_CUI /var/config/tsugaru/tsugaru_config.txt" "$@"
