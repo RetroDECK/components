@@ -58,7 +58,7 @@
         "commands": [
           {
             "label": "KEGS (Standalone)",
-            "command": "%EMULATOR_TSUGARU% -CD %ROM% %INJECT%=%BASENAME%.cfg"
+            "command": "%EMULATOR_KEGS% %INJECT%=%BASENAME%.commands -s7d1 %ROM%"
           }
         ],
         "platform": "apple2gs",
