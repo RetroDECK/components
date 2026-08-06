@@ -203,6 +203,14 @@ export SOLARUS_VERSION_POLICY="latest"
 # ------------------------------------------------------------------------------
 export SIMCOUPE_VERSION_POLICY="latest"
 
+# ------------------------------------------------------------------------------
+# Tsugaru - FM TOWNS Emulator
+# Source: Binary
+# Link: https://github.com/captainys/TOWNSEMU/releases/
+# ------------------------------------------------------------------------------
+export TSUGARU_VERSION_POLICY="newest"
+
+
 # ==============================================================================
 #  Component Policies - Self-Built / Repo-Hosted Components
 # ==============================================================================
@@ -383,11 +391,6 @@ export SHADPS4_VERSION_POLICY="latest"
 # SuperModel - SEGA Model 3 Arcade Emulator
 # ------------------------------------------------------------------------------
 export SUPERMODEL_VERSION_POLICY="latest"
-
-# ------------------------------------------------------------------------------
-# Tsugaru - FM TOWNS Emulator
-# ------------------------------------------------------------------------------
-export TSUGARU_VERSION_POLICY="newest"
 
 # ------------------------------------------------------------------------------
 # UZDoom - Modern Doom Engine
