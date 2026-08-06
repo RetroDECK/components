@@ -12,4 +12,4 @@ export LD_LIBRARY_PATH="$component_path/lib:$ffmpeg_path/25.08:$rd_shared_libs/o
 log i "RetroDECK is now launching $component_name"
 log d "Library path is: $LD_LIBRARY_PATH"
 
-exec "$component_path/Tsugaru_CUI" "/var/config/tsugaru/roms" "/var/config/tsugaru/tsugaru_config.txt" "$@"
+exec "$component_path/Tsugaru_CUI" "/var/config/tsugaru/roms" -AUTOSCALE -MAINTAINASPECT -SCANLINE15K -FULLSCREEN -TOWNSTYPE UX -MEMSIZE 8 -FREQ 25 -SLOWMODEFREQ 16 -HIGHFIDELITY -USEFPU -NOWAITBOOT -NOCATCHUPREALTIME -FMVOL 8192 -PCMVOL 8192 -MAXSNDDBLBUF -GAMEPORT0 PHYS0 -GAMEPORT1 PHYS1 -HOSTSHORTCUT ESC 0 0 FORCEQUIT -HOSTSHORTCUT Q 1 0 FORCEQUIT -HOSTSHORTCUT P 1 0 PAUSE -CDSPEED 4 -PAUSEKEY SCROLLLOCK "$@"
