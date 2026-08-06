@@ -17,7 +17,7 @@ _prepare_component::tsugaru() {
 
       create_dir -d "$XDG_CONFIG_HOME/tsugaru"
       cp -fr "$component_config/"* "$XDG_CONFIG_HOME/tsugaru"
-      dir_prep "$bios_path/fmtowns" "$XDG_CONFIG_HOME/tsugaru/roms"
+      dir_prep "$bios_path" "$XDG_CONFIG_HOME/tsugaru/roms"
       dir_prep "$storage_path/Tsugaru/share" "$XDG_CONFIG_HOME/tsugaru/share"
 
     ;;
@@ -27,7 +27,7 @@ _prepare_component::tsugaru() {
           log i "Post-moving Tsugaru"
           log i "----------------------"
 
-      dir_prep "$bios_path/fmtowns" "$XDG_CONFIG_HOME/tsugaru/roms"
+      dir_prep "$bios_path" "$XDG_CONFIG_HOME/tsugaru/roms"
       dir_prep "$storage_path/Tsugaru/share" "$XDG_CONFIG_HOME/tsugaru/share"
 
     ;;
