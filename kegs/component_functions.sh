@@ -1,10 +1,8 @@
 #!/bin/bash
 
-#!/bin/bash
-
 export kegs_config="$XDG_CONFIG_HOME/kegs/config.kegs"
 
-_prepare_component::tsugaru() {
+_prepare_component::kegs() {
   local action="$1"
   shift
 
