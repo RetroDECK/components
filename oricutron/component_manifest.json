@@ -1,0 +1,54 @@
+{
+  "oricutron": {
+    "name": "Oricutron",
+    "core_framework_compatibility": "1",
+    "component_version": "1.0.0",
+    "capabilities": [
+      "reset",
+      "open"
+    ],
+    "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/oricutron/oricutron-guide/",
+    "url_webpage": "https://www.petergordon.org.uk/oricutron/",
+    "url_other": "https://raxiss.com/article/id/25-Oricutron-For-Developers",
+    "url_donation_purchase": "",
+    "url_source": "https://github.com/pete-gordon/oricutron",
+    "system": "oric",
+    "component_type": "Emulator",
+    "description": "Oricutron is a Oric-1/Atmos/Telestrat/Pravetz 8D (oric) Emulator",
+    "system_friendly_name": "Oric",
+    "es_de_config": {
+      "es_find_rules": {
+        "emulators": [
+          {
+            "name": "ORICUTRON",
+            "description": "Tangerine Computer Systems emulator Oricutron",
+            "rules": [
+              {
+                "type": "staticpath",
+                "entries": [
+                  "%COMPONENT_PATH%/component_launcher.sh"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "es_systems": [
+      {
+        "name": "oric",
+        "fullname": "Tangerine Computer Systems Oric",
+        "path": "%ROMPATH%/oric",
+        "extension": ".cmd .dsk",
+        "commands": [
+          {
+            "label": "Oricutron (Standalone)",
+            "command": "%STARTDIR%=%EMUDIR% %EMULATOR_ORICUTRON% %ROM%"
+          }
+        ],
+        "platform": "oric",
+        "theme": "oric"
+      }
+    ]
+  }
+}

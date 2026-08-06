@@ -282,6 +282,13 @@ export MUDLET_VERSION_POLICY="latest"
 # ------------------------------------------------------------------------------
 export SDL2TRS_VERSION_POLICY="latest"
 
+# ------------------------------------------------------------------------------
+# Orictron - Oric-1/Atmos/Telestrat/Pravetz 8D Emulator
+# Source: Binary (RetroDECK-built)
+# Link: https://github.com/pete-gordon/oricutron
+# ------------------------------------------------------------------------------
+export ORICUTRON_VERSION_POLICY="latest"
+
 
 # ==============================================================================
 #  Component Policies - In Development
@@ -366,11 +373,6 @@ export MUDLET_VERSION_POLICY="latest"
 # Open Surge Engine - 2D Game Engine
 # ------------------------------------------------------------------------------
 export OPENSURGE_VERSION_POLICY="latest"
-
-# ------------------------------------------------------------------------------
-# Orictron - Oric-1/Atmos/Telestrat/Pravetz 8D Emulator
-# ------------------------------------------------------------------------------
-export ORICUTRON_VERSION_POLICY="20260123"
 
 # ------------------------------------------------------------------------------
 # Raze - Duke Nukem Engine
