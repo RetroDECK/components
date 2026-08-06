@@ -1,8 +1,8 @@
 #!/bin/bash
 
-export sdl2trs_config="$XDG_CONFIG_HOME/sdl2trs/.sdltrs.t8c"
+export sdl2trs_config="$XDG_CONFIG_HOME/oricutron/oricutron.cfg"
 
-_prepare_component::sdl2trs() {
+_prepare_component::oricutron() {
   local action="$1"
   shift
 
@@ -19,11 +19,6 @@ _prepare_component::sdl2trs() {
       cp -fr "$component_config/"* "$XDG_CONFIG_HOME/oricutron/"
 
     ;;
-
-    postmove)
-      log i "----------------------"
-      log i "Post-moving Oricutron"
-      log i "----------------------"
 
   esac
 }
