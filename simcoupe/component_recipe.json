@@ -8,7 +8,7 @@
       "assets": [
         {
           "type": "dir",
-          "source": "simcoupe_1.2.15_amd64",
+          "source": "simcoupe_1.2.16_amd64",
           "dest": ""
         },
         {

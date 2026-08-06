@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export simcoupe_config="$XDG_CONFIG_HOME/simcoupe/SimCoupe.cfg"
+export simcoupe_config="$XDG_CONFIG_HOME/simcoupe/.simcoupe/SimCoupe.cfg"
 
 _prepare_component::simcoupe() {
   local action="$1"
@@ -15,8 +15,8 @@ _prepare_component::simcoupe() {
       log i "Resetting SimCoupé"
       log i "----------------------"
 
-      create_dir -d "$XDG_CONFIG_HOME/simcoupe/"
-      cp -fr "$component_config/"* "$XDG_CONFIG_HOME/simcoupe/"
+      create_dir -d "$XDG_CONFIG_HOME/simcoupe/.simcoupe/"
+      cp -fr "$component_config/"* "$XDG_CONFIG_HOME/simcoupe/.simcoupe/"
 
     ;;
 
