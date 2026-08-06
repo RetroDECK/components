@@ -54,5 +54,7 @@ _prepare_component::sdl2trs() {
 
       sed -i "s|^printerdir=.*|printerdir=$storage_path/SDL2TRS|" $sdl2trs_config
 
+    ;;
+    
   esac
 }
