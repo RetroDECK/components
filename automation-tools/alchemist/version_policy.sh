@@ -210,6 +210,13 @@ export SIMCOUPE_VERSION_POLICY="latest"
 # ------------------------------------------------------------------------------
 export TSUGARU_VERSION_POLICY="newest"
 
+# ------------------------------------------------------------------------------
+# KEGS - Apple IIGS Emulator
+# Source: Binary
+# Link: https://kegs.sourceforge.net/
+# ------------------------------------------------------------------------------
+export KEGS_VERSION_POLICY="1.38"
+
 
 # ==============================================================================
 #  Component Policies - Self-Built / Repo-Hosted Components
@@ -348,11 +355,6 @@ export HYPSEUS_VERSION_POLICY="latest"
 # Ikeman Go - Fighting Engine
 # ------------------------------------------------------------------------------
 export IKEMANGO_VERSION_POLICY="latest"
-
-# ------------------------------------------------------------------------------
-# KEGS - Apple IIGS Emulator
-# ------------------------------------------------------------------------------
-export KEGS_VERSION_POLICY="1.38"
 
 # ------------------------------------------------------------------------------
 # Lindbergh - SEGA Lindbergh Emulator
