@@ -41,7 +41,7 @@
         "commands": [
           {
             "label": "Tsugaru (Standalone)",
-            "command": "%EMULATOR_TSUGARU% %EMUDIR%/roms -CD %ROM% %INJECT%=%BASENAME%.cfg"
+            "command": "%EMULATOR_TSUGARU% -CD %ROM% %INJECT%=%BASENAME%.cfg"
           }
         ],
         "platform": "fmtowns",
