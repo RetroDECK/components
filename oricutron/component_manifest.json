@@ -39,7 +39,7 @@
         "name": "oric",
         "fullname": "Tangerine Computer Systems Oric",
         "path": "%ROMPATH%/oric",
-        "extension": ".cmd .dsk",
+        "extension": ".dsk .ort .tap .wav",
         "commands": [
           {
             "label": "Oricutron (Standalone)",
