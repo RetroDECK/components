@@ -20,10 +20,5 @@ _prepare_component::simcoupe() {
 
     ;;
 
-    postmove)
-      log i "----------------------"
-      log i "Post-moving SimCoupé"
-      log i "----------------------"
-
   esac
 }
