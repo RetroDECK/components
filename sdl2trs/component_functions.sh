@@ -15,6 +15,7 @@ _prepare_component::sdl2trs() {
       log i "Resetting SDL2TRS"
       log i "----------------------"
 
+      create_dir -d "$XDG_CONFIG_HOME/sdl2trs/"
       cp -f "$component_config/sdltrs.t8c" "$XDG_CONFIG_HOME/sdl2trs/.sdltrs.t8c"
       
       create_dir -d "$states_path/trs-80"
@@ -39,11 +40,6 @@ _prepare_component::sdl2trs() {
       log i "----------------------"
       log i "Post-moving SDL2TRS"
       log i "----------------------"
-      
-      cp -f "$component_config/sdltrs.t8c" "$XDG_CONFIG_HOME/sdl2trs/.sdltrs.t8c"
-      
-      create_dir -d "$states_path/trs-80"
-      create_dir -d "$storage_path/SDL2TRS"
 
       sed -i "s|^statedir=.*|statedir=$states_path/trs-80|" $sdl2trs_config
 
