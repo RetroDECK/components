@@ -17,7 +17,7 @@ _prepare_component::tsugaru() {
 
       create_dir -d "$XDG_CONFIG_HOME/tsugaru"
       cp -fr "$component_config/"* "$XDG_CONFIG_HOME/tsugaru"
-      sed -i "s|-ROMDIR RETRODECKBIOSDIR|-ROMDIR $bios_path|" $tsugaru_config
+      dir_prep "$bios_path/fmtowns" "$XDG_CONFIG_HOME/tsugaru/roms"
 
     ;;
 
@@ -26,7 +26,7 @@ _prepare_component::tsugaru() {
           log i "Post-moving Tsugaru"
           log i "----------------------"
 
-          sed -i "s|-ROMDIR RETRODECKBIOSDIR|-ROMDIR $bios_path|" $tsugaru_config
+      dir_prep "$bios_path/fmtowns" "$XDG_CONFIG_HOME/tsugaru/roms"
 
     ;;
 

@@ -1,8 +1,5 @@
 # Tsugaru (RetroDECK)
 
-# Bios
--ROMDIR RETRODECKBIOSDIR
-
 # Display
 -AUTOSCALE
 -MAINTAINASPECT
