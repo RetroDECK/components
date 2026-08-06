@@ -22,7 +22,7 @@ disksetdir=./
 doubler=both
 emtsafe
 fdc
-nofullscreen
+fullscreen
 foreground=0xe0e0ff
 guibackground=0x344843
 guiforeground=0xe0e0ff
@@ -36,7 +36,7 @@ nohdboot
 nohuffman
 nohypermem
 nojoyaxismapped
-joybuttonmap=-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1
+joybuttonmap=0,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1
 joystick=0
 keypadjoy
 keystretch=4000
@@ -57,7 +57,7 @@ romfile1=level2.rom
 romfile3=model3.rom
 romfile4p=model4p.rom
 samplerate=44100
-scale=1
+scale=2
 scalequality=1
 noscanlines
 scanshade=127

@@ -1,3 +1,0 @@
-.sdltrs.t8c
-
-Is created in home as of now, we need to move it if possible to XDG_CONFIG_HOME
