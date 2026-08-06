@@ -60,11 +60,11 @@
         "name": "apple2gs",
         "fullname": "Apple IIGS",
         "path": "%ROMPATH%/apple2gs",
-        "extension": ".2mg .7z .zip",
+        "extension": ".2mg .7z .zip .dsk .po",
         "commands": [
           {
             "label": "KEGS (Standalone)",
-            "command": "%EMULATOR_KEGS% %INJECT%=%BASENAME%.commands -s7d1 %ROM%"
+            "command": "%EMULATOR_KEGS% %INJECT%=%BASENAME%.commands -s5d1 %ROM%"
           }
         ],
         "platform": "apple2gs",
