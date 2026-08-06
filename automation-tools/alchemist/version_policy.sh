@@ -159,12 +159,7 @@ export XEMU_VERSION_POLICY="latest"
 # Source: AppImage
 # Link: https://github.com/RPCS3/rpcs3-binaries-linux/
 # ------------------------------------------------------------------------------
-# MAIN (Stable)
-# Version: 0.0.40-19397
   export RPCS3_DESIRED_VERSION="latest"
-
-# COOKER (Override)
-# export RPCS3_DESIRED_VERSION="latest"
 
 # ------------------------------------------------------------------------------
 # Ironwail - Quake Engine
@@ -172,7 +167,6 @@ export XEMU_VERSION_POLICY="latest"
 # Link: https://github.com/andrei-drexler/ironwail/releases/
 # ------------------------------------------------------------------------------
 export IRONWAIL_VERSION_POLICY="latest"
-
 
 # ------------------------------------------------------------------------------
 # OpenBOR - Open Beat 'em Up Engine
@@ -202,7 +196,12 @@ export RETROARCH_VERSION_POLICY="1.22.2"
 # ------------------------------------------------------------------------------
 export SOLARUS_VERSION_POLICY="latest"
 
-
+# ------------------------------------------------------------------------------
+# SimCoupé - MGT SAM Coupé Emulator
+# Source: Binary
+# Link: https://github.com/simonowen/simcoupe/releases/
+# ------------------------------------------------------------------------------
+export SIMCOUPE_VERSION_POLICY="latest"
 
 # ==============================================================================
 #  Component Policies - Self-Built / Repo-Hosted Components
@@ -330,7 +329,6 @@ export GARGOYLE_VERSION_POLICY="latest"
 # ------------------------------------------------------------------------------
 export HYPSEUS_VERSION_POLICY="latest"
 
-
 # ------------------------------------------------------------------------------
 # Ikeman Go - Fighting Engine
 # ------------------------------------------------------------------------------
@@ -376,17 +374,10 @@ export RAZE_VERSION_POLICY="latest"
 # ------------------------------------------------------------------------------
 export SCUMMVM_VERSION_POLICY="latest"
 
-
-
 # ------------------------------------------------------------------------------
 # ShadPS4 - PlayStation 4 Emulator
 # ------------------------------------------------------------------------------
 export SHADPS4_VERSION_POLICY="latest"
-
-# ------------------------------------------------------------------------------
-# SimCoupe - SAM Coupe Emulator
-# ------------------------------------------------------------------------------
-export SIMCOUPE_VERSION_POLICY="latest"
 
 # ------------------------------------------------------------------------------
 # SuperModel - SEGA Model 3 Arcade Emulator
