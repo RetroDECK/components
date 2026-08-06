@@ -270,7 +270,7 @@ export MUDLET_VERSION_POLICY="latest"
 
 # ------------------------------------------------------------------------------
 # SDL2TRS - TRS-80 Model I/III/4/4P Emulator
-# Source: Binary (RetroDECK-built) - Build SDL2 Version
+# Source: Binary (RetroDECK-built)
 # Link: https://gitlab.com/jengun/sdltrs/-/blob/master/BUILDING.md
 # ------------------------------------------------------------------------------
 export SDL2TRS_VERSION_POLICY="latest"
