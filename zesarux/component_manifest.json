@@ -41,7 +41,7 @@
         "commands": [
           {
             "label": "ZEsarUX (Standalone)",
-            "command": "%STARTDIR%=%EMUDIR% %EMULATOR_ZESARUX% --noconfigfile --simplemenus --fullscreen --enable-divmmc-ports --enable-mmc --zoom 1 --quickexit --joystickemulated kempston --disableborder --machine tbblue --realvideo --enabletimexvideo --tbblue-fast-boot-mode --enable-esxdos-handler --esxdos-root-dir --mmc-file %GAMEDIR% %ROM%"
+            "command": "%STARTDIR%=%EMUDIR% %EMULATOR_ZESARUX% %GAMEDIR% %ROM%"
           }
         ],
         "platform": "zxnext",
