@@ -10,7 +10,7 @@ _prepare_component::zesarux() {
 
     reset)
       log i "----------------------"
-      log i "Resetting Oricutron"
+      log i "Resetting Zesarux"
       log i "----------------------"
 
       create_dir -d "$XDG_CONFIG_HOME/zesarux/"
@@ -18,4 +18,6 @@ _prepare_component::zesarux() {
     ;;
 
   esac
-}#!/bin/bash
+}
+
+
