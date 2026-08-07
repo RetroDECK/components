@@ -1,6 +1,6 @@
 {
   "commander-x16": {
-    "name": "x16 Emulator",
+    "name": "X16 Emulator",
     "core_framework_compatibility": "1",
     "component_version": "1.0.0",
     "capabilities": [
@@ -11,7 +11,7 @@
     "url_webpage": "https://www.commanderx16.com/",
     "url_donation_purchase": "https://cx16forum.com/forum/viewtopic.php?t=6772",
     "url_source": "https://github.com/X16Community/x16-emulator",
-    "description": "x16 Emulator a Commander X16 Emulator.",
+    "description": "X16 Emulator a Commander X16 (commander-x16) Emulator.",
     "component_type": "Emulator",
     "system": "commander-x16",
     "system_friendly_name": "Commander X16",
@@ -20,7 +20,7 @@
         "emulators": [
           {
             "name": "COMMANDER-X16",
-            "description": "x16 Emulator Commander X16 Emulator",
+            "description": "X16 Emulator Commander X16 Emulator",
             "rules": [
               {
                 "type": "staticpath",

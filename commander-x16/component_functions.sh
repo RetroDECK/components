@@ -1,7 +1,5 @@
 #!/bin/bash
 
-export commander-x16_config="$XDG_CONFIG_HOME/commander-x16/commander-x16.cfg"
-
 _prepare_component::commander-x16() {
   local action="$1"
   shift
