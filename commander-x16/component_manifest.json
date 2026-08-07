@@ -38,11 +38,11 @@
         "name": "commander-x16",
         "fullname": "Commander X16",
         "path": "%ROMPATH%/commander-x16",
-        "extension": ".prg",
+        "extension": ".prg .bas",
         "commands": [
           {
             "label": "Commander X16 (Standalone)",
-            "command": "%EMULATOR_COMMANDER-X16% %ROM%"
+            "command": "%EMULATOR_COMMANDER-X16% -prg %ROM% -run"
           }
         ],
         "platform": "commander-x16",
