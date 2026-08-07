@@ -1,6 +1,12 @@
 {
   "commander-x16": {
     "name": "Commander X16",
+    "core_framework_compatibility": "1",
+    "component_version": "1.0.0",
+    "capabilities": [
+      "reset",
+      "open"
+    ],
     "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/commander-x16/commander-x16-guide/",
     "url_webpage": "https://www.commanderx16.com/",
     "url_donation_purchase": "https://cx16forum.com/forum/viewtopic.php?t=6772",
