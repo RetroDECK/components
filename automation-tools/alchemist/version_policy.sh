@@ -310,6 +310,14 @@ export SDL2TRS_VERSION_POLICY="latest"
 export ORICUTRON_VERSION_POLICY="latest"
 
 
+# ------------------------------------------------------------------------------
+# GameTankEmulator - GameTank 8-bit game console Emulator
+# Source: Binary (RetroDECK-built)
+# Link: https://github.com/clydeshaffer/GameTankEmulator
+# ------------------------------------------------------------------------------
+export GAMETANK_VERSION_POLICY="latest"
+
+
 # ==============================================================================
 #  Component Policies - In Development
 # ==============================================================================
