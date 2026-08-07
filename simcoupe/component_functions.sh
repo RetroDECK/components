@@ -1,8 +1,8 @@
 #!/bin/bash
 
-export simcoupe_config="$XDG_CONFIG_HOME/simcoupe/.simcoupe/SimCoupe.cfg"
+export commander-x16_config="$XDG_CONFIG_HOME/commander-x16/commander-x16.cfg"
 
-_prepare_component::simcoupe() {
+_prepare_component::commander-x16() {
   local action="$1"
   shift
 
@@ -12,11 +12,11 @@ _prepare_component::simcoupe() {
 
     reset)
       log i "----------------------"
-      log i "Resetting SimCoupé"
+      log i "Resetting Commander X16"
       log i "----------------------"
 
-      create_dir -d "$XDG_CONFIG_HOME/simcoupe/.simcoupe/"
-      cp -fr "$component_config/"* "$XDG_CONFIG_HOME/simcoupe/.simcoupe/"
+      create_dir -d "$XDG_CONFIG_HOME/commander-x16"
+      cp -fr "$component_config/"* "$XDG_CONFIG_HOME/commander-x16"
 
     ;;
 

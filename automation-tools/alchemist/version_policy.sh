@@ -217,6 +217,12 @@ export TSUGARU_VERSION_POLICY="newest"
 # ------------------------------------------------------------------------------
 export KEGS_VERSION_POLICY="1.38"
 
+# ------------------------------------------------------------------------------
+# Commander X16 8-bit Computer Emulator
+# Source: Binary
+# Link: https://github.com/x16community/x16-emulator
+# ------------------------------------------------------------------------------
+export COMMANDER_X16_VERSION_POLICY="latest"
 
 # ==============================================================================
 #  Component Policies - Self-Built / Repo-Hosted Components
@@ -318,10 +324,6 @@ export ORICUTRON_VERSION_POLICY="latest"
 # ------------------------------------------------------------------------------
 export AGS_VERSION_POLICY="newest"
 
-# ------------------------------------------------------------------------------
-# Commander X16 8-bit Computer
-# ------------------------------------------------------------------------------
-export COMMANDER_X16_VERSION_POLICY="latest"
 
 # ------------------------------------------------------------------------------
 # DOSBox-X - Enhanced DOSBox Engine

@@ -1,0 +1,47 @@
+{
+  "commander-x16": {
+    "name": "Commander X16",
+    "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/commander-x16/commander-x16-guide/",
+    "url_webpage": "https://www.commanderx16.com/",
+    "url_donation_purchase": "https://cx16forum.com/forum/viewtopic.php?t=6772",
+    "url_source": "https://github.com/X16Community/x16-emulator",
+    "description": "Commander X16 Emulator.",
+    "component_type": "Emulator",
+    "system": "commander-x16",
+    "system_friendly_name": "Commander X16",
+    "es_de_config": {
+      "es_find_rules": {
+        "emulators": [
+          {
+            "name": "COMMANDER-X16",
+            "description": "Commander X16 Emulator",
+            "rules": [
+              {
+                "type": "staticpath",
+                "entries": [
+                  "%COMPONENT_PATH%/component_launcher.sh"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "es_systems": [
+      {
+        "name": "commander-x16",
+        "fullname": "Commander X16",
+        "path": "%ROMPATH%/commander-x16",
+        "extension": ".prg",
+        "commands": [
+          {
+            "label": "Commander X16 (Standalone)",
+            "command": "%EMULATOR_COMMANDER-X16% %ROM%"
+          }
+        ],
+        "platform": "commander-x16",
+        "theme": "commander-x16"
+      }
+    ]
+  }
+}
