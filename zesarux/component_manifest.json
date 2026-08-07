@@ -37,7 +37,7 @@
         "name": "zxnext",
         "fullname": "Sinclair ZX Spectrum Next",
         "path": "%ROMPATH%/zxnext",
-        "extension": ".nex .sna",
+        "extension": ".nex .sna .snx",
         "commands": [
           {
             "label": "ZEsarUX (Standalone)",
