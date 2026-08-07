@@ -19,6 +19,7 @@ _prepare_component::gargoyle() {
 
   create_dir "$XDG_CONFIG_HOME/gargoyle"
   dir_prep "$storage_path/gargoyle/themes" "$XDG_DATA_HOME/gargoyle/themes"
+  
     ;;
 
       esac
