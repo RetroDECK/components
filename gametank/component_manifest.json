@@ -13,14 +13,14 @@
     "url_source": "https://github.com/clydeshaffer/GameTankEmulator",
     "description": "GameTankEmulator is an GameTank 8-bit console Emulator",
     "component_type": "Emulator",
-    "system_friendly_name": "GameTank 8-bit Emulator",
+    "system_friendly_name": "GameTank",
     "system": "gametank",
     "es_de_config": {
       "es_find_rules": {
         "emulators": [
           {
             "name": "GAMETANK",
-            "description": "GameTankEmulator GameTank Emulator",
+            "description": "GameTankEmulator GameTank Console Emulator",
             "rules": [
               {
                 "type": "staticpath",
