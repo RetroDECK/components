@@ -31,23 +31,23 @@
             ]
           }
         ]
-      }
-    },
-    "es_systems": [
-      {
-        "name": "samcoupe",
-        "fullname": "MGT SAM Coupé",
-        "path": "%ROMPATH%/samcoupe",
-        "extension": ".dsk .mgt .sad .sbt .7z .zip",
-        "commands": [
-          {
-            "label": "SimCoupé (Standalone)",
-            "command": "%STARTDIR%=%EMULATOR_SIMCOUPE% %ROM%"
-          }
-        ],
-        "platform": "samcoupe",
-        "theme": "samcoupe"
-      }
-    ]
+      },
+      "es_systems": [
+        {
+          "name": "samcoupe",
+          "fullname": "MGT SAM Coupé",
+          "path": "%ROMPATH%/samcoupe",
+          "extension": ".dsk .mgt .sad .sbt .7z .zip",
+          "commands": [
+            {
+              "label": "SimCoupé (Standalone)",
+              "command": "%STARTDIR%=%EMULATOR_SIMCOUPE% %ROM%"
+            }
+          ],
+          "platform": "samcoupe",
+          "theme": "samcoupe"
+        }
+      ]
+    }
   }
 }
