@@ -1,0 +1,10 @@
+## SimCoupé Update
+
+SimCoupé comes in a <version_name> folder inside it's release .zip
+
+## Update Steps
+
+Check latest version https://github.com/simonowen/simcoupe/releases/
+
+In component_recipe assets replace simcoupe_<version>_amd64 with the latest version to extract. 
+Example:  "source": "simcoupe_1.2.14_amd64" -> "source": "simcoupe_1.2.16_amd64",

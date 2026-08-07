@@ -159,12 +159,7 @@ export XEMU_VERSION_POLICY="latest"
 # Source: AppImage
 # Link: https://github.com/RPCS3/rpcs3-binaries-linux/
 # ------------------------------------------------------------------------------
-# MAIN (Stable)
-# Version: 0.0.40-19397
   export RPCS3_DESIRED_VERSION="latest"
-
-# COOKER (Override)
-# export RPCS3_DESIRED_VERSION="latest"
 
 # ------------------------------------------------------------------------------
 # Ironwail - Quake Engine
@@ -172,7 +167,6 @@ export XEMU_VERSION_POLICY="latest"
 # Link: https://github.com/andrei-drexler/ironwail/releases/
 # ------------------------------------------------------------------------------
 export IRONWAIL_VERSION_POLICY="latest"
-
 
 # ------------------------------------------------------------------------------
 # OpenBOR - Open Beat 'em Up Engine
@@ -202,6 +196,26 @@ export RETROARCH_VERSION_POLICY="1.22.2"
 # ------------------------------------------------------------------------------
 export SOLARUS_VERSION_POLICY="latest"
 
+# ------------------------------------------------------------------------------
+# SimCoupé - MGT SAM Coupé Emulator
+# Source: Binary
+# Link: https://github.com/simonowen/simcoupe/releases/
+# ------------------------------------------------------------------------------
+export SIMCOUPE_VERSION_POLICY="latest"
+
+# ------------------------------------------------------------------------------
+# Tsugaru - FM TOWNS Emulator
+# Source: Binary
+# Link: https://github.com/captainys/TOWNSEMU/releases/
+# ------------------------------------------------------------------------------
+export TSUGARU_VERSION_POLICY="newest"
+
+# ------------------------------------------------------------------------------
+# KEGS - Apple IIGS Emulator
+# Source: Binary
+# Link: https://kegs.sourceforge.net/
+# ------------------------------------------------------------------------------
+export KEGS_VERSION_POLICY="1.38"
 
 
 # ==============================================================================
@@ -266,7 +280,28 @@ export VITA3K_VERSION_POLICY="latest"
 # Source: Binary
 # Link: https://github.com/chernandezba/zesarux/releases
 # ------------------------------------------------------------------------------
+
 export ZESARUX_VERSION_POLICY="latest"
+# Mudlet - MUD Client
+# Source: AppImage
+# Link: https://github.com/RetroDECK/components/tree/cooker/mudlet/tmp_assets
+# ------------------------------------------------------------------------------
+
+export MUDLET_VERSION_POLICY="latest"
+
+# ------------------------------------------------------------------------------
+# SDL2TRS - TRS-80 Model I/III/4/4P Emulator
+# Source: Binary (RetroDECK-built)
+# Link: https://gitlab.com/jengun/sdltrs/-/blob/master/BUILDING.md
+# ------------------------------------------------------------------------------
+export SDL2TRS_VERSION_POLICY="latest"
+
+# ------------------------------------------------------------------------------
+# Orictron - Oric-1/Atmos/Telestrat/Pravetz 8D Emulator
+# Source: Binary (RetroDECK-built)
+# Link: https://github.com/pete-gordon/oricutron
+# ------------------------------------------------------------------------------
+export ORICUTRON_VERSION_POLICY="latest"
 
 
 # ==============================================================================
@@ -323,16 +358,10 @@ export GARGOYLE_VERSION_POLICY="latest"
 # ------------------------------------------------------------------------------
 export HYPSEUS_VERSION_POLICY="latest"
 
-
 # ------------------------------------------------------------------------------
 # Ikeman Go - Fighting Engine
 # ------------------------------------------------------------------------------
 export IKEMANGO_VERSION_POLICY="latest"
-
-# ------------------------------------------------------------------------------
-# KEGS - Apple IIGS Emulator
-# ------------------------------------------------------------------------------
-export KEGS_VERSION_POLICY="1.38"
 
 # ------------------------------------------------------------------------------
 # Lindbergh - SEGA Lindbergh Emulator
@@ -355,11 +384,6 @@ export MUDLET_VERSION_POLICY="latest"
 export OPENSURGE_VERSION_POLICY="latest"
 
 # ------------------------------------------------------------------------------
-# Orictron - Oric-1/Atmos/Telestrat/Pravetz 8D Emulator
-# ------------------------------------------------------------------------------
-export ORICUTRON_VERSION_POLICY="20260123"
-
-# ------------------------------------------------------------------------------
 # Raze - Duke Nukem Engine
 # ------------------------------------------------------------------------------
 export RAZE_VERSION_POLICY="latest"
@@ -370,29 +394,14 @@ export RAZE_VERSION_POLICY="latest"
 export SCUMMVM_VERSION_POLICY="latest"
 
 # ------------------------------------------------------------------------------
-# SDL2TRS - TRS-80 Model I/III/4/4P Emulator
-# ------------------------------------------------------------------------------
-export SDL2TRS_VERSION_POLICY="latest"
-
-# ------------------------------------------------------------------------------
 # ShadPS4 - PlayStation 4 Emulator
 # ------------------------------------------------------------------------------
 export SHADPS4_VERSION_POLICY="latest"
 
 # ------------------------------------------------------------------------------
-# SimCoupe - SAM Coupe Emulator
-# ------------------------------------------------------------------------------
-export SIMCOUPE_VERSION_POLICY="latest"
-
-# ------------------------------------------------------------------------------
 # SuperModel - SEGA Model 3 Arcade Emulator
 # ------------------------------------------------------------------------------
 export SUPERMODEL_VERSION_POLICY="latest"
-
-# ------------------------------------------------------------------------------
-# Tsugaru - FM TOWNS Emulator
-# ------------------------------------------------------------------------------
-export TSUGARU_VERSION_POLICY="newest"
 
 # ------------------------------------------------------------------------------
 # UZDoom - Modern Doom Engine
