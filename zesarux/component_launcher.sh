@@ -14,4 +14,4 @@ log d "QT plugin path is: $QT_PLUGIN_PATH"
 log d "QT QPA PLATFORM plugin path is: $QT_QPA_PLATFORM_PLUGIN_PATH"
 
 # Launch
-exec "$component_path/zesarux" --noconfigfile "$@"
+exec "$component_path/zesarux" --noconfigfile --simplemenus --fullscreen --enable-divmmc-ports --enable-mmc --zoom 1 --quickexit --joystickemulated kempston --disableborder --machine tbblue --realvideo --enabletimexvideo --tbblue-fast-boot-mode --enable-esxdos-handler --esxdos-root-dir --mmc-file "$@"
