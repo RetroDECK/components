@@ -1,0 +1,52 @@
+{
+  "zesarux": {
+    "name": "ZEsarUX",
+    "core_framework_compatibility": "1",
+    "component_version": "1.0.0",
+    "capabilities": [
+      "reset",
+      "open"
+    ],
+    "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/zesarux/zesarux-guide/",
+    "url_donation_purchase": "https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=E5RSRST8N7KWS&lc=ES&item_name=Donativo%20ZEsarUX&currency_code=EUR&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted",
+    "url_source": "https://github.com/chernandezba/zesarux",
+    "description": "ZEsarUX is a Sinclair ZX Spectrum Next and ZX Machines Multi-Emulator",
+    "system_friendly_name": "ZX Spectrum Next",
+    "component_type": "Multi-Emulator",
+    "system": "zxnext",
+    "es_de_config": {
+      "es_find_rules": {
+        "emulators": [
+          {
+            "name": "ZESARUX",
+            "description": "Sinclair ZX Spectrum emulator ZEsarUX",
+            "rules": [
+              {
+                "type": "staticpath",
+                "entries": [
+                  "%COMPONENT_PATH%/component_launcher.sh"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "es_systems": [
+      {
+        "name": "zxnext",
+        "fullname": "Sinclair ZX Spectrum Next",
+        "path": "%ROMPATH%/zxnext",
+        "extension": ".nex, .snx, .sna, .z80, .tap, .tzx, .pzx, .dsk, .trd, .scl, .mgt",
+        "commands": [
+          {
+            "label": "ZEsarUX (Standalone)",
+            "command": "%STARTDIR%=%EMUDIR% %EMULATOR_ZESARUX% %GAMEDIR% %ROM%"
+          }
+        ],
+        "platform": "zxnext",
+        "theme": "zxnext"
+      }
+    ]
+  }
+}

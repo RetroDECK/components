@@ -276,10 +276,17 @@ export PRIMEHACK_VERSION_POLICY="master-230724.27"
 export VITA3K_VERSION_POLICY="latest"
 
 # ------------------------------------------------------------------------------
+# ZEsarUX - ZX Second-Emulator
+# Source: Binary
+# Link: https://github.com/chernandezba/zesarux/releases
+# ------------------------------------------------------------------------------
+
+export ZESARUX_VERSION_POLICY="latest"
 # Mudlet - MUD Client
 # Source: AppImage
 # Link: https://github.com/RetroDECK/components/tree/cooker/mudlet/tmp_assets
 # ------------------------------------------------------------------------------
+
 export MUDLET_VERSION_POLICY="latest"
 
 # ------------------------------------------------------------------------------
@@ -411,10 +418,6 @@ export VPINBALL_VERSION_POLICY="newest"
 # ------------------------------------------------------------------------------
 export XENIA_EDGE_VERSION_POLICY="newest"
 
-# ------------------------------------------------------------------------------
-# ZEsarUX - ZX Second-Emulator
-# ------------------------------------------------------------------------------
-export ZESARUX_VERSION_POLICY="latest"
 
 
 
