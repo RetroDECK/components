@@ -14,4 +14,4 @@ log d "QT plugin path is: $QT_PLUGIN_PATH"
 log d "QT QPA PLATFORM plugin path is: $QT_QPA_PLATFORM_PLUGIN_PATH"
 
 # Launch
-exec "$component_path/x16emu" -fullscreen -scale 2 -quality best -widescreen -ram 2048 -joy1 -rtc -abufs 32 -fsroot /var/config/commander-x16/system -startin /var/config/commander-x16/system "$@"
+exec "$component_path/x16emu" -fullscreen -scale 2 -quality best -ram 2048 -joy1 -rtc -abufs 32 -fsroot /var/config/commander-x16/system -startin /var/config/commander-x16/system "$@"
