@@ -64,7 +64,7 @@
             },
             {
               "label": "FS-UAE Custom (Standalone)",
-              "command": "%EMULATOR_FS-UAE% /var/config/fs-uae/custom.fs-uae %ROM%",
+              "command": "%EMULATOR_FS-UAE% /var/config/fs-uae/custom-amiga.fs-uae %ROM%",
               "priority": 30
             }
           ],
