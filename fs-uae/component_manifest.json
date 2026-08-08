@@ -1,11 +1,17 @@
 {
   "fs-uae": {
     "name": "FS-UAE",
+    "core_framework_compatibility": "1",
+    "component_version": "1.0.0",
+    "capabilities": [
+      "reset",
+      "open"
+    ],
     "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/fs-uae/fs-uae-guide/",
     "url_webpage": "https://fs-uae.net/",
     "url_donation_purchase": "https://fs-uae.net/donate/",
     "url_source": "https://github.com/FrodeSolheim/fs-uae",
-    "description": "FS-UAE is a Amiga Emulator",
+    "description": "FS-UAE is an Commodore Amiga Emulator",
     "component_type": "Emulator",
     "system_friendly_name": [
       "Amiga",
@@ -20,6 +26,122 @@
       "amiga600",
       "amigacd32",
       "cdtv"
-    ]
+    ],
+    "bios": [],
+    "es_de_config": {
+      "es_find_rules": {
+        "emulators": [
+          {
+            "name": "SDL2TRS",
+            "description": "Tandy TRS-80 emulator SDL2TRS",
+            "rules": [
+              {
+                "type": "staticpath",
+                "entries": [
+                  "%COMPONENT_PATH%/component_launcher.sh"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "es_systems": [
+        {
+          "name": "amiga",
+          "fullname": "Commodore Amiga",
+          "path": "%ROMPATH%/amiga",
+          "extension": ".adf .adz .ccd .chd .cue .dms .fdi .hdf .hdz .ipf .iso .lha .m3u .mds .nrg .rp9 .uae .7z .zip",
+          "commands": [
+            {
+              "label": "FS-UAE (Standalone)",
+              "command": "%EMULATOR_FS-UAE% /var/config/FS-UAE/RetroDECK-amiga1200.fs-uae %ROM%",
+              "priority": 10
+            },
+            {
+              "label": "FS-UAE AmigaVision (Standalone)",
+              "command": "%EMULATOR_FS-UAE% /var/config/FS-UAE/AmigaVision.fs-uae",
+              "priority": 20
+            },
+            {
+              "label": "FS-UAE Custom (Standalone)",
+              "command": "%EMULATOR_FS-UAE% /var/config/FS-UAE/custom.fs-uae %ROM%",
+              "priority": 30
+            }
+          ],
+          "platform": "amiga",
+          "theme": "amiga"
+        },
+        {
+          "name": "amiga1200",
+          "fullname": "Commodore Amiga 1200",
+          "path": "%ROMPATH%/amiga1200",
+          "extension": ".adf .adz .ccd .chd .cue .dms .fdi .hdf .hdz .ipf .iso .lha .m3u .mds .nrg .rp9 .uae .7z .zip",
+          "commands": [
+            {
+              "label": "FS-UAE (Standalone) Amiga 1200",
+              "command": "%EMULATOR_FS-UAE% /var/config/FS-UAE/RetroDECK-amiga1200.fs-uae %ROM%",
+              "priority": 10
+            },
+            {
+              "label": "FS-UAE (Standalone) Custom Amiga 1200",
+              "command": "%EMULATOR_FS-UAE% /var/config/FS-UAE/Custom/custom-amiga1200.fs-uae %ROM%",
+              "priority": 20
+            }
+          ],
+          "platform": "amiga1200",
+          "theme": "amiga1200"
+        },
+        {
+          "name": "amiga600",
+          "fullname": "Commodore Amiga 600",
+          "path": "%ROMPATH%/amiga600",
+          "extension": ".adf .adz .ccd .chd .cue .dms .fdi .hdf .hdz .ipf .iso .lha .m3u .mds .nrg .rp9 .uae .7z .zip",
+          "commands": [
+            {
+              "label": "FS-UAE (Standalone) Amiga 600",
+              "command": "%EMULATOR_FS-UAE% /var/config/FS-UAE/RetroDECK-amiga600.fs-uae %ROM%",
+              "priority": 10
+            },
+            {
+              "label": "FS-UAE (Standalone) Custom Amiga 600",
+              "command": "%EMULATOR_FS-UAE% /var/config/FS-UAE/Custom/custom-amiga600.fs-uae %ROM%",
+              "priority": 20
+            }
+          ],
+          "platform": "amiga600",
+          "theme": "amiga600"
+        },
+        {
+          "name": "amigacd32",
+          "fullname": "Commodore Amiga CD32",
+          "path": "%ROMPATH%/amigacd32",
+          "extension": ".adf .adz .ccd .chd .cue .dms .fdi .hdf .hdz .ipf .iso .lha .m3u .mds .nrg .rp9 .uae .7z .zip",
+          "commands": [
+            {
+              "label": "FS-UAE (Standalone) CD32",
+              "command": "%EMULATOR_FS-UAE% /var/config/FS-UAE/RetroDECK-amigacd32.fs-uae --config:amiga-model=CD32 %ROM%",
+              "priority": 10
+            }
+          ],
+          "platform": "amigacd32",
+          "theme": "amigacd32"
+        },
+        {
+          "name": "cdtv",
+          "fullname": "Commodore CDTV",
+          "path": "%ROMPATH%/cdtv",
+          "extension": ".adf .adz .ccd .chd .cue .dms .fdi .hdf .hdz .ipf .iso .lha .m3u .mds .nrg .rp9 .uae .7z .zip",
+          "commands": [
+            {
+              "label": "FS-UAE (Standalone) CDTV",
+              "command": "%EMULATOR_FS-UAE% /var/config/FS-UAE/RetroDECK-cdtv.fs-uae --config:amiga-model=CDTV %ROM%",
+              "priority": 10
+            }
+          ],
+          "platform": "cdtv",
+          "theme": "cdtv"
+        }
+      ]
+    }
   }
 }

@@ -1,0 +1,40 @@
+# Name: Custom FS-UAE RetroDECK Configuration
+
+[fs-uae]
+amiga_model = A1200/1260
+
+cpu = 68020
+chip_memory = 2048
+fast_memory = 8192
+accelerator_memory = 32768
+
+jit_compiler = 1
+uae_cpu_speed = max
+
+cdrom_drive_count = 1
+floppy_drive_count = 2
+
+video_sync = auto
+low_latency_vsync = 1
+
+texture_filter = nearest
+smoothing = 0
+
+joystick_port_1_mode = joystick
+
+keep_aspect = 1
+ntsc_mode = 0
+scale = 1
+
+fullscreen = 1
+
+scanlines = 0
+border = 0
+bezel = 0
+
+fade_in_duration = 0
+fade_out_duration = 0
+
+floppy_drive_volume = 0
+
+game_mode = 1
