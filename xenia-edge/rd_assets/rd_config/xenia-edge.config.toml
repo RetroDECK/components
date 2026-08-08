@@ -1,6 +1,6 @@
 [APU]
 apu = "sdl"                                       	# Audio system. Use: [sdl, nop]
-apu_max_queued_frames = 8                         	# Allows changing max buffered audio frames to reduce audio delay. Lowering this value might cause performance issues. Value range: [4-64]
+apu_max_queued_frames = 4                         	# Allows changing max buffered audio frames to reduce audio delay. Lowering this value might cause performance issues. Value range: [4-64]
 enable_xmp = true                                 	# Enables Music Player playback.
 ffmpeg_verbose = false                            	# Verbose FFmpeg output (debug and above)
 use_dedicated_xma_thread = true                   	# Enables XMA decoding on separate thread. Disabled should produce better results, but decrease performance a bit.
@@ -159,7 +159,7 @@ d3d12_install_missing_runtime = true              	# When a required Direct3D 12
 
 
 [Display]
-fullscreen = false                                	# Whether to launch the emulator in fullscreen.
+fullscreen = true                                	# Whether to launch the emulator in fullscreen.
 host_present_from_non_ui_thread = true            	# Allow the GPU emulation thread to present the guest output to the host surface directly instead of requesting the UI thread to do so through the host window system.
 postprocess_antialiasing = ""                     	# Post-processing anti-aliasing effect to apply to the image output of the game.
                                                   	# Using post-process anti-aliasing is heavily recommended when AMD FidelityFX Contrast Adaptive Sharpening or Super Resolution 1.0 is active.
@@ -174,7 +174,7 @@ postprocess_antialiasing = ""                     	# Post-processing anti-aliasi
 postprocess_dither = true                         	# Dither the final image output from the internal precision to 8 bits per channel so gradients are smoother.
                                                   	# On a 10bpc display, the lower 2 bits will still be kept, but noise will be added to them - disabling may be recommended for 10bpc, but it depends on the 10bpc displaying capabilities of the actual display used.
 
-postprocess_ffx_cas_additional_sharpness = 0      	# Additional sharpness for AMD FidelityFX Contrast Adaptive Sharpening (CAS), from 0 to 1.
+postprocess_ffx_cas_additional_sharpness = 0.10      	# Additional sharpness for AMD FidelityFX Contrast Adaptive Sharpening (CAS), from 0 to 1.
                                                   	# Higher is sharper.
 
 postprocess_ffx_fsr_max_upsampling_passes = 4     	# Maximum number of upsampling passes performed in AMD FidelityFX Super Resolution 1.0 (FSR) before falling back to bilinear stretching after the final pass.
@@ -185,7 +185,7 @@ postprocess_ffx_fsr_max_upsampling_passes = 4     	# Maximum number of upsamplin
 postprocess_ffx_fsr_sharpness_reduction = 0.20000000298023224	# Sharpness reduction for AMD FidelityFX Super Resolution 1.0 (FSR), in stops.
                                                   	# Lower is sharper.
 
-postprocess_scaling_and_sharpening = ""           	# Post-processing effect to use for resampling and/or sharpening of the final display output.
+postprocess_scaling_and_sharpening = "cas"           	# Post-processing effect to use for resampling and/or sharpening of the final display output.
                                                   	# Use: [bilinear, cas, fsr]
                                                   	#  bilinear (or any value not listed here):
                                                   	#   Original image at 1:1, simple bilinear stretching for resampling.
@@ -382,7 +382,7 @@ resolve_check_number_format = true                	# Require the destination num
 
 resolve_resolution_scale_fill_half_pixel_offset = true	# When using resolution scaling, apply the hack that stretches the first surely covered host pixel in the left and top sides of render target resolve areas to eliminate the gap caused by the half-pixel offset (this is necessary for certain games to display the scene graphics).
 shader_profiling = false                          	# Log shader translation and host pipeline (PSO) creation timings, tagged with 'shader_profiling:'. Off by default because it logs per shader and per pipeline.
-shared_memory_zero_copy = false                   	# Alias guest RAM directly as the GPU shared-memory buffer instead of uploading dirty pages each frame. Removes upload copies and keeps memexport and resolve output coherent with the CPU for free. Default on for ARM64 (unified-memory) builds, off for x86-64. Turn off on discrete GPUs, where shared-memory fetches cross PCIe and are slow.
+shared_memory_zero_copy = true                   	# Alias guest RAM directly as the GPU shared-memory buffer instead of uploading dirty pages each frame. Removes upload copies and keeps memexport and resolve output coherent with the CPU for free. Default on for ARM64 (unified-memory) builds, off for x86-64. Turn off on discrete GPUs, where shared-memory fetches cross PCIe and are slow.
 snorm16_render_target_full_range = true           	# When the host can only support 16_16 and 16_16_16_16 render targets as -1...1, remap -32...32 to -1...1 to use the full possible range of values, at the expense of multiplicative blending correctness.
 spirv_disable_rounding_mode_rte = false           	# Disable RoundingModeRTE capability in SPIR-V shaders. Enable this to allow shader debugging in RenderDoc, which doesn't support this capability.
 spirv_moltenvk_allow_contraction = true           	# When translating SPIR-V for MoltenVK, omit NoContraction decorations so SPIRV-Cross doesn't emit MSL NoContraction helper wrappers with [[clang::optnone]]. Other Vulkan drivers keep NoContraction enabled.
@@ -398,11 +398,11 @@ spirv_version_override = "1.0"                    	# Override the SPIR-V version
 store_shaders = true                              	# Store shaders persistently and load them when loading games to avoid runtime spikes and freezes when playing the game not for the first time.
 submit_on_primary_buffer_end = true               	# Submit the command buffer when a PM4 primary buffer ends if it's possible to submit immediately to try to reduce frame latency.
 target_trace_file = ""                            	# Specifies the trace file to load.
-texture_cache_memory_limit_hard = 768             	# Maximum host texture memory usage (in megabytes) above which textures will be destroyed as soon as possible.
+texture_cache_memory_limit_hard = 512             	# Maximum host texture memory usage (in megabytes) above which textures will be destroyed as soon as possible.
 texture_cache_memory_limit_render_to_texture = 24 	# Part of the host texture memory budget (in megabytes) that will be scaled by the current drawing resolution scale.
                                                   	# If texture_cache_memory_limit_soft, for instance, is 384, and this is 24, it will be assumed that the game will be using roughly 24 MB of render-to-texture (resolve) targets and 384 - 24 = 360 MB of regular textures - so with 2x2 resolution scaling, the soft limit will be 360 + 96 MB, and with 3x3, it will be 360 + 216 MB.
 
-texture_cache_memory_limit_soft = 384             	# Maximum host texture memory usage (in megabytes) above which old textures will be destroyed.
+texture_cache_memory_limit_soft = 256             	# Maximum host texture memory usage (in megabytes) above which old textures will be destroyed.
 texture_cache_memory_limit_soft_lifetime = 30     	# Seconds a texture should be unused to be considered old enough to be deleted if texture memory usage exceeds texture_cache_memory_limit_soft.
 tiled_shared_memory = true                        	# Enable tiled/sparse resources for efficient large address space support. Disable for graphics debugger compatibility.
 trace_dump_path = ""                              	# Output path for dumped files.
@@ -518,7 +518,7 @@ writable_executable_memory = true                 	# Allow mapping memory with b
 
 
 [Profiles]
-logged_profile_slot_0_xuid = "E0300000273AC429"   	# XUID of the profile to load on boot in slot 0
+logged_profile_slot_0_xuid = ""   					# XUID of the profile to load on boot in slot 0
 logged_profile_slot_1_xuid = ""                   	# XUID of the profile to load on boot in slot 1
 logged_profile_slot_2_xuid = ""                   	# XUID of the profile to load on boot in slot 2
 logged_profile_slot_3_xuid = ""                   	# XUID of the profile to load on boot in slot 3
@@ -577,8 +577,8 @@ vulkan_allow_present_mode_mailbox = true          	# When available, allow the m
 vulkan_device = -1                                	# Index of the preferred Vulkan physical device, or -1 to use any compatible device.
 vulkan_dynamic_rendering = true                   	# Use VK_KHR_dynamic_rendering instead of traditional render passes. May improve or worsen performance depending on driver. Requires Vulkan 1.3 or VK_KHR_dynamic_rendering extension support.
 vulkan_install_missing_loader = true              	# When the Vulkan loader (vulkan-1.dll) is missing, offer to download it from LunarG. Disable to manage it manually.
-vulkan_log_debug_messages = true                  	# Write Vulkan VK_EXT_debug_utils messages to the Xenia log, as opposed to the OS debug output.
-vulkan_pipeline_creation_threads = -1             	# Number of threads used for graphics pipeline creation. -1 to calculate automatically (75% of logical CPU cores), a positive number to specify the number of threads explicitly (up to the number of logical CPU cores), 0 to disable multithreaded pipeline creation.
+vulkan_log_debug_messages = false                  	# Write Vulkan VK_EXT_debug_utils messages to the Xenia log, as opposed to the OS debug output.
+vulkan_pipeline_creation_threads = 4             	# Number of threads used for graphics pipeline creation. -1 to calculate automatically (75% of logical CPU cores), a positive number to specify the number of threads explicitly (up to the number of logical CPU cores), 0 to disable multithreaded pipeline creation.
 vulkan_rebar = false                              	# Use ReBAR/SAM (Resizable BAR / Smart Access Memory) for upload buffers when available. This places staging buffers in GPU VRAM. May improve or hurt performance depending on hardware - traditional staging via system memory is often faster due to async GPU DMA.
 vulkan_sparse_shared_memory = true                	# Enable sparse binding for shared memory emulation. Disabling it increases video memory usage - a 512 MB buffer is created - but allows graphics debuggers that don't support sparse binding to work.
 vulkan_validation = 0                             	# Vulkan validation level. 0=off, 1=standard (VK_LAYER_KHRONOS_validation: API correctness, object lifetime, parameter checks), 2=+synchronization validation (catches missing barriers and RAW/WAW hazards; 2-5x slowdown), 3=+GPU-assisted (catches OOB shader buffer accesses; 3-10x slowdown). Messages go to the Xenia log if 'vulkan_log_debug_messages' is enabled, or to the OS debug output otherwise.
@@ -589,7 +589,7 @@ update_vc_runtime = true                          	# When the Microsoft Visual C
 
 
 [x64]
-align_all_basic_blocks = 0                        	# Aligns the start of all basic blocks to N bytes. Only specify a power of 2, 16 is the recommended value. Results in larger icache usage, but potentially faster loops
+align_all_basic_blocks = 16                        	# Aligns the start of all basic blocks to N bytes. Only specify a power of 2, 16 is the recommended value. Results in larger icache usage, but potentially faster loops
 delay_via_maybeyield = false                      	# implement the db16cyc instruction via MaybeYield, may improve scheduling of guest threads
 enable_host_guest_stack_synchronization = true    	# Records entries for guest/host stack mappings at function starts and checks for reentry at return sites. Has slight performance impact, but fixes crashes in games that use setjmp/longjmp.
 enable_incorrect_roundingmode_behavior = false    	# Disables the FPU/VMX MXCSR sharing workaround, potentially causing incorrect rounding behavior and denormal handling in VMX code. The workaround may cause reduced CPU performance but is a more accurate emulation
