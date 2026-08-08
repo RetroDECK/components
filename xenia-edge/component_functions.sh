@@ -22,8 +22,9 @@ _prepare_component::xenia-edge() {
       dir_prep "$storage_path/Xenia/cache" "$XDG_DATA_HOME/Xenia/cache"
       dir_prep "$storage_path/Xenia/cache0" "$XDG_DATA_HOME/Xenia/cache0"
       dir_prep "$storage_path/Xenia/cache1" "$XDG_DATA_HOME/Xenia/cache1"
-      dir_prep "$storage_path/Xenia/content" "$XDG_DATA_HOME/Xenia/content"
       dir_prep "$storage_path/Xenia/library" "$XDG_DATA_HOME/Xenia/library"
+
+      dir_prep "$saves_path/xbox360/Xenia/content" "$XDG_DATA_HOME/Xenia/content"
 
     ;;
 
@@ -36,8 +37,9 @@ _prepare_component::xenia-edge() {
       dir_prep "$storage_path/Xenia/cache" "$XDG_DATA_HOME/Xenia/cache"
       dir_prep "$storage_path/Xenia/cache0" "$XDG_DATA_HOME/Xenia/cache0"
       dir_prep "$storage_path/Xenia/cache1" "$XDG_DATA_HOME/Xenia/cache1"
-      dir_prep "$storage_path/Xenia/content" "$XDG_DATA_HOME/Xenia/content"
       dir_prep "$storage_path/Xenia/library" "$XDG_DATA_HOME/Xenia/library"
+
+      dir_prep "$saves_path/xbox360/Xenia/content" "$XDG_DATA_HOME/Xenia/content"
 
     ;;
 
