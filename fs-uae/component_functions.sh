@@ -18,6 +18,7 @@ _prepare_component::fs-uae() {
   shift
 
   local component_config="$(get_own_component_path)/rd_config"
+  local amiga_system_plugins="$(get_own_component_path)/System"
 
   case "$action" in
 
@@ -31,7 +32,11 @@ _prepare_component::fs-uae() {
         create_dir "$storage_path/fs-uae/AmigaVision/shared"
 
         cp -fvr "$component_config/"* "$XDG_CONFIG_HOME/fs-uae/"
-        
+
+        dir_prep "$storage_path/FS-UAE/System" "$XDG_DATA_HOME/fs-uae/System"
+
+        cp -fvr "$amiga_system_plugins/"* "$XDG_DATA_HOME/fs-uae/System"
+
         dir_prep "$bios_path" "$XDG_DATA_HOME/fs-uae/Kickstarts"
 
         dir_prep "$logs_path/FS-UAE/Logs" "$XDG_DATA_HOME/fs-uae/Logs"
@@ -52,7 +57,7 @@ _prepare_component::fs-uae() {
         dir_prep "$storage_path/FS-UAE/Hard Drives" "$XDG_DATA_HOME/fs-uae/Hard Drives"
         dir_prep "$storage_path/FS-UAE/Themes" "$XDG_DATA_HOME/fs-uae/Themes"
         dir_prep "$storage_path/FS-UAE/Titles" "$XDG_DATA_HOME/fs-uae/Titles"
-        dir_prep "$storage_path/FS-UAE/System" "$XDG_DATA_HOME/fs-uae/System"
+       
 
         sed -i "s|^kickstart_file = .*|kickstart_file = $bios_path/AmigaVision.rom|" $amigavision_config
         sed -i "s|^hard_drive_0 = .*|hard_drive_0 = $storage_path/FS-UAE/AmigaVision/AmigaVision.hdf|" $amigavision_config
