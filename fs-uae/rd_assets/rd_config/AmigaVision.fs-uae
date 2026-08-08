@@ -1,35 +1,183 @@
-# Name: AmigaVision FS-UAE RetroDECK Configuration
+# ============================================================
+# FS-UAE - RETRODECK / AMIGAVISION  
+# ============================================================
 
-[fs-uae]
+# ------------------------------------------------------------
+# MACHINE
+# ------------------------------------------------------------
+
 amiga_model = A1200/020
+
 cpu = 68020
+
 chip_memory = 2048
+fast_memory = 0
+slow_memory = 0
+
 zorro_iii_memory = 262144
+
+# ------------------------------------------------------------
+# CPU / PERFORMANCE
+# ------------------------------------------------------------
+
 jit_compiler = 0
+
+game_mode = 0
+warp_mode = 0
+
+# ------------------------------------------------------------
+# KICKSTART
+# ------------------------------------------------------------
+
 kickstart_file = RETRODECKBIOSDIR/AmigaVision.rom
-cdrom_drive_count = 0
+
+# ------------------------------------------------------------
+# FLOPPY DRIVES
+# ------------------------------------------------------------
+
 floppy_drive_count = 2
+
+# floppy_drive_0 = 
+# floppy_drive_1 = 
+
+floppy_drive_0_sounds = 0
+floppy_drive_1_sounds = 0
+
+floppy_drive_speed = 100
+
+floppy_drive_volume = 0
+floppy_drive_volume_empty = 0
+
+# ------------------------------------------------------------
+# HARD DRIVES
+# ------------------------------------------------------------
+
 hard_drive_0 = RETRODECKSTORAGEDIR/FS-UAE/AmigaVision/AmigaVision.hdf
 hard_drive_0_read_only = 0
+
 hard_drive_1 = RETRODECKSTORAGEDIR/FS-UAE/AmigaVision/AmigaVision-Saves.hdf
 hard_drive_1_read_only = 0
+
 hard_drive_2 = RETRODECKSTORAGEDIR/FS-UAE/AmigaVision/shared
 hard_drive_2_read_only = 0
 hard_drive_2_label = RetroDECK
 
-ntsc_mode = 1
+# ------------------------------------------------------------
+# CD-ROM
+# ------------------------------------------------------------
+
+cdrom_drive_count = 0
+
+# ------------------------------------------------------------
+# INPUT
+# ------------------------------------------------------------
+
+joystick_port_0_mode = joystick
+joystick_port_1_mode = mouse
+
+joystick_port_0_autofire = 0
+joystick_port_1_autofire = 0
+
+automatic_input_grab = 1
+initial_input_grab = 1
+keyboard_input_grab = 1
+
+mouse_integration = 1
+mouse_speed = 100
+
+middle_click_ungrab = 1
+
+# ------------------------------------------------------------
+# VIDEO
+# ------------------------------------------------------------
+
 fullscreen = 1
-scanlines = 1
-viewport = * * * * => 74 36 678 538
-window_width = 678
-window_height = 538
+
+fullscreen_mode = 0
+
+fullscreen_width = 0
+fullscreen_height = 0
+
 window_border = 0
 window_resizable = 0
-texture_filter = nearest
-scale = integer
-smoothing = 0
+
+keep_aspect = 1
+force_aspect = 1
+
+ntsc_mode = 1
+
+# ------------------------------------------------------------
+# VIEWPORT / CROPPING
+# ------------------------------------------------------------
+
 border = 0
 bezel = 0
+
+crop = 0
+
+# ------------------------------------------------------------
+# SCALING
+# ------------------------------------------------------------
+
+scale = integer
+
+scale_x = 0
+scale_y = 0
+
+texture_filter = nearest
+smoothing = 0
+
+# ------------------------------------------------------------
+# SCANLINES
+# ------------------------------------------------------------
+
+scanlines = 1
+
+scanlines_dark = 0
+scanlines_light = 0
+
+# ------------------------------------------------------------
+# AUDIO
+# ------------------------------------------------------------
+
+audio_frequency = 44100
+
+volume = 100
+
+stereo_separation = 100
+
+audio_buffer_target_size = 50
+
+# ------------------------------------------------------------
+# VIDEO SYNCHRONIZATION
+# ------------------------------------------------------------
+
+low_latency_vsync = 1
+
+# ------------------------------------------------------------
+# UI / TRANSITIONS
+# ------------------------------------------------------------
+
 fade_in_duration = 0
 fade_out_duration = 0
-floppy_drive_volume = 0
+
+menu_auto_pause = 1
+
+# ------------------------------------------------------------
+# SAVE STATES
+# ------------------------------------------------------------
+
+save_states = 1
+save_state_compression = 1
+
+# ------------------------------------------------------------
+# SCREENSHOTS
+# ------------------------------------------------------------
+
+screenshots_output_dir = RETRODECKSTORAGEDIR/FS-UAE/AmigaVision/Screenshots
+
+# ------------------------------------------------------------
+# PATHS
+# ------------------------------------------------------------
+
+relative_paths = 0

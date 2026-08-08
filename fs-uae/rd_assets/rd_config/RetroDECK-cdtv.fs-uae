@@ -1,40 +1,71 @@
-# Name: Custom FS-UAE RetroDECK Configuration
+# ============================================================
+# FS-UAE - RetroDECK AMIGA CDTV
+# ============================================================
 
-[fs-uae]
-amiga_model = A1200/1260
+amiga_model = CDTV
 
-cpu = 68020
-chip_memory = 2048
-fast_memory = 8192
-accelerator_memory = 32768
+# ------------------------------------------------------------
+# MEMORY
+# ------------------------------------------------------------
 
-jit_compiler = 1
-uae_cpu_speed = max
+chip_memory = 512
+fast_memory = 0
+slow_memory = 0
+
+# ------------------------------------------------------------
+# CPU
+# ------------------------------------------------------------
+
+cpu = 68000
+uae_cpu_speed = real
+jit_compiler = 0
+
+# ------------------------------------------------------------
+# CD-ROM
+# ------------------------------------------------------------
 
 cdrom_drive_count = 1
-floppy_drive_count = 2
 
-video_sync = auto
-low_latency_vsync = 1
+# cdrom_drive_0 = Game.iso
+# cdrom_drive_0 = Game.cue
 
-texture_filter = nearest
-smoothing = 0
+# ------------------------------------------------------------
+# INPUT
+# ------------------------------------------------------------
 
-joystick_port_1_mode = joystick
+joystick_port_0_mode = joystick
+joystick_port_1_mode = mouse
 
-keep_aspect = 1
-ntsc_mode = 0
-scale = 1
+automatic_input_grab = 1
+initial_input_grab = 1
+keyboard_input_grab = 1
+
+# ------------------------------------------------------------
+# FLOPPY
+# ------------------------------------------------------------
+
+floppy_drive_count = 0
+
+# ------------------------------------------------------------
+# VIDEO
+# ------------------------------------------------------------
 
 fullscreen = 1
+keep_aspect = 1
+force_aspect = 1
+smoothing = 0
 
-scanlines = 0
-border = 0
-bezel = 0
+# ------------------------------------------------------------
+# AUDIO
+# ------------------------------------------------------------
 
-fade_in_duration = 0
-fade_out_duration = 0
+audio_frequency = 44100
+volume = 100
+stereo_separation = 100
 
-floppy_drive_volume = 0
+# ------------------------------------------------------------
+# PERFORMANCE
+# ------------------------------------------------------------
 
-game_mode = 1
+game_mode = 0
+warp_mode = 0
