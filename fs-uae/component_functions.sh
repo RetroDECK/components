@@ -29,9 +29,29 @@ _prepare_component::fs-uae() {
 
         create_dir -d "$XDG_CONFIG_HOME/fs-uae/"
         create_dir -d "$XDG_DATA_HOME/fs-uae/"
-        cp -fvr "$component_config/"* "$XDG_CONFIG_HOME/fs-uae/"
         create_dir "$storage_path/fs-uae/AmigaVision/shared"
-        dir_prep "$storage_path/fs-uae/Custom" "$XDG_CONFIG_HOME/fs-uae/Custom"
+        
+        cp -fvr "$component_config/"* "$XDG_CONFIG_HOME/fs-uae/"
+        
+        dir_prep "$bios_path/amiga" "$XDG_DATA_HOME/fs-uae/Kickstarts"
+        dir_prep "$logs_path/FS-UAE/Logs" "$XDG_DATA_HOME/fs-uae/Logs"
+        dir_prep "$logs_path/FS-UAE/Cache/Logs" "$XDG_DATA_HOME/fs-uae/Cache/Logs"
+
+        dir_prep "$states_path/FS-UAE" "$XDG_DATA_HOME/fs-uae/Save States"
+
+        dir_prep "$screenshots_path/FS-UAE/Screenshots" "$XDG_DATA_HOME/fs-uae/Screenshots"
+
+        dir_prep "$storage_path/FS-UAE/CD-ROMs" "$XDG_DATA_HOME/fs-uae/CD-ROMs"
+        dir_prep "$storage_path/FS-UAE/Configurations" "$XDG_DATA_HOME/fs-uae/Configurations"
+        dir_prep "$storage_path/FS-UAE/Controllers" "$XDG_DATA_HOME/fs-uae/Controllers"
+        dir_prep "$storage_path/FS-UAE/Covers" "$XDG_DATA_HOME/fs-uae/Covers"
+        dir_prep "$storage_path/FS-UAE/Custom" "$XDG_CONFIG_HOME/fs-uae/Custom"
+        dir_prep "$storage_path/FS-UAE/Flash Memory" "$XDG_DATA_HOME/fs-uae/Flash Memory"
+        dir_prep "$storage_path/FS-UAE/Floppy Overlays" "$XDG_DATA_HOME/fs-uae/Floppy Overlays"
+        dir_prep "$storage_path/FS-UAE/Floppies" "$XDG_DATA_HOME/fs-uae/Floppies"
+        dir_prep "$storage_path/FS-UAE/Hard Drives" "$XDG_DATA_HOME/fs-uae/Hard Drives"
+        dir_prep "$storage_path/FS-UAE/Themes" "$XDG_DATA_HOME/fs-uae/Themes"
+        dir_prep "$storage_path/FS-UAE/Titles" "$XDG_DATA_HOME/fs-uae/Titles"
 
     ;;
 
@@ -40,7 +60,25 @@ _prepare_component::fs-uae() {
       log i "Post-moving FS-UAE"
       log i "----------------------"
 
-    dir_prep "$storage_path/fs-uae/Custom" "$XDG_CONFIG_HOME/fs-uae/Custom"
+        dir_prep "$bios_path/amiga" "$XDG_DATA_HOME/fs-uae/Kickstarts"
+        dir_prep "$logs_path/FS-UAE/Logs" "$XDG_DATA_HOME/fs-uae/Logs"
+        dir_prep "$logs_path/FS-UAE/Cache/Logs" "$XDG_DATA_HOME/fs-uae/Cache/Logs"
+
+        dir_prep "$states_path/FS-UAE" "$XDG_DATA_HOME/fs-uae/Save States"
+
+        dir_prep "$screenshots_path/FS-UAE/Screenshots" "$XDG_DATA_HOME/fs-uae/Screenshots"
+
+        dir_prep "$storage_path/FS-UAE/CD-ROMs" "$XDG_DATA_HOME/fs-uae/CD-ROMs"
+        dir_prep "$storage_path/FS-UAE/Configurations" "$XDG_DATA_HOME/fs-uae/Configurations"
+        dir_prep "$storage_path/FS-UAE/Controllers" "$XDG_DATA_HOME/fs-uae/Controllers"
+        dir_prep "$storage_path/FS-UAE/Covers" "$XDG_DATA_HOME/fs-uae/Covers"
+        dir_prep "$storage_path/FS-UAE/Custom" "$XDG_CONFIG_HOME/fs-uae/Custom"
+        dir_prep "$storage_path/FS-UAE/Flash Memory" "$XDG_DATA_HOME/fs-uae/Flash Memory"
+        dir_prep "$storage_path/FS-UAE/Floppy Overlays" "$XDG_DATA_HOME/fs-uae/Floppy Overlays"
+        dir_prep "$storage_path/FS-UAE/Floppies" "$XDG_DATA_HOME/fs-uae/Floppies"
+        dir_prep "$storage_path/FS-UAE/Hard Drives" "$XDG_DATA_HOME/fs-uae/Hard Drives"
+        dir_prep "$storage_path/FS-UAE/Themes" "$XDG_DATA_HOME/fs-uae/Themes"
+        dir_prep "$storage_path/FS-UAE/Titles" "$XDG_DATA_HOME/fs-uae/Titles"
 
     ;;
     
