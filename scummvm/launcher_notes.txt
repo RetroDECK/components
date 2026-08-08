@@ -1,0 +1,18 @@
+        {
+          "type": "dir",
+          "source": "share/scummvm/",
+          "dest": "scummvm"
+        },
+        {
+          "type": "dir",
+          "source": "share/soundfonts/",
+          "dest": "soundfonts"
+        },
+
+
+
+It can't find the assets during launch, it launches a without art or shaders.
+
+They have something in the config:
+
+ gui/themes to themepath and dists/engine-data to extrapath.
