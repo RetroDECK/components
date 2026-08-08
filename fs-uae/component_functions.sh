@@ -53,6 +53,7 @@ _prepare_component::fs-uae() {
         dir_prep "$storage_path/FS-UAE/Hard Drives" "$XDG_DATA_HOME/fs-uae/Hard Drives"
         dir_prep "$storage_path/FS-UAE/Themes" "$XDG_DATA_HOME/fs-uae/Themes"
         dir_prep "$storage_path/FS-UAE/Titles" "$XDG_DATA_HOME/fs-uae/Titles"
+        dir_prep "$storage_path/FS-UAE/System" "$XDG_DATA_HOME/fs-uae/System"
 
     ;;
 
@@ -82,6 +83,7 @@ _prepare_component::fs-uae() {
         dir_prep "$storage_path/FS-UAE/Hard Drives" "$XDG_DATA_HOME/fs-uae/Hard Drives"
         dir_prep "$storage_path/FS-UAE/Themes" "$XDG_DATA_HOME/fs-uae/Themes"
         dir_prep "$storage_path/FS-UAE/Titles" "$XDG_DATA_HOME/fs-uae/Titles"
+        dir_prep "$storage_path/FS-UAE/System" "$XDG_DATA_HOME/fs-uae/System"
 
     ;;
     
