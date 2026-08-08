@@ -30,40 +30,40 @@
             }
           ]
         }
-      ]
-    },
-    "es_systems": [
-      {
-        "name": "opensurge",
-        "fullname": "Open Surge",
-        "path": "%ROMPATH%/opensurge",
-        "extension": ".surge .lev .qst",
-        "commands": [
-          {
-            "label": "Open Surge (Game) (Standalone)",
-            "command": "%EMULATOR_OPENSURGE% --fullscreen --quality high --game-folder %ROM%",
-            "priority": 10
-          },
-          {
-            "label": "Open Surge - Surge the Rabbit (Standalone)",
-            "command": "%EMULATOR_OPENSURGE% --fullscreen --quality high --game-folder /app/retrodeck/components/opensurge/opensurge",
-            "priority": 20
-          }
-        ],
-        "platform": "opensurge",
-        "theme": "opensurge"
-      }
-    ],
-    "configurator_menus": {
-      "settings": [
+      ],
+      "es_systems": [
         {
-          "name": "Open Surge: Surge the Rabbit Game",
-          "description": "Enable or disable the built-in game in Open Surge.",
-          "command": {
-            "zenity": "opensurge_surgetherabbit_toggle"
-          }
+          "name": "opensurge",
+          "fullname": "Open Surge",
+          "path": "%ROMPATH%/opensurge",
+          "extension": ".surge .lev .qst",
+          "commands": [
+            {
+              "label": "Open Surge (Game) (Standalone)",
+              "command": "%EMULATOR_OPENSURGE% --fullscreen --quality high --game-folder %ROM%",
+              "priority": 10
+            },
+            {
+              "label": "Open Surge - Surge the Rabbit (Standalone)",
+              "command": "%EMULATOR_OPENSURGE% --fullscreen --quality high --game-folder /app/retrodeck/components/opensurge/opensurge",
+              "priority": 20
+            }
+          ],
+          "platform": "opensurge",
+          "theme": "opensurge"
         }
       ]
     }
+  },
+  "configurator_menus": {
+    "settings": [
+      {
+        "name": "Open Surge: Surge the Rabbit Game",
+        "description": "Enable or disable the Open Surge built-in game 'Surge the Rabbit' entry in ES-DE",
+        "command": {
+          "zenity": "opensurge_surgetherabbit_toggle"
+        }
+      }
+    ]
   }
 }
