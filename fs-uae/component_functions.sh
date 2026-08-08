@@ -9,7 +9,6 @@ fs-uae_config_amiga600="$XDG_CONFIG_HOME/fs-uae/RetroDECK-amiga600.fs-uae"
 fs-uae_config_amigacd32="$XDG_CONFIG_HOME/fs-uae/RetroDECK-amigacd32.fs-uae"
 fs-uae_config_cdtv="$XDG_CONFIG_HOME/fs-uae/RetroDECK-cdtv.fs-uae"
 amigavision_config="$XDG_CONFIG_HOME/fs-uae/AmigaVision.fs-uae"
-amigavision_fdi="$XDG_CONFIG_HOME/fs-uae/AmigaVision.fdi"
 custom_config_amiga600="$XDG_CONFIG_HOME/fs-uae/Custom/custom-amiga600.fs-uae"
 custom_config_amiga1200="$XDG_CONFIG_HOME/fs-uae/Custom/custom-amiga1200.fs-uae"
 
@@ -30,7 +29,7 @@ _prepare_component::fs-uae() {
         create_dir -d "$XDG_CONFIG_HOME/fs-uae/"
         create_dir -d "$XDG_DATA_HOME/fs-uae/"
         create_dir "$storage_path/fs-uae/AmigaVision/shared"
-        
+
         cp -fvr "$component_config/"* "$XDG_CONFIG_HOME/fs-uae/"
         
         dir_prep "$bios_path" "$XDG_DATA_HOME/fs-uae/Kickstarts"
@@ -54,6 +53,11 @@ _prepare_component::fs-uae() {
         dir_prep "$storage_path/FS-UAE/Themes" "$XDG_DATA_HOME/fs-uae/Themes"
         dir_prep "$storage_path/FS-UAE/Titles" "$XDG_DATA_HOME/fs-uae/Titles"
         dir_prep "$storage_path/FS-UAE/System" "$XDG_DATA_HOME/fs-uae/System"
+
+        sed -i "s|^kickstart_file = .*|kickstart_file = $bios_path/AmigaVision.rom|" $amigavision_config
+        sed -i "s|^hard_drive_0 = .*|hard_drive_0 = $storage_path/FS-UAE/AmigaVision/AmigaVision.hdf|" $amigavision_config
+        sed -i "s|^hard_drive_1 = .*|hard_drive_1 = $storage_path/FS-UAE/AmigaVision/AmigaVision-Saves.hdf|" $amigavision_config
+        sed -i "s|^hard_drive_2 = .*|hard_drive_1 = $storage_path/FS-UAE/AmigaVision/shared|" $amigavision_config
 
     ;;
 
@@ -84,6 +88,11 @@ _prepare_component::fs-uae() {
         dir_prep "$storage_path/FS-UAE/Themes" "$XDG_DATA_HOME/fs-uae/Themes"
         dir_prep "$storage_path/FS-UAE/Titles" "$XDG_DATA_HOME/fs-uae/Titles"
         dir_prep "$storage_path/FS-UAE/System" "$XDG_DATA_HOME/fs-uae/System"
+
+        sed -i "s|^kickstart_file = .*|kickstart_file = $bios_path/AmigaVision.rom|" $amigavision_config
+        sed -i "s|^hard_drive_0 = .*|hard_drive_0 = $storage_path/FS-UAE/AmigaVision/AmigaVision.hdf|" $amigavision_config
+        sed -i "s|^hard_drive_1 = .*|hard_drive_1 = $storage_path/FS-UAE/AmigaVision/AmigaVision-Saves.hdf|" $amigavision_config
+        sed -i "s|^hard_drive_2 = .*|hard_drive_1 = $storage_path/FS-UAE/AmigaVision/shared|" $amigavision_config
 
     ;;
     
