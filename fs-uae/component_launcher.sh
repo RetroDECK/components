@@ -1,6 +1,6 @@
 #!/bin/bash
 
-HOME=/var/data/FS-UAE
+HOME=/var/data/fs-uae
 
 # Setting component name and path based on the directory name
 component_name="$(basename "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")")"
@@ -14,4 +14,4 @@ log d "QT plugin path is: $QT_PLUGIN_PATH"
 log d "QT QPA PLATFORM plugin path is: $QT_QPA_PLATFORM_PLUGIN_PATH"
 
 # Launch
-exec "$component_path/bin/fs-uae" --base-dir=/var/data/FS-UAE/ "$@"
+exec "$component_path/bin/fs-uae" --base-dir=/var/data/fs-uae/ "$@"

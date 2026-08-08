@@ -54,17 +54,17 @@
           "commands": [
             {
               "label": "FS-UAE (Standalone)",
-              "command": "%EMULATOR_FS-UAE% /var/config/FS-UAE/RetroDECK-amiga1200.fs-uae %ROM%",
+              "command": "%EMULATOR_FS-UAE% /var/config/fs-uae/RetroDECK-amiga1200.fs-uae %ROM%",
               "priority": 10
             },
             {
               "label": "FS-UAE AmigaVision (Standalone)",
-              "command": "%EMULATOR_FS-UAE% /var/config/FS-UAE/AmigaVision.fs-uae",
+              "command": "%EMULATOR_FS-UAE% /var/config/fs-uae/AmigaVision.fs-uae",
               "priority": 20
             },
             {
               "label": "FS-UAE Custom (Standalone)",
-              "command": "%EMULATOR_FS-UAE% /var/config/FS-UAE/custom.fs-uae %ROM%",
+              "command": "%EMULATOR_FS-UAE% /var/config/fs-uae/custom.fs-uae %ROM%",
               "priority": 30
             }
           ],
@@ -79,12 +79,12 @@
           "commands": [
             {
               "label": "FS-UAE (Standalone) Amiga 1200",
-              "command": "%EMULATOR_FS-UAE% /var/config/FS-UAE/RetroDECK-amiga1200.fs-uae %ROM%",
+              "command": "%EMULATOR_FS-UAE% /var/config/fs-uae/RetroDECK-amiga1200.fs-uae %ROM%",
               "priority": 10
             },
             {
               "label": "FS-UAE (Standalone) Custom Amiga 1200",
-              "command": "%EMULATOR_FS-UAE% /var/config/FS-UAE/Custom/custom-amiga1200.fs-uae %ROM%",
+              "command": "%EMULATOR_FS-UAE% /var/config/fs-uae/Custom/custom-amiga1200.fs-uae %ROM%",
               "priority": 20
             }
           ],
@@ -99,12 +99,12 @@
           "commands": [
             {
               "label": "FS-UAE (Standalone) Amiga 600",
-              "command": "%EMULATOR_FS-UAE% /var/config/FS-UAE/RetroDECK-amiga600.fs-uae %ROM%",
+              "command": "%EMULATOR_FS-UAE% /var/config/fs-uae/RetroDECK-amiga600.fs-uae %ROM%",
               "priority": 10
             },
             {
               "label": "FS-UAE (Standalone) Custom Amiga 600",
-              "command": "%EMULATOR_FS-UAE% /var/config/FS-UAE/Custom/custom-amiga600.fs-uae %ROM%",
+              "command": "%EMULATOR_FS-UAE% /var/config/fs-uae/Custom/custom-amiga600.fs-uae %ROM%",
               "priority": 20
             }
           ],
@@ -119,7 +119,7 @@
           "commands": [
             {
               "label": "FS-UAE (Standalone) CD32",
-              "command": "%EMULATOR_FS-UAE% /var/config/FS-UAE/RetroDECK-amigacd32.fs-uae --config:amiga-model=CD32 %ROM%",
+              "command": "%EMULATOR_FS-UAE% /var/config/fs-uae/RetroDECK-amigacd32.fs-uae --config:amiga-model=CD32 %ROM%",
               "priority": 10
             }
           ],
@@ -134,7 +134,7 @@
           "commands": [
             {
               "label": "FS-UAE (Standalone) CDTV",
-              "command": "%EMULATOR_FS-UAE% /var/config/FS-UAE/RetroDECK-cdtv.fs-uae --config:amiga-model=CDTV %ROM%",
+              "command": "%EMULATOR_FS-UAE% /var/config/fs-uae/RetroDECK-cdtv.fs-uae --config:amiga-model=CDTV %ROM%",
               "priority": 10
             }
           ],
