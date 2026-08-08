@@ -34,7 +34,6 @@ _prepare_component::fs-uae() {
         cp -fvr "$component_config/"* "$XDG_CONFIG_HOME/fs-uae/"
         
         dir_prep "$bios_path" "$XDG_DATA_HOME/fs-uae/Kickstarts"
-        dir_prep "$bios_path" "$storage_path/FS-UAE/AmigaVision/Kickstarts"
 
         dir_prep "$logs_path/FS-UAE/Logs" "$XDG_DATA_HOME/fs-uae/Logs"
         dir_prep "$logs_path/FS-UAE/Cache/Logs" "$XDG_DATA_HOME/fs-uae/Cache/Logs"

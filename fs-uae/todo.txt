@@ -10,6 +10,3 @@ The plugins must be installed into Documents/FS-UAE/System.
 For example, the CAPSImg directory should be extracted as Documents/FS-UAE/System/CAPSImg. 
 
 ---
-
-
-base_dir = /var/data/fs-uae/
