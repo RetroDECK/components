@@ -33,14 +33,16 @@ _prepare_component::fs-uae() {
         
         cp -fvr "$component_config/"* "$XDG_CONFIG_HOME/fs-uae/"
         
-        dir_prep "$bios_path/amiga" "$XDG_DATA_HOME/fs-uae/Kickstarts"
+        dir_prep "$bios_path" "$XDG_DATA_HOME/fs-uae/Kickstarts"
+        dir_prep "$bios_path" "$storage_path/FS-UAE/AmigaVision/Kickstarts"
+
         dir_prep "$logs_path/FS-UAE/Logs" "$XDG_DATA_HOME/fs-uae/Logs"
         dir_prep "$logs_path/FS-UAE/Cache/Logs" "$XDG_DATA_HOME/fs-uae/Cache/Logs"
 
         dir_prep "$states_path/FS-UAE" "$XDG_DATA_HOME/fs-uae/Save States"
 
         dir_prep "$screenshots_path/FS-UAE/Screenshots" "$XDG_DATA_HOME/fs-uae/Screenshots"
-
+        
         dir_prep "$storage_path/FS-UAE/CD-ROMs" "$XDG_DATA_HOME/fs-uae/CD-ROMs"
         dir_prep "$storage_path/FS-UAE/Configurations" "$XDG_DATA_HOME/fs-uae/Configurations"
         dir_prep "$storage_path/FS-UAE/Controllers" "$XDG_DATA_HOME/fs-uae/Controllers"
@@ -60,14 +62,16 @@ _prepare_component::fs-uae() {
       log i "Post-moving FS-UAE"
       log i "----------------------"
 
-        dir_prep "$bios_path/amiga" "$XDG_DATA_HOME/fs-uae/Kickstarts"
+        dir_prep "$bios_path" "$XDG_DATA_HOME/fs-uae/Kickstarts"
+        dir_prep "$bios_path" "$storage_path/FS-UAE/AmigaVision/Kickstarts"
+
         dir_prep "$logs_path/FS-UAE/Logs" "$XDG_DATA_HOME/fs-uae/Logs"
         dir_prep "$logs_path/FS-UAE/Cache/Logs" "$XDG_DATA_HOME/fs-uae/Cache/Logs"
 
         dir_prep "$states_path/FS-UAE" "$XDG_DATA_HOME/fs-uae/Save States"
 
         dir_prep "$screenshots_path/FS-UAE/Screenshots" "$XDG_DATA_HOME/fs-uae/Screenshots"
-
+        
         dir_prep "$storage_path/FS-UAE/CD-ROMs" "$XDG_DATA_HOME/fs-uae/CD-ROMs"
         dir_prep "$storage_path/FS-UAE/Configurations" "$XDG_DATA_HOME/fs-uae/Configurations"
         dir_prep "$storage_path/FS-UAE/Controllers" "$XDG_DATA_HOME/fs-uae/Controllers"
