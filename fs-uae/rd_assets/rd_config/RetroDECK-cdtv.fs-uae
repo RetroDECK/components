@@ -30,17 +30,6 @@ cdrom_drive_count = 1
 # cdrom_drive_0 = Game.cue
 
 # ------------------------------------------------------------
-# INPUT
-# ------------------------------------------------------------
-
-joystick_port_0_mode = joystick
-joystick_port_1_mode = mouse
-
-automatic_input_grab = 1
-initial_input_grab = 1
-keyboard_input_grab = 1
-
-# ------------------------------------------------------------
 # FLOPPY
 # ------------------------------------------------------------
 
