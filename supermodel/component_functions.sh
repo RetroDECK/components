@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export simcoupe_config="$XDG_CONFIG_HOME/supermodel/Config/Supermodel.ini"
+export supermodel_config="$XDG_CONFIG_HOME/supermodel/Config/Supermodel.ini"
 
 _prepare_component::supermodel() {
   local action="$1"
@@ -12,11 +12,11 @@ _prepare_component::supermodel() {
 
     reset)
       log i "----------------------"
-      log i "Resetting SimCoupé"
+      log i "Resetting Supermodel"
       log i "----------------------"
 
       create_dir -d "$XDG_CONFIG_HOME/supermodel/"
-      cp -fr "$component_config/"* "$XDG_CONFIG_HOME/supermodel/Config"
+      cp -fr "$component_config/"* "$XDG_CONFIG_HOME/supermodel/"
 
     ;;
 
