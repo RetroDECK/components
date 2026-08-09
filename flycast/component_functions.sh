@@ -3,15 +3,6 @@
 export flycast_config="$XDG_CONFIG_HOME/flycast/emu.cfg"
 export flycast_rd_config_dir=$rd_components/flycast/rd_config
 
-# Todo
-# Dreamcast.AutoLoadState = no, Dreamcast.AutoSaveState = no | add to autoresume
-# rend.WideScreen = no, rend.WidescreenGameHacks = no | add to widescreen
-# [achievements]
-# Enabled = no
-# HardcoreMode = no
-# Token = 
-# UserName = 
-
 _prepare_component::flycast() {
   local action="$1"
   shift
