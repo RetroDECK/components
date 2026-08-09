@@ -79,3 +79,39 @@ _prepare_component::flycast() {
   esac
 
 }
+
+_set_setting_value::flycast() {
+  local file="$1"
+  local name=$(sed_escape_pattern "$2")
+  local value=$(sed_escape_replacement "$3")
+  local section="${4:-}"
+
+  if [[ -n "$section" ]]; then
+    section=$(sed_escape_pattern "$section")
+    sed -i '\^\['"$section"'\]^,\^\^'"$name"' =^s^\^'"$name"' =.*^'"$name"' = '"$value"'^' "$file"
+  else
+    sed -i 's^\^'"$name"' =.*^'"$name"' = '"$value"'^' "$file"
+  fi
+}
+
+_get_setting_value::flycast() {
+  local file="$1" name="$2" section="${3:-}"
+
+  if [[ -n "$section" ]]; then
+    KEY="$name" SECTION="[$section]" awk -F'=' \
+      'NR==1 { sub(/^\xEF\xBB\xBF/, "") }
+       BEGIN { key=ENVIRON["KEY"]; section=ENVIRON["SECTION"] }
+       $0 == section { in_section=1; next }
+       /^\[/ { in_section=0 }
+       in_section && index($0, key " =") == 1 {
+         print substr($0, index($0,"=")+2); exit
+       }' "$file"
+  else
+    KEY="$name" awk -F'=' \
+      'NR==1 { sub(/^\xEF\xBB\xBF/, "") }
+       BEGIN { key=ENVIRON["KEY"] }
+       index($0, key " =") == 1 {
+         print substr($0, index($0,"=")+2); exit
+       }' "$file"
+  fi
+}
