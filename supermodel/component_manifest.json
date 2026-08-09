@@ -33,20 +33,6 @@
       },
       "es_systems": [
         {
-          "name": "arcade",
-          "fullname": "Arcade",
-          "path": "%ROMPATH%/arcade",
-          "extension": ".7z .zip",
-          "commands": [
-            {
-              "label": "Supermodel (Standalone)",
-              "command": "%STARTDIR%=%GAMEDIR% %EMULATOR_SUPERMODEL% -log-output=%GAMEDIR%/Config/Supermodel.log %INJECT%=%BASENAME%.commands %ROM%"
-            }
-          ],
-          "platform": "arcade",
-          "theme": "arcade"
-        },
-        {
           "name": "model3",
           "fullname": "model3",
           "path": "%ROMPATH%/model3",
