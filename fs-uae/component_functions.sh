@@ -42,7 +42,7 @@ _prepare_component::fs-uae() {
         dir_prep "$logs_path/FS-UAE/Logs" "$XDG_DATA_HOME/fs-uae/Logs"
         dir_prep "$logs_path/FS-UAE/Cache/Logs" "$XDG_DATA_HOME/fs-uae/Cache/Logs"
 
-        dir_prep "$states_path/FS-UAE" "$XDG_DATA_HOME/fs-uae/Save States"
+        dir_prep "$states_path/amiga/FS-UAE" "$XDG_DATA_HOME/fs-uae/Save States"
 
         dir_prep "$screenshots_path/FS-UAE/Screenshots" "$XDG_DATA_HOME/fs-uae/Screenshots"
         
@@ -77,7 +77,7 @@ _prepare_component::fs-uae() {
         dir_prep "$logs_path/FS-UAE/Logs" "$XDG_DATA_HOME/fs-uae/Logs"
         dir_prep "$logs_path/FS-UAE/Cache/Logs" "$XDG_DATA_HOME/fs-uae/Cache/Logs"
 
-        dir_prep "$states_path/FS-UAE" "$XDG_DATA_HOME/fs-uae/Save States"
+        dir_prep "$states_path/amiga/FS-UAE" "$XDG_DATA_HOME/fs-uae/Save States"
 
         dir_prep "$screenshots_path/FS-UAE/Screenshots" "$XDG_DATA_HOME/fs-uae/Screenshots"
         
