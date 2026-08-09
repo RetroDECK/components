@@ -26,6 +26,8 @@ _prepare_component::xenia-edge() {
 
       dir_prep "$saves_path/xbox360/Xenia/content" "$XDG_DATA_HOME/Xenia/content"
 
+      dir_prep "$mods_path/Xenia/plugins" "$XDG_DATA_HOME/Xenia/plugins"
+
     ;;
 
 
@@ -41,6 +43,8 @@ _prepare_component::xenia-edge() {
 
       dir_prep "$saves_path/xbox360/Xenia/content" "$XDG_DATA_HOME/Xenia/content"
 
+      dir_prep "$mods_path/Xenia/plugins" "$XDG_DATA_HOME/Xenia/plugins"
+      
     ;;
 
   esac

@@ -415,7 +415,7 @@ value_convert_7e3_8888_reuse = true               	# Decode (HDR float to LDR un
 
 [General]
 allow_game_relative_writes = false                	# Not useful to non-developers. Allows code to write to paths relative to game://. Used for generating test data to compare with original hardware. 
-allow_plugins = false                             	# Allows loading of plugins/trainers from plugins\title_id\plugin.xex. Plugin are homebrew xex modules which can be used for making mods. This feature is experimental.
+allow_plugins = true                             	# Allows loading of plugins/trainers from plugins\title_id\plugin.xex. Plugin are homebrew xex modules which can be used for making mods. This feature is experimental.
 apply_patches = true                              	# Enables custom patching functionality
 controller_hotkeys = false                        	# Hotkeys for Xbox and PS controllers.
 debug = false                                     	# Allow debugging and retain debug information.
