@@ -16,7 +16,8 @@ _prepare_component::vpinballx() {
       log i "Resetting Visual Pinball X"
       log i "----------------------"
 
-      create_dir "$XDG_CONFIG_HOME/vpinballx/.vpinball/user"
+      create_dir "$XDG_CONFIG_HOME/vpinballx/.vpinball/"
+      dir_prep "$storage_path/vpinballx/user" "$XDG_CONFIG_HOME/vpinballx/.vpinball/user"
       cp -fr "$component_config/"* "$XDG_CONFIG_HOME/vpinballx/.vpinball"
       
 
