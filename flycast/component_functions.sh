@@ -55,8 +55,8 @@ _prepare_component::flycast() {
 
     sed -i "s|^Dreamcast.SavestatePath = .*|Dreamcast.SavestatePath = $states_path/dreamcast/Flycast|" $flycast_config
 
-    sed -i "s|^Dreamcast.TextureDumpPath = .*|Dreamcast.TextureDumpPath = $textures_path/Flycast/TextureDump|" $flycast_config
-    sed -i "s|^Dreamcast.TexturePath = .*|Dreamcast.TextureDumpPath = $textures_path/Flycast/Textures|" $flycast_config
+    sed -i "s|^Dreamcast.TextureDumpPath = .*|Dreamcast.TextureDumpPath = $texture_packs_path/Flycast/TextureDump|" $flycast_config
+    sed -i "s|^Dreamcast.TexturePath = .*|Dreamcast.TextureDumpPath = $texture_packs_path/Flycast/Textures|" $flycast_config
 
     ;;
 
@@ -78,8 +78,8 @@ _prepare_component::flycast() {
 
     sed -i "s|^Dreamcast.SavestatePath = .*|Dreamcast.SavestatePath = $states_path/dreamcast/Flycast|" $flycast_config
 
-    sed -i "s|^Dreamcast.TextureDumpPath = .*|Dreamcast.TextureDumpPath = $textures_path/Flycast/TextureDump|" $flycast_config
-    sed -i "s|^Dreamcast.TexturePath = .*|Dreamcast.TextureDumpPath = $textures_path/Flycast/Textures|" $flycast_config
+    sed -i "s|^Dreamcast.TextureDumpPath = .*|Dreamcast.TextureDumpPath = $texture_packs_path/Flycast/TextureDump|" $flycast_config
+    sed -i "s|^Dreamcast.TexturePath = .*|Dreamcast.TextureDumpPath = $texture_packs_path/Flycast/Textures|" $flycast_config
 
 
     ;;
