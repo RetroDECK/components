@@ -323,7 +323,7 @@
             "setting_name": "Dreamcast.AutoSaveState",
             "action": "change",
             "new_setting_value": "yes",
-            "section": "EmuCore",
+            "section": "config",
             "target_file": "$flycast_config",
             "defaults_file": "$flycast_rd_config_dir/emu.cfg"
           }
@@ -336,6 +336,7 @@
             "setting_name": "Dreamcast.AutoLoadState",
             "action": "change",
             "new_setting_value": "yes",
+            "section": "config",
             "target_file": "$flycast_config",
             "defaults_file": "$flycast_rd_config_dir/emu.cfg"
           }
@@ -348,6 +349,7 @@
             "setting_name": "rend.WideScreen",
             "action": "change",
             "new_setting_value": "yes",
+            "section": "config",
             "target_file": "$flycast_config",
             "defaults_file": "$flycast_rd_config_dir/emu.cfg"
           }
