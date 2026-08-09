@@ -2,8 +2,14 @@
 
 flycast_config="$XDG_CONFIG_HOME/flycast/emu.cfg"
 
+# Todo
 # Dreamcast.AutoLoadState = no, Dreamcast.AutoSaveState = no | add to autoresume
 # rend.WideScreen = no, rend.WidescreenGameHacks = no | add to widescreen
+# [achievements]
+# Enabled = no
+# HardcoreMode = no
+# Token = 
+# UserName = 
 
 _prepare_component::flycast() {
   local action="$1"
@@ -19,12 +25,22 @@ _prepare_component::flycast() {
       log i "----------------------"
 
 
-    create_dir -d "$XDG_CONFIG_HOME/flycast/"      
+    create_dir -d "$XDG_CONFIG_HOME/flycast/mappings"      
     create_dir -d "$XDG_DATA_HOME/flycast/"
+
     cp -fvr "$component_config/"* "$XDG_CONFIG_HOME/flycast/"
 
-    dir_prep "$texture_packs_path/Flycast/TEXDUMP" "$XDG_CONFIG_HOME/flycast/TEXDUMP"
-    dir_prep "$texture_packs_path/Flycast/TEXTURES" "$XDG_CONFIG_HOME/flycast/TEXTURES"
+    create_dir -d "$storage_path/Flycast/boxart"
+
+    create_dir -d "$cheats_path/Flycast/cheats"
+
+    create_dir -d "$saves_path/dreamcast/Flycast/saves"
+    create_dir -d "$saves_path/dreamcast/Flycast/VMU"
+
+    create_dir -d "$states_path/dreamcast/Flycast/"
+
+    create_dir -d "$texture_path/Flycast/Textures"
+    create_dir -d "$texture_path/Flycast/TextureDump"
 
     ;;
 
@@ -33,8 +49,6 @@ _prepare_component::flycast() {
       log i "Post-moving Flycast"
       log i "----------------------"
 
-    dir_prep "$texture_packs_path/Flycast/TEXDUMP" "$XDG_CONFIG_HOME/flycast/TEXDUMP"
-    dir_prep "$texture_packs_path/Flycast/TEXTURES" "$XDG_CONFIG_HOME/flycast/TEXTURES"
 
     ;;
     
