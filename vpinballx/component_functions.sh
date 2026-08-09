@@ -28,7 +28,8 @@ _prepare_component::vpinballx() {
       log i "Post-moving Visual Pinball X"
       log i "----------------------"
 
-
+      dir_prep "$storage_path/vpinballx/user" "$XDG_CONFIG_HOME/vpinballx/.vpinball/user"
+      
     ;;
     
   esac
