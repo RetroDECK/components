@@ -231,6 +231,15 @@ export COMMANDER_X16_VERSION_POLICY="latest"
 # ------------------------------------------------------------------------------
 export FS_UAE_VERSION_POLICY="latest"
 
+
+# ------------------------------------------------------------------------------
+# Xenia Edge - Xbox 360 Emulator
+# Source: AppImage
+# Link: https://github.com/has207/xenia-edge/releases
+# ------------------------------------------------------------------------------
+export XENIA_EDGE_VERSION_POLICY="latest"
+
+
 # ==============================================================================
 #  Component Policies - Self-Built / Repo-Hosted Components
 # ==============================================================================
