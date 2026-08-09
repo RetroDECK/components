@@ -239,6 +239,13 @@ export FS_UAE_VERSION_POLICY="latest"
 # ------------------------------------------------------------------------------
 export XENIA_EDGE_VERSION_POLICY="latest"
 
+# ------------------------------------------------------------------------------
+# Visual Pinball X - Pinball Simulation Engine
+# Source: Binary
+# Link: https://github.com/vpinball/vpinball/releases
+# ------------------------------------------------------------------------------
+export VPINBALL_VERSION_POLICY="newest"
+
 
 # ==============================================================================
 #  Component Policies - Self-Built / Repo-Hosted Components
@@ -430,10 +437,6 @@ export SUPERMODEL_VERSION_POLICY="latest"
 # ------------------------------------------------------------------------------
 export UZDOOM_VERSION_POLICY="latest"
 
-# ------------------------------------------------------------------------------
-# VPinball - Virtual Pinball Engine
-# ------------------------------------------------------------------------------
-export VPINBALL_VERSION_POLICY="newest"
 
 # ------------------------------------------------------------------------------
 # Xenia Edge - Xbox 360 Emulator
