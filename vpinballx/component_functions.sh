@@ -17,7 +17,7 @@ _prepare_component::vpinballx() {
       log i "----------------------"
 
       create_dir "$XDG_CONFIG_HOME/vpinballx/.vpinball/user"
-      cp -fr "$component_config/"* "$XDG_CONFIG_HOME/vpinballx"
+      cp -fr "$component_config/"* "$XDG_CONFIG_HOME/vpinballx/.vpinball"
       
 
     ;;
