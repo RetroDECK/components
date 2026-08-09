@@ -1,6 +1,8 @@
 #!/bin/bash
 
-export supermodel_config="$XDG_CONFIG_HOME/supermodel/Config/Supermodel.ini"
+# Supermodel all config folders and files needs to be next to the roms.
+
+export supermodel_config="$roms_path/model3/Config/Supermodel.ini"
 
 _prepare_component::supermodel() {
   local action="$1"
@@ -15,8 +17,7 @@ _prepare_component::supermodel() {
       log i "Resetting Supermodel"
       log i "----------------------"
 
-      create_dir -d "$XDG_CONFIG_HOME/supermodel/"
-      cp -fr "$component_config/"* "$XDG_CONFIG_HOME/supermodel/"
+      cp -fr "$component_config/"* "$roms_path/model3/"
 
     ;;
 
