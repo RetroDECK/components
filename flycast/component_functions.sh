@@ -1,6 +1,7 @@
 #!/bin/bash
 
-flycast_config="$XDG_CONFIG_HOME/flycast/emu.cfg"
+export flycast_config="$XDG_CONFIG_HOME/flycast/emu.cfg"
+export flycast_rd_config_dir=$rd_components/flycast/rd_config
 
 # Todo
 # Dreamcast.AutoLoadState = no, Dreamcast.AutoSaveState = no | add to autoresume
