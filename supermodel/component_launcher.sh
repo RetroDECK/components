@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# Wayland fix
+
 WAYLAND_DISPLAY=""
 
 # Setting component name and path based on the directory name
@@ -17,4 +19,4 @@ log d "QT plugin path is: $QT_PLUGIN_PATH"
 log d "QT QPA PLATFORM plugin path is: $QT_QPA_PLATFORM_PLUGIN_PATH"
 
 # Launch
-exec "$component_path/bin/supermodel" "$@"
+exec "$component_path/bin/supermodel" -fullscreen "$@"

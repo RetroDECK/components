@@ -1,10 +1,11 @@
 #!/bin/bash
 
-# Supermodel needs to point at the config folders from roms
+# Supermodel all config folders and files needs to be next to the roms.
 
 export supermodel_config="$XDG_CONFIG_HOME/supermodel/Config/Supermodel.ini"
 
 _prepare_component::supermodel() {
+
   local action="$1"
   shift
 
@@ -17,11 +18,8 @@ _prepare_component::supermodel() {
       log i "Resetting Supermodel"
       log i "----------------------"
 
-      create_dir -d "$XDG_CONFIG_HOME/supermodel/"
-      cp -fr "$component_config/"* "$XDG_CONFIG_HOME/supermodel/"
-      dir_prep "$XDG_CONFIG_HOME/supermodel/NVRAM" "$roms_path/model3/NVRAM"
-      dir_prep "$XDG_CONFIG_HOME/supermodel/Config" "$roms_path/model3/Config"
-      dir_prep "$XDG_CONFIG_HOME/supermodel/Assets" "$roms_path/model3/Assets"
+      cp -fr "$component_config/"* "$roms_path/model3/"
+
       dir_prep "$logs_path/supermodel/Analysis" "$roms_path/model3/Analysis"
       dir_prep "$logs_path/supermodel/Logs" "$roms_path/model3/Logs"
       dir_prep "$saves_path/model3/supermodel/Saves" "$roms_path/model3/Saves"
@@ -33,9 +31,6 @@ _prepare_component::supermodel() {
           log i "Post-moving Supermodel"
           log i "----------------------"
 
-      dir_prep "$XDG_CONFIG_HOME/supermodel/NVRAM" "$roms_path/model3/NVRAM"
-      dir_prep "$XDG_CONFIG_HOME/supermodel/Config" "$roms_path/model3/Config"
-      dir_prep "$XDG_CONFIG_HOME/supermodel/Assets" "$roms_path/model3/Assets"
       dir_prep "$logs_path/supermodel/Analysis" "$roms_path/model3/Analysis"
       dir_prep "$logs_path/supermodel/Logs" "$roms_path/model3/Logs"
       dir_prep "$saves_path/model3/supermodel/Saves" "$roms_path/model3/Saves"
@@ -43,4 +38,5 @@ _prepare_component::supermodel() {
     ;;
 
   esac
+  
 }
