@@ -324,18 +324,18 @@
           "platform": "cdtv",
           "theme": "cdtv"
         }
-      ],
-      "configurator_menus": {
-        "settings": [
-          {
-            "name": "FS-UAE: AmigaVision",
-            "description": "Enable or disable the AmigaVision Amiga entry in ES-DE.",
-            "command": {
-              "zenity": "fs-uae_amigavision_toggle"
-            }
+      ]
+    },
+    "configurator_menus": {
+      "settings": [
+        {
+          "name": "FS-UAE: AmigaVision",
+          "description": "Enable or disable the AmigaVision Amiga entry in ES-DE.",
+          "command": {
+            "zenity": "fs-uae_amigavision_toggle"
           }
-        ]
-      }
+        }
+      ]
     }
   }
 }

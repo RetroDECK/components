@@ -30,23 +30,23 @@
             ]
           }
         ]
-      }
-    },
-    "es_systems": [
-      {
-        "name": "zxnext",
-        "fullname": "Sinclair ZX Spectrum Next",
-        "path": "%ROMPATH%/zxnext",
-        "extension": ".nex, .snx, .sna, .z80, .tap, .tzx, .pzx, .dsk, .trd, .scl, .mgt",
-        "commands": [
-          {
-            "label": "ZEsarUX (Standalone)",
-            "command": "%STARTDIR%=%EMUDIR% %EMULATOR_ZESARUX% %GAMEDIR% %ROM%"
-          }
-        ],
-        "platform": "zxnext",
-        "theme": "zxnext"
-      }
-    ]
+      },
+      "es_systems": [
+        {
+          "name": "zxnext",
+          "fullname": "Sinclair ZX Spectrum Next",
+          "path": "%ROMPATH%/zxnext",
+          "extension": ".nex, .snx, .sna, .z80, .tap, .tzx, .pzx, .dsk, .trd, .scl, .mgt",
+          "commands": [
+            {
+              "label": "ZEsarUX (Standalone)",
+              "command": "%STARTDIR%=%EMUDIR% %EMULATOR_ZESARUX% %GAMEDIR% %ROM%"
+            }
+          ],
+          "platform": "zxnext",
+          "theme": "zxnext"
+        }
+      ]
+    }
   }
 }

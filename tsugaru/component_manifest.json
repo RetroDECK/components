@@ -30,24 +30,24 @@
             ]
           }
         ]
-      }
+      },
+      "es_systems": [
+        {
+          "name": "fmtowns",
+          "fullname": "Fujitsu FM Towns emulator Tsugaru",
+          "path": "%ROMPATH%/fmtowns",
+          "extension": ".cdr .chd .cue .gdi .iso",
+          "commands": [
+            {
+              "label": "Tsugaru (Standalone)",
+              "command": "%EMULATOR_TSUGARU% -CD %ROM% %INJECT%=%BASENAME%.cfg"
+            }
+          ],
+          "platform": "fmtowns",
+          "theme": "fmtowns"
+        }
+      ]
     },
-    "es_systems": [
-      {
-        "name": "fmtowns",
-        "fullname": "Fujitsu FM Towns emulator Tsugaru",
-        "path": "%ROMPATH%/fmtowns",
-        "extension": ".cdr .chd .cue .gdi .iso",
-        "commands": [
-          {
-            "label": "Tsugaru (Standalone)",
-            "command": "%EMULATOR_TSUGARU% -CD %ROM% %INJECT%=%BASENAME%.cfg"
-          }
-        ],
-        "platform": "fmtowns",
-        "theme": "fmtowns"
-      }
-    ],
     "bios": [
       {
         "filename": "FMT_DIC.ROM",

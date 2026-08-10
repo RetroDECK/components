@@ -32,23 +32,23 @@
             ]
           }
         ]
-      }
-    },
-    "es_systems": [
-      {
-        "name": "oric",
-        "fullname": "Tangerine Computer Systems Oric",
-        "path": "%ROMPATH%/oric",
-        "extension": ".dsk .ort .tap .wav",
-        "commands": [
-          {
-            "label": "Oricutron (Standalone)",
-            "command": "%STARTDIR%=%EMUDIR% %EMULATOR_ORICUTRON% %ROM%"
-          }
-        ],
-        "platform": "oric",
-        "theme": "oric"
-      }
-    ]
+      },
+      "es_systems": [
+        {
+          "name": "oric",
+          "fullname": "Tangerine Computer Systems Oric",
+          "path": "%ROMPATH%/oric",
+          "extension": ".dsk .ort .tap .wav",
+          "commands": [
+            {
+              "label": "Oricutron (Standalone)",
+              "command": "%STARTDIR%=%EMUDIR% %EMULATOR_ORICUTRON% %ROM%"
+            }
+          ],
+          "platform": "oric",
+          "theme": "oric"
+        }
+      ]
+    }
   }
 }
