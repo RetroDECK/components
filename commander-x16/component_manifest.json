@@ -31,23 +31,23 @@
             ]
           }
         ]
-      }
-    },
-    "es_systems": [
-      {
-        "name": "commander-x16",
-        "fullname": "Commander X16",
-        "path": "%ROMPATH%/commander-x16",
-        "extension": ".bas",
-        "commands": [
-          {
-            "label": "Commander X16 (Standalone)",
-            "command": "%EMULATOR_COMMANDER-X16% -bas %ROM% -run"
-          }
-        ],
-        "platform": "commander-x16",
-        "theme": "commander-x16"
-      }
-    ]
+      },
+      "es_systems": [
+        {
+          "name": "commander-x16",
+          "fullname": "Commander X16",
+          "path": "%ROMPATH%/commander-x16",
+          "extension": ".bas",
+          "commands": [
+            {
+              "label": "Commander X16 (Standalone)",
+              "command": "%EMULATOR_COMMANDER-X16% -bas %ROM% -run"
+            }
+          ],
+          "platform": "commander-x16",
+          "theme": "commander-x16"
+        }
+      ]
+    }
   }
 }

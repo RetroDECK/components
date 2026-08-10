@@ -81,34 +81,34 @@
             ]
           }
         ]
-      }
-    },
-    "es_systems": [
-      {
-        "name": "trs-80",
-        "fullname": "Tandy TRS-80",
-        "path": "%ROMPATH%/trs-80",
-        "extension": ".cmd .dsk",
-        "commands": [
-          {
-            "label": "SDL2TRS DOS Diskette (Standalone)",
-            "command": "%STARTDIR%=%GAMEDIR% %EMULATOR_SDL2TRS% -rom %ROMPATH%/trs-80/level2.rom -disk0 %ROMPATH%/trs-80/boot.dsk -disk1 %ROM%",
-            "priority": 10
-          },
-          {
-            "label": "SDL2TRS Bootable Diskette (Standalone)",
-            "command": "STARTDIR%=%GAMEDIR% %EMULATOR_SDL2TRS% -rom %ROMPATH%/trs-80/level2.rom -disk0 %ROM%",
-            "priority": 20
-          },
-          {
-            "label": "SDL2TRS CMD File (Standalone)",
-            "command": "%STARTDIR%=%GAMEDIR% %EMULATOR_SDL2TRS% -rom %ROMPATH%/trs-80/level2.rom %ROM%",
-            "priority": 30
-          }
-        ],
-        "platform": "trs-80",
-        "theme": "trs-80"
-      }
-    ]
+      },
+      "es_systems": [
+        {
+          "name": "trs-80",
+          "fullname": "Tandy TRS-80",
+          "path": "%ROMPATH%/trs-80",
+          "extension": ".cmd .dsk",
+          "commands": [
+            {
+              "label": "SDL2TRS DOS Diskette (Standalone)",
+              "command": "%STARTDIR%=%GAMEDIR% %EMULATOR_SDL2TRS% -rom %ROMPATH%/trs-80/level2.rom -disk0 %ROMPATH%/trs-80/boot.dsk -disk1 %ROM%",
+              "priority": 10
+            },
+            {
+              "label": "SDL2TRS Bootable Diskette (Standalone)",
+              "command": "STARTDIR%=%GAMEDIR% %EMULATOR_SDL2TRS% -rom %ROMPATH%/trs-80/level2.rom -disk0 %ROM%",
+              "priority": 20
+            },
+            {
+              "label": "SDL2TRS CMD File (Standalone)",
+              "command": "%STARTDIR%=%GAMEDIR% %EMULATOR_SDL2TRS% -rom %ROMPATH%/trs-80/level2.rom %ROM%",
+              "priority": 30
+            }
+          ],
+          "platform": "trs-80",
+          "theme": "trs-80"
+        }
+      ]
+    }
   }
 }

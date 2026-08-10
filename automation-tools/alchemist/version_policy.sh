@@ -280,6 +280,14 @@ export VITA3K_VERSION_POLICY="latest"
 export PORTMASTER_VERSION_POLICY="latest"
 
 
+# Mudlet - MUD Client
+# Source: AppImage
+# Link: https://github.com/RetroDECK/components/tree/cooker/mudlet/tmp_assets
+# ------------------------------------------------------------------------------
+
+export MUDLET_VERSION_POLICY="latest"
+
+
 # ==============================================================================
 #  Component Policies - Self-Built / Repo-Hosted Components
 # ==============================================================================

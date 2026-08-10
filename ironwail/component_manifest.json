@@ -37,24 +37,24 @@
             ]
           }
         ]
-      }
-    },
-    "es_systems": [
-      {
-        "name": "quake",
-        "fullname": "Quake",
-        "path": "%ROMPATH%/quake",
-        "extension": ".pak .pk3 .quake",
-        "commands": [
-          {
-            "label": "Ironwail (Standalone)",
-            "command": "%EMULATOR_IRONWAIL%",
-            "priority": 10
-          }
-        ],
-        "platform": "pc, pcwindows",
-        "theme": "quake"
-      }
-    ]
+      },
+      "es_systems": [
+        {
+          "name": "quake",
+          "fullname": "Quake",
+          "path": "%ROMPATH%/quake",
+          "extension": ".pak .pk3 .quake",
+          "commands": [
+            {
+              "label": "Ironwail (Standalone)",
+              "command": "%EMULATOR_IRONWAIL%",
+              "priority": 10
+            }
+          ],
+          "platform": "pc, pcwindows",
+          "theme": "quake"
+        }
+      ]
+    }
   }
 }

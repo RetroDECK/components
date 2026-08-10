@@ -1728,7 +1728,7 @@
             },
             {
               "label": "Genesis Plus GX [Expanded Rom Size] (Paprium)",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/genesis-plus-gx-expanded-rom-size-paprium_libretro.so %ROM%",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/genesis_plus_gx_paprium_libretro.so %ROM%",
               "priority": 50
             }
           ],
@@ -1763,7 +1763,7 @@
             },
             {
               "label": "Genesis Plus GX [Expanded Rom Size] (Paprium)",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/genesis-plus-gx-expanded-rom-size-paprium_libretro.so %ROM%",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/genesis_plus_gx_paprium_libretro.so %ROM%",
               "priority": 50
             }
           ],

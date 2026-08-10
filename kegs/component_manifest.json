@@ -53,23 +53,23 @@
             ]
           }
         ]
-      }
-    },
-    "es_systems": [
-      {
-        "name": "apple2gs",
-        "fullname": "Apple IIGS",
-        "path": "%ROMPATH%/apple2gs",
-        "extension": ".2mg .7z .zip .dsk .po",
-        "commands": [
-          {
-            "label": "KEGS (Standalone)",
-            "command": "%EMULATOR_KEGS% %INJECT%=%BASENAME%.commands -s5d1 %ROM%"
-          }
-        ],
-        "platform": "apple2gs",
-        "theme": "apple2gs"
-      }
-    ]
+      },
+      "es_systems": [
+        {
+          "name": "apple2gs",
+          "fullname": "Apple IIGS",
+          "path": "%ROMPATH%/apple2gs",
+          "extension": ".2mg .7z .zip .dsk .po",
+          "commands": [
+            {
+              "label": "KEGS (Standalone)",
+              "command": "%EMULATOR_KEGS% %INJECT%=%BASENAME%.commands -s5d1 %ROM%"
+            }
+          ],
+          "platform": "apple2gs",
+          "theme": "apple2gs"
+        }
+      ]
+    }
   }
 }
