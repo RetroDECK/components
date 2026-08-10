@@ -24,14 +24,20 @@ os_install() {
 
     load_system_config # This already cleans the autoexec
 
+    log d "Calling AUTOEXEC generator for $PRETTY_SYSTEM_NAME installation"
+    source "$SCRIPT_DIR/winplay_autoexec_gen.sh"
+
+    generate_autoexec_headers
+
     log d "Calling mkfs to create virtual hard disk for $PRETTY_SYSTEM_NAME installation"
     mkfs
 
-    log d "Calling AUTOEXEC generator for $PRETTY_SYSTEM_NAME installation"
-    source "$SCRIPT_DIR/winplay_autoexec_gen.sh"
     generate_autoexec_install_os
 
-    set_setting_value "$dosbox_x_generated_conf" "core" "full" "dosbox-x" "cpu"
+    set_setting_value "$dosbox_x_generated_conf" "core" "full" "cpu"
+
+    FORCE_TURBO="true"
+    log d "FORCE TURBO is $FORCE_TURBO"
 
     log i "Starting DosBox-X to run the Phase 1 installation of $PRETTY_SYSTEM_NAME"
     run_dosbox_x
@@ -49,7 +55,6 @@ os_install() {
 create_vhd() {
 
     # Create a VHD (Virtual Hard Disk) file to be used as the virtual hard drive for the Windows installation or GAME HD.
-    # Usage: create_vhd <vhd_path> <size_mb> <fs_type>
 
     if [[ -f "$IMAGE_PATH" ]]; then
         log e "VHD already exists: $IMAGE_PATH (skipping)"
@@ -57,18 +62,14 @@ create_vhd() {
         log w "Skipping VHD creation for \"$IMAGE_PATH\" and proceeding with existing file. This may cause issues if the existing VHD is not properly set up."
     else
         local IMAGE_PATH="$1"
-        local size_mb="$2"
-        local fs_type="$3"
 
-    log d "Creating VHD at \"$IMAGE_PATH\" with size ${size_mb}MB and filesystem $fs_type"
+        log d "Creating VHD at \"$IMAGE_PATH\" with template \"$TEMPLATE\"."
 
         mkdir -p "$(dirname "$IMAGE_PATH")"
 
-        log i "Creating VHD: \"$IMAGE_PATH\" (${size_mb}MB, $fs_type)"
-
         # Use DOSBox-X imgmake to create a dynamic VHD
         # This is native to DOSBox-X and fully compatible
-        if ! "$component_path/bin/dosbox-x" -silent -c "imgmake -t hd -size $size_mb \"$IMAGE_PATH\"" -c "exit" > /dev/null 2>&1; then
+        if ! "$component_path/bin/dosbox-x" -silent -c "imgmake \"$IMAGE_PATH\" -t $TEMPLATE" -c "exit" > /dev/null 2>&1; then
             log e "Failed to create VHD with imgmake"
             rm -f "$IMAGE_PATH"
             return 1
@@ -86,16 +87,13 @@ mkfs() {
 
     case "$SYSTEM" in
         "win98")
-            local fs_type="FAT32"
-            local size_mb=4096
+            local TEMPLATE=hd_4gig
         ;;
         "win95")
-            local fs_type="FAT32"
-            local size_mb=4096
+            local TEMPLATE=hd_2gig
         ;;
         "win31")
-            local fs_type="FAT16"
-            local size_mb=512
+            local TEMPLATE=hd_512mb
         ;;
         *)
             log e "Unsupported system for mkfs: $PRETTY_SYSTEM_NAME"
@@ -103,7 +101,8 @@ mkfs() {
         ;;
     esac
 
-    create_vhd "$OS_IMAGE" "$size_mb" "$fs_type"
+    create_vhd "$OS_IMAGE"
+
 }
 
 mk_gamehd() {
@@ -128,11 +127,9 @@ mk_gamehd() {
         ;;
     esac
 
-    log d "Determined game HD parameters: size ${size_mb}MB, filesystem $fs_type, ESDE system name \"$ESDE_SYSTEM_NAME\""
-
     GAME_IMAGE="$roms_path/$ESDE_SYSTEM_NAME/$(dos_name_sanitizer "$GAME_NAME.vhd")"
 
-    create_vhd "$GAME_IMAGE" "$size_mb" "$fs_type"
+    create_vhd "$GAME_IMAGE"
 
 }
 

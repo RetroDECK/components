@@ -39,7 +39,8 @@ _prepare_component::dosbox-x() {
     
 }
 
-_set_setting_value::dosbox-x() {
+# TODO: rename this in _set_setting_value::dosbox-x when we got a 0.11.0b build
+set_setting_value() {
   local file="$1"
   local name=$(sed_escape_pattern "$2")
   local value=$(sed_escape_replacement "$3")
@@ -53,7 +54,8 @@ _set_setting_value::dosbox-x() {
   fi
 }
 
-_get_setting_value::dosbox-x() {
+# TODO: rename this in _get_setting_value::dosbox-x when we got a 0.11.0b build
+get_setting_value() {
   local file="$1" name="$2" section="${3:-}"
 
   if [[ -n "$section" ]]; then

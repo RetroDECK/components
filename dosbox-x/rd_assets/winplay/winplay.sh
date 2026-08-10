@@ -159,15 +159,12 @@ show_help(){
 
 run_dosbox_x() {
 
-    if [[ "$1" == "force-turbo" ]]; then
-        FORCE_TURBO="true"
+    if [[ "$FORCE_TURBO" == "true" ]]; then
+        former_turbo_break_setting=$(get_setting_value "$dosbox_x_generated_conf" "stop turbo on key" "cpu")
+        former_turbo_setting=$(get_setting_value "$dosbox_x_generated_conf" "turbo" "cpu")
 
-        # TODO
-        former_turbo_break_setting=$(get_setting_value "$dosbox_x_generated_conf" "stop turbo on key" "dosbox-x" "cpu")
-        former_turbo_setting=$(get_setting_value "$dosbox_x_generated_conf" "turbo" "dosbox-x" "cpu")
-
-        set_setting_value "$dosbox_x_generated_conf" "stop turbo on key" "false" "dosbox-x" "cpu"
-        set_setting_value "$dosbox_x_generated_conf" "turbo" "true" "dosbox-x" "cpu"
+        set_setting_value "$dosbox_x_generated_conf" "stop turbo on key" "false" "cpu"
+        set_setting_value "$dosbox_x_generated_conf" "turbo" "true" "cpu"
 
         log w "Force Turbo mode enabled for DosBox-X execution. This may cause instability during Windows installation, but can speed it up significantly. Use with caution."
     fi
@@ -188,8 +185,8 @@ run_dosbox_x() {
     "$DOSBOX_X_EXEC" $DOSBOX_X_CONF_ARGS $DOSBOX_X_ARGS
 
     if [[ "$FORCE_TURBO" == "true" ]]; then
-        set_setting_value "$dosbox_x_generated_conf" "stop turbo on key" "$former_turbo_break_setting" "dosbox-x" "cpu"
-        set_setting_value "$dosbox_x_generated_conf" "turbo" "$former_turbo_setting" "dosbox-x" "cpu"
+        set_setting_value "$dosbox_x_generated_conf" "stop turbo on key" "$former_turbo_break_setting" "cpu"
+        set_setting_value "$dosbox_x_generated_conf" "turbo" "$former_turbo_setting" "cpu"
         FORCE_TURBO="false"
     fi
 }

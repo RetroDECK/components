@@ -12,7 +12,7 @@ generate_autoexec_headers() {
 log d "Generating autoexec headers"
 log d "Mounting \"$OS_IMAGE\" as OS image."
 cat <<EOF >> "$dosbox_x_generated_conf"
-IMGMOUNT C "$OS_IMAGE" -t hdd
+IMGMOUNT C "$OS_IMAGE" -ide 1m
 EOF
     
 # Mount any additional media (floppy, CD-ROM) if specified, and build up the MOUNT_MAP for later inclusion in the config
@@ -26,27 +26,12 @@ EOF
 
 generate_autoexec_install_os() {
 
-generate_autoexec_headers
-
 # Copy drivers from the CD to the Windows system directory to reduce prompts during installation.
 cat <<EOF >> "$dosbox_x_generated_conf"
-REM Copy as many files as possible from the CD to C:\WINDOWS\SYSTEM
-IF NOT EXIST C:\WINDOWS\SYSTEM MD C:\WINDOWS\SYSTEM
-REM Copy full $PRETTY_SYSTEM_NAME and DRIVERS directories (recursive copy where available)
-IF EXIST D:\${SYSTEM} XCOPY D:\${SYSTEM} C:\WINDOWS\SYSTEM /E /Y >NUL 2>NUL
-IF EXIST D:\DRIVERS XCOPY D:\DRIVERS C:\WINDOWS\SYSTEM /E /Y >NUL 2>NUL
-REM Also copy any root-level device files that might be directly requested
-IF EXIST D:\*.VXD COPY /Y D:\*.VXD C:\WINDOWS\SYSTEM >NUL 2>NUL
-IF EXIST D:\*.DRV COPY /Y D:\*.DRV C:\WINDOWS\SYSTEM >NUL 2>NUL
-D:
-SETUP.EXE /D /ID /IE /IF /IM /IS /NR /IW
-GOTO END_INSTALL
-:WINDOWS_FOUND
-ECHO Windows installation detected, booting it
-BOOT C:
-:END_INSTALL
+XCOPY D:\WIN98 C:\WIN98 /I /E
 C:
-RUNDLL32.EXE USER.EXE,ExitWindows
+CD \WIN98
+SETUP /is /iv /ie /im /nr /iw /d /pj /na3
 EOF
 
 }
@@ -57,7 +42,7 @@ cat <<EOF >> "$dosbox_x_generated_conf"
 C:
 CD WINDOWS
 WIN
-EOF 
+EOF
 }
 
 generate_autoexec_game_install() {
