@@ -237,7 +237,7 @@ export FS_UAE_VERSION_POLICY="latest"
 # Source: AppImage
 # Link: https://github.com/has207/xenia-edge/releases
 # ------------------------------------------------------------------------------
-export XENIA_EDGE_VERSION_POLICY="latest"
+export XENIA_EDGE_VERSION_POLICY="newest"
 
 # ------------------------------------------------------------------------------
 # Visual Pinball X - Pinball Simulation Engine
