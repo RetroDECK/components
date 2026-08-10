@@ -231,7 +231,6 @@ export COMMANDER_X16_VERSION_POLICY="latest"
 # ------------------------------------------------------------------------------
 export FS_UAE_VERSION_POLICY="latest"
 
-
 # ------------------------------------------------------------------------------
 # Xenia Edge - Xbox 360 Emulator
 # Source: AppImage
@@ -245,6 +244,14 @@ export XENIA_EDGE_VERSION_POLICY="newest"
 # Link: https://github.com/vpinball/vpinball/releases
 # ------------------------------------------------------------------------------
 export VPINBALL_VERSION_POLICY="newest"
+
+
+# Mudlet - MUD Client
+# Source: AppImage
+# Link: https://github.com/RetroDECK/components/tree/cooker/mudlet/tmp_assets
+# ------------------------------------------------------------------------------
+
+export MUDLET_VERSION_POLICY="latest"
 
 
 # ==============================================================================
@@ -311,12 +318,6 @@ export VITA3K_VERSION_POLICY="latest"
 # ------------------------------------------------------------------------------
 
 export ZESARUX_VERSION_POLICY="latest"
-# Mudlet - MUD Client
-# Source: AppImage
-# Link: https://github.com/RetroDECK/components/tree/cooker/mudlet/tmp_assets
-# ------------------------------------------------------------------------------
-
-export MUDLET_VERSION_POLICY="latest"
 
 # ------------------------------------------------------------------------------
 # SDL2TRS - TRS-80 Model I/III/4/4P Emulator
@@ -355,7 +356,6 @@ export GAMETANK_VERSION_POLICY="latest"
 # ------------------------------------------------------------------------------
 export AGS_VERSION_POLICY="newest"
 
-
 # ------------------------------------------------------------------------------
 # DOSBox-X - Enhanced DOSBox Engine
 # ------------------------------------------------------------------------------
@@ -370,7 +370,6 @@ export ECWOLF_VERSION_POLICY="latest"
 # EKA2L1 - Symbian OS Emulator
 # ------------------------------------------------------------------------------
 export EKA2L1_VERSION_POLICY="latest"
-
 
 # ------------------------------------------------------------------------------
 # Flycast - Dreamcast Emulator
@@ -403,16 +402,6 @@ export LINDBERGH_VERSION_POLICY="latest"
 export MEDNAFEN_VERSION_POLICY="latest"
 
 # ------------------------------------------------------------------------------
-# Mudlet - MUD Client
-# ------------------------------------------------------------------------------
-export MUDLET_VERSION_POLICY="latest"
-
-# ------------------------------------------------------------------------------
-# Open Surge Engine - 2D Game Engine
-# ------------------------------------------------------------------------------
-export OPENSURGE_VERSION_POLICY="latest"
-
-# ------------------------------------------------------------------------------
 # Raze - Duke Nukem Engine
 # ------------------------------------------------------------------------------
 export RAZE_VERSION_POLICY="latest"
@@ -436,13 +425,6 @@ export SUPERMODEL_VERSION_POLICY="latest"
 # UZDoom - Modern Doom Engine
 # ------------------------------------------------------------------------------
 export UZDOOM_VERSION_POLICY="latest"
-
-
-# ------------------------------------------------------------------------------
-# Xenia Edge - Xbox 360 Emulator
-# ------------------------------------------------------------------------------
-export XENIA_EDGE_VERSION_POLICY="newest"
-
 
 
 
