@@ -1,7 +1,7 @@
 {
   "oricutron": [
     {
-      "source_url": "$REPO_ROOT/$COMPONENT_NAME/tmp_assets/Oricutron_lin64-{VERSION}.zip",
+      "source_url": "$REPO_ROOT/$COMPONENT_NAME/tmp_assets/Oricutron_lin64.zip",
       "source_type": "local",
       "version": "$ORICUTRON_DESIRED_VERSION",
       "extraction_type": "archive",
