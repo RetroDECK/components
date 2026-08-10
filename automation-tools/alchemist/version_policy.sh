@@ -143,6 +143,13 @@ export STEAM_ROM_MANAGER_VERSION_POLICY="latest"
 # ------------------------------------------------------------------------------
 export XEMU_VERSION_POLICY="latest"
 
+# ------------------------------------------------------------------------------
+# SuperModel - SEGA Model 3 Arcade Emulator
+# Source: Flatpak - Flathub
+# Link: https://flathub.org/en/apps/com.supermodel3.Supermodel
+# ------------------------------------------------------------------------------
+export SUPERMODEL_VERSION_POLICY="latest"
+
 
 
 # ==============================================================================
@@ -245,6 +252,33 @@ export XENIA_EDGE_VERSION_POLICY="newest"
 # ------------------------------------------------------------------------------
 export VPINBALL_VERSION_POLICY="newest"
 
+# Mudlet - MUD Client
+# Source: AppImage
+# Link: https://github.com/RetroDECK/components/tree/cooker/mudlet/tmp_assets
+# ------------------------------------------------------------------------------
+export MUDLET_VERSION_POLICY="latest"
+
+# ------------------------------------------------------------------------------
+# ZEsarUX - ZX Second-Emulator
+# Source: Binary
+# Link: https://github.com/chernandezba/zesarux/releases
+# ------------------------------------------------------------------------------
+export ZESARUX_VERSION_POLICY="latest"
+
+# ------------------------------------------------------------------------------
+# Vita3K - PlayStation Vita Emulator
+# Source: AppImage
+# Link: https://github.com/Vita3K/Vita3K-builds/releases/
+# ------------------------------------------------------------------------------
+export VITA3K_VERSION_POLICY="latest"
+
+# ------------------------------------------------------------------------------
+# PortMaster - Multi-System Game Launcher
+# Source: Binary
+# Link: https://github.com/PortsMaster/PortMaster-GUI/releases/
+# ------------------------------------------------------------------------------
+export PORTMASTER_VERSION_POLICY="latest"
+
 
 # Mudlet - MUD Client
 # Source: AppImage
@@ -263,7 +297,7 @@ export MUDLET_VERSION_POLICY="latest"
 
 # ------------------------------------------------------------------------------
 # DuckStation (Legacy) - PlayStation 1 Emulator
-# Source: AppImage (RetroDECK-built legacy archive)
+# Source: AppImage (RetroDECK-hosted legacy archive - GPL3 version)
 # Link: https://github.com/RetroDECK/Duckstation/releases
 # ------------------------------------------------------------------------------
 export DUCKSTATION_VERSION_POLICY="preview"
@@ -283,13 +317,6 @@ export ES_DE_VERSION_POLICY="latest"
 export FLIPS_VERSION_POLICY="latest"
 
 # ------------------------------------------------------------------------------
-# PortMaster - Multi-System Game Launcher
-# Source: Binary (RetroDECK-built)
-# Link: https://github.com/RetroDECK/components/tree/cooker/portmaster/assets
-# ------------------------------------------------------------------------------
-export PORTMASTER_VERSION_POLICY="latest"
-
-# ------------------------------------------------------------------------------
 # XRoar - Tano Dragon Emulator
 # Source: Binary (RetroDECK-built)
 # Link: https://github.com/RetroDECK/XRoar/releases
@@ -298,26 +325,11 @@ export XROAR_VERSION_POLICY="latest"
 
 # ------------------------------------------------------------------------------
 # PrimeHack - Metroid Prime Fork of Dolphin
-# Source: AppImage
+# Source: AppImage (RetroDECK-hosted)
 # Link: https://github.com/RetroDECK/io.github.shiiion.primehack/releases
 # NOTE: Static version - no automatic resolution available
 # ------------------------------------------------------------------------------
 export PRIMEHACK_VERSION_POLICY="master-230724.27"
-
-# ------------------------------------------------------------------------------
-# Vita3K - PlayStation Vita Emulator
-# Source: AppImage (RetroDECK-mirrored)
-# Link: https://github.com/RetroDECK/Vita3K-bin/releases
-# ------------------------------------------------------------------------------
-export VITA3K_VERSION_POLICY="latest"
-
-# ------------------------------------------------------------------------------
-# ZEsarUX - ZX Second-Emulator
-# Source: Binary
-# Link: https://github.com/chernandezba/zesarux/releases
-# ------------------------------------------------------------------------------
-
-export ZESARUX_VERSION_POLICY="latest"
 
 # ------------------------------------------------------------------------------
 # SDL2TRS - TRS-80 Model I/III/4/4P Emulator
@@ -332,7 +344,6 @@ export SDL2TRS_VERSION_POLICY="latest"
 # Link: https://github.com/pete-gordon/oricutron
 # ------------------------------------------------------------------------------
 export ORICUTRON_VERSION_POLICY="latest"
-
 
 # ------------------------------------------------------------------------------
 # GameTankEmulator - GameTank 8-bit game console Emulator
@@ -415,11 +426,6 @@ export SCUMMVM_VERSION_POLICY="latest"
 # ShadPS4 - PlayStation 4 Emulator
 # ------------------------------------------------------------------------------
 export SHADPS4_VERSION_POLICY="latest"
-
-# ------------------------------------------------------------------------------
-# SuperModel - SEGA Model 3 Arcade Emulator
-# ------------------------------------------------------------------------------
-export SUPERMODEL_VERSION_POLICY="latest"
 
 # ------------------------------------------------------------------------------
 # UZDoom - Modern Doom Engine
