@@ -4,7 +4,9 @@
 component_name="$(basename "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")")"
 component_path="$(cd "$(dirname "${BASH_SOURCE[0]}" )" && pwd)"
 
-HOME=/var/config/gargoyle
+XDG_CONFIG_HOME=/var/config/gargoyle
+
+# It is necessary to explicitly set XDG_CONFIG_HOME due to Gargoyle's non-standard handling of XDG path specifications.
 
 # Set LD_LIBRARY_PATH
 export LD_LIBRARY_PATH="$component_path/lib:$ffmpeg_path/25.08:$rd_shared_libs:${DEFAULT_LD_LIBRARY_PATH}"
