@@ -153,6 +153,7 @@ _prepare_component::retroarch() {
       create_dir "$bios_path/dc"
       create_dir "$bios_path/Mupen64plus"
       create_dir "$bios_path/quasi88"
+      create_dir "$bios_path/same_cdi/bios"
 
       # BIOS MAME Directories
       create_dir "$bios_path/mame2003/samples"
@@ -306,6 +307,10 @@ _prepare_component::retroarch() {
 
 _post_update::retroarch() {
   local previous_version="$1"
+
+  if check_version_is_older_than "$version_being_updated" "0.11.0"; then
+    create_dir "$bios_path/same_cdi/bios"
+  fi
   
   if check_version_is_older_than "$previous_version" "1.0.0"; then
     if [[ "$XDG_SESSION_TYPE" == "wayland" ]]; then
