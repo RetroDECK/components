@@ -157,6 +157,13 @@ export SUPERMODEL_VERSION_POLICY="latest"
 # ------------------------------------------------------------------------------
 export XEMU_VERSION_POLICY="latest"
 
+# ------------------------------------------------------------------------------
+# ScummVM - Point-and-Click Adventure Engine
+# Source: Flatpak - Flathub
+# Link: https://flathub.org/en/apps/org.scummvm.ScummVM
+# ------------------------------------------------------------------------------
+export SCUMMVM_VERSION_POLICY="latest"
+
 
 # ==============================================================================
 #  Component Policies - Web / GitHub / GitLab / AppImages
@@ -429,11 +436,6 @@ export MEDNAFEN_VERSION_POLICY="latest"
 # Raze - Duke Nukem Engine
 # ------------------------------------------------------------------------------
 export RAZE_VERSION_POLICY="latest"
-
-# ------------------------------------------------------------------------------
-# ScummVM - Point-and-Click Adventure Engine
-# ------------------------------------------------------------------------------
-export SCUMMVM_VERSION_POLICY="latest"
 
 # ------------------------------------------------------------------------------
 # ShadPS4 - PlayStation 4 Emulator
