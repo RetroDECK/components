@@ -67,6 +67,13 @@ export AZAHAR_VERSION_POLICY="latest"
 export CEMU_VERSION_POLICY="latest"
 
 # ------------------------------------------------------------------------------
+# Delta-Patcher - .xdelta Patch Utility
+# Source: Flatpak - Flathub
+# Link: https://flathub.org/en/apps/io.github.marco_calautti.DeltaPatcher
+# ------------------------------------------------------------------------------
+export DELTA_PATCHER_VERSION_POLICY="latest"
+
+# ------------------------------------------------------------------------------
 # Dolphin - GameCube / Wii Emulator
 # Source: Flatpak - Flathub
 # Link: https://flathub.org/en/apps/org.DolphinEmu.dolphin-emu
@@ -74,11 +81,18 @@ export CEMU_VERSION_POLICY="latest"
 export DOLPHIN_VERSION_POLICY="latest"
 
 # ------------------------------------------------------------------------------
-# Delta-Patcher - .xdelta Patch Utility
+# Flycast - Dreamcast Emulator
 # Source: Flatpak - Flathub
-# Link: https://flathub.org/en/apps/io.github.marco_calautti.DeltaPatcher
+# Link: https://flathub.org/en/apps/org.flycast.Flycast
 # ------------------------------------------------------------------------------
-export DELTA_PATCHER_VERSION_POLICY="latest"
+export FLYCAST_VERSION_POLICY="latest"
+
+# ------------------------------------------------------------------------------
+# Gargoyle - Interactive Fiction Player
+# Source: Flatpak - Flathub
+# Link: https://flathub.org/en/apps/io.github.garglk.Gargoyle
+# ------------------------------------------------------------------------------
+export GARGOYLE_VERSION_POLICY="latest"
 
 # ------------------------------------------------------------------------------
 # GZDoom - Modern Doom Engine
@@ -130,13 +144,6 @@ export RUFFLE_VERSION_POLICY="latest"
 export STEAM_ROM_MANAGER_VERSION_POLICY="latest"
 
 # ------------------------------------------------------------------------------
-# Xemu - Original Xbox Emulator
-# Source: Flatpak - Flathub
-# Link: https://flathub.org/en/apps/app.xemu.xemu
-# ------------------------------------------------------------------------------
-export XEMU_VERSION_POLICY="latest"
-
-# ------------------------------------------------------------------------------
 # SuperModel - SEGA Model 3 Arcade Emulator
 # Source: Flatpak - Flathub
 # Link: https://flathub.org/en/apps/com.supermodel3.Supermodel
@@ -144,11 +151,11 @@ export XEMU_VERSION_POLICY="latest"
 export SUPERMODEL_VERSION_POLICY="latest"
 
 # ------------------------------------------------------------------------------
-# Gargoyle - Interactive Fiction Player
+# Xemu - Original Xbox Emulator
 # Source: Flatpak - Flathub
-# Link: https://flathub.org/en/apps/io.github.garglk.Gargoyle
+# Link: https://flathub.org/en/apps/app.xemu.xemu
 # ------------------------------------------------------------------------------
-export GARGOYLE_VERSION_POLICY="latest"
+export XEMU_VERSION_POLICY="latest"
 
 
 # ==============================================================================
@@ -160,19 +167,16 @@ export GARGOYLE_VERSION_POLICY="latest"
 #  Versions should be explicitly defined to ensure reproducible builds.
 # ==============================================================================
 
-# ------------------------------------------------------------------------------
-# RPCS3 - PlayStation 3 Emulator
-# Source: AppImage
-# Link: https://github.com/RPCS3/rpcs3-binaries-linux/
-# ------------------------------------------------------------------------------
-  export RPCS3_DESIRED_VERSION="latest"
+# ==============================================================================
+# APPIMAGE SOURCES
+# ==============================================================================
 
 # ------------------------------------------------------------------------------
-# Ironwail - Quake Engine
-# Source: Binary
-# Link: https://github.com/andrei-drexler/ironwail/releases/
+# ECWOLF - Wolfenstein 3D Engine
+# Source: AppImage
+# https://github.com/pkgforge-dev/ECWolf-AppImage/
 # ------------------------------------------------------------------------------
-export IRONWAIL_VERSION_POLICY="latest"
+export ECWOLF_VERSION_POLICY="latest"
 
 # ------------------------------------------------------------------------------
 # OpenBOR - Open Beat 'em Up Engine
@@ -196,6 +200,13 @@ export PCSX2_VERSION_POLICY="latest"
 export RETROARCH_VERSION_POLICY="1.22.2"
 
 # ------------------------------------------------------------------------------
+# RPCS3 - PlayStation 3 Emulator
+# Source: AppImage
+# Link: https://github.com/RPCS3/rpcs3-binaries-linux/
+# ------------------------------------------------------------------------------
+export RPCS3_DESIRED_VERSION="latest"
+
+# ------------------------------------------------------------------------------
 # Solarus - Action RPG Engine
 # Source: AppImage
 # Link: https://gitlab.com/solarus-games/solarus/-/releases/
@@ -203,25 +214,23 @@ export RETROARCH_VERSION_POLICY="1.22.2"
 export SOLARUS_VERSION_POLICY="latest"
 
 # ------------------------------------------------------------------------------
-# SimCoupé - MGT SAM Coupé Emulator
-# Source: Binary
-# Link: https://github.com/simonowen/simcoupe/releases/
+# Vita3K - PlayStation Vita Emulator
+# Source: AppImage
+# Link: https://github.com/Vita3K/Vita3K-builds/releases/
 # ------------------------------------------------------------------------------
-export SIMCOUPE_VERSION_POLICY="latest"
+export VITA3K_VERSION_POLICY="latest"
 
 # ------------------------------------------------------------------------------
-# Tsugaru - FM TOWNS Emulator
-# Source: Binary
-# Link: https://github.com/captainys/TOWNSEMU/releases/
+# Xenia Edge - Xbox 360 Emulator
+# Source: AppImage
+# Link: https://github.com/has207/xenia-edge/releases
 # ------------------------------------------------------------------------------
-export TSUGARU_VERSION_POLICY="newest"
+export XENIA_EDGE_VERSION_POLICY="latest"
 
-# ------------------------------------------------------------------------------
-# KEGS - Apple IIGS Emulator
-# Source: Binary
-# Link: https://kegs.sourceforge.net/
-# ------------------------------------------------------------------------------
-export KEGS_VERSION_POLICY="1.38"
+
+# ==============================================================================
+# BINARY SOURCES
+# ==============================================================================
 
 # ------------------------------------------------------------------------------
 # Commander X16 8-bit Computer Emulator
@@ -238,38 +247,18 @@ export COMMANDER_X16_VERSION_POLICY="latest"
 export FS_UAE_VERSION_POLICY="latest"
 
 # ------------------------------------------------------------------------------
-# Xenia Edge - Xbox 360 Emulator
-# Source: AppImage
-# Link: https://github.com/has207/xenia-edge/releases
-# ------------------------------------------------------------------------------
-export XENIA_EDGE_VERSION_POLICY="latest"
-
-# ------------------------------------------------------------------------------
-# Visual Pinball X - Pinball Simulation Engine
+# Ironwail - Quake Engine
 # Source: Binary
-# Link: https://github.com/vpinball/vpinball/releases
+# Link: https://github.com/andrei-drexler/ironwail/releases/
 # ------------------------------------------------------------------------------
-export VPINBALL_VERSION_POLICY="newest"
-
-# Mudlet - MUD Client
-# Source: AppImage
-# Link: https://github.com/RetroDECK/components/tree/cooker/mudlet/tmp_assets
-# ------------------------------------------------------------------------------
-export MUDLET_VERSION_POLICY="latest"
+export IRONWAIL_VERSION_POLICY="latest"
 
 # ------------------------------------------------------------------------------
-# ZEsarUX - ZX Second-Emulator
+# KEGS - Apple IIGS Emulator
 # Source: Binary
-# Link: https://github.com/chernandezba/zesarux/releases
+# Link: https://kegs.sourceforge.net/
 # ------------------------------------------------------------------------------
-export ZESARUX_VERSION_POLICY="latest"
-
-# ------------------------------------------------------------------------------
-# Vita3K - PlayStation Vita Emulator
-# Source: AppImage
-# Link: https://github.com/Vita3K/Vita3K-builds/releases/
-# ------------------------------------------------------------------------------
-export VITA3K_VERSION_POLICY="latest"
+export KEGS_VERSION_POLICY="1.38"
 
 # ------------------------------------------------------------------------------
 # PortMaster - Multi-System Game Launcher
@@ -278,6 +267,38 @@ export VITA3K_VERSION_POLICY="latest"
 # ------------------------------------------------------------------------------
 export PORTMASTER_VERSION_POLICY="latest"
 
+# ------------------------------------------------------------------------------
+# SimCoupé - MGT SAM Coupé Emulator
+# Source: Binary
+# Link: https://github.com/simonowen/simcoupe/releases/
+# ------------------------------------------------------------------------------
+export SIMCOUPE_VERSION_POLICY="latest"
+
+# ------------------------------------------------------------------------------
+# Tsugaru - FM TOWNS Emulator
+# Source: Binary
+# Link: https://github.com/captainys/TOWNSEMU/releases/
+# ------------------------------------------------------------------------------
+export TSUGARU_VERSION_POLICY="newest"
+
+# ------------------------------------------------------------------------------
+# Visual Pinball X - Pinball Simulation Engine
+# Source: Binary
+# Link: https://github.com/vpinball/vpinball/releases
+# ------------------------------------------------------------------------------
+export VPINBALL_VERSION_POLICY="newest"
+
+# ------------------------------------------------------------------------------
+# ZEsarUX - ZX Second-Emulator
+# Source: Binary
+# Link: https://github.com/chernandezba/zesarux/releases
+# ------------------------------------------------------------------------------
+export ZESARUX_VERSION_POLICY="latest"
+
+
+# ==============================================================================
+# Flatpak (Non-Flathub) SOURCES
+# ==============================================================================
 
 
 # ==============================================================================
@@ -286,6 +307,10 @@ export PORTMASTER_VERSION_POLICY="latest"
 #  Components that are self-built and hosted in the RetroDECK repository.
 # ==============================================================================
 
+
+# ==============================================================================
+# APPIMAGE (RETRODECK-HOSTED) SOURCES
+# ==============================================================================
 
 # ------------------------------------------------------------------------------
 # DuckStation (Legacy) - PlayStation 1 Emulator
@@ -302,18 +327,11 @@ export DUCKSTATION_VERSION_POLICY="preview"
 export ES_DE_VERSION_POLICY="latest"
 
 # ------------------------------------------------------------------------------
-# Flips - IPS Patch Utility
-# Source: Binary (RetroDECK-built)
-# Link: https://github.com/RetroDECK/components/tree/cooker/flips/assets
+# Mudlet - MUD Client
+# Source: AppImage
+# Link: https://github.com/RetroDECK/components/tree/cooker/mudlet/tmp_assets
 # ------------------------------------------------------------------------------
-export FLIPS_VERSION_POLICY="latest"
-
-# ------------------------------------------------------------------------------
-# XRoar - Tano Dragon Emulator
-# Source: Binary (RetroDECK-built)
-# Link: https://github.com/RetroDECK/XRoar/releases
-# ------------------------------------------------------------------------------
-export XROAR_VERSION_POLICY="latest"
+export MUDLET_VERSION_POLICY="latest"
 
 # ------------------------------------------------------------------------------
 # PrimeHack - Metroid Prime Fork of Dolphin
@@ -323,12 +341,23 @@ export XROAR_VERSION_POLICY="latest"
 # ------------------------------------------------------------------------------
 export PRIMEHACK_VERSION_POLICY="master-230724.27"
 
+# ==============================================================================
+# BINARY (RETRODECK-BUILT) SOURCES
+# ==============================================================================
+
 # ------------------------------------------------------------------------------
-# SDL2TRS - TRS-80 Model I/III/4/4P Emulator
+# Flips - IPS Patch Utility
 # Source: Binary (RetroDECK-built)
-# Link: https://gitlab.com/jengun/sdltrs/-/blob/master/BUILDING.md
+# Link: https://github.com/RetroDECK/components/tree/cooker/flips/assets
 # ------------------------------------------------------------------------------
-export SDL2TRS_VERSION_POLICY="latest"
+export FLIPS_VERSION_POLICY="latest"
+
+# ------------------------------------------------------------------------------
+# GameTankEmulator - GameTank 8-bit game console Emulator
+# Source: Binary (RetroDECK-built)
+# Link: https://github.com/clydeshaffer/GameTankEmulator
+# ------------------------------------------------------------------------------
+export GAMETANK_VERSION_POLICY="latest"
 
 # ------------------------------------------------------------------------------
 # Orictron - Oric-1/Atmos/Telestrat/Pravetz 8D Emulator
@@ -338,11 +367,18 @@ export SDL2TRS_VERSION_POLICY="latest"
 export ORICUTRON_VERSION_POLICY="latest"
 
 # ------------------------------------------------------------------------------
-# GameTankEmulator - GameTank 8-bit game console Emulator
+# SDL2TRS - TRS-80 Model I/III/4/4P Emulator
 # Source: Binary (RetroDECK-built)
-# Link: https://github.com/clydeshaffer/GameTankEmulator
+# Link: https://gitlab.com/jengun/sdltrs/-/blob/master/BUILDING.md
 # ------------------------------------------------------------------------------
-export GAMETANK_VERSION_POLICY="latest"
+export SDL2TRS_VERSION_POLICY="latest"
+
+# ------------------------------------------------------------------------------
+# XRoar - Tano Dragon Emulator
+# Source: Binary (RetroDECK-built)
+# Link: https://github.com/RetroDECK/XRoar/releases
+# ------------------------------------------------------------------------------
+export XROAR_VERSION_POLICY="latest"
 
 
 # ==============================================================================
@@ -365,19 +401,9 @@ export AGS_VERSION_POLICY="newest"
 export DOSBOX_X_VERSION_POLICY="latest"
 
 # ------------------------------------------------------------------------------
-# ECWOLF - Wolfenstein 3D Engine
-# ------------------------------------------------------------------------------
-export ECWOLF_VERSION_POLICY="latest"
-
-# ------------------------------------------------------------------------------
 # EKA2L1 - Symbian OS Emulator
 # ------------------------------------------------------------------------------
 export EKA2L1_VERSION_POLICY="latest"
-
-# ------------------------------------------------------------------------------
-# Flycast - Dreamcast Emulator
-# ------------------------------------------------------------------------------
-export FLYCAST_VERSION_POLICY="latest"
 
 # ------------------------------------------------------------------------------
 # Hypseus - Laser Disc Arcade Emulator
