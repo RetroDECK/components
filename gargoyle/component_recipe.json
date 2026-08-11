@@ -64,6 +64,31 @@
           "dest": "lib"
         },
         {
+          "library": "libspeechd.so.2",
+          "source": "usr/lib",
+          "dest": "lib"
+        },
+        {
+          "library": "libSDL2_mixer-2.0.so.0",
+          "source": "usr/lib",
+          "dest": "lib"
+        },
+        {
+          "library": "libturbojpeg.so.0",
+          "source": "usr/lib",
+          "dest": "lib"
+        },
+        {
+          "library": "libspeechd.so.2",
+          "source": "usr/lib",
+          "dest": "lib"
+        },
+        {
+          "library": "libpulsecommon-15.99.so",
+          "source": "usr/lib",
+          "dest": "lib"
+        },
+        {
           "library": "libQt6Widgets.so.6",
           "runtime_name": "org.kde.Platform",
           "runtime_version": "6.10",
@@ -86,11 +111,6 @@
           "runtime_name": "org.kde.Platform",
           "runtime_version": "6.10",
           "dest": "shared-libs"
-        },
-        {
-          "library": "libspeechd.so.2",
-          "source": "usr/lib",
-          "dest": "lib"
         }
       ]
     }
