@@ -1,30 +1,36 @@
 {
   "gargoyle": [
     {
-      "source_url": "https://github.com/garglk/garglk/releases/download/{VERSION}/Gargoyle-x86_64.AppImage",
-      "source_type": "github_release",
+      "source_url": "io.github.garglk.Gargoyle",
+      "source_type": "flatpak_id",
       "version": "$GARGOYLE_DESIRED_VERSION",
-      "extraction_type": "appimage",
+      "dest": "user",
+      "extraction_type": "flatpak",
       "assets": [
         {
           "type": "dir",
-          "source": "usr/bin",
+          "source": "bin",
           "dest": "bin"
         },
         {
           "type": "dir",
-          "source": "usr/plugins",
-          "dest": "plugins"
+          "source": "lib",
+          "dest": "lib"
         },
         {
           "type": "dir",
-          "source": "usr/share/gargoyle",
+          "source": "libexec/gargoyle",
+          "dest": "libexec/gargoyle"
+        },
+        {
+          "type": "dir",
+          "source": "share/gargoyle",
           "dest": "share/gargoyle"
         },
         {
           "type": "dir",
-          "source": "usr/share/doc/",
-          "dest": "doc"
+          "source": "share/licenses/io.github.garglk.Gargoyle/",
+          "dest": "docs"
         },
         {
           "type": "create",
@@ -57,62 +63,7 @@
           "dest": "$COMPONENT_ARTIFACT_ROOT"
         }
       ],
-      "libs": [
-        {
-          "library": "libfmt.so.8",
-          "source": "usr/lib",
-          "dest": "lib"
-        },
-        {
-          "library": "libspeechd.so.2",
-          "source": "usr/lib",
-          "dest": "lib"
-        },
-        {
-          "library": "libSDL2_mixer-2.0.so.0",
-          "source": "usr/lib",
-          "dest": "lib"
-        },
-        {
-          "library": "libturbojpeg.so.0",
-          "source": "usr/lib",
-          "dest": "lib"
-        },
-        {
-          "library": "libspeechd.so.2",
-          "source": "usr/lib",
-          "dest": "lib"
-        },
-        {
-          "library": "libpulsecommon-15.99.so",
-          "source": "usr/lib",
-          "dest": "lib"
-        },
-        {
-          "library": "libQt6Widgets.so.6",
-          "runtime_name": "org.kde.Platform",
-          "runtime_version": "6.10",
-          "dest": "shared-libs"
-        },
-        {
-          "library": "libQt6Gui.so.6",
-          "runtime_name": "org.kde.Platform",
-          "runtime_version": "6.10",
-          "dest": "shared-libs"
-        },
-        {
-          "library": "libQt6Core.so.6",
-          "runtime_name": "org.kde.Platform",
-          "runtime_version": "6.10",
-          "dest": "shared-libs"
-        },
-        {
-          "library": "libQt6DBus.so.6",
-          "runtime_name": "org.kde.Platform",
-          "runtime_version": "6.10",
-          "dest": "shared-libs"
-        }
-      ]
+      "libs": []
     }
   ]
 }

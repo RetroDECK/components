@@ -150,6 +150,12 @@ export XEMU_VERSION_POLICY="latest"
 # ------------------------------------------------------------------------------
 export SUPERMODEL_VERSION_POLICY="latest"
 
+# ------------------------------------------------------------------------------
+# Gargoyle - Interactive Fiction Player
+# Source: Flatpak - Flathub
+# Link: https://flathub.org/en/apps/io.github.garglk.Gargoyle
+# ------------------------------------------------------------------------------
+export GARGOYLE_VERSION_POLICY="latest"
 
 
 # ==============================================================================
@@ -286,12 +292,6 @@ export PORTMASTER_VERSION_POLICY="latest"
 # ------------------------------------------------------------------------------
 export MUDLET_VERSION_POLICY="latest"
 
-# ------------------------------------------------------------------------------
-# Gargoyle - Interactive Fiction Player
-# Source: AppImage
-# Link: https://github.com/garglk/garglk/releases/
-# ------------------------------------------------------------------------------
-export GARGOYLE_VERSION_POLICY="latest"
 
 
 # ==============================================================================
