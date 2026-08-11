@@ -26,6 +26,8 @@ _prepare_component::scummvm() {
         create_dir -d "$storage_path/scummvm/icons"
         create_dir -d "$storage_path/scummvm/cloud_root"
 
+        dir_prep "$logs_path/scummvm" "$XDG_CACHE_HOME/scummvm/logs"
+
         sed -i "s|^screenshotpath=.*|screenshotpath=$screenshots_path/scummvm|" $scummvm_config
         sed -i "s|^savepath=.*|savepath=$saves_path/scummvm/scummvm-sa|" $scummvm_config
 
@@ -44,6 +46,8 @@ _prepare_component::scummvm() {
       log i "Post-moving ScummVM"
       log i "----------------------"
 
+        dir_prep "$logs_path/scummvm" "$XDG_CACHE_HOME/scummvm/logs"
+        
         sed -i "s|^screenshotpath=.*|screenshotpath=$screenshots_path/scummvm|" $scummvm_config
         sed -i "s|^savepath=.*|savepath=$saves_path/scummvm/scummvm-sa|" $scummvm_config
 
