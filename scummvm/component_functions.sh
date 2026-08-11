@@ -26,15 +26,15 @@ _prepare_component::scummvm() {
         create_dir -d "$storage_path/scummvm/icons"
         create_dir -d "$storage_path/scummvm/cloud_root"
 
-        sed -i "s|^screenshotpath= .*|screenshotpath=$screenshots_path/scummvm|" $scummvm_config
-        sed -i "s|^savepath= .*|savepath=$saves_path/scummvm/scummvm-sa|" $scummvm_config
+        sed -i "s|^screenshotpath=.*|screenshotpath=$screenshots_path/scummvm|" $scummvm_config
+        sed -i "s|^savepath=.*|savepath=$saves_path/scummvm/scummvm-sa|" $scummvm_config
 
-        sed -i "s|^extrapath= .*|extrapath=$storage_path/scummvm/extra|" $scummvm_config
-        sed -i "s|^themepath= .*|themepath=$storage_path/scummvm/themes|" $scummvm_config
-        sed -i "s|^iconspath= .*|iconspath=$storage_path/scummvm/icons|" $scummvm_config
-        sed -i "s|^rootpath= .*|rootpath=$storage_path/scummvm/cloud_root|" $scummvm_config
+        sed -i "s|^extrapath=.*|extrapath=$storage_path/scummvm/extra|" $scummvm_config
+        sed -i "s|^themepath=.*|themepath=$storage_path/scummvm/themes|" $scummvm_config
+        sed -i "s|^iconspath=.*|iconspath=$storage_path/scummvm/icons|" $scummvm_config
+        sed -i "s|^rootpath=.*|rootpath=$storage_path/scummvm/cloud_root|" $scummvm_config
       
-        sed -i "s|^browser_lastpath= .*|browser_lastpath=$roms_path/scummvm|" $scummvm_config
+        sed -i "s|^browser_lastpath=.*|browser_lastpath=$roms_path/scummvm|" $scummvm_config
 
       
     ;;
@@ -44,15 +44,15 @@ _prepare_component::scummvm() {
       log i "Post-moving ScummVM"
       log i "----------------------"
 
-        sed -i "s|^screenshotpath= .*|screenshotpath=$screenshots_path/scummvm|" $scummvm_config
-        sed -i "s|^savepath= .*|savepath=$saves_path/scummvm/scummvm-sa|" $scummvm_config
+        sed -i "s|^screenshotpath=.*|screenshotpath=$screenshots_path/scummvm|" $scummvm_config
+        sed -i "s|^savepath=.*|savepath=$saves_path/scummvm/scummvm-sa|" $scummvm_config
 
-        sed -i "s|^extrapath= .*|extrapath=$storage_path/scummvm/extra|" $scummvm_config
-        sed -i "s|^themepath= .*|themepath=$storage_path/scummvm/themes|" $scummvm_config
-        sed -i "s|^iconspath= .*|iconspath=$storage_path/scummvm/icons|" $scummvm_config
-        sed -i "s|^rootpath= .*|rootpath=$storage_path/scummvm/cloud_root|" $scummvm_config
+        sed -i "s|^extrapath=.*|extrapath=$storage_path/scummvm/extra|" $scummvm_config
+        sed -i "s|^themepath=.*|themepath=$storage_path/scummvm/themes|" $scummvm_config
+        sed -i "s|^iconspath=.*|iconspath=$storage_path/scummvm/icons|" $scummvm_config
+        sed -i "s|^rootpath=.*|rootpath=$storage_path/scummvm/cloud_root|" $scummvm_config
       
-        sed -i "s|^browser_lastpath= .*|browser_lastpath=$roms_path/scummvm|" $scummvm_config
+        sed -i "s|^browser_lastpath=.*|browser_lastpath=$roms_path/scummvm|" $scummvm_config
     ;;
     
   esac
