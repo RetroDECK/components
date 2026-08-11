@@ -116,13 +116,6 @@ export OPENSURGE_VERSION_POLICY="latest"
 export PPSSPP_VERSION_POLICY="latest"
 
 # ------------------------------------------------------------------------------
-# RPCS3 - PlayStation 3 Emulator
-# Source: Flatpak - Flathub
-# Link: https://flathub.org/en/apps/net.rpcs3.RPCS3
-# ------------------------------------------------------------------------------
-export RPCS3_VERSION_POLICY="latest"
-
-# ------------------------------------------------------------------------------
 # Ruffle - Flash Player Emulator
 # Source: Flatpak - Flathub
 # Link: https://flathub.org/en/apps/rs.ruffle.Ruffle
@@ -286,13 +279,6 @@ export VITA3K_VERSION_POLICY="latest"
 export PORTMASTER_VERSION_POLICY="latest"
 
 
-# Mudlet - MUD Client
-# Source: AppImage
-# Link: https://github.com/RetroDECK/components/tree/cooker/mudlet/tmp_assets
-# ------------------------------------------------------------------------------
-export MUDLET_VERSION_POLICY="latest"
-
-
 
 # ==============================================================================
 #  Component Policies - Self-Built / Repo-Hosted Components
@@ -392,11 +378,6 @@ export EKA2L1_VERSION_POLICY="latest"
 # Flycast - Dreamcast Emulator
 # ------------------------------------------------------------------------------
 export FLYCAST_VERSION_POLICY="latest"
-
-# ------------------------------------------------------------------------------
-# Gargoyle - Interactive Fiction Emulator
-# ------------------------------------------------------------------------------
-export GARGOYLE_VERSION_POLICY="latest"
 
 # ------------------------------------------------------------------------------
 # Hypseus - Laser Disc Arcade Emulator

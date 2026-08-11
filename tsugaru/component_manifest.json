@@ -1,0 +1,173 @@
+{
+  "tsugaru": {
+    "name": "Tsugaru",
+    "core_framework_compatibility": "1",
+    "component_version": "1.0.0",
+    "capabilities": [
+      "reset",
+      "open"
+    ],
+    "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/tsugaru/tsugaru-guide/",
+    "url_donation_purchase": "",
+    "url_source": "https://github.com/captainys/TOWNSEMU",
+    "description": "Tsugaru is a Fujitsu FM TOWNS / Marty Emulator (fmtowns)",
+    "system_friendly_name": "Fujitsu FM TOWNS / Marty",
+    "component_type": "Emulator",
+    "system": "fmtowns",
+    "es_de_config": {
+      "es_find_rules": {
+        "emulators": [
+          {
+            "name": "TSUGARU",
+            "description": "Fujitsu FM Towns Emulator Tsugaru",
+            "rules": [
+              {
+                "type": "staticpath",
+                "entries": [
+                  "%COMPONENT_PATH%/component_launcher.sh"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "es_systems": [
+        {
+          "name": "fmtowns",
+          "fullname": "Fujitsu FM Towns emulator Tsugaru",
+          "path": "%ROMPATH%/fmtowns",
+          "extension": ".cdr .chd .cue .gdi .iso",
+          "commands": [
+            {
+              "label": "Tsugaru (Standalone)",
+              "command": "%EMULATOR_TSUGARU% -CD %ROM% %INJECT%=%BASENAME%.cfg"
+            }
+          ],
+          "platform": "fmtowns",
+          "theme": "fmtowns"
+        }
+      ]
+    },
+    "bios": [
+      {
+        "filename": "FMT_DIC.ROM",
+        "md5": "34847786d7de94b5d1133c956ab1d75d",
+        "system": "fmtowns",
+        "description": "Japanese input dictionary ROM",
+        "required": "Required"
+      },
+      {
+        "filename": "FMT_DOS.ROM",
+        "md5": "0585b19930d4a7f4c71bcc8a33746588",
+        "system": "fmtowns",
+        "description": "DOS firmware ROM",
+        "required": "Required"
+      },
+      {
+        "filename": "FMT_F20.ROM",
+        "md5": "ac0c7021e9bf48ca84b51ab651169a88",
+        "system": "fmtowns",
+        "description": "Later-model firmware ROM",
+        "required": "Required"
+      },
+      {
+        "filename": "FMT_FNT.ROM",
+        "md5": "b91300e55b70227ce98b59c5f02fa8dd",
+        "system": "fmtowns",
+        "description": "Japanese font ROM",
+        "required": "Required"
+      },
+      {
+        "filename": "FMT_SYS.ROM",
+        "md5": "86fb6f7280689259f0ca839dd3dd6cde",
+        "system": "fmtowns",
+        "description": "System BIOS ROM",
+        "required": "Required"
+      },
+      {
+        "filename": "FMTHR_SYS.ROM",
+        "md5": "ecc8c37735e591a878d750d5976d7f52",
+        "system": "fmtowns",
+        "description": "FM Towns HR system BIOS ROM",
+        "required": "Optional"
+      },
+      {
+        "filename": "FMTOWNSIIMXBIOS.M79",
+        "md5": "2f7d2e474054889bd1e7524f06dd0467",
+        "system": "fmtowns",
+        "description": "FM Towns II MX combined BIOS ROM",
+        "required": "Optional"
+      },
+      {
+        "filename": "FMT_DOS_A.ROM",
+        "md5": "03c8fac9a5f5f5f35fb5de5a5d0d018f",
+        "system": "fmtowns",
+        "description": "DOS firmware ROM (revision A)",
+        "required": "Optional"
+      },
+      {
+        "filename": "FMT_SYS_A.ROM",
+        "md5": "90b5e01d42aaa93e8f4503a5e94e120b",
+        "system": "fmtowns",
+        "description": "System BIOS ROM (revision A)",
+        "required": "Optional"
+      },
+      {
+        "filename": "FMT_DIC_A.ROM",
+        "md5": "378ea2821632ff005b51cbef68eba064",
+        "system": "fmtowns",
+        "description": "Japanese input dictionary ROM (revision A)",
+        "required": "Optional"
+      },
+      {
+        "filename": "FMT_F20_A.ROM",
+        "md5": "378ea2821632ff005b51cbef68eba064",
+        "system": "fmtowns",
+        "description": "Later-model firmware ROM (revision A)",
+        "required": "Optional"
+      },
+      {
+        "filename": "FMT_FNT_A.ROM",
+        "md5": "750f59b076ba49d6919eb554b92b1cb6",
+        "system": "fmtowns",
+        "description": "Japanese font ROM (revision A)",
+        "required": "Optional"
+      },
+      {
+        "filename": "MYTOWNSFTV.ROM",
+        "md5": "8a1fcc2c90b207d194a0f02b3093722e",
+        "system": "fmtowns",
+        "description": "FM Towns Fresh-TV model identifier",
+        "required": "Optional"
+      },
+      {
+        "filename": "MYTOWNSHR.ROM",
+        "md5": "72a96dabf0f9e5fe0bb47b08fa456815",
+        "system": "fmtowns",
+        "description": "FM Towns HR model identifier",
+        "required": "Optional"
+      },
+      {
+        "filename": "MYTOWNSMX.ROM",
+        "md5": "b49dbab8ab2bfa387bf81ad519ea0cdf",
+        "system": "fmtowns",
+        "description": "FM Towns MX model identifier",
+        "required": "Optional"
+      },
+      {
+        "filename": "MYTOWNSSJ.ROM",
+        "md5": "fdcfdd08844e260286acff6004e9154f",
+        "system": "fmtowns",
+        "description": "FM Towns SJ model identifier",
+        "required": "Optional"
+      },
+      {
+        "filename": "MYTOWNSUX.ROM",
+        "md5": "1a15f6c1b58ec7e5f850118610a787a7",
+        "system": "fmtowns",
+        "description": "FM Towns UX model identifier",
+        "required": "Optional"
+      }
+    ]
+  }
+}

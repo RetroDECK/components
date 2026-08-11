@@ -1728,7 +1728,7 @@
             },
             {
               "label": "Genesis Plus GX [Expanded Rom Size] (Paprium)",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/genesis-plus-gx-expanded-rom-size-paprium_libretro.so %ROM%",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/genesis_plus_gx_paprium_libretro.so %ROM%",
               "priority": 50
             }
           ],
@@ -1763,7 +1763,7 @@
             },
             {
               "label": "Genesis Plus GX [Expanded Rom Size] (Paprium)",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/genesis-plus-gx-expanded-rom-size-paprium_libretro.so %ROM%",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/genesis_plus_gx_paprium_libretro.so %ROM%",
               "priority": 50
             }
           ],
@@ -4846,19 +4846,26 @@
       },
       {
         "filename": "cdimono1.zip",
+        "md5": "c59f92647701428bc453976740eb75cf",
         "system": "cdimono1",
+        "paths": "$bios_path/same_cdi/bios",
+        "required": "Required",
         "description": "Philips CDi"
       },
       {
         "filename": "cdimono2.zip",
         "md5": "97aa5f47030cd9fdb679d4fafbb0e332",
         "system": "cdimono1",
+        "paths": "$bios_path/same_cdi/bios",
+        "required": "Required",
         "description": "Philips CDi"
       },
       {
         "filename": "cdibios.zip",
         "md5": "709acce6e9c4043b851ea7429b8e7eff",
         "system": "cdimono1",
+        "paths": "$bios_path/same_cdi/bios",
+        "required": "Required",
         "description": "Philips CDi"
       },
       {
@@ -6081,13 +6088,6 @@
         "system": "amiga",
         "description": "Kickstart 3.4 ROM for Amiga 500",
         "required": "Required"
-      },
-      {
-        "filename": "AmigaVision.rom",
-        "md5": "646773759326fbac3b2311fd8c8793ee",
-        "system": "amiga",
-        "description": "Kickstart 4.0 ROM for AmigaVision.",
-        "required": "Yes, for AmigaVision"
       },
       {
         "filename": "kick40063.A600",

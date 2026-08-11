@@ -75,6 +75,14 @@ _prepare_component::es-de() {
       dir_prep "$logs_path/ES-DE" "$XDG_CONFIG_HOME/ES-DE/logs"
     ;;
 
+    component_change)
+      log i "--------------------------------"
+      log i "Running ES-DE actions for outside component change"
+      log i "--------------------------------"
+      generate_es_find_rules_xml
+      generate_es_systems_xml
+    ;;
+
     startup)
       log i "--------------------------------"
       log i "Starting ES-DE"
