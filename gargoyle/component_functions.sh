@@ -18,7 +18,7 @@ _prepare_component::gargoyle() {
       create_dir "$XDG_CONFIG_HOME/gargoyle"
       create_dir "$XDG_DATA_HOME/gargoyle"
       dir_prep "$storage_path/gargoyle/themes" "$XDG_DATA_HOME/gargoyle/themes"
-      dir_prep "$saves_path/if/gargoyle/gamedata" "$XDG_DATA_HOME/gargoyle/gamedata"
+      dir_prep "$saves_path/if/gargoyle/" "$XDG_DATA_HOME/gargoyle/gamedata"
 
     ;;
 
@@ -28,7 +28,7 @@ _prepare_component::gargoyle() {
       log i "------------------------"
 
       dir_prep "$storage_path/gargoyle/themes" "$XDG_DATA_HOME/gargoyle/themes"
-      dir_prep "$saves_path/if/gargoyle/gamedata" "$XDG_DATA_HOME/gargoyle/gamedata"
+      dir_prep "$saves_path/if/gargoyle/" "$XDG_DATA_HOME/gargoyle/gamedata"
     ;;
 
   esac
