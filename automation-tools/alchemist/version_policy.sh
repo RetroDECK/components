@@ -137,6 +137,13 @@ export PPSSPP_VERSION_POLICY="latest"
 export RUFFLE_VERSION_POLICY="latest"
 
 # ------------------------------------------------------------------------------
+# ScummVM - Point-and-Click Adventure Engine
+# Source: Flatpak - Flathub
+# Link: https://flathub.org/en/apps/org.scummvm.ScummVM
+# ------------------------------------------------------------------------------
+export SCUMMVM_VERSION_POLICY="latest"
+
+# ------------------------------------------------------------------------------
 # Steam ROM Manager - Steam Artwork & ROM Importer
 # Source: Flatpak - Flathub
 # Link: https://flathub.org/en/apps/com.steamgriddb.steam-rom-manager
@@ -156,13 +163,6 @@ export SUPERMODEL_VERSION_POLICY="latest"
 # Link: https://flathub.org/en/apps/app.xemu.xemu
 # ------------------------------------------------------------------------------
 export XEMU_VERSION_POLICY="latest"
-
-# ------------------------------------------------------------------------------
-# ScummVM - Point-and-Click Adventure Engine
-# Source: Flatpak - Flathub
-# Link: https://flathub.org/en/apps/org.scummvm.ScummVM
-# ------------------------------------------------------------------------------
-export SCUMMVM_VERSION_POLICY="latest"
 
 
 # ==============================================================================
