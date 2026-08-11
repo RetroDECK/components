@@ -1,3 +1,0 @@
-It can't find the assets during launch, it launches a without art or shaders.
-
-

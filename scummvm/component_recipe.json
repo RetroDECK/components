@@ -30,7 +30,7 @@
         {
           "type": "dir",
           "source": "share/licenses/org.scummvm.ScummVM/",
-          "dest": "doc/licenses"
+          "dest": "docs"
         },
         {
           "type": "dir",
