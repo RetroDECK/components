@@ -41,7 +41,7 @@
           "commands": [
             {
               "label": "Xenia Edge (Standalone)",
-              "command": "%STARTDIR%=%EMUDIR% %EMULATOR_XENIA% %INJECT%=%BASENAME%.commands %ROM%"
+              "command": "%STARTDIR%=%EMUDIR% %EMULATOR_XENIA-EDGE% %INJECT%=%BASENAME%.commands %ROM%"
             }
           ],
           "platform": "xbox360",
