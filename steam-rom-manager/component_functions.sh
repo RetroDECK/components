@@ -606,7 +606,7 @@ steam_sync_remove() {
 install_retrodeck_controller_profile() {
   # This function will install the needed files for the custom RetroDECK controller profile
   # USAGE: install_retrodeck_controller_profile
-  local mode="{$1:-}"
+  local mode="${1:-}"
   local current_steam_sync_setting="$(get_component_option "steam-rom-manager" "steam_sync")"
 
   if [[ ("$current_steam_sync_setting" == "native" || "$mode" == "manual") && -d "$srm_steam_userdata_native/controller_base/templates/" ]]; then
