@@ -23,6 +23,7 @@ _prepare_component::flycast() {
     cp -fvr "$component_config/"* "$XDG_CONFIG_HOME/flycast/"
 
     create_dir -d "$storage_path/Flycast/boxart"
+    create_dir -d "$storage_path/Flycast/TextureDump"
 
     create_dir -d "$cheats_path/Flycast/cheats"
 
@@ -32,12 +33,13 @@ _prepare_component::flycast() {
     create_dir -d "$states_path/dreamcast/Flycast/"
 
     create_dir -d "$texture_path/Flycast/Textures"
-    create_dir -d "$texture_path/Flycast/TextureDump"
+
 
     sed -i "s|^Dreamcast.BiosPath = .*|Dreamcast.BiosPath = $bios_path|" $flycast_config
 
     sed -i "s|^Dreamcast.BoxartPath = .*|Dreamcast.BoxartPath = $storage_path/Flycast/boxart|" $flycast_config  
-  
+    sed -i "s|^Dreamcast.TextureDumpPath = .*|Dreamcast.TextureDumpPath = $storage_path/Flycast/TextureDump|" $flycast_config
+
     sed -i "s|^Dreamcast.CheatPath = .*|Dreamcast.CheatPath = $cheats_path/Flycast/cheats|" $flycast_config
     
     sed -i "s|^Dreamcast.ContentPath = .*|Dreamcast.ContentPath = $roms_path/dreamcast|" $flycast_config
@@ -47,7 +49,6 @@ _prepare_component::flycast() {
 
     sed -i "s|^Dreamcast.SavestatePath = .*|Dreamcast.SavestatePath = $states_path/dreamcast/Flycast|" $flycast_config
 
-    sed -i "s|^Dreamcast.TextureDumpPath = .*|Dreamcast.TextureDumpPath = $texture_packs_path/Flycast/TextureDump|" $flycast_config
     sed -i "s|^Dreamcast.TexturePath = .*|Dreamcast.TexturePath = $texture_packs_path/Flycast/Textures|" $flycast_config
 
     ;;
@@ -60,7 +61,8 @@ _prepare_component::flycast() {
     sed -i "s|^Dreamcast.BiosPath = .*|Dreamcast.BiosPath = $bios_path|" $flycast_config
 
     sed -i "s|^Dreamcast.BoxartPath = .*|Dreamcast.BoxartPath = $storage_path/Flycast/boxart|" $flycast_config  
-  
+    sed -i "s|^Dreamcast.TextureDumpPath = .*|Dreamcast.TextureDumpPath = $storage_path/Flycast/TextureDump|" $flycast_config
+
     sed -i "s|^Dreamcast.CheatPath = .*|Dreamcast.CheatPath = $cheats_path/Flycast/cheats|" $flycast_config
     
     sed -i "s|^Dreamcast.ContentPath = .*|Dreamcast.ContentPath = $roms_path/dreamcast|" $flycast_config
@@ -70,7 +72,6 @@ _prepare_component::flycast() {
 
     sed -i "s|^Dreamcast.SavestatePath = .*|Dreamcast.SavestatePath = $states_path/dreamcast/Flycast|" $flycast_config
 
-    sed -i "s|^Dreamcast.TextureDumpPath = .*|Dreamcast.TextureDumpPath = $texture_packs_path/Flycast/TextureDump|" $flycast_config
     sed -i "s|^Dreamcast.TexturePath = .*|Dreamcast.TexturePath = $texture_packs_path/Flycast/Textures|" $flycast_config
 
 
