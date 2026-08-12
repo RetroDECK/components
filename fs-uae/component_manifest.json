@@ -215,8 +215,8 @@
       "es_find_rules": {
         "emulators": [
           {
-            "name": "SDL2TRS",
-            "description": "Tandy TRS-80 emulator SDL2TRS",
+            "name": "FS-UAE",
+            "description": "Commodore Amiga emulator FS-UAE  ",
             "rules": [
               {
                 "type": "staticpath",
