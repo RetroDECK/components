@@ -101,6 +101,28 @@ _prepare_component::fs-uae() {
   esac
 }
 
+_set_setting_value::fs-uae() {
+  local file="$1"
+  local name=$(sed_escape_pattern "$2")
+  local value=$(sed_escape_replacement "$3")
+  local sed_cmd
+  sed_cmd="s^\^${name} = '.*'^${name} = '${value}'^; t end;"
+  sed_cmd+="s^\^${name} =.*^${name} = ${value}^; :end"
+  sed -i "$sed_cmd" "$file"
+}
+
+_get_setting_value::fs-uae() {
+  local file="$1" name="$2"
+
+  KEY="$name" awk -F'=' \
+    'BEGIN { key=ENVIRON["KEY"] }
+      index($0, key " =") == 1 {
+        val = substr($0, index($0,"=")+2)
+        gsub(/^'"'"'|'"'"'$/, "", val)
+        print val; exit
+      }' "$file"
+}
+
 fs-uae_amigavision_toggle() {
   local file="$roms_path/amiga/AmigaVision.fdi"
 
