@@ -14,6 +14,9 @@
     "component_type": "Engine",
     "system_friendly_name": "Open Surge Engine",
     "system": "opensurge",
+    "component_options": {
+      "surge_the_rabbit_visible": "false"
+    },
     "es_de_config": {
       "es_find_rules": {
         "emulators": [
@@ -29,29 +32,49 @@
               }
             ]
           }
-        ],
-        "es_systems": [
-          {
-            "name": "opensurge",
-            "fullname": "Open Surge",
-            "path": "%ROMPATH%/opensurge",
-            "extension": ".surge .lev .qst",
-            "commands": [
-              {
-                "label": "Open Surge (Game) (Standalone)",
-                "command": "%EMULATOR_OPENSURGE% --fullscreen --quality high --game-folder %ROM%",
-                "priority": 10
-              },
-              {
-                "label": "Open Surge - Surge the Rabbit (Standalone)",
-                "command": "%EMULATOR_OPENSURGE% --fullscreen --quality high --game-folder /app/retrodeck/components/opensurge/opensurge",
-                "priority": 20
-              }
-            ],
-            "platform": "opensurge",
-            "theme": "opensurge"
-          }
         ]
+      },
+      "es_systems": [
+        {
+          "name": "opensurge",
+          "fullname": "Open Surge",
+          "path": "%ROMPATH%/opensurge",
+          "extension": ".surge .lev .qst",
+          "commands": [
+            {
+              "label": "Open Surge (Game) (Standalone)",
+              "command": "%EMULATOR_OPENSURGE% --fullscreen --quality high --game-folder %ROM%",
+              "priority": 10
+            },
+            {
+              "label": "Open Surge - Surge the Rabbit (Standalone)",
+              "command": "%EMULATOR_OPENSURGE% --fullscreen --quality high --game-folder /app/retrodeck/components/opensurge/opensurge",
+              "priority": 20
+            }
+          ],
+          "platform": "opensurge",
+          "theme": "opensurge"
+        }
+      ]
+    },
+    "es_de_gamelist_entries": {
+      "image_root": "%COMPONENT_PATH%/rd_extras/es_de_media",
+      "entries": {
+        "opensurge_surge_the_rabbit": {
+          "system": "opensurge",
+          "create_file": "$roms_path/opensurge/Surge the Rabbit.surge",
+          "gamelist_data": {
+            "path": "Surge the Rabbit.surge",
+            "name": "Surge the Rabbit Game",
+            "desc": "PLACEHOLDER",
+            "releasedate": "PLACEHOLDER",
+            "developer": "PLACEHOLDER",
+            "publisher": "PLACEHOLDER",
+            "genre": "PLACEHOLDER",
+            "players": "1",
+            "altemulator": "Open Surge - Surge the Rabbit (Standalone)"
+          }
+        }
       }
     },
     "configurator_menus": {
