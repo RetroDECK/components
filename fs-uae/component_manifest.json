@@ -238,17 +238,17 @@
             {
               "label": "FS-UAE (Standalone)",
               "command": "%EMULATOR_FS-UAE% /var/config/fs-uae/RetroDECK-amiga1200.fs-uae %ROM%",
-              "priority": 10
+              "priority": 30
             },
             {
               "label": "FS-UAE AmigaVision (Standalone)",
               "command": "%EMULATOR_FS-UAE% /var/config/fs-uae/AmigaVision.fs-uae",
-              "priority": 20
+              "priority": 40
             },
             {
               "label": "FS-UAE Custom (Standalone)",
               "command": "%EMULATOR_FS-UAE% /var/config/fs-uae/custom-amiga.fs-uae %ROM%",
-              "priority": 30
+              "priority": 50
             }
           ],
           "platform": "amiga",
@@ -263,12 +263,12 @@
             {
               "label": "FS-UAE (Standalone) Amiga 1200",
               "command": "%EMULATOR_FS-UAE% /var/config/fs-uae/RetroDECK-amiga1200.fs-uae %ROM%",
-              "priority": 10
+              "priority": 30
             },
             {
               "label": "FS-UAE (Standalone) Custom Amiga 1200",
               "command": "%EMULATOR_FS-UAE% /var/config/fs-uae/Custom/custom-amiga1200.fs-uae %ROM%",
-              "priority": 20
+              "priority": 40
             }
           ],
           "platform": "amiga1200",
@@ -283,12 +283,12 @@
             {
               "label": "FS-UAE (Standalone) Amiga 600",
               "command": "%EMULATOR_FS-UAE% /var/config/fs-uae/RetroDECK-amiga600.fs-uae %ROM%",
-              "priority": 10
+              "priority": 30
             },
             {
               "label": "FS-UAE (Standalone) Custom Amiga 600",
               "command": "%EMULATOR_FS-UAE% /var/config/fs-uae/Custom/custom-amiga600.fs-uae %ROM%",
-              "priority": 20
+              "priority": 40
             }
           ],
           "platform": "amiga600",
@@ -303,7 +303,7 @@
             {
               "label": "FS-UAE (Standalone) CD32",
               "command": "%EMULATOR_FS-UAE% /var/config/fs-uae/RetroDECK-amigacd32.fs-uae --config:amiga-model=CD32 %ROM%",
-              "priority": 10
+              "priority": 30
             }
           ],
           "platform": "amigacd32",
@@ -318,7 +318,7 @@
             {
               "label": "FS-UAE (Standalone) CDTV",
               "command": "%EMULATOR_FS-UAE% /var/config/fs-uae/RetroDECK-cdtv.fs-uae --config:amiga-model=CDTV %ROM%",
-              "priority": 10
+              "priority": 30
             }
           ],
           "platform": "cdtv",
