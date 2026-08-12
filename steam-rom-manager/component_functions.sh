@@ -358,7 +358,7 @@ get_steam_user() {
         flag && /"PersonaName"/ {gsub(/"/, "", $2); print $2; exit}' "$srm_steam_userdata_current/config/loginusers.vdf")
 
       # Log success
-      log i "Steam user found:"
+      log i "Steam user found!"
       log i "SteamID: $steam_id"
       log i "Username: $steam_username"
       log i "Name: $steam_prettyname"
