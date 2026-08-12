@@ -673,7 +673,6 @@ finit_install_controller_profile_dialog() {
 
 finit_install_controller_profile_and_add_retrodeck_to_steam() {
   if get_steam_user "manual"; then
-    log i "Updating steamDirectory and romDirectory lines in $srm_usersettings_file"
     local usersettings_temp=$(mktemp)
     jq --arg userdata_path "$srm_steam_userdata_current" --arg rd_home_path "$rd_home_path" '
       .environmentVariables.steamDirectory = $userdata_path |
