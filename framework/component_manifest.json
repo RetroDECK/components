@@ -337,7 +337,7 @@
         {
           "name": "Settings",
           "description": "Adjust core RetroDECK: Presets, Visuals, Tweaks and Logins.",
-          "priority": 6,
+          "priority": 7,
           "command": {
             "zenity": "configurator_global_presets_and_settings_dialog"
           }
@@ -345,7 +345,7 @@
         {
           "name": "Tools",
           "description": "Run various tools: BIOS Checker, File Compressor, Install optional features and more.",
-          "priority": 7,
+          "priority": 8,
           "command": {
             "zenity": "configurator_tools_dialog"
           }
