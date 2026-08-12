@@ -2524,32 +2524,32 @@
             {
               "label": "TyrQuake",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/tyrquake_libretro.so %ROM%",
-              "priority": 10
+              "priority": 20
             },
             {
               "label": "vitaQuake 2",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/vitaquake2_libretro.so %ROM%",
-              "priority": 20
+              "priority": 30
             },
             {
               "label": "vitaQuake 2 [Rogue]",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/vitaquake2-rogue_libretro.so %ROM%",
-              "priority": 30
+              "priority": 40
             },
             {
               "label": "vitaQuake 2 [Xatrix]",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/vitaquake2-xatrix_libretro.so %ROM%",
-              "priority": 40
+              "priority": 50
             },
             {
               "label": "vitaQuake 2 [Zaero]",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/vitaquake2-zaero_libretro.so %ROM%",
-              "priority": 50
+              "priority": 60
             },
             {
               "label": "vitaQuake 3",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/vitaquake3_libretro.so %ROM%",
-              "priority": 60
+              "priority": 70
             }
           ],
           "platform": "pc, pcwindows",

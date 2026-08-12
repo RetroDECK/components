@@ -42,7 +42,8 @@
           "commands": [
             {
               "label": "Oricutron (Standalone)",
-              "command": "%STARTDIR%=%EMUDIR% %EMULATOR_ORICUTRON% %ROM%"
+              "command": "%STARTDIR%=%EMUDIR% %EMULATOR_ORICUTRON% %ROM%",
+              "priority": 10
             }
           ],
           "platform": "oric",
