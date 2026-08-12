@@ -249,118 +249,118 @@
           "theme": "naomigd"
         }
       ],
-      "compatible_presets": {
-        "savestate_on_exit": [
-          "false",
-          "true"
-        ],
-        "cheevos": [
-          "false",
-          "true"
-        ],
-        "cheevos_hardcore": [
-          "false",
-          "true"
-        ],
-        "widescreen": [
-          "false",
-          "true"
-        ],
-        "quick_resume": [
-          "false",
-          "true"
-        ]
-      },
-      "preset_actions": {
-        "config_file_format": "flycast",
-        "cheevos": [
-          {
-            "enabled_states": [
-              "true"
-            ],
-            "setting_name": "Enabled",
-            "action": "change",
-            "new_setting_value": "yes",
-            "section": "achievements",
-            "target_file": "$flycast_config",
-            "defaults_file": "$flycast_rd_config_dir/emu.cfg"
-          },
-          {
-            "enabled_states": [
-              "true"
-            ],
-            "setting_name": "UserName",
-            "action": "change",
-            "new_setting_value": "$cheevos_username",
-            "section": "achievements",
-            "target_file": "$flycast_config",
-            "defaults_file": "$flycast_rd_config_dir/emu.cfg"
-          },
-          {
-            "enabled_states": [
-              "true"
-            ],
-            "setting_name": "Token",
-            "action": "change",
-            "new_setting_value": "$cheevos_token",
-            "section": "achievements",
-            "target_file": "$flycast_config",
-            "defaults_file": "$flycast_rd_config_dir/emu.cfg"
-          }
-        ],
-        "cheevos_hardcore": [
-          {
-            "enabled_states": [
-              "true"
-            ],
-            "setting_name": "HardcoreMode",
-            "action": "change",
-            "new_setting_value": "yes",
-            "section": "achievements",
-            "target_file": "$flycast_config",
-            "defaults_file": "$flycast_rd_config_dir/emu.cfg"
-          }
-        ],
-        "savestate_on_exit": [
-          {
-            "enabled_states": [
-              "true"
-            ],
-            "setting_name": "Dreamcast.AutoSaveState",
-            "action": "change",
-            "new_setting_value": "yes",
-            "section": "config",
-            "target_file": "$flycast_config",
-            "defaults_file": "$flycast_rd_config_dir/emu.cfg"
-          }
-        ],
-        "quick_resume": [
-          {
-            "enabled_states": [
-              "true"
-            ],
-            "setting_name": "Dreamcast.AutoLoadState",
-            "action": "change",
-            "new_setting_value": "yes",
-            "section": "config",
-            "target_file": "$flycast_config",
-            "defaults_file": "$flycast_rd_config_dir/emu.cfg"
-          }
-        ],
-        "widescreen": [
-          {
-            "enabled_states": [
-              "true"
-            ],
-            "setting_name": "rend.WideScreen",
-            "action": "change",
-            "new_setting_value": "yes",
-            "section": "config",
-            "target_file": "$flycast_config",
-            "defaults_file": "$flycast_rd_config_dir/emu.cfg"
-          }
-        ]
-      }
+    },
+    "compatible_presets": {
+      "savestate_on_exit": [
+        "false",
+        "true"
+      ],
+      "cheevos": [
+        "false",
+        "true"
+      ],
+      "cheevos_hardcore": [
+        "false",
+        "true"
+      ],
+      "widescreen": [
+        "false",
+        "true"
+      ],
+      "quick_resume": [
+        "false",
+        "true"
+      ]
+    },
+    "preset_actions": {
+      "config_file_format": "flycast",
+      "cheevos": [
+        {
+          "enabled_states": [
+            "true"
+          ],
+          "setting_name": "Enabled",
+          "action": "change",
+          "new_setting_value": "yes",
+          "section": "achievements",
+          "target_file": "$flycast_config",
+          "defaults_file": "$flycast_rd_config_dir/emu.cfg"
+        },
+        {
+          "enabled_states": [
+            "true"
+          ],
+          "setting_name": "UserName",
+          "action": "change",
+          "new_setting_value": "$cheevos_username",
+          "section": "achievements",
+          "target_file": "$flycast_config",
+          "defaults_file": "$flycast_rd_config_dir/emu.cfg"
+        },
+        {
+          "enabled_states": [
+            "true"
+          ],
+          "setting_name": "Token",
+          "action": "change",
+          "new_setting_value": "$cheevos_token",
+          "section": "achievements",
+          "target_file": "$flycast_config",
+          "defaults_file": "$flycast_rd_config_dir/emu.cfg"
+        }
+      ],
+      "cheevos_hardcore": [
+        {
+          "enabled_states": [
+            "true"
+          ],
+          "setting_name": "HardcoreMode",
+          "action": "change",
+          "new_setting_value": "yes",
+          "section": "achievements",
+          "target_file": "$flycast_config",
+          "defaults_file": "$flycast_rd_config_dir/emu.cfg"
+        }
+      ],
+      "savestate_on_exit": [
+        {
+          "enabled_states": [
+            "true"
+          ],
+          "setting_name": "Dreamcast.AutoSaveState",
+          "action": "change",
+          "new_setting_value": "yes",
+          "section": "config",
+          "target_file": "$flycast_config",
+          "defaults_file": "$flycast_rd_config_dir/emu.cfg"
+        }
+      ],
+      "quick_resume": [
+        {
+          "enabled_states": [
+            "true"
+          ],
+          "setting_name": "Dreamcast.AutoLoadState",
+          "action": "change",
+          "new_setting_value": "yes",
+          "section": "config",
+          "target_file": "$flycast_config",
+          "defaults_file": "$flycast_rd_config_dir/emu.cfg"
+        }
+      ],
+      "widescreen": [
+        {
+          "enabled_states": [
+            "true"
+          ],
+          "setting_name": "rend.WideScreen",
+          "action": "change",
+          "new_setting_value": "yes",
+          "section": "config",
+          "target_file": "$flycast_config",
+          "defaults_file": "$flycast_rd_config_dir/emu.cfg"
+        }
+      ]
     }
   }
 }
