@@ -248,7 +248,7 @@
           "platform": "naomigd",
           "theme": "naomigd"
         }
-      ],
+      ]
     },
     "compatible_presets": {
       "savestate_on_exit": [
