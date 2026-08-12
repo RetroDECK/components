@@ -41,7 +41,7 @@
           "commands": [
             {
               "label": "SimCoupé (Standalone)",
-              "command": "%STARTDIR%=%EMULATOR_SIMCOUPE% %ROM%"
+              "command": "%EMULATOR_SIMCOUPE% %ROM%"
             }
           ],
           "platform": "samcoupe",
