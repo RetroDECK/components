@@ -311,9 +311,17 @@
           }
         },
         {
+          "name": "ES-DE Entries",
+          "description": "Add games, programs and functions to ES-DE's menus.",
+          "priority": 3,
+          "command": {
+            "zenity": "configurator_es-de_entries_dialog"
+          }
+        },
+        {
           "name": "Open Component",
           "description": "Manually launch and configure individual components. Advanced Users Only.",
-          "priority": 3,
+          "priority": 4,
           "command": {
             "zenity": "configurator_open_component_dialog"
           }
@@ -321,7 +329,7 @@
         {
           "name": "Reset Components",
           "description": "Reset a specific component or restore all RetroDECK defaults.",
-          "priority": 4,
+          "priority": 5,
           "command": {
             "zenity": "configurator_reset_dialog"
           }
@@ -329,7 +337,7 @@
         {
           "name": "Settings",
           "description": "Adjust core RetroDECK: Presets, Visuals, Tweaks and Logins.",
-          "priority": 5,
+          "priority": 6,
           "command": {
             "zenity": "configurator_global_presets_and_settings_dialog"
           }
@@ -410,6 +418,7 @@
           }
         }
       ],
+      "es-de_entries": [],
       "data_management": [
         {
           "name": "Backup RetroDECK",
