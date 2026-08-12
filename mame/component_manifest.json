@@ -1,6 +1,6 @@
 {
   "mame": {
-    "description": "MAME is a arcade machine multi-emulator.",
+    "description": "Multi-System Arcade Emulator supporting a wide range of arcade machines.",
     "name": "MAME",
     "core_framework_compatibility": "1",
     "component_version": "1.0.0",

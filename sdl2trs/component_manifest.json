@@ -13,7 +13,7 @@
     "url_source": "https://gitlab.com/jengun/sdltrs/-/tree/sdl2/",
     "system": "trs-80",
     "component_type": "Emulator",
-    "description": "SDL2TRS is a Tandy TRS-80 Model I/III/4/4P (trs-80) Emulator",
+    "description": "Tandy TRS-80 Model I, III, 4 and 4P emulator for running TRS-80 software.",
     "system_friendly_name": "trs-80",
     "bios": [
       {

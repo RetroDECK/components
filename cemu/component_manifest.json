@@ -1,6 +1,6 @@
 {
   "cemu": {
-    "description": "Cemu is a Nintendo Wii U (wiiu) emulator.",
+    "description": "Nintendo Wii U emulator for playing Wii U games.",
     "name": "Cemu",
     "core_framework_compatibility": "1",
     "component_version": "1.0.0",

@@ -7,9 +7,9 @@
     "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/pico-8/pico-8-guide/",
     "url_webpage": "https://www.lexaloffle.com/pico-8.php",
     "url_donation_purchase": "",
-    "description": "PICO-8 is a fantasy console for playing tiny, retro-style games.",
+    "description": "8-bit Fantasy console engine for playing small retro-style Pico-8 games.",
     "system_friendly_name": "PICO-8 Fantasy Console",
-    "component_type": "Emulator",
+    "component_type": "Engine",
     "system": "pico8",
     "backup_data": {
       "core": [

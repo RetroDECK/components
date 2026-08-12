@@ -12,7 +12,7 @@
     "url_donation_purchase": "https://www.patreon.com/xenia_project",
     "url_source": "https://github.com/has207/xenia-edge/",
     "component_type": "Emulator",
-    "description": "Xenia Edge is a Microsoft Xbox 360 (xbox360) emulator.",
+    "description": "Microsoft Xbox 360 emulator for playing Xbox 360 games.",
     "system_friendly_name": "Xbox 360",
     "system": "xbox360",
     "es_de_config": {

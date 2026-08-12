@@ -11,7 +11,7 @@
     "url_webpage": "https://ccxvii.net/gargoyle/",
     "url_donation_purchase": "",
     "url_source": "https://github.com/garglk/garglk/",
-    "description": "Gargoyle is a IF player and emulator supporting: Infocom Z-machine, TADS, Hugo, Glulx and more.",
+    "description": "Interactive fiction player and emulator supporting Z-machine, TADS, Hugo, Glulx, and other formats.",
     "component_type": "Emulator",
     "system_friendly_name": "Gargoyle Interactive Fiction Player",
     "system": "zmachine",

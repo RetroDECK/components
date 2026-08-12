@@ -8,7 +8,7 @@
     "url_webpage": "https://www.6809.org.uk/xroar/",
     "url_donation_purchase": "",
     "url_source": "https://www.6809.org.uk/git/xroar.git/",
-    "description": "XRoar is a Dragon/Tandy 8-bit Computer emulator.",
+    "description": "Dragon and Tandy 8-bit computer emulator for running compatible software and games.",
     "component_type": "Emulator",
     "system_friendly_name": [
       "Dragon 32",

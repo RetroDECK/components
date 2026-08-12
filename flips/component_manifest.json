@@ -8,7 +8,7 @@
     "url_webpage": "https://github.com/Alcaro/Flips",
     "url_donation_purchase": "",
     "url_source": "https://github.com/Alcaro/Flips",
-    "description": "Floating IPS patcher (or Flips) is a utility for patching .ips and .bps files.",
+    "description": "Floating IPS patcher is a patching utility for applying `.ips` and `.bps` patches for ROM hacks and game mods.",
     "component_type": "Utility",
     "system_friendly_name": "Floating IPS patcher (Flips)",
     "backup_data": {

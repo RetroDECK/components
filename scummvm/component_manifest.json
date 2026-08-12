@@ -12,7 +12,7 @@
     "url_donation_purchase": "https://www.scummvm.org/",
     "url_source": "https://www.scummvm.org/",
     "component_type": "Engine",
-    "description": "ScummVM is an engine for playing classic graphical adventure and role-playing games.",
+    "description": "Adventure game engine for running classic graphical adventure and role-playing games.",
     "system_friendly_name": "ScummVM",
     "system": "scummvm",
     "compatible_presets": {

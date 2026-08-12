@@ -9,7 +9,7 @@
     "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/flycast/flycast-guide/.",
     "url_donation_purchase": "",
     "url_source": "https://github.com/flyinghead/flycast",
-    "description": "Flycast is a SEGA Dreamcast (dreamcast) emulator.",
+    "description": "SEGA Dreamcast emulator for playing Dreamcast games.",
     "system_friendly_name": "Dreamcast",
     "component_type": "Emulator",
     "system": "dreamcast",

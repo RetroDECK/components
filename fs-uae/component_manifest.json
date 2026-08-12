@@ -11,7 +11,7 @@
     "url_webpage": "https://fs-uae.net/",
     "url_donation_purchase": "https://fs-uae.net/donate/",
     "url_source": "https://github.com/FrodeSolheim/fs-uae",
-    "description": "FS-UAE is an Commodore Amiga Emulator",
+    "description": "Commodore Amiga emulator for running Amiga software and games.",
     "component_type": "Emulator",
     "system_friendly_name": [
       "Amiga",

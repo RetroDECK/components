@@ -10,7 +10,7 @@
     "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/zesarux/zesarux-guide/",
     "url_donation_purchase": "https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=E5RSRST8N7KWS&lc=ES&item_name=Donativo%20ZEsarUX&currency_code=EUR&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted",
     "url_source": "https://github.com/chernandezba/zesarux",
-    "description": "ZEsarUX is a Sinclair ZX Spectrum Next and ZX Machines Multi-Emulator",
+    "description": "Multi-system emulator supporting Sinclair ZX Spectrum, ZX Spectrum Next and related systems.",
     "system_friendly_name": "ZX Spectrum Next",
     "component_type": "Multi-Emulator",
     "system": "zxnext",

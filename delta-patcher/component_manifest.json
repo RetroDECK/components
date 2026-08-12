@@ -10,7 +10,7 @@
     "url_webpage": "https://github.com/marco-calautti/DeltaPatcher",
     "url_source": "https://github.com/marco-calautti/DeltaPatcher",
     "url_flathub": "https://flathub.org/en/apps/io.github.marco_calautti.DeltaPatcher",
-    "description": "Delta Patcher is a utility for patching .xdelta files.",
+    "description": "Patching utility for applying `.xdelta` patches for ROM hacks and game mods.",
     "component_type": "Utility",
     "system_friendly_name": "Delta Patcher"
   }

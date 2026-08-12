@@ -12,7 +12,7 @@
     "url_donation_purchase": "https://www.mudlet.org/contribute/",
     "url_source": "https://github.com/Mudlet/Mudlet",
     "component_type": "Client",
-    "description": "Mudlet is a client for playing and enhancing MUDs.",
+    "description": "MUD client for playing and enhancing text-based online multiplayer Multi User Dungeon games.",
     "system_friendly_name": "Muldet MUD Client",
     "system": "muds"
   },

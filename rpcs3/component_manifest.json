@@ -11,7 +11,7 @@
       "https://rpcs3.net/alipay"
     ],
     "url_source": "https://github.com/RPCS3/rpcs3",
-    "description": "RPCS3 is a Playstation 3 (ps3) emulator.",
+    "description": "PlayStation 3 emulator for playing PS3 games.",
     "system_friendly_name": "PlayStation 3",
     "component_type": "Emulator",
     "system": "ps3",

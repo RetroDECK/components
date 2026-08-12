@@ -11,7 +11,7 @@
     "url_webpage": "https://gametank.zone/",
     "url_donation_purchase": "https://www.crowdsupply.com/clydeware/gametank",
     "url_source": "https://github.com/clydeshaffer/GameTankEmulator",
-    "description": "GameTankEmulator is an GameTank 8-bit console Emulator",
+    "description": "GameTank 8-bit console emulator for running GameTank games.",
     "component_type": "Emulator",
     "system_friendly_name": "GameTank",
     "system": "gametank",

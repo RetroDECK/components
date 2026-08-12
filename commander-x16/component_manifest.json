@@ -11,7 +11,7 @@
     "url_webpage": "https://www.commanderx16.com/",
     "url_donation_purchase": "https://cx16forum.com/forum/viewtopic.php?t=6772",
     "url_source": "https://github.com/X16Community/x16-emulator",
-    "description": "X16 Emulator a Commander X16 (commander-x16) Emulator.",
+    "description": "Commander X16 emulator for running Commander X16 software and games.",
     "component_type": "Emulator",
     "system": "commander-x16",
     "system_friendly_name": "Commander X16",
