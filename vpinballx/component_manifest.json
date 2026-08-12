@@ -14,40 +14,40 @@
     "component_type": "Engine",
     "description": "Virtual pinball engine for playing simulated pinball tables.",
     "system_friendly_name": "Visual Pinball X",
-    "system": "vpinball"
-  },
-  "es_de_config": {
-    "es_find_rules": {
-      "emulators": [
+    "system": "vpinball",
+    "es_de_config": {
+      "es_find_rules": {
+        "emulators": [
+          {
+            "name": "VISUAL-PINBALL",
+            "description": "Pinball simulator Visual Pinball X",
+            "rules": [
+              {
+                "type": "staticpath",
+                "entries": [
+                  "%COMPONENT_PATH%/component_launcher.sh"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "es_systems": [
         {
-          "name": "VISUAL-PINBALL",
-          "description": "Pinball simulator Visual Pinball X",
-          "rules": [
+          "name": "vpinball",
+          "fullname": "Visual Pinball",
+          "path": "%ROMPATH%/vpinball",
+          "extension": ".vpt .vpx",
+          "commands": [
             {
-              "type": "staticpath",
-              "entries": [
-                "%COMPONENT_PATH%/component_launcher.sh"
-              ]
+              "label": "Visual Pinball X (Standalone)",
+              "command": "%EMULATOR_VISUAL-PINBALL% -play %ROM%"
             }
-          ]
+          ],
+          "platform": "vpinball",
+          "theme": "vpinball"
         }
       ]
-    },
-    "es_systems": [
-      {
-        "name": "vpinball",
-        "fullname": "Visual Pinball",
-        "path": "%ROMPATH%/vpinball",
-        "extension": ".vpt .vpx",
-        "commands": [
-          {
-            "label": "Visual Pinball X (Standalone)",
-            "command": "%EMULATOR_VISUAL-PINBALL% -play %ROM%"
-          }
-        ],
-        "platform": "vpinball",
-        "theme": "vpinball"
-      }
-    ]
+    }
   }
 }
