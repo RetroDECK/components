@@ -14,40 +14,40 @@
     "component_type": "Client",
     "description": "MUD client for playing and enhancing text-based online multiplayer Multi User Dungeon games.",
     "system_friendly_name": "Muldet MUD Client",
-    "system": "muds"
-  },
-  "es_de_config": {
-    "es_find_rules": {
-      "emulators": [
+    "system": "muds",
+    "es_de_config": {
+      "es_find_rules": {
+        "emulators": [
+          {
+            "name": "MUDLET",
+            "description": "Muldet MUD Client",
+            "rules": [
+              {
+                "type": "staticpath",
+                "entries": [
+                  "%COMPONENT_PATH%/component_launcher.sh"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "es_systems": [
         {
-          "name": "MUDLET",
-          "description": "Muldet MUD Client",
-          "rules": [
+          "name": "muds",
+          "fullname": "Multi-User Dungeons",
+          "path": "%ROMPATH%/muds",
+          "extension": ".mud",
+          "commands": [
             {
-              "type": "staticpath",
-              "entries": [
-                "%COMPONENT_PATH%/component_launcher.sh"
-              ]
+              "label": "Mudlet (Standalone)",
+              "command": "%EMULATOR_MUDLET% --fullscreen --steammode --profile=%BASENAME%"
             }
-          ]
+          ],
+          "platform": "muds",
+          "theme": "muds"
         }
       ]
-    },
-    "es_systems": [
-      {
-        "name": "muds",
-        "fullname": "Multi-User Dungeons",
-        "path": "%ROMPATH%/muds",
-        "extension": ".mud",
-        "commands": [
-          {
-            "label": "Mudlet (Standalone)",
-            "command": "%EMULATOR_MUDLET% --fullscreen --steammode --profile=%BASENAME%"
-          }
-        ],
-        "platform": "muds",
-        "theme": "muds"
-      }
-    ]
+    }
   }
 }
