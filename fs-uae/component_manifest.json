@@ -216,7 +216,7 @@
         "emulators": [
           {
             "name": "FS-UAE",
-            "description": "Commodore Amiga emulator FS-UAE  ",
+            "description": "Commodore Amiga emulator FS-UAE",
             "rules": [
               {
                 "type": "staticpath",
