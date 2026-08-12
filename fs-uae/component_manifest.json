@@ -327,10 +327,10 @@
       ]
     },
     "configurator_menus": {
-      "settings": [
+      "es_de_entries": [
         {
           "name": "FS-UAE: AmigaVision",
-          "description": "Enable or disable the AmigaVision Amiga entry in ES-DE.",
+          "description": "Enable or disable: The AmigaVision entry in ES-DE.",
           "command": {
             "zenity": "fs-uae_amigavision_toggle"
           }
