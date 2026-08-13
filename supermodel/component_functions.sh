@@ -23,6 +23,7 @@ _prepare_component::supermodel() {
       dir_prep "$logs_path/supermodel/Analysis" "$roms_path/model3/Analysis"
       dir_prep "$logs_path/supermodel/Logs" "$roms_path/model3/Logs"
       dir_prep "$saves_path/model3/supermodel/Saves" "$roms_path/model3/Saves"
+      dir_prep "$roms_path/model3/Config" "$XDG_CONFIG_HOME/supermodel/Config" 
 
     ;;
 
@@ -34,6 +35,7 @@ _prepare_component::supermodel() {
       dir_prep "$logs_path/supermodel/Analysis" "$roms_path/model3/Analysis"
       dir_prep "$logs_path/supermodel/Logs" "$roms_path/model3/Logs"
       dir_prep "$saves_path/model3/supermodel/Saves" "$roms_path/model3/Saves"
+      dir_prep "$roms_path/model3/Config" "$XDG_CONFIG_HOME/supermodel/Config" 
 
     ;;
 
