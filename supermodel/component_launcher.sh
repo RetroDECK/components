@@ -17,4 +17,4 @@ log i "RetroDECK is now launching $component_name"
 log d "Library path is: $LD_LIBRARY_PATH"
 
 # Launch
-exec "$component_path/bin/supermodel" -fullscreen "$@"
+exec "$component_path/bin/supermodel" "$@"

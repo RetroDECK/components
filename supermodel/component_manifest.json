@@ -40,7 +40,7 @@
           "commands": [
             {
               "label": "Supermodel (Standalone)",
-              "command": "%STARTDIR%=%GAMEDIR% %EMULATOR_SUPERMODEL% -game-xml-file=%GAMEDIR%/Config/Games.xml -log-output=%GAMEDIR%/Config/Supermodel.log -force-feedback %INJECT%=%BASENAME%.commands %ROM%"
+              "command": "%STARTDIR%=%GAMEDIR% %EMULATOR_SUPERMODEL% -fullscreen -game-xml-file=%GAMEDIR%/Config/Games.xml -log-output=%GAMEDIR%/Config/Supermodel.log -force-feedback %INJECT%=%BASENAME%.commands %ROM%"
             }
           ],
           "platform": "arcade",
