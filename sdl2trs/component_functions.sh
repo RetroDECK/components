@@ -19,7 +19,7 @@ _prepare_component::sdl2trs() {
       cp -f "$component_config/sdltrs.t8c" "$XDG_CONFIG_HOME/sdl2trs/.sdltrs.t8c"
       
       create_dir -d "$states_path/trs-80"
-      create_dir -d "$storage_path/SDL2TRS"
+      create_dir -d "$storage_path/SDL2TRS/printer"
 
       sed -i "s|^statedir=.*|statedir=$states_path/trs-80|" $sdl2trs_config
 
@@ -32,7 +32,7 @@ _prepare_component::sdl2trs() {
       sed -i "s|^disksetdir=.*|disksetdir=$roms_path/trs-80|" $sdl2trs_config
       sed -i "s|^harddir=.*|harddir=$roms_path/trs-80|" $sdl2trs_config
 
-      sed -i "s|^printerdir=.*|printerdir=$storage_path/SDL2TRS|" $sdl2trs_config
+      sed -i "s|^printerdir=.*|printerdir=$storage_path/SDL2TRS/printer|" $sdl2trs_config
 
     ;;
 

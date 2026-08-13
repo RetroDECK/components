@@ -8,9 +8,14 @@
       "extraction_type": "flatpak",
       "assets": [
         {
-          "type": "dir",
-          "source": "bin",
+          "type": "file",
+          "source": "bin/supermodel",
           "dest": "bin"
+        },
+        {
+          "type": "file",
+          "source": "bin/Docs/LICENSE.txt",
+          "dest": "docs"
         },
         {
           "type": "create",
@@ -47,7 +52,7 @@
         {
           "library": "libGLU.so.1",
           "source": "lib",
-          "dest": "shared-libs"
+          "dest": "lib"
         }
       ]
     }
