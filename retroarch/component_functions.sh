@@ -155,6 +155,9 @@ _prepare_component::retroarch() {
       create_dir "$bios_path/quasi88"
       create_dir "$bios_path/same_cdi/bios"
 
+      # LRPS2 Hardcoded BIOS Path
+      dir_prep "$bios_path" "$bios_path/pcsx2"
+
       # BIOS MAME Directories
       create_dir "$bios_path/mame2003/samples"
       create_dir "$bios_path/mame2003/artwork"
@@ -256,6 +259,9 @@ _prepare_component::retroarch() {
 
       # BIOS
       set_setting_value "$retroarch_config" "system_directory" "$bios_path" "retroarch"
+
+      # LRPS2 Hardcoded BIOS Path
+      dir_prep "$bios_path" "$bios_path/pcsx2"
 
       # Logs
       dir_prep "$logs_path/retroarch" "$XDG_CONFIG_HOME/retroarch/logs"
