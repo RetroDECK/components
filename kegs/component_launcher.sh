@@ -14,4 +14,4 @@ log i "RetroDECK is now launching $component_name"
 log d "Library path is: $LD_LIBRARY_PATH"
 log d "AppDir is: $component_path"
 
-exec "$component_path/xkegs" -audio 1 -arate 44100 -skip 0 -fullscreen 1 -dhr140 -cfg /var/config/kegs/config.kegs -rom /var/config/kegs/bios/ROM.ROM "$@"
+exec "$component_path/xkegs" -audio 1 -arate 44100 -skip 0 -dhr140 -cfg /var/config/kegs/config.kegs "$@"
