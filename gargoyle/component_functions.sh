@@ -16,7 +16,11 @@ _prepare_component::gargoyle() {
       log i "----------------------"
 
       create_dir "$XDG_CONFIG_HOME/gargoyle"
+      cp -fr "$component_config/"* "$XDG_CONFIG_HOME/gargoyle/"
+
       create_dir "$XDG_DATA_HOME/gargoyle"
+
+
       dir_prep "$storage_path/gargoyle/themes" "$XDG_DATA_HOME/gargoyle/themes"
       dir_prep "$saves_path/if/gargoyle/" "$XDG_DATA_HOME/gargoyle/gamedata"
 
