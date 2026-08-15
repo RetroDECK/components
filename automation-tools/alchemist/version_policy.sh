@@ -95,11 +95,11 @@ export FLYCAST_VERSION_POLICY="latest"
 export GARGOYLE_VERSION_POLICY="latest"
 
 # ------------------------------------------------------------------------------
-# GZDoom - Modern Doom Engine
+# UZDoom - Modern Doom Engine
 # Source: Flatpak - Flathub
-# Link: https://flathub.org/en/apps/org.zdoom.GZDoom
+# Link: https://flathub.org/en/apps/org.zdoom.UZDoom
 # ------------------------------------------------------------------------------
-export GZDOOM_VERSION_POLICY="latest"
+export UZDOOM_VERSION_POLICY="latest"
 
 # ------------------------------------------------------------------------------
 # MAME - Multiple Arcade Machine Emulator
@@ -441,11 +441,6 @@ export RAZE_VERSION_POLICY="latest"
 # ShadPS4 - PlayStation 4 Emulator
 # ------------------------------------------------------------------------------
 export SHADPS4_VERSION_POLICY="latest"
-
-# ------------------------------------------------------------------------------
-# UZDoom - Modern Doom Engine
-# ------------------------------------------------------------------------------
-export UZDOOM_VERSION_POLICY="latest"
 
 
 
