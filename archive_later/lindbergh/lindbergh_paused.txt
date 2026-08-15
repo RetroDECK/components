@@ -1,0 +1,7 @@
+## Known Issues: Lindbergh Loader
+
+Lindbergh Loader fails to function within Flatpak environments on multiple fronts. 
+
+Their official Flatpak bundle on their GitHub appears to be broken and does not launch successfully. 
+
+Additionally, running the AppImage version from within a Flatpak environment triggers critical errors that prevent normal operation. 

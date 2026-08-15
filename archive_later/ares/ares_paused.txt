@@ -1,0 +1,5 @@
+## ares Emulator Status
+
+At this time, the ares emulator provides limited additional value relative to existing supported options inside of RetroDECK. 
+
+Should user demand increase significantly in the future, we can revisit adding ares support at that time.
