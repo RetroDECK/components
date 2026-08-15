@@ -1,9 +1,0 @@
-## Known Issues: Linux Release
-
-Several critical features are missing from the Linux release compared to the Windows version. 
-
-The N-Gage emulation module is completely non-functional, as users cannot browse or select game files within this section. 
-
-Additionally, the application fails these both when running standalone directly from source AppImage and when integrated through RetroDECK. 
-
-There is no point at implementing it at this time.
