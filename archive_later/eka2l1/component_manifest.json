@@ -1,0 +1,315 @@
+{
+  "eka2l1": {
+    "name": "EKA2L1",
+    "core_framework_compatibility": "1",
+    "component_version": "1.0.0",
+    "capabilities": [
+      "reset",
+      "open"
+    ],
+    "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/EKA2L1/EKA2L1-guide/",
+    "url_donation_purchase": [
+      "https://www.paypal.me/ccjkz11",
+      "https://yoomoney.ru/to/41001670387745"
+    ],
+    "url_source": "https://github.com/EKA2L1/EKA2L1",
+    "description": "EKA2L1 is a Symbian and Nokia N-Gage emulator.",
+    "component_type": "Emulator",
+    "system_friendly_name": [
+      "Nokia N-Gage",
+      "Symbian"
+    ],
+    "system": [
+      "ngage",
+      "symbian"
+    ],
+    "bios": [
+      {
+        "filename": "BOOT-101F8C19.dmp",
+        "md5": "c63eedb3369133a993cfe5d5ced247c7",
+        "system": "eka2l1",
+        "paths": "$bios_path/EKA2L1/NEM-4/BOOT-101F8C19.dmp",
+        "description": "Nokia N-Gage boot ROM dump",
+        "required": "Required for Nokia N-Gage emulation"
+      },
+      {
+        "filename": "ROOT-101F8C19.dmp",
+        "md5": "612f10542f8e3da7cd8ec861c5e47f8a",
+        "system": "eka2l1",
+        "paths": "$bios_path/EKA2L1/NEM-4/ROOT-101F8C19.dmp",
+        "description": "Nokia N-Gage root ROM dump containing system ROM data",
+        "required": "Required for Nokia N-Gage emulation"
+      },
+      {
+        "filename": "SYM.ROM",
+        "md5": "64a95a4a884cf4cc15a566b856603193",
+        "system": "eka2l1",
+        "paths": "$bios_path/EKA2L1/NEM-4/SYM.ROM",
+        "description": "Nokia N-Gage Symbian ROM image",
+        "required": "Required for Nokia N-Gage emulation"
+      },
+      {
+        "filename": "BOOT-101FB2B1.dmp",
+        "md5": "e65de48eed2c398e48a57b918ec17882",
+        "system": "eka2l1",
+        "paths": "$bios_path/EKA2L1/RH-29/BOOT-101FB2B1.dmp",
+        "description": "Nokia N-Gage QD Retail boot ROM dump",
+        "required": "Required for Nokia N-Gage QD Retail emulation"
+      },
+      {
+        "filename": "ROOT-101FB2B1.dmp",
+        "md5": "ee9b79efa76cb2f4ac1e5d8d709a2eb3",
+        "system": "eka2l1",
+        "paths": "$bios_path/EKA2L1/RH-29/ROOT-101FB2B1.dmp",
+        "description": "Nokia N-Gage QD Retail root ROM dump containing system ROM data",
+        "required": "Required for Nokia N-Gage QD Retail emulation"
+      },
+      {
+        "filename": "SYM.ROM",
+        "md5": "cb878db5111aba2b076bddc557e1f10a",
+        "system": "eka2l1",
+        "paths": "$bios_path/EKA2L1/RH-29/SYM.ROM",
+        "description": "Nokia N-Gage QD Retail Symbian ROM image",
+        "required": "Required for Nokia N-Gage QD Retail emulation"
+      },
+      {
+        "filename": "SYM.ROM",
+        "md5": "609f04c5cb239ad2a49461b049dad58a",
+        "system": "eka2l1",
+        "paths": "$bios_path/EKA2L1/appl sw 12.2_15/SYM.ROM",
+        "description": "Siemens SX1 Symbian ROM image",
+        "required": "Required for Siemens SX1 emulation"
+      },
+      {
+        "filename": "BOOT-101FB2B1.dmp",
+        "md5": "b0b579d09e2c259936be8c90ccd3f2a4",
+        "system": "eka2l1",
+        "paths": "$bios_path/EKA2L1/rh-4/BOOT-101FB2B1.dmp",
+        "description": "Nokia N-Gage QD Dev boot ROM dump",
+        "required": "Required for Nokia N-Gage QD Dev emulation"
+      },
+      {
+        "filename": "ROOT-101FB2B1.dmp",
+        "md5": "128e8bf5918aaa5a0aa11baa4ef13d21",
+        "system": "eka2l1",
+        "paths": "$bios_path/EKA2L1/rh-4/ROOT-101FB2B1.dmp",
+        "description": "Nokia N-Gage QD Dev root ROM dump containing system ROM data",
+        "required": "Required for Nokia N-Gage QD Dev emulation"
+      },
+      {
+        "filename": "SYM.ROM",
+        "md5": "27bddb5583e8905f54f679564bf45b00",
+        "system": "eka2l1",
+        "paths": "$bios_path/EKA2L1/rh-4/SYM.ROM",
+        "description": "Nokia N-Gage QD Dev Symbian ROM image",
+        "required": "Required for Nokia N-Gage QD Dev emulation"
+      },
+      {
+        "filename": "SYM.ROM",
+        "md5": "c91893be71f15d178226935617ebcdf7",
+        "system": "eka2l1",
+        "paths": "$bios_path/EKA2L1/rm-1/SYM.ROM",
+        "description": "Nokia 6630 Symbian ROM image",
+        "required": "Required for Nokia 6630 emulation"
+      },
+      {
+        "filename": "SYM.ROM",
+        "md5": "a6eaf982887f5cf5d0efb93e61eae078",
+        "system": "eka2l1",
+        "paths": "$bios_path/EKA2L1/rm-170/SYM.ROM",
+        "description": "Nokia E50 Symbian ROM image",
+        "required": "Required for Nokia E50 emulation"
+      },
+      {
+        "filename": "SYM.ROM",
+        "md5": "a7d82c61311bf2e86e709c5f13d75d2d",
+        "system": "eka2l1",
+        "paths": "$bios_path/EKA2L1/rm-320/SYM.ROM",
+        "description": "Nokia N95 Symbian ROM image",
+        "required": "Required for Nokia N95 emulation"
+      },
+      {
+        "filename": "SYM.ROM",
+        "md5": "0d7e4a88da23ce15174936871daeba85",
+        "system": "eka2l1",
+        "paths": "$bios_path/EKA2L1/rm-324/SYM.ROM",
+        "description": "Nokia 6650 Fold - AT&T Symbian ROM image",
+        "required": "Required for Nokia 6650 Fold - AT&T emulation"
+      },
+      {
+        "filename": "SYM.ROM",
+        "md5": "9d0ad97ece0c7990d59b7bc21522a372",
+        "system": "eka2l1",
+        "paths": "$bios_path/EKA2L1/rm-333/SYM.ROM",
+        "description": "N85 Symbian ROM image",
+        "required": "Required for N85 emulation"
+      },
+      {
+        "filename": "SYM.ROM",
+        "md5": "50af20ec26511c1a03cbb854ecfcd4be",
+        "system": "eka2l1",
+        "paths": "$bios_path/EKA2L1/rm-356/SYM.ROM",
+        "description": "Nokia 5800 XpressMusic Symbian ROM image",
+        "required": "Required for Nokia 5800 XpressMusic emulation"
+      },
+      {
+        "filename": "SYM.ROM",
+        "md5": "6faa90eea3b5ceea888d480da81d58be",
+        "system": "eka2l1",
+        "paths": "$bios_path/EKA2L1/rm-409/SYM.ROM",
+        "description": "Nokia 5320d-1 Symbian ROM image",
+        "required": "Required for Nokia 5320d-1 emulation"
+      },
+      {
+        "filename": "SYM.ROM",
+        "md5": "c3be6fba055cabd5b4cd40d8207c22bd",
+        "system": "eka2l1",
+        "paths": "$bios_path/EKA2L1/rm-504/SYM.ROM",
+        "description": "Nokia 5530 Symbian ROM image",
+        "required": "Required for Nokia 5530 emulation"
+      },
+      {
+        "filename": "SYM.ROM",
+        "md5": "f2519da6ba8f089b0e2111d3b6730227",
+        "system": "eka2l1",
+        "paths": "$bios_path/EKA2L1/rm-507/SYM.ROM",
+        "description": "Nokia N97 Symbian ROM image",
+        "required": "Required for Nokia N97 emulation"
+      },
+      {
+        "filename": "SYM.ROM",
+        "md5": "5194a8b18ed5d87a7e0d1a578fe93ad7",
+        "system": "eka2l1",
+        "paths": "$bios_path/EKA2L1/rm-566/SYM.ROM",
+        "description": "Nokia 6730 Classic Symbian ROM image",
+        "required": "Required for Nokia 6730 Classic emulation"
+      },
+      {
+        "filename": "SYM.ROM",
+        "md5": "1a5433d7d2230a64549e2c66d69670c6",
+        "system": "eka2l1",
+        "paths": "$bios_path/EKA2L1/rm-84/SYM.ROM",
+        "description": "Nokia N70 Symbian ROM image",
+        "required": "Required for Nokia N70 emulation"
+      },
+      {
+        "filename": "SYM.ROM",
+        "md5": "431061ed2beec5b53ff54ce39fdff000",
+        "system": "eka2l1",
+        "paths": "$bios_path/EKA2L1/sgh-i450/SYM.ROM",
+        "description": "Samsung i450 Symbian ROM image",
+        "required": "Required for Samsung i450 emulation"
+      }
+    ],
+    "es_de_config": {
+      "es_find_rules": {
+        "emulators": [
+          {
+            "name": "EKA2L1",
+            "description": "Symbian and Nokia N-Gage emulator EKA2L1",
+            "rules": [
+              {
+                "type": "staticpath",
+                "entries": [
+                  "%COMPONENT_PATH%/component_launcher.sh"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "es_systems": [
+        {
+          "name": "ngage",
+          "fullname": "Nokia N-Gage",
+          "path": "%ROMPATH%/ngage",
+          "extension": ".ngage .zip",
+          "commands": [
+            {
+              "label": "EKA2L1 [Mounted] (Standalone)",
+              "command": "%EMULATOR_EKA2L1% --fullscreen --device RH-29 --mount %ROM% --run %BASENAME%",
+              "priority": 10
+            }
+          ],
+          "platform": "ngage",
+          "theme": "ngage"
+        },
+        {
+          "name": "ngage",
+          "fullname": "Nokia N-Gage",
+          "path": "%ROMPATH%/ngage",
+          "extension": ".ngage .zip",
+          "commands": [
+            {
+              "label": "EKA2L1 [Installed] (Standalone)",
+              "command": "%EMULATOR_EKA2L1% --fullscreen --device RH-29 --run %BASENAME%",
+              "priority": 20
+            }
+          ],
+          "platform": "ngage",
+          "theme": "ngage"
+        },
+        {
+          "name": "symbian",
+          "fullname": "Symbian",
+          "path": "%ROMPATH%/symbian",
+          "extension": ".sis .sisx .symbian",
+          "commands": [
+            {
+              "label": "EKA2L1 [Nokia N-Gage] (Standalone)",
+              "command": "%EMULATOR_EKA2L1% --fullscreen --device RH-29 --run %BASENAME%",
+              "priority": 10
+            }
+          ],
+          "platform": "ngage",
+          "theme": "symbian"
+        },
+        {
+          "name": "symbian",
+          "fullname": "Symbian",
+          "path": "%ROMPATH%/symbian",
+          "extension": ".sis .sisx .symbian",
+          "commands": [
+            {
+              "label": "EKA2L1 [Nokia N70] (Standalone)",
+              "command": "%EMULATOR_EKA2L1% --fullscreen --device RM-84 --run %BASENAME%",
+              "priority": 20
+            }
+          ],
+          "platform": "ngage",
+          "theme": "symbian"
+        },
+        {
+          "name": "symbian",
+          "fullname": "Symbian",
+          "path": "%ROMPATH%/symbian",
+          "extension": ".sis .sisx .symbian",
+          "commands": [
+            {
+              "label": "EKA2L1 [Nokia N97] (Standalone)",
+              "command": "%EMULATOR_EKA2L1% --fullscreen --device RM-507 --run %BASENAME",
+              "priority": 30
+            }
+          ],
+          "platform": "ngage",
+          "theme": "symbian"
+        },
+        {
+          "name": "symbian",
+          "fullname": "Symbian",
+          "path": "%ROMPATH%/symbian",
+          "extension": ".sis .sisx .symbian",
+          "commands": [
+            {
+              "label": "EKA2L1 [Custom device] (Standalone)",
+              "command": "%EMULATOR_EKA2L1% --fullscreen --device %INJECT%=%BASENAME%.device --run %BASENAME%",
+              "priority": 40
+            }
+          ],
+          "platform": "ngage",
+          "theme": "symbian"
+        }
+      ]
+    }
+  }
+}

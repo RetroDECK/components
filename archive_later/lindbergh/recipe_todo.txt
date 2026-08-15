@@ -1,0 +1,13 @@
+Can't get it to start, unkown error or depedency.
+
+Even when extracting the entire appimage over the component it still refuses to start.
+
+Both AppImage and Flatpak sources get the same error.
+
+/app/retrodeck/components/lindbergh/bin/lindbergh: cannot execute: required file not found
+
+This might hold more clues, as the flatpak is only 5mb and the appimage 100mb. 
+
+https://github.com/lindbergh-loader/lindbergh-loader/blob/master/docs/guide.md#installing-and-running-the-flatpak
+
+Go for the Flatpak source.

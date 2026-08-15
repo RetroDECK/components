@@ -1,0 +1,126 @@
+RM-409:
+  platver: epoc93
+  manufacturer: (c)Nokia
+  firmcode: RM-409
+  model: Nokia 5320d-1
+  machine-uid: 0
+RM-504:
+  platver: epoc94
+  manufacturer: Nokia
+  firmcode: RM-504
+  model: Nokia 5530
+  machine-uid: 0
+RM-356:
+  platver: epoc94
+  manufacturer: Nokia
+  firmcode: RM-356
+  model: Nokia 5800 XpressMusic
+  machine-uid: 536926806
+RM-1:
+  platver: epoc80
+  manufacturer: (c) NOKIA.
+  firmcode: RM-1
+  model: Nokia 6630
+  machine-uid: 270515029 
+RM-324:
+  platver: epoc93
+  manufacturer: (c)Nokia
+  firmcode: RM-324
+  model: Nokia 6650 Fold - AT&T
+  machine-uid: 4251128
+RM-566:
+  platver: epoc93
+  manufacturer: Nokia
+  firmcode: RM-566
+  model: Nokia 6730 Classic
+  machine-uid: 4251080
+RM-675:
+  platver: epoc100
+  manufacturer: Nokia
+  firmcode: RM-675
+  model: Nokia C7  (Don't Select this Rom, It Will Brick EKA2L1)
+  machine-uid: 537051026
+RM-632:
+  platver: epoc93
+  manufacturer: Nokia
+  firmcode: RM-632
+  model: Noka E5 (Don't Select this Rom, It Will Brick EKA2L1)
+  machine-uid: 537018624
+RM-170:
+  platver: epoc93
+  manufacturer: (c) Nokia
+  firmcode: RM-170
+  model: Nokia E50
+  machine-uid: 4251128
+NEM-4:
+  platver: epoc6
+  manufacturer: Nokia
+  firmcode: NEM-4
+  model: Nokia N-Gage
+  machine-uid: 0
+RH-29:
+  platver: epoc6
+  manufacturer: Nokia
+  firmcode: RH-29
+  model: Nokia N-Gage QD Retail
+  machine-uid: 0
+RH-4:
+  platver: epoc6
+  manufacturer: Nokia
+  firmcode: RH-4
+  model: Nokia N-Gage QD Dev
+  machine-uid: 0
+RM-84:
+  platver: epoc81a
+  manufacturer: (C)Nokia
+  firmcode: RM-84
+  model: Nokia N70
+  machine-uid: 270536602
+RM-333:
+  platver: epoc93
+  manufacturer: Nokia
+  firmcode: RM-333
+  model: N85
+  machine-uid: 0
+RM-320:
+  platver: epoc93
+  manufacturer: N95(c)NMP
+  firmcode: RM-320
+  model: Nokia N95
+  machine-uid: 536882564
+RM-507:
+  platver: epoc94
+  manufacturer: Nokia
+  firmcode: RM-507
+  model: Nokia N97
+  machine-uid: 536956381
+RM-707:
+  platver: epoc100
+  manufacturer: Nokia
+  firmcode: RM-707
+  model: Nokia X7  (Don't Select this Rom, It Will Brick EKA2L1)
+  machine-uid: 5336512
+SGH-D720:
+  platver: epoc80
+  manufacturer: (c)Samsung Electronics
+  firmcode: SGH-D720
+  model: Samsung D720 (Don't Select this Rom, It Will Brick EKA2L1)
+  machine-uid: 0
+SGH-D730:
+  platver: epoc80
+  manufacturer: (c)Samsung Electronics
+  firmcode: SGH-D730
+  model: Samsung D730 (Don't Select this Rom, It Will Brick EKA2L1)
+  machine-uid: 0
+SGH-i450:
+  platver: epoc93
+  manufacturer: (c)Samsung
+  firmcode: SGH-i450
+  model: Samsung i450
+  machine-uid: 0
+Appl SW 12.2_15:
+  platver: epoc6
+  manufacturer: Siemens
+  firmcode: Appl SW 12.2_15
+  model: Siemens SX1
+  machine-uid: 0
