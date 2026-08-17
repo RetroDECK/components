@@ -21,12 +21,38 @@ _prepare_component::raze() {
       create_dir -d "$saves_path/raze"      
       create_dir -d "$logs_path/raze"   
       create_dir -d "$storage_path/raze/soundfonts"
-      create_dir -d "$screenhots_path/raze"           
+      create_dir -d "$screenhots_path/raze" 
+
+      # Duke Nukem 3D 
+      create_dir -d "$roms_path/raze/duke"
+
+      # Exhumed - PowerSlave 
+      create_dir -d "$roms_path/raze/exhumed"
+
+      # Redneck Rampage
+      create_dir -d "$roms_path/raze/redneck"
+
+      # Redneck Rampage Rides Again
+      create_dir -d "$roms_path/raze/redneckrides"
+
+      # Shadow Warrior
+      create_dir -d "$roms_path/raze/shadow"
+
+      # WW2 GI
+      create_dir -d "$roms_path/raze/ww2gi"
+
+      # Blood
+      create_dir -d "$roms_path/raze/blood"
+
+      # NAM
+      create_dir -d "$roms_path/raze/nam"          
 
       sed -i "s|^Path=RETRODECKROMSDIR*|Path=$roms_path/raze|" $raze_config
       sed -i "s|^Path=RETRODECKSTORAGEDIR/raze/soundfonts*|Path=$storage_path/raze/soundfonts|" $raze_config
       sed -i "s|^save_dir=RETRODECKSAVEDIR*|save_dir=$saves_path/raze|" $raze_config
       sed -i "s|^screenshot_dir=RETRODECKSAVEDIR*|screenshot_dir=$screenshots_path/raze|" $raze_config
+
+
 
     ;;
 
