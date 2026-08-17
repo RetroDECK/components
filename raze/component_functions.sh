@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export raze_config="$XDG_CONFIG_HOME/raze/.config/raze.ini"
+export raze_config="$XDG_CONFIG_HOME/raze/.config/raze/raze.ini"
 
 _prepare_component::raze() {
   local action="$1"
@@ -15,8 +15,8 @@ _prepare_component::raze() {
       log i "Resetting Raze"
       log i "------------------------"
 
-      create_dir -d "$XDG_CONFIG_HOME/raze/.config/"
-      cp -fv "$component_config/"* "$XDG_CONFIG_HOME/raze/.config/"
+      create_dir -d "$XDG_CONFIG_HOME/raze/.config/raze"
+      cp -fv "$component_config/"* "$XDG_CONFIG_HOME/raze/.config/raze"
 
       create_dir -d "$saves_path/raze"      
       create_dir -d "$logs_path/raze"   
