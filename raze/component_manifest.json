@@ -1,0 +1,51 @@
+{
+  "raze": {
+    "name": "Raze",
+    "core_framework_compatibility": "1",
+    "component_version": "1.0.0",
+    "capabilities": ["reset","open"],
+    "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_engine_guides/raze/raze-guide/",
+    "url_webpage": "https://raze.zdoom.org/about",
+    "url_donation_purchase": "",
+    "url_source": "https://github.com/ZDoom/Raze",
+    "description": "Duke Nukem 3D Build engine based on ZDoom, with support for enhanced features and mods.",
+    "component_type": "Engine",
+    "system_friendly_name": "Raze Build Game Engine",
+    "system": "duke",
+    "es_de_config": {
+      "es_find_rules": {
+        "emulators": [
+          {
+            "name": "RAZE",
+            "description": "Duke Nukem 3D Build engine Raze",
+            "rules": [
+              {
+                "type": "staticpath",
+                "entries": [
+                  "%COMPONENT_PATH%/component_launcher.sh"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "es_systems": [
+        {
+          "name": "raze",
+          "fullname": "Raze",
+          "path": "%ROMPATH%/raze",
+          "extension": ".raze .duke",
+          "commands": [
+            {
+              "label": "Raze (Standalone)",
+              "command": "%EMULATOR_RAZE% %ROM%",
+              "priority": 10
+            }
+          ],
+          "platform": "raze",
+          "theme": "raze"
+        }
+      ]
+    }
+  }
+}
