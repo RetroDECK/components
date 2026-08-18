@@ -247,6 +247,13 @@ export XENIA_EDGE_VERSION_POLICY="latest"
 export COMMANDER_X16_VERSION_POLICY="latest"
 
 # ------------------------------------------------------------------------------
+# dhewm 3 - DOOM 3 Engine
+# Source: Binary
+# Link: https://github.com/dhewm/dhewm3/releases
+# ------------------------------------------------------------------------------
+export DHEWM3_VERSION_POLICY="latest"
+
+# ------------------------------------------------------------------------------
 # FS-UAE - Amiga Emulator
 # Source: Binary
 # Link: https://fs-uae.net/download/linux/
