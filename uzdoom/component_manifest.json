@@ -19,7 +19,7 @@
       "es_find_rules": {
         "emulators": [
           {
-            "name": "uzdoom",
+            "name": "UZDOOM",
             "description": "UZDoom DOOM Engine",
             "rules": [
               {

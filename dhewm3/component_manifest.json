@@ -1,0 +1,59 @@
+{
+  "dhewm3": {
+    "name": "dhewm3",
+    "core_framework_compatibility": "1",
+    "component_version": "1.0.0",
+    "capabilities": [
+      "reset",
+      "open"
+    ],
+    "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/dhewm3/dhewm3-guide/",
+    "url_webpage": "https://dhewm3.org/",
+    "url_donation_purchase": "https://blog.gibson.sh",
+    "url_source": "https://github.com/dhewm/dhewm3",
+    "component_type": "Engine",
+    "description": "dhewm3 is a modern, enhanced source port engine of DOOM 3 and with mod support.",
+    "system_friendly_name": "Doom 3",
+    "system": "doom3",
+    "es_de_config": {
+      "es_find_rules": {
+        "emulators": [
+          {
+            "name": "DHEWM3",
+            "description": "dhewm3 DOOM 3 Engine",
+            "rules": [
+              {
+                "type": "staticpath",
+                "entries": [
+                  "%COMPONENT_PATH%/component_launcher.sh"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "es_systems": [
+        {
+          "name": "doom3",
+          "fullname": "Doom 3",
+          "path": "%ROMPATH%/doom3",
+          "extension": ".doom3",
+          "commands": [
+            {
+              "label": "dhewm3 (Standalone)",
+              "command": "%EMULATOR_DHEWM3% +set fs_game %BASENAME%",
+              "priority": 10
+            },
+            {
+              "label": "dhewm3 [Custom D3XP Mod] (Standalone)",
+              "command": "%EMULATOR_DHEWM3% +set fs_game %BASENAME% +set fs_game_base d3xp",
+              "priority": 20
+            }
+          ],
+          "platform": "pc, pcwindows",
+          "theme": "doom3"
+        }
+      ]
+    }
+  }
+}
