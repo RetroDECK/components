@@ -1,6 +1,6 @@
 {
   "dhewm3": {
-    "name": "dhewm3",
+    "name": "dhewm 3",
     "core_framework_compatibility": "1",
     "component_version": "1.0.0",
     "capabilities": [
@@ -12,7 +12,7 @@
     "url_donation_purchase": "https://blog.gibson.sh",
     "url_source": "https://github.com/dhewm/dhewm3",
     "component_type": "Engine",
-    "description": "dhewm3 is a modern, enhanced source port engine of DOOM 3 and with mod support.",
+    "description": "DOOM 3 source port engine for playing DOOM 3 and mods.",
     "system_friendly_name": "Doom 3",
     "system": "doom3",
     "es_de_config": {
@@ -20,7 +20,7 @@
         "emulators": [
           {
             "name": "DHEWM3",
-            "description": "dhewm3 DOOM 3 Engine",
+            "description": "dhewm 3 DOOM 3 Engine",
             "rules": [
               {
                 "type": "staticpath",
