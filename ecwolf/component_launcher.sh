@@ -18,23 +18,6 @@ log i "RetroDECK ECWolf Runner"
 path="${@: -1}" # getting the last argument as game path
 args="${@:1:$#-1}" # getting all the other passed args
 
-append_wolf_data_files() {
-  local folder="$1"
-  local ext
-  local file
-
-  [[ -d "$folder" ]] || return 1
-
-  for ext in wl6 wl1 sdm sod n3d; do
-    shopt -s nullglob
-    for file in "$folder"/*."$ext"; do
-      [[ -f "$file" ]] || continue
-      args="$args --file \"$file\""
-    done
-    shopt -u nullglob
-  done
-}
-
 # Identify Wolf3D version by core files in folder
 # Requests: gamemaps, maphead, vswap with an extension.
 # Preference order: wl6, wl1, sdm, sod, sd1, sd2, sd3, n3d.
@@ -102,6 +85,11 @@ wolf3d_data_hashes=(
   [sod.gamemaps]="04f16534235b4b57fc379d5709f88f4a"
   [sod.maphead]="276c79a4a6419db6b23e7699e41cb9fa"
   [sod.vswap]="b1dac0a8786c7cdbb09331a4eba00652"
+
+  # sd1 hashes: many releases ship sd1 identical to sod (base SoD repackaged as MP1)
+  [sd1.gamemaps]="04f16534235b4b57fc379d5709f88f4a"
+  [sd1.maphead]="276c79a4a6419db6b23e7699e41cb9fa"
+  [sd1.vswap]="b1dac0a8786c7cdbb09331a4eba00652"
 
   [sd2.gamemaps]="d55508cd58e2e61076ac81b98aeb9269"
   [sd2.maphead]="25d92ac0ba012a1e9335c747eb4ab177"
@@ -253,21 +241,11 @@ find_wolf3d_wolf_folder() {
   return 1
 }
 
-# Start launcher mode selection
-raw_args=( "${@:1:$#-1}" )
-input_path="${@: -1}"
-
-if [[ -z "$input_path" ]]; then
-  log e "No game path argument provided"
-  exit 1
-fi
-
-if [[ -f "$input_path" && "${input_path##*.}" == "wolf" ]]; then
-  # mod descriptor path
-  mod_wolf_file="$input_path"
-  mod_folder="$(dirname "$mod_wolf_file")"
-  log i "Mod descriptor provided: $mod_wolf_file"
-
+# Parse a .wolf mod descriptor file.
+# Sets: mod_files (array), mod_data_override, mod_folder.
+parse_wolf_mod_file() {
+  local mod_file="$1"
+  mod_folder="$(dirname "$mod_file")"
   mod_files=()
   mod_data_override=""
   while IFS= read -r line || [[ -n "$line" ]]; do
@@ -279,16 +257,21 @@ if [[ -f "$input_path" && "${input_path##*.}" == "wolf" ]]; then
     if [[ "${line,,}" =~ ^data[[:space:]]*=[[:space:]]*(.+)$ ]]; then
       raw_data="${BASH_REMATCH[1]}"
       if ! mod_data_override="$(normalize_wolf3d_version_key "$raw_data")"; then
-        log e "Invalid data= value '$raw_data' in '$mod_wolf_file'"
-        exit 1
+        log e "Invalid data= value '$raw_data' in '$mod_file'"
+        return 1
       fi
       log i "Mod descriptor requests base IWAD '$mod_data_override'"
       continue
     fi
 
     mod_files+=("$line")
-  done < "$mod_wolf_file"
+  done < "$mod_file"
+  return 0
+}
 
+# After parse_wolf_mod_file, resolve the base IWAD and build requested_mod_files.
+# Requires: mod_files, mod_data_override, mod_folder set.
+setup_mod_launch() {
   if [[ -n "$mod_data_override" ]]; then
     iwad_folder="$(find_wolf3d_wolf_folder "$roms_path/wolf" "$mod_data_override" "mod")" || {
       log e "Base IWAD '$mod_data_override' specified in '$mod_wolf_file' not found in $roms_path/wolf"
@@ -323,6 +306,23 @@ if [[ -f "$input_path" && "${input_path##*.}" == "wolf" ]]; then
   else
     launch_folder="$mod_folder"
   fi
+}
+
+# Start launcher mode selection
+raw_args=( "${@:1:$#-1}" )
+input_path="${@: -1}"
+
+if [[ -z "$input_path" ]]; then
+  log e "No game path argument provided"
+  exit 1
+fi
+
+if [[ -f "$input_path" && "${input_path##*.}" == "wolf" ]]; then
+  # mod descriptor path
+  mod_wolf_file="$input_path"
+  log i "Mod descriptor provided: $mod_wolf_file"
+  parse_wolf_mod_file "$mod_wolf_file" || exit 1
+  setup_mod_launch
 
 elif [[ -d "$input_path" ]]; then
   version="$(detect_wolf3d_version "$input_path")" || true
@@ -332,17 +332,13 @@ elif [[ -d "$input_path" ]]; then
     log i "IWAD mode: launching '$iwad_folder' (detected $wolf3d_data_version_pretty)"
     launch_folder="$iwad_folder"
   else
-    # directory could be a mod container with same-name .wolf file
-    candidate_mod_file="$input_path/$(basename "$input_path").wolf"
-    if [[ -f "$candidate_mod_file" ]]; then
-      input_path="$candidate_mod_file"
-      # Re-run by calling this script recursively avoids duplication; but to keep it simple, we follow same logic inline.
+    # directory could be a mod container with a .wolf descriptor inside
+    candidate_mod_file="$(find "$input_path" -maxdepth 1 -type f -iname "*.wolf" -print -quit 2>/dev/null)"
+    if [[ -n "$candidate_mod_file" ]]; then
       mod_wolf_file="$candidate_mod_file"
-      mod_folder="$input_path"
-      # fallback to using this .wolf logic path
-      # no recursive here to avoid complexity; if we reach this path we can proceed as mod with input_path set
-      # (this scenario should be rare in Data layout)
-      # We don't re-enter the if block, continue with auto-detect using mod_wolf_file below.
+      log i "Mod descriptor found inside directory: $mod_wolf_file"
+      parse_wolf_mod_file "$mod_wolf_file" || exit 1
+      setup_mod_launch
     else
       log i "No IWAD detected in '$input_path', auto-detecting under $roms_path/wolf"
       iwad_folder="$(find_wolf3d_wolf_folder "$roms_path/wolf")" || {
@@ -382,19 +378,15 @@ if [[ ${#requested_mod_files[@]} -gt 0 ]]; then
   args+=( "${requested_mod_files[@]}" )
 fi
 
-if [[ -n "$main_game" ]]; then
-  args+=( "$main_game" )
-fi
-
 # Log command line internal representation
 if [[ ${#args[@]} -gt 0 ]]; then
   log i "With args: ${args[*]}"
 fi
 
 # Final command
-log d "Executing: \"$component_path/bin/ecwolf\" --fullscreen --nowait --config /var/config/ecwolf/ecwolf_rd.cfg --savedir /var/data/ecwolf/saves ${args[*]}"
+log d "Executing: \"$component_path/bin/ecwolf\" --fullscreen --nowait --data \"$version\" --config /var/config/ecwolf/ecwolf_rd.cfg --savedir /var/data/ecwolf/saves ${args[*]}"
 
 cd "$launch_folder" || exit 1
 log i "Running from $launch_folder"
-exec "$component_path/bin/ecwolf" --fullscreen --nowait --config /var/config/ecwolf/ecwolf_rd.cfg --savedir /var/data/ecwolf/saves "${args[@]}"
+exec "$component_path/bin/ecwolf" --fullscreen --nowait --data "$version" --config /var/config/ecwolf/ecwolf_rd.cfg --savedir /var/data/ecwolf/saves "${args[@]}"
 cd -
