@@ -1,6 +1,5 @@
 #!/bin/bash
 
-export dhewm3_config="$XDG_CONFIG_HOME/dhewm3/uzdoom.ini"
 export doom3_controller_config="$XDG_CONFIG_HOME/dhewm3/gamepad.cfg"
 export doom3xp_controller_config="$XDG_CONFIG_HOME/dhewm3/gamepad-d3xp.cfg"
 
