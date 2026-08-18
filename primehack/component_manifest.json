@@ -91,6 +91,8 @@
     },
     "compatible_presets": {
       "ask_to_exit": ["false", "true"],
+      "cheevos": ["false", "true"],
+      "cheevos_hardcore": ["false", "true"],
       "universal_dyn_input": ["false", "true"]
     },
     "preset_actions": {
@@ -104,6 +106,46 @@
           "section": "Interface",
           "target_file": "$primehack_config",
           "defaults_file": "$primehack_rd_config_dir/config/Dolphin.ini"
+        }
+      ],
+      "cheevos": [
+        {
+          "enabled_states": ["true"],
+          "setting_name": "Enabled",
+          "action": "change",
+          "new_setting_value": "True",
+          "section": "Achievements",
+          "target_file": "$primehack_config_RetroAchievements",
+          "defaults_file": "$primehack_rd_config_dir/config/RetroAchievements.ini"
+        },
+        {
+          "enabled_states": ["true"],
+          "setting_name": "Username",
+          "action": "change",
+          "new_setting_value": "$cheevos_username",
+          "section": "Achievements",
+          "target_file": "$primehack_config_RetroAchievements",
+          "defaults_file": "$primehack_rd_config_dir/config/RetroAchievements.ini"
+        },
+        {
+          "enabled_states": ["true"],
+          "setting_name": "ApiToken",
+          "action": "change",
+          "new_setting_value": "$cheevos_token",
+          "section": "Achievements",
+          "target_file": "$primehack_config_RetroAchievements",
+          "defaults_file": "$primehack_rd_config_dir/config/RetroAchievements.ini"
+        }
+      ],
+      "cheevos_hardcore": [
+        {
+          "enabled_states": ["true"],
+          "setting_name": "HardcoreEnabled",
+          "action": "change",
+          "new_setting_value": "True",
+          "section": "Achievements",
+          "target_file": "$primehack_config_RetroAchievements",
+          "defaults_file": "$primehack_rd_config_dir/config/RetroAchievements.ini"
         }
       ],
       "universal_dyn_input": [
