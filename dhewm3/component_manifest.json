@@ -53,6 +53,96 @@
           "platform": "pc, pcwindows",
           "theme": "doom3"
         }
+      ],
+      "bios": [
+        {
+          "filename": "pak000.pk4",
+          "md5": "71b8d37b2444d3d86a36fd61783844fe",
+          "system": "doom3",
+          "description": "Doom 3 version 1.3.1 pak000.pk4",
+          "required": "Required",
+          "paths": "$roms_path/doom3/base"
+        },
+        {
+          "filename": "pak001.pk4",
+          "md5": "4bc4f3ba04ec2b4f4837be40e840a3c1",
+          "system": "doom3",
+          "description": "Doom 3 version 1.3.1 pak001.pk4",
+          "required": "Required",
+          "paths": "$roms_path/doom3/base"
+        },
+        {
+          "filename": "pak002.pk4",
+          "md5": "fa84069e9642ad9aa4b49624150cc345",
+          "system": "doom3",
+          "description": "Doom 3 version 1.3.1 pak002.pk4",
+          "required": "Required",
+          "paths": "$roms_path/doom3/base"
+        },
+        {
+          "filename": "pak003.pk4",
+          "md5": "f22d8464997924e4913e467e7d62d5fe",
+          "system": "doom3",
+          "description": "Doom 3 version 1.3.1 pak003.pk4",
+          "required": "Required",
+          "paths": "$roms_path/doom3/base"
+        },
+        {
+          "filename": "pak004.pk4",
+          "md5": "38561a3c73f93f2e6fd31abf1d4e9102",
+          "system": "doom3",
+          "description": "Doom 3 version 1.3.1 pak004.pk4",
+          "required": "Required",
+          "paths": "$roms_path/doom3/base"
+        },
+        {
+          "filename": "pak005.pk4",
+          "md5": "2afd4ece27d36393b7538d55a345b90d",
+          "system": "doom3",
+          "description": "Doom 3 version 1.3.1 pak005.pk4",
+          "required": "Required",
+          "paths": "$roms_path/doom3/base"
+        },
+        {
+          "filename": "pak006.pk4",
+          "md5": "a6e7003fa9dcc75073dc02b56399b370",
+          "system": "doom3",
+          "description": "Doom 3 version 1.3.1 pak006.pk4",
+          "required": "Required",
+          "paths": "$roms_path/doom3/base"
+        },
+        {
+          "filename": "pak007.pk4",
+          "md5": "6319f086f930ec1618ab09b4c20c268c",
+          "system": "doom3",
+          "description": "Doom 3 version 1.3.1 pak007.pk4",
+          "required": "Required",
+          "paths": "$roms_path/doom3/base"
+        },
+        {
+          "filename": "pak008.pk4",
+          "md5": "28750b7841de9453eb335bad6841a2a5",
+          "system": "doom3",
+          "description": "Doom 3 version 1.3.1 pak008.pk4",
+          "required": "Required",
+          "paths": "$roms_path/doom3/base"
+        },
+        {
+          "filename": "pak000.pk4",
+          "md5": "a883fef0fd10aadeb73d34c462ff865d",
+          "system": "doom3",
+          "description": "Doom 3 Resurrection of Evil pak000.pk4",
+          "required": "Required for D3XP",
+          "paths": "$roms_path/doom3/d3xp"
+        },
+        {
+          "filename": "pak001.pk4",
+          "md5": "06fc9be965e345587064056bf22236d2",
+          "system": "doom3",
+          "description": "Doom 3 Resurrection of Evil pak001.pk4",
+          "required": "Required for D3XP",
+          "paths": "$roms_path/doom3/d3xp"
+        }
       ]
     }
   }
