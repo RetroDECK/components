@@ -40,12 +40,12 @@
           "extension": ".doom3",
           "commands": [
             {
-              "label": "dhewm3 (Standalone)",
+              "label": "dhewm 3 (Standalone)",
               "command": "%EMULATOR_DHEWM3% +set fs_game %BASENAME%",
               "priority": 10
             },
             {
-              "label": "dhewm3 [Custom D3XP Mod] (Standalone)",
+              "label": "dhewm 3 [Custom D3XP Mod] (Standalone)",
               "command": "%EMULATOR_DHEWM3% +set fs_game %BASENAME% +set fs_game_base d3xp",
               "priority": 20
             }
