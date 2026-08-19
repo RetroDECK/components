@@ -61,7 +61,7 @@
             "priority": 10
           }
         ],
-        "platform": "if",
+        "platform": "zmachine, if, pc, dos",
         "theme": "if"
       }
     ]
