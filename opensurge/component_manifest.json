@@ -52,7 +52,7 @@
               "priority": 20
             }
           ],
-          "platform": "opensurge, pc",
+          "platform": "pc, pcwindows",
           "theme": "opensurge"
         }
       ]

@@ -44,7 +44,7 @@
               "command": "%EMULATOR_MUDLET% --fullscreen --steammode --profile=%BASENAME%"
             }
           ],
-          "platform": "muds",
+          "platform": "pc, pcwindows, dos, zmachine, c64, amiga",
           "theme": "muds"
         }
       ]
