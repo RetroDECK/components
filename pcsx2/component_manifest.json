@@ -96,6 +96,15 @@
           "section": "Achievements",
           "target_file": "$pcsx2_config",
           "defaults_file": "$pcsx2_rd_config_dir/PCSX2.ini"
+        },
+        {
+          "enabled_states": ["true"],
+          "setting_name": "ChallengeMode",
+          "action": "change",
+          "new_setting_value": "false",
+          "section": "Achievements",
+          "target_file": "$pcsx2_config",
+          "defaults_file": "$pcsx2_rd_config_dir/PCSX2.ini"
         }
       ],
       "cheevos_hardcore": [
