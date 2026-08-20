@@ -643,5 +643,23 @@
         ]
       }
     }
+  },
+  "es_de_config": {
+      "es_systems": [
+        {
+          "name": "ports",
+          "fullname": "Ports",
+          "path": "%ROMPATH%/ports",
+          "extension": ".sh",
+          "commands": [
+            {
+              "label": "Shell Runner",
+              "command": "/bin/bash %ROM%"
+            }
+          ],
+          "platform": "pc, pcwindows",
+          "theme": "ports"
+        }
+      ]
   }
 }
