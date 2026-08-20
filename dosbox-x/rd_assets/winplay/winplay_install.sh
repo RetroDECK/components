@@ -1,0 +1,148 @@
+#!/bin/bash
+
+if [ "$CALL_SOURCE" != "WINPLAY" ]; then
+    log e "This script is not meant to be called directly. Please use winplay.sh to run this script."
+    exit 1
+fi
+
+os_install_help() {
+    echo "Usage: winplay --os-install --system <system> --floppy <floppy_image> --cdrom <cdrom_image>"
+    echo ""
+    echo "This will guide you through the installation of Windows 9x on DosBox-X using WinPlay!"
+    echo "You will need a legit Windows 98 CD Key and a Windows 98 ISO image to complete the installation."
+    echo ""
+    echo "Options:"
+    echo "  --os-install --system <system>     Install the specified system on DosBox-X"
+    echo ""
+    echo "Example usage:" 
+    echo "  winplay --os-install --system win98 --cdrom /path/to/windows98.iso --floppy /path/to/floppy.img"
+}
+
+os_install() {
+
+    log d "Called os_install for system \"$PRETTY_SYSTEM_NAME\""
+
+    load_system_config # This already cleans the autoexec
+
+    log d "Calling AUTOEXEC generator for $PRETTY_SYSTEM_NAME installation"
+    source "$SCRIPT_DIR/winplay_autoexec_gen.sh"
+
+    generate_autoexec_headers
+
+    log d "Calling mkfs to create virtual hard disk for $PRETTY_SYSTEM_NAME installation"
+    mkfs
+
+    generate_autoexec_install_os
+
+    set_setting_value "$dosbox_x_generated_conf" "core" "full" "cpu"
+
+    FORCE_TURBO="true"
+    log d "FORCE TURBO is $FORCE_TURBO"
+
+    log i "Starting DosBox-X to run the Phase 1 installation of $PRETTY_SYSTEM_NAME"
+    run_dosbox_x
+
+    clear_autoexec
+
+    log i "Rebooting $PRETTY_SYSTEM_NAME to complete installation (Phase 2)"
+    
+    log d "Setting action variable to \"os_run\" before rebooting the system."
+    ACTION="os_run"
+    os_run
+
+}
+
+create_vhd() {
+
+    # Create a VHD (Virtual Hard Disk) file to be used as the virtual hard drive for the Windows installation or GAME HD.
+
+    if [[ -f "$IMAGE_PATH" ]]; then
+        log e "VHD already exists: $IMAGE_PATH (skipping)"
+        log e "If you want to create a new VHD, please delete the existing one at \"$IMAGE_PATH\" and run the installation again."
+        log w "Skipping VHD creation for \"$IMAGE_PATH\" and proceeding with existing file. This may cause issues if the existing VHD is not properly set up."
+    else
+        local IMAGE_PATH="$1"
+
+        log d "Creating VHD at \"$IMAGE_PATH\" with template \"$TEMPLATE\"."
+
+        mkdir -p "$(dirname "$IMAGE_PATH")"
+
+        # Use DOSBox-X imgmake to create a dynamic VHD
+        # This is native to DOSBox-X and fully compatible
+        if ! "$component_path/bin/dosbox-x" -silent -c "imgmake \"$IMAGE_PATH\" -t $TEMPLATE" -c "exit" > /dev/null 2>&1; then
+            log e "Failed to create VHD with imgmake"
+            rm -f "$IMAGE_PATH"
+            return 1
+        fi
+        local disk_blocks=$(stat -c%b "$OS_IMAGE" 2>/dev/null || echo 0)
+        local disk_usage_kb=$((disk_blocks * 512 / 1024))
+        local size_str=$([[ $disk_usage_kb -lt 1024 ]] && echo "${disk_usage_kb}KB" || echo "$((disk_usage_kb / 1024))MB")
+
+        log i "VHD created (sparse: ~${size_str} on disk)"
+    fi
+
+}
+
+mkfs() {
+
+    case "$SYSTEM" in
+        "win98")
+            local TEMPLATE=hd_4gig
+        ;;
+        "win95")
+            local TEMPLATE=hd_2gig
+        ;;
+        "win31")
+            local TEMPLATE=hd_512mb
+        ;;
+        *)
+            log e "Unsupported system for mkfs: $PRETTY_SYSTEM_NAME"
+            return 1
+        ;;
+    esac
+
+    create_vhd "$OS_IMAGE"
+
+}
+
+mk_gamehd() {
+    log d "Called mk_gamehd for game name: \"$GAME_NAME\""
+    log d "using system \"$PRETTY_SYSTEM_NAME\" to determine game HD parameters"
+
+    case "$SYSTEM" in
+    "win98")
+        local fs_type="FAT32"
+        local size_mb=16384   # 16GB
+        local ESDE_SYSTEM_NAME="windows9x"
+        ;;
+    "win95")
+        local fs_type="FAT32"
+        local size_mb=8192    # 8GB
+        local ESDE_SYSTEM_NAME="windows9x"
+        ;;
+    "win31")
+        local fs_type="FAT16"
+        local size_mb=2048    # 2GB (FAT16 limitation)
+        local ESDE_SYSTEM_NAME="windows3x"
+        ;;
+    esac
+
+    GAME_IMAGE="$roms_path/$ESDE_SYSTEM_NAME/$(dos_name_sanitizer "$GAME_NAME.vhd")"
+
+    create_vhd "$GAME_IMAGE"
+
+}
+
+game_install() {
+    log d "Called game_install for game name: \"$GAME_NAME\""
+    
+    load_system_config # This already cleans the autoexec
+
+    source "$SCRIPT_DIR/winplay_autoexec_gen.sh"
+    generate_autoexec_game_install
+
+    mk_gamehd
+
+    # At this point we got the game HD created and the autoexec ready to run the game installer.
+    # The flow with proceed calling DosBox-X with this environment set.
+}
