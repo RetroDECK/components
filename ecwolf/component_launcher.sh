@@ -57,7 +57,7 @@ pretty_wolf3d_version() {
     wl1) echo "Wolfenstein 3D (Shareware)" ;;
     sdm) echo "Spear of Destiny (Demo)" ;;
     sod) echo "Spear of Destiny (Full)" ;;
-    sd1) echo "Spear of Destiny - Mission Pack 1 - Return to Danger" ;;
+    sd1) echo "Spear of Destiny - Alternative" ;;
     sd2) echo "Spear of Destiny - Mission Pack 2 - Return to Danger" ;;
     sd3) echo "Spear of Destiny - Mission Pack 3 - Ultimate Challenge" ;;
     n3d) echo "Super 3D Noah’s Ark" ;;
@@ -86,7 +86,7 @@ wolf3d_data_hashes=(
   [sod.maphead]="276c79a4a6419db6b23e7699e41cb9fa"
   [sod.vswap]="b1dac0a8786c7cdbb09331a4eba00652"
 
-  # sd1 hashes: many releases ship sd1 identical to sod (base SoD repackaged as MP1)
+  # It's the same game as SOD. Some releases used .SD1 instead of .SOD for original Spear of Destiny campaign.
   [sd1.gamemaps]="04f16534235b4b57fc379d5709f88f4a"
   [sd1.maphead]="276c79a4a6419db6b23e7699e41cb9fa"
   [sd1.vswap]="b1dac0a8786c7cdbb09331a4eba00652"
