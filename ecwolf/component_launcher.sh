@@ -18,6 +18,71 @@ log i "RetroDECK ECWolf Runner"
 path="${@: -1}" # getting the last argument as game path
 args="${@:1:$#-1}" # getting all the other passed args
 
+# Detect Spear of Destiny expansion/mission variants (*.SD<number>) in a folder.
+# Detection is generic: any file matching *.SD<number> (case-insensitive, one or more
+# decimal digits) is treated as an SOD-based expansion. Files are grouped by number so
+# that files from different SD numbers are never mixed.
+# Populates:
+#   sd_variants      - array of detected variant keys, e.g. ("sd2" "sd10"), sorted numerically
+#   sd_variant_files - associative array: key -> space-separated full paths of the available
+#                      mission-specific files (gamemaps.sdN maphead.sdN vswap.sdN)
+declare -A sd_variant_files
+detect_sd_variants() {
+  local folder="$1"
+  sd_variants=()
+  sd_variant_files=()
+  [[ -d "$folder" ]] || return 1
+
+  local -A seen
+  local file
+  while IFS= read -r file; do
+    [[ -n "$file" ]] || continue
+    local base lower
+    base="$(basename "$file")"
+    lower="${base,,}"
+    # Match *.SD<number> where <number> is one or more decimal digits (case-insensitive)
+    if [[ "$lower" =~ \.sd([0-9]+)$ ]]; then
+      local key="sd${BASH_REMATCH[1]}"
+      if [[ -z "${seen[$key]:-}" ]]; then
+        seen[$key]=1
+        sd_variants+=("$key")
+      fi
+    fi
+  done < <(find "$folder" -maxdepth 1 -type f 2>/dev/null)
+
+  # Sort variants numerically so selection is deterministic (lowest number first).
+  # Only sort when there is at least one variant: with an empty array,
+  # `printf '%s\n' "${sorted[@]}"` emits a single blank line, which mapfile would
+  # turn into one empty element and corrupt sd_variants with a bogus "sd" entry.
+  if [[ ${#sd_variants[@]} -gt 0 ]]; then
+    local sorted=()
+    local key
+    for key in "${sd_variants[@]}"; do
+      sorted+=("${key#sd}")
+    done
+    mapfile -t sorted < <(printf '%s\n' "${sorted[@]}" | sort -n)
+    sd_variants=()
+    local num
+    for num in "${sorted[@]}"; do
+      sd_variants+=("sd${num}")
+    done
+  fi
+
+  # Determine which mission-specific files are available for each variant
+  local f
+  for key in "${sd_variants[@]}"; do
+    local files=""
+    for f in gamemaps maphead vswap; do
+      local path
+      path=$(find "$folder" -maxdepth 1 -type f -iname "${f}.${key}" -print -quit 2>/dev/null)
+      if [[ -n "$path" ]]; then
+        files+=" $path"
+      fi
+    done
+    sd_variant_files[$key]="${files# }"
+  done
+}
+
 # Identify Wolf3D version by core files in folder
 # Requests: gamemaps, maphead, vswap with an extension.
 # Preference order: wl6, wl1, sdm, sod, sd1, sd2, sd3, n3d.
@@ -47,6 +112,19 @@ detect_wolf3d_version() {
     fi
   done
 
+  # Generic Spear of Destiny expansion/mission detection (*.SD<number>).
+  # Handles any valid SD<number> (sd1, sd2, sd3, sd5, sd10, sd99, ...) without
+  # hardcoding a fixed list. A variant is considered a game if at least its
+  # gamemaps file is present; completeness is validated at launch time.
+  detect_sd_variants "$folder"
+  local key
+  for key in "${sd_variants[@]}"; do
+    if [[ -n "$(find "$folder" -maxdepth 1 -type f -iname "gamemaps.${key}" -print -quit 2>/dev/null)" ]]; then
+      printf '%s' "$key"
+      return 0
+    fi
+  done
+
   return 1
 }
 
@@ -61,6 +139,7 @@ pretty_wolf3d_version() {
     sd2) echo "Spear of Destiny - Mission Pack 2 - Return to Danger" ;;
     sd3) echo "Spear of Destiny - Mission Pack 3 - Ultimate Challenge" ;;
     n3d) echo "Super 3D Noah’s Ark" ;;
+    sd[0-9]*) echo "Spear of Destiny - Mission Pack ${version#sd}" ;;
     *) echo "Unknown Wolf3D version: $version" ;;
   esac
 }
@@ -180,6 +259,7 @@ normalize_wolf3d_version_key() {
     sd2|missionpack2|returntodanger2) echo sd2 ;;
     sd3|missionpack3|ultimatechallenge) echo sd3 ;;
     n3d|super3dnoahsark|noahsark) echo n3d ;;
+    sd[0-9]*) echo "$input" ;;
     *) return 1 ;;
   esac
 }
@@ -308,6 +388,51 @@ setup_mod_launch() {
   fi
 }
 
+# Build launch args for a Spear of Destiny expansion/mission (*.SD<number>).
+# An SD variant is not standalone: it depends on the shared SOD base data, so we
+# load the SOD base via --data sod and add the mission-specific files via --file.
+# Requires: version (sdN key), sd_variant_files populated for the launch folder.
+# Sets: data_version (base data for --data), sd_launch_args (array of --file args).
+setup_sd_launch() {
+  local key="$version"
+  data_version="sod"
+  sd_launch_args=()
+
+  # Validate that all three mission-specific files are present.
+  local missing=""
+  local f
+  for f in gamemaps maphead vswap; do
+    local found=0
+    local p
+    for p in ${sd_variant_files[$key]:-}; do
+      local pbase
+      pbase="$(basename "$p")"
+      pbase="${pbase,,}"
+      if [[ "$pbase" == "${f}.${key}" ]]; then
+        found=1
+        break
+      fi
+    done
+    if (( found == 0 )); then
+      missing+=" ${f}.${key}"
+    fi
+  done
+  if [[ -n "$missing" ]]; then
+    log e "Spear of Destiny expansion '$key' is incomplete; missing:$missing"
+    exit 1
+  fi
+
+  local p
+  for p in ${sd_variant_files[$key]}; do
+    sd_launch_args+=( --file "$p" )
+  done
+}
+
+# Allow sourcing this file for unit testing without executing the launcher.
+if [[ "${ECWOLF_LAUNCHER_TEST:-}" == "1" ]]; then
+  return 0 2>/dev/null || exit 0
+fi
+
 # Start launcher mode selection
 raw_args=( "${@:1:$#-1}" )
 input_path="${@: -1}"
@@ -367,8 +492,17 @@ fi
 launch_folder="${launch_folder:-$iwad_folder}"
 
 if [[ -z "$launch_folder" || ! -d "$launch_folder" ]]; then
-  log e "Nessuna cartella di avvio valida trovata"
+  log e "No launch folder found"
   exit 1
+fi
+
+# If the detected version is a Spear of Destiny expansion/mission (*.SD<number>),
+# load the shared SOD base plus the mission-specific files.
+data_version="$version"
+sd_launch_args=()
+if [[ "$version" =~ ^sd[0-9]+$ ]]; then
+  detect_sd_variants "${iwad_folder:-$launch_folder}"
+  setup_sd_launch
 fi
 
 # Always use requested base options and preserved args.
@@ -378,15 +512,19 @@ if [[ ${#requested_mod_files[@]} -gt 0 ]]; then
   args+=( "${requested_mod_files[@]}" )
 fi
 
+if [[ ${#sd_launch_args[@]} -gt 0 ]]; then
+  args+=( "${sd_launch_args[@]}" )
+fi
+
 # Log command line internal representation
 if [[ ${#args[@]} -gt 0 ]]; then
   log i "With args: ${args[*]}"
 fi
 
 # Final command
-log d "Executing: \"$component_path/bin/ecwolf\" --fullscreen --nowait --data \"$version\" --config /var/config/ecwolf/ecwolf_rd.cfg --savedir /var/data/ecwolf/saves ${args[*]}"
+log d "Executing: \"$component_path/bin/ecwolf\" --fullscreen --nowait --data \"$data_version\" --config /var/config/ecwolf/ecwolf_rd.cfg --savedir /var/data/ecwolf/saves ${args[*]}"
 
 cd "$launch_folder" || exit 1
 log i "Running from $launch_folder"
-exec "$component_path/bin/ecwolf" --fullscreen --nowait --data "$version" --config /var/config/ecwolf/ecwolf_rd.cfg --savedir /var/data/ecwolf/saves "${args[@]}"
+exec "$component_path/bin/ecwolf" --fullscreen --nowait --data "$data_version" --config /var/config/ecwolf/ecwolf_rd.cfg --savedir /var/data/ecwolf/saves "${args[@]}"
 cd -
