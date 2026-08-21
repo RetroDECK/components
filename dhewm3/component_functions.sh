@@ -41,7 +41,7 @@ _prepare_component::dhewm3() {
 
   esac
 }
-_post_update::uzdoom() {
+_post_update::dhewm3() {
   local previous_version="$1"
 
 }
