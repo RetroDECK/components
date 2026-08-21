@@ -88,7 +88,7 @@ else
     command="run"
 fi
 
-case $command in
+case "$command" in
 
   tuner|--tuner|-t)
     satellaview_tuner
@@ -105,9 +105,17 @@ case $command in
     log i "  help, --help, -h: Show this help message"
   ;;
 
+  "")
+    satellaview_tuner
+    sleep 3
+    run_satellaview
+  ;;
+
   *)
-    log e "Unknown command '$command' in launcher script '$1'"
-    log w "Falling back to Satellaview+ run command"
+    log w "Unknown command '$command' in launcher script '$1'"
+    log w "Falling back to Satellaview+ normal mode"
+    satellaview_tuner
+    sleep 3
     run_satellaview
   ;;
 

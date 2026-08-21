@@ -63,7 +63,7 @@
           "gamelist_data": {
             "path": "satellaview_plus_run.sh",
             "name": "Start Satellaview+",
-            "desc": "Launches Satellaview+, allowing you to play Satellaview+ content. Run the Satellaview+ Channel Tuner first to update channels data and see broadcast schedules.",
+            "desc": "Updates Satellaview+ with the tuner and launches the game, allowing you to play Satellaview+ updated content.",
             "players": "1"
           }
         },
@@ -72,7 +72,7 @@
           "gamelist_data": {
             "path": "satellaview_plus_tuner.sh",
             "name": "Satellaview+ Channel Tuner",
-            "desc": "Launches the Satellaview+ Channel Tuner, which allows you to update Satellaview+ channels data and see broadcast schedules. You must run this tool before accessing any Satellaview+ content.",
+            "desc": "Launches the Satellaview+ Channel Tuner Only, which allows you to update Satellaview+ channels data and see broadcast schedules. This won't launch the game itself.",
             "genre": "Various / Utilities",
             "players": "1"
           }
