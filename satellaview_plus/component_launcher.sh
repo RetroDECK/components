@@ -95,26 +95,27 @@ case "$command" in
   ;;
 
   run|--run|-r)
+    satellaview_tuner &
+    sleep 3
+    run_satellaview
+  ;;
+
+  game-only|--game-only|-go)
     run_satellaview
   ;;
 
   help|--help|-h)
     log i "Available commands in the launcher script:"
-    log i "  tuner, --tuner, -t: Launch the Satellaview+ Tuner"
     log i "  run, --run, -r: Run the Satellaview+ SNES9X emulator"
+    log i "  tuner, --tuner, -t: Launch the Satellaview+ Tuner"
+    log i "  game-only, --game-only, -go: Run the Satellaview+ without launching the tuner"
     log i "  help, --help, -h: Show this help message"
-  ;;
-
-  "")
-    satellaview_tuner
-    sleep 3
-    run_satellaview
   ;;
 
   *)
     log w "Unknown command '$command' in launcher script '$1'"
-    log w "Falling back to Satellaview+ normal mode"
-    satellaview_tuner
+    log w "Falling back to Satellaview+ run mode"
+    satellaview_tuner &
     sleep 3
     run_satellaview
   ;;
