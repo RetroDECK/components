@@ -81,17 +81,6 @@
         }
       }
     },
-    "configurator_menus": {
-      "settings": [
-        {
-          "name": "Satellaview SoundLink+ Toggle",
-          "description": "Enable or disable: Satellaview SoundLink+ streaming while playing.",
-          "command": {
-            "zenity": "satellaview_toggle_soundlink"
-          }
-        }
-      ]
-    },
     "bios": [
       {
         "filename": "bs-x.sfc",
