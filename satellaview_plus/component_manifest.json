@@ -60,8 +60,9 @@
       "entries": {
         "satellaview_plus_run": {
           "system": "satellaview_plus",
+          "create_file": "$roms_path/satellaview_plus/satellaview_plus.sh",
           "gamelist_data": {
-            "path": "satellaview_plus_run.sh",
+            "path": "satellaview_plus.sh",
             "name": "Start Satellaview+",
             "desc": "Updates Satellaview+ with the tuner and launches the game, allowing you to play Satellaview+ updated content.",
             "players": "1"
@@ -69,6 +70,7 @@
         },
         "satellaview_plus_tuner": {
           "system": "satellaview_plus",
+          "create_file": "$roms_path/satellaview_plus/satellaview_plus_tuner.sh",
           "gamelist_data": {
             "path": "satellaview_plus_tuner.sh",
             "name": "Satellaview+ Channel Tuner",
