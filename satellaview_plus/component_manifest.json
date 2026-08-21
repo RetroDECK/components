@@ -60,10 +60,10 @@
       "entries": {
         "satellaview_plus_run": {
           "system": "satellaview_plus",
-          "create_file": "$roms_path/satellaview_plus/satellaview_plus.sh",
+          "create_file": "$roms_path/satellaview_plus/satellaview_plus_run.sh",
           "gamelist_data": {
-            "path": "satellaview_plus.sh",
-            "name": "Start Satellaview+",
+            "path": "satellaview_plus_run.sh",
+            "name": "Satellaview+ Start!",
             "desc": "Updates Satellaview+ with the tuner and launches the game, allowing you to play Satellaview+ updated content.",
             "players": "1"
           }
