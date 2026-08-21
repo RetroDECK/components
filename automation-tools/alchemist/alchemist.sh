@@ -86,8 +86,9 @@ transmute() {
         asset_source="$(jq -r '.source//empty' <<< $asset_obj | envsubst)"
         asset_dest="$(jq -r '.dest//empty' <<< $asset_obj | envsubst)"
         asset_contents="$(jq -r '.contents//empty' <<< $asset_obj | envsubst)"
+        asset_executable="$(jq -r '.executable//empty' <<< $asset_obj)"
 
-        assembly_result=$(process_asset -t "$asset_type" -s "$asset_source" -d "$asset_dest" -c "$asset_contents")
+        assembly_result=$(process_asset -t "$asset_type" -s "$asset_source" -d "$asset_dest" -c "$asset_contents" -e "$asset_executable")
       done < <(echo "$obj_assets" | jq -c '.[]')
     else
       log info "Component assets omitted or empty, skipping..."
