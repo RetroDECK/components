@@ -129,8 +129,8 @@ _prepare_component::retrodeck() {
         set_setting_value "$rd_conf" "$setting_name" "$new_value" "retrodeck" "paths"
 
         if [[ "$setting_name" == "logs_path" ]]; then
-          dir_prep "$rd_xdg_config_logs_path" "$new_value"
-          log d "Logs folder linked from $rd_xdg_config_logs_path to $new_value"
+          dir_prep "$rd_xdg_data_logs_path" "$new_value"
+          log d "Logs folder linked from $rd_xdg_data_logs_path to $new_value"
         else
           create_dir "$new_value"
         fi
@@ -145,7 +145,7 @@ _prepare_component::retrodeck() {
       log i "Post-moving RetroDECK Framework"
       log i "--------------------------------"
 
-      dir_prep "$rd_xdg_config_logs_path" "$logs_path"
+      dir_prep "$rd_xdg_data_logs_path" "$logs_path"
     ;;
 
     startup)
