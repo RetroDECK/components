@@ -3,9 +3,12 @@
     "name": "RetroDECK",
     "description": "RetroDECK Framework",
     "core_framework_version": 1,
+    "capabilities": [
+      "reset"
+    ],
     "prepare_priority": {
       "reset": 0,
-      "postmove" :0,
+      "postmove": 0,
       "startup": 0,
       "shutdown": 99
     },
@@ -73,21 +76,56 @@
     ],
     "backup_data": {
       "core": [
-        {"path": "$saves_path", "follow_symlinks": false},
-        {"path": "$states_path", "follow_symlinks": false}
+        {
+          "path": "$XDG_CONFIG_HOME/retrodeck",
+          "follow_symlinks": false
+        },
+        {
+          "path": "$saves_path",
+          "follow_symlinks": false
+        },
+        {
+          "path": "$states_path",
+          "follow_symlinks": false
+        }
       ],
       "complete": [
-        {"path": "$saves_path", "follow_symlinks": false},
-        {"path": "$states_path", "follow_symlinks": false},
-        {"path": "$screenshots_path", "follow_symlinks": false},
-        {"path": "$videos_path", "follow_symlinks": false},
-        {"path": "$roms_path", "follow_symlinks": false},
-        {"path": "$bios_path", "follow_symlinks": false},
-        {"path": "$shaders_path", "follow_symlinks": false},
-        {"path": "$mods_path", "follow_symlinks": false},
-        {"path": "$texture_packs_path", "follow_symlinks": false},
-        {"path": "$borders_path", "follow_symlinks": false},
-        {"path": "$cheats_path", "follow_symlinks": false},
+        {
+          "path": "$screenshots_path",
+          "follow_symlinks": false
+        },
+        {
+          "path": "$videos_path",
+          "follow_symlinks": false
+        },
+        {
+          "path": "$roms_path",
+          "follow_symlinks": false
+        },
+        {
+          "path": "$bios_path",
+          "follow_symlinks": false
+        },
+        {
+          "path": "$shaders_path",
+          "follow_symlinks": false
+        },
+        {
+          "path": "$mods_path",
+          "follow_symlinks": false
+        },
+        {
+          "path": "$texture_packs_path",
+          "follow_symlinks": false
+        },
+        {
+          "path": "$borders_path",
+          "follow_symlinks": false
+        },
+        {
+          "path": "$cheats_path",
+          "follow_symlinks": false
+        }
       ]
     },
     "component_paths": {
@@ -177,13 +215,17 @@
         "flag": "--compress-one",
         "description": "Compresses target file to a compatible format",
         "handler": "_cli_compress_single_game::retrodeck",
-        "params": ["[file]"]
+        "params": [
+          "[file]"
+        ]
       },
       {
         "flag": "--compress-all",
         "description": "Compresses all supported games into a compatible format",
         "handler": "_cli_compress_all_games::retrodeck",
-        "params": ["[format]"]
+        "params": [
+          "[format]"
+        ]
       },
       {
         "flag": "--repair-paths",
@@ -194,7 +236,9 @@
         "flag": "--reset",
         "description": "Reset one or more component/emulator configurations to default values.",
         "handler": "_cli_reset_component::retrodeck",
-        "params": ["[component]"]
+        "params": [
+          "[component]"
+        ]
       },
       {
         "flag": "--factory-reset",
@@ -205,14 +249,19 @@
         "flag": "--test-upgrade",
         "description": "Test upgrading RetroDECK to a specific version, developer use only",
         "handler": "_cli_test_upgrade::retrodeck",
-        "params": ["<version>"],
+        "params": [
+          "<version>"
+        ],
         "dev_tool": true
       },
       {
         "flag": "--get",
         "description": "Show the current status of a preset. Use --get-help for more information",
         "handler": "_cli_get_preset::retrodeck",
-        "params": ["<preset>", "[system]"]
+        "params": [
+          "<preset>",
+          "[system]"
+        ]
       },
       {
         "flag": "--get-help",
@@ -223,7 +272,11 @@
         "flag": "--set",
         "description": "Configure or toggle a preset. Use --set-help for more information",
         "handler": "_cli_set_preset::retrodeck",
-        "params": ["<preset>", "<system/all>", "<value>"]
+        "params": [
+          "<preset>",
+          "<system/all>",
+          "<value>"
+        ]
       },
       {
         "flag": "--set-help",
@@ -234,7 +287,9 @@
         "flag": "--open",
         "description": "Open a specific component or emulator. Use --open --list for available components",
         "handler": "_cli_open_component::retrodeck",
-        "params": ["[component]"]
+        "params": [
+          "[component]"
+        ]
       }
     ],
     "configurator_menus": {
@@ -256,9 +311,17 @@
           }
         },
         {
+          "name": "ES-DE Entries",
+          "description": "Add games, programs and functions to ES-DE's menus.",
+          "priority": 3,
+          "command": {
+            "zenity": "configurator_es_de_entries_dialog"
+          }
+        },
+        {
           "name": "Open Component",
           "description": "Manually launch and configure individual components. Advanced Users Only.",
-          "priority": 3,
+          "priority": 4,
           "command": {
             "zenity": "configurator_open_component_dialog"
           }
@@ -266,7 +329,7 @@
         {
           "name": "Reset Components",
           "description": "Reset a specific component or restore all RetroDECK defaults.",
-          "priority": 4,
+          "priority": 5,
           "command": {
             "zenity": "configurator_reset_dialog"
           }
@@ -274,7 +337,7 @@
         {
           "name": "Settings",
           "description": "Adjust core RetroDECK: Presets, Visuals, Tweaks and Logins.",
-          "priority": 5,
+          "priority": 7,
           "command": {
             "zenity": "configurator_global_presets_and_settings_dialog"
           }
@@ -282,7 +345,7 @@
         {
           "name": "Tools",
           "description": "Run various tools: BIOS Checker, File Compressor, Install optional features and more.",
-          "priority": 7,
+          "priority": 8,
           "command": {
             "zenity": "configurator_tools_dialog"
           }
@@ -560,6 +623,24 @@
       "widescreen": {
         "name": "Widescreen",
         "desc": "Enable or disable: Widescreen mode in supported components."
+      }
+    },
+    "es_de_config": {
+      "es_find_rules": {
+        "emulators": [
+          {
+            "name": "FLATPAK-SPAWN",
+            "description": "RetroDECK - Break out of Sandbox for Tinkerers",
+            "rules": [
+              {
+                "type": "systempath",
+                "entries": [
+                  "flatpak-spawn"
+                ]
+              }
+            ]
+          }
+        ]
       }
     }
   }

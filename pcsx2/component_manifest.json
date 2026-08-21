@@ -3,14 +3,20 @@
     "name": "PCSX2",
     "core_framework_compatibility": "1",
     "component_version": "1.0.0",
+    "capabilities": ["reset","open"],
     "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/pcsx2/pcsx2-guide/",
     "url_webpage": "https://pcsx2.net/",
     "url_donation_purchase": "",
     "url_source": "https://github.com/PCSX2/pcsx2",
-    "description": "PCSX2 is a PlayStation 2 (ps2) emulator.",
+    "description": "PlayStation 2 emulator for playing PS2 games. ",
     "component_type": "Emulator",
     "system_friendly_name": "PlayStation 2",
     "system": "ps2",
+    "backup_data": {
+      "core": [
+        {"path": "$XDG_CONFIG_HOME/PCSX2"}
+      ]
+    },
     "es_de_config": {
       "es_find_rules": {
         "emulators": [

@@ -47,6 +47,9 @@ transmute() {
   if [[ ! "$RESOLVE_VERSION" == "true" ]]; then
     mkdir -p "$COMPONENT_ARTIFACT_ROOT"
   fi
+  if [[ ! "$RESOLVE_VERSION" == "true" ]]; then
+    mkdir -p "$COMPONENT_ARTIFACT_ROOT"
+  fi
 
   while read -r source_obj; do
     source_type="$(jq -r '.source_type' <<< $source_obj)"
@@ -83,8 +86,9 @@ transmute() {
         asset_source="$(jq -r '.source//empty' <<< $asset_obj | envsubst)"
         asset_dest="$(jq -r '.dest//empty' <<< $asset_obj | envsubst)"
         asset_contents="$(jq -r '.contents//empty' <<< $asset_obj | envsubst)"
+        asset_executable="$(jq -r '.executable//empty' <<< $asset_obj)"
 
-        assembly_result=$(process_asset -t "$asset_type" -s "$asset_source" -d "$asset_dest" -c "$asset_contents")
+        assembly_result=$(process_asset -t "$asset_type" -s "$asset_source" -d "$asset_dest" -c "$asset_contents" -e "$asset_executable")
       done < <(echo "$obj_assets" | jq -c '.[]')
     else
       log info "Component assets omitted or empty, skipping..."
@@ -179,6 +183,11 @@ parse_args() {
         shift 2
         ;;
       --dry-run)
+        export DRYRUN="true"
+        shift 1
+        ;;
+      -r|--resolve-versions)
+        export RESOLVE_VERSION="true"
         export DRYRUN="true"
         shift 1
         ;;

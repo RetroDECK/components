@@ -1,0 +1,53 @@
+{
+  "xenia-edge": {
+    "name": "Xenia Edge",
+    "core_framework_compatibility": "1",
+    "component_version": "1.0.0",
+    "capabilities": [
+      "reset",
+      "open"
+    ],
+    "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/xenia-edge/xenia-edge-guide/",
+    "url_webpage": "https://xenia.jp/",
+    "url_donation_purchase": "https://www.patreon.com/xenia_project",
+    "url_source": "https://github.com/has207/xenia-edge/",
+    "component_type": "Emulator",
+    "description": "Microsoft Xbox 360 emulator for playing Xbox 360 games.",
+    "system_friendly_name": "Xbox 360",
+    "system": "xbox360",
+    "es_de_config": {
+      "es_find_rules": {
+        "emulators": [
+          {
+            "name": "XENIA-EDGE",
+            "description": "Microsoft Xbox 360 emulator Xenia Edge",
+            "rules": [
+              {
+                "type": "staticpath",
+                "entries": [
+                  "%COMPONENT_PATH%/component_launcher.sh"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "es_systems": [
+        {
+          "name": "xbox360",
+          "fullname": "Microsoft Xbox 360",
+          "path": "%ROMPATH%/xbox360",
+          "extension": ".desktop .iso .sh .xex .zar",
+          "commands": [
+            {
+              "label": "Xenia Edge (Standalone)",
+              "command": "%STARTDIR%=%EMUDIR% %EMULATOR_XENIA-EDGE% %INJECT%=%BASENAME%.commands %ROM%"
+            }
+          ],
+          "platform": "xbox360",
+          "theme": "xbox360"
+        }
+      ]
+    }
+  }
+}

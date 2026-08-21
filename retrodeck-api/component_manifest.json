@@ -2,14 +2,14 @@
   "retrodeck-api": {
     "name": "RetroDECK API",
     "description": "RetroDECK API",
-    "core_framework_version": 1,
+    "core_framework_compatibility": "1",
     "component_options": {
       "rd_api_enabled": "false"
     },
     "cli_commands": [
       {
         "flag": "--api",
-        "description": "Start the RetroDECK API manually",
+        "description": "Start the RetroDECK API manually. Runs in the foreground, use Ctrl-C to exit.",
         "handler": "_cli_api_start_server::retrodeck-api",
         "dev_tool": true
       }

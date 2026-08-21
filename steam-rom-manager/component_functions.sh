@@ -266,9 +266,7 @@ configurator_disable_steam_sync() {
 
 configurator_manual_steam_sync_dialog() {
   configurator_generic_dialog "RetroDeck Configurator - Steam Syncronization: Manual" "RetroDECK will now look for any <span foreground='$purple'><b>Favorited</b></span> games and sync them to your Steam library as individual entries if needed.\n\nIf Steam Sync has been run before and no favorites have been added or removed, you will be returned to the Steam Tools menu.\nIf changes are needed, you will see a progress dialog during the process."
-  if [[ -n "$steam_username" ]]; then
-    steam_sync "zenity"
-  elif get_steam_user; then
+  if get_steam_user "manual"; then
     steam_sync "zenity"
   else
     configurator_generic_dialog "RetroDeck Configurator - Steam Syncronization: Manual" "RetroDECK could not determine the logged-in Steam user information.\n\nManual Steam sync could not be performed."
@@ -308,14 +306,17 @@ get_steam_user() {
   local mode="${1:-}"
   local current_steam_sync_setting="$(get_component_option "steam-rom-manager" "steam_sync")"
   if [[ "$current_steam_sync_setting" != "false" || "$mode" =~ (get_type|manual) ]]; then # Only grab Steam information if Steam Sync is enabled or if otherwise overridden
+    local srm_rd_manifest_target
     if [[ "$current_steam_sync_setting" == "native" ]]; then
       export srm_steam_userdata_current="$srm_steam_userdata_native"
+      srm_rd_manifest_target="flatpak"
       if [[ "$mode" == "get_type" ]]; then
         echo "$current_steam_sync_setting"
         return 0
       fi
     elif [[ "$current_steam_sync_setting" == "flatpak" ]]; then
       export srm_steam_userdata_current="$srm_steam_userdata_flatpak"
+      srm_rd_manifest_target="flatpak-spawn --host"
       if [[ "$mode" == "get_type" ]]; then
         echo "$current_steam_sync_setting"
         return 0
@@ -357,7 +358,7 @@ get_steam_user() {
         flag && /"PersonaName"/ {gsub(/"/, "", $2); print $2; exit}' "$srm_steam_userdata_current/config/loginusers.vdf")
 
       # Log success
-      log i "Steam user found:"
+      log i "Steam user found!"
       log i "SteamID: $steam_id"
       log i "Username: $steam_username"
       log i "Name: $steam_prettyname"
@@ -368,6 +369,12 @@ get_steam_user() {
         .environmentVariables.steamDirectory = $userdata_path |
         .environmentVariables.romsDirectory = ($rd_home_path + "/.sync")
       ' "$srm_userdata/userSettings.json" > "$usersettings_temp" && mv -f "$usersettings_temp" "$srm_userdata/userSettings.json"
+
+      log i "Updating launch target in $srm_userdata/manifests/RetroDECK.json"
+      local srm_rd_manifest_temp=$(mktemp)
+      jq --arg target "$srm_rd_manifest_target" '
+        .target = $target
+      ' "$srm_userdata/manifests/RetroDECK.json" > "$srm_rd_manifest_temp" && mv -f "$srm_rd_manifest_temp" "$srm_userdata/manifests/RetroDECK.json"
 
       if ! populate_steamuser_srm; then
         log e "Steam username could not be populated in SRM config files."
@@ -599,7 +606,7 @@ steam_sync_remove() {
 install_retrodeck_controller_profile() {
   # This function will install the needed files for the custom RetroDECK controller profile
   # USAGE: install_retrodeck_controller_profile
-  local mode="{$1:-}"
+  local mode="${1:-}"
   local current_steam_sync_setting="$(get_component_option "steam-rom-manager" "steam_sync")"
 
   if [[ ("$current_steam_sync_setting" == "native" || "$mode" == "manual") && -d "$srm_steam_userdata_native/controller_base/templates/" ]]; then
@@ -666,7 +673,6 @@ finit_install_controller_profile_dialog() {
 
 finit_install_controller_profile_and_add_retrodeck_to_steam() {
   if get_steam_user "manual"; then
-    log i "Updating steamDirectory and romDirectory lines in $srm_usersettings_file"
     local usersettings_temp=$(mktemp)
     jq --arg userdata_path "$srm_steam_userdata_current" --arg rd_home_path "$rd_home_path" '
       .environmentVariables.steamDirectory = $userdata_path |

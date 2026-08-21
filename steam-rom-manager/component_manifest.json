@@ -3,6 +3,7 @@
     "name": "Steam ROM Manager",
     "core_framework_compatibility": "1",
     "component_version": "1.0.0",
+    "capabilities": ["reset","open"],
     "prepare_priority": {
       "default": 50,
       "startup": 98,
@@ -12,8 +13,13 @@
     "url_webpage": "https://steamgriddb.github.io/steam-rom-manager/",
     "url_donation_purchase": "https://www.patreon.com/steamgriddb",
     "url_source": "https://github.com/SteamGridDB/steam-rom-manager",
-    "description": "Steam Rom Manager (SRM) is a system that adds games to your Steam library.",
-    "component_type": "System",
+    "description": "Utility for adding ROMs and other games to a Steam library.",
+    "component_type": "Utility",
+    "backup_data": {
+      "core": [
+        {"path": "$XDG_CONFIG_HOME/steam-rom-manager"}
+      ]
+    },
     "component_options": {
       "steam_sync": "false"
     },
@@ -22,7 +28,7 @@
         "flag": "--steam-sync",
         "description": "Run the Steam ROM Manager sync process. Add \"purge\" to remove all SRM information from Steam",
         "handler": "_cli_steam_sync::steam-rom-manager",
-        "params": ["[action]"]
+        "params": ["[purge]"]
       }
     ],
     "configurator_menus": {

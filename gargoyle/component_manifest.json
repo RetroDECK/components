@@ -1,0 +1,69 @@
+{
+  "gargoyle": {
+    "name": "Gargoyle",
+    "core_framework_compatibility": "1",
+    "component_version": "1.0.0",
+    "capabilities": [
+      "reset",
+      "open"
+    ],
+    "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/gargoyle/gargoyle-guide/.",
+    "url_webpage": "https://ccxvii.net/gargoyle/",
+    "url_donation_purchase": "",
+    "url_source": "https://github.com/garglk/garglk/",
+    "description": "Interactive fiction player and emulator supporting Z-machine, TADS, Hugo, Glulx, and other formats.",
+    "component_type": "Emulator",
+    "system_friendly_name": "Gargoyle Interactive Fiction Player",
+    "system": "zmachine",
+    "es_de_config": {
+      "es_find_rules": {
+        "emulators": [
+          {
+            "name": "GARGOYLE",
+            "description": "Interactive fiction player Gargoyle",
+            "rules": [
+              {
+                "type": "staticpath",
+                "entries": [
+                  "%COMPONENT_PATH%/component_launcher.sh"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "es_systems": [
+      {
+        "name": "zmachine",
+        "fullname": "Infocom Z-machine",
+        "path": "%ROMPATH%/zmachine",
+        "extension": ".dat .z1 .z2 .z3 .z4 .z5 .z6 .z7 .z8 .zlb .zblorb",
+        "commands": [
+          {
+            "label": "Gargoyle (Standalone)",
+            "command": "%EMULATOR_GARGOYLE% %ROM%",
+            "priority": 10
+          }
+        ],
+        "platform": "zmachine",
+        "theme": "zmachine"
+      },
+      {
+        "name": "if",
+        "fullname": "Interactive Fiction",
+        "path": "%ROMPATH%/if",
+        "extension": ".dat .z1 .z2 .z3 .z4 .z5 .z6 .z7 .z8 .zlb .zblorb .agx, .d$$, .acd, .a3c, .ulx, .blb, .gblorb, .glb, .hex, .hdx, .blorb, .j2, .jacl, .l9, .mag, .gfx, .taf, .saga, .gam, .t3",
+        "commands": [
+          {
+            "label": "Gargoyle (Standalone)",
+            "command": "%EMULATOR_GARGOYLE% %ROM%",
+            "priority": 10
+          }
+        ],
+        "platform": "zmachine, if, pc, pcwindows, dos, c64",
+        "theme": "if"
+      }
+    ]
+  }
+}

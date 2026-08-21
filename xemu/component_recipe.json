@@ -12,11 +12,6 @@
           "dest": "bin"
         },
         {
-          "type": "file",
-          "source": "lib/libxxhash.a",
-          "dest": "lib"
-        },
-        {
           "type": "create",
           "dest": "component_version",
           "contents": "$SOURCE_VERSION"

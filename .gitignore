@@ -1,5 +1,6 @@
 downloaded-artifacts
 */artifacts
+archive_*/*/artifacts
 .tmpfunc
 *.log
 _work

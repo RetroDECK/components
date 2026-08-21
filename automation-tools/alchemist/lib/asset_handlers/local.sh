@@ -8,6 +8,7 @@ handle_asset() {
   local type="$1"
   local source="$2"
   local dest="$3"
+  local executable="${5:-}"
 
   local final_source="$source"
   local final_dest="$dest"
@@ -18,6 +19,11 @@ handle_asset() {
 
   if [[ ! -e "$final_source" ]]; then
     log error "Provided source $final_source does not exist, cannot grab asset"
+    return 1
+  fi
+
+  if [[ ! "$type" == "file" && "$executable" == "true" ]]; then
+    log error "Non-file type marked as executable, cannot proceeed."
     return 1
   fi
 
@@ -46,7 +52,15 @@ handle_asset() {
   case "$type" in
     file)
       process_asset_cmd() {
-        cp "$1" "$2"
+        if [[ -f "$2" ]]; then
+          log info "File $(basename $2) already exists at destination, skipping copy."
+        else
+          cp "$1" "$2"
+        fi
+        if [[ "$executable" == "true" ]]; then
+          log info "Marking file $2 as executable."
+          chmod +x "$2"
+        fi
       }
     ;;
     dir)

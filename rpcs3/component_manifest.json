@@ -3,6 +3,7 @@
     "name": "RPCS3",
     "core_framework_compatibility": "1",
     "component_version": "1.0.0",
+    "capabilities": ["reset","open"],
     "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/rpcs3/rpcs3-guide/",
     "url_webpage": "https://rpcs3.net/",
     "url_donation_purchase": [
@@ -10,10 +11,15 @@
       "https://rpcs3.net/alipay"
     ],
     "url_source": "https://github.com/RPCS3/rpcs3",
-    "description": "RPCS3 is a Playstation 3 (ps3) emulator.",
+    "description": "PlayStation 3 emulator for playing PS3 games.",
     "system_friendly_name": "PlayStation 3",
     "component_type": "Emulator",
     "system": "ps3",
+    "backup_data": {
+      "core": [
+        {"path": "$XDG_CONFIG_HOME/rpcs3"}
+      ]
+    },
     "es_de_config": {
       "es_find_rules": {
         "emulators": [

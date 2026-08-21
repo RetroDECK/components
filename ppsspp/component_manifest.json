@@ -3,7 +3,8 @@
     "name": "PPSSPP",
     "core_framework_compatibility": "1",
     "component_version": "1.0.0",
-    "description": "PPSSPP is a PlayStation Portable (psp) emulator.",
+    "capabilities": ["reset","open"],
+    "description": "PlayStation Portable emulator for playing PlayStation Portable games. ",
     "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/ppsspp/ppsspp-guide/",
     "url_webpage": "https://www.ppsspp.org/",
     "url_donation_purchase": "https://www.ppsspp.org/buygold",
@@ -11,6 +12,11 @@
     "component_type": "Emulator",
     "system": "psp",
     "system_friendly_name": "Playstation Portable",
+    "backup_data": {
+      "core": [
+        {"path": "$XDG_CONFIG_HOME/ppsspp"}
+      ]
+    },
     "es_de_config": {
       "es_find_rules": {
         "emulators": [
@@ -85,12 +91,9 @@
         },
         {
           "enabled_states": ["true"],
-          "setting_name": "cheevos_token",
-          "action": "change",
+          "action": "raw_write",
           "new_setting_value": "$cheevos_token",
-          "section": "",
-          "target_file": "$ppsspp_retroachievements_dat",
-          "defaults_file": "$ppsspp_rd_config_dir/ppsspp_retroachievements.dat"
+          "target_file": "$ppsspp_retroachievements_dat"
         }
       ],
       "cheevos_hardcore": [

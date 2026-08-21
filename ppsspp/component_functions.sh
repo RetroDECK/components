@@ -48,6 +48,17 @@ _get_setting_value::ppsspp() {
   fi
 }
 
+_add_setting::ppsspp() {
+  local file="$1" name="$2" value="$3"
+  sed -i '$ a '"$name"' = "'"$value"'"' "$file"
+}
+
+_delete_setting::ppsspp() {
+  local file="$1" name="$2"
+  sed -i '\^'"$name"'^d' "$file"
+  sed -i '/^$/d' "$file" # Cleanup empty lines left behind
+}
+
 _prepare_component::ppsspp() {
   local action="$1"
   shift

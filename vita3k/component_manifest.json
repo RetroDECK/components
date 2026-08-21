@@ -3,7 +3,8 @@
     "name": "Vita3K",
     "core_framework_compatibility": "1",
     "component_version": "1.0.0",
-    "description": "Vita3K is a PlayStation Vita (psvita) emulator.",
+    "capabilities": ["reset","open"],
+    "description": "PlayStation Vita emulator for running PS Vita games and applications.",
     "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/vita3k/vita3k-guide/",
     "url_webpage": "https://vita3k.org/",
     "url_donation_purchase": "https://ko-fi.com/vita3k/tiers",
@@ -11,6 +12,12 @@
     "component_type": "Emulator",
     "system_friendly_name": "PlayStation Vita",
     "system": "psvita",
+    "backup_data": {
+      "core": [
+        {"path": "$XDG_CONFIG_HOME/Vita3K"},
+        {"path": "$XDG_DATA_HOME/Vita3K"}
+      ]
+    },
     "es_de_config": {
       "es_find_rules": {
         "emulators": [

@@ -3,14 +3,21 @@
     "name": "Ruffle",
     "core_framework_compatibility": "1",
     "component_version": "1.0.0",
+    "capabilities": ["reset","open"],
     "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/ruffle/ruffle-guide/",
     "url_webpage": "https://ruffle.rs/",
     "url_donation_purchase": "https://opencollective.com/ruffle",
     "url_source": "https://github.com/ruffle-rs/ruffle/",
-    "description": "Ruffle is a Flash Player (flash) emulator.",
+    "description": "Flash Player emulator for running Adobe Flash content.",
     "component_type": "Emulator",
     "system_friendly_name": "Flash Player Emulator",
     "system": "flash",
+    "backup_data": {
+      "core": [
+        {"path": "$XDG_CONFIG_HOME/ruffle"},
+        {"path": "$XDG_DATA_HOME/ruffle"}
+      ]
+    },
     "es_de_config": {
       "es_find_rules": {
         "emulators": [

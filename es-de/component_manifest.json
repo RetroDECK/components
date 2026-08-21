@@ -4,7 +4,8 @@
     "name": "ES-DE",
     "core_framework_compatibility": "1",
     "component_version": "1.0.0",
-    "component_type": "System",
+    "capabilities": ["reset"],
+    "component_type": "Frontend",
     "prepare_priority": {
       "reset": 10,
       "postmove": 10,
@@ -20,6 +21,7 @@
     },
     "backup_data": {
       "core": [
+        {"path": "$XDG_CONFIG_HOME/ES-DE"},
         {"path": "$esde_gamelists_path"},
         {"path": "$esde_collections_path"},
         {"path": "$esde_custom_systems_path"},
@@ -93,11 +95,11 @@
     },
     "helper_files": [
       {
-        "filename": "es_find_rules.xml",
+        "filename": "es_find_rules_template.xml",
         "location": "$esde_custom_systems_path"
       },
       {
-        "filename": "es_systems.xml",
+        "filename": "es_systems_template.xml",
         "location": "$esde_custom_systems_path"
       }
     ],
@@ -366,17 +368,9 @@
         "holiday_type": "dynamic",
         "filename": "rd-monkey-festival-splash.svg"
       },
-      "chanukah_start": {
+      "chanukah": {
         "start_date": "1205",
         "end_date": "1205",
-        "start_time": "0000",
-        "end_time": "2359",
-        "holiday_type": "dynamic",
-        "filename": "rd-chanukah-splash.svg"
-      },
-      "chanukah_end": {
-        "start_date": "1212",
-        "end_date": "1212",
         "start_time": "0000",
         "end_time": "2359",
         "holiday_type": "dynamic",
