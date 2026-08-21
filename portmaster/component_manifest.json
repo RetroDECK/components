@@ -1,6 +1,6 @@
 {
   "portmaster": {
-    "description": "PortMaster a port manager that simplifies installing and updating ports.",
+    "description": "Port management utility for installing and updating ports.",
     "name": "PortMaster",
     "core_framework_compatibility": "1",
     "component_version": "1.0.0",
@@ -13,7 +13,7 @@
     "url_donation_purchase": "https://opencollective.com/portmaster",
     "url_source": "https://github.com/PortsMaster/PortMaster-New",
     "system_friendly_name": "PortMaster",
-    "component_type": "System",
+    "component_type": "Utility",
     "system": "portmaster",
     "backup_data": {
       "core": [
@@ -32,10 +32,10 @@
       }
     },
     "configurator_menus": {
-      "settings": [
+      "es_de_entries": [
         {
-          "name": "PortMaster in ES-DE",
-          "description": "Enable or disable: PortMaster entry in ES-DE.",
+          "name": "PortMaster",
+          "description": "Enable or disable: The PortMaster entry in ES-DE.",
           "command": {
             "zenity": "configurator_portmaster_toggle_dialog"
           }

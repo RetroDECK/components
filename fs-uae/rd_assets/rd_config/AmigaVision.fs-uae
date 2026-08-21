@@ -1,0 +1,131 @@
+# ============================================================
+# FS-UAE - RETRODECK / AMIGAVISION  
+# ============================================================
+
+# ------------------------------------------------------------
+# MACHINE
+# ------------------------------------------------------------
+
+amiga_model = A1200/020
+
+cpu = 68020
+
+chip_memory = 2048
+fast_memory = 0
+slow_memory = 0
+
+zorro_iii_memory = 262144
+
+# ------------------------------------------------------------
+# CPU / PERFORMANCE
+# ------------------------------------------------------------
+
+jit_compiler = 0
+
+game_mode = 0
+warp_mode = 0
+
+# ------------------------------------------------------------
+# FLOPPY DRIVES
+# ------------------------------------------------------------
+
+floppy_drive_count = 2
+
+floppy_drive_0_sounds = 0
+floppy_drive_1_sounds = 0
+
+floppy_drive_speed = 100
+
+floppy_drive_volume = 0
+floppy_drive_volume_empty = 0
+
+# ------------------------------------------------------------
+# HARD DRIVES
+# ------------------------------------------------------------
+
+hard_drive_0 = RETRODECKSTORAGEDIR/FS-UAE/AmigaVision/AmigaVision.hdf
+hard_drive_0_read_only = 0
+
+hard_drive_1 = RETRODECKSTORAGEDIR/FS-UAE/AmigaVision/AmigaVision-Saves.hdf
+hard_drive_1_read_only = 0
+
+hard_drive_2 = RETRODECKSTORAGEDIR/FS-UAE/AmigaVision/shared
+hard_drive_2_read_only = 0
+hard_drive_2_label = RetroDECK
+
+# ------------------------------------------------------------
+# CD-ROM
+# ------------------------------------------------------------
+
+cdrom_drive_count = 0
+
+# ------------------------------------------------------------
+# VIDEO
+# ------------------------------------------------------------
+
+fullscreen = 1
+fullscreen_mode = 0
+fullscreen_width = 0
+fullscreen_height = 0
+
+window_border = 0
+window_resizable = 0
+
+keep_aspect = 1
+force_aspect = 1
+
+ntsc_mode = 1
+
+# ------------------------------------------------------------
+# VIEWPORT / CROPPING
+# ------------------------------------------------------------
+
+border = 0
+bezel = 0
+crop = 0
+
+# ------------------------------------------------------------
+# SCALING
+# ------------------------------------------------------------
+
+scale = integer
+texture_filter = nearest
+smoothing = 0
+
+# ------------------------------------------------------------
+# SCANLINES
+# ------------------------------------------------------------
+
+scanlines = 1
+scanlines_dark = 0
+scanlines_light = 0
+
+# ------------------------------------------------------------
+# AUDIO
+# ------------------------------------------------------------
+
+audio_frequency = 44100
+volume = 100
+stereo_separation = 100
+audio_buffer_target_size = 50
+
+# ------------------------------------------------------------
+# VIDEO SYNCHRONIZATION
+# ------------------------------------------------------------
+
+low_latency_vsync = 1
+
+# ------------------------------------------------------------
+# UI / TRANSITIONS
+# ------------------------------------------------------------
+
+fade_in_duration = 0
+fade_out_duration = 0
+menu_auto_pause = 1
+
+# ------------------------------------------------------------
+# SAVE STATES
+# ------------------------------------------------------------
+
+save_states = 1
+save_state_compression = 1

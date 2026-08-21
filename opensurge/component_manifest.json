@@ -1,0 +1,92 @@
+{
+  "opensurge": {
+    "name": "Open Surge",
+    "core_framework_compatibility": "1",
+    "component_version": "1.0.0",
+    "capabilities": [
+      "open"
+    ],
+    "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_engine_guides/opensurge/opensurge-guide/",
+    "url_webpage": "https://opensurge2d.org/",
+    "url_donation_purchase": "",
+    "url_source": "https://github.com/alemart/opensurge",
+    "description": "Open Surge 2D game engine for playing Sonic-style platformers written in SurgeScript.",
+    "component_type": "Engine",
+    "system_friendly_name": "Open Surge Engine",
+    "system": "opensurge",
+    "component_options": {
+      "surge_the_rabbit_visible": "false"
+    },
+    "es_de_config": {
+      "es_find_rules": {
+        "emulators": [
+          {
+            "name": "OPENSURGE",
+            "description": "Open Surge 2D retro game engine.",
+            "rules": [
+              {
+                "type": "staticpath",
+                "entries": [
+                  "%COMPONENT_PATH%/component_launcher.sh"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "es_systems": [
+        {
+          "name": "opensurge",
+          "fullname": "Open Surge",
+          "path": "%ROMPATH%/opensurge",
+          "extension": ".surge .lev .qst",
+          "commands": [
+            {
+              "label": "Open Surge (Game) (Standalone)",
+              "command": "%EMULATOR_OPENSURGE% --fullscreen --quality high --game-folder %ROM%",
+              "priority": 10
+            },
+            {
+              "label": "Open Surge - Surge the Rabbit (Standalone)",
+              "command": "%EMULATOR_OPENSURGE% --fullscreen --quality high --game-folder /app/retrodeck/components/opensurge/opensurge",
+              "priority": 20
+            }
+          ],
+          "platform": "pc, pcwindows",
+          "theme": "opensurge"
+        }
+      ]
+    },
+    "es_de_gamelist_entries": {
+      "image_root": "%COMPONENT_PATH%/rd_extras/es_de_media",
+      "entries": {
+        "opensurge_surge_the_rabbit": {
+          "system": "opensurge",
+          "create_file": "$roms_path/opensurge/Surge the Rabbit.surge",
+          "gamelist_data": {
+            "path": "Surge the Rabbit.surge",
+            "name": "Surge the Rabbit",
+            "desc": "A fast-paced platformer where Surge the Rabbit runs, jumps and battles enemies across colorful levels.",
+            "releasedate": "20100414T000000",
+            "developer": "Alexandre Martins",
+            "publisher": "Open Surge",
+            "genre": "Platformer",
+            "players": "1",
+            "altemulator": "Open Surge - Surge the Rabbit (Standalone)"
+          }
+        }
+      }
+    },
+    "configurator_menus": {
+      "es_de_entries": [
+        {
+          "name": "Open Surge: Surge the Rabbit Game",
+          "description": "Enable or disable: Open Surge's built-in game 'Surge the Rabbit' entry in ES-DE",
+          "command": {
+            "zenity": "opensurge_surgetherabbit_toggle"
+          }
+        }
+      ]
+    }
+  }
+}

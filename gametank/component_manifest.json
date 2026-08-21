@@ -1,0 +1,53 @@
+{
+  "gametank": {
+    "name": "GameTankEmulator",
+    "core_framework_compatibility": "1",
+    "component_version": "1.0.0",
+    "capabilities": [
+      "reset",
+      "open"
+    ],
+    "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/gametank/gametank-guide/",
+    "url_webpage": "https://gametank.zone/",
+    "url_donation_purchase": "https://www.crowdsupply.com/clydeware/gametank",
+    "url_source": "https://github.com/clydeshaffer/GameTankEmulator",
+    "description": "GameTank 8-bit console emulator for running GameTank games.",
+    "component_type": "Emulator",
+    "system_friendly_name": "GameTank",
+    "system": "gametank",
+    "es_de_config": {
+      "es_find_rules": {
+        "emulators": [
+          {
+            "name": "GAMETANK",
+            "description": "GameTankEmulator GameTank Console Emulator",
+            "rules": [
+              {
+                "type": "staticpath",
+                "entries": [
+                  "%COMPONENT_PATH%/component_launcher.sh"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "es_systems": [
+        {
+          "name": "gametank",
+          "fullname": "GameTank",
+          "path": "%ROMPATH%/gametank",
+          "extension": ".gtr",
+          "commands": [
+            {
+              "label": "GameTank (Standalone)",
+              "command": "%EMULATOR_GAMETANK% %ROM%"
+            }
+          ],
+          "platform": "gametank",
+          "theme": "gametank"
+        }
+      ]
+    }
+  }
+}

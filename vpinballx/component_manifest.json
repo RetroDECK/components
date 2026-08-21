@@ -1,0 +1,53 @@
+{
+  "vpinballx": {
+    "name": "Visual Pinball X",
+    "core_framework_compatibility": "1",
+    "component_version": "1.0.0",
+    "capabilities": [
+      "reset",
+      "open"
+    ],
+    "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_engine_guides/vpinballx/vpinballx-guide/",
+    "url_webpage": "https://www.vpforums.org/",
+    "url_donation_purchase": "",
+    "url_source": "https://github.com/vpinball/vpinball",
+    "component_type": "Engine",
+    "description": "Virtual pinball engine for playing simulated pinball tables.",
+    "system_friendly_name": "Visual Pinball X",
+    "system": "vpinball",
+    "es_de_config": {
+      "es_find_rules": {
+        "emulators": [
+          {
+            "name": "VISUAL-PINBALL",
+            "description": "Pinball simulator Visual Pinball X",
+            "rules": [
+              {
+                "type": "staticpath",
+                "entries": [
+                  "%COMPONENT_PATH%/component_launcher.sh"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "es_systems": [
+        {
+          "name": "vpinball",
+          "fullname": "Visual Pinball",
+          "path": "%ROMPATH%/vpinball",
+          "extension": ".vpt .vpx",
+          "commands": [
+            {
+              "label": "Visual Pinball X (Standalone)",
+              "command": "%EMULATOR_VISUAL-PINBALL% -play %ROM%"
+            }
+          ],
+          "platform": "vpinball",
+          "theme": "vpinball"
+        }
+      ]
+    }
+  }
+}

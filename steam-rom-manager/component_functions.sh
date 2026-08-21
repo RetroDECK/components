@@ -358,7 +358,7 @@ get_steam_user() {
         flag && /"PersonaName"/ {gsub(/"/, "", $2); print $2; exit}' "$srm_steam_userdata_current/config/loginusers.vdf")
 
       # Log success
-      log i "Steam user found:"
+      log i "Steam user found!"
       log i "SteamID: $steam_id"
       log i "Username: $steam_username"
       log i "Name: $steam_prettyname"
@@ -606,7 +606,7 @@ steam_sync_remove() {
 install_retrodeck_controller_profile() {
   # This function will install the needed files for the custom RetroDECK controller profile
   # USAGE: install_retrodeck_controller_profile
-  local mode="{$1:-}"
+  local mode="${1:-}"
   local current_steam_sync_setting="$(get_component_option "steam-rom-manager" "steam_sync")"
 
   if [[ ("$current_steam_sync_setting" == "native" || "$mode" == "manual") && -d "$srm_steam_userdata_native/controller_base/templates/" ]]; then
@@ -673,7 +673,6 @@ finit_install_controller_profile_dialog() {
 
 finit_install_controller_profile_and_add_retrodeck_to_steam() {
   if get_steam_user "manual"; then
-    log i "Updating steamDirectory and romDirectory lines in $srm_usersettings_file"
     local usersettings_temp=$(mktemp)
     jq --arg userdata_path "$srm_steam_userdata_current" --arg rd_home_path "$rd_home_path" '
       .environmentVariables.steamDirectory = $userdata_path |

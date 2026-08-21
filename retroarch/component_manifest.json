@@ -4,7 +4,7 @@
     "core_framework_compatibility": "1",
     "component_version": "1.0.0",
     "capabilities": ["reset","open"],
-    "description": "RetroArch is a multi-emulator frontend (Libretro).",
+    "description": "Multi-system emulator frontend for running games through Libretro cores.",
     "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/retroarch/retroarch-guide/",
     "url_webpage": "https://www.libretro.com/",
     "url_donation_purchase": [
@@ -1728,7 +1728,7 @@
             },
             {
               "label": "Genesis Plus GX [Expanded Rom Size] (Paprium)",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/genesis-plus-gx-expanded-rom-size-paprium_libretro.so %ROM%",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/genesis_plus_gx_paprium_libretro.so %ROM%",
               "priority": 50
             }
           ],
@@ -1763,7 +1763,7 @@
             },
             {
               "label": "Genesis Plus GX [Expanded Rom Size] (Paprium)",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/genesis-plus-gx-expanded-rom-size-paprium_libretro.so %ROM%",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/genesis_plus_gx_paprium_libretro.so %ROM%",
               "priority": 50
             }
           ],
@@ -2524,32 +2524,32 @@
             {
               "label": "TyrQuake",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/tyrquake_libretro.so %ROM%",
-              "priority": 10
+              "priority": 20
             },
             {
               "label": "vitaQuake 2",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/vitaquake2_libretro.so %ROM%",
-              "priority": 20
+              "priority": 30
             },
             {
               "label": "vitaQuake 2 [Rogue]",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/vitaquake2-rogue_libretro.so %ROM%",
-              "priority": 30
+              "priority": 40
             },
             {
               "label": "vitaQuake 2 [Xatrix]",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/vitaquake2-xatrix_libretro.so %ROM%",
-              "priority": 40
+              "priority": 50
             },
             {
               "label": "vitaQuake 2 [Zaero]",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/vitaquake2-zaero_libretro.so %ROM%",
-              "priority": 50
+              "priority": 60
             },
             {
               "label": "vitaQuake 3",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/vitaquake3_libretro.so %ROM%",
-              "priority": 60
+              "priority": 70
             }
           ],
           "platform": "pc, pcwindows",
@@ -4846,19 +4846,26 @@
       },
       {
         "filename": "cdimono1.zip",
+        "md5": "c59f92647701428bc453976740eb75cf",
         "system": "cdimono1",
+        "paths": "$bios_path/same_cdi/bios",
+        "required": "Required",
         "description": "Philips CDi"
       },
       {
         "filename": "cdimono2.zip",
         "md5": "97aa5f47030cd9fdb679d4fafbb0e332",
         "system": "cdimono1",
+        "paths": "$bios_path/same_cdi/bios",
+        "required": "Required",
         "description": "Philips CDi"
       },
       {
         "filename": "cdibios.zip",
         "md5": "709acce6e9c4043b851ea7429b8e7eff",
         "system": "cdimono1",
+        "paths": "$bios_path/same_cdi/bios",
+        "required": "Required",
         "description": "Philips CDi"
       },
       {
@@ -5774,7 +5781,12 @@
       },
       {
         "filename": "naomi2.zip",
-        "md5": "9b85e0de6ef359e5006c9b79a5a266b0",
+        "md5": [
+          "c50072cbab75673e1b1a6b94355e6fa8",
+          "843c0d51237dc945f57237c4b9872b1d",
+          "339c59ece7d4d6803880c91bbb44ac93",
+          "dfaae8d206ffb390ed1cf9529ccc123d"
+        ],
         "system": "dreamcast",
         "description": "Naomi 2 BIOS",
         "paths": "$bios_path/dc"
@@ -6081,13 +6093,6 @@
         "system": "amiga",
         "description": "Kickstart 3.4 ROM for Amiga 500",
         "required": "Required"
-      },
-      {
-        "filename": "AmigaVision.rom",
-        "md5": "646773759326fbac3b2311fd8c8793ee",
-        "system": "amiga",
-        "description": "Kickstart 4.0 ROM for AmigaVision.",
-        "required": "Yes, for AmigaVision"
       },
       {
         "filename": "kick40063.A600",
@@ -7505,7 +7510,7 @@
       },
       {
         "filename": "yrw801.rom",
-        "md5": "32760893ce06db3e3930627755ba065c",
+        "md5": "42af93619160ef2116416f74a6cb12f2",
         "system": "msx",
         "description": "YR-W801 system ROM"
       },

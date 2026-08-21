@@ -1,0 +1,53 @@
+{
+  "mudlet": {
+    "name": "Mudlet",
+    "core_framework_compatibility": "1",
+    "component_version": "1.0.0",
+    "capabilities": [
+      "reset",
+      "open"
+    ],
+    "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_engine_guides/mudlet/mudlet-guide/",
+    "url_webpage": "https://www.mudlet.org/",
+    "url_donation_purchase": "https://www.mudlet.org/contribute/",
+    "url_source": "https://github.com/Mudlet/Mudlet",
+    "component_type": "Client",
+    "description": "MUD client for playing text-based online multiplayer Multi-User Dungeon games.",
+    "system_friendly_name": "Muldet MUD Client",
+    "system": "muds",
+    "es_de_config": {
+      "es_find_rules": {
+        "emulators": [
+          {
+            "name": "MUDLET",
+            "description": "Muldet MUD Client",
+            "rules": [
+              {
+                "type": "staticpath",
+                "entries": [
+                  "%COMPONENT_PATH%/component_launcher.sh"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "es_systems": [
+        {
+          "name": "muds",
+          "fullname": "Multi-User Dungeons",
+          "path": "%ROMPATH%/muds",
+          "extension": ".mud",
+          "commands": [
+            {
+              "label": "Mudlet (Standalone)",
+              "command": "%EMULATOR_MUDLET% --fullscreen --steammode --profile=%BASENAME%"
+            }
+          ],
+          "platform": "pc, pcwindows, dos, zmachine, c64, amiga",
+          "theme": "muds"
+        }
+      ]
+    }
+  }
+}

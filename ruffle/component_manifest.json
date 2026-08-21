@@ -8,7 +8,7 @@
     "url_webpage": "https://ruffle.rs/",
     "url_donation_purchase": "https://opencollective.com/ruffle",
     "url_source": "https://github.com/ruffle-rs/ruffle/",
-    "description": "Ruffle is a Flash Player (flash) emulator.",
+    "description": "Flash Player emulator for running Adobe Flash content.",
     "component_type": "Emulator",
     "system_friendly_name": "Flash Player Emulator",
     "system": "flash",

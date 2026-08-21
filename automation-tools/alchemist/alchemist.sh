@@ -47,6 +47,9 @@ transmute() {
   if [[ ! "$RESOLVE_VERSION" == "true" ]]; then
     mkdir -p "$COMPONENT_ARTIFACT_ROOT"
   fi
+  if [[ ! "$RESOLVE_VERSION" == "true" ]]; then
+    mkdir -p "$COMPONENT_ARTIFACT_ROOT"
+  fi
 
   while read -r source_obj; do
     source_type="$(jq -r '.source_type' <<< $source_obj)"
@@ -179,6 +182,11 @@ parse_args() {
         shift 2
         ;;
       --dry-run)
+        export DRYRUN="true"
+        shift 1
+        ;;
+      -r|--resolve-versions)
+        export RESOLVE_VERSION="true"
         export DRYRUN="true"
         shift 1
         ;;
