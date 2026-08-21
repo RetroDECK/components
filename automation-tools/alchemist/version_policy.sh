@@ -286,7 +286,7 @@ export PORTMASTER_VERSION_POLICY="latest"
 # Source: Binary
 # Link: https://github.com/ec-/Quake3e/releases
 # ------------------------------------------------------------------------------
-export QUAKE3E_VERSION_POLICY="newest"
+export QUAKE3E_VERSION_POLICY="latest"
 
 # ------------------------------------------------------------------------------
 # SimCoupé - MGT SAM Coupé Emulator
