@@ -11,8 +11,11 @@
     "url_webpage": "",
     "url_donation_purchase": "",
     "url_source": "https://github.com/ec-/Quake3e",
-    "component_type": "Client",
-    "description": "Quake3e is the open source source port / game engine / client for ID Softwares Quake III Arena with mod support",
+    "component_type": [
+      "Client",
+      "Engine"
+    ],
+    "description": "Quake3e is a source port Game Engine & Multiplayer Client for ID Softwares 'Quake III Arena' with mod support.",
     "system_friendly_name": "Quake 3",
     "system": "quake3",
     "es_de_config": {
