@@ -83,7 +83,7 @@
           "dest": "shared-libs"
         },
         {
-          "library": "libluajit-5.1.so.2.1.0",
+          "library": "libluajit-5.1.so.2",
           "source": "usr/lib",
           "dest": "shared-libs"
         },
