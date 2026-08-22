@@ -11,4 +11,4 @@ export LD_LIBRARY_PATH="$component_path/lib:$rd_shared_libs:${DEFAULT_LD_LIBRARY
 log i "RetroDECK is now launching $component_name"
 log d "Library path is: $LD_LIBRARY_PATH"
 
-exec "$component_path/quake3e-vulkan.x64" +set fs_basepath /var/data/quake3e/baseq3 +set in_joystick 1 +set r_fullscreen 1 +set fs_homepath /var/config/quake3e/ "$@"
+exec "$component_path/quake3e-vulkan.x64" +set fs_basepath /var/data/quake3e/ +set in_joystick 1 +set r_fullscreen 1 +set fs_homepath /var/config/quake3e/ "$@"
