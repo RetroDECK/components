@@ -74,2842 +74,2842 @@
     },
     "scummvm_games": [
       {
-        "game": "007: James Bond - The Stealth Affair",
-        "rd_game_name": "007: James Bond - The Stealth Affair.scummvm",
-        "scummvm_id": "cine:os",
-        "scummvm_id_key": "os"
+        "description": "007: James Bond - The Stealth Affair",
+        "scummvm_dir_name": "007: James Bond - The Stealth Affair.scummvm",
+        "engineid:gameid": "cine:os",
+        "gameid": "os"
       },
       {
-        "game": "1½ Ritter: Auf der Suche nach der hinreißenden Herzelinde",
-        "rd_game_name": "1½ Ritter: Auf der Suche nach der hinreißenden Herzelinde.scummvm",
-        "scummvm_id": "wintermute:ritter",
-        "scummvm_id_key": "ritter"
+        "description": "1½ Ritter: Auf der Suche nach der hinreißenden Herzelinde",
+        "scummvm_dir_name": "1½ Ritter: Auf der Suche nach der hinreißenden Herzelinde.scummvm",
+        "engineid:gameid": "wintermute:ritter",
+        "gameid": "ritter"
       },
       {
-        "game": "3 Skulls of the Toltecs",
-        "rd_game_name": "3 Skulls of the Toltecs.scummvm",
-        "scummvm_id": "toltecs:toltecs",
-        "scummvm_id_key": "toltecs"
+        "description": "3 Skulls of the Toltecs",
+        "scummvm_dir_name": "3 Skulls of the Toltecs.scummvm",
+        "engineid:gameid": "toltecs:toltecs",
+        "gameid": "toltecs"
       },
       {
-        "game": "A Golden Wake",
-        "rd_game_name": "A Golden Wake.scummvm",
-        "scummvm_id": "ags:goldenwake",
-        "scummvm_id_key": "goldenwake"
+        "description": "A Golden Wake",
+        "scummvm_dir_name": "A Golden Wake.scummvm",
+        "engineid:gameid": "ags:goldenwake",
+        "gameid": "goldenwake"
       },
       {
-        "game": "Above The Waves",
-        "rd_game_name": "Above The Waves.scummvm",
-        "scummvm_id": "sludge:atw",
-        "scummvm_id_key": "atw"
+        "description": "Above The Waves",
+        "scummvm_dir_name": "Above The Waves.scummvm",
+        "engineid:gameid": "sludge:atw",
+        "gameid": "atw"
       },
       {
-        "game": "Adibou 1",
-        "rd_game_name": "Adibou 1.scummvm",
-        "scummvm_id": "gob:adibou1",
-        "scummvm_id_key": "adibou1"
+        "description": "Adibou 1",
+        "scummvm_dir_name": "Adibou 1.scummvm",
+        "engineid:gameid": "gob:adibou1",
+        "gameid": "adibou1"
       },
       {
-        "game": "Adibou 2",
-        "rd_game_name": "Adibou 2.scummvm",
-        "scummvm_id": "gob:adibou2",
-        "scummvm_id_key": "adibou2"
+        "description": "Adibou 2",
+        "scummvm_dir_name": "Adibou 2.scummvm",
+        "engineid:gameid": "gob:adibou2",
+        "gameid": "adibou2"
       },
       {
-        "game": "ADRIFT Interactive Fiction games",
-        "rd_game_name": "ADRIFT Interactive Fiction games.scummvm",
-        "scummvm_id": "glk:adrift",
-        "scummvm_id_key": "adrift"
+        "description": "ADRIFT Interactive Fiction games",
+        "scummvm_dir_name": "ADRIFT Interactive Fiction games.scummvm",
+        "engineid:gameid": "glk:adrift",
+        "gameid": "adrift"
       },
       {
-        "game": "Adventure Game Studio games",
-        "rd_game_name": "Adventure Game Studio games.scummvm",
-        "scummvm_id": "ags:ags",
-        "scummvm_id_key": "ags"
+        "description": "Adventure Game Studio games",
+        "scummvm_dir_name": "Adventure Game Studio games.scummvm",
+        "engineid:gameid": "ags:ags",
+        "gameid": "ags"
       },
       {
-        "game": "AdvSys Interactive Fiction games",
-        "rd_game_name": "AdvSys Interactive Fiction games.scummvm",
-        "scummvm_id": "glk:advsys",
-        "scummvm_id_key": "advsys"
+        "description": "AdvSys Interactive Fiction games",
+        "scummvm_dir_name": "AdvSys Interactive Fiction games.scummvm",
+        "engineid:gameid": "glk:advsys",
+        "gameid": "advsys"
       },
       {
-        "game": "Aesops Fables: The Tortoise and the Hare",
-        "rd_game_name": "Aesops Fables: The Tortoise and the Hare.scummvm",
-        "scummvm_id": "mohawk:tortoise",
-        "scummvm_id_key": "tortoise"
+        "description": "Aesops Fables: The Tortoise and the Hare",
+        "scummvm_dir_name": "Aesops Fables: The Tortoise and the Hare.scummvm",
+        "engineid:gameid": "mohawk:tortoise",
+        "gameid": "tortoise"
       },
       {
-        "game": "AGT Interactive Fiction games",
-        "rd_game_name": "AGT Interactive Fiction games.scummvm",
-        "scummvm_id": "glk:agt",
-        "scummvm_id_key": "agt"
+        "description": "AGT Interactive Fiction games",
+        "scummvm_dir_name": "AGT Interactive Fiction games.scummvm",
+        "engineid:gameid": "glk:agt",
+        "gameid": "agt"
       },
       {
-        "game": "Alan 2 & 3 Interactive Fiction games",
-        "rd_game_name": "Alan 2 & 3 Interactive Fiction games.scummvm",
-        "scummvm_id": "glk:alan",
-        "scummvm_id_key": "alan"
+        "description": "Alan 2 & 3 Interactive Fiction games",
+        "scummvm_dir_name": "Alan 2 & 3 Interactive Fiction games.scummvm",
+        "engineid:gameid": "glk:alan",
+        "gameid": "alan"
       },
       {
-        "game": "Alice: An Interactive Museum",
-        "rd_game_name": "Alice: An Interactive Museum.scummvm",
-        "scummvm_id": "director:alice",
-        "scummvm_id_key": "alice"
+        "description": "Alice: An Interactive Museum",
+        "scummvm_dir_name": "Alice: An Interactive Museum.scummvm",
+        "engineid:gameid": "director:alice",
+        "gameid": "alice"
       },
       {
-        "game": "Amazon: Guardians of Eden",
-        "rd_game_name": "Amazon: Guardians of Eden.scummvm",
-        "scummvm_id": "access:amazon",
-        "scummvm_id_key": "amazon"
+        "description": "Amazon: Guardians of Eden",
+        "scummvm_dir_name": "Amazon: Guardians of Eden.scummvm",
+        "engineid:gameid": "access:amazon",
+        "gameid": "amazon"
       },
       {
-        "game": "Ape Odyssey 2001",
-        "rd_game_name": "Ape Odyssey 2001.scummvm",
-        "scummvm_id": "director:apeodyssey",
-        "scummvm_id_key": "apeodyssey"
+        "description": "Ape Odyssey 2001",
+        "scummvm_dir_name": "Ape Odyssey 2001.scummvm",
+        "engineid:gameid": "director:apeodyssey",
+        "gameid": "apeodyssey"
       },
       {
-        "game": "Archetype Interactive Fiction games",
-        "rd_game_name": "Archetype Interactive Fiction games.scummvm",
-        "scummvm_id": "glk:archetype",
-        "scummvm_id_key": "archetype"
+        "description": "Archetype Interactive Fiction games",
+        "scummvm_dir_name": "Archetype Interactive Fiction games.scummvm",
+        "engineid:gameid": "glk:archetype",
+        "gameid": "archetype"
       },
       {
-        "game": "Arthurs Birthday",
-        "rd_game_name": "Arthurs Birthday.scummvm",
-        "scummvm_id": "mohawk:arthurbday",
-        "scummvm_id_key": "arthurbday"
+        "description": "Arthurs Birthday",
+        "scummvm_dir_name": "Arthurs Birthday.scummvm",
+        "engineid:gameid": "mohawk:arthurbday",
+        "gameid": "arthurbday"
       },
       {
-        "game": "Ashina: The Red Witch",
-        "rd_game_name": "Ashina: The Red Witch.scummvm",
-        "scummvm_id": "ags:ashinaredwitch",
-        "scummvm_id_key": "ashinaredwitch"
+        "description": "Ashina: The Red Witch",
+        "scummvm_dir_name": "Ashina: The Red Witch.scummvm",
+        "engineid:gameid": "ags:ashinaredwitch",
+        "gameid": "ashinaredwitch"
       },
       {
-        "game": "Astro Chicken",
-        "rd_game_name": "Astro Chicken.scummvm",
-        "scummvm_id": "sci:astrochicken",
-        "scummvm_id_key": "astrochicken"
+        "description": "Astro Chicken",
+        "scummvm_dir_name": "Astro Chicken.scummvm",
+        "engineid:gameid": "sci:astrochicken",
+        "gameid": "astrochicken"
       },
       {
-        "game": "Backyard Baseball",
-        "rd_game_name": "Backyard Baseball.scummvm",
-        "scummvm_id": "scumm:baseball",
-        "scummvm_id_key": "baseball"
+        "description": "Backyard Baseball",
+        "scummvm_dir_name": "Backyard Baseball.scummvm",
+        "engineid:gameid": "scumm:baseball",
+        "gameid": "baseball"
       },
       {
-        "game": "Backyard Baseball 2001",
-        "rd_game_name": "Backyard Baseball 2001.scummvm",
-        "scummvm_id": "scumm:baseball2001",
-        "scummvm_id_key": "baseball2001"
+        "description": "Backyard Baseball 2001",
+        "scummvm_dir_name": "Backyard Baseball 2001.scummvm",
+        "engineid:gameid": "scumm:baseball2001",
+        "gameid": "baseball2001"
       },
       {
-        "game": "Backyard Baseball 2003",
-        "rd_game_name": "Backyard Baseball 2003.scummvm",
-        "scummvm_id": "scumm:baseball2003",
-        "scummvm_id_key": "baseball2003"
+        "description": "Backyard Baseball 2003",
+        "scummvm_dir_name": "Backyard Baseball 2003.scummvm",
+        "engineid:gameid": "scumm:baseball2003",
+        "gameid": "baseball2003"
       },
       {
-        "game": "Backyard Basketball",
-        "rd_game_name": "Backyard Basketball.scummvm",
-        "scummvm_id": "scumm:basketball",
-        "scummvm_id_key": "basketball"
+        "description": "Backyard Basketball",
+        "scummvm_dir_name": "Backyard Basketball.scummvm",
+        "engineid:gameid": "scumm:basketball",
+        "gameid": "basketball"
       },
       {
-        "game": "Backyard Football",
-        "rd_game_name": "Backyard Football.scummvm",
-        "scummvm_id": "scumm:football",
-        "scummvm_id_key": "football"
+        "description": "Backyard Football",
+        "scummvm_dir_name": "Backyard Football.scummvm",
+        "engineid:gameid": "scumm:football",
+        "gameid": "football"
       },
       {
-        "game": "Backyard Football 2002",
-        "rd_game_name": "Backyard Football 2002.scummvm",
-        "scummvm_id": "scumm:football2002",
-        "scummvm_id_key": "football2002"
+        "description": "Backyard Football 2002",
+        "scummvm_dir_name": "Backyard Football 2002.scummvm",
+        "engineid:gameid": "scumm:football2002",
+        "gameid": "football2002"
       },
       {
-        "game": "Backyard Soccer",
-        "rd_game_name": "Backyard Soccer.scummvm",
-        "scummvm_id": "scumm:soccer",
-        "scummvm_id_key": "soccer"
+        "description": "Backyard Soccer",
+        "scummvm_dir_name": "Backyard Soccer.scummvm",
+        "engineid:gameid": "scumm:soccer",
+        "gameid": "soccer"
       },
       {
-        "game": "Backyard Soccer 2004",
-        "rd_game_name": "Backyard Soccer 2004.scummvm",
-        "scummvm_id": "scumm:soccer2004",
-        "scummvm_id_key": "soccer2004"
+        "description": "Backyard Soccer 2004",
+        "scummvm_dir_name": "Backyard Soccer 2004.scummvm",
+        "engineid:gameid": "scumm:soccer2004",
+        "gameid": "soccer2004"
       },
       {
-        "game": "Backyard Soccer MLS Edition",
-        "rd_game_name": "Backyard Soccer MLS Edition.scummvm",
-        "scummvm_id": "scumm:soccermls",
-        "scummvm_id_key": "soccermls"
+        "description": "Backyard Soccer MLS Edition",
+        "scummvm_dir_name": "Backyard Soccer MLS Edition.scummvm",
+        "engineid:gameid": "scumm:soccermls",
+        "gameid": "soccermls"
       },
       {
-        "game": "Bargon Attack",
-        "rd_game_name": "Bargon Attack.scummvm",
-        "scummvm_id": "gob:bargon",
-        "scummvm_id_key": "bargon"
+        "description": "Bargon Attack",
+        "scummvm_dir_name": "Bargon Attack.scummvm",
+        "engineid:gameid": "gob:bargon",
+        "gameid": "bargon"
       },
       {
-        "game": "Bear Stormin",
-        "rd_game_name": "Bear Stormin.scummvm",
-        "scummvm_id": "scumm:brstorm",
-        "scummvm_id_key": "brstorm"
+        "description": "Bear Stormin",
+        "scummvm_dir_name": "Bear Stormin.scummvm",
+        "engineid:gameid": "scumm:brstorm",
+        "gameid": "brstorm"
       },
       {
-        "game": "Beneath a Steel Sky",
-        "rd_game_name": "Beneath a Steel Sky.scummvm",
-        "scummvm_id": "sky:sky",
-        "scummvm_id_key": "sky"
+        "description": "Beneath a Steel Sky",
+        "scummvm_dir_name": "Beneath a Steel Sky.scummvm",
+        "engineid:gameid": "sky:sky",
+        "gameid": "sky"
       },
       {
-        "game": "Bickadoodle",
-        "rd_game_name": "Bickadoodle.scummvm",
-        "scummvm_id": "wintermute:bickadoodle",
-        "scummvm_id_key": "bickadoodle"
+        "description": "Bickadoodle",
+        "scummvm_dir_name": "Bickadoodle.scummvm",
+        "engineid:gameid": "wintermute:bickadoodle",
+        "gameid": "bickadoodle"
       },
       {
-        "game": "Big Thinkers! 1st Grade",
-        "rd_game_name": "Big Thinkers! 1st Grade.scummvm",
-        "scummvm_id": "scumm:thinker1",
-        "scummvm_id_key": "thinker1"
+        "description": "Big Thinkers! 1st Grade",
+        "scummvm_dir_name": "Big Thinkers! 1st Grade.scummvm",
+        "engineid:gameid": "scumm:thinker1",
+        "gameid": "thinker1"
       },
       {
-        "game": "Big Thinkers! Kindergarten",
-        "rd_game_name": "Big Thinkers! Kindergarten.scummvm",
-        "scummvm_id": "scumm:thinkerk",
-        "scummvm_id_key": "thinkerk"
+        "description": "Big Thinkers! Kindergarten",
+        "scummvm_dir_name": "Big Thinkers! Kindergarten.scummvm",
+        "engineid:gameid": "scumm:thinkerk",
+        "gameid": "thinkerk"
       },
       {
-        "game": "Blackwell Unbound",
-        "rd_game_name": "Blackwell Unbound.scummvm",
-        "scummvm_id": "ags:blackwell2",
-        "scummvm_id_key": "blackwell2"
+        "description": "Blackwell Unbound",
+        "scummvm_dir_name": "Blackwell Unbound.scummvm",
+        "engineid:gameid": "ags:blackwell2",
+        "gameid": "blackwell2"
       },
       {
-        "game": "Blade Runner",
-        "rd_game_name": "Blade Runner.scummvm",
-        "scummvm_id": "bladerunner:bladerunner",
-        "scummvm_id_key": "bladerunner"
+        "description": "Blade Runner",
+        "scummvm_dir_name": "Blade Runner.scummvm",
+        "engineid:gameid": "bladerunner:bladerunner",
+        "gameid": "bladerunner"
       },
       {
-        "game": "Blazing Dragons",
-        "rd_game_name": "Blazing Dragons.scummvm",
-        "scummvm_id": "dragons:dragons",
-        "scummvm_id_key": "dragons"
+        "description": "Blazing Dragons",
+        "scummvm_dir_name": "Blazing Dragons.scummvm",
+        "engineid:gameid": "dragons:dragons",
+        "gameid": "dragons"
       },
       {
-        "game": "Blue Force",
-        "rd_game_name": "Blue Force.scummvm",
-        "scummvm_id": "tsage:blueforce",
-        "scummvm_id_key": "blueforce"
+        "description": "Blue Force",
+        "scummvm_dir_name": "Blue Force.scummvm",
+        "engineid:gameid": "tsage:blueforce",
+        "gameid": "blueforce"
       },
       {
-        "game": "Blues 123 Time Activities",
-        "rd_game_name": "Blues 123 Time Activities.scummvm",
-        "scummvm_id": "scumm:blues123time",
-        "scummvm_id_key": "blues123time"
+        "description": "Blues 123 Time Activities",
+        "scummvm_dir_name": "Blues 123 Time Activities.scummvm",
+        "engineid:gameid": "scumm:blues123time",
+        "gameid": "blues123time"
       },
       {
-        "game": "Blues ABC Time Activities",
-        "rd_game_name": "Blues ABC Time Activities.scummvm",
-        "scummvm_id": "scumm:bluesabctime",
-        "scummvm_id_key": "bluesabctime"
+        "description": "Blues ABC Time Activities",
+        "scummvm_dir_name": "Blues ABC Time Activities.scummvm",
+        "engineid:gameid": "scumm:bluesabctime",
+        "gameid": "bluesabctime"
       },
       {
-        "game": "Blues Clues: Blues Art Time Activities",
-        "rd_game_name": "Blues Clues: Blues Art Time Activities.scummvm",
-        "scummvm_id": "scumm:arttime",
-        "scummvm_id_key": "arttime"
+        "description": "Blues Clues: Blues Art Time Activities",
+        "scummvm_dir_name": "Blues Clues: Blues Art Time Activities.scummvm",
+        "engineid:gameid": "scumm:arttime",
+        "gameid": "arttime"
       },
       {
-        "game": "Blues Clues: Blues Birthday Adventure",
-        "rd_game_name": "Blues Clues: Blues Birthday Adventure.scummvm",
-        "scummvm_id": "scumm:bluesbirthday",
-        "scummvm_id_key": "bluesbirthday"
+        "description": "Blues Clues: Blues Birthday Adventure",
+        "scummvm_dir_name": "Blues Clues: Blues Birthday Adventure.scummvm",
+        "engineid:gameid": "scumm:bluesbirthday",
+        "gameid": "bluesbirthday"
       },
       {
-        "game": "Blues Reading Time Activities",
-        "rd_game_name": "Blues Reading Time Activities.scummvm",
-        "scummvm_id": "scumm:readtime",
-        "scummvm_id_key": "readtime"
+        "description": "Blues Reading Time Activities",
+        "scummvm_dir_name": "Blues Reading Time Activities.scummvm",
+        "engineid:gameid": "scumm:readtime",
+        "gameid": "readtime"
       },
       {
-        "game": "Blues Treasure Hunt",
-        "rd_game_name": "Blues Treasure Hunt.scummvm",
-        "scummvm_id": "scumm:bluestreasurehunt",
-        "scummvm_id_key": "bluestreasurehunt"
+        "description": "Blues Treasure Hunt",
+        "scummvm_dir_name": "Blues Treasure Hunt.scummvm",
+        "engineid:gameid": "scumm:bluestreasurehunt",
+        "gameid": "bluestreasurehunt"
       },
       {
-        "game": "Broken Sword 2.5: The Return of the Templars",
-        "rd_game_name": "Broken Sword 2.5: The Return of the Templars.scummvm",
-        "scummvm_id": "sword25:sword25",
-        "scummvm_id_key": "sword25"
+        "description": "Broken Sword 2.5: The Return of the Templars",
+        "scummvm_dir_name": "Broken Sword 2.5: The Return of the Templars.scummvm",
+        "engineid:gameid": "sword25:sword25",
+        "gameid": "sword25"
       },
       {
-        "game": "Broken Sword II: The Smoking Mirror",
-        "rd_game_name": "Broken Sword II: The Smoking Mirror.scummvm",
-        "scummvm_id": "sword2:sword2",
-        "scummvm_id_key": "sword2"
+        "description": "Broken Sword II: The Smoking Mirror",
+        "scummvm_dir_name": "Broken Sword II: The Smoking Mirror.scummvm",
+        "engineid:gameid": "sword2:sword2",
+        "gameid": "sword2"
       },
       {
-        "game": "Broken Sword: The Shadow of the Templars",
-        "rd_game_name": "Broken Sword: The Shadow of the Templars.scummvm",
-        "scummvm_id": "sword1:sword1",
-        "scummvm_id_key": "sword1"
+        "description": "Broken Sword: The Shadow of the Templars",
+        "scummvm_dir_name": "Broken Sword: The Shadow of the Templars.scummvm",
+        "engineid:gameid": "sword1:sword1",
+        "gameid": "sword1"
       },
       {
-        "game": "Bud Tucker in Double Trouble",
-        "rd_game_name": "Bud Tucker in Double Trouble.scummvm",
-        "scummvm_id": "tucker:tucker",
-        "scummvm_id_key": "tucker"
+        "description": "Bud Tucker in Double Trouble",
+        "scummvm_dir_name": "Bud Tucker in Double Trouble.scummvm",
+        "engineid:gameid": "tucker:tucker",
+        "gameid": "tucker"
       },
       {
-        "game": "Castle Master",
-        "rd_game_name": "Castle Master.scummvm",
-        "scummvm_id": "freescape:castlemaster",
-        "scummvm_id_key": "castlemaster"
+        "description": "Castle Master",
+        "scummvm_dir_name": "Castle Master.scummvm",
+        "engineid:gameid": "freescape:castlemaster",
+        "gameid": "castlemaster"
       },
       {
-        "game": "Castle of Dr. Brain",
-        "rd_game_name": "Castle of Dr. Brain.scummvm",
-        "scummvm_id": "sci:castlebrain",
-        "scummvm_id_key": "castlebrain"
+        "description": "Castle of Dr. Brain",
+        "scummvm_dir_name": "Castle of Dr. Brain.scummvm",
+        "engineid:gameid": "sci:castlebrain",
+        "gameid": "castlebrain"
       },
       {
-        "game": "Chewy: Esc from F5",
-        "rd_game_name": "Chewy: Esc from F5.scummvm",
-        "scummvm_id": "chewy:chewy",
-        "scummvm_id_key": "chewy"
+        "description": "Chewy: Esc from F5",
+        "scummvm_dir_name": "Chewy: Esc from F5.scummvm",
+        "engineid:gameid": "chewy:chewy",
+        "gameid": "chewy"
       },
       {
-        "game": "Chivalry is Not Dead",
-        "rd_game_name": "Chivalry is Not Dead.scummvm",
-        "scummvm_id": "wintermute:chivalry",
-        "scummvm_id_key": "chivalry"
+        "description": "Chivalry is Not Dead",
+        "scummvm_dir_name": "Chivalry is Not Dead.scummvm",
+        "engineid:gameid": "wintermute:chivalry",
+        "gameid": "chivalry"
       },
       {
-        "game": "Chop Suey",
-        "rd_game_name": "Chop Suey.scummvm",
-        "scummvm_id": "director:chopsuey",
-        "scummvm_id_key": "chopsuey"
+        "description": "Chop Suey",
+        "scummvm_dir_name": "Chop Suey.scummvm",
+        "engineid:gameid": "director:chopsuey",
+        "gameid": "chopsuey"
       },
       {
-        "game": "Clandestiny",
-        "rd_game_name": "Clandestiny.scummvm",
-        "scummvm_id": "groovie:clandestiny",
-        "scummvm_id_key": "clandestiny"
+        "description": "Clandestiny",
+        "scummvm_dir_name": "Clandestiny.scummvm",
+        "engineid:gameid": "groovie:clandestiny",
+        "gameid": "clandestiny"
       },
       {
-        "game": "Classical Cats",
-        "rd_game_name": "Classical Cats.scummvm",
-        "scummvm_id": "director:classicalcats",
-        "scummvm_id_key": "classicalcats"
+        "description": "Classical Cats",
+        "scummvm_dir_name": "Classical Cats.scummvm",
+        "engineid:gameid": "director:classicalcats",
+        "gameid": "classicalcats"
       },
       {
-        "game": "Clever & Smart - A Movie Adventure",
-        "rd_game_name": "Clever & Smart - A Movie Adventure.scummvm",
-        "scummvm_id": "alcachofa:aventuradecine",
-        "scummvm_id_key": "aventuradecine"
+        "description": "Clever & Smart - A Movie Adventure",
+        "scummvm_dir_name": "Clever & Smart - A Movie Adventure.scummvm",
+        "engineid:gameid": "alcachofa:aventuradecine",
+        "gameid": "aventuradecine"
       },
       {
-        "game": "Code-Name: Iceman",
-        "rd_game_name": "Code-Name: Iceman.scummvm",
-        "scummvm_id": "sci:iceman",
-        "scummvm_id_key": "iceman"
+        "description": "Code-Name: Iceman",
+        "scummvm_dir_name": "Code-Name: Iceman.scummvm",
+        "engineid:gameid": "sci:iceman",
+        "gameid": "iceman"
       },
       {
-        "game": "Conquests of Camelot: The Search for the Grail",
-        "rd_game_name": "Conquests of Camelot: The Search for the Grail.scummvm",
-        "scummvm_id": "sci:camelot",
-        "scummvm_id_key": "camelot"
+        "description": "Conquests of Camelot: The Search for the Grail",
+        "scummvm_dir_name": "Conquests of Camelot: The Search for the Grail.scummvm",
+        "engineid:gameid": "sci:camelot",
+        "gameid": "camelot"
       },
       {
-        "game": "Conquests of the Longbow: The Legend of Robin Hood",
-        "rd_game_name": "Conquests of the Longbow: The Legend of Robin Hood.scummvm",
-        "scummvm_id": "sci:longbow",
-        "scummvm_id_key": "longbow"
+        "description": "Conquests of the Longbow: The Legend of Robin Hood",
+        "scummvm_dir_name": "Conquests of the Longbow: The Legend of Robin Hood.scummvm",
+        "engineid:gameid": "sci:longbow",
+        "gameid": "longbow"
       },
       {
-        "game": "Corruption",
-        "rd_game_name": "Corruption.scummvm",
-        "scummvm_id": "glk:corruption",
-        "scummvm_id_key": "corruption"
+        "description": "Corruption",
+        "scummvm_dir_name": "Corruption.scummvm",
+        "engineid:gameid": "glk:corruption",
+        "gameid": "corruption"
       },
       {
-        "game": "Croustibat",
-        "rd_game_name": "Croustibat.scummvm",
-        "scummvm_id": "gob:crousti",
-        "scummvm_id_key": "crousti"
+        "description": "Croustibat",
+        "scummvm_dir_name": "Croustibat.scummvm",
+        "engineid:gameid": "gob:crousti",
+        "gameid": "crousti"
       },
       {
-        "game": "Cruise for a Corpse",
-        "rd_game_name": "Cruise for a Corpse.scummvm",
-        "scummvm_id": "cruise:cruise",
-        "scummvm_id_key": "cruise"
+        "description": "Cruise for a Corpse",
+        "scummvm_dir_name": "Cruise for a Corpse.scummvm",
+        "engineid:gameid": "cruise:cruise",
+        "gameid": "cruise"
       },
       {
-        "game": "Crusader: No Remorse",
-        "rd_game_name": "Crusader: No Remorse.scummvm",
-        "scummvm_id": "ultima:remorse",
-        "scummvm_id_key": "remorse"
+        "description": "Crusader: No Remorse",
+        "scummvm_dir_name": "Crusader: No Remorse.scummvm",
+        "engineid:gameid": "ultima:remorse",
+        "gameid": "remorse"
       },
       {
-        "game": "Cubert Badbone, P.I.",
-        "rd_game_name": "Cubert Badbone, P.I..scummvm",
-        "scummvm_id": "sludge:cubert",
-        "scummvm_id_key": "cubert"
+        "description": "Cubert Badbone, P.I.",
+        "scummvm_dir_name": "Cubert Badbone, P.I..scummvm",
+        "engineid:gameid": "sludge:cubert",
+        "gameid": "cubert"
       },
       {
-        "game": "Da New Guys: Day of the Jackass",
-        "rd_game_name": "Da New Guys: Day of the Jackass.scummvm",
-        "scummvm_id": "ags:danewguys2",
-        "scummvm_id_key": "danewguys2"
+        "description": "Da New Guys: Day of the Jackass",
+        "scummvm_dir_name": "Da New Guys: Day of the Jackass.scummvm",
+        "engineid:gameid": "ags:danewguys2",
+        "gameid": "danewguys2"
       },
       {
-        "game": "Daniel in the Lions Den",
-        "rd_game_name": "Daniel in the Lions Den.scummvm",
-        "scummvm_id": "mohawk:daniel",
-        "scummvm_id_key": "daniel"
+        "description": "Daniel in the Lions Den",
+        "scummvm_dir_name": "Daniel in the Lions Den.scummvm",
+        "engineid:gameid": "mohawk:daniel",
+        "gameid": "daniel"
       },
       {
-        "game": "Darby the Dragon",
-        "rd_game_name": "Darby the Dragon.scummvm",
-        "scummvm_id": "composer:darby",
-        "scummvm_id_key": "darby"
+        "description": "Darby the Dragon",
+        "scummvm_dir_name": "Darby the Dragon.scummvm",
+        "engineid:gameid": "composer:darby",
+        "gameid": "darby"
       },
       {
-        "game": "Dark Seed",
-        "rd_game_name": "Dark Seed.scummvm",
-        "scummvm_id": "darkseed:darkseed",
-        "scummvm_id_key": "darkseed"
+        "description": "Dark Seed",
+        "scummvm_dir_name": "Dark Seed.scummvm",
+        "engineid:gameid": "darkseed:darkseed",
+        "gameid": "darkseed"
       },
       {
-        "game": "Dark Side",
-        "rd_game_name": "Dark Side.scummvm",
-        "scummvm_id": "freescape:darkside",
-        "scummvm_id_key": "darkside"
+        "description": "Dark Side",
+        "scummvm_dir_name": "Dark Side.scummvm",
+        "engineid:gameid": "freescape:darkside",
+        "gameid": "darkside"
       },
       {
-        "game": "Dead City",
-        "rd_game_name": "Dead City.scummvm",
-        "scummvm_id": "wintermute:deadcity",
-        "scummvm_id_key": "deadcity"
+        "description": "Dead City",
+        "scummvm_dir_name": "Dead City.scummvm",
+        "engineid:gameid": "wintermute:deadcity",
+        "gameid": "deadcity"
       },
       {
-        "game": "Dirty Split",
-        "rd_game_name": "Dirty Split.scummvm",
-        "scummvm_id": "wintermute:dirtysplit",
-        "scummvm_id_key": "dirtysplit"
+        "description": "Dirty Split",
+        "scummvm_dir_name": "Dirty Split.scummvm",
+        "engineid:gameid": "wintermute:dirtysplit",
+        "gameid": "dirtysplit"
       },
       {
-        "game": "Discworld",
-        "rd_game_name": "Discworld.scummvm",
-        "scummvm_id": "tinsel:dw",
-        "scummvm_id_key": "dw"
+        "description": "Discworld",
+        "scummvm_dir_name": "Discworld.scummvm",
+        "engineid:gameid": "tinsel:dw",
+        "gameid": "dw"
       },
       {
-        "game": "Discworld II: Missing Presumed...!?",
-        "rd_game_name": "Discworld II: Missing Presumed...!?.scummvm",
-        "scummvm_id": "tinsel:dw2",
-        "scummvm_id_key": "dw2"
+        "description": "Discworld II: Missing Presumed...!?",
+        "scummvm_dir_name": "Discworld II: Missing Presumed...!?.scummvm",
+        "engineid:gameid": "tinsel:dw2",
+        "gameid": "dw2"
       },
       {
-        "game": "Dog-n-cat: In the footsteps of unprecedented beasts",
-        "rd_game_name": "Dog-n-cat: In the footsteps of unprecedented beasts.scummvm",
-        "scummvm_id": "qdengine:dogncat",
-        "scummvm_id_key": "dogncat"
+        "description": "Dog-n-cat: In the footsteps of unprecedented beasts",
+        "scummvm_dir_name": "Dog-n-cat: In the footsteps of unprecedented beasts.scummvm",
+        "engineid:gameid": "qdengine:dogncat",
+        "gameid": "dogncat"
       },
       {
-        "game": "Dog-n-cat: Island of Dr Rattardy",
-        "rd_game_name": "Dog-n-cat: Island of Dr Rattardy.scummvm",
-        "scummvm_id": "qdengine:dogncat2",
-        "scummvm_id_key": "dogncat2"
+        "description": "Dog-n-cat: Island of Dr Rattardy",
+        "scummvm_dir_name": "Dog-n-cat: Island of Dr Rattardy.scummvm",
+        "engineid:gameid": "qdengine:dogncat2",
+        "gameid": "dogncat2"
       },
       {
-        "game": "Donald Ducks Playground",
-        "rd_game_name": "Donald Ducks Playground.scummvm",
-        "scummvm_id": "agi:ddp",
-        "scummvm_id_key": "ddp"
+        "description": "Donald Ducks Playground",
+        "scummvm_dir_name": "Donald Ducks Playground.scummvm",
+        "engineid:gameid": "agi:ddp",
+        "gameid": "ddp"
       },
       {
-        "game": "Dr. Seusss ABC",
-        "rd_game_name": "Dr. Seusss ABC.scummvm",
-        "scummvm_id": "mohawk:seussabc",
-        "scummvm_id_key": "seussabc"
+        "description": "Dr. Seusss ABC",
+        "scummvm_dir_name": "Dr. Seusss ABC.scummvm",
+        "engineid:gameid": "mohawk:seussabc",
+        "gameid": "seussabc"
       },
       {
-        "game": "Dragon History",
-        "rd_game_name": "Dragon History.scummvm",
-        "scummvm_id": "draci:draci",
-        "scummvm_id_key": "draci"
+        "description": "Dragon History",
+        "scummvm_dir_name": "Dragon History.scummvm",
+        "engineid:gameid": "draci:draci",
+        "gameid": "draci"
       },
       {
-        "game": "Dráscula: The Vampire Strikes Back",
-        "rd_game_name": "Dráscula: The Vampire Strikes Back.scummvm",
-        "scummvm_id": "drascula:drascula",
-        "scummvm_id_key": "drascula"
+        "description": "Dráscula: The Vampire Strikes Back",
+        "scummvm_dir_name": "Dráscula: The Vampire Strikes Back.scummvm",
+        "engineid:gameid": "drascula:drascula",
+        "gameid": "drascula"
       },
       {
-        "game": "Dreams in the Witch House",
-        "rd_game_name": "Dreams in the Witch House.scummvm",
-        "scummvm_id": "ags:dreamswitchhouse",
-        "scummvm_id_key": "dreamswitchhouse"
+        "description": "Dreams in the Witch House",
+        "scummvm_dir_name": "Dreams in the Witch House.scummvm",
+        "engineid:gameid": "ags:dreamswitchhouse",
+        "gameid": "dreamswitchhouse"
       },
       {
-        "game": "DreamWeb",
-        "rd_game_name": "DreamWeb.scummvm",
-        "scummvm_id": "dreamweb:dreamweb",
-        "scummvm_id_key": "dreamweb"
+        "description": "DreamWeb",
+        "scummvm_dir_name": "DreamWeb.scummvm",
+        "engineid:gameid": "dreamweb:dreamweb",
+        "gameid": "dreamweb"
       },
       {
-        "game": "Driller",
-        "rd_game_name": "Driller.scummvm",
-        "scummvm_id": "freescape:driller",
-        "scummvm_id_key": "driller"
+        "description": "Driller",
+        "scummvm_dir_name": "Driller.scummvm",
+        "engineid:gameid": "freescape:driller",
+        "gameid": "driller"
       },
       {
-        "game": "Duckman: The Graphic Adventures of a Private Dick",
-        "rd_game_name": "Duckman: The Graphic Adventures of a Private Dick.scummvm",
-        "scummvm_id": "illusions:duckman",
-        "scummvm_id_key": "duckman"
+        "description": "Duckman: The Graphic Adventures of a Private Dick",
+        "scummvm_dir_name": "Duckman: The Graphic Adventures of a Private Dick.scummvm",
+        "engineid:gameid": "illusions:duckman",
+        "gameid": "duckman"
       },
       {
-        "game": "Eastern Mind",
-        "rd_game_name": "Eastern Mind.scummvm",
-        "scummvm_id": "director:easternmind",
-        "scummvm_id_key": "easternmind"
+        "description": "Eastern Mind",
+        "scummvm_dir_name": "Eastern Mind.scummvm",
+        "engineid:gameid": "director:easternmind",
+        "gameid": "easternmind"
       },
       {
-        "game": "EcoQuest II: Lost Secret of the Rainforest",
-        "rd_game_name": "EcoQuest II: Lost Secret of the Rainforest.scummvm",
-        "scummvm_id": "sci:ecoquest2",
-        "scummvm_id_key": "ecoquest2"
+        "description": "EcoQuest II: Lost Secret of the Rainforest",
+        "scummvm_dir_name": "EcoQuest II: Lost Secret of the Rainforest.scummvm",
+        "engineid:gameid": "sci:ecoquest2",
+        "gameid": "ecoquest2"
       },
       {
-        "game": "EcoQuest: The Search for Cetus",
-        "rd_game_name": "EcoQuest: The Search for Cetus.scummvm",
-        "scummvm_id": "sci:ecoquest",
-        "scummvm_id_key": "ecoquest"
+        "description": "EcoQuest: The Search for Cetus",
+        "scummvm_dir_name": "EcoQuest: The Search for Cetus.scummvm",
+        "engineid:gameid": "sci:ecoquest",
+        "gameid": "ecoquest"
       },
       {
-        "game": "Elvira II: The Jaws of Cerberus",
-        "rd_game_name": "Elvira II: The Jaws of Cerberus.scummvm",
-        "scummvm_id": "agos:elvira2",
-        "scummvm_id_key": "elvira2"
+        "description": "Elvira II: The Jaws of Cerberus",
+        "scummvm_dir_name": "Elvira II: The Jaws of Cerberus.scummvm",
+        "engineid:gameid": "agos:elvira2",
+        "gameid": "elvira2"
       },
       {
-        "game": "Elvira: Mistress of the Dark",
-        "rd_game_name": "Elvira: Mistress of the Dark.scummvm",
-        "scummvm_id": "agos:elvira1",
-        "scummvm_id_key": "elvira1"
+        "description": "Elvira: Mistress of the Dark",
+        "scummvm_dir_name": "Elvira: Mistress of the Dark.scummvm",
+        "engineid:gameid": "agos:elvira1",
+        "gameid": "elvira1"
       },
       {
-        "game": "Escape From Hell",
-        "rd_game_name": "Escape From Hell.scummvm",
-        "scummvm_id": "efh:efh",
-        "scummvm_id_key": "efh"
+        "description": "Escape From Hell",
+        "scummvm_dir_name": "Escape From Hell.scummvm",
+        "engineid:gameid": "efh:efh",
+        "gameid": "efh"
       },
       {
-        "game": "Escape From Monkey Island",
-        "rd_game_name": "Escape From Monkey Island.scummvm",
-        "scummvm_id": "grim:monkey4",
-        "scummvm_id_key": "monkey4"
+        "description": "Escape From Monkey Island",
+        "scummvm_dir_name": "Escape From Monkey Island.scummvm",
+        "engineid:gameid": "grim:monkey4",
+        "gameid": "monkey4"
       },
       {
-        "game": "Escape from the Mansion",
-        "rd_game_name": "Escape from the Mansion.scummvm",
-        "scummvm_id": "wintermute:escapemansion",
-        "scummvm_id_key": "escapemansion"
+        "description": "Escape from the Mansion",
+        "scummvm_dir_name": "Escape from the Mansion.scummvm",
+        "engineid:gameid": "wintermute:escapemansion",
+        "gameid": "escapemansion"
       },
       {
-        "game": "Eye of the Beholder",
-        "rd_game_name": "Eye of the Beholder.scummvm",
-        "scummvm_id": "kyra:eob",
-        "scummvm_id_key": "eob"
+        "description": "Eye of the Beholder",
+        "scummvm_dir_name": "Eye of the Beholder.scummvm",
+        "engineid:gameid": "kyra:eob",
+        "gameid": "eob"
       },
       {
-        "game": "Eye of the Beholder II: The Legend of Darkmoon",
-        "rd_game_name": "Eye of the Beholder II: The Legend of Darkmoon.scummvm",
-        "scummvm_id": "kyra:eob2",
-        "scummvm_id_key": "eob2"
+        "description": "Eye of the Beholder II: The Legend of Darkmoon",
+        "scummvm_dir_name": "Eye of the Beholder II: The Legend of Darkmoon.scummvm",
+        "engineid:gameid": "kyra:eob2",
+        "gameid": "eob2"
       },
       {
-        "game": "Fascination",
-        "rd_game_name": "Fascination.scummvm",
-        "scummvm_id": "gob:fascination",
-        "scummvm_id_key": "fascination"
+        "description": "Fascination",
+        "scummvm_dir_name": "Fascination.scummvm",
+        "engineid:gameid": "gob:fascination",
+        "gameid": "fascination"
       },
       {
-        "game": "Fatty Bears Birthday Surprise",
-        "rd_game_name": "Fatty Bears Birthday Surprise.scummvm",
-        "scummvm_id": "scumm:fbear",
-        "scummvm_id_key": "fbear"
+        "description": "Fatty Bears Birthday Surprise",
+        "scummvm_dir_name": "Fatty Bears Birthday Surprise.scummvm",
+        "engineid:gameid": "scumm:fbear",
+        "gameid": "fbear"
       },
       {
-        "game": "Fatty Bears FunPack",
-        "rd_game_name": "Fatty Bears FunPack.scummvm",
-        "scummvm_id": "scumm:fbpack",
-        "scummvm_id_key": "fbpack"
+        "description": "Fatty Bears FunPack",
+        "scummvm_dir_name": "Fatty Bears FunPack.scummvm",
+        "engineid:gameid": "scumm:fbpack",
+        "gameid": "fbpack"
       },
       {
-        "game": "Features of national fishing",
-        "rd_game_name": "Features of national fishing.scummvm",
-        "scummvm_id": "qdengine:rybalka",
-        "scummvm_id_key": "rybalka"
+        "description": "Features of national fishing",
+        "scummvm_dir_name": "Features of national fishing.scummvm",
+        "engineid:gameid": "qdengine:rybalka",
+        "gameid": "rybalka"
       },
       {
-        "game": "Fish!",
-        "rd_game_name": "Fish!.scummvm",
-        "scummvm_id": "glk:fish",
-        "scummvm_id_key": "fish"
+        "description": "Fish!",
+        "scummvm_dir_name": "Fish!.scummvm",
+        "engineid:gameid": "glk:fish",
+        "gameid": "fish"
       },
       {
-        "game": "Five Lethal Demons",
-        "rd_game_name": "Five Lethal Demons.scummvm",
-        "scummvm_id": "wintermute:5ld",
-        "scummvm_id_key": "5ld"
+        "description": "Five Lethal Demons",
+        "scummvm_dir_name": "Five Lethal Demons.scummvm",
+        "engineid:gameid": "wintermute:5ld",
+        "gameid": "5ld"
       },
       {
-        "game": "Five Magical Amulets",
-        "rd_game_name": "Five Magical Amulets.scummvm",
-        "scummvm_id": "wintermute:5ma",
-        "scummvm_id_key": "5ma"
+        "description": "Five Magical Amulets",
+        "scummvm_dir_name": "Five Magical Amulets.scummvm",
+        "engineid:gameid": "wintermute:5ma",
+        "gameid": "5ma"
       },
       {
-        "game": "Flight of the Amazon Queen",
-        "rd_game_name": "Flight of the Amazon Queen.scummvm",
-        "scummvm_id": "queen:queen",
-        "scummvm_id_key": "queen"
+        "description": "Flight of the Amazon Queen",
+        "scummvm_dir_name": "Flight of the Amazon Queen.scummvm",
+        "engineid:gameid": "queen:queen",
+        "gameid": "queen"
       },
       {
-        "game": "Football Game",
-        "rd_game_name": "Football Game.scummvm",
-        "scummvm_id": "ags:footballgame",
-        "scummvm_id_key": "footballgame"
+        "description": "Football Game",
+        "scummvm_dir_name": "Football Game.scummvm",
+        "engineid:gameid": "ags:footballgame",
+        "gameid": "footballgame"
       },
       {
-        "game": "Frasse and the Peas of Kejick",
-        "rd_game_name": "Frasse and the Peas of Kejick.scummvm",
-        "scummvm_id": "sludge:frasse",
-        "scummvm_id_key": "frasse"
+        "description": "Frasse and the Peas of Kejick",
+        "scummvm_dir_name": "Frasse and the Peas of Kejick.scummvm",
+        "engineid:gameid": "sludge:frasse",
+        "gameid": "frasse"
       },
       {
-        "game": "Freddi Fish 2: The Case of the Haunted Schoolhouse",
-        "rd_game_name": "Freddi Fish 2: The Case of the Haunted Schoolhouse.scummvm",
-        "scummvm_id": "scumm:freddi2",
-        "scummvm_id_key": "freddi2"
+        "description": "Freddi Fish 2: The Case of the Haunted Schoolhouse",
+        "scummvm_dir_name": "Freddi Fish 2: The Case of the Haunted Schoolhouse.scummvm",
+        "engineid:gameid": "scumm:freddi2",
+        "gameid": "freddi2"
       },
       {
-        "game": "Freddi Fish 3: The Case of the Stolen Conch Shell",
-        "rd_game_name": "Freddi Fish 3: The Case of the Stolen Conch Shell.scummvm",
-        "scummvm_id": "scumm:freddi3",
-        "scummvm_id_key": "freddi3"
+        "description": "Freddi Fish 3: The Case of the Stolen Conch Shell",
+        "scummvm_dir_name": "Freddi Fish 3: The Case of the Stolen Conch Shell.scummvm",
+        "engineid:gameid": "scumm:freddi3",
+        "gameid": "freddi3"
       },
       {
-        "game": "Freddi Fish 4: The Case of the Hogfish Rustlers of Briny Gulch",
-        "rd_game_name": "Freddi Fish 4: The Case of the Hogfish Rustlers of Briny Gulch.scummvm",
-        "scummvm_id": "scumm:freddi4",
-        "scummvm_id_key": "freddi4"
+        "description": "Freddi Fish 4: The Case of the Hogfish Rustlers of Briny Gulch",
+        "scummvm_dir_name": "Freddi Fish 4: The Case of the Hogfish Rustlers of Briny Gulch.scummvm",
+        "engineid:gameid": "scumm:freddi4",
+        "gameid": "freddi4"
       },
       {
-        "game": "Freddi Fish 5: The Case of the Creature of Coral Cove",
-        "rd_game_name": "Freddi Fish 5: The Case of the Creature of Coral Cove.scummvm",
-        "scummvm_id": "scumm:freddicove",
-        "scummvm_id_key": "freddicove"
+        "description": "Freddi Fish 5: The Case of the Creature of Coral Cove",
+        "scummvm_dir_name": "Freddi Fish 5: The Case of the Creature of Coral Cove.scummvm",
+        "engineid:gameid": "scumm:freddicove",
+        "gameid": "freddicove"
       },
       {
-        "game": "Freddi Fish and Luthers Maze Madness",
-        "rd_game_name": "Freddi Fish and Luthers Maze Madness.scummvm",
-        "scummvm_id": "scumm:maze",
-        "scummvm_id_key": "maze"
+        "description": "Freddi Fish and Luthers Maze Madness",
+        "scummvm_dir_name": "Freddi Fish and Luthers Maze Madness.scummvm",
+        "engineid:gameid": "scumm:maze",
+        "gameid": "maze"
       },
       {
-        "game": "Freddi Fish and Luthers Water Worries",
-        "rd_game_name": "Freddi Fish and Luthers Water Worries.scummvm",
-        "scummvm_id": "scumm:water",
-        "scummvm_id_key": "water"
+        "description": "Freddi Fish and Luthers Water Worries",
+        "scummvm_dir_name": "Freddi Fish and Luthers Water Worries.scummvm",
+        "engineid:gameid": "scumm:water",
+        "gameid": "water"
       },
       {
-        "game": "Freddi Fish and the Case of the Missing Kelp Seeds",
-        "rd_game_name": "Freddi Fish and the Case of the Missing Kelp Seeds.scummvm",
-        "scummvm_id": "scumm:freddi",
-        "scummvm_id_key": "freddi"
+        "description": "Freddi Fish and the Case of the Missing Kelp Seeds",
+        "scummvm_dir_name": "Freddi Fish and the Case of the Missing Kelp Seeds.scummvm",
+        "engineid:gameid": "scumm:freddi",
+        "gameid": "freddi"
       },
       {
-        "game": "Freddi Fishs One-Stop Fun Shop",
-        "rd_game_name": "Freddi Fishs One-Stop Fun Shop.scummvm",
-        "scummvm_id": "scumm:freddisfunshop",
-        "scummvm_id_key": "freddisfunshop"
+        "description": "Freddi Fishs One-Stop Fun Shop",
+        "scummvm_dir_name": "Freddi Fishs One-Stop Fun Shop.scummvm",
+        "engineid:gameid": "scumm:freddisfunshop",
+        "gameid": "freddisfunshop"
       },
       {
-        "game": "Freddy Pharkas: Frontier Pharmacist",
-        "rd_game_name": "Freddy Pharkas: Frontier Pharmacist.scummvm",
-        "scummvm_id": "sci:freddypharkas",
-        "scummvm_id_key": "freddypharkas"
+        "description": "Freddy Pharkas: Frontier Pharmacist",
+        "scummvm_dir_name": "Freddy Pharkas: Frontier Pharmacist.scummvm",
+        "engineid:gameid": "sci:freddypharkas",
+        "gameid": "freddypharkas"
       },
       {
-        "game": "Fukuoka Go-Round",
-        "rd_game_name": "Fukuoka Go-Round.scummvm",
-        "scummvm_id": "director:fukuokagoround",
-        "scummvm_id_key": "fukuokagoround"
+        "description": "Fukuoka Go-Round",
+        "scummvm_dir_name": "Fukuoka Go-Round.scummvm",
+        "engineid:gameid": "director:fukuokagoround",
+        "gameid": "fukuokagoround"
       },
       {
-        "game": "Full Pipe",
-        "rd_game_name": "Full Pipe.scummvm",
-        "scummvm_id": "ngi:fullpipe",
-        "scummvm_id_key": "fullpipe"
+        "description": "Full Pipe",
+        "scummvm_dir_name": "Full Pipe.scummvm",
+        "engineid:gameid": "ngi:fullpipe",
+        "gameid": "fullpipe"
       },
       {
-        "game": "Full Throttle",
-        "rd_game_name": "Full Throttle.scummvm",
-        "scummvm_id": "scumm:ft",
-        "scummvm_id_key": "ft"
+        "description": "Full Throttle",
+        "scummvm_dir_name": "Full Throttle.scummvm",
+        "engineid:gameid": "scumm:ft",
+        "gameid": "ft"
       },
       {
-        "game": "Future Wars: Adventures in Time",
-        "rd_game_name": "Future Wars: Adventures in Time.scummvm",
-        "scummvm_id": "cine:fw",
-        "scummvm_id_key": "fw"
+        "description": "Future Wars: Adventures in Time",
+        "scummvm_dir_name": "Future Wars: Adventures in Time.scummvm",
+        "engineid:gameid": "cine:fw",
+        "gameid": "fw"
       },
       {
-        "game": "Gabriel Knight: Sins of the Fathers",
-        "rd_game_name": "Gabriel Knight: Sins of the Fathers.scummvm",
-        "scummvm_id": "sci:gk1",
-        "scummvm_id_key": "gk1"
+        "description": "Gabriel Knight: Sins of the Fathers",
+        "scummvm_dir_name": "Gabriel Knight: Sins of the Fathers.scummvm",
+        "engineid:gameid": "sci:gk1",
+        "gameid": "gk1"
       },
       {
-        "game": "Gadget: Invention, Travel and Adventure",
-        "rd_game_name": "Gadget: Invention, Travel and Adventure.scummvm",
-        "scummvm_id": "director:gadget",
-        "scummvm_id_key": "gadget"
+        "description": "Gadget: Invention, Travel and Adventure",
+        "scummvm_dir_name": "Gadget: Invention, Travel and Adventure.scummvm",
+        "engineid:gameid": "director:gadget",
+        "gameid": "gadget"
       },
       {
-        "game": "Games, Games, Games: Maniac Mansion + Zak McKracken + Indiana Jones and the last Crusade",
-        "rd_game_name": "Games, Games, Games: Maniac Mansion + Zak McKracken + Indiana Jones and the last Crusade.scummvm",
-        "scummvm_id": "scumm:indyzak",
-        "scummvm_id_key": "indyzak"
+        "description": "Games, Games, Games: Maniac Mansion + Zak McKracken + Indiana Jones and the last Crusade",
+        "scummvm_dir_name": "Games, Games, Games: Maniac Mansion + Zak McKracken + Indiana Jones and the last Crusade.scummvm",
+        "engineid:gameid": "scumm:indyzak",
+        "gameid": "indyzak"
       },
       {
-        "game": "Ganbare! Inuchan: Rockn Roll Edition",
-        "rd_game_name": "Ganbare! Inuchan: Rockn Roll Edition.scummvm",
-        "scummvm_id": "director:ganbareinuchan",
-        "scummvm_id_key": "ganbareinuchan"
+        "description": "Ganbare! Inuchan: Rockn Roll Edition",
+        "scummvm_dir_name": "Ganbare! Inuchan: Rockn Roll Edition.scummvm",
+        "engineid:gameid": "director:ganbareinuchan",
+        "gameid": "ganbareinuchan"
       },
       {
-        "game": "Ganbare! Inuchan: Trip Around the World",
-        "rd_game_name": "Ganbare! Inuchan: Trip Around the World.scummvm",
-        "scummvm_id": "director:ganbareinuchan2",
-        "scummvm_id_key": "ganbareinuchan2"
+        "description": "Ganbare! Inuchan: Trip Around the World",
+        "scummvm_dir_name": "Ganbare! Inuchan: Trip Around the World.scummvm",
+        "engineid:gameid": "director:ganbareinuchan2",
+        "gameid": "ganbareinuchan2"
       },
       {
-        "game": "Geisha",
-        "rd_game_name": "Geisha.scummvm",
-        "scummvm_id": "gob:geisha",
-        "scummvm_id_key": "geisha"
+        "description": "Geisha",
+        "scummvm_dir_name": "Geisha.scummvm",
+        "engineid:gameid": "gob:geisha",
+        "gameid": "geisha"
       },
       {
-        "game": "Gemini Rue",
-        "rd_game_name": "Gemini Rue.scummvm",
-        "scummvm_id": "ags:geminirue",
-        "scummvm_id_key": "geminirue"
+        "description": "Gemini Rue",
+        "scummvm_dir_name": "Gemini Rue.scummvm",
+        "engineid:gameid": "ags:geminirue",
+        "gameid": "geminirue"
       },
       {
-        "game": "Glulx Interactive Fiction games",
-        "rd_game_name": "Glulx Interactive Fiction games.scummvm",
-        "scummvm_id": "glk:glulx",
-        "scummvm_id_key": "glulx"
+        "description": "Glulx Interactive Fiction games",
+        "scummvm_dir_name": "Glulx Interactive Fiction games.scummvm",
+        "engineid:gameid": "glk:glulx",
+        "gameid": "glulx"
       },
       {
-        "game": "Gobliiins",
-        "rd_game_name": "Gobliiins.scummvm",
-        "scummvm_id": "gob:gob1",
-        "scummvm_id_key": "gob1"
+        "description": "Gobliiins",
+        "scummvm_dir_name": "Gobliiins.scummvm",
+        "engineid:gameid": "gob:gob1",
+        "gameid": "gob1"
       },
       {
-        "game": "Gobliiins5 - LInvasion des Morglotons Part1",
-        "rd_game_name": "Gobliiins5 - LInvasion des Morglotons Part1.scummvm",
-        "scummvm_id": "ags:gobliiins5-1",
-        "scummvm_id_key": "gobliiins5-1"
+        "description": "Gobliiins5 - LInvasion des Morglotons Part1",
+        "scummvm_dir_name": "Gobliiins5 - LInvasion des Morglotons Part1.scummvm",
+        "engineid:gameid": "ags:gobliiins5-1",
+        "gameid": "gobliiins5-1"
       },
       {
-        "game": "Gobliiins5 - LInvasion des Morglotons Part2",
-        "rd_game_name": "Gobliiins5 - LInvasion des Morglotons Part2.scummvm",
-        "scummvm_id": "ags:gobliiins5-2",
-        "scummvm_id_key": "gobliiins5-2"
+        "description": "Gobliiins5 - LInvasion des Morglotons Part2",
+        "scummvm_dir_name": "Gobliiins5 - LInvasion des Morglotons Part2.scummvm",
+        "engineid:gameid": "ags:gobliiins5-2",
+        "gameid": "gobliiins5-2"
       },
       {
-        "game": "Gobliiins5 - LInvasion des Morglotons Part3",
-        "rd_game_name": "Gobliiins5 - LInvasion des Morglotons Part3.scummvm",
-        "scummvm_id": "ags:gobliiins5-3",
-        "scummvm_id_key": "gobliiins5-3"
+        "description": "Gobliiins5 - LInvasion des Morglotons Part3",
+        "scummvm_dir_name": "Gobliiins5 - LInvasion des Morglotons Part3.scummvm",
+        "engineid:gameid": "ags:gobliiins5-3",
+        "gameid": "gobliiins5-3"
       },
       {
-        "game": "Gobliiins5 - LInvasion des Morglotons Part4",
-        "rd_game_name": "Gobliiins5 - LInvasion des Morglotons Part4.scummvm",
-        "scummvm_id": "ags:gobliiins5-4",
-        "scummvm_id_key": "gobliiins5-4"
+        "description": "Gobliiins5 - LInvasion des Morglotons Part4",
+        "scummvm_dir_name": "Gobliiins5 - LInvasion des Morglotons Part4.scummvm",
+        "engineid:gameid": "ags:gobliiins5-4",
+        "gameid": "gobliiins5-4"
       },
       {
-        "game": "Gobliins 2: The Prince Buffoon",
-        "rd_game_name": "Gobliins 2: The Prince Buffoon.scummvm",
-        "scummvm_id": "gob:gob2",
-        "scummvm_id_key": "gob2"
+        "description": "Gobliins 2: The Prince Buffoon",
+        "scummvm_dir_name": "Gobliins 2: The Prince Buffoon.scummvm",
+        "engineid:gameid": "gob:gob2",
+        "gameid": "gob2"
       },
       {
-        "game": "Goblins Quest 3",
-        "rd_game_name": "Goblins Quest 3.scummvm",
-        "scummvm_id": "gob:gob3",
-        "scummvm_id_key": "gob3"
+        "description": "Goblins Quest 3",
+        "scummvm_dir_name": "Goblins Quest 3.scummvm",
+        "engineid:gameid": "gob:gob3",
+        "gameid": "gob3"
       },
       {
-        "game": "God of Thunder",
-        "rd_game_name": "God of Thunder.scummvm",
-        "scummvm_id": "got:got",
-        "scummvm_id_key": "got"
+        "description": "God of Thunder",
+        "scummvm_dir_name": "God of Thunder.scummvm",
+        "engineid:gameid": "got:got",
+        "gameid": "got"
       },
       {
-        "game": "Gold Rush!",
-        "rd_game_name": "Gold Rush!.scummvm",
-        "scummvm_id": "agi:goldrush",
-        "scummvm_id_key": "goldrush"
+        "description": "Gold Rush!",
+        "scummvm_dir_name": "Gold Rush!.scummvm",
+        "engineid:gameid": "agi:goldrush",
+        "gameid": "goldrush"
       },
       {
-        "game": "Green Eggs and Ham",
-        "rd_game_name": "Green Eggs and Ham.scummvm",
-        "scummvm_id": "mohawk:greeneggs",
-        "scummvm_id_key": "greeneggs"
+        "description": "Green Eggs and Ham",
+        "scummvm_dir_name": "Green Eggs and Ham.scummvm",
+        "engineid:gameid": "mohawk:greeneggs",
+        "gameid": "greeneggs"
       },
       {
-        "game": "Gregory and the Hot Air Balloon",
-        "rd_game_name": "Gregory and the Hot Air Balloon.scummvm",
-        "scummvm_id": "composer:gregory",
-        "scummvm_id_key": "gregory"
+        "description": "Gregory and the Hot Air Balloon",
+        "scummvm_dir_name": "Gregory and the Hot Air Balloon.scummvm",
+        "engineid:gameid": "composer:gregory",
+        "gameid": "gregory"
       },
       {
-        "game": "Grim Fandango",
-        "rd_game_name": "Grim Fandango.scummvm",
-        "scummvm_id": "grim:grim",
-        "scummvm_id_key": "grim"
+        "description": "Grim Fandango",
+        "scummvm_dir_name": "Grim Fandango.scummvm",
+        "engineid:gameid": "grim:grim",
+        "gameid": "grim"
       },
       {
-        "game": "Hades Challenge",
-        "rd_game_name": "Hades Challenge.scummvm",
-        "scummvm_id": "hadesch:hadesch",
-        "scummvm_id_key": "hadesch"
+        "description": "Hades Challenge",
+        "scummvm_dir_name": "Hades Challenge.scummvm",
+        "engineid:gameid": "hadesch:hadesch",
+        "gameid": "hadesch"
       },
       {
-        "game": "Halls of the Dead: Faery Tale Adventure II",
-        "rd_game_name": "Halls of the Dead: Faery Tale Adventure II.scummvm",
-        "scummvm_id": "saga2:fta2",
-        "scummvm_id_key": "fta2"
+        "description": "Halls of the Dead: Faery Tale Adventure II",
+        "scummvm_dir_name": "Halls of the Dead: Faery Tale Adventure II.scummvm",
+        "engineid:gameid": "saga2:fta2",
+        "gameid": "fta2"
       },
       {
-        "game": "Harlan Ellison: I Have No Mouth, and I Must Scream",
-        "rd_game_name": "Harlan Ellison: I Have No Mouth, and I Must Scream.scummvm",
-        "scummvm_id": "saga:ihnm",
-        "scummvm_id_key": "ihnm"
+        "description": "Harlan Ellison: I Have No Mouth, and I Must Scream",
+        "scummvm_dir_name": "Harlan Ellison: I Have No Mouth, and I Must Scream.scummvm",
+        "engineid:gameid": "saga:ihnm",
+        "gameid": "ihnm"
       },
       {
-        "game": "Harry and the Haunted House",
-        "rd_game_name": "Harry and the Haunted House.scummvm",
-        "scummvm_id": "mohawk:harryhh",
-        "scummvm_id_key": "harryhh"
+        "description": "Harry and the Haunted House",
+        "scummvm_dir_name": "Harry and the Haunted House.scummvm",
+        "engineid:gameid": "mohawk:harryhh",
+        "gameid": "harryhh"
       },
       {
-        "game": "Heart of China",
-        "rd_game_name": "Heart of China.scummvm",
-        "scummvm_id": "dgds:china",
-        "scummvm_id_key": "china"
+        "description": "Heart of China",
+        "scummvm_dir_name": "Heart of China.scummvm",
+        "engineid:gameid": "dgds:china",
+        "gameid": "china"
       },
       {
-        "game": "Helga Deep In Trouble",
-        "rd_game_name": "Helga Deep In Trouble.scummvm",
-        "scummvm_id": "wintermute:helga",
-        "scummvm_id_key": "helga"
+        "description": "Helga Deep In Trouble",
+        "scummvm_dir_name": "Helga Deep In Trouble.scummvm",
+        "engineid:gameid": "wintermute:helga",
+        "gameid": "helga"
       },
       {
-        "game": "Henachoco #1",
-        "rd_game_name": "Henachoco #1.scummvm",
-        "scummvm_id": "director:henachoco01",
-        "scummvm_id_key": "henachoco01"
+        "description": "Henachoco #1",
+        "scummvm_dir_name": "Henachoco #1.scummvm",
+        "engineid:gameid": "director:henachoco01",
+        "gameid": "henachoco01"
       },
       {
-        "game": "Henachoco #2",
-        "rd_game_name": "Henachoco #2.scummvm",
-        "scummvm_id": "director:henachoco02",
-        "scummvm_id_key": "henachoco02"
+        "description": "Henachoco #2",
+        "scummvm_dir_name": "Henachoco #2.scummvm",
+        "engineid:gameid": "director:henachoco02",
+        "gameid": "henachoco02"
       },
       {
-        "game": "Henachoco #3",
-        "rd_game_name": "Henachoco #3.scummvm",
-        "scummvm_id": "director:henachoco03",
-        "scummvm_id_key": "henachoco03"
+        "description": "Henachoco #3",
+        "scummvm_dir_name": "Henachoco #3.scummvm",
+        "engineid:gameid": "director:henachoco03",
+        "gameid": "henachoco03"
       },
       {
-        "game": "Henachoco #4",
-        "rd_game_name": "Henachoco #4.scummvm",
-        "scummvm_id": "director:henachoco04",
-        "scummvm_id_key": "henachoco04"
+        "description": "Henachoco #4",
+        "scummvm_dir_name": "Henachoco #4.scummvm",
+        "engineid:gameid": "director:henachoco04",
+        "gameid": "henachoco04"
       },
       {
-        "game": "Hi-Res Adventure #0: Mission Asteroid",
-        "rd_game_name": "Hi-Res Adventure #0: Mission Asteroid.scummvm",
-        "scummvm_id": "adl:hires0",
-        "scummvm_id_key": "hires0"
+        "description": "Hi-Res Adventure #0: Mission Asteroid",
+        "scummvm_dir_name": "Hi-Res Adventure #0: Mission Asteroid.scummvm",
+        "engineid:gameid": "adl:hires0",
+        "gameid": "hires0"
       },
       {
-        "game": "Hi-Res Adventure #1: Mystery House",
-        "rd_game_name": "Hi-Res Adventure #1: Mystery House.scummvm",
-        "scummvm_id": "adl:hires1",
-        "scummvm_id_key": "hires1"
+        "description": "Hi-Res Adventure #1: Mystery House",
+        "scummvm_dir_name": "Hi-Res Adventure #1: Mystery House.scummvm",
+        "engineid:gameid": "adl:hires1",
+        "gameid": "hires1"
       },
       {
-        "game": "Hi-Res Adventure #2: The Wizard and the Princess",
-        "rd_game_name": "Hi-Res Adventure #2: The Wizard and the Princess.scummvm",
-        "scummvm_id": "adl:hires2",
-        "scummvm_id_key": "hires2"
+        "description": "Hi-Res Adventure #2: The Wizard and the Princess",
+        "scummvm_dir_name": "Hi-Res Adventure #2: The Wizard and the Princess.scummvm",
+        "engineid:gameid": "adl:hires2",
+        "gameid": "hires2"
       },
       {
-        "game": "Hi-Res Adventure #3: Cranston Manor",
-        "rd_game_name": "Hi-Res Adventure #3: Cranston Manor.scummvm",
-        "scummvm_id": "adl:hires3",
-        "scummvm_id_key": "hires3"
+        "description": "Hi-Res Adventure #3: Cranston Manor",
+        "scummvm_dir_name": "Hi-Res Adventure #3: Cranston Manor.scummvm",
+        "engineid:gameid": "adl:hires3",
+        "gameid": "hires3"
       },
       {
-        "game": "Hi-Res Adventure #4: Ulysses and the Golden Fleece",
-        "rd_game_name": "Hi-Res Adventure #4: Ulysses and the Golden Fleece.scummvm",
-        "scummvm_id": "adl:hires4",
-        "scummvm_id_key": "hires4"
+        "description": "Hi-Res Adventure #4: Ulysses and the Golden Fleece",
+        "scummvm_dir_name": "Hi-Res Adventure #4: Ulysses and the Golden Fleece.scummvm",
+        "engineid:gameid": "adl:hires4",
+        "gameid": "hires4"
       },
       {
-        "game": "Hi-Res Adventure #5: Time Zone",
-        "rd_game_name": "Hi-Res Adventure #5: Time Zone.scummvm",
-        "scummvm_id": "adl:hires5",
-        "scummvm_id_key": "hires5"
+        "description": "Hi-Res Adventure #5: Time Zone",
+        "scummvm_dir_name": "Hi-Res Adventure #5: Time Zone.scummvm",
+        "engineid:gameid": "adl:hires5",
+        "gameid": "hires5"
       },
       {
-        "game": "Hi-Res Adventure #6: The Dark Crystal",
-        "rd_game_name": "Hi-Res Adventure #6: The Dark Crystal.scummvm",
-        "scummvm_id": "adl:hires6",
-        "scummvm_id_key": "hires6"
+        "description": "Hi-Res Adventure #6: The Dark Crystal",
+        "scummvm_dir_name": "Hi-Res Adventure #6: The Dark Crystal.scummvm",
+        "engineid:gameid": "adl:hires6",
+        "gameid": "hires6"
       },
       {
-        "game": "Hodj n Podj",
-        "rd_game_name": "Hodj n Podj.scummvm",
-        "scummvm_id": "bagel:hodjnpodj",
-        "scummvm_id_key": "hodjnpodj"
+        "description": "Hodj n Podj",
+        "scummvm_dir_name": "Hodj n Podj.scummvm",
+        "engineid:gameid": "bagel:hodjnpodj",
+        "gameid": "hodjnpodj"
       },
       {
-        "game": "Hopkins FBI",
-        "rd_game_name": "Hopkins FBI.scummvm",
-        "scummvm_id": "hopkins:hopkins",
-        "scummvm_id_key": "hopkins"
+        "description": "Hopkins FBI",
+        "scummvm_dir_name": "Hopkins FBI.scummvm",
+        "engineid:gameid": "hopkins:hopkins",
+        "gameid": "hopkins"
       },
       {
-        "game": "Hoyle Classic Card Games",
-        "rd_game_name": "Hoyle Classic Card Games.scummvm",
-        "scummvm_id": "sci:hoyle4",
-        "scummvm_id_key": "hoyle4"
+        "description": "Hoyle Classic Card Games",
+        "scummvm_dir_name": "Hoyle Classic Card Games.scummvm",
+        "engineid:gameid": "sci:hoyle4",
+        "gameid": "hoyle4"
       },
       {
-        "game": "Hoyle Classic Games",
-        "rd_game_name": "Hoyle Classic Games.scummvm",
-        "scummvm_id": "sci:hoyle5",
-        "scummvm_id_key": "hoyle5"
+        "description": "Hoyle Classic Games",
+        "scummvm_dir_name": "Hoyle Classic Games.scummvm",
+        "engineid:gameid": "sci:hoyle5",
+        "gameid": "hoyle5"
       },
       {
-        "game": "Hoyle Solitaire",
-        "rd_game_name": "Hoyle Solitaire.scummvm",
-        "scummvm_id": "sci:hoyle5solitaire",
-        "scummvm_id_key": "hoyle5solitaire"
+        "description": "Hoyle Solitaire",
+        "scummvm_dir_name": "Hoyle Solitaire.scummvm",
+        "engineid:gameid": "sci:hoyle5solitaire",
+        "gameid": "hoyle5solitaire"
       },
       {
-        "game": "Hoyles Official Book of Games: Volume 1",
-        "rd_game_name": "Hoyles Official Book of Games: Volume 1.scummvm",
-        "scummvm_id": "sci:hoyle1",
-        "scummvm_id_key": "hoyle1"
+        "description": "Hoyles Official Book of Games: Volume 1",
+        "scummvm_dir_name": "Hoyles Official Book of Games: Volume 1.scummvm",
+        "engineid:gameid": "sci:hoyle1",
+        "gameid": "hoyle1"
       },
       {
-        "game": "Hoyles Official Book of Games: Volume 2",
-        "rd_game_name": "Hoyles Official Book of Games: Volume 2.scummvm",
-        "scummvm_id": "sci:hoyle2",
-        "scummvm_id_key": "hoyle2"
+        "description": "Hoyles Official Book of Games: Volume 2",
+        "scummvm_dir_name": "Hoyles Official Book of Games: Volume 2.scummvm",
+        "engineid:gameid": "sci:hoyle2",
+        "gameid": "hoyle2"
       },
       {
-        "game": "Hoyles Official Book of Games: Volume 3",
-        "rd_game_name": "Hoyles Official Book of Games: Volume 3.scummvm",
-        "scummvm_id": "sci:hoyle3",
-        "scummvm_id_key": "hoyle3"
+        "description": "Hoyles Official Book of Games: Volume 3",
+        "scummvm_dir_name": "Hoyles Official Book of Games: Volume 3.scummvm",
+        "engineid:gameid": "sci:hoyle3",
+        "gameid": "hoyle3"
       },
       {
-        "game": "Hugo II: Whodunit?",
-        "rd_game_name": "Hugo II: Whodunit?.scummvm",
-        "scummvm_id": "hugo:hugo2",
-        "scummvm_id_key": "hugo2"
+        "description": "Hugo II: Whodunit?",
+        "scummvm_dir_name": "Hugo II: Whodunit?.scummvm",
+        "engineid:gameid": "hugo:hugo2",
+        "gameid": "hugo2"
       },
       {
-        "game": "Hugo III: Jungle of Doom",
-        "rd_game_name": "Hugo III: Jungle of Doom.scummvm",
-        "scummvm_id": "hugo:hugo3",
-        "scummvm_id_key": "hugo3"
+        "description": "Hugo III: Jungle of Doom",
+        "scummvm_dir_name": "Hugo III: Jungle of Doom.scummvm",
+        "engineid:gameid": "hugo:hugo3",
+        "gameid": "hugo3"
       },
       {
-        "game": "Hugo Interactive Fiction games",
-        "rd_game_name": "Hugo Interactive Fiction games.scummvm",
-        "scummvm_id": "glk:hugo",
-        "scummvm_id_key": "hugo"
+        "description": "Hugo Interactive Fiction games",
+        "scummvm_dir_name": "Hugo Interactive Fiction games.scummvm",
+        "engineid:gameid": "glk:hugo",
+        "gameid": "hugo"
       },
       {
-        "game": "Hugos House of Horrors",
-        "rd_game_name": "Hugos House of Horrors.scummvm",
-        "scummvm_id": "hugo:hugo1",
-        "scummvm_id_key": "hugo1"
+        "description": "Hugos House of Horrors",
+        "scummvm_dir_name": "Hugos House of Horrors.scummvm",
+        "engineid:gameid": "hugo:hugo1",
+        "gameid": "hugo1"
       },
       {
-        "game": "Humongous Interactive Catalog",
-        "rd_game_name": "Humongous Interactive Catalog.scummvm",
-        "scummvm_id": "scumm:catalog",
-        "scummvm_id_key": "catalog"
+        "description": "Humongous Interactive Catalog",
+        "scummvm_dir_name": "Humongous Interactive Catalog.scummvm",
+        "engineid:gameid": "scumm:catalog",
+        "gameid": "catalog"
       },
       {
-        "game": "Hyperspace Delivery Boy!",
-        "rd_game_name": "Hyperspace Delivery Boy!.scummvm",
-        "scummvm_id": "hdb:hdb",
-        "scummvm_id_key": "hdb"
+        "description": "Hyperspace Delivery Boy!",
+        "scummvm_dir_name": "Hyperspace Delivery Boy!.scummvm",
+        "engineid:gameid": "hdb:hdb",
+        "gameid": "hdb"
       },
       {
-        "game": "Indiana Jones and the Fate of Atlantis",
-        "rd_game_name": "Indiana Jones and the Fate of Atlantis.scummvm",
-        "scummvm_id": "scumm:atlantis",
-        "scummvm_id_key": "atlantis"
+        "description": "Indiana Jones and the Fate of Atlantis",
+        "scummvm_dir_name": "Indiana Jones and the Fate of Atlantis.scummvm",
+        "engineid:gameid": "scumm:atlantis",
+        "gameid": "atlantis"
       },
       {
-        "game": "Indiana Jones and the Last Crusade & Loom",
-        "rd_game_name": "Indiana Jones and the Last Crusade & Loom.scummvm",
-        "scummvm_id": "scumm:indyloom",
-        "scummvm_id_key": "indyloom"
+        "description": "Indiana Jones and the Last Crusade & Loom",
+        "scummvm_dir_name": "Indiana Jones and the Last Crusade & Loom.scummvm",
+        "engineid:gameid": "scumm:indyloom",
+        "gameid": "indyloom"
       },
       {
-        "game": "Indiana Jones and the Last Crusade: The Graphic Adventure",
-        "rd_game_name": "Indiana Jones and the Last Crusade: The Graphic Adventure.scummvm",
-        "scummvm_id": "scumm:indy3",
-        "scummvm_id_key": "indy3"
+        "description": "Indiana Jones and the Last Crusade: The Graphic Adventure",
+        "scummvm_dir_name": "Indiana Jones and the Last Crusade: The Graphic Adventure.scummvm",
+        "engineid:gameid": "scumm:indy3",
+        "gameid": "indy3"
       },
       {
-        "game": "Inherit the Earth: Quest for the Orb",
-        "rd_game_name": "Inherit the Earth: Quest for the Orb.scummvm",
-        "scummvm_id": "saga:ite",
-        "scummvm_id_key": "ite"
+        "description": "Inherit the Earth: Quest for the Orb",
+        "scummvm_dir_name": "Inherit the Earth: Quest for the Orb.scummvm",
+        "engineid:gameid": "saga:ite",
+        "gameid": "ite"
       },
       {
-        "game": "Inside the Chest",
-        "rd_game_name": "Inside the Chest.scummvm",
-        "scummvm_id": "sci:chest",
-        "scummvm_id_key": "chest"
+        "description": "Inside the Chest",
+        "scummvm_dir_name": "Inside the Chest.scummvm",
+        "engineid:gameid": "sci:chest",
+        "gameid": "chest"
       },
       {
-        "game": "JACL Interactive Fiction games",
-        "rd_game_name": "JACL Interactive Fiction games.scummvm",
-        "scummvm_id": "glk:jacl",
-        "scummvm_id_key": "jacl"
+        "description": "JACL Interactive Fiction games",
+        "scummvm_dir_name": "JACL Interactive Fiction games.scummvm",
+        "engineid:gameid": "glk:jacl",
+        "gameid": "jacl"
       },
       {
-        "game": "Japan Art Today 07: Takashi Murakami - A Romantic Evening",
-        "rd_game_name": "Japan Art Today 07: Takashi Murakami - A Romantic Evening.scummvm",
-        "scummvm_id": "director:japanart07",
-        "scummvm_id_key": "japanart07"
+        "description": "Japan Art Today 07: Takashi Murakami - A Romantic Evening",
+        "scummvm_dir_name": "Japan Art Today 07: Takashi Murakami - A Romantic Evening.scummvm",
+        "engineid:gameid": "director:japanart07",
+        "gameid": "japanart07"
       },
       {
-        "game": "Jinxter",
-        "rd_game_name": "Jinxter.scummvm",
-        "scummvm_id": "glk:jinxter",
-        "scummvm_id_key": "jinxter"
+        "description": "Jinxter",
+        "scummvm_dir_name": "Jinxter.scummvm",
+        "engineid:gameid": "glk:jinxter",
+        "gameid": "jinxter"
       },
       {
-        "game": "Jones in the Fast Lane",
-        "rd_game_name": "Jones in the Fast Lane.scummvm",
-        "scummvm_id": "sci:jones",
-        "scummvm_id_key": "jones"
+        "description": "Jones in the Fast Lane",
+        "scummvm_dir_name": "Jones in the Fast Lane.scummvm",
+        "engineid:gameid": "sci:jones",
+        "gameid": "jones"
       },
       {
-        "game": "Just Grandma and Me",
-        "rd_game_name": "Just Grandma and Me.scummvm",
-        "scummvm_id": "mohawk:grandma",
-        "scummvm_id_key": "grandma"
+        "description": "Just Grandma and Me",
+        "scummvm_dir_name": "Just Grandma and Me.scummvm",
+        "engineid:gameid": "mohawk:grandma",
+        "gameid": "grandma"
       },
       {
-        "game": "Just Ignore Them",
-        "rd_game_name": "Just Ignore Them.scummvm",
-        "scummvm_id": "ags:justignorethem",
-        "scummvm_id_key": "justignorethem"
+        "description": "Just Ignore Them",
+        "scummvm_dir_name": "Just Ignore Them.scummvm",
+        "engineid:gameid": "ags:justignorethem",
+        "gameid": "justignorethem"
       },
       {
-        "game": "Kathy Rain",
-        "rd_game_name": "Kathy Rain.scummvm",
-        "scummvm_id": "ags:kathyrain",
-        "scummvm_id_key": "kathyrain"
+        "description": "Kathy Rain",
+        "scummvm_dir_name": "Kathy Rain.scummvm",
+        "engineid:gameid": "ags:kathyrain",
+        "gameid": "kathyrain"
       },
       {
-        "game": "Kingdom: The Far Reaches",
-        "rd_game_name": "Kingdom: The Far Reaches.scummvm",
-        "scummvm_id": "kingdom:kingdom",
-        "scummvm_id_key": "kingdom"
+        "description": "Kingdom: The Far Reaches",
+        "scummvm_dir_name": "Kingdom: The Far Reaches.scummvm",
+        "engineid:gameid": "kingdom:kingdom",
+        "gameid": "kingdom"
       },
       {
-        "game": "Kings Quest I: Quest for the Crown",
-        "rd_game_name": "Kings Quest I: Quest for the Crown.scummvm",
-        "scummvm_id": "agi:kq1",
-        "scummvm_id_key": "kq1"
+        "description": "Kings Quest I: Quest for the Crown",
+        "scummvm_dir_name": "Kings Quest I: Quest for the Crown.scummvm",
+        "engineid:gameid": "agi:kq1",
+        "gameid": "kq1"
       },
       {
-        "game": "Kings Quest II: Romancing the Throne",
-        "rd_game_name": "Kings Quest II: Romancing the Throne.scummvm",
-        "scummvm_id": "agi:kq2",
-        "scummvm_id_key": "kq2"
+        "description": "Kings Quest II: Romancing the Throne",
+        "scummvm_dir_name": "Kings Quest II: Romancing the Throne.scummvm",
+        "engineid:gameid": "agi:kq2",
+        "gameid": "kq2"
       },
       {
-        "game": "Kings Quest III: To Heir Is Human",
-        "rd_game_name": "Kings Quest III: To Heir Is Human.scummvm",
-        "scummvm_id": "agi:kq3",
-        "scummvm_id_key": "kq3"
+        "description": "Kings Quest III: To Heir Is Human",
+        "scummvm_dir_name": "Kings Quest III: To Heir Is Human.scummvm",
+        "engineid:gameid": "agi:kq3",
+        "gameid": "kq3"
       },
       {
-        "game": "Kings Quest IV: The Perils of Rosella",
-        "rd_game_name": "Kings Quest IV: The Perils of Rosella.scummvm",
-        "scummvm_id": "agi:kq4",
-        "scummvm_id_key": "kq4"
+        "description": "Kings Quest IV: The Perils of Rosella",
+        "scummvm_dir_name": "Kings Quest IV: The Perils of Rosella.scummvm",
+        "engineid:gameid": "agi:kq4",
+        "gameid": "kq4"
       },
       {
-        "game": "Kings Quest IV: The Perils of Rosella",
-        "rd_game_name": "Kings Quest IV: The Perils of Rosella.scummvm",
-        "scummvm_id": "sci:kq4sci",
-        "scummvm_id_key": "kq4sci"
+        "description": "Kings Quest IV: The Perils of Rosella",
+        "scummvm_dir_name": "Kings Quest IV: The Perils of Rosella.scummvm",
+        "engineid:gameid": "sci:kq4sci",
+        "gameid": "kq4sci"
       },
       {
-        "game": "Kings Quest V: Absence Makes the Heart Go Yonder!",
-        "rd_game_name": "Kings Quest V: Absence Makes the Heart Go Yonder!.scummvm",
-        "scummvm_id": "sci:kq5",
-        "scummvm_id_key": "kq5"
+        "description": "Kings Quest V: Absence Makes the Heart Go Yonder!",
+        "scummvm_dir_name": "Kings Quest V: Absence Makes the Heart Go Yonder!.scummvm",
+        "engineid:gameid": "sci:kq5",
+        "gameid": "kq5"
       },
       {
-        "game": "Kings Quest VI: Heir Today, Gone Tomorrow",
-        "rd_game_name": "Kings Quest VI: Heir Today, Gone Tomorrow.scummvm",
-        "scummvm_id": "sci:kq6",
-        "scummvm_id_key": "kq6"
+        "description": "Kings Quest VI: Heir Today, Gone Tomorrow",
+        "scummvm_dir_name": "Kings Quest VI: Heir Today, Gone Tomorrow.scummvm",
+        "engineid:gameid": "sci:kq6",
+        "gameid": "kq6"
       },
       {
-        "game": "Kings Quest VII: The Princeless Bride",
-        "rd_game_name": "Kings Quest VII: The Princeless Bride.scummvm",
-        "scummvm_id": "sci:kq7",
-        "scummvm_id_key": "kq7"
+        "description": "Kings Quest VII: The Princeless Bride",
+        "scummvm_dir_name": "Kings Quest VII: The Princeless Bride.scummvm",
+        "engineid:gameid": "sci:kq7",
+        "gameid": "kq7"
       },
       {
-        "game": "Kings Quest: Quest for the Crown",
-        "rd_game_name": "Kings Quest: Quest for the Crown.scummvm",
-        "scummvm_id": "sci:kq1sci",
-        "scummvm_id_key": "kq1sci"
+        "description": "Kings Quest: Quest for the Crown",
+        "scummvm_dir_name": "Kings Quest: Quest for the Crown.scummvm",
+        "engineid:gameid": "sci:kq1sci",
+        "gameid": "kq1sci"
       },
       {
-        "game": "Kings Questions",
-        "rd_game_name": "Kings Questions.scummvm",
-        "scummvm_id": "sci:kquestions",
-        "scummvm_id_key": "kquestions"
+        "description": "Kings Questions",
+        "scummvm_dir_name": "Kings Questions.scummvm",
+        "engineid:gameid": "sci:kquestions",
+        "gameid": "kquestions"
       },
       {
-        "game": "Lands of Lore: The Throne of Chaos",
-        "rd_game_name": "Lands of Lore: The Throne of Chaos.scummvm",
-        "scummvm_id": "kyra:lol",
-        "scummvm_id_key": "lol"
+        "description": "Lands of Lore: The Throne of Chaos",
+        "scummvm_dir_name": "Lands of Lore: The Throne of Chaos.scummvm",
+        "engineid:gameid": "kyra:lol",
+        "gameid": "lol"
       },
       {
-        "game": "Laura Bow 2: The Dagger of Amon Ra",
-        "rd_game_name": "Laura Bow 2: The Dagger of Amon Ra.scummvm",
-        "scummvm_id": "sci:laurabow2",
-        "scummvm_id_key": "laurabow2"
+        "description": "Laura Bow 2: The Dagger of Amon Ra",
+        "scummvm_dir_name": "Laura Bow 2: The Dagger of Amon Ra.scummvm",
+        "engineid:gameid": "sci:laurabow2",
+        "gameid": "laurabow2"
       },
       {
-        "game": "Laura Bow: The Colonels Bequest",
-        "rd_game_name": "Laura Bow: The Colonels Bequest.scummvm",
-        "scummvm_id": "sci:laurabow",
-        "scummvm_id_key": "laurabow"
+        "description": "Laura Bow: The Colonels Bequest",
+        "scummvm_dir_name": "Laura Bow: The Colonels Bequest.scummvm",
+        "engineid:gameid": "sci:laurabow",
+        "gameid": "laurabow"
       },
       {
-        "game": "Leather Goddesses of Phobos! 2: Gas Pump Girls Meet the Pulsating Inconvenience from Planet X",
-        "rd_game_name": "Leather Goddesses of Phobos! 2: Gas Pump Girls Meet the Pulsating Inconvenience from Planet X.scummvm",
-        "scummvm_id": "made:lgop2",
-        "scummvm_id_key": "lgop2"
+        "description": "Leather Goddesses of Phobos! 2: Gas Pump Girls Meet the Pulsating Inconvenience from Planet X",
+        "scummvm_dir_name": "Leather Goddesses of Phobos! 2: Gas Pump Girls Meet the Pulsating Inconvenience from Planet X.scummvm",
+        "engineid:gameid": "made:lgop2",
+        "gameid": "lgop2"
       },
       {
-        "game": "Leisure Suit Larry 2: Goes Looking for Love (in Several Wrong Places)",
-        "rd_game_name": "Leisure Suit Larry 2: Goes Looking for Love (in Several Wrong Places).scummvm",
-        "scummvm_id": "sci:lsl2",
-        "scummvm_id_key": "lsl2"
+        "description": "Leisure Suit Larry 2: Goes Looking for Love (in Several Wrong Places)",
+        "scummvm_dir_name": "Leisure Suit Larry 2: Goes Looking for Love (in Several Wrong Places).scummvm",
+        "engineid:gameid": "sci:lsl2",
+        "gameid": "lsl2"
       },
       {
-        "game": "Leisure Suit Larry 3: Passionate Patti in Pursuit of the Pulsating Pectorals",
-        "rd_game_name": "Leisure Suit Larry 3: Passionate Patti in Pursuit of the Pulsating Pectorals.scummvm",
-        "scummvm_id": "sci:lsl3",
-        "scummvm_id_key": "lsl3"
+        "description": "Leisure Suit Larry 3: Passionate Patti in Pursuit of the Pulsating Pectorals",
+        "scummvm_dir_name": "Leisure Suit Larry 3: Passionate Patti in Pursuit of the Pulsating Pectorals.scummvm",
+        "engineid:gameid": "sci:lsl3",
+        "gameid": "lsl3"
       },
       {
-        "game": "Leisure Suit Larry 5: Passionate Patti Does a Little Undercover Work",
-        "rd_game_name": "Leisure Suit Larry 5: Passionate Patti Does a Little Undercover Work.scummvm",
-        "scummvm_id": "sci:lsl5",
-        "scummvm_id_key": "lsl5"
+        "description": "Leisure Suit Larry 5: Passionate Patti Does a Little Undercover Work",
+        "scummvm_dir_name": "Leisure Suit Larry 5: Passionate Patti Does a Little Undercover Work.scummvm",
+        "engineid:gameid": "sci:lsl5",
+        "gameid": "lsl5"
       },
       {
-        "game": "Leisure Suit Larry 6: Shape Up or Slip Out!",
-        "rd_game_name": "Leisure Suit Larry 6: Shape Up or Slip Out!.scummvm",
-        "scummvm_id": "sci:lsl6",
-        "scummvm_id_key": "lsl6"
+        "description": "Leisure Suit Larry 6: Shape Up or Slip Out!",
+        "scummvm_dir_name": "Leisure Suit Larry 6: Shape Up or Slip Out!.scummvm",
+        "engineid:gameid": "sci:lsl6",
+        "gameid": "lsl6"
       },
       {
-        "game": "Leisure Suit Larry 6: Shape Up or Slip Out!",
-        "rd_game_name": "Leisure Suit Larry 6: Shape Up or Slip Out!.scummvm",
-        "scummvm_id": "sci:lsl6hires",
-        "scummvm_id_key": "lsl6hires"
+        "description": "Leisure Suit Larry 6: Shape Up or Slip Out!",
+        "scummvm_dir_name": "Leisure Suit Larry 6: Shape Up or Slip Out!.scummvm",
+        "engineid:gameid": "sci:lsl6hires",
+        "gameid": "lsl6hires"
       },
       {
-        "game": "Leisure Suit Larry 7: Love for Sail!",
-        "rd_game_name": "Leisure Suit Larry 7: Love for Sail!.scummvm",
-        "scummvm_id": "sci:lsl7",
-        "scummvm_id_key": "lsl7"
+        "description": "Leisure Suit Larry 7: Love for Sail!",
+        "scummvm_dir_name": "Leisure Suit Larry 7: Love for Sail!.scummvm",
+        "engineid:gameid": "sci:lsl7",
+        "gameid": "lsl7"
       },
       {
-        "game": "Leisure Suit Larry in the Land of the Lounge Lizards",
-        "rd_game_name": "Leisure Suit Larry in the Land of the Lounge Lizards.scummvm",
-        "scummvm_id": "agi:lsl1",
-        "scummvm_id_key": "lsl1"
+        "description": "Leisure Suit Larry in the Land of the Lounge Lizards",
+        "scummvm_dir_name": "Leisure Suit Larry in the Land of the Lounge Lizards.scummvm",
+        "engineid:gameid": "agi:lsl1",
+        "gameid": "lsl1"
       },
       {
-        "game": "Leisure Suit Larry in the Land of the Lounge Lizards",
-        "rd_game_name": "Leisure Suit Larry in the Land of the Lounge Lizards.scummvm",
-        "scummvm_id": "sci:lsl1sci",
-        "scummvm_id_key": "lsl1sci"
+        "description": "Leisure Suit Larry in the Land of the Lounge Lizards",
+        "scummvm_dir_name": "Leisure Suit Larry in the Land of the Lounge Lizards.scummvm",
+        "engineid:gameid": "sci:lsl1sci",
+        "gameid": "lsl1sci"
       },
       {
-        "game": "Leptons Quest",
-        "rd_game_name": "Leptons Quest.scummvm",
-        "scummvm_id": "sludge:leptonsquest",
-        "scummvm_id_key": "leptonsquest"
+        "description": "Leptons Quest",
+        "scummvm_dir_name": "Leptons Quest.scummvm",
+        "engineid:gameid": "sludge:leptonsquest",
+        "gameid": "leptonsquest"
       },
       {
-        "game": "Lets Explore the Airport",
-        "rd_game_name": "Lets Explore the Airport.scummvm",
-        "scummvm_id": "scumm:airport",
-        "scummvm_id_key": "airport"
+        "description": "Lets Explore the Airport",
+        "scummvm_dir_name": "Lets Explore the Airport.scummvm",
+        "engineid:gameid": "scumm:airport",
+        "gameid": "airport"
       },
       {
-        "game": "Lets Explore the Farm",
-        "rd_game_name": "Lets Explore the Farm.scummvm",
-        "scummvm_id": "scumm:farm",
-        "scummvm_id_key": "farm"
+        "description": "Lets Explore the Farm",
+        "scummvm_dir_name": "Lets Explore the Farm.scummvm",
+        "engineid:gameid": "scumm:farm",
+        "gameid": "farm"
       },
       {
-        "game": "Lets Explore the Jungle",
-        "rd_game_name": "Lets Explore the Jungle.scummvm",
-        "scummvm_id": "scumm:jungle",
-        "scummvm_id_key": "jungle"
+        "description": "Lets Explore the Jungle",
+        "scummvm_dir_name": "Lets Explore the Jungle.scummvm",
+        "engineid:gameid": "scumm:jungle",
+        "gameid": "jungle"
       },
       {
-        "game": "Level 9 Interactive Fiction games",
-        "rd_game_name": "Level 9 Interactive Fiction games.scummvm",
-        "scummvm_id": "glk:level9",
-        "scummvm_id_key": "level9"
+        "description": "Level 9 Interactive Fiction games",
+        "scummvm_dir_name": "Level 9 Interactive Fiction games.scummvm",
+        "engineid:gameid": "glk:level9",
+        "gameid": "level9"
       },
       {
-        "game": "Life Flashes By",
-        "rd_game_name": "Life Flashes By.scummvm",
-        "scummvm_id": "sludge:life",
-        "scummvm_id_key": "life"
+        "description": "Life Flashes By",
+        "scummvm_dir_name": "Life Flashes By.scummvm",
+        "engineid:gameid": "sludge:life",
+        "gameid": "life"
       },
       {
-        "game": "Lighthouse: The Dark Being",
-        "rd_game_name": "Lighthouse: The Dark Being.scummvm",
-        "scummvm_id": "sci:lighthouse",
-        "scummvm_id_key": "lighthouse"
+        "description": "Lighthouse: The Dark Being",
+        "scummvm_dir_name": "Lighthouse: The Dark Being.scummvm",
+        "engineid:gameid": "sci:lighthouse",
+        "gameid": "lighthouse"
       },
       {
-        "game": "Little Big Adventure",
-        "rd_game_name": "Little Big Adventure.scummvm",
-        "scummvm_id": "twine:lba",
-        "scummvm_id_key": "lba"
+        "description": "Little Big Adventure",
+        "scummvm_dir_name": "Little Big Adventure.scummvm",
+        "engineid:gameid": "twine:lba",
+        "gameid": "lba"
       },
       {
-        "game": "Little Longnose",
-        "rd_game_name": "Little Longnose.scummvm",
-        "scummvm_id": "qdengine:karliknos",
-        "scummvm_id_key": "karliknos"
+        "description": "Little Longnose",
+        "scummvm_dir_name": "Little Longnose.scummvm",
+        "engineid:gameid": "qdengine:karliknos",
+        "gameid": "karliknos"
       },
       {
-        "game": "Little Monster at School",
-        "rd_game_name": "Little Monster at School.scummvm",
-        "scummvm_id": "mohawk:lilmonster",
-        "scummvm_id_key": "lilmonster"
+        "description": "Little Monster at School",
+        "scummvm_dir_name": "Little Monster at School.scummvm",
+        "engineid:gameid": "mohawk:lilmonster",
+        "gameid": "lilmonster"
       },
       {
-        "game": "Loom",
-        "rd_game_name": "Loom.scummvm",
-        "scummvm_id": "scumm:loom",
-        "scummvm_id_key": "loom"
+        "description": "Loom",
+        "scummvm_dir_name": "Loom.scummvm",
+        "engineid:gameid": "scumm:loom",
+        "gameid": "loom"
       },
       {
-        "game": "Lost in Time",
-        "rd_game_name": "Lost in Time.scummvm",
-        "scummvm_id": "gob:lit",
-        "scummvm_id_key": "lit"
+        "description": "Lost in Time",
+        "scummvm_dir_name": "Lost in Time.scummvm",
+        "engineid:gameid": "gob:lit",
+        "gameid": "lit"
       },
       {
-        "game": "Lure of the Temptress",
-        "rd_game_name": "Lure of the Temptress.scummvm",
-        "scummvm_id": "lure:lure",
-        "scummvm_id_key": "lure"
+        "description": "Lure of the Temptress",
+        "scummvm_dir_name": "Lure of the Temptress.scummvm",
+        "engineid:gameid": "lure:lure",
+        "gameid": "lure"
       },
       {
-        "game": "L-ZONE",
-        "rd_game_name": "L-ZONE.scummvm",
-        "scummvm_id": "director:lzone",
-        "scummvm_id_key": "lzone"
+        "description": "L-ZONE",
+        "scummvm_dir_name": "L-ZONE.scummvm",
+        "engineid:gameid": "director:lzone",
+        "gameid": "lzone"
       },
       {
-        "game": "Magic Tales: Baba Yaga and the Magic Geese",
-        "rd_game_name": "Magic Tales: Baba Yaga and the Magic Geese.scummvm",
-        "scummvm_id": "composer:babayaga",
-        "scummvm_id_key": "babayaga"
+        "description": "Magic Tales: Baba Yaga and the Magic Geese",
+        "scummvm_dir_name": "Magic Tales: Baba Yaga and the Magic Geese.scummvm",
+        "engineid:gameid": "composer:babayaga",
+        "gameid": "babayaga"
       },
       {
-        "game": "Magic Tales: Imo & the King",
-        "rd_game_name": "Magic Tales: Imo & the King.scummvm",
-        "scummvm_id": "composer:imoking",
-        "scummvm_id_key": "imoking"
+        "description": "Magic Tales: Imo & the King",
+        "scummvm_dir_name": "Magic Tales: Imo & the King.scummvm",
+        "engineid:gameid": "composer:imoking",
+        "gameid": "imoking"
       },
       {
-        "game": "Magic Tales: Liam Finds a Story",
-        "rd_game_name": "Magic Tales: Liam Finds a Story.scummvm",
-        "scummvm_id": "composer:liam",
-        "scummvm_id_key": "liam"
+        "description": "Magic Tales: Liam Finds a Story",
+        "scummvm_dir_name": "Magic Tales: Liam Finds a Story.scummvm",
+        "engineid:gameid": "composer:liam",
+        "gameid": "liam"
       },
       {
-        "game": "Magic Tales: Sleeping Cubs Test of Courage",
-        "rd_game_name": "Magic Tales: Sleeping Cubs Test of Courage.scummvm",
-        "scummvm_id": "composer:sleepingcub",
-        "scummvm_id_key": "sleepingcub"
+        "description": "Magic Tales: Sleeping Cubs Test of Courage",
+        "scummvm_dir_name": "Magic Tales: Sleeping Cubs Test of Courage.scummvm",
+        "engineid:gameid": "composer:sleepingcub",
+        "gameid": "sleepingcub"
       },
       {
-        "game": "Magic Tales: The Little Samurai",
-        "rd_game_name": "Magic Tales: The Little Samurai.scummvm",
-        "scummvm_id": "composer:littlesamurai",
-        "scummvm_id_key": "littlesamurai"
+        "description": "Magic Tales: The Little Samurai",
+        "scummvm_dir_name": "Magic Tales: The Little Samurai.scummvm",
+        "engineid:gameid": "composer:littlesamurai",
+        "gameid": "littlesamurai"
       },
       {
-        "game": "Magic Tales: The Princess and the Crab",
-        "rd_game_name": "Magic Tales: The Princess and the Crab.scummvm",
-        "scummvm_id": "composer:princess",
-        "scummvm_id_key": "princess"
+        "description": "Magic Tales: The Princess and the Crab",
+        "scummvm_dir_name": "Magic Tales: The Princess and the Crab.scummvm",
+        "engineid:gameid": "composer:princess",
+        "gameid": "princess"
       },
       {
-        "game": "Majestic Part 1: Alien Encounter",
-        "rd_game_name": "Majestic Part 1: Alien Encounter.scummvm",
-        "scummvm_id": "director:majestic",
-        "scummvm_id_key": "majestic"
+        "description": "Majestic Part 1: Alien Encounter",
+        "scummvm_dir_name": "Majestic Part 1: Alien Encounter.scummvm",
+        "engineid:gameid": "director:majestic",
+        "gameid": "majestic"
       },
       {
-        "game": "Mandy Christmas Adventure",
-        "rd_game_name": "Mandy Christmas Adventure.scummvm",
-        "scummvm_id": "sludge:mandy",
-        "scummvm_id_key": "mandy"
+        "description": "Mandy Christmas Adventure",
+        "scummvm_dir_name": "Mandy Christmas Adventure.scummvm",
+        "engineid:gameid": "sludge:mandy",
+        "gameid": "mandy"
       },
       {
-        "game": "Manhunter 2: San Francisco",
-        "rd_game_name": "Manhunter 2: San Francisco.scummvm",
-        "scummvm_id": "agi:mh2",
-        "scummvm_id_key": "mh2"
+        "description": "Manhunter 2: San Francisco",
+        "scummvm_dir_name": "Manhunter 2: San Francisco.scummvm",
+        "engineid:gameid": "agi:mh2",
+        "gameid": "mh2"
       },
       {
-        "game": "Manhunter: New York",
-        "rd_game_name": "Manhunter: New York.scummvm",
-        "scummvm_id": "agi:mh1",
-        "scummvm_id_key": "mh1"
+        "description": "Manhunter: New York",
+        "scummvm_dir_name": "Manhunter: New York.scummvm",
+        "engineid:gameid": "agi:mh1",
+        "gameid": "mh1"
       },
       {
-        "game": "Maniac Mansion",
-        "rd_game_name": "Maniac Mansion.scummvm",
-        "scummvm_id": "scumm:maniac",
-        "scummvm_id_key": "maniac"
+        "description": "Maniac Mansion",
+        "scummvm_dir_name": "Maniac Mansion.scummvm",
+        "engineid:gameid": "scumm:maniac",
+        "gameid": "maniac"
       },
       {
-        "game": "Maniac Mansion Deluxe",
-        "rd_game_name": "Maniac Mansion Deluxe.scummvm",
-        "scummvm_id": "ags:maniacmansiondeluxe",
-        "scummvm_id_key": "maniacmansiondeluxe"
+        "description": "Maniac Mansion Deluxe",
+        "scummvm_dir_name": "Maniac Mansion Deluxe.scummvm",
+        "engineid:gameid": "ags:maniacmansiondeluxe",
+        "gameid": "maniacmansiondeluxe"
       },
       {
-        "game": "Maniac Mansion: Day of the Tentacle",
-        "rd_game_name": "Maniac Mansion: Day of the Tentacle.scummvm",
-        "scummvm_id": "scumm:tentacle",
-        "scummvm_id_key": "tentacle"
+        "description": "Maniac Mansion: Day of the Tentacle",
+        "scummvm_dir_name": "Maniac Mansion: Day of the Tentacle.scummvm",
+        "engineid:gameid": "scumm:tentacle",
+        "gameid": "tentacle"
       },
       {
-        "game": "Marc Browns Arthurs Teacher Trouble",
-        "rd_game_name": "Marc Browns Arthurs Teacher Trouble.scummvm",
-        "scummvm_id": "mohawk:arthur",
-        "scummvm_id_key": "arthur"
+        "description": "Marc Browns Arthurs Teacher Trouble",
+        "scummvm_dir_name": "Marc Browns Arthurs Teacher Trouble.scummvm",
+        "engineid:gameid": "mohawk:arthur",
+        "gameid": "arthur"
       },
       {
-        "game": "Martian Memorandum",
-        "rd_game_name": "Martian Memorandum.scummvm",
-        "scummvm_id": "access:martian",
-        "scummvm_id_key": "martian"
+        "description": "Martian Memorandum",
+        "scummvm_dir_name": "Martian Memorandum.scummvm",
+        "engineid:gameid": "access:martian",
+        "gameid": "martian"
       },
       {
-        "game": "Marvel Comics Spider-Man: The Sinister Six",
-        "rd_game_name": "Marvel Comics Spider-Man: The Sinister Six.scummvm",
-        "scummvm_id": "hypno:sinistersix",
-        "scummvm_id_key": "sinistersix"
+        "description": "Marvel Comics Spider-Man: The Sinister Six",
+        "scummvm_dir_name": "Marvel Comics Spider-Man: The Sinister Six.scummvm",
+        "engineid:gameid": "hypno:sinistersix",
+        "gameid": "sinistersix"
       },
       {
-        "game": "Marvellous Mice Adventures: Meeting Sea Rat",
-        "rd_game_name": "Marvellous Mice Adventures: Meeting Sea Rat.scummvm",
-        "scummvm_id": "qdengine:3mice1",
-        "scummvm_id_key": "3mice1"
+        "description": "Marvellous Mice Adventures: Meeting Sea Rat",
+        "scummvm_dir_name": "Marvellous Mice Adventures: Meeting Sea Rat.scummvm",
+        "engineid:gameid": "qdengine:3mice1",
+        "gameid": "3mice1"
       },
       {
-        "game": "Marvellous Mice Adventures: Sea Rats Birthday",
-        "rd_game_name": "Marvellous Mice Adventures: Sea Rats Birthday.scummvm",
-        "scummvm_id": "qdengine:3mice2",
-        "scummvm_id_key": "3mice2"
+        "description": "Marvellous Mice Adventures: Sea Rats Birthday",
+        "scummvm_dir_name": "Marvellous Mice Adventures: Sea Rats Birthday.scummvm",
+        "engineid:gameid": "qdengine:3mice2",
+        "gameid": "3mice2"
       },
       {
-        "game": "Mask show",
-        "rd_game_name": "Mask show.scummvm",
-        "scummvm_id": "qdengine:maski",
-        "scummvm_id_key": "maski"
+        "description": "Mask show",
+        "scummvm_dir_name": "Mask show.scummvm",
+        "engineid:gameid": "qdengine:maski",
+        "gameid": "maski"
       },
       {
-        "game": "Mickeys Space Adventure",
-        "rd_game_name": "Mickeys Space Adventure.scummvm",
-        "scummvm_id": "agi:mickey",
-        "scummvm_id_key": "mickey"
+        "description": "Mickeys Space Adventure",
+        "scummvm_dir_name": "Mickeys Space Adventure.scummvm",
+        "engineid:gameid": "agi:mickey",
+        "gameid": "mickey"
       },
       {
-        "game": "Might and Magic: Book One - Secret of the Inner Sanctum",
-        "rd_game_name": "Might and Magic: Book One - Secret of the Inner Sanctum.scummvm",
-        "scummvm_id": "mm:mm1",
-        "scummvm_id_key": "mm1"
+        "description": "Might and Magic: Book One - Secret of the Inner Sanctum",
+        "scummvm_dir_name": "Might and Magic: Book One - Secret of the Inner Sanctum.scummvm",
+        "engineid:gameid": "mm:mm1",
+        "gameid": "mm1"
       },
       {
-        "game": "Might and Magic: Clouds of Xeen",
-        "rd_game_name": "Might and Magic: Clouds of Xeen.scummvm",
-        "scummvm_id": "mm:cloudsofxeen",
-        "scummvm_id_key": "cloudsofxeen"
+        "description": "Might and Magic: Clouds of Xeen",
+        "scummvm_dir_name": "Might and Magic: Clouds of Xeen.scummvm",
+        "engineid:gameid": "mm:cloudsofxeen",
+        "gameid": "cloudsofxeen"
       },
       {
-        "game": "Might and Magic: Darkside of Xeen",
-        "rd_game_name": "Might and Magic: Darkside of Xeen.scummvm",
-        "scummvm_id": "mm:darksideofxeen",
-        "scummvm_id_key": "darksideofxeen"
+        "description": "Might and Magic: Darkside of Xeen",
+        "scummvm_dir_name": "Might and Magic: Darkside of Xeen.scummvm",
+        "engineid:gameid": "mm:darksideofxeen",
+        "gameid": "darksideofxeen"
       },
       {
-        "game": "Might and Magic: Swords of Xeen",
-        "rd_game_name": "Might and Magic: Swords of Xeen.scummvm",
-        "scummvm_id": "mm:swordsofxeen",
-        "scummvm_id_key": "swordsofxeen"
+        "description": "Might and Magic: Swords of Xeen",
+        "scummvm_dir_name": "Might and Magic: Swords of Xeen.scummvm",
+        "engineid:gameid": "mm:swordsofxeen",
+        "gameid": "swordsofxeen"
       },
       {
-        "game": "Might and Magic: World of Xeen",
-        "rd_game_name": "Might and Magic: World of Xeen.scummvm",
-        "scummvm_id": "mm:worldofxeen",
-        "scummvm_id_key": "worldofxeen"
+        "description": "Might and Magic: World of Xeen",
+        "scummvm_dir_name": "Might and Magic: World of Xeen.scummvm",
+        "engineid:gameid": "mm:worldofxeen",
+        "gameid": "worldofxeen"
       },
       {
-        "game": "Mission Supernova 1",
-        "rd_game_name": "Mission Supernova 1.scummvm",
-        "scummvm_id": "supernova:msn1",
-        "scummvm_id_key": "msn1"
+        "description": "Mission Supernova 1",
+        "scummvm_dir_name": "Mission Supernova 1.scummvm",
+        "engineid:gameid": "supernova:msn1",
+        "gameid": "msn1"
       },
       {
-        "game": "Mission Supernova 2",
-        "rd_game_name": "Mission Supernova 2.scummvm",
-        "scummvm_id": "supernova:msn2",
-        "scummvm_id_key": "msn2"
+        "description": "Mission Supernova 2",
+        "scummvm_dir_name": "Mission Supernova 2.scummvm",
+        "engineid:gameid": "supernova:msn2",
+        "gameid": "msn2"
       },
       {
-        "game": "Mixed Up Fairy Tales",
-        "rd_game_name": "Mixed Up Fairy Tales.scummvm",
-        "scummvm_id": "sci:fairytales",
-        "scummvm_id_key": "fairytales"
+        "description": "Mixed Up Fairy Tales",
+        "scummvm_dir_name": "Mixed Up Fairy Tales.scummvm",
+        "engineid:gameid": "sci:fairytales",
+        "gameid": "fairytales"
       },
       {
-        "game": "Mixed-Up Mother Goose",
-        "rd_game_name": "Mixed-Up Mother Goose.scummvm",
-        "scummvm_id": "agi:mixedup",
-        "scummvm_id_key": "mixedup"
+        "description": "Mixed-Up Mother Goose",
+        "scummvm_dir_name": "Mixed-Up Mother Goose.scummvm",
+        "engineid:gameid": "agi:mixedup",
+        "gameid": "mixedup"
       },
       {
-        "game": "Mixed-Up Mother Goose",
-        "rd_game_name": "Mixed-Up Mother Goose.scummvm",
-        "scummvm_id": "sci:mothergoose",
-        "scummvm_id_key": "mothergoose"
+        "description": "Mixed-Up Mother Goose",
+        "scummvm_dir_name": "Mixed-Up Mother Goose.scummvm",
+        "engineid:gameid": "sci:mothergoose",
+        "gameid": "mothergoose"
       },
       {
-        "game": "Mixed-Up Mother Goose",
-        "rd_game_name": "Mixed-Up Mother Goose.scummvm",
-        "scummvm_id": "sci:mothergoose256",
-        "scummvm_id_key": "mothergoose256"
+        "description": "Mixed-Up Mother Goose",
+        "scummvm_dir_name": "Mixed-Up Mother Goose.scummvm",
+        "engineid:gameid": "sci:mothergoose256",
+        "gameid": "mothergoose256"
       },
       {
-        "game": "Mixed-Up Mother Goose Deluxe",
-        "rd_game_name": "Mixed-Up Mother Goose Deluxe.scummvm",
-        "scummvm_id": "sci:mothergoosehires",
-        "scummvm_id_key": "mothergoosehires"
+        "description": "Mixed-Up Mother Goose Deluxe",
+        "scummvm_dir_name": "Mixed-Up Mother Goose Deluxe.scummvm",
+        "engineid:gameid": "sci:mothergoosehires",
+        "gameid": "mothergoosehires"
       },
       {
-        "game": "Mom dont worry",
-        "rd_game_name": "Mom dont worry.scummvm",
-        "scummvm_id": "qdengine:mng",
-        "scummvm_id_key": "mng"
+        "description": "Mom dont worry",
+        "scummvm_dir_name": "Mom dont worry.scummvm",
+        "engineid:gameid": "qdengine:mng",
+        "gameid": "mng"
       },
       {
-        "game": "Monkey Island 2: LeChucks Revenge",
-        "rd_game_name": "Monkey Island 2: LeChucks Revenge.scummvm",
-        "scummvm_id": "scumm:monkey2",
-        "scummvm_id_key": "monkey2"
+        "description": "Monkey Island 2: LeChucks Revenge",
+        "scummvm_dir_name": "Monkey Island 2: LeChucks Revenge.scummvm",
+        "engineid:gameid": "scumm:monkey2",
+        "gameid": "monkey2"
       },
       {
-        "game": "Moonbase Commander",
-        "rd_game_name": "Moonbase Commander.scummvm",
-        "scummvm_id": "scumm:moonbase",
-        "scummvm_id_key": "moonbase"
+        "description": "Moonbase Commander",
+        "scummvm_dir_name": "Moonbase Commander.scummvm",
+        "engineid:gameid": "scumm:moonbase",
+        "gameid": "moonbase"
       },
       {
-        "game": "Mortville Manor",
-        "rd_game_name": "Mortville Manor.scummvm",
-        "scummvm_id": "mortevielle:mortevielle",
-        "scummvm_id_key": "mortevielle"
+        "description": "Mortville Manor",
+        "scummvm_dir_name": "Mortville Manor.scummvm",
+        "engineid:gameid": "mortevielle:mortevielle",
+        "gameid": "mortevielle"
       },
       {
-        "game": "MTVs Beavis and Butt-Head in Virtual Stupidity",
-        "rd_game_name": "MTVs Beavis and Butt-Head in Virtual Stupidity.scummvm",
-        "scummvm_id": "bbvs:bbvs",
-        "scummvm_id_key": "bbvs"
+        "description": "MTVs Beavis and Butt-Head in Virtual Stupidity",
+        "scummvm_dir_name": "MTVs Beavis and Butt-Head in Virtual Stupidity.scummvm",
+        "engineid:gameid": "bbvs:bbvs",
+        "gameid": "bbvs"
       },
       {
-        "game": "Muppet Treasure Island ",
-        "rd_game_name": "Muppet Treasure Island .scummvm",
-        "scummvm_id": "mtropolis:mti",
-        "scummvm_id_key": "mti"
+        "description": "Muppet Treasure Island ",
+        "scummvm_dir_name": "Muppet Treasure Island .scummvm",
+        "engineid:gameid": "mtropolis:mti",
+        "gameid": "mti"
       },
       {
-        "game": "My Big Sister",
-        "rd_game_name": "My Big Sister.scummvm",
-        "scummvm_id": "ags:mybigsister",
-        "scummvm_id_key": "mybigsister"
+        "description": "My Big Sister",
+        "scummvm_dir_name": "My Big Sister.scummvm",
+        "engineid:gameid": "ags:mybigsister",
+        "gameid": "mybigsister"
       },
       {
-        "game": "My Big Sister Remastered",
-        "rd_game_name": "My Big Sister Remastered.scummvm",
-        "scummvm_id": "ags:mybigsisterrm",
-        "scummvm_id_key": "mybigsisterrm"
+        "description": "My Big Sister Remastered",
+        "scummvm_dir_name": "My Big Sister Remastered.scummvm",
+        "engineid:gameid": "ags:mybigsisterrm",
+        "gameid": "mybigsisterrm"
       },
       {
-        "game": "Myst",
-        "rd_game_name": "Myst.scummvm",
-        "scummvm_id": "mohawk:myst",
-        "scummvm_id_key": "myst"
+        "description": "Myst",
+        "scummvm_dir_name": "Myst.scummvm",
+        "engineid:gameid": "mohawk:myst",
+        "gameid": "myst"
       },
       {
-        "game": "Myst III: Exile",
-        "rd_game_name": "Myst III: Exile.scummvm",
-        "scummvm_id": "myst3:myst3",
-        "scummvm_id_key": "myst3"
+        "description": "Myst III: Exile",
+        "scummvm_dir_name": "Myst III: Exile.scummvm",
+        "engineid:gameid": "myst3:myst3",
+        "gameid": "myst3"
       },
       {
-        "game": "Myth",
-        "rd_game_name": "Myth.scummvm",
-        "scummvm_id": "glk:myth",
-        "scummvm_id_key": "myth"
+        "description": "Myth",
+        "scummvm_dir_name": "Myth.scummvm",
+        "engineid:gameid": "glk:myth",
+        "gameid": "myth"
       },
       {
-        "game": "Nancy Drew: Ghost Dogs of Moon Lake",
-        "rd_game_name": "Nancy Drew: Ghost Dogs of Moon Lake.scummvm",
-        "scummvm_id": "nancy:nancy7",
-        "scummvm_id_key": "nancy7"
+        "description": "Nancy Drew: Ghost Dogs of Moon Lake",
+        "scummvm_dir_name": "Nancy Drew: Ghost Dogs of Moon Lake.scummvm",
+        "engineid:gameid": "nancy:nancy7",
+        "gameid": "nancy7"
       },
       {
-        "game": "Nancy Drew: Message in a Haunted Mansion",
-        "rd_game_name": "Nancy Drew: Message in a Haunted Mansion.scummvm",
-        "scummvm_id": "nancy:nancy3",
-        "scummvm_id_key": "nancy3"
+        "description": "Nancy Drew: Message in a Haunted Mansion",
+        "scummvm_dir_name": "Nancy Drew: Message in a Haunted Mansion.scummvm",
+        "engineid:gameid": "nancy:nancy3",
+        "gameid": "nancy3"
       },
       {
-        "game": "Nancy Drew: Secret of the Scarlet Hand",
-        "rd_game_name": "Nancy Drew: Secret of the Scarlet Hand.scummvm",
-        "scummvm_id": "nancy:nancy6",
-        "scummvm_id_key": "nancy6"
+        "description": "Nancy Drew: Secret of the Scarlet Hand",
+        "scummvm_dir_name": "Nancy Drew: Secret of the Scarlet Hand.scummvm",
+        "engineid:gameid": "nancy:nancy6",
+        "gameid": "nancy6"
       },
       {
-        "game": "Nancy Drew: Secrets Can Kill",
-        "rd_game_name": "Nancy Drew: Secrets Can Kill.scummvm",
-        "scummvm_id": "nancy:nancy1",
-        "scummvm_id_key": "nancy1"
+        "description": "Nancy Drew: Secrets Can Kill",
+        "scummvm_dir_name": "Nancy Drew: Secrets Can Kill.scummvm",
+        "engineid:gameid": "nancy:nancy1",
+        "gameid": "nancy1"
       },
       {
-        "game": "Nancy Drew: Stay Tuned for Danger",
-        "rd_game_name": "Nancy Drew: Stay Tuned for Danger.scummvm",
-        "scummvm_id": "nancy:nancy2",
-        "scummvm_id_key": "nancy2"
+        "description": "Nancy Drew: Stay Tuned for Danger",
+        "scummvm_dir_name": "Nancy Drew: Stay Tuned for Danger.scummvm",
+        "engineid:gameid": "nancy:nancy2",
+        "gameid": "nancy2"
       },
       {
-        "game": "Nancy Drew: The Final Scene",
-        "rd_game_name": "Nancy Drew: The Final Scene.scummvm",
-        "scummvm_id": "nancy:nancy5",
-        "scummvm_id_key": "nancy5"
+        "description": "Nancy Drew: The Final Scene",
+        "scummvm_dir_name": "Nancy Drew: The Final Scene.scummvm",
+        "engineid:gameid": "nancy:nancy5",
+        "gameid": "nancy5"
       },
       {
-        "game": "Nancy Drew: Treasure in the Royal Tower",
-        "rd_game_name": "Nancy Drew: Treasure in the Royal Tower.scummvm",
-        "scummvm_id": "nancy:nancy4",
-        "scummvm_id_key": "nancy4"
+        "description": "Nancy Drew: Treasure in the Royal Tower",
+        "scummvm_dir_name": "Nancy Drew: Treasure in the Royal Tower.scummvm",
+        "engineid:gameid": "nancy:nancy4",
+        "gameid": "nancy4"
       },
       {
-        "game": "Nathans Second Chance",
-        "rd_game_name": "Nathans Second Chance.scummvm",
-        "scummvm_id": "sludge:nsc",
-        "scummvm_id_key": "nsc"
+        "description": "Nathans Second Chance",
+        "scummvm_dir_name": "Nathans Second Chance.scummvm",
+        "engineid:gameid": "sludge:nsc",
+        "gameid": "nsc"
       },
       {
-        "game": "Nemurenu Yoru no Chiisana O-Hanashi",
-        "rd_game_name": "Nemurenu Yoru no Chiisana O-Hanashi.scummvm",
-        "scummvm_id": "director:nemurenu",
-        "scummvm_id_key": "nemurenu"
+        "description": "Nemurenu Yoru no Chiisana O-Hanashi",
+        "scummvm_dir_name": "Nemurenu Yoru no Chiisana O-Hanashi.scummvm",
+        "engineid:gameid": "director:nemurenu",
+        "gameid": "nemurenu"
       },
       {
-        "game": "Nightlong: Union City Conspiracy",
-        "rd_game_name": "Nightlong: Union City Conspiracy.scummvm",
-        "scummvm_id": "trecision:nl",
-        "scummvm_id_key": "nl"
+        "description": "Nightlong: Union City Conspiracy",
+        "scummvm_dir_name": "Nightlong: Union City Conspiracy.scummvm",
+        "engineid:gameid": "trecision:nl",
+        "gameid": "nl"
       },
       {
-        "game": "Nippon Safes, Inc.",
-        "rd_game_name": "Nippon Safes, Inc..scummvm",
-        "scummvm_id": "parallaction:nippon",
-        "scummvm_id_key": "nippon"
+        "description": "Nippon Safes, Inc.",
+        "scummvm_dir_name": "Nippon Safes, Inc..scummvm",
+        "engineid:gameid": "parallaction:nippon",
+        "gameid": "nippon"
       },
       {
-        "game": "Noahs Ark",
-        "rd_game_name": "Noahs Ark.scummvm",
-        "scummvm_id": "mohawk:noah",
-        "scummvm_id_key": "noah"
+        "description": "Noahs Ark",
+        "scummvm_dir_name": "Noahs Ark.scummvm",
+        "engineid:gameid": "mohawk:noah",
+        "gameid": "noah"
       },
       {
-        "game": "Obsidian",
-        "rd_game_name": "Obsidian.scummvm",
-        "scummvm_id": "mtropolis:obsidian",
-        "scummvm_id_key": "obsidian"
+        "description": "Obsidian",
+        "scummvm_dir_name": "Obsidian.scummvm",
+        "engineid:gameid": "mtropolis:obsidian",
+        "gameid": "obsidian"
       },
       {
-        "game": "Old Skies",
-        "rd_game_name": "Old Skies.scummvm",
-        "scummvm_id": "ags:oldskies",
-        "scummvm_id_key": "oldskies"
+        "description": "Old Skies",
+        "scummvm_dir_name": "Old Skies.scummvm",
+        "engineid:gameid": "ags:oldskies",
+        "gameid": "oldskies"
       },
       {
-        "game": "Once Upon A Time: Little Red Riding Hood",
-        "rd_game_name": "Once Upon A Time: Little Red Riding Hood.scummvm",
-        "scummvm_id": "gob:littlered",
-        "scummvm_id_key": "littlered"
+        "description": "Once Upon A Time: Little Red Riding Hood",
+        "scummvm_dir_name": "Once Upon A Time: Little Red Riding Hood.scummvm",
+        "engineid:gameid": "gob:littlered",
+        "gameid": "littlered"
       },
       {
-        "game": "OO-Topos",
-        "rd_game_name": "OO-Topos.scummvm",
-        "scummvm_id": "glk:ootopos",
-        "scummvm_id_key": "ootopos"
+        "description": "OO-Topos",
+        "scummvm_dir_name": "OO-Topos.scummvm",
+        "engineid:gameid": "glk:ootopos",
+        "gameid": "ootopos"
       },
       {
-        "game": "Orion Burger",
-        "rd_game_name": "Orion Burger.scummvm",
-        "scummvm_id": "m4:burger",
-        "scummvm_id_key": "burger"
+        "description": "Orion Burger",
+        "scummvm_dir_name": "Orion Burger.scummvm",
+        "engineid:gameid": "m4:burger",
+        "gameid": "burger"
       },
       {
-        "game": "Out Of Order",
-        "rd_game_name": "Out Of Order.scummvm",
-        "scummvm_id": "sludge:outoforder",
-        "scummvm_id_key": "outoforder"
+        "description": "Out Of Order",
+        "scummvm_dir_name": "Out Of Order.scummvm",
+        "engineid:gameid": "sludge:outoforder",
+        "gameid": "outoforder"
       },
       {
-        "game": "Out of This World (Another World)",
-        "rd_game_name": "Out of This World (Another World).scummvm",
-        "scummvm_id": "awe:anotherworld",
-        "scummvm_id_key": "anotherworld"
+        "description": "Out of This World (Another World)",
+        "scummvm_dir_name": "Out of This World (Another World).scummvm",
+        "engineid:gameid": "awe:anotherworld",
+        "gameid": "anotherworld"
       },
       {
-        "game": "Over-Ring-Under",
-        "rd_game_name": "Over-Ring-Under.scummvm",
-        "scummvm_id": "director:overringunder",
-        "scummvm_id_key": "overringunder"
+        "description": "Over-Ring-Under",
+        "scummvm_dir_name": "Over-Ring-Under.scummvm",
+        "engineid:gameid": "director:overringunder",
+        "gameid": "overringunder"
       },
       {
-        "game": "Pajama Sam 2: Thunder and Lightning Arent so Frightening",
-        "rd_game_name": "Pajama Sam 2: Thunder and Lightning Arent so Frightening.scummvm",
-        "scummvm_id": "scumm:pajama2",
-        "scummvm_id_key": "pajama2"
+        "description": "Pajama Sam 2: Thunder and Lightning Arent so Frightening",
+        "scummvm_dir_name": "Pajama Sam 2: Thunder and Lightning Arent so Frightening.scummvm",
+        "engineid:gameid": "scumm:pajama2",
+        "gameid": "pajama2"
       },
       {
-        "game": "Pajama Sam 3: You Are What You Eat From Your Head To Your Feet",
-        "rd_game_name": "Pajama Sam 3: You Are What You Eat From Your Head To Your Feet.scummvm",
-        "scummvm_id": "scumm:pajama3",
-        "scummvm_id_key": "pajama3"
+        "description": "Pajama Sam 3: You Are What You Eat From Your Head To Your Feet",
+        "scummvm_dir_name": "Pajama Sam 3: You Are What You Eat From Your Head To Your Feet.scummvm",
+        "engineid:gameid": "scumm:pajama3",
+        "gameid": "pajama3"
       },
       {
-        "game": "Pajama Sam: Games to Play on Any Day",
-        "rd_game_name": "Pajama Sam: Games to Play on Any Day.scummvm",
-        "scummvm_id": "scumm:pjgames",
-        "scummvm_id_key": "pjgames"
+        "description": "Pajama Sam: Games to Play on Any Day",
+        "scummvm_dir_name": "Pajama Sam: Games to Play on Any Day.scummvm",
+        "engineid:gameid": "scumm:pjgames",
+        "gameid": "pjgames"
       },
       {
-        "game": "Pajama Sam: No Need to Hide When Its Dark Outside",
-        "rd_game_name": "Pajama Sam: No Need to Hide When Its Dark Outside.scummvm",
-        "scummvm_id": "scumm:pajama",
-        "scummvm_id_key": "pajama"
+        "description": "Pajama Sam: No Need to Hide When Its Dark Outside",
+        "scummvm_dir_name": "Pajama Sam: No Need to Hide When Its Dark Outside.scummvm",
+        "engineid:gameid": "scumm:pajama",
+        "gameid": "pajama"
       },
       {
-        "game": "Pajama Sams Lost & Found",
-        "rd_game_name": "Pajama Sams Lost & Found.scummvm",
-        "scummvm_id": "scumm:lost",
-        "scummvm_id_key": "lost"
+        "description": "Pajama Sams Lost & Found",
+        "scummvm_dir_name": "Pajama Sams Lost & Found.scummvm",
+        "engineid:gameid": "scumm:lost",
+        "gameid": "lost"
       },
       {
-        "game": "Pajama Sams One Stop Fun Shop",
-        "rd_game_name": "Pajama Sams One Stop Fun Shop.scummvm",
-        "scummvm_id": "scumm:samsfunshop",
-        "scummvm_id_key": "samsfunshop"
+        "description": "Pajama Sams One Stop Fun Shop",
+        "scummvm_dir_name": "Pajama Sams One Stop Fun Shop.scummvm",
+        "engineid:gameid": "scumm:samsfunshop",
+        "gameid": "samsfunshop"
       },
       {
-        "game": "Pajama Sams Sock Works",
-        "rd_game_name": "Pajama Sams Sock Works.scummvm",
-        "scummvm_id": "scumm:socks",
-        "scummvm_id_key": "socks"
+        "description": "Pajama Sams Sock Works",
+        "scummvm_dir_name": "Pajama Sams Sock Works.scummvm",
+        "engineid:gameid": "scumm:socks",
+        "gameid": "socks"
       },
       {
-        "game": "Passport to Adventure (Indiana Jones and the Last Crusade, The Secret of Monkey Island, Loom)",
-        "rd_game_name": "Passport to Adventure (Indiana Jones and the Last Crusade, The Secret of Monkey Island, Loom).scummvm",
-        "scummvm_id": "scumm:pass",
-        "scummvm_id_key": "pass"
+        "description": "Passport to Adventure (Indiana Jones and the Last Crusade, The Secret of Monkey Island, Loom)",
+        "scummvm_dir_name": "Passport to Adventure (Indiana Jones and the Last Crusade, The Secret of Monkey Island, Loom).scummvm",
+        "engineid:gameid": "scumm:pass",
+        "gameid": "pass"
       },
       {
-        "game": "Penumbra: Overture",
-        "rd_game_name": "Penumbra: Overture.scummvm",
-        "scummvm_id": "hpl1:penumbraoverture",
-        "scummvm_id_key": "penumbraoverture"
+        "description": "Penumbra: Overture",
+        "scummvm_dir_name": "Penumbra: Overture.scummvm",
+        "engineid:gameid": "hpl1:penumbraoverture",
+        "gameid": "penumbraoverture"
       },
       {
-        "game": "Peppers Adventures in Time",
-        "rd_game_name": "Peppers Adventures in Time.scummvm",
-        "scummvm_id": "sci:pepper",
-        "scummvm_id_key": "pepper"
+        "description": "Peppers Adventures in Time",
+        "scummvm_dir_name": "Peppers Adventures in Time.scummvm",
+        "engineid:gameid": "sci:pepper",
+        "gameid": "pepper"
       },
       {
-        "game": "Personal Nightmare",
-        "rd_game_name": "Personal Nightmare.scummvm",
-        "scummvm_id": "agos:pn",
-        "scummvm_id_key": "pn"
+        "description": "Personal Nightmare",
+        "scummvm_dir_name": "Personal Nightmare.scummvm",
+        "engineid:gameid": "agos:pn",
+        "gameid": "pn"
       },
       {
-        "game": "Phantasmagoria",
-        "rd_game_name": "Phantasmagoria.scummvm",
-        "scummvm_id": "sci:phantasmagoria",
-        "scummvm_id_key": "phantasmagoria"
+        "description": "Phantasmagoria",
+        "scummvm_dir_name": "Phantasmagoria.scummvm",
+        "engineid:gameid": "sci:phantasmagoria",
+        "gameid": "phantasmagoria"
       },
       {
-        "game": "Phantasmagoria 2: A Puzzle of Flesh",
-        "rd_game_name": "Phantasmagoria 2: A Puzzle of Flesh.scummvm",
-        "scummvm_id": "sci:phantasmagoria2",
-        "scummvm_id_key": "phantasmagoria2"
+        "description": "Phantasmagoria 2: A Puzzle of Flesh",
+        "scummvm_dir_name": "Phantasmagoria 2: A Puzzle of Flesh.scummvm",
+        "engineid:gameid": "sci:phantasmagoria2",
+        "gameid": "phantasmagoria2"
       },
       {
-        "game": "Pilot Brothers 3: Back Side of the Earth",
-        "rd_game_name": "Pilot Brothers 3: Back Side of the Earth.scummvm",
-        "scummvm_id": "qdengine:pilots3",
-        "scummvm_id_key": "pilots3"
+        "description": "Pilot Brothers 3: Back Side of the Earth",
+        "scummvm_dir_name": "Pilot Brothers 3: Back Side of the Earth.scummvm",
+        "engineid:gameid": "qdengine:pilots3",
+        "gameid": "pilots3"
       },
       {
-        "game": "Pilot Brothers 3D. The Case of Garden Pests",
-        "rd_game_name": "Pilot Brothers 3D. The Case of Garden Pests.scummvm",
-        "scummvm_id": "qdengine:pilots3d",
-        "scummvm_id_key": "pilots3d"
+        "description": "Pilot Brothers 3D. The Case of Garden Pests",
+        "scummvm_dir_name": "Pilot Brothers 3D. The Case of Garden Pests.scummvm",
+        "engineid:gameid": "qdengine:pilots3d",
+        "gameid": "pilots3d"
       },
       {
-        "game": "Pilot Brothers 3D-2. Kennel Club Secrets",
-        "rd_game_name": "Pilot Brothers 3D-2. Kennel Club Secrets.scummvm",
-        "scummvm_id": "qdengine:pilots3d-2",
-        "scummvm_id_key": "pilots3d-2"
+        "description": "Pilot Brothers 3D-2. Kennel Club Secrets",
+        "scummvm_dir_name": "Pilot Brothers 3D-2. Kennel Club Secrets.scummvm",
+        "engineid:gameid": "qdengine:pilots3d-2",
+        "gameid": "pilots3d-2"
       },
       {
-        "game": "Playtoons Limited Edition - Bambou le sauveur de la jungle",
-        "rd_game_name": "Playtoons Limited Edition - Bambou le sauveur de la jungle.scummvm",
-        "scummvm_id": "gob:bambou",
-        "scummvm_id_key": "bambou"
+        "description": "Playtoons Limited Edition - Bambou le sauveur de la jungle",
+        "scummvm_dir_name": "Playtoons Limited Edition - Bambou le sauveur de la jungle.scummvm",
+        "engineid:gameid": "gob:bambou",
+        "gameid": "bambou"
       },
       {
-        "game": "Plumbers Dont Wear Ties",
-        "rd_game_name": "Plumbers Dont Wear Ties.scummvm",
-        "scummvm_id": "plumbers:plumbers",
-        "scummvm_id_key": "plumbers"
+        "description": "Plumbers Dont Wear Ties",
+        "scummvm_dir_name": "Plumbers Dont Wear Ties.scummvm",
+        "engineid:gameid": "plumbers:plumbers",
+        "gameid": "plumbers"
       },
       {
-        "game": "Police Quest 2: The Vengeance",
-        "rd_game_name": "Police Quest 2: The Vengeance.scummvm",
-        "scummvm_id": "sci:pq2",
-        "scummvm_id_key": "pq2"
+        "description": "Police Quest 2: The Vengeance",
+        "scummvm_dir_name": "Police Quest 2: The Vengeance.scummvm",
+        "engineid:gameid": "sci:pq2",
+        "gameid": "pq2"
       },
       {
-        "game": "Police Quest 3: The Kindred",
-        "rd_game_name": "Police Quest 3: The Kindred.scummvm",
-        "scummvm_id": "sci:pq3",
-        "scummvm_id_key": "pq3"
+        "description": "Police Quest 3: The Kindred",
+        "scummvm_dir_name": "Police Quest 3: The Kindred.scummvm",
+        "engineid:gameid": "sci:pq3",
+        "gameid": "pq3"
       },
       {
-        "game": "Police Quest IV: Open Season",
-        "rd_game_name": "Police Quest IV: Open Season.scummvm",
-        "scummvm_id": "sci:pq4",
-        "scummvm_id_key": "pq4"
+        "description": "Police Quest IV: Open Season",
+        "scummvm_dir_name": "Police Quest IV: Open Season.scummvm",
+        "engineid:gameid": "sci:pq4",
+        "gameid": "pq4"
       },
       {
-        "game": "Police Quest: In Pursuit of the Death Angel",
-        "rd_game_name": "Police Quest: In Pursuit of the Death Angel.scummvm",
-        "scummvm_id": "agi:pq1",
-        "scummvm_id_key": "pq1"
+        "description": "Police Quest: In Pursuit of the Death Angel",
+        "scummvm_dir_name": "Police Quest: In Pursuit of the Death Angel.scummvm",
+        "engineid:gameid": "agi:pq1",
+        "gameid": "pq1"
       },
       {
-        "game": "Police Quest: In Pursuit of the Death Angel",
-        "rd_game_name": "Police Quest: In Pursuit of the Death Angel.scummvm",
-        "scummvm_id": "sci:pq1sci",
-        "scummvm_id_key": "pq1sci"
+        "description": "Police Quest: In Pursuit of the Death Angel",
+        "scummvm_dir_name": "Police Quest: In Pursuit of the Death Angel.scummvm",
+        "engineid:gameid": "sci:pq1sci",
+        "gameid": "pq1sci"
       },
       {
-        "game": "Police Quest: SWAT",
-        "rd_game_name": "Police Quest: SWAT.scummvm",
-        "scummvm_id": "sci:pqswat",
-        "scummvm_id_key": "pqswat"
+        "description": "Police Quest: SWAT",
+        "scummvm_dir_name": "Police Quest: SWAT.scummvm",
+        "engineid:gameid": "sci:pqswat",
+        "gameid": "pqswat"
       },
       {
-        "game": "Primordia",
-        "rd_game_name": "Primordia.scummvm",
-        "scummvm_id": "ags:primordia",
-        "scummvm_id_key": "primordia"
+        "description": "Primordia",
+        "scummvm_dir_name": "Primordia.scummvm",
+        "engineid:gameid": "ags:primordia",
+        "gameid": "primordia"
       },
       {
-        "game": "Private Eye",
-        "rd_game_name": "Private Eye.scummvm",
-        "scummvm_id": "private:private-eye",
-        "scummvm_id_key": "private-eye"
+        "description": "Private Eye",
+        "scummvm_dir_name": "Private Eye.scummvm",
+        "engineid:gameid": "private:private-eye",
+        "gameid": "private-eye"
       },
       {
-        "game": "Putt-Putt and Fatty Bears Activity Pack",
-        "rd_game_name": "Putt-Putt and Fatty Bears Activity Pack.scummvm",
-        "scummvm_id": "scumm:activity",
-        "scummvm_id_key": "activity"
+        "description": "Putt-Putt and Fatty Bears Activity Pack",
+        "scummvm_dir_name": "Putt-Putt and Fatty Bears Activity Pack.scummvm",
+        "engineid:gameid": "scumm:activity",
+        "gameid": "activity"
       },
       {
-        "game": "Putt-Putt and Peps Balloon-O-Rama",
-        "rd_game_name": "Putt-Putt and Peps Balloon-O-Rama.scummvm",
-        "scummvm_id": "scumm:balloon",
-        "scummvm_id_key": "balloon"
+        "description": "Putt-Putt and Peps Balloon-O-Rama",
+        "scummvm_dir_name": "Putt-Putt and Peps Balloon-O-Rama.scummvm",
+        "engineid:gameid": "scumm:balloon",
+        "gameid": "balloon"
       },
       {
-        "game": "Putt-Putt and Peps Dog on a Stick",
-        "rd_game_name": "Putt-Putt and Peps Dog on a Stick.scummvm",
-        "scummvm_id": "scumm:dog",
-        "scummvm_id_key": "dog"
+        "description": "Putt-Putt and Peps Dog on a Stick",
+        "scummvm_dir_name": "Putt-Putt and Peps Dog on a Stick.scummvm",
+        "engineid:gameid": "scumm:dog",
+        "gameid": "dog"
       },
       {
-        "game": "Putt-Putt Enters the Race",
-        "rd_game_name": "Putt-Putt Enters the Race.scummvm",
-        "scummvm_id": "scumm:puttrace",
-        "scummvm_id_key": "puttrace"
+        "description": "Putt-Putt Enters the Race",
+        "scummvm_dir_name": "Putt-Putt Enters the Race.scummvm",
+        "engineid:gameid": "scumm:puttrace",
+        "gameid": "puttrace"
       },
       {
-        "game": "Putt-Putt Goes to the Moon",
-        "rd_game_name": "Putt-Putt Goes to the Moon.scummvm",
-        "scummvm_id": "scumm:puttmoon",
-        "scummvm_id_key": "puttmoon"
+        "description": "Putt-Putt Goes to the Moon",
+        "scummvm_dir_name": "Putt-Putt Goes to the Moon.scummvm",
+        "engineid:gameid": "scumm:puttmoon",
+        "gameid": "puttmoon"
       },
       {
-        "game": "Putt-Putt Joins the Circus",
-        "rd_game_name": "Putt-Putt Joins the Circus.scummvm",
-        "scummvm_id": "scumm:puttcircus",
-        "scummvm_id_key": "puttcircus"
+        "description": "Putt-Putt Joins the Circus",
+        "scummvm_dir_name": "Putt-Putt Joins the Circus.scummvm",
+        "engineid:gameid": "scumm:puttcircus",
+        "gameid": "puttcircus"
       },
       {
-        "game": "Putt-Putt Joins the Parade",
-        "rd_game_name": "Putt-Putt Joins the Parade.scummvm",
-        "scummvm_id": "scumm:puttputt",
-        "scummvm_id_key": "puttputt"
+        "description": "Putt-Putt Joins the Parade",
+        "scummvm_dir_name": "Putt-Putt Joins the Parade.scummvm",
+        "engineid:gameid": "scumm:puttputt",
+        "gameid": "puttputt"
       },
       {
-        "game": "Putt-Putt Saves the Zoo",
-        "rd_game_name": "Putt-Putt Saves the Zoo.scummvm",
-        "scummvm_id": "scumm:puttzoo",
-        "scummvm_id_key": "puttzoo"
+        "description": "Putt-Putt Saves the Zoo",
+        "scummvm_dir_name": "Putt-Putt Saves the Zoo.scummvm",
+        "engineid:gameid": "scumm:puttzoo",
+        "gameid": "puttzoo"
       },
       {
-        "game": "Putt-Putt Travels Through Time",
-        "rd_game_name": "Putt-Putt Travels Through Time.scummvm",
-        "scummvm_id": "scumm:putttime",
-        "scummvm_id_key": "putttime"
+        "description": "Putt-Putt Travels Through Time",
+        "scummvm_dir_name": "Putt-Putt Travels Through Time.scummvm",
+        "engineid:gameid": "scumm:putttime",
+        "gameid": "putttime"
       },
       {
-        "game": "Putt-Putts Fun Pack",
-        "rd_game_name": "Putt-Putts Fun Pack.scummvm",
-        "scummvm_id": "scumm:funpack",
-        "scummvm_id_key": "funpack"
+        "description": "Putt-Putts Fun Pack",
+        "scummvm_dir_name": "Putt-Putts Fun Pack.scummvm",
+        "engineid:gameid": "scumm:funpack",
+        "gameid": "funpack"
       },
       {
-        "game": "Putt-Putts One-Stop Fun Shop",
-        "rd_game_name": "Putt-Putts One-Stop Fun Shop.scummvm",
-        "scummvm_id": "scumm:puttsfunshop",
-        "scummvm_id_key": "puttsfunshop"
+        "description": "Putt-Putts One-Stop Fun Shop",
+        "scummvm_dir_name": "Putt-Putts One-Stop Fun Shop.scummvm",
+        "engineid:gameid": "scumm:puttsfunshop",
+        "gameid": "puttsfunshop"
       },
       {
-        "game": "Quest for Glory I: So You Want To Be A Hero",
-        "rd_game_name": "Quest for Glory I: So You Want To Be A Hero.scummvm",
-        "scummvm_id": "sci:qfg1",
-        "scummvm_id_key": "qfg1"
+        "description": "Quest for Glory I: So You Want To Be A Hero",
+        "scummvm_dir_name": "Quest for Glory I: So You Want To Be A Hero.scummvm",
+        "engineid:gameid": "sci:qfg1",
+        "gameid": "qfg1"
       },
       {
-        "game": "Quest for Glory I: So You Want To Be A Hero",
-        "rd_game_name": "Quest for Glory I: So You Want To Be A Hero.scummvm",
-        "scummvm_id": "sci:qfg1vga",
-        "scummvm_id_key": "qfg1vga"
+        "description": "Quest for Glory I: So You Want To Be A Hero",
+        "scummvm_dir_name": "Quest for Glory I: So You Want To Be A Hero.scummvm",
+        "engineid:gameid": "sci:qfg1vga",
+        "gameid": "qfg1vga"
       },
       {
-        "game": "Quest for Glory II: Trial by Fire",
-        "rd_game_name": "Quest for Glory II: Trial by Fire.scummvm",
-        "scummvm_id": "sci:qfg2",
-        "scummvm_id_key": "qfg2"
+        "description": "Quest for Glory II: Trial by Fire",
+        "scummvm_dir_name": "Quest for Glory II: Trial by Fire.scummvm",
+        "engineid:gameid": "sci:qfg2",
+        "gameid": "qfg2"
       },
       {
-        "game": "Quest for Glory III: Wages of War",
-        "rd_game_name": "Quest for Glory III: Wages of War.scummvm",
-        "scummvm_id": "sci:qfg3",
-        "scummvm_id_key": "qfg3"
+        "description": "Quest for Glory III: Wages of War",
+        "scummvm_dir_name": "Quest for Glory III: Wages of War.scummvm",
+        "engineid:gameid": "sci:qfg3",
+        "gameid": "qfg3"
       },
       {
-        "game": "Quest for Glory IV: Shadows of Darkness",
-        "rd_game_name": "Quest for Glory IV: Shadows of Darkness.scummvm",
-        "scummvm_id": "sci:qfg4",
-        "scummvm_id_key": "qfg4"
+        "description": "Quest for Glory IV: Shadows of Darkness",
+        "scummvm_dir_name": "Quest for Glory IV: Shadows of Darkness.scummvm",
+        "engineid:gameid": "sci:qfg4",
+        "gameid": "qfg4"
       },
       {
-        "game": "Quest Interactive Fiction games",
-        "rd_game_name": "Quest Interactive Fiction games.scummvm",
-        "scummvm_id": "glk:quest",
-        "scummvm_id_key": "quest"
+        "description": "Quest Interactive Fiction games",
+        "scummvm_dir_name": "Quest Interactive Fiction games.scummvm",
+        "engineid:gameid": "glk:quest",
+        "gameid": "quest"
       },
       {
-        "game": "RAMA",
-        "rd_game_name": "RAMA.scummvm",
-        "scummvm_id": "sci:rama",
-        "scummvm_id_key": "rama"
+        "description": "RAMA",
+        "scummvm_dir_name": "RAMA.scummvm",
+        "engineid:gameid": "sci:rama",
+        "gameid": "rama"
       },
       {
-        "game": "Reah: Face the Unknown",
-        "rd_game_name": "Reah: Face the Unknown.scummvm",
-        "scummvm_id": "vcruise:reah",
-        "scummvm_id_key": "reah"
+        "description": "Reah: Face the Unknown",
+        "scummvm_dir_name": "Reah: Face the Unknown.scummvm",
+        "engineid:gameid": "vcruise:reah",
+        "gameid": "reah"
       },
       {
-        "game": "Red Bow",
-        "rd_game_name": "Red Bow.scummvm",
-        "scummvm_id": "ags:redbow",
-        "scummvm_id_key": "redbow"
+        "description": "Red Bow",
+        "scummvm_dir_name": "Red Bow.scummvm",
+        "engineid:gameid": "ags:redbow",
+        "gameid": "redbow"
       },
       {
-        "game": "Red Comrades 1: Save the Galaxy",
-        "rd_game_name": "Red Comrades 1: Save the Galaxy.scummvm",
-        "scummvm_id": "petka:petka1",
-        "scummvm_id_key": "petka1"
+        "description": "Red Comrades 1: Save the Galaxy",
+        "scummvm_dir_name": "Red Comrades 1: Save the Galaxy.scummvm",
+        "engineid:gameid": "petka:petka1",
+        "gameid": "petka1"
       },
       {
-        "game": "Red Comrades 2: For the Great Justice",
-        "rd_game_name": "Red Comrades 2: For the Great Justice.scummvm",
-        "scummvm_id": "petka:petka2",
-        "scummvm_id_key": "petka2"
+        "description": "Red Comrades 2: For the Great Justice",
+        "scummvm_dir_name": "Red Comrades 2: For the Great Justice.scummvm",
+        "engineid:gameid": "petka:petka2",
+        "gameid": "petka2"
       },
       {
-        "game": "Resonance",
-        "rd_game_name": "Resonance.scummvm",
-        "scummvm_id": "ags:resonance",
-        "scummvm_id_key": "resonance"
+        "description": "Resonance",
+        "scummvm_dir_name": "Resonance.scummvm",
+        "engineid:gameid": "ags:resonance",
+        "gameid": "resonance"
       },
       {
-        "game": "Return to Ringworld",
-        "rd_game_name": "Return to Ringworld.scummvm",
-        "scummvm_id": "tsage:ringworld2",
-        "scummvm_id_key": "ringworld2"
+        "description": "Return to Ringworld",
+        "scummvm_dir_name": "Return to Ringworld.scummvm",
+        "engineid:gameid": "tsage:ringworld2",
+        "gameid": "ringworld2"
       },
       {
-        "game": "Return to Zork",
-        "rd_game_name": "Return to Zork.scummvm",
-        "scummvm_id": "made:rtz",
-        "scummvm_id_key": "rtz"
+        "description": "Return to Zork",
+        "scummvm_dir_name": "Return to Zork.scummvm",
+        "engineid:gameid": "made:rtz",
+        "gameid": "rtz"
       },
       {
-        "game": "Rex Nebular and the Cosmic Gender Bender",
-        "rd_game_name": "Rex Nebular and the Cosmic Gender Bender.scummvm",
-        "scummvm_id": "mads:nebular",
-        "scummvm_id_key": "nebular"
+        "description": "Rex Nebular and the Cosmic Gender Bender",
+        "scummvm_dir_name": "Rex Nebular and the Cosmic Gender Bender.scummvm",
+        "engineid:gameid": "mads:nebular",
+        "gameid": "nebular"
       },
       {
-        "game": "Ringworld: Revenge of the Patriarch",
-        "rd_game_name": "Ringworld: Revenge of the Patriarch.scummvm",
-        "scummvm_id": "tsage:ringworld",
-        "scummvm_id_key": "ringworld"
+        "description": "Ringworld: Revenge of the Patriarch",
+        "scummvm_dir_name": "Ringworld: Revenge of the Patriarch.scummvm",
+        "engineid:gameid": "tsage:ringworld",
+        "gameid": "ringworld"
       },
       {
-        "game": "Ripleys Believe It or Not!: The Riddle of Master Lu",
-        "rd_game_name": "Ripleys Believe It or Not!: The Riddle of Master Lu.scummvm",
-        "scummvm_id": "m4:riddle",
-        "scummvm_id_key": "riddle"
+        "description": "Ripleys Believe It or Not!: The Riddle of Master Lu",
+        "scummvm_dir_name": "Ripleys Believe It or Not!: The Riddle of Master Lu.scummvm",
+        "engineid:gameid": "m4:riddle",
+        "gameid": "riddle"
       },
       {
-        "game": "Rise of the Dragon",
-        "rd_game_name": "Rise of the Dragon.scummvm",
-        "scummvm_id": "dgds:rise",
-        "scummvm_id_key": "rise"
+        "description": "Rise of the Dragon",
+        "scummvm_dir_name": "Rise of the Dragon.scummvm",
+        "engineid:gameid": "dgds:rise",
+        "gameid": "rise"
       },
       {
-        "game": "Riven: The Sequel to Myst",
-        "rd_game_name": "Riven: The Sequel to Myst.scummvm",
-        "scummvm_id": "mohawk:riven",
-        "scummvm_id_key": "riven"
+        "description": "Riven: The Sequel to Myst",
+        "scummvm_dir_name": "Riven: The Sequel to Myst.scummvm",
+        "engineid:gameid": "mohawk:riven",
+        "gameid": "riven"
       },
       {
-        "game": "Robins Rescue",
-        "rd_game_name": "Robins Rescue.scummvm",
-        "scummvm_id": "sludge:robinsrescue",
-        "scummvm_id_key": "robinsrescue"
+        "description": "Robins Rescue",
+        "scummvm_dir_name": "Robins Rescue.scummvm",
+        "engineid:gameid": "sludge:robinsrescue",
+        "gameid": "robinsrescue"
       },
       {
-        "game": "Rodneys Funscreen",
-        "rd_game_name": "Rodneys Funscreen.scummvm",
-        "scummvm_id": "made:rodney",
-        "scummvm_id_key": "rodney"
+        "description": "Rodneys Funscreen",
+        "scummvm_dir_name": "Rodneys Funscreen.scummvm",
+        "engineid:gameid": "made:rodney",
+        "gameid": "rodney"
       },
       {
-        "game": "Rosemary",
-        "rd_game_name": "Rosemary.scummvm",
-        "scummvm_id": "wintermute:rosemary",
-        "scummvm_id_key": "rosemary"
+        "description": "Rosemary",
+        "scummvm_dir_name": "Rosemary.scummvm",
+        "engineid:gameid": "wintermute:rosemary",
+        "gameid": "rosemary"
       },
       {
-        "game": "Rosewater",
-        "rd_game_name": "Rosewater.scummvm",
-        "scummvm_id": "ags:rosewater",
-        "scummvm_id_key": "rosewater"
+        "description": "Rosewater",
+        "scummvm_dir_name": "Rosewater.scummvm",
+        "engineid:gameid": "ags:rosewater",
+        "gameid": "rosewater"
       },
       {
-        "game": "Ruffs Bone",
-        "rd_game_name": "Ruffs Bone.scummvm",
-        "scummvm_id": "mohawk:ruff",
-        "scummvm_id_key": "ruff"
+        "description": "Ruffs Bone",
+        "scummvm_dir_name": "Ruffs Bone.scummvm",
+        "engineid:gameid": "mohawk:ruff",
+        "gameid": "ruff"
       },
       {
-        "game": "Sam & Max: Hit the Road",
-        "rd_game_name": "Sam & Max: Hit the Road.scummvm",
-        "scummvm_id": "scumm:samnmax",
-        "scummvm_id_key": "samnmax"
+        "description": "Sam & Max: Hit the Road",
+        "scummvm_dir_name": "Sam & Max: Hit the Road.scummvm",
+        "engineid:gameid": "scumm:samnmax",
+        "gameid": "samnmax"
       },
       {
-        "game": "Sanitarium",
-        "rd_game_name": "Sanitarium.scummvm",
-        "scummvm_id": "asylum:asylum",
-        "scummvm_id_key": "asylum"
+        "description": "Sanitarium",
+        "scummvm_dir_name": "Sanitarium.scummvm",
+        "engineid:gameid": "asylum:asylum",
+        "gameid": "asylum"
       },
       {
-        "game": "Schizm: Mysterious Journey",
-        "rd_game_name": "Schizm: Mysterious Journey.scummvm",
-        "scummvm_id": "vcruise:schizm",
-        "scummvm_id_key": "schizm"
+        "description": "Schizm: Mysterious Journey",
+        "scummvm_dir_name": "Schizm: Mysterious Journey.scummvm",
+        "engineid:gameid": "vcruise:schizm",
+        "gameid": "schizm"
       },
       {
-        "game": "Scott Adams Interactive Fiction games",
-        "rd_game_name": "Scott Adams Interactive Fiction games.scummvm",
-        "scummvm_id": "glk:scottadams",
-        "scummvm_id_key": "scottadams"
+        "description": "Scott Adams Interactive Fiction games",
+        "scummvm_dir_name": "Scott Adams Interactive Fiction games.scummvm",
+        "engineid:gameid": "glk:scottadams",
+        "gameid": "scottadams"
       },
       {
-        "game": "Sfinx",
-        "rd_game_name": "Sfinx.scummvm",
-        "scummvm_id": "cge2:sfinx",
-        "scummvm_id_key": "sfinx"
+        "description": "Sfinx",
+        "scummvm_dir_name": "Sfinx.scummvm",
+        "engineid:gameid": "cge2:sfinx",
+        "gameid": "sfinx"
       },
       {
-        "game": "Shardlight",
-        "rd_game_name": "Shardlight.scummvm",
-        "scummvm_id": "ags:shardlight",
-        "scummvm_id_key": "shardlight"
+        "description": "Shardlight",
+        "scummvm_dir_name": "Shardlight.scummvm",
+        "engineid:gameid": "ags:shardlight",
+        "gameid": "shardlight"
       },
       {
-        "game": "Sheila Rae, the Brave",
-        "rd_game_name": "Sheila Rae, the Brave.scummvm",
-        "scummvm_id": "mohawk:sheila",
-        "scummvm_id_key": "sheila"
+        "description": "Sheila Rae, the Brave",
+        "scummvm_dir_name": "Sheila Rae, the Brave.scummvm",
+        "engineid:gameid": "mohawk:sheila",
+        "gameid": "sheila"
       },
       {
-        "game": "Shivers",
-        "rd_game_name": "Shivers.scummvm",
-        "scummvm_id": "sci:shivers",
-        "scummvm_id_key": "shivers"
+        "description": "Shivers",
+        "scummvm_dir_name": "Shivers.scummvm",
+        "engineid:gameid": "sci:shivers",
+        "gameid": "shivers"
       },
       {
-        "game": "Simon the Sorcerer",
-        "rd_game_name": "Simon the Sorcerer.scummvm",
-        "scummvm_id": "agos:simon1",
-        "scummvm_id_key": "simon1"
+        "description": "Simon the Sorcerer",
+        "scummvm_dir_name": "Simon the Sorcerer.scummvm",
+        "engineid:gameid": "agos:simon1",
+        "gameid": "simon1"
       },
       {
-        "game": "Simon the Sorcerer II: The Lion, the Wizard and the Wardrobe",
-        "rd_game_name": "Simon the Sorcerer II: The Lion, the Wizard and the Wardrobe.scummvm",
-        "scummvm_id": "agos:simon2",
-        "scummvm_id_key": "simon2"
+        "description": "Simon the Sorcerer II: The Lion, the Wizard and the Wardrobe",
+        "scummvm_dir_name": "Simon the Sorcerer II: The Lion, the Wizard and the Wardrobe.scummvm",
+        "engineid:gameid": "agos:simon2",
+        "gameid": "simon2"
       },
       {
-        "game": "Simon the Sorcerers Puzzle Pack: Demon in my Pocket",
-        "rd_game_name": "Simon the Sorcerers Puzzle Pack: Demon in my Pocket.scummvm",
-        "scummvm_id": "agos:dimp",
-        "scummvm_id_key": "dimp"
+        "description": "Simon the Sorcerers Puzzle Pack: Demon in my Pocket",
+        "scummvm_dir_name": "Simon the Sorcerers Puzzle Pack: Demon in my Pocket.scummvm",
+        "engineid:gameid": "agos:dimp",
+        "gameid": "dimp"
       },
       {
-        "game": "Simon the Sorcerers Puzzle Pack: Jumble",
-        "rd_game_name": "Simon the Sorcerers Puzzle Pack: Jumble.scummvm",
-        "scummvm_id": "agos:jumble",
-        "scummvm_id_key": "jumble"
+        "description": "Simon the Sorcerers Puzzle Pack: Jumble",
+        "scummvm_dir_name": "Simon the Sorcerers Puzzle Pack: Jumble.scummvm",
+        "engineid:gameid": "agos:jumble",
+        "gameid": "jumble"
       },
       {
-        "game": "Simon the Sorcerers Puzzle Pack: NoPatience",
-        "rd_game_name": "Simon the Sorcerers Puzzle Pack: NoPatience.scummvm",
-        "scummvm_id": "agos:puzzle",
-        "scummvm_id_key": "puzzle"
+        "description": "Simon the Sorcerers Puzzle Pack: NoPatience",
+        "scummvm_dir_name": "Simon the Sorcerers Puzzle Pack: NoPatience.scummvm",
+        "engineid:gameid": "agos:puzzle",
+        "gameid": "puzzle"
       },
       {
-        "game": "Simon the Sorcerers Puzzle Pack: Swampy Adventures",
-        "rd_game_name": "Simon the Sorcerers Puzzle Pack: Swampy Adventures.scummvm",
-        "scummvm_id": "agos:swampy",
-        "scummvm_id_key": "swampy"
+        "description": "Simon the Sorcerers Puzzle Pack: Swampy Adventures",
+        "scummvm_dir_name": "Simon the Sorcerers Puzzle Pack: Swampy Adventures.scummvm",
+        "engineid:gameid": "agos:swampy",
+        "gameid": "swampy"
       },
       {
-        "game": "Slater & Charlie Go Camping",
-        "rd_game_name": "Slater & Charlie Go Camping.scummvm",
-        "scummvm_id": "sci:slater",
-        "scummvm_id_key": "slater"
+        "description": "Slater & Charlie Go Camping",
+        "scummvm_dir_name": "Slater & Charlie Go Camping.scummvm",
+        "engineid:gameid": "sci:slater",
+        "gameid": "slater"
       },
       {
-        "game": "Soldier Boyz",
-        "rd_game_name": "Soldier Boyz.scummvm",
-        "scummvm_id": "hypno:soldierboyz",
-        "scummvm_id_key": "soldierboyz"
+        "description": "Soldier Boyz",
+        "scummvm_dir_name": "Soldier Boyz.scummvm",
+        "engineid:gameid": "hypno:soldierboyz",
+        "gameid": "soldierboyz"
       },
       {
-        "game": "Sołtys",
-        "rd_game_name": "Sołtys.scummvm",
-        "scummvm_id": "cge:soltys",
-        "scummvm_id_key": "soltys"
+        "description": "Sołtys",
+        "scummvm_dir_name": "Sołtys.scummvm",
+        "engineid:gameid": "cge:soltys",
+        "gameid": "soltys"
       },
       {
-        "game": "Space Quest 6: Roger Wilco in the Spinal Frontier",
-        "rd_game_name": "Space Quest 6: Roger Wilco in the Spinal Frontier.scummvm",
-        "scummvm_id": "sci:sq6",
-        "scummvm_id_key": "sq6"
+        "description": "Space Quest 6: Roger Wilco in the Spinal Frontier",
+        "scummvm_dir_name": "Space Quest 6: Roger Wilco in the Spinal Frontier.scummvm",
+        "engineid:gameid": "sci:sq6",
+        "gameid": "sq6"
       },
       {
-        "game": "Space Quest I: Roger Wilco in the Sarien Encounter",
-        "rd_game_name": "Space Quest I: Roger Wilco in the Sarien Encounter.scummvm",
-        "scummvm_id": "sci:sq1sci",
-        "scummvm_id_key": "sq1sci"
+        "description": "Space Quest I: Roger Wilco in the Sarien Encounter",
+        "scummvm_dir_name": "Space Quest I: Roger Wilco in the Sarien Encounter.scummvm",
+        "engineid:gameid": "sci:sq1sci",
+        "gameid": "sq1sci"
       },
       {
-        "game": "Space Quest II: Chapter II - Vohauls Revenge",
-        "rd_game_name": "Space Quest II: Chapter II - Vohauls Revenge.scummvm",
-        "scummvm_id": "agi:sq2",
-        "scummvm_id_key": "sq2"
+        "description": "Space Quest II: Chapter II - Vohauls Revenge",
+        "scummvm_dir_name": "Space Quest II: Chapter II - Vohauls Revenge.scummvm",
+        "engineid:gameid": "agi:sq2",
+        "gameid": "sq2"
       },
       {
-        "game": "Space Quest III: The Pirates of Pestulon",
-        "rd_game_name": "Space Quest III: The Pirates of Pestulon.scummvm",
-        "scummvm_id": "sci:sq3",
-        "scummvm_id_key": "sq3"
+        "description": "Space Quest III: The Pirates of Pestulon",
+        "scummvm_dir_name": "Space Quest III: The Pirates of Pestulon.scummvm",
+        "engineid:gameid": "sci:sq3",
+        "gameid": "sq3"
       },
       {
-        "game": "Space Quest IV.5 - Roger Wilco and the Voyage Home",
-        "rd_game_name": "Space Quest IV.5 - Roger Wilco and the Voyage Home.scummvm",
-        "scummvm_id": "ags:sq45",
-        "scummvm_id_key": "sq45"
+        "description": "Space Quest IV.5 - Roger Wilco and the Voyage Home",
+        "scummvm_dir_name": "Space Quest IV.5 - Roger Wilco and the Voyage Home.scummvm",
+        "engineid:gameid": "ags:sq45",
+        "gameid": "sq45"
       },
       {
-        "game": "Space Quest IV: Roger Wilco and the Time Rippers",
-        "rd_game_name": "Space Quest IV: Roger Wilco and the Time Rippers.scummvm",
-        "scummvm_id": "sci:sq4",
-        "scummvm_id_key": "sq4"
+        "description": "Space Quest IV: Roger Wilco and the Time Rippers",
+        "scummvm_dir_name": "Space Quest IV: Roger Wilco and the Time Rippers.scummvm",
+        "engineid:gameid": "sci:sq4",
+        "gameid": "sq4"
       },
       {
-        "game": "Space Quest Minus 1: Decisions of the Elders",
-        "rd_game_name": "Space Quest Minus 1: Decisions of the Elders.scummvm",
-        "scummvm_id": "ags:sqdote",
-        "scummvm_id_key": "sqdote"
+        "description": "Space Quest Minus 1: Decisions of the Elders",
+        "scummvm_dir_name": "Space Quest Minus 1: Decisions of the Elders.scummvm",
+        "engineid:gameid": "ags:sqdote",
+        "gameid": "sqdote"
       },
       {
-        "game": "Space Quest V: The Next Mutation",
-        "rd_game_name": "Space Quest V: The Next Mutation.scummvm",
-        "scummvm_id": "sci:sq5",
-        "scummvm_id_key": "sq5"
+        "description": "Space Quest V: The Next Mutation",
+        "scummvm_dir_name": "Space Quest V: The Next Mutation.scummvm",
+        "engineid:gameid": "sci:sq5",
+        "gameid": "sq5"
       },
       {
-        "game": "Space Quest: Chapter I - The Sarien Encounter",
-        "rd_game_name": "Space Quest: Chapter I - The Sarien Encounter.scummvm",
-        "scummvm_id": "agi:sq1",
-        "scummvm_id_key": "sq1"
+        "description": "Space Quest: Chapter I - The Sarien Encounter",
+        "scummvm_dir_name": "Space Quest: Chapter I - The Sarien Encounter.scummvm",
+        "engineid:gameid": "agi:sq1",
+        "gameid": "sq1"
       },
       {
-        "game": "Space Quest: Incinerations",
-        "rd_game_name": "Space Quest: Incinerations.scummvm",
-        "scummvm_id": "ags:sqinc",
-        "scummvm_id_key": "sqinc"
+        "description": "Space Quest: Incinerations",
+        "scummvm_dir_name": "Space Quest: Incinerations.scummvm",
+        "engineid:gameid": "ags:sqinc",
+        "gameid": "sqinc"
       },
       {
-        "game": "Space Quest: Vohaul Strikes Back",
-        "rd_game_name": "Space Quest: Vohaul Strikes Back.scummvm",
-        "scummvm_id": "ags:sqvsb",
-        "scummvm_id_key": "sqvsb"
+        "description": "Space Quest: Vohaul Strikes Back",
+        "scummvm_dir_name": "Space Quest: Vohaul Strikes Back.scummvm",
+        "engineid:gameid": "ags:sqvsb",
+        "gameid": "sqvsb"
       },
       {
-        "game": "Spaceship Warlock",
-        "rd_game_name": "Spaceship Warlock.scummvm",
-        "scummvm_id": "director:warlock",
-        "scummvm_id_key": "warlock"
+        "description": "Spaceship Warlock",
+        "scummvm_dir_name": "Spaceship Warlock.scummvm",
+        "engineid:gameid": "director:warlock",
+        "gameid": "warlock"
       },
       {
-        "game": "Spy Fox 2: Some Assembly Required",
-        "rd_game_name": "Spy Fox 2: Some Assembly Required.scummvm",
-        "scummvm_id": "scumm:spyfox2",
-        "scummvm_id_key": "spyfox2"
+        "description": "Spy Fox 2: Some Assembly Required",
+        "scummvm_dir_name": "Spy Fox 2: Some Assembly Required.scummvm",
+        "engineid:gameid": "scumm:spyfox2",
+        "gameid": "spyfox2"
       },
       {
-        "game": "SPY Fox in Cheese Chase",
-        "rd_game_name": "SPY Fox in Cheese Chase.scummvm",
-        "scummvm_id": "scumm:chase",
-        "scummvm_id_key": "chase"
+        "description": "SPY Fox in Cheese Chase",
+        "scummvm_dir_name": "SPY Fox in Cheese Chase.scummvm",
+        "engineid:gameid": "scumm:chase",
+        "gameid": "chase"
       },
       {
-        "game": "Spy Fox in Dry Cereal",
-        "rd_game_name": "Spy Fox in Dry Cereal.scummvm",
-        "scummvm_id": "scumm:spyfox",
-        "scummvm_id_key": "spyfox"
+        "description": "Spy Fox in Dry Cereal",
+        "scummvm_dir_name": "Spy Fox in Dry Cereal.scummvm",
+        "engineid:gameid": "scumm:spyfox",
+        "gameid": "spyfox"
       },
       {
-        "game": "Spy Fox in Hold the Mustard",
-        "rd_game_name": "Spy Fox in Hold the Mustard.scummvm",
-        "scummvm_id": "scumm:mustard",
-        "scummvm_id_key": "mustard"
+        "description": "Spy Fox in Hold the Mustard",
+        "scummvm_dir_name": "Spy Fox in Hold the Mustard.scummvm",
+        "engineid:gameid": "scumm:mustard",
+        "gameid": "mustard"
       },
       {
-        "game": "Spy Fox: Operation Ozone",
-        "rd_game_name": "Spy Fox: Operation Ozone.scummvm",
-        "scummvm_id": "scumm:spyozon",
-        "scummvm_id_key": "spyozon"
+        "description": "Spy Fox: Operation Ozone",
+        "scummvm_dir_name": "Spy Fox: Operation Ozone.scummvm",
+        "engineid:gameid": "scumm:spyozon",
+        "gameid": "spyozon"
       },
       {
-        "game": "Starship Titanic",
-        "rd_game_name": "Starship Titanic.scummvm",
-        "scummvm_id": "titanic:titanic",
-        "scummvm_id_key": "titanic"
+        "description": "Starship Titanic",
+        "scummvm_dir_name": "Starship Titanic.scummvm",
+        "engineid:gameid": "titanic:titanic",
+        "gameid": "titanic"
       },
       {
-        "game": "Stellaluna",
-        "rd_game_name": "Stellaluna.scummvm",
-        "scummvm_id": "mohawk:stellaluna",
-        "scummvm_id_key": "stellaluna"
+        "description": "Stellaluna",
+        "scummvm_dir_name": "Stellaluna.scummvm",
+        "engineid:gameid": "mohawk:stellaluna",
+        "gameid": "stellaluna"
       },
       {
-        "game": "Strangeland",
-        "rd_game_name": "Strangeland.scummvm",
-        "scummvm_id": "ags:strangeland",
-        "scummvm_id_key": "strangeland"
+        "description": "Strangeland",
+        "scummvm_dir_name": "Strangeland.scummvm",
+        "engineid:gameid": "ags:strangeland",
+        "gameid": "strangeland"
       },
       {
-        "game": "Sumatra: Fate of Yandi",
-        "rd_game_name": "Sumatra: Fate of Yandi.scummvm",
-        "scummvm_id": "ags:sumatra",
-        "scummvm_id_key": "sumatra"
+        "description": "Sumatra: Fate of Yandi",
+        "scummvm_dir_name": "Sumatra: Fate of Yandi.scummvm",
+        "engineid:gameid": "ags:sumatra",
+        "gameid": "sumatra"
       },
       {
-        "game": "Syberia",
-        "rd_game_name": "Syberia.scummvm",
-        "scummvm_id": "tetraedge:syberia",
-        "scummvm_id_key": "syberia"
+        "description": "Syberia",
+        "scummvm_dir_name": "Syberia.scummvm",
+        "engineid:gameid": "tetraedge:syberia",
+        "gameid": "syberia"
       },
       {
-        "game": "Syberia II",
-        "rd_game_name": "Syberia II.scummvm",
-        "scummvm_id": "tetraedge:syberia2",
-        "scummvm_id_key": "syberia2"
+        "description": "Syberia II",
+        "scummvm_dir_name": "Syberia II.scummvm",
+        "engineid:gameid": "tetraedge:syberia2",
+        "gameid": "syberia2"
       },
       {
-        "game": "Technobabylon",
-        "rd_game_name": "Technobabylon.scummvm",
-        "scummvm_id": "ags:technobabylon",
-        "scummvm_id_key": "technobabylon"
+        "description": "Technobabylon",
+        "scummvm_dir_name": "Technobabylon.scummvm",
+        "engineid:gameid": "ags:technobabylon",
+        "gameid": "technobabylon"
       },
       {
-        "game": "Teen Agent",
-        "rd_game_name": "Teen Agent.scummvm",
-        "scummvm_id": "teenagent:teenagent",
-        "scummvm_id_key": "teenagent"
+        "description": "Teen Agent",
+        "scummvm_dir_name": "Teen Agent.scummvm",
+        "engineid:gameid": "teenagent:teenagent",
+        "gameid": "teenagent"
       },
       {
-        "game": "Tender Loving Care",
-        "rd_game_name": "Tender Loving Care.scummvm",
-        "scummvm_id": "groovie:tlc",
-        "scummvm_id_key": "tlc"
+        "description": "Tender Loving Care",
+        "scummvm_dir_name": "Tender Loving Care.scummvm",
+        "engineid:gameid": "groovie:tlc",
+        "gameid": "tlc"
       },
       {
-        "game": "The 11th Hour: The Sequel to The 7th Guest",
-        "rd_game_name": "The 11th Hour: The Sequel to The 7th Guest.scummvm",
-        "scummvm_id": "groovie:11h",
-        "scummvm_id_key": "11h"
+        "description": "The 11th Hour: The Sequel to The 7th Guest",
+        "scummvm_dir_name": "The 11th Hour: The Sequel to The 7th Guest.scummvm",
+        "engineid:gameid": "groovie:11h",
+        "gameid": "11h"
       },
       {
-        "game": "The 7th Guest",
-        "rd_game_name": "The 7th Guest.scummvm",
-        "scummvm_id": "groovie:t7g",
-        "scummvm_id_key": "t7g"
+        "description": "The 7th Guest",
+        "scummvm_dir_name": "The 7th Guest.scummvm",
+        "engineid:gameid": "groovie:t7g",
+        "gameid": "t7g"
       },
       {
-        "game": "The Adventures of the Good Soldier Schweik",
-        "rd_game_name": "The Adventures of the Good Soldier Schweik.scummvm",
-        "scummvm_id": "qdengine:shveik",
-        "scummvm_id_key": "shveik"
+        "description": "The Adventures of the Good Soldier Schweik",
+        "scummvm_dir_name": "The Adventures of the Good Soldier Schweik.scummvm",
+        "engineid:gameid": "qdengine:shveik",
+        "gameid": "shveik"
       },
       {
-        "game": "The Adventures of Willy Beamish",
-        "rd_game_name": "The Adventures of Willy Beamish.scummvm",
-        "scummvm_id": "dgds:beamish",
-        "scummvm_id_key": "beamish"
+        "description": "The Adventures of Willy Beamish",
+        "scummvm_dir_name": "The Adventures of Willy Beamish.scummvm",
+        "engineid:gameid": "dgds:beamish",
+        "gameid": "beamish"
       },
       {
-        "game": "The Beast Within: A Gabriel Knight Mystery",
-        "rd_game_name": "The Beast Within: A Gabriel Knight Mystery.scummvm",
-        "scummvm_id": "sci:gk2",
-        "scummvm_id_key": "gk2"
+        "description": "The Beast Within: A Gabriel Knight Mystery",
+        "scummvm_dir_name": "The Beast Within: A Gabriel Knight Mystery.scummvm",
+        "engineid:gameid": "sci:gk2",
+        "gameid": "gk2"
       },
       {
-        "game": "The Berenstain Bears Get in a Fight",
-        "rd_game_name": "The Berenstain Bears Get in a Fight.scummvm",
-        "scummvm_id": "mohawk:bearfight",
-        "scummvm_id_key": "bearfight"
+        "description": "The Berenstain Bears Get in a Fight",
+        "scummvm_dir_name": "The Berenstain Bears Get in a Fight.scummvm",
+        "engineid:gameid": "mohawk:bearfight",
+        "gameid": "bearfight"
       },
       {
-        "game": "The Berenstain Bears In The Dark",
-        "rd_game_name": "The Berenstain Bears In The Dark.scummvm",
-        "scummvm_id": "mohawk:beardark",
-        "scummvm_id_key": "beardark"
+        "description": "The Berenstain Bears In The Dark",
+        "scummvm_dir_name": "The Berenstain Bears In The Dark.scummvm",
+        "engineid:gameid": "mohawk:beardark",
+        "gameid": "beardark"
       },
       {
-        "game": "The Better Dead Ratification",
-        "rd_game_name": "The Better Dead Ratification.scummvm",
-        "scummvm_id": "director:betterd",
-        "scummvm_id_key": "betterd"
+        "description": "The Better Dead Ratification",
+        "scummvm_dir_name": "The Better Dead Ratification.scummvm",
+        "engineid:gameid": "director:betterd",
+        "gameid": "betterd"
       },
       {
-        "game": "The Bizarre Adventures of Woodruff and the Schnibble",
-        "rd_game_name": "The Bizarre Adventures of Woodruff and the Schnibble.scummvm",
-        "scummvm_id": "gob:woodruff",
-        "scummvm_id_key": "woodruff"
+        "description": "The Bizarre Adventures of Woodruff and the Schnibble",
+        "scummvm_dir_name": "The Bizarre Adventures of Woodruff and the Schnibble.scummvm",
+        "engineid:gameid": "gob:woodruff",
+        "gameid": "woodruff"
       },
       {
-        "game": "The Black Cauldron",
-        "rd_game_name": "The Black Cauldron.scummvm",
-        "scummvm_id": "agi:bc",
-        "scummvm_id_key": "bc"
+        "description": "The Black Cauldron",
+        "scummvm_dir_name": "The Black Cauldron.scummvm",
+        "engineid:gameid": "agi:bc",
+        "gameid": "bc"
       },
       {
-        "game": "The Blackwell Convergence",
-        "rd_game_name": "The Blackwell Convergence.scummvm",
-        "scummvm_id": "ags:blackwell3",
-        "scummvm_id_key": "blackwell3"
+        "description": "The Blackwell Convergence",
+        "scummvm_dir_name": "The Blackwell Convergence.scummvm",
+        "engineid:gameid": "ags:blackwell3",
+        "gameid": "blackwell3"
       },
       {
-        "game": "The Blackwell Deception",
-        "rd_game_name": "The Blackwell Deception.scummvm",
-        "scummvm_id": "ags:blackwell4",
-        "scummvm_id_key": "blackwell4"
+        "description": "The Blackwell Deception",
+        "scummvm_dir_name": "The Blackwell Deception.scummvm",
+        "engineid:gameid": "ags:blackwell4",
+        "gameid": "blackwell4"
       },
       {
-        "game": "The Blackwell Epiphany",
-        "rd_game_name": "The Blackwell Epiphany.scummvm",
-        "scummvm_id": "ags:blackwell5",
-        "scummvm_id_key": "blackwell5"
+        "description": "The Blackwell Epiphany",
+        "scummvm_dir_name": "The Blackwell Epiphany.scummvm",
+        "engineid:gameid": "ags:blackwell5",
+        "gameid": "blackwell5"
       },
       {
-        "game": "The Blackwell Legacy",
-        "rd_game_name": "The Blackwell Legacy.scummvm",
-        "scummvm_id": "ags:blackwell1",
-        "scummvm_id_key": "blackwell1"
+        "description": "The Blackwell Legacy",
+        "scummvm_dir_name": "The Blackwell Legacy.scummvm",
+        "engineid:gameid": "ags:blackwell1",
+        "gameid": "blackwell1"
       },
       {
-        "game": "The Crimson Crown: Further Adventures in Transylvania",
-        "rd_game_name": "The Crimson Crown: Further Adventures in Transylvania.scummvm",
-        "scummvm_id": "glk:crimsoncrown",
-        "scummvm_id_key": "crimsoncrown"
+        "description": "The Crimson Crown: Further Adventures in Transylvania",
+        "scummvm_dir_name": "The Crimson Crown: Further Adventures in Transylvania.scummvm",
+        "engineid:gameid": "glk:crimsoncrown",
+        "gameid": "crimsoncrown"
       },
       {
-        "game": "The Curse of Monkey Island",
-        "rd_game_name": "The Curse of Monkey Island.scummvm",
-        "scummvm_id": "scumm:comi",
-        "scummvm_id_key": "comi"
+        "description": "The Curse of Monkey Island",
+        "scummvm_dir_name": "The Curse of Monkey Island.scummvm",
+        "engineid:gameid": "scumm:comi",
+        "gameid": "comi"
       },
       {
-        "game": "The Cute Machine",
-        "rd_game_name": "The Cute Machine.scummvm",
-        "scummvm_id": "director:cutemachine",
-        "scummvm_id_key": "cutemachine"
+        "description": "The Cute Machine",
+        "scummvm_dir_name": "The Cute Machine.scummvm",
+        "engineid:gameid": "director:cutemachine",
+        "gameid": "cutemachine"
       },
       {
-        "game": "The Dark Eye",
-        "rd_game_name": "The Dark Eye.scummvm",
-        "scummvm_id": "director:darkeye",
-        "scummvm_id_key": "darkeye"
+        "description": "The Dark Eye",
+        "scummvm_dir_name": "The Dark Eye.scummvm",
+        "engineid:gameid": "director:darkeye",
+        "gameid": "darkeye"
       },
       {
-        "game": "The Dig",
-        "rd_game_name": "The Dig.scummvm",
-        "scummvm_id": "scumm:dig",
-        "scummvm_id_key": "dig"
+        "description": "The Dig",
+        "scummvm_dir_name": "The Dig.scummvm",
+        "engineid:gameid": "scumm:dig",
+        "gameid": "dig"
       },
       {
-        "game": "The Excavation of Hobs Barrow",
-        "rd_game_name": "The Excavation of Hobs Barrow.scummvm",
-        "scummvm_id": "ags:excavationhb",
-        "scummvm_id_key": "excavationhb"
+        "description": "The Excavation of Hobs Barrow",
+        "scummvm_dir_name": "The Excavation of Hobs Barrow.scummvm",
+        "engineid:gameid": "ags:excavationhb",
+        "gameid": "excavationhb"
       },
       {
-        "game": "The Feeble Files",
-        "rd_game_name": "The Feeble Files.scummvm",
-        "scummvm_id": "agos:feeble",
-        "scummvm_id_key": "feeble"
+        "description": "The Feeble Files",
+        "scummvm_dir_name": "The Feeble Files.scummvm",
+        "engineid:gameid": "agos:feeble",
+        "gameid": "feeble"
       },
       {
-        "game": "The Game That Takes Place on a Cruise Ship",
-        "rd_game_name": "The Game That Takes Place on a Cruise Ship.scummvm",
-        "scummvm_id": "sludge:tgttpoacs",
-        "scummvm_id_key": "tgttpoacs"
+        "description": "The Game That Takes Place on a Cruise Ship",
+        "scummvm_dir_name": "The Game That Takes Place on a Cruise Ship.scummvm",
+        "engineid:gameid": "sludge:tgttpoacs",
+        "gameid": "tgttpoacs"
       },
       {
-        "game": "The Griffon Legend",
-        "rd_game_name": "The Griffon Legend.scummvm",
-        "scummvm_id": "griffon:griffon",
-        "scummvm_id_key": "griffon"
+        "description": "The Griffon Legend",
+        "scummvm_dir_name": "The Griffon Legend.scummvm",
+        "engineid:gameid": "griffon:griffon",
+        "gameid": "griffon"
       },
       {
-        "game": "The Guild of Thieves",
-        "rd_game_name": "The Guild of Thieves.scummvm",
-        "scummvm_id": "glk:guild",
-        "scummvm_id_key": "guild"
+        "description": "The Guild of Thieves",
+        "scummvm_dir_name": "The Guild of Thieves.scummvm",
+        "engineid:gameid": "glk:guild",
+        "gameid": "guild"
       },
       {
-        "game": "The Interview",
-        "rd_game_name": "The Interview.scummvm",
-        "scummvm_id": "sludge:interview",
-        "scummvm_id_key": "interview"
+        "description": "The Interview",
+        "scummvm_dir_name": "The Interview.scummvm",
+        "engineid:gameid": "sludge:interview",
+        "gameid": "interview"
       },
       {
-        "game": "The Island of Dr. Brain",
-        "rd_game_name": "The Island of Dr. Brain.scummvm",
-        "scummvm_id": "sci:islandbrain",
-        "scummvm_id_key": "islandbrain"
+        "description": "The Island of Dr. Brain",
+        "scummvm_dir_name": "The Island of Dr. Brain.scummvm",
+        "engineid:gameid": "sci:islandbrain",
+        "gameid": "islandbrain"
       },
       {
-        "game": "The Journeyman Project 2: Buried in Time",
-        "rd_game_name": "The Journeyman Project 2: Buried in Time.scummvm",
-        "scummvm_id": "buried:buried",
-        "scummvm_id_key": "buried"
+        "description": "The Journeyman Project 2: Buried in Time",
+        "scummvm_dir_name": "The Journeyman Project 2: Buried in Time.scummvm",
+        "engineid:gameid": "buried:buried",
+        "gameid": "buried"
       },
       {
-        "game": "The Journeyman Project: Pegasus Prime",
-        "rd_game_name": "The Journeyman Project: Pegasus Prime.scummvm",
-        "scummvm_id": "pegasus:pegasus",
-        "scummvm_id_key": "pegasus"
+        "description": "The Journeyman Project: Pegasus Prime",
+        "scummvm_dir_name": "The Journeyman Project: Pegasus Prime.scummvm",
+        "engineid:gameid": "pegasus:pegasus",
+        "gameid": "pegasus"
       },
       {
-        "game": "The Labyrinth of Time",
-        "rd_game_name": "The Labyrinth of Time.scummvm",
-        "scummvm_id": "lab:lab",
-        "scummvm_id_key": "lab"
+        "description": "The Labyrinth of Time",
+        "scummvm_dir_name": "The Labyrinth of Time.scummvm",
+        "engineid:gameid": "lab:lab",
+        "gameid": "lab"
       },
       {
-        "game": "The Last Express",
-        "rd_game_name": "The Last Express.scummvm",
-        "scummvm_id": "lastexpress:lastexpress",
-        "scummvm_id_key": "lastexpress"
+        "description": "The Last Express",
+        "scummvm_dir_name": "The Last Express.scummvm",
+        "engineid:gameid": "lastexpress:lastexpress",
+        "gameid": "lastexpress"
       },
       {
-        "game": "The Legend of Kyrandia",
-        "rd_game_name": "The Legend of Kyrandia.scummvm",
-        "scummvm_id": "kyra:kyra1",
-        "scummvm_id_key": "kyra1"
+        "description": "The Legend of Kyrandia",
+        "scummvm_dir_name": "The Legend of Kyrandia.scummvm",
+        "engineid:gameid": "kyra:kyra1",
+        "gameid": "kyra1"
       },
       {
-        "game": "The Legend of Kyrandia: Book 3 - Malcolms Revenge",
-        "rd_game_name": "The Legend of Kyrandia: Book 3 - Malcolms Revenge.scummvm",
-        "scummvm_id": "kyra:kyra3",
-        "scummvm_id_key": "kyra3"
+        "description": "The Legend of Kyrandia: Book 3 - Malcolms Revenge",
+        "scummvm_dir_name": "The Legend of Kyrandia: Book 3 - Malcolms Revenge.scummvm",
+        "engineid:gameid": "kyra:kyra3",
+        "gameid": "kyra3"
       },
       {
-        "game": "The Legend of Kyrandia: Hand of Fate",
-        "rd_game_name": "The Legend of Kyrandia: Hand of Fate.scummvm",
-        "scummvm_id": "kyra:kyra2",
-        "scummvm_id_key": "kyra2"
+        "description": "The Legend of Kyrandia: Hand of Fate",
+        "scummvm_dir_name": "The Legend of Kyrandia: Hand of Fate.scummvm",
+        "engineid:gameid": "kyra:kyra2",
+        "gameid": "kyra2"
       },
       {
-        "game": "The Longest Journey",
-        "rd_game_name": "The Longest Journey.scummvm",
-        "scummvm_id": "stark:tlj",
-        "scummvm_id_key": "tlj"
+        "description": "The Longest Journey",
+        "scummvm_dir_name": "The Longest Journey.scummvm",
+        "engineid:gameid": "stark:tlj",
+        "gameid": "tlj"
       },
       {
-        "game": "The Lost Files of Sherlock Holmes: Case of the Rose Tattoo",
-        "rd_game_name": "The Lost Files of Sherlock Holmes: Case of the Rose Tattoo.scummvm",
-        "scummvm_id": "sherlock:rosetattoo",
-        "scummvm_id_key": "rosetattoo"
+        "description": "The Lost Files of Sherlock Holmes: Case of the Rose Tattoo",
+        "scummvm_dir_name": "The Lost Files of Sherlock Holmes: Case of the Rose Tattoo.scummvm",
+        "engineid:gameid": "sherlock:rosetattoo",
+        "gameid": "rosetattoo"
       },
       {
-        "game": "The Lost Files of Sherlock Holmes: The Case of the Serrated Scalpel",
-        "rd_game_name": "The Lost Files of Sherlock Holmes: The Case of the Serrated Scalpel.scummvm",
-        "scummvm_id": "sherlock:scalpel",
-        "scummvm_id_key": "scalpel"
+        "description": "The Lost Files of Sherlock Holmes: The Case of the Serrated Scalpel",
+        "scummvm_dir_name": "The Lost Files of Sherlock Holmes: The Case of the Serrated Scalpel.scummvm",
+        "engineid:gameid": "sherlock:scalpel",
+        "gameid": "scalpel"
       },
       {
-        "game": "The Manhole",
-        "rd_game_name": "The Manhole.scummvm",
-        "scummvm_id": "made:manhole",
-        "scummvm_id_key": "manhole"
+        "description": "The Manhole",
+        "scummvm_dir_name": "The Manhole.scummvm",
+        "engineid:gameid": "made:manhole",
+        "gameid": "manhole"
       },
       {
-        "game": "The Neverhood",
-        "rd_game_name": "The Neverhood.scummvm",
-        "scummvm_id": "neverhood:neverhood",
-        "scummvm_id_key": "neverhood"
+        "description": "The Neverhood",
+        "scummvm_dir_name": "The Neverhood.scummvm",
+        "engineid:gameid": "neverhood:neverhood",
+        "gameid": "neverhood"
       },
       {
-        "game": "The New Kid on the Block",
-        "rd_game_name": "The New Kid on the Block.scummvm",
-        "scummvm_id": "mohawk:newkid",
-        "scummvm_id_key": "newkid"
+        "description": "The New Kid on the Block",
+        "scummvm_dir_name": "The New Kid on the Block.scummvm",
+        "engineid:gameid": "mohawk:newkid",
+        "gameid": "newkid"
       },
       {
-        "game": "The Pawn",
-        "rd_game_name": "The Pawn.scummvm",
-        "scummvm_id": "glk:pawn",
-        "scummvm_id_key": "pawn"
+        "description": "The Pawn",
+        "scummvm_dir_name": "The Pawn.scummvm",
+        "engineid:gameid": "glk:pawn",
+        "gameid": "pawn"
       },
       {
-        "game": "The Pink Panther: Hokus Pokus Pink",
-        "rd_game_name": "The Pink Panther: Hokus Pokus Pink.scummvm",
-        "scummvm_id": "pink:pokus",
-        "scummvm_id_key": "pokus"
+        "description": "The Pink Panther: Hokus Pokus Pink",
+        "scummvm_dir_name": "The Pink Panther: Hokus Pokus Pink.scummvm",
+        "engineid:gameid": "pink:pokus",
+        "gameid": "pokus"
       },
       {
-        "game": "The Pink Panther: Passport to Peril",
-        "rd_game_name": "The Pink Panther: Passport to Peril.scummvm",
-        "scummvm_id": "pink:peril",
-        "scummvm_id_key": "peril"
+        "description": "The Pink Panther: Passport to Peril",
+        "scummvm_dir_name": "The Pink Panther: Passport to Peril.scummvm",
+        "engineid:gameid": "pink:peril",
+        "gameid": "peril"
       },
       {
-        "game": "The Prince and the Coward",
-        "rd_game_name": "The Prince and the Coward.scummvm",
-        "scummvm_id": "prince:prince",
-        "scummvm_id_key": "prince"
+        "description": "The Prince and the Coward",
+        "scummvm_dir_name": "The Prince and the Coward.scummvm",
+        "engineid:gameid": "prince:prince",
+        "gameid": "prince"
       },
       {
-        "game": "The Secret of Monkey Island",
-        "rd_game_name": "The Secret of Monkey Island.scummvm",
-        "scummvm_id": "scumm:monkey",
-        "scummvm_id_key": "monkey"
+        "description": "The Secret of Monkey Island",
+        "scummvm_dir_name": "The Secret of Monkey Island.scummvm",
+        "engineid:gameid": "scumm:monkey",
+        "gameid": "monkey"
       },
       {
-        "game": "The Secret of Tremendous Corporation",
-        "rd_game_name": "The Secret of Tremendous Corporation.scummvm",
-        "scummvm_id": "sludge:tsotc",
-        "scummvm_id_key": "tsotc"
+        "description": "The Secret of Tremendous Corporation",
+        "scummvm_dir_name": "The Secret of Tremendous Corporation.scummvm",
+        "engineid:gameid": "sludge:tsotc",
+        "gameid": "tsotc"
       },
       {
-        "game": "The Seven Colors: Legend of PSYS City",
-        "rd_game_name": "The Seven Colors: Legend of PSYS City.scummvm",
-        "scummvm_id": "director:the7colors",
-        "scummvm_id_key": "the7colors"
+        "description": "The Seven Colors: Legend of PSYS City",
+        "scummvm_dir_name": "The Seven Colors: Legend of PSYS City.scummvm",
+        "engineid:gameid": "director:the7colors",
+        "gameid": "the7colors"
       },
       {
-        "game": "The Shivah",
-        "rd_game_name": "The Shivah.scummvm",
-        "scummvm_id": "ags:shivah",
-        "scummvm_id_key": "shivah"
+        "description": "The Shivah",
+        "scummvm_dir_name": "The Shivah.scummvm",
+        "engineid:gameid": "ags:shivah",
+        "gameid": "shivah"
       },
       {
-        "game": "The Shivah: Kosher Edition",
-        "rd_game_name": "The Shivah: Kosher Edition.scummvm",
-        "scummvm_id": "ags:shivahkosher",
-        "scummvm_id_key": "shivahkosher"
+        "description": "The Shivah: Kosher Edition",
+        "scummvm_dir_name": "The Shivah: Kosher Edition.scummvm",
+        "engineid:gameid": "ags:shivahkosher",
+        "gameid": "shivahkosher"
       },
       {
-        "game": "The Space Bar",
-        "rd_game_name": "The Space Bar.scummvm",
-        "scummvm_id": "bagel:spacebar",
-        "scummvm_id_key": "spacebar"
+        "description": "The Space Bar",
+        "scummvm_dir_name": "The Space Bar.scummvm",
+        "engineid:gameid": "bagel:spacebar",
+        "gameid": "spacebar"
       },
       {
-        "game": "The Story of Creation",
-        "rd_game_name": "The Story of Creation.scummvm",
-        "scummvm_id": "mohawk:create",
-        "scummvm_id_key": "create"
+        "description": "The Story of Creation",
+        "scummvm_dir_name": "The Story of Creation.scummvm",
+        "engineid:gameid": "mohawk:create",
+        "gameid": "create"
       },
       {
-        "game": "The Vampire Diaries",
-        "rd_game_name": "The Vampire Diaries.scummvm",
-        "scummvm_id": "nancy:vampirediaries",
-        "scummvm_id_key": "vampirediaries"
+        "description": "The Vampire Diaries",
+        "scummvm_dir_name": "The Vampire Diaries.scummvm",
+        "engineid:gameid": "nancy:vampirediaries",
+        "gameid": "vampirediaries"
       },
       {
-        "game": "The White Chamber",
-        "rd_game_name": "The White Chamber.scummvm",
-        "scummvm_id": "wintermute:twc",
-        "scummvm_id_key": "twc"
+        "description": "The White Chamber",
+        "scummvm_dir_name": "The White Chamber.scummvm",
+        "engineid:gameid": "wintermute:twc",
+        "gameid": "twc"
       },
       {
-        "game": "Thimbleweed Park",
-        "rd_game_name": "Thimbleweed Park.scummvm",
-        "scummvm_id": "twp:twp",
-        "scummvm_id_key": "twp"
+        "description": "Thimbleweed Park",
+        "scummvm_dir_name": "Thimbleweed Park.scummvm",
+        "engineid:gameid": "twp:twp",
+        "gameid": "twp"
       },
       {
-        "game": "Time Gal",
-        "rd_game_name": "Time Gal.scummvm",
-        "scummvm_id": "director:timegal",
-        "scummvm_id_key": "timegal"
+        "description": "Time Gal",
+        "scummvm_dir_name": "Time Gal.scummvm",
+        "engineid:gameid": "director:timegal",
+        "gameid": "timegal"
       },
       {
-        "game": "Tony Tough and the Night of Roasted Moths",
-        "rd_game_name": "Tony Tough and the Night of Roasted Moths.scummvm",
-        "scummvm_id": "tony:tony",
-        "scummvm_id_key": "tony"
+        "description": "Tony Tough and the Night of Roasted Moths",
+        "scummvm_dir_name": "Tony Tough and the Night of Roasted Moths.scummvm",
+        "engineid:gameid": "tony:tony",
+        "gameid": "tony"
       },
       {
-        "game": "Toonstruck",
-        "rd_game_name": "Toonstruck.scummvm",
-        "scummvm_id": "toon:toon",
-        "scummvm_id_key": "toon"
+        "description": "Toonstruck",
+        "scummvm_dir_name": "Toonstruck.scummvm",
+        "engineid:gameid": "toon:toon",
+        "gameid": "toon"
       },
       {
-        "game": "Torins Passage",
-        "rd_game_name": "Torins Passage.scummvm",
-        "scummvm_id": "sci:torin",
-        "scummvm_id_key": "torin"
+        "description": "Torins Passage",
+        "scummvm_dir_name": "Torins Passage.scummvm",
+        "engineid:gameid": "sci:torin",
+        "gameid": "torin"
       },
       {
-        "game": "Total Eclipse",
-        "rd_game_name": "Total Eclipse.scummvm",
-        "scummvm_id": "freescape:totaleclipse",
-        "scummvm_id_key": "totaleclipse"
+        "description": "Total Eclipse",
+        "scummvm_dir_name": "Total Eclipse.scummvm",
+        "engineid:gameid": "freescape:totaleclipse",
+        "gameid": "totaleclipse"
       },
       {
-        "game": "Total Eclipse 2",
-        "rd_game_name": "Total Eclipse 2.scummvm",
-        "scummvm_id": "freescape:totaleclipse2",
-        "scummvm_id_key": "totaleclipse2"
+        "description": "Total Eclipse 2",
+        "scummvm_dir_name": "Total Eclipse 2.scummvm",
+        "engineid:gameid": "freescape:totaleclipse2",
+        "gameid": "totaleclipse2"
       },
       {
-        "game": "Touché: The Adventures of the Fifth Musketeer",
-        "rd_game_name": "Touché: The Adventures of the Fifth Musketeer.scummvm",
-        "scummvm_id": "touche:touche",
-        "scummvm_id_key": "touche"
+        "description": "Touché: The Adventures of the Fifth Musketeer",
+        "scummvm_dir_name": "Touché: The Adventures of the Fifth Musketeer.scummvm",
+        "engineid:gameid": "touche:touche",
+        "gameid": "touche"
       },
       {
-        "game": "Transylvania",
-        "rd_game_name": "Transylvania.scummvm",
-        "scummvm_id": "glk:transylvania",
-        "scummvm_id_key": "transylvania"
+        "description": "Transylvania",
+        "scummvm_dir_name": "Transylvania.scummvm",
+        "engineid:gameid": "glk:transylvania",
+        "gameid": "transylvania"
       },
       {
-        "game": "Trick or Treat",
-        "rd_game_name": "Trick or Treat.scummvm",
-        "scummvm_id": "tot:tot",
-        "scummvm_id_key": "tot"
+        "description": "Trick or Treat",
+        "scummvm_dir_name": "Trick or Treat.scummvm",
+        "engineid:gameid": "tot:tot",
+        "gameid": "tot"
       },
       {
-        "game": "Trolls Tale",
-        "rd_game_name": "Trolls Tale.scummvm",
-        "scummvm_id": "agi:troll",
-        "scummvm_id_key": "troll"
+        "description": "Trolls Tale",
+        "scummvm_dir_name": "Trolls Tale.scummvm",
+        "engineid:gameid": "agi:troll",
+        "gameid": "troll"
       },
       {
-        "game": "U.F.O.s",
-        "rd_game_name": "U.F.O.s.scummvm",
-        "scummvm_id": "gnap:gnap",
-        "scummvm_id_key": "gnap"
+        "description": "U.F.O.s",
+        "scummvm_dir_name": "U.F.O.s.scummvm",
+        "engineid:gameid": "gnap:gnap",
+        "gameid": "gnap"
       },
       {
-        "game": "Ultima IV: Quest of the Avatar",
-        "rd_game_name": "Ultima IV: Quest of the Avatar.scummvm",
-        "scummvm_id": "ultima:ultima4",
-        "scummvm_id_key": "ultima4"
+        "description": "Ultima IV: Quest of the Avatar",
+        "scummvm_dir_name": "Ultima IV: Quest of the Avatar.scummvm",
+        "engineid:gameid": "ultima:ultima4",
+        "gameid": "ultima4"
       },
       {
-        "game": "Ultima VI: The False Prophet",
-        "rd_game_name": "Ultima VI: The False Prophet.scummvm",
-        "scummvm_id": "ultima:ultima6",
-        "scummvm_id_key": "ultima6"
+        "description": "Ultima VI: The False Prophet",
+        "scummvm_dir_name": "Ultima VI: The False Prophet.scummvm",
+        "engineid:gameid": "ultima:ultima6",
+        "gameid": "ultima6"
       },
       {
-        "game": "Ultima VIII - Pagan",
-        "rd_game_name": "Ultima VIII - Pagan.scummvm",
-        "scummvm_id": "ultima:ultima8",
-        "scummvm_id_key": "ultima8"
+        "description": "Ultima VIII - Pagan",
+        "scummvm_dir_name": "Ultima VIII - Pagan.scummvm",
+        "engineid:gameid": "ultima:ultima8",
+        "gameid": "ultima8"
       },
       {
-        "game": "Unavowed",
-        "rd_game_name": "Unavowed.scummvm",
-        "scummvm_id": "ags:unavowed",
-        "scummvm_id_key": "unavowed"
+        "description": "Unavowed",
+        "scummvm_dir_name": "Unavowed.scummvm",
+        "engineid:gameid": "ags:unavowed",
+        "gameid": "unavowed"
       },
       {
-        "game": "Uncle Henrys Playhouse",
-        "rd_game_name": "Uncle Henrys Playhouse.scummvm",
-        "scummvm_id": "groovie:unclehenry",
-        "scummvm_id_key": "unclehenry"
+        "description": "Uncle Henrys Playhouse",
+        "scummvm_dir_name": "Uncle Henrys Playhouse.scummvm",
+        "engineid:gameid": "groovie:unclehenry",
+        "gameid": "unclehenry"
       },
       {
-        "game": "Unrest",
-        "rd_game_name": "Unrest.scummvm",
-        "scummvm_id": "crab:unrest",
-        "scummvm_id_key": "unrest"
+        "description": "Unrest",
+        "scummvm_dir_name": "Unrest.scummvm",
+        "engineid:gameid": "crab:unrest",
+        "gameid": "unrest"
       },
       {
-        "game": "Urban Runner",
-        "rd_game_name": "Urban Runner.scummvm",
-        "scummvm_id": "gob:urban",
-        "scummvm_id_key": "urban"
+        "description": "Urban Runner",
+        "scummvm_dir_name": "Urban Runner.scummvm",
+        "engineid:gameid": "gob:urban",
+        "gameid": "urban"
       },
       {
-        "game": "Valmaison au fil des saisons / Pepperon",
-        "rd_game_name": "Valmaison au fil des saisons / Pepperon.scummvm",
-        "scummvm_id": "director:pepperon",
-        "scummvm_id_key": "pepperon"
+        "description": "Valmaison au fil des saisons / Pepperon",
+        "scummvm_dir_name": "Valmaison au fil des saisons / Pepperon.scummvm",
+        "engineid:gameid": "director:pepperon",
+        "gameid": "pepperon"
       },
       {
-        "game": "Versailles 1685",
-        "rd_game_name": "Versailles 1685.scummvm",
-        "scummvm_id": "cryomni3d:versailles",
-        "scummvm_id_key": "versailles"
+        "description": "Versailles 1685",
+        "scummvm_dir_name": "Versailles 1685.scummvm",
+        "engineid:gameid": "cryomni3d:versailles",
+        "gameid": "versailles"
       },
       {
-        "game": "Voyeur",
-        "rd_game_name": "Voyeur.scummvm",
-        "scummvm_id": "voyeur:voyeur",
-        "scummvm_id_key": "voyeur"
+        "description": "Voyeur",
+        "scummvm_dir_name": "Voyeur.scummvm",
+        "engineid:gameid": "voyeur:voyeur",
+        "gameid": "voyeur"
       },
       {
-        "game": "WAGE",
-        "rd_game_name": "WAGE.scummvm",
-        "scummvm_id": "wage:wage",
-        "scummvm_id_key": "wage"
+        "description": "WAGE",
+        "scummvm_dir_name": "WAGE.scummvm",
+        "engineid:gameid": "wage:wage",
+        "gameid": "wage"
       },
       {
-        "game": "Wait for it! Issue 3. Song for a hare",
-        "rd_game_name": "Wait for it! Issue 3. Song for a hare.scummvm",
-        "scummvm_id": "qdengine:nupogodi3",
-        "scummvm_id_key": "nupogodi3"
+        "description": "Wait for it! Issue 3. Song for a hare",
+        "scummvm_dir_name": "Wait for it! Issue 3. Song for a hare.scummvm",
+        "engineid:gameid": "qdengine:nupogodi3",
+        "gameid": "nupogodi3"
       },
       {
-        "game": "Waxworks",
-        "rd_game_name": "Waxworks.scummvm",
-        "scummvm_id": "agos:waxworks",
-        "scummvm_id_key": "waxworks"
+        "description": "Waxworks",
+        "scummvm_dir_name": "Waxworks.scummvm",
+        "engineid:gameid": "agos:waxworks",
+        "gameid": "waxworks"
       },
       {
-        "game": "Ween: The Prophecy",
-        "rd_game_name": "Ween: The Prophecy.scummvm",
-        "scummvm_id": "gob:ween",
-        "scummvm_id_key": "ween"
+        "description": "Ween: The Prophecy",
+        "scummvm_dir_name": "Ween: The Prophecy.scummvm",
+        "engineid:gameid": "gob:ween",
+        "gameid": "ween"
       },
       {
-        "game": "Wetlands",
-        "rd_game_name": "Wetlands.scummvm",
-        "scummvm_id": "hypno:wetlands",
-        "scummvm_id_key": "wetlands"
+        "description": "Wetlands",
+        "scummvm_dir_name": "Wetlands.scummvm",
+        "engineid:gameid": "hypno:wetlands",
+        "gameid": "wetlands"
       },
       {
-        "game": "Whispers of a Machine",
-        "rd_game_name": "Whispers of a Machine.scummvm",
-        "scummvm_id": "ags:whispersofamachine",
-        "scummvm_id_key": "whispersofamachine"
+        "description": "Whispers of a Machine",
+        "scummvm_dir_name": "Whispers of a Machine.scummvm",
+        "engineid:gameid": "ags:whispersofamachine",
+        "gameid": "whispersofamachine"
       },
       {
-        "game": "Winnie the Pooh in the Hundred Acre Wood",
-        "rd_game_name": "Winnie the Pooh in the Hundred Acre Wood.scummvm",
-        "scummvm_id": "agi:winnie",
-        "scummvm_id_key": "winnie"
+        "description": "Winnie the Pooh in the Hundred Acre Wood",
+        "scummvm_dir_name": "Winnie the Pooh in the Hundred Acre Wood.scummvm",
+        "engineid:gameid": "agi:winnie",
+        "gameid": "winnie"
       },
       {
-        "game": "Wonderland",
-        "rd_game_name": "Wonderland.scummvm",
-        "scummvm_id": "glk:wonderland",
-        "scummvm_id_key": "wonderland"
+        "description": "Wonderland",
+        "scummvm_dir_name": "Wonderland.scummvm",
+        "engineid:gameid": "glk:wonderland",
+        "gameid": "wonderland"
       },
       {
-        "game": "Wrath of the Gods",
-        "rd_game_name": "Wrath of the Gods.scummvm",
-        "scummvm_id": "director:wrath",
-        "scummvm_id_key": "wrath"
+        "description": "Wrath of the Gods",
+        "scummvm_dir_name": "Wrath of the Gods.scummvm",
+        "engineid:gameid": "director:wrath",
+        "gameid": "wrath"
       },
       {
-        "game": "Yaken Rodem",
-        "rd_game_name": "Yaken Rodem.scummvm",
-        "scummvm_id": "director:henachoco05",
-        "scummvm_id_key": "henachoco05"
+        "description": "Yaken Rodem",
+        "scummvm_dir_name": "Yaken Rodem.scummvm",
+        "engineid:gameid": "director:henachoco05",
+        "gameid": "henachoco05"
       },
       {
-        "game": "Zak McKracken & Loom",
-        "rd_game_name": "Zak McKracken & Loom.scummvm",
-        "scummvm_id": "scumm:zakloom",
-        "scummvm_id_key": "zakloom"
+        "description": "Zak McKracken & Loom",
+        "scummvm_dir_name": "Zak McKracken & Loom.scummvm",
+        "engineid:gameid": "scumm:zakloom",
+        "gameid": "zakloom"
       },
       {
-        "game": "Zak McKracken and the Alien Mindbenders",
-        "rd_game_name": "Zak McKracken and the Alien Mindbenders.scummvm",
-        "scummvm_id": "scumm:zak",
-        "scummvm_id_key": "zak"
+        "description": "Zak McKracken and the Alien Mindbenders",
+        "scummvm_dir_name": "Zak McKracken and the Alien Mindbenders.scummvm",
+        "engineid:gameid": "scumm:zak",
+        "gameid": "zak"
       },
       {
-        "game": "ZCode (Infocom and Inform) Interactive Fiction games",
-        "rd_game_name": "ZCode (Infocom and Inform) Interactive Fiction games.scummvm",
-        "scummvm_id": "glk:zcode",
-        "scummvm_id_key": "zcode"
+        "description": "ZCode (Infocom and Inform) Interactive Fiction games",
+        "scummvm_dir_name": "ZCode (Infocom and Inform) Interactive Fiction games.scummvm",
+        "engineid:gameid": "glk:zcode",
+        "gameid": "zcode"
       },
       {
-        "game": "Zork Nemesis: The Forbidden Lands",
-        "rd_game_name": "Zork Nemesis: The Forbidden Lands.scummvm",
-        "scummvm_id": "zvision:znemesis",
-        "scummvm_id_key": "znemesis"
+        "description": "Zork Nemesis: The Forbidden Lands",
+        "scummvm_dir_name": "Zork Nemesis: The Forbidden Lands.scummvm",
+        "engineid:gameid": "zvision:znemesis",
+        "gameid": "znemesis"
       },
       {
-        "game": "Zork: Grand Inquisitor",
-        "rd_game_name": "Zork: Grand Inquisitor.scummvm",
-        "scummvm_id": "zvision:zgi",
-        "scummvm_id_key": "zgi"
+        "description": "Zork: Grand Inquisitor",
+        "scummvm_dir_name": "Zork: Grand Inquisitor.scummvm",
+        "engineid:gameid": "zvision:zgi",
+        "gameid": "zgi"
       }
     ]
   }
