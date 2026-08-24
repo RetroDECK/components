@@ -364,7 +364,7 @@
           "name": "RetroDECK Folder Iconset",
           "description": "Enable or disable: RetroDECK folder iconset.",
           "command": {
-            "zenity": "configurator_iconset_toggle_dialog"
+            "zenity": "configurator_iconset_dialog"
           }
         },
         {
