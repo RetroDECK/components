@@ -5765,8 +5765,7 @@
         "md5": "e10c53c2f8b90bab96ead2d368858623",
         "system": "dreamcast",
         "description": "Dreamcast BIOS",
-        "paths": "$bios_path/dc",
-        "required": "Required"
+        "paths": "$bios_path/dc"
       },
       {
         "filename": "naomi.zip",
@@ -6557,7 +6556,6 @@
         "md5": "0a93f7940c455905bea6e392dfde92a4",
         "system": "dreamcast",
         "description": "Dreamcast flash BIOS",
-        "required": "Required",
         "paths": "$bios_path/dc"
       },
       {
@@ -6565,7 +6563,6 @@
         "md5": "0a93f7940c455905bea6e392dfde92a4",
         "system": "dreamcast",
         "description": "Dreamcast flash BIOS (duplicate of dc_flash.bin)",
-        "required": "Required",
         "paths": "$bios_path/dc"
       },
       {
