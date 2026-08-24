@@ -12,12 +12,6 @@
       "startup": 0,
       "shutdown": 99
     },
-    "compatible_presets": {
-      "bios_check_on_launch": ["false", "true"]
-    },
-    "preset_actions": {
-      "bios_check_on_launch": []
-    },
     "url_rdwiki": "https://retrodeck.readthedocs.io/en/",
     "url_webpage": "https://retrodeck.net",
     "url_donation_purchase": "https://retrodeck.readthedocs.io/en/latest/wiki_credits_social/donations-licenses/",
@@ -371,6 +365,13 @@
           "command": {
             "zenity": "configurator_toggle_retroengine_event_scripts_dialog"
           }
+        },
+        {
+          "name": "BIOS Check on Launch",
+          "description": "Enable or disable: Warn before launching a game when its required BIOS files are missing.",
+          "command": {
+            "zenity": "configurator_bios_check_toggle_dialog"
+          }
         }
       ],
       "tools": [
@@ -629,11 +630,6 @@
       "widescreen": {
         "name": "Widescreen",
         "desc": "Enable or disable: Widescreen mode in supported components."
-      },
-      "bios_check_on_launch": {
-        "name": "BIOS Check on Launch",
-        "desc": "Enable or disable: Warn before launching a game when its required BIOS files are missing.",
-        "command": "configurator_bios_check_toggle_dialog"
       }
     },
     "es_de_config": {
