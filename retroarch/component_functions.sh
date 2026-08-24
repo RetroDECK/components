@@ -231,6 +231,17 @@ _prepare_component::retroarch() {
       set_setting_value "$retroarch_config_scummvm" "savepath" "$saves_path/scummvm" "retroarch_scummvm" "scummvm"
       set_setting_value "$retroarch_config_scummvm" "browser_lastpath" "$roms_path/scummvm" "retroarch_scummvm" "scummvm"
 
+      # Flycast VMUs
+      mkdir -p "$saves_path/dreamcast/flycast_libretro"
+      if [ -d "$bios_path/dc" ]; then
+        for vmu_file in vmu_save_A1.bin vmu_save_A2.bin vmu_save_B1.bin vmu_save_B2.bin vmu_save_C1.bin vmu_save_C2.bin vmu_save_D1.bin vmu_save_D2.bin; do
+          if [ ! -L "$bios_path/dc/$vmu_file" ]; then # if file is not a symlink, move it to the new location
+            mv -f "$bios_path/dc/$vmu_file" "$saves_path/dreamcast/flycast_libretro/$vmu_file"
+            ln -s "$saves_path/dreamcast/flycast_libretro/$vmu_file" "$bios_path/dc/$vmu_file"
+          fi
+        done
+      fi
+
       # Texture Packs
       dir_prep "$texture_packs_path/retroarch-core/Mesen/HdPacks" "$bios_path/HdPacks"
       dir_prep "$texture_packs_path/retroarch-core/Mupen64Plus/cache" "$bios_path/Mupen64plus/cache"
@@ -316,6 +327,18 @@ _post_update::retroarch() {
 
   if check_version_is_older_than "$version_being_updated" "0.11.0"; then
     create_dir "$bios_path/same_cdi/bios"
+
+    # Flycast VMUs migration: Move existing VMU files to the new saves location and create symlinks in the bios directory
+    mkdir -p "$saves_path/dreamcast/flycast_libretro"
+    if [ -d "$bios_path/dc" ]; then
+      for vmu_file in vmu_save_A1.bin vmu_save_A2.bin vmu_save_B1.bin vmu_save_B2.bin vmu_save_C1.bin vmu_save_C2.bin vmu_save_D1.bin vmu_save_D2.bin; do
+        if [ ! -L "$bios_path/dc/$vmu_file" ]; then # if file is not a symlink, move it to the new location
+          mv -f "$bios_path/dc/$vmu_file" "$saves_path/dreamcast/flycast_libretro/$vmu_file"
+          ln -s "$saves_path/dreamcast/flycast_libretro/$vmu_file" "$bios_path/dc/$vmu_file"
+        fi
+      done
+    fi
+
   fi
   
   if check_version_is_older_than "$previous_version" "1.0.0"; then
