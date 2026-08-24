@@ -5655,7 +5655,7 @@
         "filename": "aes_keys.txt",
         "system": "n3ds",
         "description": "Decryption keys for Citra 3DS / AzaharPlus",
-        "required": "Required"
+        "required": "Only for encrypted games"
       },
       {
         "filename": "bios7.bin",
