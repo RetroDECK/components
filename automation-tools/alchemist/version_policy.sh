@@ -456,6 +456,12 @@ export RAZE_VERSION_POLICY="latest"
 # ------------------------------------------------------------------------------
 export SHADPS4_VERSION_POLICY="latest"
 
+# ------------------------------------------------------------------------------
+# Satellaview - Super Famicom Add-on
+# ------------------------------------------------------------------------------
+export SATELLAVIEW_PLUS_VERSION_POLICY="V5"
+export SATELLAVIEW_PLUS_SNES9X_VERSION_POLICY="latest"
+
 
 
 # ==============================================================================
