@@ -55,17 +55,6 @@
         "filename": "doom_guide.txt",
         "location": "$roms_path/doom"
       }
-    },
-    "configurator_menus": {
-      "es_de_entries": [
-        {
-          "name": "UZDoom: Download Freedoom",
-          "description": "Download Freedom to roms/doom.",
-          "command": {
-            "zenity": "download_freedoom"
-          }
-        }
-      ]
     }
   }
 }
