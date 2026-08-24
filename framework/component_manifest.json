@@ -74,6 +74,14 @@
         "location": "$roms_path/mugen"
       }
     ],
+    "iconsets": [
+      {
+        "id": "lahrs-main",
+        "name": "RetroDECK Original",
+        "desc": "The default RetroDECK iconset",
+        "source": "res/folder-iconsets"
+      }
+    ],
     "backup_data": {
       "core": [
         {
