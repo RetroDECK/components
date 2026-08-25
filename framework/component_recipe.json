@@ -30,6 +30,11 @@
           "type": "dir",
           "source": "rd_assets/helper_files",
           "dest": "helper_files"
+        },
+        {
+          "type": "dir",
+          "source": "rd_assets/res",
+          "dest": "res"
         }
       ]
     }
