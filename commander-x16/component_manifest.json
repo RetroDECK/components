@@ -1,6 +1,6 @@
 {
   "commander-x16": {
-    "name": "X16 Emulator",
+    "name": "Commander X16 Emulator",
     "core_framework_compatibility": "1",
     "component_version": "1.0.0",
     "capabilities": [

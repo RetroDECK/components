@@ -610,9 +610,11 @@ install_retrodeck_controller_profile() {
   local current_steam_sync_setting="$(get_component_option "steam-rom-manager" "steam_sync")"
 
   if [[ ("$current_steam_sync_setting" == "native" || "$mode" == "manual") && -d "$srm_steam_userdata_native/controller_base/templates/" ]]; then
+    log d "Native Steam install found, attempting to copy controller templates and binding icons into base directory $srm_steam_userdata_native"
     rsync -rlD --mkpath "$srm_steam_controller_profiles_binding_icons_path/" "$srm_steam_userdata_native/tenfoot/resource/images/library/controller/binding_icons/"
     rsync -rlD --mkpath "$srm_steam_controller_profiles_path/" "$srm_steam_userdata_native/controller_base/templates/"
   elif [[ ("$current_steam_sync_setting" == "flatpak" || "$mode" == "manual") && -d "$srm_steam_userdata_flatpak/controller_base/templates/" ]]; then
+    log d "Flatpak Steam install found, attempting to copy controller templates and binding icons into base directory $srm_steam_userdata_flatpak"
     rsync -rlD --mkpath "$srm_steam_controller_profiles_binding_icons_path/" "$srm_steam_userdata_flatpak/tenfoot/resource/images/library/controller/binding_icons/"
     rsync -rlD --mkpath "$srm_steam_controller_profiles_path/" "$srm_steam_userdata_flatpak/controller_base/templates/"
   else

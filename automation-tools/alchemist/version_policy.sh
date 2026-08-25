@@ -282,6 +282,13 @@ export KEGS_VERSION_POLICY="1.38"
 export PORTMASTER_VERSION_POLICY="latest"
 
 # ------------------------------------------------------------------------------
+# Quake3e - Quake III Arena Engine
+# Source: Binary
+# Link: https://github.com/ec-/Quake3e/releases
+# ------------------------------------------------------------------------------
+export QUAKE3E_VERSION_POLICY="latest"
+
+# ------------------------------------------------------------------------------
 # SimCoupé - MGT SAM Coupé Emulator
 # Source: Binary
 # Link: https://github.com/simonowen/simcoupe/releases/

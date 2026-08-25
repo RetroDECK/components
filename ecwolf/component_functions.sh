@@ -2,8 +2,10 @@
 
 export ecwolf_config="$XDG_CONFIG_HOME/ecwolf_rd.cfg"
 export ecwolf_config_path="$XDG_CONFIG_HOME/ecwolf"
-export ecwolf_saves_path="$XDG_DATA_HOME/ecwolf/saves"
-export ecwolf_roms_path="$roms_path/wolf"
+export ecwolf_data_saves_path="$XDG_DATA_HOME/ecwolf/saves"
+export ecwolf_data_screenshots_path="$XDG_DATA_HOME/ecwolf/screenshots"
+export ecwolf_roms_path="$roms_path/wolfenstein"
+
 
 _prepare_component::ecwolf() {
     # Setting component name and path based on the directory name
@@ -16,7 +18,8 @@ _prepare_component::ecwolf() {
     log i "Preparing $component_name"
     log i "----------------------"
 
-    dir_prep "$saves_path/ecwolf" "$ecwolf_saves_path"
+    dir_prep "$saves_path/wolfenstein" "$ecwolf_data_saves_path"
+    dir_prep "$screenshots_path/ecwolf" "$ecwolf_data_screenshots_path"
     rm -vrf "$ecwolf_rd_cfg"
     create_dir "$ecwolf_config_path"
     cp -v "$component_config/ecwolf_rd.cfg" "$ecwolf_rd_cfg"
@@ -28,7 +31,8 @@ _prepare_component::ecwolf() {
     log i "Post-moving $component_name"
     log i "----------------------"
 
-    dir_prep "$saves_path/ecwolf" "$ecwolf_saves_path"
+    dir_prep "$saves_path/wolfenstein" "$ecwolf_data_saves_path"
+    dir_prep "$screenshots_path/ecwolf" "$ecwolf_data_screenshots_path"
     
     fi    
 }

@@ -57,7 +57,7 @@ pretty_wolf3d_version() {
     wl1) echo "Wolfenstein 3D (Shareware)" ;;
     sdm) echo "Spear of Destiny (Demo)" ;;
     sod) echo "Spear of Destiny (Full)" ;;
-    sd1) echo "Spear of Destiny - Mission Pack 1 - Return to Danger" ;;
+    sd1) echo "Spear of Destiny - Alternative" ;;
     sd2) echo "Spear of Destiny - Mission Pack 2 - Return to Danger" ;;
     sd3) echo "Spear of Destiny - Mission Pack 3 - Ultimate Challenge" ;;
     n3d) echo "Super 3D Noah’s Ark" ;;
@@ -86,7 +86,7 @@ wolf3d_data_hashes=(
   [sod.maphead]="276c79a4a6419db6b23e7699e41cb9fa"
   [sod.vswap]="b1dac0a8786c7cdbb09331a4eba00652"
 
-  # sd1 hashes: many releases ship sd1 identical to sod (base SoD repackaged as MP1)
+  # It's the same game as SOD. Some releases used .SD1 instead of .SOD for original Spear of Destiny campaign.
   [sd1.gamemaps]="04f16534235b4b57fc379d5709f88f4a"
   [sd1.maphead]="276c79a4a6419db6b23e7699e41cb9fa"
   [sd1.vswap]="b1dac0a8786c7cdbb09331a4eba00652"
@@ -188,7 +188,7 @@ normalize_wolf3d_version_key() {
 # Mode "default" uses legacy priority: wl6 -> wl1 -> sdm -> sod -> sd1 -> sd2 -> sd3 -> n3d.
 # Mode "mod" uses mod-friendly order (full/packs first, shareware last): wl6 -> sod -> sd1 -> sd2 -> sd3 -> n3d -> sdm -> wl1.
 find_wolf3d_wolf_folder() {
-  local root="${1:-${roms_path}/wolf}"
+  local root="${1:-${roms_path}/wolfenstein}"
   local preferred_version="${2:-}"
   local mode="${3:-default}"
 
@@ -273,18 +273,18 @@ parse_wolf_mod_file() {
 # Requires: mod_files, mod_data_override, mod_folder set.
 setup_mod_launch() {
   if [[ -n "$mod_data_override" ]]; then
-    iwad_folder="$(find_wolf3d_wolf_folder "$roms_path/wolf" "$mod_data_override" "mod")" || {
-      log e "Base IWAD '$mod_data_override' specified in '$mod_wolf_file' not found in $roms_path/wolf"
+    iwad_folder="$(find_wolf3d_wolf_folder "$roms_path/wolfenstein" "$mod_data_override" "mod")" || {
+      log e "Base IWAD '$mod_data_override' specified in '$mod_wolf_file' not found in $roms_path/wolfenstein"
       exit 1
     }
   elif [[ ${#mod_files[@]} -gt 0 ]]; then
-    iwad_folder="$(find_wolf3d_wolf_folder "$roms_path/wolf" "wl6" "mod")" || {
+    iwad_folder="$(find_wolf3d_wolf_folder "$roms_path/wolfenstein" "wl6" "mod")" || {
       log e "No default WL6 IWAD found for mod; mod requires at least one valid base IWAD"
       exit 1
     }
   else
-    iwad_folder="$(find_wolf3d_wolf_folder "$roms_path/wolf" "" "mod")" || {
-      log e "No IWAD found in $roms_path/wolf"
+    iwad_folder="$(find_wolf3d_wolf_folder "$roms_path/wolfenstein" "" "mod")" || {
+      log e "No IWAD found in $roms_path/wolfenstein"
       exit 1
     }
   fi
@@ -340,9 +340,9 @@ elif [[ -d "$input_path" ]]; then
       parse_wolf_mod_file "$mod_wolf_file" || exit 1
       setup_mod_launch
     else
-      log i "No IWAD detected in '$input_path', auto-detecting under $roms_path/wolf"
-      iwad_folder="$(find_wolf3d_wolf_folder "$roms_path/wolf")" || {
-        log e "No valid Wolf3D data folder found under $roms_path/wolf"
+      log i "No IWAD detected in '$input_path', auto-detecting under $roms_path/wolfenstein"
+      iwad_folder="$(find_wolf3d_wolf_folder "$roms_path/wolfenstein")" || {
+        log e "No valid Wolf3D data folder found under $roms_path/wolfenstein"
         exit 1
       }
       version="$(detect_wolf3d_version "$iwad_folder")"
@@ -352,9 +352,9 @@ elif [[ -d "$input_path" ]]; then
     fi
   fi
 else
-  log i "Input path '$input_path' not a file or directory; auto-detecting IWAD in $roms_path/wolf"
-  iwad_folder="$(find_wolf3d_wolf_folder "$roms_path/wolf")" || {
-    log e "No valid Wolf3D data folder found under $roms_path/wolf"
+  log i "Input path '$input_path' not a file or directory; auto-detecting IWAD in $roms_path/wolfenstein"
+  iwad_folder="$(find_wolf3d_wolf_folder "$roms_path/wolfenstein")" || {
+    log e "No valid Wolf3D data folder found under $roms_path/wolfenstein"
     exit 1
   }
   version="$(detect_wolf3d_version "$iwad_folder")"

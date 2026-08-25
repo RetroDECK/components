@@ -7,7 +7,7 @@
       "reset",
       "open"
     ],
-    "description": "Quake engine based on QuakeSpasm for playing classic Quake and other Quake engine games.",
+    "description": "Quake engine based on QuakeSpasm for playing classic Quake and mods.",
     "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_engine_guides/ironwail/ironwail-guide/",
     "url_donation_purchase": "",
     "url_source": "https://github.com/andrei-drexler/ironwail/",

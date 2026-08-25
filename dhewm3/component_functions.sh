@@ -20,8 +20,9 @@ _prepare_component::dhewm3() {
       cp -fr "$component_config/"* "$XDG_CONFIG_HOME/dhewm3/"
 
       create_dir "$roms_path/doom3/d3xp"
+      create_dir "$roms_path/doom3/base"
 
-      # The entire DATA_HOME needs to be to Doom 3 for the mods to work
+      # XDG_DATA_HOME must be symlinked to the DOOM 3 directory for mods to work.
 
       dir_prep "$roms_path/doom3" "$XDG_DATA_HOME/dhewm3"
 
@@ -32,7 +33,7 @@ _prepare_component::dhewm3() {
       log i "Post-moving dhewm 3"
       log i "------------------------"
 
-      # The entire DATA_HOME needs to be to Doom 3 for the mods to work
+      # XDG_DATA_HOME must be symlinked to the DOOM 3 directory for mods to work.
       
       dir_prep "$roms_path/doom3" "$XDG_DATA_HOME/dhewm3"
 
@@ -40,7 +41,7 @@ _prepare_component::dhewm3() {
 
   esac
 }
-_post_update::uzdoom() {
+_post_update::dhewm3() {
   local previous_version="$1"
 
 }

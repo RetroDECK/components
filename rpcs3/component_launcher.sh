@@ -9,6 +9,7 @@ component_path="$(cd "$(dirname "${BASH_SOURCE[0]}" )" && pwd)"
 export LD_LIBRARY_PATH="$component_path/lib:${DEFAULT_LD_LIBRARY_PATH}"
 export QT_PLUGIN_PATH="${QT_PLUGIN_PATH}"
 export QT_QPA_PLATFORM_PLUGIN_PATH="${QT_QPA_PLATFORM_PLUGIN_PATH}"
+unset FLATPAK_ID
 
 log i "RetroDECK is now launching $component_name"
 log d "Library path is: $LD_LIBRARY_PATH"
