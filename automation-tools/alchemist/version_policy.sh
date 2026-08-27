@@ -345,7 +345,7 @@ export DUCKSTATION_VERSION_POLICY="preview"
 # Source: AppImage (RetroDECK-built)
 # Link: https://github.com/RetroDECK/ES-DE/releases
 # ------------------------------------------------------------------------------
-export ES_DE_VERSION_POLICY="feat-romm-integration-20260826-235646"
+export ES_DE_VERSION_POLICY="feat-romm-integration-20260827-062348"
 
 # ------------------------------------------------------------------------------
 # Mudlet - MUD Client
