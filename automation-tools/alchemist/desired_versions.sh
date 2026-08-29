@@ -56,8 +56,8 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # Link: https://flathub.org/en/apps/org.azahar_emu.Azahar
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
-# Version: 2125.1.1
-  export AZAHAR_DESIRED_VERSION="fd0b3050e4da6a7df8915f63fb8c1d551c7ca8c684568dc62c1681fd316a288c"
+# Version: 2126.0
+  export AZAHAR_DESIRED_VERSION="31a62030cd75ecb24cfa766e410ecb861ef5a517f150fed726d1eaa757e79ca0"
 
 # COOKER (Override)
 # export AZAHAR_DESIRED_VERSION="latest"
@@ -82,8 +82,8 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # Link: https://flathub.org/en/apps/org.DolphinEmu.dolphin-emu
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
-# Version: 2603a
-  export DOLPHIN_DESIRED_VERSION="798fc13ec9f60c686a5478c0b1409901b375a4fd39a0a95139a3af662741423e"
+# Version: 2606a
+  export DOLPHIN_DESIRED_VERSION="1b150924d3216b59a3717245955cd7f3c7649edd0fecf39ebb697a0bd24304be"
 
 # COOKER (Override)
 # export DOLPHIN_DESIRED_VERSION="latest"
@@ -108,8 +108,8 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # Link: https://flathub.org/en/apps/org.mamedev.MAME
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
-# Version: 0.287
- export MAME_DESIRED_VERSION="3dbe7b7f802da3b0c1628d604bee9925d67174a5efb7e4ae2235266ce2946739"
+# Version: 0.289
+ export MAME_DESIRED_VERSION="41ebdb5c266627f4d1f02ba11f8109e793d2381081b68afc48714dd48a703788"
 
 # COOKER (Override)
 #  export MAME_DESIRED_VERSION="latest"
@@ -150,8 +150,8 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # Link: https://flathub.org/en/apps/rs.ruffle.Ruffle
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
-# Version: 0.2.0
- export RUFFLE_DESIRED_VERSION="37f584d0df86cb04ea4479f0c0f274241adc8692a16a6dc1b0b9d293b7f72685"
+# Version: 0.5.0
+ export RUFFLE_DESIRED_VERSION="acc78770a5eb822c6d70ab3eb66a7626722c3ebfaab3aa985797ee81bb79ebfa"
 
 # COOKER (Override)
 # export RUFFLE_DESIRED_VERSION="latest"
@@ -163,8 +163,8 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # Link: https://flathub.org/en/apps/com.steamgriddb.steam-rom-manager
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
-# Version: 2.5.34
-  export STEAM_ROM_MANAGER_DESIRED_VERSION="b563c9f81ecad09e9a19f5093484fc00ba08fb375b81542e8d889b15fe9f7bff"
+# Version: 2.5.44
+  export STEAM_ROM_MANAGER_DESIRED_VERSION="c1eebb375d6ca39f4d417c4cb862a62099eb43a6fb2e3392977739770abee96f"
 
 # COOKER (Override)
 # export STEAM_ROM_MANAGER_DESIRED_VERSION="latest"
@@ -176,8 +176,8 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # Link: https://flathub.org/en/apps/app.xemu.xemu
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
-# Version: 0.8.135
- export XEMU_DESIRED_VERSION="998fb7d93048da8b4dc98665d09f7e81ff4e73bedb732b67b7ad97a6f55d4316"
+# Version: 0.8.136
+ export XEMU_DESIRED_VERSION="2f8b8889edcf69fb2ba2a8691371a7bb49febeba360e9c87555379c50ba946e9"
 
 # COOKER (Override)
 # export XEMU_DESIRED_VERSION="latest"
@@ -198,7 +198,7 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # Link: https://github.com/RPCS3/rpcs3-binaries-linux/
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
-# Version: 0.0.40-19397
+# Version: 0.0.42-19873
   export RPCS3_DESIRED_VERSION="latest"
 
 # COOKER (Override)
@@ -223,7 +223,7 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # Link: https://github.com/PCSX2/pcsx2/releases/
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
-  export PCSX2_DESIRED_VERSION="v2.6.3"
+  export PCSX2_DESIRED_VERSION="v2.8.0"
 
 # COOKER (Override)
 # export PCSX2_DESIRED_VERSION="newest"
@@ -246,7 +246,7 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # Link: https://gitlab.com/solarus-games/solarus/-/releases/
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
-  export SOLARUS_DESIRED_VERSION="v2.0.4"
+  export SOLARUS_DESIRED_VERSION="v2.1.3"
 
 # COOKER (Override)
 # export SOLARUS_DESIRED_VERSION="latest"
@@ -343,7 +343,7 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # ------------------------------------------------------------------------------
 # Vita3K - PlayStation Vita Emulator
 # Source: AppImage (RetroDECK-mirrored)
-# Link: https://github.com/RetroDECK/Vita3K-bin/releases
+# Link: https://github.com/Vita3K/Vita3K-builds/releases
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
   export VITA3K_DESIRED_VERSION="3996"
@@ -646,30 +646,3 @@ else
     export FRAMEWORK_DESIRED_VERSION="main-latest on $(date +%Y-%m-%d)"
 fi
 
-# ==============================================================================
-#  Component Desired Versions - Removed
-# ==============================================================================
-#  Components that has been removed or was never included into RetroDECK 
-#  due to some factor.
-# ==============================================================================
-
-
-# ------------------------------------------------------------------------------
-# Eden - Nintendo Switch Emulator
-# ------------------------------------------------------------------------------
-# MAIN (Stable)
-# export EDEN_DESIRED_VERSION="latest"
-
-# COOKER (Override)
-  export EDEN_DESIRED_VERSION="latest"
-
-# ------------------------------------------------------------------------------
-# Ryubing - Nintendo Switch Emulator
-# Source: AppImage
-# Link: https://git.ryujinx.app/ryubing/ryujinx/-/releases/
-# ------------------------------------------------------------------------------
-# MAIN (Stable)
-  export RYUBING_DESIRED_VERSION="latest"
-
-# COOKER (Override)
-# export RYUBING_DESIRED_VERSION="latest"
