@@ -68,6 +68,19 @@
       ]
     },
     {
+      "source_url": "https://raw.githubusercontent.com/Saramagrean/CWCheat-Database-Plus-/refs/heads/master/cheat.db",
+      "version": "latest",
+      "source_type": "http",
+      "extraction_type": "local",
+      "assets": [
+        {
+          "type": "file",
+          "source": "$WORKDIR/cheat.db",
+          "dest": "rd_extras"
+        }
+      ]
+    },
+    {
       "source_url": "https://github.com/hrydgard/ppsspp/archive/refs/heads/master.zip",
       "source_type": "http",
       "extraction_type": "archive",
