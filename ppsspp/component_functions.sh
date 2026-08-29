@@ -97,7 +97,7 @@ _prepare_component::ppsspp() {
         log i "PPSSPP cheats backed up to $backup_file"
       fi
 
-      unzip -q -o -j "$component_extras/CWCheat-Database-Plus--master.zip" "*/cheat.db" -d "$cheats_path/PPSSPP"
+      cp -fv "$component_extras/cheat.db" "$cheats_path/PPSSPP"
 
       log i "Preparing PPSSPP BIOS"
       create_dir -d "$bios_path/PPSSPP"
