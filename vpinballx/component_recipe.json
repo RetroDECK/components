@@ -120,6 +120,11 @@
           "dest": "$COMPONENT_ARTIFACT_ROOT"
         },
         {
+          "library": "libwinevbs.so.0",
+          "source": "$EXTRACTED_PATH",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
           "library": "libserialport.so",
           "source": "$EXTRACTED_PATH/plugins/dmdutil",
           "dest": "$COMPONENT_ARTIFACT_ROOT"
