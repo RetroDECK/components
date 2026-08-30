@@ -319,7 +319,7 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # Link: https://github.com/RetroDECK/XRoar/releases
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
-# Version: 1.10
+# Version: 1.12.1
   export XROAR_DESIRED_VERSION="latest"
 
 # COOKER (Override)
