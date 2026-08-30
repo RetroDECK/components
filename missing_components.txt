@@ -1,1 +1,11 @@
-
+primehack
+framework
+mame
+vita3k
+ppsspp
+dolphin
+xemu
+cemu
+steam-rom-manager
+portmaster
+retroarch

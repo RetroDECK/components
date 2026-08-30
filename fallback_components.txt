@@ -1,0 +1,11 @@
+primehack|cooker-20260830-1852
+framework|cooker-20260830-1852
+mame|cooker-20260830-1852
+vita3k|cooker-20260830-1854
+ppsspp|cooker-20260830-1852
+dolphin|cooker-20260830-1852
+xemu|cooker-20260830-1854
+cemu|cooker-20260830-1852
+steam-rom-manager|cooker-20260830-1854
+portmaster|cooker-20260830-1854
+retroarch|cooker-20260830-1854
