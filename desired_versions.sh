@@ -346,10 +346,290 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # Link: https://github.com/Vita3K/Vita3K-builds/releases
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
-  export VITA3K_DESIRED_VERSION="4074"
+  export VITA3K_DESIRED_VERSION="3996"
 
 # COOKER (Override)
 # export VITA3K_DESIRED_VERSION="latest"
+
+
+
+
+# ==============================================================================
+#  Component Desired Versions - Future
+# ==============================================================================
+#  New components being developed in the Cooker branch for an upcoming major release.
+#  These components are planned for future inclusion and are not yet part of the
+#  current stable version.
+# ==============================================================================
+
+# ------------------------------------------------------------------------------
+# Adventure Game Studio
+# ------------------------------------------------------------------------------
+# MAIN (Stable)
+# export AGS_DESIRED_VERSION="newest"
+
+# COOKER (Override)
+  export AGS_DESIRED_VERSION="newest"
+
+
+# ------------------------------------------------------------------------------
+# Commander X16 8-bit Computer
+# ------------------------------------------------------------------------------
+# MAIN (Stable)
+# export COMMANDER_X16_DESIRED_VERSION="latest"
+
+# COOKER (Override)
+  export COMMANDER_X16_DESIRED_VERSION="latest"
+
+# ------------------------------------------------------------------------------
+# DOSBox-X - Enhanced DOSBox Engine
+# ------------------------------------------------------------------------------
+# MAIN (Stable)
+# export DOSBOX_X_DESIRED_VERSION="latest"
+
+# COOKER (Override)
+  export DOSBOX_X_DESIRED_VERSION="latest"
+
+
+# ------------------------------------------------------------------------------
+# ECWOLF - Wolfenstein 3D Engine
+# ------------------------------------------------------------------------------
+# MAIN (Stable)
+# export ECWOLF_DESIRED_VERSION="latest"
+
+# COOKER (Override)
+  export ECWOLF_DESIRED_VERSION="latest"
+
+
+# ------------------------------------------------------------------------------
+# EKA2L1 - Symbian OS Emulator
+# ------------------------------------------------------------------------------
+# MAIN (Stable)
+# export EKA2L1_DESIRED_VERSION="latest"
+
+# COOKER (Override)
+  export EKA2L1_DESIRED_VERSION="latest"
+
+# ------------------------------------------------------------------------------
+# FS-UAE - Amiga Emulator
+# ------------------------------------------------------------------------------
+# MAIN (Stable)
+# export FS_UAE_DESIRED_VERSION=""
+
+# COOKER (Override)
+  export FS_UAE_DESIRED_VERSION="latest"
+
+
+# ------------------------------------------------------------------------------
+# Flycast - Dreamcast Emulator
+# ------------------------------------------------------------------------------
+# MAIN (Stable)
+# export FLYCAST_DESIRED_VERSION="latest"
+
+# COOKER (Override)
+  export FLYCAST_DESIRED_VERSION="latest"
+
+
+# ------------------------------------------------------------------------------
+# Gargoyle - Interactive Fiction Emulator
+# ------------------------------------------------------------------------------
+# MAIN (Stable)
+# export GARGOYLE_DESIRED_VERSION=""
+
+# COOKER (Override)
+  export GARGOYLE_DESIRED_VERSION="latest"
+
+
+# ------------------------------------------------------------------------------
+# Hypseus - Laser Disc Arcade Emulator
+# ------------------------------------------------------------------------------
+# MAIN (Stable)
+# export HYPSEUS_DESIRED_VERSION=""
+
+# COOKER (Override)
+  export HYPSEUS_DESIRED_VERSION="latest"
+
+
+# ------------------------------------------------------------------------------
+# Ironwail - Quake Engine
+# ------------------------------------------------------------------------------
+# MAIN (Stable)
+# export IRONWAIL_DESIRED_VERSION="latest"
+
+# COOKER (Override)
+  export IRONWAIL_DESIRED_VERSION="latest"
+
+# ------------------------------------------------------------------------------
+# Ikeman Go - Fighting Engine
+# ------------------------------------------------------------------------------
+# MAIN (Stable)
+# export IKEMANGO_DESIRED_VERSION="latest"
+
+# COOKER (Override)
+  export IKEMANGO_DESIRED_VERSION="latest"
+
+
+# ------------------------------------------------------------------------------
+# KEGS - Apple IIGS Emulator
+# ------------------------------------------------------------------------------
+# MAIN (Stable)
+# export KEGS_DESIRED_VERSION="1.38"
+
+# COOKER (Override)
+  export KEGS_DESIRED_VERSION="1.38"
+
+
+# ------------------------------------------------------------------------------
+# Lindbergh - SEGA Lindbergh Emulator
+# ------------------------------------------------------------------------------
+# MAIN (Stable)
+# export LINDBERGH_DESIRED_VERSION="latest"
+
+# COOKER (Override)
+  export LINDBERGH_DESIRED_VERSION="latest"
+
+# ------------------------------------------------------------------------------
+# Mednafen - Multi Emulator
+# ------------------------------------------------------------------------------
+# MAIN (Stable)
+# export MEDNAFEN_DESIRED_VERSION="latest"
+
+# COOKER (Override)
+  export MEDNAFEN_DESIRED_VERSION="latest"
+
+# ------------------------------------------------------------------------------
+# Mudlet - MUD Client
+# ------------------------------------------------------------------------------
+# MAIN (Stable)
+# export MUDLET_DESIRED_VERSION="latest"
+
+# COOKER (Override)
+  export MUDLET_DESIRED_VERSION="latest"
+
+# ------------------------------------------------------------------------------
+# Open Surge Engine - 2D Game Engine
+# ------------------------------------------------------------------------------
+# MAIN (Stable)
+# export OPENSURGE_DESIRED_VERSION="latest"
+
+# COOKER (Override)
+  export OPENSURGE_DESIRED_VERSION="latest"
+
+
+# ------------------------------------------------------------------------------
+# Orictron - Oric-1/Atmos/Telestrat/Pravetz 8D emulator
+# ------------------------------------------------------------------------------
+# MAIN (Stable)
+# export ORICUTRON_DESIRED_VERSION="20260123"
+
+# COOKER (Override)
+  export ORICUTRON_DESIRED_VERSION="20260123"
+
+# ------------------------------------------------------------------------------
+# Raze - Duke Nukem Engine
+# ------------------------------------------------------------------------------
+# MAIN (Stable)
+# export RAZE_DESIRED_VERSION="latest"
+
+# COOKER (Override)
+  export RAZE_DESIRED_VERSION="latest"
+
+
+# ------------------------------------------------------------------------------
+# ScummVM - Point-and-Click Adventure Engine
+# ------------------------------------------------------------------------------
+# MAIN (Stable)
+# export SCUMMVM_DESIRED_VERSION="latest"
+
+# COOKER (Override)
+  export SCUMMVM_DESIRED_VERSION="latest"
+
+
+# ------------------------------------------------------------------------------
+# SDL2TRS - TRS-80 Model I/III/4/4P Emulator 
+# ------------------------------------------------------------------------------
+# MAIN (Stable)
+# export SDL2TRS_DESIRED_VERSION="latest"
+
+# COOKER (Override)
+  export SDL2TRS_DESIRED_VERSION="latest"
+
+# ------------------------------------------------------------------------------
+# ShadPS4 - PlayStation 4 Emulator
+# ------------------------------------------------------------------------------
+# MAIN (Stable)
+# export SHADPS4_DESIRED_VERSION="latest"
+
+# COOKER (Override)
+  export SHADPS4_DESIRED_VERSION="latest"
+
+
+# ------------------------------------------------------------------------------
+# SimCoupe - SAM Coupé Emulator
+# ------------------------------------------------------------------------------
+# MAIN (Stable)
+# export SIMCOUPE_DESIRED_VERSION="latest"
+
+# COOKER (Override)
+  export SIMCOUPE_DESIRED_VERSION="latest"
+
+
+# ------------------------------------------------------------------------------
+# SuperModel - SEGA Model 3 Arcade Emulator
+# ------------------------------------------------------------------------------
+# MAIN (Stable)
+# export SUPERMODEL_DESIRED_VERSION="latest"
+
+# COOKER (Override)
+  export SUPERMODEL_DESIRED_VERSION="latest"
+
+
+# ------------------------------------------------------------------------------
+# Tsugaru - FM TOWNS Emulator
+# ------------------------------------------------------------------------------
+# MAIN (Stable)
+# export SUPERMODEL_DESIRED_VERSION="newest"
+
+# COOKER (Override)
+  export TSUGARU_DESIRED_VERSION="newest"
+
+# ------------------------------------------------------------------------------
+# UZDoom - Modern Doom Engine
+# ------------------------------------------------------------------------------
+# MAIN (Stable)
+# export UZDOOM_DESIRED_VERSION="latest"
+
+# COOKER (Override)
+  export UZDOOM_DESIRED_VERSION="latest"
+
+
+# ------------------------------------------------------------------------------
+# VPinball - Virtual Pinball Engine
+# ------------------------------------------------------------------------------
+# MAIN (Stable)
+# export VPINBALL_DESIRED_VERSION="newest"
+
+# COOKER (Override)
+  export VPINBALL_DESIRED_VERSION="newest"
+
+
+# ------------------------------------------------------------------------------
+# Xenia Edge - Xbox 360 Emulator
+# ------------------------------------------------------------------------------
+# MAIN (Stable)
+# export XENIA_EDGE_DESIRED_VERSION="newest"
+
+# COOKER (Override)
+  export XENIA_EDGE_DESIRED_VERSION="newest"
+
+# ------------------------------------------------------------------------------
+# ZEsarUX - ZX Second-Emulator
+# ------------------------------------------------------------------------------
+# MAIN (Stable)
+# export ZESARUX_DESIRED_VERSION="latest"
+
+# COOKER (Override)
+  export ZESARUX_DESIRED_VERSION="latest"
 
 
 # ------------------------------------------------------------------
