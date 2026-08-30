@@ -1,1 +1,9 @@
-
+primehack
+framework
+azahar
+solarus
+xemu
+ruffle
+steam-rom-manager
+portmaster
+retroarch

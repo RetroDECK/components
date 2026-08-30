@@ -1,0 +1,9 @@
+primehack|cooker-20260830-1834
+framework|cooker-20260830-1834
+azahar|cooker-20260830-1834
+solarus|cooker-20260830-1834
+xemu|cooker-20260830-1834
+ruffle|cooker-20260830-1834
+steam-rom-manager|cooker-20260830-1834
+portmaster|cooker-20260830-1834
+retroarch|cooker-20260830-1834
