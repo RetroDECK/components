@@ -3,10 +3,7 @@
     "name": "Visual Pinball X",
     "core_framework_compatibility": "1",
     "component_version": "1.0.0",
-    "capabilities": [
-      "reset",
-      "open"
-    ],
+    "capabilities": "reset",
     "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_engine_guides/vpinballx/vpinballx-guide/",
     "url_webpage": "https://www.vpforums.org/",
     "url_donation_purchase": "",
