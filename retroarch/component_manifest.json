@@ -2674,7 +2674,7 @@
             {
               "label": "ScummVM",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/scummvm_libretro.so %ROM%",
-              "priority": 10
+              "priority": 20
             }
           ],
           "platform": "scummvm",
