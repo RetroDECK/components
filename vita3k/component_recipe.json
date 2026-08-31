@@ -18,6 +18,26 @@
         },
         {
           "type": "dir",
+          "source": "usr/share/VITA3K_APP_NAME/",
+          "dest": "share/VITA3K_APP_NAME/"
+        },
+        {
+          "type": "dir",
+          "source": "usr/share/doc/",
+          "dest": "docs"
+        },
+        {
+          "type": "dir",
+          "source": "usr/plugins/",
+          "dest": "plugins"
+        },
+        {
+          "type": "dir",
+          "source": "usr/translations/",
+          "dest": "translations"
+        },
+        {
+          "type": "dir",
           "source": "$REPO_ROOT/$COMPONENT_NAME",
           "dest": "$COMPONENT_ARTIFACT_ROOT"
         },
