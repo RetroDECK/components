@@ -13,13 +13,28 @@
         },
         {
           "type": "dir",
-          "source": "usr/share/Vita3K/",
-          "dest": "share/Vita3K/"
+          "source": "usr/share/Vita3K/gui-configs/",
+          "dest": "bin/gui-configs/"
+        },
+        {
+          "type": "dir",
+          "source": "usr/share/Vita3K/shaders-builtin/",
+          "dest": "bin/shaders-builtin/"
+        },
+        {
+          "type": "dir",
+          "source": "usr/share/Vita3K/translations/",
+          "dest": "bin/translations/"
+        },
+        {
+          "type": "dir",
+          "source": "usr/translations/",
+          "dest": "bin/translations/"
         },
         {
           "type": "dir",
           "source": "usr/share/VITA3K_APP_NAME/",
-          "dest": "share/VITA3K_APP_NAME/"
+          "dest": "bin/VITA3K_APP_NAME/"
         },
         {
           "type": "dir",
@@ -30,11 +45,6 @@
           "type": "dir",
           "source": "usr/plugins/",
           "dest": "plugins"
-        },
-        {
-          "type": "dir",
-          "source": "usr/translations/",
-          "dest": "translations"
         },
         {
           "type": "dir",
