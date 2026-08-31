@@ -23,7 +23,12 @@
         },
         {
           "type": "dir",
-          "source": "usr/share/Vita3K/shaders-builtin/",
+          "source": "usr/share/Vita3K/translations/",
+          "dest": "bin/translations/"
+        },
+        {
+          "type": "dir",
+          "source": "usr/translations/",
           "dest": "bin/translations/"
         },
         {
@@ -40,11 +45,6 @@
           "type": "dir",
           "source": "usr/plugins/",
           "dest": "plugins"
-        },
-        {
-          "type": "dir",
-          "source": "usr/translations/",
-          "dest": "usr/translations"
         },
         {
           "type": "dir",
