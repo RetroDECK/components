@@ -2645,7 +2645,12 @@
         },
         {
           "filename": "naomi2.zip",
-          "md5": "9b85e0de6ef359e5006c9b79a5a266b0",
+          "md5": [
+            "c50072cbab75673e1b1a6b94355e6fa8",
+            "843c0d51237dc945f57237c4b9872b1d",
+            "339c59ece7d4d6803880c91bbb44ac93",
+            "dfaae8d206ffb390ed1cf9529ccc123d"
+          ],
           "system": "dreamcast",
           "description": "Naomi 2 BIOS",
           "paths": "$bios_path/dc"
@@ -4376,7 +4381,7 @@
         },
         {
           "filename": "yrw801.rom",
-          "md5": "32760893ce06db3e3930627755ba065c",
+          "md5": "42af93619160ef2116416f74a6cb12f2",
           "system": "msx",
           "description": "YR-W801 system ROM"
         },
