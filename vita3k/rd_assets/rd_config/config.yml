@@ -81,7 +81,7 @@ keyboard-rightstick-right: KeyL
 keyboard-rightstick-up: KeyI
 keyboard-rightstick-down: KeyK
 keyboard-button-psbutton: KeyP
-keyboard-gui-fullscreen: F11
+keyboard-gui-fullscreen: Tab
 keyboard-gui-toggle-touch: KeyT
 keyboard-toggle-texture-replacement: Unbound
 keyboard-take-screenshot: Unbound
