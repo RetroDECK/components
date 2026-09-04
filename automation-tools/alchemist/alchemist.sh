@@ -137,7 +137,7 @@ transmute() {
       exit 1
     fi
 
-    sha256sum "$artifact_tar_file" > "$artifact_sha_file"
+    ( cd "$final_artifact_dir" && sha256sum "$artifact_tar_file" > "$artifact_sha_file" )
 
     if [[ -d "$WORKDIR" ]]; then
       log info "Cleaning up work dir $WORKDIR"
