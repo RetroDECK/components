@@ -416,7 +416,6 @@ jobs:
           fi
 
       - name: Install build dependencies
-        if: matrix.can_reuse == false
         run: |
           echo "Installing build dependencies..."
 
