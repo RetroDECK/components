@@ -20,7 +20,7 @@
         {
           "type": "dir",
           "source": "share/games/uzdoom",
-          "dest": "bin"
+          "dest": "share/games/uzdoom"
         },
         {
           "type": "dir",

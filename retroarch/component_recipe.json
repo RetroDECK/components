@@ -23,11 +23,6 @@
         },
         {
           "type": "merge",
-          "source": "$REPO_ROOT/$COMPONENT_NAME/rd_assets/rd_extras/applewin_libretro",
-          "dest": "$WORKDIR/cores"
-        },
-        {
-          "type": "merge",
           "source": "$REPO_ROOT/$COMPONENT_NAME/rd_assets/rd_extras/genesis_plus_gx_paprium_libretro",
           "dest": "$WORKDIR/cores"
         },
@@ -67,8 +62,8 @@
           "dest": "helper_files"
         },
         {
-          "type": "file",
-          "source": "$REPO_ROOT/$COMPONENT_NAME/rd_assets/rd_extras/ScummVM.zip",
+          "type": "tar.gz",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/rd_assets/rd_extras/supermodel.tar.gz",
           "dest": "rd_extras"
         },
         {
