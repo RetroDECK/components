@@ -191,11 +191,6 @@ parse_args() {
         export DRYRUN="true"
         shift 1
         ;;
-      -r|--resolve-versions)
-        export RESOLVE_VERSION="true"
-        export DRYRUN="true"
-        shift 1
-        ;;
       *)
         echo "Unknown option: $1"
         exit 1
