@@ -13,6 +13,11 @@
           "dest": "bin"
         },
         {
+          "type": "file",
+          "source": "lib/libenet.a",
+          "dest": "lib"
+        },
+        {
           "type": "create",
           "dest": "component_version",
           "contents": "$SOURCE_VERSION"
@@ -68,6 +73,47 @@
         {
           "library": "libfaad.so.2",
           "source": "lib",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libfaad_drm.so.2",
+          "source": "lib",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libQt6Multimedia.so.6",
+          "runtime_name": "org.kde.Platform",
+          "runtime_version": "6.10",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libQt6Network.so.6",
+          "runtime_name": "org.kde.Platform",
+          "runtime_version": "6.10",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libQt6Gui.so.6",
+          "runtime_name": "org.kde.Platform",
+          "runtime_version": "6.10",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libQt6DBus.so.6",
+          "runtime_name": "org.kde.Platform",
+          "runtime_version": "6.10",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libQt6Core.so.6",
+          "runtime_name": "org.kde.Platform",
+          "runtime_version": "6.10",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libQt6Widgets.so.6",
+          "runtime_name": "org.kde.Platform",
+          "runtime_version": "6.10",
           "dest": "shared-libs"
         }
       ]
