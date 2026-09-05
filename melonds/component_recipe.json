@@ -13,9 +13,14 @@
           "dest": "bin"
         },
         {
-          "type": "file",
-          "source": "lib/libenet.a",
+          "type": "dir",
+          "source": "lib",
           "dest": "lib"
+        },
+        {
+          "type": "dir",
+          "source": "share/licenses/net.kuribo64.melonDS/",
+          "dest": "docs"
         },
         {
           "type": "create",
@@ -59,27 +64,6 @@
         }
       ],
       "libs": [
-        {
-          "library": "libevdev.so.2",
-          "runtime_name": "org.gnome.Platform",
-          "runtime_version": "49",
-          "dest": "shared-libs"
-        },
-        {
-          "library": "libenet.so.7",
-          "source": "lib",
-          "dest": "shared-libs"
-        },
-        {
-          "library": "libfaad.so.2",
-          "source": "lib",
-          "dest": "shared-libs"
-        },
-        {
-          "library": "libfaad_drm.so.2",
-          "source": "lib",
-          "dest": "shared-libs"
-        },
         {
           "library": "libQt6Multimedia.so.6",
           "runtime_name": "org.kde.Platform",
