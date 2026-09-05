@@ -4,7 +4,10 @@
     "name": "PortMaster",
     "core_framework_compatibility": "1",
     "component_version": "1.0.0",
-    "capabilities": ["reset","open"],
+    "capabilities": [
+      "reset",
+      "open"
+    ],
     "prepare_priority": {
       "startup": 90
     },
@@ -17,7 +20,9 @@
     "system": "portmaster",
     "backup_data": {
       "core": [
-        {"path": "$XDG_DATA_HOME/PortMaster"}
+        {
+          "path": "$XDG_DATA_HOME/PortMaster"
+        }
       ]
     },
     "component_options": {
@@ -72,10 +77,28 @@
               "priority": 10
             }
           ],
-          "platform": "portmaster",
+          "platform": "pc, pcwindows, dos",
           "theme": "portmaster"
         }
       ]
+    },
+    "es_de_gamelist_entries": {
+      "image_root": "%COMPONENT_PATH%/rd_extras/es_de_media",
+      "entries": {
+        "portmaster": {
+          "system": "portmaster",
+          "gamelist_data": {
+            "path": "PortMaster.sh",
+            "name": "PortMaster",
+            "desc": "PortMaster is a Linux game-port manager that lets users install, update and manage games.",
+            "releasedate": "20210921T000000",
+            "developer": "PortMaster Crew",
+            "publisher": "Various",
+            "genre": "Utilities",
+            "players": "1"
+          }
+        }
+      }
     },
     "helper_files": [
       {
