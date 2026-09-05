@@ -326,6 +326,24 @@
         }
       ]
     },
+    "es_de_gamelist_entries": {
+      "image_root": "%COMPONENT_PATH%/rd_extras/es_de_media",
+      "entries": {
+        "amigavision": {
+          "system": "amiga",
+          "gamelist_data": {
+            "path": "AmigaVision.fdi",
+            "name": "AmigaVision",
+            "desc": "A curated Amiga frontend and configuration package for browsing and launching Amiga games and demos.",
+            "releasedate": "20191009T000000",
+            "developer": "AmigaVision Team",
+            "publisher": "Various",
+            "genre": "Utilities",
+            "players": "1"
+          }
+        }
+      }
+    },
     "configurator_menus": {
       "es_de_entries": [
         {
