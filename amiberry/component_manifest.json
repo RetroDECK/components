@@ -1,18 +1,18 @@
 {
-  "fs-uae": {
-    "name": "FS-UAE",
+  "amiberry": {
+    "name": "amiberry",
     "core_framework_compatibility": "1",
     "component_version": "1.0.0",
     "capabilities": [
       "reset",
       "open"
     ],
-    "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/fs-uae/fs-uae-guide/",
-    "url_webpage": "https://fs-uae.net/",
-    "url_donation_purchase": "https://fs-uae.net/donate/",
-    "url_source": "https://github.com/FrodeSolheim/fs-uae",
-    "description": "Commodore Amiga emulator for running Amiga software and games.",
+    "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_engine_guides/amiberry/amiberry-guide/",
+    "url_webpage": "https://www.amiberry.org/",
+    "url_donation_purchase": "https://www.amiberry.org/",
+    "url_source": "https://www.amiberry.org/",
     "component_type": "Emulator",
+    "description": "Commodore Amiga emulator for running Amiga software and games.",
     "system_friendly_name": [
       "Amiga",
       "Amiga 1200",
@@ -204,6 +204,13 @@
         "required": "Required"
       },
       {
+        "filename": "AmigaVision.rom",
+        "md5": "646773759326fbac3b2311fd8c8793ee",
+        "system": "amiga",
+        "description": "Renamed Kickstart 3.1 ROM for Amiga 1200 for AmigaVision",
+        "required": "Required"
+      },
+      {
         "filename": "kick40068.A4000",
         "md5": "9bdedde6a4f33555b4a270c8ca53297d",
         "system": "amiga",
@@ -215,8 +222,8 @@
       "es_find_rules": {
         "emulators": [
           {
-            "name": "FS-UAE",
-            "description": "Commodore Amiga emulator FS-UAE",
+            "name": "AMIBERRY",
+            "description": "Commodore Amiga Emulator Amiberry",
             "rules": [
               {
                 "type": "staticpath",
@@ -236,19 +243,14 @@
           "extension": ".adf .adz .ccd .chd .cue .dms .fdi .hdf .hdz .ipf .iso .lha .m3u .mds .nrg .rp9 .uae .7z .zip",
           "commands": [
             {
-              "label": "FS-UAE (Standalone)",
-              "command": "%EMULATOR_FS-UAE% /var/config/fs-uae/RetroDECK-amiga1200.fs-uae %ROM%",
+              "label": "Amiberry (Standalone)",
+              "command": "%STARTDIR%=%EMUDIR% %EMULATOR_AMIBERRY% --autoload %ROM%",
               "priority": 30
             },
             {
-              "label": "FS-UAE AmigaVision (Standalone)",
-              "command": "%EMULATOR_FS-UAE% /var/config/fs-uae/AmigaVision.fs-uae",
+              "label": "Amiberry AmigaVision (Standalone)",
+              "command": "%STARTDIR%=%EMUDIR% %EMULATOR_AMIBERRY% --config /var/config/amiberry/AmigaVison.uae",
               "priority": 40
-            },
-            {
-              "label": "FS-UAE Custom (Standalone)",
-              "command": "%EMULATOR_FS-UAE% /var/config/fs-uae/custom-amiga.fs-uae %ROM%",
-              "priority": 50
             }
           ],
           "platform": "amiga",
@@ -261,14 +263,9 @@
           "extension": ".adf .adz .ccd .chd .cue .dms .fdi .hdf .hdz .ipf .iso .lha .m3u .mds .nrg .rp9 .uae .7z .zip",
           "commands": [
             {
-              "label": "FS-UAE (Standalone) Amiga 1200",
-              "command": "%EMULATOR_FS-UAE% /var/config/fs-uae/RetroDECK-amiga1200.fs-uae %ROM%",
+              "label": "Amiberry (Standalone) Amiga 1200",
+              "command": "%STARTDIR%=%EMUDIR% %EMULATOR_AMIBERRY% --autoload %ROM%",
               "priority": 30
-            },
-            {
-              "label": "FS-UAE (Standalone) Custom Amiga 1200",
-              "command": "%EMULATOR_FS-UAE% /var/config/fs-uae/Custom/custom-amiga1200.fs-uae %ROM%",
-              "priority": 40
             }
           ],
           "platform": "amiga1200",
@@ -281,14 +278,9 @@
           "extension": ".adf .adz .ccd .chd .cue .dms .fdi .hdf .hdz .ipf .iso .lha .m3u .mds .nrg .rp9 .uae .7z .zip",
           "commands": [
             {
-              "label": "FS-UAE (Standalone) Amiga 600",
-              "command": "%EMULATOR_FS-UAE% /var/config/fs-uae/RetroDECK-amiga600.fs-uae %ROM%",
+              "label": "Amiberry (Standalone) Amiga 600",
+              "command": "%STARTDIR%=%EMUDIR% %EMULATOR_AMIBERRY% --autoload %ROM%",
               "priority": 30
-            },
-            {
-              "label": "FS-UAE (Standalone) Custom Amiga 600",
-              "command": "%EMULATOR_FS-UAE% /var/config/fs-uae/Custom/custom-amiga600.fs-uae %ROM%",
-              "priority": 40
             }
           ],
           "platform": "amiga600",
@@ -301,8 +293,8 @@
           "extension": ".adf .adz .ccd .chd .cue .dms .fdi .hdf .hdz .ipf .iso .lha .m3u .mds .nrg .rp9 .uae .7z .zip",
           "commands": [
             {
-              "label": "FS-UAE (Standalone) CD32",
-              "command": "%EMULATOR_FS-UAE% /var/config/fs-uae/RetroDECK-amigacd32.fs-uae --config:amiga-model=CD32 %ROM%",
+              "label": "Amiberry (Standalone) CD32",
+              "command": "%STARTDIR%=%EMUDIR% %EMULATOR_AMIBERRY% --model CD32 --autoload %ROM%",
               "priority": 30
             }
           ],
@@ -316,8 +308,8 @@
           "extension": ".adf .adz .ccd .chd .cue .dms .fdi .hdf .hdz .ipf .iso .lha .m3u .mds .nrg .rp9 .uae .7z .zip",
           "commands": [
             {
-              "label": "FS-UAE (Standalone) CDTV",
-              "command": "%EMULATOR_FS-UAE% /var/config/fs-uae/RetroDECK-cdtv.fs-uae --config:amiga-model=CDTV %ROM%",
+              "label": "Amiberry (Standalone) CDTV",
+              "command": "STARTDIR%=%EMUDIR% %EMULATOR_AMIBERRY% --model CDTV --autoload %ROM%",
               "priority": 30
             }
           ],
@@ -331,6 +323,7 @@
       "entries": {
         "amigavision": {
           "system": "amiga",
+          "create_file": "$roms_path/amiga/AmigaVision.fdi",
           "gamelist_data": {
             "path": "AmigaVision.fdi",
             "name": "AmigaVision",
@@ -338,8 +331,9 @@
             "releasedate": "20191009T000000",
             "developer": "AmigaVision Team",
             "publisher": "Various",
-            "genre": "Utilities",
-            "players": "1"
+            "genre": "Frontend",
+            "players": "2",
+            "altemulator": "Amiberry AmigaVision (Standalone)"
           }
         }
       }
@@ -347,10 +341,10 @@
     "configurator_menus": {
       "es_de_entries": [
         {
-          "name": "FS-UAE: AmigaVision",
+          "name": "Amiberry: AmigaVision",
           "description": "Enable or disable: The AmigaVision entry in ES-DE.",
           "command": {
-            "zenity": "fs-uae_amigavision_toggle"
+            "zenity": "amiberry_amigavision_toggle"
           }
         }
       ]

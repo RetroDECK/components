@@ -51,6 +51,12 @@ export QT5_RUNTIME_VERSION_POLICY="5.15-25.08"
 #  flatpak remote-info flathub <flatpak ID>
 # ==============================================================================
 
+# ------------------------------------------------------------------------------
+# Amiberry - Commodore Amiga Emulator
+# Source: Flatpak - Flathub
+# Link: https://flathub.org/en/apps/com.blitterstudio.amiberry
+# ------------------------------------------------------------------------------
+export AMIBERRY_VERSION_POLICY="latest"
 
 # ------------------------------------------------------------------------------
 # Azahar - Nintendo 3DS Emulator
