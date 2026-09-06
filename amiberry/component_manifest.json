@@ -323,6 +323,7 @@
       "entries": {
         "amigavision": {
           "system": "amiga",
+          "create_file": "$roms_path/amiga/AmigaVision.fdi",
           "gamelist_data": {
             "path": "AmigaVision.fdi",
             "name": "AmigaVision",
@@ -330,8 +331,9 @@
             "releasedate": "20191009T000000",
             "developer": "AmigaVision Team",
             "publisher": "Various",
-            "genre": "Utilities",
-            "players": "1"
+            "genre": "Frontend",
+            "players": "2",
+            "altemulator": "Amiberry AmigaVision (Standalone)"
           }
         }
       }
