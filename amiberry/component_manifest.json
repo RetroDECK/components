@@ -223,7 +223,7 @@
         "emulators": [
           {
             "name": "AMIBERRY",
-            "description": "amiberry Game Engine",
+            "description": "Commodore Amiga Emulator Amiberry",
             "rules": [
               {
                 "type": "staticpath",
@@ -246,6 +246,11 @@
               "label": "Amiberry (Standalone)",
               "command": "%STARTDIR%=%EMUDIR% %EMULATOR_AMIBERRY% --autoload %ROM%",
               "priority": 20
+            },
+            {
+              "label": "Amiberry AmigaVision (Standalone)",
+              "command": "%STARTDIR%=%EMUDIR% %EMULATOR_AMIBERRY% --config AmigaVison.uae",
+              "priority": 30
             }
           ],
           "platform": "amiga",
