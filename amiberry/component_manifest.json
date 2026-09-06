@@ -245,12 +245,12 @@
             {
               "label": "Amiberry (Standalone)",
               "command": "%STARTDIR%=%EMUDIR% %EMULATOR_AMIBERRY% --autoload %ROM%",
-              "priority": 20
+              "priority": 30
             },
             {
               "label": "Amiberry AmigaVision (Standalone)",
               "command": "%STARTDIR%=%EMUDIR% %EMULATOR_AMIBERRY% --config /var/config/amiberry/AmigaVison.uae",
-              "priority": 30
+              "priority": 40
             }
           ],
           "platform": "amiga",
@@ -265,7 +265,7 @@
             {
               "label": "Amiberry (Standalone) Amiga 1200",
               "command": "%STARTDIR%=%EMUDIR% %EMULATOR_AMIBERRY% --autoload %ROM%",
-              "priority": 20
+              "priority": 30
             }
           ],
           "platform": "amiga1200",
@@ -280,7 +280,7 @@
             {
               "label": "Amiberry (Standalone) Amiga 600",
               "command": "%STARTDIR%=%EMUDIR% %EMULATOR_AMIBERRY% --autoload %ROM%",
-              "priority": 20
+              "priority": 30
             }
           ],
           "platform": "amiga600",
@@ -295,7 +295,7 @@
             {
               "label": "Amiberry (Standalone) CD32",
               "command": "%STARTDIR%=%EMUDIR% %EMULATOR_AMIBERRY% --model CD32 --autoload %ROM%",
-              "priority": 20
+              "priority": 30
             }
           ],
           "platform": "amigacd32",
@@ -310,7 +310,7 @@
             {
               "label": "Amiberry (Standalone) CDTV",
               "command": "STARTDIR%=%EMUDIR% %EMULATOR_AMIBERRY% --model CDTV --autoload %ROM%",
-              "priority": 20
+              "priority": 30
             }
           ],
           "platform": "cdtv",
