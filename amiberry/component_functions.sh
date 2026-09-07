@@ -54,13 +54,9 @@ _prepare_component::amiberry() {
         sed -i "s|^screenshot_dir=.*|screenshot_dir=$screenshots_path/Amiberry|" $amiberry_config
         sed -i "s|^video_dir=.*|video_dir=$videos_path/Amiberry|" $amiberry_config
         sed -i "s|^shaders_path=.*|shaders_path=$shaders_path/Amiberry/Shaders|" $amiberry_config
-        sed -i "s|^bezels_path=.*|bezels_path=$borderse_path/Amiberry/Bezels|" $amiberry_config
+        sed -i "s|^bezels_path=.*|bezels_path=$borders_path/Amiberry/Bezels|" $amiberry_config
         sed -i "s|^logfile_path=.*|logfile_path=$logs_path/Amiberry/Amiberry.log|" $amiberry_config
         sed -i "s|^rom_path=.*|rom_path=$bios_path|" $amiberry_config
-
-        # Misc
-
-        sed -i "s|^base_content_path=.*|base_content_path=$roms_path/amiga|" $amiberry_config
 
         # Storage
 
@@ -90,13 +86,9 @@ _prepare_component::amiberry() {
         sed -i "s|^screenshot_dir=.*|screenshot_dir=$screenshots_path/Amiberry|" $amiberry_config
         sed -i "s|^video_dir=.*|video_dir=$videos_path/Amiberry|" $amiberry_config
         sed -i "s|^shaders_path=.*|shaders_path=$shaders_path/Amiberry/Shaders|" $amiberry_config
-        sed -i "s|^bezels_path=.*|bezels_path=$borderse_path/Amiberry/Bezels|" $amiberry_config
+        sed -i "s|^bezels_path=.*|bezels_path=$borders_path/Amiberry/Bezels|" $amiberry_config
         sed -i "s|^logfile_path=.*|logfile_path=$logs_path/Amiberry/Amiberry.log|" $amiberry_config
         sed -i "s|^rom_path=.*|rom_path=$bios_path|" $amiberry_config
-
-        # Games path
-
-        sed -i "s|^base_content_path=.*|base_content_path=$roms_path/amiga|" $amiberry_config
 
         # Storage
 
