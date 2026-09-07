@@ -18,7 +18,7 @@ _prepare_component::amiberry() {
       log i "----------------------"
 
         create_dir "$XDG_CONFIG_HOME/amiberry/"
-        create_dir "$XDG_DATA_HOME/amiberry/InputRecordings"
+        create_dir "$XDG_DATA_HOME/amiberry/"
         cp -fvr "$component_config/"* "$XDG_CONFIG_HOME/amiberry/"
 
         # Storage
