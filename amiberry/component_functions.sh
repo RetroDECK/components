@@ -70,8 +70,9 @@ _prepare_component::amiberry() {
         sed -i "s|^saveimage_dir=.*|saveimage_dir=$storage_path/Amiberry/SaveImages|" $amiberry_config
         sed -i "s|^nvram_dir=.*|nvram_dir=$storage_path/Amiberry/NVRAM|" $amiberry_config
         sed -i "s|^themes_path=.*|themes_path=$storage_path/Amiberry/Visuals/Themes|" $amiberry_config
-        sed -i "s|^controllers_path=.*|controllers_path=$storage_path/Controllers|" $amiberry_config
-        sed -i "s|^inputrecordings_dir.*|inputrecordings_dir=$storage_path/InputRecordings|" $amiberry_config
+        sed -i "s|^controllers_path=.*|controllers_path=$storage_path/Amiberry/Controllers|" $amiberry_config
+        sed -i "s|^inputrecordings_dir=.*|inputrecordings_dir=$storage_path/Amiberry/InputRecordings|" $amiberry_config
+        sed -i "s|^ripper_path=.*|ripper_path=$storage_path/Amiberry/Ripper|" $amiberry_config
 
     ;;
 
@@ -92,6 +93,7 @@ _prepare_component::amiberry() {
 
         # Storage
 
+
         sed -i "s|^cdrom_path=.*|cdrom_path=$storage_path/Amiberry/CD-ROMs|" $amiberry_config
         sed -i "s|^config_path=.*|cdrom_path=$storage_path/Amiberry/Configurations|" $amiberry_config
         sed -i "s|^whdboot_path=.*|whdboot_path=$storage_path/Amiberry/WHDBoot|" $amiberry_config
@@ -102,8 +104,10 @@ _prepare_component::amiberry() {
         sed -i "s|^saveimage_dir=.*|saveimage_dir=$storage_path/Amiberry/SaveImages|" $amiberry_config
         sed -i "s|^nvram_dir=.*|nvram_dir=$storage_path/Amiberry/NVRAM|" $amiberry_config
         sed -i "s|^themes_path=.*|themes_path=$storage_path/Amiberry/Visuals/Themes|" $amiberry_config
-        sed -i "s|^controllers_path=.*|controllers_path=$storage_path/Controllers|" $amiberry_config
-        sed -i "s|^inputrecordings_dir.*|inputrecordings_dir=$storage_path/InputRecordings|" $amiberry_config
+        sed -i "s|^controllers_path=.*|controllers_path=$storage_path/Amiberry/Controllers|" $amiberry_config
+        sed -i "s|^inputrecordings_dir=.*|inputrecordings_dir=$storage_path/Amiberry/InputRecordings|" $amiberry_config
+        sed -i "s|^ripper_path=.*|ripper_path=$storage_path/Amiberry/Ripper|" $amiberry_config
+
 
     ;;
     
