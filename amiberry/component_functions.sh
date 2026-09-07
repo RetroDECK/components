@@ -18,7 +18,7 @@ _prepare_component::amiberry() {
       log i "----------------------"
 
         create_dir "$XDG_CONFIG_HOME/amiberry/"
-        create_dir "$XDG_DATA_HOME/amiberry/"
+        create_dir "$XDG_DATA_HOME/amiberry/InputRecordings"
         cp -fvr "$component_config/"* "$XDG_CONFIG_HOME/amiberry/"
 
         # Storage
@@ -71,7 +71,7 @@ _prepare_component::amiberry() {
         sed -i "s|^nvram_dir=.*|nvram_dir=$storage_path/Amiberry/NVRAM|" $amiberry_config
         sed -i "s|^themes_path=.*|themes_path=$storage_path/Amiberry/Visuals/Themes|" $amiberry_config
         sed -i "s|^controllers_path=.*|controllers_path=$storage_path/Controllers|" $amiberry_config
-        sed -i "s|^inputrecordings_dir.*|inputrecordings_dir$storage_path/InputRecordings|" $amiberry_config
+        sed -i "s|^inputrecordings_dir.*|inputrecordings_dir=$storage_path/InputRecordings|" $amiberry_config
 
     ;;
 
@@ -103,7 +103,7 @@ _prepare_component::amiberry() {
         sed -i "s|^nvram_dir=.*|nvram_dir=$storage_path/Amiberry/NVRAM|" $amiberry_config
         sed -i "s|^themes_path=.*|themes_path=$storage_path/Amiberry/Visuals/Themes|" $amiberry_config
         sed -i "s|^controllers_path=.*|controllers_path=$storage_path/Controllers|" $amiberry_config
-        sed -i "s|^inputrecordings_dir.*|inputrecordings_dir$storage_path/InputRecordings|" $amiberry_config
+        sed -i "s|^inputrecordings_dir.*|inputrecordings_dir=$storage_path/InputRecordings|" $amiberry_config
 
     ;;
     
