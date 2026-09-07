@@ -47,9 +47,6 @@ transmute() {
   if [[ ! "$RESOLVE_VERSION" == "true" ]]; then
     mkdir -p "$COMPONENT_ARTIFACT_ROOT"
   fi
-  if [[ ! "$RESOLVE_VERSION" == "true" ]]; then
-    mkdir -p "$COMPONENT_ARTIFACT_ROOT"
-  fi
 
   while read -r source_obj; do
     source_type="$(jq -r '.source_type' <<< $source_obj)"
@@ -140,7 +137,7 @@ transmute() {
       exit 1
     fi
 
-    sha256sum "$artifact_tar_file" > "$artifact_sha_file"
+    ( cd "$final_artifact_dir" && sha256sum "$COMPONENT_NAME.tar.gz" > "$COMPONENT_NAME.tar.gz.sha" )
 
     if [[ -d "$WORKDIR" ]]; then
       log info "Cleaning up work dir $WORKDIR"
@@ -186,10 +183,9 @@ parse_args() {
         export DRYRUN="true"
         shift 1
         ;;
-      -r|--resolve-versions)
-        export RESOLVE_VERSION="true"
-        export DRYRUN="true"
-        shift 1
+      -v|--versions)
+        alt_versions="$2"
+        shift 2
         ;;
       -r|--resolve-versions)
         export RESOLVE_VERSION="true"

@@ -14,6 +14,11 @@
         },
         {
           "type": "dir",
+          "source": "share/licenses/org.azahar_emu.Azahar",
+          "dest": "docs"
+        },
+        {
+          "type": "dir",
           "source": "$REPO_ROOT/$COMPONENT_NAME",
           "dest": "$COMPONENT_ARTIFACT_ROOT"
         },

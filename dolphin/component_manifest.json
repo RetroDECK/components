@@ -216,8 +216,8 @@
           "$saves_path/gc/dolphin/US",
           "$saves_path/gc/dolphin/JP"
         ],
-        "description": "GameCube USA BIOS",
-        "required": "Optional, for boot logo"
+        "description": "GameCube USA BIOS (for boot logo)",
+        "required": "Optional"
       },
       {
         "filename": "gc-ntsc-11.bin",
@@ -227,8 +227,8 @@
           "$saves_path/gc/dolphin/US",
           "$saves_path/gc/dolphin/JP"
         ],
-        "description": "GameCube USA BIOS",
-        "required": "Optional, for boot logo"
+        "description": "GameCube USA BIOS (for boot logo)",
+        "required": "Optional"
       },
       {
         "filename": "gc-ntsc-12.bin",
@@ -238,32 +238,32 @@
           "$saves_path/gc/dolphin/US",
           "$saves_path/gc/dolphin/JP"
         ],
-        "description": "GameCube USA BIOS",
-        "required": "Optional, for boot logo"
+        "description": "GameCube USA BIOS (for boot logo)",
+        "required": "Optional"
       },
       {
         "filename": "gc-pal-10.bin",
         "md5": "0cdda509e2da83c85bfe423dd87346cc",
         "system": "gc",
         "paths": "$saves_path/gc/dolphin/EU",
-        "description": "GameCube EU BIOS",
-        "required": "Optional, for boot logo"
+        "description": "GameCube EU BIOS (for boot logo)",
+        "required": "Optional"
       },
       {
         "filename": "gc-pal-11.bin",
         "md5": "339848a0b7c2124cf155276c1e79cbd0",
         "system": "gc",
         "paths": "$saves_path/gc/dolphin/EU",
-        "description": "GameCube EU BIOS",
-        "required": "Optional, for boot logo"
+        "description": "GameCube EU BIOS (for boot logo)",
+        "required": "Optional"
       },
       {
         "filename": "gc-pal-12.bin",
         "md5": "db92574caab77a7ec99d4605fd6f2450",
         "system": "gc",
         "paths": "$saves_path/gc/dolphin/EU",
-        "description": "GameCube EU BIOS",
-        "required": "Optional, for boot logo"
+        "description": "GameCube EU BIOS (for boot logo)",
+        "required": "Optional"
       }
     ],
     "compression": {

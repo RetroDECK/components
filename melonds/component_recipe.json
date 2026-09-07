@@ -13,6 +13,16 @@
           "dest": "bin"
         },
         {
+          "type": "dir",
+          "source": "lib",
+          "dest": "lib"
+        },
+        {
+          "type": "dir",
+          "source": "share/licenses/net.kuribo64.melonDS/",
+          "dest": "docs"
+        },
+        {
           "type": "create",
           "dest": "component_version",
           "contents": "$SOURCE_VERSION"
@@ -45,19 +55,39 @@
       ],
       "libs": [
         {
-          "library": "libevdev.so.2",
-          "runtime_name": "org.gnome.Platform",
-          "runtime_version": "49",
+          "library": "libQt6Multimedia.so.6",
+          "runtime_name": "org.kde.Platform",
+          "runtime_version": "6.10",
           "dest": "shared-libs"
         },
         {
-          "library": "libenet.so.7",
-          "source": "lib",
+          "library": "libQt6Network.so.6",
+          "runtime_name": "org.kde.Platform",
+          "runtime_version": "6.10",
           "dest": "shared-libs"
         },
         {
-          "library": "libfaad.so.2",
-          "source": "lib",
+          "library": "libQt6Gui.so.6",
+          "runtime_name": "org.kde.Platform",
+          "runtime_version": "6.10",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libQt6DBus.so.6",
+          "runtime_name": "org.kde.Platform",
+          "runtime_version": "6.10",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libQt6Core.so.6",
+          "runtime_name": "org.kde.Platform",
+          "runtime_version": "6.10",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libQt6Widgets.so.6",
+          "runtime_name": "org.kde.Platform",
+          "runtime_version": "6.10",
           "dest": "shared-libs"
         }
       ]

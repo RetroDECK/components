@@ -1,9 +1,9 @@
 {
-  "opensurge": [
+  "amiberry": [
     {
-      "source_url": "org.opensurge2d.OpenSurge",
+      "source_url": "com.blitterstudio.amiberry",
       "source_type": "flatpak_id",
-      "version": "$OPENSURGE_DESIRED_VERSION",
+      "version": "$AMIBERRY_DESIRED_VERSION",
       "dest": "user",
       "extraction_type": "flatpak",
       "assets": [
@@ -14,8 +14,18 @@
         },
         {
           "type": "dir",
-          "source": "share/opensurge/",
-          "dest": "opensurge"
+          "source": "share/amiberry",
+          "dest": "share/amiberry"
+        },
+        {
+          "type": "dir",
+          "source": "share/licenses",
+          "dest": "docs"
+        },
+        {
+          "type": "dir",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/rd_assets/shaders",
+          "dest": "shaders"
         },
         {
           "type": "dir",
@@ -24,18 +34,13 @@
         },
         {
           "type": "dir",
-          "source": "share/licenses/org.opensurge2d.OpenSurge/",
-          "dest": "docs"
+          "source": "$REPO_ROOT/$COMPONENT_NAME/rd_assets/rd_config",
+          "dest": "rd_config"
         },
         {
           "type": "create",
           "dest": "component_version",
           "contents": "$SOURCE_VERSION"
-        },
-        {
-          "type": "dir",
-          "source": "$REPO_ROOT/$COMPONENT_NAME/rd_assets/rd_extras",
-          "dest": "rd_extras"
         },
         {
           "type": "file",
@@ -60,77 +65,42 @@
       ],
       "libs": [
         {
-          "library": "liballegro.so.5.2",
+          "library": "libfloppybridge.so",
+          "source": "lib/amiberry",
+          "dest": "lib/amiberry"
+        },
+        {
+          "library": "libcapsimage.so",
+          "source": "lib/amiberry",
+          "dest": "lib/amiberry"
+        },
+        {
+          "library": "libserialport.so.0",
           "source": "lib",
           "dest": "shared-libs"
         },
         {
-          "library": "liballegro_acodec.so.5.2",
+          "library": "libportmidi.so.2",
           "source": "lib",
           "dest": "shared-libs"
         },
         {
-          "library": "liballegro_audio.so.5.2",
+          "library": "libmpeg2.so.0",
           "source": "lib",
           "dest": "shared-libs"
         },
         {
-          "library": "liballegro_color.so.5.2",
+          "library": "libmpeg2convert.so.0",
           "source": "lib",
           "dest": "shared-libs"
         },
         {
-          "library": "liballegro_dialog.so.5.2",
+          "library": "libenet.so.7",
           "source": "lib",
           "dest": "shared-libs"
         },
         {
-          "library": "liballegro_font.so.5.2",
-          "source": "lib",
-          "dest": "shared-libs"
-        },
-        {
-          "library": "liballegro_image.so.5.2",
-          "source": "lib",
-          "dest": "shared-libs"
-        },
-        {
-          "library": "liballegro_main.so.5.2",
-          "source": "lib",
-          "dest": "shared-libs"
-        },
-        {
-          "library": "liballegro_memfile.so.5.2",
-          "source": "lib",
-          "dest": "shared-libs"
-        },
-        {
-          "library": "liballegro_physfs.so.5.2",
-          "source": "lib",
-          "dest": "shared-libs"
-        },
-        {
-          "library": "liballegro_primitives.so.5.2",
-          "source": "lib",
-          "dest": "shared-libs"
-        },
-        {
-          "library": "liballegro_ttf.so.5.2",
-          "source": "lib",
-          "dest": "shared-libs"
-        },
-        {
-          "library": "libGLU.so.1",
-          "source": "lib",
-          "dest": "shared-libs"
-        },
-        {
-          "library": "libphysfs.so.1",
-          "source": "lib",
-          "dest": "shared-libs"
-        },
-        {
-          "library": "libsurgescript.so.0.6.1",
+          "library": "libpcap.so.1",
           "source": "lib",
           "dest": "shared-libs"
         }
