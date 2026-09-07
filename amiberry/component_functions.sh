@@ -17,6 +17,8 @@ _prepare_component::amiberry() {
       log i "Resetting Amiberry"
       log i "----------------------"
 
+        create_dir "$XDG_CONFIG_HOME/amiberry/"
+        create_dir "$XDG_DATA_HOME/amiberry/"
         cp -fvr "$component_config/"* "$XDG_CONFIG_HOME/amiberry/"
 
         # Storage
@@ -32,6 +34,8 @@ _prepare_component::amiberry() {
         create_dir "$storage_path/Amiberry/Ripper" 
         create_dir "$storage_path/Amiberry/NVRAM" 
         create_dir "$storage_path/Amiberry/Visuals/Themes" 
+        create_dir "$storage_path/Amiberry/Controllers" 
+        create_dir "$storage_path/Amiberry/InputRecordings" 
 
         # Core directories
 
@@ -57,7 +61,6 @@ _prepare_component::amiberry() {
         # Misc
 
         sed -i "s|^base_content_path=.*|base_content_path=$roms_path/amiga|" $amiberry_config
-        sed -i "s|^retroarch_config=.*|$XDG_CONFIG_HOME/amiberry/retroarch.cfg|" $amiberry_config
 
         # Storage
 
@@ -71,14 +74,15 @@ _prepare_component::amiberry() {
         sed -i "s|^saveimage_dir=.*|saveimage_dir=$storage_path/Amiberry/SaveImages|" $amiberry_config
         sed -i "s|^nvram_dir=.*|nvram_dir=$storage_path/Amiberry/NVRAM|" $amiberry_config
         sed -i "s|^themes_path=.*|themes_path=$storage_path/Amiberry/Visuals/Themes|" $amiberry_config
-      
+        sed -i "s|^controllers_path=.*|controllers_path=$storage_path/Controllers|" $amiberry_config
+        sed -i "s|^inputrecordings_dir.*|inputrecordings_dir$storage_path/InputRecordings|" $amiberry_config
+
     ;;
 
     postmove)
       log i "----------------------"
       log i "Post-moving Amiberry"
       log i "----------------------"
-
 
         # Core Paths
 
@@ -90,10 +94,9 @@ _prepare_component::amiberry() {
         sed -i "s|^logfile_path=.*|logfile_path=$logs_path/Amiberry/Amiberry.log|" $amiberry_config
         sed -i "s|^rom_path=.*|rom_path=$bios_path|" $amiberry_config
 
-        # Misc
+        # Games path
 
         sed -i "s|^base_content_path=.*|base_content_path=$roms_path/amiga|" $amiberry_config
-        sed -i "s|^retroarch_config=.*|$XDG_CONFIG_HOME/amiberry/retroarch.cfg|" $amiberry_config
 
         # Storage
 
@@ -107,7 +110,9 @@ _prepare_component::amiberry() {
         sed -i "s|^saveimage_dir=.*|saveimage_dir=$storage_path/Amiberry/SaveImages|" $amiberry_config
         sed -i "s|^nvram_dir=.*|nvram_dir=$storage_path/Amiberry/NVRAM|" $amiberry_config
         sed -i "s|^themes_path=.*|themes_path=$storage_path/Amiberry/Visuals/Themes|" $amiberry_config
-      
+        sed -i "s|^controllers_path=.*|controllers_path=$storage_path/Controllers|" $amiberry_config
+        sed -i "s|^inputrecordings_dir.*|inputrecordings_dir$storage_path/InputRecordings|" $amiberry_config
+
     ;;
     
   esac
