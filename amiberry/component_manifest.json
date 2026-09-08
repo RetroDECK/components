@@ -249,7 +249,7 @@
             },
             {
               "label": "Amiberry AmigaVision (Standalone)",
-              "command": "%STARTDIR%=%EMUDIR% %EMULATOR_AMIBERRY% --config /var/config/amiberry/AmigaVison.uae",
+              "command": "%EMULATOR_AMIBERRY% --config /var/config/amiberry/AmigaVision.uae",
               "priority": 40
             }
           ],
