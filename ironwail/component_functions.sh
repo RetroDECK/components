@@ -25,8 +25,8 @@ _prepare_component::ironwail() {
       dir_prep "$roms_path/quake/ironwail/dopa" "$XDG_CONFIG_HOME/ironwail/dopa"
       dir_prep "$roms_path/quake/ironwail/hipnotic" "$XDG_CONFIG_HOME/ironwail/hipnotic"
       dir_prep "$roms_path/quake/ironwail/mg1" "$XDG_CONFIG_HOME/ironwail/mg1"
-      dir_prep "$roms_path/quake/ironwail/mg1" "$XDG_CONFIG_HOME/ironwail/mg3"
-      dir_prep "$roms_path/quake/ironwail/mg1" "$XDG_CONFIG_HOME/ironwail/rogue"
+      dir_prep "$roms_path/quake/ironwail/mg3" "$XDG_CONFIG_HOME/ironwail/mg3"
+      dir_prep "$roms_path/quake/ironwail/rogue" "$XDG_CONFIG_HOME/ironwail/rogue"
 
 # Quake Mods 
 
@@ -78,8 +78,8 @@ _prepare_component::ironwail() {
       dir_prep "$roms_path/quake/ironwail/dopa" "$XDG_CONFIG_HOME/ironwail/dopa"
       dir_prep "$roms_path/quake/ironwail/hipnotic" "$XDG_CONFIG_HOME/ironwail/hipnotic"
       dir_prep "$roms_path/quake/ironwail/mg1" "$XDG_CONFIG_HOME/ironwail/mg1"
-      dir_prep "$roms_path/quake/ironwail/mg1" "$XDG_CONFIG_HOME/ironwail/mg3"
-      dir_prep "$roms_path/quake/ironwail/mg1" "$XDG_CONFIG_HOME/ironwail/rogue"
+      dir_prep "$roms_path/quake/ironwail/mg3" "$XDG_CONFIG_HOME/ironwail/mg3"
+      dir_prep "$roms_path/quake/ironwail/rogue" "$XDG_CONFIG_HOME/ironwail/rogue"
 
 # Quake Mods 
 
@@ -112,7 +112,7 @@ _prepare_component::ironwail() {
       dir_prep "$roms_path/quake/ironwail/mods/ttb" "$XDG_CONFIG_HOME/ironwail/ttb"
       dir_prep "$roms_path/quake/ironwail/mods/udob" "$XDG_CONFIG_HOME/ironwail/udob"
       dir_prep "$roms_path/quake/ironwail/mods/vestige" "$XDG_CONFIG_HOME/ironwail/vestige"
-      
+
     ;;
 
   esac
