@@ -21,6 +21,80 @@
         }
       ]
     },
+    "bios": [
+      {
+        "filename": "pak0.pak",
+        "md5": "f6aa4f85e686e364b24e16928c51e05b",
+        "system": "quake",
+        "description": "Quake Base Game - 2021 Rerelease",
+        "required": "Required",
+        "paths": "$roms_path/quake/ironwail/id1"
+      },
+      {
+        "filename": "PAK0.PAK",
+        "md5": "5906e5998fc3d896ddaf5e6a62e03abb",
+        "system": "quake",
+        "description": "Quake Base Game - Original Release",
+        "required": "Optional",
+        "paths": "$roms_path/quake/ironwail/id1"
+      },
+      {
+        "filename": "PAK1.PAK",
+        "md5": "d76b3e5678f0b64ac74ce5e340e6a685",
+        "system": "quake",
+        "description": "Quake Mission Data - Original Release",
+        "required": "Optional",
+        "paths": "$roms_path/quake/ironwail/id1"
+      },
+      {
+        "filename": "pak0.pak",
+        "md5": "6e0f5f6d396c4772fadf8b90a3b45b1a",
+        "system": "quake",
+        "description": "Capture the Flag",
+        "required": "Optional",
+        "paths": "$roms_path/quake/ironwail/ctf"
+      },
+      {
+        "filename": "pak0.pak",
+        "md5": "28933eb5dc7c1df55ba8ac579baf3ace",
+        "system": "quake",
+        "description": "Dawn of the Machine",
+        "required": "Optional",
+        "paths": "$roms_path/quake/ironwail/mg3"
+      },
+      {
+        "filename": "pak0.pak",
+        "md5": "ce2f07daa4b6f54934825f091cab5caf",
+        "system": "quake",
+        "description": "Dimension of the Machine",
+        "required": "Optional",
+        "paths": "$roms_path/quake/ironwail/mg1"
+      },
+      {
+        "filename": "pak0.pak",
+        "md5": "054ab18a42d2bba6fa43a485ac294f80",
+        "system": "quake",
+        "description": "Dimension of the Past",
+        "required": "Optional",
+        "paths": "$roms_path/quake/ironwail/dopa"
+      },
+      {
+        "filename": "pak0.pak",
+        "md5": "8bb743678bd2101614dffebcfd9884a5",
+        "system": "quake",
+        "description": "Dissolution of Eternity",
+        "required": "Optional",
+        "paths": "$roms_path/quake/ironwail/rogue"
+      },
+      {
+        "filename": "pak0.pak",
+        "md5": "58514c45aa39ae60b40a8fa868145e6f",
+        "system": "quake",
+        "description": "Scourge of Armagon",
+        "required": "Optional",
+        "paths": "$roms_path/quake/ironwail/hipnotic"
+      }
+    ],
     "es_de_config": {
       "es_find_rules": {
         "emulators": [
