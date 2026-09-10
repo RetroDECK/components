@@ -129,6 +129,18 @@ if [[ $(check_version_is_older_than "$version_being_updated" "0.10.9b") == "true
   dir_prep "$cheats_path/retroarch-core/LRPS2/cheats_ws" "$bios_path/pcsx2/cheats_ws"
   dir_prep "$cheats_path/retroarch-core/LRPS2/cheats_ni" "$bios_path/pcsx2/cheats_ni"
   dir_prep "$texture_packs_path/retroarch-core/LRPS2/textures" "$bios_path/pcsx2/textures"
+
+fi
+
+if [[ $(check_version_is_older_than "$version_being_updated" "0.10.10b") == "true" ]]; then
+
+  dir_prep "$mods_path/retroarch-core/PPSSPP/PLUGINS" "$XDG_CONFIG_HOME/retroarch/saves/PPSSPP/PSP/PLUGINS"
+  dir_prep "$shaders_path/retroarch-core/PPSSPP/shaders" "$XDG_CONFIG_HOME/retroarch/saves/PPSSPP/PSP/shaders"
+
+  create_dir -d "$storage_path/retroarch-core/PPSSPP/GAME"
+  cp -fv "$XDG_CONFIG_HOME/retroarch/saves/PPSSPP/PSP/GAME/"* "$storage_path/retroarch-core/PPSSPP/GAME"
+  dir_prep "$storage_path/retroarch-core/PPSSPP/GAME" "$XDG_CONFIG_HOME/retroarch/saves/PPSSPP/PSP/GAME"
+
 fi
 
 #######################################

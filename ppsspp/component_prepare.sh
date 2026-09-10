@@ -19,6 +19,7 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
   dir_prep "$shaders_path/PPSSPP" "$ppsspp_shaders_path"
   dir_prep "$mods_path/PPSSPP/PLUGINS" "$ppsspp_mods_path"
   dir_prep "$logs_path/PPSSPP" "$ppsspp_logs_path"
+  dir_prep "$storage_path/PPSSPP/GAME" "$XDG_CONFIG_HOME/ppsspp/PSP/GAME"
 
   log i "Preparing PPSSPP cheats"
   create_dir -d "$cheats_path/PPSSPP"
@@ -50,4 +51,6 @@ if [[ "$action" == "postmove" ]]; then # Run only post-move commands
   dir_prep "$cheats_path/PPSSPP" "$ppsspp_cheats_path"
   dir_prep "$mods_path/PPSSPP/PLUGINS" "$ppsspp_mods_path"
   dir_prep "$logs_path/PPSSPP" "$ppsspp_logs_path"
+  dir_prep "$storage_path/PPSSPP/GAME" "$XDG_CONFIG_HOME/ppsspp/PSP/GAME"
+  
 fi

@@ -60,3 +60,13 @@ if [[ $(check_version_is_older_than "$version_being_updated" "0.10.7b") == "true
 
 fi
 
+if [[ $(check_version_is_older_than "$version_being_updated" "0.10.10b") == "true" ]]; then
+
+  log i "0.10.10b Upgrade - PPSSPP: GAME"
+
+  create_dir -d "$storage_path/PPSSPP/GAME"
+  cp -fv "$XDG_CONFIG_HOME/ppsspp/PSP/GAME/"* "$storage_path/PPSSPP/GAME"
+  dir_prep "$storage_path/PPSSPP/GAME" "$XDG_CONFIG_HOME/ppsspp/PSP/GAME"
+
+fi
+
