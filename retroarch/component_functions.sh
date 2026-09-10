@@ -254,6 +254,12 @@ _prepare_component::retroarch() {
       # Mods
       dir_prep "$mods_path/retroarch-core/Citra/mods" "$XDG_CONFIG_HOME/retroarch/saves/Citra/load/mods"
       dir_prep "$mods_path/retroarch-core/Dolphin/GraphicMods" "$XDG_CONFIG_HOME/retroarch/saves/dolphin-emu/User/Load/GraphicMods"
+      dir_prep "$mods_path/retroarch-core/PPSSPP/PLUGINS" "$XDG_CONFIG_HOME/retroarch/saves/PPSSPP/PSP/PLUGINS"
+
+      # DLC / Storage
+
+      dir_prep "$storage_path/retroarch-core/PPSSPP/GAME" "$XDG_CONFIG_HOME/retroarch/saves/PPSSPP/PSP/GAME"
+
     ;;
 
     postmove)
@@ -298,6 +304,7 @@ _prepare_component::retroarch() {
       dir_prep "$mods_path/retroarch-core/fbneo/patched" "$bios_path/fbneo/patched"
       dir_prep "$mods_path/retroarch-core/fbneo/ips" "$bios_path/fbneo/ips"
       dir_prep "$mods_path/retroarch-core/fbneo/romdata" "$bios_path/fbneo/romdata"
+      dir_prep "$mods_path/retroarch-core/PPSSPP/PLUGINS" "$XDG_CONFIG_HOME/retroarch/saves/PPSSPP/PSP/PLUGINS"
 
       # Settings
       set_setting_value "$retroarch_config" "savefile_directory" "$saves_path" "retroarch"
@@ -317,6 +324,11 @@ _prepare_component::retroarch() {
       set_setting_value "$retroarch_config" "video_filter_dir" "$shaders_path/retroarch/filters/video" "retroarch"
       set_setting_value "$retroarch_config" "video_shader_dir" "$shaders_path/retroarch/shaders" "retroarch"
       set_setting_value "$retroarch_config" "overlay_directory" "$borders_path/retroarch" "retroarch"
+
+      # DLC / Storage
+      
+      dir_prep "$storage_path/retroarch-core/PPSSPP/GAME" "$XDG_CONFIG_HOME/retroarch/saves/PPSSPP/PSP/GAME"
+
     ;;
 
   esac
