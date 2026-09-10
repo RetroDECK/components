@@ -47,7 +47,7 @@
           "commands": [
             {
               "label": "Ironwail (Standalone)",
-              "command": "%EMULATOR_IRONWAIL%",
+              "command": "%EMULATOR_IRONWAIL% -game %BASENAME%",
               "priority": 10
             }
           ],
