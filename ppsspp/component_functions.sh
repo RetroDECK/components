@@ -6,11 +6,6 @@ export ppsspp_retroachievements_dat="$XDG_CONFIG_HOME/ppsspp/PSP/SYSTEM/ppsspp_r
 export ppsspp_cheats_db="$rd_components/ppsspp/cheats/cheat.db"
 export ppsspp_rd_config_dir="$rd_components/ppsspp/rd_config"
 export ppsspp_rd_extras_dir="$rd_components/ppsspp/rd_extras"
-export ppsspp_textures_path="$XDG_CONFIG_HOME/ppsspp/PSP/TEXTURES"
-export ppsspp_shaders_path="$XDG_CONFIG_HOME/ppsspp/PSP/shaders"
-export ppsspp_cheats_path="$XDG_CONFIG_HOME/ppsspp/PSP/Cheats"
-export ppsspp_mods_path="$XDG_CONFIG_HOME/ppsspp/PSP/PLUGINS"
-export ppsspp_logs_path="$XDG_CONFIG_HOME/ppsspp/PSP/SYSTEM/DUMP"
 
 _set_setting_value::ppsspp() {
   local file="$1"
@@ -82,14 +77,15 @@ _prepare_component::ppsspp() {
       fi
       dir_prep "$saves_path/PSP/PPSSPP-SA" "$XDG_CONFIG_HOME/ppsspp/PSP/SAVEDATA"
       dir_prep "$states_path/PSP/PPSSPP-SA" "$XDG_CONFIG_HOME/ppsspp/PSP/PPSSPP_STATE"
-      dir_prep "$texture_packs_path/PPSSPP/TEXTURES" "$ppsspp_textures_path"
-      dir_prep "$shaders_path/PPSSPP" "$ppsspp_shaders_path"
-      dir_prep "$mods_path/PPSSPP/PLUGINS" "$ppsspp_mods_path"
-      dir_prep "$logs_path/PPSSPP" "$ppsspp_logs_path"
+      dir_prep "$texture_packs_path/PPSSPP/TEXTURES" "$XDG_CONFIG_HOME/ppsspp/PSP/TEXTURES"
+      dir_prep "$shaders_path/PPSSPP" "$XDG_CONFIG_HOME/ppsspp/PSP/shaders"
+      dir_prep "$storage_path/PPSSPP/GAME" "$XDG_CONFIG_HOME/ppsspp/PSP/GAME"
+      dir_prep "$mods_path/PPSSPP/PLUGINS" "$XDG_CONFIG_HOME/ppsspp/PSP/PLUGINS"
+      dir_prep "$logs_path/PPSSPP" "$XDG_CONFIG_HOME/ppsspp/PSP/SYSTEM/DUMP"
 
       log i "Preparing PPSSPP cheats"
       create_dir -d "$cheats_path/PPSSPP"
-      dir_prep "$cheats_path/PPSSPP" "$ppsspp_cheats_path"
+      dir_prep "$cheats_path/PPSSPP" "$XDG_CONFIG_HOME/ppsspp/PSP/Cheats"
       if [[ -d "$cheats_path/PPSSPP" && "$(ls -A "$cheats_path"/PPSSPP)" ]]; then
         backup_file="$backups_path/cheats/PPSSPP-$(date +%y%m%d).tar.gz"
         create_dir "$(dirname "$backup_file")"
@@ -112,11 +108,12 @@ _prepare_component::ppsspp() {
       set_setting_value "$ppsspp_config" "CurrentDirectory" "$roms_path/psp" "ppsspp" "General"
       dir_prep "$saves_path/PSP/PPSSPP-SA" "$XDG_CONFIG_HOME/ppsspp/PSP/SAVEDATA"
       dir_prep "$states_path/PSP/PPSSPP-SA" "$XDG_CONFIG_HOME/ppsspp/PSP/PPSSPP_STATE"
-      dir_prep "$texture_packs_path/PPSSPP/TEXTURES" "$ppsspp_textures_path"
-      dir_prep "$shaders_path/PPSSPP" "$ppsspp_shaders_path"
-      dir_prep "$cheats_path/PPSSPP" "$ppsspp_cheats_path"
-      dir_prep "$mods_path/PPSSPP/PLUGINS" "$ppsspp_mods_path"
-      dir_prep "$logs_path/PPSSPP" "$ppsspp_logs_path"
+      dir_prep "$texture_packs_path/PPSSPP/TEXTURES" "$XDG_CONFIG_HOME/ppsspp/PSP/TEXTURES"
+      dir_prep "$storage_path/PPSSPP/GAME" "$XDG_CONFIG_HOME/ppsspp/PSP/GAME"
+      dir_prep "$shaders_path/PPSSPP" "$XDG_CONFIG_HOME/ppsspp/PSP/shaders"
+      dir_prep "$cheats_path/PPSSPP" "$XDG_CONFIG_HOME/ppsspp/PSP/Cheats"
+      dir_prep "$mods_path/PPSSPP/PLUGINS" "$XDG_CONFIG_HOME/ppsspp/PSP/PLUGINS"
+      dir_prep "$logs_path/PPSSPP" "$XDG_CONFIG_HOME/ppsspp/PSP/SYSTEM/DUMP"
     ;;
 
   esac
@@ -159,7 +156,7 @@ _post_update_legacy::ppsspp() {
   if check_version_is_older_than "$previous_version" "0.9.1b"; then
     log i "Preparing the cheats for PPSSPP-SA..."
     create_dir -d "$cheats_path/PPSSPP"
-    dir_prep "$cheats_path/PPSSPP" "$ppsspp_cheats_path"
+    dir_prep "$cheats_path/PPSSPP" "$XDG_CONFIG_HOME/ppsspp/PSP/Cheats"
     tar -xzf "/app/retrodeck/cheats/ppsspp.tar.gz" -C "$cheats_path/PPSSPP" --overwrite && log i "Cheats for PPSSPP installed"
 
     set_setting_value "$rd_conf" "ppsspp" "$(get_setting_value "$rd_defaults" "ppsspp" "retrodeck" "cheevos")" "retrodeck" "cheevos"
@@ -179,6 +176,6 @@ _post_update_legacy::ppsspp() {
   if check_version_is_older_than "$previous_version" "0.10.3b"; then
     log i "0.10.3b Upgrade - PPSSPP: Relink Shaders"
 
-    dir_prep "$shaders_path/PPSSPP" "$ppsspp_shaders_path"
+    dir_prep "$shaders_path/PPSSPP" "$XDG_CONFIG_HOME/ppsspp/PSP/shaders"
   fi
 }

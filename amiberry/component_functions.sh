@@ -42,8 +42,8 @@ _prepare_component::amiberry() {
         create_dir "$states_path/amiga/Amiberry"
         create_dir "$screenshots_path/Amiberry"
         create_dir "$videos_path/Amiberry"
-        create_dir "$shaders_path/Amiberry/Shaders"
-        create_dir "$borders_path/Amiberry/Bezels"
+        create_dir "$shaders_path/Amiberry"
+        create_dir "$borders_path/Amiberry"
         create_dir "$logs_path/Amiberry"
 
         cp -fvr "$amiberry_shaders_path/"* "$shaders_path/Amiberry/Shaders"
@@ -53,8 +53,8 @@ _prepare_component::amiberry() {
         sed -i "s|^savestate_dir=.*|savestate_dir=$states_path/amiga/Amiberry|" $amiberry_config
         sed -i "s|^screenshot_dir=.*|screenshot_dir=$screenshots_path/Amiberry|" $amiberry_config
         sed -i "s|^video_dir=.*|video_dir=$videos_path/Amiberry|" $amiberry_config
-        sed -i "s|^shaders_path=.*|shaders_path=$shaders_path/Amiberry/Shaders|" $amiberry_config
-        sed -i "s|^bezels_path=.*|bezels_path=$borders_path/Amiberry/Bezels|" $amiberry_config
+        sed -i "s|^shaders_path=.*|shaders_path=$shaders_path/Amiberry|" $amiberry_config
+        sed -i "s|^bezels_path=.*|bezels_path=$borders_path/Amiberry|" $amiberry_config
         sed -i "s|^logfile_path=.*|logfile_path=$logs_path/Amiberry/Amiberry.log|" $amiberry_config
         sed -i "s|^rom_path=.*|rom_path=$bios_path|" $amiberry_config
 
@@ -86,8 +86,8 @@ _prepare_component::amiberry() {
         sed -i "s|^savestate_dir=.*|savestate_dir=$states_path/amiga/Amiberry|" $amiberry_config
         sed -i "s|^screenshot_dir=.*|screenshot_dir=$screenshots_path/Amiberry|" $amiberry_config
         sed -i "s|^video_dir=.*|video_dir=$videos_path/Amiberry|" $amiberry_config
-        sed -i "s|^shaders_path=.*|shaders_path=$shaders_path/Amiberry/Shaders|" $amiberry_config
-        sed -i "s|^bezels_path=.*|bezels_path=$borders_path/Amiberry/Bezels|" $amiberry_config
+        sed -i "s|^shaders_path=.*|shaders_path=$shaders_path/Amiberry|" $amiberry_config
+        sed -i "s|^bezels_path=.*|bezels_path=$borders_path/Amiberry|" $amiberry_config
         sed -i "s|^logfile_path=.*|logfile_path=$logs_path/Amiberry/Amiberry.log|" $amiberry_config
         sed -i "s|^rom_path=.*|rom_path=$bios_path|" $amiberry_config
 
