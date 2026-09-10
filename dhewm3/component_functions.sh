@@ -19,6 +19,8 @@ _prepare_component::dhewm3() {
       create_dir "$XDG_CONFIG_HOME/dhewm3"
       cp -fr "$component_config/"* "$XDG_CONFIG_HOME/dhewm3/"
 
+      # Base dirs
+
       create_dir "$roms_path/doom3/d3xp"
       create_dir "$roms_path/doom3/base"
 

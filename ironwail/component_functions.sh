@@ -13,53 +13,26 @@ _prepare_component::ironwail() {
       log i "Resetting Ironwail"
       log i "----------------------"
 
-      cp -fr "$component_config/"* "$XDG_CONFIG_HOME/ironwail/id1"
+      create_dir "$XDG_CONFIG_HOME/ironwail"
+      cp -fr "$component_config/"* "$XDG_CONFIG_HOME/ironwail"
 
-# Quake BASE
+      # XDG_DATA_HOME must be symlinked to the Ironwail directory for mods to work.
 
-      dir_prep "$roms_path/quake/ironwail/id1" "$XDG_CONFIG_HOME/ironwail/id1"
+      dir_prep "$roms_path/quake/ironwail" "$XDG_DATA_HOME/ironwail"
 
-# Quake Expansion Packs
+      # Quake base id1
 
-      dir_prep "$roms_path/quake/ironwail/ctf" "$XDG_CONFIG_HOME/ironwail/ctf"
-      dir_prep "$roms_path/quake/ironwail/dopa" "$XDG_CONFIG_HOME/ironwail/dopa"
-      dir_prep "$roms_path/quake/ironwail/hipnotic" "$XDG_CONFIG_HOME/ironwail/hipnotic"
-      dir_prep "$roms_path/quake/ironwail/mg1" "$XDG_CONFIG_HOME/ironwail/mg1"
-      dir_prep "$roms_path/quake/ironwail/mg3" "$XDG_CONFIG_HOME/ironwail/mg3"
-      dir_prep "$roms_path/quake/ironwail/rogue" "$XDG_CONFIG_HOME/ironwail/rogue"
+      create_dir "$roms_path/quake/ironwail/id1"
 
-# Quake Mods 
+      # Quake Expansion Packs
 
-      dir_prep "$roms_path/quake/ironwail/mods/bbelief" "$XDG_CONFIG_HOME/ironwail/bbelief"
-      dir_prep "$roms_path/quake/ironwail/mods/contract" "$XDG_CONFIG_HOME/ironwail/contract"
-      dir_prep "$roms_path/quake/ironwail/mods/darktriad" "$XDG_CONFIG_HOME/ironwail/darktriad"
-      dir_prep "$roms_path/quake/ironwail/mods/dmd" "$XDG_CONFIG_HOME/ironwail/dmd"
-      dir_prep "$roms_path/quake/ironwail/mods/sm218" "$XDG_CONFIG_HOME/ironwail/sm218"
-      dir_prep "$roms_path/quake/ironwail/mods/eod" "$XDG_CONFIG_HOME/ironwail/eod"
-      dir_prep "$roms_path/quake/ironwail/mods/eoe" "$XDG_CONFIG_HOME/ironwail/eoe"
-      dir_prep "$roms_path/quake/ironwail/mods/euclid" "$XDG_CONFIG_HOME/ironwail/euclid"
-      dir_prep "$roms_path/quake/ironwail/mods/honey" "$XDG_CONFIG_HOME/ironwail/honey"
-      dir_prep "$roms_path/quake/ironwail/mods/ikspq" "$XDG_CONFIG_HOME/ironwail/ikspq"
-      dir_prep "$roms_path/quake/ironwail/mods/insomnia" "$XDG_CONFIG_HOME/ironwail/insomnia"
-      dir_prep "$roms_path/quake/ironwail/mods/koohoojam" "$XDG_CONFIG_HOME/ironwail/koohoojam"
-      dir_prep "$roms_path/quake/ironwail/mods/mapjamx" "$XDG_CONFIG_HOME/ironwail/mapjamx"
-      dir_prep "$roms_path/quake/ironwail/mods/oum" "$XDG_CONFIG_HOME/ironwail/oum"
-      dir_prep "$roms_path/quake/ironwail/mods/pun" "$XDG_CONFIG_HOME/ironwail/pun"
-      dir_prep "$roms_path/quake/ironwail/mods/qdoom" "$XDG_CONFIG_HOME/ironwail/qdoom"
-      dir_prep "$roms_path/quake/ironwail/mods/q64" "$XDG_CONFIG_HOME/ironwail/q64"
-      dir_prep "$roms_path/quake/ironwail/mods/tiddles" "$XDG_CONFIG_HOME/ironwail/tiddles"
-      dir_prep "$roms_path/quake/ironwail/mods/moon" "$XDG_CONFIG_HOME/ironwail/moon"
-      dir_prep "$roms_path/quake/ironwail/mods/rubicon2" "$XDG_CONFIG_HOME/ironwail/rubicon2"
-      dir_prep "$roms_path/quake/ironwail/mods/sacrilege" "$XDG_CONFIG_HOME/ironwail/sacrilege"
-      dir_prep "$roms_path/quake/ironwail/mods/enyo" "$XDG_CONFIG_HOME/ironwail/enyo"
-      dir_prep "$roms_path/quake/ironwail/mods/spiritworld" "$XDG_CONFIG_HOME/ironwail/spiritworld"
-      dir_prep "$roms_path/quake/ironwail/mods/squire" "$XDG_CONFIG_HOME/ironwail/squire"
-      dir_prep "$roms_path/quake/ironwail/mods/tainted" "$XDG_CONFIG_HOME/ironwail/tainted"
-      dir_prep "$roms_path/quake/ironwail/mods/terra" "$XDG_CONFIG_HOME/ironwail/terra"
-      dir_prep "$roms_path/quake/ironwail/mods/ttb" "$XDG_CONFIG_HOME/ironwail/ttb"
-      dir_prep "$roms_path/quake/ironwail/mods/udob" "$XDG_CONFIG_HOME/ironwail/udob"
-      dir_prep "$roms_path/quake/ironwail/mods/vestige" "$XDG_CONFIG_HOME/ironwail/vestige"
-
+      create_dir "$roms_path/quake/ironwail/ctf"
+      create_dir "$roms_path/quake/ironwail/dopa"
+      create_dir "$roms_path/quake/ironwail/hipnotic"
+      create_dir "$roms_path/quake/ironwail/mg1"
+      create_dir "$roms_path/quake/ironwail/mg3"
+      create_dir "$roms_path/quake/ironwail/rogue"
+      
     ;;
 
     postmove)
@@ -67,51 +40,7 @@ _prepare_component::ironwail() {
       log i "Post-moving Ironwail"
       log i "----------------------"
       
-
-# Quake BASE
-
       dir_prep "$roms_path/quake/ironwail/id1" "$XDG_CONFIG_HOME/ironwail/id1"
-
-# Quake Expansion Packs
-
-      dir_prep "$roms_path/quake/ironwail/ctf" "$XDG_CONFIG_HOME/ironwail/ctf"
-      dir_prep "$roms_path/quake/ironwail/dopa" "$XDG_CONFIG_HOME/ironwail/dopa"
-      dir_prep "$roms_path/quake/ironwail/hipnotic" "$XDG_CONFIG_HOME/ironwail/hipnotic"
-      dir_prep "$roms_path/quake/ironwail/mg1" "$XDG_CONFIG_HOME/ironwail/mg1"
-      dir_prep "$roms_path/quake/ironwail/mg3" "$XDG_CONFIG_HOME/ironwail/mg3"
-      dir_prep "$roms_path/quake/ironwail/rogue" "$XDG_CONFIG_HOME/ironwail/rogue"
-
-# Quake Mods 
-
-      dir_prep "$roms_path/quake/ironwail/mods/bbelief" "$XDG_CONFIG_HOME/ironwail/bbelief"
-      dir_prep "$roms_path/quake/ironwail/mods/contract" "$XDG_CONFIG_HOME/ironwail/contract"
-      dir_prep "$roms_path/quake/ironwail/mods/darktriad" "$XDG_CONFIG_HOME/ironwail/darktriad"
-      dir_prep "$roms_path/quake/ironwail/mods/dmd" "$XDG_CONFIG_HOME/ironwail/dmd"
-      dir_prep "$roms_path/quake/ironwail/mods/sm218" "$XDG_CONFIG_HOME/ironwail/sm218"
-      dir_prep "$roms_path/quake/ironwail/mods/eod" "$XDG_CONFIG_HOME/ironwail/eod"
-      dir_prep "$roms_path/quake/ironwail/mods/eoe" "$XDG_CONFIG_HOME/ironwail/eoe"
-      dir_prep "$roms_path/quake/ironwail/mods/euclid" "$XDG_CONFIG_HOME/ironwail/euclid"
-      dir_prep "$roms_path/quake/ironwail/mods/honey" "$XDG_CONFIG_HOME/ironwail/honey"
-      dir_prep "$roms_path/quake/ironwail/mods/ikspq" "$XDG_CONFIG_HOME/ironwail/ikspq"
-      dir_prep "$roms_path/quake/ironwail/mods/insomnia" "$XDG_CONFIG_HOME/ironwail/insomnia"
-      dir_prep "$roms_path/quake/ironwail/mods/koohoojam" "$XDG_CONFIG_HOME/ironwail/koohoojam"
-      dir_prep "$roms_path/quake/ironwail/mods/mapjamx" "$XDG_CONFIG_HOME/ironwail/mapjamx"
-      dir_prep "$roms_path/quake/ironwail/mods/oum" "$XDG_CONFIG_HOME/ironwail/oum"
-      dir_prep "$roms_path/quake/ironwail/mods/pun" "$XDG_CONFIG_HOME/ironwail/pun"
-      dir_prep "$roms_path/quake/ironwail/mods/qdoom" "$XDG_CONFIG_HOME/ironwail/qdoom"
-      dir_prep "$roms_path/quake/ironwail/mods/q64" "$XDG_CONFIG_HOME/ironwail/q64"
-      dir_prep "$roms_path/quake/ironwail/mods/tiddles" "$XDG_CONFIG_HOME/ironwail/tiddles"
-      dir_prep "$roms_path/quake/ironwail/mods/moon" "$XDG_CONFIG_HOME/ironwail/moon"
-      dir_prep "$roms_path/quake/ironwail/mods/rubicon2" "$XDG_CONFIG_HOME/ironwail/rubicon2"
-      dir_prep "$roms_path/quake/ironwail/mods/sacrilege" "$XDG_CONFIG_HOME/ironwail/sacrilege"
-      dir_prep "$roms_path/quake/ironwail/mods/enyo" "$XDG_CONFIG_HOME/ironwail/enyo"
-      dir_prep "$roms_path/quake/ironwail/mods/spiritworld" "$XDG_CONFIG_HOME/ironwail/spiritworld"
-      dir_prep "$roms_path/quake/ironwail/mods/squire" "$XDG_CONFIG_HOME/ironwail/squire"
-      dir_prep "$roms_path/quake/ironwail/mods/tainted" "$XDG_CONFIG_HOME/ironwail/tainted"
-      dir_prep "$roms_path/quake/ironwail/mods/terra" "$XDG_CONFIG_HOME/ironwail/terra"
-      dir_prep "$roms_path/quake/ironwail/mods/ttb" "$XDG_CONFIG_HOME/ironwail/ttb"
-      dir_prep "$roms_path/quake/ironwail/mods/udob" "$XDG_CONFIG_HOME/ironwail/udob"
-      dir_prep "$roms_path/quake/ironwail/mods/vestige" "$XDG_CONFIG_HOME/ironwail/vestige"
 
     ;;
 
