@@ -231,6 +231,56 @@ _prepare_component::retroarch() {
       set_setting_value "$retroarch_config_scummvm" "savepath" "$saves_path/scummvm" "retroarch_scummvm" "scummvm"
       set_setting_value "$retroarch_config_scummvm" "browser_lastpath" "$roms_path/scummvm" "retroarch_scummvm" "scummvm"
 
+
+
+      # PPSSPP
+      log i "-----------------------------------------------------------"
+      log i "Prepearing PPSSPP LIBRETRO"
+      log i "-----------------------------------------------------------"     
+
+      dir_prep "$texture_packs_path/retroarch-core/PPSSPP/TEXTURES" "$XDG_CONFIG_HOME/retroarch/saves/PPSSPP/PSP/TEXTURES"
+      dir_prep "$mods_path/retroarch-core/PPSSPP/PLUGINS" "$XDG_CONFIG_HOME/retroarch/saves/PPSSPP/PSP/PLUGINS"
+      dir_prep "$shaders_path/retroarch-core/PPSSPP/shaders" "$XDG_CONFIG_HOME/retroarch/saves/PPSSPP/PSP/shaders"
+      dir_prep "$storage_path/retroarch-core/PPSSPP/GAME" "$XDG_CONFIG_HOME/retroarch/saves/PPSSPP/PSP/GAME"
+
+      # Dolphin
+      log i "-----------------------------------------------------------"
+      log i "Prepearing Dolphin LIBRETRO"
+      log i "-----------------------------------------------------------"     
+
+      dir_prep "$texture_packs_path/retroarch-core/Dolphin/Textures" "$XDG_CONFIG_HOME/retroarch/saves/dolphin-emu/User/Load/Textures/"
+      dir_prep "$mods_path/retroarch-core/Dolphin/GraphicMods" "$XDG_CONFIG_HOME/retroarch/saves/dolphin-emu/User/Load/GraphicMods"
+
+      # Dolphin
+      log i "-----------------------------------------------------------"
+      log i "Prepearing Citra LIBRETRO"
+      log i "-----------------------------------------------------------"    
+
+      dir_prep "$texture_packs_path/retroarch-core/Citra/textures" "$XDG_CONFIG_HOME/retroarch/saves/Citra/load/textures"
+      dir_prep "$mods_path/retroarch-core/Citra/mods" "$XDG_CONFIG_HOME/retroarch/saves/Citra/load/mods"
+
+      # Mesen
+      log i "-----------------------------------------------------------"
+      log i "Prepearing Mesen LIBRETRO"
+      log i "-----------------------------------------------------------"    
+
+      dir_prep "$texture_packs_path/retroarch-core/Mesen/HdPacks" "$bios_path/HdPacks"
+
+      # Mupen64Plus
+      log i "-----------------------------------------------------------"
+      log i "Prepearing Mupen64Plus LIBRETRO"
+      log i "-----------------------------------------------------------"    
+
+      dir_prep "$texture_packs_path/retroarch-core/Mupen64Plus/cache" "$bios_path/Mupen64plus/cache"
+      dir_prep "$texture_packs_path/retroarch-core/Mupen64Plus/hires_texture" "$bios_path/Mupen64plus/hires_texture"
+
+      # Flycast
+      log i "-----------------------------------------------------------"
+      log i "Prepearing Flycast LIBRETRO"
+      log i "-----------------------------------------------------------"    
+
+      dir_prep "$texture_packs_path/retroarch-core/Flycast/textures" "$bios_path/dc/textures"
+
       # Flycast VMUs
       mkdir -p "$saves_path/dreamcast/flycast_libretro"
       if [ -d "$bios_path/dc" ]; then
@@ -241,24 +291,6 @@ _prepare_component::retroarch() {
           fi
         done
       fi
-
-      # Texture Packs
-      dir_prep "$texture_packs_path/retroarch-core/Mesen/HdPacks" "$bios_path/HdPacks"
-      dir_prep "$texture_packs_path/retroarch-core/Mupen64Plus/cache" "$bios_path/Mupen64plus/cache"
-      dir_prep "$texture_packs_path/retroarch-core/Mupen64Plus/hires_texture" "$bios_path/Mupen64plus/hires_texture"
-      dir_prep "$texture_packs_path/retroarch-core/Citra/textures" "$XDG_CONFIG_HOME/retroarch/saves/Citra/load/textures"
-      dir_prep "$texture_packs_path/retroarch-core/Dolphin/Textures" "$XDG_CONFIG_HOME/retroarch/saves/dolphin-emu/User/Load/Textures/"
-      dir_prep "$texture_packs_path/retroarch-core/PPSSPP/TEXTURES" "$XDG_CONFIG_HOME/retroarch/saves/PPSSPP/PSP/TEXTURES"
-      dir_prep "$texture_packs_path/retroarch-core/Flycast/textures" "$bios_path/dc/textures"
-
-      # Mods
-      dir_prep "$mods_path/retroarch-core/Citra/mods" "$XDG_CONFIG_HOME/retroarch/saves/Citra/load/mods"
-      dir_prep "$mods_path/retroarch-core/Dolphin/GraphicMods" "$XDG_CONFIG_HOME/retroarch/saves/dolphin-emu/User/Load/GraphicMods"
-      dir_prep "$mods_path/retroarch-core/PPSSPP/PLUGINS" "$XDG_CONFIG_HOME/retroarch/saves/PPSSPP/PSP/PLUGINS"
-
-      # DLC / Storage
-
-      dir_prep "$storage_path/retroarch-core/PPSSPP/GAME" "$XDG_CONFIG_HOME/retroarch/saves/PPSSPP/PSP/GAME"
 
     ;;
 
@@ -297,6 +329,7 @@ _prepare_component::retroarch() {
 
       # Shaders
       dir_prep "$shaders_path/retroarch-core/fbneo/blend" "$bios_path/fbneo/blend"
+      dir_prep "$shaders_path/retroarch-core/PPSSPP/shaders" "$XDG_CONFIG_HOME/retroarch/saves/PPSSPP/PSP/shaders"
 
       # Mods
       dir_prep "$mods_path/retroarch-core/Citra/mods" "$XDG_CONFIG_HOME/retroarch/saves/Citra/load/mods"
