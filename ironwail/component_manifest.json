@@ -27,23 +27,23 @@
         "md5": "f6aa4f85e686e364b24e16928c51e05b",
         "system": "quake",
         "description": "Quake Base Game - 2021 Rerelease",
+        "required": "Optional, alternative",
+        "paths": "$roms_path/quake/ironwail/id1"
+      },
+      {
+        "filename": "pak0.pak",
+        "md5": "5906e5998fc3d896ddaf5e6a62e03abb",
+        "system": "quake",
+        "description": "Quake Base Game - Original Release",
         "required": "Required",
         "paths": "$roms_path/quake/ironwail/id1"
       },
       {
-        "filename": "PAK0.PAK",
-        "md5": "5906e5998fc3d896ddaf5e6a62e03abb",
-        "system": "quake",
-        "description": "Quake Base Game - Original Release",
-        "required": "Optional",
-        "paths": "$roms_path/quake/ironwail/id1"
-      },
-      {
-        "filename": "PAK1.PAK",
+        "filename": "pak1.pak",
         "md5": "d76b3e5678f0b64ac74ce5e340e6a685",
         "system": "quake",
         "description": "Quake Mission Data - Original Release",
-        "required": "Optional",
+        "required": "Required",
         "paths": "$roms_path/quake/ironwail/id1"
       },
       {
