@@ -243,7 +243,7 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # Link: https://gitlab.com/solarus-games/solarus/-/releases/
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
-  export SOLARUS_DESIRED_VERSION="v2.1.4"
+  export SOLARUS_DESIRED_VERSION="v2.1.3"
 
 # COOKER (Override)
 # export SOLARUS_DESIRED_VERSION="latest"
