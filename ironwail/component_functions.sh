@@ -1,5 +1,7 @@
 #!/bin/bash
 
+export ironwail_config="$XDG_CONFIG_HOME/ironwail/ironwail.cfg"
+
 _prepare_component::ironwail() {
   local action="$1"
   shift
