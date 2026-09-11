@@ -141,17 +141,14 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # PPSSPP_DESIRED_VERSION="latest"
 
 
-
-
-
 # ------------------------------------------------------------------------------
 # Ruffle - Flash Player Emulator
 # Source: Flatpak - Flathub
 # Link: https://flathub.org/en/apps/rs.ruffle.Ruffle
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
-# Version: 0.5.0
- export RUFFLE_DESIRED_VERSION="acc78770a5eb822c6d70ab3eb66a7626722c3ebfaab3aa985797ee81bb79ebfa"
+# Version: 0.6.0
+ export RUFFLE_DESIRED_VERSION="8ba62e830fc7cbf6fbbaf7388dc202d2933b0d9126c99c7296c0bc6f93de6f2a"
 
 # COOKER (Override)
 # export RUFFLE_DESIRED_VERSION="latest"
@@ -198,7 +195,7 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # Link: https://github.com/RPCS3/rpcs3-binaries-linux/
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
-# Version: 0.0.42-19927
+# Version: 0.0.42-19980
   export RPCS3_DESIRED_VERSION="latest"
 
 # COOKER (Override)
@@ -223,7 +220,7 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # Link: https://github.com/PCSX2/pcsx2/releases/
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
-  export PCSX2_DESIRED_VERSION="v2.8.1"
+  export PCSX2_DESIRED_VERSION="v2.8.2"
 
 # COOKER (Override)
 # export PCSX2_DESIRED_VERSION="newest"
@@ -246,7 +243,7 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # Link: https://gitlab.com/solarus-games/solarus/-/releases/
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
-  export SOLARUS_DESIRED_VERSION="v2.1.3"
+  export SOLARUS_DESIRED_VERSION="v2.1.4"
 
 # COOKER (Override)
 # export SOLARUS_DESIRED_VERSION="latest"
@@ -316,7 +313,7 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # ------------------------------------------------------------------------------
 # XRoar - Tano Dragon Emulator
 # Source: Binary (RetroDECK-built)
-# Link: https://github.com/RetroDECK/XRoar/releases
+# Link: https://github.com/RetroDECK/XRoar/releases | https://www.6809.org.uk/xroar/
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
 # Version: 1.12.1
@@ -346,7 +343,7 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # Link: https://github.com/Vita3K/Vita3K-builds/releases
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
-  export VITA3K_DESIRED_VERSION="4075"
+  export VITA3K_DESIRED_VERSION="4094"
 
 # COOKER (Override)
 # export VITA3K_DESIRED_VERSION="latest"
