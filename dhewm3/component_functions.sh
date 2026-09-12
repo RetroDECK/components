@@ -1,10 +1,6 @@
 #!/bin/bash
 
-export doom3_config="$XDG_CONFIG_HOME/dhewm3/DoomConfig.cfg"
-export doom3_controller_config="$XDG_CONFIG_HOME/dhewm3/gamepad.cfg"
-export doom3xp_controller_config="$XDG_CONFIG_HOME/dhewm3/gamepad-d3xp.cfg"
-
-
+export dhewm3_config="$XDG_CONFIG_HOME/dhewm3/base/dhewm.cfg"
 
 _prepare_component::dhewm3() {
   local action="$1"
