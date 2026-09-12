@@ -350,7 +350,6 @@
       "entries": {
         "amigavision": {
           "system": "amiga",
-        "paths": "$bios_path/amiga",
           "create_file": "$roms_path/amiga/AmigaVision.fdi",
           "gamelist_data": {
             "path": "AmigaVision.fdi",
