@@ -270,14 +270,24 @@
           "extension": ".adf .adz .ccd .chd .cue .dms .fdi .hdf .hdz .ipf .iso .lha .m3u .mds .nrg .rp9 .uae .7z .zip",
           "commands": [
             {
-              "label": "Amiberry (Standalone)",
-              "command": "%STARTDIR%=%EMUDIR% %EMULATOR_AMIBERRY% --autoload %ROM%",
+              "label": "Amiberry Floppy (Standalone)",
+              "command": "%EMULATOR_AMIBERRY% -0 %ROM% -G -f",
               "priority": 30
+            },
+            {
+              "label": "Amiberry WHDLoad (Standalone)",
+              "command": "%EMULATOR_AMIBERRY% --autoload %ROM% -G -f",
+              "priority": 40
+            },
+            {
+              "label": "Amiberry CD (Standalone)",
+              "command": "%EMULATOR_AMIBERRY% --cdimage %ROM% -G -f",
+              "priority": 50
             },
             {
               "label": "Amiberry AmigaVision (Standalone)",
               "command": "%EMULATOR_AMIBERRY% --config /var/config/amiberry/AmigaVision.uae",
-              "priority": 40
+              "priority": 60
             }
           ],
           "platform": "amiga",
@@ -290,9 +300,14 @@
           "extension": ".adf .adz .ccd .chd .cue .dms .fdi .hdf .hdz .ipf .iso .lha .m3u .mds .nrg .rp9 .uae .7z .zip",
           "commands": [
             {
-              "label": "Amiberry (Standalone) Amiga 1200",
-              "command": "%STARTDIR%=%EMUDIR% %EMULATOR_AMIBERRY% --autoload %ROM%",
+              "label": "Amiberry Floppy Amiga 1200 (Standalone)",
+              "command": "%EMULATOR_AMIBERRY% --model A1200 -0 %ROM% -G -f",
               "priority": 30
+            },
+            {
+              "label": "Amiberry WHDLoad Amiga 1200 (Standalone)",
+              "command": "%EMULATOR_AMIBERRY% --model A1200 --autoload %ROM% -G -f",
+              "priority": 40
             }
           ],
           "platform": "amiga1200",
@@ -305,9 +320,14 @@
           "extension": ".adf .adz .ccd .chd .cue .dms .fdi .hdf .hdz .ipf .iso .lha .m3u .mds .nrg .rp9 .uae .7z .zip",
           "commands": [
             {
-              "label": "Amiberry (Standalone) Amiga 600",
-              "command": "%STARTDIR%=%EMUDIR% %EMULATOR_AMIBERRY% --autoload %ROM%",
+              "label": "Amiberry Floppy Amiga 600 (Standalone)",
+              "command": "%EMULATOR_AMIBERRY% --model A600 -0 %ROM% -G -f",
               "priority": 30
+            },
+            {
+              "label": "Amiberry WHDLoad Amiga 600 (Standalone)",
+              "command": "%EMULATOR_AMIBERRY% --model A600 --autoload %ROM% -G -f",
+              "priority": 40
             }
           ],
           "platform": "amiga600",
@@ -320,8 +340,8 @@
           "extension": ".adf .adz .ccd .chd .cue .dms .fdi .hdf .hdz .ipf .iso .lha .m3u .mds .nrg .rp9 .uae .7z .zip",
           "commands": [
             {
-              "label": "Amiberry (Standalone) CD32",
-              "command": "%STARTDIR%=%EMUDIR% %EMULATOR_AMIBERRY% --model CD32 --autoload %ROM%",
+              "label": "Amiberry CD32 (Standalone)",
+              "command": "%EMULATOR_AMIBERRY% --model CD32 --cdimage %ROM% -G -f",
               "priority": 30
             }
           ],
@@ -335,8 +355,8 @@
           "extension": ".adf .adz .ccd .chd .cue .dms .fdi .hdf .hdz .ipf .iso .lha .m3u .mds .nrg .rp9 .uae .7z .zip",
           "commands": [
             {
-              "label": "Amiberry (Standalone) CDTV",
-              "command": "STARTDIR%=%EMUDIR% %EMULATOR_AMIBERRY% --model CDTV --autoload %ROM%",
+              "label": "Amiberry CDTV (Standalone)",
+              "command": "%EMULATOR_AMIBERRY% --model CDTV --cdimage %ROM% -G -f",
               "priority": 30
             }
           ],
