@@ -12,4 +12,4 @@ log i "RetroDECK is now launching $component_name"
 log d "Library path is: $LD_LIBRARY_PATH"
 log d "DOOM WADs directory is: $DOOMWADDIR"
 
-exec "$component_path/dhewm3" +set fs_gameDllPath /app/retrodeck/components/dhewm3 +set fs_basepath /var/data/dhewm3/base +set r_fullscreen 1 "$@"
+exec "$component_path/dhewm3" +set fs_gameDllPath /app/retrodeck/components/dhewm3 +set fs_basepath /var/data/dhewm3/base +set r_fullscreen 1 +exec /var/config/dhewm3/DoomConfig.cfg "$@"
