@@ -1,12 +1,9 @@
 {
   "xenia-edge": {
-    "name": "Xenia Edge",
+    "name": "Xenia-Edge",
     "core_framework_compatibility": "1",
     "component_version": "1.0.0",
-    "capabilities": [
-      "reset",
-      "open"
-    ],
+    "capabilities": ["reset","open"],
     "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/xenia-edge/xenia-edge-guide/",
     "url_webpage": "https://xenia.jp/",
     "url_donation_purchase": "https://www.patreon.com/xenia_project",
