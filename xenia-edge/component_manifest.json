@@ -1,6 +1,6 @@
 {
   "xenia-edge": {
-    "name": "Xenia-Edge",
+    "name": "Xenia Edge",
     "core_framework_compatibility": "1",
     "component_version": "1.0.0",
     "capabilities": ["reset","open"],
