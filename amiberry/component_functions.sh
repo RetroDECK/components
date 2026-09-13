@@ -61,7 +61,7 @@ _prepare_component::amiberry() {
         # Storage
 
         sed -i "s|^cdrom_path=.*|cdrom_path=$storage_path/Amiberry/CD-ROMs|" $amiberry_config
-        sed -i "s|^config_path=.*|cdrom_path=$storage_path/Amiberry/Configurations|" $amiberry_config
+        sed -i "s|^config_path=.*|config_path=$storage_path/Amiberry/Configurations|" $amiberry_config
         sed -i "s|^whdboot_path=.*|whdboot_path=$storage_path/Amiberry/WHDBoot|" $amiberry_config
         sed -i "s|^whdload_arch_path=.*|whdload_arch_path=$storage_path/Amiberry/LHA|" $amiberry_config
         sed -i "s|^floppy_path=.*|floppy_path=$storage_path/Amiberry/Floppies|" $amiberry_config
@@ -95,7 +95,7 @@ _prepare_component::amiberry() {
 
 
         sed -i "s|^cdrom_path=.*|cdrom_path=$storage_path/Amiberry/CD-ROMs|" $amiberry_config
-        sed -i "s|^config_path=.*|cdrom_path=$storage_path/Amiberry/Configurations|" $amiberry_config
+        sed -i "s|^config_path=.*|config_path=$storage_path/Amiberry/Configurations|" $amiberry_config
         sed -i "s|^whdboot_path=.*|whdboot_path=$storage_path/Amiberry/WHDBoot|" $amiberry_config
         sed -i "s|^whdload_arch_path=.*|whdload_arch_path=$storage_path/Amiberry/LHA|" $amiberry_config
         sed -i "s|^floppy_path=.*|floppy_path=$storage_path/Amiberry/Floppies|" $amiberry_config
