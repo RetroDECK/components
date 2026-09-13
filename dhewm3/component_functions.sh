@@ -22,11 +22,12 @@ _prepare_component::dhewm3() {
 
       create_dir "$roms_path/doom3/d3xp"
       create_dir "$roms_path/doom3/base"
-      cp -fr "$doom3_config" "$roms_path/doom3/base"
 
       # XDG_DATA_HOME must be symlinked to the DOOM 3 directory for mods to work.
 
       dir_prep "$roms_path/doom3" "$XDG_DATA_HOME/dhewm3"
+
+      cp -fr "$component_config/"* "$roms_path/doom3"
 
     ;;
 

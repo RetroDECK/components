@@ -22,6 +22,8 @@ _prepare_component::ironwail() {
 
       dir_prep "$roms_path/quake/ironwail" "$XDG_DATA_HOME/ironwail"
 
+      cp -fr "$component_config/"* "$roms_path/quake/ironwail"
+
       # Quake base id1
 
       create_dir "$roms_path/quake/ironwail/id1"

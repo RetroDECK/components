@@ -22,6 +22,8 @@ _prepare_component::quake3e() {
 
       dir_prep "$roms_path/quake3" "$XDG_DATA_HOME/quake3e"
 
+      cp -fr "$component_config/"* "$roms_path/quake3"
+
     ;;
 
         postmove)
