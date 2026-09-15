@@ -46,7 +46,7 @@
           {
             "label": "Gargoyle (Standalone)",
             "command": "%EMULATOR_GARGOYLE% %ROM%",
-            "priority": 10
+            "priority": 20
           }
         ],
         "platform": "zmachine",
