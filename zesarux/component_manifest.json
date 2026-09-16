@@ -40,7 +40,13 @@
           "commands": [
             {
               "label": "ZEsarUX (Standalone)",
-              "command": "%STARTDIR%=%EMUDIR% %EMULATOR_ZESARUX% %GAMEDIR% %ROM%"
+              "command": "%EMULATOR_ZESARUX% %ROM%",
+              "priority": 10
+            },
+            {
+              "label": "ZEsarUX MMC (Standalone)",
+              "command": "%EMULATOR_ZESARUX% --enable-divmmc-ports --enable-mmc --mmc-file %ROM%",
+              "priority": 20
             }
           ],
           "platform": "zxnext",
