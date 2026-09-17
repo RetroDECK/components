@@ -3,7 +3,10 @@
     "name": "RetroArch",
     "core_framework_compatibility": "1",
     "component_version": "1.0.0",
-    "capabilities": ["reset","open"],
+    "capabilities": [
+      "reset",
+      "open"
+    ],
     "description": "Multi-system emulator frontend for running games through Libretro cores.",
     "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/retroarch/retroarch-guide/",
     "url_webpage": "https://www.libretro.com/",
@@ -20,7 +23,9 @@
     "system_friendly_name": "Multiple Retro Systems",
     "backup_data": {
       "core": [
-        {"path": "$XDG_CONFIG_HOME/retroarch"}
+        {
+          "path": "$XDG_CONFIG_HOME/retroarch"
+        }
       ]
     },
     "es_de_config": {
@@ -3489,64 +3494,153 @@
       }
     ],
     "conflicting_presets": [
-      ["borders", "widescreen"]
+      [
+        "borders",
+        "widescreen"
+      ]
     ],
     "preset_variables": {
       "borders_ref_resolution": "1280x800"
     },
     "compatible_presets": {
-      "cheevos": ["false", "true"],
-      "cheevos_hardcore": ["false", "true"],
-      "quick_resume": ["false", "true"],
+      "cheevos": [
+        "false",
+        "true"
+      ],
+      "cheevos_hardcore": [
+        "false",
+        "true"
+      ],
+      "quick_resume": [
+        "false",
+        "true"
+      ],
       "snes9x_libretro": {
-        "borders": ["false", "true"],
-        "widescreen": ["false", "true"],
-        "abxy_button_swap": ["false", "true"],
-        "rewind": ["false", "true"]
+        "borders": [
+          "false",
+          "true"
+        ],
+        "widescreen": [
+          "false",
+          "true"
+        ],
+        "abxy_button_swap": [
+          "false",
+          "true"
+        ],
+        "rewind": [
+          "false",
+          "true"
+        ]
       },
       "genesis_plus_gx_libretro_MS": {
-        "borders": ["false", "true"],
-        "widescreen": ["false", "true"],
-        "rewind": ["false", "true"]
+        "borders": [
+          "false",
+          "true"
+        ],
+        "widescreen": [
+          "false",
+          "true"
+        ],
+        "rewind": [
+          "false",
+          "true"
+        ]
       },
       "genesis_plus_gx_libretro_GG": {
-        "borders": ["false", "true"],
-        "rewind": ["false", "true"]
+        "borders": [
+          "false",
+          "true"
+        ],
+        "rewind": [
+          "false",
+          "true"
+        ]
       },
       "gambatte_libretro_GB": {
-        "borders": ["false", "true"],
-        "rewind": ["false", "true"],
-        "abxy_button_swap": ["false", "true"]
+        "borders": [
+          "false",
+          "true"
+        ],
+        "rewind": [
+          "false",
+          "true"
+        ],
+        "abxy_button_swap": [
+          "false",
+          "true"
+        ]
       },
       "gambatte_libretro_GBC": {
-        "borders": ["false", "true"],
-        "rewind": ["false", "true"],
-        "abxy_button_swap": ["false", "true"]
+        "borders": [
+          "false",
+          "true"
+        ],
+        "rewind": [
+          "false",
+          "true"
+        ],
+        "abxy_button_swap": [
+          "false",
+          "true"
+        ]
       },
       "mgba_libretro": {
-        "borders": ["false", "true"],
-        "rewind": ["false", "true"],
-        "abxy_button_swap": ["false", "true"]
+        "borders": [
+          "false",
+          "true"
+        ],
+        "rewind": [
+          "false",
+          "true"
+        ],
+        "abxy_button_swap": [
+          "false",
+          "true"
+        ]
       },
       "mupen64plus_next_libretro": {
-        "borders": ["false", "true"],
-        "widescreen": ["false", "true"],
-        "abxy_button_swap": ["false", "true"]
+        "borders": [
+          "false",
+          "true"
+        ],
+        "widescreen": [
+          "false",
+          "true"
+        ],
+        "abxy_button_swap": [
+          "false",
+          "true"
+        ]
       },
       "mesen_libretro": {
-        "borders": ["false", "true"],
-        "abxy_button_swap": ["false", "true"]
+        "borders": [
+          "false",
+          "true"
+        ],
+        "abxy_button_swap": [
+          "false",
+          "true"
+        ]
       },
       "swanstation_libretro": {
-        "borders": ["false", "true"],
-        "widescreen": ["false", "true"]
+        "borders": [
+          "false",
+          "true"
+        ],
+        "widescreen": [
+          "false",
+          "true"
+        ]
       }
     },
     "preset_actions": {
       "config_file_format": "retroarch",
       "cheevos": [
         {
-          "enabled_states": ["true"],
+          "enabled_states": [
+            "true"
+          ],
           "setting_name": "cheevos_enable",
           "action": "change",
           "new_setting_value": "true",
@@ -3554,7 +3648,9 @@
           "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
         },
         {
-          "enabled_states": ["true"],
+          "enabled_states": [
+            "true"
+          ],
           "setting_name": "cheevos_token",
           "action": "change",
           "new_setting_value": "$cheevos_token",
@@ -3562,7 +3658,9 @@
           "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
         },
         {
-          "enabled_states": ["true"],
+          "enabled_states": [
+            "true"
+          ],
           "setting_name": "cheevos_username",
           "action": "change",
           "new_setting_value": "$cheevos_username",
@@ -3572,7 +3670,9 @@
       ],
       "cheevos_hardcore": [
         {
-          "enabled_states": ["true"],
+          "enabled_states": [
+            "true"
+          ],
           "setting_name": "cheevos_hardcore_mode_enable",
           "action": "change",
           "new_setting_value": "true",
@@ -3582,7 +3682,9 @@
       ],
       "quick_resume": [
         {
-          "enabled_states": ["true"],
+          "enabled_states": [
+            "true"
+          ],
           "setting_name": "savestate_auto_save",
           "action": "change",
           "new_setting_value": "true",
@@ -8205,6 +8307,18 @@
         "md5": "eb201d2d98251a598af467d4347bb62f",
         "system": "psx",
         "description": "PlayStation 1 BIOS",
+        "required": "At least one BIOS file required"
+      },
+      {
+        "filename": "openbios.bin",
+        "md5": [
+          "9c63f15a3725fe4c5d4a390abdf85e70",
+          "3b7da1a9c7e9007fac661558354d4b7e",
+          "9b4e603bb79a62511d0cc79953a2a24f",
+          "7e18e8bec0071359e612838e09d3f290"
+        ],
+        "system": "psx",
+        "description": "PlayStation 1 open-source BIOS from PCSX Redux",
         "required": "At least one BIOS file required"
       },
       {
