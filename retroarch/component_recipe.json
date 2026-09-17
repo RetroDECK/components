@@ -67,6 +67,11 @@
           "dest": "rd_extras"
         },
         {
+          "type": "dir",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/rd_assets/rd_extras/pcsx-redux",
+          "dest": "rd_extras"
+        },
+        {
           "type": "create",
           "dest": "component_version",
           "contents": "$SOURCE_VERSION"

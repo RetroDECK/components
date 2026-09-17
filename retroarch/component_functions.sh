@@ -206,10 +206,17 @@ _prepare_component::retroarch() {
 
       # AMIGA
       log i "-----------------------------------------------------------"
-      log i "Prepearing AMIGA LIBRETRO"
+      log i "Prepearing AMIGA + AMIGAVISION LIBRETRO"
       log i "-----------------------------------------------------------"
       log i "Copying \"$retroarch_extras_path/Amiga/capsimg.so\" in \"$bios_path/capsimg.so\""
       cp -f "$retroarch_extras_path/Amiga/capsimg.so" "$bios_path/capsimg.so"
+      cp -f "$retroarch_extras_path/Amiga/capsimg.so" "$bios_path/amiga/capsimg.so"
+
+      # PCSX Redux
+      log i "-----------------------------------------------------------"
+      log i "Prepearing PCSX Redux"
+      log i "-----------------------------------------------------------"
+      cp -f "$retroarch_extras_path/pcsx-redux/openbios.bin" "$bios_path/openbios.bin"
 
       # ScummVM
       log i "-----------------------------------------------------------"
