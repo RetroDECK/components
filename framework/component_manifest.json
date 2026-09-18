@@ -649,7 +649,23 @@
             ]
           }
         ]
-      }
+      },
+      "es_systems": [
+        {
+          "name": "desktop",
+          "fullname": "Desktop Applications for Tinkerers",
+          "path": "%ROMPATH%/desktop",
+          "extension": ".desktop .sh",
+          "commands": [
+            {
+              "label": "Desktop",
+              "command": "%ENABLESHORTCUTS% %EMULATOR_OS-SHELL% %ROM%"
+            }
+          ],
+          "platform": "pcwindows",
+          "theme": "desktop"
+        }
+      ]
     }
   }
 }
