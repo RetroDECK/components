@@ -1,0 +1,4 @@
+https://distrib.app/pub/org/pcsx-redux/project/dev-linux-x64
+
+squashfs-root/usr/share/pcsx-redux/resources/openbios.bin
+

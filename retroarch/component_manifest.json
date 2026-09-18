@@ -8311,12 +8311,6 @@
       },
       {
         "filename": "openbios.bin",
-        "md5": [
-          "9c63f15a3725fe4c5d4a390abdf85e70",
-          "3b7da1a9c7e9007fac661558354d4b7e",
-          "9b4e603bb79a62511d0cc79953a2a24f",
-          "7e18e8bec0071359e612838e09d3f290"
-        ],
         "system": "psx",
         "description": "PlayStation 1 open-source BIOS from PCSX Redux",
         "required": "At least one BIOS file required"
