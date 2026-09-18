@@ -195,7 +195,7 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # Link: https://github.com/RPCS3/rpcs3-binaries-linux/
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
-# Version: 0.0.42-19980
+# Version: 0.0.42-20022
   export RPCS3_DESIRED_VERSION="latest"
 
 # COOKER (Override)
@@ -343,7 +343,7 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # Link: https://github.com/Vita3K/Vita3K-builds/releases
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
-  export VITA3K_DESIRED_VERSION="4094"
+  export VITA3K_DESIRED_VERSION="4096"
 
 # COOKER (Override)
 # export VITA3K_DESIRED_VERSION="latest"
