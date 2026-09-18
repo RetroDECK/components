@@ -56,8 +56,9 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # Link: https://flathub.org/en/apps/org.azahar_emu.Azahar
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
-# Version: 2126.0
-  export AZAHAR_DESIRED_VERSION="31a62030cd75ecb24cfa766e410ecb861ef5a517f150fed726d1eaa757e79ca0"
+# Version: 2126.1
+  export AZAHAR_DESIRED_VERSION="6739873b8d51ad294e1d8ac08f772d3e52ad5e7cd49b6d7404d5e01ec8227414"
+
 
 # COOKER (Override)
 # export AZAHAR_DESIRED_VERSION="latest"
