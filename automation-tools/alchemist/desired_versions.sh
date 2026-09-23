@@ -280,10 +280,10 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
 # Version: 3.4.0
-  export ES_DE_DESIRED_VERSION="latest"
+#  export ES_DE_DESIRED_VERSION="latest"
 
 # COOKER (Override)
-#  export ES_DE_DESIRED_VERSION="latest"
+export ES_DE_DESIRED_VERSION="release-update-3.5.0-beta-20260923-072547"
 
 
 # ------------------------------------------------------------------------------
