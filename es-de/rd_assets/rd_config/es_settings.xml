@@ -179,3 +179,4 @@
 <string name="UIMode" value="full" />
 <string name="UIMode_passkey" value="uuddlrlrba" />
 <string name="UserThemeDirectory" value="" />
+<string name="SplashScreenProgressBarColor" value="0x79010FFF" />
