@@ -196,6 +196,18 @@ _prepare_component::retroarch() {
       dir_prep "$mods_path/retroarch-core/fbneo/ips" "$bios_path/fbneo/ips"
       dir_prep "$mods_path/retroarch-core/fbneo/romdata" "$bios_path/fbneo/romdata"
 
+      # PRBOOM
+      log i "--------------------------------"
+      log i "Preparing PRBOOM_LIBRETRO"
+      log i "--------------------------------"
+      cp -f "$retroarch_extras_path/prboom.wad" "$bios_path/prboom.wad"
+
+      # ECWOLF
+      log i "--------------------------------"
+      log i "Preparing ECWOLF_LIBRETRO"
+      log i "--------------------------------"
+      cp -f "$retroarch_extras_path/ecwolf.pk3" "$bios_path/ecwolf.pk3"
+
       # MSX / SVI / ColecoVision / SG-1000
       log i "-----------------------------------------------------------"
       log i "Preparing MSX / SVI / ColecoVision / SG-1000 LIBRETRO"
