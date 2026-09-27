@@ -205,10 +205,10 @@ MaxBlockSize = 32
 Enable = false
 
 [DSi]
-NANDPath = ""
-BIOS7Path = "RETRODECKBIOSDIR/bios7.bin"
-BIOS9Path = "RETRODECKBIOSDIR/bios9.bin"
-FirmwarePath = "RETRODECKBIOSDIR/firmware.bin"
+NANDPath = "RETRODECKBIOSDIR/dsi_nand.bin"
+BIOS7Path = "RETRODECKBIOSDIR/dsi_bios7.bin"
+BIOS9Path = "RETRODECKBIOSDIR/dsi_bios9.bin"
+FirmwarePath = "RETRODECKBIOSDIR/dsi_firmware.bin"
 FullBIOSBoot = false
 
 [DSi.Camera1]
