@@ -83,8 +83,8 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # Link: https://flathub.org/en/apps/org.DolphinEmu.dolphin-emu
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
-# Version: 2606a
-  export DOLPHIN_DESIRED_VERSION="1b150924d3216b59a3717245955cd7f3c7649edd0fecf39ebb697a0bd24304be"
+# Version: 2609
+  export DOLPHIN_DESIRED_VERSION="594afeb78ede945c8fe0e774649443cf12b0706188ce03bb3cd49e3004659e5b"
 
 # COOKER (Override)
 # export DOLPHIN_DESIRED_VERSION="latest"
