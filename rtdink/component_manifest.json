@@ -1,0 +1,53 @@
+{
+  "rtdink": {
+    "name": "RTDink",
+    "core_framework_compatibility": "1",
+    "component_version": "1.0.0",
+    "capabilities": [
+      "reset",
+      "open"
+    ],
+    "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_engine_guides/mudlet/mudlet-guide/",
+    "url_webpage": "https://www.dinknetwork.com/",
+    "url_donation_purchase": "https://www.gog.com/en/game/dink_smallwood_hd",
+    "url_source": "https://github.com/SethRobinson/RTDink",
+    "component_type": "Engine",
+    "description": "RTDink Engine for Dink Smallwood HD.",
+    "system_friendly_name": "Dink Smallwood HD",
+    "system": "dink",
+    "es_de_config": {
+      "es_find_rules": {
+        "emulators": [
+          {
+            "name": "RTDINK",
+            "description": "RTDink Dink Smallwood Engine",
+            "rules": [
+              {
+                "type": "staticpath",
+                "entries": [
+                  "%COMPONENT_PATH%/component_launcher.sh"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "es_systems": [
+        {
+          "name": "dink",
+          "fullname": "Dink Smallwood",
+          "path": "%ROMPATH%/dink",
+          "extension": ".dink",
+          "commands": [
+            {
+              "label": "RTDink (Standalone)",
+              "command": "%EMULATOR_RTDINK% %ROM%"
+            }
+          ],
+          "platform": "pc, pcwindows",
+          "theme": "dink"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,73 @@
+{
+  "rtdink": [
+    {
+      "source_url": "$REPO_ROOT/$COMPONENT_NAME/rd_assets/rtdink.7z.001",
+      "source_type": "github_release",
+      "version": "$RTDINK_DESIRED_VERSION",
+      "extraction_type": "archive",
+      "assets": [
+        {
+          "type": "dir",
+          "source": "audio",
+          "dest": "audio"
+        },
+        {
+          "type": "dir",
+          "source": "dink",
+          "dest": "dink"
+        },
+        {
+          "type": "dir",
+          "source": "lib",
+          "dest": "lib"
+        },
+        {
+          "type": "file",
+          "source": "RTDinkApp",
+          "dest": "RTDinkApp"
+        },
+        {
+          "type": "file",
+          "source": "zlib1.dll",
+          "dest": "zlib1.dll"
+        },
+        {
+          "type": "file",
+          "source": "zlibwapi.dll",
+          "dest": "zlibwapi.dll"
+        },
+        {
+          "type": "create",
+          "dest": "component_version",
+          "contents": "$SOURCE_VERSION"
+        },
+        {
+          "type": "dir",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/rd_assets/rd_config",
+          "dest": "rd_config"
+        },
+        {
+          "type": "file",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/component_functions.sh",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/component_launcher.sh",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/component_manifest.json",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/component_recipe.json",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        }
+      ],
+      "libs": []
+    }
+  ]
+}

@@ -394,6 +394,13 @@ export GAMETANK_VERSION_POLICY="latest"
 export ORICUTRON_VERSION_POLICY="latest"
 
 # ------------------------------------------------------------------------------
+# RTDink - Dink Smallwood HD Engine
+# Source: Binary (RetroDECK-built)
+# Link: https://github.com/SethRobinson/RTDink
+# ------------------------------------------------------------------------------
+export RTDINK_VERSION_POLICY="latest"
+
+# ------------------------------------------------------------------------------
 # SDL2TRS - TRS-80 Model I/III/4/4P Emulator
 # Source: Binary (RetroDECK-built)
 # Link: https://gitlab.com/jengun/sdltrs/-/blob/master/BUILDING.md

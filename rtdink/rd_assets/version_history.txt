@@ -1,0 +1,437 @@
+
+------ Change log for 1.7.0 ----------
+
+* Upgraded source projects to Visual Studio 2017 (free community edition works fine)
+* (bugfix) No longer forces reload of all graphics when saving the state
+* (bugfix) No longer forces reload of all graphics and audio when losing focus/going into the background
+* (bugfix) Fixed issue where screen scrolling could bug out if window was resized on windows
+* Latest state data to "Continue" persists even if the game crashes now
+* Added support for 64 bit builds (still fully compatible with existing save states/games)
+* Added support for aspect ratio correction (can be disabled by enabling "Fullscreen stretch" in the options)
+* Added IPV6 support
+* (DinkC) Goto statements no longer require a ; at the end to work
+* (iOS) Now compatible with iOS 11
+* (Windows) Installer no longer requires admin privileges, now installs to local user's appdata dir (C:\UserName\AppData\Local\DinkSmallwoodHD)
+* (Windows) .exe and installer are now signed with RTsoft's distribution certificate
+* (Windows) Now checks for new versions on startup
+* (Windows) Now writes the stack trace to log.txt if the game crashes (helps debug problems)
+
+------ Change log for 1.7.1 ----------
+
+(big thanks to Redink1 for most of these bug reports and the fancy shadows patch!)
+
+* (Windows) Fixed app icon
+* (Windows) Mouse-controlled screens in DMODs control better and hide the original mouse cursor
+* (Windows) Now remembers screen size and fullscreen mode (don't forget, you can drag the window corners around to customize the screen size as well)
+* (Windows) Input URL input area gets focus by default when installing a DMOD by URL
+* (bugfix) Can no longer tap F8 during a game load to load a save state too early which can freeze the game
+* (bugfix) Fixed issue where 32 bit tilebitmaps would go wonky when reloading the surface
+* Default color under status bar is now black, fixes issue when transparent colors are used in the stats area, random garbage would show through
+* (windows) Version # is now shown in title bar
+* (bugfix) Fixed some issues with how default offsets are calculated, it fixed some problems where sprites would be in the wrong place in certain DMODs
+* (bugfix, windows) "Smoothing" no longer incorrectly turns on if you lose/regain focus
+* (windows) Added "Windowed Borderless fullscreen mode" toggle, defaults to off.  It will try to do 640X480 at your native monitor resolution by default now on
+	a clean install. If you've dragged the dink window to a weird size it won't be able to go fullscreen which is kind of weird, but it does give a clear error message. It should probably
+	enumerate graphic modes and choose one if the current one is invalid, or let the user choose, meh
+* Added redink1's "soft shadow improvement" patch
+* (proton) Fixed issue with blitting alpha things to the background, fixed the soft shadows for things rendered into the background
+
+------ Change log for 1.7.2 ----------
+
+* Changed "FPS lock:" to "Lock to 30 FPS:" in options, makes it more clear it's actually bad to use and not vsync
+* (Windows) Handles alt-tab and clicking on a different monitor while in native fullscreen modes better
+* Added "Ghost walk toggle" to in-game cheat menu.  Allows you to walk through solid objects and screenlocks
+* (DinkC) Added support for Dan's load_tile() command
+* (Windows) Added support for -game <dmod directory> parm to load a DMOD from anywhere on your HD. It also sets 
+	the active DMOD dir to the DMODs parent directory for that session.  Automatic state autosave, save/continue and quicksave/quickload work as expected by saving data to its directory
+* (bugfix) Save states now properly load even if the DMOD directory has been cut and pasted to a new place
+* (bugfix) Full state saves now properly setup backgrounds with correct vision modifications instead of assuming it was 0
+- Due to minor changes in the save state stuff, I've versioned it so the game will refuse to load old versions (as always, this doesn't affect the normal save files, just the full state saves HD does)
+* (DinkC) fill_screen works better and colors 0 and 255 are no longer sometimes reversed
+* (bugfix) M can now be used to turn off the map, previously it only worked to turn it on
+* (bugfix) Status no longer incorrectly draws over full screen bitmaps (like the map in Mystery Island) and is properly reconstructed in full save states
+
+------ Change log for 1.7.3 ----------
+
+* (DinkC) DinkC version is now reported as 110 instead of 109
+* (Bugfix) Fixed issue with set_frame_frame, the DMOD Mayhem now works
+* (Bugfix) Fixed another incorrect color issue with fill_screen (This fixed Initiation's title screen)
+* (Bugfix) Fixed horrible issue where the last line in a script might not get run.  This fixed the intro screen to Lost Forest Romp
+* (Bugfix) Rewrote some nasty code that I could no longer understand, THE LAST QUEST (part 2)'s cool room slide/warp effect now works right
+* Added "Debug DinkC Toggle" to cheat menu, it shows collision boxes and causes the log (log.txt or choose view log from debug menu)
+* If fullscreen is at a weird size it will now just force it to 1024X768.  If that fails, well, it won't be good
+- Note:  Save state format has been changed again, so old save states won't load
+
+------ Change log for 1.7.4 ----------
+
+* (Bugfix) Fixed a script crash.  This bug was also in the legacy dink
+* (Windows) "Tap to continue" is no longer shown when waiting for a keypress, but will still be shown on touch-devices
+* Fixed bug where any DMOD directory starting with "dink" was ignored from the internal DMOD listing screen.  Oops, that was a pretty bad one, sorry dinkcrft.
+* (Bugfix) Fixed issue where default .ini animations wouldn't get applied correctly in some cases, this fixed a slight offset problem with Stone Of Balance
+* Fixed problem with glitchy black lines during screen transitions
+* (Bugfix) Fixed issue with playmidi and filenames that start with numbers over 1000, this fixed a problem with 1812over.mid not playing in Mayhem
+* Added 1920X1080 screen mode selector in the Options menu
+* No longer applying Dan's checkboard fix to tile screens (they don't need it I think..), and also added a hack so it will ignore main-02 through main-04.bpm (the dialog box) as it made it look weird
+* Fixed some issues related to dynamic 8 bit to 32 bit surface changes (this can happen if you turn on the new shadows after starting to play or the game suddenly hits a 32 bit image)
+- Note:  Just to be safe, save state version has changed, so old save states won't load
+
+------ Change log for 1.7.5 ----------
+
+* Properly handles an illegal frame # sent to sp_frame instead of crashing
+* (Bugfix) Fixed issue with not being able to set long delays in sprites (fixed dancing knight in Bugmania)
+* (Bugfix) Fixed DinkC "!=" command which was renamed "!" for some reason. This fixed the goto in Bugmania
+* Enabled support for >= and <= in DinkC, not sure why it was commented out before, they were active in 1.08
+* (Bugfix) Status bar will now be drawn even when mouse mode is active if needed (it now shows up in Bugmania)
+* Space no longer selects dialog, you'll have to use ENTER or CONTROL like on 1.08
+* Mouse can now be used to select dialog options
+* Fixed mouse issue with Bugmania in the town where it wasn't sending button down messages
+* Made escape open the Dink HD menu even when wait_for_button is being used.  This may be a problem if any DMODs require ESCAPE to be a button that is used though
+- Note:  Save state format has been changed again, so old save states won't load
+
+------ Change log for 1.7.6 ----------
+
+* Made Dink HD work with DFArc. Either you can put DFArc in the Dink HD dir and add "dmods" as the additional dmod directory so it can find
+mods installed by Dink HD too, or you can keep Dink HD completely separate, and enter the full path/exe to Dink HD's .exe in DFArc config and that works too.
+
+It's kind of weird that Dink HD puts its mods in a subdir called "dmods" as compared to the original Dink which useds its root dir.  I could change that but.. meh.
+
+* Added support for -window and -debug from the command line.  Dink HD remembers the last setting already, so -window would only have any effect
+if it was last used as fullscreen
+
+* Added Dan Walma's improved shadow patch
+
+------ Change log for 1.7.7 ----------
+
+* Sprite blits that hang out of the game area are now rejected in some situations, to match functionality of Dink 1.08. (Bloop the fish on 1.08 looked right because it was getting ddraw errors when trying to draw the "blank" numbers because they were too big for the screen)
+* A LOAD_SEQUENCE done after a LOAD_SEQUENCE_NOW in dink.ini is now ignored to match V1.08 functionality.  This fixes the issue of a fish turning into an old man in Bloop the fish
+* Alt-Q now closes Dink, to match 1.08
+* Fixed issue with bubble magic not having a transparent background in Bloop the fish (was due to some changes to make fake magic/weapon icons work on mobiles.. I'll have to redo that later)
+* Fixed issue with slow nagivation in Broken Windows due to too much logging about scripts being run
+* (Bugfix) copy_bmp_to_screen issue where it might try to blit a 24 bit image onto 8 bit fixed (fixed incorrect images in Broken Windows)
+* (Bugfix) key-<key num>.c scripts are no longer sometimes loaded multiple times
+* Some tweaks to keyboard input so Broken Windows typing area works better, "," and "." are supported.  Escape is as well but it also brings up Dink HD's menu which isn't great, but at least it works
+* (Bugfix) Default transparency for LEFTALIGN things is now correctly white instead of sometimes not transparent
+* The / divider on the experience display ( ns-11.bmp ) is now always "white transparent". This WAS the original way (check the Dink jewel case screenshots) but somehow in 1.08 and beyond this stopped being transparent.  Fixing this fixed the white box in Bug Mania
+* (Bugfix) Fixed "way too jumpy megapotion" bug
+
+- Note:  Just to be safe, save state version has changed, so old save states won't load
+
+------ Change log for 1.7.8 ----------
+
+* Fixed issue where launching dmods from DFArc with a dmod path not in DFArc's dir or Dink HD's dmod dir would fail
+* Fixed compatibility so Freedink.exe and the dink.exe from 1.08 can be run from Dink HD's dir (previously, start.c had been hacked to skip stuff for the HD version,
+  it now checks version and if it's being run as a dmod or not and does it right)
+* If you run the HD "dink" dir as a mod it now works as expected (it plays the normal game, including the old start up screen)
+* Now including story/*.c instead of the .d files.  No reason to hide them, right? (note: if you install over HD without uninstalling, the old .d files will still be there.  But .c files are checked
+first so it should be ok anyway)
+* DMODs now default to the original .midi files rather than the .ogg CD music, as it changed the desired "feel" of some DMODs to switch to CD music.  Running with -game dink causes Dink itself to
+  not use CD music as well, so for people who don't like CD music at all there's an option to play the original game with midis only
+* (Bugfix) Dink HD will no longer try to grab missing sprites from the base dink dir, this fixes Dink's pushing anim in Zoltron
+* (Bugfix) dmod installer no longer chokes on zero byte files (I'm looking at you, 9gems)
+* (Bugfix) Fixed memory leak and possible crash related to script loading
+* (Bugfix) Fixed issue with the checkerboard shadow processing where the 8 bit RLE decoder failed because it was expecting an 8 bit target (most bmps don't use RLE, but Alliance does in places)
+* (Bugfix) Fixed issue with loading certain 16 bit bmps incorrectly, fixed tilted text in Infinidink
+* Went ahead and decided to accept 252,252,252 as alpha if it's index 255 on an 8bit sprite.  This fixed the white background issue with Alliance dmod as well as Dinkcraft
+* FEATURE: Can now download all DMODs from Dink Network directly from inside the game via Dan's php interface.  Can sort by rating, latest update date, or alphabetically
+
+- Note:  Just to be safe, save state version has changed, so old save states won't load
+
+------ Change log for 1.7.9 ----------
+
+* Dink now continues to download and install dmods when in the background, but everywhere else pauses automatically
+* After installing a dmod, you can now choose to play it now or go back to the browse dmod list
+* DMOD data downloaded from dink network is now cached for that session (it's not going to change so quickly, so why stress DN.com if we don't have to)
+* (Bugfix) "installing <dmod>..." text message is no longer truncated in a weird way sometimes
+* (Bugfix) Fixed another issue where a base graphic could fill in with a missing .bmp in a sequence when it shouldn't
+* Huh, turns out .D files are always loaded before .C files.  I switched back to including .D files, otherwise if you didn't do a clean install my start.c changes don't show up
+* Fixed it so freedink.exe and the old dink can be run directly from the Dink HD directory without crashing.  I didn't actually test it before, they didn't like / instead of \ in my .ini previously.
+I also added the CD and splash.bmp that were missing
+* Quick tip that pops up when playing the normal game now talks about the F1/F8 instant state save/load feature instead of talking about pressing the "pause icon" which doesn't even exist on the Windows build
+
+- Note:  Just to be safe, save state version has changed, so old save states won't load
+
+------ Change log for 1.8.0 ----------
+
+* Applied 16 bit bmp loading fix to "fancy shadows" version too, forgot before
+* (Bugfix) Dink is no longer sometimes incorrectly shown on screen right as a dmod is started
+* (Windows, DinkC, Performance) Logging code rewritten, it's was horribly slow before.  If a DMOD spammed "debug" messages it would previously drastically slow down the entire dmod
+* (Bugfix) LOAD_SEQUENCE and LOAD_SEQUENCE_NOW fixes, fixes stuff in many dmods
+* Improved mouse handling on dialog menus, no longer accidently select the first option of the dink menu if you click slow after using HD's escape menu to get there
+
+- Note:  Just to be safe, save state version has changed, so old save states won't load
+
+------ Change log for 1.8.1 ----------
+
+* Escape now brings up the classic dink escape menu, the Dink HD menu was just too intrusive.  It will show a text message that you can hit Shift-Escape to bring up the HD menu as well
+* Made dialog box background look better by making it 32 bit with alpha, no more "cracks" at some resolutions.  Custom dialogs may still get line cracks at non 640X480 but whatever
+* Default resolution is now 1024X768 fullscreen instead of 640X480
+* dmod listing is packed tighter and now sorted alphabetically by dmod name, not directory name
+
+------ Change log for 1.8.2 ----------
+
+* Changed release compiling a bit to enable C7 compatible debug info, may help with stack traces
+* Oops, turned max sprites back up to 300 from 100, don't ask me how I managed that one
+* (DinkC) A line of over 200 characters won't corrupt memory (new limit is 512) - this fixed a crash in Grasp of Darkness
+* (DinkC) external commands no longer generate bogus errors in the log.txt due to how 1.08 added weird overloading stuff
+* Now shows the dmod's splash.bmp during loading
+* Fixed issue where music might not play on the title screen
+* Raised "memory of dead background sprites" to 300 from 100 for Windows, up to 200 for mobile
+* Doubled memory Dink is allowed to use before uncaching graphics not used recently (could probably be disabled entirely for Windows but whatever)
+
+------ Change log for 1.8.3 ----------
+
+* Added "If a .dmod file is put in the Dink HD directory (where the .exe is), it will be automatically installed and then deleted" to readme.txt
+* Dialog box rendering was off a few pixels due to me forgetting to remove some tests I did, fixed
+* Black at index 255 and white at index 0 is now forced during bmp loading.  Windows does it, photoshop doesn't, but older versions of Dink (directx) seemed to do
+it so going with that
+* Invalid sprite sent to freeze/unfreeze will no longer crash the game (bug was also in original 1.08)
+* Added hardening to check valid input on many script functions, will stop "sometimes" crashes based on bad scripting as well as log them
+* Crash logging should show correct function names. I mean it this time!
+
+------ Change log for 1.8.4 ----------
+
+* Some changes to Dink's speed calculations, it's now basically locked at "you better get 60 fps or the whole game will slow down" - the
+original system is REALLY bad and the timing of Dink vs monsters can vary wildly based on your framerate.  So I sort of had to "choose" a correct
+speed and go with that, I chose a pretty fast speed sort of arbitrarily because it "felt" ok.  There isn't really a "correct" speed so I do expect problems with some dmods due to them expecting
+a specific speed, but by choosing rather snappy speed hopefully mystery island and most of them will be finishable
+* Related to the above, holding tab no longer lets you cheat by moving relatively faster than monsters
+* Playing location aware sounds on a script not attached to a sprite will no longer cause crashes (should fix crash in malachi the jerk)
+
+------ Change log for 1.8.5 ----------
+
+* Tweaked speed a bit, sort of aligned it so the cutscenes in Initiation play right
+
+------ Change log for 1.8.6 ----------
+
+* (Windows) Running "dink.exe c:\temp\ACoolDMOD.dmod" from the command line will now install it, then run it.  (original dmod file won't be deleted)  Just seemed weird that this didn't exist so added it
+* DMOD installer progress now switches to showing MB instead of K if the size is big
+* BUGFIX: Fixed map loading bug that could crash the game (I added this one recently trying to clean up code to use more consts rather than magic #s, but there is always the risk I stupidely break something!)
+* load_tile no longer instantly takes effect but requires a draw_screen or moving screens, this matches how 1.08 worked.  Loading a save state or resizing the window will cause it to happen early, but hey, close enough
+* BUGFIX: Fixed extra nasty bug where logic on certain things like charging your magic would pause the amount of time you used TAB to skip time
+
+- Note:  Just to be safe, save state version has changed, so old save states won't load
+
+------ Change log for 1.8.7 ----------
+
+* Savestates should now properly restore the background in dmods that use mouse controls and tiles at the same time
+* Some tweaks with when mouse buttons are processed (only in mouse cursor modes or a dialog menu)
+* Misc work on touch controls to prepare for the mobile releases
+* Added some names to credits (if you notice I added anybody twice or would rather be credited a different way or not at all, let me know!)
+* Fixed bug that could sort of over-write random data if more than 100 sprites were active.. wow, bad
+
+------ Change log for 1.8.8 ----------
+
+* Mobile GUI tweaks
+* Added option to disable screen scroll transitions, one of my Android test devices has the slowest glread in the world, it's like 1 full second to walk to the next screen because of it.  This might make dmods that 
+use timing (Myster island camera sequence for example) easier though, not sure.
+* Fixed issue where behavior of two load_sequence commands in a row on the same sequence differed from 1.08 (in 1.08, max frame is set to the second one as long as the first one wasn't actually loaded yet.  key now shows up in TGKA)
+* Fixed regression where offsets in Mayhem were incorrect on the hand mouse pointer
+* Upped max frames per seq to 100 instead of 50, fixes Echoes of the Ancient.  I should probably make it dynamic but changing one const number is much easier!
+* Now gives a clear warning in the log.txt if a seq tries to go beyond what it can handle and will truncate it (better than breaking the whole sequence as it did before)
+* Added support for a weird bmp header type, fixes incorrect palette issue in the dmod The Orb of Darkness
+* Fixed life/exp/health to correctly interpolate between values like the original dink, huge thanks to Dan's detailed bug report on this, he even made a mod which made testing the fix a breeze!
+* BUGFIX: .dmod files detected in the main Dink HD dir are now properly deleted after auto-installing them
+* (Windows) Key binding changes: F1 now brings up the Dink Menu (Shift-Escape was .. weird..) and quicksave was moved to F4
+
+- Note:  Save state version has changed, old save states won't load!
+
+------ Change log for 1.89 ----------
+
+ * Added Dan Walma's .png support (untested)
+ * Another bugfix in the .dmod decompresser, fixes issue with Attack of the veggies
+ * (Windows) Holding Shift in addition to Tab will cause "super turbo" mode, speeding up the game faster than just holding Tab.  (Secret tip:  If you really want to see speed, hold down the Control key too)
+
+ 
+------ Change log for 1.90 ----------
+
+ * iOS version recompiled as Release instead of debug, oops
+ * OSX version released as a code-signed secure download from rtsoft.com.  Removed from Mac App Store.  It supports notifying the user about
+ new versions, same as the Windows version.  Like the windows version, the window can be stretched to any size, but it lacks a full screen option.
+
+ ------ Change log for 1.91 ----------
+
+* This release fixes CVE-2018-0496: Sylvain Beucler and Dan Walma discovered several directory traversal issues in DFArc, an extension manager for the Dink Smallwood game, allowing an attacker to overwrite arbitrary files on the user's system. (While this doesn't use DFArc, some of the same "zip slip" issues applied)
+* Applied Dan Walma's fix so DinkHD would not incorrectly interpret sp_frame(x, -1) as sp_frame(x, 1), this fixes an issue with the Malachi the Jerk DMOD
+
+ ------ Change log for 1.92 ----------
+
+* (Bugfix) Fixed issue that caused graphical glitches in the DMOD Revolution
+* Looping sounds like fire/save machines now properly pause when app loses focus
+
+ 
+ ------ Change log for 1.93 ----------
+
+ * (Bugfix) Fixed crash in Windows 10/11.  What was the problem? I'm not sure, simply rebuilding the game with my current dev environment was enough to fix it
+ * "Cheats" button renamed "Debug tools" and only show the cheat options if debug mode is enabled, then you re-enter the menu. Seemed like having cheats
+    right in your face is a bad idea and probably caused people to ruin the game by cheating even when they didn't need it
+ * XInput gamepads now supported, can be plugged/unplugged during play
+ * Misc fixes to how windowing/resolutions worked, removed some code that caused weird buggy behavior in Win 10/11, was written long ago
+ * Added quit button (Windows version)
+
+ ------ Change log for 1.94 ----------
+
+* Should work on Windows 7 again (in theory.. uhh.. )
+* Now using HTTPS for all communications/downloads on all platforms
+* Download & DMOD install is now much faster
+* Windows now using a 64 bit build and latest FMOD Studio version for audio
+* BUGFIX: All cheats now properly show up if DinkC Debug Toggle is used from the debug mode (previously, Ghostwalk didn't appear)
+* (Android) Fixed issue with Android 11 not being able to save
+* (Windows) Running dink.exe with /? or --help will now show a list of possible command line parms
+* (Android) Now using FMOD for the sound engine here, now all supported platforms have audio feature parity and should sound the same
+* BUGFIX (Android): Installing certain large DMODs will no longer crash due to JNI not being able to garbage collect strings fast enough, 
+  although this bug might be something that only happened on this build due to DMOD install optimizations, not sure
+* (Windows) Added note on about screen: "Click and drag to move this window, yeah, this GUI was originally made for mobile so it's weird",
+* (Desktop versions) In-game Options menu now shows active dink and DMOD paths, About page shows dink dir and dmod base dir
+* Midi improvements - using a new MIDI soundfont ( GeneralUser GS 1.471.sf2, but I converted it to .dls1 as FMOD only supports that) - 
+  I think it's probably better than the default Windows midi player so I went ahead and enabled it for Desktop versions too, but .. I don't know,
+  I feel like some instruments are a bit loud in some midis, but I guess it's probably because different midi authors worked with different
+  soundfonts and engineered them to different audio levels, so fixing volume for one song makes it too loud on another.  Hrmph
+* DMOD browse menu (showing things you can install) now shows file size
+* BUGFIX: Plugged in XInput devices no longer cause dink to stutter while walking if using keyboard to move
+* BUGFIX: Fixed some weirdness that happend if DPI scaling is enable
+
+
+ ------ Change log for 1.95 ----------
+* Fixed 25 year old strcpy usage issue with overlapping the dest and src locations which you shouldn't do,
+  strangely the first time it actually caused a problem (AFAIK?) was on a recent Android build that
+  was crashing on some devices when New Game is clicked.
+
+ ------ Change log for 1.97 ---------- (July 2022)
+
+* BUGFIX: Fixed issue with black tiles at the start of Charlie's Legacy (Now properly rebuilds surfaces when dynamically switching from
+  8 bit to 32 bit color back buffer mode, it does this the first time it detects high color sprites in a dmod) (Robj)
+* BUGFIX: Fixed issue with pushing animation code that caused Charlie's Legacy to freeze dink on frame 1 when pushing (Robj)
+* Unless you're using touch controls, choosing an inventory item will no longer auto-close the menu, not really need for
+  keyboard/gamepad players (robj)
+* load_script gives a warning to log if you try to load a script to a sprite that doesn't exist instead of crashing
+* Added support for bmps using "bitfields" (to Proton), have never seen one in the wild, but Charlie's Legacy's map-03.bmp uses it
+* BUGFIX: Unknown procedures give correct error in log, before it would include weird garbage
+* HUGE speedup on script loading, fixes slowdowns in Charlie's Legacy sliding puzzles
+  (and pretty much any dmod that does intensive script processing)
+* (Windows) I see possible issues with the script "return var" statement and stack problems, it doesn't properly
+  handle recursion well and will kill the stack if enough calls are made in the same loop.  Instead of a real fix, I've increased the .exe's stack
+  from 1 mb to 50mb on Windows for now, will revisit issue later probably when handling mobile builds
+* No longer writes "drawing hardmap" to the log
+* BUGFIX: Fixed *.pdb open error which caused log.txt crash info to log less than it should have
+* Changed every single sp_<something> command so it won't crash on a bad sprite index, will log it and return -1 to indicate an error
+* BUGFIX: Fixed issue where reloading sequences in DMODS could eventually crash the game (Robj)
+* Audio assigned to an invalid sprite owner no longer causes crashes (Robj)
+* Say() command with invalid sprite no longer causes crashes (Robj)
+* A manual draw_status dinkc command now causes status bar variables to be updated instead of animating the differences, to match other dink engine versions (robj)
+* BUGFIX: Reloading sprite sequences with longer ones no longer loses set_frame_frame info (Robj)
+* Added "Unfreeze Player" command to the secret debug menu
+* Tab or Shift-Tab or Ctrl-Shift-Tab "speedups" now properly also speed up certain timers that it was skipping (robj)
+* Quicksave/quickload moved to F5-F9 the "standard" keys. (Skurn)
+* -game option now properly handles quotes and spaces in filenames (ebilV)
+* (android) External keyboards now fully work, you can turn down the onscreen controls and just play
+  with keyboard now
+* BUGFIX: "Use F1 to bring up the Dink menu" message will no longer get stuck on the screen (Robj)
+* BUGFIX: Fixed issue where sometimes the mouse cursor would stop showing up in the Dink HD F1 menu (ebilV)
+* NEW DINKC COMMAND: set_disable_savestates(1) to disabled. 0 to enable, -1 to return the current status.  Note: Autosaves will continue to
+  function normally, and the current savestate status will be respected in autosaves as well
+* NEW DINKC COMMAND: show_quick_message("Hello! `4This is red``.  `2Green``."); shows a quick message over the dink screen, useful for showing quick messages, I used it
+  for testing stuff.  Works with SANSI color codes. Oh, I guess all Dink text works with color codes actually.
+* get_version() now returns 111.  (dinkC version incremented by one due to added new scripting commands).  
+  Reminder: you can use get_client_version if you want 197, the client exe version.
+* If dinkc debug mode is on, now logs extra info about "external" calls being done
+* Reworked dinkc to use much less stack memory, fixes issue on Android with nested "external" calls
+* Controller support improved on Windows and Android, 8Bit Do, Nintendo Pro, PS4,PS5,XBOX should be auto-mapped right. Start on controllers
+  now always opens the Dink HD menu, pushing left/right allows selecting save/load state easily.  Select button will open
+  the classic Dink menu.
+* Changed default sorting for the in-game DMOD browser to "Newest", this way active DMOD authors might get an extra boost of motivation by getting
+  more downloads.  A player can always tap it to change to sort by rating or alphabetical of course
+* Improved the DMOD browser a bit, more text fits when browsing the list to install
+* BUGFIX: No longer sometimes crashes if you resize the window moving crazy while holding down Shift (non proportional resize mode)
+
+ ------ Change log for 1.98 ---------- (August 2022)
+
+* (iOS) Native Bluetooth controller & keyboard support added, same as Win and Android builds
+* Added an emulated pointer where needed, all GUI screens can now be 100% controlled by controller or keyboard, 
+  mouse/touch not required anymore
+* DinkC addition: get_client_fork() added.  Always returns 1. 
+* get_version() incremented one due to the above change.  Now returns 112
+* (iOS/Android) BUGFIX: show_bmp dinkc command will no longer fail on some dmods due to case sensitivity of linux based systems
+* No longer drawing a black square behind the active magic icon.  No idea why I was doing that. (Robj)
+
+ ------ Change log for 1.99 ---------- (August 2022)
+
+* map_tile dinkc command now checks ranges and if there is actually source tile data to write in that index (ebilV, Robj)
+* Detects and fixes a rare situation where a sprite is connected to a dead script (Robj)
+* Disabled the window bar menu, alt would appear to freeze the game (Robj)
+* Properly shows correct dinkc version when starting a dmod, before showed incorrect version (Robj)
+* if update_status is disabled, it doesn't blank out that area, it just leaves whatever was there (Robj)
+
+ ------ Change log for 2.02 ---------- (November 2023)
+ 
+* say() text is now drawn under choice menus rather than above, previously dmods that used sp_kill to make text permanent could cause visual problems in choice menus (Robj)
+* A saved game is no longer included, oops
+* The screen scroll effect now respects sprites that were drawn over the GUI parts (Robj)
+* Overlapping text is easier to read now, for two reasons, the main problem was Proton SDK does batching under the hood (this didn't exist when the original Dink HD was made)  and it was trying to batch all the the text backgrounds together on the same layer which isn't what we wanted, and two, I made the bg slightly darker
+* attack_wait for sprite 1 is now preserved across saves to match functionality of other dink versions (RobJ)
+* DinkC change: LogMsg (a script command that let's a script print text to the log.txt file directly) now properly handles &variables
+* DMOD installer fixed to work with older v7 tar format (big thanks to drone1400 for help with this)
+* DMOD installer fixed so it wouldn't fail with a stack overflow with certain dmods (cast_awakening_part_5_revolution-v1_00.dmod)
+* (Windows) I added "dink.exe <dmod url> will install a dmod directly from the net." to the dink.exe /? command line help screen.  Not a new feature but I don't think I ever told anyone about it
+* Dink source updated to compile with (up to) C++ '17.
+* Scrollbars can now be manipulated with a mouse as expected, in addition to the normal "click the content to move it" carry over from touch screens on mobile.  I added this because it turns out having nearly 400 dmods installed was too slow to navigate without it
+* Will now use .png tile screen images if available
+
+------ Change log for 2.05 --------- (April 2024)
+
+* BUGFIX: Detects divide by 0 errors in some DinkC situations and avoids a crash (Fix by drone1400)
+* BUGFIX: Fixed issue where HD would get tricked into improperly eating a punch/magic keystroke to skip dialog when DMODS did certain tricky things (SimonK)
+* Now correctly handles the case when a DMOD directory filename is different than the savestate it is in (ie, it was renamed after the savestate was made)
+* (Win) Added "-skip" command-line parm support, will skip the new version check and make the main menu load without fancy animations
+some Windows/proton keyboard problems. At least the method I used should work on non-US keyboards too
+* Added "Force save to slot 9" option to debug menu, might break the game but useful for debugging because unlike savestates it will force all scripts to be reloaded
+* (Win) Added ` (backtick) to toggle an overlay window showing the log.  I wanted to do Shift-Tilde or something so it wasn't accidently hit but ran into 
+* Removed "View log" from debug menu because the above option replaces it
+* Added "set_music_vol" DinkC command.  Accepts between 0 and 100.  50 means set the music/midi to 50% of whatever the current setting is in options.
+* get_version now returns 113 instead of 112 due to the DinkC addition
+
+------- Change log for 2.06 --------- (April 2024)
+
+* BUGFIX with map_tile, now goes 0 to 5247 (Robj, yeoldetoast, https://www.dinknetwork.com/forum.cgi?MID=209752&Posts=16 )
+* BUGFIX with disable_all_sprites/enable_all_sprites (Robj, yeoldetoast, https://www.dinknetwork.com/forum.cgi?MID=209752&Posts=16 )
+* sound_set_vol behaves more like original Dink ( https://www.dinknetwork.com/forum.cgi?MID=209752#209908 )
+* Text fit better inside the black background (RobJ)
+* Text stays visible during fades to match functionality with the original (RobJ)
+
+------- Change log for 2.07 --------- (June 2024)
+
+* Catches and logs invalid seq ids from the dink.ini instead of crashing (Simon)
+
+------- Change log for 2.08 --------- (March 2025)
+
+* Checked midi issue with 9 gems of life II, 1.mid doesn't play at startup because FMOD doesn't like the format of it.  If replaced with a different midi it will work.  (unfixable by me, FMOD issue)
+* make_global function now works (thanks RobJ, yeoldetoast)
+* text brains X won't go past 470 (for RobJ)
+* re-enabeled preload_seq DinkC command
+* Added get_dinkspeed to DinkC (RobJ)
+* gfx_alttext_disable in the ini will disable the text shadow effect.  set_gfx_alttext_disable(0 or 1) can also be used in DinkC (for RobJ)
+* Fixed issue where some variables weren't be totally cleared when a second game/dmod was loaded, could cause the intro screen to have tiles on it from the previous game, oops
+* set_use_latest_fixes_level() dinkC command added, currently level 1 will cause next two bugs to be fixed.  (the idea is new DMODs can say "hey, fix the bugs" but old ones won't break because things got fixed.
+* Fixed issue where the black background used with aspect correction of the window size might not fully cover an 8k monitor (untested, I don't have one!)
+* When playing with "Smoothing" off and at an exact 4:3 screen ratio, DinkHD will now be "pixel perfect" (thanks Drone).  I guess with some work this could also work with smoothing on (sub pixel and texture clamp settings?) but maybe for another day
+* Dink limits have been increased so folks like Simon making more demanding DMODs can be supported (trying to keep it roughly in parity with YeOldeDink as well)
+
+-Sorry, I was too lazy to make it stay compatible with old save states, but of course normal save-machine saves work
+
+const int32 C_MAX_SEQUENCES = 2000; //Max # of sprite animations, was 1300
+const int32 C_MAX_SPRITES_ADDRESSABLE = 30000; //was 6000
+const int32 C_MAX_SPRITES_AT_ONCE = 300; //don't change, there are still hardcoded numbers elsewhere and some weird stuff with screen lock and "flub" stuff whatever that is
+const int32 C_MAX_SCRIPT_CALLBACKS = 200; //was 100
+const int32 max_vars = 250;
+const int32 C_MAX_SCRIPTS = 400; //was 200
+const int32 C_DINK_VERSION = 114; //dink script version
+const int32 num_soundbanks = 64; //was 20
+const int32 max_sounds = 200; //was 100
+const int32 C_TILE_SCREEN_COUNT = 61 + 1; //(20 more than before)
+
+#define C_MAX_BACKGROUND_SPRITES_AT_ONCE 200
+#define C_MAX_SPRITE_FRAMES 100
+
+if set_use_latest_fixes_level() is > 0 these bugs are fixed:
+
+  BUGFIX: "/=" math operations now work correctly (previously, only "/" worked right.. so er.. yeah)
+  BUGFIX: Missile weapons with an odd # like strength 5 can now actually do 5 damage sometimes, previously they couldn't due to using integer division
