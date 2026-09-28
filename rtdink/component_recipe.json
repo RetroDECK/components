@@ -1,40 +1,36 @@
 {
   "rtdink": [
     {
-      "source_url": "$REPO_ROOT/$COMPONENT_NAME/rd_assets/rtdink.7z.001",
-      "source_type": "github_release",
+      "source_url": "https://www.rtsoft.com/dink/DinkSmallwoodHD-x86_64.flatpak",
+      "source_type": "http",
       "version": "$RTDINK_DESIRED_VERSION",
-      "extraction_type": "archive",
+      "dest": "user",
+      "extraction_type": "flatpak",
       "assets": [
         {
           "type": "dir",
-          "source": "audio",
-          "dest": "audio"
+          "source": "share/com.rtsoft.DinkSmallwoodHD",
+          "dest": "share/com.rtsoft.DinkSmallwoodHD"
         },
         {
           "type": "dir",
-          "source": "dink",
-          "dest": "dink"
+          "source": "share/licenses",
+          "dest": "docs"
+        },
+        {
+          "type": "dir",
+          "source": "include",
+          "dest": "include"
+        },
+        {
+          "type": "dir",
+          "source": "bin",
+          "dest": "bin"
         },
         {
           "type": "dir",
           "source": "lib",
           "dest": "lib"
-        },
-        {
-          "type": "file",
-          "source": "RTDinkApp",
-          "dest": "RTDinkApp"
-        },
-        {
-          "type": "file",
-          "source": "zlib1.dll",
-          "dest": "zlib1.dll"
-        },
-        {
-          "type": "file",
-          "source": "zlibwapi.dll",
-          "dest": "zlibwapi.dll"
         },
         {
           "type": "create",
