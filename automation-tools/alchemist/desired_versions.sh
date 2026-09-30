@@ -56,7 +56,7 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # Link: https://flathub.org/en/apps/org.azahar_emu.Azahar
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
-# Version: 2126.1
+# Version: 2126.1.1
   export AZAHAR_DESIRED_VERSION="6739873b8d51ad294e1d8ac08f772d3e52ad5e7cd49b6d7404d5e01ec8227414"
 
 
@@ -196,7 +196,7 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # Link: https://github.com/RPCS3/rpcs3-binaries-linux/
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
-# Version: 0.0.42-20022
+# Version: 0.0.42-20127
   export RPCS3_DESIRED_VERSION="latest"
 
 # COOKER (Override)
@@ -279,7 +279,7 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # Link: https://github.com/RetroDECK/ES-DE/releases
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
-# Version: 3.4.0
+# Version: 3.5.0
   export ES_DE_DESIRED_VERSION="latest"
 
 # COOKER (Override)
@@ -344,7 +344,7 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # Link: https://github.com/Vita3K/Vita3K-builds/releases
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
-  export VITA3K_DESIRED_VERSION="4096"
+  export VITA3K_DESIRED_VERSION="4103"
 
 # COOKER (Override)
 # export VITA3K_DESIRED_VERSION="latest"
