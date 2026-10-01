@@ -141,6 +141,12 @@ if [[ $(check_version_is_older_than "$version_being_updated" "0.10.10b") == "tru
   cp -fv "$XDG_CONFIG_HOME/retroarch/saves/PPSSPP/PSP/GAME/"* "$storage_path/retroarch-core/PPSSPP/GAME"
   dir_prep "$storage_path/retroarch-core/PPSSPP/GAME" "$XDG_CONFIG_HOME/retroarch/saves/PPSSPP/PSP/GAME"
 
+  set_setting_value "$retroarch_config_core_options" "melonds_opengl_better_polygons" "enabled" "retroarch"
+  set_setting_value "$retroarch_config_core_options" "melonds_opengl_filtering" "nearest" "retroarch"
+  set_setting_value "$retroarch_config_core_options" "melonds_opengl_resolution" "3" "retroarch"
+  delete_setting "$retroarch_config_core_options" "melonds_opengl_renderer" "retroarch"
+  add_setting "$retroarch_config_core_options" "melonds_number_of_screen_layouts" "8" "retroarch"
+  add_setting "$retroarch_config_core_options" "melonds_render_mode" "opengl" "retroarch"
 fi
 
 #######################################
