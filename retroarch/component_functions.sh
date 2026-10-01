@@ -28,8 +28,4 @@ retroarch_updater() {
   log i "Updating cheats..."
   create_dir "$cheats_path/retroarch"
   tar -h -xzf "$retroarch_extras_path/cheats.tar.gz" -C "$cheats_path/retroarch" --overwrite && log d "RetroArch cheats updated correctly"
-
-  log i "Updating static core options..."
-  log d "Copying retroarch-core-options.cfg from \"$retroarch_rd_config_dir\" to \"$retroarch_config_core_options\""
-  cp -fv "$retroarch_rd_config_dir/retroarch-core-options.cfg" "$retroarch_config_core_options"
 }
