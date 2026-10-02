@@ -56,8 +56,9 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # Link: https://flathub.org/en/apps/org.azahar_emu.Azahar
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
-# Version: 2125.1.1
-  export AZAHAR_DESIRED_VERSION="fd0b3050e4da6a7df8915f63fb8c1d551c7ca8c684568dc62c1681fd316a288c"
+# Version: 2126.1.1
+  export AZAHAR_DESIRED_VERSION="6739873b8d51ad294e1d8ac08f772d3e52ad5e7cd49b6d7404d5e01ec8227414"
+
 
 # COOKER (Override)
 # export AZAHAR_DESIRED_VERSION="latest"
@@ -82,8 +83,8 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # Link: https://flathub.org/en/apps/org.DolphinEmu.dolphin-emu
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
-# Version: 2603a
-  export DOLPHIN_DESIRED_VERSION="798fc13ec9f60c686a5478c0b1409901b375a4fd39a0a95139a3af662741423e"
+# Version: 2609
+  export DOLPHIN_DESIRED_VERSION="594afeb78ede945c8fe0e774649443cf12b0706188ce03bb3cd49e3004659e5b"
 
 # COOKER (Override)
 # export DOLPHIN_DESIRED_VERSION="latest"
@@ -108,8 +109,8 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # Link: https://flathub.org/en/apps/org.mamedev.MAME
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
-# Version: 0.287
- export MAME_DESIRED_VERSION="3dbe7b7f802da3b0c1628d604bee9925d67174a5efb7e4ae2235266ce2946739"
+# Version: 0.289
+ export MAME_DESIRED_VERSION="41ebdb5c266627f4d1f02ba11f8109e793d2381081b68afc48714dd48a703788"
 
 # COOKER (Override)
 #  export MAME_DESIRED_VERSION="latest"
@@ -141,17 +142,14 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # PPSSPP_DESIRED_VERSION="latest"
 
 
-
-
-
 # ------------------------------------------------------------------------------
 # Ruffle - Flash Player Emulator
 # Source: Flatpak - Flathub
 # Link: https://flathub.org/en/apps/rs.ruffle.Ruffle
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
-# Version: 0.2.0
- export RUFFLE_DESIRED_VERSION="37f584d0df86cb04ea4479f0c0f274241adc8692a16a6dc1b0b9d293b7f72685"
+# Version: 0.6.0
+ export RUFFLE_DESIRED_VERSION="8ba62e830fc7cbf6fbbaf7388dc202d2933b0d9126c99c7296c0bc6f93de6f2a"
 
 # COOKER (Override)
 # export RUFFLE_DESIRED_VERSION="latest"
@@ -163,8 +161,8 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # Link: https://flathub.org/en/apps/com.steamgriddb.steam-rom-manager
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
-# Version: 2.5.34
-  export STEAM_ROM_MANAGER_DESIRED_VERSION="b563c9f81ecad09e9a19f5093484fc00ba08fb375b81542e8d889b15fe9f7bff"
+# Version: 2.5.44
+  export STEAM_ROM_MANAGER_DESIRED_VERSION="c1eebb375d6ca39f4d417c4cb862a62099eb43a6fb2e3392977739770abee96f"
 
 # COOKER (Override)
 # export STEAM_ROM_MANAGER_DESIRED_VERSION="latest"
@@ -176,8 +174,8 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # Link: https://flathub.org/en/apps/app.xemu.xemu
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
-# Version: 0.8.135
- export XEMU_DESIRED_VERSION="998fb7d93048da8b4dc98665d09f7e81ff4e73bedb732b67b7ad97a6f55d4316"
+# Version: 0.8.136
+ export XEMU_DESIRED_VERSION="2f8b8889edcf69fb2ba2a8691371a7bb49febeba360e9c87555379c50ba946e9"
 
 # COOKER (Override)
 # export XEMU_DESIRED_VERSION="latest"
@@ -198,7 +196,7 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # Link: https://github.com/RPCS3/rpcs3-binaries-linux/
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
-# Version: 0.0.40-19397
+# Version: 0.0.42-20127
   export RPCS3_DESIRED_VERSION="latest"
 
 # COOKER (Override)
@@ -223,7 +221,7 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # Link: https://github.com/PCSX2/pcsx2/releases/
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
-  export PCSX2_DESIRED_VERSION="v2.6.3"
+  export PCSX2_DESIRED_VERSION="v2.8.2"
 
 # COOKER (Override)
 # export PCSX2_DESIRED_VERSION="newest"
@@ -246,7 +244,7 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # Link: https://gitlab.com/solarus-games/solarus/-/releases/
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
-  export SOLARUS_DESIRED_VERSION="v2.0.4"
+  export SOLARUS_DESIRED_VERSION="v2.1.3"
 
 # COOKER (Override)
 # export SOLARUS_DESIRED_VERSION="latest"
@@ -281,7 +279,7 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # Link: https://github.com/RetroDECK/ES-DE/releases
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
-# Version: 3.4.0
+# Version: 3.5.0
   export ES_DE_DESIRED_VERSION="latest"
 
 # COOKER (Override)
@@ -316,10 +314,10 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # ------------------------------------------------------------------------------
 # XRoar - Tano Dragon Emulator
 # Source: Binary (RetroDECK-built)
-# Link: https://github.com/RetroDECK/XRoar/releases
+# Link: https://github.com/RetroDECK/XRoar/releases | https://www.6809.org.uk/xroar/
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
-# Version: 1.10
+# Version: 1.12.1
   export XROAR_DESIRED_VERSION="latest"
 
 # COOKER (Override)
@@ -343,293 +341,13 @@ export DESIRED_QT5_RUNTIME_VERSION="5.15-25.08"
 # ------------------------------------------------------------------------------
 # Vita3K - PlayStation Vita Emulator
 # Source: AppImage (RetroDECK-mirrored)
-# Link: https://github.com/RetroDECK/Vita3K-bin/releases
+# Link: https://github.com/Vita3K/Vita3K-builds/releases
 # ------------------------------------------------------------------------------
 # MAIN (Stable)
-  export VITA3K_DESIRED_VERSION="3996"
+  export VITA3K_DESIRED_VERSION="4103"
 
 # COOKER (Override)
 # export VITA3K_DESIRED_VERSION="latest"
-
-
-
-
-# ==============================================================================
-#  Component Desired Versions - Future
-# ==============================================================================
-#  New components being developed in the Cooker branch for an upcoming major release.
-#  These components are planned for future inclusion and are not yet part of the
-#  current stable version.
-# ==============================================================================
-
-# ------------------------------------------------------------------------------
-# Adventure Game Studio
-# ------------------------------------------------------------------------------
-# MAIN (Stable)
-# export AGS_DESIRED_VERSION="newest"
-
-# COOKER (Override)
-  export AGS_DESIRED_VERSION="newest"
-
-
-# ------------------------------------------------------------------------------
-# Commander X16 8-bit Computer
-# ------------------------------------------------------------------------------
-# MAIN (Stable)
-# export COMMANDER_X16_DESIRED_VERSION="latest"
-
-# COOKER (Override)
-  export COMMANDER_X16_DESIRED_VERSION="latest"
-
-# ------------------------------------------------------------------------------
-# DOSBox-X - Enhanced DOSBox Engine
-# ------------------------------------------------------------------------------
-# MAIN (Stable)
-# export DOSBOX_X_DESIRED_VERSION="latest"
-
-# COOKER (Override)
-  export DOSBOX_X_DESIRED_VERSION="latest"
-
-
-# ------------------------------------------------------------------------------
-# ECWOLF - Wolfenstein 3D Engine
-# ------------------------------------------------------------------------------
-# MAIN (Stable)
-# export ECWOLF_DESIRED_VERSION="latest"
-
-# COOKER (Override)
-  export ECWOLF_DESIRED_VERSION="latest"
-
-
-# ------------------------------------------------------------------------------
-# EKA2L1 - Symbian OS Emulator
-# ------------------------------------------------------------------------------
-# MAIN (Stable)
-# export EKA2L1_DESIRED_VERSION="latest"
-
-# COOKER (Override)
-  export EKA2L1_DESIRED_VERSION="latest"
-
-# ------------------------------------------------------------------------------
-# FS-UAE - Amiga Emulator
-# ------------------------------------------------------------------------------
-# MAIN (Stable)
-# export FS_UAE_DESIRED_VERSION=""
-
-# COOKER (Override)
-  export FS_UAE_DESIRED_VERSION="latest"
-
-
-# ------------------------------------------------------------------------------
-# Flycast - Dreamcast Emulator
-# ------------------------------------------------------------------------------
-# MAIN (Stable)
-# export FLYCAST_DESIRED_VERSION="latest"
-
-# COOKER (Override)
-  export FLYCAST_DESIRED_VERSION="latest"
-
-
-# ------------------------------------------------------------------------------
-# Gargoyle - Interactive Fiction Emulator
-# ------------------------------------------------------------------------------
-# MAIN (Stable)
-# export GARGOYLE_DESIRED_VERSION=""
-
-# COOKER (Override)
-  export GARGOYLE_DESIRED_VERSION="latest"
-
-
-# ------------------------------------------------------------------------------
-# Hypseus - Laser Disc Arcade Emulator
-# ------------------------------------------------------------------------------
-# MAIN (Stable)
-# export HYPSEUS_DESIRED_VERSION=""
-
-# COOKER (Override)
-  export HYPSEUS_DESIRED_VERSION="latest"
-
-
-# ------------------------------------------------------------------------------
-# Ironwail - Quake Engine
-# ------------------------------------------------------------------------------
-# MAIN (Stable)
-# export IRONWAIL_DESIRED_VERSION="latest"
-
-# COOKER (Override)
-  export IRONWAIL_DESIRED_VERSION="latest"
-
-# ------------------------------------------------------------------------------
-# Ikeman Go - Fighting Engine
-# ------------------------------------------------------------------------------
-# MAIN (Stable)
-# export IKEMANGO_DESIRED_VERSION="latest"
-
-# COOKER (Override)
-  export IKEMANGO_DESIRED_VERSION="latest"
-
-
-# ------------------------------------------------------------------------------
-# KEGS - Apple IIGS Emulator
-# ------------------------------------------------------------------------------
-# MAIN (Stable)
-# export KEGS_DESIRED_VERSION="1.38"
-
-# COOKER (Override)
-  export KEGS_DESIRED_VERSION="1.38"
-
-
-# ------------------------------------------------------------------------------
-# Lindbergh - SEGA Lindbergh Emulator
-# ------------------------------------------------------------------------------
-# MAIN (Stable)
-# export LINDBERGH_DESIRED_VERSION="latest"
-
-# COOKER (Override)
-  export LINDBERGH_DESIRED_VERSION="latest"
-
-# ------------------------------------------------------------------------------
-# Mednafen - Multi Emulator
-# ------------------------------------------------------------------------------
-# MAIN (Stable)
-# export MEDNAFEN_DESIRED_VERSION="latest"
-
-# COOKER (Override)
-  export MEDNAFEN_DESIRED_VERSION="latest"
-
-# ------------------------------------------------------------------------------
-# Mudlet - MUD Client
-# ------------------------------------------------------------------------------
-# MAIN (Stable)
-# export MUDLET_DESIRED_VERSION="latest"
-
-# COOKER (Override)
-  export MUDLET_DESIRED_VERSION="latest"
-
-# ------------------------------------------------------------------------------
-# Open Surge Engine - 2D Game Engine
-# ------------------------------------------------------------------------------
-# MAIN (Stable)
-# export OPENSURGE_DESIRED_VERSION="latest"
-
-# COOKER (Override)
-  export OPENSURGE_DESIRED_VERSION="latest"
-
-
-# ------------------------------------------------------------------------------
-# Orictron - Oric-1/Atmos/Telestrat/Pravetz 8D emulator
-# ------------------------------------------------------------------------------
-# MAIN (Stable)
-# export ORICUTRON_DESIRED_VERSION="20260123"
-
-# COOKER (Override)
-  export ORICUTRON_DESIRED_VERSION="20260123"
-
-# ------------------------------------------------------------------------------
-# Raze - Duke Nukem Engine
-# ------------------------------------------------------------------------------
-# MAIN (Stable)
-# export RAZE_DESIRED_VERSION="latest"
-
-# COOKER (Override)
-  export RAZE_DESIRED_VERSION="latest"
-
-
-# ------------------------------------------------------------------------------
-# ScummVM - Point-and-Click Adventure Engine
-# ------------------------------------------------------------------------------
-# MAIN (Stable)
-# export SCUMMVM_DESIRED_VERSION="latest"
-
-# COOKER (Override)
-  export SCUMMVM_DESIRED_VERSION="latest"
-
-
-# ------------------------------------------------------------------------------
-# SDL2TRS - TRS-80 Model I/III/4/4P Emulator 
-# ------------------------------------------------------------------------------
-# MAIN (Stable)
-# export SDL2TRS_DESIRED_VERSION="latest"
-
-# COOKER (Override)
-  export SDL2TRS_DESIRED_VERSION="latest"
-
-# ------------------------------------------------------------------------------
-# ShadPS4 - PlayStation 4 Emulator
-# ------------------------------------------------------------------------------
-# MAIN (Stable)
-# export SHADPS4_DESIRED_VERSION="latest"
-
-# COOKER (Override)
-  export SHADPS4_DESIRED_VERSION="latest"
-
-
-# ------------------------------------------------------------------------------
-# SimCoupe - SAM Coupé Emulator
-# ------------------------------------------------------------------------------
-# MAIN (Stable)
-# export SIMCOUPE_DESIRED_VERSION="latest"
-
-# COOKER (Override)
-  export SIMCOUPE_DESIRED_VERSION="latest"
-
-
-# ------------------------------------------------------------------------------
-# SuperModel - SEGA Model 3 Arcade Emulator
-# ------------------------------------------------------------------------------
-# MAIN (Stable)
-# export SUPERMODEL_DESIRED_VERSION="latest"
-
-# COOKER (Override)
-  export SUPERMODEL_DESIRED_VERSION="latest"
-
-
-# ------------------------------------------------------------------------------
-# Tsugaru - FM TOWNS Emulator
-# ------------------------------------------------------------------------------
-# MAIN (Stable)
-# export SUPERMODEL_DESIRED_VERSION="newest"
-
-# COOKER (Override)
-  export TSUGARU_DESIRED_VERSION="newest"
-
-# ------------------------------------------------------------------------------
-# UZDoom - Modern Doom Engine
-# ------------------------------------------------------------------------------
-# MAIN (Stable)
-# export UZDOOM_DESIRED_VERSION="latest"
-
-# COOKER (Override)
-  export UZDOOM_DESIRED_VERSION="latest"
-
-
-# ------------------------------------------------------------------------------
-# VPinball - Virtual Pinball Engine
-# ------------------------------------------------------------------------------
-# MAIN (Stable)
-# export VPINBALL_DESIRED_VERSION="newest"
-
-# COOKER (Override)
-  export VPINBALL_DESIRED_VERSION="newest"
-
-
-# ------------------------------------------------------------------------------
-# Xenia Edge - Xbox 360 Emulator
-# ------------------------------------------------------------------------------
-# MAIN (Stable)
-# export XENIA_EDGE_DESIRED_VERSION="newest"
-
-# COOKER (Override)
-  export XENIA_EDGE_DESIRED_VERSION="newest"
-
-# ------------------------------------------------------------------------------
-# ZEsarUX - ZX Second-Emulator
-# ------------------------------------------------------------------------------
-# MAIN (Stable)
-# export ZESARUX_DESIRED_VERSION="latest"
-
-# COOKER (Override)
-  export ZESARUX_DESIRED_VERSION="latest"
 
 
 # ------------------------------------------------------------------
@@ -646,30 +364,3 @@ else
     export FRAMEWORK_DESIRED_VERSION="main-latest on $(date +%Y-%m-%d)"
 fi
 
-# ==============================================================================
-#  Component Desired Versions - Removed
-# ==============================================================================
-#  Components that has been removed or was never included into RetroDECK 
-#  due to some factor.
-# ==============================================================================
-
-
-# ------------------------------------------------------------------------------
-# Eden - Nintendo Switch Emulator
-# ------------------------------------------------------------------------------
-# MAIN (Stable)
-# export EDEN_DESIRED_VERSION="latest"
-
-# COOKER (Override)
-  export EDEN_DESIRED_VERSION="latest"
-
-# ------------------------------------------------------------------------------
-# Ryubing - Nintendo Switch Emulator
-# Source: AppImage
-# Link: https://git.ryujinx.app/ryubing/ryujinx/-/releases/
-# ------------------------------------------------------------------------------
-# MAIN (Stable)
-  export RYUBING_DESIRED_VERSION="latest"
-
-# COOKER (Override)
-# export RYUBING_DESIRED_VERSION="latest"

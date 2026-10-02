@@ -28,7 +28,7 @@
         },
         {
           "type": "merge",
-          "source": "$REPO_ROOT/$COMPONENT_NAME/rd_assets/rd_extras/genesis-plus-gx-expanded-rom-size-paprium_libretro",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/rd_assets/rd_extras/genesis_plus_gx_paprium_libretro",
           "dest": "$WORKDIR/cores"
         },
         {

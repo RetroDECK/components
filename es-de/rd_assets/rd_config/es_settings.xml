@@ -166,6 +166,7 @@
 <string name="ScreensaverSlideshowCustomDir" value="" />
 <string name="ScreensaverSlideshowImageDir" value="/var/config/ES-DE/slideshow/custom_images" />
 <string name="ScreensaverType" value="video" />
+<string name="SplashScreenProgressBarColor" value="C858E6FF" />
 <string name="StartupSystem" value="" />
 <string name="StartupView" value="system" />
 <string name="SystemsSorting" value="manufacturer_hwtype_year" />

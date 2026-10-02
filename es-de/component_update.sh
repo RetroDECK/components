@@ -78,3 +78,15 @@ if [[ $(check_version_is_older_than "$version_being_updated" "0.10.0b") == "true
   fi
 fi
 
+if [[ $(check_version_is_older_than "$version_being_updated" "0.10.10b") == "true" ]]; then
+  # With the RetroDECK 0.10.10b, that brings ES-DE 3.5.0 update, the splash screen progress bar color default value is added
+
+  if ! [[ $(get_setting_value "$es_de_config" "SplashScreenProgressBarColor" "es_settings") ]]; then
+      add_setting_line "$es_de_config" 'name="SplashScreenProgressBarColor" value="C858E6FF"' "es_settings"
+  fi
+  if ! [[ $(get_setting_value "$es_de_config" "SplashScreenProgressBarColor" "es_settings") == "C858E6FF" ]]; then
+      log i "0.10.10b Upgrade - Postmove: ES-DE - Default RetroDECK splash screen progress bar color is set, fixing it in ES-DE config"
+      set_setting_value "$es_de_config" "SplashScreenProgressBarColor" "C858E6FF" "es_settings"
+  fi
+fi
+
