@@ -60,6 +60,7 @@ _prepare_component::melonds() {
 
       create_dir "$saves_path/nds/melonds"
       create_dir "$states_path/nds/melonds"
+      create_dir "$cheats_path/MelonDS"
       dir_prep "$bios_path" "$XDG_CONFIG_HOME/melonDS/bios"
 
       set_setting_value "$melonds_config" "BIOS9Path" "\"$bios_path/bios9.bin\"" "melonds" "DS"
@@ -73,6 +74,7 @@ _prepare_component::melonds() {
 
       set_setting_value "$melonds_config" "SaveFilePath" "\"$saves_path/nds/melonds\"" "melonds" "Instance0"
       set_setting_value "$melonds_config" "SavestatePath" "\"$states_path/nds/melonds\"" "melonds" "Instance0"
+      set_setting_value "$melonds_config" "CheatFilePath" "\"$cheats_path/MelonDS\"" "melonds" "Instance0"
 
 
     ;;
@@ -95,6 +97,7 @@ _prepare_component::melonds() {
 
       set_setting_value "$melonds_config" "SaveFilePath" "\"$saves_path/nds/melonds\"" "melonds" "Instance0"
       set_setting_value "$melonds_config" "SavestatePath" "\"$states_path/nds/melonds\"" "melonds" "Instance0"
+      set_setting_value "$melonds_config" "CheatFilePath" "\"$cheats_path/MelonDS\"" "melonds" "Instance0"
     ;;
 
   esac

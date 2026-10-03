@@ -10,7 +10,7 @@ AudioSync = false
 LimitFPS = true
 
 [Instance0]
-CheatFilePath = ""
+CheatFilePath = "RETRODECKCHEATDIR/nds/melonds"
 JoystickID = 0
 SavestatePath = "RETRODECKSTATESDIR/nds/melonds"
 SaveFilePath = "RETRODECKSAVESDIR/nds/melonds"
