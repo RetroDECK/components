@@ -51,6 +51,16 @@
           "type": "file",
           "source": "$REPO_ROOT/$COMPONENT_NAME/component_recipe.json",
           "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/component_prepare.sh",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/component_update.sh",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
         }
       ],
       "libs": [
@@ -86,6 +96,18 @@
         },
         {
           "library": "libQt6Widgets.so.6",
+          "runtime_name": "org.kde.Platform",
+          "runtime_version": "6.10",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libQt6WaylandClient.so.6",
+          "runtime_name": "org.kde.Platform",
+          "runtime_version": "6.10",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libQt6XcbQpa.so.6",
           "runtime_name": "org.kde.Platform",
           "runtime_version": "6.10",
           "dest": "shared-libs"
