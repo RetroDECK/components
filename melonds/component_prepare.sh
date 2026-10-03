@@ -14,6 +14,8 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
 
   create_dir "$saves_path/nds/melonds"
   create_dir "$states_path/nds/melonds"
+  create_dir "$cheats_path/MelonDS"
+  
   dir_prep "$bios_path" "$XDG_CONFIG_HOME/melonDS/bios"
 
   set_setting_value "$melonds_config" "BIOS9Path" "\"$bios_path/bios9.bin\"" "melonds" "DS"
@@ -27,6 +29,7 @@ if [[ "$action" == "reset" ]]; then # Run reset-only commands
 
   set_setting_value "$melonds_config" "SaveFilePath" "\"$saves_path/nds/melonds\"" "melonds" "Instance0"
   set_setting_value "$melonds_config" "SavestatePath" "\"$states_path/nds/melonds\"" "melonds" "Instance0"
+  set_setting_value "$melonds_config" "CheatFilePath" "\"$cheats_path/MelonDS\"" "melonds" "Instance0"
 
 fi
 
@@ -48,4 +51,6 @@ if [[ "$action" == "postmove" ]]; then # Run only post-move commands
 
   set_setting_value "$melonds_config" "SaveFilePath" "\"$saves_path/nds/melonds\"" "melonds" "Instance0"
   set_setting_value "$melonds_config" "SavestatePath" "\"$states_path/nds/melonds\"" "melonds" "Instance0"
+  set_setting_value "$melonds_config" "CheatFilePath" "\"$cheats_path/MelonDS\"" "melonds" "Instance0"
+
 fi
