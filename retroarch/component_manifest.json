@@ -61,6 +61,21 @@
       },
       "es_systems": [
         {
+          "name": "2xl",
+          "fullname": "2-XL",
+          "path": "%ROMPATH%/2xl",
+          "extension": ".zip",
+          "commands": [
+            {
+              "label": "Twixel",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/twixel_libretro.so %ROM%",
+              "priority": 10
+            }
+          ],
+          "platform": "2xl",
+          "theme": "2xl"
+        },
+        {
           "name": "3do",
           "fullname": "3DO Interactive Multiplayer",
           "path": "%ROMPATH%/3do",
