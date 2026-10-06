@@ -51,6 +51,12 @@ export QT5_RUNTIME_VERSION_POLICY="5.15-25.08"
 #  flatpak remote-info flathub <flatpak ID>
 # ==============================================================================
 
+# ------------------------------------------------------------------------------
+# Amiberry - Commodore Amiga Emulator
+# Source: Flatpak - Flathub
+# Link: https://flathub.org/en/apps/com.blitterstudio.amiberry
+# ------------------------------------------------------------------------------
+export AMIBERRY_VERSION_POLICY="latest"
 
 # ------------------------------------------------------------------------------
 # Azahar - Nintendo 3DS Emulator
@@ -280,6 +286,13 @@ export KEGS_VERSION_POLICY="1.38"
 # Link: https://github.com/PortsMaster/PortMaster-GUI/releases/
 # ------------------------------------------------------------------------------
 export PORTMASTER_VERSION_POLICY="latest"
+
+# ------------------------------------------------------------------------------
+# Quake3e - Quake III Arena Engine
+# Source: Binary
+# Link: https://github.com/ec-/Quake3e/releases
+# ------------------------------------------------------------------------------
+export QUAKE3E_VERSION_POLICY="latest"
 
 # ------------------------------------------------------------------------------
 # SimCoupé - MGT SAM Coupé Emulator

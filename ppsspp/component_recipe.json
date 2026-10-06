@@ -68,14 +68,14 @@
       ]
     },
     {
-      "source_url": "https://github.com/Zaykus/PSPemu/releases/download/{VERSION}/CWCheat-Database-Plus--master.zip",
+      "source_url": "https://raw.githubusercontent.com/Saramagrean/CWCheat-Database-Plus-/refs/heads/master/cheat.db",
       "version": "latest",
-      "source_type": "github-release",
+      "source_type": "http",
       "extraction_type": "local",
       "assets": [
         {
           "type": "file",
-          "source": "$WORKDIR/CWCheat-Database-Plus--master.zip",
+          "source": "$WORKDIR/cheat.db",
           "dest": "rd_extras"
         }
       ]

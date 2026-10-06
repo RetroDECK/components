@@ -2,6 +2,7 @@
 
 export vita3k_config="$XDG_CONFIG_HOME/Vita3K/config.yml"
 export vita3k_config_user="$XDG_CONFIG_HOME/Vita3K/ux0/user/00/user.xml"
+export vita3k_config_gui="$XDG_CONFIG_HOME/Vita3K/gui-configs/CurrentSettings.ini"
 export vita3k_vu_firmware_url="http://dus01.psv.update.playstation.net/update/psv/image/2022_0209/rel_f2c7b12fe85496ec88a0391b514d6e3b/PSVUPDAT.PUP"
 export vita3k_2u_firmware_url="http://dus01.psp2.update.playstation.net/update/psp2/image/2019_0924/sd_8b5f60b56c3da8365b973dba570c53a5/PSP2UPDAT.PUP?dest=us"
 export vita3k_component_dir="$rd_components/vita3k"
@@ -39,7 +40,7 @@ _prepare_component::vita3k() {
       # NOTE: the component is writing in "." so it must be placed in the rw filesystem. A symlink of the binary is already placed in /app/bin/Vita3K
       rm -rf "$XDG_CONFIG_HOME/Vita3K"
       create_dir "$XDG_CONFIG_HOME/Vita3K"
-      cp -fv "$component_config/config.yml" "$vita3k_config" # component config
+      cp -fr "$component_config/"* "$XDG_CONFIG_HOME/Vita3K"
       create_dir "$storage_path/psvita/Vita3K/"
       cp -frv "$component_config/ux0" "$storage_path/psvita/Vita3K/" # User config
       set_setting_value "$vita3k_config" "pref-path" "$storage_path/psvita/Vita3K/" "vita3k"

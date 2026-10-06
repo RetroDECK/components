@@ -44,7 +44,8 @@
           "commands": [
             {
               "label": "Azahar (Standalone)",
-              "command": "%EMULATOR_AZAHAR% %ROM%"
+              "command": "%EMULATOR_AZAHAR% %ROM%",
+              "priority": 10
             }
           ],
           "platform": "n3ds",

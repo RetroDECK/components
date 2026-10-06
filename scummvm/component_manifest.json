@@ -63,7 +63,7 @@
               {
                 "label": "ScummVM (Standalone)",
                 "command": "%STARTDIR%=%GAMEDIR% %EMULATOR_SCUMMVM% %BASENAME%",
-                "priority": 20
+                "priority": 10
               }
             ],
             "platform": "scummvm",

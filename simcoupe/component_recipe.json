@@ -8,8 +8,8 @@
       "assets": [
         {
           "type": "dir",
-          "source": "simcoupe_1.2.16_amd64",
-          "dest": ""
+          "source": "simcoupe_1.2.17_amd64",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
         },
         {
           "type": "dir",

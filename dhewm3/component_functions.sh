@@ -1,7 +1,6 @@
 #!/bin/bash
 
-export doom3_controller_config="$XDG_CONFIG_HOME/dhewm3/gamepad.cfg"
-export doom3xp_controller_config="$XDG_CONFIG_HOME/dhewm3/gamepad-d3xp.cfg"
+export dhewm3_config="$XDG_CONFIG_HOME/dhewm3/base/dhewm.cfg"
 
 _prepare_component::dhewm3() {
   local action="$1"
@@ -19,12 +18,16 @@ _prepare_component::dhewm3() {
       create_dir "$XDG_CONFIG_HOME/dhewm3"
       cp -fr "$component_config/"* "$XDG_CONFIG_HOME/dhewm3/"
 
+      # Base dirs
+
       create_dir "$roms_path/doom3/d3xp"
       create_dir "$roms_path/doom3/base"
 
       # XDG_DATA_HOME must be symlinked to the DOOM 3 directory for mods to work.
 
       dir_prep "$roms_path/doom3" "$XDG_DATA_HOME/dhewm3"
+
+      cp -fr "$component_config/"* "$roms_path/doom3"
 
     ;;
 
@@ -41,7 +44,7 @@ _prepare_component::dhewm3() {
 
   esac
 }
-_post_update::uzdoom() {
+_post_update::dhewm3() {
   local previous_version="$1"
 
 }

@@ -189,11 +189,24 @@ _prepare_component::retroarch() {
       log i "Preparing FBNEO_LIBRETRO"
       log i "--------------------------------"
       create_dir "$bios_path/fbneo/samples"
+      cp -f "$retroarch_extras_path/fbneo/hiscore.dat" "$bios_path/fbneo/hiscore.dat"
       dir_prep "$cheats_path/retroarch-core/fbneo" "$bios_path/fbneo/cheats"
       dir_prep "$shaders_path/retroarch-core/fbneo/blend" "$bios_path/fbneo/blend"
       dir_prep "$mods_path/retroarch-core/fbneo/patched" "$bios_path/fbneo/patched"
       dir_prep "$mods_path/retroarch-core/fbneo/ips" "$bios_path/fbneo/ips"
       dir_prep "$mods_path/retroarch-core/fbneo/romdata" "$bios_path/fbneo/romdata"
+
+      # PRBOOM
+      log i "--------------------------------"
+      log i "Preparing PRBOOM_LIBRETRO"
+      log i "--------------------------------"
+      cp -f "$retroarch_extras_path/prboom.wad" "$bios_path/prboom.wad"
+
+      # ECWOLF
+      log i "--------------------------------"
+      log i "Preparing ECWOLF_LIBRETRO"
+      log i "--------------------------------"
+      cp -f "$retroarch_extras_path/ecwolf.pk3" "$bios_path/ecwolf.pk3"
 
       # MSX / SVI / ColecoVision / SG-1000
       log i "-----------------------------------------------------------"
@@ -206,10 +219,17 @@ _prepare_component::retroarch() {
 
       # AMIGA
       log i "-----------------------------------------------------------"
-      log i "Prepearing AMIGA LIBRETRO"
+      log i "Prepearing AMIGA + AMIGAVISION LIBRETRO"
       log i "-----------------------------------------------------------"
       log i "Copying \"$retroarch_extras_path/Amiga/capsimg.so\" in \"$bios_path/capsimg.so\""
       cp -f "$retroarch_extras_path/Amiga/capsimg.so" "$bios_path/capsimg.so"
+      cp -f "$retroarch_extras_path/Amiga/capsimg.so" "$bios_path/amiga/capsimg.so"
+
+      # PCSX Redux
+      log i "-----------------------------------------------------------"
+      log i "Prepearing PCSX Redux Openbios"
+      log i "-----------------------------------------------------------"
+      cp -f "$retroarch_extras_path/pcsx-redux/openbios.bin" "$bios_path/openbios.bin"
 
       # ScummVM
       log i "-----------------------------------------------------------"
@@ -231,18 +251,67 @@ _prepare_component::retroarch() {
       set_setting_value "$retroarch_config_scummvm" "savepath" "$saves_path/scummvm" "retroarch_scummvm" "scummvm"
       set_setting_value "$retroarch_config_scummvm" "browser_lastpath" "$roms_path/scummvm" "retroarch_scummvm" "scummvm"
 
-      # Texture Packs
+
+
+      # PPSSPP
+      log i "-----------------------------------------------------------"
+      log i "Prepearing PPSSPP LIBRETRO"
+      log i "-----------------------------------------------------------"     
+
+      dir_prep "$texture_packs_path/retroarch-core/PPSSPP/TEXTURES" "$XDG_CONFIG_HOME/retroarch/saves/PPSSPP/PSP/TEXTURES"
+      dir_prep "$mods_path/retroarch-core/PPSSPP/PLUGINS" "$XDG_CONFIG_HOME/retroarch/saves/PPSSPP/PSP/PLUGINS"
+      dir_prep "$shaders_path/retroarch-core/PPSSPP/shaders" "$XDG_CONFIG_HOME/retroarch/saves/PPSSPP/PSP/shaders"
+      dir_prep "$storage_path/retroarch-core/PPSSPP/GAME" "$XDG_CONFIG_HOME/retroarch/saves/PPSSPP/PSP/GAME"
+
+      # Dolphin
+      log i "-----------------------------------------------------------"
+      log i "Prepearing Dolphin LIBRETRO"
+      log i "-----------------------------------------------------------"     
+
+      dir_prep "$texture_packs_path/retroarch-core/Dolphin/Textures" "$XDG_CONFIG_HOME/retroarch/saves/dolphin-emu/User/Load/Textures/"
+      dir_prep "$mods_path/retroarch-core/Dolphin/GraphicMods" "$XDG_CONFIG_HOME/retroarch/saves/dolphin-emu/User/Load/GraphicMods"
+
+      # Citra
+      log i "-----------------------------------------------------------"
+      log i "Prepearing Citra LIBRETRO"
+      log i "-----------------------------------------------------------"    
+
+      dir_prep "$texture_packs_path/retroarch-core/Citra/textures" "$XDG_CONFIG_HOME/retroarch/saves/Citra/load/textures"
+      dir_prep "$mods_path/retroarch-core/Citra/mods" "$XDG_CONFIG_HOME/retroarch/saves/Citra/load/mods"
+
+      # Mesen
+      log i "-----------------------------------------------------------"
+      log i "Prepearing Mesen LIBRETRO"
+      log i "-----------------------------------------------------------"    
+
       dir_prep "$texture_packs_path/retroarch-core/Mesen/HdPacks" "$bios_path/HdPacks"
+
+      # Mupen64Plus
+      log i "-----------------------------------------------------------"
+      log i "Prepearing Mupen64Plus LIBRETRO"
+      log i "-----------------------------------------------------------"    
+
       dir_prep "$texture_packs_path/retroarch-core/Mupen64Plus/cache" "$bios_path/Mupen64plus/cache"
       dir_prep "$texture_packs_path/retroarch-core/Mupen64Plus/hires_texture" "$bios_path/Mupen64plus/hires_texture"
-      dir_prep "$texture_packs_path/retroarch-core/Citra/textures" "$XDG_CONFIG_HOME/retroarch/saves/Citra/load/textures"
-      dir_prep "$texture_packs_path/retroarch-core/Dolphin/Textures" "$XDG_CONFIG_HOME/retroarch/saves/dolphin-emu/User/Load/Textures/"
-      dir_prep "$texture_packs_path/retroarch-core/PPSSPP/TEXTURES" "$XDG_CONFIG_HOME/retroarch/saves/PPSSPP/PSP/TEXTURES"
+
+      # Flycast
+      log i "-----------------------------------------------------------"
+      log i "Prepearing Flycast LIBRETRO"
+      log i "-----------------------------------------------------------"    
+
       dir_prep "$texture_packs_path/retroarch-core/Flycast/textures" "$bios_path/dc/textures"
 
-      # Mods
-      dir_prep "$mods_path/retroarch-core/Citra/mods" "$XDG_CONFIG_HOME/retroarch/saves/Citra/load/mods"
-      dir_prep "$mods_path/retroarch-core/Dolphin/GraphicMods" "$XDG_CONFIG_HOME/retroarch/saves/dolphin-emu/User/Load/GraphicMods"
+      # Flycast VMUs
+      mkdir -p "$saves_path/dreamcast/flycast_libretro"
+      if [ -d "$bios_path/dc" ]; then
+        for vmu_file in vmu_save_A1.bin vmu_save_A2.bin vmu_save_B1.bin vmu_save_B2.bin vmu_save_C1.bin vmu_save_C2.bin vmu_save_D1.bin vmu_save_D2.bin; do
+          if [ ! -L "$bios_path/dc/$vmu_file" ]; then # if file is not a symlink, move it to the new location
+            mv -f "$bios_path/dc/$vmu_file" "$saves_path/dreamcast/flycast_libretro/$vmu_file"
+            ln -s "$saves_path/dreamcast/flycast_libretro/$vmu_file" "$bios_path/dc/$vmu_file"
+          fi
+        done
+      fi
+
     ;;
 
     postmove)
@@ -280,6 +349,7 @@ _prepare_component::retroarch() {
 
       # Shaders
       dir_prep "$shaders_path/retroarch-core/fbneo/blend" "$bios_path/fbneo/blend"
+      dir_prep "$shaders_path/retroarch-core/PPSSPP/shaders" "$XDG_CONFIG_HOME/retroarch/saves/PPSSPP/PSP/shaders"
 
       # Mods
       dir_prep "$mods_path/retroarch-core/Citra/mods" "$XDG_CONFIG_HOME/retroarch/saves/Citra/load/mods"
@@ -287,6 +357,7 @@ _prepare_component::retroarch() {
       dir_prep "$mods_path/retroarch-core/fbneo/patched" "$bios_path/fbneo/patched"
       dir_prep "$mods_path/retroarch-core/fbneo/ips" "$bios_path/fbneo/ips"
       dir_prep "$mods_path/retroarch-core/fbneo/romdata" "$bios_path/fbneo/romdata"
+      dir_prep "$mods_path/retroarch-core/PPSSPP/PLUGINS" "$XDG_CONFIG_HOME/retroarch/saves/PPSSPP/PSP/PLUGINS"
 
       # Settings
       set_setting_value "$retroarch_config" "savefile_directory" "$saves_path" "retroarch"
@@ -306,6 +377,11 @@ _prepare_component::retroarch() {
       set_setting_value "$retroarch_config" "video_filter_dir" "$shaders_path/retroarch/filters/video" "retroarch"
       set_setting_value "$retroarch_config" "video_shader_dir" "$shaders_path/retroarch/shaders" "retroarch"
       set_setting_value "$retroarch_config" "overlay_directory" "$borders_path/retroarch" "retroarch"
+
+      # DLC / Storage
+      
+      dir_prep "$storage_path/retroarch-core/PPSSPP/GAME" "$XDG_CONFIG_HOME/retroarch/saves/PPSSPP/PSP/GAME"
+
     ;;
 
   esac
@@ -316,6 +392,18 @@ _post_update::retroarch() {
 
   if check_version_is_older_than "$version_being_updated" "0.11.0"; then
     create_dir "$bios_path/same_cdi/bios"
+
+    # Flycast VMUs migration: Move existing VMU files to the new saves location and create symlinks in the bios directory
+    mkdir -p "$saves_path/dreamcast/flycast_libretro"
+    if [ -d "$bios_path/dc" ]; then
+      for vmu_file in vmu_save_A1.bin vmu_save_A2.bin vmu_save_B1.bin vmu_save_B2.bin vmu_save_C1.bin vmu_save_C2.bin vmu_save_D1.bin vmu_save_D2.bin; do
+        if [ ! -L "$bios_path/dc/$vmu_file" ]; then # if file is not a symlink, move it to the new location
+          mv -f "$bios_path/dc/$vmu_file" "$saves_path/dreamcast/flycast_libretro/$vmu_file"
+          ln -s "$saves_path/dreamcast/flycast_libretro/$vmu_file" "$bios_path/dc/$vmu_file"
+        fi
+      done
+    fi
+
   fi
   
   if check_version_is_older_than "$previous_version" "1.0.0"; then

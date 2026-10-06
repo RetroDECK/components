@@ -7,7 +7,7 @@
     "url_webpage": "https://maniacsvault.net/ecwolf/",
     "url_donation_purchase": "https://wisdomtree.itch.io/s3dna",
     "url_source": "https://github.com/ECWolfEngine/ECWolf",
-    "description": "Wolfenstein 3D engine based on Wolf4SDL, with support for enhanced features and mods",
+    "description": "Wolfenstein 3D source port engine based on Wolf4SDL, with support for enhanced features and mods",
     "component_type": "Engine",
     "system": "wolfenstein",
     "system_friendly_name": "Wolfenstein 3D",

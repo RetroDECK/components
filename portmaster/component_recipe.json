@@ -12,6 +12,11 @@
           "dest": "$COMPONENT_ARTIFACT_ROOT/PortMaster.zip"
         },
         {
+          "type": "dir",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/rd_assets/rd_extras",
+          "dest": "rd_extras"
+        },
+        {
           "type": "create",
           "dest": "component_version",
           "contents": "$SOURCE_VERSION"
@@ -46,8 +51,7 @@
           "source": "$REPO_ROOT/$COMPONENT_NAME/component_functions.sh",
           "dest": "$COMPONENT_ARTIFACT_ROOT"
         }
-      ]
-      ,
+      ],
       "libs": [
         {
           "library": "libSDL2.so",
