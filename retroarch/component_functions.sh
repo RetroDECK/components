@@ -528,6 +528,11 @@ _post_update_legacy::retroarch() {
     set_setting_value "$retroarch_config" "system_directory" "$bios_path" "retroarch"
   fi
 
+  if check_version_is_older_than "$version_being_updated" "0.11.0b"; then
+    log i "In 0.11.0b, we need to ensure that $roms_path/2xl folder is being created"
+    create_dir "$roms_path/2xl"
+  fi
+
   #######################################
   # These actions happen at every update
   #######################################

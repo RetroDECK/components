@@ -1,0 +1,36 @@
+# Twixel - emulator of a talking cassette robot toy.
+# Copyright (C) 2026 The Twixel contributors
+# SPDX-License-Identifier: GPL-3.0-or-later
+# Licensed under GPL-3.0-or-later with the additional permission in LICENSE-EXCEPTION.md.
+
+# Software Information
+display_name = "Twixel"
+authors = "The Twixel contributors"
+supported_extensions = "zip|/"
+corename = "Twixel"
+categories = "Emulator"
+license = "GPLv3+"
+permissions = ""
+display_version = "1.0.0"
+
+# Hardware Information
+systemname = "Talking cassette robot"
+systemid = "twixel"
+
+# Libretro Features
+supports_no_game = "false"
+needs_fullpath = "true"
+savestate = "true"
+savestate_features = "deterministic"
+cheats = "false"
+input_descriptors = "true"
+memory_descriptors = "false"
+libretro_saves = "true"
+core_options = "true"
+core_options_version = "2.0"
+load_subsystem = "false"
+hw_render = "false"
+needs_kbd_mouse_focus = "false"
+is_experimental = "true"
+
+description = "Twixel emulates a talking educational robot toy from the 1990s that played special four-track cassettes: the robot asks a question and the track you hear changes with the answer you pick. Load a cassette as a zip file or as a folder holding its four MP3 tracks (plus an optional front.jpg cover and metadata.json). Answer with the face buttons or the D-pad (left/top/bottom/right = answers 1-4), the keyboard keys 1-4, or by touching the answer buttons; Start plays or stops the tape, L rewinds, Select shows the cover and R1 (or the round button at the right of the player bar) switches between the two robots."
