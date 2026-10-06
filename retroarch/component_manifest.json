@@ -61,9 +61,9 @@
       },
       "es_systems": [
         {
-          "name": "2xl",
+          "name": "2-xl",
           "fullname": "2-XL",
-          "path": "%ROMPATH%/2xl",
+          "path": "%ROMPATH%/2-xl",
           "extension": ".zip",
           "commands": [
             {
@@ -72,8 +72,8 @@
               "priority": 10
             }
           ],
-          "platform": "2xl",
-          "theme": "2xl"
+          "platform": "2-xl",
+          "theme": "2-xl"
         },
         {
           "name": "3do",
