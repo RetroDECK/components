@@ -5,6 +5,17 @@
     "component_version": "1.0.0",
     "description": "Ludusavi provides save and state backup options for RetroDECK.",
     "component_type": "Tool",
+    "component_options": {
+      "cloud_sync": "false",
+      "backup_path": "",
+      "cloud_remote": "",
+      "cloud_remote_root": "retrodeck",
+      "cloud_provider": "",
+      "install_id": "",
+      "last_synced_marker": "",
+      "sync_blocked": "false",
+      "pending_upload": "false"
+    },
     "cli_commands": [
       {
         "flag": "--save-sync",
