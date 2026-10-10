@@ -1,19 +1,19 @@
 {
   "sm2-emu": [
     {
-      "source_url": "https://github.com/captainys/TOWNSEMU/releases/download/{VERSION}/sm2-emu-v*-linux-x86_64.tar.gz",
+      "source_url": "https://github.com/dmanlfc/sm2-emu/releases/download/{VERSION}/sm2-emu-v*-linux-x86_64.tar.gz",
       "source_type": "github_release",
       "version": "$SM2_EMU_DESIRED_VERSION",
       "extraction_type": "archive",
       "assets": [
         {
           "type": "dir",
-          "source": "bin",
+          "source": "sm2-emu-v0.9.42-linux-x86_64/bin",
           "dest": "bin"
         },
         {
           "type": "dir",
-          "source": "share/sm2-emu",
+          "source": "sm2-emu-v0.9.42-linux-x86_64/share/sm2-emu",
           "dest": "share/sm2-emu"
         },
         {
