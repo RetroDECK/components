@@ -81,6 +81,7 @@ _prepare_component::es-de() {
       log i "--------------------------------"
       generate_es_find_rules_xml
       generate_es_systems_xml
+      start::es-de --create-system-dirs
     ;;
 
     startup)

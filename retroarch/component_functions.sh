@@ -189,11 +189,24 @@ _prepare_component::retroarch() {
       log i "Preparing FBNEO_LIBRETRO"
       log i "--------------------------------"
       create_dir "$bios_path/fbneo/samples"
+      cp -f "$retroarch_extras_path/fbneo/hiscore.dat" "$bios_path/fbneo/hiscore.dat"
       dir_prep "$cheats_path/retroarch-core/fbneo" "$bios_path/fbneo/cheats"
       dir_prep "$shaders_path/retroarch-core/fbneo/blend" "$bios_path/fbneo/blend"
       dir_prep "$mods_path/retroarch-core/fbneo/patched" "$bios_path/fbneo/patched"
       dir_prep "$mods_path/retroarch-core/fbneo/ips" "$bios_path/fbneo/ips"
       dir_prep "$mods_path/retroarch-core/fbneo/romdata" "$bios_path/fbneo/romdata"
+
+      # PRBOOM
+      log i "--------------------------------"
+      log i "Preparing PRBOOM_LIBRETRO"
+      log i "--------------------------------"
+      cp -f "$retroarch_extras_path/prboom.wad" "$bios_path/prboom.wad"
+
+      # ECWOLF
+      log i "--------------------------------"
+      log i "Preparing ECWOLF_LIBRETRO"
+      log i "--------------------------------"
+      cp -f "$retroarch_extras_path/ecwolf.pk3" "$bios_path/ecwolf.pk3"
 
       # MSX / SVI / ColecoVision / SG-1000
       log i "-----------------------------------------------------------"
@@ -214,7 +227,7 @@ _prepare_component::retroarch() {
 
       # PCSX Redux
       log i "-----------------------------------------------------------"
-      log i "Prepearing PCSX Redux"
+      log i "Prepearing PCSX Redux Openbios"
       log i "-----------------------------------------------------------"
       cp -f "$retroarch_extras_path/pcsx-redux/openbios.bin" "$bios_path/openbios.bin"
 
@@ -258,7 +271,7 @@ _prepare_component::retroarch() {
       dir_prep "$texture_packs_path/retroarch-core/Dolphin/Textures" "$XDG_CONFIG_HOME/retroarch/saves/dolphin-emu/User/Load/Textures/"
       dir_prep "$mods_path/retroarch-core/Dolphin/GraphicMods" "$XDG_CONFIG_HOME/retroarch/saves/dolphin-emu/User/Load/GraphicMods"
 
-      # Dolphin
+      # Citra
       log i "-----------------------------------------------------------"
       log i "Prepearing Citra LIBRETRO"
       log i "-----------------------------------------------------------"    
