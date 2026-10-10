@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export sm2-emu_config="$XDG_CONFIG_HOME/sm2-emu/sm2-emu.ini"
+export sm2_emu_config="$XDG_CONFIG_HOME/sm2-emu/sm2-emu.ini"
 
 _prepare_component::sm2-emu() {
   local action="$1"
@@ -23,6 +23,10 @@ _prepare_component::sm2-emu() {
 
       dir_prep "$texture_packs_path/sm2-emu/textures" "$saves_path/model2/sm2-emu/textures"
 
+      sed -i "s|^rom_dir =.*|rom_dir = $roms_path/model2|" $sm2_emu_config
+      sed -i "s|^nvram_dir =.*|nvram_dir = $saves_path/model2/sm2-emu|" $sm2_emu_config
+      sed -i "s|^screenshot_dir =.*|screenshot_dir = $screenshots_path/sm2-emu|" $sm2_emu_config
+
     ;;
 
     postmove)
@@ -31,6 +35,11 @@ _prepare_component::sm2-emu() {
           log i "----------------------"
 
       dir_prep "$texture_packs_path/sm2-emu/textures" "$saves_path/model2/sm2-emu/textures"
+
+      sed -i "s|^rom_dir =.*|rom_dir = $roms_path/model2|" $sm2_emu_config
+      sed -i "s|^nvram_dir =.*|nvram_dir = $saves_path/model2/sm2-emu|" $sm2_emu_config
+      sed -i "s|^screenshot_dir =.*|screenshot_dir = $screenshots_path/sm2-emu|" $sm2_emu_config
+
 
     ;;
 
