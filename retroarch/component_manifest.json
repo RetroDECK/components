@@ -150,6 +150,16 @@
               "label": "PUAE 2021",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/puae2021_libretro.so %ROM%",
               "priority": 20
+            },
+            {
+              "label": "Amiberry",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/amiberry_libretro.so %ROM%",
+              "priority": 70
+            },
+            {
+              "label": "FS-UAE",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/fsuae_libretro.so %ROM%",
+              "priority": 80
             }
           ],
           "platform": "amigacd32",
@@ -181,10 +191,15 @@
           "path": "%ROMPATH%/apple2",
           "extension": ".do .dsk .nib .po",
           "commands": [
+                        {
+              "label": "AppleWin",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame_libretro.so \"apple2e -rompath \\\"%GAMEDIRRAW%;%ROMPATH%/apple2\\\" -gameio joy -flop1 \\\"%GAMEDIRRAW%/%FILENAME%\\\"\"",
+              "priority": 10
+            },
             {
               "label": "MAME - Current",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame_libretro.so \"apple2e -rompath \\\"%GAMEDIRRAW%;%ROMPATH%/apple2\\\" -gameio joy -flop1 \\\"%GAMEDIRRAW%/%FILENAME%\\\"\"",
-              "priority": 10
+              "priority": 20
             }
           ],
           "platform": "apple2",
@@ -277,9 +292,14 @@
           "extension": ".7z .bin .zip",
           "commands": [
             {
+              "label": "AmiArcadia",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/amiarcadia_libretro.so %ROM%",
+              "priority": 10
+            },
+            {
               "label": "MAME - Current",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame_libretro.so \"arcadia -rompath \\\"%GAMEDIRRAW%;%ROMPATH%/arcadia\\\" -cart \\\"%ROMRAW%\\\"\"",
-              "priority": 10
+              "priority": 20
             }
           ],
           "platform": "arcadia",
