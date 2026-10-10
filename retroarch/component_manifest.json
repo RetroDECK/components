@@ -3282,7 +3282,7 @@
         },
         {
           "name": "native32",
-          "fullname": "Native32 Sunplus DVD Player",
+          "fullname": "Native32 Sunplus DVD / TV",
           "path": "%ROMPATH%/native32",
           "extension": ".smf .sgm .ssl",
           "commands": [
@@ -3294,6 +3294,21 @@
           ],
           "platform": "native32",
           "theme": "native32"
+        },
+        {
+          "name": "nicai",
+          "fullname": "Nicai MStar Phone",
+          "path": "%ROMPATH%/nicai",
+          "extension": ".cbe",
+          "commands": [
+            {
+              "label": "NicaiEmu",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/nicaiemu_libretro.so %ROM%",
+              "priority": 10
+            }
+          ],
+          "platform": "nicai",
+          "theme": "nicai"
         },
         {
           "name": "supergrafx",
