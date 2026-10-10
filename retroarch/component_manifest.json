@@ -2831,6 +2831,21 @@
           "theme": "quake"
         },
         {
+          "name": "radio",
+          "fullname": "RetroArch Internet Radio",
+          "path": "%ROMPATH%/radio",
+          "extension": ".m3u .txt .mp3 .wav",
+          "commands": [
+            {
+              "label": "RetroArch Internet Radio",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/radio_libretro.so %ROM%",
+              "priority": 10
+            }
+          ],
+          "platform": "radio",
+          "theme": "radio"
+        },
+        {
           "name": "satellaview",
           "fullname": "Nintendo Satellaview",
           "path": "%ROMPATH%/satellaview",
