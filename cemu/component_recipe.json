@@ -60,17 +60,22 @@
           "dest": "shared-libs"
         },
         {
+          "library": "libwx_gtk3u_xrc-3.2.so",
+          "source": "lib",
+          "dest": "shared-libs"
+        },
+        {
           "library": "libwx_gtk3u_gl-3.2.so.0",
           "source": "lib",
           "dest": "shared-libs"
         },
         {
-          "library": "libwx_gtk3u_core-3.2.so.0",
+          "library": "libwx_gtk3u_richtext-3.2.so.0",
           "source": "lib",
           "dest": "shared-libs"
         },
         {
-          "library": "libwx_baseu-3.2.so.0",
+          "library": "libwx_gtk3u_qa-3.2.so.0",
           "source": "lib",
           "dest": "shared-libs"
         },
@@ -80,17 +85,62 @@
           "dest": "shared-libs"
         },
         {
+          "library": "libwx_gtk3u_html-3.2.so.0",
+          "source": "lib",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libwx_gtk3u_core-3.2.so.0",
+          "source": "lib",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libwx_gtk3u_aui-3.2.so.0",
+          "source": "lib",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libwx_gtk3u_adv-3.2.so.0",
+          "source": "lib",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libwx_baseu_xml-3.2.so.0",
+          "source": "lib",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libwx_baseu_net-3.2.so.0",
+          "source": "lib",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libwx_baseu-3.2.so.0",
+          "source": "lib",
+          "dest": "shared-libs"
+        },
+        {
           "library": "libpugixml.so.1",
           "source": "lib",
           "dest": "shared-libs"
         },
         {
-          "library": "libboost_program_options.so.1.88.0",
+          "library": "libboost_program_options.so.1.92.0",
           "source": "lib",
           "dest": "shared-libs"
         },
         {
-          "library": "libhidapi-hidraw.so.0",
+          "library": "libboost_nowide.so.1.92.0",
+          "source": "lib",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libboost_filesystem.so.1.92.0",
+          "source": "lib",
+          "dest": "shared-libs"
+        },
+        {
+          "library": "libboost_container.so.1.92.0",
           "source": "lib",
           "dest": "shared-libs"
         }
