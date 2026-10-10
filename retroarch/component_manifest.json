@@ -2416,6 +2416,21 @@
           "theme": "odyssey2"
         },
         {
+          "name": "omicron",
+          "fullname": "Omicron",
+          "path": "%ROMPATH%/omicron",
+          "extension": ".omicron",
+          "commands": [
+            {
+              "label": "Omicron",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/omicron_libretro.so %ROM%",
+              "priority": 10
+            }
+          ],
+          "platform": "omicron",
+          "theme": "omicron"
+        },
+        {
           "name": "palm",
           "fullname": "Palm OS",
           "path": "%ROMPATH%/palm",
@@ -2642,14 +2657,19 @@
           "extension": ".bin .chd .ciso .cso .desktop .dump .elf .gz .img .iso .isz .m3u .mdf .ngr .nrg .zso",
           "commands": [
             {
+              "label": "PCEE2",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/pcee2_libretro.so %ROM%",
+              "priority": 20
+            },
+            {
               "label": "LRPS2",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/pcsx2_libretro.so %ROM%",
-              "priority": 20
+              "priority": 30
             },
             {
               "label": "PCSX2",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/pcsx2_libretro.so %ROM%",
-              "priority": 30
+              "priority": 40
             }
           ],
           "platform": "ps2",
@@ -3140,6 +3160,11 @@
               "label": "Mesen2",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mesen2_libretro.so %ROM%",
               "priority": 100
+            },
+            {
+              "label": "nSide Balanced",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/nside_sfc_balanced_libretro.so %ROM%",
+              "priority": 110
             }
           ],
           "platform": "snes",
@@ -3294,6 +3319,21 @@
           ],
           "platform": "native32",
           "theme": "native32"
+        },
+        {
+          "name": "native32",
+          "fullname": "NUON (VM Labs)",
+          "path": "%ROMPATH%/nuon",
+          "extension": ".run .cof .nuon .cd .iso .img .chd",
+          "commands": [
+            {
+              "label": "Nuance",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/nuance_libretro.so %ROM%",
+              "priority": 10
+            }
+          ],
+          "platform": "nuon",
+          "theme": "nuon"
         },
         {
           "name": "nicai",
