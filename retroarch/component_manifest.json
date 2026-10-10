@@ -110,6 +110,16 @@
               "label": "PUAE 2021",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/puae2021_libretro.so %ROM%",
               "priority": 20
+            },
+            {
+              "label": "Amiberry",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/amiberry_libretro.so %ROM%",
+              "priority": 70
+            },
+            {
+              "label": "FS-UAE",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/fsuae_libretro.so %ROM%",
+              "priority": 80
             }
           ],
           "platform": "amiga",
@@ -150,16 +160,6 @@
               "label": "PUAE 2021",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/puae2021_libretro.so %ROM%",
               "priority": 20
-            },
-            {
-              "label": "Amiberry",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/amiberry_libretro.so %ROM%",
-              "priority": 70
-            },
-            {
-              "label": "FS-UAE",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/fsuae_libretro.so %ROM%",
-              "priority": 80
             }
           ],
           "platform": "amigacd32",
@@ -1080,6 +1080,11 @@
               "label": "DosBox",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/dosbox_libretro.so %ROM%",
               "priority": 50
+            },
+            {
+              "label": "PCem",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/pcem_libretro.so %ROM%",
+              "priority": 60
             }
           ],
           "platform": "dos",
@@ -2581,6 +2586,21 @@
           "theme": "pico8"
         },
         {
+          "name": "playdia",
+          "fullname": "Playdia",
+          "path": "%ROMPATH%/playdia",
+          "extension": ".cue .zip .iso bin",
+          "commands": [
+            {
+              "label": "PlaydiaEmu",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/playdiaemu_libretro.so %ROM%",
+              "priority": 10
+            }
+          ],
+          "platform": "playdia",
+          "theme": "playdia"
+        },
+        {
           "name": "plus4",
           "fullname": "Commodore Plus/4",
           "path": "%ROMPATH%/plus4",
@@ -2676,6 +2696,21 @@
           "theme": "ps2"
         },
         {
+          "name": "ps3",
+          "fullname": "Sony PlayStation 3",
+          "path": "%ROMPATH%/ps3",
+          "extension": ".sfb .sfo .iso .pkg .bin .self .elf",
+          "commands": [
+            {
+              "label": "RCPS3",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/rpcs3_libretro.so %ROM%",
+              "priority": 30
+            }
+          ],
+          "platform": "ps3",
+          "theme": "ps3"
+        },
+        {
           "name": "psp",
           "fullname": "Sony PlayStation Portable",
           "path": "%ROMPATH%/psp",
@@ -2689,6 +2724,21 @@
           ],
           "platform": "psp",
           "theme": "psp"
+        },
+        {
+          "name": "pocketstation",
+          "fullname": "Sony PocketStation",
+          "path": "%ROMPATH%/pocketstation",
+          "extension": ".mcr .mcs .pss .mcd .bin .gme",
+          "commands": [
+            {
+              "label": "pokketstation",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/pokketstation_libretro.so %ROM%",
+              "priority": 20
+            }
+          ],
+          "platform": "pocketstation",
+          "theme": "pocketstation"
         },
         {
           "name": "psx",

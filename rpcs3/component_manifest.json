@@ -62,12 +62,12 @@
             {
               "label": "RPCS3 Game Serial (Standalone)",
               "command": "%EMULATOR_RPCS3% --no-gui %RPCS3_GAMEID%:%INJECT%=%BASENAME%.ps3",
-              "priority": 20
+              "priority": 10
             },
             {
               "label": "RPCS3 Directory (Standalone)",
               "command": "%EMULATOR_RPCS3% --no-gui %ROM%",
-              "priority": 30
+              "priority": 20
             }
           ],
           "platform": "ps3",
