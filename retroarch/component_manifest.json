@@ -537,8 +537,8 @@
               "priority": 20
             }
           ],
-          "platform": "bbcmicro",
-          "theme": "bbcmicro"
+          "platform": "bbk",
+          "theme": "bbk"
         },
         {
           "name": "c64",
@@ -1005,6 +1005,11 @@
               "label": "VirtualXT",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/virtualxt_libretro.so %ROM%",
               "priority": 40
+            },
+            {
+              "label": "DosBox",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/dosbox_libretro.so %ROM%",
+              "priority": 50
             }
           ],
           "platform": "dos",
@@ -2767,9 +2772,19 @@
           "extension": ".0 .7z .bin .zip",
           "commands": [
             {
+              "label": "EmuSCV",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/emuscv_libretro.so %ROM%",
+              "priority": 10
+            },
+            {
+              "label": "PD777",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/pd777_libretro.so %ROM%",
+              "priority": 20
+            },
+            {
               "label": "MAME - Current",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame_libretro.so \"scv -rompath \\\"%GAMEDIRRAW%;%ROMPATH%/scv\\\" -cart \\\"%ROMRAW%\\\"\"",
-              "priority": 10
+              "priority": 30
             }
           ],
           "platform": "scv",
