@@ -12,7 +12,7 @@
     "url_donation_purchase": "https://www.amiberry.org/",
     "url_source": "https://www.amiberry.org/",
     "component_type": "Emulator",
-    "description": "Commodore Amiga emulator for running Amiga software and games.",
+    "description": "Commodore Amiga emulator.",
     "system_friendly_name": [
       "Amiga",
       "Amiga 1200",

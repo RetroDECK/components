@@ -4,7 +4,7 @@
     "core_framework_compatibility": "1",
     "component_version": "1.0.0",
     "capabilities": ["reset","open"],
-    "description": "Microsoft Xbox emulator for playing original Xbox games.",
+    "description": "Microsoft Xbox (original) emulator.",
     "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/xemu/xemu-guide/",
     "url_webpage": "https://xemu.app/",
     "url_donation_purchase": "https://www.patreon.com/mborgerson",

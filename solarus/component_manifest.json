@@ -8,7 +8,7 @@
     "url_webpage": "https://www.solarus-games.org/",
     "url_donation_purchase": "https://liberapay.com/solarus-labs/donate",
     "url_source": "https://gitlab.com/solarus-games/",
-    "description": "2D action-RPG engine for creating and playing Zelda-style games. ",
+    "description": "2D action-RPG engine for classic Zelda-style games.",
     "component_type": "Engine",
     "system_friendly_name": "Solarus Game Engine",
     "system": "solarus",

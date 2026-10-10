@@ -1,6 +1,6 @@
 {
   "melonds": {
-    "description": "Nintendo DS emulator for playing Nintendo DS games.",
+    "description": "Nintendo DS emulator.",
     "name": "melonDS",
     "core_framework_compatibility": "1",
     "component_version": "1.0.0",

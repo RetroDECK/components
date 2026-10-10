@@ -10,7 +10,7 @@
     "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/sm2-emu/sm2-emu-guide/",
     "url_donation_purchase": "https://github.com/dmanlfc/sm2-emu/blob/main/FUNDING.md",
     "url_source": "https://github.com/dmanlfc/sm2-emu",
-    "description": "A SEGA Model 2 Arcade Emulator.",
+    "description": "SEGA Model 2 Arcade emulator.",
     "system_friendly_name": "SEGA Model 2",
     "component_type": "Emulator",
     "system": "model2",

@@ -15,7 +15,7 @@
       "Client",
       "Engine"
     ],
-    "description": "Quake3e is a source port Game Engine & Multiplayer Client for ID Softwares 'Quake III Arena' with mod support.",
+    "description": "Quake III Arena source port engine & multiplayer client with mod support.",
     "system_friendly_name": "Quake 3",
     "system": "quake3",
     "es_de_config": {
