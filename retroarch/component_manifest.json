@@ -1370,6 +1370,16 @@
               "label": "VBA-M",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/vbam_libretro.so %ROM%",
               "priority": 90
+            },
+            {
+              "label": "IroGB",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/irogb_libretro.so %ROM%",
+              "priority": 100
+            },
+            {
+              "label": "Mesen2",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mesen2_libretro.so %ROM%",
+              "priority": 110
             }
           ],
           "platform": "gb",
@@ -1405,6 +1415,11 @@
               "label": "NooDS",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/noods_libretro.so %ROM%",
               "priority": 50
+            },
+            {
+              "label": "Mesen2",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mesen2_libretro.so %ROM%",
+              "priority": 60
             }
           ],
           "platform": "gba",
@@ -1449,17 +1464,27 @@
             {
               "label": "bsnes",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes_libretro.so %ROM%",
-              "priority": 70
+              "priority": 80
             },
             {
               "label": "mGBA",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mgba_libretro.so %ROM%",
-              "priority": 80
+              "priority": 90
             },
             {
               "label": "VBA-M",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/vbam_libretro.so %ROM%",
-              "priority": 90
+              "priority": 100
+            },
+            {
+              "label": "IroGB",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/irogb_libretro.so %ROM%",
+              "priority": 110
+            },
+            {
+              "label": "Mesen2",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mesen2_libretro.so %ROM%",
+              "priority": 120
             }
           ],
           "platform": "gbc",
@@ -2320,6 +2345,11 @@
               "label": "QuickNES",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/quicknes_libretro.so %ROM%",
               "priority": 40
+            },
+            {
+              "label": "Mesen2",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mesen2_libretro.so %ROM%",
+              "priority": 50
             }
           ],
           "platform": "nes",
@@ -3105,6 +3135,11 @@
               "label": "Mesen-S",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mesen-s_libretro.so %ROM%",
               "priority": 90
+            },
+            {
+              "label": "Mesen2",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mesen2_libretro.so %ROM%",
+              "priority": 100
             }
           ],
           "platform": "snes",
