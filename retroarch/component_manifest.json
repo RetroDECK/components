@@ -1819,11 +1819,26 @@
             {
               "label": "MAME - Current",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame_libretro.so %ROM%",
-              "priority": 20
+              "priority": 30
             }
           ],
           "platform": "arcade",
           "theme": "model2"
+        },
+                {
+          "name": "model3",
+          "fullname": "Sega Model 3",
+          "path": "%ROMPATH%/model3",
+          "extension": ".7z .zip",
+          "commands": [
+            {
+              "label": "Supermodel",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/supermodel_libretro.so %ROM%",
+              "priority": 10
+            }
+          ],
+          "platform": "arcade",
+          "theme": "model3"
         },
         {
           "name": "moto",
