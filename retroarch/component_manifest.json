@@ -3281,6 +3281,21 @@
           "theme": "sufami"
         },
         {
+          "name": "sunplus",
+          "fullname": "Native32 Sunplus DVD Player",
+          "path": "%ROMPATH%/native32",
+          "extension": ".smf .sgm .ssl",
+          "commands": [
+            {
+              "label": "Native32Emu",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/native32emu_libretro.so %ROM%",
+              "priority": 10
+            }
+          ],
+          "platform": "sunplus",
+          "theme": "sunplus"
+        },
+        {
           "name": "supergrafx",
           "fullname": "NEC SuperGrafx",
           "path": "%ROMPATH%/supergrafx",
