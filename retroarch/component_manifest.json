@@ -1819,7 +1819,7 @@
             {
               "label": "MAME - Current",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame_libretro.so %ROM%",
-              "priority": 10
+              "priority": 20
             }
           ],
           "platform": "arcade",

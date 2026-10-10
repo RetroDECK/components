@@ -40,7 +40,8 @@
           "commands": [
             {
               "label": "sm2-emu (Standalone)",
-              "command": "%EMULATOR_SM2-EMU% %ROM%"
+              "command": "%EMULATOR_SM2-EMU% %ROM%",
+              "priority": 10
             }
           ],
           "platform": "arcade",
