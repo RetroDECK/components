@@ -13,8 +13,8 @@
         },
         {
           "type": "dir",
-          "source": "usr/share/Vita3K/gui-configs/",
-          "dest": "bin/gui-configs/"
+          "source": "usr/share/Vita3K/data/",
+          "dest": "bin/data/"
         },
         {
           "type": "dir",
@@ -39,6 +39,11 @@
         {
           "type": "dir",
           "source": "usr/share/doc/",
+          "dest": "docs"
+        },
+        {
+          "type": "dir",
+          "source": "usr/share/licenses/",
           "dest": "docs"
         },
         {
