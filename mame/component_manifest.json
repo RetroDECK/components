@@ -308,7 +308,7 @@
             {
               "label": "MAME (Standalone)",
               "command": "%EMULATOR_MAME% -inipath /var/config/mame/ini -rompath %GAMEDIR%\\;%ROMPATH%/cps %BASENAME%",
-              "priority": 60
+              "priority": 20
             }
           ],
           "platform": "arcade",
@@ -323,7 +323,7 @@
             {
               "label": "MAME (Standalone)",
               "command": "%EMULATOR_MAME% -inipath /var/config/mame/ini -rompath %GAMEDIR%\\;%ROMPATH%/cps1 %BASENAME%",
-              "priority": 60
+              "priority": 20
             }
           ],
           "platform": "arcade",
@@ -338,7 +338,7 @@
             {
               "label": "MAME (Standalone)",
               "command": "%EMULATOR_MAME% -inipath /var/config/mame/ini -rompath %GAMEDIR%\\;%ROMPATH%/cps2 %BASENAME%",
-              "priority": 60
+              "priority": 20
             }
           ],
           "platform": "arcade",
@@ -353,7 +353,7 @@
             {
               "label": "MAME (Standalone)",
               "command": "%EMULATOR_MAME% -inipath /var/config/mame/ini -rompath %GAMEDIR%\\;%ROMPATH%/cps3 %BASENAME%",
-              "priority": 60
+              "priority": 20
             }
           ],
           "platform": "arcade",
@@ -668,7 +668,7 @@
             {
               "label": "MAME (Standalone)",
               "command": "%EMULATOR_MAME% -inipath /var/config/mame/ini -rompath %GAMEDIR%\\;%ROMPATH%/mame %BASENAME%",
-              "priority": 60
+              "priority": 20
             }
           ],
           "platform": "arcade",

@@ -232,13 +232,8 @@
               "priority": 10
             },
             {
-              "label": "MAME 2010",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2010_libretro.so %ROM%",
-              "priority": 20
-            },
-            {
-              "label": "MAME 2003-Plus",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2003_plus_libretro.so %ROM%",
+              "label": "MAME 2000",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2000_libretro.so %ROM%",
               "priority": 30
             },
             {
@@ -247,39 +242,59 @@
               "priority": 40
             },
             {
-              "label": "MAME 2000",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2000_libretro.so %ROM%",
+              "label": "MAME 2003-Plus",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2003_plus_libretro.so %ROM%",
               "priority": 50
             },
             {
-              "label": "FinalBurn Neo",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/fbneo_libretro.so %ROM%",
+              "label": "MAME 2010",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2010_libretro.so %ROM%",
+              "priority": 60
+            },
+            {
+              "label": "MAME 2015",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2015_libretro.so %ROM%",
               "priority": 70
             },
             {
-              "label": "FB Alpha 2012",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/fbalpha2012_libretro.so %ROM%",
+              "label": "MAME 2016",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2016_libretro.so %ROM%",
               "priority": 80
-            },
-            {
-              "label": "Geolith",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/geolith_libretro.so %ROM%",
-              "priority": 90
-            },
-            {
-              "label": "Flycast",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/flycast_libretro.so %ROM%",
-              "priority": 100
-            },
-            {
-              "label": "Kronos",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/kronos_libretro.so %ROM%",
-              "priority": 110
             },
             {
               "label": "DICE",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/dice_libretro.so %ROM%",
+              "priority": 90
+            },
+            {
+              "label": "FB Alpha 2012",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/fbalpha2012_libretro.so %ROM%",
+              "priority": 100
+            },
+            {
+              "label": "FinalBurn Neo",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/fbneo_libretro.so %ROM%",
+              "priority": 110
+            },
+            {
+              "label": "Flycast",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/flycast_libretro.so %ROM%",
               "priority": 120
+            },
+            {
+              "label": "Geolith",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/geolith_libretro.so %ROM%",
+              "priority": 130
+            },
+            {
+              "label": "HBMAME (HomeBrew MAME)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/hbmame_libretro.so %ROM%",
+              "priority": 140
+            },
+            {
+              "label": "Kronos",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/kronos_libretro.so %ROM%",
+              "priority": 150
             }
           ],
           "platform": "arcade",
@@ -455,6 +470,11 @@
               "label": "Holani",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/holani_libretro.so %ROM%",
               "priority": 30
+            },
+            {
+              "label": "Gearlynx",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/gearlynx_libretro.so %ROM%",
+              "priority": 40
             }
           ],
           "platform": "atarilynx",
@@ -467,9 +487,19 @@
           "extension": ".7z .dim .ipf .m3u .msa .st .stx .zip",
           "commands": [
             {
-              "label": "Hatari",
+              "label": "hatari",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/hatari_libretro.so %ROM%",
               "priority": 10
+            },
+            {
+              "label": "hatariB",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/hatarib_libretro.so %ROM%",
+              "priority": 20
+            },
+            {
+              "label": "hatari2014",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/hatari2014_libretro.so %ROM%",
+              "priority": 30
             }
           ],
           "platform": "atarist",
@@ -707,13 +737,8 @@
               "priority": 10
             },
             {
-              "label": "MAME 2010",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2010_libretro.so %ROM%",
-              "priority": 20
-            },
-            {
-              "label": "MAME 2003-Plus",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2003_plus_libretro.so %ROM%",
+              "label": "MAME 2000",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2000_libretro.so %ROM%",
               "priority": 30
             },
             {
@@ -722,34 +747,49 @@
               "priority": 40
             },
             {
-              "label": "MAME 2000",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2000_libretro.so %ROM%",
+              "label": "MAME 2003-Plus",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2003_plus_libretro.so %ROM%",
               "priority": 50
             },
             {
-              "label": "FinalBurn Neo",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/fbneo_libretro.so %ROM%",
+              "label": "MAME 2010",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2010_libretro.so %ROM%",
+              "priority": 60
+            },
+            {
+              "label": "MAME 2015",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2015_libretro.so %ROM%",
               "priority": 70
+            },
+            {
+              "label": "MAME 2016",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2016_libretro.so %ROM%",
+              "priority": 80
             },
             {
               "label": "FB Alpha 2012",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/fbalpha2012_libretro.so %ROM%",
-              "priority": 80
+              "priority": 90
             },
             {
               "label": "FB Alpha 2012 CPS-1",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/fbalpha2012_cps1_libretro.so %ROM%",
-              "priority": 90
+              "priority": 100
             },
             {
               "label": "FB Alpha 2012 CPS-2",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/fbalpha2012_cps2_libretro.so %ROM%",
-              "priority": 100
+              "priority": 110
             },
             {
               "label": "FB Alpha 2012 CPS-3",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/fbalpha2012_cps3_libretro.so %ROM%",
-              "priority": 110
+              "priority": 120
+            },
+            {
+              "label": "FinalBurn Neo",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/fbneo_libretro.so %ROM%",
+              "priority": 130
             }
           ],
           "platform": "arcade",
@@ -767,13 +807,8 @@
               "priority": 10
             },
             {
-              "label": "MAME 2010",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2010_libretro.so %ROM%",
-              "priority": 20
-            },
-            {
-              "label": "MAME 2003-Plus",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2003_plus_libretro.so %ROM%",
+              "label": "MAME 2000",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2000_libretro.so %ROM%",
               "priority": 30
             },
             {
@@ -782,24 +817,39 @@
               "priority": 40
             },
             {
-              "label": "MAME 2000",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2000_libretro.so %ROM%",
+              "label": "MAME 2003-Plus",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2003_plus_libretro.so %ROM%",
               "priority": 50
             },
             {
-              "label": "FinalBurn Neo",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/fbneo_libretro.so %ROM%",
+              "label": "MAME 2010",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2010_libretro.so %ROM%",
+              "priority": 60
+            },
+            {
+              "label": "MAME 2015",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2015_libretro.so %ROM%",
               "priority": 70
+            },
+            {
+              "label": "MAME 2016",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2016_libretro.so %ROM%",
+              "priority": 80
             },
             {
               "label": "FB Alpha 2012",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/fbalpha2012_libretro.so %ROM%",
-              "priority": 80
+              "priority": 90
             },
             {
               "label": "FB Alpha 2012 CPS-1",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/fbalpha2012_cps1_libretro.so %ROM%",
-              "priority": 90
+              "priority": 100
+            },
+            {
+              "label": "FinalBurn Neo",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/fbneo_libretro.so %ROM%",
+              "priority": 110
             }
           ],
           "platform": "arcade",
@@ -817,13 +867,8 @@
               "priority": 10
             },
             {
-              "label": "MAME 2010",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2010_libretro.so %ROM%",
-              "priority": 20
-            },
-            {
-              "label": "MAME 2003-Plus",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2003_plus_libretro.so %ROM%",
+              "label": "MAME 2000",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2000_libretro.so %ROM%",
               "priority": 30
             },
             {
@@ -832,24 +877,39 @@
               "priority": 40
             },
             {
-              "label": "MAME 2000",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2000_libretro.so %ROM%",
+              "label": "MAME 2003-Plus",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2003_plus_libretro.so %ROM%",
               "priority": 50
             },
             {
-              "label": "FinalBurn Neo",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/fbneo_libretro.so %ROM%",
+              "label": "MAME 2010",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2010_libretro.so %ROM%",
+              "priority": 60
+            },
+            {
+              "label": "MAME 2015",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2015_libretro.so %ROM%",
               "priority": 70
+            },
+            {
+              "label": "MAME 2016",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2016_libretro.so %ROM%",
+              "priority": 80
             },
             {
               "label": "FB Alpha 2012",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/fbalpha2012_libretro.so %ROM%",
-              "priority": 80
+              "priority": 90
             },
             {
               "label": "FB Alpha 2012 CPS-2",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/fbalpha2012_cps2_libretro.so %ROM%",
-              "priority": 90
+              "priority": 100
+            },
+            {
+              "label": "FinalBurn Neo",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/fbneo_libretro.so %ROM%",
+              "priority": 110
             }
           ],
           "platform": "arcade",
@@ -867,13 +927,8 @@
               "priority": 10
             },
             {
-              "label": "MAME 2010",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2010_libretro.so %ROM%",
-              "priority": 20
-            },
-            {
-              "label": "MAME 2003-Plus",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2003_plus_libretro.so %ROM%",
+              "label": "MAME 2000",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2000_libretro.so %ROM%",
               "priority": 30
             },
             {
@@ -882,24 +937,39 @@
               "priority": 40
             },
             {
-              "label": "MAME 2000",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2000_libretro.so %ROM%",
+              "label": "MAME 2003-Plus",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2003_plus_libretro.so %ROM%",
               "priority": 50
             },
             {
-              "label": "FinalBurn Neo",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/fbneo_libretro.so %ROM%",
+              "label": "MAME 2010",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2010_libretro.so %ROM%",
+              "priority": 60
+            },
+            {
+              "label": "MAME 2015",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2015_libretro.so %ROM%",
               "priority": 70
+            },
+            {
+              "label": "MAME 2016",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2016_libretro.so %ROM%",
+              "priority": 80
             },
             {
               "label": "FB Alpha 2012",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/fbalpha2012_libretro.so %ROM%",
-              "priority": 80
+              "priority": 90
             },
             {
               "label": "FB Alpha 2012 CPS-3",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/fbalpha2012_cps3_libretro.so %ROM%",
-              "priority": 90
+              "priority": 100
+            },
+            {
+              "label": "FinalBurn Neo",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/fbneo_libretro.so %ROM%",
+              "priority": 110
             }
           ],
           "platform": "arcade",
@@ -1594,52 +1664,67 @@
             {
               "label": "MAME 2010",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2010_libretro.so %ROM%",
-              "priority": 20
+              "priority": 30
             },
             {
               "label": "MAME 2003-Plus",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2003_plus_libretro.so %ROM%",
-              "priority": 30
+              "priority": 40
+            },
+            {
+              "label": "MAME 2015",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2015_libretro.so %ROM%",
+              "priority": 50
+            },
+            {
+              "label": "MAME 2016",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2016_libretro.so %ROM%",
+              "priority": 60
             },
             {
               "label": "MAME 2003",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2003_libretro.so %ROM%",
-              "priority": 40
+              "priority": 70
             },
             {
               "label": "MAME 2000",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2000_libretro.so %ROM%",
-              "priority": 50
+              "priority": 80
             },
             {
               "label": "FinalBurn Neo",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/fbneo_libretro.so %ROM%",
-              "priority": 70
+              "priority": 90
             },
             {
               "label": "FB Alpha 2012",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/fbalpha2012_libretro.so %ROM%",
-              "priority": 80
+              "priority": 100
             },
             {
               "label": "Geolith",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/geolith_libretro.so %ROM%",
-              "priority": 90
+              "priority": 110
             },
             {
               "label": "Flycast",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/flycast_libretro.so %ROM%",
-              "priority": 100
+              "priority": 120
             },
             {
               "label": "Kronos",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/kronos_libretro.so %ROM%",
-              "priority": 110
+              "priority": 130
             },
             {
               "label": "DICE",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/dice_libretro.so %ROM%",
-              "priority": 120
+              "priority": 140
+            },
+            {
+              "label": "HBMAME (HomeBrew MAME)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/hbmame_libretro.so %ROM%",
+              "priority": 150
             }
           ],
           "platform": "arcade",
