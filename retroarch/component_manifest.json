@@ -7945,7 +7945,14 @@
         "description": "Interface ROM for PC-9800"
       },
       {
-        "filename": "upd7801g.s01",
+        "filename": [
+          "upd7801g.s01",
+          "upd7801.s01",
+          "upd7801g.bin",
+          "upd7801g.bios",
+          "bios.rom",
+          "bios.bin"
+        ],
         "md5": "635a978fd40db9a18ee44eff449fc126",
         "system": "scv",
         "description": "Super Cassette Vision - BIOS"
