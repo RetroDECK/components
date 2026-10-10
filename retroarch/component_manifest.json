@@ -3281,7 +3281,7 @@
           "theme": "sufami"
         },
         {
-          "name": "sunplus",
+          "name": "native32",
           "fullname": "Native32 Sunplus DVD Player",
           "path": "%ROMPATH%/native32",
           "extension": ".smf .sgm .ssl",
@@ -3292,8 +3292,8 @@
               "priority": 10
             }
           ],
-          "platform": "sunplus",
-          "theme": "sunplus"
+          "platform": "native32",
+          "theme": "native32"
         },
         {
           "name": "supergrafx",
