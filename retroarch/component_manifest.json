@@ -1825,7 +1825,7 @@
           "platform": "arcade",
           "theme": "model2"
         },
-                {
+        {
           "name": "model3",
           "fullname": "Sega Model 3",
           "path": "%ROMPATH%/model3",
@@ -1952,19 +1952,24 @@
           "extension": ".3ds .3dsx .7z .app .axf .cci .cxi .desktop .elf .z3dsx .zcci .zcxi .zip",
           "commands": [
             {
+              "label": "Azahar",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/azahar_libretro.so %ROM%<",
+              "priority": 20
+            },
+            {
               "label": "Citra",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/citra_libretro.so %ROM%",
-              "priority": 20
+              "priority": 30
             },
             {
               "label": "Citra 2018",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/citra2018_libretro.so %ROM%",
-              "priority": 30
+              "priority": 40
             },
             {
               "label": "Panda3DS",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/panda3ds_libretro.so %ROM%",
-              "priority": 40
+              "priority": 50
             }
           ],
           "platform": "n3ds",
