@@ -191,7 +191,7 @@
           "path": "%ROMPATH%/apple2",
           "extension": ".do .dsk .nib .po",
           "commands": [
-                        {
+            {
               "label": "AppleWin",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame_libretro.so \"apple2e -rompath \\\"%GAMEDIRRAW%;%ROMPATH%/apple2\\\" -gameio joy -flop1 \\\"%GAMEDIRRAW%/%FILENAME%\\\"\"",
               "priority": 10
@@ -514,6 +514,26 @@
             {
               "label": "b2",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/b2_libretro.so %ROM%",
+              "priority": 20
+            }
+          ],
+          "platform": "bbcmicro",
+          "theme": "bbcmicro"
+        },
+        {
+          "name": "bbk",
+          "fullname": "BBK Electronic Dictionary",
+          "path": "%ROMPATH%/bbk",
+          "extension": ".gam",
+          "commands": [
+            {
+              "label": "BBKEmu",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bbkemu_libretro.so %ROM%",
+              "priority": 10
+            },
+            {
+              "label": "GAM4980",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/gam4980_libretro.so %ROM%",
               "priority": 20
             }
           ],
@@ -919,6 +939,21 @@
           ],
           "platform": "daphne, arcade",
           "theme": "daphne"
+        },
+        {
+          "name": "dingoo",
+          "fullname": "Dingoo A320 Emulator",
+          "path": "%ROMPATH%/dingoo",
+          "extension": ".app",
+          "commands": [
+            {
+              "label": "DingooEmu",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/dingooemu_libretro.so %ROM%",
+              "priority": 10
+            }
+          ],
+          "platform": "dingoo",
+          "theme": "dingoo"
         },
         {
           "name": "doom",
@@ -3389,6 +3424,21 @@
           ],
           "platform": "wii",
           "theme": "wii"
+        },
+        {
+          "name": "wiiu",
+          "fullname": "Nintendo Wii U",
+          "path": "%ROMPATH%/wiiu",
+          "extension": ".elf .rpx .tmd .wua .wud .wuhb .wux",
+          "commands": [
+            {
+              "label": "Cemu",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/cemu_libretro.so %ROM%",
+              "priority": 20
+            }
+          ],
+          "platform": "wiiu",
+          "theme": "wiiu"
         },
         {
           "name": "windows3x",
@@ -8387,6 +8437,28 @@
         "md5": "11e59253c578c8f16ea2375ec398e4e9",
         "system": "vsmile",
         "description": " V.SMILE TV Learning System BIOS"
+      },
+      {
+        "filename": "8.bin",
+        "md5": "ea26b08e67511a34460c103b8b669154",
+        "system": "bbk",
+        "description": "Font ROM",
+        "required": "Required",
+        "paths": [
+          "$bios_path/BBKEmu",
+          "$bios_path/gam4980"
+        ]
+      },
+      {
+        "filename": "E.bin",
+        "md5": "f812738e5ae75de0f4faae78a3829866",
+        "system": "bbk",
+        "description": "OS ROM",
+        "required": "Required",
+        "paths": [
+          "$bios_path/BBKEmu",
+          "$bios_path/gam4980"
+        ]
       }
     ]
   }
