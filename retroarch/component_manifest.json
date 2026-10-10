@@ -2355,6 +2355,11 @@
               "label": "Mesen2",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mesen2_libretro.so %ROM%",
               "priority": 50
+            },
+            {
+              "label": "RustyNES",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/rustynes_libretro.so %ROM%",
+              "priority": 60
             }
           ],
           "platform": "nes",
@@ -2900,6 +2905,11 @@
               "label": "Yabause",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/yabause_libretro.so %ROM%",
               "priority": 40
+            },
+            {
+              "label": "Ymir",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/ymir_libretro.so %ROM%",
+              "priority": 50
             }
           ],
           "platform": "saturn",
@@ -2930,6 +2940,11 @@
               "label": "Yabause",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/yabause_libretro.so %ROM%",
               "priority": 40
+            },
+            {
+              "label": "Ymir",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/ymir_libretro.so %ROM%",
+              "priority": 50
             }
           ],
           "platform": "saturn",
@@ -3289,6 +3304,21 @@
           ],
           "platform": "spectravideo",
           "theme": "spectravideo"
+        },
+        {
+          "name": "spmp8000",
+          "fullname": "SPMP8000",
+          "path": "%ROMPATH%/spmp8000",
+          "extension": ".bin",
+          "commands": [
+            {
+              "label": "SPMP8000Emu",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/spmp8000emu_libretro.so %ROM%",
+              "priority": 10
+            }
+          ],
+          "platform": "spmp8000",
+          "theme": "spmp8000"
         },
         {
           "name": "stv",
