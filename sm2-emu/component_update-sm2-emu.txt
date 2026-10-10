@@ -1,0 +1,4 @@
+The files comes inside a version specifc directory and needs to be changed on updates
+
+sm2-emu-v0.9.42-linux-x86_64/bin
+sm2-emu-v0.9.42-linux-x86_64/share/sm2-emu

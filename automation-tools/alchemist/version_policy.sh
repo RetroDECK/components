@@ -302,6 +302,13 @@ export QUAKE3E_VERSION_POLICY="latest"
 export SIMCOUPE_VERSION_POLICY="latest"
 
 # ------------------------------------------------------------------------------
+# sm2-emu - Sega Model 2 Emulator
+# Source: Binary
+# Link: https://github.com/dmanlfc/sm2-emu
+# ------------------------------------------------------------------------------
+export SM2_EMU_VERSION_POLICY="latest"
+
+# ------------------------------------------------------------------------------
 # Tsugaru - FM TOWNS Emulator
 # Source: Binary
 # Link: https://github.com/captainys/TOWNSEMU/releases/
