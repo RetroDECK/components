@@ -661,6 +661,21 @@
           "theme": "chailove"
         },
         {
+          "name": "chip-8",
+          "fullname": "CHIP-8",
+          "path": "%ROMPATH%/chip-8",
+          "extension": ".ch8 .sc8 .xo8 .bin .rom",
+          "commands": [
+            {
+              "label": "JAXE",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/jaxe_libretro.so %ROM%",
+              "priority": 10
+            }
+          ],
+          "platform": "chip-8",
+          "theme": "chip-8"
+        },
+        {
           "name": "channelf",
           "fullname": "Fairchild Channel F",
           "path": "%ROMPATH%/channelf",
@@ -695,6 +710,11 @@
               "label": "Gearcoleco",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/gearcoleco_libretro.so %ROM%",
               "priority": 20
+            },
+            {
+              "label": "JollyCV",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/jollycv_libretro.so %ROM%",
+              "priority": 30
             }
           ],
           "platform": "colecovision",
@@ -1271,6 +1291,21 @@
           "theme": "fmtowns"
         },
         {
+          "name": "galaksija",
+          "fullname": "Elektronika Inženjering - Galaksija",
+          "path": "%ROMPATH%/galaksija",
+          "extension": ".gal",
+          "commands": [
+            {
+              "label": "Galaksija",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/galaksija_libretro.so %ROM%",
+              "priority": 10
+            }
+          ],
+          "platform": "galaksija",
+          "theme": "galaksija"
+        },
+        {
           "name": "gamate",
           "fullname": "Bit Corporation Gamate",
           "path": "%ROMPATH%/gamate",
@@ -1415,6 +1450,11 @@
               "label": "Mesen2",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mesen2_libretro.so %ROM%",
               "priority": 110
+            },
+            {
+              "label": "fixGB",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/fixgb_libretro.so %ROM%",
+              "priority": 120
             }
           ],
           "platform": "gb",
@@ -1455,6 +1495,16 @@
               "label": "Mesen2",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mesen2_libretro.so %ROM%",
               "priority": 60
+            },
+            {
+              "label": "Mednafen GBA",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mednafen_gba_libretro.so %ROM%",
+              "priority": 70
+            },
+            {
+              "label": "Meteor",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/meteor_libretro.so %ROM%",
+              "priority": 80
             }
           ],
           "platform": "gba",
@@ -1519,6 +1569,11 @@
             {
               "label": "Mesen2",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mesen2_libretro.so %ROM%",
+              "priority": 120
+            },
+            {
+              "label": "fixGB",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/fixgb_libretro.so %ROM%",
               "priority": 120
             }
           ],
@@ -1721,6 +1776,21 @@
           "theme": "lutro"
         },
         {
+          "name": "macintosh",
+          "fullname": "Apple Macintosh",
+          "path": "%ROMPATH%/macintosh",
+          "extension": ".dsk .img .zip .hvf .cmd",
+          "commands": [
+            {
+              "label": "minivmac",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/minivmac_libretro.so %ROM%",
+              "priority": 50
+            }
+          ],
+          "platform": "macintosh",
+          "theme": "macintosh"
+        },
+        {
           "name": "mame",
           "fullname": "Multiple Arcade Machine Emulator",
           "path": "%ROMPATH%/mame",
@@ -1732,8 +1802,8 @@
               "priority": 10
             },
             {
-              "label": "MAME 2010",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2010_libretro.so %ROM%",
+              "label": "MAME 2000",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2000_libretro.so %ROM%",
               "priority": 30
             },
             {
@@ -1742,59 +1812,64 @@
               "priority": 40
             },
             {
+              "label": "MAME 2003",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2003_libretro.so %ROM%",
+              "priority": 50
+            },
+            {
+              "label": "MAME 2003 Midway",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2003_midway_libretro.so %ROM%",
+              "priority": 60
+            },
+            {
+              "label": "MAME 2010",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2010_libretro.so %ROM%",
+              "priority": 70
+            },
+            {
               "label": "MAME 2015",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2015_libretro.so %ROM%",
-              "priority": 50
+              "priority": 80
             },
             {
               "label": "MAME 2016",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2016_libretro.so %ROM%",
-              "priority": 60
-            },
-            {
-              "label": "MAME 2003",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2003_libretro.so %ROM%",
-              "priority": 70
-            },
-            {
-              "label": "MAME 2000",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2000_libretro.so %ROM%",
-              "priority": 80
-            },
-            {
-              "label": "FinalBurn Neo",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/fbneo_libretro.so %ROM%",
               "priority": 90
-            },
-            {
-              "label": "FB Alpha 2012",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/fbalpha2012_libretro.so %ROM%",
-              "priority": 100
-            },
-            {
-              "label": "Geolith",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/geolith_libretro.so %ROM%",
-              "priority": 110
-            },
-            {
-              "label": "Flycast",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/flycast_libretro.so %ROM%",
-              "priority": 120
-            },
-            {
-              "label": "Kronos",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/kronos_libretro.so %ROM%",
-              "priority": 130
             },
             {
               "label": "DICE",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/dice_libretro.so %ROM%",
+              "priority": 100
+            },
+            {
+              "label": "FB Alpha 2012",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/fbalpha2012_libretro.so %ROM%",
+              "priority": 110
+            },
+            {
+              "label": "FinalBurn Neo",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/fbneo_libretro.so %ROM%",
+              "priority": 120
+            },
+            {
+              "label": "Flycast",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/flycast_libretro.so %ROM%",
+              "priority": 130
+            },
+            {
+              "label": "Geolith",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/geolith_libretro.so %ROM%",
               "priority": 140
             },
             {
               "label": "HBMAME (HomeBrew MAME)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/hbmame_libretro.so %ROM%",
               "priority": 150
+            },
+            {
+              "label": "Kronos",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/kronos_libretro.so %ROM%",
+              "priority": 160
             }
           ],
           "platform": "arcade",
@@ -2410,6 +2485,11 @@
               "label": "RustyNES",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/rustynes_libretro.so %ROM%",
               "priority": 60
+            },
+            {
+              "label": "fixNES",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/fixnes_libretro.so %ROM%",
+              "priority": 70
             }
           ],
           "platform": "nes",
@@ -2504,6 +2584,21 @@
           ],
           "platform": "palm",
           "theme": "palm"
+        },
+        {
+          "name": "p2000t",
+          "fullname": "Philips - P2000T",
+          "path": "%ROMPATH%/p2000t",
+          "extension": ".cas",
+          "commands": [
+            {
+              "label": "M2000",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/m2000_libretro.so %ROM%",
+              "priority": 10
+            }
+          ],
+          "platform": "p2000t",
+          "theme": "p2000t"
         },
         {
           "name": "pc",
@@ -3365,6 +3460,11 @@
               "label": "nSide Balanced",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/nside_sfc_balanced_libretro.so %ROM%",
               "priority": 170
+            },
+            {
+              "label": "Mednafen SNES",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mednafen_snes_libretro.so %ROM%",
+              "priority": 180
             }
           ],
           "platform": "snes",
@@ -3724,6 +3824,21 @@
           ],
           "platform": "tic80",
           "theme": "tic80"
+        },
+        {
+          "name": "ti83",
+          "fullname": "Texas Instruments TI-83",
+          "path": "%ROMPATH%/ti83",
+          "extension": ".8xp .8xk .8xg",
+          "commands": [
+            {
+              "label": "Numero",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/numero_libretro.so %ROM%",
+              "priority": 10
+            }
+          ],
+          "platform": "ti83",
+          "theme": "ti83"
         },
         {
           "name": "to8",
@@ -8990,6 +9105,34 @@
         "description": "Elektronika BK-0010 System Monitor Firmware ROM",
         "required": "Required",
         "paths": "$bios_path/bk"
+      },
+      {
+        "filename": "MacII.rom",
+        "md5": "66223be1497460f1e60885eeb35e03cc",
+        "system": "macintosh",
+        "description": "Macintosh II ROM",
+        "required": "Required"
+      },
+      {
+        "filename": "ti83se.rom",
+        "md5": "c6ff8204c5c81b7be34614dbbd690c8b",
+        "system": "ti83",
+        "description": "TI-83 Silver Edition",
+        "required": "Required"
+      },
+      {
+        "filename": "ti83plus.rom",
+        "md5": "8011181f810b5ec4e9d6a03f0e14257a",
+        "system": "ti83",
+        "description": "TI-83 Plus",
+        "required": "Optional"
+      },
+      {
+        "filename": "ti83.rom",
+        "md5": "d4448d09bbfde687c04f9e3310e023ab",
+        "system": "ti83",
+        "description": "TI-83",
+        "required": "Optional"
       }
     ]
   }
