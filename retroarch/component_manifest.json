@@ -1136,6 +1136,21 @@
           "theme": "elektronika"
         },
         {
+          "name": "enterprise",
+          "fullname": "Enterprise - 64/128",
+          "path": "%ROMPATH%/enterprise",
+          "extension": ".img .dsk .vhd .tap .dtf .cas .wav .tvcwav .cdt .tzx .bas .com .trn .128 .",
+          "commands": [
+            {
+              "label": "ep128emu",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/ep128emu_core_libretro.so %ROM%",
+              "priority": 10
+            }
+          ],
+          "platform": "enterprise",
+          "theme": "enterprise"
+        },
+        {
           "name": "famicom",
           "fullname": "Nintendo Family Computer",
           "path": "%ROMPATH%/famicom",
@@ -1550,6 +1565,16 @@
               "label": "BlastEm",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/blastem_libretro.so %ROM%",
               "priority": 40
+            },
+            {
+              "label": "Genesis Plus GX [Expanded Rom Size] (Paprium)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/genesis_plus_gx_paprium_libretro.so %ROM%",
+              "priority": 50
+            },
+            {
+              "label": "ClownMDEmu",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/clownmdemu_libretro.so %ROM%",
+              "priority": 60
             }
           ],
           "platform": "genesis",
@@ -1925,6 +1950,11 @@
               "label": "Genesis Plus GX [Expanded Rom Size] (Paprium)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/genesis_plus_gx_paprium_libretro.so %ROM%",
               "priority": 50
+            },
+            {
+              "label": "ClownMDEmu",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/clownmdemu_libretro.so %ROM%",
+              "priority": 60
             }
           ],
           "platform": "megadrive",
@@ -1960,6 +1990,11 @@
               "label": "Genesis Plus GX [Expanded Rom Size] (Paprium)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/genesis_plus_gx_paprium_libretro.so %ROM%",
               "priority": 50
+            },
+            {
+              "label": "ClownMDEmu",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/clownmdemu_libretro.so %ROM%",
+              "priority": 60
             }
           ],
           "platform": "megadrive",
