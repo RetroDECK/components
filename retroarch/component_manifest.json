@@ -1105,6 +1105,11 @@
               "label": "PCem",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/pcem_libretro.so %ROM%",
               "priority": 60
+            },
+            {
+              "label": "Rust DOS",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/rust_dos_libretro.so %ROM%",
+              "priority": 70
             }
           ],
           "platform": "dos",
@@ -2536,6 +2541,21 @@
           "theme": "ngpc"
         },
         {
+          "name": "oberon",
+          "fullname": "Oberon RISC Emulator",
+          "path": "%ROMPATH%/oberon",
+          "extension": ".dsk",
+          "commands": [
+            {
+              "label": "Oberon",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/oberon_libretro.so %ROM%",
+              "priority": 10
+            }
+          ],
+          "platform": "oberon",
+          "theme": "oberon"
+        },
+        {
           "name": "odyssey2",
           "fullname": "Magnavox Odyssey 2",
           "path": "%ROMPATH%/odyssey2",
@@ -2840,6 +2860,11 @@
               "label": "PCSX2",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/pcsx2_libretro.so %ROM%",
               "priority": 40
+            },
+            {
+              "label": "Play!",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/play_libretro.so %ROM%",
+              "priority": 50
             }
           ],
           "platform": "ps2",
