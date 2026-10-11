@@ -375,6 +375,11 @@
               "label": "Stella 2023",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/stella2023_libretro.so %ROM%",
               "priority": 30
+            },
+            {
+              "label": "TIA",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/tia_libretro.so %ROM%",
+              "priority": 40
             }
           ],
           "platform": "atari2600",
@@ -597,9 +602,14 @@
               "priority": 40
             },
             {
+              "label": "VICE xpet",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/vice_xpet_libretro.so %ROM%",
+              "priority": 50
+            },
+            {
               "label": "Frodo",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/frodo_libretro.so %ROM%",
-              "priority": 50
+              "priority": 60
             }
           ],
           "platform": "c64",
@@ -1131,6 +1141,21 @@
           "theme": "dreamcast"
         },
         {
+          "name": "dreamcastvmu",
+          "fullname": "Sega Dreamcast VMU",
+          "path": "%ROMPATH%/dreamcastvmu",
+          "extension": ".vms .dci .bin",
+          "commands": [
+            {
+              "label": "VeMUlator",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/vemulator_libretro.so %ROM%",
+              "priority": 10
+            }
+          ],
+          "platform": "dreamcastvmu",
+          "theme": "dreamcastvmu"
+        },
+        {
           "name": "easyrpg",
           "fullname": "EasyRPG Game Engine",
           "path": "%ROMPATH%/easyrpg",
@@ -1460,6 +1485,11 @@
               "label": "fixGB",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/fixgb_libretro.so %ROM%",
               "priority": 120
+            },
+            {
+              "label": "SkyEmu",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/skyemu_libretro.so %ROM%",
+              "priority": 130
             }
           ],
           "platform": "gb",
@@ -1510,6 +1540,11 @@
               "label": "Meteor",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/meteor_libretro.so %ROM%",
               "priority": 80
+            },
+            {
+              "label": "SkyEmu",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/skyemu_libretro.so %ROM%",
+              "priority": 90
             }
           ],
           "platform": "gba",
@@ -1579,7 +1614,12 @@
             {
               "label": "fixGB",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/fixgb_libretro.so %ROM%",
-              "priority": 120
+              "priority": 130
+            },
+            {
+              "label": "SkyEmu",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/skyemu_libretro.so %ROM%",
+              "priority": 140
             }
           ],
           "platform": "gbc",
@@ -2116,6 +2156,21 @@
           "theme": "mess"
         },
         {
+          "name": "microw8",
+          "fullname": "MicroW8",
+          "path": "%ROMPATH%/microw8",
+          "extension": ".uw8 .wasm",
+          "commands": [
+            {
+              "label": "UW8",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/uw8_libretro.so %ROM%",
+              "priority": 10
+            }
+          ],
+          "platform": "microw8",
+          "theme": "microw8"
+        },
+        {
           "name": "model2",
           "fullname": "Sega Model 2",
           "path": "%ROMPATH%/model2",
@@ -2390,6 +2445,11 @@
               "label": "melonDS",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/melonds_libretro.so %ROM%",
               "priority": 40
+            },
+            {
+              "label": "SkyEmu",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/skyemu_libretro.so %ROM%",
+              "priority": 50
             }
           ],
           "platform": "nds",
@@ -3257,84 +3317,99 @@
               "priority": 10
             },
             {
-              "label": "Snes9x 2010",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/snes9x2010_libretro.so %ROM%",
+              "label": "Beetle Supafaust",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mednafen_supafaust_libretro.so %ROM%",
               "priority": 20
-            },
-            {
-              "label": "Snes9x 2005 Plus",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/snes9x2005_plus_libretro.so %ROM%",
-              "priority": 30
             },
             {
               "label": "bsnes",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes_libretro.so %ROM%",
-              "priority": 40
-            },
-            {
-              "label": "bsnes-hd",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes_hd_beta_libretro.so %ROM%",
-              "priority": 50
-            },
-            {
-              "label": "bsnes-jg",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes-jg_libretro.so %ROM%",
-              "priority": 60
+              "priority": 30
             },
             {
               "label": "bsnes 2014 Accuracy",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes2014_accuracy_libretro.so %ROM%",
-              "priority": 70
+              "priority": 40
             },
             {
               "label": "bsnes 2014 Balanced",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes2014_balanced_libretro.so %ROM%",
-              "priority": 80
+              "priority": 50
             },
             {
               "label": "bsnes 2014 Performance",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes2014_performance_libretro.so %ROM%",
-              "priority": 90
+              "priority": 60
             },
             {
               "label": "bsnes C++98 (v085)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes_cplusplus98_libretro.so %ROM%",
-              "priority": 100
+              "priority": 70
+            },
+            {
+              "label": "bsnes-hd",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes_hd_beta_libretro.so %ROM%",
+              "priority": 80
+            },
+            {
+              "label": "bsnes-jg",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes-jg_libretro.so %ROM%",
+              "priority": 90
             },
             {
               "label": "bsnes-mercury Accuracy",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes_mercury_accuracy_libretro.so %ROM%",
-              "priority": 110
+              "priority": 100
             },
             {
               "label": "bsnes-mercury Balanced",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes_mercury_balanced_libretro.so %ROM%",
-              "priority": 120
+              "priority": 110
             },
             {
               "label": "bsnes-mercury Performance",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes_mercury_performance_libretro.so %ROM%",
-              "priority": 130
+              "priority": 120
             },
             {
-              "label": "Beetle Supafaust",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mednafen_supafaust_libretro.so %ROM%",
-              "priority": 140
+              "label": "Mednafen SNES",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mednafen_snes_libretro.so %ROM%",
+              "priority": 130
             },
             {
               "label": "Mesen-S",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mesen-s_libretro.so %ROM%",
-              "priority": 150
+              "priority": 140
             },
             {
               "label": "Mesen2",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mesen2_libretro.so %ROM%",
-              "priority": 160
+              "priority": 150
             },
             {
               "label": "nSide Balanced",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/nside_sfc_balanced_libretro.so %ROM%",
+              "priority": 160
+            },
+            {
+              "label": "Snes9x 2002",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/snes9x2002_libretro.so %ROM%",
               "priority": 170
+            },
+            {
+              "label": "Snes9x 2005",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/snes9x2005_libretro.so %ROM%",
+              "priority": 180
+            },
+            {
+              "label": "Snes9x 2005 Plus",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/snes9x2005_plus_libretro.so %ROM%",
+              "priority": 190
+            },
+            {
+              "label": "Snes9x 2010",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/snes9x2010_libretro.so %ROM%",
+              "priority": 200
             }
           ],
           "platform": "snes",
@@ -3407,89 +3482,99 @@
               "priority": 10
             },
             {
-              "label": "Snes9x 2010",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/snes9x2010_libretro.so %ROM%",
+              "label": "Beetle Supafaust",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mednafen_supafaust_libretro.so %ROM%",
               "priority": 20
-            },
-            {
-              "label": "Snes9x 2005 Plus",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/snes9x2005_plus_libretro.so %ROM%",
-              "priority": 30
             },
             {
               "label": "bsnes",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes_libretro.so %ROM%",
-              "priority": 40
-            },
-            {
-              "label": "bsnes-hd",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes_hd_beta_libretro.so %ROM%",
-              "priority": 50
-            },
-            {
-              "label": "bsnes-jg",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes-jg_libretro.so %ROM%",
-              "priority": 60
+              "priority": 30
             },
             {
               "label": "bsnes 2014 Accuracy",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes2014_accuracy_libretro.so %ROM%",
-              "priority": 70
+              "priority": 40
             },
             {
               "label": "bsnes 2014 Balanced",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes2014_balanced_libretro.so %ROM%",
-              "priority": 80
+              "priority": 50
             },
             {
               "label": "bsnes 2014 Performance",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes2014_performance_libretro.so %ROM%",
-              "priority": 90
+              "priority": 60
             },
             {
               "label": "bsnes C++98 (v085)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes_cplusplus98_libretro.so %ROM%",
-              "priority": 100
+              "priority": 70
+            },
+            {
+              "label": "bsnes-hd",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes_hd_beta_libretro.so %ROM%",
+              "priority": 80
+            },
+            {
+              "label": "bsnes-jg",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes-jg_libretro.so %ROM%",
+              "priority": 90
             },
             {
               "label": "bsnes-mercury Accuracy",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes_mercury_accuracy_libretro.so %ROM%",
-              "priority": 110
+              "priority": 100
             },
             {
               "label": "bsnes-mercury Balanced",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes_mercury_balanced_libretro.so %ROM%",
-              "priority": 120
+              "priority": 110
             },
             {
               "label": "bsnes-mercury Performance",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes_mercury_performance_libretro.so %ROM%",
-              "priority": 130
-            },
-            {
-              "label": "Beetle Supafaust",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mednafen_supafaust_libretro.so %ROM%",
-              "priority": 140
-            },
-            {
-              "label": "Mesen-S",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mesen-s_libretro.so %ROM%",
-              "priority": 150
-            },
-            {
-              "label": "Mesen2",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mesen2_libretro.so %ROM%",
-              "priority": 160
-            },
-            {
-              "label": "nSide Balanced",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/nside_sfc_balanced_libretro.so %ROM%",
-              "priority": 170
+              "priority": 120
             },
             {
               "label": "Mednafen SNES",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mednafen_snes_libretro.so %ROM%",
+              "priority": 130
+            },
+            {
+              "label": "Mesen-S",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mesen-s_libretro.so %ROM%",
+              "priority": 140
+            },
+            {
+              "label": "Mesen2",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mesen2_libretro.so %ROM%",
+              "priority": 150
+            },
+            {
+              "label": "nSide Balanced",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/nside_sfc_balanced_libretro.so %ROM%",
+              "priority": 160
+            },
+            {
+              "label": "Snes9x 2002",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/snes9x2002_libretro.so %ROM%",
+              "priority": 170
+            },
+            {
+              "label": "Snes9x 2005",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/snes9x2005_libretro.so %ROM%",
               "priority": 180
+            },
+            {
+              "label": "Snes9x 2005 Plus",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/snes9x2005_plus_libretro.so %ROM%",
+              "priority": 190
+            },
+            {
+              "label": "Snes9x 2010",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/snes9x2010_libretro.so %ROM%",
+              "priority": 200
             }
           ],
           "platform": "snes",
@@ -3791,6 +3876,21 @@
           "theme": "supracan"
         },
         {
+          "name": "tamagotchi",
+          "fullname": "Bandai - Tamagotchi P1",
+          "path": "%ROMPATH%/tamagotchi",
+          "extension": ".b .rom .bin",
+          "commands": [
+            {
+              "label": "TamaLIBretro",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/tamalibretro_libretro.so %ROM%",
+              "priority": 10
+            }
+          ],
+          "platform": "tamagotchi",
+          "theme": "tamagotchi"
+        },
+        {
           "name": "tg16",
           "fullname": "NEC TurboGrafx-16",
           "path": "%ROMPATH%/tg16",
@@ -3894,6 +3994,21 @@
           ],
           "platform": "uzebox",
           "theme": "uzebox"
+        },
+        {
+          "name": "vaporspec",
+          "fullname": "VaporSpec",
+          "path": "%ROMPATH%/vaporspec",
+          "extension": ".vaporbin",
+          "commands": [
+            {
+              "label": "VaporSpec",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/vaporspec_libretro.so %ROM%",
+              "priority": 10
+            }
+          ],
+          "platform": "vaporspec",
+          "theme": "vaporspec"
         },
         {
           "name": "vectrex",
@@ -9158,6 +9273,102 @@
         "system": "ti83",
         "description": "TI-83",
         "required": "Optional"
+      },
+      {
+        "filename": "pc1000.nor",
+        "md5": "dcd24cdf0b543bfd3699eb0cba602fc3",
+        "system": "wenquxing",
+        "description": "Wenquxing 文曲星 PC1000",
+        "required": "Required",
+        "paths": "$bios_path/WQXEmu/pc1000"
+      },
+      {
+        "filename": "pc1000.rom",
+        "md5": "8f777af9854fa323c3d08248de39b7c1",
+        "system": "wenquxing",
+        "description": "Wenquxing 文曲星 PC1000",
+        "required": "Required",
+        "paths": "$bios_path/WQXEmu/pc1000"
+      },
+      {
+        "filename": "cc800.fls",
+        "md5": "0c34182b12cacb4bcc06489a25f81839",
+        "system": "wenquxing",
+        "description": "Wenquxing 文曲星 CC800",
+        "required": "Required",
+        "paths": "$bios_path/WQXEmu/cc800"
+      },
+      {
+        "filename": "obj.bin",
+        "md5": "f102130d7bd8cbf5d184d7837da1809a",
+        "system": "wenquxing",
+        "description": "Wenquxing 文曲星 CC800",
+        "required": "Required",
+        "paths": "$bios_path/WQXEmu/cc800"
+      },
+      {
+        "filename": "nc1020.fls",
+        "md5": "16193afa032ef28b09abdca2399327c9",
+        "system": "wenquxing",
+        "description": "Wenquxing 文曲星 NC1020",
+        "required": "Required",
+        "paths": "$bios_path/WQXEmu/nc1020"
+      },
+      {
+        "filename": "obj_lu.bin",
+        "md5": "ee82e3c9127bc65be33d8b313bc12eae",
+        "system": "wenquxing",
+        "description": "Wenquxing 文曲星 NC1020",
+        "required": "Required",
+        "paths": "$bios_path/WQXEmu/nc1020"
+      },
+      {
+        "filename": "nc2000.nor",
+        "md5": "7a40d35953868f8d74abdb9abbaede10",
+        "system": "wenquxing",
+        "description": "Wenquxing 文曲星 NC2000",
+        "required": "Required",
+        "paths": "$bios_path/WQXEmu/nc2000"
+      },
+      {
+        "filename": "nc2000.nand0",
+        "md5": "96b23f31554d45edc91026f8750b3bc8",
+        "system": "wenquxing",
+        "description": "Wenquxing 文曲星 NC2000",
+        "required": "Required",
+        "paths": "$bios_path/WQXEmu/nc2000"
+      },
+      {
+        "filename": "nc2000.nand",
+        "md5": "d884fb93c79402e2f78162132e706400",
+        "system": "wenquxing",
+        "description": "Wenquxing 文曲星 NC2000",
+        "required": "Required",
+        "paths": "$bios_path/WQXEmu/nc2000"
+      },
+      {
+        "filename": "nc3000.nor",
+        "md5": "8787082e64b7caec6ef29a251eb07f04",
+        "system": "wenquxing",
+        "description": "Wenquxing 文曲星 NC3000",
+        "required": "Required",
+        "paths": "$bios_path/WQXEmu/nc3000"
+      },
+      {
+        "filename": "nc3000.nand0",
+        "md5": "b62b5d1f2d8f0ce2a798a4e826bc1502",
+        "system": "wenquxing",
+        "description": "Wenquxing 文曲星 NC3000",
+        "required": "Optional",
+        "paths": "$bios_path/WQXEmu/nc3000"
+      },
+      {
+        "filename": "nc3000.nand",
+        "md5": "",
+        "system": "wenquxing",
+        "description": "Wenquxing 文曲星 NC3000",
+        "required": "Required",
+        "paths": "$bios_path/WQXEmu/nc3000"
       }
     ]
   }
