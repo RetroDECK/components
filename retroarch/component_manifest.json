@@ -1322,7 +1322,7 @@
         },
         {
           "name": "galaksija",
-          "fullname": "Elektronika Inženjering - Galaksija",
+          "fullname": "Galaksija",
           "path": "%ROMPATH%/galaksija",
           "extension": ".gal",
           "commands": [
