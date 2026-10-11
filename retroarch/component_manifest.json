@@ -1022,7 +1022,7 @@
         },
         {
           "name": "daphne",
-          "fullname": "Daphne Arcade LaserDisc Emulator",
+          "fullname": "Daphne Arcade LaserDisc",
           "path": "%ROMPATH%/daphne",
           "extension": ".7z .daphne .dirksimple .mmi .ogv .singe .zip",
           "commands": [
@@ -1042,7 +1042,7 @@
         },
         {
           "name": "dingoo",
-          "fullname": "Dingoo A320 Emulator",
+          "fullname": "Dingoo A320",
           "path": "%ROMPATH%/dingoo",
           "extension": ".app",
           "commands": [
@@ -3786,7 +3786,7 @@
           "theme": "native32"
         },
         {
-          "name": "native32",
+          "name": "nuon",
           "fullname": "NUON (VM Labs)",
           "path": "%ROMPATH%/nuon",
           "extension": ".run .cof .nuon .cd .iso .img .chd",
