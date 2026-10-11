@@ -8,12 +8,12 @@
       "assets": [
         {
           "type": "dir",
-          "source": "sm2-emu-v0.9.42-linux-x86_64/bin",
+          "source": "sm2-emu-v0.9.44-linux-x86_64/bin",
           "dest": "bin"
         },
         {
           "type": "dir",
-          "source": "sm2-emu-v0.9.42-linux-x86_64/share/sm2-emu",
+          "source": "sm2-emu-v0.9.44-linux-x86_64/share/sm2-emu",
           "dest": "share/sm2-emu"
         },
         {
