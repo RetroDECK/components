@@ -1,0 +1,83 @@
+{
+  "shadps4": {
+    "name": "shadPS4",
+    "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/shadps4/shadps4-guide/",
+    "url_webpage": "https://shadps4.net/",
+    "url_donation_purchase": "",
+    "url_source": "https://github.com/shadps4-emu/shadps4",
+    "description": "Sony PlayStation 4 emulator shadPS4",
+    "component_type": "Emulator",
+    "system_friendly_name": "Playstation 4",
+    "system": "ps4",
+    "es_de_config": {
+      "es_find_rules": {
+        "emulators": [
+          {
+            "name": "shadps4",
+            "description": "Sony PlayStation 4 emulator shadPS4",
+            "rules": [
+              {
+                "type": "staticpath",
+                "entries": [
+                  "%COMPONENT_PATH%/component_launcher.sh"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "es_systems": [
+        {
+          "name": "consolearcade",
+          "fullname": "Console Arcade Systems",
+          "path": "%ROMPATH%/consolearcade",
+          "extension": ".7z .arcadedef .desktop .iso .ps3 .sh .xbe .zip",
+          "commands": [
+            {
+              "label": "RPCS3 Game Serial (Standalone)",
+              "command": "%EMULATOR_RPCS3% --di-gui %RPCS3_GAMEID%:%INJECT%=%BASENAME%.ps3",
+              "priority": 60
+            }
+          ],
+          "platform": "arcade",
+          "theme": "consolearcade"
+        },
+        {
+          "name": "ps4",
+          "fullname": "Sony PlayStation 4",
+          "path": "%ROMPATH%/ps4",
+          "extension": ".bin .desktop .ps4",
+          "commands": [
+            {
+              "label": "shadPS4 Shortcut (Standalone)",
+              "command": "%ENABLESHORTCUTS% %EMULATOR_OS-SHELL% %ROM%",
+              "priority": 20
+            },
+            {
+              "label": "shadPS4 Game Serial (Standalone)",
+              "command": "%EMULATOR_SHADPS4% -g %INJECT%=%BASENAME%.ps4",
+              "priority": 30
+            },
+            {
+              "label": "shadPS4 eboot.bin (Standalone)",
+              "command": "%EMULATOR_SHADPS4% %ROM%",
+              "priority": 40
+            },
+            {
+              "label": "shadPS4 [GUI] Game Serial (Standalone)",
+              "command": "%EMULATOR_SHADPS4-GUI% -d -g %INJECT%=%BASENAME%.ps4",
+              "priority": 40
+            },
+            {
+              "label": "shadPS4 [GUI] eboot.bin (Standalone)",
+              "command": "%EMULATOR_SHADPS4-GUI% -d -g %ROM%",
+              "priority": 40
+            }
+          ],
+          "platform": "ps4",
+          "theme": "ps4"
+        }
+      ]
+    }
+  }
+}
