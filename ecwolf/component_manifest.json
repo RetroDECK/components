@@ -38,7 +38,7 @@
               {
                 "label": "ECWolf (Standalone)",
                 "command": "%EMULATOR_ECWOLF% %ROM%",
-                "priority": 50
+                "priority": 10
               }
             ],
             "platform": "wolfenstein, pc, pcwindows, dos",

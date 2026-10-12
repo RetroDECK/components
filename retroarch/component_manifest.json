@@ -2877,11 +2877,6 @@
           "extension": ".appimage .desktop .exe .game .phd .psx .sh",
           "commands": [
             {
-              "label": "ECWolf (Wolfenstein 3D)",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/ecwolf_libretro.so %ROM%",
-              "priority": 10
-            },
-            {
               "label": "CannonBall (OutRun)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/cannonball_libretro.so %ROM%",
               "priority": 20
@@ -4214,6 +4209,21 @@
           ],
           "platform": "pcwindows",
           "theme": "windows9x"
+        },
+        {
+          "name": "wolfenstein",
+          "fullname": "Wolfenstein 3D",
+          "path": "%ROMPATH%/wolfenstein",
+          "extension": ".wl6, .n3d, .sod, .sdm, .wl1, .pk3, .exe",
+          "commands": [
+            {
+              "label": "ECWolf (Wolfenstein 3D)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/ecwolf_libretro.so %ROM%",
+              "priority": 20
+            }
+          ],
+          "platform": "wolfenstein, pc, pcwindows, dos",
+          "theme": "wolfenstein"
         },
         {
           "name": "wonderswan",
