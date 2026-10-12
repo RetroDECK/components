@@ -4214,7 +4214,7 @@
           "name": "wolfenstein",
           "fullname": "Wolfenstein 3D",
           "path": "%ROMPATH%/wolfenstein",
-          "extension": ".wl6, .n3d, .sod, .sdm, .wl1, .pk3, .exe",
+          "extension": ".wl6 .n3d .sod .sdm .wl1 .pk3 .exe",
           "commands": [
             {
               "label": "ECWolf (Wolfenstein 3D)",
