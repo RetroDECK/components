@@ -207,7 +207,7 @@ _prepare_component::retroarch() {
       log i "--------------------------------"
 
       dir_prep "$bios_path" "$bios_path/pcsx2"
-      dir_prep "$saves_path/ps2/retroarch-core/memcards" "$bios_path/pcsx2/memcards"
+      dir_prep "$saves_path/ps2/retroarch-core/pcsx2/memcards" "$bios_path/pcsx2/memcards"
       dir_prep "$storage_path/retroarch-core/PCSX2/inis" "$bios_path/pcsx2/inis"
       dir_prep "$storage_path/retroarch-core/PCSX2/resources" "$bios_path/pcsx2/resources"
 
@@ -359,7 +359,7 @@ _prepare_component::retroarch() {
 
       # PCSX2, LRPS2, PCEE2
       dir_prep "$bios_path" "$bios_path/pcsx2"
-      dir_prep "$saves_path/ps2/retroarch-core/memcards" "$bios_path/pcsx2/memcards"
+      dir_prep "$saves_path/ps2/retroarch-core/pcsx2/memcards" "$bios_path/pcsx2/memcards"
       dir_prep "$storage_path/retroarch-core/PCSX2/inis" "$bios_path/pcsx2/inis"
       dir_prep "$storage_path/retroarch-core/PCSX2/resources" "$bios_path/pcsx2/resources"
 
