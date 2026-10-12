@@ -3047,7 +3047,7 @@
         },
         {
           "name": "quake2",
-          "fullname": "Quake 2",
+          "fullname": "Quake II",
           "path": "%ROMPATH%/quake2",
           "extension": ".pak",
           "commands": [
@@ -3073,11 +3073,11 @@
             }
           ],
           "platform": "pc, pcwindows",
-          "theme": "quake"
+          "theme": "quake2"
         },
         {
           "name": "quake3",
-          "fullname": "Quake 3",
+          "fullname": "Quake III: Arena",
           "path": "%ROMPATH%/quake3",
           "extension": ".pak3",
           "commands": [
@@ -3088,7 +3088,7 @@
             }
           ],
           "platform": "pc, pcwindows",
-          "theme": "quake"
+          "theme": "quake3"
         },
         {
           "name": "radio",

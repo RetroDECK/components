@@ -38,7 +38,7 @@
       "es_systems": [
         {
           "name": "quake3",
-          "fullname": "Quake 3",
+          "fullname": "Quake III: Arena",
           "path": "%ROMPATH%/quake3",
           "extension": ".quake3",
           "commands": [
