@@ -155,8 +155,7 @@ _prepare_component::retroarch() {
       create_dir "$bios_path/quasi88"
       create_dir "$bios_path/same_cdi/bios"
 
-      # LRPS2 Hardcoded BIOS Path
-      dir_prep "$bios_path" "$bios_path/pcsx2"
+
 
       # BIOS MAME Directories
       create_dir "$bios_path/mame2003/samples"
@@ -201,6 +200,31 @@ _prepare_component::retroarch() {
       log i "Preparing PRBOOM_LIBRETRO"
       log i "--------------------------------"
       cp -f "$retroarch_extras_path/prboom.wad" "$bios_path/prboom.wad"
+
+      # PCSX2, LRPS2, PCEE2
+      log i "--------------------------------"
+      log i "Preparing PCSX2, LRPS2, PCEE2 LIBRETRO"
+      log i "--------------------------------"
+
+      dir_prep "$bios_path" "$bios_path/pcsx2"
+      dir_prep "$saves_path/ps2/retroarch-core/memcards" "$bios_path/pcsx2/memcards"
+      dir_prep "$storage_path/retroarch-core/PCSX2/inis" "$bios_path/pcsx2/inis"
+      dir_prep "$storage_path/retroarch-core/PCSX2/resources" "$bios_path/pcsx2/resources"
+
+      # RPCS3
+      log i "--------------------------------"
+      log i "Preparing RPCS3 LIBRETRO"
+      log i "--------------------------------"
+
+      dir_prep "$storage_path/retroarch-core/rpcs3/dev_hdd0" "$bios_path/rpcs3/dev_hdd0"
+      dir_prep "$storage_path/retroarch-core/rpcs3/dev_hdd1" "$bios_path/rpcs3/dev_hdd1"
+      dir_prep "$storage_path/retroarch-core/rpcs3/dev_flash" "$bios_path/rpcs3/dev_flash"
+      dir_prep "$storage_path/retroarch-core/rpcs3/dev_flash2" "$bios_path/rpcs3/dev_flash2"
+      dir_prep "$storage_path/retroarch-core/rpcs3/dev_flash3" "$bios_path/rpcs3/dev_flash3"
+      dir_prep "$storage_path/retroarch-core/rpcs3/dev_bdvd" "$bios_path/rpcs3/dev_bdvd"
+      dir_prep "$storage_path/retroarch-core/rpcs3/dev_usb000" "$bios_path/rpcs3/dev_usb000"
+      dir_prep "$storage_path/retroarch-core/rpcs3/captures" "$bios_path/rpcs3/captures"
+      dir_prep "$storage_path/retroarch-core/rpcs3/patches" "$bios_path/rpcs3/patches"
 
       # ECWOLF
       log i "--------------------------------"
@@ -251,7 +275,11 @@ _prepare_component::retroarch() {
       set_setting_value "$retroarch_config_scummvm" "savepath" "$saves_path/scummvm" "retroarch_scummvm" "scummvm"
       set_setting_value "$retroarch_config_scummvm" "browser_lastpath" "$roms_path/scummvm" "retroarch_scummvm" "scummvm"
 
-
+      # Supermodel
+      log i "-----------------------------------------------------------"
+      log i "Prepearing Supermodel LIBRETRO"
+      log i "-----------------------------------------------------------"
+      cp -f "$retroarch_extras_path/supermodel" "$bios_path/supermodel"
 
       # PPSSPP
       log i "-----------------------------------------------------------"
@@ -329,8 +357,22 @@ _prepare_component::retroarch() {
       # BIOS
       set_setting_value "$retroarch_config" "system_directory" "$bios_path" "retroarch"
 
-      # LRPS2 Hardcoded BIOS Path
+      # PCSX2, LRPS2, PCEE2
       dir_prep "$bios_path" "$bios_path/pcsx2"
+      dir_prep "$saves_path/ps2/retroarch-core/memcards" "$bios_path/pcsx2/memcards"
+      dir_prep "$storage_path/retroarch-core/PCSX2/inis" "$bios_path/pcsx2/inis"
+      dir_prep "$storage_path/retroarch-core/PCSX2/resources" "$bios_path/pcsx2/resources"
+
+      # RPCS3
+      dir_prep "$storage_path/retroarch-core/rpcs3/dev_hdd0" "$bios_path/rpcs3/dev_hdd0"
+      dir_prep "$storage_path/retroarch-core/rpcs3/dev_hdd1" "$bios_path/rpcs3/dev_hdd1"
+      dir_prep "$storage_path/retroarch-core/rpcs3/dev_flash" "$bios_path/rpcs3/dev_flash"
+      dir_prep "$storage_path/retroarch-core/rpcs3/dev_flash2" "$bios_path/rpcs3/dev_flash2"
+      dir_prep "$storage_path/retroarch-core/rpcs3/dev_flash3" "$bios_path/rpcs3/dev_flash3"
+      dir_prep "$storage_path/retroarch-core/rpcs3/dev_bdvd" "$bios_path/rpcs3/dev_bdvd"
+      dir_prep "$storage_path/retroarch-core/rpcs3/dev_usb000" "$bios_path/rpcs3/dev_usb000"
+      dir_prep "$storage_path/retroarch-core/rpcs3/captures" "$bios_path/rpcs3/captures"
+      dir_prep "$storage_path/retroarch-core/rpcs3/patches" "$bios_path/rpcs3/patches"
 
       # Logs
       dir_prep "$logs_path/retroarch" "$XDG_CONFIG_HOME/retroarch/logs"
