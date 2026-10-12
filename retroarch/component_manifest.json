@@ -1075,20 +1075,30 @@
               "label": "PrBoom",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/prboom_libretro.so %ROM%",
               "priority": 20
-            },
+            }
+          ],
+          "platform": "pc, pcwindows",
+          "theme": "doom"
+        },
+        {
+          "name": "doom3",
+          "fullname": "Doom 3",
+          "path": "%ROMPATH%/doom3",
+          "extension": ".pk4",
+          "commands": [
             {
-              "label": "Boom 3",
+              "label": "Boom 3 [Main Campain]",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/boom3_libretro.so %ROM%",
               "priority": 30
             },
             {
-              "label": "Boom 3 xp",
+              "label": "Boom 3 [Resurrection of Evil]",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/boom3_xp_libretro.so %ROM%",
               "priority": 40
             }
           ],
           "platform": "pc, pcwindows",
-          "theme": "doom"
+          "theme": "doom3"
         },
         {
           "name": "dos",
