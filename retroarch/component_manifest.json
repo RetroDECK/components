@@ -79,7 +79,7 @@
           "name": "amiga",
           "fullname": "Commodore Amiga",
           "path": "%ROMPATH%/amiga",
-          "extension": ".7z .adf .adz .ccd .chd .cue .dms .fdi .hdf .hdz .ipf .iso .lha .m3u .mds .nrg .rp9 .uae .zip",
+          "extension": ".7z .adf .adz .ccd .chd .cue .dms .fdi .fs-uae .hdf .hdz .ipf .iso .lha .m3u .mds .nrg .rp9 .uae .zip",
           "commands": [
             {
               "label": "PUAE",
@@ -90,6 +90,16 @@
               "label": "PUAE 2021",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/puae2021_libretro.so %ROM%",
               "priority": 20
+            },
+            {
+              "label": "Amiberry",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/amiberry_libretro.so %ROM%",
+              "priority": 70
+            },
+            {
+              "label": "FS-UAE",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/fsuae_libretro.so %ROM%",
+              "priority": 80
             }
           ],
           "platform": "amiga",
@@ -304,7 +314,7 @@
           "name": "arcadia",
           "fullname": "Emerson Arcadia 2001",
           "path": "%ROMPATH%/arcadia",
-          "extension": ".7z .bin .zip",
+          "extension": ".7z .bin .tvc .zip",
           "commands": [
             {
               "label": "AmiArcadia",
@@ -3024,37 +3034,57 @@
           "name": "quake",
           "fullname": "Quake",
           "path": "%ROMPATH%/quake",
-          "extension": ".desktop .pak .pk3 .sh",
+          "extension": ".pak",
           "commands": [
             {
               "label": "TyrQuake",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/tyrquake_libretro.so %ROM%",
               "priority": 20
-            },
+            }
+          ],
+          "platform": "pc, pcwindows",
+          "theme": "quake"
+        },
+        {
+          "name": "quake2",
+          "fullname": "Quake 2",
+          "path": "%ROMPATH%/quake2",
+          "extension": ".pak",
+          "commands": [
             {
-              "label": "vitaQuake 2",
+              "label": "vitaQuake 2 [Main Game]",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/vitaquake2_libretro.so %ROM%",
-              "priority": 30
+              "priority": 20
             },
             {
               "label": "vitaQuake 2 [Rogue]",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/vitaquake2-rogue_libretro.so %ROM%",
-              "priority": 40
+              "priority": 30
             },
             {
               "label": "vitaQuake 2 [Xatrix]",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/vitaquake2-xatrix_libretro.so %ROM%",
-              "priority": 50
+              "priority": 40
             },
             {
               "label": "vitaQuake 2 [Zaero]",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/vitaquake2-zaero_libretro.so %ROM%",
-              "priority": 60
-            },
+              "priority": 50
+            }
+          ],
+          "platform": "pc, pcwindows",
+          "theme": "quake"
+        },
+        {
+          "name": "quake3",
+          "fullname": "Quake 3",
+          "path": "%ROMPATH%/quake3",
+          "extension": ".pak3",
+          "commands": [
             {
               "label": "vitaQuake 3",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/vitaquake3_libretro.so %ROM%",
-              "priority": 70
+              "priority": 20
             }
           ],
           "platform": "pc, pcwindows",
@@ -3152,7 +3182,7 @@
               "priority": 40
             },
             {
-              "label": "Ymir",
+              "label": "Emir (Ymir)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/ymir_libretro.so %ROM%",
               "priority": 50
             }
@@ -3214,7 +3244,7 @@
           "name": "scv",
           "fullname": "Epoch Super Cassette Vision",
           "path": "%ROMPATH%/scv",
-          "extension": ".0 .7z .bin .zip",
+          "extension": ".0 .7z .bin .bin777 .zip",
           "commands": [
             {
               "label": "EmuSCV",
