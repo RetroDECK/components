@@ -208,8 +208,16 @@ _prepare_component::retroarch() {
 
       dir_prep "$bios_path" "$bios_path/pcsx2"
       dir_prep "$saves_path/ps2/retroarch-core/pcsx2/memcards" "$bios_path/pcsx2/memcards"
-      dir_prep "$storage_path/retroarch-core/PCSX2/inis" "$bios_path/pcsx2/inis"
-      dir_prep "$storage_path/retroarch-core/PCSX2/resources" "$bios_path/pcsx2/resources"
+      dir_prep "$storage_path/retroarch-core/pcsx2/inis" "$bios_path/pcsx2/inis"
+      dir_prep "$storage_path/retroarch-core/pcsx2/resources" "$bios_path/pcsx2/resources"
+      dir_prep "$shaders_path/retroarch-core/pcsx2/shaders" "$bios_path/pcsx2/shaders"
+      dir_prep "$cheats_path/retroarch-core/pcsx2/cheats" "$bios_path/pcsx2/cheats"
+      dir_prep "$cheats_path/retroarch-core/pcsx2/cheats_ws" "$bios_path/pcsx2/cheats_ws"
+      dir_prep "$cheats_path/retroarch-core/pcsx2/cheats_ni" "$bios_path/pcsx2/cheats_ni"
+      dir_prep "$texture_packs_path/retroarch-core/pcsx2/textures" "$bios_path/pcsx2/textures"
+
+      cp -rf "$retroarch_extras_path/pcsx2/resources" "$storage_path/retroarch-core/pcsx2/resources" 
+
 
       # RPCS3
       log i "--------------------------------"
@@ -360,8 +368,13 @@ _prepare_component::retroarch() {
       # PCSX2, LRPS2, PCEE2
       dir_prep "$bios_path" "$bios_path/pcsx2"
       dir_prep "$saves_path/ps2/retroarch-core/pcsx2/memcards" "$bios_path/pcsx2/memcards"
-      dir_prep "$storage_path/retroarch-core/PCSX2/inis" "$bios_path/pcsx2/inis"
-      dir_prep "$storage_path/retroarch-core/PCSX2/resources" "$bios_path/pcsx2/resources"
+      dir_prep "$storage_path/retroarch-core/pcsx2/inis" "$bios_path/pcsx2/inis"
+      dir_prep "$storage_path/retroarch-core/pcsx2/resources" "$bios_path/pcsx2/resources"
+      dir_prep "$shaders_path/retroarch-core/pcsx2/shaders" "$bios_path/pcsx2/shaders"
+      dir_prep "$cheats_path/retroarch-core/pcsx2/cheats" "$bios_path/pcsx2/cheats"
+      dir_prep "$cheats_path/retroarch-core/pcsx2/cheats_ws" "$bios_path/pcsx2/cheats_ws"
+      dir_prep "$cheats_path/retroarch-core/pcsx2/cheats_ni" "$bios_path/pcsx2/cheats_ni"
+      dir_prep "$texture_packs_path/retroarch-core/pcsx2/textures" "$bios_path/pcsx2/textures"
 
       # RPCS3
       dir_prep "$storage_path/retroarch-core/rpcs3/dev_hdd0" "$bios_path/rpcs3/dev_hdd0"
@@ -570,28 +583,84 @@ _post_update_legacy::retroarch() {
     set_setting_value "$retroarch_config" "system_directory" "$bios_path" "retroarch"
   fi
 
-    if check_version_is_older_than "$version_being_updated" "0.11.0b"; then
-      cp -f "$retroarch_extras_path/pcsx-redux/openbios.bin" "$bios_path/openbios.bin"
+if [[ $(check_version_is_older_than "$version_being_updated" "0.10.9b") == "true" ]]; then
+  create_dir "$screenshots_path/retroarch"
+  set_setting_value "$retroarch_config" "screenshot_directory" "$screenshots_path/retroarch" "retroarch"
+  cp -rf "$retroarch_extras_path/cannonball" "$bios_path/cannonball"
+  cp -rf "$retroarch_extras_path/dinothawr" "$bios_path/dinothawr"
+  cp -rf "$retroarch_extras_path/DirkSimple" "$bios_path/DirkSimple"
+  cp -rf "$retroarch_extras_path/dolphin-emu" "$bios_path/dolphin-emu"
+  cp -rf "$retroarch_extras_path/ecwolf.pk3" "$bios_path/ecwolf.pk3"
+  cp -rf "$retroarch_extras_path/nxengine" "$bios_path/nxengine"
+  cp -rf "$retroarch_extras_path/prboom.wad" "$bios_path/prboom.wad"
+  cp -rf "$retroarch_extras_path/qemu" "$bios_path/qemu"
+  cp -rf "$retroarch_extras_path/xrick" "$bios_path/xrick"
+  cp -rf "$retroarch_extras_path/pcsx2" "$bios_path/pcsx2"
 
-      create_dir "$saves_path/ps2/retroarch-core/pcsx2/memcards"
-      cp -rf "$bios_path/pcsx2/memcards" "$saves_path/ps2/retroarch-core/pcsx2/memcards"
+  dir_prep "$saves_path/ps2/retroarch-core/pcsx2/memcards" "$bios_path/pcsx2/memcards"
+  dir_prep "$shaders_path/retroarch-core/pcsx2/shaders" "$bios_path/pcsx2/shaders"
+  dir_prep "$cheats_path/retroarch-core/pcsx2/cheats" "$bios_path/pcsx2/cheats"
+  dir_prep "$cheats_path/retroarch-core/pcsx2/cheats_ws" "$bios_path/pcsx2/cheats_ws"
+  dir_prep "$cheats_path/retroarch-core/pcsx2/cheats_ni" "$bios_path/pcsx2/cheats_ni"
+  dir_prep "$texture_packs_path/retroarch-core/pcsx2/textures" "$bios_path/pcsx2/textures"
 
-      dir_prep "$bios_path" "$bios_path/pcsx2"
-      dir_prep "$saves_path/ps2/retroarch-core/pcsx2/memcards" "$bios_path/pcsx2/memcards"
-      dir_prep "$storage_path/retroarch-core/PCSX2/inis" "$bios_path/pcsx2/inis"
-      dir_prep "$storage_path/retroarch-core/PCSX2/resources" "$bios_path/pcsx2/resources"
+fi
 
-      dir_prep "$storage_path/retroarch-core/rpcs3/dev_hdd0" "$bios_path/rpcs3/dev_hdd0"
-      dir_prep "$storage_path/retroarch-core/rpcs3/dev_hdd1" "$bios_path/rpcs3/dev_hdd1"
-      dir_prep "$storage_path/retroarch-core/rpcs3/dev_flash" "$bios_path/rpcs3/dev_flash"
-      dir_prep "$storage_path/retroarch-core/rpcs3/dev_flash2" "$bios_path/rpcs3/dev_flash2"
-      dir_prep "$storage_path/retroarch-core/rpcs3/dev_flash3" "$bios_path/rpcs3/dev_flash3"
-      dir_prep "$storage_path/retroarch-core/rpcs3/dev_bdvd" "$bios_path/rpcs3/dev_bdvd"
-      dir_prep "$storage_path/retroarch-core/rpcs3/dev_usb000" "$bios_path/rpcs3/dev_usb000"
-      dir_prep "$storage_path/retroarch-core/rpcs3/captures" "$bios_path/rpcs3/captures"
-      dir_prep "$storage_path/retroarch-core/rpcs3/patches" "$bios_path/rpcs3/patches"
-      
-  fi
+if [[ $(check_version_is_older_than "$version_being_updated" "0.10.10b") == "true" ]]; then
+
+  dir_prep "$mods_path/retroarch-core/PPSSPP/PLUGINS" "$XDG_CONFIG_HOME/retroarch/saves/PPSSPP/PSP/PLUGINS"
+  dir_prep "$shaders_path/retroarch-core/PPSSPP/shaders" "$XDG_CONFIG_HOME/retroarch/saves/PPSSPP/PSP/shaders"
+
+  create_dir -d "$storage_path/retroarch-core/PPSSPP/GAME"
+  cp -fv "$XDG_CONFIG_HOME/retroarch/saves/PPSSPP/PSP/GAME/"* "$storage_path/retroarch-core/PPSSPP/GAME"
+  dir_prep "$storage_path/retroarch-core/PPSSPP/GAME" "$XDG_CONFIG_HOME/retroarch/saves/PPSSPP/PSP/GAME"
+
+  set_setting_value "$retroarch_config_core_options" "melonds_opengl_better_polygons" "enabled" "retroarch"
+  set_setting_value "$retroarch_config_core_options" "melonds_opengl_filtering" "nearest" "retroarch"
+  set_setting_value "$retroarch_config_core_options" "melonds_opengl_resolution" "3" "retroarch"
+  delete_setting "$retroarch_config_core_options" "melonds_opengl_renderer" "retroarch"
+  add_setting "$retroarch_config_core_options" "melonds_number_of_screen_layouts" "8" "retroarch"
+  add_setting "$retroarch_config_core_options" "melonds_render_mode" "opengl" "retroarch"
+fi
+
+if check_version_is_older_than "$version_being_updated" "0.11.0b"; then
+  cp -f "$retroarch_extras_path/pcsx-redux/openbios.bin" "$bios_path/openbios.bin"
+
+  create_dir "$saves_path/ps2/retroarch-core/pcsx2/memcards"
+  create_dir "$backups_path/retroarch-core/pcsx2/memcards"
+  create_dir "$backups_path/retroarch-core/LRPS2/memcards"
+
+  cp -rf "$bios_path/pcsx2/memcards" "$backups_path/retroarch-core/pcsx2/memcards"
+  cp -rf "$saves_path/ps2/retroarch-core/LRPS2/memcards" "$backups_path/retroarch-core/LRPS2/memcards"
+
+  cp -rf "$bios_path/pcsx2/memcards" "$saves_path/ps2/retroarch-core/pcsx2/memcards"
+  cp -rf "$saves_path/ps2/retroarch-core/LRPS2/memcards" "$saves_path/ps2/retroarch-core/pcsx2/memcards"
+
+  create_dir "$storage_path/retroarch-core/pcsx2/resources"
+  cp -rf "$retroarch_extras_path/pcsx2/resources" "$storage_path/retroarch-core/pcsx2/resources" 
+
+  dir_prep "$bios_path" "$bios_path/pcsx2"
+  
+  dir_prep "$saves_path/ps2/retroarch-core/pcsx2/memcards" "$bios_path/pcsx2/memcards"
+  dir_prep "$storage_path/retroarch-core/pcsx2/inis" "$bios_path/pcsx2/inis"
+  dir_prep "$storage_path/retroarch-core/pcsx2/resources" "$bios_path/pcsx2/resources"
+  dir_prep "$shaders_path/retroarch-core/pcsx2/shaders" "$bios_path/pcsx2/shaders"
+  dir_prep "$cheats_path/retroarch-core/pcsx2/cheats" "$bios_path/pcsx2/cheats"
+  dir_prep "$cheats_path/retroarch-core/pcsx2/cheats_ws" "$bios_path/pcsx2/cheats_ws"
+  dir_prep "$cheats_path/retroarch-core/pcsx2/cheats_ni" "$bios_path/pcsx2/cheats_ni"
+  dir_prep "$texture_packs_path/retroarch-core/pcsx2/textures" "$bios_path/pcsx2/textures"
+
+  dir_prep "$storage_path/retroarch-core/rpcs3/dev_hdd0" "$bios_path/rpcs3/dev_hdd0"
+  dir_prep "$storage_path/retroarch-core/rpcs3/dev_hdd1" "$bios_path/rpcs3/dev_hdd1"
+  dir_prep "$storage_path/retroarch-core/rpcs3/dev_flash" "$bios_path/rpcs3/dev_flash"
+  dir_prep "$storage_path/retroarch-core/rpcs3/dev_flash2" "$bios_path/rpcs3/dev_flash2"
+  dir_prep "$storage_path/retroarch-core/rpcs3/dev_flash3" "$bios_path/rpcs3/dev_flash3"
+  dir_prep "$storage_path/retroarch-core/rpcs3/dev_bdvd" "$bios_path/rpcs3/dev_bdvd"
+  dir_prep "$storage_path/retroarch-core/rpcs3/dev_usb000" "$bios_path/rpcs3/dev_usb000"
+  dir_prep "$storage_path/retroarch-core/rpcs3/captures" "$bios_path/rpcs3/captures"
+  dir_prep "$storage_path/retroarch-core/rpcs3/patches" "$bios_path/rpcs3/patches"
+  
+fi
 
 
   #######################################

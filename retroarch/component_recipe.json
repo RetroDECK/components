@@ -407,6 +407,18 @@
       ]
     },
     {
+      "source_url": "https://github.com/PCSX2/pcsx2_patches/releases/latest/download/patches.zip",
+      "source_type": "http",
+      "extraction_type": "archive",
+      "assets": [
+        {
+          "type": "dir",
+          "source": "pcsx2",
+          "dest": "rd_extras/pcsx2/resources"
+        }
+      ]
+    },
+    {
       "source_url": "https://github.com/libretro/mame2003-plus-libretro",
       "source_type": "git",
       "version": "latest",
