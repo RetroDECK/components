@@ -595,7 +595,6 @@ if [[ $(check_version_is_older_than "$version_being_updated" "0.10.9b") == "true
   cp -rf "$retroarch_extras_path/prboom.wad" "$bios_path/prboom.wad"
   cp -rf "$retroarch_extras_path/qemu" "$bios_path/qemu"
   cp -rf "$retroarch_extras_path/xrick" "$bios_path/xrick"
-  cp -rf "$retroarch_extras_path/pcsx2" "$bios_path/pcsx2"
 
   dir_prep "$saves_path/ps2/retroarch-core/pcsx2/memcards" "$bios_path/pcsx2/memcards"
   dir_prep "$shaders_path/retroarch-core/pcsx2/shaders" "$bios_path/pcsx2/shaders"
