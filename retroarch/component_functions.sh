@@ -574,7 +574,7 @@ _post_update_legacy::retroarch() {
       cp -f "$retroarch_extras_path/pcsx-redux/openbios.bin" "$bios_path/openbios.bin"
 
       create_dir "$saves_path/ps2/retroarch-core/pcsx2/memcards"
-      cp -f "$bios_path/pcsx2/memcards" "$saves_path/ps2/retroarch-core/pcsx2/memcards"
+      cp -rf "$bios_path/pcsx2/memcards" "$saves_path/ps2/retroarch-core/pcsx2/memcards"
 
       dir_prep "$bios_path" "$bios_path/pcsx2"
       dir_prep "$saves_path/ps2/retroarch-core/pcsx2/memcards" "$bios_path/pcsx2/memcards"
