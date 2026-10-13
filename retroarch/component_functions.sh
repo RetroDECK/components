@@ -570,6 +570,30 @@ _post_update_legacy::retroarch() {
     set_setting_value "$retroarch_config" "system_directory" "$bios_path" "retroarch"
   fi
 
+    if check_version_is_older_than "$version_being_updated" "0.11.0b"; then
+      cp -f "$retroarch_extras_path/pcsx-redux/openbios.bin" "$bios_path/openbios.bin"
+
+      create_dir "$saves_path/ps2/retroarch-core/pcsx2/memcards"
+      cp -f "$bios_path/pcsx2/memcards" "$saves_path/ps2/retroarch-core/pcsx2/memcards"
+
+      dir_prep "$bios_path" "$bios_path/pcsx2"
+      dir_prep "$saves_path/ps2/retroarch-core/pcsx2/memcards" "$bios_path/pcsx2/memcards"
+      dir_prep "$storage_path/retroarch-core/PCSX2/inis" "$bios_path/pcsx2/inis"
+      dir_prep "$storage_path/retroarch-core/PCSX2/resources" "$bios_path/pcsx2/resources"
+
+      dir_prep "$storage_path/retroarch-core/rpcs3/dev_hdd0" "$bios_path/rpcs3/dev_hdd0"
+      dir_prep "$storage_path/retroarch-core/rpcs3/dev_hdd1" "$bios_path/rpcs3/dev_hdd1"
+      dir_prep "$storage_path/retroarch-core/rpcs3/dev_flash" "$bios_path/rpcs3/dev_flash"
+      dir_prep "$storage_path/retroarch-core/rpcs3/dev_flash2" "$bios_path/rpcs3/dev_flash2"
+      dir_prep "$storage_path/retroarch-core/rpcs3/dev_flash3" "$bios_path/rpcs3/dev_flash3"
+      dir_prep "$storage_path/retroarch-core/rpcs3/dev_bdvd" "$bios_path/rpcs3/dev_bdvd"
+      dir_prep "$storage_path/retroarch-core/rpcs3/dev_usb000" "$bios_path/rpcs3/dev_usb000"
+      dir_prep "$storage_path/retroarch-core/rpcs3/captures" "$bios_path/rpcs3/captures"
+      dir_prep "$storage_path/retroarch-core/rpcs3/patches" "$bios_path/rpcs3/patches"
+      
+  fi
+
+
   #######################################
   # These actions happen at every update
   #######################################
