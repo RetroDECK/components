@@ -45,7 +45,7 @@ _prepare_component::ludusavi() {
 }
 
 start::ludusavi() {
-  log d "Starting Steam ROM Manager"
+  log d "Starting Ludusavi"
   local component_path="$(get_own_component_path)"
   /bin/bash ${component_path}/component_launcher.sh "$@"
 }
