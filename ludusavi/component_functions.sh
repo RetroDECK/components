@@ -410,3 +410,132 @@ evaluate_gate::ludusavi() {
 
   return "$LUDUSAVI_GATE_SYNC"
 }
+
+# ------------------
+# Ludusavi API
+# ------------------
+
+_exec::ludusavi() {
+  # USAGE: _exec::ludusavi "$args"
+  # Exec Ludusavi without stdin, avoiding unintentional pipe inheritence from above hanging the whole process
+  # Needs underscore prefix to avoid Bash interpretation of exec
+
+  exec_input::ludusavi "$@" < /dev/null
+}
+
+exec_input::ludusavi() {
+  # USAGE: exec_input::ludusavi "$args" <<< "$input"
+  # As _exec, but passes the caller's stdin through
+  # Only for Ludusavi API use, which reads its request from stdin
+
+  local -a global_args=(--try-manifest-update)
+  local component_path="$(get_own_component_path)"
+
+  if [[ -n "$LUDUSAVI_CONFIG_DIR" ]]; then
+    global_args+=(--config "$LUDUSAVI_CONFIG_DIR")
+  fi
+
+  "$component_path/bin/ludusavi" "${global_args[@]}" "$@"
+}
+
+cloud_args::ludusavi() {
+  # USAGE: cloud_args::ludusavi
+  # Prints the --local/--cloud pair for the cloud commands
+
+  printf '%s\n' --local "$LUDUSAVI_BACKUP_PATH" --cloud "${LUDUSAVI_REMOTE_ROOT}/ludusavi"
+}
+
+backup::ludusavi() {
+  # USAGE: backup::ludusavi
+  # Backs up into the backup directory and returns the API JSON output
+  # Cloud sync is explicitly disabled here, the upload is a separate step so the sidecar can be marked "uploading" between the two
+
+  local -a args=(backup --force --api --no-cloud-sync --path "$LUDUSAVI_BACKUP_PATH")
+
+  local output
+  output="$(_exec::ludusavi "${args[@]}" 2>/dev/null)"
+  local ludusavi_status=$?
+
+  if [[ "$ludusavi_status" -ne 0 ]] || [[ -z "$output" ]]; then
+    log e "backup failed for $LUDUSAVI_BACKUP_PATH"
+    return 1
+  fi
+
+  if ! jq -e . > /dev/null 2>&1 <<< "$output"; then
+    log e "backup produced unparseable output for $LUDUSAVI_BACKUP_PATH"
+    return 1
+  fi
+
+  echo "$output"
+  return 0
+}
+
+changed_count::ludusavi() {
+  # USAGE: changed_count::ludusavi "$backup_json"
+  # Returns how many differences there in the backup from the provided backup results
+  # Zero means there are no new changes worth uploading
+
+  local backup_json="$1"
+
+  jq -r '
+    (.overall.changedGames.new // 0) + (.overall.changedGames.different // 0)
+  ' <<< "$backup_json" 2>/dev/null
+}
+
+changed_games::ludusavi() {
+  # USAGE: changed_games::ludusavi "$backup_json"
+  # Returns the Ludusavi entries which have changed since the last backup
+
+  local backup_json="$1"
+
+  jq -r '
+    .games
+    | to_entries[]
+    | select(.value.decision == "Processed")
+    | select(.value.change == "New" or .value.change == "Different")
+    | .key
+  ' <<< "$backup_json" 2>/dev/null
+}
+
+ludusavi::stamp_backups() {
+  # USAGE: ludusavi::stamp_backups "$version" "$backup_json"
+  # Writes "RetroDECK <version>" as the comment on each changed entries latest backup
+
+  local version="$1"
+  local backup_json="$2"
+
+  local -a games
+  mapfile -t games < <(changed_games::ludusavi "$backup_json")
+
+  if [[ "${#games[@]}" -eq 0 ]]; then
+    return 0
+  fi
+
+  local request
+  request="$(jq -n \
+    --arg path "$LUDUSAVI_BACKUP_PATH" \
+    --arg comment "RetroDECK ${version}" \
+    '{
+      config: {backupPath: $path},
+      requests: [$ARGS.positional[] | {editBackup: {game: ., comment: $comment}}]
+    }' \
+    --args "${games[@]}")"
+
+  local response
+  if ! response="$(exec_input::ludusavi api <<< "$request" 2>/dev/null)"; then
+    log w "could not stamp ${#games[@]} backup(s) with RetroDECK $version"
+    return 0
+  fi
+
+  # Parse API output for failure logs, since failures still exit 0
+  local failed
+  failed="$(jq -r '[.responses[]? | select(has("error"))] | length' <<< "$response" 2>/dev/null)"
+  : "${failed:=0}"
+
+  if [[ "$failed" -gt 0 ]]; then
+    log w "$failed of ${#games[@]} backup(s) could not be stamped with RetroDECK $version"
+  else
+    log d "stamped ${#games[@]} backup(s) with RetroDECK $version"
+  fi
+  return 0
+}
