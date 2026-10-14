@@ -71,12 +71,6 @@ _prepare_component::ludusavi() {
   esac
 }
 
-start::ludusavi() {
-  log d "Starting Ludusavi"
-  local component_path="$(get_own_component_path)"
-  /bin/bash ${component_path}/component_launcher.sh "$@"
-}
-
 # ------------------
 # Ludusavi helpers
 # ------------------
@@ -461,7 +455,7 @@ exec_input::ludusavi() {
     global_args+=(--config "$LUDUSAVI_CONFIG_DIR")
   fi
 
-  "$component_path/bin/ludusavi" "${global_args[@]}" "$@"
+  /bin/bash ${component_path}/component_launcher.sh "${global_args[@]}" "$@"
 }
 
 cloud_args::ludusavi() {
