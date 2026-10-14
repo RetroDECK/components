@@ -187,8 +187,10 @@ _prepare_component::retroarch() {
       log i "--------------------------------"
       log i "Preparing FBNEO_LIBRETRO"
       log i "--------------------------------"
+
       create_dir "$bios_path/fbneo/samples"
       cp -f "$retroarch_extras_path/fbneo/hiscore.dat" "$bios_path/fbneo/hiscore.dat"
+
       dir_prep "$cheats_path/retroarch-core/fbneo" "$bios_path/fbneo/cheats"
       dir_prep "$shaders_path/retroarch-core/fbneo/blend" "$bios_path/fbneo/blend"
       dir_prep "$mods_path/retroarch-core/fbneo/patched" "$bios_path/fbneo/patched"
@@ -199,6 +201,7 @@ _prepare_component::retroarch() {
       log i "--------------------------------"
       log i "Preparing PRBOOM_LIBRETRO"
       log i "--------------------------------"
+
       cp -f "$retroarch_extras_path/prboom.wad" "$bios_path/prboom.wad"
 
       # PCSX2, LRPS2, PCEE2
@@ -238,14 +241,17 @@ _prepare_component::retroarch() {
       log i "--------------------------------"
       log i "Preparing ECWOLF_LIBRETRO"
       log i "--------------------------------"
+
       cp -f "$retroarch_extras_path/ecwolf.pk3" "$bios_path/ecwolf.pk3"
 
       # MSX / SVI / ColecoVision / SG-1000
       log i "-----------------------------------------------------------"
       log i "Preparing MSX / SVI / ColecoVision / SG-1000 LIBRETRO"
       log i "-----------------------------------------------------------"
+    
       log i "Copying \"$retroarch_extras_path/MSX/Databases\" in \"$bios_path/Databases\""
       cp -rf "$retroarch_extras_path/MSX/Databases" "$bios_path/Databases"
+
       log i "Copying \"$retroarch_extras_path/MSX/Machines\" in \"$bios_path/Machines\""
       cp -rf "$retroarch_extras_path/MSX/Machines" "$bios_path/Machines"
 
@@ -253,30 +259,37 @@ _prepare_component::retroarch() {
       log i "-----------------------------------------------------------"
       log i "Prepearing AMIGA + AMIGAVISION LIBRETRO"
       log i "-----------------------------------------------------------"
+
       log i "Copying \"$retroarch_extras_path/Amiga/capsimg.so\" in \"$bios_path/capsimg.so\""
       cp -f "$retroarch_extras_path/Amiga/capsimg.so" "$bios_path/capsimg.so"
+
+      # Amiberry core is hardcoded and looks for it in $bios_path/amiga/
       cp -f "$retroarch_extras_path/Amiga/capsimg.so" "$bios_path/amiga/capsimg.so"
 
       # PCSX Redux
       log i "-----------------------------------------------------------"
       log i "Prepearing PCSX Redux Openbios"
       log i "-----------------------------------------------------------"
+
       cp -f "$retroarch_extras_path/pcsx-redux/openbios.bin" "$bios_path/openbios.bin"
 
       # ScummVM
       log i "-----------------------------------------------------------"
       log i "Prepearing ScummVM LIBRETRO"
       log i "-----------------------------------------------------------"
+
       cp -fv "$component_config/scummvm.ini" "$retroarch_config_scummvm"
       log i "Installing ScummVM assets"
       unzip -o "$retroarch_extras_path/ScummVM.zip" 'scummvm/extra/*' -d /tmp
       unzip -o "$retroarch_extras_path/ScummVM.zip" 'scummvm/theme/*' -d /tmp
+
       create_dir "$storage_path/retroarch/ScummVM/icons"
       create_dir "$storage_path/retroarch/ScummVM/extra"
       create_dir "$storage_path/retroarch/ScummVM/theme"
       mv -f /tmp/scummvm/extra/* "$storage_path/retroarch/ScummVM/extra"
       mv -f /tmp/scummvm/theme/* "$storage_path/retroarch/ScummVM/theme"
       rm -rf /tmp/extra /tmp/theme /tmp/scummvm/extra /tmp/scummvm/theme
+
       set_setting_value "$retroarch_config_scummvm" "iconspath" "$storage_path/retroarch/ScummVM/icons" "retroarch_scummvm" "scummvm"
       set_setting_value "$retroarch_config_scummvm" "extrapath" "$storage_path/retroarch/ScummVM/extra" "retroarch_scummvm" "scummvm"
       set_setting_value "$retroarch_config_scummvm" "themepath" "$storage_path/retroarch/ScummVM/theme" "retroarch_scummvm" "scummvm"
@@ -355,15 +368,37 @@ _prepare_component::retroarch() {
       log i "Post-moving RetroArch"
       log i "------------------------"
 
+      # Citra
+      dir_prep "$mods_path/retroarch-core/Citra/mods" "$XDG_CONFIG_HOME/retroarch/saves/Citra/load/mods"
+      dir_prep "$texture_packs_path/retroarch-core/Citra/textures" "$XDG_CONFIG_HOME/retroarch/saves/Citra/load/textures"
+
+      # Dolphin
+      dir_prep "$texture_packs_path/retroarch-core/Dolphin/Textures" "$XDG_CONFIG_HOME/retroarch/saves/dolphin-emu/User/Load/Textures/"
+      dir_prep "$mods_path/retroarch-core/Dolphin/GraphicMods" "$XDG_CONFIG_HOME/retroarch/saves/dolphin-emu/User/Load/GraphicMods"
+
+      # Flycast
+      dir_prep "$texture_packs_path/retroarch-core/Flycast/textures" "$bios_path/dc/textures"
+
+      # FBNEO
+      dir_prep "$cheats_path/retroarch-core/fbneo" "$bios_path/fbneo/cheats"
+      dir_prep "$shaders_path/retroarch-core/fbneo/blend" "$bios_path/fbneo/blend"
+      dir_prep "$mods_path/retroarch-core/fbneo/patched" "$bios_path/fbneo/patched"
+      dir_prep "$mods_path/retroarch-core/fbneo/ips" "$bios_path/fbneo/ips"
+      dir_prep "$mods_path/retroarch-core/fbneo/romdata" "$bios_path/fbneo/romdata"
+
+      # MESEN
+      dir_prep "$texture_packs_path/retroarch-core/Mesen/HdPacks" "$bios_path/HdPacks"
+
+      # Mupen64Plus
+      dir_prep "$texture_packs_path/retroarch-core/Mupen64Plus/cache" "$bios_path/Mupen64plus/cache"
+      dir_prep "$texture_packs_path/retroarch-core/Mupen64Plus/hires_texture" "$bios_path/Mupen64plus/hires_texture"
+
       # ScummVM
       set_setting_value "$retroarch_config_scummvm" "iconspath" "$storage_path/retroarch/ScummVM/icons" "retroarch_scummvm" "scummvm"
       set_setting_value "$retroarch_config_scummvm" "extrapath" "$storage_path/retroarch/ScummVM/extra" "retroarch_scummvm" "scummvm"
       set_setting_value "$retroarch_config_scummvm" "themepath" "$storage_path/retroarch/ScummVM/theme" "retroarch_scummvm" "scummvm"
       set_setting_value "$retroarch_config_scummvm" "savepath" "$saves_path/scummvm" "retroarch_scummvm" "scummvm"
       set_setting_value "$retroarch_config_scummvm" "browser_lastpath" "$roms_path/scummvm" "retroarch_scummvm" "scummvm"
-
-      # BIOS
-      set_setting_value "$retroarch_config" "system_directory" "$bios_path" "retroarch"
 
       # PCSX2, LRPS2, PCEE2
       dir_prep "$bios_path" "$bios_path/pcsx2"
@@ -376,6 +411,12 @@ _prepare_component::retroarch() {
       dir_prep "$cheats_path/retroarch-core/pcsx2/cheats_ni" "$bios_path/pcsx2/cheats_ni"
       dir_prep "$texture_packs_path/retroarch-core/pcsx2/textures" "$bios_path/pcsx2/textures"
 
+      # PPSSPP
+      dir_prep "$storage_path/retroarch-core/PPSSPP/GAME" "$XDG_CONFIG_HOME/retroarch/saves/PPSSPP/PSP/GAME"
+      dir_prep "$shaders_path/retroarch-core/PPSSPP/shaders" "$XDG_CONFIG_HOME/retroarch/saves/PPSSPP/PSP/shaders"
+      dir_prep "$texture_packs_path/retroarch-core/PPSSPP/TEXTURES" "$XDG_CONFIG_HOME/retroarch/saves/PPSSPP/PSP/TEXTURES"
+      dir_prep "$mods_path/retroarch-core/PPSSPP/PLUGINS" "$XDG_CONFIG_HOME/retroarch/saves/PPSSPP/PSP/PLUGINS"
+
       # RPCS3
       dir_prep "$storage_path/retroarch-core/rpcs3/dev_hdd0" "$bios_path/rpcs3/dev_hdd0"
       dir_prep "$storage_path/retroarch-core/rpcs3/dev_hdd1" "$bios_path/rpcs3/dev_hdd1"
@@ -387,34 +428,8 @@ _prepare_component::retroarch() {
       dir_prep "$storage_path/retroarch-core/rpcs3/captures" "$bios_path/rpcs3/captures"
       dir_prep "$storage_path/retroarch-core/rpcs3/patches" "$bios_path/rpcs3/patches"
 
-      # Logs
-      dir_prep "$logs_path/retroarch" "$XDG_CONFIG_HOME/retroarch/logs"
-
-      # Texture Packs
-      dir_prep "$texture_packs_path/retroarch-core/Mesen/HdPacks" "$bios_path/HdPacks"
-      dir_prep "$texture_packs_path/retroarch-core/Mupen64Plus/cache" "$bios_path/Mupen64plus/cache"
-      dir_prep "$texture_packs_path/retroarch-core/Mupen64Plus/hires_texture" "$bios_path/Mupen64plus/hires_texture"
-      dir_prep "$texture_packs_path/retroarch-core/Citra/textures" "$XDG_CONFIG_HOME/retroarch/saves/Citra/load/textures"
-      dir_prep "$texture_packs_path/retroarch-core/Dolphin/Textures" "$XDG_CONFIG_HOME/retroarch/saves/dolphin-emu/User/Load/Textures/"
-      dir_prep "$texture_packs_path/retroarch-core/PPSSPP/TEXTURES" "$XDG_CONFIG_HOME/retroarch/saves/PPSSPP/PSP/TEXTURES"
-      dir_prep "$texture_packs_path/retroarch-core/Flycast/textures" "$bios_path/dc/textures"
-
-      # Cheats
-      dir_prep "$cheats_path/retroarch-core/fbneo" "$bios_path/fbneo/cheats"
-
-      # Shaders
-      dir_prep "$shaders_path/retroarch-core/fbneo/blend" "$bios_path/fbneo/blend"
-      dir_prep "$shaders_path/retroarch-core/PPSSPP/shaders" "$XDG_CONFIG_HOME/retroarch/saves/PPSSPP/PSP/shaders"
-
-      # Mods
-      dir_prep "$mods_path/retroarch-core/Citra/mods" "$XDG_CONFIG_HOME/retroarch/saves/Citra/load/mods"
-      dir_prep "$mods_path/retroarch-core/Dolphin/GraphicMods" "$XDG_CONFIG_HOME/retroarch/saves/dolphin-emu/User/Load/GraphicMods"
-      dir_prep "$mods_path/retroarch-core/fbneo/patched" "$bios_path/fbneo/patched"
-      dir_prep "$mods_path/retroarch-core/fbneo/ips" "$bios_path/fbneo/ips"
-      dir_prep "$mods_path/retroarch-core/fbneo/romdata" "$bios_path/fbneo/romdata"
-      dir_prep "$mods_path/retroarch-core/PPSSPP/PLUGINS" "$XDG_CONFIG_HOME/retroarch/saves/PPSSPP/PSP/PLUGINS"
-
-      # Settings
+      # RetroArch Settings
+      set_setting_value "$retroarch_config" "system_directory" "$bios_path" "retroarch"
       set_setting_value "$retroarch_config" "savefile_directory" "$saves_path" "retroarch"
       set_setting_value "$retroarch_config" "savestate_directory" "$states_path" "retroarch"
       set_setting_value "$retroarch_config" "screenshot_directory" "$screenshots_path/retroarch" "retroarch"
@@ -433,9 +448,7 @@ _prepare_component::retroarch() {
       set_setting_value "$retroarch_config" "video_shader_dir" "$shaders_path/retroarch/shaders" "retroarch"
       set_setting_value "$retroarch_config" "overlay_directory" "$borders_path/retroarch" "retroarch"
 
-      # DLC / Storage
-      
-      dir_prep "$storage_path/retroarch-core/PPSSPP/GAME" "$XDG_CONFIG_HOME/retroarch/saves/PPSSPP/PSP/GAME"
+      dir_prep "$logs_path/retroarch" "$XDG_CONFIG_HOME/retroarch/logs"
 
     ;;
 
