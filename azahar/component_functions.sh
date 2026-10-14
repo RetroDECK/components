@@ -66,14 +66,14 @@ _prepare_component::azahar() {
       create_dir -d "$azahar_mods_path"
       create_dir -d "$azahar_textures_path"
       create_dir "$screenshots_path/Azahar"
-      create_dir "$saves_path/n3ds/azahar-sa/nand/"
-      create_dir "$saves_path/n3ds/azahar-sa/sdmc/"
+      create_dir "$saves_path/n3ds/Azahar-SA/nand/"
+      create_dir "$saves_path/n3ds/Azahar-SA/sdmc/"
 
       cp -fT "$component_config/qt-config.ini" "$azahar_config_path/qt-config.ini"
 
       set_setting_value "$azahar_qtconfig" "use_custom_storage" "true" "azahar" "Data%20Storage"
-      set_setting_value "$azahar_qtconfig" "nand_directory" "$saves_path/n3ds/azahar-sa/nand/" "azahar" "Data%20Storage"
-      set_setting_value "$azahar_qtconfig" "sdmc_directory" "$saves_path/n3ds/azahar-sa/sdmc/" "azahar" "Data%20Storage"
+      set_setting_value "$azahar_qtconfig" "nand_directory" "$saves_path/n3ds/Azahar-SA/nand/" "azahar" "Data%20Storage"
+      set_setting_value "$azahar_qtconfig" "sdmc_directory" "$saves_path/n3ds/Azahar-SA/sdmc/" "azahar" "Data%20Storage"
       set_setting_value "$azahar_qtconfig" "Paths\gamedirs\3\path" "$roms_path/n3ds" "azahar" "UI"
       set_setting_value "$azahar_qtconfig" "Paths\screenshotPath" "$screenshots_path/Azahar" "azahar" "UI"
 
@@ -91,8 +91,8 @@ _prepare_component::azahar() {
       log i "----------------------"
 
       set_setting_value "$azahar_qtconfig" "use_custom_storage" "true" "azahar" "Data%20Storage"
-      set_setting_value "$azahar_qtconfig" "nand_directory" "$saves_path/n3ds/azahar-sa/nand/" "azahar" "Data%20Storage"
-      set_setting_value "$azahar_qtconfig" "sdmc_directory" "$saves_path/n3ds/azahar-sa/sdmc/" "azahar" "Data%20Storage"
+      set_setting_value "$azahar_qtconfig" "nand_directory" "$saves_path/n3ds/Azahar-SA/nand/" "azahar" "Data%20Storage"
+      set_setting_value "$azahar_qtconfig" "sdmc_directory" "$saves_path/n3ds/Azahar-SA/sdmc/" "azahar" "Data%20Storage"
       set_setting_value "$azahar_qtconfig" "Paths\gamedirs\3\path" "$roms_path/n3ds" "azahar" "UI"
       set_setting_value "$azahar_qtconfig" "Paths\screenshotPath" "$screenshots_path/Azahar" "azahar" "UI"
 
@@ -157,14 +157,14 @@ _post_update_legacy::azahar() {
     if check_version_is_older_than "$previous_version" "0.11.0b"; then
     log i "0.11.0b Upgrade - Azahar - Saves folder"
 
-    create_dir "$saves_path/n3ds/azahar-sa/nand/"
-    create_dir "$saves_path/n3ds/azahar-sa/sdmc/"
+    create_dir "$saves_path/n3ds/Azahar-SA/nand/"
+    create_dir "$saves_path/n3ds/Azahar-SA/sdmc/"
 
-    cp -rf "$saves_path/n3ds/azahar/nand/" "$saves_path/n3ds/azahar-sa/nand/"
-    cp -rf "$saves_path/n3ds/azahar/sdmc/" "$saves_path/n3ds/azahar-sa/sdmc/"
+    cp -rf "$saves_path/n3ds/azahar/nand/" "$saves_path/n3ds/Azahar-SA/nand/"
+    cp -rf "$saves_path/n3ds/azahar/sdmc/" "$saves_path/n3ds/Azahar-SA/sdmc/"
     
-    set_setting_value "$azahar_qtconfig" "nand_directory" "$saves_path/n3ds/azahar-sa/nand/" "azahar" "Data%20Storage"
-    set_setting_value "$azahar_qtconfig" "sdmc_directory" "$saves_path/n3ds/azahar-sa/sdmc/" "azahar" "Data%20Storage"
+    set_setting_value "$azahar_qtconfig" "nand_directory" "$saves_path/n3ds/Azahar-SA/nand/" "azahar" "Data%20Storage"
+    set_setting_value "$azahar_qtconfig" "sdmc_directory" "$saves_path/n3ds/Azahar-SA/sdmc/" "azahar" "Data%20Storage"
 
     dir_prep "$cheats_path/Azahar/cheats" "$azahar_cheats_path"
     dir_prep "$shaders_path/Azahar/shaders" "$azahar_shaders_path"
