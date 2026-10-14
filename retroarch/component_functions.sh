@@ -209,7 +209,7 @@ _prepare_component::retroarch() {
 
       dir_prep "$mods_path/retroarch-core/Citra/mods" "$saves_path/n3ds/Citra/load/mods"
       dir_prep "$texture_packs_path/retroarch-core/Citra/textures" "$saves_path/n3ds/Citra/load/textures"
-      dir_prep "$shaders_path/retroarch-core/Citra/shaders" "$saves_path/n3ds/Citra/shader"
+      dir_prep "$shaders_path/retroarch-core/Citra/shaders" "$saves_path/n3ds/Citra/shaders"
       dir_prep "$cheats_path/retroarch-core/Citra/cheats" "$saves_path/n3ds/Citra/cheats"
 
       # Dolphin
@@ -403,7 +403,7 @@ _prepare_component::retroarch() {
       # Citra
       dir_prep "$mods_path/retroarch-core/Citra/mods" "$saves_path/n3ds/Citra/load/mods"
       dir_prep "$texture_packs_path/retroarch-core/Citra/textures" "$saves_path/n3ds/Citra/load/textures"
-      dir_prep "$shaders_path/retroarch-core/Citra/shaders" "$saves_path/n3ds/Citra/shader"
+    dir_prep "$shaders_path/retroarch-core/Citra/shaders" "$saves_path/n3ds/Citra/shaders"
       dir_prep "$cheats_path/retroarch-core/Citra/cheats" "$saves_path/n3ds/Citra/cheats"
 
       # Dolphin
@@ -708,7 +708,7 @@ _post_update_legacy::retroarch() {
 
     dir_prep "$mods_path/retroarch-core/Citra/mods" "$saves_path/n3ds/Citra/load/mods"
     dir_prep "$texture_packs_path/retroarch-core/Citra/textures" "$saves_path/n3ds/Citra/load/textures"
-    dir_prep "$shaders_path/retroarch-core/Citra/shaders" "$saves_path/n3ds/Citra/shader"
+    dir_prep "$shaders_path/retroarch-core/Citra/shaders" "$saves_path/n3ds/Citra/shaders"
     dir_prep "$cheats_path/retroarch-core/Citra/cheats" "$saves_path/n3ds/Citra/cheats"
 
     dir_prep "$texture_packs_path/retroarch-core/Azahar/textures" "$saves_path/n3ds/Azahar/load/textures"
