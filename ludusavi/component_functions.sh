@@ -1,7 +1,25 @@
 #!/bin/bash
 
-export ludusavi_config_dir="$XDG_CONFIG_HOME/ludusavi"
-export ludusavi_config_file="$ludusavi_config_dir/config.yaml"
+# Component paths
+export LUDUSAVI_CONFIG_DIR="$XDG_CONFIG_HOME/ludusavi"
+export LUDUSAVI_CONFIG_FILE="$LUDUSAVI_CONFIG_DIR/config.yaml"
+export LUDUSAVI_RCLONE_CONFIG_FILE="$XDG_CONFIG_HOME/ludusavi/rclone.conf"
+# Component definitions
+export LUDUSAVI_PROVIDERS=(
+  "drive|Google Drive|drive|oauth"
+  "dropbox|Dropbox|dropbox|oauth"
+  "onedrive|OneDrive|onedrive|oauth"
+  "box|Box|box|oauth"
+  "smb|Network share (SMB)|smb|form"
+  "ftp|FTP server|ftp|form"
+  "webdav|WebDAV (Nextcloud, ownCloud)|webdav|form"
+)
+export LUDUSAVI_OAUTH_PORT=53682
+export LUDUSAVI_TEST_TIMEOUT="${LUDUSAVI_TEST_TIMEOUT:-10s}"
+export LUDUSAVI_RCLONE_TIMEOUT="${LUDUSAVI_RCLONE_TIMEOUT:-10s}"
+export LUDUSAVI_RCLONE_CONNECTION_TIMEOUT="${LUDUSAVI_RCLONE_CONNECTION_TIMEOUT:-5s}"
+export LUDUSAVI_SIDECAR_NAME="retrodeck-sync.json"
+export LUDUSAVI_SIDECAR_SCHEMA=1
 
 _prepare_component::ludusavi() {
   local action="$1"
