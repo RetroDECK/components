@@ -212,13 +212,25 @@ _prepare_component::retroarch() {
       dir_prep "$shaders_path/retroarch-core/Citra/shaders" "$saves_path/n3ds/Citra/shaders"
       dir_prep "$cheats_path/retroarch-core/Citra/cheats" "$saves_path/n3ds/Citra/cheats"
 
-      # Dolphin
+      # Dolphin - Filestructure is Generated both in GC and Wii
       log i "-----------------------------------------------------------"
       log i "Prepearing Dolphin LIBRETRO"
       log i "-----------------------------------------------------------"     
 
-      dir_prep "$texture_packs_path/retroarch-core/Dolphin/Textures" "$XDG_CONFIG_HOME/retroarch/saves/dolphin-emu/User/Load/Textures/"
-      dir_prep "$mods_path/retroarch-core/Dolphin/GraphicMods" "$XDG_CONFIG_HOME/retroarch/saves/dolphin-emu/User/Load/GraphicMods"
+      dir_prep "$texture_packs_path/retroarch-core/Dolphin/Textures" "$saves_path/gc/User/Load/Textures"
+      dir_prep "$texture_packs_path/retroarch-core/Dolphin/Textures" "$saves_path/wii/User/Load/Textures"
+
+      dir_prep "$texture_packs_path/retroarch-core/Dolphin/DynamicInputTextures" "$saves_path/gc/User/Load/DynamicInputTextures"
+      dir_prep "$texture_packs_path/retroarch-core/Dolphin/DynamicInputTextures" "$saves_path/wii/User/Load/DynamicInputTextures"
+
+      dir_prep "$mods_path/retroarch-core/Dolphin/GraphicMods" "$saves_path/gc/User/Load/GraphicMods"
+      dir_prep "$mods_path/retroarch-core/Dolphin/GraphicMods" "$saves_path/wii/User/Load/GraphicMods"
+
+      dir_prep "$shaders_path/retroarch-core/Dolphin/Shaders" "$saves_path/gc/User/Shaders"
+      dir_prep "$shaders_path/retroarch-core/Dolphin/Shaders" "$saves_path/wii/User/Shaders"
+
+      dir_prep "$storage_path/retroarch-core/Dolphin/Dump" "$saves_path/gc/User/Dump"
+      dir_prep "$storage_path/retroarch-core/Dolphin/Dump" "$saves_path/wii/User/Dump"
 
       # FBNEO
       log i "--------------------------------"
@@ -403,12 +415,24 @@ _prepare_component::retroarch() {
       # Citra
       dir_prep "$mods_path/retroarch-core/Citra/mods" "$saves_path/n3ds/Citra/load/mods"
       dir_prep "$texture_packs_path/retroarch-core/Citra/textures" "$saves_path/n3ds/Citra/load/textures"
-    dir_prep "$shaders_path/retroarch-core/Citra/shaders" "$saves_path/n3ds/Citra/shaders"
+      dir_prep "$shaders_path/retroarch-core/Citra/shaders" "$saves_path/n3ds/Citra/shaders"
       dir_prep "$cheats_path/retroarch-core/Citra/cheats" "$saves_path/n3ds/Citra/cheats"
 
       # Dolphin
-      dir_prep "$texture_packs_path/retroarch-core/Dolphin/Textures" "$XDG_CONFIG_HOME/retroarch/saves/dolphin-emu/User/Load/Textures/"
-      dir_prep "$mods_path/retroarch-core/Dolphin/GraphicMods" "$XDG_CONFIG_HOME/retroarch/saves/dolphin-emu/User/Load/GraphicMods"
+      dir_prep "$texture_packs_path/retroarch-core/Dolphin/Textures" "$saves_path/gc/User/Load/Textures"
+      dir_prep "$texture_packs_path/retroarch-core/Dolphin/Textures" "$saves_path/wii/User/Load/Textures"
+
+      dir_prep "$texture_packs_path/retroarch-core/Dolphin/DynamicInputTextures" "$saves_path/gc/User/Load/DynamicInputTextures"
+      dir_prep "$texture_packs_path/retroarch-core/Dolphin/DynamicInputTextures" "$saves_path/wii/User/Load/DynamicInputTextures"
+
+      dir_prep "$mods_path/retroarch-core/Dolphin/GraphicMods" "$saves_path/gc/User/Load/GraphicMods"
+      dir_prep "$mods_path/retroarch-core/Dolphin/GraphicMods" "$saves_path/wii/User/Load/GraphicMods"
+
+      dir_prep "$shaders_path/retroarch-core/Dolphin/Shaders" "$saves_path/gc/User/Shaders"
+      dir_prep "$shaders_path/retroarch-core/Dolphin/Shaders" "$saves_path/wii/User/Shaders"
+
+      dir_prep "$storage_path/retroarch-core/Dolphin/Dump" "$saves_path/gc/User/Dump"
+      dir_prep "$storage_path/retroarch-core/Dolphin/Dump" "$saves_path/wii/User/Dump"
 
       # Flycast
       dir_prep "$texture_packs_path/retroarch-core/Flycast/textures" "$bios_path/dc/textures"
@@ -720,6 +744,17 @@ _post_update_legacy::retroarch() {
     dir_prep "$mods_path/retroarch-core/PPSSPP/PLUGINS" "$saves_path/PPSSPP/PSP/PLUGINS"
     dir_prep "$shaders_path/retroarch-core/PPSSPP/shaders" "$saves_path/saves/PPSSPP/PSP/shaders"
     dir_prep "$storage_path/retroarch-core/PPSSPP/GAME" "$saves_path/PPSSPP/PSP/GAME"
+
+    dir_prep "$texture_packs_path/retroarch-core/Dolphin/Textures" "$saves_path/gc/User/Load/Textures"
+    dir_prep "$texture_packs_path/retroarch-core/Dolphin/Textures" "$saves_path/wii/User/Load/Textures"
+    dir_prep "$texture_packs_path/retroarch-core/Dolphin/DynamicInputTextures" "$saves_path/gc/User/Load/DynamicInputTextures"
+    dir_prep "$texture_packs_path/retroarch-core/Dolphin/DynamicInputTextures" "$saves_path/wii/User/Load/DynamicInputTextures"
+    dir_prep "$mods_path/retroarch-core/Dolphin/GraphicMods" "$saves_path/gc/User/Load/GraphicMods"
+    dir_prep "$mods_path/retroarch-core/Dolphin/GraphicMods" "$saves_path/wii/User/Load/GraphicMods"
+    dir_prep "$shaders_path/retroarch-core/Dolphin/Shaders" "$saves_path/gc/User/Shaders"
+    dir_prep "$shaders_path/retroarch-core/Dolphin/Shaders" "$saves_path/wii/User/Shaders"
+    dir_prep "$storage_path/retroarch-core/Dolphin/Dump" "$saves_path/gc/User/Dump"
+    dir_prep "$storage_path/retroarch-core/Dolphin/Dump" "$saves_path/wii/User/Dump"
     
   fi
 

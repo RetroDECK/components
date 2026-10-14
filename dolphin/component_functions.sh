@@ -13,7 +13,7 @@ export dolphin_config_GCKeyNew="$XDG_CONFIG_HOME/dolphin-emu/GCKeyNew.ini"
 export dolphin_config_Qt="$XDG_CONFIG_HOME/dolphin-emu/Qt.ini"
 export dolphin_config_RetroAchievements="$XDG_CONFIG_HOME/dolphin-emu/RetroAchievements.ini"
 export dolphin_config_WiimoteNew="$XDG_CONFIG_HOME/dolphin-emu/WiimoteNew.ini"
-export dolphin_dynamic_input_textures_path="$XDG_DATA_HOME/dolphin-emu/Load/DynamicInputTextures"
+export dolphin_dynamic_input_textures_path="$texture_packs_path/Dolphin/DynamicInputTextures"
 export dolphin_rd_config_dir="$rd_components/dolphin/rd_config"
 export dolphin_textures_path="$XDG_DATA_HOME/dolphin-emu/Load/Textures"
 export dolphin_mods_path="$XDG_DATA_HOME/dolphin-emu/Load/GraphicMods"
@@ -69,11 +69,7 @@ _prepare_component::dolphin() {
 
       create_dir -d "$XDG_CONFIG_HOME/dolphin-emu/"
       cp -fvr "$component_config/"* "$XDG_CONFIG_HOME/dolphin-emu/"
-      set_setting_value "$dolphin_config" "BIOS" "$bios_path" "dolphin" "GBA"
-      set_setting_value "$dolphin_config" "SavesPath" "$saves_path/gba" "dolphin" "GBA"
-      set_setting_value "$dolphin_config" "ISOPath0" "$roms_path/wii" "dolphin" "General"
-      set_setting_value "$dolphin_config" "ISOPath1" "$roms_path/gc" "dolphin" "General"
-      set_setting_value "$dolphin_config" "WiiSDCardPath" "$saves_path/wii/dolphin/sd.raw" "dolphin" "General"
+
       dir_prep "$saves_path/gc/dolphin/EU" "$XDG_DATA_HOME/dolphin-emu/GC/EUR"
       dir_prep "$saves_path/gc/dolphin/US" "$XDG_DATA_HOME/dolphin-emu/GC/USA"
       dir_prep "$saves_path/gc/dolphin/JP" "$XDG_DATA_HOME/dolphin-emu/GC/JAP"
@@ -82,9 +78,16 @@ _prepare_component::dolphin() {
       dir_prep "$saves_path/wii/dolphin" "$XDG_DATA_HOME/dolphin-emu/Wii"
       dir_prep "$mods_path/Dolphin/GraphicMods" "$dolphin_mods_path"
       dir_prep "$texture_packs_path/Dolphin/Textures" "$dolphin_textures_path"
-      dir_prep "$shaders_path/Dolphin" "$XDG_DATA_HOME/dolphin-emu/Shaders"
+      dir_prep "$texture_packs_path/Dolphin/DynamicInputTextures" "$XDG_DATA_HOME/dolphin-emu/Load/DynamicInputTextures"
+      dir_prep "$shaders_path/Dolphin/Shaders" "$XDG_DATA_HOME/dolphin-emu/Shaders"
       dir_prep "$logs_path/Dolphin" "$XDG_DATA_HOME/dolphin-emu/Logs"
       dir_prep "$storage_path/Dolphin/Dump" "$XDG_DATA_HOME/dolphin-emu/Dump"
+
+      set_setting_value "$dolphin_config" "BIOS" "$bios_path" "dolphin" "GBA"
+      set_setting_value "$dolphin_config" "SavesPath" "$saves_path/gba" "dolphin" "GBA"
+      set_setting_value "$dolphin_config" "ISOPath0" "$roms_path/wii" "dolphin" "General"
+      set_setting_value "$dolphin_config" "ISOPath1" "$roms_path/gc" "dolphin" "General"
+      set_setting_value "$dolphin_config" "WiiSDCardPath" "$saves_path/wii/dolphin/sd.raw" "dolphin" "General"
     ;;
 
     postmove)
@@ -100,9 +103,11 @@ _prepare_component::dolphin() {
       dir_prep "$saves_path/wii/dolphin" "$XDG_DATA_HOME/dolphin-emu/Wii"
       dir_prep "$mods_path/Dolphin/GraphicMods" "$dolphin_mods_path"
       dir_prep "$texture_packs_path/Dolphin/Textures" "$dolphin_textures_path"
-      dir_prep "$shaders_path/Dolphin" "$XDG_DATA_HOME/dolphin-emu/Shaders"
+      dir_prep "$texture_packs_path/Dolphin/DynamicInputTextures" "$XDG_DATA_HOME/dolphin-emu/Load/DynamicInputTextures"
+      dir_prep "$shaders_path/Dolphin/Shaders" "$XDG_DATA_HOME/dolphin-emu/Shaders"
       dir_prep "$logs_path/Dolphin" "$XDG_DATA_HOME/dolphin-emu/Logs"
       dir_prep "$storage_path/Dolphin/Dump" "$XDG_DATA_HOME/dolphin-emu/Dump"
+
       set_setting_value "$dolphin_config" "BIOS" "$bios_path" "dolphin" "GBA"
       set_setting_value "$dolphin_config" "SavesPath" "$saves_path/gba" "dolphin" "GBA"
       set_setting_value "$dolphin_config" "ISOPath0" "$roms_path/wii" "dolphin" "General"
@@ -195,6 +200,14 @@ _post_update_legacy::dolphin() {
     prepare_component "postmove" "dolphin"
 
   fi
+
+  if check_version_is_older_than "$previous_version" "0.11.0b"; then
+  log i "0.11.0b Upgrade - Shaders and Textures"
+
+  dir_prep "$shaders_path/Dolphin/Shaders" "$XDG_DATA_HOME/dolphin-emu/Shaders"
+  dir_prep "$texture_packs_path/Dolphin/DynamicInputTextures" "$XDG_DATA_HOME/dolphin-emu/Load/DynamicInputTextures"
+
+ fi
 
   #######################################
   # These actions happen at every update
