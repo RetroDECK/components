@@ -9,6 +9,14 @@ export LUDUSAVI_READ_OK=0
 export LUDUSAVI_READ_MISSING=1       # no sidecar present on the remote
 export LUDUSAVI_READ_MALFORMED=2     # present but not valid/complete JSON
 export LUDUSAVI_READ_UNREACHABLE=3   # network/auth/config failure
+
+# evaluate_gate::ludusavi exit codes
+export LUDUSAVI_GATE_SYNC=0          # remote moved since this install last converged with it
+export LUDUSAVI_GATE_NOTHING_NEW=1   # remote unchanged since this install last converged
+export LUDUSAVI_GATE_FIRST_UPLOAD=2  # remote is empty; mark pending upload
+export LUDUSAVI_GATE_BLOCKED=3       # remote is newer than local
+export LUDUSAVI_GATE_UNSAFE=4        # unknown state; refuse rather than assume
+export LUDUSAVI_GATE_UNREACHABLE=5   # could not reach the remote
 # Component definitions
 export LUDUSAVI_PROVIDERS=(
   "drive|Google Drive|drive|oauth"
@@ -317,4 +325,88 @@ sidecar_marker::ludusavi() {
   # Prints the sync markers from the sidecar contents
 
   jq -r '"\(.install_id)/\(.updated_at)"' <<< "$1"
+}
+
+# ------------------
+# Ludusavi cloud validation
+# ------------------
+
+evaluate_gate::ludusavi() {
+  # USAGE: evaluate_gate::ludusavi "$last_synced_marker"
+  # Validates the contents of the remote sidecar file, compares them to the local last synced marker and determines if a sync is needed
+
+  local local_version="$1"
+  local last_synced_marker="$2"
+
+  local contents
+  local read_status
+
+  contents="$(sidecar_read::ludusavi)"
+  read_status=$?
+
+  case "$read_status" in
+    "$LUDUSAVI_READ_UNREACHABLE")
+      return "$LUDUSAVI_GATE_UNREACHABLE"
+      ;;
+    "$LUDUSAVI_READ_MISSING")
+      # Missing on an empty remote is a first run. Missing on a populated
+      # remote means something wrote data we cannot account for.
+      if remote_is_empty::ludusavi; then
+        return "$LUDUSAVI_GATE_FIRST_UPLOAD"
+      fi
+      log w "remote holds data but has no sidecar; refusing to sync"
+      return "$LUDUSAVI_GATE_UNSAFE"
+      ;;
+    "$LUDUSAVI_READ_MALFORMED")
+      return "$LUDUSAVI_GATE_UNSAFE"
+      ;;
+  esac
+
+  local remote_state
+  remote_state="$(jq -r '.state' <<< "$contents")"
+
+  if [[ "$remote_state" != "ok" ]]; then
+    log w "remote sidecar state is '$remote_state'; a previous upload did not finish"
+    return "$LUDUSAVI_GATE_UNSAFE"
+  fi
+
+  local remote_schema
+  remote_schema="$(jq -r '.schema' <<< "$contents")"
+
+  if [[ "$remote_schema" -gt "$LUDUSAVI_SIDECAR_SCHEMA" ]]; then
+    log w "remote sidecar schema $remote_schema is newer than supported"
+    return "$LUDUSAVI_GATE_UNSAFE"
+  fi
+
+  local remote_version
+  remote_version="$(jq -r '.retrodeck_version' <<< "$contents")"
+
+  compare_versions "$remote_version" "$local_version"
+  local comparison=$?
+
+  case "$comparison" in
+    "$RD_VERSION_NEWER")
+      log w "cloud backup is from RetroDECK $remote_version, local is $local_version"
+      return "$LUDUSAVI_GATE_BLOCKED"
+      ;;
+    "$RD_VERSION_INCOMPARABLE")
+      log w "cloud backup version $remote_version cannot be ordered against local $local_version"
+      return "$LUDUSAVI_GATE_UNSAFE"
+      ;;
+    "$RD_VERSION_UNPARSEABLE")
+      log w "could not parse version pair: '$remote_version' / '$local_version'"
+      return "$LUDUSAVI_GATE_UNSAFE"
+      ;;
+  esac
+
+  # Check sidecar sync stamp for changes
+  local remote_marker
+  remote_marker="$(sidecar_marker::ludusavi "$contents")"
+  echo "$remote_marker"
+
+  if [[ -n "$last_synced_marker" && "$remote_marker" == "$last_synced_marker" ]]; then
+    return "$LUDUSAVI_GATE_NOTHING_NEW"
+  fi
+
+  return "$LUDUSAVI_GATE_SYNC"
 }
