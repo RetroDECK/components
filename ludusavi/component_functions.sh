@@ -4,6 +4,11 @@
 export LUDUSAVI_CONFIG_DIR="$XDG_CONFIG_HOME/ludusavi"
 export LUDUSAVI_CONFIG_FILE="$LUDUSAVI_CONFIG_DIR/config.yaml"
 export LUDUSAVI_RCLONE_CONFIG_FILE="$XDG_CONFIG_HOME/ludusavi/rclone.conf"
+# sidecar_read::ludusavi exit codes
+export LUDUSAVI_READ_OK=0
+export LUDUSAVI_READ_MISSING=1       # no sidecar present on the remote
+export LUDUSAVI_READ_MALFORMED=2     # present but not valid/complete JSON
+export LUDUSAVI_READ_UNREACHABLE=3   # network/auth/config failure
 # Component definitions
 export LUDUSAVI_PROVIDERS=(
   "drive|Google Drive|drive|oauth"
@@ -210,4 +215,106 @@ provider_field::ludusavi() {
   done
 
   return 1
+}
+
+# ------------------
+# Ludusavi sidecar handlers
+# ------------------
+
+sidecar_read::ludusavi() {
+  # USAGE: sidecar_read::ludusavi
+  # Checks the remote sidecar file for syntax and returns contents if there are no issues
+
+  local url
+  url="$(sidecar_url::ludusavi)"
+
+  local contents
+  local rclone_status
+
+  contents="$(rclone::ludusavi cat "$url" 2>/dev/null)"
+  rclone_status=$?
+
+  if [[ "$rclone_status" -ne 0 ]]; then
+    # rclone does not reliably distinguish "not found" from "unreachable" by exit code, so probe remote to tell them apart
+    if rclone::ludusavi lsf "${LUDUSAVI_REMOTE}" --max-depth 1 > /dev/null 2>&1; then
+      log d "no sidecar at $url"
+      return "$LUDUSAVI_READ_MISSING"
+    fi
+    log w "remote unreachable while reading sidecar"
+    return "$LUDUSAVI_READ_UNREACHABLE"
+  fi
+
+  if [[ -z "$contents" ]]; then
+    log w "sidecar is empty"
+    return "$LUDUSAVI_READ_MALFORMED"
+  fi
+
+  if ! jq -e . > /dev/null 2>&1 <<< "$contents"; then
+    log w "sidecar is not valid JSON"
+    return "$LUDUSAVI_READ_MALFORMED"
+  fi
+
+  # Validate sidecar file 
+  if ! jq -e '
+        has("schema") and has("retrodeck_version")
+        and has("install_id") and has("updated_at") and has("state")
+      ' > /dev/null 2>&1 <<< "$contents"; then
+    log w "sidecar is missing required fields"
+    return "$LUDUSAVI_READ_MALFORMED"
+  fi
+
+  echo "$contents"
+  return "$LUDUSAVI_READ_OK"
+}
+
+sidecar_write::ludusavi() {
+  # USAGE: sidecar_write::ludusavi "$install_id" "<uploading|ok>"
+  #
+  # "uploading" is written before the transfer starts, "ok" is written after it completes
+  # This way an interrupted sync is marked accurately
+
+  local install_id="$1"
+  local state="$2"
+
+  if [[ "$state" != "uploading" && "$state" != "ok" ]]; then
+    log e "invalid sidecar state: $state"
+    return 1
+  fi
+
+  local updated_at
+  updated_at="$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+
+  local payload
+  payload="$(jq -n \
+    --argjson schema "$LUDUSAVI_SIDECAR_SCHEMA" \
+    --arg retrodeck_version "$version" \
+    --arg install_id "$install_id" \
+    --arg updated_at "$updated_at" \
+    --arg state "$state" \
+    '{
+      schema: $schema,
+      retrodeck_version: $retrodeck_version,
+      install_id: $install_id,
+      updated_at: $updated_at,
+      state: $state
+    }')"
+
+  local url
+  url="$(sidecar_url:ludusavi)"
+
+  if ! rclone::ludusavi rcat "$url" <<< "$payload"; then
+    log e "failed to write sidecar to $url"
+    return 1
+  fi
+
+  # Save the install ID and time so the next launch can tell if anything has written to the remote since
+  echo "${install_id}/${updated_at}"
+  return 0
+}
+
+sidecar_marker::ludusavi() {
+  # USAGE: sidecar_marker::ludusavi "$payload"
+  # Prints the sync markers from the sidecar contents
+
+  jq -r '"\(.install_id)/\(.updated_at)"' <<< "$1"
 }
