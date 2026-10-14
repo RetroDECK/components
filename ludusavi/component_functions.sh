@@ -16,12 +16,8 @@ _prepare_component::ludusavi() {
       log i "Resetting Ludusavi"
       log i "--------------------------------"
 
-      create_dir -d "$ludusavi_config_dir"
-      cp -fv "$component_config/config.yaml" "$ludusavi_config_file"
-    ;;
-
-    postmove)
-
+      create_dir -d "$LUDUSAVI_CONFIG_DIR"
+      cp -fv "$component_config/config.yaml" "$LUDUSAVI_CONFIG_FILE"
     ;;
 
     startup)
