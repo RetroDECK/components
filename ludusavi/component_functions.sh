@@ -225,6 +225,32 @@ provider_field::ludusavi() {
   return 1
 }
 
+remote_is_empty::ludusavi() {
+  # USAGE: remote_is_empty::ludusavi
+  # Returns 0 when the remote root holds nothing, 1 when it holds data, 2 when the remote could not be reached at all
+  # A missing directory counts as empty, as a first-run remote has no root yet
+
+  local listing
+  local rclone_status
+
+  listing="$(rclone::ludusavi lsf "${LUDUSAVI_REMOTE}${LUDUSAVI_REMOTE_ROOT}" --max-depth 1 2>/dev/null)"
+  rclone_status=$?
+
+  if [[ "$rclone_status" -ne 0 ]]; then
+    # rclone does not reliably distinguish "not found" from "unreachable" by exit code, so probe remote to tell them apart
+    if rclone::ludusavi lsf "${LUDUSAVI_REMOTE}" --max-depth 1 > /dev/null 2>&1; then
+      return 0
+    fi
+    return 2
+  fi
+
+  if [[ -z "$listing" ]]; then
+    return 0
+  fi
+
+  return 1
+}
+
 # ------------------
 # Ludusavi sidecar handlers
 # ------------------
