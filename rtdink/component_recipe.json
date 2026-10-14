@@ -1,0 +1,70 @@
+{
+  "rtdink": [
+    {
+      "source_url": "https://www.rtsoft.com/dink/DinkSmallwoodHD-x86_64.flatpak",
+      "source_type": "http",
+      "version": "local",
+      "extraction_type": "local"
+    },
+    {
+      "source_url": "$EXTRACTED_PATH",
+      "source_type": "flatpak-bundle",
+      "dest": "user",
+      "version": "com.rtsoft.DinkSmallwoodHD",
+      "extraction_type": "flatpak",
+      "assets": [
+        {
+          "type": "dir",
+          "source": "share/com.rtsoft.DinkSmallwoodHD",
+          "dest": "share/com.rtsoft.DinkSmallwoodHD"
+        },
+        {
+          "type": "dir",
+          "source": "share/licenses",
+          "dest": "docs"
+        },
+        {
+          "type": "dir",
+          "source": "bin",
+          "dest": "bin"
+        },
+        {
+          "type": "file",
+          "source": "bin/fluidsynth",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "dir",
+          "source": "lib",
+          "dest": "lib"
+        },
+        {
+          "type": "create",
+          "dest": "component_version",
+          "contents": "$SOURCE_VERSION"
+        },
+        {
+          "type": "file",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/component_functions.sh",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/component_launcher.sh",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/component_manifest.json",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/component_recipe.json",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        }
+      ],
+      "libs": []
+    }
+  ]
+}
