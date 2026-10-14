@@ -523,8 +523,8 @@ changed_games::ludusavi() {
   ' <<< "$backup_json" 2>/dev/null
 }
 
-ludusavi::stamp_backups() {
-  # USAGE: ludusavi::stamp_backups "$version" "$backup_json"
+stamp_backups::ludusavi() {
+  # USAGE: stamp_backups::ludusavi "$version" "$backup_json"
   # Writes "RetroDECK <version>" as the comment on each changed entries latest backup
 
   local version="$1"
