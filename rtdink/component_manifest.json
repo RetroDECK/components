@@ -20,7 +20,7 @@
         "emulators": [
           {
             "name": "RTDINK",
-            "description": "RTDink Dink Smallwood Engine",
+            "description": "RTDink Dink Smallwood HD Engine",
             "rules": [
               {
                 "type": "staticpath",
@@ -35,7 +35,7 @@
       "es_systems": [
         {
           "name": "dink",
-          "fullname": "Dink Smallwood",
+          "fullname": "Dink Smallwood HD",
           "path": "%ROMPATH%/dink",
           "extension": ".dink",
           "commands": [
