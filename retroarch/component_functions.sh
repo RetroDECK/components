@@ -117,11 +117,15 @@ _prepare_component::retroarch() {
         log i "RetroArch cheats backed up to $backup_file"
       fi
 
-      # Configure the Config
+      log i "--------------------------------"
+      log i "Preparing RetroArch Config Settings"
+      log i "--------------------------------"
+
       cp -fv "$component_config/retroarch.cfg" "$retroarch_config"
       cp -fv "$component_config/retroarch-core-options.cfg" "$retroarch_config_core_options"
       rsync -rlD --mkpath "$component_config/core-overrides/" "$XDG_CONFIG_HOME/retroarch/config/"
       rsync -rlD --mkpath "$component_config/remaps/" "$XDG_CONFIG_HOME/retroarch/config/remaps/"
+
       set_setting_value "$retroarch_config" "savefile_directory" "$saves_path" "retroarch"
       set_setting_value "$retroarch_config" "savestate_directory" "$states_path" "retroarch"
       set_setting_value "$retroarch_config" "screenshot_directory" "$screenshots_path/retroarch" "retroarch"
@@ -145,19 +149,23 @@ _prepare_component::retroarch() {
         set_setting_value "$retroarch_config" "video_driver" "gl" "retroarch"
       fi
 
+      log i "--------------------------------"
+      log i "Preparing RetroArch Extra Dirs"
+      log i "--------------------------------"
+
       # Video
       create_dir "$videos_path/retroarch"
 
       # BIOS Directories
       create_dir "$bios_path/np2kai"
-      create_dir "$bios_path/dc"
-      create_dir "$bios_path/Mupen64plus"
       create_dir "$bios_path/quasi88"
       create_dir "$bios_path/same_cdi/bios"
 
+      # MAME
+      log i "--------------------------------"
+      log i "Preparing MAME LIBRETRO"
+      log i "--------------------------------"
 
-
-      # BIOS MAME Directories
       create_dir "$bios_path/mame2003/samples"
       create_dir "$bios_path/mame2003/artwork"
       create_dir "$bios_path/mame2003-plus/samples"
@@ -183,9 +191,38 @@ _prepare_component::retroarch() {
       ln -s "$retroarch_extras_path/cores" "$XDG_CONFIG_HOME/retroarch/cores" # Link RO cores to RA config dir so ES-DE can find it
       dir_prep "$borders_path/retroarch/overlays" "$XDG_CONFIG_HOME/retroarch/overlays"
 
+
+      # Azahar
+      log i "-----------------------------------------------------------"
+      log i "Prepearing Azahar LIBRETRO"
+      log i "-----------------------------------------------------------"    
+
+      dir_prep "$texture_packs_path/retroarch-core/Azahar/textures" "$saves_path/n3ds/Azahar/load/textures"
+      dir_prep "$mods_path/retroarch-core/Azahar/mods" "$saves_path/n3ds/Azahar/load/mods"
+      dir_prep "$shaders_path/retroarch-core/Azahar/shaders" "$saves_path/n3ds/Azahar/shaders"
+      dir_prep "$cheats_path/retroarch-core/Azahar/cheats" "$saves_path/n3ds/Azahar/cheats"
+
+      # Citra
+      log i "-----------------------------------------------------------"
+      log i "Prepearing Citra LIBRETRO"
+      log i "-----------------------------------------------------------"    
+
+      dir_prep "$mods_path/retroarch-core/Citra/mods" "$saves_path/n3ds/Citra/load/mods"
+      dir_prep "$texture_packs_path/retroarch-core/Citra/textures" "$saves_path/n3ds/Citra/load/textures"
+      dir_prep "$shaders_path/retroarch-core/Citra/shaders" "$saves_path/n3ds/Citra/shader"
+      dir_prep "$cheats_path/retroarch-core/Citra/cheats" "$saves_path/n3ds/Citra/cheats"
+
+      # Dolphin
+      log i "-----------------------------------------------------------"
+      log i "Prepearing Dolphin LIBRETRO"
+      log i "-----------------------------------------------------------"     
+
+      dir_prep "$texture_packs_path/retroarch-core/Dolphin/Textures" "$XDG_CONFIG_HOME/retroarch/saves/dolphin-emu/User/Load/Textures/"
+      dir_prep "$mods_path/retroarch-core/Dolphin/GraphicMods" "$XDG_CONFIG_HOME/retroarch/saves/dolphin-emu/User/Load/GraphicMods"
+
       # FBNEO
       log i "--------------------------------"
-      log i "Preparing FBNEO_LIBRETRO"
+      log i "Preparing FBNEO LIBRETRO"
       log i "--------------------------------"
 
       create_dir "$bios_path/fbneo/samples"
@@ -199,7 +236,7 @@ _prepare_component::retroarch() {
 
       # PRBOOM
       log i "--------------------------------"
-      log i "Preparing PRBOOM_LIBRETRO"
+      log i "Preparing PRBOOM LIBRETRO"
       log i "--------------------------------"
 
       cp -f "$retroarch_extras_path/prboom.wad" "$bios_path/prboom.wad"
@@ -239,7 +276,7 @@ _prepare_component::retroarch() {
 
       # ECWOLF
       log i "--------------------------------"
-      log i "Preparing ECWOLF_LIBRETRO"
+      log i "Preparing ECWOLF LIBRETRO"
       log i "--------------------------------"
 
       cp -f "$retroarch_extras_path/ecwolf.pk3" "$bios_path/ecwolf.pk3"
@@ -307,26 +344,12 @@ _prepare_component::retroarch() {
       log i "Prepearing PPSSPP LIBRETRO"
       log i "-----------------------------------------------------------"     
 
-      dir_prep "$texture_packs_path/retroarch-core/PPSSPP/TEXTURES" "$XDG_CONFIG_HOME/retroarch/saves/PPSSPP/PSP/TEXTURES"
-      dir_prep "$mods_path/retroarch-core/PPSSPP/PLUGINS" "$XDG_CONFIG_HOME/retroarch/saves/PPSSPP/PSP/PLUGINS"
-      dir_prep "$shaders_path/retroarch-core/PPSSPP/shaders" "$XDG_CONFIG_HOME/retroarch/saves/PPSSPP/PSP/shaders"
-      dir_prep "$storage_path/retroarch-core/PPSSPP/GAME" "$XDG_CONFIG_HOME/retroarch/saves/PPSSPP/PSP/GAME"
+      dir_prep "$texture_packs_path/retroarch-core/PPSSPP/TEXTURES" "$saves_path/PPSSPP/PSP/TEXTURES"
+      dir_prep "$mods_path/retroarch-core/PPSSPP/PLUGINS" "$saves_path/PPSSPP/PSP/PLUGINS"
+      dir_prep "$shaders_path/retroarch-core/PPSSPP/shaders" "$saves_path/saves/PPSSPP/PSP/shaders"
+      dir_prep "$storage_path/retroarch-core/PPSSPP/GAME" "$saves_path/PPSSPP/PSP/GAME"
 
-      # Dolphin
-      log i "-----------------------------------------------------------"
-      log i "Prepearing Dolphin LIBRETRO"
-      log i "-----------------------------------------------------------"     
 
-      dir_prep "$texture_packs_path/retroarch-core/Dolphin/Textures" "$XDG_CONFIG_HOME/retroarch/saves/dolphin-emu/User/Load/Textures/"
-      dir_prep "$mods_path/retroarch-core/Dolphin/GraphicMods" "$XDG_CONFIG_HOME/retroarch/saves/dolphin-emu/User/Load/GraphicMods"
-
-      # Citra
-      log i "-----------------------------------------------------------"
-      log i "Prepearing Citra LIBRETRO"
-      log i "-----------------------------------------------------------"    
-
-      dir_prep "$texture_packs_path/retroarch-core/Citra/textures" "$XDG_CONFIG_HOME/retroarch/saves/Citra/load/textures"
-      dir_prep "$mods_path/retroarch-core/Citra/mods" "$XDG_CONFIG_HOME/retroarch/saves/Citra/load/mods"
 
       # Mesen
       log i "-----------------------------------------------------------"
@@ -338,8 +361,9 @@ _prepare_component::retroarch() {
       # Mupen64Plus
       log i "-----------------------------------------------------------"
       log i "Prepearing Mupen64Plus LIBRETRO"
-      log i "-----------------------------------------------------------"    
+      log i "-----------------------------------------------------------"  
 
+      create_dir "$bios_path/Mupen64plus"
       dir_prep "$texture_packs_path/retroarch-core/Mupen64Plus/cache" "$bios_path/Mupen64plus/cache"
       dir_prep "$texture_packs_path/retroarch-core/Mupen64Plus/hires_texture" "$bios_path/Mupen64plus/hires_texture"
 
@@ -348,7 +372,9 @@ _prepare_component::retroarch() {
       log i "Prepearing Flycast LIBRETRO"
       log i "-----------------------------------------------------------"    
 
+      create_dir "$bios_path/dc"
       dir_prep "$texture_packs_path/retroarch-core/Flycast/textures" "$bios_path/dc/textures"
+
 
       # Flycast VMUs
       mkdir -p "$saves_path/dreamcast/flycast_libretro"
@@ -368,9 +394,17 @@ _prepare_component::retroarch() {
       log i "Post-moving RetroArch"
       log i "------------------------"
 
+      # Azahar
+      dir_prep "$texture_packs_path/retroarch-core/Azahar/textures" "$saves_path/n3ds/Azahar/load/textures"
+      dir_prep "$mods_path/retroarch-core/Azahar/mods" "$saves_path/n3ds/Azahar/load/mods"
+      dir_prep "$shaders_path/retroarch-core/Azahar/shaders" "$saves_path/n3ds/Azahar/shaders"
+      dir_prep "$cheats_path/retroarch-core/Azahar/cheats" "$saves_path/n3ds/Azahar/cheats"
+
       # Citra
-      dir_prep "$mods_path/retroarch-core/Citra/mods" "$XDG_CONFIG_HOME/retroarch/saves/Citra/load/mods"
-      dir_prep "$texture_packs_path/retroarch-core/Citra/textures" "$XDG_CONFIG_HOME/retroarch/saves/Citra/load/textures"
+      dir_prep "$mods_path/retroarch-core/Citra/mods" "$saves_path/n3ds/Citra/load/mods"
+      dir_prep "$texture_packs_path/retroarch-core/Citra/textures" "$saves_path/n3ds/Citra/load/textures"
+      dir_prep "$shaders_path/retroarch-core/Citra/shaders" "$saves_path/n3ds/Citra/shader"
+      dir_prep "$cheats_path/retroarch-core/Citra/cheats" "$saves_path/n3ds/Citra/cheats"
 
       # Dolphin
       dir_prep "$texture_packs_path/retroarch-core/Dolphin/Textures" "$XDG_CONFIG_HOME/retroarch/saves/dolphin-emu/User/Load/Textures/"
@@ -412,10 +446,10 @@ _prepare_component::retroarch() {
       dir_prep "$texture_packs_path/retroarch-core/pcsx2/textures" "$bios_path/pcsx2/textures"
 
       # PPSSPP
-      dir_prep "$storage_path/retroarch-core/PPSSPP/GAME" "$XDG_CONFIG_HOME/retroarch/saves/PPSSPP/PSP/GAME"
-      dir_prep "$shaders_path/retroarch-core/PPSSPP/shaders" "$XDG_CONFIG_HOME/retroarch/saves/PPSSPP/PSP/shaders"
-      dir_prep "$texture_packs_path/retroarch-core/PPSSPP/TEXTURES" "$XDG_CONFIG_HOME/retroarch/saves/PPSSPP/PSP/TEXTURES"
-      dir_prep "$mods_path/retroarch-core/PPSSPP/PLUGINS" "$XDG_CONFIG_HOME/retroarch/saves/PPSSPP/PSP/PLUGINS"
+      dir_prep "$texture_packs_path/retroarch-core/PPSSPP/TEXTURES" "$saves_path/PPSSPP/PSP/TEXTURES"
+      dir_prep "$mods_path/retroarch-core/PPSSPP/PLUGINS" "$saves_path/PPSSPP/PSP/PLUGINS"
+      dir_prep "$shaders_path/retroarch-core/PPSSPP/shaders" "$saves_path/saves/PPSSPP/PSP/shaders"
+      dir_prep "$storage_path/retroarch-core/PPSSPP/GAME" "$saves_path/PPSSPP/PSP/GAME"
 
       # RPCS3
       dir_prep "$storage_path/retroarch-core/rpcs3/dev_hdd0" "$bios_path/rpcs3/dev_hdd0"
@@ -596,84 +630,98 @@ _post_update_legacy::retroarch() {
     set_setting_value "$retroarch_config" "system_directory" "$bios_path" "retroarch"
   fi
 
-if [[ $(check_version_is_older_than "$version_being_updated" "0.10.9b") == "true" ]]; then
-  create_dir "$screenshots_path/retroarch"
-  set_setting_value "$retroarch_config" "screenshot_directory" "$screenshots_path/retroarch" "retroarch"
-  cp -rf "$retroarch_extras_path/cannonball" "$bios_path/cannonball"
-  cp -rf "$retroarch_extras_path/dinothawr" "$bios_path/dinothawr"
-  cp -rf "$retroarch_extras_path/DirkSimple" "$bios_path/DirkSimple"
-  cp -rf "$retroarch_extras_path/dolphin-emu" "$bios_path/dolphin-emu"
-  cp -rf "$retroarch_extras_path/ecwolf.pk3" "$bios_path/ecwolf.pk3"
-  cp -rf "$retroarch_extras_path/nxengine" "$bios_path/nxengine"
-  cp -rf "$retroarch_extras_path/prboom.wad" "$bios_path/prboom.wad"
-  cp -rf "$retroarch_extras_path/qemu" "$bios_path/qemu"
-  cp -rf "$retroarch_extras_path/xrick" "$bios_path/xrick"
+  if [[ $(check_version_is_older_than "$version_being_updated" "0.10.9b") == "true" ]]; then
+    create_dir "$screenshots_path/retroarch"
+    set_setting_value "$retroarch_config" "screenshot_directory" "$screenshots_path/retroarch" "retroarch"
+    cp -rf "$retroarch_extras_path/cannonball" "$bios_path/cannonball"
+    cp -rf "$retroarch_extras_path/dinothawr" "$bios_path/dinothawr"
+    cp -rf "$retroarch_extras_path/DirkSimple" "$bios_path/DirkSimple"
+    cp -rf "$retroarch_extras_path/dolphin-emu" "$bios_path/dolphin-emu"
+    cp -rf "$retroarch_extras_path/ecwolf.pk3" "$bios_path/ecwolf.pk3"
+    cp -rf "$retroarch_extras_path/nxengine" "$bios_path/nxengine"
+    cp -rf "$retroarch_extras_path/prboom.wad" "$bios_path/prboom.wad"
+    cp -rf "$retroarch_extras_path/qemu" "$bios_path/qemu"
+    cp -rf "$retroarch_extras_path/xrick" "$bios_path/xrick"
 
-  dir_prep "$saves_path/ps2/retroarch-core/pcsx2/memcards" "$bios_path/pcsx2/memcards"
-  dir_prep "$shaders_path/retroarch-core/pcsx2/shaders" "$bios_path/pcsx2/shaders"
-  dir_prep "$cheats_path/retroarch-core/pcsx2/cheats" "$bios_path/pcsx2/cheats"
-  dir_prep "$cheats_path/retroarch-core/pcsx2/cheats_ws" "$bios_path/pcsx2/cheats_ws"
-  dir_prep "$cheats_path/retroarch-core/pcsx2/cheats_ni" "$bios_path/pcsx2/cheats_ni"
-  dir_prep "$texture_packs_path/retroarch-core/pcsx2/textures" "$bios_path/pcsx2/textures"
+    dir_prep "$saves_path/ps2/retroarch-core/pcsx2/memcards" "$bios_path/pcsx2/memcards"
+    dir_prep "$shaders_path/retroarch-core/pcsx2/shaders" "$bios_path/pcsx2/shaders"
+    dir_prep "$cheats_path/retroarch-core/pcsx2/cheats" "$bios_path/pcsx2/cheats"
+    dir_prep "$cheats_path/retroarch-core/pcsx2/cheats_ws" "$bios_path/pcsx2/cheats_ws"
+    dir_prep "$cheats_path/retroarch-core/pcsx2/cheats_ni" "$bios_path/pcsx2/cheats_ni"
+    dir_prep "$texture_packs_path/retroarch-core/pcsx2/textures" "$bios_path/pcsx2/textures"
 
-fi
+  fi
 
-if [[ $(check_version_is_older_than "$version_being_updated" "0.10.10b") == "true" ]]; then
+  if [[ $(check_version_is_older_than "$version_being_updated" "0.10.10b") == "true" ]]; then
 
-  dir_prep "$mods_path/retroarch-core/PPSSPP/PLUGINS" "$XDG_CONFIG_HOME/retroarch/saves/PPSSPP/PSP/PLUGINS"
-  dir_prep "$shaders_path/retroarch-core/PPSSPP/shaders" "$XDG_CONFIG_HOME/retroarch/saves/PPSSPP/PSP/shaders"
+    dir_prep "$mods_path/retroarch-core/PPSSPP/PLUGINS" "$saves_path/PPSSPP/PSP/PLUGINS"
+    dir_prep "$shaders_path/retroarch-core/PPSSPP/shaders" "$saves_path/PPSSPPPSP/shaders"
 
-  create_dir -d "$storage_path/retroarch-core/PPSSPP/GAME"
-  cp -fv "$XDG_CONFIG_HOME/retroarch/saves/PPSSPP/PSP/GAME/"* "$storage_path/retroarch-core/PPSSPP/GAME"
-  dir_prep "$storage_path/retroarch-core/PPSSPP/GAME" "$XDG_CONFIG_HOME/retroarch/saves/PPSSPP/PSP/GAME"
+    create_dir -d "$storage_path/retroarch-core/PPSSPP/GAME"
+    cp -fv "$XDG_CONFIG_HOME/retroarch/saves/PPSSPP/PSP/GAME/"* "$storage_path/retroarch-core/PPSSPP/GAME"
+    dir_prep "$storage_path/retroarch-core/PPSSPP/GAME" "$saves_path/PPSSPP/PSP/GAME"
 
-  set_setting_value "$retroarch_config_core_options" "melonds_opengl_better_polygons" "enabled" "retroarch"
-  set_setting_value "$retroarch_config_core_options" "melonds_opengl_filtering" "nearest" "retroarch"
-  set_setting_value "$retroarch_config_core_options" "melonds_opengl_resolution" "3" "retroarch"
-  delete_setting "$retroarch_config_core_options" "melonds_opengl_renderer" "retroarch"
-  add_setting "$retroarch_config_core_options" "melonds_number_of_screen_layouts" "8" "retroarch"
-  add_setting "$retroarch_config_core_options" "melonds_render_mode" "opengl" "retroarch"
-fi
+    set_setting_value "$retroarch_config_core_options" "melonds_opengl_better_polygons" "enabled" "retroarch"
+    set_setting_value "$retroarch_config_core_options" "melonds_opengl_filtering" "nearest" "retroarch"
+    set_setting_value "$retroarch_config_core_options" "melonds_opengl_resolution" "3" "retroarch"
+    delete_setting "$retroarch_config_core_options" "melonds_opengl_renderer" "retroarch"
+    add_setting "$retroarch_config_core_options" "melonds_number_of_screen_layouts" "8" "retroarch"
+    add_setting "$retroarch_config_core_options" "melonds_render_mode" "opengl" "retroarch"
+  fi
 
-if check_version_is_older_than "$version_being_updated" "0.11.0b"; then
-  cp -f "$retroarch_extras_path/pcsx-redux/openbios.bin" "$bios_path/openbios.bin"
+  if check_version_is_older_than "$version_being_updated" "0.11.0b"; then
+    cp -f "$retroarch_extras_path/pcsx-redux/openbios.bin" "$bios_path/openbios.bin"
 
-  create_dir "$saves_path/ps2/retroarch-core/pcsx2/memcards"
-  create_dir "$backups_path/retroarch-core/pcsx2/memcards"
-  create_dir "$backups_path/retroarch-core/LRPS2/memcards"
+    create_dir "$saves_path/ps2/retroarch-core/pcsx2/memcards"
+    create_dir "$backups_path/retroarch-core/pcsx2/memcards"
+    create_dir "$backups_path/retroarch-core/LRPS2/memcards"
 
-  cp -rf "$bios_path/pcsx2/memcards" "$backups_path/retroarch-core/pcsx2/memcards"
-  cp -rf "$saves_path/ps2/retroarch-core/LRPS2/memcards" "$backups_path/retroarch-core/LRPS2/memcards"
+    cp -rf "$bios_path/pcsx2/memcards" "$backups_path/retroarch-core/pcsx2/memcards"
+    cp -rf "$saves_path/ps2/retroarch-core/LRPS2/memcards" "$backups_path/retroarch-core/LRPS2/memcards"
 
-  cp -rf "$bios_path/pcsx2/memcards" "$saves_path/ps2/retroarch-core/pcsx2/memcards"
-  cp -rf "$saves_path/ps2/retroarch-core/LRPS2/memcards" "$saves_path/ps2/retroarch-core/pcsx2/memcards"
+    cp -rf "$bios_path/pcsx2/memcards" "$saves_path/ps2/retroarch-core/pcsx2/memcards"
+    cp -rf "$saves_path/ps2/retroarch-core/LRPS2/memcards" "$saves_path/ps2/retroarch-core/pcsx2/memcards"
 
-  create_dir "$storage_path/retroarch-core/pcsx2/resources"
-  cp -rf "$retroarch_extras_path/pcsx2/resources" "$storage_path/retroarch-core/pcsx2/resources" 
+    create_dir "$storage_path/retroarch-core/pcsx2/resources"
+    cp -rf "$retroarch_extras_path/pcsx2/resources" "$storage_path/retroarch-core/pcsx2/resources" 
 
-  dir_prep "$bios_path" "$bios_path/pcsx2"
-  
-  dir_prep "$saves_path/ps2/retroarch-core/pcsx2/memcards" "$bios_path/pcsx2/memcards"
-  dir_prep "$storage_path/retroarch-core/pcsx2/inis" "$bios_path/pcsx2/inis"
-  dir_prep "$storage_path/retroarch-core/pcsx2/resources" "$bios_path/pcsx2/resources"
-  dir_prep "$shaders_path/retroarch-core/pcsx2/shaders" "$bios_path/pcsx2/shaders"
-  dir_prep "$cheats_path/retroarch-core/pcsx2/cheats" "$bios_path/pcsx2/cheats"
-  dir_prep "$cheats_path/retroarch-core/pcsx2/cheats_ws" "$bios_path/pcsx2/cheats_ws"
-  dir_prep "$cheats_path/retroarch-core/pcsx2/cheats_ni" "$bios_path/pcsx2/cheats_ni"
-  dir_prep "$texture_packs_path/retroarch-core/pcsx2/textures" "$bios_path/pcsx2/textures"
+    dir_prep "$bios_path" "$bios_path/pcsx2"
+    
+    dir_prep "$saves_path/ps2/retroarch-core/pcsx2/memcards" "$bios_path/pcsx2/memcards"
+    dir_prep "$storage_path/retroarch-core/pcsx2/inis" "$bios_path/pcsx2/inis"
+    dir_prep "$storage_path/retroarch-core/pcsx2/resources" "$bios_path/pcsx2/resources"
+    dir_prep "$shaders_path/retroarch-core/pcsx2/shaders" "$bios_path/pcsx2/shaders"
+    dir_prep "$cheats_path/retroarch-core/pcsx2/cheats" "$bios_path/pcsx2/cheats"
+    dir_prep "$cheats_path/retroarch-core/pcsx2/cheats_ws" "$bios_path/pcsx2/cheats_ws"
+    dir_prep "$cheats_path/retroarch-core/pcsx2/cheats_ni" "$bios_path/pcsx2/cheats_ni"
+    dir_prep "$texture_packs_path/retroarch-core/pcsx2/textures" "$bios_path/pcsx2/textures"
 
-  dir_prep "$storage_path/retroarch-core/rpcs3/dev_hdd0" "$bios_path/rpcs3/dev_hdd0"
-  dir_prep "$storage_path/retroarch-core/rpcs3/dev_hdd1" "$bios_path/rpcs3/dev_hdd1"
-  dir_prep "$storage_path/retroarch-core/rpcs3/dev_flash" "$bios_path/rpcs3/dev_flash"
-  dir_prep "$storage_path/retroarch-core/rpcs3/dev_flash2" "$bios_path/rpcs3/dev_flash2"
-  dir_prep "$storage_path/retroarch-core/rpcs3/dev_flash3" "$bios_path/rpcs3/dev_flash3"
-  dir_prep "$storage_path/retroarch-core/rpcs3/dev_bdvd" "$bios_path/rpcs3/dev_bdvd"
-  dir_prep "$storage_path/retroarch-core/rpcs3/dev_usb000" "$bios_path/rpcs3/dev_usb000"
-  dir_prep "$storage_path/retroarch-core/rpcs3/captures" "$bios_path/rpcs3/captures"
-  dir_prep "$storage_path/retroarch-core/rpcs3/patches" "$bios_path/rpcs3/patches"
-  
-fi
+    dir_prep "$storage_path/retroarch-core/rpcs3/dev_hdd0" "$bios_path/rpcs3/dev_hdd0"
+    dir_prep "$storage_path/retroarch-core/rpcs3/dev_hdd1" "$bios_path/rpcs3/dev_hdd1"
+    dir_prep "$storage_path/retroarch-core/rpcs3/dev_flash" "$bios_path/rpcs3/dev_flash"
+    dir_prep "$storage_path/retroarch-core/rpcs3/dev_flash2" "$bios_path/rpcs3/dev_flash2"
+    dir_prep "$storage_path/retroarch-core/rpcs3/dev_flash3" "$bios_path/rpcs3/dev_flash3"
+    dir_prep "$storage_path/retroarch-core/rpcs3/dev_bdvd" "$bios_path/rpcs3/dev_bdvd"
+    dir_prep "$storage_path/retroarch-core/rpcs3/dev_usb000" "$bios_path/rpcs3/dev_usb000"
+    dir_prep "$storage_path/retroarch-core/rpcs3/captures" "$bios_path/rpcs3/captures"
+    dir_prep "$storage_path/retroarch-core/rpcs3/patches" "$bios_path/rpcs3/patches"
 
+    dir_prep "$mods_path/retroarch-core/Citra/mods" "$saves_path/n3ds/Citra/load/mods"
+    dir_prep "$texture_packs_path/retroarch-core/Citra/textures" "$saves_path/n3ds/Citra/load/textures"
+    dir_prep "$shaders_path/retroarch-core/Citra/shaders" "$saves_path/n3ds/Citra/shader"
+    dir_prep "$cheats_path/retroarch-core/Citra/cheats" "$saves_path/n3ds/Citra/cheats"
+
+    dir_prep "$texture_packs_path/retroarch-core/Azahar/textures" "$saves_path/n3ds/Azahar/load/textures"
+    dir_prep "$mods_path/retroarch-core/Azahar/mods" "$saves_path/n3ds/Azahar/load/mods"
+    dir_prep "$shaders_path/retroarch-core/Azahar/shaders" "$saves_path/n3ds/Azahar/shaders"
+    dir_prep "$cheats_path/retroarch-core/Azahar/cheats" "$saves_path/n3ds/Azahar/cheats"
+
+    dir_prep "$texture_packs_path/retroarch-core/PPSSPP/TEXTURES" "$saves_path/PPSSPP/PSP/TEXTURES"
+    dir_prep "$mods_path/retroarch-core/PPSSPP/PLUGINS" "$saves_path/PPSSPP/PSP/PLUGINS"
+    dir_prep "$shaders_path/retroarch-core/PPSSPP/shaders" "$saves_path/saves/PPSSPP/PSP/shaders"
+    dir_prep "$storage_path/retroarch-core/PPSSPP/GAME" "$saves_path/PPSSPP/PSP/GAME"
+    
+  fi
 
   #######################################
   # These actions happen at every update
