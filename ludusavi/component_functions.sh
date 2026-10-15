@@ -17,6 +17,24 @@ export LUDUSAVI_GATE_FIRST_UPLOAD=2  # remote is empty; mark pending upload
 export LUDUSAVI_GATE_BLOCKED=3       # remote is newer than local
 export LUDUSAVI_GATE_UNSAFE=4        # unknown state; refuse rather than assume
 export LUDUSAVI_GATE_UNREACHABLE=5   # could not reach the remote
+
+# on_launch::ludusavi
+export LUDUSAVI_LAUNCH_PROCEED=0        # synced, or nothing to sync; carry on
+export LUDUSAVI_LAUNCH_BLOCKED=1        # cloud is newer; user must update first
+export LUDUSAVI_LAUNCH_CONFLICT=2       # local and cloud both moved; ask the user
+export LUDUSAVI_LAUNCH_OFFLINE=3        # remote unreachable; retry next launch
+export LUDUSAVI_LAUNCH_DISABLED=4       # cloud sync is off
+export LUDUSAVI_LAUNCH_FAILED=5         # config, download or restore failed
+
+# resolve_conflict::ludusavi
+export LUDUSAVI_RESOLVE_OK=0
+export LUDUSAVI_RESOLVE_FAILED=1
+export LUDUSAVI_RESOLVE_CLOUD_UNSAFE=2  # cloud copy cannot be pulled by this build
+
+# Choices the conflict dialog can return.
+export LUDUSAVI_RESOLVE_KEEP_CLOUD="keep_cloud"
+export LUDUSAVI_RESOLVE_KEEP_LOCAL="keep_local"
+export LUDUSAVI_RESOLVE_DEFER="defer"
 # Component definitions
 export LUDUSAVI_PROVIDERS=(
   "drive|Google Drive|drive|oauth"
@@ -558,4 +576,158 @@ stamp_backups::ludusavi() {
     log d "stamped ${#games[@]} backup(s) with RetroDECK $version"
   fi
   return 0
+}
+
+# ------------------------------------------------------------------------------
+# Launch
+# ------------------------------------------------------------------------------
+
+pull::ludusavi() {
+  # USAGE: pull::ludusavi "$remote_marker"
+  # Downloads the cloud store over the local one, restores it over the live saves, and records the remote state this install has now synced with
+
+  local remote_marker="$1"
+
+  local -a cloud_args
+  mapfile -t cloud_args < <(cloud_args::ludusavi)
+
+  if ! _exec::ludusavi cloud download --force --api "${cloud_args[@]}" > /dev/null 2>&1; then
+    log e "cloud download failed"
+    return 1
+  fi
+
+  local restore_output
+  restore_output="$(_exec::ludusavi restore --force --api --path "$LUDUSAVI_BACKUP_PATH" 2>/dev/null)"
+
+  if [[ -z "$restore_output" ]]; then
+    log e "restore produced no output"
+    return 1
+  fi
+
+  if jq -e '.errors.someGamesFailed == true' > /dev/null 2>&1 <<< "$restore_output"; then
+    log w "some games failed to restore"
+  fi
+
+  set_component_option "ludusavi" "last_synced_marker" "$remote_marker"
+  set_component_option "ludusavi" "sync_blocked" "false"
+  return 0
+}
+
+on_launch::ludusavi() {
+  # USAGE: on_launch::ludusavi
+  # Evaluates the gate and pulls the cloud backups down and restores them
+  # Returns $LUDUSAVI_LAUNCH_* specialty code
+
+  load_config::ludusavi || return "$LUDUSAVI_LAUNCH_FAILED"
+
+  if [[ "$LUDUSAVI_CLOUD_SYNC_ENABLED" != "true" ]]; then
+    return "$LUDUSAVI_LAUNCH_DISABLED"
+  fi
+
+  install_id::ludusavi > /dev/null || return "$LUDUSAVI_LAUNCH_FAILED"
+
+  local last_synced_marker
+  last_synced_marker="$(get_component_option "ludusavi" "last_synced_marker")" || last_synced_marker=""
+
+  local pending_upload
+  pending_upload="$(get_component_option "ludusavi" "pending_upload")" || pending_upload="false"
+
+  local remote_marker
+  remote_marker="$(evaluate_gate::ludusavi "$version" "$last_synced_marker")"
+  local gate=$?
+
+  case "$gate" in
+    "$LUDUSAVI_GATE_UNREACHABLE")
+      return "$LUDUSAVI_LAUNCH_OFFLINE"
+      ;;
+
+    "$LUDUSAVI_GATE_FIRST_UPLOAD")
+      set_component_option "ludusavi" "pending_upload" "true"
+      set_component_option "ludusavi" "sync_blocked" "false"
+      return "$LUDUSAVI_LAUNCH_PROCEED"
+      ;;
+
+    "$LUDUSAVI_GATE_BLOCKED")
+      # Mark the sync gate blocked, but continue with boot
+      set_component_option "ludusavi" "sync_blocked" "true"
+      return "$LUDUSAVI_LAUNCH_BLOCKED"
+      ;;
+
+    "$LUDUSAVI_GATE_UNSAFE")
+      set_component_option "ludusavi" "sync_blocked" "true"
+      return "$LUDUSAVI_LAUNCH_CONFLICT"
+      ;;
+
+    "$LUDUSAVI_GATE_NOTHING_NEW")
+      # Nothing new on the remote since the last sync
+      set_component_option "ludusavi" "sync_blocked" "false"
+      return "$LUDUSAVI_LAUNCH_PROCEED"
+      ;;
+  esac
+
+  # The remove has changed since last sync
+  # Validate local state for changes and conflicts
+  local diverged=false
+
+  if [[ "$pending_upload" == "true" ]]; then
+    # Unpushed local backups, such as a failed upload or play while blocked
+    diverged=true
+  elif [[ -z "$last_synced_marker" ]] && store_has_backups::ludusavi; then
+    # This install has never synced but there is data in the remote
+    diverged=true
+  elif live_saves_diverged::ludusavi; then
+    # Unaccounted local saves
+    diverged=true
+  fi
+
+  if [[ "$diverged" == "true" ]]; then
+    # Block cloud sync until conflict is resolved by user
+    set_component_option "ludusavi" "sync_blocked" "true"
+    return "$LUDUSAVI_LAUNCH_CONFLICT"
+  fi
+
+  pull::ludusavi "$remote_marker" || return "$LUDUSAVI_LAUNCH_FAILED"
+  return "$LUDUSAVI_LAUNCH_PROCEED"
+}
+
+resolve_conflict::ludusavi() {
+  # USAGE: resolve_conflict::ludusavi "$choice"
+  # Applies the user's resolution of a conflict
+  # User options are defined in LUDUSAVI_RESOLVE_KEEP_* / LUDUSAVI_RESOLVE_DEFER strings
+  # Returns LUDUSAVI_RESOLVE_* specialty code
+
+  local choice="$1"
+
+  case "$choice" in
+    "$LUDUSAVI_RESOLVE_KEEP_CLOUD")
+      # Re-run the gate rather than trusting the launch result
+      local remote_marker
+      remote_marker="$(evaluate_gate::ludusavi "$version" "")"
+      local gate=$?
+
+      if [[ "$gate" -ne "$LUDUSAVI_GATE_SYNC" ]]; then
+        log w "cloud copy cannot be pulled by this build (gate $gate)"
+        return "$LUDUSAVI_RESOLVE_CLOUD_UNSAFE"
+      fi
+
+      pull::ludusavi "$remote_marker" || return "$LUDUSAVI_RESOLVE_FAILED"
+      set_component_option "ludusavi" "pending_upload" "false"
+      return "$LUDUSAVI_RESOLVE_OK"
+      ;;
+
+    "$LUDUSAVI_RESOLVE_KEEP_LOCAL")
+      # Clear the block to upload normally at exit
+      set_component_option "ludusavi" "sync_blocked" "false"
+      set_component_option "ludusavi" "pending_upload" "true"
+      return "$LUDUSAVI_RESOLVE_OK"
+      ;;
+
+    "$LUDUSAVI_RESOLVE_DEFER")
+      # Block stays set for next launch
+      return "$LUDUSAVI_RESOLVE_OK"
+      ;;
+  esac
+
+  log e "unknown conflict resolution: $choice"
+  return "$LUDUSAVI_RESOLVE_FAILED"
 }
