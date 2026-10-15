@@ -300,6 +300,13 @@ live_saves_diverged::ludusavi() {
   [[ "$changed" -gt 0 ]]
 }
 
+remote_new_name::ludusavi() {
+  # USAGE: remote_new_name::ludusavi
+  # Generate a new remote name, so a new attempt can never overwrite the remote currently in use
+
+  echo "retrodeck-$(date +%s)-$$-${RANDOM}"
+}
+
 # ------------------
 # Ludusavi sidecar handlers
 # ------------------
@@ -849,4 +856,73 @@ upload::ludusavi() {
   set_component_option "ludusavi" "last_synced_marker" "$written_marker"
   set_component_option "ludusavi" "pending_upload" "false"
   return "$LUDUSAVI_EXIT_UPLOADED"
+}
+
+# ------------------------------------------------------------------------------
+# rclone control
+# ------------------------------------------------------------------------------
+
+remote_root::ludusavi() {
+  # USAGE: remote_root::ludusavi "$provider_id" "$folder" "$share(optional)"
+  # Prints the path under the remote that holds the sidecar and ludusavi/ directory
+  # An SMB remote's top level is its list of shares, so the share comes first
+
+  local provider_id="$1"
+  local folder="$2"
+  local share="${3:-}"
+
+  folder="${folder#/}"
+  folder="${folder%/}"
+
+  if [[ "$provider_id" == "smb" ]]; then
+    share="${share#/}"
+    share="${share%/}"
+    echo "${share}/${folder}"
+    return 0
+  fi
+
+  echo "$folder"
+}
+
+remote_create::ludusavi() {
+  # USAGE: remote_create::ludusavi "$name" "$type" "$password" "$key=value..."
+  # Creates a password-based remote, passing the password to rclone securely
+
+  local name="$1"
+  local type="$2"
+  local password="$3"
+  shift 3
+
+  local -a options=("$@")
+
+  if [[ -n "$password" ]]; then
+    local obscured
+    if ! obscured="$("$LUDUSAVI_RCLONE_BIN" obscure - <<< "$password" 2>/dev/null)" || [[ -z "$obscured" ]]; then
+      log e "could not obscure the password for $name"
+      return 1
+    fi
+    options+=("pass=$obscured")
+  fi
+
+  # --no-obscure: the password is already obscured by rclone, don't obscure it again
+  if ! rclone_cfg::ludusavi config create "$name" "$type" "${options[@]}" --no-obscure > /dev/null 2>&1; then
+    log e "rclone could not create remote $name ($type)"
+    return 1
+  fi
+
+  return 0
+}
+
+remote_discard::ludusavi() {
+  # USAGE: remote_discard::ludusavi "$name"
+  # Deletes a remote
+
+  local name="$1"
+
+  if [[ -z "$name" ]]; then
+    return 0
+  fi
+
+  rclone_cfg::ludusavi config delete "$name" > /dev/null 2>&1
+  return 0
 }
