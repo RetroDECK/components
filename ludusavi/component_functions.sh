@@ -4,6 +4,7 @@
 export LUDUSAVI_CONFIG_DIR="$XDG_CONFIG_HOME/ludusavi"
 export LUDUSAVI_CONFIG_FILE="$LUDUSAVI_CONFIG_DIR/config.yaml"
 export LUDUSAVI_RCLONE_CONFIG_FILE="$XDG_CONFIG_HOME/ludusavi/rclone.conf"
+
 # sidecar_read::ludusavi exit codes
 export LUDUSAVI_READ_OK=0
 export LUDUSAVI_READ_MISSING=1       # no sidecar present on the remote
@@ -52,6 +53,7 @@ export LUDUSAVI_TEST_NOT_WRITABLE=2  # connected, but cannot write the folder
 export LUDUSAVI_COMMIT_OK=0
 export LUDUSAVI_COMMIT_LUDUSAVI_FAILED=1    # "cloud set custom" refused
 export LUDUSAVI_COMMIT_LUDUSAVI_BLIND=2     # Ludusavi's rclone cannot see the remote
+
 # Component definitions
 export LUDUSAVI_PROVIDERS=(
   "drive|Google Drive|drive|oauth"
@@ -62,6 +64,7 @@ export LUDUSAVI_PROVIDERS=(
   "ftp|FTP server|ftp|form"
   "webdav|WebDAV (Nextcloud, ownCloud)|webdav|form"
 )
+
 export LUDUSAVI_OAUTH_PORT=53682
 export LUDUSAVI_TEST_TIMEOUT="${LUDUSAVI_TEST_TIMEOUT:-10s}"
 export LUDUSAVI_RCLONE_TIMEOUT="${LUDUSAVI_RCLONE_TIMEOUT:-10s}"
