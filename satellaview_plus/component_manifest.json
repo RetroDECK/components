@@ -1,0 +1,137 @@
+{
+  "satellaview_plus": {
+    "name": "Satellaview+",
+    "core_framework_compatibility": "1",
+    "component_version": "1.0.0",
+    "capabilities": ["reset","open"],
+    "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/satellaview/satellaview-guide/",
+    "url_webpage": "https://satellaviewplus.github.io",
+    "url_donation_purchase": "",
+    "url_source": "https://github.com/SatellaviewPlus/Satellaview-",
+    "description": "Satellaview+ is the revival service to St. Giga's sattelite service, Satellaview, which allows you to play special Satellaview games, read magazines, and more!.",
+    "system_friendly_name": "Satellaview+",
+    "component_type": "Emulator",
+    "system": "satellaview_plus",
+    "backup_data": {
+      "core": [
+        {"path": "$XDG_CONFIG_HOME/satellaview_plus"}
+      ]
+    },
+    "component_options": {
+      "satellaview_plus_soundlink_stream_toggle": "true"
+    },
+    "es_de_config": {
+      "es_find_rules": {
+        "emulators": [
+          {
+            "name": "SATELLAVIEW_PLUS",
+            "description": "Satellaview+ revival service for St. Giga's sattelite service, Satellaview",
+            "rules": [
+              {
+                "type": "staticpath",
+                "entries": [
+                  "%COMPONENT_PATH%/component_launcher.sh"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "es_systems": [
+        {
+          "name": "satellaview_plus",
+          "fullname": "Satellaview+",
+          "path": "%ROMPATH%/satellaview_plus",
+          "extension": ".sh",
+          "commands": [
+            {
+              "label": "Snes9x (Satellaview+)",
+              "command": "%EMULATOR_SATELLAVIEW_PLUS% %ROM%",
+              "priority": 60
+            }
+          ],
+          "platform": "satellaview",
+          "theme": "satellaview"
+        }
+      ]
+    },
+    "es_de_gamelist_entries": {
+      "image_root": "%COMPONENT_PATH%/rd_assets/es_de",
+      "entries": {
+        "satellaview_plus_run": {
+          "system": "satellaview_plus",
+          "create_file": "$roms_path/satellaview_plus/satellaview_plus_run.sh",
+          "gamelist_data": {
+            "path": "satellaview_plus_run.sh",
+            "name": "Satellaview+ Start!",
+            "desc": "Updates Satellaview+ with the tuner and launches the game, allowing you to play Satellaview+ updated content.",
+            "players": "1"
+          }
+        },
+        "satellaview_plus_tuner": {
+          "system": "satellaview_plus",
+          "create_file": "$roms_path/satellaview_plus/satellaview_plus_tuner.sh",
+          "gamelist_data": {
+            "path": "satellaview_plus_tuner.sh",
+            "name": "Satellaview+ Channel Tuner",
+            "desc": "Launches the Satellaview+ Channel Tuner Only, which allows you to update Satellaview+ channels data and see broadcast schedules. This won't launch the game itself.",
+            "genre": "Various / Utilities",
+            "players": "1"
+          }
+        }
+      }
+    },
+    "bios": [
+      {
+        "filename": "bs-x.sfc",
+        "md5": ["96cf17bf589fcbfa6f8de2dc84f19fa2", "d5af0ab2545c053b90ffa0866074ecf1"],
+        "system": "satellaview_plus",
+        "paths": [
+          "$roms_path/satellaview_plus/"
+        ],
+        "description": "Satellaview+ ROM",
+        "required": "Required"
+      }
+    ],
+    "presets_actions": {
+      "abxy_button_swap": [
+        {
+          "enabled_states": ["true"],
+          "setting_name": "A",
+          "action": "change",
+          "new_setting_value": "TODO",
+          "section": "Joypad 0",
+          "target_file": "$satellaview_plus_snes9x_config",
+          "defaults_file": "$rd_components/satellaview_plus/rd_config/snes9x-config.ini"
+        },
+        {
+          "enabled_states": ["true"],
+          "setting_name": "B",
+          "action": "change",
+          "new_setting_value": "TODO",
+          "section": "Joypad 0",
+          "target_file": "$satellaview_plus_snes9x_config",
+          "defaults_file": "$rd_components/satellaview_plus/rd_config/snes9x-config.ini"
+        },
+        {
+          "enabled_states": ["true"],
+          "setting_name": "X",
+          "action": "change",
+          "new_setting_value": "TODO",
+          "section": "Joypad 0",
+          "target_file": "$satellaview_plus_snes9x_config",
+          "defaults_file": "$rd_components/satellaview_plus/rd_config/snes9x-config.ini"
+        },
+        {
+          "enabled_states": ["true"],
+          "setting_name": "Y",
+          "action": "change",
+          "new_setting_value": "TODO",
+          "section": "Joypad 0",
+          "target_file": "$satellaview_plus_snes9x_config",
+          "defaults_file": "$rd_components/satellaview_plus/rd_config/snes9x-config.ini"
+        }
+      ]
+    }
+  }  
+}
