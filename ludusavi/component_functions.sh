@@ -26,6 +26,13 @@ export LUDUSAVI_LAUNCH_OFFLINE=3        # remote unreachable; retry next launch
 export LUDUSAVI_LAUNCH_DISABLED=4       # cloud sync is off
 export LUDUSAVI_LAUNCH_FAILED=5         # config, download or restore failed
 
+# on_exit::ludusavi
+export LUDUSAVI_EXIT_UPLOADED=0
+export LUDUSAVI_EXIT_NO_CHANGES=1       # local backup done, nothing worth uploading
+export LUDUSAVI_EXIT_LOCAL_ONLY=2       # local backup done, upload skipped by design
+export LUDUSAVI_EXIT_BACKUP_FAILED=3
+export LUDUSAVI_EXIT_UPLOAD_FAILED=4
+
 # resolve_conflict::ludusavi
 export LUDUSAVI_RESOLVE_OK=0
 export LUDUSAVI_RESOLVE_FAILED=1
@@ -760,4 +767,86 @@ resolve_conflict::ludusavi() {
 
   log e "unknown conflict resolution: $choice"
   return "$LUDUSAVI_RESOLVE_FAILED"
+}
+
+# ------------------------------------------------------------------------------
+# Exit
+# ------------------------------------------------------------------------------
+
+on_exit::ludusavi() {
+  # USAGE: on_exit::ludusavi
+  # Backs up locally, then uploads if anything changed and the session was not blocked
+  # Returns LUDUSAVI_EXIT_* specialty code
+
+  local backup_json
+  backup_json="$(backup::ludusavi)" || return "$LUDUSAVI_EXIT_BACKUP_FAILED"
+
+  local changed
+  changed="$(changed_count::ludusavi "$backup_json")"
+  : "${changed:=0}"
+
+  if [[ "$changed" -gt 0 ]]; then
+    stamp_backups::ludusavi "$version" "$backup_json"
+  fi
+
+  if [[ "$LUDUSAVI_CLOUD_SYNC_ENABLED" != "true" ]]; then
+    return "$LUDUSAVI_EXIT_LOCAL_ONLY"
+  fi
+
+  local sync_blocked
+  sync_blocked="$(get_component_option "ludusavi" "sync_blocked")" || sync_blocked="false"
+
+  local pending_upload
+  pending_upload="$(get_component_option "ludusavi" "pending_upload")" || pending_upload="false"
+
+  if [[ "$sync_blocked" == "true" ]]; then
+    # Perform a local backup but do not sync to remote
+    if [[ "$changed" -gt 0 ]]; then
+      set_component_option "ludusavi" "pending_upload" "true"
+    fi
+    log i "cloud upload skipped: sync is blocked"
+    return "$LUDUSAVI_EXIT_LOCAL_ONLY"
+  fi
+
+  if [[ "$changed" -eq 0 ]] && [[ "$pending_upload" != "true" ]]; then
+    return "$LUDUSAVI_EXIT_NO_CHANGES"
+  fi
+
+  upload::ludusavi
+  return $?
+}
+
+upload::ludusavi() {
+  # USAGE: upload::ludusavi
+
+  local install_id
+  install_id="$(install_id::ludusavi)" || return "$LUDUSAVI_EXIT_UPLOAD_FAILED"
+
+  # Set pending_upload before starting so it is recorded in the event of failure
+  set_component_option "ludusavi" "pending_upload" "true"
+
+  # Mark the sidecar before the transfer
+  if ! sidecar_write::ludusavi "$version" "$install_id" "uploading" > /dev/null; then
+    return "$LUDUSAVI_EXIT_UPLOAD_FAILED"
+  fi
+
+  local -a cloud_args
+  mapfile -t cloud_args < <(cloud_args::ludusavi)
+
+  if ! _exec::ludusavi cloud upload --force --api "${cloud_args[@]}" > /dev/null 2>&1; then
+    log e "cloud upload failed"
+    return "$LUDUSAVI_EXIT_UPLOAD_FAILED"
+  fi
+
+  local written_marker
+  written_marker="$(sidecar_write::ludusavi "$version" "$install_id" "ok")"
+
+  if [[ -z "$written_marker" ]]; then
+    log e "upload completed but sidecar could not be finalised"
+    return "$LUDUSAVI_EXIT_UPLOAD_FAILED"
+  fi
+
+  set_component_option "ludusavi" "last_synced_marker" "$written_marker"
+  set_component_option "ludusavi" "pending_upload" "false"
+  return "$LUDUSAVI_EXIT_UPLOADED"
 }
