@@ -47,6 +47,11 @@ export LUDUSAVI_RESOLVE_DEFER="defer"
 export LUDUSAVI_TEST_OK=0
 export LUDUSAVI_TEST_UNREACHABLE=1   # cannot connect or sign in
 export LUDUSAVI_TEST_NOT_WRITABLE=2  # connected, but cannot write the folder
+
+# remote_commit::ludusavi
+export LUDUSAVI_COMMIT_OK=0
+export LUDUSAVI_COMMIT_LUDUSAVI_FAILED=1    # "cloud set custom" refused
+export LUDUSAVI_COMMIT_LUDUSAVI_BLIND=2     # Ludusavi's rclone cannot see the remote
 # Component definitions
 export LUDUSAVI_PROVIDERS=(
   "drive|Google Drive|drive|oauth"
@@ -932,6 +937,10 @@ remote_discard::ludusavi() {
   return 0
 }
 
+# ------------------------------------------------------------------------------
+# Verification and commit
+# ------------------------------------------------------------------------------
+
 remote_test::ludusavi() {
   # USAGE: remote_test::ludusavi "$name" "$root"
   # Tests if the remote can hold backups: reachable, signed in, and the target folder writable
@@ -967,4 +976,56 @@ remote_test::ludusavi() {
 
   rclone_cfg::ludusavi "${limits[@]}" deletefile "$probe" > /dev/null 2>&1
   return "$LUDUSAVI_TEST_OK"
+}
+
+remote_commit::ludusavi() {
+  # USAGE: remote_commit::ludusavi "$name" "$root" "$provider_id"
+  # Makes a tested remote the active one
+  # Returns LUDUSAVI_COMMIT_* specialty code
+
+  local name="$1"
+  local root="$2"
+  local provider_id="$3"
+
+  local old_remote
+  old_remote="$(get_component_option "ludusavi" "cloud_remote")" || old_remote=""
+  old_remote="${old_remote%:}"
+
+  if ! _exec::ludusavi cloud set custom --id "$name" > /dev/null 2>&1; then
+    log e "Ludusavi refused remote $name"
+    return "$LUDUSAVI_COMMIT_LUDUSAVI_FAILED"
+  fi
+
+  # Preview upload to have Ludusavi and rclone validate remote config is correct
+  local backup_path
+  backup_path="$(get_component_option "ludusavi" "backup_path")" || backup_path=""
+  if [[ -n "$backup_path" ]]; then
+    mkdir -p "$backup_path"
+  fi
+
+  if ! _exec::ludusavi cloud upload --preview --api \
+    --local "${backup_path:-/nonexistent}" --cloud "${root}/ludusavi" > /dev/null 2>&1; then
+    log e "Ludusavi cannot reach $name through its rclone settings"
+    if [[ -n "$old_remote" ]]; then
+      _exec::ludusavi cloud set custom --id "$old_remote" > /dev/null 2>&1
+    else
+      _exec::ludusavi cloud set none > /dev/null 2>&1
+    fi
+    return "$LUDUSAVI_COMMIT_LUDUSAVI_BLIND"
+  fi
+
+  set_component_option "ludusavi" "cloud_remote" "${name}:"
+  set_component_option "ludusavi" "cloud_remote_root" "$root"
+  set_component_option "ludusavi" "cloud_provider" "$provider_id"
+
+  # Reset last_synced_marker on new remote creation, if it exists (ie. if a user switches remotes)
+  set_component_option "ludusavi" "last_synced_marker" ""
+  set_component_option "ludusavi" "cloud_sync" "true"
+
+  if [[ -n "$old_remote" && "$old_remote" != "$name" ]]; then
+    remote_discard::ludusavi "$old_remote"
+  fi
+
+  log i "cloud sync now uses $provider_id remote $name"
+  return "$LUDUSAVI_COMMIT_OK"
 }
