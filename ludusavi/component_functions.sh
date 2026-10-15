@@ -263,6 +263,36 @@ remote_is_empty::ludusavi() {
   return 1
 }
 
+store_has_backups::ludusavi() {
+  # USAGE: store_has_backups::ludusavi
+  # Returns 0 when the backup directory already holds at least one backup
+
+  local found
+  found="$(find "$LUDUSAVI_BACKUP_PATH" -mindepth 2 -maxdepth 2 \
+    -name mapping.yaml -print -quit 2>/dev/null)"
+
+  [[ -n "$found" ]]
+}
+
+live_saves_diverged::ludusavi() {
+  # USAGE: live_saves_diverged::ludusavi
+  # Returns 0 when the live saves differ from the local backup store
+
+  local output
+  output="$(_exec::ludusavi backup --preview --api --no-cloud-sync \
+    --path "$LUDUSAVI_BACKUP_PATH" 2>/dev/null)"
+
+  local changed
+  changed="$(changed_count::ludusavi "$output")"
+
+  if [[ ! "$changed" =~ ^[0-9]+$ ]]; then
+    log w "could not determine whether live saves changed; assuming they did"
+    return 0
+  fi
+
+  [[ "$changed" -gt 0 ]]
+}
+
 # ------------------
 # Ludusavi sidecar handlers
 # ------------------
