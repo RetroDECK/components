@@ -42,6 +42,11 @@ export LUDUSAVI_RESOLVE_CLOUD_UNSAFE=2  # cloud copy cannot be pulled by this bu
 export LUDUSAVI_RESOLVE_KEEP_CLOUD="keep_cloud"
 export LUDUSAVI_RESOLVE_KEEP_LOCAL="keep_local"
 export LUDUSAVI_RESOLVE_DEFER="defer"
+
+# remote_test::ludusavi
+export LUDUSAVI_TEST_OK=0
+export LUDUSAVI_TEST_UNREACHABLE=1   # cannot connect or sign in
+export LUDUSAVI_TEST_NOT_WRITABLE=2  # connected, but cannot write the folder
 # Component definitions
 export LUDUSAVI_PROVIDERS=(
   "drive|Google Drive|drive|oauth"
@@ -925,4 +930,41 @@ remote_discard::ludusavi() {
 
   rclone_cfg::ludusavi config delete "$name" > /dev/null 2>&1
   return 0
+}
+
+remote_test::ludusavi() {
+  # USAGE: remote_test::ludusavi "$name" "$root"
+  # Tests if the remote can hold backups: reachable, signed in, and the target folder writable
+  # Returns LUDUSAVI_TEST_* specialty codes
+
+  local name="$1"
+  local root="$2"
+
+  local -a limits=(
+    --contimeout "$LUDUSAVI_TEST_TIMEOUT"
+    --timeout "$LUDUSAVI_TEST_TIMEOUT"
+    --retries 1
+    --low-level-retries 1
+  )
+
+  local errors
+  if ! errors="$(rclone_cfg::ludusavi "${limits[@]}" lsf "${name}:" --max-depth 1 2>&1 > /dev/null)"; then
+    echo "$errors" | grep -v '^\s*$' | tail -n 1
+    return "$LUDUSAVI_TEST_UNREACHABLE"
+  fi
+
+  # Test writing to remote
+  local probe="${name}:${root}/.retrodeck-write-test-$$"
+
+  # Create remote store directory and ludusavi/ directory individually and in order, as some protocols (FTP) can't do it all at once
+  if ! errors="$(rclone_cfg::ludusavi "${limits[@]}" mkdir "${name}:${root}" 2>&1 > /dev/null)" \
+    || ! errors="$(rclone_cfg::ludusavi "${limits[@]}" mkdir "${name}:${root}/ludusavi" 2>&1 > /dev/null)" \
+    || ! errors="$(echo "retrodeck" | "$LUDUSAVI_RCLONE_BIN" --config "$LUDUSAVI_RCLONE_CONFIG_FILE" \
+      "${limits[@]}" rcat "$probe" 2>&1 > /dev/null)"; then
+    echo "$errors" | grep -v '^\s*$' | tail -n 1
+    return "$LUDUSAVI_TEST_NOT_WRITABLE"
+  fi
+
+  rclone_cfg::ludusavi "${limits[@]}" deletefile "$probe" > /dev/null 2>&1
+  return "$LUDUSAVI_TEST_OK"
 }
