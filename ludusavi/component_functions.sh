@@ -109,6 +109,18 @@ _prepare_component::ludusavi() {
   esac
 }
 
+_set_setting_value::ludusavi() {
+  local file="$1" name="$2" value="$3"
+
+  VAL="$value" yq -i ".[\"${name}\"] = env(VAL)" "$file"
+}
+
+_get_setting_value::ludusavi() {
+  local file="$1" name="$2"
+
+  yq -r ".[\"${name}\"]" "$file"
+}
+
 # ------------------
 # Ludusavi helpers
 # ------------------
