@@ -919,10 +919,11 @@ remote_create::ludusavi() {
   shift 3
 
   local -a options=("$@")
+  local component_path="$(get_own_component_path)"
 
   if [[ -n "$password" ]]; then
     local obscured
-    if ! obscured="$("$LUDUSAVI_RCLONE_BIN" obscure - <<< "$password" 2>/dev/null)" || [[ -z "$obscured" ]]; then
+    if ! obscured="$("$component_path/bin/rclone" obscure - <<< "$password" 2>/dev/null)" || [[ -z "$obscured" ]]; then
       log e "could not obscure the password for $name"
       return 1
     fi
@@ -975,7 +976,9 @@ remote_oauth_start::ludusavi() {
     options+=(scope=drive)
   fi
 
-  "$LUDUSAVI_RCLONE_BIN" --config "$LUDUSAVI_RCLONE_CONFIG_FILE" \
+  local component_path="$(get_own_component_path)"
+
+  "$component_path/bin/rclone" --config "$LUDUSAVI_RCLONE_CONFIG_FILE" \
     config create "$name" "$type" "${options[@]}" < /dev/null > /dev/null 2> "$log_file" &
   pid_ref=$!
 }
@@ -1017,6 +1020,8 @@ remote_test::ludusavi() {
     --low-level-retries 1
   )
 
+  local component_path="$(get_own_component_path)"
+
   local errors
   if ! errors="$(rclone_cfg::ludusavi "${limits[@]}" lsf "${name}:" --max-depth 1 2>&1 > /dev/null)"; then
     echo "$errors" | grep -v '^\s*$' | tail -n 1
@@ -1029,7 +1034,7 @@ remote_test::ludusavi() {
   # Create remote store directory and ludusavi/ directory individually and in order, as some protocols (FTP) can't do it all at once
   if ! errors="$(rclone_cfg::ludusavi "${limits[@]}" mkdir "${name}:${root}" 2>&1 > /dev/null)" \
     || ! errors="$(rclone_cfg::ludusavi "${limits[@]}" mkdir "${name}:${root}/ludusavi" 2>&1 > /dev/null)" \
-    || ! errors="$(echo "retrodeck" | "$LUDUSAVI_RCLONE_BIN" --config "$LUDUSAVI_RCLONE_CONFIG_FILE" \
+    || ! errors="$(echo "retrodeck" | "$component_path/bin/rclone" --config "$LUDUSAVI_RCLONE_CONFIG_FILE" \
       "${limits[@]}" rcat "$probe" 2>&1 > /dev/null)"; then
     echo "$errors" | grep -v '^\s*$' | tail -n 1
     return "$LUDUSAVI_TEST_NOT_WRITABLE"
