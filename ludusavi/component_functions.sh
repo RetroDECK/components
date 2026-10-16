@@ -69,7 +69,9 @@ export LUDUSAVI_PROVIDERS=(
 export LUDUSAVI_OAUTH_PORT=53682
 export LUDUSAVI_TEST_TIMEOUT="${LUDUSAVI_TEST_TIMEOUT:-10s}"
 export LUDUSAVI_RCLONE_TIMEOUT="${LUDUSAVI_RCLONE_TIMEOUT:-10s}"
+export LUDUSAVI_RCLONE_DEADLINE="${LUDUSAVI_RCLONE_DEADLINE:-20}"
 export LUDUSAVI_RCLONE_CONNECTION_TIMEOUT="${LUDUSAVI_RCLONE_CONNECTION_TIMEOUT:-5s}"
+export LUDUSAVI_RCLONE_LOW_LEVEL_RETRIES="${LUDUSAVI_RCLONE_LOW_LEVEL_RETRIES:-4}"
 export LUDUSAVI_SIDECAR_NAME="retrodeck-sync.json"
 export LUDUSAVI_SIDECAR_SCHEMA=1
 
@@ -189,13 +191,14 @@ rclone::ludusavi() {
   # Launches rclone with online-enabled arguments, for use with online operations
 
   local component_path="$(get_own_component_path)"
-
+  
+  timeout --kill-after=5 "$LUDUSAVI_RCLONE_DEADLINE" \
   "$component_path/bin/rclone" \
     --config "$LUDUSAVI_RCLONE_CONFIG_FILE" \
     --timeout "$LUDUSAVI_RCLONE_TIMEOUT" \
     --contimeout "$LUDUSAVI_RCLONE_CONNECTION_TIMEOUT" \
     --retries 1 \
-    --low-level-retries 1 \
+    --low-level-retries "$LUDUSAVI_RCLONE_LOW_LEVEL_RETRIES" \
     "$@"
 }
 
@@ -278,14 +281,14 @@ remote_is_empty::ludusavi() {
   local listing
   local rclone_status
 
-  listing="$(rclone::ludusavi lsf "${LUDUSAVI_REMOTE}${LUDUSAVI_REMOTE_ROOT}" --max-depth 1 2>/dev/null)"
+  listing="$(rclone::ludusavi lsf "${LUDUSAVI_REMOTE}${LUDUSAVI_REMOTE_ROOT}" -R --files-only 2>/dev/null)"
   rclone_status=$?
 
+  if [[ "$rclone_status" -eq 3 ]]; then
+    return 0
+  fi
+
   if [[ "$rclone_status" -ne 0 ]]; then
-    # rclone does not reliably distinguish "not found" from "unreachable" by exit code, so probe remote to tell them apart
-    if rclone::ludusavi lsf "${LUDUSAVI_REMOTE}" --max-depth 1 > /dev/null 2>&1; then
-      return 0
-    fi
     return 2
   fi
 
@@ -333,6 +336,13 @@ remote_new_name::ludusavi() {
   echo "retrodeck-$(date +%s)-$$-${RANDOM}"
 }
 
+is_throttled::ludusavi() {
+  # USAGE: is_throttled::ludusavi "$rclone_output"
+  # Returns 0 when rclone's output says the provider refused because of request rate rather than anything about the remote itself
+
+  grep -q -i -E 'rate[ _-]?limit|too[ _]many[ _](requests|write[ _]operations)|activityLimitReached' <<< "$1"
+}
+
 # ------------------
 # Ludusavi sidecar handlers
 # ------------------
@@ -344,19 +354,33 @@ sidecar_read::ludusavi() {
   local url
   url="$(sidecar_url::ludusavi)"
 
-  local contents
+  local listing
   local rclone_status
 
+  listing="$(rclone::ludusavi lsf "${LUDUSAVI_REMOTE}${LUDUSAVI_REMOTE_ROOT}" --files-only --max-depth 1 2>/dev/null)"
+  rclone_status=$?
+
+  if [[ "$rclone_status" -eq 3 ]]; then
+    log d "no remote root, so no sidecar at $url"
+    return "$LUDUSAVI_READ_MISSING"
+  fi
+
+  if [[ "$rclone_status" -ne 0 ]]; then
+    log w "remote unreachable while reading sidecar (rclone exit $rclone_status)"
+    return "$LUDUSAVI_READ_UNREACHABLE"
+  fi
+
+  if ! grep -q -x -F -- "$LUDUSAVI_SIDECAR_NAME" <<< "$listing"; then
+    log d "no sidecar at $url"
+    return "$LUDUSAVI_READ_MISSING"
+  fi
+
+  local contents
   contents="$(rclone::ludusavi cat "$url" 2>/dev/null)"
   rclone_status=$?
 
   if [[ "$rclone_status" -ne 0 ]]; then
-    # rclone does not reliably distinguish "not found" from "unreachable" by exit code, so probe remote to tell them apart
-    if rclone::ludusavi lsf "${LUDUSAVI_REMOTE}" --max-depth 1 > /dev/null 2>&1; then
-      log d "no sidecar at $url"
-      return "$LUDUSAVI_READ_MISSING"
-    fi
-    log w "remote unreachable while reading sidecar"
+    log w "remote unreachable while reading sidecar (rclone exit $rclone_status)"
     return "$LUDUSAVI_READ_UNREACHABLE"
   fi
 
@@ -370,7 +394,7 @@ sidecar_read::ludusavi() {
     return "$LUDUSAVI_READ_MALFORMED"
   fi
 
-  # Validate sidecar file 
+  # Validate sidecar file
   if ! jq -e '
         has("schema") and has("retrodeck_version")
         and has("install_id") and has("updated_at") and has("state")
