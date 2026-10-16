@@ -412,8 +412,8 @@
       "extraction_type": "local",
       "assets": [
         {
-          "type": "dir",
-          "source": "pcsx2",
+          "type": "file",
+          "source": "$WORKDIR/patches.zip",
           "dest": "rd_extras/pcsx2/resources"
         }
       ]
