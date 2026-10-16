@@ -4,6 +4,7 @@
 export LUDUSAVI_CONFIG_DIR="$XDG_CONFIG_HOME/ludusavi"
 export LUDUSAVI_CONFIG_FILE="$LUDUSAVI_CONFIG_DIR/config.yaml"
 export LUDUSAVI_RCLONE_CONFIG_FILE="$XDG_CONFIG_HOME/ludusavi/rclone.conf"
+export LUDUSAVI_LOG_FILE="$logs_path/ludusavi.log"
 
 # sidecar_read::ludusavi exit codes
 export LUDUSAVI_READ_OK=0
@@ -960,16 +961,15 @@ remote_discard::ludusavi() {
 # ------------------------------------------------------------------------------
 
 remote_oauth_start::ludusavi() {
-  # USAGE: remote_oauth_start::ludusavi "$name" "$type" "$log_file" "$pid_var"
+  # USAGE: remote_oauth_start::ludusavi "$name" "$type" "$pid_var"
   # Starts "rclone config create" for a browser sign-in in the background and stores its PID in the variable named by $pid_var
-  # rclone opens the browser itself and logs the sign-in link to $log_file.
+  # rclone opens the browser itself and logs the sign-in link to $LUDUSAVI_LOG_FILE.
   #
   # The PID comes back through a nameref to avoid launching rclone in a subshell
 
   local name="$1"
   local type="$2"
-  local log_file="$3"
-  local -n pid_ref="$4"
+  local -n pid_ref="$3"
 
   local -a options=()
   if [[ "$type" == "drive" ]]; then
@@ -979,26 +979,22 @@ remote_oauth_start::ludusavi() {
   local component_path="$(get_own_component_path)"
 
   "$component_path/bin/rclone" --config "$LUDUSAVI_RCLONE_CONFIG_FILE" \
-    config create "$name" "$type" "${options[@]}" < /dev/null > /dev/null 2> "$log_file" &
+    config create "$name" "$type" "${options[@]}" < /dev/null > /dev/null 2> "$LUDUSAVI_LOG_FILE" &
   pid_ref=$!
 }
 
 remote_oauth_link::ludusavi() {
-  # USAGE: remote_oauth_link::ludusavi "$log_file"
+  # USAGE: remote_oauth_link::ludusavi
   # Prints the sign-in link rclone logged, if it has logged one yet
 
-  local log_file="$1"
-
-  grep -o -m1 "http://127\.0\.0\.1:${LUDUSAVI_OAUTH_PORT}/auth?state=[A-Za-z0-9_-]*" "$log_file" 2>/dev/null
+  grep -o -m1 "http://127\.0\.0\.1:${LUDUSAVI_OAUTH_PORT}/auth?state=[A-Za-z0-9_-]*" "$LUDUSAVI_LOG_FILE" 2>/dev/null
 }
 
 remote_oauth_port_busy::ludusavi() {
-  # USAGE: remote_oauth_port_busy::ludusavi "$log_file"
+  # USAGE: remote_oauth_port_busy::ludusavi
   # Returns 0 when rclone failed because another sign-in holds the listener port
 
-  local log_file="$1"
-
-  grep -q -E "${LUDUSAVI_OAUTH_PORT}.*(address already in use|bind)" "$log_file" 2>/dev/null
+  grep -q -E "${LUDUSAVI_OAUTH_PORT}.*(address already in use|bind)" "$LUDUSAVI_LOG_FILE" 2>/dev/null
 }
 
 # ------------------------------------------------------------------------------
