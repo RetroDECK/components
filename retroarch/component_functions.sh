@@ -319,10 +319,10 @@ _prepare_component::retroarch() {
       log i "-----------------------------------------------------------"
     
       log i "Copying \"$retroarch_extras_path/MSX/Databases\" in \"$bios_path/Databases\""
-      cp -rf "$retroarch_extras_path/MSX/Databases" "$bios_path/Databases"
+      cp -rfv "$retroarch_extras_path/MSX/Databases" "$bios_path/Databases"
 
       log i "Copying \"$retroarch_extras_path/MSX/Machines\" in \"$bios_path/Machines\""
-      cp -rf "$retroarch_extras_path/MSX/Machines" "$bios_path/Machines"
+      cp -rfv "$retroarch_extras_path/MSX/Machines" "$bios_path/Machines"
 
 
       # PCSX Redux
@@ -347,7 +347,7 @@ _prepare_component::retroarch() {
       dir_prep "$cheats_path/retroarch-core/pcsx2/cheats_ni" "$bios_path/pcsx2/cheats_ni"
       dir_prep "$texture_packs_path/retroarch-core/pcsx2/textures" "$bios_path/pcsx2/textures"
 
-      cp -rf "$retroarch_extras_path/pcsx2/resources" "$storage_path/retroarch-core/pcsx2/resources" 
+      cp -rfv "$retroarch_extras_path/pcsx2/resources" "$storage_path/retroarch-core/pcsx2/resources" 
 
       # PRBOOM
       log i "--------------------------------"
@@ -418,10 +418,10 @@ _prepare_component::retroarch() {
       dir_prep "$shaders_path/retroarch-core/xemu" "$bios_path/xemu/xemu/shaders"
       create_dir "$saves_path/xbox/retroarch-core/xemu" 
 
-      ln -s $bios_path/mcpx_1.0.bin $bios_path/xemu/mcpx_1.0.bin
-      ln -s $bios_path/Complex_4627v1.03.bin $bios_path/xemu/Complex_4627v1.03.bin
-      ln -s $saves_path/xbox/retroarch-core/xemu/xbox_hdd.qcow2 $bios_path/xbox_hdd.qcow2 
-      ln -s $saves_path/xbox/retroarch-core/xemu/xbox_eeprom.bin $bios_path/xbox_eeprom.bin
+      ln -sfn $bios_path/mcpx_1.0.bin $bios_path/xemu/mcpx_1.0.bin
+      ln -sfn $bios_path/Complex_4627v1.03.bin $bios_path/xemu/Complex_4627v1.03.bin
+      ln -sfn $saves_path/xbox/retroarch-core/xemu/xbox_hdd.qcow2 $bios_path/xbox_hdd.qcow2 
+      ln -sfn $saves_path/xbox/retroarch-core/xemu/xbox_eeprom.bin $bios_path/xbox_eeprom.bin
 
       # Xenia Edge
       log i "-----------------------------------------------------------"
@@ -531,10 +531,10 @@ _prepare_component::retroarch() {
       # xemu
       dir_prep "$shaders_path/retroarch-core/xemu" "$bios_path/xemu/xemu/shaders"
 
-      ln -s $bios_path/mcpx_1.0.bin $bios_path/xemu/mcpx_1.0.bin
-      ln -s $bios_path/Complex_4627v1.03.bin $bios_path/xemu/Complex_4627v1.03.bin
-      ln -s $saves_path/xbox/retroarch-core/xemu/xbox_hdd.qcow2 $bios_path/xbox_hdd.qcow2 
-      ln -s $saves_path/xbox/retroarch-core/xemu/xbox_eeprom.bin $bios_path/xbox_eeprom.bin
+      ln -sfn $bios_path/mcpx_1.0.bin $bios_path/xemu/mcpx_1.0.bin
+      ln -sfn $bios_path/Complex_4627v1.03.bin $bios_path/xemu/Complex_4627v1.03.bin
+      ln -sfn $saves_path/xbox/retroarch-core/xemu/xbox_hdd.qcow2 $bios_path/xbox_hdd.qcow2 
+      ln -sfn $saves_path/xbox/retroarch-core/xemu/xbox_eeprom.bin $bios_path/xbox_eeprom.bin
 
       # Xenia Edge
       dir_prep "$storage_path/retroarch-core/Xenia-Edge/cache" "$bios_path/Xenia-Edge/cache"
@@ -716,15 +716,15 @@ _post_update_legacy::retroarch() {
   if [[ $(check_version_is_older_than "$version_being_updated" "0.10.9b") == "true" ]]; then
     create_dir "$screenshots_path/retroarch"
     set_setting_value "$retroarch_config" "screenshot_directory" "$screenshots_path/retroarch" "retroarch"
-    cp -rf "$retroarch_extras_path/cannonball" "$bios_path/cannonball"
-    cp -rf "$retroarch_extras_path/dinothawr" "$bios_path/dinothawr"
-    cp -rf "$retroarch_extras_path/DirkSimple" "$bios_path/DirkSimple"
-    cp -rf "$retroarch_extras_path/dolphin-emu" "$bios_path/dolphin-emu"
-    cp -rf "$retroarch_extras_path/ecwolf.pk3" "$bios_path/ecwolf.pk3"
-    cp -rf "$retroarch_extras_path/nxengine" "$bios_path/nxengine"
-    cp -rf "$retroarch_extras_path/prboom.wad" "$bios_path/prboom.wad"
-    cp -rf "$retroarch_extras_path/qemu" "$bios_path/qemu"
-    cp -rf "$retroarch_extras_path/xrick" "$bios_path/xrick"
+    cp -rfv "$retroarch_extras_path/cannonball" "$bios_path/cannonball"
+    cp -rfv "$retroarch_extras_path/dinothawr" "$bios_path/dinothawr"
+    cp -rfv "$retroarch_extras_path/DirkSimple" "$bios_path/DirkSimple"
+    cp -rfv "$retroarch_extras_path/dolphin-emu" "$bios_path/dolphin-emu"
+    cp -rfv "$retroarch_extras_path/ecwolf.pk3" "$bios_path/ecwolf.pk3"
+    cp -rfv "$retroarch_extras_path/nxengine" "$bios_path/nxengine"
+    cp -rfv "$retroarch_extras_path/prboom.wad" "$bios_path/prboom.wad"
+    cp -rfv "$retroarch_extras_path/qemu" "$bios_path/qemu"
+    cp -rfv "$retroarch_extras_path/xrick" "$bios_path/xrick"
 
     dir_prep "$saves_path/ps2/retroarch-core/pcsx2/memcards" "$bios_path/pcsx2/memcards"
     dir_prep "$shaders_path/retroarch-core/pcsx2/shaders" "$bios_path/pcsx2/shaders"
@@ -752,24 +752,24 @@ _post_update_legacy::retroarch() {
     add_setting "$retroarch_config_core_options" "melonds_render_mode" "opengl" "retroarch"
   fi
 
-  if check_version_is_older_than "$version_being_updated" "0.11.0b"; then
+  if check_version_is_older_than "$version_being_updated" "0.11.0"; then
 
     # PSX Open BIOS
     cp -f "$retroarch_extras_path/pcsx-redux/openbios.bin" "$bios_path/openbios.bin"
 
     # PS2 Cores
     create_dir "$saves_path/ps2/retroarch-core/pcsx2/memcards"
-    create_dir "$backups_path/retroarch-core/pcsx2/memcards"
-    create_dir "$backups_path/retroarch-core/LRPS2/memcards"
+    create_dir "$backups_path/0.11.0/retroarch-core/pcsx2/memcards"
+    create_dir "$backups_path/0.11.0/retroarch-core/LRPS2/memcards"
 
-    cp -rf "$bios_path/pcsx2/memcards" "$backups_path/retroarch-core/pcsx2/memcards"
-    cp -rf "$saves_path/ps2/retroarch-core/LRPS2/memcards" "$backups_path/retroarch-core/LRPS2/memcards"
+    cp -rfv "$bios_path/pcsx2/memcards" "$backups_path/0.11.0/retroarch-core/pcsx2/memcards"
+    cp -rfv "$saves_path/ps2/retroarch-core/LRPS2/memcards" "$backups_path/0.11.0/retroarch-core/LRPS2/memcards"
 
-    cp -rf "$bios_path/pcsx2/memcards" "$saves_path/ps2/retroarch-core/pcsx2/memcards"
-    cp -rf "$saves_path/ps2/retroarch-core/LRPS2/memcards" "$saves_path/ps2/retroarch-core/pcsx2/memcards"
+    cp -rfv "$bios_path/pcsx2/memcards" "$saves_path/ps2/retroarch-core/pcsx2/memcards"
+    cp -rfv "$saves_path/ps2/retroarch-core/LRPS2/memcards" "$saves_path/ps2/retroarch-core/pcsx2/memcards"
 
     create_dir "$storage_path/retroarch-core/pcsx2/resources"
-    cp -rf "$retroarch_extras_path/pcsx2/resources" "$storage_path/retroarch-core/pcsx2/resources" 
+    cp -rfv "$retroarch_extras_path/pcsx2/resources" "$storage_path/retroarch-core/pcsx2/resources" 
 
     dir_prep "$bios_path" "$bios_path/pcsx2"
     
@@ -838,10 +838,10 @@ _post_update_legacy::retroarch() {
     dir_prep "$shaders_path/retroarch-core/xemu" "$bios_path/xemu/xemu/shaders"
     create_dir "$saves_path/xbox/retroarch-core/xemu" 
 
-    ln -s $bios_path/mcpx_1.0.bin $bios_path/xemu/mcpx_1.0.bin
-    ln -s $bios_path/Complex_4627v1.03.bin $bios_path/xemu/Complex_4627v1.03.bin
-    ln -s $saves_path/xbox/retroarch-core/xemu/xbox_hdd.qcow2 $bios_path/xbox_hdd.qcow2 
-    ln -s $saves_path/xbox/retroarch-core/xemu/xbox_eeprom.bin $bios_path/xbox_eeprom.bin
+    ln -sfn $bios_path/mcpx_1.0.bin $bios_path/xemu/mcpx_1.0.bin
+    ln -sfn $bios_path/Complex_4627v1.03.bin $bios_path/xemu/Complex_4627v1.03.bin
+    ln -sfn $saves_path/xbox/retroarch-core/xemu/xbox_hdd.qcow2 $bios_path/xbox_hdd.qcow2 
+    ln -sfn $saves_path/xbox/retroarch-core/xemu/xbox_eeprom.bin $bios_path/xbox_eeprom.bin
 
     # ScummVM
     cp -fv "$component_config/scummvm.ini" "$retroarch_config_scummvm"

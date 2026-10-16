@@ -129,11 +129,15 @@ _post_update_legacy::xemu() {
     prepare_component "postmove" "xemu"
   fi
 
-  if check_version_is_older_than "$version_being_updated" "0.11.0b"; then
+  if check_version_is_older_than "$version_being_updated" "0.11.0"; then
     log i "0.11.0b Upgrade - Xemu HDD Move"
 
-  cp -fv "$bios_path/xbox_hdd.qcow2" "$saves_path/xbox/xemu/" 
-  set_setting_value "$xemu_conf" "hdd_path" "$saves_path/xbox/xemu/xbox_hdd.qcow2" "xemu" "sys.files"
+    create_dir "$backups_path/0.11.0/xemu"
+
+    cp -v "$bios_path/xbox_hdd.qcow2" "$backups_path/0.11.0/xemu/"
+
+    cp -v "$bios_path/xbox_hdd.qcow2" "$saves_path/xbox/xemu/" 
+    set_setting_value "$xemu_conf" "hdd_path" "$saves_path/xbox/xemu/xbox_hdd.qcow2" "xemu" "sys.files"
 
   fi
 }
