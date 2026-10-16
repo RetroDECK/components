@@ -17,6 +17,31 @@ handle_asset() {
     final_source="$EXTRACTED_PATH/$source"
   fi
 
+  if [[ "$final_source" == *[\*\?\[]* ]]; then # If provided source contains wildcards
+    local parent_dir="${final_source%/*}"
+    local target_pattern="${final_source##*/}"
+
+    local -a matches=()
+    local nullglob_was_set=0 old_ifs="$IFS"
+    shopt -q nullglob && nullglob_was_set=1
+    shopt -s nullglob
+    IFS=
+    matches=( "$parent_dir"/$target_pattern )
+    IFS="$old_ifs"
+    (( nullglob_was_set )) || shopt -u nullglob
+
+    if (( ${#matches[@]} == 0 )); then
+      log error "No asset matching pattern '$target_pattern' found in location $parent_dir"
+      return 1
+    elif (( ${#matches[@]} > 1 )); then
+      log error "Pattern '$target_pattern' is ambiguous in $parent_dir, ${#matches[@]} matches found: ${matches[*]##*/}"
+      return 1
+    fi
+
+    log debug "Wildcard '$target_pattern' resolved to ${matches[0]}"
+    final_source="${matches[0]}"
+  fi
+
   if [[ ! -e "$final_source" ]]; then
     log error "Provided source $final_source does not exist, cannot grab asset"
     return 1
