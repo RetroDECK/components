@@ -4296,6 +4296,36 @@
           "theme": "x68000"
         },
         {
+          "name": "xbox",
+          "fullname": "Microsoft Xbox",
+          "path": "%ROMPATH%/xbox",
+          "extension": ".iso",
+          "commands": [
+            {
+              "label": "xemu",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/xemu_libretro.so %ROM%",
+              "priority": 20
+            }
+          ],
+          "platform": "xbox",
+          "theme": "xbox"
+        },
+        {
+          "name": "xbox360",
+          "fullname": "Microsoft Xbox 360",
+          "path": "%ROMPATH%/xbox360",
+          "extension": ".desktop .iso .sh .xex .zar",
+          "commands": [
+            {
+              "label": "Xenia Edge",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/xenia_edge_libretro.so %ROM%",
+              "priority": 20
+            }
+          ],
+          "platform": "xbox360",
+          "theme": "xbox360"
+        },
+        {
           "name": "zmachine",
           "fullname": "Infocom Z-machine",
           "path": "%ROMPATH%/zmachine",
