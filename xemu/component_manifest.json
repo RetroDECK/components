@@ -3,7 +3,10 @@
     "name": "xemu",
     "core_framework_compatibility": "1",
     "component_version": "1.0.0",
-    "capabilities": ["reset","open"],
+    "capabilities": [
+      "reset",
+      "open"
+    ],
     "description": "Microsoft Xbox (original) emulator.",
     "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/xemu/xemu-guide/",
     "url_webpage": "https://xemu.app/",
@@ -14,8 +17,12 @@
     "system": "xbox",
     "backup_data": {
       "core": [
-        {"path": "$XDG_CONFIG_HOME/xemu"},
-        {"path": "$XDG_DATA_HOME/xemu"}
+        {
+          "path": "$XDG_CONFIG_HOME/xemu"
+        },
+        {
+          "path": "$XDG_DATA_HOME/xemu"
+        }
       ]
     },
     "es_de_config": {
@@ -77,25 +84,107 @@
     },
     "bios": [
       {
-        "filename": "mcpx_1.0.bin",
-        "md5": "d49c52a4102f6df7bcf8d0617ac475ed",
+        "filename": [
+          "Complex_4627.bin",
+          "Complex_4627v1.03.bin"
+        ],
+        "md5": "39cee882148a87f93cb440b99dde3ceb",
         "system": "xbox",
-        "description": "Xbox BIOS"
+        "description": "Complex 4627 modified BIOS",
+        "required": "Alternative"
       },
       {
         "filename": "Complex.bin",
+        "md5": "21445c6f28fca7285b0f167ea770d1e5",
         "system": "xbox",
-        "description": "XBOX Complex BIOS"
+        "description": "Complex BIOS",
+        "required": "Alternative"
       },
       {
-        "filename": "Complex_4627v1.03.bin",
+        "filename": "cromwell_1024.bin",
+        "md5": "04e9565c5eb34c71c8f5f8b9f6524406",
         "system": "xbox",
-        "description": "XBOX Complex BIOS 1.03"
+        "description": "Cromwell open-source BIOS",
+        "required": "Alternative"
       },
       {
-        "filename": "Complex_4627.bin",
+        "filename": "xbox-3944.bin",
+        "md5": "e8b39b98cf775496c1c76e4f7756e6ed",
         "system": "xbox",
-        "description": "XBOX Complex BIOS 4627"
+        "description": "Retail Xbox BIOS 3944",
+        "required": "Alternative"
+      },
+      {
+        "filename": "xbox-4034.bin",
+        "md5": "b49a417511b2dbb485aa255a32a319d1",
+        "system": "xbox",
+        "description": "Retail Xbox BIOS 4034",
+        "required": "Alternative"
+      },
+      {
+        "filename": "xbox-4817.bin",
+        "md5": "430b3edf0f1ea5c77f47845ed3cbd22b",
+        "system": "xbox",
+        "description": "Retail Xbox BIOS 4817",
+        "required": "Alternative"
+      },
+      {
+        "filename": "xbox-5101.bin",
+        "md5": "769898e9682e1f5d065b5961460d03e6",
+        "system": "xbox",
+        "description": "Retail Xbox BIOS 5101",
+        "required": "Alternative"
+      },
+      {
+        "filename": "xbox-5530.bin",
+        "md5": "e455feb286dfc16272ad94d773c24460",
+        "system": "xbox",
+        "description": "Retail Xbox BIOS 5530",
+        "required": "Alternative"
+      },
+      {
+        "filename": "xbox-5713.bin",
+        "md5": "e27bbf815c67bcbf359907a68ea46978",
+        "system": "xbox",
+        "description": "Retail Xbox BIOS 5713",
+        "required": "Alternative"
+      },
+      {
+        "filename": "xbox-5838.bin",
+        "md5": "c5907d241de37c22b083b6e30fa934b0",
+        "system": "xbox",
+        "description": "Retail Xbox BIOS 5838",
+        "required": "Alternative"
+      },
+      {
+        "filename": "mcpx-1.1.bin",
+        "md5": "2870d58a459c745d7cc4c6122ceb3dcb",
+        "system": "xbox",
+        "description": "MCPX 1.1 boot ROM",
+        "required": "Alternative"
+      },
+      {
+        "filename": "mcpx_1.0.bin",
+        "md5": "d49c52a4102f6df7bcf8d0617ac475ed",
+        "system": "xbox",
+        "description": "MCPX 1.0 boot ROM",
+        "required": "Required"
+      },
+      {
+        "filename": "xbox_eeprom.bin",
+        "md5": "3e647719d47e4a3992fc8bc5a7e56fce",
+        "system": "xbox",
+        "description": "Xbox EEPROM data",
+        "paths": "$saves_path/xbox/xemu",
+        "required": "Optional"
+      },
+      {
+        "filename": "xbox_hdd.qcow2",
+        "md5": "cf15087fd5fd7593e293faaa7281cff8",
+        "system": "xbox",
+        "description": "Xbox virtual hard disk image",
+        "paths": "$saves_path/xbox/xemu",
+        "required": "Required"
       }
     ]
   }

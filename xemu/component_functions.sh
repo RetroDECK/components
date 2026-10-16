@@ -52,7 +52,7 @@ _prepare_component::xemu() {
 
     reset)
       log i "------------------------"
-      log i "Resetting Xemu"
+      log i "Resetting xemu"
       log i "------------------------"
 
       rm -rf "$XDG_CONFIG_HOME/xemu"
@@ -69,12 +69,12 @@ _prepare_component::xemu() {
       set_setting_value "$xemu_conf" "flashrom_path" "$bios_path/Complex.bin" "xemu" "sys.files"
       create_dir "$saves_path/xbox/xemu"
       set_setting_value "$xemu_conf" "eeprom_path" "$saves_path/xbox/xemu/xbox-eeprom.bin" "xemu" "sys.files"
-      set_setting_value "$xemu_conf" "hdd_path" "$bios_path/xbox_hdd.qcow2" "xemu" "sys.files"
+      set_setting_value "$xemu_conf" "hdd_path" "$saves_path/xbox/xemu/xbox_hdd.qcow2" "xemu" "sys.files"
     ;;
 
     postmove)
       log i "------------------------"
-      log i "Post-moving Xemu"
+      log i "Post-moving xemu"
       log i "------------------------"
 
       dir_prep "$shaders_path/xemu" "$XDG_DATA_HOME/xemu/xemu/shaders"
@@ -82,7 +82,7 @@ _prepare_component::xemu() {
       set_setting_value "$xemu_conf" "bootrom_path" "$bios_path/mcpx_1.0.bin" "xemu" "sys.files"
       set_setting_value "$xemu_conf" "flashrom_path" "$bios_path/Complex.bin" "xemu" "sys.files"
       set_setting_value "$xemu_conf" "eeprom_path" "$saves_path/xbox/xemu/xbox-eeprom.bin" "xemu" "sys.files"
-      set_setting_value "$xemu_conf" "hdd_path" "$bios_path/xbox_hdd.qcow2" "xemu" "sys.files"
+      set_setting_value "$xemu_conf" "hdd_path" "$saves_path/xbox/xemu/xbox_hdd.qcow2" "xemu" "sys.files"
     ;;
 
   esac
@@ -127,5 +127,13 @@ _post_update_legacy::xemu() {
 
     create_dir "$screenshots_path/xemu"
     prepare_component "postmove" "xemu"
+  fi
+
+  if check_version_is_older_than "$version_being_updated" "0.11.0b"; then
+    log i "0.11.0b Upgrade - Xemu HDD Move"
+
+  cp -fv "$bios_path/xbox_hdd.qcow2" "$saves_path/xbox/xemu/" 
+  set_setting_value "$xemu_conf" "hdd_path" "$saves_path/xbox/xemu/xbox_hdd.qcow2" "xemu" "sys.files"
+
   fi
 }

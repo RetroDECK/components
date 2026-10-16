@@ -37,8 +37,7 @@ _prepare_component::scummvm() {
         sed -i "s|^rootpath=.*|rootpath=$storage_path/scummvm/cloud_root|" $scummvm_config
       
         sed -i "s|^browser_lastpath=.*|browser_lastpath=$roms_path/scummvm|" $scummvm_config
-
-      
+    
     ;;
 
     postmove)

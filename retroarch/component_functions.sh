@@ -144,13 +144,14 @@ _prepare_component::retroarch() {
       set_setting_value "$retroarch_config" "video_shader_dir" "$shaders_path/retroarch/shaders" "retroarch"
       set_setting_value "$retroarch_config" "overlay_directory" "$borders_path/retroarch" "retroarch"
       set_setting_value "$retroarch_config" "system_directory" "$bios_path" "retroarch"
+
       if [[ "$XDG_SESSION_TYPE" == "wayland" ]]; then
         log d "Wayland compositor detected, changing rendered to OpenGL as a workaround"
         set_setting_value "$retroarch_config" "video_driver" "gl" "retroarch"
       fi
 
       log i "--------------------------------"
-      log i "Preparing RetroArch Extra Dirs"
+      log i "Preparing RetroArch Extra Directories"
       log i "--------------------------------"
 
       # Video
@@ -160,6 +161,111 @@ _prepare_component::retroarch() {
       create_dir "$bios_path/np2kai"
       create_dir "$bios_path/quasi88"
       create_dir "$bios_path/same_cdi/bios"
+
+      log i "-----------------------------------------------------------"
+      log i "Preparing RetroArch Cores"
+      log i "-----------------------------------------------------------"
+
+      # AMIGA
+      log i "-----------------------------------------------------------"
+      log i "Prepearing AMIGA LIBRETRO"
+      log i "-----------------------------------------------------------"
+
+      log i "Copying \"$retroarch_extras_path/Amiga/capsimg.so\" in \"$bios_path/capsimg.so\""
+      cp -f "$retroarch_extras_path/Amiga/capsimg.so" "$bios_path/capsimg.so"
+
+      # Amiberry core is hardcoded and looks for it in $bios_path/amiga/
+      cp -f "$retroarch_extras_path/Amiga/capsimg.so" "$bios_path/amiga/capsimg.so"
+
+      # Azahar
+      log i "-----------------------------------------------------------"
+      log i "Prepearing Azahar LIBRETRO"
+      log i "-----------------------------------------------------------"    
+
+      dir_prep "$texture_packs_path/retroarch-core/Azahar/textures" "$saves_path/n3ds/Azahar/load/textures"
+      dir_prep "$mods_path/retroarch-core/Azahar/mods" "$saves_path/n3ds/Azahar/load/mods"
+      dir_prep "$shaders_path/retroarch-core/Azahar/shaders" "$saves_path/n3ds/Azahar/shaders"
+      dir_prep "$cheats_path/retroarch-core/Azahar/cheats" "$saves_path/n3ds/Azahar/cheats"
+
+      # Citra
+      log i "-----------------------------------------------------------"
+      log i "Prepearing Citra LIBRETRO"
+      log i "-----------------------------------------------------------"    
+
+      dir_prep "$mods_path/retroarch-core/Citra/mods" "$saves_path/n3ds/Citra/load/mods"
+      dir_prep "$texture_packs_path/retroarch-core/Citra/textures" "$saves_path/n3ds/Citra/load/textures"
+      dir_prep "$shaders_path/retroarch-core/Citra/shaders" "$saves_path/n3ds/Citra/shaders"
+      dir_prep "$cheats_path/retroarch-core/Citra/cheats" "$saves_path/n3ds/Citra/cheats"
+
+      # Cemu
+      log i "-----------------------------------------------------------"
+      log i "Prepearing Cemu LIBRETRO"
+      log i "-----------------------------------------------------------"    
+
+      dir_prep "$texture_packs_path/retroarch-core/Cemu/graphicPacks" "$bios_path/Cemu/graphicPacks"
+      dir_prep "$shaders_path/retroarch-core/Cemu/transferable" "$bios_path/Cemu/shaderCache/transferable"
+
+      # Dolphin
+      log i "-----------------------------------------------------------"
+      log i "Prepearing Dolphin LIBRETRO"
+      log i "-----------------------------------------------------------"     
+
+      # Filestructure is Generated both in GC and Wii linked to the same source
+
+      dir_prep "$texture_packs_path/retroarch-core/Dolphin/Textures" "$saves_path/gc/User/Load/Textures"
+      dir_prep "$texture_packs_path/retroarch-core/Dolphin/Textures" "$saves_path/wii/User/Load/Textures"
+
+      dir_prep "$texture_packs_path/retroarch-core/Dolphin/DynamicInputTextures" "$saves_path/gc/User/Load/DynamicInputTextures"
+      dir_prep "$texture_packs_path/retroarch-core/Dolphin/DynamicInputTextures" "$saves_path/wii/User/Load/DynamicInputTextures"
+
+      dir_prep "$mods_path/retroarch-core/Dolphin/GraphicMods" "$saves_path/gc/User/Load/GraphicMods"
+      dir_prep "$mods_path/retroarch-core/Dolphin/GraphicMods" "$saves_path/wii/User/Load/GraphicMods"
+
+      dir_prep "$shaders_path/retroarch-core/Dolphin/Shaders" "$saves_path/gc/User/Shaders"
+      dir_prep "$shaders_path/retroarch-core/Dolphin/Shaders" "$saves_path/wii/User/Shaders"
+
+      dir_prep "$storage_path/retroarch-core/Dolphin/Dump" "$saves_path/gc/User/Dump"
+      dir_prep "$storage_path/retroarch-core/Dolphin/Dump" "$saves_path/wii/User/Dump"
+
+      # ECWOLF
+      log i "--------------------------------"
+      log i "Preparing ECWOLF LIBRETRO"
+      log i "--------------------------------"
+
+      cp -f "$retroarch_extras_path/ecwolf.pk3" "$bios_path/ecwolf.pk3"
+
+      # Flycast
+      log i "-----------------------------------------------------------"
+      log i "Prepearing Flycast LIBRETRO"
+      log i "-----------------------------------------------------------"    
+
+      create_dir "$bios_path/dc"
+      dir_prep "$texture_packs_path/retroarch-core/Flycast/textures" "$bios_path/dc/textures"
+
+      # Flycast VMUs
+      mkdir -p "$saves_path/dreamcast/flycast_libretro"
+      if [ -d "$bios_path/dc" ]; then
+        for vmu_file in vmu_save_A1.bin vmu_save_A2.bin vmu_save_B1.bin vmu_save_B2.bin vmu_save_C1.bin vmu_save_C2.bin vmu_save_D1.bin vmu_save_D2.bin; do
+          if [ ! -L "$bios_path/dc/$vmu_file" ]; then # if file is not a symlink, move it to the new location
+            mv -f "$bios_path/dc/$vmu_file" "$saves_path/dreamcast/flycast_libretro/$vmu_file"
+            ln -s "$saves_path/dreamcast/flycast_libretro/$vmu_file" "$bios_path/dc/$vmu_file"
+          fi
+        done
+      fi
+
+      # FBNEO
+      log i "--------------------------------"
+      log i "Preparing FBNEO LIBRETRO"
+      log i "--------------------------------"
+
+      create_dir "$bios_path/fbneo/samples"
+      cp -f "$retroarch_extras_path/fbneo/hiscore.dat" "$bios_path/fbneo/hiscore.dat"
+
+      dir_prep "$cheats_path/retroarch-core/fbneo" "$bios_path/fbneo/cheats"
+      dir_prep "$shaders_path/retroarch-core/fbneo/blend" "$bios_path/fbneo/blend"
+      dir_prep "$mods_path/retroarch-core/fbneo/patched" "$bios_path/fbneo/patched"
+      dir_prep "$mods_path/retroarch-core/fbneo/ips" "$bios_path/fbneo/ips"
+      dir_prep "$mods_path/retroarch-core/fbneo/romdata" "$bios_path/fbneo/romdata"
 
       # MAME
       log i "--------------------------------"
@@ -191,67 +297,40 @@ _prepare_component::retroarch() {
       ln -s "$retroarch_extras_path/cores" "$XDG_CONFIG_HOME/retroarch/cores" # Link RO cores to RA config dir so ES-DE can find it
       dir_prep "$borders_path/retroarch/overlays" "$XDG_CONFIG_HOME/retroarch/overlays"
 
-
-      # Azahar
+      # Mesen
       log i "-----------------------------------------------------------"
-      log i "Prepearing Azahar LIBRETRO"
+      log i "Prepearing Mesen LIBRETRO"
       log i "-----------------------------------------------------------"    
 
-      dir_prep "$texture_packs_path/retroarch-core/Azahar/textures" "$saves_path/n3ds/Azahar/load/textures"
-      dir_prep "$mods_path/retroarch-core/Azahar/mods" "$saves_path/n3ds/Azahar/load/mods"
-      dir_prep "$shaders_path/retroarch-core/Azahar/shaders" "$saves_path/n3ds/Azahar/shaders"
-      dir_prep "$cheats_path/retroarch-core/Azahar/cheats" "$saves_path/n3ds/Azahar/cheats"
+      dir_prep "$texture_packs_path/retroarch-core/Mesen/HdPacks" "$bios_path/HdPacks"
 
-      # Citra
+      # Mupen64Plus
       log i "-----------------------------------------------------------"
-      log i "Prepearing Citra LIBRETRO"
-      log i "-----------------------------------------------------------"    
+      log i "Prepearing Mupen64Plus LIBRETRO"
+      log i "-----------------------------------------------------------"  
 
-      dir_prep "$mods_path/retroarch-core/Citra/mods" "$saves_path/n3ds/Citra/load/mods"
-      dir_prep "$texture_packs_path/retroarch-core/Citra/textures" "$saves_path/n3ds/Citra/load/textures"
-      dir_prep "$shaders_path/retroarch-core/Citra/shaders" "$saves_path/n3ds/Citra/shaders"
-      dir_prep "$cheats_path/retroarch-core/Citra/cheats" "$saves_path/n3ds/Citra/cheats"
+      create_dir "$bios_path/Mupen64plus"
+      dir_prep "$texture_packs_path/retroarch-core/Mupen64Plus/cache" "$bios_path/Mupen64plus/cache"
+      dir_prep "$texture_packs_path/retroarch-core/Mupen64Plus/hires_texture" "$bios_path/Mupen64plus/hires_texture"
 
-      # Dolphin - Filestructure is Generated both in GC and Wii
+      # MSX / SVI / ColecoVision / SG-1000
       log i "-----------------------------------------------------------"
-      log i "Prepearing Dolphin LIBRETRO"
-      log i "-----------------------------------------------------------"     
+      log i "Preparing MSX / SVI / ColecoVision / SG-1000 LIBRETRO"
+      log i "-----------------------------------------------------------"
+    
+      log i "Copying \"$retroarch_extras_path/MSX/Databases\" in \"$bios_path/Databases\""
+      cp -rf "$retroarch_extras_path/MSX/Databases" "$bios_path/Databases"
 
-      dir_prep "$texture_packs_path/retroarch-core/Dolphin/Textures" "$saves_path/gc/User/Load/Textures"
-      dir_prep "$texture_packs_path/retroarch-core/Dolphin/Textures" "$saves_path/wii/User/Load/Textures"
+      log i "Copying \"$retroarch_extras_path/MSX/Machines\" in \"$bios_path/Machines\""
+      cp -rf "$retroarch_extras_path/MSX/Machines" "$bios_path/Machines"
 
-      dir_prep "$texture_packs_path/retroarch-core/Dolphin/DynamicInputTextures" "$saves_path/gc/User/Load/DynamicInputTextures"
-      dir_prep "$texture_packs_path/retroarch-core/Dolphin/DynamicInputTextures" "$saves_path/wii/User/Load/DynamicInputTextures"
 
-      dir_prep "$mods_path/retroarch-core/Dolphin/GraphicMods" "$saves_path/gc/User/Load/GraphicMods"
-      dir_prep "$mods_path/retroarch-core/Dolphin/GraphicMods" "$saves_path/wii/User/Load/GraphicMods"
+      # PCSX Redux
+      log i "-----------------------------------------------------------"
+      log i "Prepearing PCSX Redux Openbios"
+      log i "-----------------------------------------------------------"
 
-      dir_prep "$shaders_path/retroarch-core/Dolphin/Shaders" "$saves_path/gc/User/Shaders"
-      dir_prep "$shaders_path/retroarch-core/Dolphin/Shaders" "$saves_path/wii/User/Shaders"
-
-      dir_prep "$storage_path/retroarch-core/Dolphin/Dump" "$saves_path/gc/User/Dump"
-      dir_prep "$storage_path/retroarch-core/Dolphin/Dump" "$saves_path/wii/User/Dump"
-
-      # FBNEO
-      log i "--------------------------------"
-      log i "Preparing FBNEO LIBRETRO"
-      log i "--------------------------------"
-
-      create_dir "$bios_path/fbneo/samples"
-      cp -f "$retroarch_extras_path/fbneo/hiscore.dat" "$bios_path/fbneo/hiscore.dat"
-
-      dir_prep "$cheats_path/retroarch-core/fbneo" "$bios_path/fbneo/cheats"
-      dir_prep "$shaders_path/retroarch-core/fbneo/blend" "$bios_path/fbneo/blend"
-      dir_prep "$mods_path/retroarch-core/fbneo/patched" "$bios_path/fbneo/patched"
-      dir_prep "$mods_path/retroarch-core/fbneo/ips" "$bios_path/fbneo/ips"
-      dir_prep "$mods_path/retroarch-core/fbneo/romdata" "$bios_path/fbneo/romdata"
-
-      # PRBOOM
-      log i "--------------------------------"
-      log i "Preparing PRBOOM LIBRETRO"
-      log i "--------------------------------"
-
-      cp -f "$retroarch_extras_path/prboom.wad" "$bios_path/prboom.wad"
+      cp -f "$retroarch_extras_path/pcsx-redux/openbios.bin" "$bios_path/openbios.bin"
 
       # PCSX2, LRPS2, PCEE2
       log i "--------------------------------"
@@ -270,6 +349,22 @@ _prepare_component::retroarch() {
 
       cp -rf "$retroarch_extras_path/pcsx2/resources" "$storage_path/retroarch-core/pcsx2/resources" 
 
+      # PRBOOM
+      log i "--------------------------------"
+      log i "Preparing PRBOOM LIBRETRO"
+      log i "--------------------------------"
+
+      cp -f "$retroarch_extras_path/prboom.wad" "$bios_path/prboom.wad"
+
+      # PPSSPP
+      log i "-----------------------------------------------------------"
+      log i "Prepearing PPSSPP LIBRETRO"
+      log i "-----------------------------------------------------------"     
+
+      dir_prep "$texture_packs_path/retroarch-core/PPSSPP/TEXTURES" "$saves_path/PPSSPP/PSP/TEXTURES"
+      dir_prep "$mods_path/retroarch-core/PPSSPP/PLUGINS" "$saves_path/PPSSPP/PSP/PLUGINS"
+      dir_prep "$shaders_path/retroarch-core/PPSSPP/shaders" "$saves_path/saves/PPSSPP/PSP/shaders"
+      dir_prep "$storage_path/retroarch-core/PPSSPP/GAME" "$saves_path/PPSSPP/PSP/GAME"
 
       # RPCS3
       log i "--------------------------------"
@@ -286,42 +381,6 @@ _prepare_component::retroarch() {
       dir_prep "$storage_path/retroarch-core/rpcs3/captures" "$bios_path/rpcs3/captures"
       dir_prep "$storage_path/retroarch-core/rpcs3/patches" "$bios_path/rpcs3/patches"
 
-      # ECWOLF
-      log i "--------------------------------"
-      log i "Preparing ECWOLF LIBRETRO"
-      log i "--------------------------------"
-
-      cp -f "$retroarch_extras_path/ecwolf.pk3" "$bios_path/ecwolf.pk3"
-
-      # MSX / SVI / ColecoVision / SG-1000
-      log i "-----------------------------------------------------------"
-      log i "Preparing MSX / SVI / ColecoVision / SG-1000 LIBRETRO"
-      log i "-----------------------------------------------------------"
-    
-      log i "Copying \"$retroarch_extras_path/MSX/Databases\" in \"$bios_path/Databases\""
-      cp -rf "$retroarch_extras_path/MSX/Databases" "$bios_path/Databases"
-
-      log i "Copying \"$retroarch_extras_path/MSX/Machines\" in \"$bios_path/Machines\""
-      cp -rf "$retroarch_extras_path/MSX/Machines" "$bios_path/Machines"
-
-      # AMIGA
-      log i "-----------------------------------------------------------"
-      log i "Prepearing AMIGA + AMIGAVISION LIBRETRO"
-      log i "-----------------------------------------------------------"
-
-      log i "Copying \"$retroarch_extras_path/Amiga/capsimg.so\" in \"$bios_path/capsimg.so\""
-      cp -f "$retroarch_extras_path/Amiga/capsimg.so" "$bios_path/capsimg.so"
-
-      # Amiberry core is hardcoded and looks for it in $bios_path/amiga/
-      cp -f "$retroarch_extras_path/Amiga/capsimg.so" "$bios_path/amiga/capsimg.so"
-
-      # PCSX Redux
-      log i "-----------------------------------------------------------"
-      log i "Prepearing PCSX Redux Openbios"
-      log i "-----------------------------------------------------------"
-
-      cp -f "$retroarch_extras_path/pcsx-redux/openbios.bin" "$bios_path/openbios.bin"
-
       # ScummVM
       log i "-----------------------------------------------------------"
       log i "Prepearing ScummVM LIBRETRO"
@@ -332,16 +391,16 @@ _prepare_component::retroarch() {
       unzip -o "$retroarch_extras_path/ScummVM.zip" 'scummvm/extra/*' -d /tmp
       unzip -o "$retroarch_extras_path/ScummVM.zip" 'scummvm/theme/*' -d /tmp
 
-      create_dir "$storage_path/retroarch/ScummVM/icons"
-      create_dir "$storage_path/retroarch/ScummVM/extra"
-      create_dir "$storage_path/retroarch/ScummVM/theme"
-      mv -f /tmp/scummvm/extra/* "$storage_path/retroarch/ScummVM/extra"
-      mv -f /tmp/scummvm/theme/* "$storage_path/retroarch/ScummVM/theme"
+      create_dir "$storage_path/retroarch-core/ScummVM/icons"
+      create_dir "$storage_path/retroarch-core/ScummVM/extra"
+      create_dir "$storage_path/retroarch-core/ScummVM/theme"
+      mv -f /tmp/scummvm/extra/* "$storage_path/retroarch-core/ScummVM/extra"
+      mv -f /tmp/scummvm/theme/* "$storage_path/retroarch-core/ScummVM/theme"
       rm -rf /tmp/extra /tmp/theme /tmp/scummvm/extra /tmp/scummvm/theme
 
-      set_setting_value "$retroarch_config_scummvm" "iconspath" "$storage_path/retroarch/ScummVM/icons" "retroarch_scummvm" "scummvm"
-      set_setting_value "$retroarch_config_scummvm" "extrapath" "$storage_path/retroarch/ScummVM/extra" "retroarch_scummvm" "scummvm"
-      set_setting_value "$retroarch_config_scummvm" "themepath" "$storage_path/retroarch/ScummVM/theme" "retroarch_scummvm" "scummvm"
+      set_setting_value "$retroarch_config_scummvm" "iconspath" "$storage_path/retroarch-core/ScummVM/icons" "retroarch_scummvm" "scummvm"
+      set_setting_value "$retroarch_config_scummvm" "extrapath" "$storage_path/retroarch-core/ScummVM/extra" "retroarch_scummvm" "scummvm"
+      set_setting_value "$retroarch_config_scummvm" "themepath" "$storage_path/retroarch-core/ScummVM/theme" "retroarch_scummvm" "scummvm"
       set_setting_value "$retroarch_config_scummvm" "savepath" "$saves_path/scummvm" "retroarch_scummvm" "scummvm"
       set_setting_value "$retroarch_config_scummvm" "browser_lastpath" "$roms_path/scummvm" "retroarch_scummvm" "scummvm"
 
@@ -351,53 +410,32 @@ _prepare_component::retroarch() {
       log i "-----------------------------------------------------------"
       cp -f "$retroarch_extras_path/supermodel" "$bios_path/supermodel"
 
-      # PPSSPP
+      # xemu
       log i "-----------------------------------------------------------"
-      log i "Prepearing PPSSPP LIBRETRO"
-      log i "-----------------------------------------------------------"     
-
-      dir_prep "$texture_packs_path/retroarch-core/PPSSPP/TEXTURES" "$saves_path/PPSSPP/PSP/TEXTURES"
-      dir_prep "$mods_path/retroarch-core/PPSSPP/PLUGINS" "$saves_path/PPSSPP/PSP/PLUGINS"
-      dir_prep "$shaders_path/retroarch-core/PPSSPP/shaders" "$saves_path/saves/PPSSPP/PSP/shaders"
-      dir_prep "$storage_path/retroarch-core/PPSSPP/GAME" "$saves_path/PPSSPP/PSP/GAME"
-
-
-
-      # Mesen
+      log i "Prepearing xemu LIBRETRO"
       log i "-----------------------------------------------------------"
-      log i "Prepearing Mesen LIBRETRO"
-      log i "-----------------------------------------------------------"    
 
-      dir_prep "$texture_packs_path/retroarch-core/Mesen/HdPacks" "$bios_path/HdPacks"
+      dir_prep "$shaders_path/retroarch-core/xemu" "$bios_path/xemu/xemu/shaders"
+      create_dir "$saves_path/xbox/retroarch-core/xemu" 
 
-      # Mupen64Plus
+      ln -s $bios_path/mcpx_1.0.bin $bios_path/xemu/mcpx_1.0.bin
+      ln -s $bios_path/Complex_4627v1.03.bin $bios_path/xemu/Complex_4627v1.03.bin
+      ln -s $saves_path/xbox/retroarch-core/xemu/xbox_hdd.qcow2 $bios_path/xbox_hdd.qcow2 
+      ln -s $saves_path/xbox/retroarch-core/xemu/xbox_eeprom.bin $bios_path/xbox_eeprom.bin
+
+      # Xenia Edge
       log i "-----------------------------------------------------------"
-      log i "Prepearing Mupen64Plus LIBRETRO"
-      log i "-----------------------------------------------------------"  
-
-      create_dir "$bios_path/Mupen64plus"
-      dir_prep "$texture_packs_path/retroarch-core/Mupen64Plus/cache" "$bios_path/Mupen64plus/cache"
-      dir_prep "$texture_packs_path/retroarch-core/Mupen64Plus/hires_texture" "$bios_path/Mupen64plus/hires_texture"
-
-      # Flycast
+      log i "Prepearing Xenia Edge LIBRETRO"
       log i "-----------------------------------------------------------"
-      log i "Prepearing Flycast LIBRETRO"
-      log i "-----------------------------------------------------------"    
 
-      create_dir "$bios_path/dc"
-      dir_prep "$texture_packs_path/retroarch-core/Flycast/textures" "$bios_path/dc/textures"
+      dir_prep "$storage_path/retroarch-core/Xenia-Edge/cache" "$bios_path/Xenia-Edge/cache"
+      dir_prep "$storage_path/retroarch-core/Xenia-Edge/cache0" "$bios_path/Xenia-Edge/cache0"
+      dir_prep "$storage_path/retroarch-core/Xenia-Edge/cache1" "$bios_path/Xenia-Edge/cache1"
+      dir_prep "$storage_path/retroarch-core/Xenia-Edge/library" "$bios_path/Xenia-Edge/library"
 
+      dir_prep "$saves_path/xbox360/retroarch-core/Xenia-Edge/content" "$bios_path/Xenia-Edge/content"
 
-      # Flycast VMUs
-      mkdir -p "$saves_path/dreamcast/flycast_libretro"
-      if [ -d "$bios_path/dc" ]; then
-        for vmu_file in vmu_save_A1.bin vmu_save_A2.bin vmu_save_B1.bin vmu_save_B2.bin vmu_save_C1.bin vmu_save_C2.bin vmu_save_D1.bin vmu_save_D2.bin; do
-          if [ ! -L "$bios_path/dc/$vmu_file" ]; then # if file is not a symlink, move it to the new location
-            mv -f "$bios_path/dc/$vmu_file" "$saves_path/dreamcast/flycast_libretro/$vmu_file"
-            ln -s "$saves_path/dreamcast/flycast_libretro/$vmu_file" "$bios_path/dc/$vmu_file"
-          fi
-        done
-      fi
+      dir_prep "$mods_path/retroarch-core/Xenia-Edge/plugins" "$bios_path/Xenia-Edge/plugins"
 
     ;;
 
@@ -417,6 +455,10 @@ _prepare_component::retroarch() {
       dir_prep "$texture_packs_path/retroarch-core/Citra/textures" "$saves_path/n3ds/Citra/load/textures"
       dir_prep "$shaders_path/retroarch-core/Citra/shaders" "$saves_path/n3ds/Citra/shaders"
       dir_prep "$cheats_path/retroarch-core/Citra/cheats" "$saves_path/n3ds/Citra/cheats"
+
+      # Cemu
+      dir_prep "$texture_packs_path/retroarch-core/Cemu/graphicPacks" "$bios_path/Cemu/graphicPacks"
+      dir_prep "$shaders_path/retroarch-core/Cemu/transferable" "$bios_path/Cemu/shaderCache/transferable"
 
       # Dolphin
       dir_prep "$texture_packs_path/retroarch-core/Dolphin/Textures" "$saves_path/gc/User/Load/Textures"
@@ -452,9 +494,9 @@ _prepare_component::retroarch() {
       dir_prep "$texture_packs_path/retroarch-core/Mupen64Plus/hires_texture" "$bios_path/Mupen64plus/hires_texture"
 
       # ScummVM
-      set_setting_value "$retroarch_config_scummvm" "iconspath" "$storage_path/retroarch/ScummVM/icons" "retroarch_scummvm" "scummvm"
-      set_setting_value "$retroarch_config_scummvm" "extrapath" "$storage_path/retroarch/ScummVM/extra" "retroarch_scummvm" "scummvm"
-      set_setting_value "$retroarch_config_scummvm" "themepath" "$storage_path/retroarch/ScummVM/theme" "retroarch_scummvm" "scummvm"
+      set_setting_value "$retroarch_config_scummvm" "iconspath" "$storage_path/retroarch-core/ScummVM/icons" "retroarch_scummvm" "scummvm"
+      set_setting_value "$retroarch_config_scummvm" "extrapath" "$storage_path/retroarch-core/ScummVM/extra" "retroarch_scummvm" "scummvm"
+      set_setting_value "$retroarch_config_scummvm" "themepath" "$storage_path/retroarch-core/ScummVM/theme" "retroarch_scummvm" "scummvm"
       set_setting_value "$retroarch_config_scummvm" "savepath" "$saves_path/scummvm" "retroarch_scummvm" "scummvm"
       set_setting_value "$retroarch_config_scummvm" "browser_lastpath" "$roms_path/scummvm" "retroarch_scummvm" "scummvm"
 
@@ -486,6 +528,22 @@ _prepare_component::retroarch() {
       dir_prep "$storage_path/retroarch-core/rpcs3/captures" "$bios_path/rpcs3/captures"
       dir_prep "$storage_path/retroarch-core/rpcs3/patches" "$bios_path/rpcs3/patches"
 
+      # xemu
+      dir_prep "$shaders_path/retroarch-core/xemu" "$bios_path/xemu/xemu/shaders"
+
+      ln -s $bios_path/mcpx_1.0.bin $bios_path/xemu/mcpx_1.0.bin
+      ln -s $bios_path/Complex_4627v1.03.bin $bios_path/xemu/Complex_4627v1.03.bin
+      ln -s $saves_path/xbox/retroarch-core/xemu/xbox_hdd.qcow2 $bios_path/xbox_hdd.qcow2 
+      ln -s $saves_path/xbox/retroarch-core/xemu/xbox_eeprom.bin $bios_path/xbox_eeprom.bin
+
+      # Xenia Edge
+      dir_prep "$storage_path/retroarch-core/Xenia-Edge/cache" "$bios_path/Xenia-Edge/cache"
+      dir_prep "$storage_path/retroarch-core/Xenia-Edge/cache0" "$bios_path/Xenia-Edge/cache0"
+      dir_prep "$storage_path/retroarch-core/Xenia-Edge/cache1" "$bios_path/Xenia-Edge/cache1"
+      dir_prep "$storage_path/retroarch-core/Xenia-Edge/library" "$bios_path/Xenia-Edge/library"
+      dir_prep "$saves_path/xbox360/retroarch-core/Xenia-Edge/content" "$bios_path/Xenia-Edge/content"
+      dir_prep "$mods_path/retroarch-core/Xenia-Edge/plugins" "$bios_path/Xenia-Edge/plugins"
+
       # RetroArch Settings
       set_setting_value "$retroarch_config" "system_directory" "$bios_path" "retroarch"
       set_setting_value "$retroarch_config" "savefile_directory" "$saves_path" "retroarch"
@@ -507,6 +565,7 @@ _prepare_component::retroarch() {
       set_setting_value "$retroarch_config" "overlay_directory" "$borders_path/retroarch" "retroarch"
 
       dir_prep "$logs_path/retroarch" "$XDG_CONFIG_HOME/retroarch/logs"
+
 
     ;;
 
@@ -694,8 +753,11 @@ _post_update_legacy::retroarch() {
   fi
 
   if check_version_is_older_than "$version_being_updated" "0.11.0b"; then
+
+    # PSX Open BIOS
     cp -f "$retroarch_extras_path/pcsx-redux/openbios.bin" "$bios_path/openbios.bin"
 
+    # PS2 Cores
     create_dir "$saves_path/ps2/retroarch-core/pcsx2/memcards"
     create_dir "$backups_path/retroarch-core/pcsx2/memcards"
     create_dir "$backups_path/retroarch-core/LRPS2/memcards"
@@ -720,6 +782,7 @@ _post_update_legacy::retroarch() {
     dir_prep "$cheats_path/retroarch-core/pcsx2/cheats_ni" "$bios_path/pcsx2/cheats_ni"
     dir_prep "$texture_packs_path/retroarch-core/pcsx2/textures" "$bios_path/pcsx2/textures"
 
+    # RPCS3
     dir_prep "$storage_path/retroarch-core/rpcs3/dev_hdd0" "$bios_path/rpcs3/dev_hdd0"
     dir_prep "$storage_path/retroarch-core/rpcs3/dev_hdd1" "$bios_path/rpcs3/dev_hdd1"
     dir_prep "$storage_path/retroarch-core/rpcs3/dev_flash" "$bios_path/rpcs3/dev_flash"
@@ -730,6 +793,7 @@ _post_update_legacy::retroarch() {
     dir_prep "$storage_path/retroarch-core/rpcs3/captures" "$bios_path/rpcs3/captures"
     dir_prep "$storage_path/retroarch-core/rpcs3/patches" "$bios_path/rpcs3/patches"
 
+    # N3DS Cores
     dir_prep "$mods_path/retroarch-core/Citra/mods" "$saves_path/n3ds/Citra/load/mods"
     dir_prep "$texture_packs_path/retroarch-core/Citra/textures" "$saves_path/n3ds/Citra/load/textures"
     dir_prep "$shaders_path/retroarch-core/Citra/shaders" "$saves_path/n3ds/Citra/shaders"
@@ -740,11 +804,13 @@ _post_update_legacy::retroarch() {
     dir_prep "$shaders_path/retroarch-core/Azahar/shaders" "$saves_path/n3ds/Azahar/shaders"
     dir_prep "$cheats_path/retroarch-core/Azahar/cheats" "$saves_path/n3ds/Azahar/cheats"
 
+    # PPSSPP
     dir_prep "$texture_packs_path/retroarch-core/PPSSPP/TEXTURES" "$saves_path/PPSSPP/PSP/TEXTURES"
     dir_prep "$mods_path/retroarch-core/PPSSPP/PLUGINS" "$saves_path/PPSSPP/PSP/PLUGINS"
     dir_prep "$shaders_path/retroarch-core/PPSSPP/shaders" "$saves_path/saves/PPSSPP/PSP/shaders"
     dir_prep "$storage_path/retroarch-core/PPSSPP/GAME" "$saves_path/PPSSPP/PSP/GAME"
 
+    # Dolphin Wii + GC
     dir_prep "$texture_packs_path/retroarch-core/Dolphin/Textures" "$saves_path/gc/User/Load/Textures"
     dir_prep "$texture_packs_path/retroarch-core/Dolphin/Textures" "$saves_path/wii/User/Load/Textures"
     dir_prep "$texture_packs_path/retroarch-core/Dolphin/DynamicInputTextures" "$saves_path/gc/User/Load/DynamicInputTextures"
@@ -755,7 +821,47 @@ _post_update_legacy::retroarch() {
     dir_prep "$shaders_path/retroarch-core/Dolphin/Shaders" "$saves_path/wii/User/Shaders"
     dir_prep "$storage_path/retroarch-core/Dolphin/Dump" "$saves_path/gc/User/Dump"
     dir_prep "$storage_path/retroarch-core/Dolphin/Dump" "$saves_path/wii/User/Dump"
+
+    # Cemu
+    dir_prep "$texture_packs_path/retroarch-core/Cemu/graphicPacks" "$bios_path/Cemu/graphicPacks"
+    dir_prep "$shaders_path/retroarch-core/Cemu/transferable" "$bios_path/Cemu/shaderCache/transferable"
     
+    # Xenia Edge
+    dir_prep "$storage_path/retroarch-core/Xenia-Edge/cache" "$bios_path/Xenia-Edge/cache"
+    dir_prep "$storage_path/retroarch-core/Xenia-Edge/cache0" "$bios_path/Xenia-Edge/cache0"
+    dir_prep "$storage_path/retroarch-core/Xenia-Edge/cache1" "$bios_path/Xenia-Edge/cache1"
+    dir_prep "$storage_path/retroarch-core/Xenia-Edge/library" "$bios_path/Xenia-Edge/library"
+    dir_prep "$saves_path/xbox360/retroarch-core/Xenia-Edge/content" "$bios_path/Xenia-Edge/content"
+    dir_prep "$mods_path/retroarch-core/Xenia-Edge/plugins" "$bios_path/Xenia-Edge/plugins"
+
+    # Xemu
+    dir_prep "$shaders_path/retroarch-core/xemu" "$bios_path/xemu/xemu/shaders"
+    create_dir "$saves_path/xbox/retroarch-core/xemu" 
+
+    ln -s $bios_path/mcpx_1.0.bin $bios_path/xemu/mcpx_1.0.bin
+    ln -s $bios_path/Complex_4627v1.03.bin $bios_path/xemu/Complex_4627v1.03.bin
+    ln -s $saves_path/xbox/retroarch-core/xemu/xbox_hdd.qcow2 $bios_path/xbox_hdd.qcow2 
+    ln -s $saves_path/xbox/retroarch-core/xemu/xbox_eeprom.bin $bios_path/xbox_eeprom.bin
+
+    # ScummVM
+    cp -fv "$component_config/scummvm.ini" "$retroarch_config_scummvm"
+    log i "Installing ScummVM assets"
+    unzip -o "$retroarch_extras_path/ScummVM.zip" 'scummvm/extra/*' -d /tmp
+    unzip -o "$retroarch_extras_path/ScummVM.zip" 'scummvm/theme/*' -d /tmp
+
+    create_dir "$storage_path/retroarch-core/ScummVM/icons"
+    create_dir "$storage_path/retroarch-core/ScummVM/extra"
+    create_dir "$storage_path/retroarch-core/ScummVM/theme"
+    mv -f /tmp/scummvm/extra/* "$storage_path/retroarch-core/ScummVM/extra"
+    mv -f /tmp/scummvm/theme/* "$storage_path/retroarch-core/ScummVM/theme"
+    rm -rf /tmp/extra /tmp/theme /tmp/scummvm/extra /tmp/scummvm/theme
+
+    set_setting_value "$retroarch_config_scummvm" "iconspath" "$storage_path/retroarch-core/ScummVM/icons" "retroarch_scummvm" "scummvm"
+    set_setting_value "$retroarch_config_scummvm" "extrapath" "$storage_path/retroarch-core/ScummVM/extra" "retroarch_scummvm" "scummvm"
+    set_setting_value "$retroarch_config_scummvm" "themepath" "$storage_path/retroarch-core/ScummVM/theme" "retroarch_scummvm" "scummvm"
+    set_setting_value "$retroarch_config_scummvm" "savepath" "$saves_path/scummvm" "retroarch_scummvm" "scummvm"
+    set_setting_value "$retroarch_config_scummvm" "browser_lastpath" "$roms_path/scummvm" "retroarch_scummvm" "scummvm"
+
   fi
 
   #######################################

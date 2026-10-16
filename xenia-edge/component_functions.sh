@@ -19,14 +19,14 @@ _prepare_component::xenia-edge() {
 
       create_dir -d "$XDG_DATA_HOME/Xenia"
       cp -fr "$component_config/"* "$XDG_DATA_HOME/Xenia"
-      dir_prep "$storage_path/Xenia/cache" "$XDG_DATA_HOME/Xenia/cache"
-      dir_prep "$storage_path/Xenia/cache0" "$XDG_DATA_HOME/Xenia/cache0"
-      dir_prep "$storage_path/Xenia/cache1" "$XDG_DATA_HOME/Xenia/cache1"
-      dir_prep "$storage_path/Xenia/library" "$XDG_DATA_HOME/Xenia/library"
+      dir_prep "$storage_path/Xenia-Edge/cache" "$XDG_DATA_HOME/Xenia/cache"
+      dir_prep "$storage_path/Xenia-Edge/cache0" "$XDG_DATA_HOME/Xenia/cache0"
+      dir_prep "$storage_path/Xenia-Edge/cache1" "$XDG_DATA_HOME/Xenia/cache1"
+      dir_prep "$storage_path/Xenia-Edge/library" "$XDG_DATA_HOME/Xenia/library"
 
-      dir_prep "$saves_path/xbox360/Xenia/content" "$XDG_DATA_HOME/Xenia/content"
+      dir_prep "$saves_path/xbox360/Xenia-Edge/content" "$XDG_DATA_HOME/Xenia/content"
 
-      dir_prep "$mods_path/Xenia/plugins" "$XDG_DATA_HOME/Xenia/plugins"
+      dir_prep "$mods_path/Xenia-Edge/plugins" "$XDG_DATA_HOME/Xenia/plugins"
 
     ;;
 
@@ -36,14 +36,14 @@ _prepare_component::xenia-edge() {
       log i "Post-moving Xenia Edge"
       log i "------------------------"
 
-      dir_prep "$storage_path/Xenia/cache" "$XDG_DATA_HOME/Xenia/cache"
-      dir_prep "$storage_path/Xenia/cache0" "$XDG_DATA_HOME/Xenia/cache0"
-      dir_prep "$storage_path/Xenia/cache1" "$XDG_DATA_HOME/Xenia/cache1"
-      dir_prep "$storage_path/Xenia/library" "$XDG_DATA_HOME/Xenia/library"
+      dir_prep "$storage_path/Xenia-Edge/cache" "$XDG_DATA_HOME/Xenia/cache"
+      dir_prep "$storage_path/Xenia-Edge/cache0" "$XDG_DATA_HOME/Xenia/cache0"
+      dir_prep "$storage_path/Xenia-Edge/cache1" "$XDG_DATA_HOME/Xenia/cache1"
+      dir_prep "$storage_path/Xenia-Edge/library" "$XDG_DATA_HOME/Xenia/library"
 
-      dir_prep "$saves_path/xbox360/Xenia/content" "$XDG_DATA_HOME/Xenia/content"
+      dir_prep "$saves_path/xbox360/Xenia-Edge/content" "$XDG_DATA_HOME/Xenia/content"
 
-      dir_prep "$mods_path/Xenia/plugins" "$XDG_DATA_HOME/Xenia/plugins"
+      dir_prep "$mods_path/Xenia-Edge/plugins" "$XDG_DATA_HOME/Xenia/plugins"
       
     ;;
 

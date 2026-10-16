@@ -6506,7 +6506,7 @@
           "neogeocdjp"
         ],
         "description": "Neo Geo CD front-loader BIOS",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "neocd_sf.rom",
@@ -6516,7 +6516,7 @@
           "neogeocdjp"
         ],
         "description": "Neo Geo CD front-loader BIOS",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "neocd_t.rom",
@@ -6526,7 +6526,7 @@
           "neogeocdjp"
         ],
         "description": "Neo Geo CD top-loader BIOS",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "neocd_st.rom",
@@ -6536,7 +6536,7 @@
           "neogeocdjp"
         ],
         "description": "Neo Geo CD top-loader BIOS",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "neocd_z.rom",
@@ -6556,7 +6556,7 @@
           "neogeocdjp"
         ],
         "description": "Neo Geo CDZ BIOS",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "front-sp1.bin",
@@ -6566,7 +6566,7 @@
           "neogeocdjp"
         ],
         "description": "MAME front-loader BIOS",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "top-sp1.bin",
@@ -6576,7 +6576,7 @@
           "neogeocdjp"
         ],
         "description": "MAME top-loader BIOS",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "neocd.bin",
@@ -6586,7 +6586,7 @@
           "neogeocdjp"
         ],
         "description": "MAME CDZ BIOS",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "uni-bioscd.rom",
@@ -6725,7 +6725,7 @@
         ],
         "system": "segacd",
         "description": "Sega Mega-CD EU BIOS",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "bios_CD_U.bin",
@@ -6736,7 +6736,7 @@
         ],
         "system": "segacd",
         "description": "Sega CD US BIOS",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "bios_CD_J.bin",
@@ -6746,7 +6746,7 @@
         ],
         "system": "segacd",
         "description": "Sega Mega-CD JP BIOS",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "dc_boot.bin",
@@ -6900,7 +6900,7 @@
           "saturnjp"
         ],
         "description": "Saturn Japanese BIOS (sega_101)",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "mpr-17933.bin",
@@ -6910,7 +6910,7 @@
           "saturnjp"
         ],
         "description": "Saturn US/EU BIOS",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "mpr-18811-mx.ic1",
@@ -8826,454 +8826,454 @@
         "md5": "acf4730ceb38ac9d8c7d8e21f2614600",
         "system": "ps2",
         "description": "PlayStation 2 BIOS - Japan",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "ps2-0101j-20000217.bin",
         "md5": "b1459d7446c69e3e97e6ace3ae23dd1c",
         "system": "ps2",
         "description": "PlayStation 2 BIOS - Japan",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "ps2-0120j-20001027-185015.bin",
         "md5": "f63bc530bd7ad7c026fcd6f7bd0d9525",
         "system": "ps2",
         "description": "PlayStation 2 BIOS - Japan",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "ps2-0120j-20001027-191435.bin",
         "md5": "cee06bd68c333fc5768244eae77e4495",
         "system": "ps2",
         "description": "PlayStation 2 BIOS - Japan",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "ps2-0150j-20010118.bin",
         "md5": "815ac991d8bc3b364696bead3457de7d",
         "system": "ps2",
         "description": "PlayStation 2 BIOS - Japan",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "ps2-0160j-20010427.bin",
         "md5": "ab55cceea548303c22c72570cfd4dd71",
         "system": "ps2",
         "description": "PlayStation 2 BIOS - Japan",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "ps2-0170j-20030206.bin",
         "md5": "312ad4816c232a9606e56f946bc0678a",
         "system": "ps2",
         "description": "PlayStation 2 BIOS - Japan",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "ps2-0200j-20040614.bin",
         "md5": "0eee5d1c779aa50e94edd168b4ebf42e",
         "system": "ps2",
         "description": "PlayStation 2 BIOS - Japan",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "ps2-0210j-20040917.bin",
         "md5": "1ad977bb539fc9448a08ab276a836bbc",
         "system": "ps2",
         "description": "PlayStation 2 BIOS - Japan",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "ps2-0210j-20040917.bin",
         "md5": "1ad977bb539fc9448a08ab276a836bbc",
         "system": "ps2",
         "description": "PlayStation 2 BIOS - Japan",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "ps2-0110a-20000727.bin",
         "md5": "a20c97c02210f16678ca3010127caf36",
         "system": "ps2",
         "description": "PlayStation 2 BIOS - USA",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "ps2-0120a-20000902.bin",
         "md5": "8db2fbbac7413bf3e7154c1e0715e565",
         "system": "ps2",
         "description": "PlayStation 2 BIOS - USA",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "ps2-0150a-20001228.bin",
         "md5": "8accc3c49ac45f5ae2c5db0adc854633",
         "system": "ps2",
         "description": "PlayStation 2 BIOS - USA",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "ps2-0160a-20010427.bin",
         "md5": "b107b5710042abe887c0f6175f6e94bb",
         "system": "ps2",
         "description": "PlayStation 2 BIOS - USA",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "ps2-0160a-20011004.bin",
         "md5": "7200a03d51cacc4c14fcdfdbc4898431",
         "system": "ps2",
         "description": "PlayStation 2 BIOS - USA",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "ps2-0160a-20020207.bin",
         "md5": "d5ce2c7d119f563ce04bc04dbc3a323e",
         "system": "ps2",
         "description": "PlayStation 2 BIOS - USA",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "ps2-0170a-20030325.bin",
         "md5": "8aa12ce243210128c5074552d3b86251",
         "system": "ps2",
         "description": "PlayStation 2 BIOS - USA",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "ps2-0190a-20030623.bin",
         "md5": "35461cecaa51712b300b2d6798825048",
         "system": "ps2",
         "description": "PlayStation 2 BIOS - USA",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "ps2-0200a-20040614.bin",
         "md5": "d333558cc14561c1fdc334c75d5f37b7",
         "system": "ps2",
         "description": "PlayStation 2 BIOS - USA",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "ps2-0220a-20050620.bin",
         "md5": "929a14baca1776b00869f983aa6e14d2",
         "system": "ps2",
         "description": "PlayStation 2 BIOS - USA",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "ps2-0220a-20060210.bin",
         "md5": "cb801b7920a7d536ba07b6534d2433ca",
         "system": "ps2",
         "description": "PlayStation 2 BIOS - USA",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "ps2-0220a-20060905.bin",
         "md5": "40c11c063b3b9409aa5e4058e984e30c",
         "system": "ps2",
         "description": "PlayStation 2 BIOS - USA",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "ps2-0230a-20080220.bin",
         "md5": "21038400dc633070a78ad53090c53017",
         "system": "ps2",
         "description": "PlayStation 2 BIOS - USA",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "ps2-0120e-20000902.bin",
         "md5": "b7fa11e87d51752a98b38e3e691cbf17",
         "system": "ps2",
         "description": "PlayStation 2 BIOS - EUROPE",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "ps2-0150e-20001228.bin",
         "md5": "838544f12de9b0abc90811279ee223c8",
         "system": "ps2",
         "description": "PlayStation 2 BIOS - EUROPE",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "ps2-0160e-20010704.bin",
         "md5": "491209dd815ceee9de02dbbc408c06d6",
         "system": "ps2",
         "description": "PlayStation 2 BIOS - EUROPE",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "ps2-0160e-20011004.bin",
         "md5": "8359638e857c8bc18c3c18ac17d9cc3c",
         "system": "ps2",
         "description": "PlayStation 2 BIOS - EUROPE",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "ps2-0160e-20020319.bin",
         "md5": "0d2228e6fd4fb639c9c39d077a9ec10c",
         "system": "ps2",
         "description": "PlayStation 2 BIOS - EUROPE",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "ps2-0170e-20030227.bin",
         "md5": "6e69920fa6eef8522a1d688a11e41bc6",
         "system": "ps2",
         "description": "PlayStation 2 BIOS - EUROPE",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "ps2-0190e-20030623.bin",
         "md5": "bd6415094e1ce9e05daabe85de807666",
         "system": "ps2",
         "description": "PlayStation 2 BIOS - EUROPE",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "ps2-0200e-20040614.bin",
         "md5": "dc752f160044f2ed5fc1f4964db2a095",
         "system": "ps2",
         "description": "PlayStation 2 BIOS - EUROPE",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "ps2-0220e-20050620.bin",
         "md5": "573f7d4a430c32b3cc0fd0c41e104bbd",
         "system": "ps2",
         "description": "PlayStation 2 BIOS - EUROPE",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "ps2-0220e-20060210.bin",
         "md5": "af60e6d1a939019d55e5b330d24b1c25",
         "system": "ps2",
         "description": "PlayStation 2 BIOS - EUROPE",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "ps2-0220e-20060905.bin",
         "md5": "80bbb237a6af9c611df43b16b930b683",
         "system": "ps2",
         "description": "PlayStation 2 BIOS - EUROPE",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "ps2-0230e-20080220.bin",
         "md5": "dc69f0643a3030aaa4797501b483d6c4",
         "system": "ps2",
         "description": "PlayStation 2 BIOS - EUROPE",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "ps2-0160h-20010730.bin",
         "md5": "352d2ff9b3f68be7e6fa7e6dd8389346",
         "system": "ps2",
         "description": "PlayStation 2 BIOS - HONG KONG",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "ps2-0160h-20020426.bin",
         "md5": "315a4003535dfda689752cb25f24785c",
         "system": "ps2",
         "description": "PlayStation 2 BIOS - HONG KONG",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "ps2-0190h-20030623.bin",
         "md5": "07b562a3f0c4b9a55834df9bbc9bd0c3",
         "system": "ps2",
         "description": "PlayStation 2 BIOS - HONG KONG",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "ps2-0200h-20040614.bin",
         "md5": "3e3e030c0f600442fa05b94f87a1e238",
         "system": "ps2",
         "description": "PlayStation 2 BIOS - HONG KONG",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "ps2-0220h-20060905.bin",
         "md5": "c37bce95d32b2be480f87dd32704e664",
         "system": "ps2",
         "description": "PlayStation 2 BIOS - HONG KONG",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "ps2-0220h-20060210.bin",
         "md5": "549a66d0c698635ca9fa3ab012da7129",
         "system": "ps2",
         "description": "PlayStation 2 BIOS - HONG KONG",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "ps2-0190c-20030623.bin",
         "md5": "1b6e631b536247756287b916f9396872",
         "system": "ps2",
         "description": "PlayStation 2 BIOS - CHINA",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "ps2-0190r-20030623.bin",
         "md5": "0c13357c01a25a886db2356bbe73d9f0",
         "system": "ps2",
         "description": "PlayStation 2 BIOS - RUSSIA",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "psxonpsp660.bin",
         "md5": "c53ca5908936d412331790f4426c6c33",
         "system": "psx",
         "description": "PlayStation BIOS extracted from PSP - Japan",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "scph5500.bin",
         "md5": "8dd7d5296a650fac7319bce665a6a53c",
         "system": "psx",
         "description": "PlayStation BIOS - SCPH-5500 - Japan",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "scph5501.bin",
         "md5": "490f666e1afb15b7362b406ed1cea246",
         "system": "psx",
         "description": "PlayStation BIOS - SCPH-5501  - USA",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "scph5502.bin",
         "md5": "32736f17079d0b2b7024407c39bd3050",
         "system": "psx",
         "description": "PlayStation BIOS - SCPH-5502 - Europe)",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "scph7001.bin",
         "md5": "1e68c231d0896b7eadcad1d7d8e76129",
         "system": "psx",
         "description": "PlayStation BIOS - SCPH-7001 - Japan",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "scph7002.bin",
         "md5": "b9d9a0286c33dc6b7237bb13cd46fdee",
         "system": "psx",
         "description": "PlayStation BIOS - SCPH-7002 - USA)",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "scph7003.bin",
         "md5": "490f666e1afb15b7362b406ed1cea246",
         "system": "psx",
         "description": "PlayStation BIOS - SCPH-7003 - Europe",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "scph7502.bin",
         "md5": "b9d9a0286c33dc6b7237bb13cd46fdee",
         "system": "psx",
         "description": "PlayStation BIOS - SCPH-7502 - Europe",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "scph9002(7502).bin",
         "md5": "b9d9a0286c33dc6b7237bb13cd46fdee",
         "system": "psx",
         "description": "PlayStation BIOS - SCPH-9002 - Europe",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "ps1_rom.bin",
         "md5": "81bbe60ba7a3d1cea1d48c14cbcc647b",
         "system": "psx",
         "description": "Generic PlayStation BIOS from the Playstation 3",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "scph1000.bin",
         "md5": "239665b1a3dade1b5a52c06338011044",
         "system": "psx",
         "description": "PlayStation 1 BIOS - USA",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "scph1001.bin",
         "md5": "924e392ed05558ffdb115408c263dccf",
         "system": "psx",
         "description": "PlayStation 1 BIOS - EUROPE",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "scph1002.bin",
         "md5": "54847e693405ffeb0359c6287434cbef",
         "system": "psx",
         "description": "PlayStation 1 BIOS - JAPAN",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "scph100.bin",
         "md5": "8abc1b549a4a80954addc48ef02c4521",
         "system": "psx",
         "description": "PlayStation 1 BIOS",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "scph101.bin",
         "md5": "6e3735ff4c7dc899ee98981385f6f3d0",
         "system": "psx",
         "description": "PlayStation 1 BIOS - USA",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "scph102A.bin",
         "md5": "b10f5e0e3d9eb60e5159690680b1e774",
         "system": "psx",
         "description": "PlayStation 1 BIOS - EUROPE",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "scph102B.bin",
         "md5": "de93caec13d1a141a40a79f5c86168d6",
         "system": "psx",
         "description": "PlayStation 1 BIOS - JAPAN",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "scph102C.bin",
         "md5": "de93caec13d1a141a40a79f5c86168d6",
         "system": "psx",
         "description": "PlayStation 1 BIOS",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "scph3000.bin",
         "md5": "849515939161e62f6b866f6853006780",
         "system": "psx",
         "description": "PlayStation 1 BIOS",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "scph3500.bin",
         "md5": "cba733ceeff5aef5c32254f1d617fa62",
         "system": "psx",
         "description": "PlayStation 1 BIOS",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "scph5000.bin",
         "md5": "eb201d2d98251a598af467d4347bb62f",
         "system": "psx",
         "description": "PlayStation 1 BIOS",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "openbios.bin",
         "system": "psx",
         "description": "PlayStation 1 open-source BIOS from PCSX Redux",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "Vectrex_Bios.bin",
@@ -9517,6 +9517,36 @@
         "description": "Wenquxing 文曲星 NC3000",
         "required": "Required",
         "paths": "$bios_path/WQXEmu/nc3000"
+      },
+      {
+        "filename": "Complex_4627v1.03.bin",
+        "md5": "39cee882148a87f93cb440b99dde3ceb",
+        "system": "xbox",
+        "description": "Complex 4627 modified BIOS",
+        "required": "Required"
+      },
+      {
+        "filename": "mcpx_1.0.bin",
+        "md5": "d49c52a4102f6df7bcf8d0617ac475ed",
+        "system": "xbox",
+        "description": "MCPX 1.0 boot ROM",
+        "required": "Required"
+      },
+      {
+        "filename": "xbox_eeprom.bin",
+        "md5": "3e647719d47e4a3992fc8bc5a7e56fce",
+        "system": "xbox",
+        "description": "Xbox EEPROM data",
+        "paths": "$saves_path/xbox/retroarch-core/xemu",
+        "required": "Optional"
+      },
+      {
+        "filename": "xbox_hdd.qcow2",
+        "md5": "cf15087fd5fd7593e293faaa7281cff8",
+        "system": "xbox",
+        "description": "Xbox virtual hard disk image",
+        "paths": "$saves_path/xbox/retroarch-core/xemu",
+        "required": "Required"
       }
     ]
   }
