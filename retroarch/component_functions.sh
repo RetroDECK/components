@@ -235,8 +235,8 @@ _prepare_component::retroarch() {
       dir_prep "$states_path/wii/retroarch-core/Dolphin/StateSave" "$saves_path/wii/User/StateSaves"
 
       ### These are the NON RA Screenshot function, built into the Dolphin core.
-      dir_prep "$screenshots_path/retroarch-core/Dolphin/ScreenShots" "$saves_path/gc/User/ScreenShots"
-      dir_prep "$screenshots_path/retroarch-core/Dolphin/ScreenShots" "$saves_path/wii/User/ScreenShots"
+      dir_prep "$screenshots_path/retroarch/retroarch-core/Dolphin/gc/ScreenShots" "$saves_path/gc/User/ScreenShots"
+      dir_prep "$screenshots_path/retroarch/retroarch-core/Dolphin/wii/ScreenShots" "$saves_path/wii/User/ScreenShots"
 
       # ECWOLF
       log i "--------------------------------"
@@ -490,8 +490,8 @@ _prepare_component::retroarch() {
       dir_prep "$states_path/wii/retroarch-core/Dolphin/StateSave" "$saves_path/wii/User/StateSaves"
 
       ### These are the NON RA Screenshot function, built into the Dolphin core.
-      dir_prep "$screenshots_path/retroarch-core/Dolphin/ScreenShots" "$saves_path/gc/User/ScreenShots"
-      dir_prep "$screenshots_path/retroarch-core/Dolphin/ScreenShots" "$saves_path/wii/User/ScreenShots"
+      dir_prep "$screenshots_path/retroarch/retroarch-core/Dolphin/gc/ScreenShots" "$saves_path/gc/User/ScreenShots"
+      dir_prep "$screenshots_path/retroarch/retroarch-core/Dolphin/wii/ScreenShots" "$saves_path/wii/User/ScreenShots"
 
       # Flycast
       dir_prep "$texture_packs_path/retroarch-core/Flycast/textures" "$bios_path/dc/textures"
@@ -560,6 +560,7 @@ _prepare_component::retroarch() {
       dir_prep "$storage_path/retroarch-core/Xenia-Edge/library" "$bios_path/Xenia-Edge/library"
       dir_prep "$saves_path/xbox360/retroarch-core/Xenia-Edge/content" "$bios_path/Xenia-Edge/content"
       dir_prep "$mods_path/retroarch-core/Xenia-Edge/plugins" "$bios_path/Xenia-Edge/plugins"
+      dir_prep "$mods_path/retroarch-core/Xenia-Edge/patches" "$bios_path/Xenia-Edge/patches"
 
       # RetroArch Settings
       set_setting_value "$retroarch_config" "system_directory" "$bios_path" "retroarch"
@@ -837,9 +838,10 @@ _post_update_legacy::retroarch() {
     dir_prep "$shaders_path/retroarch-core/Dolphin/Shaders" "$saves_path/gc/User/Shaders"
     dir_prep "$shaders_path/retroarch-core/Dolphin/Shaders" "$saves_path/wii/User/Shaders"
     dir_prep "$storage_path/retroarch-core/Dolphin/Dump" "$saves_path/gc/User/Dump"
-    dir_prep "$storage_path/retroarch-core/Dolphin/Dump" "$saves_path/wii/User/Dump"      
-    dir_prep "$screenshots_path/retroarch-core/Dolphin/ScreenShots" "$saves_path/gc/User/ScreenShots"
-    dir_prep "$screenshots_path/retroarch-core/Dolphin/ScreenShots" "$saves_path/wii/User/ScreenShots"
+    dir_prep "$storage_path/retroarch-core/Dolphin/Dump" "$saves_path/wii/User/Dump"     
+
+    dir_prep "$screenshots_path/retroarch/retroarch-core/Dolphin/gc/ScreenShots" "$saves_path/gc/User/ScreenShots"
+    dir_prep "$screenshots_path/retroarch/retroarch-core/Dolphin/wii/ScreenShots" "$saves_path/wii/User/ScreenShots"
 
     create_dir "$states_path/gc/retroarch-core/Dolphin/StateSaves"
     create_dir "$states_path/wii/retroarch-core/Dolphin/StateSaves"
@@ -850,7 +852,6 @@ _post_update_legacy::retroarch() {
     dir_prep "$states_path/gc/retroarch-core/Dolphin/StateSaves" "$saves_path/gc/User/StateSaves"
     dir_prep "$states_path/wii/retroarch-core/Dolphin/StateSaves" "$saves_path/wii/User/StateSaves"
     
-
     # Cemu
     dir_prep "$texture_packs_path/retroarch-core/Cemu/graphicPacks" "$bios_path/Cemu/graphicPacks"
     dir_prep "$shaders_path/retroarch-core/Cemu/transferable" "$bios_path/Cemu/shaderCache/transferable"
@@ -862,6 +863,7 @@ _post_update_legacy::retroarch() {
     dir_prep "$storage_path/retroarch-core/Xenia-Edge/library" "$bios_path/Xenia-Edge/library"
     dir_prep "$saves_path/xbox360/retroarch-core/Xenia-Edge/content" "$bios_path/Xenia-Edge/content"
     dir_prep "$mods_path/retroarch-core/Xenia-Edge/plugins" "$bios_path/Xenia-Edge/plugins"
+    dir_prep "$mods_path/retroarch-core/Xenia-Edge/patches" "$bios_path/Xenia-Edge/patches"
 
     # Xemu
     dir_prep "$shaders_path/retroarch-core/xemu" "$bios_path/xemu/xemu/shaders"
