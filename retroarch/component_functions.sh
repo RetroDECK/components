@@ -374,8 +374,11 @@ _prepare_component::retroarch() {
 
       dir_prep "$texture_packs_path/retroarch-core/PPSSPP/TEXTURES" "$saves_path/PSP/TEXTURES"
       dir_prep "$mods_path/retroarch-core/PPSSPP/PLUGINS" "$saves_path/PSP/PLUGINS"
-      dir_prep "$shaders_path/retroarch-core/PPSSPP/shaders" "$saves_path/saves/PSP/shaders"
+      dir_prep "$shaders_path/retroarch-core/PPSSPP/CACHE" "$saves_path/PSP/SYSTEM/CACHE"
+      dir_prep "$shaders_path/retroarch-core/PPSSPP/shaders" "$bios_path/PPSSPP/shaders"
       dir_prep "$storage_path/retroarch-core/PPSSPP/GAME" "$saves_path/PSP/GAME"
+
+      ### Generally not used, uses RA Standard State function instead
       dir_prep "$states_path/psp/retroarch-core/PPSSPP/PPSSPP_STATE" "$saves_path/PSP/PPSSPP_STATE"
 
       # RPCS3
@@ -532,7 +535,8 @@ _prepare_component::retroarch() {
       # PPSSPP
       dir_prep "$texture_packs_path/retroarch-core/PPSSPP/TEXTURES" "$saves_path/PSP/TEXTURES"
       dir_prep "$mods_path/retroarch-core/PPSSPP/PLUGINS" "$saves_path/PSP/PLUGINS"
-      dir_prep "$shaders_path/retroarch-core/PPSSPP/shaders" "$saves_path/saves/PSP/shaders"
+      dir_prep "$shaders_path/retroarch-core/PPSSPP/CACHE" "$saves_path/PSP/SYSTEM/CACHE"
+      dir_prep "$shaders_path/retroarch-core/PPSSPP/shaders" "$bios_path/PPSSPP/shaders"
       dir_prep "$storage_path/retroarch-core/PPSSPP/GAME" "$saves_path/PSP/GAME"
       dir_prep "$states_path/psp/retroarch-core/PPSSPP/PPSSPP_STATE" "$saves_path/PSP/PPSSPP_STATE"
 
@@ -827,7 +831,7 @@ _post_update_legacy::retroarch() {
     # PPSSPP
     dir_prep "$texture_packs_path/retroarch-core/PPSSPP/TEXTURES" "$saves_path/PSP/TEXTURES"
     dir_prep "$mods_path/retroarch-core/PPSSPP/PLUGINS" "$saves_path/PSP/PLUGINS"
-    dir_prep "$shaders_path/retroarch-core/PPSSPP/shaders" "$saves_path/saves/PSP/shaders"
+    dir_prep "$shaders_path/retroarch-core/PPSSPP/CACHE" "$saves_path/PSP/SYSTEM/CACHE"
     dir_prep "$storage_path/retroarch-core/PPSSPP/GAME" "$saves_path/PSP/GAME"
     dir_prep "$states_path/psp/retroarch-core/PPSSPP/PPSSPP_STATE" "$saves_path/PSP/PPSSPP_STATE"
 
