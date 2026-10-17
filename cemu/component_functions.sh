@@ -111,6 +111,8 @@ _post_update_legacy::cemu() {
 
     set_setting_value "$cemu_config" "mlc_path" "$saves_path/Cemu-SA/mlc01" "cemu"
 
+    create_dir "$bios_path/Cemu-SA/"
+
     cp -rfv "$bios_path/cemu/keys.txt" "$bios_path/Cemu-SA/"
     ln -sfn "$bios_path/Cemu-SA/keys.txt" "$XDG_DATA_HOME/Cemu/keys.txt"
 
@@ -124,5 +126,5 @@ _post_update_legacy::cemu() {
     cp -rfv "$saves_path/wiiu/cemu" "$saves_path/wiiu/Cemu-SA/mlc01/usr/save"
 
   fi
-  
+
 }
