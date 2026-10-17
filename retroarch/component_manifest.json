@@ -2981,6 +2981,21 @@
           "theme": "psp"
         },
         {
+          "name": "psvita",
+          "fullname": "Sony PlayStation Vita",
+          "path": "%ROMPATH%/psvita",
+          "extension": ".vpk .zip .pkg .bin",
+          "commands": [
+            {
+              "label": "Vita3K",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/vita3k_libretro.so %ROM%",
+              "priority": 20
+            }
+          ],
+          "platform": "psvita",
+          "theme": "psvita"
+        },
+        {
           "name": "pocketstation",
           "fullname": "Sony PocketStation",
           "path": "%ROMPATH%/pocketstation",

@@ -425,6 +425,21 @@ _prepare_component::retroarch() {
       log i "-----------------------------------------------------------"
       cp -f "$retroarch_extras_path/supermodel" "$bios_path/supermodel"
 
+      # Vita3K
+      log i "-----------------------------------------------------------"
+      log i "Prepearing Vita3K LIBRETRO"
+      log i "-----------------------------------------------------------"
+
+      dir_prep "$storage_path/retroarch-core/Vita3K/ux0"  "$bios_path/vita3k/ux0"
+      dir_prep "$storage_path/retroarch-core/Vita3K/data"  "$bios_path/vita3k/data"
+
+      dir_prep "$saves_path/psvita/Vita3K" "$storage_path/retroarch-core/Vita3K/ux0/user/00/savedata"
+
+      dir_prep "$shaders_path/retroarch-core/Vita3K/shaders-builtin" "$bios_path/vita3k/shaders-builtin"
+      dir_prep "$shaders_path/retroarch-core/Vita3K/shaders"  "$bios_path/vita3k/shaders"
+
+      dir_prep "$texture_packs_path/retroarch-core/Vita3K/textures" "$bios_path/vita3k/ux0/textures"
+
       # xemu
       log i "-----------------------------------------------------------"
       log i "Prepearing xemu LIBRETRO"
@@ -550,6 +565,14 @@ _prepare_component::retroarch() {
       dir_prep "$storage_path/retroarch-core/rpcs3/dev_usb000" "$bios_path/rpcs3/dev_usb000"
       dir_prep "$storage_path/retroarch-core/rpcs3/captures" "$bios_path/rpcs3/captures"
       dir_prep "$storage_path/retroarch-core/rpcs3/patches" "$bios_path/rpcs3/patches"
+
+      # Vita3K
+      dir_prep "$storage_path/retroarch-core/Vita3K/ux0"  "$bios_path/vita3k/ux0"
+      dir_prep "$storage_path/retroarch-core/Vita3K/data"  "$bios_path/vita3k/data"
+      dir_prep "$saves_path/psvita/Vita3K" "$storage_path/retroarch-core/Vita3K/ux0/user/00/savedata"
+      dir_prep "$shaders_path/retroarch-core/Vita3K/shaders-builtin" "$bios_path/vita3k/shaders-builtin"
+      dir_prep "$shaders_path/retroarch-core/Vita3K/shaders"  "$bios_path/vita3k/shaders"
+      dir_prep "$texture_packs_path/retroarch-core/Vita3K/textures" "$bios_path/vita3k/ux0/textures"
 
       # xemu
       dir_prep "$shaders_path/retroarch-core/xemu" "$bios_path/xemu/xemu/shaders"
@@ -864,7 +887,15 @@ _post_update_legacy::retroarch() {
     # Cemu
     dir_prep "$texture_packs_path/retroarch-core/Cemu/graphicPacks" "$bios_path/Cemu/graphicPacks"
     dir_prep "$shaders_path/retroarch-core/Cemu/transferable" "$bios_path/Cemu/shaderCache/transferable"
-    
+
+    # Vita3K
+    dir_prep "$storage_path/retroarch-core/Vita3K/ux0"  "$bios_path/vita3k/ux0"
+    dir_prep "$storage_path/retroarch-core/Vita3K/data"  "$bios_path/vita3k/data"
+    dir_prep "$saves_path/psvita/Vita3K" "$storage_path/retroarch-core/Vita3K/ux0/user/00/savedata"
+    dir_prep "$shaders_path/retroarch-core/Vita3K/shaders-builtin" "$bios_path/vita3k/shaders-builtin"
+    dir_prep "$shaders_path/retroarch-core/Vita3K/shaders"  "$bios_path/vita3k/shaders"
+    dir_prep "$texture_packs_path/retroarch-core/Vita3K/textures" "$bios_path/vita3k/ux0/textures"
+
     # Xenia Edge
     dir_prep "$storage_path/retroarch-core/Xenia-Edge/cache" "$bios_path/Xenia-Edge/cache"
     dir_prep "$storage_path/retroarch-core/Xenia-Edge/cache0" "$bios_path/Xenia-Edge/cache0"
