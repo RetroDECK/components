@@ -372,10 +372,11 @@ _prepare_component::retroarch() {
       log i "Prepearing PPSSPP LIBRETRO"
       log i "-----------------------------------------------------------"     
 
-      dir_prep "$texture_packs_path/retroarch-core/PPSSPP/TEXTURES" "$saves_path/PPSSPP/PSP/TEXTURES"
-      dir_prep "$mods_path/retroarch-core/PPSSPP/PLUGINS" "$saves_path/PPSSPP/PSP/PLUGINS"
-      dir_prep "$shaders_path/retroarch-core/PPSSPP/shaders" "$saves_path/saves/PPSSPP/PSP/shaders"
-      dir_prep "$storage_path/retroarch-core/PPSSPP/GAME" "$saves_path/PPSSPP/PSP/GAME"
+      dir_prep "$texture_packs_path/retroarch-core/PPSSPP/TEXTURES" "$saves_path/PSP/TEXTURES"
+      dir_prep "$mods_path/retroarch-core/PPSSPP/PLUGINS" "$saves_path/PSP/PLUGINS"
+      dir_prep "$shaders_path/retroarch-core/PPSSPP/shaders" "$saves_path/saves/PSP/shaders"
+      dir_prep "$storage_path/retroarch-core/PPSSPP/GAME" "$saves_path/PSP/GAME"
+      dir_prep "$states_path/psp/retroarch-core/PPSSPP/PPSSPP_STATE" "$saves_path/PSP/PPSSPP_STATE"
 
       # RPCS3
       log i "--------------------------------"
@@ -529,10 +530,11 @@ _prepare_component::retroarch() {
       dir_prep "$texture_packs_path/retroarch-core/pcsx2/textures" "$bios_path/pcsx2/textures"
 
       # PPSSPP
-      dir_prep "$texture_packs_path/retroarch-core/PPSSPP/TEXTURES" "$saves_path/PPSSPP/PSP/TEXTURES"
-      dir_prep "$mods_path/retroarch-core/PPSSPP/PLUGINS" "$saves_path/PPSSPP/PSP/PLUGINS"
-      dir_prep "$shaders_path/retroarch-core/PPSSPP/shaders" "$saves_path/saves/PPSSPP/PSP/shaders"
-      dir_prep "$storage_path/retroarch-core/PPSSPP/GAME" "$saves_path/PPSSPP/PSP/GAME"
+      dir_prep "$texture_packs_path/retroarch-core/PPSSPP/TEXTURES" "$saves_path/PSP/TEXTURES"
+      dir_prep "$mods_path/retroarch-core/PPSSPP/PLUGINS" "$saves_path/PSP/PLUGINS"
+      dir_prep "$shaders_path/retroarch-core/PPSSPP/shaders" "$saves_path/saves/PSP/shaders"
+      dir_prep "$storage_path/retroarch-core/PPSSPP/GAME" "$saves_path/PSP/GAME"
+      dir_prep "$states_path/psp/retroarch-core/PPSSPP/PPSSPP_STATE" "$saves_path/PSP/PPSSPP_STATE"
 
       # RPCS3
       dir_prep "$storage_path/retroarch-core/rpcs3/dev_hdd0" "$bios_path/rpcs3/dev_hdd0"
@@ -823,10 +825,11 @@ _post_update_legacy::retroarch() {
     dir_prep "$cheats_path/retroarch-core/Azahar/cheats" "$saves_path/n3ds/Azahar/cheats"
 
     # PPSSPP
-    dir_prep "$texture_packs_path/retroarch-core/PPSSPP/TEXTURES" "$saves_path/PPSSPP/PSP/TEXTURES"
-    dir_prep "$mods_path/retroarch-core/PPSSPP/PLUGINS" "$saves_path/PPSSPP/PSP/PLUGINS"
-    dir_prep "$shaders_path/retroarch-core/PPSSPP/shaders" "$saves_path/saves/PPSSPP/PSP/shaders"
-    dir_prep "$storage_path/retroarch-core/PPSSPP/GAME" "$saves_path/PPSSPP/PSP/GAME"
+    dir_prep "$texture_packs_path/retroarch-core/PPSSPP/TEXTURES" "$saves_path/PSP/TEXTURES"
+    dir_prep "$mods_path/retroarch-core/PPSSPP/PLUGINS" "$saves_path/PSP/PLUGINS"
+    dir_prep "$shaders_path/retroarch-core/PPSSPP/shaders" "$saves_path/saves/PSP/shaders"
+    dir_prep "$storage_path/retroarch-core/PPSSPP/GAME" "$saves_path/PSP/GAME"
+    dir_prep "$states_path/psp/retroarch-core/PPSSPP/PPSSPP_STATE" "$saves_path/PSP/PPSSPP_STATE"
 
     # Dolphin Wii + GC
     dir_prep "$texture_packs_path/retroarch-core/Dolphin/Textures" "$saves_path/gc/User/Load/Textures"

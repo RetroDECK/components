@@ -78,7 +78,7 @@ _prepare_component::ppsspp() {
       dir_prep "$saves_path/PSP/PPSSPP-SA" "$XDG_CONFIG_HOME/ppsspp/PSP/SAVEDATA"
       dir_prep "$states_path/PSP/PPSSPP-SA" "$XDG_CONFIG_HOME/ppsspp/PSP/PPSSPP_STATE"
       dir_prep "$texture_packs_path/PPSSPP/TEXTURES" "$XDG_CONFIG_HOME/ppsspp/PSP/TEXTURES"
-      dir_prep "$shaders_path/PPSSPP" "$XDG_CONFIG_HOME/ppsspp/PSP/shaders"
+      dir_prep "$shaders_path/PPSSPP/shaders" "$XDG_CONFIG_HOME/ppsspp/PSP/shaders"
       dir_prep "$storage_path/PPSSPP/GAME" "$XDG_CONFIG_HOME/ppsspp/PSP/GAME"
       dir_prep "$mods_path/PPSSPP/PLUGINS" "$XDG_CONFIG_HOME/ppsspp/PSP/PLUGINS"
       dir_prep "$logs_path/PPSSPP" "$XDG_CONFIG_HOME/ppsspp/PSP/SYSTEM/DUMP"
@@ -110,7 +110,7 @@ _prepare_component::ppsspp() {
       dir_prep "$states_path/PSP/PPSSPP-SA" "$XDG_CONFIG_HOME/ppsspp/PSP/PPSSPP_STATE"
       dir_prep "$texture_packs_path/PPSSPP/TEXTURES" "$XDG_CONFIG_HOME/ppsspp/PSP/TEXTURES"
       dir_prep "$storage_path/PPSSPP/GAME" "$XDG_CONFIG_HOME/ppsspp/PSP/GAME"
-      dir_prep "$shaders_path/PPSSPP" "$XDG_CONFIG_HOME/ppsspp/PSP/shaders"
+      dir_prep "$shaders_path/PPSSPP/shaders" "$XDG_CONFIG_HOME/ppsspp/PSP/shaders"
       dir_prep "$cheats_path/PPSSPP" "$XDG_CONFIG_HOME/ppsspp/PSP/Cheats"
       dir_prep "$mods_path/PPSSPP/PLUGINS" "$XDG_CONFIG_HOME/ppsspp/PSP/PLUGINS"
       dir_prep "$logs_path/PPSSPP" "$XDG_CONFIG_HOME/ppsspp/PSP/SYSTEM/DUMP"
@@ -176,6 +176,15 @@ _post_update_legacy::ppsspp() {
   if check_version_is_older_than "$previous_version" "0.10.3b"; then
     log i "0.10.3b Upgrade - PPSSPP: Relink Shaders"
 
-    dir_prep "$shaders_path/PPSSPP" "$XDG_CONFIG_HOME/ppsspp/PSP/shaders"
+    dir_prep "$shaders_path/PPSSPP/shaders" "$XDG_CONFIG_HOME/ppsspp/PSP/shaders"
   fi
+
+  if check_version_is_older_than "$previous_version" "0.11.0"; then
+    log i "0.11.0 Upgrade - PPSSPP: Relink Shaders Again"
+
+    dir_prep "$shaders_path/PPSSPP/shaders" "$XDG_CONFIG_HOME/ppsspp/PSP/shaders"
+    
+  fi
+
+        
 }
