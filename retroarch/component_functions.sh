@@ -337,7 +337,7 @@ _prepare_component::retroarch() {
       log i "Preparing PCSX2, LRPS2, PCEE2 LIBRETRO"
       log i "--------------------------------"
 
-      dir_prep "$bios_path" "$bios_path/pcsx2"
+      dir_prep "$bios_path" "$bios_path/pcsx2/bios"
       dir_prep "$saves_path/ps2/retroarch-core/pcsx2/memcards" "$bios_path/pcsx2/memcards"
       dir_prep "$storage_path/retroarch-core/pcsx2/inis" "$bios_path/pcsx2/inis"
       dir_prep "$storage_path/retroarch-core/pcsx2/resources" "$bios_path/pcsx2/resources"
@@ -501,7 +501,7 @@ _prepare_component::retroarch() {
       set_setting_value "$retroarch_config_scummvm" "browser_lastpath" "$roms_path/scummvm" "retroarch_scummvm" "scummvm"
 
       # PCSX2, LRPS2, PCEE2
-      dir_prep "$bios_path" "$bios_path/pcsx2"
+      dir_prep "$bios_path" "$bios_path/pcsx2/bios"
       dir_prep "$saves_path/ps2/retroarch-core/pcsx2/memcards" "$bios_path/pcsx2/memcards"
       dir_prep "$storage_path/retroarch-core/pcsx2/inis" "$bios_path/pcsx2/inis"
       dir_prep "$storage_path/retroarch-core/pcsx2/resources" "$bios_path/pcsx2/resources"
@@ -771,7 +771,7 @@ _post_update_legacy::retroarch() {
     create_dir "$storage_path/retroarch-core/pcsx2/resources"
     cp -rfv "$retroarch_extras_path/pcsx2/resources" "$storage_path/retroarch-core/pcsx2/resources" 
 
-    dir_prep "$bios_path" "$bios_path/pcsx2"
+    dir_prep "$bios_path" "$bios_path/pcsx2/bios"
     
     dir_prep "$saves_path/ps2/retroarch-core/pcsx2/memcards" "$bios_path/pcsx2/memcards"
     dir_prep "$storage_path/retroarch-core/pcsx2/inis" "$bios_path/pcsx2/inis"
