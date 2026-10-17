@@ -51,7 +51,10 @@ _prepare_component::cemu() {
       create_dir -d "$XDG_CONFIG_HOME/Cemu/"
       cp -fr "$component_config/"* "$XDG_CONFIG_HOME/Cemu/"
 
+      create_dir "$bios_path/Cemu-SA"
       create_dir "$saves_path/wiiu/Cemu-SA/mlc01"
+
+      ln -sfn "$bios_path/Cemu-SA/keys.txt" "$XDG_DATA_HOME/Cemu/keys.txt"
 
       dir_prep "$texture_packs_path/Cemu/graphicPacks" "$cemu_textures_path"
       dir_prep "$shaders_path/Cemu/transferable" "$cemu_shadercache_transferable_path"
@@ -59,9 +62,7 @@ _prepare_component::cemu() {
       set_setting_value "$cemu_config" "mlc_path" "$saves_path/Cemu-SA/mlc01" "cemu"
       set_setting_value "$cemu_config" "Entry" "$roms_path/wiiu" "cemu" "GamePaths"
 
-      if [[ -e "$bios_path/Cemu-SA/keys.txt" ]]; then
-        rm -rf "$XDG_DATA_HOME/Cemu/keys.txt" && ln -sfn "$bios_path/Cemu-SA/keys.txt" "$XDG_DATA_HOME/Cemu/keys.txt" && log d "Linked $bios_path/Cemu-SA/keys.txt to $XDG_DATA_HOME/Cemu/keys.txt"
-      fi
+
 
     ;;
 
@@ -111,9 +112,9 @@ _post_update_legacy::cemu() {
 
     set_setting_value "$cemu_config" "mlc_path" "$saves_path/Cemu-SA/mlc01" "cemu"
 
-    create_dir "$bios_path/Cemu-SA/"
+    create_dir "$bios_path/Cemu-SA"
 
-    cp -rfv "$bios_path/cemu/keys.txt" "$bios_path/Cemu-SA/"
+    cp -rfv "$bios_path/cemu/keys.txt" "$bios_path/Cemu-SA"
     ln -sfn "$bios_path/Cemu-SA/keys.txt" "$XDG_DATA_HOME/Cemu/keys.txt"
 
     create_dir "$backups_path/0.11.0/Cemu-SA/mlc01/usr/save"
