@@ -40,7 +40,8 @@
           "commands": [
             {
               "label": "Tsugaru (Standalone)",
-              "command": "%EMULATOR_TSUGARU% -CD %ROM% %INJECT%=%BASENAME%.cfg"
+              "command": "%EMULATOR_TSUGARU% -CD %ROM% %INJECT%=%BASENAME%.cfg",
+              "priority": 20
             }
           ],
           "platform": "fmtowns",
@@ -68,18 +69,24 @@
         "md5": "ac0c7021e9bf48ca84b51ab651169a88",
         "system": "fmtowns",
         "description": "Later-model firmware ROM",
-        "required": "Required"
+        "required": "Optional"
       },
       {
         "filename": "FMT_FNT.ROM",
-        "md5": "b91300e55b70227ce98b59c5f02fa8dd",
+        "md5": [
+          "b91300e55b70227ce98b59c5f02fa8dd",
+          "eb44f2093f51eb7159f03e170b13af76"
+        ],
         "system": "fmtowns",
         "description": "Japanese font ROM",
         "required": "Required"
       },
       {
         "filename": "FMT_SYS.ROM",
-        "md5": "86fb6f7280689259f0ca839dd3dd6cde",
+        "md5": [
+          "86fb6f7280689259f0ca839dd3dd6cde",
+          "feaf8c5675151e00cfe3ad27673bff29"
+        ],
         "system": "fmtowns",
         "description": "System BIOS ROM",
         "required": "Required"
