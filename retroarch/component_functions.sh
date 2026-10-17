@@ -445,13 +445,13 @@ _prepare_component::retroarch() {
       log i "Prepearing xemu LIBRETRO"
       log i "-----------------------------------------------------------"
 
-      dir_prep "$shaders_path/retroarch-core/xemu" "$bios_path/xemu/xemu/shaders"
-      create_dir "$saves_path/xbox/retroarch-core/xemu" 
+      dir_prep "$shaders_path/retroarch-core/xemu/shaders" "$bios_path/xemu/xemu/shaders"
+      create_dir "$saves_path/xbox/xemu" 
 
       ln -sfn "$bios_path/mcpx_1.0.bin" "$bios_path/xemu/mcpx_1.0.bin"
       ln -sfn "$bios_path/Complex_4627v1.03.bin" "$bios_path/xemu/Complex_4627v1.03.bin"
-      ln -sfn "$saves_path/xbox/retroarch-core/xemu/xbox_hdd.qcow2" "$bios_path/xemu/xbox_hdd.qcow2" 
-      ln -sfn "$saves_path/xbox/retroarch-core/xemu/xbox_eeprom.bin" "$bios_path/xemu/xbox_eeprom.bin"
+      ln -sfn "$saves_path/xbox/xemu/xbox_hdd.qcow2" "$bios_path/xemu/xbox_hdd.qcow2" 
+      ln -sfn "$saves_path/xbox/xemu/xbox_eeprom.bin" "$bios_path/xemu/xbox_eeprom.bin"
 
       # Xenia Edge
       log i "-----------------------------------------------------------"
@@ -575,12 +575,12 @@ _prepare_component::retroarch() {
       dir_prep "$texture_packs_path/retroarch-core/Vita3K/textures" "$bios_path/vita3k/ux0/textures"
 
       # xemu
-      dir_prep "$shaders_path/retroarch-core/xemu" "$bios_path/xemu/xemu/shaders"
+      dir_prep "$shaders_path/retroarch-core/xemu/shaders" "$bios_path/xemu/xemu/shaders"
 
       ln -sfn "$bios_path/mcpx_1.0.bin" "$bios_path/xemu/mcpx_1.0.bin"
       ln -sfn "$bios_path/Complex_4627v1.03.bin" "$bios_path/xemu/Complex_4627v1.03.bin"
-      ln -sfn "$saves_path/xbox/retroarch-core/xemu/xbox_hdd.qcow2" "$bios_path/xemu/xbox_hdd.qcow2" 
-      ln -sfn "$saves_path/xbox/retroarch-core/xemu/xbox_eeprom.bin" "$bios_path/xemu/xbox_eeprom.bin"
+      ln -sfn "$saves_path/xbox/xemu/xbox_hdd.qcow2" "$bios_path/xemu/xbox_hdd.qcow2" 
+      ln -sfn "$saves_path/xbox/xemu/xbox_eeprom.bin" "$bios_path/xemu/xbox_eeprom.bin"
 
       # Xenia Edge
       dir_prep "$storage_path/retroarch-core/Xenia-Edge/cache" "$bios_path/Xenia-Edge/cache"
@@ -855,6 +855,7 @@ _post_update_legacy::retroarch() {
     dir_prep "$texture_packs_path/retroarch-core/PPSSPP/TEXTURES" "$saves_path/PSP/TEXTURES"
     dir_prep "$mods_path/retroarch-core/PPSSPP/PLUGINS" "$saves_path/PSP/PLUGINS"
     dir_prep "$shaders_path/retroarch-core/PPSSPP/CACHE" "$saves_path/PSP/SYSTEM/CACHE"
+    dir_prep "$shaders_path/retroarch-core/PPSSPP/shaders" "$bios_path/PPSSPP/shaders"
     dir_prep "$storage_path/retroarch-core/PPSSPP/GAME" "$saves_path/PSP/GAME"
     dir_prep "$states_path/psp/retroarch-core/PPSSPP/PPSSPP_STATE" "$saves_path/PSP/PPSSPP_STATE"
 
@@ -906,13 +907,13 @@ _post_update_legacy::retroarch() {
     dir_prep "$mods_path/retroarch-core/Xenia-Edge/patches" "$bios_path/Xenia-Edge/patches"
 
     # Xemu
-    dir_prep "$shaders_path/retroarch-core/xemu" "$bios_path/xemu/xemu/shaders"
-    create_dir "$saves_path/xbox/retroarch-core/xemu" 
+    dir_prep "$shaders_path/retroarch-core/xemu/shaders" "$bios_path/xemu/xemu/shaders"
+    create_dir "$saves_path/xbox/xemu" 
 
     ln -sfn "$bios_path/mcpx_1.0.bin" "$bios_path/xemu/mcpx_1.0.bin"
     ln -sfn "$bios_path/Complex_4627v1.03.bin" "$bios_path/xemu/Complex_4627v1.03.bin"
-    ln -sfn "$saves_path/xbox/retroarch-core/xemu/xbox_hdd.qcow2" "$bios_path/xemu/xbox_hdd.qcow2" 
-    ln -sfn "$saves_path/xbox/retroarch-core/xemu/xbox_eeprom.bin" "$bios_path/xemu/xbox_eeprom.bin"
+    ln -sfn "$saves_path/xbox/xemu/xbox_hdd.qcow2" "$bios_path/xemu/xbox_hdd.qcow2" 
+    ln -sfn "$saves_path/xbox/xemu/xbox_eeprom.bin" "$bios_path/xemu/xbox_eeprom.bin"
 
     # ScummVM
     cp -fv "$component_config/scummvm.ini" "$retroarch_config_scummvm"
