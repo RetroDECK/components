@@ -418,10 +418,10 @@ _prepare_component::retroarch() {
       dir_prep "$shaders_path/retroarch-core/xemu" "$bios_path/xemu/xemu/shaders"
       create_dir "$saves_path/xbox/retroarch-core/xemu" 
 
-      ln -sfn $bios_path/mcpx_1.0.bin $bios_path/xemu/mcpx_1.0.bin
-      ln -sfn $bios_path/Complex_4627v1.03.bin $bios_path/xemu/Complex_4627v1.03.bin
-      ln -sfn $saves_path/xbox/retroarch-core/xemu/xbox_hdd.qcow2 $bios_path/xbox_hdd.qcow2 
-      ln -sfn $saves_path/xbox/retroarch-core/xemu/xbox_eeprom.bin $bios_path/xbox_eeprom.bin
+      ln -sfn "$bios_path/mcpx_1.0.bin $bios_path/xemu/mcpx_1.0.bin"
+      ln -sfn "$bios_path/Complex_4627v1.03.bin $bios_path/xemu/Complex_4627v1.03.bin"
+      ln -sfn "$saves_path/xbox/retroarch-core/xemu/xbox_hdd.qcow2" "$bios_path/xbox_hdd.qcow2" 
+      ln -sfn "$saves_path/xbox/retroarch-core/xemu/xbox_eeprom.bin" "$bios_path/xbox_eeprom.bin"
 
       # Xenia Edge
       log i "-----------------------------------------------------------"
@@ -532,10 +532,10 @@ _prepare_component::retroarch() {
       # xemu
       dir_prep "$shaders_path/retroarch-core/xemu" "$bios_path/xemu/xemu/shaders"
 
-      ln -sfn $bios_path/mcpx_1.0.bin $bios_path/xemu/mcpx_1.0.bin
-      ln -sfn $bios_path/Complex_4627v1.03.bin $bios_path/xemu/Complex_4627v1.03.bin
-      ln -sfn $saves_path/xbox/retroarch-core/xemu/xbox_hdd.qcow2 $bios_path/xbox_hdd.qcow2 
-      ln -sfn $saves_path/xbox/retroarch-core/xemu/xbox_eeprom.bin $bios_path/xbox_eeprom.bin
+      ln -sfn "$bios_path/mcpx_1.0.bin $bios_path/xemu/mcpx_1.0.bin"
+      ln -sfn "$bios_path/Complex_4627v1.03.bin $bios_path/xemu/Complex_4627v1.03.bin"
+      ln -sfn "$saves_path/xbox/retroarch-core/xemu/xbox_hdd.qcow2" "$bios_path/xbox_hdd.qcow2" 
+      ln -sfn "$saves_path/xbox/retroarch-core/xemu/xbox_eeprom.bin" "$bios_path/xbox_eeprom.bin"
 
       # Xenia Edge
       dir_prep "$storage_path/retroarch-core/Xenia-Edge/cache" "$bios_path/Xenia-Edge/cache"
@@ -839,10 +839,10 @@ _post_update_legacy::retroarch() {
     dir_prep "$shaders_path/retroarch-core/xemu" "$bios_path/xemu/xemu/shaders"
     create_dir "$saves_path/xbox/retroarch-core/xemu" 
 
-    ln -sfn $bios_path/mcpx_1.0.bin $bios_path/xemu/mcpx_1.0.bin
-    ln -sfn $bios_path/Complex_4627v1.03.bin $bios_path/xemu/Complex_4627v1.03.bin
-    ln -sfn $saves_path/xbox/retroarch-core/xemu/xbox_hdd.qcow2 $bios_path/xbox_hdd.qcow2 
-    ln -sfn $saves_path/xbox/retroarch-core/xemu/xbox_eeprom.bin $bios_path/xbox_eeprom.bin
+    ln -sfn "$bios_path/mcpx_1.0.bin $bios_path/xemu/mcpx_1.0.bin"
+    ln -sfn "$bios_path/Complex_4627v1.03.bin $bios_path/xemu/Complex_4627v1.03.bin"
+    ln -sfn "$saves_path/xbox/retroarch-core/xemu/xbox_hdd.qcow2" "$bios_path/xbox_hdd.qcow2" 
+    ln -sfn "$saves_path/xbox/retroarch-core/xemu/xbox_eeprom.bin" "$bios_path/xbox_eeprom.bin"
 
     # ScummVM
     cp -fv "$component_config/scummvm.ini" "$retroarch_config_scummvm"
