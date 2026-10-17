@@ -592,34 +592,44 @@
           "extension": ".7z .bin .cmd .crt .d2m .d4m .d64 .d6z .d71 .d7z .d80 .d81 .d82 .d8z .g41 .g4z .g64 .g6z .gz .lnx .m3u .nbz .nib .p00 .prg .t64 .tap .vfl .vsf .x64 .x6z .zip",
           "commands": [
             {
-              "label": "VICE x64sc Accurate",
+              "label": "VICE x64sc Accurate (Commodore C64)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/vice_x64sc_libretro.so %ROM%",
               "priority": 10
             },
             {
-              "label": "VICE x64 Fast",
+              "label": "VICE x64 Fast (Commodore C64)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/vice_x64_libretro.so %ROM%",
               "priority": 20
             },
             {
-              "label": "VICE x64 SuperCPU",
+              "label": "VICE xscpu64 (Commodore C64 SuperCPU)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/vice_xscpu64_libretro.so %ROM%",
               "priority": 30
             },
             {
-              "label": "VICE x128",
+              "label": "VICE x128 (Commodore C128)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/vice_x128_libretro.so %ROM%",
               "priority": 40
             },
             {
-              "label": "VICE xpet",
+              "label": "VICE xpet (Commodore PET)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/vice_xpet_libretro.so %ROM%",
               "priority": 50
             },
             {
+              "label": "VICE xcbm2 (Commodore CBM-II 6x0/7x0)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/vice_xpet_libretro.so %ROM%",
+              "priority": 60
+            },
+            {
+              "label": "VICE xcbm5x0 (Commodore CBM-II 5x0)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/vice_xcbm5x0_libretro.so %ROM%",
+              "priority": 70
+            },
+            {
               "label": "Frodo",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/frodo_libretro.so %ROM%",
-              "priority": 60
+              "priority": 80
             }
           ],
           "platform": "c64",
@@ -660,6 +670,11 @@
               "label": "PUAE 2021",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/puae2021_libretro.so %ROM%",
               "priority": 20
+            },
+            {
+              "label": "VICE x64dtv (Commodore C64DTV)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/vice_x64dtv_libretro.so %ROM%",
+              "priority": 30
             }
           ],
           "platform": "cdtv",
