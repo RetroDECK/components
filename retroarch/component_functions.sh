@@ -840,9 +840,11 @@ _post_update_legacy::retroarch() {
     dir_prep "$storage_path/retroarch-core/Dolphin/Dump" "$saves_path/gc/User/Dump"
     dir_prep "$storage_path/retroarch-core/Dolphin/Dump" "$saves_path/wii/User/Dump"     
 
+    ### NON Standard Screenshots
     dir_prep "$screenshots_path/retroarch/retroarch-core/Dolphin/gc/ScreenShots" "$saves_path/gc/User/ScreenShots"
     dir_prep "$screenshots_path/retroarch/retroarch-core/Dolphin/wii/ScreenShots" "$saves_path/wii/User/ScreenShots"
 
+    ### NON Standard Savestates, most likely not used.
     create_dir "$states_path/gc/retroarch-core/Dolphin/StateSaves"
     create_dir "$states_path/wii/retroarch-core/Dolphin/StateSaves"
 
