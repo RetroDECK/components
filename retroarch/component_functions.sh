@@ -436,6 +436,7 @@ _prepare_component::retroarch() {
       dir_prep "$saves_path/xbox360/retroarch-core/Xenia-Edge/content" "$bios_path/Xenia-Edge/content"
 
       dir_prep "$mods_path/retroarch-core/Xenia-Edge/plugins" "$bios_path/Xenia-Edge/plugins"
+      dir_prep "$mods_path/retroarch-core/Xenia-Edge/patches" "$bios_path/Xenia-Edge/patches"
 
     ;;
 
