@@ -12,20 +12,18 @@ _prepare_component::uzdoom() {
 
     reset)
       log i "------------------------"
-      log i "Resetting UZDOOM"
+      log i "Resetting UZDoom"
       log i "------------------------"
-      
-      # TODO: do a proper script
-      # This is just a placeholder script to test the emulator's flow
 
       create_dir "$XDG_CONFIG_HOME/uzdoom"
       create_dir "$XDG_DATA_HOME/uzdoom/audio/midi"
       create_dir "$XDG_DATA_HOME/uzdoom/audio/fm_banks"
       create_dir "$XDG_DATA_HOME/uzdoom/audio/soundfonts"
-      create_dir "$bios_path/uzdoom"
-      create_dir "$storage_path/uzdoom/audio/soundfonts"
-      create_dir "$storage_path/uzdoom/audio/fm_banks"
-      create_dir "$storage_path/uzdoom/audio/midi"
+      create_dir "$bios_path/UZDoom-SA"
+      create_dir "$storage_path/UZDoom/audio/soundfonts"
+      create_dir "$storage_path/UZDoom/audio/fm_banks"
+      create_dir "$storage_path/UZDoom/audio/midi"
+      create_dir "$saves_path/UZDoom-SA"
 
       cp -fv "$component_config/uzdoom.ini" "$uzdoom_config"
 
