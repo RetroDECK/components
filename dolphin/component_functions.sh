@@ -73,14 +73,20 @@ _prepare_component::dolphin() {
       dir_prep "$saves_path/Dolphin-SA/GC/EU" "$XDG_DATA_HOME/dolphin-emu/GC/EUR"
       dir_prep "$saves_path/Dolphin-SA/GC/US" "$XDG_DATA_HOME/dolphin-emu/GC/USA"
       dir_prep "$saves_path/Dolphin-SA/GC/JP" "$XDG_DATA_HOME/dolphin-emu/GC/JAP"
-      dir_prep "$screenshots_path" "$XDG_DATA_HOME/dolphin-emu/ScreenShots"
       dir_prep "$states_path/Dolphin-SA/StateSaves" "$XDG_DATA_HOME/dolphin-emu/StateSaves"
       dir_prep "$saves_path/Dolphin-SA/Wii" "$XDG_DATA_HOME/dolphin-emu/Wii"
+
+      dir_prep "$screenshots_path" "$XDG_DATA_HOME/dolphin-emu/ScreenShots"
+
       dir_prep "$mods_path/Dolphin/GraphicMods" "$dolphin_mods_path"
+
       dir_prep "$texture_packs_path/Dolphin/Textures" "$dolphin_textures_path"
       dir_prep "$texture_packs_path/Dolphin/DynamicInputTextures" "$XDG_DATA_HOME/dolphin-emu/Load/DynamicInputTextures"
+
       dir_prep "$shaders_path/Dolphin/Shaders" "$XDG_DATA_HOME/dolphin-emu/Shaders"
+
       dir_prep "$logs_path/Dolphin" "$XDG_DATA_HOME/dolphin-emu/Logs"
+
       dir_prep "$storage_path/Dolphin/Dump" "$XDG_DATA_HOME/dolphin-emu/Dump"
 
       set_setting_value "$dolphin_config" "BIOS" "$bios_path" "dolphin" "GBA"
@@ -88,6 +94,7 @@ _prepare_component::dolphin() {
       set_setting_value "$dolphin_config" "ISOPath0" "$roms_path/wii" "dolphin" "General"
       set_setting_value "$dolphin_config" "ISOPath1" "$roms_path/gc" "dolphin" "General"
       set_setting_value "$dolphin_config" "WiiSDCardPath" "$saves_path/Dolphin-SA/Wii/sd.raw" "dolphin" "General"
+
     ;;
 
     postmove)
@@ -98,14 +105,20 @@ _prepare_component::dolphin() {
       dir_prep "$saves_path/Dolphin-SA/GC/EU" "$XDG_DATA_HOME/dolphin-emu/GC/EUR"
       dir_prep "$saves_path/Dolphin-SA/GC/US" "$XDG_DATA_HOME/dolphin-emu/GC/USA"
       dir_prep "$saves_path/Dolphin-SA/GC/JP" "$XDG_DATA_HOME/dolphin-emu/GC/JAP"
-      dir_prep "$screenshots_path" "$XDG_DATA_HOME/dolphin-emu/ScreenShots"
       dir_prep "$states_path/Dolphin-SA/StateSaves" "$XDG_DATA_HOME/dolphin-emu/StateSaves"
       dir_prep "$saves_path/Dolphin-SA/Wii" "$XDG_DATA_HOME/dolphin-emu/Wii"
+
+      dir_prep "$screenshots_path" "$XDG_DATA_HOME/dolphin-emu/ScreenShots"
+
       dir_prep "$mods_path/Dolphin/GraphicMods" "$dolphin_mods_path"
+
       dir_prep "$texture_packs_path/Dolphin/Textures" "$dolphin_textures_path"
       dir_prep "$texture_packs_path/Dolphin/DynamicInputTextures" "$XDG_DATA_HOME/dolphin-emu/Load/DynamicInputTextures"
+
       dir_prep "$shaders_path/Dolphin/Shaders" "$XDG_DATA_HOME/dolphin-emu/Shaders"
+      
       dir_prep "$logs_path/Dolphin" "$XDG_DATA_HOME/dolphin-emu/Logs"
+
       dir_prep "$storage_path/Dolphin/Dump" "$XDG_DATA_HOME/dolphin-emu/Dump"
 
       set_setting_value "$dolphin_config" "BIOS" "$bios_path" "dolphin" "GBA"
@@ -113,6 +126,7 @@ _prepare_component::dolphin() {
       set_setting_value "$dolphin_config" "ISOPath0" "$roms_path/wii" "dolphin" "General"
       set_setting_value "$dolphin_config" "ISOPath1" "$roms_path/gc" "dolphin" "General"
       set_setting_value "$dolphin_config" "WiiSDCardPath" "$saves_path/Dolphin-SA/Wii/sd.raw" "dolphin" "General"
+
     ;;
 
   esac
@@ -209,7 +223,6 @@ _post_update_legacy::dolphin() {
   dir_prep "$saves_path/Dolphin-SA/GC/JP" "$XDG_DATA_HOME/dolphin-emu/GC/JAP"
   dir_prep "$states_path/Dolphin-SA/StateSaves" "$XDG_DATA_HOME/dolphin-emu/StateSaves"
   dir_prep "$saves_path/Dolphin-SA/Wii" "$XDG_DATA_HOME/dolphin-emu/Wii"
-  dir_prep "$states_path/Dolphin-SA/StateSaves" "$XDG_DATA_HOME/dolphin-emu/StateSaves"
 
   cp -rfv "$saves_path/gc/dolphin/EU" "$saves_path/Dolphin-SA/GC/EU"
   cp -rfv "$saves_path/gc/dolphin/US" "$saves_path/Dolphin-SA/GC/US"
