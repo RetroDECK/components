@@ -129,10 +129,12 @@ _prepare_component::rpcs3() {
 
       create_dir -d "$XDG_CONFIG_HOME/rpcs3/"
       cp -fr "$component_config/"* "$XDG_CONFIG_HOME/rpcs3/"
+      
       set_setting_value "$rpcs3_config_vfs" '$(EmulatorDir)' "$storage_path/rpcs3/" "rpcs3"
       set_setting_value "$rpcs3_config_vfs" "/games/" "$roms_path/ps3/" "rpcs3"
-      dir_prep "$saves_path/ps3/rpcs3" "$storage_path/rpcs3/dev_hdd0/home/00000001/savedata"
-      dir_prep "$states_path/ps3/rpcs3" "$XDG_CONFIG_HOME/rpcs3/savestates"
+
+      dir_prep "$saves_path/RPCS3-SA/savedata" "$storage_path/rpcs3/dev_hdd0/home/00000001/savedata"
+      dir_prep "$states_path/RPCS3-SA/savestates" "$XDG_CONFIG_HOME/rpcs3/savestates"
       create_dir "$storage_path/rpcs3/dev_hdd0"
       create_dir "$storage_path/rpcs3/dev_hdd1"
       create_dir "$storage_path/rpcs3/dev_flash"
@@ -151,10 +153,11 @@ _prepare_component::rpcs3() {
 
       set_setting_value "$rpcs3_config_vfs" '$(EmulatorDir)' "$storage_path/rpcs3/" "rpcs3"
       set_setting_value "$rpcs3_config_vfs" "/games/" "$roms_path/ps3" "rpcs3"
-      dir_prep "$saves_path/ps3/rpcs3" "$storage_path/rpcs3/dev_hdd0/home/00000001/savedata"
-      dir_prep "$states_path/ps3/rpcs3" "$XDG_CONFIG_HOME/rpcs3/savestates"
+      dir_prep "$saves_path/RPCS3-SA/savedata" "$storage_path/rpcs3/dev_hdd0/home/00000001/savedata"
+      dir_prep "$states_path/RPCS3-SA/savestates" "$XDG_CONFIG_HOME/rpcs3/savestates"
       dir_prep "$storage_path/rpcs3/captures" "$XDG_CONFIG_HOME/rpcs3/captures"
       dir_prep "$storage_path/rpcs3/patches" "$XDG_CONFIG_HOME/rpcs3/patches"
+
     ;;
 
     startup)
@@ -171,6 +174,22 @@ _prepare_component::rpcs3() {
 _post_update::rpcs3() {
   local previous_version="$1"
 
+  if check_version_is_older_than "$previous_version" "0.11.0"; then
+    log i "0.11.0 Upgrade - RPCS3 RA Conflict Migration "
+
+    dir_prep "$saves_path/RPCS3-SA/savedata" "$storage_path/rpcs3/dev_hdd0/home/00000001/savedata"
+    dir_prep "$states_path/RPCS3-SA/savestates" "$XDG_CONFIG_HOME/rpcs3/savestates"
+
+    cp -rfv "$saves_path/ps3/rpcs3" "$saves_path/RPCS3-SA/savedata"
+    cp -rfv "$states_path/ps3/rpcs3" "$states_path/RPCS3-SA/savestates"
+
+    create_dir "$backups_path/0.11.0/RPCS3-SA/savedata"
+    create_dir "$backups_path/0.11.0/RPCS3-SA/savestates"
+    
+    cp -rfv "$saves_path/ps3/rpcs3" "$backups_path/0.11.0/RPCS3-SA/savedata"
+    cp -rfv "$states_path/ps3/rpcs3" "$backups_path/0.11.0/RPCS3-SA/savestates"
+    
+  fi
 }
 
 _post_update_legacy::rpcs3() {
@@ -198,8 +217,8 @@ _post_update_legacy::rpcs3() {
     create_dir "$storage_path/rpcs3/dev_flash3"
     create_dir "$storage_path/rpcs3/dev_bdvd"
     create_dir "$storage_path/rpcs3/dev_usb000"
-    dir_prep "$saves_path/ps3/rpcs3" "$storage_path/rpcs3/dev_hdd0/home/00000001/savedata"
-    dir_prep "$states_path/ps3/rpcs3" "$XDG_CONFIG_HOME/rpcs3/savestates"
+    dir_prep "$saves_path/RPCS3-SA/savedata" "$storage_path/rpcs3/dev_hdd0/home/00000001/savedata"
+    dir_prep "$states_path/RPCS3-SA/savestates" "$XDG_CONFIG_HOME/rpcs3/savestates"
   fi
 
   if check_version_is_older_than "$previous_version" "0.8.0b"; then
@@ -212,7 +231,7 @@ _post_update_legacy::rpcs3() {
       create_dir "$backups_folder"
       zip -rq9 "$backups_folder/$(date +"%0m%0d")_rpcs3_save_data.zip" "$bios_path/rpcs3/dev_hdd0/home/00000001/savedata"
     fi
-    dir_prep "$saves_path/ps3/rpcs3" "$bios_path/rpcs3/dev_hdd0/home/00000001/savedata"
+    dir_prep "$saves_path/RPCS3-SA/savedata" "$bios_path/rpcs3/dev_hdd0/home/00000001/savedata"
     log i "RPCS3 saves migration completed, a backup was made here: \"$backups_folder/$(date +"%0m%0d")_rpcs3_save_data.zip\"."
   fi
 

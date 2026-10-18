@@ -645,6 +645,138 @@ _post_update::retroarch() {
     fi
   fi
 
+  if check_version_is_older_than "$previous_version" "0.11.0"; then
+    log i "0.11.0 Upgrade - RetroArch Conflict Mitigation and Core Dir Prepare"
+
+      # PSX Open BIOS
+      cp -f "$retroarch_extras_path/pcsx-redux/openbios.bin" "$bios_path/openbios.bin"
+
+      # PS2 Cores
+      create_dir "$saves_path/ps2/retroarch-core/pcsx2/memcards"
+      create_dir "$backups_path/0.11.0/retroarch-core/pcsx2/memcards"
+      create_dir "$backups_path/0.11.0/retroarch-core/LRPS2/memcards"
+
+      cp -rfv "$bios_path/pcsx2/memcards" "$backups_path/0.11.0/retroarch-core/pcsx2/memcards"
+      cp -rfv "$saves_path/ps2/retroarch-core/LRPS2/memcards" "$backups_path/0.11.0/retroarch-core/LRPS2/memcards"
+
+      cp -rfv "$bios_path/pcsx2/memcards" "$saves_path/ps2/retroarch-core/pcsx2/memcards"
+      cp -rfv "$saves_path/ps2/retroarch-core/LRPS2/memcards" "$saves_path/ps2/retroarch-core/pcsx2/memcards"
+
+      create_dir "$storage_path/retroarch-core/pcsx2/resources"
+      cp -rfv "$retroarch_extras_path/pcsx2/resources" "$storage_path/retroarch-core/pcsx2/resources" 
+
+      dir_prep "$bios_path" "$bios_path/pcsx2/bios"
+      
+      dir_prep "$saves_path/ps2/retroarch-core/pcsx2/memcards" "$bios_path/pcsx2/memcards"
+      dir_prep "$storage_path/retroarch-core/pcsx2/inis" "$bios_path/pcsx2/inis"
+      dir_prep "$storage_path/retroarch-core/pcsx2/resources" "$bios_path/pcsx2/resources"
+      dir_prep "$shaders_path/retroarch-core/pcsx2/shaders" "$bios_path/pcsx2/shaders"
+      dir_prep "$cheats_path/retroarch-core/pcsx2/cheats" "$bios_path/pcsx2/cheats"
+      dir_prep "$cheats_path/retroarch-core/pcsx2/cheats_ws" "$bios_path/pcsx2/cheats_ws"
+      dir_prep "$cheats_path/retroarch-core/pcsx2/cheats_ni" "$bios_path/pcsx2/cheats_ni"
+      dir_prep "$texture_packs_path/retroarch-core/pcsx2/textures" "$bios_path/pcsx2/textures"
+
+      # RPCS3
+      dir_prep "$storage_path/retroarch-core/rpcs3/dev_hdd0" "$bios_path/rpcs3/dev_hdd0"
+      dir_prep "$storage_path/retroarch-core/rpcs3/dev_hdd1" "$bios_path/rpcs3/dev_hdd1"
+      dir_prep "$storage_path/retroarch-core/rpcs3/dev_flash" "$bios_path/rpcs3/dev_flash"
+      dir_prep "$storage_path/retroarch-core/rpcs3/dev_flash2" "$bios_path/rpcs3/dev_flash2"
+      dir_prep "$storage_path/retroarch-core/rpcs3/dev_flash3" "$bios_path/rpcs3/dev_flash3"
+      dir_prep "$storage_path/retroarch-core/rpcs3/dev_bdvd" "$bios_path/rpcs3/dev_bdvd"
+      dir_prep "$storage_path/retroarch-core/rpcs3/dev_usb000" "$bios_path/rpcs3/dev_usb000"
+      dir_prep "$storage_path/retroarch-core/rpcs3/captures" "$bios_path/rpcs3/captures"
+      dir_prep "$storage_path/retroarch-core/rpcs3/patches" "$bios_path/rpcs3/patches"
+
+      # N3DS Cores
+      dir_prep "$mods_path/retroarch-core/Citra/mods" "$saves_path/n3ds/Citra/load/mods"
+      dir_prep "$texture_packs_path/retroarch-core/Citra/textures" "$saves_path/n3ds/Citra/load/textures"
+      dir_prep "$shaders_path/retroarch-core/Citra/shaders" "$saves_path/n3ds/Citra/shaders"
+      dir_prep "$cheats_path/retroarch-core/Citra/cheats" "$saves_path/n3ds/Citra/cheats"
+
+      dir_prep "$texture_packs_path/retroarch-core/Azahar/textures" "$saves_path/n3ds/Azahar/load/textures"
+      dir_prep "$mods_path/retroarch-core/Azahar/mods" "$saves_path/n3ds/Azahar/load/mods"
+      dir_prep "$shaders_path/retroarch-core/Azahar/shaders" "$saves_path/n3ds/Azahar/shaders"
+      dir_prep "$cheats_path/retroarch-core/Azahar/cheats" "$saves_path/n3ds/Azahar/cheats"
+
+      # PPSSPP
+      dir_prep "$texture_packs_path/retroarch-core/PPSSPP/TEXTURES" "$saves_path/PSP/TEXTURES"
+      dir_prep "$mods_path/retroarch-core/PPSSPP/PLUGINS" "$saves_path/PSP/PLUGINS"
+      dir_prep "$shaders_path/retroarch-core/PPSSPP/CACHE" "$saves_path/PSP/SYSTEM/CACHE"
+      dir_prep "$shaders_path/retroarch-core/PPSSPP/shaders" "$bios_path/PPSSPP/shaders"
+      dir_prep "$storage_path/retroarch-core/PPSSPP/GAME" "$saves_path/PSP/GAME"
+      dir_prep "$states_path/psp/retroarch-core/PPSSPP/PPSSPP_STATE" "$saves_path/PSP/PPSSPP_STATE"
+
+      # Dolphin Wii + GC
+      dir_prep "$texture_packs_path/retroarch-core/Dolphin/Textures" "$saves_path/gc/User/Load/Textures"
+      dir_prep "$texture_packs_path/retroarch-core/Dolphin/Textures" "$saves_path/wii/User/Load/Textures"
+      dir_prep "$texture_packs_path/retroarch-core/Dolphin/DynamicInputTextures" "$saves_path/gc/User/Load/DynamicInputTextures"
+      dir_prep "$texture_packs_path/retroarch-core/Dolphin/DynamicInputTextures" "$saves_path/wii/User/Load/DynamicInputTextures"
+      dir_prep "$mods_path/retroarch-core/Dolphin/GraphicMods" "$saves_path/gc/User/Load/GraphicMods"
+      dir_prep "$mods_path/retroarch-core/Dolphin/GraphicMods" "$saves_path/wii/User/Load/GraphicMods"
+      dir_prep "$shaders_path/retroarch-core/Dolphin/Shaders" "$saves_path/gc/User/Shaders"
+      dir_prep "$shaders_path/retroarch-core/Dolphin/Shaders" "$saves_path/wii/User/Shaders"
+      dir_prep "$storage_path/retroarch-core/Dolphin/Dump" "$saves_path/gc/User/Dump"
+      dir_prep "$storage_path/retroarch-core/Dolphin/Dump" "$saves_path/wii/User/Dump"     
+
+      dir_prep "$screenshots_path/retroarch/retroarch-core/Dolphin/gc/ScreenShots" "$saves_path/gc/User/ScreenShots"      ### NON Standard Screenshots
+      dir_prep "$screenshots_path/retroarch/retroarch-core/Dolphin/wii/ScreenShots" "$saves_path/wii/User/ScreenShots"
+
+      dir_prep "$states_path/gc/retroarch-core/Dolphin/StateSaves" "$saves_path/gc/User/StateSaves"     ### NON Standard Savestates, most likely not used.
+      dir_prep "$states_path/wii/retroarch-core/Dolphin/StateSaves" "$saves_path/wii/User/StateSaves"
+
+      cp -rfv "$saves_path/gc/User/StateSaves" "$states_path/gc/retroarch-core/Dolphin/StateSaves"
+      cp -rfv "$saves_path/wii/User/StateSaves" "$states_path/wii/retroarch-core/Dolphin/StateSaves"
+      
+      # Cemu
+      dir_prep "$texture_packs_path/retroarch-core/Cemu/graphicPacks" "$bios_path/Cemu/graphicPacks"
+      dir_prep "$shaders_path/retroarch-core/Cemu/transferable" "$bios_path/Cemu/shaderCache/transferable"
+
+      # Vita3K
+      dir_prep "$storage_path/retroarch-core/Vita3K/ux0"  "$bios_path/vita3k/ux0"
+      dir_prep "$storage_path/retroarch-core/Vita3K/data"  "$bios_path/vita3k/data"
+      dir_prep "$saves_path/psvita/Vita3K" "$storage_path/retroarch-core/Vita3K/ux0/user/00/savedata"
+      dir_prep "$shaders_path/retroarch-core/Vita3K/shaders-builtin" "$bios_path/vita3k/shaders-builtin"
+      dir_prep "$shaders_path/retroarch-core/Vita3K/shaders"  "$bios_path/vita3k/shaders"
+      dir_prep "$texture_packs_path/retroarch-core/Vita3K/textures" "$bios_path/vita3k/ux0/textures"
+
+      # Xenia Edge
+      dir_prep "$storage_path/retroarch-core/Xenia-Edge/cache" "$bios_path/Xenia-Edge/cache"
+      dir_prep "$storage_path/retroarch-core/Xenia-Edge/cache0" "$bios_path/Xenia-Edge/cache0"
+      dir_prep "$storage_path/retroarch-core/Xenia-Edge/cache1" "$bios_path/Xenia-Edge/cache1"
+      dir_prep "$storage_path/retroarch-core/Xenia-Edge/library" "$bios_path/Xenia-Edge/library"
+      dir_prep "$saves_path/xbox360/retroarch-core/Xenia-Edge/content" "$bios_path/Xenia-Edge/content"
+      dir_prep "$mods_path/retroarch-core/Xenia-Edge/plugins" "$bios_path/Xenia-Edge/plugins"
+      dir_prep "$mods_path/retroarch-core/Xenia-Edge/patches" "$bios_path/Xenia-Edge/patches"
+
+      # Xemu
+      dir_prep "$shaders_path/retroarch-core/xemu/shaders" "$bios_path/xemu/xemu/shaders"
+      create_dir "$saves_path/xbox/xemu" 
+
+      ln -sfn "$bios_path/mcpx_1.0.bin" "$bios_path/xemu/mcpx_1.0.bin"
+      ln -sfn "$bios_path/Complex_4627v1.03.bin" "$bios_path/xemu/Complex_4627v1.03.bin"
+      ln -sfn "$saves_path/xbox/xemu/xbox_hdd.qcow2" "$bios_path/xemu/xbox_hdd.qcow2" 
+      ln -sfn "$saves_path/xbox/xemu/xbox_eeprom.bin" "$bios_path/xemu/xbox_eeprom.bin"
+
+      # ScummVM
+      cp -fv "$component_config/scummvm.ini" "$retroarch_config_scummvm"
+      log i "Installing ScummVM assets"
+      unzip -o "$retroarch_extras_path/ScummVM.zip" 'scummvm/extra/*' -d /tmp
+      unzip -o "$retroarch_extras_path/ScummVM.zip" 'scummvm/theme/*' -d /tmp
+
+      create_dir "$storage_path/retroarch-core/ScummVM/icons"
+      create_dir "$storage_path/retroarch-core/ScummVM/extra"
+      create_dir "$storage_path/retroarch-core/ScummVM/theme"
+      mv -f /tmp/scummvm/extra/* "$storage_path/retroarch-core/ScummVM/extra"
+      mv -f /tmp/scummvm/theme/* "$storage_path/retroarch-core/ScummVM/theme"
+      rm -rf /tmp/extra /tmp/theme /tmp/scummvm/extra /tmp/scummvm/theme
+
+      set_setting_value "$retroarch_config_scummvm" "iconspath" "$storage_path/retroarch-core/ScummVM/icons" "retroarch_scummvm" "scummvm"
+      set_setting_value "$retroarch_config_scummvm" "extrapath" "$storage_path/retroarch-core/ScummVM/extra" "retroarch_scummvm" "scummvm"
+      set_setting_value "$retroarch_config_scummvm" "themepath" "$storage_path/retroarch-core/ScummVM/theme" "retroarch_scummvm" "scummvm"
+      set_setting_value "$retroarch_config_scummvm" "savepath" "$saves_path/scummvm" "retroarch_scummvm" "scummvm"
+      set_setting_value "$retroarch_config_scummvm" "browser_lastpath" "$roms_path/scummvm" "retroarch_scummvm" "scummvm"
+    fi
+
   #######################################
   # These actions happen at every update
   #######################################
@@ -799,141 +931,7 @@ _post_update_legacy::retroarch() {
     add_setting "$retroarch_config_core_options" "melonds_render_mode" "opengl" "retroarch"
   fi
 
-  if check_version_is_older_than "$version_being_updated" "0.11.0"; then
-
-    # PSX Open BIOS
-    cp -f "$retroarch_extras_path/pcsx-redux/openbios.bin" "$bios_path/openbios.bin"
-
-    # PS2 Cores
-    create_dir "$saves_path/ps2/retroarch-core/pcsx2/memcards"
-    create_dir "$backups_path/0.11.0/retroarch-core/pcsx2/memcards"
-    create_dir "$backups_path/0.11.0/retroarch-core/LRPS2/memcards"
-
-    cp -rfv "$bios_path/pcsx2/memcards" "$backups_path/0.11.0/retroarch-core/pcsx2/memcards"
-    cp -rfv "$saves_path/ps2/retroarch-core/LRPS2/memcards" "$backups_path/0.11.0/retroarch-core/LRPS2/memcards"
-
-    cp -rfv "$bios_path/pcsx2/memcards" "$saves_path/ps2/retroarch-core/pcsx2/memcards"
-    cp -rfv "$saves_path/ps2/retroarch-core/LRPS2/memcards" "$saves_path/ps2/retroarch-core/pcsx2/memcards"
-
-    create_dir "$storage_path/retroarch-core/pcsx2/resources"
-    cp -rfv "$retroarch_extras_path/pcsx2/resources" "$storage_path/retroarch-core/pcsx2/resources" 
-
-    dir_prep "$bios_path" "$bios_path/pcsx2/bios"
-    
-    dir_prep "$saves_path/ps2/retroarch-core/pcsx2/memcards" "$bios_path/pcsx2/memcards"
-    dir_prep "$storage_path/retroarch-core/pcsx2/inis" "$bios_path/pcsx2/inis"
-    dir_prep "$storage_path/retroarch-core/pcsx2/resources" "$bios_path/pcsx2/resources"
-    dir_prep "$shaders_path/retroarch-core/pcsx2/shaders" "$bios_path/pcsx2/shaders"
-    dir_prep "$cheats_path/retroarch-core/pcsx2/cheats" "$bios_path/pcsx2/cheats"
-    dir_prep "$cheats_path/retroarch-core/pcsx2/cheats_ws" "$bios_path/pcsx2/cheats_ws"
-    dir_prep "$cheats_path/retroarch-core/pcsx2/cheats_ni" "$bios_path/pcsx2/cheats_ni"
-    dir_prep "$texture_packs_path/retroarch-core/pcsx2/textures" "$bios_path/pcsx2/textures"
-
-    # RPCS3
-    dir_prep "$storage_path/retroarch-core/rpcs3/dev_hdd0" "$bios_path/rpcs3/dev_hdd0"
-    dir_prep "$storage_path/retroarch-core/rpcs3/dev_hdd1" "$bios_path/rpcs3/dev_hdd1"
-    dir_prep "$storage_path/retroarch-core/rpcs3/dev_flash" "$bios_path/rpcs3/dev_flash"
-    dir_prep "$storage_path/retroarch-core/rpcs3/dev_flash2" "$bios_path/rpcs3/dev_flash2"
-    dir_prep "$storage_path/retroarch-core/rpcs3/dev_flash3" "$bios_path/rpcs3/dev_flash3"
-    dir_prep "$storage_path/retroarch-core/rpcs3/dev_bdvd" "$bios_path/rpcs3/dev_bdvd"
-    dir_prep "$storage_path/retroarch-core/rpcs3/dev_usb000" "$bios_path/rpcs3/dev_usb000"
-    dir_prep "$storage_path/retroarch-core/rpcs3/captures" "$bios_path/rpcs3/captures"
-    dir_prep "$storage_path/retroarch-core/rpcs3/patches" "$bios_path/rpcs3/patches"
-
-    # N3DS Cores
-    dir_prep "$mods_path/retroarch-core/Citra/mods" "$saves_path/n3ds/Citra/load/mods"
-    dir_prep "$texture_packs_path/retroarch-core/Citra/textures" "$saves_path/n3ds/Citra/load/textures"
-    dir_prep "$shaders_path/retroarch-core/Citra/shaders" "$saves_path/n3ds/Citra/shaders"
-    dir_prep "$cheats_path/retroarch-core/Citra/cheats" "$saves_path/n3ds/Citra/cheats"
-
-    dir_prep "$texture_packs_path/retroarch-core/Azahar/textures" "$saves_path/n3ds/Azahar/load/textures"
-    dir_prep "$mods_path/retroarch-core/Azahar/mods" "$saves_path/n3ds/Azahar/load/mods"
-    dir_prep "$shaders_path/retroarch-core/Azahar/shaders" "$saves_path/n3ds/Azahar/shaders"
-    dir_prep "$cheats_path/retroarch-core/Azahar/cheats" "$saves_path/n3ds/Azahar/cheats"
-
-    # PPSSPP
-    dir_prep "$texture_packs_path/retroarch-core/PPSSPP/TEXTURES" "$saves_path/PSP/TEXTURES"
-    dir_prep "$mods_path/retroarch-core/PPSSPP/PLUGINS" "$saves_path/PSP/PLUGINS"
-    dir_prep "$shaders_path/retroarch-core/PPSSPP/CACHE" "$saves_path/PSP/SYSTEM/CACHE"
-    dir_prep "$shaders_path/retroarch-core/PPSSPP/shaders" "$bios_path/PPSSPP/shaders"
-    dir_prep "$storage_path/retroarch-core/PPSSPP/GAME" "$saves_path/PSP/GAME"
-    dir_prep "$states_path/psp/retroarch-core/PPSSPP/PPSSPP_STATE" "$saves_path/PSP/PPSSPP_STATE"
-
-    # Dolphin Wii + GC
-    dir_prep "$texture_packs_path/retroarch-core/Dolphin/Textures" "$saves_path/gc/User/Load/Textures"
-    dir_prep "$texture_packs_path/retroarch-core/Dolphin/Textures" "$saves_path/wii/User/Load/Textures"
-    dir_prep "$texture_packs_path/retroarch-core/Dolphin/DynamicInputTextures" "$saves_path/gc/User/Load/DynamicInputTextures"
-    dir_prep "$texture_packs_path/retroarch-core/Dolphin/DynamicInputTextures" "$saves_path/wii/User/Load/DynamicInputTextures"
-    dir_prep "$mods_path/retroarch-core/Dolphin/GraphicMods" "$saves_path/gc/User/Load/GraphicMods"
-    dir_prep "$mods_path/retroarch-core/Dolphin/GraphicMods" "$saves_path/wii/User/Load/GraphicMods"
-    dir_prep "$shaders_path/retroarch-core/Dolphin/Shaders" "$saves_path/gc/User/Shaders"
-    dir_prep "$shaders_path/retroarch-core/Dolphin/Shaders" "$saves_path/wii/User/Shaders"
-    dir_prep "$storage_path/retroarch-core/Dolphin/Dump" "$saves_path/gc/User/Dump"
-    dir_prep "$storage_path/retroarch-core/Dolphin/Dump" "$saves_path/wii/User/Dump"     
-
-    ### NON Standard Screenshots
-    dir_prep "$screenshots_path/retroarch/retroarch-core/Dolphin/gc/ScreenShots" "$saves_path/gc/User/ScreenShots"
-    dir_prep "$screenshots_path/retroarch/retroarch-core/Dolphin/wii/ScreenShots" "$saves_path/wii/User/ScreenShots"
-
-    ### NON Standard Savestates, most likely not used.
-    dir_prep "$states_path/gc/retroarch-core/Dolphin/StateSaves" "$saves_path/gc/User/StateSaves"
-    dir_prep "$states_path/wii/retroarch-core/Dolphin/StateSaves" "$saves_path/wii/User/StateSaves"
-
-    cp -rfv "$saves_path/gc/User/StateSaves" "$states_path/gc/retroarch-core/Dolphin/StateSaves"
-    cp -rfv "$saves_path/wii/User/StateSaves" "$states_path/wii/retroarch-core/Dolphin/StateSaves"
-
-
-    
-    # Cemu
-    dir_prep "$texture_packs_path/retroarch-core/Cemu/graphicPacks" "$bios_path/Cemu/graphicPacks"
-    dir_prep "$shaders_path/retroarch-core/Cemu/transferable" "$bios_path/Cemu/shaderCache/transferable"
-
-    # Vita3K
-    dir_prep "$storage_path/retroarch-core/Vita3K/ux0"  "$bios_path/vita3k/ux0"
-    dir_prep "$storage_path/retroarch-core/Vita3K/data"  "$bios_path/vita3k/data"
-    dir_prep "$saves_path/psvita/Vita3K" "$storage_path/retroarch-core/Vita3K/ux0/user/00/savedata"
-    dir_prep "$shaders_path/retroarch-core/Vita3K/shaders-builtin" "$bios_path/vita3k/shaders-builtin"
-    dir_prep "$shaders_path/retroarch-core/Vita3K/shaders"  "$bios_path/vita3k/shaders"
-    dir_prep "$texture_packs_path/retroarch-core/Vita3K/textures" "$bios_path/vita3k/ux0/textures"
-
-    # Xenia Edge
-    dir_prep "$storage_path/retroarch-core/Xenia-Edge/cache" "$bios_path/Xenia-Edge/cache"
-    dir_prep "$storage_path/retroarch-core/Xenia-Edge/cache0" "$bios_path/Xenia-Edge/cache0"
-    dir_prep "$storage_path/retroarch-core/Xenia-Edge/cache1" "$bios_path/Xenia-Edge/cache1"
-    dir_prep "$storage_path/retroarch-core/Xenia-Edge/library" "$bios_path/Xenia-Edge/library"
-    dir_prep "$saves_path/xbox360/retroarch-core/Xenia-Edge/content" "$bios_path/Xenia-Edge/content"
-    dir_prep "$mods_path/retroarch-core/Xenia-Edge/plugins" "$bios_path/Xenia-Edge/plugins"
-    dir_prep "$mods_path/retroarch-core/Xenia-Edge/patches" "$bios_path/Xenia-Edge/patches"
-
-    # Xemu
-    dir_prep "$shaders_path/retroarch-core/xemu/shaders" "$bios_path/xemu/xemu/shaders"
-    create_dir "$saves_path/xbox/xemu" 
-
-    ln -sfn "$bios_path/mcpx_1.0.bin" "$bios_path/xemu/mcpx_1.0.bin"
-    ln -sfn "$bios_path/Complex_4627v1.03.bin" "$bios_path/xemu/Complex_4627v1.03.bin"
-    ln -sfn "$saves_path/xbox/xemu/xbox_hdd.qcow2" "$bios_path/xemu/xbox_hdd.qcow2" 
-    ln -sfn "$saves_path/xbox/xemu/xbox_eeprom.bin" "$bios_path/xemu/xbox_eeprom.bin"
-
-    # ScummVM
-    cp -fv "$component_config/scummvm.ini" "$retroarch_config_scummvm"
-    log i "Installing ScummVM assets"
-    unzip -o "$retroarch_extras_path/ScummVM.zip" 'scummvm/extra/*' -d /tmp
-    unzip -o "$retroarch_extras_path/ScummVM.zip" 'scummvm/theme/*' -d /tmp
-
-    create_dir "$storage_path/retroarch-core/ScummVM/icons"
-    create_dir "$storage_path/retroarch-core/ScummVM/extra"
-    create_dir "$storage_path/retroarch-core/ScummVM/theme"
-    mv -f /tmp/scummvm/extra/* "$storage_path/retroarch-core/ScummVM/extra"
-    mv -f /tmp/scummvm/theme/* "$storage_path/retroarch-core/ScummVM/theme"
-    rm -rf /tmp/extra /tmp/theme /tmp/scummvm/extra /tmp/scummvm/theme
-
-    set_setting_value "$retroarch_config_scummvm" "iconspath" "$storage_path/retroarch-core/ScummVM/icons" "retroarch_scummvm" "scummvm"
-    set_setting_value "$retroarch_config_scummvm" "extrapath" "$storage_path/retroarch-core/ScummVM/extra" "retroarch_scummvm" "scummvm"
-    set_setting_value "$retroarch_config_scummvm" "themepath" "$storage_path/retroarch-core/ScummVM/theme" "retroarch_scummvm" "scummvm"
-    set_setting_value "$retroarch_config_scummvm" "savepath" "$saves_path/scummvm" "retroarch_scummvm" "scummvm"
-    set_setting_value "$retroarch_config_scummvm" "browser_lastpath" "$roms_path/scummvm" "retroarch_scummvm" "scummvm"
-
-  fi
+  
 
   #######################################
   # These actions happen at every update
