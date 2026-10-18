@@ -75,8 +75,8 @@ _prepare_component::ppsspp() {
         log d "Wayland compositor detected, changing rendered to OpenGL as a workaround"
         set_setting_value "$ppsspp_config" "GraphicsBackend" "0 (OPENGL)" "ppsspp" "Graphics"
       fi
-      dir_prep "$saves_path/PSP/PPSSPP-SA" "$XDG_CONFIG_HOME/ppsspp/PSP/SAVEDATA"
-      dir_prep "$states_path/PSP/PPSSPP-SA" "$XDG_CONFIG_HOME/ppsspp/PSP/PPSSPP_STATE"
+      dir_prep "$saves_path/PPSSPP-SA/SAVEDATA" "$XDG_CONFIG_HOME/ppsspp/PSP/SAVEDATA"
+      dir_prep "$states_path/PPSSPP-SA/PPSSPP_STATE" "$XDG_CONFIG_HOME/ppsspp/PSP/PPSSPP_STATE"
       dir_prep "$texture_packs_path/PPSSPP/TEXTURES" "$XDG_CONFIG_HOME/ppsspp/PSP/TEXTURES"
       dir_prep "$shaders_path/PPSSPP/shaders" "$XDG_CONFIG_HOME/ppsspp/PSP/shaders"
       dir_prep "$shaders_path/PPSSPP/CACHE" "$XDG_CONFIG_HOME/ppsspp/SYSTEM/CACHE"
@@ -107,8 +107,8 @@ _prepare_component::ppsspp() {
       log i "------------------------"
 
       set_setting_value "$ppsspp_config" "CurrentDirectory" "$roms_path/psp" "ppsspp" "General"
-      dir_prep "$saves_path/PSP/PPSSPP-SA" "$XDG_CONFIG_HOME/ppsspp/PSP/SAVEDATA"
-      dir_prep "$states_path/PSP/PPSSPP-SA" "$XDG_CONFIG_HOME/ppsspp/PSP/PPSSPP_STATE"
+      dir_prep "$saves_path/PPSSPP-SA/SAVEDATA" "$XDG_CONFIG_HOME/ppsspp/PSP/SAVEDATA"
+      dir_prep "$states_path/PPSSPP-SA/PPSSPP_STATE" "$XDG_CONFIG_HOME/ppsspp/PSP/PPSSPP_STATE"
       dir_prep "$texture_packs_path/PPSSPP/TEXTURES" "$XDG_CONFIG_HOME/ppsspp/PSP/TEXTURES"
       dir_prep "$storage_path/PPSSPP/GAME" "$XDG_CONFIG_HOME/ppsspp/PSP/GAME"
       dir_prep "$shaders_path/PPSSPP/shaders" "$XDG_CONFIG_HOME/ppsspp/PSP/shaders"
@@ -131,6 +131,23 @@ _post_update::ppsspp() {
     fi
   fi
 
+  if check_version_is_older_than "$previous_version" "0.11.0"; then
+    log i "0.11.0 Upgrade: PPSSPP - RA Core Conflict Migration"
+
+    dir_prep "$saves_path/PPSSPP-SA/SAVEDATA" "$XDG_CONFIG_HOME/ppsspp/PSP/SAVEDATA"
+    dir_prep "$states_path/PPSSPP-SA/PPSSPP_STATE" "$XDG_CONFIG_HOME/ppsspp/PSP/PPSSPP_STATE"
+
+    create_dir "$backups_path/0.11.0/PPSSPP-SA/SAVEDATA"
+    create_dir "$backups_path/0.11.0/PPSSPP-SA/PPSSPP_STATE"
+
+    cp -rfv "$saves_path/PSP/PPSSPP-SA" "$saves_path/PPSSPP-SA/SAVEDATA"
+    cp -rfv "$states_path/PSP/PPSSPP-SA" "$states_path/PPSSPP-SA/PPSSPP_STATE"
+
+    cp -rfv "$saves_path/PSP/PPSSPP-SA" "$backups_path/0.11.0/PPSSPP-SA/SAVEDATA"
+    cp -rfv "$states_path/PSP/PPSSPP-SA" "$backups_path/0.11.0/PPSSPP-SA/PPSSPP_STATE"
+
+  fi  
+
 }
 
 _post_update_legacy::ppsspp() {
@@ -142,8 +159,8 @@ _post_update_legacy::ppsspp() {
     # In version 0.7.0b, the following changes were made that required config file updates/reset or other changes to the filesystem:
     # - Move PPSSPP saves/states to appropriate folders
 
-    dir_prep "$saves_path/PSP/PPSSPP-SA" "$XDG_CONFIG_HOME/ppsspp/PSP/SAVEDATA"
-    dir_prep "$states_path/PSP/PPSSPP-SA" "$XDG_CONFIG_HOME/ppsspp/PSP/PPSSPP_STATE"
+    dir_prep "$saves_path/PPSSPP-SA" "$XDG_CONFIG_HOME/ppsspp/PSP/SAVEDATA"
+    dir_prep "$states_path/PPSSPP-SA" "$XDG_CONFIG_HOME/ppsspp/PSP/PPSSPP_STATE"
 
     set_setting_value "$ppssppconf" "AutoLoadSaveState" "0" "ppsspp" "General"
   fi

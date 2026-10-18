@@ -69,7 +69,7 @@ _prepare_component::pico-8() {
 _post_update::pico-8() {
   local previous_version="$1"
 
-  if check_version_is_older_than "$previous_version" "0.10.0b"; then
+  if check_version_is_older_than "$previous_version" "0.11.0"; then
     log i "0.11.0 Upgrade: PICO-8 - RA Core Conflict Migration"
 
     dir_prep "$saves_path/PICO-8-SA" "$bios_path/pico-8/cdata"  # PICO-8 saves folder

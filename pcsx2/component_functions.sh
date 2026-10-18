@@ -156,7 +156,7 @@ _prepare_component::pcsx2() {
 _post_update::pcsx2() {
   local previous_version="$1"
 
-  if check_version_is_older_than "$previous_version" "0.10.0b"; then
+  if check_version_is_older_than "$previous_version" "0.11.0"; then
     log i "0.11.0 Upgrade: PCSX2 - RA Core Conflict Migration"
 
     create_dir -d "$cheats_path/PCSX2/cheats"
