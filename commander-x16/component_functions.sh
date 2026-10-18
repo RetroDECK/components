@@ -15,6 +15,7 @@ _prepare_component::commander-x16() {
 
       create_dir -d "$XDG_CONFIG_HOME/commander-x16"
       cp -fr "$component_config/"* "$XDG_CONFIG_HOME/commander-x16"
+      
       dir_prep "$roms_path/commander-x16/system" "$XDG_CONFIG_HOME/commander-x16/system"
 
     ;;

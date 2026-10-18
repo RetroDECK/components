@@ -22,7 +22,6 @@ _prepare_component::amiberry() {
         cp -fvr "$component_config/"* "$XDG_CONFIG_HOME/amiberry/"
 
         # Storage
-
         create_dir "$storage_path/Amiberry/CD-ROMs" 
         create_dir "$storage_path/Amiberry/Configurations" 
         create_dir "$storage_path/Amiberry/WHDBoot" 
@@ -38,7 +37,6 @@ _prepare_component::amiberry() {
         create_dir "$storage_path/Amiberry/InputRecordings" 
 
         # Core directories
-
         create_dir "$states_path/Amiberry-SA"
         create_dir "$screenshots_path/Amiberry"
         create_dir "$videos_path/Amiberry"
@@ -49,7 +47,6 @@ _prepare_component::amiberry() {
         cp -fvr "$amiberry_shaders_path/"* "$shaders_path/Amiberry/Shaders"
 
         # Core Paths
-
         sed -i "s|^savestate_dir=.*|savestate_dir=$states_path/Amiberry-SA|" $amiberry_config
         sed -i "s|^screenshot_dir=.*|screenshot_dir=$screenshots_path/Amiberry|" $amiberry_config
         sed -i "s|^video_dir=.*|video_dir=$videos_path/Amiberry|" $amiberry_config
@@ -59,7 +56,6 @@ _prepare_component::amiberry() {
         sed -i "s|^rom_path=.*|rom_path=$bios_path/amiga|" $amiberry_config
 
         # Storage
-
         sed -i "s|^cdrom_path=.*|cdrom_path=$storage_path/Amiberry/CD-ROMs|" $amiberry_config
         sed -i "s|^config_path=.*|config_path=$storage_path/Amiberry/Configurations|" $amiberry_config
         sed -i "s|^whdboot_path=.*|whdboot_path=$storage_path/Amiberry/WHDBoot|" $amiberry_config
@@ -82,7 +78,6 @@ _prepare_component::amiberry() {
       log i "----------------------"
 
         # Core Paths
-
         sed -i "s|^savestate_dir=.*|savestate_dir=$states_path/Amiberry-SA|" $amiberry_config
         sed -i "s|^screenshot_dir=.*|screenshot_dir=$screenshots_path/Amiberry|" $amiberry_config
         sed -i "s|^video_dir=.*|video_dir=$videos_path/Amiberry|" $amiberry_config
@@ -92,8 +87,6 @@ _prepare_component::amiberry() {
         sed -i "s|^rom_path=.*|rom_path=$bios_path/amiga|" $amiberry_config
 
         # Storage
-
-
         sed -i "s|^cdrom_path=.*|cdrom_path=$storage_path/Amiberry/CD-ROMs|" $amiberry_config
         sed -i "s|^config_path=.*|config_path=$storage_path/Amiberry/Configurations|" $amiberry_config
         sed -i "s|^whdboot_path=.*|whdboot_path=$storage_path/Amiberry/WHDBoot|" $amiberry_config
@@ -107,7 +100,6 @@ _prepare_component::amiberry() {
         sed -i "s|^controllers_path=.*|controllers_path=$storage_path/Amiberry/Controllers|" $amiberry_config
         sed -i "s|^inputrecordings_dir=.*|inputrecordings_dir=$storage_path/Amiberry/InputRecordings|" $amiberry_config
         sed -i "s|^ripper_path=.*|ripper_path=$storage_path/Amiberry/Ripper|" $amiberry_config
-
 
     ;;
     

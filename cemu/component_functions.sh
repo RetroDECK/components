@@ -62,8 +62,6 @@ _prepare_component::cemu() {
       set_setting_value "$cemu_config" "mlc_path" "$saves_path/Cemu-SA/mlc01" "cemu"
       set_setting_value "$cemu_config" "Entry" "$roms_path/wiiu" "cemu" "GamePaths"
 
-
-
     ;;
 
     postmove)
@@ -87,6 +85,26 @@ _prepare_component::cemu() {
 _post_update::cemu() {
   local previous_version="$1"
 
+  if check_version_is_older_than "$previous_version" "0.11.0"; then
+    log i "0.11.0 Upgrade - Transfer to Cemu-SA to avoid RA Conflict"
+
+    create_dir "$bios_path/Cemu-SA"
+
+    cp -rfv "$bios_path/cemu/keys.txt" "$bios_path/Cemu-SA"
+    ln -sfn "$bios_path/Cemu-SA/keys.txt" "$XDG_DATA_HOME/Cemu/keys.txt"
+
+    create_dir "$backups_path/0.11.0/Cemu-SA/mlc01/usr/save"
+    create_dir "$saves_path/Cemu-SA/mlc01/usr/save"
+
+    set_setting_value "$cemu_config" "mlc_path" "$saves_path/Cemu-SA/mlc01" "cemu"
+
+    cp -rfv "$bios_path/cemu" "$backups_path/0.11.0/Cemu-SA/mlc01"
+    cp -rfv "$saves_path/wiiu/cemu" "$backups_path/0.11.0/Cemu-SA/mlc01"
+
+    cp -rfv "$bios_path/cemu" "$saves_path/Cemu-SA/mlc01"
+    cp -rfv "$saves_path/wiiu/cemu" "$saves_path/Cemu-SA/mlc01/usr/save"
+  fi
+
 }
 
 _post_update_legacy::cemu() {
@@ -107,25 +125,6 @@ _post_update_legacy::cemu() {
     prepare_component "reset" "cemu"
   fi
 
-    if check_version_is_older_than "$previous_version" "0.11.0"; then
-    log i "0.11.0 Upgrade - Transfer to Cemu-SA to avoid RA Conflict"
 
-    set_setting_value "$cemu_config" "mlc_path" "$saves_path/Cemu-SA/mlc01" "cemu"
-
-    create_dir "$bios_path/Cemu-SA"
-
-    cp -rfv "$bios_path/cemu/keys.txt" "$bios_path/Cemu-SA"
-    ln -sfn "$bios_path/Cemu-SA/keys.txt" "$XDG_DATA_HOME/Cemu/keys.txt"
-
-    create_dir "$backups_path/0.11.0/Cemu-SA/mlc01/usr/save"
-    create_dir "$saves_path/Cemu-SA/mlc01/usr/save"
-
-    cp -rfv "$bios_path/cemu" "$backups_path/0.11.0/Cemu-SA/mlc01"
-    cp -rfv "$saves_path/wiiu/cemu" "$backups_path/0.11.0/Cemu-SA/mlc01"
-
-    cp -rfv "$bios_path/cemu" "$saves_path/Cemu-SA/mlc01"
-    cp -rfv "$saves_path/wiiu/cemu" "$saves_path/Cemu-SA/mlc01/usr/save"
-
-  fi
 
 }

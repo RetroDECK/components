@@ -17,6 +17,7 @@ _prepare_component::kegs() {
 
       create_dir "$XDG_CONFIG_HOME/kegs"
       cp -fr "$component_config/"* "$XDG_CONFIG_HOME/kegs"
+      
       dir_prep "$bios_path" "$XDG_CONFIG_HOME/kegs/bios"
 
     ;;

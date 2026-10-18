@@ -165,6 +165,38 @@ _post_update::dolphin() {
     log i "Refreshing installed textures for Dolphin..."
     rsync -rlD --delete --mkpath "$rd_components/shared-data/DynamicInputTextures/" "$dolphin_dynamic_input_textures_path/" && log i "Done"
   fi
+
+  if check_version_is_older_than "$previous_version" "0.11.0"; then
+    log i "0.11.0 Upgrade - Dolphin RA Conflict Migration"
+
+    dir_prep "$saves_path/Dolphin-SA/GC/EU" "$XDG_DATA_HOME/dolphin-emu/GC/EUR"
+    dir_prep "$saves_path/Dolphin-SA/GC/US" "$XDG_DATA_HOME/dolphin-emu/GC/USA"
+    dir_prep "$saves_path/Dolphin-SA/GC/JP" "$XDG_DATA_HOME/dolphin-emu/GC/JAP"
+    dir_prep "$states_path/Dolphin-SA/StateSaves" "$XDG_DATA_HOME/dolphin-emu/StateSaves"
+    dir_prep "$saves_path/Dolphin-SA/Wii" "$XDG_DATA_HOME/dolphin-emu/Wii"
+
+    cp -rfv "$saves_path/gc/dolphin/EU" "$saves_path/Dolphin-SA/GC/EU"
+    cp -rfv "$saves_path/gc/dolphin/US" "$saves_path/Dolphin-SA/GC/US"
+    cp -rfv "$saves_path/gc/dolphin/JP" "$saves_path/Dolphin-SA/GC/JP"
+    cp -rfv "$saves_path/wii/dolphin/" "$saves_path/Dolphin-SA/Wii"
+    cp -rfv "$states_path/dolphin/" "$states_path/Dolphin-SA/StateSaves"
+
+    create_dir "$backups_path/0.11.0/Dolphin-SA/GC/EU"
+    create_dir "$backups_path/0.11.0/Dolphin-SA/GC/US"
+    create_dir "$backups_path/0.11.0/Dolphin-SA/GC/JP"
+    create_dir "$backups_path/0.11.0/Dolphin-SA/Wii"
+    create_dir "$backups_path/0.11.0/Dolphin-SA/StateSaves"
+
+    cp -rfv "$saves_path/gc/dolphin/EU" "$backups_path/0.11.0/Dolphin-SA/GC/EU"
+    cp -rfv "$saves_path/gc/dolphin/US" "$backups_path/0.11.0/Dolphin-SA/GC/US"
+    cp -rfv "$saves_path/gc/dolphin/JP" "$backups_path/0.11.0/Dolphin-SA/GC/JP"
+    cp -rfv "$saves_path/wii/dolphin/" "$backups_path/0.11.0/Dolphin-SA/Wii"
+    cp -rfv "$states_path/dolphin/" "$backups_path/0.11.0/Dolphin-SA/StateSaves"
+
+    dir_prep "$shaders_path/Dolphin/Shaders" "$XDG_DATA_HOME/dolphin-emu/Shaders"
+    dir_prep "$texture_packs_path/Dolphin/DynamicInputTextures" "$XDG_DATA_HOME/dolphin-emu/Load/DynamicInputTextures"
+ fi
+
 }
 
 _post_update_legacy::dolphin() {
@@ -210,42 +242,9 @@ _post_update_legacy::dolphin() {
     set_setting_value "$dolphin_config" "SIDevice1" "6" "dolphin" "Core"
     set_setting_value "$dolphin_config" "SIDevice2" "6" "dolphin" "Core"
     set_setting_value "$dolphin_config" "SIDevice3" "6" "dolphin" "Core"
-
     prepare_component "postmove" "dolphin"
-
   fi
 
-  if check_version_is_older_than "$previous_version" "0.11.0"; then
-  log i "0.11.0 Upgrade - Dolphin RA Conflict Migration"
-
-  dir_prep "$saves_path/Dolphin-SA/GC/EU" "$XDG_DATA_HOME/dolphin-emu/GC/EUR"
-  dir_prep "$saves_path/Dolphin-SA/GC/US" "$XDG_DATA_HOME/dolphin-emu/GC/USA"
-  dir_prep "$saves_path/Dolphin-SA/GC/JP" "$XDG_DATA_HOME/dolphin-emu/GC/JAP"
-  dir_prep "$states_path/Dolphin-SA/StateSaves" "$XDG_DATA_HOME/dolphin-emu/StateSaves"
-  dir_prep "$saves_path/Dolphin-SA/Wii" "$XDG_DATA_HOME/dolphin-emu/Wii"
-
-  cp -rfv "$saves_path/gc/dolphin/EU" "$saves_path/Dolphin-SA/GC/EU"
-  cp -rfv "$saves_path/gc/dolphin/US" "$saves_path/Dolphin-SA/GC/US"
-  cp -rfv "$saves_path/gc/dolphin/JP" "$saves_path/Dolphin-SA/GC/JP"
-  cp -rfv "$saves_path/wii/dolphin/" "$saves_path/Dolphin-SA/Wii"
-  cp -rfv "$states_path/dolphin/" "$states_path/Dolphin-SA/StateSaves"
-
-  create_dir "$backups_path/0.11.0/Dolphin-SA/GC/EU"
-  create_dir "$backups_path/0.11.0/Dolphin-SA/GC/US"
-  create_dir "$backups_path/0.11.0/Dolphin-SA/GC/JP"
-  create_dir "$backups_path/0.11.0/Dolphin-SA/Wii"
-  create_dir "$backups_path/0.11.0/Dolphin-SA/StateSaves"
-
-  cp -rfv "$saves_path/gc/dolphin/EU" "$backups_path/0.11.0/Dolphin-SA/GC/EUU"
-  cp -rfv "$saves_path/gc/dolphin/US" "$backups_path/0.11.0/Dolphin-SA/GC/US"
-  cp -rfv "$saves_path/gc/dolphin/JP" "$backups_path/0.11.0/Dolphin-SA/GC/JP"
-  cp -rfv "$saves_path/wii/dolphin/" "$backups_path/0.11.0/Dolphin-SA/Wii"
-  cp -rfv "$states_path/dolphin/" "$backups_path/0.11.0/Dolphin-SA/StateSaves"
-
-  dir_prep "$shaders_path/Dolphin/Shaders" "$XDG_DATA_HOME/dolphin-emu/Shaders"
-  dir_prep "$texture_packs_path/Dolphin/DynamicInputTextures" "$XDG_DATA_HOME/dolphin-emu/Load/DynamicInputTextures"
-
- fi
 
   #######################################
   # These actions happen at every update

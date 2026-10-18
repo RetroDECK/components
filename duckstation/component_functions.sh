@@ -114,6 +114,23 @@ _prepare_component::duckstation() {
 _post_update::duckstation() {
   local previous_version="$1"
 
+  if check_version_is_older_than "$previous_version" "0.11.0"; then
+    log i "0.11.0 Upgrade - Duckstation (Legacy) Potential Conflict Migration"
+    create_dir "$saves_path/Duckstation-SA/memcards/"
+    create_dir "$backups_path/0.11.0/Duckstation-SA/memcards/"
+
+    cp -rfv "$saves_path/psx/duckstation/memcards" "$saves_path/Duckstation-SA/memcards/"
+    cp -rfv "$saves_path/psx/duckstation/memcards" "$backups_path/0.11.0/Duckstation-SA/memcards/"
+
+    set_setting_value "$duckstation_config" "Card1Path" "$saves_path/Duckstation-SA/memcards/shared_card_1.mcd" "duckstation" "MemoryCards"
+    set_setting_value "$duckstation_config" "Card2Path" "$saves_path/Duckstation-SA/memcards/shared_card_2.mcd" "duckstation" "MemoryCards"
+
+    dir_prep "$states_path/Duckstation-SA/savestates" "$XDG_CONFIG_HOME/duckstation/savestates"
+
+    cp -rfv "$states_path/psx/duckstation/" "$saves_path/Duckstation-SA/savestates/"
+    cp -rfv "$states_path/psx/duckstation/" "$backups_path/0.11.0/Duckstation-SA/savestates/"
+  fi
+
 }
 
 _post_update_legacy::duckstation() {
@@ -166,27 +183,6 @@ _post_update_legacy::duckstation() {
     log i "0.10.0b Upgrade - Postmove: Duckstation (Legacy)"
 
     prepare_component "postmove" "duckstation"
-  fi
-
-
-  if check_version_is_older_than "$previous_version" "0.11.0"; then
-
-    log i "0.11.0 Upgrade - Duckstation (Legacy) Conflict Migration"
-   
-   create_dir "$saves_path/Duckstation-SA/memcards/"
-   create_dir "$backups_path/0.11.0/Duckstation-SA/memcards/"
-
-  cp -rfv "$saves_path/psx/duckstation/memcards" "$saves_path/Duckstation-SA/memcards/"
-  cp -rfv "$saves_path/psx/duckstation/memcards" "$backups_path/0.11.0/Duckstation-SA/memcards/"
-
-  set_setting_value "$duckstation_config" "Card1Path" "$saves_path/Duckstation-SA/memcards/shared_card_1.mcd" "duckstation" "MemoryCards"
-  set_setting_value "$duckstation_config" "Card2Path" "$saves_path/Duckstation-SA/memcards/shared_card_2.mcd" "duckstation" "MemoryCards"
-
-  dir_prep "$states_path/Duckstation-SA/savestates" "$XDG_CONFIG_HOME/duckstation/savestates"
-
-  cp -rfv "$states_path/psx/duckstation/" "$saves_path/Duckstation-SA/savestates/"
-  cp -rfv "$states_path/psx/duckstation/" "$backups_path/0.11.0/Duckstation-SA/savestates/"
-
   fi
       
 }

@@ -110,6 +110,22 @@ _prepare_component::azahar() {
 _post_update::azahar() {
   local previous_version="$1"
 
+  if check_version_is_older_than "$previous_version" "0.11.0"; then
+    log i "0.11.0 Upgrade - Azahar RA Conflict Migration "
+
+    create_dir "$saves_path/Azahar-SA/nand/"
+    create_dir "$saves_path/Azahar-SA/sdmc/"
+
+    cp -rfv "$saves_path/n3ds/azahar/nand/" "$saves_path/Azahar-SA/nand/"
+    cp -rfv "$saves_path/n3ds/azahar/sdmc/" "$saves_path/Azahar-SA/sdmc/"
+    
+    set_setting_value "$azahar_qtconfig" "nand_directory" "$saves_path/Azahar-SA/nand/" "azahar" "Data%20Storage"
+    set_setting_value "$azahar_qtconfig" "sdmc_directory" "$saves_path/Azahar-SA/sdmc/" "azahar" "Data%20Storage"
+
+    dir_prep "$cheats_path/Azahar/cheats" "$azahar_cheats_path"
+    dir_prep "$shaders_path/Azahar/shaders" "$azahar_shaders_path"
+  fi
+
 }
 
 _post_update_legacy::azahar() {
@@ -152,23 +168,6 @@ _post_update_legacy::azahar() {
     log i "0.10.3b Upgrade - Reset: Azahar"
     set_setting_value "$azahar_qtconfig" "Shortcuts\Main%20Window\Rotate%20Screens%20Upright\KeySeq" "Alt+Y" "azahar" "UI"
     set_setting_value "$azahar_qtconfig" "Shortcuts\Main%20Window\Toggle%20Screen%20Layout\KeySeq" "Ctrl+L" "azahar" "UI"
-  fi
-
-    if check_version_is_older_than "$previous_version" "0.11.0"; then
-    log i "0.11.0 Upgrade - Azahar RA Conflict Migration "
-
-    create_dir "$saves_path/Azahar-SA/nand/"
-    create_dir "$saves_path/Azahar-SA/sdmc/"
-
-    cp -rf "$saves_path/n3ds/azahar/nand/" "$saves_path/Azahar-SA/nand/"
-    cp -rf "$saves_path/n3ds/azahar/sdmc/" "$saves_path/Azahar-SA/sdmc/"
-    
-    set_setting_value "$azahar_qtconfig" "nand_directory" "$saves_path/Azahar-SA/nand/" "azahar" "Data%20Storage"
-    set_setting_value "$azahar_qtconfig" "sdmc_directory" "$saves_path/Azahar-SA/sdmc/" "azahar" "Data%20Storage"
-
-    dir_prep "$cheats_path/Azahar/cheats" "$azahar_cheats_path"
-    dir_prep "$shaders_path/Azahar/shaders" "$azahar_shaders_path"
-
   fi
 
 }
