@@ -27,10 +27,10 @@ _prepare_component::flycast() {
 
     create_dir -d "$cheats_path/Flycast/cheats"
 
-    create_dir -d "$saves_path/dreamcast/Flycast/saves"
-    create_dir -d "$saves_path/dreamcast/Flycast/VMU"
+    create_dir -d "$saves_path/dreamcast/Flycast-SA/saves"
+    create_dir -d "$saves_path/dreamcast/Flycast-SA/VMU"
 
-    create_dir -d "$states_path/dreamcast/Flycast/"
+    create_dir -d "$states_path/dreamcast/Flycast-SA/"
 
     create_dir -d "$texture_path/Flycast/Textures"
 
@@ -44,10 +44,10 @@ _prepare_component::flycast() {
     
     sed -i "s|^Dreamcast.ContentPath = .*|Dreamcast.ContentPath = $roms_path/dreamcast|" $flycast_config
 
-    sed -i "s|^Dreamcast.SavePath = .*|Dreamcast.SavePath = $saves_path/dreamcast/Flycast/saves|" $flycast_config
-    sed -i "s|^Dreamcast.VMUPath = .*|Dreamcast.VMUPath = $saves_path/dreamcast/Flycast/VMU|" $flycast_config
+    sed -i "s|^Dreamcast.SavePath = .*|Dreamcast.SavePath = $saves_path/dreamcast/Flycast-SA/saves|" $flycast_config
+    sed -i "s|^Dreamcast.VMUPath = .*|Dreamcast.VMUPath = $saves_path/dreamcast/Flycast-SA/VMU|" $flycast_config
 
-    sed -i "s|^Dreamcast.SavestatePath = .*|Dreamcast.SavestatePath = $states_path/dreamcast/Flycast|" $flycast_config
+    sed -i "s|^Dreamcast.SavestatePath = .*|Dreamcast.SavestatePath = $states_path/dreamcast/Flycast-SA/|" $flycast_config
 
     sed -i "s|^Dreamcast.TexturePath = .*|Dreamcast.TexturePath = $texture_packs_path/Flycast/Textures|" $flycast_config
 
@@ -67,10 +67,10 @@ _prepare_component::flycast() {
     
     sed -i "s|^Dreamcast.ContentPath = .*|Dreamcast.ContentPath = $roms_path/dreamcast|" $flycast_config
 
-    sed -i "s|^Dreamcast.SavePath = .*|Dreamcast.SavePath = $saves_path/dreamcast/Flycast/saves|" $flycast_config
-    sed -i "s|^Dreamcast.VMUPath = .*|Dreamcast.VMUPath = $saves_path/dreamcast/Flycast/VMU|" $flycast_config
+    sed -i "s|^Dreamcast.SavePath = .*|Dreamcast.SavePath = $saves_path/dreamcast/Flycast-SA/saves|" $flycast_config
+    sed -i "s|^Dreamcast.VMUPath = .*|Dreamcast.VMUPath = $saves_path/dreamcast/Flycast-SA/VMU|" $flycast_config
 
-    sed -i "s|^Dreamcast.SavestatePath = .*|Dreamcast.SavestatePath = $states_path/dreamcast/Flycast|" $flycast_config
+    sed -i "s|^Dreamcast.SavestatePath = .*|Dreamcast.SavestatePath = $states_path/dreamcast/Flycast-SA/|" $flycast_config
 
     sed -i "s|^Dreamcast.TexturePath = .*|Dreamcast.TexturePath = $texture_packs_path/Flycast/Textures|" $flycast_config
 
