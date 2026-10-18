@@ -68,10 +68,11 @@ _prepare_component::xemu() {
       set_setting_value "$xemu_conf" "bootrom_path" "$bios_path/mcpx_1.0.bin" "xemu" "sys.files"
       set_setting_value "$xemu_conf" "flashrom_path" "$bios_path/Complex.bin" "xemu" "sys.files"
 
-      create_dir "$saves_path/xbox/xemu-SA"
+      create_dir "$saves_path/xemu-SA"
 
-      set_setting_value "$xemu_conf" "eeprom_path" "$saves_path/xbox/xemu-SA/xbox-eeprom.bin" "xemu" "sys.files"
-      set_setting_value "$xemu_conf" "hdd_path" "$saves_path/xbox/xemu-SA/xbox_hdd.qcow2" "xemu" "sys.files"
+      set_setting_value "$xemu_conf" "eeprom_path" "$saves_path/xemu-SA/xbox-eeprom.bin" "xemu" "sys.files"
+      set_setting_value "$xemu_conf" "hdd_path" "$saves_path/xemu-SA/xbox_hdd.qcow2" "xemu" "sys.files"
+
     ;;
 
     postmove)
@@ -83,12 +84,13 @@ _prepare_component::xemu() {
       set_setting_value "$xemu_conf" "screenshot_dir" "$screenshots_path/xemu" "xemu" "general"
       set_setting_value "$xemu_conf" "bootrom_path" "$bios_path/mcpx_1.0.bin" "xemu" "sys.files"
       set_setting_value "$xemu_conf" "flashrom_path" "$bios_path/Complex.bin" "xemu" "sys.files"
-      set_setting_value "$xemu_conf" "eeprom_path" "$saves_path/xbox/xemu-SA/xbox-eeprom.bin" "xemu" "sys.files"
-      set_setting_value "$xemu_conf" "hdd_path" "$saves_path/xbox/xemu-SA/xbox_hdd.qcow2" "xemu" "sys.files"
+      set_setting_value "$xemu_conf" "eeprom_path" "$saves_path/xemu-SA/xbox-eeprom.bin" "xemu" "sys.files"
+      set_setting_value "$xemu_conf" "hdd_path" "$saves_path/xemu-SA/xbox_hdd.qcow2" "xemu" "sys.files"
 
     ;;
 
   esac
+
 }
 
 _validate_for_compression::xiso() {
@@ -118,6 +120,22 @@ _post_compression_cleanup::xiso() {
 _post_update::xemu() {
   local previous_version="$1"
 
+  if check_version_is_older_than "$version_being_updated" "0.11.0"; then
+    log i "0.11.0 Upgrade - xemu RA Conflict Migration"
+
+    create_dir "$backups_path/0.11.0/xemu-SA"
+    create_dir "$saves_path/xemu-SA"
+
+    cp -v "$bios_path/xbox_hdd.qcow2" "$backups_path/0.11.0/xemu-SA/"
+    cp -v "$bios_path/xbox_hdd.qcow2" "$saves_path/xemu-SA/" 
+
+    cp -v "$saves_path/xemu-SA/xbox-eeprom.bin" "$saves_path/xemu-SA/"
+    cp -v "$saves_path/xemu-SA/xbox-eeprom.bin" "$backups_path/0.11.0/xemu-SA/"
+    
+    set_setting_value "$xemu_conf" "hdd_path" "$saves_path/xemu-SA/xbox_hdd.qcow2" "xemu" "sys.files"
+    set_setting_value "$xemu_conf" "eeprom_path" "$saves_path/xemu-SA/xbox-eeprom.bin" "xemu" "sys.files"
+  fi
+
 }
 
 _post_update_legacy::xemu() {
@@ -132,18 +150,4 @@ _post_update_legacy::xemu() {
     prepare_component "postmove" "xemu"
   fi
 
-  if check_version_is_older_than "$version_being_updated" "0.11.0"; then
-    log i "0.11.0b Upgrade - Xemu HDD Move and avoid RA Core Conflict"
-
-    create_dir "$backups_path/0.11.0/xemu"
-    create_dir "$saves_path/xbox/xemu-SA"
-
-    cp -v "$bios_path/xbox_hdd.qcow2" "$backups_path/0.11.0/xemu/"
-    cp -v "$bios_path/xbox_hdd.qcow2" "$saves_path/xbox/xemu-SA/" 
-    cp -v "$saves_path/xbox/xemu-SA/xbox-eeprom.bin" "$saves_path/xbox/xemu-SA/"
-
-    set_setting_value "$xemu_conf" "hdd_path" "$saves_path/xbox/xemu-SA/xbox_hdd.qcow2" "xemu" "sys.files"
-    set_setting_value "$xemu_conf" "eeprom_path" "$saves_path/xbox/xemu-SA/xbox-eeprom.bin" "xemu" "sys.files"
-
-  fi
 }
