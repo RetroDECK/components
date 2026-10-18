@@ -70,12 +70,12 @@ _prepare_component::dolphin() {
       create_dir -d "$XDG_CONFIG_HOME/dolphin-emu/"
       cp -fvr "$component_config/"* "$XDG_CONFIG_HOME/dolphin-emu/"
 
-      dir_prep "$saves_path/gc/Dolphin-SA/EU" "$XDG_DATA_HOME/dolphin-emu/GC/EUR"
-      dir_prep "$saves_path/gc/Dolphin-SA/US" "$XDG_DATA_HOME/dolphin-emu/GC/USA"
-      dir_prep "$saves_path/gc/Dolphin-SA/JP" "$XDG_DATA_HOME/dolphin-emu/GC/JAP"
+      dir_prep "$saves_path/Dolphin-SA/GC/EU" "$XDG_DATA_HOME/dolphin-emu/GC/EUR"
+      dir_prep "$saves_path/Dolphin-SA/GC/US" "$XDG_DATA_HOME/dolphin-emu/GC/USA"
+      dir_prep "$saves_path/Dolphin-SA/GC/JP" "$XDG_DATA_HOME/dolphin-emu/GC/JAP"
       dir_prep "$screenshots_path" "$XDG_DATA_HOME/dolphin-emu/ScreenShots"
-      dir_prep "$states_path/Dolphin-SA" "$XDG_DATA_HOME/dolphin-emu/StateSaves"
-      dir_prep "$saves_path/wii/Dolphin-SA" "$XDG_DATA_HOME/dolphin-emu/Wii"
+      dir_prep "$states_path/Dolphin-SA/StateSaves" "$XDG_DATA_HOME/dolphin-emu/StateSaves"
+      dir_prep "$saves_path/Dolphin-SA/Wii" "$XDG_DATA_HOME/dolphin-emu/Wii"
       dir_prep "$mods_path/Dolphin/GraphicMods" "$dolphin_mods_path"
       dir_prep "$texture_packs_path/Dolphin/Textures" "$dolphin_textures_path"
       dir_prep "$texture_packs_path/Dolphin/DynamicInputTextures" "$XDG_DATA_HOME/dolphin-emu/Load/DynamicInputTextures"
@@ -87,7 +87,7 @@ _prepare_component::dolphin() {
       set_setting_value "$dolphin_config" "SavesPath" "$saves_path/gba" "dolphin" "GBA"
       set_setting_value "$dolphin_config" "ISOPath0" "$roms_path/wii" "dolphin" "General"
       set_setting_value "$dolphin_config" "ISOPath1" "$roms_path/gc" "dolphin" "General"
-      set_setting_value "$dolphin_config" "WiiSDCardPath" "$saves_path/wii/Dolphin-SA/sd.raw" "dolphin" "General"
+      set_setting_value "$dolphin_config" "WiiSDCardPath" "$saves_path/Dolphin-SA/Wii/sd.raw" "dolphin" "General"
     ;;
 
     postmove)
@@ -95,12 +95,12 @@ _prepare_component::dolphin() {
       log i "Post-moving Dolphin"
       log i "----------------------"
 
-      dir_prep "$saves_path/gc/Dolphin-SA/EU" "$XDG_DATA_HOME/dolphin-emu/GC/EUR"
-      dir_prep "$saves_path/gc/Dolphin-SA/US" "$XDG_DATA_HOME/dolphin-emu/GC/USA"
-      dir_prep "$saves_path/gc/Dolphin-SA/JP" "$XDG_DATA_HOME/dolphin-emu/GC/JAP"
+      dir_prep "$saves_path/Dolphin-SA/GC/EU" "$XDG_DATA_HOME/dolphin-emu/GC/EUR"
+      dir_prep "$saves_path/Dolphin-SA/GC/US" "$XDG_DATA_HOME/dolphin-emu/GC/USA"
+      dir_prep "$saves_path/Dolphin-SA/GC/JP" "$XDG_DATA_HOME/dolphin-emu/GC/JAP"
       dir_prep "$screenshots_path" "$XDG_DATA_HOME/dolphin-emu/ScreenShots"
-      dir_prep "$states_path/Dolphin-SA" "$XDG_DATA_HOME/dolphin-emu/StateSaves"
-      dir_prep "$saves_path/wii/Dolphin-SA" "$XDG_DATA_HOME/dolphin-emu/Wii"
+      dir_prep "$states_path/Dolphin-SA/StateSaves" "$XDG_DATA_HOME/dolphin-emu/StateSaves"
+      dir_prep "$saves_path/Dolphin-SA/Wii" "$XDG_DATA_HOME/dolphin-emu/Wii"
       dir_prep "$mods_path/Dolphin/GraphicMods" "$dolphin_mods_path"
       dir_prep "$texture_packs_path/Dolphin/Textures" "$dolphin_textures_path"
       dir_prep "$texture_packs_path/Dolphin/DynamicInputTextures" "$XDG_DATA_HOME/dolphin-emu/Load/DynamicInputTextures"
@@ -112,7 +112,7 @@ _prepare_component::dolphin() {
       set_setting_value "$dolphin_config" "SavesPath" "$saves_path/gba" "dolphin" "GBA"
       set_setting_value "$dolphin_config" "ISOPath0" "$roms_path/wii" "dolphin" "General"
       set_setting_value "$dolphin_config" "ISOPath1" "$roms_path/gc" "dolphin" "General"
-      set_setting_value "$dolphin_config" "WiiSDCardPath" "$saves_path/wii/Dolphin-SA/sd.raw" "dolphin" "General"
+      set_setting_value "$dolphin_config" "WiiSDCardPath" "$saves_path/Dolphin-SA/Wii/sd.raw" "dolphin" "General"
     ;;
 
   esac
@@ -173,12 +173,12 @@ _post_update_legacy::dolphin() {
     dir_prep "$mods_path/Dolphin" "$XDG_DATA_HOME/dolphin-emu/Load/GraphicMods"
     dir_prep "$texture_packs_path/Dolphin" "$XDG_DATA_HOME/dolphin-emu/Load/Textures"
 
-    mv "$saves_path/gc/Dolphin-SA/EUR" "$saves_path/gc/Dolphin-SA/EU"
-    mv "$saves_path/gc/Dolphin-SA/USA" "$saves_path/gc/Dolphin-SA/US"
-    mv "$saves_path/gc/Dolphin-SA/JAP" "$saves_path/gc/Dolphin-SA/JP"
-    dir_prep "$saves_path/gc/Dolphin-SA/EU" "$XDG_DATA_HOME/dolphin-emu/GC/EUR"
-    dir_prep "$saves_path/gc/Dolphin-SA/US" "$XDG_DATA_HOME/dolphin-emu/GC/USA"
-    dir_prep "$saves_path/gc/Dolphin-SA/JP" "$XDG_DATA_HOME/dolphin-emu/GC/JAP"
+    mv "$saves_path/Dolphin-SA/GC/EUR" "$saves_path/Dolphin-SA/GC/EU"
+    mv "$saves_path/Dolphin-SA/GC/USA" "$saves_path/Dolphin-SA/GC/US"
+    mv "$saves_path/Dolphin-SA/GC/JAP" "$saves_path/Dolphin-SA/GC/JP"
+    dir_prep "$saves_path/Dolphin-SA/GC/EU" "$XDG_DATA_HOME/dolphin-emu/GC/EUR"
+    dir_prep "$saves_path/Dolphin-SA/GC/US" "$XDG_DATA_HOME/dolphin-emu/GC/USA"
+    dir_prep "$saves_path/Dolphin-SA/GC/JP" "$XDG_DATA_HOME/dolphin-emu/GC/JAP"
 
     set_setting_value "$dolphin_config" "ConfirmStop" "False" "dolphin" "Interface"
   fi
@@ -201,16 +201,21 @@ _post_update_legacy::dolphin() {
 
   fi
 
-  if check_version_is_older_than "$previous_version" "0.11.0b"; then
-  log i "0.11.0b Upgrade - Dolphin Core Conflict Mitigation"
+  if check_version_is_older_than "$previous_version" "0.11.0"; then
+  log i "0.11.0 Upgrade - Dolphin RA Conflict Migration"
 
-  create_dir "$saves_path/gc/Dolphin-SA/EU/"
-  create_dir "$saves_path/gc/Dolphin-SA/US"
-  create_dir "$saves_path/gc/Dolphin-SA/JP"
+  dir_prep "$saves_path/Dolphin-SA/GC/EU" "$XDG_DATA_HOME/dolphin-emu/GC/EUR"
+  dir_prep "$saves_path/Dolphin-SA/GC/US" "$XDG_DATA_HOME/dolphin-emu/GC/USA"
+  dir_prep "$saves_path/Dolphin-SA/GC/JP" "$XDG_DATA_HOME/dolphin-emu/GC/JAP"
+  dir_prep "$states_path/Dolphin-SA/StateSaves" "$XDG_DATA_HOME/dolphin-emu/StateSaves"
+  dir_prep "$saves_path/Dolphin-SA/Wii" "$XDG_DATA_HOME/dolphin-emu/Wii"
+  dir_prep "$states_path/Dolphin-SA/StateSaves" "$XDG_DATA_HOME/dolphin-emu/StateSaves"
 
-  cp -rfv "$saves_path/gc/dolphin/EU" "$saves_path/gc/Dolphin-SA/EU"
-  cp -rfv "$saves_path/gc/dolphin/US" "$saves_path/gc/Dolphin-SA/US"
-  cp -rfv "$saves_path/gc/dolphin/JP" "$saves_path/gc/Dolphin-SA/JP"
+  cp -rfv "$saves_path/gc/dolphin/EU" "$saves_path/Dolphin-SA/GC/EU"
+  cp -rfv "$saves_path/gc/dolphin/US" "$saves_path/Dolphin-SA/GC/US"
+  cp -rfv "$saves_path/gc/dolphin/JP" "$saves_path/Dolphin-SA/GC/JP"
+  cp -rfv "$saves_path/wii/dolphin/" "$saves_path/Dolphin-SA/Wii"
+  cp -rfv "$states_path/dolphin/" "$states_path/Dolphin-SA/StateSaves"
 
   dir_prep "$shaders_path/Dolphin/Shaders" "$XDG_DATA_HOME/dolphin-emu/Shaders"
   dir_prep "$texture_packs_path/Dolphin/DynamicInputTextures" "$XDG_DATA_HOME/dolphin-emu/Load/DynamicInputTextures"

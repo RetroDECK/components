@@ -52,7 +52,7 @@ _prepare_component::cemu() {
       cp -fr "$component_config/"* "$XDG_CONFIG_HOME/Cemu/"
 
       create_dir "$bios_path/Cemu-SA"
-      create_dir "$saves_path/wiiu/Cemu-SA/mlc01"
+      create_dir "$saves_path/Cemu-SA/mlc01"
 
       ln -sfn "$bios_path/Cemu-SA/keys.txt" "$XDG_DATA_HOME/Cemu/keys.txt"
 
@@ -108,7 +108,7 @@ _post_update_legacy::cemu() {
   fi
 
     if check_version_is_older_than "$previous_version" "0.11.0"; then
-    log i "0.11.0b Upgrade - Transfer to Cemu-SA"
+    log i "0.11.0 Upgrade - Transfer to Cemu-SA to avoid RA Conflict"
 
     set_setting_value "$cemu_config" "mlc_path" "$saves_path/Cemu-SA/mlc01" "cemu"
 
@@ -118,13 +118,13 @@ _post_update_legacy::cemu() {
     ln -sfn "$bios_path/Cemu-SA/keys.txt" "$XDG_DATA_HOME/Cemu/keys.txt"
 
     create_dir "$backups_path/0.11.0/Cemu-SA/mlc01/usr/save"
-    create_dir "$saves_path/wiiu/Cemu-SA/mlc01/usr/save"
+    create_dir "$saves_path/Cemu-SA/mlc01/usr/save"
 
     cp -rfv "$bios_path/cemu" "$backups_path/0.11.0/Cemu-SA/mlc01"
     cp -rfv "$saves_path/wiiu/cemu" "$backups_path/0.11.0/Cemu-SA/mlc01"
 
-    cp -rfv "$bios_path/cemu" "$saves_path/wiiu/Cemu-SA/mlc01"
-    cp -rfv "$saves_path/wiiu/cemu" "$saves_path/wiiu/Cemu-SA/mlc01/usr/save"
+    cp -rfv "$bios_path/cemu" "$saves_path/Cemu-SA/mlc01"
+    cp -rfv "$saves_path/wiiu/cemu" "$saves_path/Cemu-SA/mlc01/usr/save"
 
   fi
 
