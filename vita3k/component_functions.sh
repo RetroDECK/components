@@ -47,7 +47,7 @@ _prepare_component::vita3k() {
 
       cp -frv "$component_config/ux0" "$storage_path/Vita3K/" # User config
       set_setting_value "$vita3k_config" "pref-path" "$storage_path/Vita3K/" "vita3k"
-      dir_prep "$saves_path/psvita/Vita3K-SA" "$storage_path/Vita3K/ux0/user/00/savedata" # Multi-user safe?
+      dir_prep "$saves_path/Vita3K-SA/savedata" "$storage_path/Vita3K/ux0/user/00/savedata" # Multi-user safe?
       dir_prep "$texture_packs_path/Vita3K/textures" "$vita3k_textures_path" # Textures
       dir_prep "$storage_path/Vita3K/lang"  "$vita3k_lang_path"
       dir_prep "$storage_path/Vita3K/patch"  "$vita3k_patch_path"
@@ -60,7 +60,7 @@ _prepare_component::vita3k() {
       log i "Post-moving Vita3k"
       log i "------------------------"
 
-      dir_prep "$saves_path/psvita/Vita3K-SA" "$storage_path/Vita3K/ux0/user/00/savedata" # Multi-user safe?
+      dir_prep "$saves_path/Vita3K-SA/savedata" "$storage_path/Vita3K/ux0/user/00/savedata" # Multi-user safe?
       dir_prep "$texture_packs_path/Vita3K/textures" "$vita3k_textures_path" # Textures
       dir_prep "$storage_path/Vita3K/lang"  "$vita3k_lang_path"
       dir_prep "$storage_path/Vita3K/patch"  "$vita3k_patch_path"
@@ -116,6 +116,26 @@ finit_install_vita3k_firmware_dialog() {
 _post_update::vita3k() {
   local previous_version="$1"
 
+  if check_version_is_older_than "$previous_version" "0.11.0"; then
+
+    log i "0.11.0 Upgrade - Vita3K RA Conflict Migration"
+
+    create_dir "$texture_packs_path/Vita3K/textures/import" 
+
+    dir_prep "$saves_path/Vita3K-SA/savedata" "$storage_path/Vita3K/ux0/user/00/savedata" # Multi-user safe?
+    dir_prep "$texture_packs_path/Vita3K/textures" "$vita3k_textures_path" # Textures
+    dir_prep "$storage_path/Vita3K/lang"  "$vita3k_lang_path"
+    dir_prep "$storage_path/Vita3K/patch"  "$vita3k_patch_path"
+    dir_prep "$shaders_path/Vita3K/shaders"  "$vita3k_shaders_path"
+
+    set_setting_value "$vita3k_config" "pref-path" "$storage_path/Vita3K/" "vita3k"
+
+    create_dir "$backups_path/0.11.0/Vita3K-SA/savedata"
+
+    cp -rfv "$saves_path/saves/psvita/vita3k/" "$saves_path/Vita3K-SA/savedata"
+    cp -rfv "$saves_path/saves/psvita/vita3k/" "$backups_path/0.11.0/Vita3K-SA/savedata"
+  fi
+
 }
 
 _post_update_legacy::vita3k() {
@@ -144,19 +164,6 @@ _post_update_legacy::vita3k() {
     prepare_component "postmove" "vita3k"
   fi
 
-    if check_version_is_older_than "$previous_version" "0.11.0"; then
 
-    log i "0.11.0b Upgrade - Vita3K Seperate from RA Core"
-
-    create_dir "$texture_packs_path/Vita3K/textures/import" 
-
-    dir_prep "$saves_path/psvita/Vita3K-SA" "$storage_path/Vita3K/ux0/user/00/savedata" # Multi-user safe?
-    dir_prep "$texture_packs_path/Vita3K/textures" "$vita3k_textures_path" # Textures
-    dir_prep "$storage_path/Vita3K/lang"  "$vita3k_lang_path"
-    dir_prep "$storage_path/Vita3K/patch"  "$vita3k_patch_path"
-    dir_prep "$shaders_path/Vita3K/shaders"  "$vita3k_shaders_path"
-
-    set_setting_value "$vita3k_config" "pref-path" "$storage_path/Vita3K/" "vita3k"
-  fi
   
 }
