@@ -155,7 +155,7 @@ _post_update_legacy::duckstation() {
     create_dir "$states_path/psx"
     mv -t "$states_path/psx/" "$states_path/duckstation"
     unlink "$XDG_CONFIG_HOME/duckstation/savestates"
-    dir_prep "$saves_pat$states_path/Duckstation-SA" "$XDG_CONFIG_HOME/duckstation/savestates"
+    dir_prep "$states_path/Duckstation-SA" "$XDG_CONFIG_HOME/duckstation/savestates"
 
     set_setting_value "$duckstationconf" "SaveStateOnExit" "false" "duckstation" "Main"
     set_setting_value "$duckstationconf" "Enabled" "false" "duckstation" "Cheevos"
