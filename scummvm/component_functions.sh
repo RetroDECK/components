@@ -17,24 +17,24 @@ _prepare_component::scummvm() {
 
         cp -fvr "$component_config/"* "$XDG_CONFIG_HOME/scummvm/"
 
-        create_dir -d "$screenshots_path/scummvm"
+        create_dir -d "$screenshots_path/ScummVM"
         
-        create_dir -d "$saves_path/scummvm/scummvm-sa"
+        create_dir -d "$saves_path/ScummVM-SA"
 
-        create_dir -d "$storage_path/scummvm/extra"
-        create_dir -d "$storage_path/scummvm/themes"
-        create_dir -d "$storage_path/scummvm/icons"
-        create_dir -d "$storage_path/scummvm/cloud_root"
+        create_dir -d "$storage_path/ScummVM/extra"
+        create_dir -d "$storage_path/ScummVM/themes"
+        create_dir -d "$storage_path/ScummVM/icons"
+        create_dir -d "$storage_path/ScummVM/cloud_root"
 
-        dir_prep "$logs_path/scummvm" "$XDG_CACHE_HOME/scummvm/logs"
+        dir_prep "$logs_path/ScummVM" "$XDG_CACHE_HOME/scummvm/logs"
 
-        sed -i "s|^screenshotpath=.*|screenshotpath=$screenshots_path/scummvm|" $scummvm_config
-        sed -i "s|^savepath=.*|savepath=$saves_path/scummvm/scummvm-sa|" $scummvm_config
+        sed -i "s|^screenshotpath=.*|screenshotpath=$screenshots_path/ScummVM|" $scummvm_config
+        sed -i "s|^savepath=.*|savepath=$saves_path/ScummVM-SA|" $scummvm_config
 
-        sed -i "s|^extrapath=.*|extrapath=$storage_path/scummvm/extra|" $scummvm_config
-        sed -i "s|^themepath=.*|themepath=$storage_path/scummvm/themes|" $scummvm_config
-        sed -i "s|^iconspath=.*|iconspath=$storage_path/scummvm/icons|" $scummvm_config
-        sed -i "s|^rootpath=.*|rootpath=$storage_path/scummvm/cloud_root|" $scummvm_config
+        sed -i "s|^extrapath=.*|extrapath=$storage_path/ScummVM/extra|" $scummvm_config
+        sed -i "s|^themepath=.*|themepath=$storage_path/ScummVM/themes|" $scummvm_config
+        sed -i "s|^iconspath=.*|iconspath=$storage_path/ScummVM/icons|" $scummvm_config
+        sed -i "s|^rootpath=.*|rootpath=$storage_path/ScummVM/cloud_root|" $scummvm_config
       
         sed -i "s|^browser_lastpath=.*|browser_lastpath=$roms_path/scummvm|" $scummvm_config
     
@@ -45,15 +45,15 @@ _prepare_component::scummvm() {
       log i "Post-moving ScummVM"
       log i "----------------------"
 
-        dir_prep "$logs_path/scummvm" "$XDG_CACHE_HOME/scummvm/logs"
+        dir_prep "$logs_path/ScummVM" "$XDG_CACHE_HOME/scummvm/logs"
         
-        sed -i "s|^screenshotpath=.*|screenshotpath=$screenshots_path/scummvm|" $scummvm_config
-        sed -i "s|^savepath=.*|savepath=$saves_path/scummvm/scummvm-sa|" $scummvm_config
+        sed -i "s|^screenshotpath=.*|screenshotpath=$screenshots_path/ScummVM|" $scummvm_config
+        sed -i "s|^savepath=.*|savepath=$saves_path/ScummVM-SA|" $scummvm_config
 
-        sed -i "s|^extrapath=.*|extrapath=$storage_path/scummvm/extra|" $scummvm_config
-        sed -i "s|^themepath=.*|themepath=$storage_path/scummvm/themes|" $scummvm_config
-        sed -i "s|^iconspath=.*|iconspath=$storage_path/scummvm/icons|" $scummvm_config
-        sed -i "s|^rootpath=.*|rootpath=$storage_path/scummvm/cloud_root|" $scummvm_config
+        sed -i "s|^extrapath=.*|extrapath=$storage_path/ScummVM/extra|" $scummvm_config
+        sed -i "s|^themepath=.*|themepath=$storage_path/ScummVM/themes|" $scummvm_config
+        sed -i "s|^iconspath=.*|iconspath=$storage_path/ScummVM/icons|" $scummvm_config
+        sed -i "s|^rootpath=.*|rootpath=$storage_path/ScummVM/cloud_root|" $scummvm_config
       
         sed -i "s|^browser_lastpath=.*|browser_lastpath=$roms_path/scummvm|" $scummvm_config
     ;;
