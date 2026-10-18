@@ -48,7 +48,8 @@ _prepare_component::pico-8() {
         dir_prep "$roms_path/pico8" "$bios_path/pico-8/bbs/carts" # Symlink spolre download location to RD roms
       fi
       dir_prep "$bios_path/pico-8" "$HOME/.lexaloffle/pico-8" # Store binary and config files together. The .lexaloffle directory is a hard-coded location for the PICO-8 config file, cannot be changed
-      dir_prep "$saves_path/pico-8" "$bios_path/pico-8/cdata"  # PICO-8 saves folder
+      dir_prep "$saves_path/PICO-8-SA" "$bios_path/pico-8/cdata"  # PICO-8 saves folder
+
       create_dir "$XDG_CONFIG_HOME/pico-8/"
       cp -fv "$component_config/config.txt" "$pico8_config"
       cp -fv "$component_config/sdl_controllers.txt" "$pico8_config_sdl_controllers"
@@ -67,6 +68,17 @@ _prepare_component::pico-8() {
 
 _post_update::pico-8() {
   local previous_version="$1"
+
+  if check_version_is_older_than "$previous_version" "0.10.0b"; then
+    log i "0.11.0 Upgrade: PICO-8 - RA Core Conflict Migration"
+
+    dir_prep "$saves_path/PICO-8-SA" "$bios_path/pico-8/cdata"  # PICO-8 saves folder
+    create_dir "$backups_path/0.11.0/PICO-8-SA"
+
+    cp -rfv "$saves_path/pico-8" "$saves_path/PICO-8-SA"
+    cp -rfv "$saves_path/pico-8" "$backups_path/0.11.0/PICO-8-SA"
+
+  fi  
 
 }
 
