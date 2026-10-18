@@ -876,14 +876,13 @@ _post_update_legacy::retroarch() {
     dir_prep "$screenshots_path/retroarch/retroarch-core/Dolphin/wii/ScreenShots" "$saves_path/wii/User/ScreenShots"
 
     ### NON Standard Savestates, most likely not used.
-    create_dir "$states_path/gc/retroarch-core/Dolphin/StateSaves"
-    create_dir "$states_path/wii/retroarch-core/Dolphin/StateSaves"
+    dir_prep "$states_path/gc/retroarch-core/Dolphin/StateSaves" "$saves_path/gc/User/StateSaves"
+    dir_prep "$states_path/wii/retroarch-core/Dolphin/StateSaves" "$saves_path/wii/User/StateSaves"
 
     cp -rfv "$saves_path/gc/User/StateSaves" "$states_path/gc/retroarch-core/Dolphin/StateSaves"
     cp -rfv "$saves_path/wii/User/StateSaves" "$states_path/wii/retroarch-core/Dolphin/StateSaves"
 
-    dir_prep "$states_path/gc/retroarch-core/Dolphin/StateSaves" "$saves_path/gc/User/StateSaves"
-    dir_prep "$states_path/wii/retroarch-core/Dolphin/StateSaves" "$saves_path/wii/User/StateSaves"
+
     
     # Cemu
     dir_prep "$texture_packs_path/retroarch-core/Cemu/graphicPacks" "$bios_path/Cemu/graphicPacks"
