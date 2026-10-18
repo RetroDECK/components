@@ -126,7 +126,7 @@ _prepare_component::pcsx2() {
         log i "PCSX2 patches backed up to $backup_file"
       fi
       tar -xzf "$component_extras/pcsx2-patches.tar.gz" -C "$mods_path/PCSX2/patches" --overwrite
-      
+
     ;;
 
     postmove)
@@ -160,14 +160,10 @@ _post_update::pcsx2() {
     log i "0.11.0 Upgrade: PCSX2 - RA Core Conflict Migration"
 
     create_dir -d "$cheats_path/PCSX2/cheats"
-    create_dir -d "$cheats_path/PCSX2/cheats_ws"
-    create_dir -d "$cheats_path/PCSX2/cheats_ni"
 
     tar -xzf "$component_extras/pcsx2-cheats.tar.gz" -C "$cheats_path/PCSX2/cheats" --overwrite
 
     set_setting_value "$pcsx2_config" "Cheats" "$cheats_path/PCSX2/cheats" "pcsx2" "Folders"
-    set_setting_value "$pcsx2_config" "CheatsWS" "$cheats_path/PCSX2/cheats_ws" "pcsx2" "Folders"
-    set_setting_value "$pcsx2_config" "CheatsNI" "$cheats_path/PCSX2/cheats_ni" "pcsx2" "Folders"
 
     create_dir "$states_path/PCSX2-SA"
     set_setting_value "$pcsx2_config" "SaveStates" "$states_path/PCSX2-SA" "pcsx2" "Folders"
@@ -177,6 +173,12 @@ _post_update::pcsx2() {
 
     cp -rfv "$states_path/ps2/pcsx2" "$states_path/PCSX2-SA"
     cp -rfv "$saves_path/ps2/pcsx2/memcards" "$saves_path/PCSX2-SA/memcards"
+
+    create_dir "$backups_path/0.11.0/PCSX2-SA/states"
+    create_dir "$backups_path/0.11.0/PCSX2-SA/memcards"
+    
+    cp -rfv "$states_path/ps2/pcsx2" "$$backups_path/0.11.0/PCSX2-SA/states"
+    cp -rfv "$saves_path/ps2/pcsx2/memcards" "$backups_path/0.11.0/PCSX2-SA/memcard"
 
   fi  
 
