@@ -396,6 +396,8 @@ _prepare_component::retroarch() {
       dir_prep "$storage_path/retroarch-core/rpcs3/captures" "$bios_path/rpcs3/captures"
       dir_prep "$storage_path/retroarch-core/rpcs3/patches" "$bios_path/rpcs3/patches"
 
+      dir_prep "$saves_path/ps3/rpcs3/" "$storage_path/retroarch-core/rpcs3/dev_hdd0/home/00000001/savedata"
+
       # ScummVM
       log i "-----------------------------------------------------------"
       log i "Prepearing ScummVM LIBRETRO"
@@ -565,6 +567,7 @@ _prepare_component::retroarch() {
       dir_prep "$storage_path/retroarch-core/rpcs3/dev_usb000" "$bios_path/rpcs3/dev_usb000"
       dir_prep "$storage_path/retroarch-core/rpcs3/captures" "$bios_path/rpcs3/captures"
       dir_prep "$storage_path/retroarch-core/rpcs3/patches" "$bios_path/rpcs3/patches"
+      dir_prep "$saves_path/ps3/rpcs3/" "$storage_path/retroarch-core/rpcs3/dev_hdd0/home/00000001/savedata"
 
       # Vita3K
       dir_prep "$storage_path/retroarch-core/Vita3K/ux0"  "$bios_path/vita3k/ux0"
@@ -686,6 +689,7 @@ _post_update::retroarch() {
       dir_prep "$storage_path/retroarch-core/rpcs3/dev_usb000" "$bios_path/rpcs3/dev_usb000"
       dir_prep "$storage_path/retroarch-core/rpcs3/captures" "$bios_path/rpcs3/captures"
       dir_prep "$storage_path/retroarch-core/rpcs3/patches" "$bios_path/rpcs3/patches"
+      dir_prep "$saves_path/ps3/rpcs3/" "$storage_path/retroarch-core/rpcs3/dev_hdd0/home/00000001/savedata"
 
       # N3DS Cores
       dir_prep "$mods_path/retroarch-core/Citra/mods" "$saves_path/n3ds/Citra/load/mods"
