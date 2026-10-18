@@ -22,8 +22,8 @@ _prepare_component::gargoyle() {
 
       create_dir "$roms_path/if"
 
-      dir_prep "$storage_path/gargoyle/themes" "$XDG_DATA_HOME/gargoyle/themes"
-      dir_prep "$saves_path/Gargoyle-SA/" "$XDG_DATA_HOME/gargoyle/gamedata"
+      dir_prep "$storage_path/Gargoyle/themes" "$XDG_DATA_HOME/gargoyle/themes"
+      dir_prep "$saves_path/Gargoyle-SA/gamedata" "$XDG_DATA_HOME/gargoyle/gamedata"
 
     ;;
 
@@ -32,8 +32,9 @@ _prepare_component::gargoyle() {
       log i "Post-moving Gargoyle"
       log i "------------------------"
 
-      dir_prep "$storage_path/gargoyle/themes" "$XDG_DATA_HOME/gargoyle/themes"
-      dir_prep "$saves_path/Gargoyle-SA/" "$XDG_DATA_HOME/gargoyle/gamedata"
+      dir_prep "$storage_path/Gargoyle/themes" "$XDG_DATA_HOME/gargoyle/themes"
+      dir_prep "$saves_path/Gargoyle-SA/gamedata" "$XDG_DATA_HOME/gargoyle/gamedata"
+
     ;;
 
   esac
