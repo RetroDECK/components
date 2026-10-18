@@ -56,7 +56,7 @@ _prepare_component::xroar() {
 
     reset)
       log i "------------------------"
-      log i "Resetting XROAR"
+      log i "Resetting XRoar"
       log i "------------------------"
 
       create_dir -d "$XDG_CONFIG_HOME/xroar"
@@ -66,9 +66,10 @@ _prepare_component::xroar() {
 
       # XRoar does not provide a default directory for state files in the config, so you must choose a folder each time you save or load.
 
-      create_dir "$states_path/xroar/coco/"
-      create_dir "$states_path/xroar/dragon32/"
-      create_dir "$states_path/xroar/tanodragon/"
+      create_dir "$states_path/XRoar-SA/coco"
+      create_dir "$states_path/XRoar-SA/dragon32"
+      create_dir "$states_path/XRoar-SA/tanodragon"
+
     ;;
 
   esac
@@ -76,6 +77,27 @@ _prepare_component::xroar() {
 
 _post_update::xroar() {
   local previous_version="$1"
+
+  if check_version_is_older_than "$previous_version" "0.11.0"; then
+    log i "0.11.0 Upgrade - XRoar RA Conflict Migration"
+
+    create_dir "$states_path/XRoar-SA/coco"
+    create_dir "$states_path/XRoar-SA/dragon32"
+    create_dir "$states_path/XRoar-SA/tanodragon"
+
+    cp -rfv "$saves_path/xroar/coco" "$saves_path/XRoar-SA/coco"
+    cp -rfv "$saves_path/xroar/dragon32" "$saves_path/XRoar-SA/dragon32"
+    cp -rfv "$saves_path/xroar/tanodragon" "$saves_path/XRoar-SA/tanodragon"
+
+    create_dir "$backups_path/0.11.0/XRoar-SA/coco"
+    create_dir "$backups_path/0.11.0/XRoar-SA/dragon32"
+    create_dir "$backups_path/0.11.0/XRoar-SA/tanodragon"
+    
+    cp -rfv "$saves_path/xroar/coco" "$backups_path/0.11.0/XRoar-SA/coco"
+    cp -rfv "$saves_path/xroar/dragon32" "$backups_path/0.11.0/XRoar-SA/dragon32"
+    cp -rfv "$saves_path/xroar/tanodragon" "$backups_path/0.11.0/XRoar-SA/tanodragon"
+
+  fi
 
 }
 
