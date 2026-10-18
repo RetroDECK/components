@@ -68,12 +68,12 @@ _prepare_component::primehack() {
       create_dir -d "$XDG_CONFIG_HOME/primehack/"
       cp -fvr "$component_config/config/"* "$XDG_CONFIG_HOME/primehack/"
       set_setting_value "$primehack_config" "ISOPath0" "$roms_path/primehack" "primehack" "General"
-      dir_prep "$saves_path/gc/primehack/EU" "$XDG_DATA_HOME/primehack/GC/EUR"
-      dir_prep "$saves_path/gc/primehack/US" "$XDG_DATA_HOME/primehack/GC/USA"
-      dir_prep "$saves_path/gc/primehack/JP" "$XDG_DATA_HOME/primehack/GC/JAP"
+      dir_prep "$saves_path/PrimeHack-SA/EU" "$XDG_DATA_HOME/primehack/GC/EUR"
+      dir_prep "$saves_path/PrimeHack-SA/US" "$XDG_DATA_HOME/primehack/GC/USA"
+      dir_prep "$saves_path/PrimeHack-SA/JP" "$XDG_DATA_HOME/primehack/GC/JAP"
       dir_prep "$screenshots_path" "$XDG_DATA_HOME/primehack/ScreenShots"
-      dir_prep "$states_path/primehack" "$XDG_DATA_HOME/primehack/StateSaves"
-      dir_prep "$saves_path/wii/primehack" "$XDG_DATA_HOME/primehack/Wii"
+      dir_prep "$states_path/PrimeHack-SA/StateSaves" "$XDG_DATA_HOME/primehack/StateSaves"
+      dir_prep "$saves_path/PrimeHack-SA/Wii" "$XDG_DATA_HOME/primehack/Wii"
       dir_prep "$mods_path/Primehack" "$XDG_DATA_HOME/primehack/Load/GraphicMods"
       dir_prep "$texture_packs_path/Primehack" "$XDG_DATA_HOME/primehack/Load/Textures"
       dir_prep "$shaders_path/Primehack" "$XDG_DATA_HOME/primehack/Shaders"
@@ -86,12 +86,12 @@ _prepare_component::primehack() {
       log i "Post-moving Primehack"
       log i "------------------------"
 
-      dir_prep "$saves_path/gc/primehack/EU" "$XDG_DATA_HOME/primehack/GC/EUR"
-      dir_prep "$saves_path/gc/primehack/US" "$XDG_DATA_HOME/primehack/GC/USA"
-      dir_prep "$saves_path/gc/primehack/JP" "$XDG_DATA_HOME/primehack/GC/JAP"
+      dir_prep "$saves_path/PrimeHack-SA/EU" "$XDG_DATA_HOME/primehack/GC/EUR"
+      dir_prep "$saves_path/PrimeHack-SA/US" "$XDG_DATA_HOME/primehack/GC/USA"
+      dir_prep "$saves_path/PrimeHack-SA/JP" "$XDG_DATA_HOME/primehack/GC/JAP"
       dir_prep "$screenshots_path" "$XDG_DATA_HOME/primehack/ScreenShots"
-      dir_prep "$states_path/primehack" "$XDG_DATA_HOME/primehack/StateSaves"
-      dir_prep "$saves_path/wii/primehack" "$XDG_DATA_HOME/primehack/Wii/"
+      dir_prep "$states_path/PrimeHack-SA/StateSaves" "$XDG_DATA_HOME/primehack/StateSaves"
+      dir_prep "$saves_path/PrimeHack-SA/Wii" "$XDG_DATA_HOME/primehack/Wii/"
       dir_prep "$mods_path/Primehack" "$XDG_DATA_HOME/primehack/Load/GraphicMods"
       dir_prep "$texture_packs_path/Primehack" "$XDG_DATA_HOME/primehack/Load/Textures"
       dir_prep "$shaders_path/Primehack" "$XDG_DATA_HOME/primehack/Shaders"
@@ -114,6 +114,36 @@ _post_update::primehack() {
     log i "Refreshing installed textures for Primehack..."
     rsync -rlD --delete --mkpath "$rd_components/shared-data/DynamicInputTextures/" "$primehack_dynamic_input_textures_path/" && log i "Done"
   fi
+
+  if check_version_is_older_than "$previous_version" "0.11.0"; then
+    log i "0.11.0 Upgrade - PrimeHack RA Conflict Migration"
+
+    dir_prep "$saves_path/PrimeHack-SA/GC/EU" "$XDG_DATA_HOME/primehack/GC/EUR"
+    dir_prep "$saves_path/PrimeHack-SA/GC/US" "$XDG_DATA_HOME/primehack/GC/USA"
+    dir_prep "$saves_path/PrimeHack-SA/GC/JP" "$XDG_DATA_HOME/primehack/GC/JAP"
+    dir_prep "$states_path/PrimeHack-SA/StateSaves" "$XDG_DATA_HOME/primehack/StateSaves"
+    dir_prep "$saves_path/PrimeHack-SA/Wii" "$XDG_DATA_HOME/primehack/Wii"
+
+    cp -rfv "$saves_path/gc/primehack/EU" "$saves_path/PrimeHack-SA/GC/EU"
+    cp -rfv "$saves_path/gc/primehack/US" "$saves_path/PrimeHack-SA/GC/US"
+    cp -rfv "$saves_path/gc/primehack/JP" "$saves_path/PrimeHack-SA/GC/JP"
+    cp -rfv "$saves_path/wii/primehack" "$saves_path/PrimeHack-SA/Wii"
+    cp -rfv "$states_path/primehack/" "$states_path/PrimeHack-SA/StateSaves"
+
+    create_dir "$backups_path/0.11.0/PrimeHack-SA/GC/EU"
+    create_dir "$backups_path/0.11.0/PrimeHack-SA/GC/US"
+    create_dir "$backups_path/0.11.0/PrimeHack-SA/GC/JP"
+    create_dir "$backups_path/0.11.0/PrimeHack-SA/Wii"
+    create_dir "$backups_path/0.11.0/PrimeHack-SA/StateSaves"
+
+    cp -rfv "$saves_path/gc/primehack/EU" "$backups_path/0.11.0/PrimeHack-SA/GC/EU"
+    cp -rfv "$saves_path/gc/primehack/US" "$backups_path/0.11.0/PrimeHack-SA/GC/US"
+    cp -rfv "$saves_path/gc/primehack/JP" "$backups_path/0.11.0/PrimeHack-SA/GC/JP"
+    cp -rfv "$saves_path/wii/primehack/" "$backups_path/0.11.0/PrimeHack-SA/Wii"
+    cp -rfv "$states_path/primehack/" "$backups_path/0.11.0/PrimeHack-SA/StateSaves"
+
+ fi
+
 }
 
 _post_update_legacy::primehack() {
@@ -144,12 +174,12 @@ _post_update_legacy::primehack() {
     dir_prep "$mods_path/Primehack" "$XDG_DATA_HOME/primehack/Load/GraphicMods"
     dir_prep "$texture_packs_path/Primehack" "$XDG_DATA_HOME/primehack/Load/Textures"
 
-    mv "$saves_path/gc/primehack/EUR" "$saves_path/gc/primehack/EU"
-    mv "$saves_path/gc/primehack/USA" "$saves_path/gc/primehack/US"
-    mv "$saves_path/gc/primehack/JAP" "$saves_path/gc/primehack/JP"
-    dir_prep "$saves_path/gc/primehack/EU" "$XDG_DATA_HOME/primehack/GC/EUR"
-    dir_prep "$saves_path/gc/primehack/US" "$XDG_DATA_HOME/primehack/GC/USA"
-    dir_prep "$saves_path/gc/primehack/JP" "$XDG_DATA_HOME/primehack/GC/JAP"
+    mv "$saves_path/PrimeHack-SA/EUR" "$saves_path/PrimeHack-SA/EU"
+    mv "$saves_path/PrimeHack-SA/USA" "$saves_path/PrimeHack-SA/US"
+    mv "$saves_path/PrimeHack-SA/JAP" "$saves_path/PrimeHack-SA/JP"
+    dir_prep "$saves_path/PrimeHack-SA/EU" "$XDG_DATA_HOME/primehack/GC/EUR"
+    dir_prep "$saves_path/PrimeHack-SA/US" "$XDG_DATA_HOME/primehack/GC/USA"
+    dir_prep "$saves_path/PrimeHack-SA/JP" "$XDG_DATA_HOME/primehack/GC/JAP"
 
     set_setting_value "$primehackconf" "ConfirmStop" "False" "primehack" "Interface"
   fi
