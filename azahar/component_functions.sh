@@ -118,6 +118,12 @@ _post_update::azahar() {
 
     cp -rfv "$saves_path/n3ds/azahar/nand/" "$saves_path/Azahar-SA/nand/"
     cp -rfv "$saves_path/n3ds/azahar/sdmc/" "$saves_path/Azahar-SA/sdmc/"
+
+    create_dir "$backups_path/0.11.0/Azahar-SA/nand/"
+    create_dir "$backups_path/0.11.0/Azahar-SA/sdmc/"
+    
+    cp -rfv "$saves_path/n3ds/azahar/nand/" "$backups_path/0.11.0/Azahar-SA/sdmc/"
+    cp -rfv "$saves_path/n3ds/azahar/sdmc/" "$backups_path/0.11.0/Azahar-SA/sdmc/"
     
     set_setting_value "$azahar_qtconfig" "nand_directory" "$saves_path/Azahar-SA/nand/" "azahar" "Data%20Storage"
     set_setting_value "$azahar_qtconfig" "sdmc_directory" "$saves_path/Azahar-SA/sdmc/" "azahar" "Data%20Storage"
