@@ -19,5 +19,15 @@ _prepare_component::gametank() {
     ;;
 
   esac
-  
+
+}
+
+_post_update::gametank() {
+  local previous_version="$1"
+
+  if check_version_is_older_than "$previous_version" "0.11.0"; then
+    log i "0.11.0 GameTank Setup"
+
+    prepare_component "reset" "gametank"
+  fi
 }

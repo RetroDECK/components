@@ -45,3 +45,13 @@ _prepare_component::sm2-emu() {
 
   esac
 }
+
+_post_update::sm2-emu() {
+  local previous_version="$1"
+
+  if check_version_is_older_than "$previous_version" "0.11.0"; then
+    log i "0.11.0 sm2-emu Setup"
+
+    prepare_component "reset" "sm2-emu"
+  fi
+}

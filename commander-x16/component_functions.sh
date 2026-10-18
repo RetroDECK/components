@@ -31,3 +31,14 @@ _prepare_component::commander-x16() {
 
   esac
 }
+
+_post_update::commander-x16() {
+  local previous_version="$1"
+
+  if check_version_is_older_than "$previous_version" "0.11.0"; then
+    log i "0.11.0 Commander X16 Setup"
+
+    prepare_component "reset" "commander-x16"
+  fi
+
+}

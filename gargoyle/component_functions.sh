@@ -41,3 +41,13 @@ _prepare_component::gargoyle() {
 
 }
 
+_post_update::gargoyle() {
+  local previous_version="$1"
+
+  if check_version_is_older_than "$previous_version" "0.11.0"; then
+    log i "0.11.0 Gargoyle Setup"
+
+    prepare_component "reset" "gargoyle"
+  fi
+}
+

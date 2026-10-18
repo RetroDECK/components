@@ -40,3 +40,13 @@ _prepare_component::quake3e() {
   esac
 }
 
+_post_update::quake3e() {
+  local previous_version="$1"
+
+  if check_version_is_older_than "$previous_version" "0.11.0"; then
+    log i "0.11.0 quake3e Setup"
+
+    prepare_component "reset" "quake3e"
+  fi
+}
+

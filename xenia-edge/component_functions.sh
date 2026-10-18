@@ -50,3 +50,13 @@ _prepare_component::xenia-edge() {
 
   esac
 }
+
+_post_update::xenia-edge() {
+  local previous_version="$1"
+
+  if check_version_is_older_than "$previous_version" "0.11.0"; then
+    log i "0.11.0 Xenia Edge Setup"
+
+    prepare_component "reset" "xenia-edge"
+  fi
+}

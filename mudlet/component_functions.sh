@@ -34,3 +34,13 @@ _prepare_component::mudlet() {
   esac
 }
 
+_post_update::mudlet() {
+  local previous_version="$1"
+
+  if check_version_is_older_than "$previous_version" "0.11.0"; then
+    log i "0.11.0 Mudlet Setup"
+
+    prepare_component "reset" "mudlet"
+  fi
+}
+

@@ -58,3 +58,13 @@ _prepare_component::sdl2trs() {
     
   esac
 }
+
+_post_update::sdl2trs() {
+  local previous_version="$1"
+
+  if check_version_is_older_than "$previous_version" "0.11.0"; then
+    log i "0.11.0 SDL2TRS Setup"
+
+    prepare_component "reset" "sdl2trs"
+  fi
+}

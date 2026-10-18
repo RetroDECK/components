@@ -106,6 +106,17 @@ _prepare_component::amiberry() {
   esac
 }
 
+_post_update::amiberry() {
+  local previous_version="$1"
+
+  if check_version_is_older_than "$previous_version" "0.11.0"; then
+    log i "0.11.0 Amiberry Setup"
+
+    prepare_component "reset" "amiberry"
+  fi
+
+}
+
 _set_setting_value::amiberry() {
   local file="$1"
   local name=$(sed_escape_pattern "$2")

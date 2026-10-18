@@ -61,6 +61,17 @@ _prepare_component::scummvm() {
   esac
 }
 
+_post_update::scummvm() {
+  local previous_version="$1"
+
+  if check_version_is_older_than "$previous_version" "0.11.0"; then
+    log i "0.11.0 ScummVM Setup"
+
+    prepare_component "reset" "scummvm"
+  fi
+}
+
+
 _set_setting_value::scummvm() {
   local file="$1"
   local name=$(sed_escape_pattern "$2")

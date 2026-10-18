@@ -41,4 +41,15 @@ _prepare_component::uzdoom() {
 _post_update::uzdoom() {
   local previous_version="$1"
 
+  if check_version_is_older_than "$previous_version" "0.11.0"; then
+    log i "0.11.0 UZDoom Setup"
+
+    prepare_component "reset" "uzdoom"
+    cp -rfv "$saves_path/doom/gzdoom/" "$saves_path/UZDoom-SA"
+
+    create_dir "$backups_path/0.11.0/UZDoom-SA"
+    cp -rfv "$saves_path/doom/gzdoom/" "$backups_path/0.11.0/UZDoom-SA"
+
+  fi
+
 }

@@ -38,3 +38,14 @@ _prepare_component::ecwolf() {
     fi    
 }
 
+_post_update::ecwolf() {
+  local previous_version="$1"
+
+  if check_version_is_older_than "$previous_version" "0.11.0"; then
+    log i "0.11.0 ECWolf Setup"
+
+    prepare_component "reset" "ecwolf"
+  fi
+
+}
+

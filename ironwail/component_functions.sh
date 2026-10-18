@@ -50,3 +50,13 @@ _prepare_component::ironwail() {
 
   esac
 }
+
+_post_update::ironwail() {
+  local previous_version="$1"
+
+  if check_version_is_older_than "$previous_version" "0.11.0"; then
+    log i "0.11.0 Ironwail Setup"
+
+    prepare_component "reset" "ironwail"
+  fi
+}

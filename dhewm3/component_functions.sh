@@ -38,7 +38,15 @@ _prepare_component::dhewm3() {
 
   esac
 }
+
 _post_update::dhewm3() {
   local previous_version="$1"
 
+  if check_version_is_older_than "$previous_version" "0.11.0"; then
+    log i "0.11.0 dhewm3 Setup"
+
+    prepare_component "reset" "dhewm3"
+  fi
+
 }
+
