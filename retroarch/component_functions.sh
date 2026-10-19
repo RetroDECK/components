@@ -349,7 +349,7 @@ _prepare_component::retroarch() {
       log i "--------------------------------"
 
       dir_prep "$bios_path" "$bios_path/pcsx2/bios"
-      dir_prep "$saves_path/ps2/retroarch-core/pcsx2/memcards" "$bios_path/pcsx2/memcards"
+      dir_prep "$saves_path/ps2/pcsx2/memcards" "$bios_path/pcsx2/memcards"
       dir_prep "$storage_path/retroarch-core/pcsx2/inis" "$bios_path/pcsx2/inis"
       dir_prep "$storage_path/retroarch-core/pcsx2/resources" "$bios_path/pcsx2/resources"
       dir_prep "$shaders_path/retroarch-core/pcsx2/shaders" "$bios_path/pcsx2/shaders"
@@ -435,8 +435,8 @@ _prepare_component::retroarch() {
       dir_prep "$storage_path/retroarch-core/Vita3K/ux0"  "$bios_path/vita3k/ux0"
       dir_prep "$storage_path/retroarch-core/Vita3K/data"  "$bios_path/vita3k/data"
 
-      dir_prep "$saves_path/psvita/Vita3K" "$storage_path/retroarch-core/Vita3K/ux0/user/00/savedata"
-
+      dir_prep "$saves_path/psvita/Vita3K/savedata" "$storage_path/retroarch-core/Vita3K/ux0/user/00/savedata"
+      
       dir_prep "$shaders_path/retroarch-core/Vita3K/shaders-builtin" "$bios_path/vita3k/shaders-builtin"
       dir_prep "$shaders_path/retroarch-core/Vita3K/shaders"  "$bios_path/vita3k/shaders"
 
@@ -465,7 +465,7 @@ _prepare_component::retroarch() {
       dir_prep "$storage_path/retroarch-core/Xenia-Edge/cache1" "$bios_path/Xenia-Edge/cache1"
       dir_prep "$storage_path/retroarch-core/Xenia-Edge/library" "$bios_path/Xenia-Edge/library"
 
-      dir_prep "$saves_path/xbox360/retroarch-core/Xenia-Edge/content" "$bios_path/Xenia-Edge/content"
+      dir_prep "$saves_path/xbox360/Xenia-Edge/content" "$bios_path/Xenia-Edge/content"
 
       dir_prep "$mods_path/retroarch-core/Xenia-Edge/plugins" "$bios_path/Xenia-Edge/plugins"
       dir_prep "$mods_path/retroarch-core/Xenia-Edge/patches" "$bios_path/Xenia-Edge/patches"
@@ -540,7 +540,7 @@ _prepare_component::retroarch() {
 
       # PCSX2, LRPS2, PCEE2
       dir_prep "$bios_path" "$bios_path/pcsx2/bios"
-      dir_prep "$saves_path/ps2/retroarch-core/pcsx2/memcards" "$bios_path/pcsx2/memcards"
+      dir_prep "$saves_path/ps2/pcsx2/memcards" "$bios_path/pcsx2/memcards"
       dir_prep "$storage_path/retroarch-core/pcsx2/inis" "$bios_path/pcsx2/inis"
       dir_prep "$storage_path/retroarch-core/pcsx2/resources" "$bios_path/pcsx2/resources"
       dir_prep "$shaders_path/retroarch-core/pcsx2/shaders" "$bios_path/pcsx2/shaders"
@@ -572,7 +572,7 @@ _prepare_component::retroarch() {
       # Vita3K
       dir_prep "$storage_path/retroarch-core/Vita3K/ux0"  "$bios_path/vita3k/ux0"
       dir_prep "$storage_path/retroarch-core/Vita3K/data"  "$bios_path/vita3k/data"
-      dir_prep "$saves_path/psvita/Vita3K" "$storage_path/retroarch-core/Vita3K/ux0/user/00/savedata"
+      dir_prep "$saves_path/psvita/Vita3K/savedata" "$storage_path/retroarch-core/Vita3K/ux0/user/00/savedata"
       dir_prep "$shaders_path/retroarch-core/Vita3K/shaders-builtin" "$bios_path/vita3k/shaders-builtin"
       dir_prep "$shaders_path/retroarch-core/Vita3K/shaders"  "$bios_path/vita3k/shaders"
       dir_prep "$texture_packs_path/retroarch-core/Vita3K/textures" "$bios_path/vita3k/ux0/textures"
@@ -590,7 +590,7 @@ _prepare_component::retroarch() {
       dir_prep "$storage_path/retroarch-core/Xenia-Edge/cache0" "$bios_path/Xenia-Edge/cache0"
       dir_prep "$storage_path/retroarch-core/Xenia-Edge/cache1" "$bios_path/Xenia-Edge/cache1"
       dir_prep "$storage_path/retroarch-core/Xenia-Edge/library" "$bios_path/Xenia-Edge/library"
-      dir_prep "$saves_path/xbox360/retroarch-core/Xenia-Edge/content" "$bios_path/Xenia-Edge/content"
+      dir_prep "$saves_path/xbox360/Xenia-Edge/content" "$bios_path/Xenia-Edge/content"
       dir_prep "$mods_path/retroarch-core/Xenia-Edge/plugins" "$bios_path/Xenia-Edge/plugins"
       dir_prep "$mods_path/retroarch-core/Xenia-Edge/patches" "$bios_path/Xenia-Edge/patches"
 
@@ -655,22 +655,22 @@ _post_update::retroarch() {
       cp -f "$retroarch_extras_path/pcsx-redux/openbios.bin" "$bios_path/openbios.bin"
 
       # PS2 Cores
-      create_dir "$saves_path/ps2/retroarch-core/pcsx2/memcards"
+      create_dir "$saves_path/ps2/pcsx2/memcards"
       create_dir "$backups_path/0.11.0/retroarch-core/pcsx2/memcards"
       create_dir "$backups_path/0.11.0/retroarch-core/LRPS2/memcards"
 
       cp -rfv "$bios_path/pcsx2/memcards" "$backups_path/0.11.0/retroarch-core/pcsx2/memcards"
       cp -rfv "$saves_path/ps2/retroarch-core/LRPS2/memcards" "$backups_path/0.11.0/retroarch-core/LRPS2/memcards"
 
-      cp -rfv "$bios_path/pcsx2/memcards" "$saves_path/ps2/retroarch-core/pcsx2/memcards"
-      cp -rfv "$saves_path/ps2/retroarch-core/LRPS2/memcards" "$saves_path/ps2/retroarch-core/pcsx2/memcards"
+      cp -rfv "$bios_path/pcsx2/memcards" "$saves_path/ps2/pcsx2/memcards"
+      cp -rfv "$saves_path/ps2/retroarch-core/LRPS2/memcards" "$saves_path/ps2/pcsx2/memcards"
 
       create_dir "$storage_path/retroarch-core/pcsx2/resources"
       cp -rfv "$retroarch_extras_path/pcsx2/resources" "$storage_path/retroarch-core/pcsx2/resources" 
 
       dir_prep "$bios_path" "$bios_path/pcsx2/bios"
       
-      dir_prep "$saves_path/ps2/retroarch-core/pcsx2/memcards" "$bios_path/pcsx2/memcards"
+      dir_prep "$saves_path/ps2/pcsx2/memcards" "$bios_path/pcsx2/memcards"
       dir_prep "$storage_path/retroarch-core/pcsx2/inis" "$bios_path/pcsx2/inis"
       dir_prep "$storage_path/retroarch-core/pcsx2/resources" "$bios_path/pcsx2/resources"
       dir_prep "$shaders_path/retroarch-core/pcsx2/shaders" "$bios_path/pcsx2/shaders"
@@ -738,7 +738,7 @@ _post_update::retroarch() {
       # Vita3K
       dir_prep "$storage_path/retroarch-core/Vita3K/ux0"  "$bios_path/vita3k/ux0"
       dir_prep "$storage_path/retroarch-core/Vita3K/data"  "$bios_path/vita3k/data"
-      dir_prep "$saves_path/psvita/Vita3K" "$storage_path/retroarch-core/Vita3K/ux0/user/00/savedata"
+      dir_prep "$saves_path/psvita/Vita3K/savedata" "$storage_path/retroarch-core/Vita3K/ux0/user/00/savedata"
       dir_prep "$shaders_path/retroarch-core/Vita3K/shaders-builtin" "$bios_path/vita3k/shaders-builtin"
       dir_prep "$shaders_path/retroarch-core/Vita3K/shaders"  "$bios_path/vita3k/shaders"
       dir_prep "$texture_packs_path/retroarch-core/Vita3K/textures" "$bios_path/vita3k/ux0/textures"
@@ -748,7 +748,7 @@ _post_update::retroarch() {
       dir_prep "$storage_path/retroarch-core/Xenia-Edge/cache0" "$bios_path/Xenia-Edge/cache0"
       dir_prep "$storage_path/retroarch-core/Xenia-Edge/cache1" "$bios_path/Xenia-Edge/cache1"
       dir_prep "$storage_path/retroarch-core/Xenia-Edge/library" "$bios_path/Xenia-Edge/library"
-      dir_prep "$saves_path/xbox360/retroarch-core/Xenia-Edge/content" "$bios_path/Xenia-Edge/content"
+      dir_prep "$saves_path/xbox360/Xenia-Edge/content" "$bios_path/Xenia-Edge/content"
       dir_prep "$mods_path/retroarch-core/Xenia-Edge/plugins" "$bios_path/Xenia-Edge/plugins"
       dir_prep "$mods_path/retroarch-core/Xenia-Edge/patches" "$bios_path/Xenia-Edge/patches"
 
@@ -909,7 +909,7 @@ _post_update_legacy::retroarch() {
     cp -rfv "$retroarch_extras_path/qemu" "$bios_path/qemu"
     cp -rfv "$retroarch_extras_path/xrick" "$bios_path/xrick"
 
-    dir_prep "$saves_path/ps2/retroarch-core/pcsx2/memcards" "$bios_path/pcsx2/memcards"
+    dir_prep "$saves_path/ps2/pcsx2/memcards" "$bios_path/pcsx2/memcards"
     dir_prep "$shaders_path/retroarch-core/pcsx2/shaders" "$bios_path/pcsx2/shaders"
     dir_prep "$cheats_path/retroarch-core/pcsx2/cheats" "$bios_path/pcsx2/cheats"
     dir_prep "$cheats_path/retroarch-core/pcsx2/cheats_ws" "$bios_path/pcsx2/cheats_ws"
