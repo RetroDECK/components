@@ -134,6 +134,9 @@ _post_update::ppsspp() {
   if check_version_is_older_than "$previous_version" "0.11.0"; then
     log i "0.11.0 Upgrade: PPSSPP - RA Core Conflict Migration"
 
+    dir_prep "$shaders_path/PPSSPP/shaders" "$XDG_CONFIG_HOME/ppsspp/PSP/shaders"
+    dir_prep "$shaders_path/PPSSPP/CACHE" "$XDG_CONFIG_HOME/ppsspp/SYSTEM/CACHE"
+
     dir_prep "$saves_path/PPSSPP-SA/SAVEDATA" "$XDG_CONFIG_HOME/ppsspp/PSP/SAVEDATA"
     dir_prep "$states_path/PPSSPP-SA/PPSSPP_STATE" "$XDG_CONFIG_HOME/ppsspp/PSP/PPSSPP_STATE"
 
@@ -197,14 +200,5 @@ _post_update_legacy::ppsspp() {
 
     dir_prep "$shaders_path/PPSSPP/shaders" "$XDG_CONFIG_HOME/ppsspp/PSP/shaders"
   fi
-
-  if check_version_is_older_than "$previous_version" "0.11.0"; then
-    log i "0.11.0 Upgrade - PPSSPP: Relink Shaders Again"
-
-    dir_prep "$shaders_path/PPSSPP/shaders" "$XDG_CONFIG_HOME/ppsspp/PSP/shaders"
-    dir_prep "$shaders_path/PPSSPP/CACHE" "$XDG_CONFIG_HOME/ppsspp/SYSTEM/CACHE"
-
-  fi
-
         
 }

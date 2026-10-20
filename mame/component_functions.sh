@@ -49,11 +49,13 @@ _prepare_component::mame() {
 
       # Saves and States
 
-      create_dir "$saves_path/mame-sa"
-      create_dir "$saves_path/mame-sa/nvram"
-      create_dir "$states_path/mame-sa"
-      create_dir "$saves_path/mame-sa/diff"
-      dir_prep "$saves_path/mame-sa/hiscore" "$XDG_CONFIG_HOME/mame/hiscore"
+      create_dir "$saves_path/MAME-SA"
+      create_dir "$saves_path/MAME-SA/nvram"
+      create_dir "$saves_path/MAME-SA/diff"
+
+      create_dir "$states_path/MAME-SA"
+
+      dir_prep "$saves_path/MAME-SA/hiscore" "$XDG_CONFIG_HOME/mame/hiscore"
 
       # Screenshots
 
@@ -73,7 +75,7 @@ _prepare_component::mame() {
 
       # BIOS
 
-      create_dir "$bios_path/mame-sa/samples"
+      create_dir "$bios_path/MAME-SA/samples"
 
       # Shaders
 
@@ -124,11 +126,11 @@ _prepare_component::mame() {
       # Set config values
 
       sed -i 's#RETRODECKROMSDIR#'"$roms_path"'#g' "$mame_config" # one-off as roms folders are a lot
-      set_setting_value "$mame_config" "nvram_directory" "$saves_path/mame-sa/nvram" "mame"
-      set_setting_value "$mame_config" "state_directory" "$states_path/mame-sa" "mame"
+      set_setting_value "$mame_config" "nvram_directory" "$saves_path/MAME-SA/nvram" "mame"
+      set_setting_value "$mame_config" "state_directory" "$states_path/MAME-SA" "mame"
       set_setting_value "$mame_config" "snapshot_directory" "$screenshots_path/mame" "mame"
-      set_setting_value "$mame_config" "diff_directory" "$saves_path/mame-sa/diff" "mame"
-      set_setting_value "$mame_config" "samplepath" "$bios_path/mame-sa/samples" "mame"
+      set_setting_value "$mame_config" "diff_directory" "$saves_path/MAME-SA/diff" "mame"
+      set_setting_value "$mame_config" "samplepath" "$bios_path/MAME-SA/samples" "mame"
       set_setting_value "$mame_config" "cheatpath" "$cheats_path/mame" "mame"
       set_setting_value "$mame_config" "bgfx_path" "$shaders_path/mame/bgfx/" "mame"
       set_setting_value "$mame_config" "homepath" "$mods_path/mame/plugin-data" "mame"
@@ -144,14 +146,14 @@ _prepare_component::mame() {
       log i "Post-moving MAME"
       log i "----------------------"
 
-      dir_prep "$saves_path/mame-sa/hiscore" "$XDG_CONFIG_HOME/mame/hiscore"
+      dir_prep "$saves_path/MAME-SA/hiscore" "$XDG_CONFIG_HOME/mame/hiscore"
 
       sed -i 's#RETRODECKROMSDIR#'"$roms_path"'#g' "$mame_config" # one-off as roms folders are a lot
-      set_setting_value "$mame_config" "nvram_directory" "$saves_path/mame-sa/nvram" "mame"
-      set_setting_value "$mame_config" "state_directory" "$states_path/mame-sa" "mame"
+      set_setting_value "$mame_config" "nvram_directory" "$saves_path/MAME-SA/nvram" "mame"
+      set_setting_value "$mame_config" "state_directory" "$states_path/MAME-SA" "mame"
       set_setting_value "$mame_config" "snapshot_directory" "$screenshots_path/mame" "mame"
-      set_setting_value "$mame_config" "diff_directory" "$saves_path/mame-sa/diff" "mame"
-      set_setting_value "$mame_config" "samplepath" "$bios_path/mame-sa/samples" "mame"
+      set_setting_value "$mame_config" "diff_directory" "$saves_path/MAME-SA/diff" "mame"
+      set_setting_value "$mame_config" "samplepath" "$bios_path/MAME-SA/samples" "mame"
       set_setting_value "$mame_config" "cheatpath" "$cheats_path/mame" "mame"
       set_setting_value "$mame_config" "bgfx_path" "$shaders_path/mame/bgfx/" "mame"
       set_setting_value "$mame_config" "homepath" "$mods_path/mame/plugin-data" "mame"
@@ -239,6 +241,20 @@ _post_compression_cleanup::chd() {
 _post_update_legacy::mame() {
   local previous_version="$1"
 
+  if check_version_is_older_than "$previous_version" "0.10.0b"; then
+    log i "0.11.0 Upgrade - MAME RA Conflict Migration"
+
+    mv -- "$saves_path/mame-sa" "$saves_path/MAME-SA"
+    mv -- "$states_path/mame-sa" "$states_path/MAME-SA"
+
+    set_setting_value "$mame_config" "nvram_directory" "$saves_path/MAME-SA/nvram" "mame"
+    set_setting_value "$mame_config" "state_directory" "$states_path/MAME-SA" "mame"
+    set_setting_value "$mame_config" "diff_directory" "$saves_path/MAME-SA/diff" "mame"
+    set_setting_value "$mame_config" "samplepath" "$bios_path/MAME-SA/samples" "mame"
+
+  fi
+
+
 }
 
 _post_update_legacy::mame() {
@@ -256,10 +272,10 @@ _post_update_legacy::mame() {
   if check_version_is_older_than "$previous_version" "0.8.1b"; then
     log i "In version 0.8.1b, the following changes were made that required config file updates/reset or other changes to the filesystem:"
 
-    log i "MAME-SA, migrating samples to the new exposed folder: from \"$XDG_DATA_HOME/mame/assets/samples\" to \"$bios_path/mame-sa/samples\""
-    create_dir "$bios_path/mame-sa/samples"
-    mv -f "$XDG_DATA_HOME/mame/assets/samples/"* "$bios_path/mame-sa/samples"
-    set_setting_value "$mameconf" "samplepath" "$bios_path/mame-sa/samples" "mame"
+    log i "MAME-SA, migrating samples to the new exposed folder: from \"$XDG_DATA_HOME/mame/assets/samples\" to \"$bios_path/MAME-SA/samples\""
+    create_dir "$bios_path/MAME-SA/samples"
+    mv -f "$XDG_DATA_HOME/mame/assets/samples/"* "$bios_path/MAME-SA/samples"
+    set_setting_value "$mameconf" "samplepath" "$bios_path/MAME-SA/samples" "mame"
 
     log i "Placing cheats in \"$XDG_DATA_HOME/mame/cheat\""
     unzip -j -o "$config/mame/cheat0264.zip" 'cheat.7z' -d "$XDG_DATA_HOME/mame/cheat"
