@@ -134,6 +134,10 @@ _post_update::vita3k() {
 
     cp -rfv "$saves_path/saves/psvita/vita3k/" "$saves_path/Vita3K-SA/savedata"
     cp -rfv "$saves_path/saves/psvita/vita3k/" "$backups_path/0.11.0/Vita3K-SA/savedata"
+
+    create_dir "$saves_path/RetroArch"
+    mv "$saves_path/psvita" "$saves_path/RetroArch/"
+
   fi
 
 }

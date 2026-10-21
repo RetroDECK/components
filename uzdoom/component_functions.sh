@@ -50,6 +50,9 @@ _post_update::uzdoom() {
     create_dir "$backups_path/0.11.0/UZDoom-SA"
     cp -rfv "$saves_path/doom/gzdoom/" "$backups_path/0.11.0/UZDoom-SA"
 
+    create_dir "$saves_path/RetroArch"
+    mv "$saves_path/doom" "$saves_path/RetroArch/"
+
   fi
 
 }

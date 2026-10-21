@@ -790,8 +790,8 @@ _post_update::retroarch() {
       set_setting_value "$retroarch_config_scummvm" "browser_lastpath" "$roms_path/scummvm" "retroarch_scummvm" "scummvm"
 
       # Save Migration, exculding 
-      find "$saves_path" -mindepth 1 -maxdepth 1 -type d ! -name '*-SA' ! -name 'mame-sa' ! -name 'RetroArch' ! -name 'n3ds' ! -name 'wiiu' ! -name 'wii' ! -name 'gc' ! -name 'psx' ! -name 'nds' ! -name 'ps2' ! -name 'pico-8' ! -name 'PSP'  -exec mv -ft "$saves_path/RetroArch" {} +
-      find "$states_path" -mindepth 1 -maxdepth 1  -type d ! -name '*-SA' ! -name 'mame-sa' ! -name 'RetroArch' ! -name 'psx' ! -name 'nds' ! -name 'ps2' ! -name 'PSP' -exec mv -ft "$states_path/RetroArch" {} +
+      find "$saves_path" -mindepth 1 -maxdepth 1 -type d ! -name '*-SA' ! -name 'mame-sa' ! -name 'RetroArch' ! -name 'n3ds' ! -name 'wiiu' ! -name 'wii' ! -name 'gc' ! -name 'psx' ! -name 'nds' ! -name 'ps2' ! -name 'pico-8' ! -name 'PSP' ! -name 'flash' ! -name 'ps3' ! -name 'doom' ! -name 'psvita' ! -name 'xbox' ! -name 'xroar' -exec mv -ft "$saves_path/RetroArch" {} +
+      find "$states_path" -mindepth 1 -maxdepth 1  -type d ! -name '*-SA' ! -name 'mame-sa' ! -name 'RetroArch' ! -name 'psx' ! -name 'nds' ! -name 'ps2' ! -name 'PSP' ! -name 'ps3' ! -name 'dolphin'  -exec mv -ft "$states_path/RetroArch" {} +
 
     fi
 

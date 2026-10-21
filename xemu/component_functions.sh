@@ -63,6 +63,7 @@ _prepare_component::xemu() {
       dir_prep "$shaders_path/xemu" "$XDG_DATA_HOME/xemu/xemu/shaders"
 
       cp -fv "$component_config/xemu.toml" "$xemu_conf"
+      
       create_dir "$screenshots_path/xemu"
       set_setting_value "$xemu_conf" "screenshot_dir" "$screenshots_path/xemu" "xemu" "general"
       set_setting_value "$xemu_conf" "bootrom_path" "$bios_path/mcpx_1.0.bin" "xemu" "sys.files"
@@ -126,14 +127,18 @@ _post_update::xemu() {
     create_dir "$backups_path/0.11.0/xemu-SA"
     create_dir "$saves_path/xemu-SA"
 
-    cp -v "$bios_path/xbox_hdd.qcow2" "$backups_path/0.11.0/xemu-SA/"
-    cp -v "$bios_path/xbox_hdd.qcow2" "$saves_path/xemu-SA/" 
+    cp -rfv "$bios_path/xbox_hdd.qcow2" "$backups_path/0.11.0/xemu-SA/"
+    cp -rfv "$bios_path/xbox_hdd.qcow2" "$saves_path/xemu-SA/" 
 
-    cp -v "$saves_path/xemu-SA/xbox-eeprom.bin" "$saves_path/xemu-SA/"
-    cp -v "$saves_path/xemu-SA/xbox-eeprom.bin" "$backups_path/0.11.0/xemu-SA/"
+    cp -rfv "$saves_path/xbox/xemu/xbox-eeprom.bin" "$saves_path/xemu-SA/"
+    cp -rfv "$saves_path/xbox/xemu/xbox-eeprom.bin" "$backups_path/0.11.0/xemu-SA/"
     
     set_setting_value "$xemu_conf" "hdd_path" "$saves_path/xemu-SA/xbox_hdd.qcow2" "xemu" "sys.files"
     set_setting_value "$xemu_conf" "eeprom_path" "$saves_path/xemu-SA/xbox-eeprom.bin" "xemu" "sys.files"
+
+    create_dir "$saves_path/RetroArch"
+    mv "$saves_path/xbox" "$saves_path/RetroArch/"
+
   fi
 
 }

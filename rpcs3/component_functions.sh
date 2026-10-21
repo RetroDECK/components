@@ -175,7 +175,7 @@ _post_update::rpcs3() {
   local previous_version="$1"
 
   if check_version_is_older_than "$previous_version" "0.11.0"; then
-    log i "0.11.0 Upgrade - RPCS3 RA Conflict Migration "
+    log i "0.11.0 Upgrade - RPCS3 RA Conflict Migration"
 
     dir_prep "$saves_path/RPCS3-SA/savedata" "$storage_path/rpcs3/dev_hdd0/home/00000001/savedata"
     dir_prep "$states_path/RPCS3-SA/savestates" "$XDG_CONFIG_HOME/rpcs3/savestates"
@@ -189,6 +189,11 @@ _post_update::rpcs3() {
     cp -rfv "$saves_path/ps3/rpcs3" "$backups_path/0.11.0/RPCS3-SA/savedata"
     cp -rfv "$states_path/ps3/rpcs3" "$backups_path/0.11.0/RPCS3-SA/savestates"
     
+    create_dir "$saves_path/RetroArch"
+    create_dir "$states_path/RetroArch"
+    mv "$saves_path/ps3" "$saves_path/RetroArch/"
+    mv "$states_path/ps3" "$states_path/RetroArch/"
+
   fi
 }
 

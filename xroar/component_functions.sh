@@ -97,6 +97,8 @@ _post_update::xroar() {
     cp -rfv "$saves_path/xroar/dragon32" "$backups_path/0.11.0/XRoar-SA/dragon32"
     cp -rfv "$saves_path/xroar/tanodragon" "$backups_path/0.11.0/XRoar-SA/tanodragon"
 
+    mv "$saves_path/xroar" "$backups_path/0.11.0/"
+
   fi
 
 }

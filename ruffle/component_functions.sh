@@ -64,6 +64,10 @@ _post_update::ruffle() {
     create_dir "$backups_path/0.11.0/Ruffle-SA/SharedObjects"
 
     cp -rfv "$saves_path/flash/ruffle" "$backups_path/0.11.0/Ruffle-SA/SharedObjects"
+
+    create_dir "$saves_path/RetroArch"
+    mv "$saves_path/flash" "$saves_path/RetroArch/"
+
  fi
 
 }
