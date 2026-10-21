@@ -378,11 +378,11 @@ _prepare_component::retroarch() {
       dir_prep "$texture_packs_path/retroarch-core/PPSSPP/TEXTURES" "$saves_path/RetroArch/PSP/TEXTURES"
       dir_prep "$mods_path/retroarch-core/PPSSPP/PLUGINS" "$saves_path/RetroArch/PSP/PLUGINS"
       dir_prep "$shaders_path/retroarch-core/PPSSPP/CACHE" "$saves_path/RetroArch/PSP/SYSTEM/CACHE"
-      dir_prep "$shaders_path/retroarch-core/PPSSPP/shaders" "$bios_path/PPSSPP/shaders"
+      dir_prep "$shaders_path/retroarch-core/PPSSPP/shaders" "$saves_path/RetroArch/PSP/shaders"
       dir_prep "$storage_path/retroarch-core/PPSSPP/GAME" "$saves_path/RetroArch/PSP/GAME"
 
       ### Generally not used, uses RA Standard State function instead
-      dir_prep "$states_path/RetroArch/PSP/PPSSPP/PPSSPP_STATE" "$saves_path/PSP/PPSSPP_STATE"
+      dir_prep "$states_path/RetroArch/PSP/PPSSPP/PPSSPP_STATE" "$saves_path/RetroArch/PSP/PPSSPP_STATE"
 
       # RPCS3
       log i "--------------------------------"
@@ -556,9 +556,9 @@ _prepare_component::retroarch() {
       dir_prep "$texture_packs_path/retroarch-core/PPSSPP/TEXTURES" "$saves_path/RetroArch/PSP/TEXTURES"
       dir_prep "$mods_path/retroarch-core/PPSSPP/PLUGINS" "$saves_path/RetroArch/PSP/PLUGINS"
       dir_prep "$shaders_path/retroarch-core/PPSSPP/CACHE" "$saves_path/RetroArch/PSP/SYSTEM/CACHE"
-      dir_prep "$shaders_path/retroarch-core/PPSSPP/shaders" "$bios_path/PPSSPP/shaders"
+      dir_prep "$shaders_path/retroarch-core/PPSSPP/shaders" "$saves_path/RetroArch/PSP/shaders"
       dir_prep "$storage_path/retroarch-core/PPSSPP/GAME" "$saves_path/RetroArch/PSP/GAME"
-      dir_prep "$states_path/RetroArch/PSP/PPSSPP/PPSSPP_STATE" "$saves_path/PSP/PPSSPP_STATE"
+      dir_prep "$states_path/RetroArch/PSP/PPSSPP/PPSSPP_STATE" "$saves_path/RetroArch/PSP/PPSSPP_STATE"
 
       # RPCS3
       dir_prep "$storage_path/retroarch-core/rpcs3/dev_hdd0" "$bios_path/rpcs3/dev_hdd0"
@@ -701,44 +701,44 @@ _post_update::retroarch() {
       dir_prep "$saves_path/RetroArch/ps3/rpcs3/savedata" "$storage_path/retroarch-core/rpcs3/dev_hdd0/home/00000001/savedata"
 
       # N3DS Cores
-      dir_prep "$mods_path/retroarch-core/Citra/mods" "$saves_path/n3ds/Citra/load/mods"
-      dir_prep "$texture_packs_path/retroarch-core/Citra/textures" "$saves_path/n3ds/Citra/load/textures"
-      dir_prep "$shaders_path/retroarch-core/Citra/shaders" "$saves_path/n3ds/Citra/shaders"
-      dir_prep "$cheats_path/retroarch-core/Citra/cheats" "$saves_path/n3ds/Citra/cheats"
+      dir_prep "$mods_path/retroarch-core/Citra/mods" "$saves_path/RetroArch/n3ds/Citra/load/mods"
+      dir_prep "$texture_packs_path/retroarch-core/Citra/textures" "$saves_path/RetroArch/n3ds/Citra/load/textures"
+      dir_prep "$shaders_path/retroarch-core/Citra/shaders" "$saves_path/RetroArch/n3ds/Citra/shaders"
+      dir_prep "$cheats_path/retroarch-core/Citra/cheats" "$saves_path/RetroArch/n3ds/Citra/cheats"
 
-      dir_prep "$texture_packs_path/retroarch-core/Azahar/textures" "$saves_path/n3ds/Azahar/load/textures"
-      dir_prep "$mods_path/retroarch-core/Azahar/mods" "$saves_path/n3ds/Azahar/load/mods"
-      dir_prep "$shaders_path/retroarch-core/Azahar/shaders" "$saves_path/n3ds/Azahar/shaders"
-      dir_prep "$cheats_path/retroarch-core/Azahar/cheats" "$saves_path/n3ds/Azahar/cheats"
+      dir_prep "$texture_packs_path/retroarch-core/Azahar/textures" "$saves_path/RetroArch/n3ds/Azahar/load/textures"
+      dir_prep "$mods_path/retroarch-core/Azahar/mods" "$saves_path/RetroArch/n3ds/Azahar/load/mods"
+      dir_prep "$shaders_path/retroarch-core/Azahar/shaders" "$saves_path/RetroArch/n3ds/Azahar/shaders"
+      dir_prep "$cheats_path/retroarch-core/Azahar/cheats" "$saves_path/RetroArch/n3ds/Azahar/cheats"
 
       # PPSSPP
-      dir_prep "$texture_packs_path/retroarch-core/PPSSPP/TEXTURES" "$saves_path/PSP/TEXTURES"
-      dir_prep "$mods_path/retroarch-core/PPSSPP/PLUGINS" "$saves_path/PSP/PLUGINS"
-      dir_prep "$shaders_path/retroarch-core/PPSSPP/CACHE" "$saves_path/PSP/SYSTEM/CACHE"
-      dir_prep "$shaders_path/retroarch-core/PPSSPP/shaders" "$bios_path/PPSSPP/shaders"
-      dir_prep "$storage_path/retroarch-core/PPSSPP/GAME" "$saves_path/PSP/GAME"
-      dir_prep "$states_path/RetroArch/PSP/PPSSPP/PPSSPP_STATE" "$saves_path/PSP/PPSSPP_STATE"
+      dir_prep "$texture_packs_path/retroarch-core/PPSSPP/TEXTURES" "$saves_path/RetroArch/PSP/TEXTURES"
+      dir_prep "$mods_path/retroarch-core/PPSSPP/PLUGINS" "$saves_path/RetroArch/PSP/PLUGINS"
+      dir_prep "$shaders_path/retroarch-core/PPSSPP/CACHE" "$saves_path/RetroArch/PSP/SYSTEM/CACHE"
+      dir_prep "$shaders_path/retroarch-core/PPSSPP/shaders" "$saves_path/RetroArch/PSP/shaders"
+      dir_prep "$storage_path/retroarch-core/PPSSPP/GAME" "$saves_path/RetroArch/PSP/GAME"
+      dir_prep "$states_path/RetroArch/PSP/PPSSPP/PPSSPP_STATE" "$saves_path/RetroArch/PSP/PPSSPP_STATE"
 
       # Dolphin Wii + GC
-      dir_prep "$texture_packs_path/retroarch-core/Dolphin/Textures" "$saves_path/gc/User/Load/Textures"
-      dir_prep "$texture_packs_path/retroarch-core/Dolphin/Textures" "$saves_path/wii/User/Load/Textures"
-      dir_prep "$texture_packs_path/retroarch-core/Dolphin/DynamicInputTextures" "$saves_path/gc/User/Load/DynamicInputTextures"
-      dir_prep "$texture_packs_path/retroarch-core/Dolphin/DynamicInputTextures" "$saves_path/wii/User/Load/DynamicInputTextures"
-      dir_prep "$mods_path/retroarch-core/Dolphin/GraphicMods" "$saves_path/gc/User/Load/GraphicMods"
-      dir_prep "$mods_path/retroarch-core/Dolphin/GraphicMods" "$saves_path/wii/User/Load/GraphicMods"
-      dir_prep "$shaders_path/retroarch-core/Dolphin/Shaders" "$saves_path/gc/User/Shaders"
-      dir_prep "$shaders_path/retroarch-core/Dolphin/Shaders" "$saves_path/wii/User/Shaders"
-      dir_prep "$storage_path/retroarch-core/Dolphin/Dump" "$saves_path/gc/User/Dump"
-      dir_prep "$storage_path/retroarch-core/Dolphin/Dump" "$saves_path/wii/User/Dump"     
+      dir_prep "$texture_packs_path/retroarch-core/Dolphin/Textures" "$saves_path/RetroArch/gc/User/Load/Textures"
+      dir_prep "$texture_packs_path/retroarch-core/Dolphin/Textures" "$saves_path/RetroArch/wii/User/Load/Textures"
+      dir_prep "$texture_packs_path/retroarch-core/Dolphin/DynamicInputTextures" "$saves_path/RetroArch/gc/User/Load/DynamicInputTextures"
+      dir_prep "$texture_packs_path/retroarch-core/Dolphin/DynamicInputTextures" "$saves_path/RetroArch/wii/User/Load/DynamicInputTextures"
+      dir_prep "$mods_path/retroarch-core/Dolphin/GraphicMods" "$saves_path/RetroArch/gc/User/Load/GraphicMods"
+      dir_prep "$mods_path/retroarch-core/Dolphin/GraphicMods" "$saves_path/RetroArch/wii/User/Load/GraphicMods"
+      dir_prep "$shaders_path/retroarch-core/Dolphin/Shaders" "$saves_path/RetroArch/gc/User/Shaders"
+      dir_prep "$shaders_path/retroarch-core/Dolphin/Shaders" "$saves_path/RetroArch/wii/User/Shaders"
+      dir_prep "$storage_path/retroarch-core/Dolphin/Dump" "$saves_path/RetroArch/gc/User/Dump"
+      dir_prep "$storage_path/retroarch-core/Dolphin/Dump" "$saves_path/RetroArch/wii/User/Dump"     
 
-      dir_prep "$screenshots_path/retroarch/retroarch-core/Dolphin/gc/ScreenShots" "$saves_path/gc/User/ScreenShots"      ### NON Standard Screenshots
-      dir_prep "$screenshots_path/retroarch/retroarch-core/Dolphin/wii/ScreenShots" "$saves_path/wii/User/ScreenShots"
+      dir_prep "$screenshots_path/retroarch/retroarch-core/Dolphin/gc/ScreenShots" "$saves_path/RetroArch/gc/User/ScreenShots"      ### NON Standard Screenshots
+      dir_prep "$screenshots_path/retroarch/retroarch-core/Dolphin/wii/ScreenShots" "$saves_path/RetroArch/wii/User/ScreenShots"
 
-      dir_prep "$states_path/RetroArch/gc/retroarch-core/Dolphin/StateSaves" "$saves_path/gc/User/StateSaves"     ### NON Standard Savestates, most likely not used.
-      dir_prep "$states_path/RetroArch/wii/retroarch-core/Dolphin/StateSaves" "$saves_path/wii/User/StateSaves"
+      dir_prep "$states_path/RetroArch/gc/retroarch-core/Dolphin/StateSaves" "$saves_path/RetroArch/gc/User/StateSaves"     ### NON Standard Savestates, most likely not used.
+      dir_prep "$states_path/RetroArch/wii/retroarch-core/Dolphin/StateSaves" "$saves_path/RetroArch/wii/User/StateSaves"
 
-      cp -rfv "$saves_path/gc/User/StateSaves" "$states_path/RetroArch/gc/retroarch-core/Dolphin/StateSaves"
-      cp -rfv "$saves_path/wii/User/StateSaves" "$states_path/RetroArch/wii/retroarch-core/Dolphin/StateSaves"
+      cp -rfv "$saves_path/RetroArch/gc/User/StateSaves" "$states_path/RetroArch/gc/retroarch-core/Dolphin/StateSaves"
+      cp -rfv "$saves_path/RetroArch/wii/User/StateSaves" "$states_path/RetroArch/wii/retroarch-core/Dolphin/StateSaves"
       
       # Cemu
       dir_prep "$texture_packs_path/retroarch-core/Cemu/graphicPacks" "$bios_path/Cemu/graphicPacks"
@@ -747,7 +747,7 @@ _post_update::retroarch() {
       # Vita3K
       dir_prep "$storage_path/retroarch-core/Vita3K/ux0"  "$bios_path/vita3k/ux0"
       dir_prep "$storage_path/retroarch-core/Vita3K/data"  "$bios_path/vita3k/data"
-      dir_prep "$saves_path/psvita/Vita3K/savedata" "$storage_path/retroarch-core/Vita3K/ux0/user/00/savedata"
+      dir_prep "$saves_path/RetroArch/psvita/Vita3K/savedata" "$storage_path/retroarch-core/Vita3K/ux0/user/00/savedata"
       dir_prep "$shaders_path/retroarch-core/Vita3K/shaders-builtin" "$bios_path/vita3k/shaders-builtin"
       dir_prep "$shaders_path/retroarch-core/Vita3K/shaders"  "$bios_path/vita3k/shaders"
       dir_prep "$texture_packs_path/retroarch-core/Vita3K/textures" "$bios_path/vita3k/ux0/textures"
@@ -757,7 +757,7 @@ _post_update::retroarch() {
       dir_prep "$storage_path/retroarch-core/Xenia-Edge/cache0" "$bios_path/Xenia-Edge/cache0"
       dir_prep "$storage_path/retroarch-core/Xenia-Edge/cache1" "$bios_path/Xenia-Edge/cache1"
       dir_prep "$storage_path/retroarch-core/Xenia-Edge/library" "$bios_path/Xenia-Edge/library"
-      dir_prep "$saves_path/xbox360/Xenia-Edge/content" "$bios_path/Xenia-Edge/content"
+      dir_prep "$saves_path/RetroArch/xbox360/Xenia-Edge/content" "$bios_path/Xenia-Edge/content"
       dir_prep "$mods_path/retroarch-core/Xenia-Edge/plugins" "$bios_path/Xenia-Edge/plugins"
       dir_prep "$mods_path/retroarch-core/Xenia-Edge/patches" "$bios_path/Xenia-Edge/patches"
 
@@ -767,8 +767,8 @@ _post_update::retroarch() {
 
       ln -sfn "$bios_path/mcpx_1.0.bin" "$bios_path/xemu/mcpx_1.0.bin"
       ln -sfn "$bios_path/Complex_4627v1.03.bin" "$bios_path/xemu/Complex_4627v1.03.bin"
-      ln -sfn "$saves_path/xbox/xemu/xbox_hdd.qcow2" "$bios_path/xemu/xbox_hdd.qcow2" 
-      ln -sfn "$saves_path/xbox/xemu/xbox_eeprom.bin" "$bios_path/xemu/xbox_eeprom.bin"
+      ln -sfn "$saves_path/RetroArch/xbox/xemu/xbox_hdd.qcow2" "$bios_path/xemu/xbox_hdd.qcow2" 
+      ln -sfn "$saves_path/RetroArch/xbox/xemu/xbox_eeprom.bin" "$bios_path/xemu/xbox_eeprom.bin"
 
       # ScummVM
       cp -fv "$component_config/scummvm.ini" "$retroarch_config_scummvm"
@@ -790,8 +790,8 @@ _post_update::retroarch() {
       set_setting_value "$retroarch_config_scummvm" "browser_lastpath" "$roms_path/scummvm" "retroarch_scummvm" "scummvm"
 
       # Save Migration, exculding 
-      find "$saves_path" -mindepth 1 -maxdepth 1 -type d ! -name '*-SA' ! -name 'mame-sa' ! -name 'RetroArch' ! -name 'n3ds' ! -name 'wiiu' ! -name 'wii' ! -name 'gc' ! -name 'psx' ! -name 'nds' ! -name 'ps2' ! -name 'pico-8' -exec mv -ft "$saves_path/RetroArch" {} +
-      find "$states_path" -mindepth 1 -maxdepth 1  -type d ! -name '*-SA' ! -name 'mame-sa' ! -name 'RetroArch' ! -name 'psx' ! -name 'nds' ! -name 'ps2' -exec mv -ft "$states_path/RetroArch" {} +
+      find "$saves_path" -mindepth 1 -maxdepth 1 -type d ! -name '*-SA' ! -name 'mame-sa' ! -name 'RetroArch' ! -name 'n3ds' ! -name 'wiiu' ! -name 'wii' ! -name 'gc' ! -name 'psx' ! -name 'nds' ! -name 'ps2' ! -name 'pico-8' ! -name 'PSP'  -exec mv -ft "$saves_path/RetroArch" {} +
+      find "$states_path" -mindepth 1 -maxdepth 1  -type d ! -name '*-SA' ! -name 'mame-sa' ! -name 'RetroArch' ! -name 'psx' ! -name 'nds' ! -name 'ps2' ! -name 'PSP' -exec mv -ft "$states_path/RetroArch" {} +
 
     fi
 
@@ -935,12 +935,12 @@ _post_update_legacy::retroarch() {
 
   if [[ $(check_version_is_older_than "$version_being_updated" "0.10.10b") == "true" ]]; then
 
-    dir_prep "$mods_path/retroarch-core/PPSSPP/PLUGINS" "$saves_path/PPSSPP/PSP/PLUGINS"
-    dir_prep "$shaders_path/retroarch-core/PPSSPP/shaders" "$saves_path/PPSSPPPSP/shaders"
+    dir_prep "$mods_path/retroarch-core/PPSSPP/PLUGINS" "$saves_path/RetroArch/PPSSPP/PSP/PLUGINS"
+    dir_prep "$shaders_path/retroarch-core/PPSSPP/shaders" "$saves_path/RetroArch/PPSSPP/PSP/shaders"
 
     create_dir -d "$storage_path/retroarch-core/PPSSPP/GAME"
     cp -fv "$XDG_CONFIG_HOME/retroarch/saves/PPSSPP/PSP/GAME/"* "$storage_path/retroarch-core/PPSSPP/GAME"
-    dir_prep "$storage_path/retroarch-core/PPSSPP/GAME" "$saves_path/PPSSPP/PSP/GAME"
+    dir_prep "$storage_path/retroarch-core/PPSSPP/GAME" "$saves_path/RetroArch/PPSSPP/PSP/GAME"
 
     set_setting_value "$retroarch_config_core_options" "melonds_opengl_better_polygons" "enabled" "retroarch"
     set_setting_value "$retroarch_config_core_options" "melonds_opengl_filtering" "nearest" "retroarch"

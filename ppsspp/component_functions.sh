@@ -149,6 +149,11 @@ _post_update::ppsspp() {
     cp -rfv "$saves_path/PSP/PPSSPP-SA" "$backups_path/0.11.0/PPSSPP-SA/SAVEDATA"
     cp -rfv "$states_path/PSP/PPSSPP-SA" "$backups_path/0.11.0/PPSSPP-SA/PPSSPP_STATE"
 
+    create_dir "$saves_path/RetroArch"
+    create_dir "$states_path/RetroArch"
+    mv "$saves_path/PSP" "$saves_path/RetroArch/"
+    mv "$states_path/PSP" "$states_path/RetroArch/"
+
   fi  
 
 }
