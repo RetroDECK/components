@@ -77,7 +77,7 @@ _prepare_component::duckstation() {
 
       dir_prep "$screenshots_path/Duckstation/" "$duckstation_screenshots_path"
 
-      dir_prep "$shaders_path/Duckstation/" "$duckstation_shaders_path"
+      dir_prep "$shaders_path/Duckstation/shaders" "$duckstation_shaders_path"
 
       dir_prep "$storage_path/Duckstation/dump/textures" "$duckstation_dump_textures_path"
       dir_prep "$storage_path/Duckstation/dump/audio" "$duckstation_dump_audio_path"
@@ -101,7 +101,7 @@ _prepare_component::duckstation() {
 
       dir_prep "$screenshots_path/Duckstation/" "$duckstation_screenshots_path"
 
-      dir_prep "$shaders_path/Duckstation/" "$duckstation_shaders_path"
+      dir_prep "$shaders_path/Duckstation/shaders" "$duckstation_shaders_path"
 
       dir_prep "$storage_path/Duckstation/dump/textures" "$duckstation_dump_textures_path"
       dir_prep "$storage_path/Duckstation/dump/audio" "$duckstation_dump_audio_path"
@@ -129,6 +129,14 @@ _post_update::duckstation() {
 
     cp -rfv "$states_path/psx/duckstation/" "$saves_path/Duckstation-SA/savestates/"
     cp -rfv "$states_path/psx/duckstation/" "$backups_path/0.11.0/Duckstation-SA/savestates/"
+
+
+    create_dir "$saves_path/RetroArch"
+    create_dir "$states_path/RetroArch"
+    mv "$saves_path/psx" "$saves_path/RetroArch/"
+    mv "$states_path/psx" "$states_path/RetroArch/"
+    
+    dir_prep "$shaders_path/Duckstation/shaders" "$duckstation_shaders_path"
   fi
 
 }

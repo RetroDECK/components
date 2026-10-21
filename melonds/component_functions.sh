@@ -124,6 +124,11 @@ _post_update::melonds() {
     cp -rfv "$saves_path/nds/melonds" "$backups_path/0.11.0/melonDS-SA/saves"
     cp -rfv "$states_path/nds/melonds" "$backups_path/0.11.0/melonDS-SA/states"
 
+    create_dir "$saves_path/RetroArch"
+    create_dir "$states_path/RetroArch"
+    mv "$saves_path/nds" "$saves_path/RetroArch/"
+    mv "$states_path/nds" "$states_path/RetroArch/"
+
  fi
 }
 

@@ -195,6 +195,10 @@ _post_update::dolphin() {
 
     dir_prep "$shaders_path/Dolphin/Shaders" "$XDG_DATA_HOME/dolphin-emu/Shaders"
     dir_prep "$texture_packs_path/Dolphin/DynamicInputTextures" "$XDG_DATA_HOME/dolphin-emu/Load/DynamicInputTextures"
+    
+    create_dir "$saves_path/RetroArch"
+    mv "$saves_path/wii" "$saves_path/RetroArch/"
+    mv "$saves_path/gc" "$saves_path/RetroArch/"
  fi
 
 }

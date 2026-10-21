@@ -130,6 +130,10 @@ _post_update::azahar() {
 
     dir_prep "$cheats_path/Azahar/cheats" "$azahar_cheats_path"
     dir_prep "$shaders_path/Azahar/shaders" "$azahar_shaders_path"
+    
+    create_dir "$saves_path/RetroArch"
+    mv "$saves_path/n3ds" "$saves_path/RetroArch/"
+
   fi
 
 }

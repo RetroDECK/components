@@ -103,6 +103,10 @@ _post_update::cemu() {
 
     cp -rfv "$bios_path/cemu" "$saves_path/Cemu-SA/mlc01"
     cp -rfv "$saves_path/wiiu/cemu" "$saves_path/Cemu-SA/mlc01/usr/save"
+    
+    create_dir "$saves_path/RetroArch"
+    mv "$saves_path/wiiu" "$saves_path/RetroArch/"
+
   fi
 
 }
