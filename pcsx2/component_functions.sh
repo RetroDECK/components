@@ -74,8 +74,8 @@ _prepare_component::pcsx2() {
       set_setting_value "$pcsx2_config" "Snapshots" "$screenshots_path/PCSX2" "pcsx2" "Folders"
 
       # States
-      create_dir "$states_path/Flycast-SA/sstates"
-      set_setting_value "$pcsx2_config" "SaveStates" "$states_path/Flycast-SA/sstates" "pcsx2" "Folders"
+      create_dir "$states_path/PCSX2-SA/sstates"
+      set_setting_value "$pcsx2_config" "SaveStates" "$states_path/PCSX2-SA/sstates" "pcsx2" "Folders"
       
       # Saves
       create_dir "$saves_path/PCSX2-SA/memcards"
@@ -146,7 +146,7 @@ _prepare_component::pcsx2() {
       set_setting_value "$pcsx2_config" "Bios" "$bios_path" "pcsx2" "Folders"
       set_setting_value "$pcsx2_config" "RecursivePaths" "$roms_path/ps2" "pcsx2" "GameList"
       set_setting_value "$pcsx2_config" "Snapshots" "$screenshots_path/PCSX2" "pcsx2" "Folders"
-      set_setting_value "$pcsx2_config" "SaveStates" "$states_path/Flycast-SA/sstates" "pcsx2" "Folders"
+      set_setting_value "$pcsx2_config" "SaveStates" "$states_path/PCSX2-SA/sstates" "pcsx2" "Folders"
       set_setting_value "$pcsx2_config" "MemoryCards" "$saves_path/PCSX2-SA/memcards" "pcsx2" "Folders"
       set_setting_value "$pcsx2_config" "Logs" "$logs_path/PCSX2/" "pcsx2" "Folders"
       set_setting_value "$pcsx2_config" "Cheats" "$cheats_path/PCSX2/cheats" "pcsx2" "Folders"
@@ -178,13 +178,13 @@ _post_update::pcsx2() {
     set_setting_value "$pcsx2_config" "Cheats" "$cheats_path/PCSX2/cheats" "pcsx2" "Folders"
 
     # Save Migration
-    create_dir "$states_path/Flycast-SA/sstates"
-    set_setting_value "$pcsx2_config" "SaveStates" "$states_path/Flycast-SA/sstates" "pcsx2" "Folders"
+    create_dir "$states_path/PCSX2-SA/sstates"
+    set_setting_value "$pcsx2_config" "SaveStates" "$states_path/PCSX2-SA/sstates" "pcsx2" "Folders"
     
     create_dir "$saves_path/PCSX2-SA/memcards"
     set_setting_value "$pcsx2_config" "MemoryCards" "$saves_path/PCSX2-SA/memcards" "pcsx2" "Folders"
 
-    cp -rfv "$states_path/ps2/pcsx2" "$states_path/Flycast-SA/sstates"
+    cp -rfv "$states_path/ps2/pcsx2" "$states_path/PCSX2-SA/sstates"
     cp -rfv "$saves_path/ps2/pcsx2/memcards" "$saves_path/PCSX2-SA/memcards"
 
     create_dir "$backups_path/0.11.0/PCSX2-SA/states"
