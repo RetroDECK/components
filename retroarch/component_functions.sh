@@ -234,7 +234,7 @@ _prepare_component::retroarch() {
       dir_prep "$storage_path/retroarch-core/Dolphin/Dump" "$saves_path/RetroArch/wii/User/Dump"
 
       ### These are the NON RA States function, built into the Dolphin core.
-      dir_prep "$states_path/RetroArch/gc/retroarch-core/Dolphin/StateSave" "$saves_path/RetroArch/gc/User/StateSaves"
+      dir_prep "$states_path/RetroArch/gc/Dolphin/StateSave" "$saves_path/RetroArch/gc/User/StateSaves"
       dir_prep "$states_path/RetroArch/wii/retroarch-core/Dolphin/StateSave" "$saves_path/RetroArch/wii/User/StateSaves"
 
       ### These are the NON RA Screenshot function, built into the Dolphin core.
@@ -382,7 +382,7 @@ _prepare_component::retroarch() {
       dir_prep "$storage_path/retroarch-core/PPSSPP/GAME" "$saves_path/RetroArch/PSP/GAME"
 
       ### Generally not used, uses RA Standard State function instead
-      dir_prep "$states_path/RetroArch/PSP/PPSSPP/PPSSPP_STATE" "$saves_path/RetroArch/PSP/PPSSPP_STATE"
+      dir_prep "$states_path/RetroArch/psp/PPSSPP/PPSSPP_STATE" "$saves_path/RetroArch/PSP/PPSSPP_STATE"
 
       # RPCS3
       log i "--------------------------------"
@@ -510,7 +510,7 @@ _prepare_component::retroarch() {
       dir_prep "$shaders_path/retroarch-core/Dolphin/Shaders" "$saves_path/RetroArch/wii/User/Shaders"
 
       ### These are the NON RA States function, built into the Dolphin core.
-      dir_prep "$states_path/RetroArch/gc/retroarch-core/Dolphin/StateSave" "$saves_path/RetroArch/gc/User/StateSaves"
+      dir_prep "$states_path/RetroArch/gc/Dolphin/StateSave" "$saves_path/RetroArch/gc/User/StateSaves"
       dir_prep "$states_path/RetroArch/wii/retroarch-core/Dolphin/StateSave" "$saves_path/RetroArch/wii/User/StateSaves"
 
       ### These are the NON RA Screenshot function, built into the Dolphin core.
@@ -558,7 +558,7 @@ _prepare_component::retroarch() {
       dir_prep "$shaders_path/retroarch-core/PPSSPP/CACHE" "$saves_path/RetroArch/PSP/SYSTEM/CACHE"
       dir_prep "$shaders_path/retroarch-core/PPSSPP/shaders" "$saves_path/RetroArch/PSP/shaders"
       dir_prep "$storage_path/retroarch-core/PPSSPP/GAME" "$saves_path/RetroArch/PSP/GAME"
-      dir_prep "$states_path/RetroArch/PSP/PPSSPP/PPSSPP_STATE" "$saves_path/RetroArch/PSP/PPSSPP_STATE"
+      dir_prep "$states_path/RetroArch/psp/PPSSPP/PPSSPP_STATE" "$saves_path/RetroArch/PSP/PPSSPP_STATE"
 
       # RPCS3
       dir_prep "$storage_path/retroarch-core/rpcs3/dev_hdd0" "$bios_path/rpcs3/dev_hdd0"
@@ -717,7 +717,7 @@ _post_update::retroarch() {
       dir_prep "$shaders_path/retroarch-core/PPSSPP/CACHE" "$saves_path/RetroArch/PSP/SYSTEM/CACHE"
       dir_prep "$shaders_path/retroarch-core/PPSSPP/shaders" "$saves_path/RetroArch/PSP/shaders"
       dir_prep "$storage_path/retroarch-core/PPSSPP/GAME" "$saves_path/RetroArch/PSP/GAME"
-      dir_prep "$states_path/RetroArch/PSP/PPSSPP/PPSSPP_STATE" "$saves_path/RetroArch/PSP/PPSSPP_STATE"
+      dir_prep "$states_path/RetroArch/psp/PPSSPP/PPSSPP_STATE" "$saves_path/RetroArch/PSP/PPSSPP_STATE"
 
       # Dolphin Wii + GC
       dir_prep "$texture_packs_path/retroarch-core/Dolphin/Textures" "$saves_path/RetroArch/gc/User/Load/Textures"
@@ -734,11 +734,11 @@ _post_update::retroarch() {
       dir_prep "$screenshots_path/retroarch/retroarch-core/Dolphin/gc/ScreenShots" "$saves_path/RetroArch/gc/User/ScreenShots"      ### NON Standard Screenshots
       dir_prep "$screenshots_path/retroarch/retroarch-core/Dolphin/wii/ScreenShots" "$saves_path/RetroArch/wii/User/ScreenShots"
 
-      dir_prep "$states_path/RetroArch/gc/retroarch-core/Dolphin/StateSaves" "$saves_path/RetroArch/gc/User/StateSaves"     ### NON Standard Savestates, most likely not used.
-      dir_prep "$states_path/RetroArch/wii/retroarch-core/Dolphin/StateSaves" "$saves_path/RetroArch/wii/User/StateSaves"
+      dir_prep "$states_path/RetroArch/gc/Dolphin/StateSaves" "$saves_path/RetroArch/gc/User/StateSaves"     ### NON Standard Savestates, most likely not used.
+      dir_prep "$states_path/RetroArch/wii/Dolphin/StateSaves" "$saves_path/RetroArch/wii/User/StateSaves"
 
-      cp -rfv "$saves_path/RetroArch/gc/User/StateSaves" "$states_path/RetroArch/gc/retroarch-core/Dolphin/StateSaves"
-      cp -rfv "$saves_path/RetroArch/wii/User/StateSaves" "$states_path/RetroArch/wii/retroarch-core/Dolphin/StateSaves"
+      cp -rfv "$saves_path/RetroArch/gc/User/StateSaves" "$states_path/RetroArch/gc/Dolphin/StateSaves"
+      cp -rfv "$saves_path/RetroArch/wii/User/StateSaves" "$states_path/RetroArch/wii/Dolphin/StateSaves"
       
       # Cemu
       dir_prep "$texture_packs_path/retroarch-core/Cemu/graphicPacks" "$bios_path/Cemu/graphicPacks"
