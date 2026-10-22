@@ -37,7 +37,7 @@ _prepare_component::amiberry() {
         create_dir "$storage_path/Amiberry/InputRecordings" 
 
         # Core directories
-        create_dir "$states_path/Amiberry-SA"
+        create_dir "$states_path/Amiberry-SA/States"
         create_dir "$screenshots_path/Amiberry"
         create_dir "$videos_path/Amiberry"
         create_dir "$shaders_path/Amiberry"
@@ -47,7 +47,7 @@ _prepare_component::amiberry() {
         cp -fvr "$amiberry_shaders_path/"* "$shaders_path/Amiberry/Shaders"
 
         # Core Paths
-        sed -i "s|^savestate_dir=.*|savestate_dir=$states_path/Amiberry-SA|" $amiberry_config
+        sed -i "s|^savestate_dir=.*|savestate_dir=$states_path/Amiberry-SA/States|" $amiberry_config
         sed -i "s|^screenshot_dir=.*|screenshot_dir=$screenshots_path/Amiberry|" $amiberry_config
         sed -i "s|^video_dir=.*|video_dir=$videos_path/Amiberry|" $amiberry_config
         sed -i "s|^shaders_path=.*|shaders_path=$shaders_path/Amiberry|" $amiberry_config
@@ -78,7 +78,7 @@ _prepare_component::amiberry() {
       log i "----------------------"
 
         # Core Paths
-        sed -i "s|^savestate_dir=.*|savestate_dir=$states_path/Amiberry-SA|" $amiberry_config
+        sed -i "s|^savestate_dir=.*|savestate_dir=$states_path/Amiberry-SA/States|" $amiberry_config
         sed -i "s|^screenshot_dir=.*|screenshot_dir=$screenshots_path/Amiberry|" $amiberry_config
         sed -i "s|^video_dir=.*|video_dir=$videos_path/Amiberry|" $amiberry_config
         sed -i "s|^shaders_path=.*|shaders_path=$shaders_path/Amiberry|" $amiberry_config

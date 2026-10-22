@@ -37,11 +37,17 @@
           "name": "commander-x16",
           "fullname": "Commander X16",
           "path": "%ROMPATH%/commander-x16",
-          "extension": ".bas",
+          "extension": ".bas .img .prg",
           "commands": [
             {
-              "label": "Commander X16 (Standalone)",
-              "command": "%EMULATOR_COMMANDER-X16% -bas %ROM% -run"
+              "label": "Commander X16 [BASIC Program] (Standalone)",
+              "command": "%EMULATOR_COMMANDER-X16% -bas %ROM% -run",
+              "priority": 10
+            },
+            {
+              "label": "Commander X16 [SD Card] (Standalone)",
+              "command": "%EMULATOR_COMMANDER-X16% -sdcard %ROM% -run",
+              "priority": 20
             }
           ],
           "platform": "commander-x16",

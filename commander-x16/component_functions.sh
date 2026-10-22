@@ -16,7 +16,7 @@ _prepare_component::commander-x16() {
       create_dir -d "$XDG_CONFIG_HOME/commander-x16"
       cp -fr "$component_config/"* "$XDG_CONFIG_HOME/commander-x16"
       
-      dir_prep "$roms_path/commander-x16/system" "$XDG_CONFIG_HOME/commander-x16/system"
+      dir_prep "$storage_path/Commander-X16/system" "$XDG_CONFIG_HOME/commander-x16/system"
 
     ;;
 
@@ -25,7 +25,7 @@ _prepare_component::commander-x16() {
       log i "Post-moving Commander X16"
       log i "------------------------"
 
-      dir_prep "$roms_path/commander-x16/system" "$XDG_CONFIG_HOME/commander-x16/system"
+      dir_prep "$storage_path/Commander-X16/system" "$XDG_CONFIG_HOME/commander-x16/system"
 
     ;;
 
