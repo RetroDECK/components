@@ -45,6 +45,7 @@ _prepare_component::xenia-edge() {
       dir_prep "$saves_path/Xenia-Edge-SA/content" "$XDG_DATA_HOME/Xenia/content"
 
       dir_prep "$mods_path/Xenia-Edge/plugins" "$XDG_DATA_HOME/Xenia/plugins"
+      dir_prep "$mods_path/Xenia-Edge/patches" "$XDG_DATA_HOME/Xenia/patches"
       
     ;;
 
