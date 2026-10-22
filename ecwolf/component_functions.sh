@@ -18,12 +18,12 @@ _prepare_component::ecwolf() {
     log i "Preparing $component_name"
     log i "----------------------"
 
-    dir_prep "$saves_path/ECWolf-SA/" "$ecwolf_data_saves_path"
-    dir_prep "$screenshots_path/ECWolf" "$ecwolf_data_screenshots_path"
-
     rm -vrf "$ecwolf_rd_cfg"
     create_dir "$ecwolf_config_path"
     cp -v "$component_config/ecwolf_rd.cfg" "$ecwolf_rd_cfg"
+
+    dir_prep "$saves_path/ECWolf-SA/saves" "$ecwolf_data_saves_path"
+    dir_prep "$screenshots_path/ECWolf" "$ecwolf_data_screenshots_path"
 
     fi
 
@@ -32,7 +32,7 @@ _prepare_component::ecwolf() {
     log i "Post-moving $component_name"
     log i "----------------------"
 
-    dir_prep "$saves_path/ECWolf-SA/" "$ecwolf_data_saves_path"
+    dir_prep "$saves_path/ECWolf-SA/saves" "$ecwolf_data_saves_path"
     dir_prep "$screenshots_path/ECWolf" "$ecwolf_data_screenshots_path"
 
     fi    

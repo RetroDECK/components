@@ -49,11 +49,10 @@ _prepare_component::mame() {
 
       # Saves and States
 
-      create_dir "$saves_path/MAME-SA"
       create_dir "$saves_path/MAME-SA/nvram"
       create_dir "$saves_path/MAME-SA/diff"
 
-      create_dir "$states_path/MAME-SA"
+      create_dir "$states_path/MAME-SA/states"
 
       dir_prep "$saves_path/MAME-SA/hiscore" "$XDG_CONFIG_HOME/mame/hiscore"
 
@@ -127,7 +126,7 @@ _prepare_component::mame() {
 
       sed -i 's#RETRODECKROMSDIR#'"$roms_path"'#g' "$mame_config" # one-off as roms folders are a lot
       set_setting_value "$mame_config" "nvram_directory" "$saves_path/MAME-SA/nvram" "mame"
-      set_setting_value "$mame_config" "state_directory" "$states_path/MAME-SA" "mame"
+      set_setting_value "$mame_config" "state_directory" "$states_path/MAME-SA/states" "mame"
       set_setting_value "$mame_config" "snapshot_directory" "$screenshots_path/mame" "mame"
       set_setting_value "$mame_config" "diff_directory" "$saves_path/MAME-SA/diff" "mame"
       set_setting_value "$mame_config" "samplepath" "$bios_path/MAME-SA/samples" "mame"
@@ -150,7 +149,7 @@ _prepare_component::mame() {
 
       sed -i 's#RETRODECKROMSDIR#'"$roms_path"'#g' "$mame_config" # one-off as roms folders are a lot
       set_setting_value "$mame_config" "nvram_directory" "$saves_path/MAME-SA/nvram" "mame"
-      set_setting_value "$mame_config" "state_directory" "$states_path/MAME-SA" "mame"
+      set_setting_value "$mame_config" "state_directory" "$states_path/MAME-SA/states" "mame"
       set_setting_value "$mame_config" "snapshot_directory" "$screenshots_path/mame" "mame"
       set_setting_value "$mame_config" "diff_directory" "$saves_path/MAME-SA/diff" "mame"
       set_setting_value "$mame_config" "samplepath" "$bios_path/MAME-SA/samples" "mame"
@@ -247,8 +246,10 @@ _post_update_legacy::mame() {
     mv -- "$saves_path/mame-sa" "$saves_path/MAME-SA"
     mv -- "$states_path/mame-sa" "$states_path/MAME-SA"
 
+    create_dir "$states_path/MAME-SA/states"
+    
     set_setting_value "$mame_config" "nvram_directory" "$saves_path/MAME-SA/nvram" "mame"
-    set_setting_value "$mame_config" "state_directory" "$states_path/MAME-SA" "mame"
+    set_setting_value "$mame_config" "state_directory" "$states_path/MAME-SA/states" "mame"
     set_setting_value "$mame_config" "diff_directory" "$saves_path/MAME-SA/diff" "mame"
     set_setting_value "$mame_config" "samplepath" "$bios_path/MAME-SA/samples" "mame"
 

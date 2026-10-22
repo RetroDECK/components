@@ -18,10 +18,10 @@ _prepare_component::sdl2trs() {
       create_dir -d "$XDG_CONFIG_HOME/sdl2trs/"
       cp -f "$component_config/sdltrs.t8c" "$XDG_CONFIG_HOME/sdl2trs/.sdltrs.t8c"
       
-      create_dir -d "$states_path/SDL2TRS-SA"
+      create_dir -d "$states_path/SDL2TRS-SA/states"
       create_dir -d "$storage_path/SDL2TRS/printer"
 
-      sed -i "s|^statedir=.*|statedir=$states_path/SDL2TRS-SA|" $sdl2trs_config
+      sed -i "s|^statedir=.*|statedir=$states_path/SDL2TRS-SA/states|" $sdl2trs_config
 
       sed -i "s|^romfile1=.*|romfile1=$bios_path/level2.rom|" $sdl2trs_config
       sed -i "s|^romfile3=.*|romfile3=$bios_path/model3.rom|" $sdl2trs_config
@@ -41,7 +41,7 @@ _prepare_component::sdl2trs() {
       log i "Post-moving SDL2TRS"
       log i "----------------------"
 
-      sed -i "s|^statedir=.*|statedir=$states_path/SDL2TRS-SA|" $sdl2trs_config
+      sed -i "s|^statedir=.*|statedir=$states_path/SDL2TRS-SA/states|" $sdl2trs_config
 
       sed -i "s|^romfile1=.*|romfile1=$bios_path/level2.rom|" $sdl2trs_config
       sed -i "s|^romfile3=.*|romfile3=$bios_path/model3.rom|" $sdl2trs_config

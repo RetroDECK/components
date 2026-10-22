@@ -19,7 +19,7 @@ _prepare_component::scummvm() {
 
         create_dir -d "$screenshots_path/ScummVM"
         
-        create_dir -d "$saves_path/ScummVM-SA"
+        create_dir -d "$saves_path/ScummVM-SA/saves"
 
         create_dir -d "$storage_path/ScummVM/extra"
         create_dir -d "$storage_path/ScummVM/themes"
@@ -29,7 +29,7 @@ _prepare_component::scummvm() {
         dir_prep "$logs_path/ScummVM" "$XDG_CACHE_HOME/scummvm/logs"
 
         sed -i "s|^screenshotpath=.*|screenshotpath=$screenshots_path/ScummVM|" $scummvm_config
-        sed -i "s|^savepath=.*|savepath=$saves_path/ScummVM-SA|" $scummvm_config
+        sed -i "s|^savepath=.*|savepath=$saves_path/ScummVM-SA/saves|" $scummvm_config
 
         sed -i "s|^extrapath=.*|extrapath=$storage_path/ScummVM/extra|" $scummvm_config
         sed -i "s|^themepath=.*|themepath=$storage_path/ScummVM/themes|" $scummvm_config
@@ -48,7 +48,7 @@ _prepare_component::scummvm() {
         dir_prep "$logs_path/ScummVM" "$XDG_CACHE_HOME/scummvm/logs"
         
         sed -i "s|^screenshotpath=.*|screenshotpath=$screenshots_path/ScummVM|" $scummvm_config
-        sed -i "s|^savepath=.*|savepath=$saves_path/ScummVM-SA|" $scummvm_config
+        sed -i "s|^savepath=.*|savepath=$saves_path/ScummVM-SA/saves|" $scummvm_config
 
         sed -i "s|^extrapath=.*|extrapath=$storage_path/ScummVM/extra|" $scummvm_config
         sed -i "s|^themepath=.*|themepath=$storage_path/ScummVM/themes|" $scummvm_config
