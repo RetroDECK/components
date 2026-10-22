@@ -18,7 +18,25 @@ _prepare_component::simcoupe() {
       create_dir -d "$XDG_CONFIG_HOME/simcoupe/.simcoupe/"
       cp -fr "$component_config/"* "$XDG_CONFIG_HOME/simcoupe/.simcoupe/"
 
+      dir_prep "$storage_path/SimCoupe/input" "$XDG_CONFIG_HOME/simcoupe/input"
+      dir_prep "$storage_path/SimCoupe/output" "$XDG_CONFIG_HOME/simcoupe/output"
+      dir_prep "$storage_path/SimCoupe/resources" "$XDG_CONFIG_HOME/simcoupe/resources"
+      dir_prep "$storage_path/SimCoupe/printer" "$XDG_CONFIG_HOME/simcoupe/printer"
+
     ;;
+
+      postmove)
+      log i "------------------------"
+      log i "Post-moving SimCoupé"
+      log i "------------------------"
+
+      dir_prep "$storage_path/SimCoupe/input" "$XDG_CONFIG_HOME/simcoupe/input"
+      dir_prep "$storage_path/SimCoupe/output" "$XDG_CONFIG_HOME/simcoupe/output"
+      dir_prep "$storage_path/SimCoupe/resources" "$XDG_CONFIG_HOME/simcoupe/resources"
+      dir_prep "$storage_path/SimCoupe/printer" "$XDG_CONFIG_HOME/simcoupe/printer"
+
+    ;;
+
 
   esac
 }

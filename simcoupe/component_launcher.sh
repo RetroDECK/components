@@ -14,4 +14,5 @@ log i "RetroDECK is now launching $component_name"
 log d "Library path is: $LD_LIBRARY_PATH"
 log d "AppDir is: $component_path"
 
-exec "$component_path/simcoupe" "$@"
+exec "$component_path/simcoupe" -fullscreen 1 -tvaspect 1 -joytype1 1 -joytype2 2 -inpath /var/config/simcoupe/input -outpath /var/config/simcoupe/output -respath /var/config/simcoupe/resources -printerdev /var/config/simcoupe/printer "$@"
+
