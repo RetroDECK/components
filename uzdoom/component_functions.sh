@@ -23,7 +23,7 @@ _prepare_component::uzdoom() {
       create_dir "$storage_path/UZDoom/audio/soundfonts"
       create_dir "$storage_path/UZDoom/audio/fm_banks"
       create_dir "$storage_path/UZDoom/audio/midi"
-      create_dir "$saves_path/UZDoom-SA"
+      create_dir "$saves_path/UZDoom-SA/saves"
 
       cp -fv "$component_config/uzdoom.ini" "$uzdoom_config"
 
@@ -45,10 +45,10 @@ _post_update::uzdoom() {
     log i "0.11.0 UZDoom Setup"
 
     prepare_component "reset" "uzdoom"
-    cp -rfv "$saves_path/doom/gzdoom/" "$saves_path/UZDoom-SA"
+    cp -rfv "$saves_path/doom/gzdoom/" "$saves_path/UZDoom-SA/saves"
 
-    create_dir "$backups_path/0.11.0/UZDoom-SA"
-    cp -rfv "$saves_path/doom/gzdoom/" "$backups_path/0.11.0/UZDoom-SA"
+    create_dir "$backups_path/0.11.0/UZDoom-SA/saves"
+    cp -rfv "$saves_path/doom/gzdoom/" "$backups_path/0.11.0/UZDoom-SA/saves"
 
     create_dir "$saves_path/RetroArch"
     mv "$saves_path/doom" "$saves_path/RetroArch/"
