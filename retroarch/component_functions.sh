@@ -664,15 +664,16 @@ _post_update::retroarch() {
       cp -f "$retroarch_extras_path/pcsx-redux/openbios.bin" "$bios_path/openbios.bin"
 
       # PS2 Cores
-      create_dir "$saves_path/ps2/pcsx2/memcards"
+      create_dir "$saves_path/RetroArch/ps2/pcsx2/memcards"
+      create_dir "$saves_path/RetroArch/ps2/lrps2-old/memcards"
       create_dir "$backups_path/0.11.0/retroarch-core/pcsx2/memcards"
       create_dir "$backups_path/0.11.0/retroarch-core/LRPS2/memcards"
 
       cp -rfv "$bios_path/pcsx2/memcards" "$backups_path/0.11.0/retroarch-core/pcsx2/memcards"
       cp -rfv "$saves_path/ps2/retroarch-core/LRPS2/memcards" "$backups_path/0.11.0/retroarch-core/LRPS2/memcards"
 
-      cp -rfv "$bios_path/pcsx2/memcards" "$saves_path/ps2/pcsx2/memcards"
-      cp -rfv "$saves_path/ps2/retroarch-core/LRPS2/memcards" "$saves_path/ps2/pcsx2/memcards"
+      cp -rfv "$bios_path/pcsx2/memcards" "$saves_path/RetroArch/ps2/pcsx2/memcards"
+      cp -rfv "$saves_path/ps2/retroarch-core/LRPS2/memcards" "$saves_path/RetroArch/ps2/lrps2-old/memcards"
 
       create_dir "$storage_path/retroarch-core/pcsx2/resources"
       cp -rfv "$retroarch_extras_path/pcsx2/resources" "$storage_path/retroarch-core/pcsx2/resources" 

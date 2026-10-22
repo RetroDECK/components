@@ -184,8 +184,11 @@ _post_update::pcsx2() {
     create_dir "$saves_path/PCSX2-SA/memcards"
     set_setting_value "$pcsx2_config" "MemoryCards" "$saves_path/PCSX2-SA/memcards" "pcsx2" "Folders"
 
+    create_dir "$saves_path/RetroArch/ps2/pcsx2-sa-old/memcards"
+
     cp -rfv "$states_path/ps2/pcsx2" "$states_path/PCSX2-SA/sstates"
     cp -rfv "$saves_path/ps2/pcsx2/memcards" "$saves_path/PCSX2-SA/memcards"
+    cp -rfv "$saves_path/ps2/pcsx2/memcards" "$saves_path/RetroArch/ps2/pcsx2-sa-old/memcards"
 
     create_dir "$backups_path/0.11.0/PCSX2-SA/states"
     create_dir "$backups_path/0.11.0/PCSX2-SA/memcards"
@@ -195,6 +198,7 @@ _post_update::pcsx2() {
 
     create_dir "$saves_path/RetroArch"
     create_dir "$states_path/RetroArch"
+
     mv "$saves_path/ps2" "$saves_path/RetroArch/"
     mv "$states_path/ps2" "$states_path/RetroArch/"
 
