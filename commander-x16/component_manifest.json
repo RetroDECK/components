@@ -37,7 +37,7 @@
           "name": "commander-x16",
           "fullname": "Commander X16",
           "path": "%ROMPATH%/commander-x16",
-          "extension": ".bas .img .prg",
+          "extension": ".bas .img",
           "commands": [
             {
               "label": "Commander X16 [BASIC Program] (Standalone)",
