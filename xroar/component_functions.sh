@@ -81,14 +81,6 @@ _post_update::xroar() {
   if check_version_is_older_than "$previous_version" "0.11.0"; then
     log i "0.11.0 Upgrade - XRoar RA Conflict Migration"
 
-    create_dir "$states_path/XRoar-SA/coco"
-    create_dir "$states_path/XRoar-SA/dragon32"
-    create_dir "$states_path/XRoar-SA/tanodragon"
-
-    cp -rfv "$saves_path/xroar/coco" "$saves_path/XRoar-SA/coco"
-    cp -rfv "$saves_path/xroar/dragon32" "$saves_path/XRoar-SA/dragon32"
-    cp -rfv "$saves_path/xroar/tanodragon" "$saves_path/XRoar-SA/tanodragon"
-
     create_dir "$backups_path/0.11.0/XRoar-SA/coco"
     create_dir "$backups_path/0.11.0/XRoar-SA/dragon32"
     create_dir "$backups_path/0.11.0/XRoar-SA/tanodragon"
@@ -97,7 +89,7 @@ _post_update::xroar() {
     cp -rfv "$saves_path/xroar/dragon32" "$backups_path/0.11.0/XRoar-SA/dragon32"
     cp -rfv "$saves_path/xroar/tanodragon" "$backups_path/0.11.0/XRoar-SA/tanodragon"
 
-    mv "$saves_path/xroar" "$backups_path/0.11.0/"
+    mv "$saves_path/xroar" "$saves_path/XRoar-SA"
 
   fi
 
