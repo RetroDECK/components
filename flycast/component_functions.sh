@@ -32,7 +32,7 @@ _prepare_component::flycast() {
 
     create_dir -d "$states_path/Flycast-SA/states"
 
-    create_dir -d "$texture_path/Flycast/Textures"
+    create_dir -d "$texture_packs_path/Flycast/Textures"
 
 
     sed -i "s|^Dreamcast.BiosPath = .*|Dreamcast.BiosPath = $bios_path|" $flycast_config
