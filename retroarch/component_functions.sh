@@ -234,8 +234,8 @@ _prepare_component::retroarch() {
       dir_prep "$storage_path/retroarch-core/Dolphin/Dump" "$saves_path/RetroArch/wii/User/Dump"
 
       ### These are the NON RA States function, built into the Dolphin core.
-      dir_prep "$states_path/RetroArch/gc/Dolphin/StateSave" "$saves_path/RetroArch/gc/User/StateSaves"
-      dir_prep "$states_path/RetroArch/wii/retroarch-core/Dolphin/StateSave" "$saves_path/RetroArch/wii/User/StateSaves"
+      dir_prep "$states_path/RetroArch/gc/Dolphin/StateSaves" "$saves_path/RetroArch/gc/User/StateSaves"
+      dir_prep "$states_path/RetroArch/wii/Dolphin/StateSaves" "$saves_path/RetroArch/wii/User/StateSaves"
 
       ### These are the NON RA Screenshot function, built into the Dolphin core.
       dir_prep "$screenshots_path/retroarch/retroarch-core/Dolphin/gc/ScreenShots" "$saves_path/RetroArch/gc/User/ScreenShots"
@@ -510,8 +510,8 @@ _prepare_component::retroarch() {
       dir_prep "$shaders_path/retroarch-core/Dolphin/Shaders" "$saves_path/RetroArch/wii/User/Shaders"
 
       ### These are the NON RA States function, built into the Dolphin core.
-      dir_prep "$states_path/RetroArch/gc/Dolphin/StateSave" "$saves_path/RetroArch/gc/User/StateSaves"
-      dir_prep "$states_path/RetroArch/wii/retroarch-core/Dolphin/StateSave" "$saves_path/RetroArch/wii/User/StateSaves"
+      dir_prep "$states_path/RetroArch/gc/Dolphin/StateSaves" "$saves_path/RetroArch/gc/User/StateSaves"
+      dir_prep "$states_path/RetroArch/wii/Dolphin/StateSaves" "$saves_path/RetroArch/wii/User/StateSaves"
 
       ### These are the NON RA Screenshot function, built into the Dolphin core.
       dir_prep "$screenshots_path/retroarch/retroarch-core/Dolphin/gc/ScreenShots" "$saves_path/RetroArch/gc/User/ScreenShots"
