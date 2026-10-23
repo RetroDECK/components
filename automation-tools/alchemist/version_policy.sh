@@ -220,7 +220,7 @@ export RETROARCH_VERSION_POLICY="1.22.2"
 export RPCS3_DESIRED_VERSION="latest"
 
 # ------------------------------------------------------------------------------
-# Solarus - Action RPG Engine
+# Solarus - 16/32-bit Zelda-like Action RPG Engine
 # Source: AppImage
 # Link: https://gitlab.com/solarus-games/solarus/-/releases/
 # ------------------------------------------------------------------------------
@@ -329,6 +329,12 @@ export VPINBALL_VERSION_POLICY="newest"
 # ------------------------------------------------------------------------------
 export ZESARUX_VERSION_POLICY="latest"
 
+# ------------------------------------------------------------------------------
+# ZQuest Classic - 8-bit Zelda-like Action RPG Engine
+# Source: Binary
+# Link: https://github.com/ZQuestClassic/ZQuestClassic/releases
+# ------------------------------------------------------------------------------
+export ZQUEST_VERSION_POLICY="latest"
 
 # ==============================================================================
 # Flatpak (Non-Flathub) SOURCES
