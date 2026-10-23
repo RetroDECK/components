@@ -22,32 +22,32 @@ _prepare_component::flycast() {
 
     cp -fvr "$component_config/"* "$XDG_CONFIG_HOME/flycast/"
 
-    create_dir -d "$storage_path/Flycast/boxart"
+    create_dir -d "$storage_path/Flycast/Boxart"
     create_dir -d "$storage_path/Flycast/TextureDump"
 
-    create_dir -d "$cheats_path/Flycast/cheats"
+    create_dir -d "$cheats_path/Flycast/Cheats"
 
-    create_dir -d "$saves_path/Flycast-SA/saves"
+    create_dir -d "$saves_path/Flycast-SA/Saves"
     create_dir -d "$saves_path/Flycast-SA/VMU"
 
-    create_dir -d "$states_path/Flycast-SA/states"
+    create_dir -d "$states_path/Flycast-SA/Savestates"
 
     create_dir -d "$texture_packs_path/Flycast/Textures"
 
 
     sed -i "s|^Dreamcast.BiosPath = .*|Dreamcast.BiosPath = $bios_path|" $flycast_config
 
-    sed -i "s|^Dreamcast.BoxartPath = .*|Dreamcast.BoxartPath = $storage_path/Flycast/boxart|" $flycast_config  
+    sed -i "s|^Dreamcast.BoxartPath = .*|Dreamcast.BoxartPath = $storage_path/Flycast/Boxart|" $flycast_config  
     sed -i "s|^Dreamcast.TextureDumpPath = .*|Dreamcast.TextureDumpPath = $storage_path/Flycast/TextureDump|" $flycast_config
 
-    sed -i "s|^Dreamcast.CheatPath = .*|Dreamcast.CheatPath = $cheats_path/Flycast/cheats|" $flycast_config
+    sed -i "s|^Dreamcast.CheatPath = .*|Dreamcast.CheatPath = $cheats_path/Flycast/Cheats|" $flycast_config
     
     sed -i "s|^Dreamcast.ContentPath = .*|Dreamcast.ContentPath = $roms_path/dreamcast|" $flycast_config
 
-    sed -i "s|^Dreamcast.SavePath = .*|Dreamcast.SavePath = $saves_path/Flycast-SA/saves|" $flycast_config
+    sed -i "s|^Dreamcast.SavePath = .*|Dreamcast.SavePath = $saves_path/Flycast-SA/Saves|" $flycast_config
     sed -i "s|^Dreamcast.VMUPath = .*|Dreamcast.VMUPath = $saves_path/Flycast-SA/VMU|" $flycast_config
 
-    sed -i "s|^Dreamcast.SavestatePath = .*|Dreamcast.SavestatePath = $states_path/Flycast-SA/states|" $flycast_config
+    sed -i "s|^Dreamcast.SavestatePath = .*|Dreamcast.SavestatePath = $states_path/Flycast-SA/Savestates|" $flycast_config
 
     sed -i "s|^Dreamcast.TexturePath = .*|Dreamcast.TexturePath = $texture_packs_path/Flycast/Textures|" $flycast_config
 
@@ -60,17 +60,17 @@ _prepare_component::flycast() {
 
     sed -i "s|^Dreamcast.BiosPath = .*|Dreamcast.BiosPath = $bios_path|" $flycast_config
 
-    sed -i "s|^Dreamcast.BoxartPath = .*|Dreamcast.BoxartPath = $storage_path/Flycast/boxart|" $flycast_config  
+    sed -i "s|^Dreamcast.BoxartPath = .*|Dreamcast.BoxartPath = $storage_path/Flycast/Boxart|" $flycast_config  
     sed -i "s|^Dreamcast.TextureDumpPath = .*|Dreamcast.TextureDumpPath = $storage_path/Flycast/TextureDump|" $flycast_config
 
-    sed -i "s|^Dreamcast.CheatPath = .*|Dreamcast.CheatPath = $cheats_path/Flycast/cheats|" $flycast_config
+    sed -i "s|^Dreamcast.CheatPath = .*|Dreamcast.CheatPath = $cheats_path/Flycast/Cheats|" $flycast_config
     
     sed -i "s|^Dreamcast.ContentPath = .*|Dreamcast.ContentPath = $roms_path/dreamcast|" $flycast_config
 
-    sed -i "s|^Dreamcast.SavePath = .*|Dreamcast.SavePath = $saves_path/Flycast-SA/saves|" $flycast_config
+    sed -i "s|^Dreamcast.SavePath = .*|Dreamcast.SavePath = $saves_path/Flycast-SA/Saves|" $flycast_config
     sed -i "s|^Dreamcast.VMUPath = .*|Dreamcast.VMUPath = $saves_path/Flycast-SA/VMU|" $flycast_config
 
-    sed -i "s|^Dreamcast.SavestatePath = .*|Dreamcast.SavestatePath = $states_path/Flycast-SA/states|" $flycast_config
+    sed -i "s|^Dreamcast.SavestatePath = .*|Dreamcast.SavestatePath = $states_path/Flycast-SA/Savestates|" $flycast_config
 
     sed -i "s|^Dreamcast.TexturePath = .*|Dreamcast.TexturePath = $texture_packs_path/Flycast/Textures|" $flycast_config
 
