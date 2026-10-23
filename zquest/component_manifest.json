@@ -7,9 +7,9 @@
       "reset",
       "open"
     ],
-    "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/sm2-emu/sm2-emu-guide/",
-    "url_donation_purchase": "https://github.com/dmanlfc/sm2-emu/blob/main/FUNDING.md",
-    "url_webpage": "https://rpcs3.net/",
+    "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_engine_guides/zquest/zquest-guide/",
+    "url_donation_purchase": "",
+    "url_webpage": "https://zquestclassic.com/",
     "url_source": "https://github.com/ZQuestClassic/ZQuestClassic",
     "description": "2D action-RPG engine for classic 8-bit Zelda-like games.",
     "system_friendly_name": "ZQuest Classic",
