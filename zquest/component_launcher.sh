@@ -6,8 +6,6 @@ source /app/libexec/launcher_functions.sh
 component_name="$(basename "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")")"
 component_path="$(cd "$(dirname "${BASH_SOURCE[0]}" )" && pwd)"
 
-HOME=/var/config/tsugaru
-
 # Set LD_LIBRARY_PATH
 export LD_LIBRARY_PATH="$component_path/lib:$rd_shared_libs:${DEFAULT_LD_LIBRARY_PATH}"
 

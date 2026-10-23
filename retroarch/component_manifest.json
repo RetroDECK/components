@@ -3134,7 +3134,7 @@
           "name": "radio",
           "fullname": "RetroArch Internet Radio",
           "path": "%ROMPATH%/radio",
-          "extension": ".m3u .txt .mp3 .wav",
+          "extension": ".m3u .mp3 .wav",
           "commands": [
             {
               "label": "RetroArch Internet Radio",
