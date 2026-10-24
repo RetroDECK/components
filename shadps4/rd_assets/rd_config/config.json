@@ -52,10 +52,6 @@
     "install_dirs": [
       {
         "enabled": true,
-        "path": "RETRODECKROMSPATH/ps4"
-      },
-      {
-        "enabled": true,
         "path": "RETRODECKSTORAGEPATH/shadPS4/installed"
       }
     ],
