@@ -18,9 +18,11 @@ _prepare_component::shadps4() {
         log i "--------------------"
 
         create_dir -d "$XDG_DATA_HOME/shadPS4/"
-        cp -f "$component_config/config.json" "$XDG_DATA_HOME/shadPS4/config.json" # Config is in DATA for shadPS4
-        cp -f "$component_config/input_config/default.ini" "$XDG_DATA_HOME/shadPS4/default.ini"
-
+        create_dir -d "$XDG_CONFIG_HOME/shadPS4/"
+        cp -f "$component_config/shadPS4" "$XDG_DATA_HOME/shadPS4" 
+        cp -f "$component_config/shadPS4QtLauncher" "$XDG_DATA_HOME/shadPS4QtLauncher" 
+        cp -f "$component_config/lsfg-vk" "$XDG_CONFIG_HOME/lsfg-vk"
+        
         # Storage
 
         create_dir -d "$storage_path/shadPS4/installed"
