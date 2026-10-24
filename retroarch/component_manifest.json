@@ -6818,8 +6818,7 @@
         "md5": "e10c53c2f8b90bab96ead2d368858623",
         "system": "dreamcast",
         "description": "Dreamcast BIOS",
-        "paths": "$bios_path/dc",
-        "required": "Required"
+        "paths": "$bios_path/dc"
       },
       {
         "filename": "naomi.zip",
@@ -6828,7 +6827,7 @@
           "526eda1e2a7920c92c88178789d71d84"
         ],
         "system": "dreamcast",
-        "description": "Naomi BIOS",
+        "description": "NAOMI BIOS from MAME",
         "paths": "$bios_path/dc",
         "required": "Required, for arcade emulation"
       },
@@ -6841,7 +6840,7 @@
           "dfaae8d206ffb390ed1cf9529ccc123d"
         ],
         "system": "dreamcast",
-        "description": "Naomi 2 BIOS",
+        "description": "NAOMI 2 BIOS from MAME",
         "paths": "$bios_path/dc"
       },
       {
@@ -6865,7 +6864,7 @@
           "f4011d3116500354edf7302a90402711"
         ],
         "system": "dreamcast",
-        "description": "House of the Dead 2 Naomi BIOS",
+        "description": "NAOMI The House of the Dead 2 BIOS from MAME",
         "paths": "$bios_path/dc",
         "required": "Required, for that specific game"
       },
@@ -6876,7 +6875,7 @@
           "1028615bcac4c31634a3364ce5c04044"
         ],
         "system": "dreamcast",
-        "description": "Ferrari F355 Challenge Deluxe Naomi BIOS",
+        "description": "NAOMI Ferrari F355 Challenge (deluxe) BIOS from MAME",
         "paths": "$bios_path/dc",
         "required": "Required, for that specific game"
       },
@@ -6890,7 +6889,7 @@
           "dreamcast",
           "arcade"
         ],
-        "description": "Ferrari F355 Challenge Twin/Deluxe Naomi BIOS",
+        "description": "NAOMI Ferrari F355 Challenge (twin/deluxe) BIOS from MAME",
         "paths": "$bios_path/dc",
         "required": "Required, for that specific game"
       },
@@ -6904,7 +6903,7 @@
           "dreamcast",
           "arcade"
         ],
-        "description": "Airline Pilots Deluxe Naomi BIOS",
+        "description": "NAOMI Airline Pilots (deluxe) BIOS from MAME",
         "paths": "$bios_path/dc",
         "required": "Required, for that specific game"
       },
@@ -6918,9 +6917,17 @@
           "dreamcast",
           "arcade"
         ],
-        "description": "Atomiswave BIOS",
+        "description": "Atomiswave BIOS from MAME",
         "paths": "$bios_path/dc",
         "required": "Required, for arcade emulation"
+      },
+      {
+        "filename": "segasp.zip",
+        "system": [
+          "dreamcast"
+        ],
+        "description": "System SP BIOS from MAME",
+        "paths": "$bios_path/dc"
       },
       {
         "filename": "bios.sms",
@@ -7677,7 +7684,6 @@
         "md5": "0a93f7940c455905bea6e392dfde92a4",
         "system": "dreamcast",
         "description": "Dreamcast flash BIOS",
-        "required": "Required",
         "paths": "$bios_path/dc"
       },
       {
@@ -7685,7 +7691,6 @@
         "md5": "0a93f7940c455905bea6e392dfde92a4",
         "system": "dreamcast",
         "description": "Dreamcast flash BIOS (duplicate of dc_flash.bin)",
-        "required": "Required",
         "paths": "$bios_path/dc"
       },
       {

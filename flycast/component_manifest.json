@@ -20,8 +20,7 @@
         "md5": "e10c53c2f8b90bab96ead2d368858623",
         "system": "dreamcast",
         "description": "Dreamcast BIOS",
-        "paths": "$bios_path/dc",
-        "required": "Required"
+        "paths": "$bios_path/dc"
       },
       {
         "filename": "naomi.zip",
