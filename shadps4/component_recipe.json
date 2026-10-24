@@ -13,6 +13,11 @@
           "dest": "bin"
         },
         {
+          "type": "dir",
+          "source": "share/licenses/net.shadps4.shadPS4/",
+          "dest": "docs"
+        },
+        {
           "type": "create",
           "dest": "component_version",
           "contents": "$SOURCE_VERSION"
