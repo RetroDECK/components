@@ -56,9 +56,6 @@ _prepare_component::shadps4() {
         # shader
         dir_prep "$shaders_path/shadPS4/shader" "$XDG_DATA_HOME/shadPS4/shader"
 
-        # shader
-        dir_prep "$shaders_path/shadPS4/shader" "$XDG_DATA_HOME/shadPS4/shader"
-
     ;;
 
     postmove)
@@ -94,9 +91,6 @@ _prepare_component::shadps4() {
 
         # Screenshots
         dir_prep "$screenshots_path/shadPS4/screenshots" "$XDG_DATA_HOME/shadPS4/screenshots"
-
-        # shader
-        dir_prep "$shaders_path/shadPS4/shader" "$XDG_DATA_HOME/shadPS4/shader"
 
         # shader
         dir_prep "$shaders_path/shadPS4/shader" "$XDG_DATA_HOME/shadPS4/shader"
