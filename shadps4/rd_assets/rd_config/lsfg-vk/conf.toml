@@ -1,0 +1,25 @@
+version = 2
+
+[global]
+allow_fp16 = true
+log_level = "info"
+
+[[profile]]
+active_in = [ "vkcube", "vkcubepp" ]
+flow_scale = 0.85
+multiplier = 4
+name = "4x FG / 85% [Performance]"
+override_present_mode = true
+pacing_mode = "vsync"
+performance_mode = true
+preserve_swapchain_image_count = false
+
+[[profile]]
+active_in = "GenshinImpact.exe"
+flow_scale = 1.0
+multiplier = 2
+name = "2x FG / 100%"
+override_present_mode = true
+pacing_mode = "vsync"
+performance_mode = false
+preserve_swapchain_image_count = false
