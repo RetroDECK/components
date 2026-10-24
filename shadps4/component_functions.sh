@@ -106,7 +106,7 @@ _prepare_component::shadps4() {
   esac
 }
 
-_post_update::simcoupe() {
+_post_update::shadps4() {
   local previous_version="$1"
 
   if check_version_is_older_than "$previous_version" "0.11.0"; then
