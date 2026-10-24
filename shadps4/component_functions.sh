@@ -24,9 +24,10 @@ _prepare_component::shadps4() {
         cp -f "$component_config/shadPS4QtLauncher" "$XDG_DATA_HOME/shadPS4QtLauncher" 
         cp -f "$component_config/lsfg-vk" "$XDG_CONFIG_HOME/lsfg-vk"
 
-        # Storage
+        # Storage Installed Game Path
 
         create_dir -d "$storage_path/shadPS4/installed"
+        jq --arg path "$storage_path/shadPS4/installed" '.install_dirs |= map(.path = $path)' "$shadps4_config" 
 
         # Storage
         dir_prep "$storage_path/shadPS4/addcont" "$XDG_DATA_HOME/shadPS4/addcont"
@@ -65,6 +66,9 @@ _prepare_component::shadps4() {
       log i "------------------------"
       log i "Post-moving shadPS4"
       log i "------------------------"
+
+        # Storage Installed Game Path
+        jq --arg path "$storage_path/shadPS4/installed" '.install_dirs |= map(.path = $path)' "$shadps4_config" 
 
         # Storage
         dir_prep "$storage_path/shadPS4/addcont" "$XDG_DATA_HOME/shadPS4/addcont"
