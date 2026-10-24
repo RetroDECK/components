@@ -1,10 +1,13 @@
 {
   "cemu": {
-    "description": "Cemu is a Nintendo Wii U (wiiu) emulator.",
+    "description": "Nintendo Wii U emulator.",
     "name": "Cemu",
     "core_framework_compatibility": "1",
     "component_version": "1.0.0",
-    "capabilities": ["reset","open"],
+    "capabilities": [
+      "reset",
+      "open"
+    ],
     "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/cemu/cemu-guide/",
     "url_webpage": "https://cemu.info/",
     "url_donation_purchase": "https://www.patreon.com/cemu",
@@ -14,8 +17,12 @@
     "system_friendly_name": "Wii U",
     "backup_data": {
       "core": [
-        {"path": "$XDG_CONFIG_HOME/Cemu"},
-        {"path": "$XDG_DATA_HOME/Cemu"}
+        {
+          "path": "$XDG_CONFIG_HOME/Cemu"
+        },
+        {
+          "path": "$XDG_DATA_HOME/Cemu"
+        }
       ]
     },
     "es_de_config": {
@@ -50,6 +57,29 @@
           ],
           "platform": "wiiu",
           "theme": "wiiu"
+        }
+      ],
+      "bios": [
+        {
+          "filename": "keys.txt",
+          "system": "wiiu",
+          "description": "Contains the necessary decryption keys for encrypted games.",
+          "required": "Optional",
+          "paths": "$bios_path/Cemu-SA"
+        },
+        {
+          "filename": "otp.bin",
+          "system": "wiiu",
+          "description": "For Online Services, online system data.",
+          "required": "Optional",
+          "paths": "$saves_path/Cemu-SA/mlc01"
+        },
+        {
+          "filename": "seeprom.bin",
+          "system": "wiiu",
+          "description": "For Online Services, online communication data.",
+          "required": "Optional",
+          "paths": "$saves_path/Cemu-SA/mlc01"
         }
       ]
     }

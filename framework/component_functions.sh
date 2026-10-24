@@ -137,7 +137,7 @@ _prepare_component::retrodeck() {
       done < <(jq -r '.paths | to_entries[] | [.key, (.value | tostring)] | @tsv' "$rd_conf")
 
       create_dir -d "$XDG_CONFIG_HOME/retrodeck/graphics"
-      rsync -rlD --mkpath "/app/retrodeck/graphics/folder-iconsets/" "$folder_iconsets_dir"
+      handle_folder_iconsets "$iconset"
     ;;
 
     postmove)
@@ -1216,5 +1216,5 @@ _post_update::retrodeck() {
   # These actions happen at every update
   #######################################
 
-  rsync -rlD --mkpath "/app/retrodeck/graphics/folder-iconsets/" "$folder_iconsets_dir"
+  handle_folder_iconsets "$iconset"
 }

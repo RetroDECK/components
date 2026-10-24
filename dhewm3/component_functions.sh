@@ -1,0 +1,52 @@
+#!/bin/bash
+
+export dhewm3_config="$XDG_CONFIG_HOME/dhewm3/base/dhewm.cfg"
+
+_prepare_component::dhewm3() {
+  local action="$1"
+  shift
+
+  local component_config="$(get_own_component_path)/rd_config"
+
+  case "$action" in
+
+    reset)
+      log i "------------------------"
+      log i "Resetting dhewm 3"
+      log i "------------------------"
+
+      create_dir "$XDG_CONFIG_HOME/dhewm3"
+      cp -fr "$component_config/"* "$XDG_CONFIG_HOME/dhewm3/"
+
+      create_dir "$roms_path/doom3/d3xp"  # Base dirs
+      create_dir "$roms_path/doom3/base"
+
+      dir_prep "$roms_path/doom3" "$XDG_DATA_HOME/dhewm3" # XDG_DATA_HOME must be symlinked to the DOOM 3 directory for mods to work.
+
+      cp -fr "$component_config/"* "$roms_path/doom3"
+
+    ;;
+
+        postmove)
+      log i "------------------------"
+      log i "Post-moving dhewm 3"
+      log i "------------------------"
+
+      dir_prep "$roms_path/doom3" "$XDG_DATA_HOME/dhewm3" # XDG_DATA_HOME must be symlinked to the DOOM 3 directory for mods to work.
+
+    ;;
+
+  esac
+}
+
+_post_update::dhewm3() {
+  local previous_version="$1"
+
+  if check_version_is_older_than "$previous_version" "0.11.0"; then
+    log i "0.11.0 dhewm3 Setup"
+
+    prepare_component "reset" "dhewm3"
+  fi
+
+}
+

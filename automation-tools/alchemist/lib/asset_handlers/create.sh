@@ -9,6 +9,7 @@ handle_asset() {
   local source="$2"
   local dest="$3"
   local contents="$4"
+  local executable="${5:-}"
 
   local final_dest="$dest"
 
@@ -31,6 +32,11 @@ handle_asset() {
   if ! process_asset_cmd "$final_dest" "$contents"; then
     log error "File $final_dest could not be created"
     return 1
+  fi
+
+  if [[ "$executable" == "true" ]]; then
+    log info "Marking created file as executable."
+    chmod +x "$final_dest"
   fi
 
   log info "File $final_dest created"

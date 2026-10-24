@@ -3,8 +3,11 @@
     "name": "RetroArch",
     "core_framework_compatibility": "1",
     "component_version": "1.0.0",
-    "capabilities": ["reset","open"],
-    "description": "RetroArch is a multi-emulator frontend (Libretro).",
+    "capabilities": [
+      "reset",
+      "open"
+    ],
+    "description": "Multi-system emulator frontend for running games through Libretro cores.",
     "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/retroarch/retroarch-guide/",
     "url_webpage": "https://www.libretro.com/",
     "url_donation_purchase": [
@@ -20,7 +23,9 @@
     "system_friendly_name": "Multiple Retro Systems",
     "backup_data": {
       "core": [
-        {"path": "$XDG_CONFIG_HOME/retroarch"}
+        {
+          "path": "$XDG_CONFIG_HOME/retroarch"
+        }
       ]
     },
     "es_de_config": {
@@ -74,7 +79,7 @@
           "name": "amiga",
           "fullname": "Commodore Amiga",
           "path": "%ROMPATH%/amiga",
-          "extension": ".7z .adf .adz .ccd .chd .cue .dms .fdi .hdf .hdz .ipf .iso .lha .m3u .mds .nrg .rp9 .uae .zip",
+          "extension": ".7z .adf .adz .ccd .chd .cue .dms .fdi .fs-uae .hdf .hdz .ipf .iso .lha .m3u .mds .nrg .rp9 .uae .zip",
           "commands": [
             {
               "label": "PUAE",
@@ -85,6 +90,16 @@
               "label": "PUAE 2021",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/puae2021_libretro.so %ROM%",
               "priority": 20
+            },
+            {
+              "label": "Amiberry",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/amiberry_libretro.so %ROM%",
+              "priority": 70
+            },
+            {
+              "label": "FS-UAE",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/fsuae_libretro.so %ROM%",
+              "priority": 80
             }
           ],
           "platform": "amiga",
@@ -105,6 +120,16 @@
               "label": "PUAE 2021",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/puae2021_libretro.so %ROM%",
               "priority": 20
+            },
+            {
+              "label": "Amiberry",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/amiberry_libretro.so %ROM%",
+              "priority": 70
+            },
+            {
+              "label": "FS-UAE",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/fsuae_libretro.so %ROM%",
+              "priority": 80
             }
           ],
           "platform": "amiga",
@@ -174,12 +199,17 @@
           "name": "apple2",
           "fullname": "Apple II",
           "path": "%ROMPATH%/apple2",
-          "extension": ".do .dsk .nib .po",
+          "extension": ".bin .do .dsk .nib .po .gz .woz .zip .2mg .2img .iie .apl .hdv .yaml .m3u",
           "commands": [
+            {
+              "label": "AppleWin",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/applewin_libretro.so %ROM%",
+              "priority": 10
+            },
             {
               "label": "MAME - Current",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame_libretro.so \"apple2e -rompath \\\"%GAMEDIRRAW%;%ROMPATH%/apple2\\\" -gameio joy -flop1 \\\"%GAMEDIRRAW%/%FILENAME%\\\"\"",
-              "priority": 10
+              "priority": 20
             }
           ],
           "platform": "apple2",
@@ -212,13 +242,8 @@
               "priority": 10
             },
             {
-              "label": "MAME 2010",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2010_libretro.so %ROM%",
-              "priority": 20
-            },
-            {
-              "label": "MAME 2003-Plus",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2003_plus_libretro.so %ROM%",
+              "label": "MAME 2000",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2000_libretro.so %ROM%",
               "priority": 30
             },
             {
@@ -227,39 +252,59 @@
               "priority": 40
             },
             {
-              "label": "MAME 2000",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2000_libretro.so %ROM%",
+              "label": "MAME 2003-Plus",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2003_plus_libretro.so %ROM%",
               "priority": 50
             },
             {
-              "label": "FinalBurn Neo",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/fbneo_libretro.so %ROM%",
+              "label": "MAME 2010",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2010_libretro.so %ROM%",
+              "priority": 60
+            },
+            {
+              "label": "MAME 2015",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2015_libretro.so %ROM%",
               "priority": 70
             },
             {
-              "label": "FB Alpha 2012",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/fbalpha2012_libretro.so %ROM%",
+              "label": "MAME 2016",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2016_libretro.so %ROM%",
               "priority": 80
-            },
-            {
-              "label": "Geolith",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/geolith_libretro.so %ROM%",
-              "priority": 90
-            },
-            {
-              "label": "Flycast",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/flycast_libretro.so %ROM%",
-              "priority": 100
-            },
-            {
-              "label": "Kronos",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/kronos_libretro.so %ROM%",
-              "priority": 110
             },
             {
               "label": "DICE",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/dice_libretro.so %ROM%",
+              "priority": 90
+            },
+            {
+              "label": "FB Alpha 2012",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/fbalpha2012_libretro.so %ROM%",
+              "priority": 100
+            },
+            {
+              "label": "FinalBurn Neo",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/fbneo_libretro.so %ROM%",
+              "priority": 110
+            },
+            {
+              "label": "Flycast",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/flycast_libretro.so %ROM%",
               "priority": 120
+            },
+            {
+              "label": "Geolith",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/geolith_libretro.so %ROM%",
+              "priority": 130
+            },
+            {
+              "label": "HBMAME (HomeBrew MAME)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/hbmame_libretro.so %ROM%",
+              "priority": 140
+            },
+            {
+              "label": "Kronos",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/kronos_libretro.so %ROM%",
+              "priority": 150
             }
           ],
           "platform": "arcade",
@@ -269,12 +314,17 @@
           "name": "arcadia",
           "fullname": "Emerson Arcadia 2001",
           "path": "%ROMPATH%/arcadia",
-          "extension": ".7z .bin .zip",
+          "extension": ".7z .bin .tvc .zip",
           "commands": [
+            {
+              "label": "AmiArcadia",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/amiarcadia_libretro.so %ROM%",
+              "priority": 10
+            },
             {
               "label": "MAME - Current",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame_libretro.so \"arcadia -rompath \\\"%GAMEDIRRAW%;%ROMPATH%/arcadia\\\" -cart \\\"%ROMRAW%\\\"\"",
-              "priority": 10
+              "priority": 20
             }
           ],
           "platform": "arcadia",
@@ -335,6 +385,11 @@
               "label": "Stella 2023",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/stella2023_libretro.so %ROM%",
               "priority": 30
+            },
+            {
+              "label": "TIA",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/tia_libretro.so %ROM%",
+              "priority": 40
             }
           ],
           "platform": "atari2600",
@@ -430,6 +485,11 @@
               "label": "Holani",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/holani_libretro.so %ROM%",
               "priority": 30
+            },
+            {
+              "label": "Gearlynx",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/gearlynx_libretro.so %ROM%",
+              "priority": 40
             }
           ],
           "platform": "atarilynx",
@@ -442,9 +502,19 @@
           "extension": ".7z .dim .ipf .m3u .msa .st .stx .zip",
           "commands": [
             {
-              "label": "Hatari",
+              "label": "hatari",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/hatari_libretro.so %ROM%",
               "priority": 10
+            },
+            {
+              "label": "hatariB",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/hatarib_libretro.so %ROM%",
+              "priority": 20
+            },
+            {
+              "label": "hatari2014",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/hatari2014_libretro.so %ROM%",
+              "priority": 30
             }
           ],
           "platform": "atarist",
@@ -496,35 +566,70 @@
           "theme": "bbcmicro"
         },
         {
+          "name": "bbk",
+          "fullname": "BBK Electronic Dictionary",
+          "path": "%ROMPATH%/bbk",
+          "extension": ".gam",
+          "commands": [
+            {
+              "label": "BBKEmu",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bbkemu_libretro.so %ROM%",
+              "priority": 10
+            },
+            {
+              "label": "GAM4980",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/gam4980_libretro.so %ROM%",
+              "priority": 20
+            }
+          ],
+          "platform": "bbk",
+          "theme": "bbk"
+        },
+        {
           "name": "c64",
           "fullname": "Commodore 64",
           "path": "%ROMPATH%/c64",
           "extension": ".7z .bin .cmd .crt .d2m .d4m .d64 .d6z .d71 .d7z .d80 .d81 .d82 .d8z .g41 .g4z .g64 .g6z .gz .lnx .m3u .nbz .nib .p00 .prg .t64 .tap .vfl .vsf .x64 .x6z .zip",
           "commands": [
             {
-              "label": "VICE x64sc Accurate",
+              "label": "VICE x64sc Accurate (Commodore C64)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/vice_x64sc_libretro.so %ROM%",
               "priority": 10
             },
             {
-              "label": "VICE x64 Fast",
+              "label": "VICE x64 Fast (Commodore C64)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/vice_x64_libretro.so %ROM%",
               "priority": 20
             },
             {
-              "label": "VICE x64 SuperCPU",
+              "label": "VICE xscpu64 (Commodore C64 SuperCPU)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/vice_xscpu64_libretro.so %ROM%",
               "priority": 30
             },
             {
-              "label": "VICE x128",
+              "label": "VICE x128 (Commodore C128)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/vice_x128_libretro.so %ROM%",
               "priority": 40
             },
             {
+              "label": "VICE xpet (Commodore PET)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/vice_xpet_libretro.so %ROM%",
+              "priority": 50
+            },
+            {
+              "label": "VICE xcbm2 (Commodore CBM-II 6x0/7x0)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/vice_xpet_libretro.so %ROM%",
+              "priority": 60
+            },
+            {
+              "label": "VICE xcbm5x0 (Commodore CBM-II 5x0)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/vice_xcbm5x0_libretro.so %ROM%",
+              "priority": 70
+            },
+            {
               "label": "Frodo",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/frodo_libretro.so %ROM%",
-              "priority": 50
+              "priority": 80
             }
           ],
           "platform": "c64",
@@ -565,6 +670,11 @@
               "label": "PUAE 2021",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/puae2021_libretro.so %ROM%",
               "priority": 20
+            },
+            {
+              "label": "VICE x64dtv (Commodore C64DTV)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/vice_x64dtv_libretro.so %ROM%",
+              "priority": 30
             }
           ],
           "platform": "cdtv",
@@ -584,6 +694,21 @@
           ],
           "platform": "love",
           "theme": "chailove"
+        },
+        {
+          "name": "chip-8",
+          "fullname": "CHIP-8",
+          "path": "%ROMPATH%/chip-8",
+          "extension": ".ch8 .sc8 .xo8 .bin .rom",
+          "commands": [
+            {
+              "label": "JAXE",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/jaxe_libretro.so %ROM%",
+              "priority": 10
+            }
+          ],
+          "platform": "chip-8",
+          "theme": "chip-8"
         },
         {
           "name": "channelf",
@@ -620,6 +745,11 @@
               "label": "Gearcoleco",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/gearcoleco_libretro.so %ROM%",
               "priority": 20
+            },
+            {
+              "label": "JollyCV",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/jollycv_libretro.so %ROM%",
+              "priority": 30
             }
           ],
           "platform": "colecovision",
@@ -662,13 +792,8 @@
               "priority": 10
             },
             {
-              "label": "MAME 2010",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2010_libretro.so %ROM%",
-              "priority": 20
-            },
-            {
-              "label": "MAME 2003-Plus",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2003_plus_libretro.so %ROM%",
+              "label": "MAME 2000",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2000_libretro.so %ROM%",
               "priority": 30
             },
             {
@@ -677,34 +802,49 @@
               "priority": 40
             },
             {
-              "label": "MAME 2000",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2000_libretro.so %ROM%",
+              "label": "MAME 2003-Plus",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2003_plus_libretro.so %ROM%",
               "priority": 50
             },
             {
-              "label": "FinalBurn Neo",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/fbneo_libretro.so %ROM%",
+              "label": "MAME 2010",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2010_libretro.so %ROM%",
+              "priority": 60
+            },
+            {
+              "label": "MAME 2015",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2015_libretro.so %ROM%",
               "priority": 70
+            },
+            {
+              "label": "MAME 2016",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2016_libretro.so %ROM%",
+              "priority": 80
             },
             {
               "label": "FB Alpha 2012",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/fbalpha2012_libretro.so %ROM%",
-              "priority": 80
+              "priority": 90
             },
             {
               "label": "FB Alpha 2012 CPS-1",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/fbalpha2012_cps1_libretro.so %ROM%",
-              "priority": 90
+              "priority": 100
             },
             {
               "label": "FB Alpha 2012 CPS-2",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/fbalpha2012_cps2_libretro.so %ROM%",
-              "priority": 100
+              "priority": 110
             },
             {
               "label": "FB Alpha 2012 CPS-3",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/fbalpha2012_cps3_libretro.so %ROM%",
-              "priority": 110
+              "priority": 120
+            },
+            {
+              "label": "FinalBurn Neo",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/fbneo_libretro.so %ROM%",
+              "priority": 130
             }
           ],
           "platform": "arcade",
@@ -722,13 +862,8 @@
               "priority": 10
             },
             {
-              "label": "MAME 2010",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2010_libretro.so %ROM%",
-              "priority": 20
-            },
-            {
-              "label": "MAME 2003-Plus",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2003_plus_libretro.so %ROM%",
+              "label": "MAME 2000",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2000_libretro.so %ROM%",
               "priority": 30
             },
             {
@@ -737,24 +872,39 @@
               "priority": 40
             },
             {
-              "label": "MAME 2000",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2000_libretro.so %ROM%",
+              "label": "MAME 2003-Plus",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2003_plus_libretro.so %ROM%",
               "priority": 50
             },
             {
-              "label": "FinalBurn Neo",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/fbneo_libretro.so %ROM%",
+              "label": "MAME 2010",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2010_libretro.so %ROM%",
+              "priority": 60
+            },
+            {
+              "label": "MAME 2015",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2015_libretro.so %ROM%",
               "priority": 70
+            },
+            {
+              "label": "MAME 2016",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2016_libretro.so %ROM%",
+              "priority": 80
             },
             {
               "label": "FB Alpha 2012",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/fbalpha2012_libretro.so %ROM%",
-              "priority": 80
+              "priority": 90
             },
             {
               "label": "FB Alpha 2012 CPS-1",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/fbalpha2012_cps1_libretro.so %ROM%",
-              "priority": 90
+              "priority": 100
+            },
+            {
+              "label": "FinalBurn Neo",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/fbneo_libretro.so %ROM%",
+              "priority": 110
             }
           ],
           "platform": "arcade",
@@ -772,13 +922,8 @@
               "priority": 10
             },
             {
-              "label": "MAME 2010",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2010_libretro.so %ROM%",
-              "priority": 20
-            },
-            {
-              "label": "MAME 2003-Plus",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2003_plus_libretro.so %ROM%",
+              "label": "MAME 2000",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2000_libretro.so %ROM%",
               "priority": 30
             },
             {
@@ -787,24 +932,39 @@
               "priority": 40
             },
             {
-              "label": "MAME 2000",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2000_libretro.so %ROM%",
+              "label": "MAME 2003-Plus",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2003_plus_libretro.so %ROM%",
               "priority": 50
             },
             {
-              "label": "FinalBurn Neo",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/fbneo_libretro.so %ROM%",
+              "label": "MAME 2010",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2010_libretro.so %ROM%",
+              "priority": 60
+            },
+            {
+              "label": "MAME 2015",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2015_libretro.so %ROM%",
               "priority": 70
+            },
+            {
+              "label": "MAME 2016",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2016_libretro.so %ROM%",
+              "priority": 80
             },
             {
               "label": "FB Alpha 2012",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/fbalpha2012_libretro.so %ROM%",
-              "priority": 80
+              "priority": 90
             },
             {
               "label": "FB Alpha 2012 CPS-2",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/fbalpha2012_cps2_libretro.so %ROM%",
-              "priority": 90
+              "priority": 100
+            },
+            {
+              "label": "FinalBurn Neo",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/fbneo_libretro.so %ROM%",
+              "priority": 110
             }
           ],
           "platform": "arcade",
@@ -822,13 +982,8 @@
               "priority": 10
             },
             {
-              "label": "MAME 2010",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2010_libretro.so %ROM%",
-              "priority": 20
-            },
-            {
-              "label": "MAME 2003-Plus",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2003_plus_libretro.so %ROM%",
+              "label": "MAME 2000",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2000_libretro.so %ROM%",
               "priority": 30
             },
             {
@@ -837,24 +992,39 @@
               "priority": 40
             },
             {
-              "label": "MAME 2000",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2000_libretro.so %ROM%",
+              "label": "MAME 2003-Plus",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2003_plus_libretro.so %ROM%",
               "priority": 50
             },
             {
-              "label": "FinalBurn Neo",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/fbneo_libretro.so %ROM%",
+              "label": "MAME 2010",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2010_libretro.so %ROM%",
+              "priority": 60
+            },
+            {
+              "label": "MAME 2015",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2015_libretro.so %ROM%",
               "priority": 70
+            },
+            {
+              "label": "MAME 2016",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2016_libretro.so %ROM%",
+              "priority": 80
             },
             {
               "label": "FB Alpha 2012",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/fbalpha2012_libretro.so %ROM%",
-              "priority": 80
+              "priority": 90
             },
             {
               "label": "FB Alpha 2012 CPS-3",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/fbalpha2012_cps3_libretro.so %ROM%",
-              "priority": 90
+              "priority": 100
+            },
+            {
+              "label": "FinalBurn Neo",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/fbneo_libretro.so %ROM%",
+              "priority": 110
             }
           ],
           "platform": "arcade",
@@ -877,7 +1047,7 @@
         },
         {
           "name": "daphne",
-          "fullname": "Daphne Arcade LaserDisc Emulator",
+          "fullname": "Daphne Arcade LaserDisc",
           "path": "%ROMPATH%/daphne",
           "extension": ".7z .daphne .dirksimple .mmi .ogv .singe .zip",
           "commands": [
@@ -896,6 +1066,21 @@
           "theme": "daphne"
         },
         {
+          "name": "dingoo",
+          "fullname": "Dingoo A320",
+          "path": "%ROMPATH%/dingoo",
+          "extension": ".app",
+          "commands": [
+            {
+              "label": "DingooEmu",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/dingooemu_libretro.so %ROM%",
+              "priority": 10
+            }
+          ],
+          "platform": "dingoo",
+          "theme": "dingoo"
+        },
+        {
           "name": "doom",
           "fullname": "Doom",
           "path": "%ROMPATH%/doom",
@@ -905,20 +1090,30 @@
               "label": "PrBoom",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/prboom_libretro.so %ROM%",
               "priority": 20
-            },
+            }
+          ],
+          "platform": "pc, pcwindows",
+          "theme": "doom"
+        },
+        {
+          "name": "doom3",
+          "fullname": "Doom 3",
+          "path": "%ROMPATH%/doom3",
+          "extension": ".pk4",
+          "commands": [
             {
-              "label": "Boom 3",
+              "label": "Boom 3 [Main Campain]",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/boom3_libretro.so %ROM%",
               "priority": 30
             },
             {
-              "label": "Boom 3 xp",
+              "label": "Boom 3 [Resurrection of Evil]",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/boom3_xp_libretro.so %ROM%",
               "priority": 40
             }
           ],
           "platform": "pc, pcwindows",
-          "theme": "doom"
+          "theme": "doom3"
         },
         {
           "name": "dos",
@@ -945,6 +1140,21 @@
               "label": "VirtualXT",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/virtualxt_libretro.so %ROM%",
               "priority": 40
+            },
+            {
+              "label": "DosBox",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/dosbox_libretro.so %ROM%",
+              "priority": 50
+            },
+            {
+              "label": "PCem",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/pcem_libretro.so %ROM%",
+              "priority": 60
+            },
+            {
+              "label": "Rust DOS",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/rust_dos_libretro.so %ROM%",
+              "priority": 70
             }
           ],
           "platform": "dos",
@@ -966,6 +1176,21 @@
           "theme": "dreamcast"
         },
         {
+          "name": "dreamcastvmu",
+          "fullname": "Sega Dreamcast VMU",
+          "path": "%ROMPATH%/dreamcastvmu",
+          "extension": ".vms .dci .bin",
+          "commands": [
+            {
+              "label": "VeMUlator",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/vemulator_libretro.so %ROM%",
+              "priority": 10
+            }
+          ],
+          "platform": "dreamcastvmu",
+          "theme": "dreamcastvmu"
+        },
+        {
           "name": "easyrpg",
           "fullname": "EasyRPG Game Engine",
           "path": "%ROMPATH%/easyrpg",
@@ -979,6 +1204,36 @@
           ],
           "platform": "easyrpg",
           "theme": "easyrpg"
+        },
+        {
+          "name": "elektronika",
+          "fullname": "Electronica BK",
+          "path": "%ROMPATH%/elektronika",
+          "extension": ".bin",
+          "commands": [
+            {
+              "label": "bk",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bk_libretro.so %ROM%",
+              "priority": 10
+            }
+          ],
+          "platform": "elektronika",
+          "theme": "elektronika"
+        },
+        {
+          "name": "enterprise",
+          "fullname": "Enterprise - 64/128",
+          "path": "%ROMPATH%/enterprise",
+          "extension": ".img .dsk .vhd .tap .dtf .cas .wav .tvcwav .cdt .tzx .bas .com .trn .128 .",
+          "commands": [
+            {
+              "label": "ep128emu",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/ep128emu_core_libretro.so %ROM%",
+              "priority": 10
+            }
+          ],
+          "platform": "enterprise",
+          "theme": "enterprise"
         },
         {
           "name": "famicom",
@@ -1092,13 +1347,33 @@
           "extension": ".cdr .chd .cue .gdi .iso",
           "commands": [
             {
+              "label": "Geartowns",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/geartowns_libretro.so %ROM%",
+              "priority": 10
+            },
+            {
               "label": "MAME - Current",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame_libretro.so \"fmtownshr -rompath \\\"%GAMEDIRRAW%;%ROMPATH%/fmtowns\\\" -cdrom \\\"%GAMEDIRRAW%/%FILENAME%\\\"\"",
-              "priority": 10
+              "priority": 30
             }
           ],
           "platform": "fmtowns",
           "theme": "fmtowns"
+        },
+        {
+          "name": "galaksija",
+          "fullname": "Galaksija",
+          "path": "%ROMPATH%/galaksija",
+          "extension": ".gal",
+          "commands": [
+            {
+              "label": "Galaksija",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/galaksija_libretro.so %ROM%",
+              "priority": 10
+            }
+          ],
+          "platform": "galaksija",
+          "theme": "galaksija"
         },
         {
           "name": "gamate",
@@ -1235,6 +1510,26 @@
               "label": "VBA-M",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/vbam_libretro.so %ROM%",
               "priority": 90
+            },
+            {
+              "label": "IroGB",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/irogb_libretro.so %ROM%",
+              "priority": 100
+            },
+            {
+              "label": "Mesen2",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mesen2_libretro.so %ROM%",
+              "priority": 110
+            },
+            {
+              "label": "fixGB",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/fixgb_libretro.so %ROM%",
+              "priority": 120
+            },
+            {
+              "label": "SkyEmu",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/skyemu_libretro.so %ROM%",
+              "priority": 130
             }
           ],
           "platform": "gb",
@@ -1270,6 +1565,26 @@
               "label": "NooDS",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/noods_libretro.so %ROM%",
               "priority": 50
+            },
+            {
+              "label": "Mesen2",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mesen2_libretro.so %ROM%",
+              "priority": 60
+            },
+            {
+              "label": "Mednafen GBA",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mednafen_gba_libretro.so %ROM%",
+              "priority": 70
+            },
+            {
+              "label": "Meteor",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/meteor_libretro.so %ROM%",
+              "priority": 80
+            },
+            {
+              "label": "SkyEmu",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/skyemu_libretro.so %ROM%",
+              "priority": 90
             }
           ],
           "platform": "gba",
@@ -1314,17 +1629,37 @@
             {
               "label": "bsnes",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes_libretro.so %ROM%",
-              "priority": 70
+              "priority": 80
             },
             {
               "label": "mGBA",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mgba_libretro.so %ROM%",
-              "priority": 80
+              "priority": 90
             },
             {
               "label": "VBA-M",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/vbam_libretro.so %ROM%",
-              "priority": 90
+              "priority": 100
+            },
+            {
+              "label": "IroGB",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/irogb_libretro.so %ROM%",
+              "priority": 110
+            },
+            {
+              "label": "Mesen2",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mesen2_libretro.so %ROM%",
+              "priority": 120
+            },
+            {
+              "label": "fixGB",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/fixgb_libretro.so %ROM%",
+              "priority": 130
+            },
+            {
+              "label": "SkyEmu",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/skyemu_libretro.so %ROM%",
+              "priority": 140
             }
           ],
           "platform": "gbc",
@@ -1370,6 +1705,16 @@
               "label": "BlastEm",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/blastem_libretro.so %ROM%",
               "priority": 40
+            },
+            {
+              "label": "Genesis Plus GX [Expanded Rom Size] (Paprium)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/genesis_plus_gx_paprium_libretro.so %ROM%",
+              "priority": 50
+            },
+            {
+              "label": "ClownMDEmu",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/clownmdemu_libretro.so %ROM%",
+              "priority": 60
             }
           ],
           "platform": "genesis",
@@ -1516,6 +1861,21 @@
           "theme": "lutro"
         },
         {
+          "name": "macintosh",
+          "fullname": "Apple Macintosh",
+          "path": "%ROMPATH%/macintosh",
+          "extension": ".dsk .img .zip .hvf .cmd",
+          "commands": [
+            {
+              "label": "minivmac",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/minivmac_libretro.so %ROM%",
+              "priority": 50
+            }
+          ],
+          "platform": "macintosh",
+          "theme": "macintosh"
+        },
+        {
           "name": "mame",
           "fullname": "Multiple Arcade Machine Emulator",
           "path": "%ROMPATH%/mame",
@@ -1527,54 +1887,74 @@
               "priority": 10
             },
             {
-              "label": "MAME 2010",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2010_libretro.so %ROM%",
-              "priority": 20
+              "label": "MAME 2000",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2000_libretro.so %ROM%",
+              "priority": 30
             },
             {
               "label": "MAME 2003-Plus",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2003_plus_libretro.so %ROM%",
-              "priority": 30
+              "priority": 40
             },
             {
               "label": "MAME 2003",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2003_libretro.so %ROM%",
-              "priority": 40
-            },
-            {
-              "label": "MAME 2000",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2000_libretro.so %ROM%",
               "priority": 50
             },
             {
-              "label": "FinalBurn Neo",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/fbneo_libretro.so %ROM%",
+              "label": "MAME 2003 Midway",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2003_midway_libretro.so %ROM%",
+              "priority": 60
+            },
+            {
+              "label": "MAME 2010",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2010_libretro.so %ROM%",
               "priority": 70
             },
             {
-              "label": "FB Alpha 2012",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/fbalpha2012_libretro.so %ROM%",
+              "label": "MAME 2015",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2015_libretro.so %ROM%",
               "priority": 80
             },
             {
-              "label": "Geolith",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/geolith_libretro.so %ROM%",
+              "label": "MAME 2016",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2016_libretro.so %ROM%",
               "priority": 90
-            },
-            {
-              "label": "Flycast",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/flycast_libretro.so %ROM%",
-              "priority": 100
-            },
-            {
-              "label": "Kronos",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/kronos_libretro.so %ROM%",
-              "priority": 110
             },
             {
               "label": "DICE",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/dice_libretro.so %ROM%",
+              "priority": 100
+            },
+            {
+              "label": "FB Alpha 2012",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/fbalpha2012_libretro.so %ROM%",
+              "priority": 110
+            },
+            {
+              "label": "FinalBurn Neo",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/fbneo_libretro.so %ROM%",
               "priority": 120
+            },
+            {
+              "label": "Flycast",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/flycast_libretro.so %ROM%",
+              "priority": 130
+            },
+            {
+              "label": "Geolith",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/geolith_libretro.so %ROM%",
+              "priority": 140
+            },
+            {
+              "label": "HBMAME (HomeBrew MAME)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/hbmame_libretro.so %ROM%",
+              "priority": 150
+            },
+            {
+              "label": "Kronos",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/kronos_libretro.so %ROM%",
+              "priority": 160
             }
           ],
           "platform": "arcade",
@@ -1728,8 +2108,13 @@
             },
             {
               "label": "Genesis Plus GX [Expanded Rom Size] (Paprium)",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/genesis-plus-gx-expanded-rom-size-paprium_libretro.so %ROM%",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/genesis_plus_gx_paprium_libretro.so %ROM%",
               "priority": 50
+            },
+            {
+              "label": "ClownMDEmu",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/clownmdemu_libretro.so %ROM%",
+              "priority": 60
             }
           ],
           "platform": "megadrive",
@@ -1763,8 +2148,13 @@
             },
             {
               "label": "Genesis Plus GX [Expanded Rom Size] (Paprium)",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/genesis-plus-gx-expanded-rom-size-paprium_libretro.so %ROM%",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/genesis_plus_gx_paprium_libretro.so %ROM%",
               "priority": 50
+            },
+            {
+              "label": "ClownMDEmu",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/clownmdemu_libretro.so %ROM%",
+              "priority": 60
             }
           ],
           "platform": "megadrive",
@@ -1806,6 +2196,21 @@
           "theme": "mess"
         },
         {
+          "name": "microw8",
+          "fullname": "MicroW8",
+          "path": "%ROMPATH%/microw8",
+          "extension": ".uw8 .wasm",
+          "commands": [
+            {
+              "label": "UW8",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/uw8_libretro.so %ROM%",
+              "priority": 10
+            }
+          ],
+          "platform": "microw8",
+          "theme": "microw8"
+        },
+        {
           "name": "model2",
           "fullname": "Sega Model 2",
           "path": "%ROMPATH%/model2",
@@ -1814,11 +2219,26 @@
             {
               "label": "MAME - Current",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame_libretro.so %ROM%",
-              "priority": 10
+              "priority": 30
             }
           ],
           "platform": "arcade",
           "theme": "model2"
+        },
+        {
+          "name": "model3",
+          "fullname": "Sega Model 3",
+          "path": "%ROMPATH%/model3",
+          "extension": ".7z .zip",
+          "commands": [
+            {
+              "label": "Supermodel",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/supermodel_libretro.so %ROM%",
+              "priority": 10
+            }
+          ],
+          "platform": "arcade",
+          "theme": "model3"
         },
         {
           "name": "moto",
@@ -1932,19 +2352,24 @@
           "extension": ".3ds .3dsx .7z .app .axf .cci .cxi .desktop .elf .z3dsx .zcci .zcxi .zip",
           "commands": [
             {
+              "label": "Azahar",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/azahar_libretro.so %ROM%",
+              "priority": 20
+            },
+            {
               "label": "Citra",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/citra_libretro.so %ROM%",
-              "priority": 20
+              "priority": 30
             },
             {
               "label": "Citra 2018",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/citra2018_libretro.so %ROM%",
-              "priority": 30
+              "priority": 40
             },
             {
               "label": "Panda3DS",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/panda3ds_libretro.so %ROM%",
-              "priority": 40
+              "priority": 50
             }
           ],
           "platform": "n3ds",
@@ -2060,6 +2485,11 @@
               "label": "melonDS",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/melonds_libretro.so %ROM%",
               "priority": 40
+            },
+            {
+              "label": "SkyEmu",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/skyemu_libretro.so %ROM%",
+              "priority": 50
             }
           ],
           "platform": "nds",
@@ -2150,6 +2580,21 @@
               "label": "QuickNES",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/quicknes_libretro.so %ROM%",
               "priority": 40
+            },
+            {
+              "label": "Mesen2",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mesen2_libretro.so %ROM%",
+              "priority": 50
+            },
+            {
+              "label": "RustyNES",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/rustynes_libretro.so %ROM%",
+              "priority": 60
+            },
+            {
+              "label": "fixNES",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/fixnes_libretro.so %ROM%",
+              "priority": 70
             }
           ],
           "platform": "nes",
@@ -2196,6 +2641,21 @@
           "theme": "ngpc"
         },
         {
+          "name": "oberon",
+          "fullname": "Oberon RISC Emulator",
+          "path": "%ROMPATH%/oberon",
+          "extension": ".dsk",
+          "commands": [
+            {
+              "label": "Oberon",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/oberon_libretro.so %ROM%",
+              "priority": 10
+            }
+          ],
+          "platform": "oberon",
+          "theme": "oberon"
+        },
+        {
           "name": "odyssey2",
           "fullname": "Magnavox Odyssey 2",
           "path": "%ROMPATH%/odyssey2",
@@ -2216,6 +2676,21 @@
           "theme": "odyssey2"
         },
         {
+          "name": "omicron",
+          "fullname": "Omicron",
+          "path": "%ROMPATH%/omicron",
+          "extension": ".omicron",
+          "commands": [
+            {
+              "label": "Omicron",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/omicron_libretro.so %ROM%",
+              "priority": 10
+            }
+          ],
+          "platform": "omicron",
+          "theme": "omicron"
+        },
+        {
           "name": "palm",
           "fullname": "Palm OS",
           "path": "%ROMPATH%/palm",
@@ -2229,6 +2704,21 @@
           ],
           "platform": "palm",
           "theme": "palm"
+        },
+        {
+          "name": "p2000t",
+          "fullname": "Philips - P2000T",
+          "path": "%ROMPATH%/p2000t",
+          "extension": ".cas",
+          "commands": [
+            {
+              "label": "M2000",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/m2000_libretro.so %ROM%",
+              "priority": 10
+            }
+          ],
+          "platform": "p2000t",
+          "theme": "p2000t"
         },
         {
           "name": "pc",
@@ -2366,6 +2856,21 @@
           "theme": "pico8"
         },
         {
+          "name": "playdia",
+          "fullname": "Playdia",
+          "path": "%ROMPATH%/playdia",
+          "extension": ".cue .zip .iso bin",
+          "commands": [
+            {
+              "label": "PlaydiaEmu",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/playdiaemu_libretro.so %ROM%",
+              "priority": 10
+            }
+          ],
+          "platform": "playdia",
+          "theme": "playdia"
+        },
+        {
           "name": "plus4",
           "fullname": "Commodore Plus/4",
           "path": "%ROMPATH%/plus4",
@@ -2402,11 +2907,6 @@
           "extension": ".appimage .desktop .exe .game .phd .psx .sh",
           "commands": [
             {
-              "label": "ECWolf (Wolfenstein 3D)",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/ecwolf_libretro.so %ROM%",
-              "priority": 10
-            },
-            {
               "label": "CannonBall (OutRun)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/cannonball_libretro.so %ROM%",
               "priority": 20
@@ -2442,18 +2942,43 @@
           "extension": ".bin .chd .ciso .cso .desktop .dump .elf .gz .img .iso .isz .m3u .mdf .ngr .nrg .zso",
           "commands": [
             {
+              "label": "PCEE2",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/pcee2_libretro.so %ROM%",
+              "priority": 20
+            },
+            {
               "label": "LRPS2",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/pcsx2_libretro.so %ROM%",
-              "priority": 20
+              "priority": 30
             },
             {
               "label": "PCSX2",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/pcsx2_libretro.so %ROM%",
-              "priority": 30
+              "priority": 40
+            },
+            {
+              "label": "Play!",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/play_libretro.so %ROM%",
+              "priority": 50
             }
           ],
           "platform": "ps2",
           "theme": "ps2"
+        },
+        {
+          "name": "ps3",
+          "fullname": "Sony PlayStation 3",
+          "path": "%ROMPATH%/ps3",
+          "extension": ".sfb .sfo .iso .pkg .bin .self .elf",
+          "commands": [
+            {
+              "label": "RCPS3",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/rpcs3_libretro.so %ROM%",
+              "priority": 30
+            }
+          ],
+          "platform": "ps3",
+          "theme": "ps3"
         },
         {
           "name": "psp",
@@ -2469,6 +2994,36 @@
           ],
           "platform": "psp",
           "theme": "psp"
+        },
+        {
+          "name": "psvita",
+          "fullname": "Sony PlayStation Vita",
+          "path": "%ROMPATH%/psvita",
+          "extension": ".vpk .zip .pkg .bin",
+          "commands": [
+            {
+              "label": "Vita3K",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/vita3k_libretro.so %ROM%",
+              "priority": 20
+            }
+          ],
+          "platform": "psvita",
+          "theme": "psvita"
+        },
+        {
+          "name": "pocketstation",
+          "fullname": "Sony PocketStation",
+          "path": "%ROMPATH%/pocketstation",
+          "extension": ".mcr .mcs .pss .mcd .bin .gme",
+          "commands": [
+            {
+              "label": "pokketstation",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/pokketstation_libretro.so %ROM%",
+              "priority": 20
+            }
+          ],
+          "platform": "pocketstation",
+          "theme": "pocketstation"
         },
         {
           "name": "psx",
@@ -2519,15 +3074,25 @@
           "name": "quake",
           "fullname": "Quake",
           "path": "%ROMPATH%/quake",
-          "extension": ".desktop .pak .pk3 .sh",
+          "extension": ".pak",
           "commands": [
             {
               "label": "TyrQuake",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/tyrquake_libretro.so %ROM%",
-              "priority": 10
-            },
+              "priority": 20
+            }
+          ],
+          "platform": "pc, pcwindows",
+          "theme": "quake"
+        },
+        {
+          "name": "quake2",
+          "fullname": "Quake II",
+          "path": "%ROMPATH%/quake2",
+          "extension": ".pak",
+          "commands": [
             {
-              "label": "vitaQuake 2",
+              "label": "vitaQuake 2 [Main Game]",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/vitaquake2_libretro.so %ROM%",
               "priority": 20
             },
@@ -2545,15 +3110,40 @@
               "label": "vitaQuake 2 [Zaero]",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/vitaquake2-zaero_libretro.so %ROM%",
               "priority": 50
-            },
-            {
-              "label": "vitaQuake 3",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/vitaquake3_libretro.so %ROM%",
-              "priority": 60
             }
           ],
           "platform": "pc, pcwindows",
-          "theme": "quake"
+          "theme": "quake2"
+        },
+        {
+          "name": "quake3",
+          "fullname": "Quake III: Arena",
+          "path": "%ROMPATH%/quake3",
+          "extension": ".pak3",
+          "commands": [
+            {
+              "label": "vitaQuake 3",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/vitaquake3_libretro.so %ROM%",
+              "priority": 20
+            }
+          ],
+          "platform": "pc, pcwindows",
+          "theme": "quake3"
+        },
+        {
+          "name": "radio",
+          "fullname": "RetroArch Internet Radio",
+          "path": "%ROMPATH%/radio",
+          "extension": ".m3u .mp3 .wav",
+          "commands": [
+            {
+              "label": "RetroArch Internet Radio",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/radio_libretro.so %ROM%",
+              "priority": 10
+            }
+          ],
+          "platform": "radio",
+          "theme": "radio"
         },
         {
           "name": "satellaview",
@@ -2630,6 +3220,11 @@
               "label": "Yabause",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/yabause_libretro.so %ROM%",
               "priority": 40
+            },
+            {
+              "label": "Emir (Ymir)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/ymir_libretro.so %ROM%",
+              "priority": 50
             }
           ],
           "platform": "saturn",
@@ -2660,6 +3255,11 @@
               "label": "Yabause",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/yabause_libretro.so %ROM%",
               "priority": 40
+            },
+            {
+              "label": "Ymir",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/ymir_libretro.so %ROM%",
+              "priority": 50
             }
           ],
           "platform": "saturn",
@@ -2674,7 +3274,7 @@
             {
               "label": "ScummVM",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/scummvm_libretro.so %ROM%",
-              "priority": 10
+              "priority": 20
             }
           ],
           "platform": "scummvm",
@@ -2684,12 +3284,22 @@
           "name": "scv",
           "fullname": "Epoch Super Cassette Vision",
           "path": "%ROMPATH%/scv",
-          "extension": ".0 .7z .bin .zip",
+          "extension": ".0 .7z .bin .bin777 .zip",
           "commands": [
+            {
+              "label": "EmuSCV",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/emuscv_libretro.so %ROM%",
+              "priority": 10
+            },
+            {
+              "label": "PD777",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/pd777_libretro.so %ROM%",
+              "priority": 20
+            },
             {
               "label": "MAME - Current",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame_libretro.so \"scv -rompath \\\"%GAMEDIRRAW%;%ROMPATH%/scv\\\" -cart \\\"%ROMRAW%\\\"\"",
-              "priority": 10
+              "priority": 30
             }
           ],
           "platform": "scv",
@@ -2777,44 +3387,99 @@
               "priority": 10
             },
             {
-              "label": "Snes9x 2010",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/snes9x2010_libretro.so %ROM%",
+              "label": "Beetle Supafaust",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mednafen_supafaust_libretro.so %ROM%",
               "priority": 20
-            },
-            {
-              "label": "Snes9x 2005 Plus",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/snes9x2005_plus_libretro.so %ROM%",
-              "priority": 30
             },
             {
               "label": "bsnes",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes_libretro.so %ROM%",
+              "priority": 30
+            },
+            {
+              "label": "bsnes 2014 Accuracy",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes2014_accuracy_libretro.so %ROM%",
               "priority": 40
+            },
+            {
+              "label": "bsnes 2014 Balanced",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes2014_balanced_libretro.so %ROM%",
+              "priority": 50
+            },
+            {
+              "label": "bsnes 2014 Performance",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes2014_performance_libretro.so %ROM%",
+              "priority": 60
+            },
+            {
+              "label": "bsnes C++98 (v085)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes_cplusplus98_libretro.so %ROM%",
+              "priority": 70
             },
             {
               "label": "bsnes-hd",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes_hd_beta_libretro.so %ROM%",
-              "priority": 50
+              "priority": 80
             },
             {
               "label": "bsnes-jg",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes-jg_libretro.so %ROM%",
-              "priority": 60
+              "priority": 90
             },
             {
               "label": "bsnes-mercury Accuracy",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes_mercury_accuracy_libretro.so %ROM%",
-              "priority": 70
+              "priority": 100
             },
             {
-              "label": "Beetle Supafaust",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mednafen_supafaust_libretro.so %ROM%",
-              "priority": 80
+              "label": "bsnes-mercury Balanced",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes_mercury_balanced_libretro.so %ROM%",
+              "priority": 110
+            },
+            {
+              "label": "bsnes-mercury Performance",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes_mercury_performance_libretro.so %ROM%",
+              "priority": 120
+            },
+            {
+              "label": "Mednafen SNES",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mednafen_snes_libretro.so %ROM%",
+              "priority": 130
             },
             {
               "label": "Mesen-S",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mesen-s_libretro.so %ROM%",
-              "priority": 90
+              "priority": 140
+            },
+            {
+              "label": "Mesen2",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mesen2_libretro.so %ROM%",
+              "priority": 150
+            },
+            {
+              "label": "nSide Balanced",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/nside_sfc_balanced_libretro.so %ROM%",
+              "priority": 160
+            },
+            {
+              "label": "Snes9x 2002",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/snes9x2002_libretro.so %ROM%",
+              "priority": 170
+            },
+            {
+              "label": "Snes9x 2005",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/snes9x2005_libretro.so %ROM%",
+              "priority": 180
+            },
+            {
+              "label": "Snes9x 2005 Plus",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/snes9x2005_plus_libretro.so %ROM%",
+              "priority": 190
+            },
+            {
+              "label": "Snes9x 2010",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/snes9x2010_libretro.so %ROM%",
+              "priority": 200
             }
           ],
           "platform": "snes",
@@ -2887,44 +3552,99 @@
               "priority": 10
             },
             {
-              "label": "Snes9x 2010",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/snes9x2010_libretro.so %ROM%",
+              "label": "Beetle Supafaust",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mednafen_supafaust_libretro.so %ROM%",
               "priority": 20
-            },
-            {
-              "label": "Snes9x 2005 Plus",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/snes9x2005_plus_libretro.so %ROM%",
-              "priority": 30
             },
             {
               "label": "bsnes",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes_libretro.so %ROM%",
+              "priority": 30
+            },
+            {
+              "label": "bsnes 2014 Accuracy",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes2014_accuracy_libretro.so %ROM%",
               "priority": 40
+            },
+            {
+              "label": "bsnes 2014 Balanced",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes2014_balanced_libretro.so %ROM%",
+              "priority": 50
+            },
+            {
+              "label": "bsnes 2014 Performance",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes2014_performance_libretro.so %ROM%",
+              "priority": 60
+            },
+            {
+              "label": "bsnes C++98 (v085)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes_cplusplus98_libretro.so %ROM%",
+              "priority": 70
             },
             {
               "label": "bsnes-hd",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes_hd_beta_libretro.so %ROM%",
-              "priority": 50
+              "priority": 80
             },
             {
               "label": "bsnes-jg",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes-jg_libretro.so %ROM%",
-              "priority": 60
+              "priority": 90
             },
             {
               "label": "bsnes-mercury Accuracy",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes_mercury_accuracy_libretro.so %ROM%",
-              "priority": 70
+              "priority": 100
             },
             {
-              "label": "Beetle Supafaust",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mednafen_supafaust_libretro.so %ROM%",
-              "priority": 80
+              "label": "bsnes-mercury Balanced",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes_mercury_balanced_libretro.so %ROM%",
+              "priority": 110
+            },
+            {
+              "label": "bsnes-mercury Performance",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes_mercury_performance_libretro.so %ROM%",
+              "priority": 120
+            },
+            {
+              "label": "Mednafen SNES",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mednafen_snes_libretro.so %ROM%",
+              "priority": 130
             },
             {
               "label": "Mesen-S",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mesen-s_libretro.so %ROM%",
-              "priority": 90
+              "priority": 140
+            },
+            {
+              "label": "Mesen2",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mesen2_libretro.so %ROM%",
+              "priority": 150
+            },
+            {
+              "label": "nSide Balanced",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/nside_sfc_balanced_libretro.so %ROM%",
+              "priority": 160
+            },
+            {
+              "label": "Snes9x 2002",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/snes9x2002_libretro.so %ROM%",
+              "priority": 170
+            },
+            {
+              "label": "Snes9x 2005",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/snes9x2005_libretro.so %ROM%",
+              "priority": 180
+            },
+            {
+              "label": "Snes9x 2005 Plus",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/snes9x2005_plus_libretro.so %ROM%",
+              "priority": 190
+            },
+            {
+              "label": "Snes9x 2010",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/snes9x2010_libretro.so %ROM%",
+              "priority": 200
             }
           ],
           "platform": "snes",
@@ -2967,19 +3687,59 @@
               "priority": 60
             },
             {
+              "label": "bsnes 2014 Accuracy",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes2014_accuracy_libretro.so %ROM%",
+              "priority": 70
+            },
+            {
+              "label": "bsnes 2014 Balanced",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes2014_balanced_libretro.so %ROM%",
+              "priority": 80
+            },
+            {
+              "label": "bsnes 2014 Performance",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes2014_performance_libretro.so %ROM%",
+              "priority": 90
+            },
+            {
+              "label": "bsnes C++98 (v085)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes_cplusplus98_libretro.so %ROM%",
+              "priority": 100
+            },
+            {
               "label": "bsnes-mercury Accuracy",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes_mercury_accuracy_libretro.so %ROM%",
-              "priority": 70
+              "priority": 110
+            },
+            {
+              "label": "bsnes-mercury Balanced",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes_mercury_balanced_libretro.so %ROM%",
+              "priority": 120
+            },
+            {
+              "label": "bsnes-mercury Performance",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes_mercury_performance_libretro.so %ROM%",
+              "priority": 130
             },
             {
               "label": "Beetle Supafaust",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mednafen_supafaust_libretro.so %ROM%",
-              "priority": 80
+              "priority": 140
             },
             {
               "label": "Mesen-S",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mesen-s_libretro.so %ROM%",
-              "priority": 90
+              "priority": 150
+            },
+            {
+              "label": "Mesen2",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mesen2_libretro.so %ROM%",
+              "priority": 160
+            },
+            {
+              "label": "nSide Balanced",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/nside_sfc_balanced_libretro.so %ROM%",
+              "priority": 170
             }
           ],
           "platform": "snes",
@@ -2999,6 +3759,21 @@
           ],
           "platform": "spectravideo",
           "theme": "spectravideo"
+        },
+        {
+          "name": "spmp8000",
+          "fullname": "SPMP8000",
+          "path": "%ROMPATH%/spmp8000",
+          "extension": ".bin",
+          "commands": [
+            {
+              "label": "SPMP8000Emu",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/spmp8000emu_libretro.so %ROM%",
+              "priority": 10
+            }
+          ],
+          "platform": "spmp8000",
+          "theme": "spmp8000"
         },
         {
           "name": "stv",
@@ -3066,6 +3841,51 @@
           "theme": "sufami"
         },
         {
+          "name": "native32",
+          "fullname": "Native32 Sunplus DVD / TV",
+          "path": "%ROMPATH%/native32",
+          "extension": ".smf .sgm .ssl",
+          "commands": [
+            {
+              "label": "Native32Emu",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/native32emu_libretro.so %ROM%",
+              "priority": 10
+            }
+          ],
+          "platform": "native32",
+          "theme": "native32"
+        },
+        {
+          "name": "nuon",
+          "fullname": "NUON (VM Labs)",
+          "path": "%ROMPATH%/nuon",
+          "extension": ".run .cof .nuon .cd .iso .img .chd",
+          "commands": [
+            {
+              "label": "Nuance",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/nuance_libretro.so %ROM%",
+              "priority": 10
+            }
+          ],
+          "platform": "nuon",
+          "theme": "nuon"
+        },
+        {
+          "name": "nicai",
+          "fullname": "Nicai MStar Phone",
+          "path": "%ROMPATH%/nicai",
+          "extension": ".cbe",
+          "commands": [
+            {
+              "label": "NicaiEmu",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/nicaiemu_libretro.so %ROM%",
+              "priority": 10
+            }
+          ],
+          "platform": "nicai",
+          "theme": "nicai"
+        },
+        {
           "name": "supergrafx",
           "fullname": "NEC SuperGrafx",
           "path": "%ROMPATH%/supergrafx",
@@ -3124,6 +3944,21 @@
           ],
           "platform": "supracan",
           "theme": "supracan"
+        },
+        {
+          "name": "tamagotchi",
+          "fullname": "Bandai - Tamagotchi P1",
+          "path": "%ROMPATH%/tamagotchi",
+          "extension": ".b .rom .bin",
+          "commands": [
+            {
+              "label": "TamaLIBretro",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/tamalibretro_libretro.so %ROM%",
+              "priority": 10
+            }
+          ],
+          "platform": "tamagotchi",
+          "theme": "tamagotchi"
         },
         {
           "name": "tg16",
@@ -3186,6 +4021,21 @@
           "theme": "tic80"
         },
         {
+          "name": "ti83",
+          "fullname": "Texas Instruments TI-83",
+          "path": "%ROMPATH%/ti83",
+          "extension": ".8xp .8xk .8xg",
+          "commands": [
+            {
+              "label": "Numero",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/numero_libretro.so %ROM%",
+              "priority": 10
+            }
+          ],
+          "platform": "ti83",
+          "theme": "ti83"
+        },
+        {
           "name": "to8",
           "fullname": "Thomson TO8",
           "path": "%ROMPATH%/to8",
@@ -3214,6 +4064,21 @@
           ],
           "platform": "uzebox",
           "theme": "uzebox"
+        },
+        {
+          "name": "vaporspec",
+          "fullname": "VaporSpec",
+          "path": "%ROMPATH%/vaporspec",
+          "extension": ".vaporbin",
+          "commands": [
+            {
+              "label": "VaporSpec",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/vaporspec_libretro.so %ROM%",
+              "priority": 10
+            }
+          ],
+          "platform": "vaporspec",
+          "theme": "vaporspec"
         },
         {
           "name": "vectrex",
@@ -3346,6 +4211,21 @@
           "theme": "wii"
         },
         {
+          "name": "wiiu",
+          "fullname": "Nintendo Wii U",
+          "path": "%ROMPATH%/wiiu",
+          "extension": ".elf .rpx .tmd .wua .wud .wuhb .wux",
+          "commands": [
+            {
+              "label": "Cemu",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/cemu_libretro.so %ROM%",
+              "priority": 20
+            }
+          ],
+          "platform": "wiiu",
+          "theme": "wiiu"
+        },
+        {
           "name": "windows3x",
           "fullname": "Microsoft Windows 3.x",
           "path": "%ROMPATH%/windows3x",
@@ -3374,6 +4254,21 @@
           ],
           "platform": "pcwindows",
           "theme": "windows9x"
+        },
+        {
+          "name": "wolfenstein",
+          "fullname": "Wolfenstein 3D",
+          "path": "%ROMPATH%/wolfenstein",
+          "extension": ".wl6 .n3d .sod .sdm .wl1 .pk3 .exe",
+          "commands": [
+            {
+              "label": "ECWolf (Wolfenstein 3D)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/ecwolf_libretro.so %ROM%",
+              "priority": 20
+            }
+          ],
+          "platform": "wolfenstein, pc, pcwindows, dos",
+          "theme": "wolfenstein"
         },
         {
           "name": "wonderswan",
@@ -3436,6 +4331,36 @@
           "theme": "x68000"
         },
         {
+          "name": "xbox",
+          "fullname": "Microsoft Xbox",
+          "path": "%ROMPATH%/xbox",
+          "extension": ".iso",
+          "commands": [
+            {
+              "label": "xemu",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/xemu_libretro.so %ROM%",
+              "priority": 20
+            }
+          ],
+          "platform": "xbox",
+          "theme": "xbox"
+        },
+        {
+          "name": "xbox360",
+          "fullname": "Microsoft Xbox 360",
+          "path": "%ROMPATH%/xbox360",
+          "extension": ".desktop .iso .sh .xex .zar",
+          "commands": [
+            {
+              "label": "Xenia Edge",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/xenia_edge_libretro.so %ROM%",
+              "priority": 20
+            }
+          ],
+          "platform": "xbox360",
+          "theme": "xbox360"
+        },
+        {
           "name": "zmachine",
           "fullname": "Infocom Z-machine",
           "path": "%ROMPATH%/zmachine",
@@ -3489,64 +4414,153 @@
       }
     ],
     "conflicting_presets": [
-      ["borders", "widescreen"]
+      [
+        "borders",
+        "widescreen"
+      ]
     ],
     "preset_variables": {
       "borders_ref_resolution": "1280x800"
     },
     "compatible_presets": {
-      "cheevos": ["false", "true"],
-      "cheevos_hardcore": ["false", "true"],
-      "quick_resume": ["false", "true"],
+      "cheevos": [
+        "false",
+        "true"
+      ],
+      "cheevos_hardcore": [
+        "false",
+        "true"
+      ],
+      "quick_resume": [
+        "false",
+        "true"
+      ],
       "snes9x_libretro": {
-        "borders": ["false", "true"],
-        "widescreen": ["false", "true"],
-        "abxy_button_swap": ["false", "true"],
-        "rewind": ["false", "true"]
+        "borders": [
+          "false",
+          "true"
+        ],
+        "widescreen": [
+          "false",
+          "true"
+        ],
+        "abxy_button_swap": [
+          "false",
+          "true"
+        ],
+        "rewind": [
+          "false",
+          "true"
+        ]
       },
       "genesis_plus_gx_libretro_MS": {
-        "borders": ["false", "true"],
-        "widescreen": ["false", "true"],
-        "rewind": ["false", "true"]
+        "borders": [
+          "false",
+          "true"
+        ],
+        "widescreen": [
+          "false",
+          "true"
+        ],
+        "rewind": [
+          "false",
+          "true"
+        ]
       },
       "genesis_plus_gx_libretro_GG": {
-        "borders": ["false", "true"],
-        "rewind": ["false", "true"]
+        "borders": [
+          "false",
+          "true"
+        ],
+        "rewind": [
+          "false",
+          "true"
+        ]
       },
       "gambatte_libretro_GB": {
-        "borders": ["false", "true"],
-        "rewind": ["false", "true"],
-        "abxy_button_swap": ["false", "true"]
+        "borders": [
+          "false",
+          "true"
+        ],
+        "rewind": [
+          "false",
+          "true"
+        ],
+        "abxy_button_swap": [
+          "false",
+          "true"
+        ]
       },
       "gambatte_libretro_GBC": {
-        "borders": ["false", "true"],
-        "rewind": ["false", "true"],
-        "abxy_button_swap": ["false", "true"]
+        "borders": [
+          "false",
+          "true"
+        ],
+        "rewind": [
+          "false",
+          "true"
+        ],
+        "abxy_button_swap": [
+          "false",
+          "true"
+        ]
       },
       "mgba_libretro": {
-        "borders": ["false", "true"],
-        "rewind": ["false", "true"],
-        "abxy_button_swap": ["false", "true"]
+        "borders": [
+          "false",
+          "true"
+        ],
+        "rewind": [
+          "false",
+          "true"
+        ],
+        "abxy_button_swap": [
+          "false",
+          "true"
+        ]
       },
       "mupen64plus_next_libretro": {
-        "borders": ["false", "true"],
-        "widescreen": ["false", "true"],
-        "abxy_button_swap": ["false", "true"]
+        "borders": [
+          "false",
+          "true"
+        ],
+        "widescreen": [
+          "false",
+          "true"
+        ],
+        "abxy_button_swap": [
+          "false",
+          "true"
+        ]
       },
       "mesen_libretro": {
-        "borders": ["false", "true"],
-        "abxy_button_swap": ["false", "true"]
+        "borders": [
+          "false",
+          "true"
+        ],
+        "abxy_button_swap": [
+          "false",
+          "true"
+        ]
       },
       "swanstation_libretro": {
-        "borders": ["false", "true"],
-        "widescreen": ["false", "true"]
+        "borders": [
+          "false",
+          "true"
+        ],
+        "widescreen": [
+          "false",
+          "true"
+        ]
       }
     },
     "preset_actions": {
       "config_file_format": "retroarch",
       "cheevos": [
         {
-          "enabled_states": ["true"],
+          "enabled_states": [
+            "true"
+          ],
           "setting_name": "cheevos_enable",
           "action": "change",
           "new_setting_value": "true",
@@ -3554,7 +4568,9 @@
           "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
         },
         {
-          "enabled_states": ["true"],
+          "enabled_states": [
+            "true"
+          ],
           "setting_name": "cheevos_token",
           "action": "change",
           "new_setting_value": "$cheevos_token",
@@ -3562,7 +4578,9 @@
           "defaults_file": "$retroarch_rd_config_dir/retroarch.cfg"
         },
         {
-          "enabled_states": ["true"],
+          "enabled_states": [
+            "true"
+          ],
           "setting_name": "cheevos_username",
           "action": "change",
           "new_setting_value": "$cheevos_username",
@@ -3572,7 +4590,9 @@
       ],
       "cheevos_hardcore": [
         {
-          "enabled_states": ["true"],
+          "enabled_states": [
+            "true"
+          ],
           "setting_name": "cheevos_hardcore_mode_enable",
           "action": "change",
           "new_setting_value": "true",
@@ -3582,7 +4602,9 @@
       ],
       "quick_resume": [
         {
-          "enabled_states": ["true"],
+          "enabled_states": [
+            "true"
+          ],
           "setting_name": "savestate_auto_save",
           "action": "change",
           "new_setting_value": "true",
@@ -4496,64 +5518,95 @@
         "required": "Required for some Japanese games."
       },
       {
-        "filename": "kick33180.A500",
-        "md5": "85ad74194e87c08904327de1a9443b7a",
-        "system": "amiga",
-        "description": "Kickstart 33180 for the Amiga 500"
-      },
-      {
         "filename": "kick34005.A500",
         "md5": "82a21c1890cae844b3df741f2762d48d",
         "system": "amiga",
-        "description": "Kickstart 34005 for the Amiga 500"
+        "description": "Kickstart 3.4 ROM for Amiga 500",
+        "required": "Required"
       },
       {
-        "filename": "kick37175.A500",
-        "md5": "dc10d7bdd1b6f450773dfb558477c230",
+        "filename": "kick37350.A600",
+        "md5": "465646c9b6729f77eea5314d1f057951",
         "system": "amiga",
-        "description": "Kickstart 37175 Amiga 500+"
+        "description": "Kickstart 2.05 ROM for Amiga 600",
+        "required": "Required"
       },
       {
         "filename": "kick40063.A600",
         "md5": "e40a5dfb3d017ba8779faba30cbd1c8e",
         "system": "amiga",
-        "description": "Kickstart 40063 Amiga 600"
+        "description": "Kickstart 4.0 ROM for Amiga 600",
+        "required": "Required"
       },
       {
         "filename": "kick40068.A1200",
         "md5": "646773759326fbac3b2311fd8c8793ee",
         "system": "amiga",
-        "description": "Kickstart 40068 Amiga 1200."
+        "description": "Kickstart 4.0 ROM for Amiga 1200",
+        "required": "Required"
+      },
+      {
+        "filename": "kick33180.A500",
+        "md5": "85ad74194e87c08904327de1a9443b7a",
+        "system": "amiga",
+        "description": "Kickstart 33180 for the Amiga 500",
+        "required": "Optional"
+      },
+      {
+        "filename": "kick34005.A500",
+        "md5": "82a21c1890cae844b3df741f2762d48d",
+        "system": "amiga",
+        "description": "Kickstart 34005 for the Amiga 500",
+        "required": "Required"
+      },
+      {
+        "filename": "kick37175.A500",
+        "md5": "dc10d7bdd1b6f450773dfb558477c230",
+        "system": "amiga",
+        "description": "Kickstart 37175 Amiga 500+",
+        "required": "Optional"
+      },
+      {
+        "filename": "kick40063.A600",
+        "md5": "e40a5dfb3d017ba8779faba30cbd1c8e",
+        "system": "amiga",
+        "description": "Kickstart 40063 Amiga 600",
+        "required": "Optional"
       },
       {
         "filename": "kick40068.A4000",
         "md5": "9bdedde6a4f33555b4a270c8ca53297d",
         "system": "amiga",
-        "description": "Kickstart 40068 Amiga 4000."
+        "description": "Kickstart 40068 Amiga 4000.",
+        "required": "Optional"
       },
       {
         "filename": "kick34005.CDTV",
         "md5": "89da1838a24460e4b93f4f0c5d92d48d",
         "system": "amiga",
-        "description": "Kickstart 34005 CDTV ROM"
+        "description": "Kickstart 34005 CDTV ROM",
+        "required": "Optional"
       },
       {
         "filename": "kick40060.CD32",
         "md5": "5f8924d013dd57a89cf349f4cdedc6b1",
         "system": "amiga",
-        "description": "Kickstart 40060 Amiga CD32"
+        "description": "Kickstart 40060 Amiga CD32",
+        "required": "Optional"
       },
       {
         "filename": "kick40060.CD32.ext",
         "md5": "bb72565701b1b6faece07d68ea5da639",
         "system": "amiga",
-        "description": "Kickstart 40060Amiga CD32 ROM"
+        "description": "Kickstart 40060Amiga CD32 ROM",
+        "required": "Optional"
       },
       {
         "filename": "kick40060.CD32.full",
         "md5": "f2f241bf094168cfb9e7805dc2856433",
         "system": "amiga",
-        "description": "Kickstart 40060 Combined Amiga CD32 ROM"
+        "description": "Kickstart 40060 Combined Amiga CD32 ROM",
+        "required": "Optional"
       },
       {
         "filename": "ROM_OS_A_NTSC",
@@ -4846,19 +5899,26 @@
       },
       {
         "filename": "cdimono1.zip",
+        "md5": "c59f92647701428bc453976740eb75cf",
         "system": "cdimono1",
+        "paths": "$bios_path/same_cdi/bios",
+        "required": "Required",
         "description": "Philips CDi"
       },
       {
         "filename": "cdimono2.zip",
         "md5": "97aa5f47030cd9fdb679d4fafbb0e332",
         "system": "cdimono1",
+        "paths": "$bios_path/same_cdi/bios",
+        "required": "Required",
         "description": "Philips CDi"
       },
       {
         "filename": "cdibios.zip",
         "md5": "709acce6e9c4043b851ea7429b8e7eff",
         "system": "cdimono1",
+        "paths": "$bios_path/same_cdi/bios",
+        "required": "Required",
         "description": "Philips CDi"
       },
       {
@@ -5511,7 +6571,7 @@
           "neogeocdjp"
         ],
         "description": "Neo Geo CD front-loader BIOS",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "neocd_sf.rom",
@@ -5521,7 +6581,7 @@
           "neogeocdjp"
         ],
         "description": "Neo Geo CD front-loader BIOS",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "neocd_t.rom",
@@ -5531,7 +6591,7 @@
           "neogeocdjp"
         ],
         "description": "Neo Geo CD top-loader BIOS",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "neocd_st.rom",
@@ -5541,7 +6601,7 @@
           "neogeocdjp"
         ],
         "description": "Neo Geo CD top-loader BIOS",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "neocd_z.rom",
@@ -5561,7 +6621,7 @@
           "neogeocdjp"
         ],
         "description": "Neo Geo CDZ BIOS",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "front-sp1.bin",
@@ -5571,7 +6631,7 @@
           "neogeocdjp"
         ],
         "description": "MAME front-loader BIOS",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "top-sp1.bin",
@@ -5581,7 +6641,7 @@
           "neogeocdjp"
         ],
         "description": "MAME top-loader BIOS",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "neocd.bin",
@@ -5591,7 +6651,7 @@
           "neogeocdjp"
         ],
         "description": "MAME CDZ BIOS",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "uni-bioscd.rom",
@@ -5648,7 +6708,7 @@
         "filename": "aes_keys.txt",
         "system": "n3ds",
         "description": "Decryption keys for Citra 3DS / AzaharPlus",
-        "required": "Required"
+        "required": "Only for encrypted games"
       },
       {
         "filename": "bios7.bin",
@@ -5730,7 +6790,7 @@
         ],
         "system": "segacd",
         "description": "Sega Mega-CD EU BIOS",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "bios_CD_U.bin",
@@ -5741,7 +6801,7 @@
         ],
         "system": "segacd",
         "description": "Sega CD US BIOS",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "bios_CD_J.bin",
@@ -5751,7 +6811,7 @@
         ],
         "system": "segacd",
         "description": "Sega Mega-CD JP BIOS",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "dc_boot.bin",
@@ -5774,7 +6834,12 @@
       },
       {
         "filename": "naomi2.zip",
-        "md5": "9b85e0de6ef359e5006c9b79a5a266b0",
+        "md5": [
+          "c50072cbab75673e1b1a6b94355e6fa8",
+          "843c0d51237dc945f57237c4b9872b1d",
+          "339c59ece7d4d6803880c91bbb44ac93",
+          "dfaae8d206ffb390ed1cf9529ccc123d"
+        ],
         "system": "dreamcast",
         "description": "Naomi 2 BIOS",
         "paths": "$bios_path/dc"
@@ -5900,7 +6965,7 @@
           "saturnjp"
         ],
         "description": "Saturn Japanese BIOS (sega_101)",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "mpr-17933.bin",
@@ -5910,7 +6975,7 @@
           "saturnjp"
         ],
         "description": "Saturn US/EU BIOS",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "mpr-18811-mx.ic1",
@@ -6074,34 +7139,6 @@
         "md5": "cb492f093cd9e22a913d158741e8f00a",
         "system": "atarijaguar",
         "description": "Atari Jaguar"
-      },
-      {
-        "filename": "kick34005.A500",
-        "md5": "82a21c1890cae844b3df741f2762d48d",
-        "system": "amiga",
-        "description": "Kickstart 3.4 ROM for Amiga 500",
-        "required": "Required"
-      },
-      {
-        "filename": "AmigaVision.rom",
-        "md5": "646773759326fbac3b2311fd8c8793ee",
-        "system": "amiga",
-        "description": "Kickstart 4.0 ROM for AmigaVision.",
-        "required": "Yes, for AmigaVision"
-      },
-      {
-        "filename": "kick40063.A600",
-        "md5": "e40a5dfb3d017ba8779faba30cbd1c8e",
-        "system": "amiga",
-        "description": "Kickstart 4.0 ROM for Amiga 600",
-        "required": "Required"
-      },
-      {
-        "filename": "kick40068.A1200",
-        "md5": "646773759326fbac3b2311fd8c8793ee",
-        "system": "amiga",
-        "description": "Kickstart 4.0 ROM for Amiga 1200",
-        "required": "Required"
       },
       {
         "filename": "sl31253.bin",
@@ -6441,6 +7478,94 @@
         "system": "snes",
         "description": "SNES CX4 co-processor BIOS (used by Star Fox 2, etc.)",
         "required": "Optional, depends on emulator / core"
+      },
+      {
+        "filename": "pak000.pk4",
+        "md5": "71b8d37b2444d3d86a36fd61783844fe",
+        "system": "doom3",
+        "description": "Doom 3 version 1.3.1 pak000.pk4",
+        "required": "Required",
+        "paths": "$roms_path/doom3/base"
+      },
+      {
+        "filename": "pak001.pk4",
+        "md5": "4bc4f3ba04ec2b4f4837be40e840a3c1",
+        "system": "doom3",
+        "description": "Doom 3 version 1.3.1 pak001.pk4",
+        "required": "Required",
+        "paths": "$roms_path/doom3/base"
+      },
+      {
+        "filename": "pak002.pk4",
+        "md5": "fa84069e9642ad9aa4b49624150cc345",
+        "system": "doom3",
+        "description": "Doom 3 version 1.3.1 pak002.pk4",
+        "required": "Required",
+        "paths": "$roms_path/doom3/base"
+      },
+      {
+        "filename": "pak003.pk4",
+        "md5": "f22d8464997924e4913e467e7d62d5fe",
+        "system": "doom3",
+        "description": "Doom 3 version 1.3.1 pak003.pk4",
+        "required": "Required",
+        "paths": "$roms_path/doom3/base"
+      },
+      {
+        "filename": "pak004.pk4",
+        "md5": "38561a3c73f93f2e6fd31abf1d4e9102",
+        "system": "doom3",
+        "description": "Doom 3 version 1.3.1 pak004.pk4",
+        "required": "Required",
+        "paths": "$roms_path/doom3/base"
+      },
+      {
+        "filename": "pak005.pk4",
+        "md5": "2afd4ece27d36393b7538d55a345b90d",
+        "system": "doom3",
+        "description": "Doom 3 version 1.3.1 pak005.pk4",
+        "required": "Required",
+        "paths": "$roms_path/doom3/base"
+      },
+      {
+        "filename": "pak006.pk4",
+        "md5": "a6e7003fa9dcc75073dc02b56399b370",
+        "system": "doom3",
+        "description": "Doom 3 version 1.3.1 pak006.pk4",
+        "required": "Required",
+        "paths": "$roms_path/doom3/base"
+      },
+      {
+        "filename": "pak007.pk4",
+        "md5": "6319f086f930ec1618ab09b4c20c268c",
+        "system": "doom3",
+        "description": "Doom 3 version 1.3.1 pak007.pk4",
+        "required": "Required",
+        "paths": "$roms_path/doom3/base"
+      },
+      {
+        "filename": "pak008.pk4",
+        "md5": "28750b7841de9453eb335bad6841a2a5",
+        "system": "doom3",
+        "description": "Doom 3 version 1.3.1 pak008.pk4",
+        "required": "Required",
+        "paths": "$roms_path/doom3/base"
+      },
+      {
+        "filename": "pak000.pk4",
+        "md5": "a883fef0fd10aadeb73d34c462ff865d",
+        "system": "doom3",
+        "description": "Doom 3 Resurrection of Evil pak000.pk4",
+        "required": "Required for D3XP",
+        "paths": "$roms_path/doom3/d3xp"
+      },
+      {
+        "filename": "pak001.pk4",
+        "md5": "06fc9be965e345587064056bf22236d2",
+        "system": "doom3",
+        "description": "Doom 3 Resurrection of Evil pak001.pk4",
+        "required": "Required for D3XP",
+        "paths": "$roms_path/doom3/d3xp"
       },
       {
         "filename": "dsp1.data.rom",
@@ -7505,7 +8630,7 @@
       },
       {
         "filename": "yrw801.rom",
-        "md5": "32760893ce06db3e3930627755ba065c",
+        "md5": "42af93619160ef2116416f74a6cb12f2",
         "system": "msx",
         "description": "YR-W801 system ROM"
       },
@@ -7733,7 +8858,14 @@
         "description": "Interface ROM for PC-9800"
       },
       {
-        "filename": "upd7801g.s01",
+        "filename": [
+          "upd7801g.s01",
+          "upd7801.s01",
+          "upd7801g.bin",
+          "upd7801g.bios",
+          "bios.rom",
+          "bios.bin"
+        ],
         "md5": "635a978fd40db9a18ee44eff449fc126",
         "system": "scv",
         "description": "Super Cassette Vision - BIOS"
@@ -7759,448 +8891,454 @@
         "md5": "acf4730ceb38ac9d8c7d8e21f2614600",
         "system": "ps2",
         "description": "PlayStation 2 BIOS - Japan",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "ps2-0101j-20000217.bin",
         "md5": "b1459d7446c69e3e97e6ace3ae23dd1c",
         "system": "ps2",
         "description": "PlayStation 2 BIOS - Japan",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "ps2-0120j-20001027-185015.bin",
         "md5": "f63bc530bd7ad7c026fcd6f7bd0d9525",
         "system": "ps2",
         "description": "PlayStation 2 BIOS - Japan",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "ps2-0120j-20001027-191435.bin",
         "md5": "cee06bd68c333fc5768244eae77e4495",
         "system": "ps2",
         "description": "PlayStation 2 BIOS - Japan",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "ps2-0150j-20010118.bin",
         "md5": "815ac991d8bc3b364696bead3457de7d",
         "system": "ps2",
         "description": "PlayStation 2 BIOS - Japan",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "ps2-0160j-20010427.bin",
         "md5": "ab55cceea548303c22c72570cfd4dd71",
         "system": "ps2",
         "description": "PlayStation 2 BIOS - Japan",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "ps2-0170j-20030206.bin",
         "md5": "312ad4816c232a9606e56f946bc0678a",
         "system": "ps2",
         "description": "PlayStation 2 BIOS - Japan",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "ps2-0200j-20040614.bin",
         "md5": "0eee5d1c779aa50e94edd168b4ebf42e",
         "system": "ps2",
         "description": "PlayStation 2 BIOS - Japan",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "ps2-0210j-20040917.bin",
         "md5": "1ad977bb539fc9448a08ab276a836bbc",
         "system": "ps2",
         "description": "PlayStation 2 BIOS - Japan",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "ps2-0210j-20040917.bin",
         "md5": "1ad977bb539fc9448a08ab276a836bbc",
         "system": "ps2",
         "description": "PlayStation 2 BIOS - Japan",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "ps2-0110a-20000727.bin",
         "md5": "a20c97c02210f16678ca3010127caf36",
         "system": "ps2",
         "description": "PlayStation 2 BIOS - USA",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "ps2-0120a-20000902.bin",
         "md5": "8db2fbbac7413bf3e7154c1e0715e565",
         "system": "ps2",
         "description": "PlayStation 2 BIOS - USA",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "ps2-0150a-20001228.bin",
         "md5": "8accc3c49ac45f5ae2c5db0adc854633",
         "system": "ps2",
         "description": "PlayStation 2 BIOS - USA",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "ps2-0160a-20010427.bin",
         "md5": "b107b5710042abe887c0f6175f6e94bb",
         "system": "ps2",
         "description": "PlayStation 2 BIOS - USA",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "ps2-0160a-20011004.bin",
         "md5": "7200a03d51cacc4c14fcdfdbc4898431",
         "system": "ps2",
         "description": "PlayStation 2 BIOS - USA",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "ps2-0160a-20020207.bin",
         "md5": "d5ce2c7d119f563ce04bc04dbc3a323e",
         "system": "ps2",
         "description": "PlayStation 2 BIOS - USA",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "ps2-0170a-20030325.bin",
         "md5": "8aa12ce243210128c5074552d3b86251",
         "system": "ps2",
         "description": "PlayStation 2 BIOS - USA",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "ps2-0190a-20030623.bin",
         "md5": "35461cecaa51712b300b2d6798825048",
         "system": "ps2",
         "description": "PlayStation 2 BIOS - USA",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "ps2-0200a-20040614.bin",
         "md5": "d333558cc14561c1fdc334c75d5f37b7",
         "system": "ps2",
         "description": "PlayStation 2 BIOS - USA",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "ps2-0220a-20050620.bin",
         "md5": "929a14baca1776b00869f983aa6e14d2",
         "system": "ps2",
         "description": "PlayStation 2 BIOS - USA",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "ps2-0220a-20060210.bin",
         "md5": "cb801b7920a7d536ba07b6534d2433ca",
         "system": "ps2",
         "description": "PlayStation 2 BIOS - USA",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "ps2-0220a-20060905.bin",
         "md5": "40c11c063b3b9409aa5e4058e984e30c",
         "system": "ps2",
         "description": "PlayStation 2 BIOS - USA",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "ps2-0230a-20080220.bin",
         "md5": "21038400dc633070a78ad53090c53017",
         "system": "ps2",
         "description": "PlayStation 2 BIOS - USA",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "ps2-0120e-20000902.bin",
         "md5": "b7fa11e87d51752a98b38e3e691cbf17",
         "system": "ps2",
         "description": "PlayStation 2 BIOS - EUROPE",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "ps2-0150e-20001228.bin",
         "md5": "838544f12de9b0abc90811279ee223c8",
         "system": "ps2",
         "description": "PlayStation 2 BIOS - EUROPE",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "ps2-0160e-20010704.bin",
         "md5": "491209dd815ceee9de02dbbc408c06d6",
         "system": "ps2",
         "description": "PlayStation 2 BIOS - EUROPE",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "ps2-0160e-20011004.bin",
         "md5": "8359638e857c8bc18c3c18ac17d9cc3c",
         "system": "ps2",
         "description": "PlayStation 2 BIOS - EUROPE",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "ps2-0160e-20020319.bin",
         "md5": "0d2228e6fd4fb639c9c39d077a9ec10c",
         "system": "ps2",
         "description": "PlayStation 2 BIOS - EUROPE",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "ps2-0170e-20030227.bin",
         "md5": "6e69920fa6eef8522a1d688a11e41bc6",
         "system": "ps2",
         "description": "PlayStation 2 BIOS - EUROPE",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "ps2-0190e-20030623.bin",
         "md5": "bd6415094e1ce9e05daabe85de807666",
         "system": "ps2",
         "description": "PlayStation 2 BIOS - EUROPE",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "ps2-0200e-20040614.bin",
         "md5": "dc752f160044f2ed5fc1f4964db2a095",
         "system": "ps2",
         "description": "PlayStation 2 BIOS - EUROPE",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "ps2-0220e-20050620.bin",
         "md5": "573f7d4a430c32b3cc0fd0c41e104bbd",
         "system": "ps2",
         "description": "PlayStation 2 BIOS - EUROPE",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "ps2-0220e-20060210.bin",
         "md5": "af60e6d1a939019d55e5b330d24b1c25",
         "system": "ps2",
         "description": "PlayStation 2 BIOS - EUROPE",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "ps2-0220e-20060905.bin",
         "md5": "80bbb237a6af9c611df43b16b930b683",
         "system": "ps2",
         "description": "PlayStation 2 BIOS - EUROPE",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "ps2-0230e-20080220.bin",
         "md5": "dc69f0643a3030aaa4797501b483d6c4",
         "system": "ps2",
         "description": "PlayStation 2 BIOS - EUROPE",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "ps2-0160h-20010730.bin",
         "md5": "352d2ff9b3f68be7e6fa7e6dd8389346",
         "system": "ps2",
         "description": "PlayStation 2 BIOS - HONG KONG",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "ps2-0160h-20020426.bin",
         "md5": "315a4003535dfda689752cb25f24785c",
         "system": "ps2",
         "description": "PlayStation 2 BIOS - HONG KONG",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "ps2-0190h-20030623.bin",
         "md5": "07b562a3f0c4b9a55834df9bbc9bd0c3",
         "system": "ps2",
         "description": "PlayStation 2 BIOS - HONG KONG",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "ps2-0200h-20040614.bin",
         "md5": "3e3e030c0f600442fa05b94f87a1e238",
         "system": "ps2",
         "description": "PlayStation 2 BIOS - HONG KONG",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "ps2-0220h-20060905.bin",
         "md5": "c37bce95d32b2be480f87dd32704e664",
         "system": "ps2",
         "description": "PlayStation 2 BIOS - HONG KONG",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "ps2-0220h-20060210.bin",
         "md5": "549a66d0c698635ca9fa3ab012da7129",
         "system": "ps2",
         "description": "PlayStation 2 BIOS - HONG KONG",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "ps2-0190c-20030623.bin",
         "md5": "1b6e631b536247756287b916f9396872",
         "system": "ps2",
         "description": "PlayStation 2 BIOS - CHINA",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "ps2-0190r-20030623.bin",
         "md5": "0c13357c01a25a886db2356bbe73d9f0",
         "system": "ps2",
         "description": "PlayStation 2 BIOS - RUSSIA",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "psxonpsp660.bin",
         "md5": "c53ca5908936d412331790f4426c6c33",
         "system": "psx",
         "description": "PlayStation BIOS extracted from PSP - Japan",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "scph5500.bin",
         "md5": "8dd7d5296a650fac7319bce665a6a53c",
         "system": "psx",
         "description": "PlayStation BIOS - SCPH-5500 - Japan",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "scph5501.bin",
         "md5": "490f666e1afb15b7362b406ed1cea246",
         "system": "psx",
         "description": "PlayStation BIOS - SCPH-5501  - USA",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "scph5502.bin",
         "md5": "32736f17079d0b2b7024407c39bd3050",
         "system": "psx",
         "description": "PlayStation BIOS - SCPH-5502 - Europe)",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "scph7001.bin",
         "md5": "1e68c231d0896b7eadcad1d7d8e76129",
         "system": "psx",
         "description": "PlayStation BIOS - SCPH-7001 - Japan",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "scph7002.bin",
         "md5": "b9d9a0286c33dc6b7237bb13cd46fdee",
         "system": "psx",
         "description": "PlayStation BIOS - SCPH-7002 - USA)",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "scph7003.bin",
         "md5": "490f666e1afb15b7362b406ed1cea246",
         "system": "psx",
         "description": "PlayStation BIOS - SCPH-7003 - Europe",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "scph7502.bin",
         "md5": "b9d9a0286c33dc6b7237bb13cd46fdee",
         "system": "psx",
         "description": "PlayStation BIOS - SCPH-7502 - Europe",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "scph9002(7502).bin",
         "md5": "b9d9a0286c33dc6b7237bb13cd46fdee",
         "system": "psx",
         "description": "PlayStation BIOS - SCPH-9002 - Europe",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "ps1_rom.bin",
         "md5": "81bbe60ba7a3d1cea1d48c14cbcc647b",
         "system": "psx",
         "description": "Generic PlayStation BIOS from the Playstation 3",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "scph1000.bin",
         "md5": "239665b1a3dade1b5a52c06338011044",
         "system": "psx",
         "description": "PlayStation 1 BIOS - USA",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "scph1001.bin",
         "md5": "924e392ed05558ffdb115408c263dccf",
         "system": "psx",
         "description": "PlayStation 1 BIOS - EUROPE",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "scph1002.bin",
         "md5": "54847e693405ffeb0359c6287434cbef",
         "system": "psx",
         "description": "PlayStation 1 BIOS - JAPAN",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "scph100.bin",
         "md5": "8abc1b549a4a80954addc48ef02c4521",
         "system": "psx",
         "description": "PlayStation 1 BIOS",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "scph101.bin",
         "md5": "6e3735ff4c7dc899ee98981385f6f3d0",
         "system": "psx",
         "description": "PlayStation 1 BIOS - USA",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "scph102A.bin",
         "md5": "b10f5e0e3d9eb60e5159690680b1e774",
         "system": "psx",
         "description": "PlayStation 1 BIOS - EUROPE",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "scph102B.bin",
         "md5": "de93caec13d1a141a40a79f5c86168d6",
         "system": "psx",
         "description": "PlayStation 1 BIOS - JAPAN",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "scph102C.bin",
         "md5": "de93caec13d1a141a40a79f5c86168d6",
         "system": "psx",
         "description": "PlayStation 1 BIOS",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "scph3000.bin",
         "md5": "849515939161e62f6b866f6853006780",
         "system": "psx",
         "description": "PlayStation 1 BIOS",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "scph3500.bin",
         "md5": "cba733ceeff5aef5c32254f1d617fa62",
         "system": "psx",
         "description": "PlayStation 1 BIOS",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
       },
       {
         "filename": "scph5000.bin",
         "md5": "eb201d2d98251a598af467d4347bb62f",
         "system": "psx",
         "description": "PlayStation 1 BIOS",
-        "required": "At least one BIOS file required"
+        "required": "Alternative"
+      },
+      {
+        "filename": "openbios.bin",
+        "system": "psx",
+        "description": "PlayStation 1 open-source BIOS from PCSX Redux",
+        "required": "Alternative"
       },
       {
         "filename": "Vectrex_Bios.bin",
@@ -8234,6 +9372,371 @@
         "md5": "11e59253c578c8f16ea2375ec398e4e9",
         "system": "vsmile",
         "description": " V.SMILE TV Learning System BIOS"
+      },
+      {
+        "filename": "8.bin",
+        "md5": "ea26b08e67511a34460c103b8b669154",
+        "system": "bbk",
+        "description": "Font ROM",
+        "required": "Required",
+        "paths": [
+          "$bios_path/BBKEmu",
+          "$bios_path/gam4980"
+        ]
+      },
+      {
+        "filename": "E.bin",
+        "md5": "f812738e5ae75de0f4faae78a3829866",
+        "system": "bbk",
+        "description": "OS ROM",
+        "required": "Required",
+        "paths": [
+          "$bios_path/BBKEmu",
+          "$bios_path/gam4980"
+        ]
+      },
+      {
+        "filename": "B11M_BOS.ROM",
+        "md5": "fe4627d1e3a1535874085050733263e7",
+        "system": "elektronika",
+        "description": "Elektronika BK-0011M BOS (Basic Operating System) Firmware ROM",
+        "required": "Required",
+        "paths": "$bios_path/bk"
+      },
+      {
+        "filename": "B11M_EXT.ROM",
+        "md5": "dc52f365d56fa1951f5d35b1101b9e3f",
+        "system": "elektronika",
+        "description": "Elektronika BK-0011M Extended System Firmware ROM",
+        "required": "Required",
+        "paths": "$bios_path/bk"
+      },
+      {
+        "filename": "BAS11M_0.ROM",
+        "md5": "946f6f23ded03c0e26187f0b3ca75993",
+        "system": "elektronika",
+        "description": "Elektronika BK-0011M BASIC Interpreter ROM (Bank 0)",
+        "required": "Required",
+        "paths": "$bios_path/bk"
+      },
+      {
+        "filename": "BAS11M_1.ROM",
+        "md5": "1e6637f32aa7d1de03510030cac40bcf",
+        "system": "elektronika",
+        "description": "Elektronika BK-0011M BASIC Interpreter ROM (Bank 1)",
+        "required": "Required",
+        "paths": "$bios_path/bk"
+      },
+      {
+        "filename": "DISK_327.ROM",
+        "md5": "5015228eeeb238e65da8edcd1b6dfac7",
+        "system": "elektronika",
+        "description": "Elektronika BK Disk System ROM (Revision 327)",
+        "required": "Required",
+        "paths": "$bios_path/bk"
+      },
+      {
+        "filename": "BASIC10.ROM",
+        "md5": "3fa774326d75410a065659aea80252f0",
+        "system": "elektronika",
+        "description": "Elektronika BK-0010 BASIC Interpreter ROM",
+        "required": "Required",
+        "paths": "$bios_path/bk"
+      },
+      {
+        "filename": "FOCAL10.ROM",
+        "md5": "5737f972e8638831ab71e9139abae052",
+        "system": "elektronika",
+        "description": "Elektronika BK-0010 FOCAL Programming Language Interpreter ROM",
+        "required": "Required",
+        "paths": "$bios_path/bk"
+      },
+      {
+        "filename": "MONIT10.ROM",
+        "md5": "95f8c41c6abf7640e35a6a03cecebd01",
+        "system": "elektronika",
+        "description": "Elektronika BK-0010 System Monitor Firmware ROM",
+        "required": "Required",
+        "paths": "$bios_path/bk"
+      },
+      {
+        "filename": "MacII.rom",
+        "md5": "66223be1497460f1e60885eeb35e03cc",
+        "system": "macintosh",
+        "description": "Macintosh II ROM",
+        "required": "Required"
+      },
+      {
+        "filename": "ti83se.rom",
+        "md5": "c6ff8204c5c81b7be34614dbbd690c8b",
+        "system": "ti83",
+        "description": "TI-83 Silver Edition",
+        "required": "Required"
+      },
+      {
+        "filename": "ti83plus.rom",
+        "md5": "8011181f810b5ec4e9d6a03f0e14257a",
+        "system": "ti83",
+        "description": "TI-83 Plus",
+        "required": "Optional"
+      },
+      {
+        "filename": "ti83.rom",
+        "md5": "d4448d09bbfde687c04f9e3310e023ab",
+        "system": "ti83",
+        "description": "TI-83",
+        "required": "Optional"
+      },
+      {
+        "filename": "pc1000.nor",
+        "md5": "dcd24cdf0b543bfd3699eb0cba602fc3",
+        "system": "wenquxing",
+        "description": "Wenquxing 文曲星 PC1000",
+        "required": "Required",
+        "paths": "$bios_path/WQXEmu/pc1000"
+      },
+      {
+        "filename": "pc1000.rom",
+        "md5": "8f777af9854fa323c3d08248de39b7c1",
+        "system": "wenquxing",
+        "description": "Wenquxing 文曲星 PC1000",
+        "required": "Required",
+        "paths": "$bios_path/WQXEmu/pc1000"
+      },
+      {
+        "filename": "cc800.fls",
+        "md5": "0c34182b12cacb4bcc06489a25f81839",
+        "system": "wenquxing",
+        "description": "Wenquxing 文曲星 CC800",
+        "required": "Required",
+        "paths": "$bios_path/WQXEmu/cc800"
+      },
+      {
+        "filename": "obj.bin",
+        "md5": "f102130d7bd8cbf5d184d7837da1809a",
+        "system": "wenquxing",
+        "description": "Wenquxing 文曲星 CC800",
+        "required": "Required",
+        "paths": "$bios_path/WQXEmu/cc800"
+      },
+      {
+        "filename": "nc1020.fls",
+        "md5": "16193afa032ef28b09abdca2399327c9",
+        "system": "wenquxing",
+        "description": "Wenquxing 文曲星 NC1020",
+        "required": "Required",
+        "paths": "$bios_path/WQXEmu/nc1020"
+      },
+      {
+        "filename": "obj_lu.bin",
+        "md5": "ee82e3c9127bc65be33d8b313bc12eae",
+        "system": "wenquxing",
+        "description": "Wenquxing 文曲星 NC1020",
+        "required": "Required",
+        "paths": "$bios_path/WQXEmu/nc1020"
+      },
+      {
+        "filename": "nc2000.nor",
+        "md5": "7a40d35953868f8d74abdb9abbaede10",
+        "system": "wenquxing",
+        "description": "Wenquxing 文曲星 NC2000",
+        "required": "Required",
+        "paths": "$bios_path/WQXEmu/nc2000"
+      },
+      {
+        "filename": "nc2000.nand0",
+        "md5": "96b23f31554d45edc91026f8750b3bc8",
+        "system": "wenquxing",
+        "description": "Wenquxing 文曲星 NC2000",
+        "required": "Required",
+        "paths": "$bios_path/WQXEmu/nc2000"
+      },
+      {
+        "filename": "nc2000.nand",
+        "md5": "d884fb93c79402e2f78162132e706400",
+        "system": "wenquxing",
+        "description": "Wenquxing 文曲星 NC2000",
+        "required": "Required",
+        "paths": "$bios_path/WQXEmu/nc2000"
+      },
+      {
+        "filename": "nc3000.nor",
+        "md5": "8787082e64b7caec6ef29a251eb07f04",
+        "system": "wenquxing",
+        "description": "Wenquxing 文曲星 NC3000",
+        "required": "Required",
+        "paths": "$bios_path/WQXEmu/nc3000"
+      },
+      {
+        "filename": "nc3000.nand0",
+        "md5": "b62b5d1f2d8f0ce2a798a4e826bc1502",
+        "system": "wenquxing",
+        "description": "Wenquxing 文曲星 NC3000",
+        "required": "Optional",
+        "paths": "$bios_path/WQXEmu/nc3000"
+      },
+      {
+        "filename": "nc3000.nand",
+        "md5": "",
+        "system": "wenquxing",
+        "description": "Wenquxing 文曲星 NC3000",
+        "required": "Required",
+        "paths": "$bios_path/WQXEmu/nc3000"
+      },
+      {
+        "filename": "Complex_4627v1.03.bin",
+        "md5": "39cee882148a87f93cb440b99dde3ceb",
+        "system": "xbox",
+        "description": "Complex 4627 modified BIOS",
+        "required": "Required"
+      },
+      {
+        "filename": "mcpx_1.0.bin",
+        "md5": "d49c52a4102f6df7bcf8d0617ac475ed",
+        "system": "xbox",
+        "description": "MCPX 1.0 boot ROM",
+        "required": "Required"
+      },
+      {
+        "filename": "xbox_eeprom.bin",
+        "md5": "3e647719d47e4a3992fc8bc5a7e56fce",
+        "system": "xbox",
+        "description": "Xbox EEPROM data",
+        "paths": "$saves_path/xbox/retroarch-core/xemu",
+        "required": "Optional"
+      },
+      {
+        "filename": "xbox_hdd.qcow2",
+        "md5": "cf15087fd5fd7593e293faaa7281cff8",
+        "system": "xbox",
+        "description": "Xbox virtual hard disk image",
+        "paths": "$saves_path/xbox/retroarch-core/xemu",
+        "required": "Required"
+      },
+      {
+        "filename": "FMT_DIC.ROM",
+        "md5": "34847786d7de94b5d1133c956ab1d75d",
+        "system": "fmtowns",
+        "description": "Japanese input dictionary ROM",
+        "required": "Required"
+      },
+      {
+        "filename": "FMT_DOS.ROM",
+        "md5": "0585b19930d4a7f4c71bcc8a33746588",
+        "system": "fmtowns",
+        "description": "DOS firmware ROM",
+        "required": "Required"
+      },
+      {
+        "filename": "FMT_F20.ROM",
+        "md5": "ac0c7021e9bf48ca84b51ab651169a88",
+        "system": "fmtowns",
+        "description": "Later-model firmware ROM",
+        "required": "Optional"
+      },
+      {
+        "filename": "FMT_FNT.ROM",
+        "md5": [
+          "b91300e55b70227ce98b59c5f02fa8dd",
+          "eb44f2093f51eb7159f03e170b13af76"
+        ],
+        "system": "fmtowns",
+        "description": "Japanese font ROM",
+        "required": "Required"
+      },
+      {
+        "filename": "FMT_SYS.ROM",
+        "md5": [
+          "86fb6f7280689259f0ca839dd3dd6cde",
+          "feaf8c5675151e00cfe3ad27673bff29"
+        ],
+        "system": "fmtowns",
+        "description": "System BIOS ROM",
+        "required": "Required"
+      },
+      {
+        "filename": "FMTHR_SYS.ROM",
+        "md5": "ecc8c37735e591a878d750d5976d7f52",
+        "system": "fmtowns",
+        "description": "FM Towns HR system BIOS ROM",
+        "required": "Optional"
+      },
+      {
+        "filename": "FMTOWNSIIMXBIOS.M79",
+        "md5": "2f7d2e474054889bd1e7524f06dd0467",
+        "system": "fmtowns",
+        "description": "FM Towns II MX combined BIOS ROM",
+        "required": "Optional"
+      },
+      {
+        "filename": "FMT_DOS_A.ROM",
+        "md5": "03c8fac9a5f5f5f35fb5de5a5d0d018f",
+        "system": "fmtowns",
+        "description": "DOS firmware ROM (revision A)",
+        "required": "Optional"
+      },
+      {
+        "filename": "FMT_SYS_A.ROM",
+        "md5": "90b5e01d42aaa93e8f4503a5e94e120b",
+        "system": "fmtowns",
+        "description": "System BIOS ROM (revision A)",
+        "required": "Optional"
+      },
+      {
+        "filename": "FMT_DIC_A.ROM",
+        "md5": "378ea2821632ff005b51cbef68eba064",
+        "system": "fmtowns",
+        "description": "Japanese input dictionary ROM (revision A)",
+        "required": "Optional"
+      },
+      {
+        "filename": "FMT_F20_A.ROM",
+        "md5": "378ea2821632ff005b51cbef68eba064",
+        "system": "fmtowns",
+        "description": "Later-model firmware ROM (revision A)",
+        "required": "Optional"
+      },
+      {
+        "filename": "FMT_FNT_A.ROM",
+        "md5": "750f59b076ba49d6919eb554b92b1cb6",
+        "system": "fmtowns",
+        "description": "Japanese font ROM (revision A)",
+        "required": "Optional"
+      },
+      {
+        "filename": "MYTOWNSFTV.ROM",
+        "md5": "8a1fcc2c90b207d194a0f02b3093722e",
+        "system": "fmtowns",
+        "description": "FM Towns Fresh-TV model identifier",
+        "required": "Optional"
+      },
+      {
+        "filename": "MYTOWNSHR.ROM",
+        "md5": "72a96dabf0f9e5fe0bb47b08fa456815",
+        "system": "fmtowns",
+        "description": "FM Towns HR model identifier",
+        "required": "Optional"
+      },
+      {
+        "filename": "MYTOWNSMX.ROM",
+        "md5": "b49dbab8ab2bfa387bf81ad519ea0cdf",
+        "system": "fmtowns",
+        "description": "FM Towns MX model identifier",
+        "required": "Optional"
+      },
+      {
+        "filename": "MYTOWNSSJ.ROM",
+        "md5": "fdcfdd08844e260286acff6004e9154f",
+        "system": "fmtowns",
+        "description": "FM Towns SJ model identifier",
+        "required": "Optional"
+      },
+      {
+        "filename": "MYTOWNSUX.ROM",
+        "md5": "1a15f6c1b58ec7e5f850118610a787a7",
+        "system": "fmtowns",
+        "description": "FM Towns UX model identifier",
+        "required": "Optional"
       }
     ]
   }

@@ -8,6 +8,7 @@ handle_asset() {
   local type="$1"
   local source="$2"
   local dest="$3"
+  local executable="${5:-}"
 
   local final_source="$source"
   local final_dest="$dest"
@@ -16,8 +17,38 @@ handle_asset() {
     final_source="$EXTRACTED_PATH/$source"
   fi
 
+  if [[ "$final_source" == *[\*\?\[]* ]]; then # If provided source contains wildcards
+    local parent_dir="${final_source%/*}"
+    local target_pattern="${final_source##*/}"
+
+    local -a matches=()
+    local nullglob_was_set=0 old_ifs="$IFS"
+    shopt -q nullglob && nullglob_was_set=1
+    shopt -s nullglob
+    IFS=
+    matches=( "$parent_dir"/$target_pattern )
+    IFS="$old_ifs"
+    (( nullglob_was_set )) || shopt -u nullglob
+
+    if (( ${#matches[@]} == 0 )); then
+      log error "No asset matching pattern '$target_pattern' found in location $parent_dir"
+      return 1
+    elif (( ${#matches[@]} > 1 )); then
+      log error "Pattern '$target_pattern' is ambiguous in $parent_dir, ${#matches[@]} matches found: ${matches[*]##*/}"
+      return 1
+    fi
+
+    log debug "Wildcard '$target_pattern' resolved to ${matches[0]}"
+    final_source="${matches[0]}"
+  fi
+
   if [[ ! -e "$final_source" ]]; then
     log error "Provided source $final_source does not exist, cannot grab asset"
+    return 1
+  fi
+
+  if [[ ! "$type" == "file" && "$executable" == "true" ]]; then
+    log error "Non-file type marked as executable, cannot proceeed."
     return 1
   fi
 
@@ -46,7 +77,15 @@ handle_asset() {
   case "$type" in
     file)
       process_asset_cmd() {
-        cp "$1" "$2"
+        if [[ -f "$2" ]]; then
+          log info "File $(basename $2) already exists at destination, skipping copy."
+        else
+          cp "$1" "$2"
+        fi
+        if [[ "$executable" == "true" ]]; then
+          log info "Marking file $2 as executable."
+          chmod +x "$2"
+        fi
       }
     ;;
     dir)

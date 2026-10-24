@@ -83,8 +83,9 @@ transmute() {
         asset_source="$(jq -r '.source//empty' <<< $asset_obj | envsubst)"
         asset_dest="$(jq -r '.dest//empty' <<< $asset_obj | envsubst)"
         asset_contents="$(jq -r '.contents//empty' <<< $asset_obj | envsubst)"
+        asset_executable="$(jq -r '.executable//empty' <<< $asset_obj)"
 
-        assembly_result=$(process_asset -t "$asset_type" -s "$asset_source" -d "$asset_dest" -c "$asset_contents")
+        assembly_result=$(process_asset -t "$asset_type" -s "$asset_source" -d "$asset_dest" -c "$asset_contents" -e "$asset_executable")
       done < <(echo "$obj_assets" | jq -c '.[]')
     else
       log info "Component assets omitted or empty, skipping..."
@@ -136,7 +137,7 @@ transmute() {
       exit 1
     fi
 
-    sha256sum "$artifact_tar_file" > "$artifact_sha_file"
+    ( cd "$final_artifact_dir" && sha256sum "$COMPONENT_NAME.tar.gz" > "$COMPONENT_NAME.tar.gz.sha" )
 
     if [[ -d "$WORKDIR" ]]; then
       log info "Cleaning up work dir $WORKDIR"
@@ -181,6 +182,10 @@ parse_args() {
       --dry-run)
         export DRYRUN="true"
         shift 1
+        ;;
+      -v|--versions)
+        alt_versions="$2"
+        shift 2
         ;;
       -r|--resolve-versions)
         export RESOLVE_VERSION="true"

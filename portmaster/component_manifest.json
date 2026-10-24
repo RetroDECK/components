@@ -1,10 +1,13 @@
 {
   "portmaster": {
-    "description": "PortMaster a port manager that simplifies installing and updating ports.",
+    "description": "Port management utility for installing and updating ports.",
     "name": "PortMaster",
     "core_framework_compatibility": "1",
     "component_version": "1.0.0",
-    "capabilities": ["reset","open"],
+    "capabilities": [
+      "reset",
+      "open"
+    ],
     "prepare_priority": {
       "startup": 90
     },
@@ -13,11 +16,13 @@
     "url_donation_purchase": "https://opencollective.com/portmaster",
     "url_source": "https://github.com/PortsMaster/PortMaster-New",
     "system_friendly_name": "PortMaster",
-    "component_type": "System",
+    "component_type": "Utility",
     "system": "portmaster",
     "backup_data": {
       "core": [
-        {"path": "$XDG_DATA_HOME/PortMaster"}
+        {
+          "path": "$XDG_DATA_HOME/PortMaster"
+        }
       ]
     },
     "component_options": {
@@ -32,10 +37,10 @@
       }
     },
     "configurator_menus": {
-      "settings": [
+      "es_de_entries": [
         {
-          "name": "PortMaster in ES-DE",
-          "description": "Enable or disable: PortMaster entry in ES-DE.",
+          "name": "PortMaster",
+          "description": "Enable or disable: The PortMaster entry in ES-DE.",
           "command": {
             "zenity": "configurator_portmaster_toggle_dialog"
           }
@@ -72,10 +77,28 @@
               "priority": 10
             }
           ],
-          "platform": "portmaster",
+          "platform": "pc, pcwindows, dos",
           "theme": "portmaster"
         }
       ]
+    },
+    "es_de_gamelist_entries": {
+      "image_root": "%COMPONENT_PATH%/rd_extras/es_de_media",
+      "entries": {
+        "portmaster": {
+          "system": "portmaster",
+          "gamelist_data": {
+            "path": "PortMaster.sh",
+            "name": "PortMaster",
+            "desc": "PortMaster is a Linux game-port manager that lets users install, update and manage games.",
+            "releasedate": "20210921T000000",
+            "developer": "PortMaster Crew",
+            "publisher": "Various",
+            "genre": "Utilities",
+            "players": "1"
+          }
+        }
+      }
     },
     "helper_files": [
       {

@@ -1,0 +1,14 @@
+## ZEsarUX 
+
+ZEsarUX is a comprehensive multi-ZX machine emulator with a built-in OS supporting various ZX Spectrum and related systems.
+
+It needs libSDL-1.2.so.0 (included in rd_assets)
+
+All files must be retained for proper functionality, there is no point removing anything from the source .zip file.
+
+- Documentation files (.txt .README)
+- Binary executables
+- Supporting configuration files
+- Etc...
+
+Each file serves a specific purpose within the emulator's operating system, including readable system prompts and core OS functions.

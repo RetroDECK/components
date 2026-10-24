@@ -1,11 +1,11 @@
 {
   "es-de": {
-    "description": "ES-DE Frontend is a game-launcher frontend.",
+    "description": "ES-DE Frontend.",
     "name": "ES-DE",
     "core_framework_compatibility": "1",
     "component_version": "1.0.0",
     "capabilities": ["reset"],
-    "component_type": "System",
+    "component_type": "Frontend",
     "prepare_priority": {
       "reset": 10,
       "postmove": 10,
@@ -322,14 +322,14 @@
       },
       "tsukimi_mid_autumn": {
         "start_date": "0925",
-        "end_date": "0926",
+        "end_date": "0925",
         "start_time": "0000",
         "end_time": "2359",
         "holiday_type": "dynamic",
         "filename": "placeholder.svg"
       },
       "halloween": {
-        "start_date": "1028",
+        "start_date": "1030",
         "end_date": "1031",
         "start_time": "0000",
         "end_time": "2359",
@@ -368,17 +368,9 @@
         "holiday_type": "dynamic",
         "filename": "rd-monkey-festival-splash.svg"
       },
-      "chanukah_start": {
+      "chanukah": {
         "start_date": "1205",
         "end_date": "1205",
-        "start_time": "0000",
-        "end_time": "2359",
-        "holiday_type": "dynamic",
-        "filename": "rd-chanukah-splash.svg"
-      },
-      "chanukah_end": {
-        "start_date": "1212",
-        "end_date": "1212",
         "start_time": "0000",
         "end_time": "2359",
         "holiday_type": "dynamic",
@@ -393,7 +385,7 @@
         "filename": "rd-lucia-splash.svg"
       },
       "xmas": {
-        "start_date": "1222",
+        "start_date": "1224",
         "end_date": "1225",
         "start_time": "0000",
         "end_time": "2359",

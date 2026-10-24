@@ -66,22 +66,23 @@ _prepare_component::azahar() {
       create_dir -d "$azahar_mods_path"
       create_dir -d "$azahar_textures_path"
       create_dir "$screenshots_path/Azahar"
-      create_dir "$saves_path/n3ds/azahar/nand/"
-      create_dir "$saves_path/n3ds/azahar/sdmc/"
+      create_dir "$saves_path/Azahar-SA/nand/"
+      create_dir "$saves_path/Azahar-SA/sdmc/"
 
       cp -fT "$component_config/qt-config.ini" "$azahar_config_path/qt-config.ini"
 
       set_setting_value "$azahar_qtconfig" "use_custom_storage" "true" "azahar" "Data%20Storage"
-      set_setting_value "$azahar_qtconfig" "nand_directory" "$saves_path/n3ds/azahar/nand/" "azahar" "Data%20Storage"
-      set_setting_value "$azahar_qtconfig" "sdmc_directory" "$saves_path/n3ds/azahar/sdmc/" "azahar" "Data%20Storage"
+      set_setting_value "$azahar_qtconfig" "nand_directory" "$saves_path/Azahar-SA/nand/" "azahar" "Data%20Storage"
+      set_setting_value "$azahar_qtconfig" "sdmc_directory" "$saves_path/Azahar-SA/sdmc/" "azahar" "Data%20Storage"
       set_setting_value "$azahar_qtconfig" "Paths\gamedirs\3\path" "$roms_path/n3ds" "azahar" "UI"
       set_setting_value "$azahar_qtconfig" "Paths\screenshotPath" "$screenshots_path/Azahar" "azahar" "UI"
 
       dir_prep "$mods_path/Azahar/mods" "$azahar_mods_path"
       dir_prep "$texture_packs_path/Azahar/textures" "$azahar_textures_path"
-      dir_prep "$shaders_path/Azahar/" "$azahar_shaders_path"
+      dir_prep "$shaders_path/Azahar/shaders" "$azahar_shaders_path"
       dir_prep "$logs_path/Azahar/" "$azahar_logs_path"
-      dir_prep "$cheats_path/Azahar/" "$azahar_cheats_path"
+      dir_prep "$cheats_path/Azahar/cheats" "$azahar_cheats_path"
+
     ;;
 
     postmove)
@@ -90,16 +91,17 @@ _prepare_component::azahar() {
       log i "----------------------"
 
       set_setting_value "$azahar_qtconfig" "use_custom_storage" "true" "azahar" "Data%20Storage"
-      set_setting_value "$azahar_qtconfig" "nand_directory" "$saves_path/n3ds/azahar/nand/" "azahar" "Data%20Storage"
-      set_setting_value "$azahar_qtconfig" "sdmc_directory" "$saves_path/n3ds/azahar/sdmc/" "azahar" "Data%20Storage"
+      set_setting_value "$azahar_qtconfig" "nand_directory" "$saves_path/Azahar-SA/nand/" "azahar" "Data%20Storage"
+      set_setting_value "$azahar_qtconfig" "sdmc_directory" "$saves_path/Azahar-SA/sdmc/" "azahar" "Data%20Storage"
       set_setting_value "$azahar_qtconfig" "Paths\gamedirs\3\path" "$roms_path/n3ds" "azahar" "UI"
       set_setting_value "$azahar_qtconfig" "Paths\screenshotPath" "$screenshots_path/Azahar" "azahar" "UI"
 
       dir_prep "$mods_path/Azahar/mods" "$azahar_mods_path"
       dir_prep "$texture_packs_path/Azahar/textures" "$azahar_textures_path"
-      dir_prep "$shaders_path/Azahar/" "$azahar_shaders_path"
+      dir_prep "$shaders_path/Azahar/shaders" "$azahar_shaders_path"
       dir_prep "$logs_path/Azahar/" "$azahar_logs_path"
-      dir_prep "$cheats_path/Azahar/" "$azahar_cheats_path"
+      dir_prep "$cheats_path/Azahar/cheats" "$azahar_cheats_path"
+
     ;;
 
   esac
@@ -107,6 +109,32 @@ _prepare_component::azahar() {
 
 _post_update::azahar() {
   local previous_version="$1"
+
+  if check_version_is_older_than "$previous_version" "0.11.0"; then
+    log i "0.11.0 Upgrade - Azahar RA Conflict Migration "
+
+    create_dir "$saves_path/Azahar-SA/nand/"
+    create_dir "$saves_path/Azahar-SA/sdmc/"
+
+    cp -rfv "$saves_path/n3ds/azahar/nand/" "$saves_path/Azahar-SA/nand/"
+    cp -rfv "$saves_path/n3ds/azahar/sdmc/" "$saves_path/Azahar-SA/sdmc/"
+
+    create_dir "$backups_path/0.11.0/Azahar-SA/nand/"
+    create_dir "$backups_path/0.11.0/Azahar-SA/sdmc/"
+    
+    cp -rfv "$saves_path/n3ds/azahar/nand/" "$backups_path/0.11.0/Azahar-SA/sdmc/"
+    cp -rfv "$saves_path/n3ds/azahar/sdmc/" "$backups_path/0.11.0/Azahar-SA/sdmc/"
+    
+    set_setting_value "$azahar_qtconfig" "nand_directory" "$saves_path/Azahar-SA/nand/" "azahar" "Data%20Storage"
+    set_setting_value "$azahar_qtconfig" "sdmc_directory" "$saves_path/Azahar-SA/sdmc/" "azahar" "Data%20Storage"
+
+    dir_prep "$cheats_path/Azahar/cheats" "$azahar_cheats_path"
+    dir_prep "$shaders_path/Azahar/shaders" "$azahar_shaders_path"
+    
+    create_dir "$saves_path/RetroArch"
+    mv "$saves_path/n3ds" "$saves_path/RetroArch/"
+
+  fi
 
 }
 
@@ -151,4 +179,5 @@ _post_update_legacy::azahar() {
     set_setting_value "$azahar_qtconfig" "Shortcuts\Main%20Window\Rotate%20Screens%20Upright\KeySeq" "Alt+Y" "azahar" "UI"
     set_setting_value "$azahar_qtconfig" "Shortcuts\Main%20Window\Toggle%20Screen%20Layout\KeySeq" "Ctrl+L" "azahar" "UI"
   fi
+
 }

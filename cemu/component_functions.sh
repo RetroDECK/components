@@ -7,7 +7,6 @@ export cemu_config_controller2="$XDG_CONFIG_HOME/Cemu/controllerProfiles/control
 export cemu_config_controller3="$XDG_CONFIG_HOME/Cemu/controllerProfiles/controller3.xml"
 export cemu_textures_path="$XDG_DATA_HOME/Cemu/graphicPacks"
 export cemu_shadercache_path="$XDG_CACHE_HOME/Cemu/shaderCache"
-export cemu_shadercache_transferable_path="$XDG_CACHE_HOME/Cemu/shaderCache/transferable"
 
 _set_setting_value::cemu() {
   local file="$1" name="$2" value="$3" section="${4:-}"
@@ -50,14 +49,19 @@ _prepare_component::cemu() {
 
       create_dir -d "$XDG_CONFIG_HOME/Cemu/"
       cp -fr "$component_config/"* "$XDG_CONFIG_HOME/Cemu/"
-      set_setting_value "$cemu_config" "mlc_path" "$bios_path/cemu" "cemu"
-      set_setting_value "$cemu_config" "Entry" "$roms_path/wiiu" "cemu" "GamePaths"
-      if [[ -e "$bios_path/cemu/keys.txt" ]]; then
-        rm -rf "$XDG_DATA_HOME/Cemu/keys.txt" && ln -s "$bios_path/cemu/keys.txt" "$XDG_DATA_HOME/Cemu/keys.txt" && log d "Linked $bios_path/cemu/keys.txt to $XDG_DATA_HOME/Cemu/keys.txt"
-      fi
-      dir_prep "$saves_path/wiiu/cemu" "$bios_path/cemu/usr/save"
+
+      create_dir "$bios_path/Cemu-SA"
+      create_dir "$saves_path/Cemu-SA/mlc01"
+
+      ln -sfn "$bios_path/Cemu-SA/keys.txt" "$XDG_DATA_HOME/Cemu/keys.txt"
+
       dir_prep "$texture_packs_path/Cemu/graphicPacks" "$cemu_textures_path"
-      dir_prep "$shaders_path/Cemu/transferable" "$cemu_shadercache_transferable_path"
+      dir_prep "$shaders_path/Cemu/shaderCache" "$cemu_shadercache_path"
+      create_dir "$shaders_path/Cemu/shaderCache/transferable"
+
+      set_setting_value "$cemu_config" "mlc_path" "$saves_path/Cemu-SA/mlc01" "cemu"
+      set_setting_value "$cemu_config" "Entry" "$roms_path/wiiu" "cemu" "GamePaths"
+
     ;;
 
     postmove)
@@ -65,11 +69,14 @@ _prepare_component::cemu() {
       log i "Post-moving Cemu"
       log i "----------------------"
       
-      set_setting_value "$cemu_config" "mlc_path" "$bios_path/cemu" "cemu"
-      set_setting_value "$cemu_config" "Entry" "$roms_path/wiiu" "cemu" "GamePaths"
-      dir_prep "$saves_path/wiiu/cemu" "$bios_path/cemu/usr/save"
       dir_prep "$texture_packs_path/Cemu/graphicPacks" "$cemu_textures_path"
-      dir_prep "$shaders_path/Cemu/transferable" "$cemu_shadercache_transferable_path"
+      dir_prep "$shaders_path/Cemu/shaderCache" "$cemu_shadercache_path"
+
+      ln -sfn "$bios_path/Cemu-SA/keys.txt" "$XDG_DATA_HOME/Cemu/keys.txt"
+
+      set_setting_value "$cemu_config" "mlc_path" "$saves_path/Cemu-SA/mlc01" "cemu"
+      set_setting_value "$cemu_config" "Entry" "$roms_path/wiiu" "cemu" "GamePaths"
+
     ;;
 
   esac
@@ -77,6 +84,37 @@ _prepare_component::cemu() {
 
 _post_update::cemu() {
   local previous_version="$1"
+
+  if check_version_is_older_than "$previous_version" "0.11.0"; then
+    log i "0.11.0 Upgrade - Transfer to Cemu-SA to avoid RA Conflict"
+
+    dir_prep "$shaders_path/Cemu/shaderCache" "$cemu_shadercache_path"
+
+    mv "$shaders_path/Cemu/transferable" "$shaders_path/Cemu/shaderCache/"
+
+    create_dir "$bios_path/Cemu-SA"
+    create_dir "$bios_path/Cemu"
+
+    cp -rfv "$bios_path/cemu/keys.txt" "$bios_path/Cemu-SA/"
+    cp -rv "$bios_path/cemu/keys.txt" "$bios_path/Cemu/"
+
+    ln -sfn "$bios_path/Cemu-SA/keys.txt" "$XDG_DATA_HOME/Cemu/keys.txt"
+
+    create_dir "$backups_path/0.11.0/Cemu-SA/mlc01/usr/save"
+    create_dir "$saves_path/Cemu-SA/mlc01/usr/save"
+
+    set_setting_value "$cemu_config" "mlc_path" "$saves_path/Cemu-SA/mlc01" "cemu"
+
+    cp -rfv "$bios_path/cemu" "$backups_path/0.11.0/Cemu-SA/mlc01"
+    cp -rfv "$saves_path/wiiu/cemu" "$backups_path/0.11.0/Cemu-SA/mlc01"
+
+    cp -rfv "$bios_path/cemu" "$saves_path/Cemu-SA/mlc01"
+    cp -rfv "$saves_path/wiiu/cemu" "$saves_path/Cemu-SA/mlc01/usr/save"
+    
+    create_dir "$saves_path/RetroArch"
+    mv "$saves_path/wiiu" "$saves_path/RetroArch/"
+
+  fi
 
 }
 
@@ -97,4 +135,7 @@ _post_update_legacy::cemu() {
 
     prepare_component "reset" "cemu"
   fi
+
+
+
 }

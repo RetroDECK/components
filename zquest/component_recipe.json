@@ -1,0 +1,63 @@
+{
+  "zquest": [
+    {
+      "source_url": "https://github.com/ZQuestClassic/ZQuestClassic/releases/download/{VERSION}/*-linux.tar.gz",
+      "source_type": "github_release",
+      "version": "$ZQUEST_DESIRED_VERSION",
+      "extraction_type": "archive",
+      "assets": [
+        {
+          "type": "dir",
+          "source": "bin",
+          "dest": "bin"
+        },
+        {
+          "type": "dir",
+          "source": "share",
+          "dest": "share"
+        },
+        {
+          "type": "dir",
+          "source": "lib",
+          "dest": "lib"
+        },
+        {
+          "type": "file",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/rd_assets/rd_config/zc.cfg",
+          "dest": "share/zquestclassic"
+        },
+        {
+          "type": "create",
+          "dest": "component_version",
+          "contents": "$SOURCE_VERSION"
+        },
+        {
+          "type": "dir",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/rd_assets/rd_config",
+          "dest": "rd_config"
+        },
+        {
+          "type": "file",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/component_functions.sh",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/component_launcher.sh",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/component_manifest.json",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/component_recipe.json",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        }
+      ],
+      "libs": []
+    }
+  ]
+}

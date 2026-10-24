@@ -61,19 +61,27 @@ _prepare_component::duckstation() {
       log i "------------------------"
       
       create_dir -d "$XDG_CONFIG_HOME/duckstation/"
-      create_dir "$saves_path/psx/duckstation/memcards"
       cp -fv "$component_config/"* "$XDG_CONFIG_HOME/duckstation"
+      
+      create_dir "$saves_path/Duckstation-SA/memcards"
+
       set_setting_value "$duckstation_config" "SearchDirectory" "$bios_path" "duckstation" "BIOS"
-      set_setting_value "$duckstation_config" "Card1Path" "$saves_path/psx/duckstation/memcards/shared_card_1.mcd" "duckstation" "MemoryCards"
-      set_setting_value "$duckstation_config" "Card2Path" "$saves_path/psx/duckstation/memcards/shared_card_2.mcd" "duckstation" "MemoryCards"
-      set_setting_value "$duckstation_config" "Directory" "$saves_path/psx/duckstation/memcards" "duckstation" "MemoryCards"
+      set_setting_value "$duckstation_config" "Card1Path" "$saves_path/Duckstation-SA/memcards/shared_card_1.mcd" "duckstation" "MemoryCards"
+      set_setting_value "$duckstation_config" "Card2Path" "$saves_path/Duckstation-SA/memcards/shared_card_2.mcd" "duckstation" "MemoryCards"
+      set_setting_value "$duckstation_config" "Directory" "$saves_path/Duckstation-SA/memcards" "duckstation" "MemoryCards"
       set_setting_value "$duckstation_config" "RecursivePaths" "$roms_path/psx" "duckstation" "GameList"
-      dir_prep "$states_path/psx/duckstation" "$XDG_CONFIG_HOME/duckstation/savestates" # This is hard-coded in Duckstation, always needed
+
+      dir_prep "$states_path/Duckstation-SA/savestates" "$XDG_CONFIG_HOME/duckstation/savestates"
+
       dir_prep "$texture_packs_path/Duckstation/textures" "$duckstation_textures_path"
+
       dir_prep "$screenshots_path/Duckstation/" "$duckstation_screenshots_path"
-      dir_prep "$shaders_path/Duckstation/" "$duckstation_shaders_path"
+
+      dir_prep "$shaders_path/Duckstation/shaders" "$duckstation_shaders_path"
+
       dir_prep "$storage_path/Duckstation/dump/textures" "$duckstation_dump_textures_path"
       dir_prep "$storage_path/Duckstation/dump/audio" "$duckstation_dump_audio_path"
+
     ;;
 
     postmove)
@@ -82,16 +90,22 @@ _prepare_component::duckstation() {
       log i "------------------------"
 
       set_setting_value "$duckstation_config" "SearchDirectory" "$bios_path" "duckstation" "BIOS"
-      set_setting_value "$duckstation_config" "Card1Path" "$saves_path/psx/duckstation/memcards/shared_card_1.mcd" "duckstation" "MemoryCards"
-      set_setting_value "$duckstation_config" "Card2Path" "$saves_path/psx/duckstation/memcards/shared_card_2.mcd" "duckstation" "MemoryCards"
-      set_setting_value "$duckstation_config" "Directory" "$saves_path/psx/duckstation/memcards" "duckstation" "MemoryCards"
+      set_setting_value "$duckstation_config" "Card1Path" "$saves_path/Duckstation-SA/memcards/shared_card_1.mcd" "duckstation" "MemoryCards"
+      set_setting_value "$duckstation_config" "Card2Path" "$saves_path/Duckstation-SA/memcards/shared_card_2.mcd" "duckstation" "MemoryCards"
+      set_setting_value "$duckstation_config" "Directory" "$saves_path/Duckstation-SA/memcards" "duckstation" "MemoryCards"
       set_setting_value "$duckstation_config" "RecursivePaths" "$roms_path/psx" "duckstation" "GameList"
-      dir_prep "$states_path/psx/duckstation" "$XDG_CONFIG_HOME/duckstation/savestates" # This is hard-coded in Duckstation, always needed
+
+      dir_prep "$states_path/Duckstation-SA/savestates" "$XDG_CONFIG_HOME/duckstation/savestates"
+
       dir_prep "$texture_packs_path/Duckstation/textures" "$duckstation_textures_path"
+
       dir_prep "$screenshots_path/Duckstation/" "$duckstation_screenshots_path"
-      dir_prep "$shaders_path/Duckstation/" "$duckstation_shaders_path"
+
+      dir_prep "$shaders_path/Duckstation/shaders" "$duckstation_shaders_path"
+
       dir_prep "$storage_path/Duckstation/dump/textures" "$duckstation_dump_textures_path"
       dir_prep "$storage_path/Duckstation/dump/audio" "$duckstation_dump_audio_path"
+
     ;;
 
   esac
@@ -99,6 +113,31 @@ _prepare_component::duckstation() {
 
 _post_update::duckstation() {
   local previous_version="$1"
+
+  if check_version_is_older_than "$previous_version" "0.11.0"; then
+    log i "0.11.0 Upgrade - Duckstation (Legacy) Potential Conflict Migration"
+    create_dir "$saves_path/Duckstation-SA/memcards/"
+    create_dir "$backups_path/0.11.0/Duckstation-SA/memcards/"
+
+    cp -rfv "$saves_path/psx/duckstation/memcards" "$saves_path/Duckstation-SA/memcards/"
+    cp -rfv "$saves_path/psx/duckstation/memcards" "$backups_path/0.11.0/Duckstation-SA/memcards/"
+
+    set_setting_value "$duckstation_config" "Card1Path" "$saves_path/Duckstation-SA/memcards/shared_card_1.mcd" "duckstation" "MemoryCards"
+    set_setting_value "$duckstation_config" "Card2Path" "$saves_path/Duckstation-SA/memcards/shared_card_2.mcd" "duckstation" "MemoryCards"
+
+    dir_prep "$states_path/Duckstation-SA/savestates" "$XDG_CONFIG_HOME/duckstation/savestates"
+
+    cp -rfv "$states_path/psx/duckstation/" "$saves_path/Duckstation-SA/savestates/"
+    cp -rfv "$states_path/psx/duckstation/" "$backups_path/0.11.0/Duckstation-SA/savestates/"
+
+
+    create_dir "$saves_path/RetroArch"
+    create_dir "$states_path/RetroArch"
+    mv "$saves_path/psx" "$saves_path/RetroArch/"
+    mv "$states_path/psx" "$states_path/RetroArch/"
+    
+    dir_prep "$shaders_path/Duckstation/shaders" "$duckstation_shaders_path"
+  fi
 
 }
 
@@ -130,18 +169,18 @@ _post_update_legacy::duckstation() {
     if [[ -f "$saves_path/duckstation/shared_card_1.mcd" || -f "$saves_path/duckstation/shared_card_2.mcd" ]]; then
       configurator_generic_dialog "RetroDECK 0.7.0b Upgrade" "As part of this update, the location of saves and states for Duckstation has been changed.\n\nYour files will be moved automatically, and can now be found at\n\n~.../saves/psx/duckstation/memcards/\nand\n~.../states/psx/duckstation/"
     fi
-    create_dir "$saves_path/psx/duckstation/memcards"
-    mv "$saves_path/duckstation/"* "$saves_path/psx/duckstation/memcards/"
+    create_dir "$saves_path/Duckstation-SA/memcards"
+    mv "$saves_path/duckstation/"* "$saves_path/Duckstation-SA/memcards/"
     rmdir "$saves_path/duckstation" # File-safe folder cleanup
     unlink "$XDG_CONFIG_HOME/duckstation/memcards"
-    set_setting_value "$duckstationconf" "Card1Path" "$saves_path/psx/duckstation/memcards/shared_card_1.mcd" "duckstation" "MemoryCards"
-    set_setting_value "$duckstationconf" "Card2Path" "$saves_path/psx/duckstation/memcards/shared_card_2.mcd" "duckstation" "MemoryCards"
-    set_setting_value "$duckstationconf" "Directory" "$saves_path/psx/duckstation/memcards" "duckstation" "MemoryCards"
+    set_setting_value "$duckstationconf" "Card1Path" "$saves_path/Duckstation-SA/memcards/shared_card_1.mcd" "duckstation" "MemoryCards"
+    set_setting_value "$duckstationconf" "Card2Path" "$saves_path/Duckstation-SA/memcards/shared_card_2.mcd" "duckstation" "MemoryCards"
+    set_setting_value "$duckstationconf" "Directory" "$saves_path/Duckstation-SA/memcards" "duckstation" "MemoryCards"
     set_setting_value "$duckstationconf" "RecursivePaths" "$roms_path/psx" "duckstation" "GameList"
     create_dir "$states_path/psx"
     mv -t "$states_path/psx/" "$states_path/duckstation"
     unlink "$XDG_CONFIG_HOME/duckstation/savestates"
-    dir_prep "$states_path/psx/duckstation" "$XDG_CONFIG_HOME/duckstation/savestates"
+    dir_prep "$states_path/Duckstation-SA" "$XDG_CONFIG_HOME/duckstation/savestates"
 
     set_setting_value "$duckstationconf" "SaveStateOnExit" "false" "duckstation" "Main"
     set_setting_value "$duckstationconf" "Enabled" "false" "duckstation" "Cheevos"
@@ -153,4 +192,5 @@ _post_update_legacy::duckstation() {
 
     prepare_component "postmove" "duckstation"
   fi
+      
 }

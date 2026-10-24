@@ -32,8 +32,10 @@ _prepare_component::ruffle() {
 
       create_dir -d "$XDG_CONFIG_HOME/ruffle/"
       cp -fv "$component_config/"* "$XDG_CONFIG_HOME/ruffle/"
-      dir_prep "$saves_path/flash/ruffle" "$ruffle_saves_path"
-      dir_prep "$logs_path/ruffle" "$ruffle_logs_path"
+
+      dir_prep "$saves_path/Ruffle-SA/SharedObjects" "$ruffle_saves_path"
+      dir_prep "$logs_path/Ruffle" "$ruffle_logs_path"
+
     ;;
 
     postmove)
@@ -41,8 +43,9 @@ _prepare_component::ruffle() {
       log i "Post-moving Ruffle"
       log i "------------------------"
 
-      dir_prep "$saves_path/flash/ruffle" "$ruffle_saves_path"
-      dir_prep "$logs_path/ruffle" "$ruffle_logs_path"
+      dir_prep "$saves_path/Ruffle-SA/SharedObjects" "$ruffle_saves_path"
+      dir_prep "$logs_path/Ruffle" "$ruffle_logs_path"
+      
     ;;
 
   esac
@@ -50,6 +53,22 @@ _prepare_component::ruffle() {
 
 _post_update::ruffle() {
   local previous_version="$1"
+
+ if check_version_is_older_than "$previous_version" "0.11.0"; then
+    log i "0.11.0 Upgrade - Ruffle RA Conflict Migration"
+
+    dir_prep "$saves_path/Ruffle-SA/SharedObjects" "$ruffle_saves_path"
+
+    cp -rfv "$saves_path/flash/ruffle" "$saves_path/Ruffle-SA/SharedObjects"
+
+    create_dir "$backups_path/0.11.0/Ruffle-SA/SharedObjects"
+
+    cp -rfv "$saves_path/flash/ruffle" "$backups_path/0.11.0/Ruffle-SA/SharedObjects"
+
+    create_dir "$saves_path/RetroArch"
+    mv "$saves_path/flash" "$saves_path/RetroArch/"
+
+ fi
 
 }
 

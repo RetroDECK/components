@@ -1,0 +1,25 @@
+## Flatpak Later
+
+Mudlet is currently developing a Flatpak package. Once it becomes available, we'll switch to that as our source. 
+
+## Current Version
+
+Mudlet 4.22.0
+2026-08-02
+
+## Update Steps
+
+Since Cloudflare blocks automated requests to Mudlet's website, we cannot fetch files directly from their CDN.
+
+Instead, please follow these manual steps for updating:
+
+1. Navigate to the https://www.mudlet.org/download/
+2. Download the latest Linux AppImage
+
+### Split for GitHub Upload
+
+Due to GitHub's file size limits, split the AppImage using 7-Zip:
+
+7z -v49m a -mx9 Mudlet.7z Mudlet.AppImage
+
+Then upload the latest version in the tmp_assets folder.

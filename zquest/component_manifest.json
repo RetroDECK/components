@@ -1,0 +1,55 @@
+{
+  "zquest": {
+    "name": "ZQuest Classic",
+    "core_framework_compatibility": "1",
+    "component_version": "1.0.0",
+    "capabilities": [
+      "reset",
+      "open"
+    ],
+    "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_engine_guides/zquest/zquest-guide/",
+    "url_donation_purchase": "",
+    "url_webpage": "https://zquestclassic.com/",
+    "url_source": "https://github.com/ZQuestClassic/ZQuestClassic",
+    "description": "2D action-RPG engine for classic 8-bit Zelda-like games.",
+    "system_friendly_name": "ZQuest Classic",
+    "component_type": "Engine",
+    "system": "zquest",
+    "es_de_config": {
+      "es_find_rules": {
+        "emulators": [
+          {
+            "name": "ZQUEST",
+            "description": "ZQuest Classic Game Engine",
+            "rules": [
+              {
+                "type": "staticpath",
+                "entries": [
+                  "%COMPONENT_PATH%/component_launcher.sh"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "es_systems": [
+        {
+          "name": "zquest",
+          "fullname": "ZQuest Classic",
+          "path": "%ROMPATH%/zquest",
+          "extension": ".qst",
+          "commands": [
+            {
+              "label": "ZQuest Classic (Standalone)",
+              "command": "%EMULATOR_ZQUEST% -standalone %ROM%",
+              "priority": 10
+            }
+          ],
+          "platform": "zquest, pc, pcwindows",
+          "theme": "zquest"
+        }
+      ]
+    },
+    "bios": []
+  }
+}

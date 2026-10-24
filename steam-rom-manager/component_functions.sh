@@ -358,7 +358,7 @@ get_steam_user() {
         flag && /"PersonaName"/ {gsub(/"/, "", $2); print $2; exit}' "$srm_steam_userdata_current/config/loginusers.vdf")
 
       # Log success
-      log i "Steam user found:"
+      log i "Steam user found!"
       log i "SteamID: $steam_id"
       log i "Username: $steam_username"
       log i "Name: $steam_prettyname"
@@ -606,13 +606,15 @@ steam_sync_remove() {
 install_retrodeck_controller_profile() {
   # This function will install the needed files for the custom RetroDECK controller profile
   # USAGE: install_retrodeck_controller_profile
-  local mode="{$1:-}"
+  local mode="${1:-}"
   local current_steam_sync_setting="$(get_component_option "steam-rom-manager" "steam_sync")"
 
   if [[ ("$current_steam_sync_setting" == "native" || "$mode" == "manual") && -d "$srm_steam_userdata_native/controller_base/templates/" ]]; then
+    log d "Native Steam install found, attempting to copy controller templates and binding icons into base directory $srm_steam_userdata_native"
     rsync -rlD --mkpath "$srm_steam_controller_profiles_binding_icons_path/" "$srm_steam_userdata_native/tenfoot/resource/images/library/controller/binding_icons/"
     rsync -rlD --mkpath "$srm_steam_controller_profiles_path/" "$srm_steam_userdata_native/controller_base/templates/"
   elif [[ ("$current_steam_sync_setting" == "flatpak" || "$mode" == "manual") && -d "$srm_steam_userdata_flatpak/controller_base/templates/" ]]; then
+    log d "Flatpak Steam install found, attempting to copy controller templates and binding icons into base directory $srm_steam_userdata_flatpak"
     rsync -rlD --mkpath "$srm_steam_controller_profiles_binding_icons_path/" "$srm_steam_userdata_flatpak/tenfoot/resource/images/library/controller/binding_icons/"
     rsync -rlD --mkpath "$srm_steam_controller_profiles_path/" "$srm_steam_userdata_flatpak/controller_base/templates/"
   else
@@ -673,7 +675,6 @@ finit_install_controller_profile_dialog() {
 
 finit_install_controller_profile_and_add_retrodeck_to_steam() {
   if get_steam_user "manual"; then
-    log i "Updating steamDirectory and romDirectory lines in $srm_usersettings_file"
     local usersettings_temp=$(mktemp)
     jq --arg userdata_path "$srm_steam_userdata_current" --arg rd_home_path "$rd_home_path" '
       .environmentVariables.steamDirectory = $userdata_path |

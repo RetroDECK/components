@@ -1,0 +1,17 @@
+## SDL2TRS
+
+This application must be built from source. Please refer to the official build instructions https://gitlab.com/jengun/sdltrs/-/blob/master/BUILDING.md on GitLab for details.
+
+**Note:** 
+
+This refers to the SDL2 version of SDL2TRS. Do not build the SDL1.5 version!
+
+## Current Version
+
+SDL2TRS 
+2026-02-06 
+
+## Update Steps
+
+1. **Compile** the latest SDL2TRS build from source following the instructions linked above.
+2. **Replace** the existing archive at `tmp_assets/sdl2trs.tar.gz` with the newly compiled and tar it into `sdl2trs.tar.gz`.

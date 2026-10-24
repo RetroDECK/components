@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export melonds_config="$XDG_CONFIG_HOME/melonDS/melonDS.toml"
+export melonds_config="$XDG_CONFIG_HOME/melonds/melonds.toml"
 
 _set_setting_value::melonds() {
   local file="$1"
@@ -52,32 +52,54 @@ _prepare_component::melonds() {
 
     reset)
       log i "----------------------"
-      log i "Resetting MelonDS"
+      log i "Resetting melonDS"
       log i "----------------------"
 
-      create_dir -d "$XDG_CONFIG_HOME/melonDS/"
-      cp -fv "$component_config/melonDS.toml" "$melonds_config"
-      set_setting_value "$melonds_config" "BIOS9Path" "$bios_path/bios9.bin" "melonds" "DS"
-      set_setting_value "$melonds_config" "BIOS7Path" "$bios_path/bios7.bin" "melonds" "DS"
-      set_setting_value "$melonds_config" "FirmwarePath" "$bios_path/firmware.bin" "melonds" "DS"
-      set_setting_value "$melonds_config" "SaveFilePath" "$saves_path/nds/melonds" "melonds" "Instance0"
-      set_setting_value "$melonds_config" "SavestatePath" "$states_path/nds/melonds" "melonds" "Instance0"
-      create_dir "$saves_path/nds/melonds"
-      create_dir "$states_path/nds/melonds"
+      create_dir -d "$XDG_CONFIG_HOME/melonds/"
+      cp -fv "$component_config/melonds.toml" "$melonds_config"
+
+      create_dir "$saves_path/melonDS-SA/saves"
+      create_dir "$states_path/melonDS-SA/states"
+      create_dir "$cheats_path/melonDS/cheats"
+
       dir_prep "$bios_path" "$XDG_CONFIG_HOME/melonDS/bios"
+
+      set_setting_value "$melonds_config" "BIOS9Path" "\"$bios_path/bios9.bin\"" "melonds" "DS"
+      set_setting_value "$melonds_config" "BIOS7Path" "\"$bios_path/bios7.bin\"" "melonds" "DS"
+      set_setting_value "$melonds_config" "FirmwarePath" "\"$bios_path/firmware.bin\"" "melonds" "DS"
+
+      set_setting_value "$melonds_config" "NANDPath" "\"$bios_path/dsi_nand.bin\"" "melonds" "DSi"
+      set_setting_value "$melonds_config" "BIOS7Path" "\"$bios_path/dsi_bios7.bin\"" "melonds" "DSi"
+      set_setting_value "$melonds_config" "BIOS9Path" "\"$bios_path/dsi_bios9.bin\"" "melonds" "DSi"
+      set_setting_value "$melonds_config" "FirmwarePath" "\"$bios_path/dsi_firmware.bin\"" "melonds" "DSi"
+
+      set_setting_value "$melonds_config" "SaveFilePath" "\"$saves_path/melonDS-SA/saves\"" "melonds" "Instance0"
+      set_setting_value "$melonds_config" "SavestatePath" "\"$states_path/melonDS-SA/states\"" "melonds" "Instance0"
+      set_setting_value "$melonds_config" "CheatFilePath" "\"$cheats_path/melonDS/cheats\"" "melonds" "Instance0"
+
+
     ;;
 
     postmove)
       log i "----------------------"
-      log i "Post-moving MelonDS"
+      log i "Post-moving melonDS"
       log i "----------------------"
 
-      dir_prep "$bios_path" "$XDG_CONFIG_HOME/melonDS/bios"
-      set_setting_value "$melonds_config" "BIOS9Path" "$bios_path/bios9.bin" "melonds" "DS"
-      set_setting_value "$melonds_config" "BIOS7Path" "$bios_path/bios7.bin" "melonds" "DS"
-      set_setting_value "$melonds_config" "FirmwarePath" "$bios_path/firmware.bin" "melonds" "DS"
-      set_setting_value "$melonds_config" "SaveFilePath" "$saves_path/nds/melonds" "melonds" "Instance0"
-      set_setting_value "$melonds_config" "SavestatePath" "$states_path/nds/melonds" "melonds" "Instance0"
+      dir_prep "$bios_path" "$XDG_CONFIG_HOME/melonds/bios"
+      
+      set_setting_value "$melonds_config" "BIOS9Path" "\"$bios_path/bios9.bin\"" "melonds" "DS"
+      set_setting_value "$melonds_config" "BIOS7Path" "\"$bios_path/bios7.bin\"" "melonds" "DS"
+      set_setting_value "$melonds_config" "FirmwarePath" "\"$bios_path/firmware.bin\"" "melonds" "DS"
+
+      set_setting_value "$melonds_config" "NANDPath" "\"$bios_path/dsi_nand.bin\"" "melonds" "DSi"
+      set_setting_value "$melonds_config" "BIOS7Path" "\"$bios_path/dsi_bios7.bin\"" "melonds" "DSi"
+      set_setting_value "$melonds_config" "BIOS9Path" "\"$bios_path/dsi_bios9.bin\"" "melonds" "DSi"
+      set_setting_value "$melonds_config" "FirmwarePath" "\"$bios_path/dsi_firmware.bin\"" "melonds" "DSi"
+
+      set_setting_value "$melonds_config" "SaveFilePath" "\"$saves_path/melonDS-SA/saves\"" "melonds" "Instance0"
+      set_setting_value "$melonds_config" "SavestatePath" "\"$states_path/melonDS-SA/states\"" "melonds" "Instance0"
+      set_setting_value "$melonds_config" "CheatFilePath" "\"$cheats_path/melonDS/cheats\"" "melonds" "Instance0"
+      
     ;;
 
   esac
@@ -86,6 +108,32 @@ _prepare_component::melonds() {
 _post_update::melonds() {
   local previous_version="$1"
 
+  if check_version_is_older_than "$previous_version" "0.11.0"; then
+    log i "0.11.0 Upgrade - melonDS RA Conflict Migration"
+
+    create_dir "$saves_path/melonDS-SA/saves"
+    create_dir "$states_path/melonDS-SA/states"
+    create_dir "$cheats_path/melonDS/cheats"
+
+    cp -rfv "$saves_path/nds/melonds" "$saves_path/melonDS-SA/saves"
+    cp -rfv "$states_path/nds/melonds" "$states_path/melonDS-SA/states"
+
+    create_dir "$backups_path/0.11.0/melonDS-SA/saves"
+    create_dir "$backups_path/0.11.0/melonDS-SA/states"
+
+    cp -rfv "$saves_path/nds/melonds" "$backups_path/0.11.0/melonDS-SA/saves"
+    cp -rfv "$states_path/nds/melonds" "$backups_path/0.11.0/melonDS-SA/states"
+
+    set_setting_value "$melonds_config" "SaveFilePath" "\"$saves_path/melonDS-SA/saves\"" "melonds" "Instance0"
+    set_setting_value "$melonds_config" "SavestatePath" "\"$states_path/melonDS-SA/states\"" "melonds" "Instance0"
+    set_setting_value "$melonds_config" "CheatFilePath" "\"$cheats_path/melonDS/cheats\"" "melonds" "Instance0"
+
+    create_dir "$saves_path/RetroArch"
+    create_dir "$states_path/RetroArch"
+    mv "$saves_path/nds" "$saves_path/RetroArch/"
+    mv "$states_path/nds" "$states_path/RetroArch/"
+
+ fi
 }
 
 _post_update_legacy::melonds() {
@@ -103,5 +151,7 @@ _post_update_legacy::melonds() {
     sed -i "s#RETRODECKSTATESDIR#${states_path}#g" "$melonds_config"
     sed -i "s#RETRODECKSAVESDIR#${saves_path}#g" "$melonds_config"
     sed -i "s#RETRODECKBIOSDIR#${bios_path}#g" "$melonds_config"
+
   fi
+
 }

@@ -24,12 +24,14 @@ extract() {
 
   extract_cmd "$archive"
 
-  if [[ ! -e "$final_dest/squashfs-root" ]]; then
-    log error "AppImage $archive could not be extracted"
+  if [[ -e "$final_dest/squashfs-root" ]]; then
+    final_dest="$final_dest/squashfs-root"
+  elif [[ -e "$final_dest/AppDir" ]]; then
+    final_dest="$final_dest/AppDir"
+  else
+    log error "AppImage $archive contents could not be identified"
     return 1
   fi
-
-  final_dest="$final_dest/squashfs-root"
 
   if [[ ! "$DRYRUN" == "true" ]]; then
     log info "Extraction successful, removing downloaded archive $archive"

@@ -61,6 +61,7 @@ parse_asset_args() {
   source=""
   dest=""
   contents=""
+  executable=""
 
   while [[ $# -gt 0 ]]; do
     case "$1" in
@@ -78,6 +79,10 @@ parse_asset_args() {
         ;;
       -c|--contents)
         contents="$2"
+        shift 2
+        ;;
+      -e|--executable)
+        executable="$2"
         shift 2
         ;;
       *)
@@ -109,7 +114,7 @@ process_asset() {
   source "$SCRIPT_DIR/lib/asset_handlers/$asset_handler_file"
   log info "Using asset handler: $asset_handler_file"
 
-  if ! handle_asset "$type" "$source" "$dest" "$contents"; then
+  if ! handle_asset "$type" "$source" "$dest" "$contents" "$executable"; then
     log error "Processing asset files failed"
     return 1
   fi

@@ -1,0 +1,61 @@
+{
+  "dhewm3": [
+    {
+      "source_url": "https://github.com/dhewm/dhewm3/releases/download/{VERSION}/dhewm3-*_Linux_amd64.tar.gz",
+      "source_type": "github_release",
+      "version": "$DHEWM3_DESIRED_VERSION",
+      "extraction_type": "archive",
+      "assets": [
+        {
+          "type": "dir",
+          "source": "dhewm3",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "create",
+          "dest": "component_version",
+          "contents": "$FRAMEWORK_DESIRED_VERSION"
+        },
+        {
+          "type": "dir",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/rd_assets/rd_config",
+          "dest": "rd_config"
+        },
+        {
+          "type": "file",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/component_functions.sh",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/component_launcher.sh",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/component_manifest.json",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/component_recipe.json",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        }
+      ]
+    },
+    {
+      "source_url": "https://github.com/dhewm/dhewm3/releases/download/{VERSION}/dhewm3-mods-*_Linux_amd64.tar.gz",
+      "source_type": "github_release",
+      "version": "$DHEWM3_DESIRED_VERSION",
+      "extraction_type": "archive",
+      "assets": [
+        {
+          "type": "dir",
+          "source": "dhewm3-mods",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        }
+      ],
+      "libs": []
+    }
+  ]
+}

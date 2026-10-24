@@ -1,0 +1,13 @@
+## Oricutron
+
+This application must be built from source. Please refer to the official build https://github.com/pete-gordon/oricutron GitHub for details.
+
+## Current Version
+
+Oricutron
+2026-01-23
+
+## Update Steps
+
+1. **Compile** the latest Oricutron build from source following the instructions linked above.
+2. **Replace** the existing archive at `tmp_assets/Oricutron_lin64.zip` with the newly compiled and zip it into `Oricutron_lin64.zip.
