@@ -47,8 +47,8 @@
     "discord_rpc_enabled": true,
     "extra_dmem_in_mbytes": 0,
     "extra_fmem_in_mbytes": 0,
-    "font_dir": "",
-    "home_dir": "",
+    "font_dir": "RETRODECKSTORAGEPATH/shadPS4/fonts",
+    "home_dir": "RETRODECKSAVEPATH/shadPS4-SA/home",
     "install_dirs": [
       {
         "enabled": true,
@@ -59,7 +59,7 @@
     "redzone_patches": false,
     "show_fps_counter": false,
     "show_splash": false,
-    "sys_modules_dir": "",
+    "sys_modules_dir": "RETRODECKSTORAGEPATH/shadPS4/sys_modules",
     "trophy_notification_duration": 6.0,
     "trophy_notification_side": "right",
     "trophy_popup_disabled": false,

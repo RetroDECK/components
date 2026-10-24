@@ -18,16 +18,14 @@ _prepare_component::shadps4() {
         log i "Preparing shadPS4"
         log i "--------------------"
 
+        #shadPS4 uses two XDG_DATA_HOME folders
+
         create_dir -d "$XDG_DATA_HOME/shadPS4/"
+        create_dir -d "$XDG_DATA_HOME/shadPS4QtLauncher/"
         create_dir -d "$XDG_CONFIG_HOME/shadPS4/"
-        cp -f "$component_config/shadPS4" "$XDG_DATA_HOME/shadPS4" 
-        cp -f "$component_config/shadPS4QtLauncher" "$XDG_DATA_HOME/shadPS4QtLauncher" 
-        cp -f "$component_config/lsfg-vk" "$XDG_CONFIG_HOME/lsfg-vk"
-
-        # Storage Installed Game Path
-
-        create_dir -d "$storage_path/shadPS4/installed"
-        jq --arg path "$storage_path/shadPS4/installed" '.install_dirs |= map(.path = $path)' "$shadps4_config" 
+        cp -f "$component_config/shadPS4/config.json" "$XDG_DATA_HOME/shadPS4/config.json" 
+        cp -f "$component_config/shadPS4QtLauncher/t_ui.ini" "$XDG_DATA_HOME/shadPS4QtLauncher/qt_ui.ini" 
+        cp -f "$component_config/shadPS4/input_config/default.ini" "$XDG_DATA_HOME/shadPS4/input_config/default.ini" 
 
         # Storage
         dir_prep "$storage_path/shadPS4/addcont" "$XDG_DATA_HOME/shadPS4/addcont"
@@ -59,6 +57,17 @@ _prepare_component::shadps4() {
 
         # shader
         dir_prep "$shaders_path/shadPS4/shader" "$XDG_DATA_HOME/shadPS4/shader"
+
+        # Storage Installed Game Path
+
+        create_dir -d "$storage_path/shadPS4/installed"
+        
+        sed -i "s|\"path\": \"RETRODECKSTORAGEPATH/shadPS4/installed\"|\"path\": \"$storage_path/shadPS4/installed\"|" "$shadps4_config"
+        sed -i "s|\"addon_install_dir\": \"RETRODECKSTORAGEPATH/addcont\"|\"addon_install_dir\": \"$storage_path/shadPS4/addcont\"|" "$shadps4_config"
+        sed -i "s|\"sys_modules_dir\": \"RETRODECKSTORAGEPATH/shadPS4/sys_modules\"|\"sys_modules_dir\": \"$storage_path/shadPS4/sys_modules\"|" "$shadps4_config"
+        sed -i "s|\"font_dir\": \"RETRODECKSTORAGEPATH/shadPS4/fonts\"|\"font_dir\": \"$storage_path/shadPS4/fonts\"|" "$shadps4_config"
+        sed -i "s|\"home_dir\": \"RETRODECKSAVEPATH/shadPS4-SA/home\"|\"home_dir\": \"$saves_path/shadPS4-SA/home\"|" "$shadps4_config"
+
 
     ;;
 
@@ -67,9 +76,6 @@ _prepare_component::shadps4() {
       log i "Post-moving shadPS4"
       log i "------------------------"
 
-        # Storage Installed Game Path
-        jq --arg path "$storage_path/shadPS4/installed" '.install_dirs |= map(.path = $path)' "$shadps4_config" 
-
         # Storage
         dir_prep "$storage_path/shadPS4/addcont" "$XDG_DATA_HOME/shadPS4/addcont"
         dir_prep "$storage_path/shadPS4/captures" "$XDG_DATA_HOME/shadPS4/captures"
@@ -100,6 +106,14 @@ _prepare_component::shadps4() {
 
         # shader
         dir_prep "$shaders_path/shadPS4/shader" "$XDG_DATA_HOME/shadPS4/shader"
+
+        # Storage Installed Game Path
+        
+        sed -i "s|\"path\": \"RETRODECKSTORAGEPATH/shadPS4/installed\"|\"path\": \"$storage_path/shadPS4/installed\"|" "$shadps4_config"
+        sed -i "s|\"addon_install_dir\": \"RETRODECKSTORAGEPATH/addcont\"|\"addon_install_dir\": \"$storage_path/shadPS4/addcont\"|" "$shadps4_config"
+        sed -i "s|\"sys_modules_dir\": \"RETRODECKSTORAGEPATH/shadPS4/sys_modules\"|\"sys_modules_dir\": \"$storage_path/shadPS4/sys_modules\"|" "$shadps4_config"
+        sed -i "s|\"font_dir\": \"RETRODECKSTORAGEPATH/shadPS4/fonts\"|\"font_dir\": \"$storage_path/shadPS4/fonts\"|" "$shadps4_config"
+        sed -i "s|\"home_dir\": \"RETRODECKSAVEPATH/shadPS4-SA/home\"|\"home_dir\": \"$saves_path/shadPS4-SA/home\"|" "$shadps4_config"
 
     ;;
 
