@@ -25,10 +25,10 @@ _prepare_component::shadps4() {
 
         create_dir -d "$storage_path/shadPS4/installed"
 
+        # Storage
         dir_prep "$storage_path/shadPS4/addcont" "$XDG_DATA_HOME/shadPS4/addcont"
         dir_prep "$storage_path/shadPS4/captures" "$XDG_DATA_HOME/shadPS4/captures"
         dir_prep "$storage_path/shadPS4/custom_configs" "$XDG_DATA_HOME/shadPS4/custom_configs"
-        dir_prep "$storage_path/shadPS4/custom_trophy" "$XDG_DATA_HOME/shadPS4/custom_trophy"
         dir_prep "$storage_path/shadPS4/custom_trophy" "$XDG_DATA_HOME/shadPS4/custom_trophy"
         dir_prep "$storage_path/shadPS4/data" "$XDG_DATA_HOME/shadPS4/data" 
         dir_prep "$storage_path/shadPS4/game_data" "$XDG_DATA_HOME/shadPS4/game_data" 
@@ -67,7 +67,6 @@ _prepare_component::shadps4() {
         dir_prep "$storage_path/shadPS4/addcont" "$XDG_DATA_HOME/shadPS4/addcont"
         dir_prep "$storage_path/shadPS4/captures" "$XDG_DATA_HOME/shadPS4/captures"
         dir_prep "$storage_path/shadPS4/custom_configs" "$XDG_DATA_HOME/shadPS4/custom_configs"
-        dir_prep "$storage_path/shadPS4/custom_trophy" "$XDG_DATA_HOME/shadPS4/custom_trophy"
         dir_prep "$storage_path/shadPS4/custom_trophy" "$XDG_DATA_HOME/shadPS4/custom_trophy"
         dir_prep "$storage_path/shadPS4/data" "$XDG_DATA_HOME/shadPS4/data" 
         dir_prep "$storage_path/shadPS4/game_data" "$XDG_DATA_HOME/shadPS4/game_data" 
