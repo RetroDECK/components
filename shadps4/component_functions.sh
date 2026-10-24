@@ -3,6 +3,7 @@
 export shadps4_config="$XDG_DATA_HOME/shadPS4/config.json"
 export shadps4_input_config_dir="$XDG_DATA_HOME/shadPS4/input_config/"
 export shadps4_input_config="$XDG_DATA_HOME/shadPS4/input_config/default.ini"
+export shadps4_qt_ui_config="$XDG_DATA_HOME/shadPS4QtLauncher/qt_ui.ini"
 
 _prepare_component::shadps4() {
   local action="$1"
@@ -22,7 +23,7 @@ _prepare_component::shadps4() {
         cp -f "$component_config/shadPS4" "$XDG_DATA_HOME/shadPS4" 
         cp -f "$component_config/shadPS4QtLauncher" "$XDG_DATA_HOME/shadPS4QtLauncher" 
         cp -f "$component_config/lsfg-vk" "$XDG_CONFIG_HOME/lsfg-vk"
-        
+
         # Storage
 
         create_dir -d "$storage_path/shadPS4/installed"
