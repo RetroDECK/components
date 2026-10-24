@@ -150,6 +150,13 @@ export RUFFLE_VERSION_POLICY="latest"
 export SCUMMVM_VERSION_POLICY="latest"
 
 # ------------------------------------------------------------------------------
+# shadPS4 - Playstation 4 Emulator
+# Source: Flatpak - Flathub
+# Link: https://flathub.org/en/apps/net.shadps4.shadPS4
+# ------------------------------------------------------------------------------
+export SHADPS4_VERSION_POLICY="latest"
+
+# ------------------------------------------------------------------------------
 # Steam ROM Manager - Steam Artwork & ROM Importer
 # Source: Flatpak - Flathub
 # Link: https://flathub.org/en/apps/com.steamgriddb.steam-rom-manager
