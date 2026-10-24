@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export sdl2trs_config="$XDG_DATA_HOME/shadPS4/config.json"
+export shadps4_config="$XDG_DATA_HOME/shadPS4/config.json"
 export shadps4_input_config_dir="$XDG_DATA_HOME/shadPS4/input_config/"
 export shadps4_input_config="$XDG_DATA_HOME/shadPS4/input_config/default.ini"
 
