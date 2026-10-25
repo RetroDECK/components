@@ -150,7 +150,7 @@
           "extension": ".cmd .desktop .gam .lindbergh .neo .sh .7z .zip",
           "commands": [
             {
-              "label": "Flycast (Standalone)",
+              "label": "Flycast [Performance] (Standalone)",
               "command": "%EMULATOR_FLYCAST% %ROM%",
               "priority": 10
             }
@@ -165,7 +165,7 @@
           "extension": ".bin .dat .elf .lst .7z .zip",
           "commands": [
             {
-              "label": "Flycast (Standalone)",
+              "label": "Flycast [Performance] (Standalone)",
               "command": "%EMULATOR_FLYCAST% %ROM%",
               "priority": 10
             }
@@ -180,7 +180,7 @@
           "extension": ".arcadedef .desktop .iso .ps3 .sh .xbe .7z .zip",
           "commands": [
             {
-              "label": "Flycast (Standalone)",
+              "label": "Flycast [Performance] (Standalone)",
               "command": "%EMULATOR_FLYCAST% %ROM%",
               "priority": 10
             }
@@ -195,7 +195,7 @@
           "extension": ".cdi .chd .cue .dat .elf .gdi .iso .lst .m3u .7z .zip",
           "commands": [
             {
-              "label": "Flycast (Standalone)",
+              "label": "Flycast [Performance] (Standalone)",
               "command": "%EMULATOR_FLYCAST% %ROM%",
               "priority": 10
             }
@@ -210,7 +210,7 @@
           "extension": ".cdi .chd .cue .dat .elf .gdi .iso .lst .m3u .7z .zip",
           "commands": [
             {
-              "label": "Flycast (Standalone)",
+              "label": "Flycast [Performance] (Standalone)",
               "command": "%EMULATOR_FLYCAST% %ROM%",
               "priority": 10
             }
@@ -225,7 +225,7 @@
           "extension": ".cdi .chd .cue .dat .elf .gdi .iso .lst .m3u .7z .zip",
           "commands": [
             {
-              "label": "Flycast (Standalone)",
+              "label": "Flycast [Performance] (Standalone)",
               "command": "%EMULATOR_FLYCAST% %ROM%",
               "priority": 10
             }
@@ -240,7 +240,7 @@
           "extension": ".cdi .chd .cue .dat .elf .gdi .iso .lst .m3u .7z .zip",
           "commands": [
             {
-              "label": "Flycast (Standalone)",
+              "label": "Flycast [Performance] (Standalone)",
               "command": "%EMULATOR_FLYCAST% %ROM%",
               "priority": 10
             }

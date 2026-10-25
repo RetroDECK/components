@@ -307,7 +307,7 @@
               "priority": 110
             },
             {
-              "label": "Flycast (Libretro Core)",
+              "label": "Flycast [Default] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/flycast_libretro.so %ROM%",
               "priority": 120
             },
@@ -797,7 +797,7 @@
               "priority": 10
             },
             {
-              "label": "Flycast (Libretro Core)",
+              "label": "Flycast [Default] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/flycast_libretro.so %ROM%",
               "priority": 30
             },
@@ -1197,7 +1197,7 @@
           "extension": ".7z .cdi .chd .cue .dat .elf .gdi .iso .lst .m3u .zip",
           "commands": [
             {
-              "label": "Flycast (Libretro Core)",
+              "label": "Flycast [Default] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/flycast_libretro.so %ROM%",
               "priority": 10
             }
@@ -1497,7 +1497,7 @@
           "extension": ".7z .bs .cgb .dmg .gb .gbc .sfc .sgb .smc .zip",
           "commands": [
             {
-              "label": "Gambatte [Performance] (Libretro Core)",
+              "label": "Gambatte [Default] [Performance] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/gambatte_libretro.so %ROM%",
               "priority": 10
             },
@@ -1507,7 +1507,7 @@
               "priority": 20
             },
             {
-              "label": "Gearboy",
+              "label": "Gearboy (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/gearboy_libretro.so %ROM%",
               "priority": 30
             },
@@ -1522,44 +1522,24 @@
               "priority": 50
             },
             {
-              "label": "Mesen-S [SGB, BSX, Sufami] (Libretro Core)",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mesen-s_libretro.so %ROM%",
+              "label": "VBA-M (Libretro Core)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/vbam_libretro.so %ROM%",
               "priority": 60
             },
             {
-              "label": "bsnes [Accuracy] (Libretro Core)",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes_libretro.so %ROM%",
+              "label": "IroGB (Libretro Core)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/irogb_libretro.so %ROM%",
               "priority": 70
             },
             {
-              "label": "mGBA (Libretro Core)",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mgba_libretro.so %ROM%",
+              "label": "SkyEmu (Libretro Core)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/skyemu_libretro.so %ROM%",
               "priority": 80
             },
             {
-              "label": "VBA-M",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/vbam_libretro.so %ROM%",
-              "priority": 90
-            },
-            {
-              "label": "IroGB",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/irogb_libretro.so %ROM%",
-              "priority": 100
-            },
-            {
-              "label": "Mesen 2/CE [Accuracy] (Libretro Core)",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mesen2_libretro.so %ROM%",
-              "priority": 110
-            },
-            {
-              "label": "fixGB",
+              "label": "fixGB [Legacy] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/fixgb_libretro.so %ROM%",
-              "priority": 120
-            },
-            {
-              "label": "SkyEmu",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/skyemu_libretro.so %ROM%",
-              "priority": 130
+              "priority": 90
             }
           ],
           "platform": "gb",
@@ -1572,47 +1552,42 @@
           "extension": ".7z .agb .bin .cgb .dmg .gb .gba .gbc .sgb .zip",
           "commands": [
             {
-              "label": "mGBA (Libretro Core)",
+              "label": "[Default] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mgba_libretro.so %ROM%",
               "priority": 10
             },
             {
-              "label": "VBA-M",
+              "label": "VBA-M (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/vbam_libretro.so %ROM%",
               "priority": 20
             },
             {
-              "label": "VBA Next",
+              "label": "VBA Next (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/vba_next_libretro.so %ROM%",
               "priority": 30
             },
             {
-              "label": "gpSP",
+              "label": "gpSP [Performance] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/gpsp_libretro.so %ROM%",
               "priority": 40
             },
             {
-              "label": "NooDS",
+              "label": "NooDS (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/noods_libretro.so %ROM%",
               "priority": 50
             },
             {
-              "label": "Mesen 2/CE [Accuracy] (Libretro Core)",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mesen2_libretro.so %ROM%",
-              "priority": 60
-            },
-            {
-              "label": "Mednafen GBA",
+              "label": "Mednafen GBA (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mednafen_gba_libretro.so %ROM%",
               "priority": 70
             },
             {
-              "label": "Meteor",
+              "label": "Meteor (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/meteor_libretro.so %ROM%",
               "priority": 80
             },
             {
-              "label": "SkyEmu",
+              "label": "SkyEmu (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/skyemu_libretro.so %ROM%",
               "priority": 90
             }
@@ -1637,7 +1612,7 @@
               "priority": 20
             },
             {
-              "label": "Gearboy",
+              "label": "Gearboy (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/gearboy_libretro.so %ROM%",
               "priority": 30
             },
@@ -1652,44 +1627,24 @@
               "priority": 50
             },
             {
-              "label": "Mesen-S [SGB, BSX, Sufami] (Libretro Core)",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mesen-s_libretro.so %ROM%",
+              "label": "VBA-M (Libretro Core)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/vbam_libretro.so %ROM%",
               "priority": 60
             },
             {
-              "label": "bsnes [Accuracy] (Libretro Core)",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes_libretro.so %ROM%",
+              "label": "IroGB (Libretro Core)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/irogb_libretro.so %ROM%",
+              "priority": 70
+            },
+            {
+              "label": "SkyEmu (Libretro Core)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/skyemu_libretro.so %ROM%",
               "priority": 80
             },
             {
-              "label": "mGBA (Libretro Core)",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mgba_libretro.so %ROM%",
-              "priority": 90
-            },
-            {
-              "label": "VBA-M",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/vbam_libretro.so %ROM%",
-              "priority": 100
-            },
-            {
-              "label": "IroGB",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/irogb_libretro.so %ROM%",
-              "priority": 110
-            },
-            {
-              "label": "Mesen 2/CE [Accuracy] (Libretro Core)",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mesen2_libretro.so %ROM%",
-              "priority": 120
-            },
-            {
-              "label": "fixGB",
+              "label": "fixGB [Legacy] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/fixgb_libretro.so %ROM%",
-              "priority": 130
-            },
-            {
-              "label": "SkyEmu",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/skyemu_libretro.so %ROM%",
-              "priority": 140
+              "priority": 90
             }
           ],
           "platform": "gbc",
@@ -1717,32 +1672,32 @@
           "extension": ".32x .68k .7z .bin .bms .chd .cue .gen .gg .iso .m3u .md .mdx .sg .sgd .smd .sms .zip",
           "commands": [
             {
-              "label": "Genesis Plus GX",
+              "label": "Genesis Plus GX [Default] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/genesis_plus_gx_libretro.so %ROM%",
               "priority": 10
             },
             {
-              "label": "Genesis Plus GX Wide",
+              "label": "Genesis Plus GX Wide [Widescreen] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/genesis_plus_gx_wide_libretro.so %ROM%",
               "priority": 20
             },
             {
-              "label": "PicoDrive",
+              "label": "PicoDrive [Performance] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/picodrive_libretro.so %ROM%",
               "priority": 30
             },
             {
-              "label": "BlastEm",
+              "label": "BlastEm (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/blastem_libretro.so %ROM%",
               "priority": 40
             },
             {
-              "label": "Genesis Plus GX [Expanded Rom Size] (Paprium)",
+              "label": "Genesis Plus GX [Paprium - Expanded Rom Size] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/genesis_plus_gx_paprium_libretro.so %ROM%",
               "priority": 50
             },
             {
-              "label": "ClownMDEmu",
+              "label": "ClownMDEmu (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/clownmdemu_libretro.so %ROM%",
               "priority": 60
             }
@@ -1967,7 +1922,7 @@
               "priority": 120
             },
             {
-              "label": "Flycast (Libretro Core)",
+              "label": "Flycast [Default] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/flycast_libretro.so %ROM%",
               "priority": 130
             },
@@ -1997,12 +1952,12 @@
           "extension": ".68k .7z .bin .bms .chd .col .cue .gen .gg .iso .m3u .md .mdx .rom .sg .sgd .smd .sms .zip",
           "commands": [
             {
-              "label": "Genesis Plus GX",
+              "label": "Genesis Plus GX [Default] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/genesis_plus_gx_libretro.so %ROM%",
               "priority": 10
             },
             {
-              "label": "Genesis Plus GX Wide",
+              "label": "Genesis Plus GX Wide [Widescreen] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/genesis_plus_gx_wide_libretro.so %ROM%",
               "priority": 20
             },
@@ -2017,7 +1972,7 @@
               "priority": 40
             },
             {
-              "label": "PicoDrive",
+              "label": "PicoDrive [Performance] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/picodrive_libretro.so %ROM%",
               "priority": 50
             }
@@ -2032,12 +1987,12 @@
           "extension": ".68k .7z .bin .bms .chd .col .cue .gen .gg .iso .m3u .md .mdx .rom .sg .sgd .smd .sms .zip",
           "commands": [
             {
-              "label": "Genesis Plus GX",
+              "label": "Genesis Plus GX [Default] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/genesis_plus_gx_libretro.so %ROM%",
               "priority": 10
             },
             {
-              "label": "Genesis Plus GX Wide",
+              "label": "Genesis Plus GX Wide [Widescreen] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/genesis_plus_gx_wide_libretro.so %ROM%",
               "priority": 20
             },
@@ -2052,7 +2007,7 @@
               "priority": 40
             },
             {
-              "label": "PicoDrive",
+              "label": "PicoDrive [Performance] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/picodrive_libretro.so %ROM%",
               "priority": 50
             }
@@ -2067,17 +2022,17 @@
           "extension": ".68k .7z .bin .bms .chd .cue .gen .gg .iso .m3u .md .mdx .sg .sgd .smd .sms .zip",
           "commands": [
             {
-              "label": "Genesis Plus GX",
+              "label": "Genesis Plus GX [Default] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/genesis_plus_gx_libretro.so %ROM%",
               "priority": 10
             },
             {
-              "label": "Genesis Plus GX Wide",
+              "label": "Genesis Plus GX Wide [Widescreen] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/genesis_plus_gx_wide_libretro.so %ROM%",
               "priority": 20
             },
             {
-              "label": "PicoDrive",
+              "label": "PicoDrive [Performance] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/picodrive_libretro.so %ROM%",
               "priority": 30
             }
@@ -2092,17 +2047,17 @@
           "extension": ".68k .7z .bin .bms .chd .cue .gen .gg .iso .m3u .md .mdx .sg .sgd .smd .sms .zip",
           "commands": [
             {
-              "label": "Genesis Plus GX",
+              "label": "Genesis Plus GX [Default] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/genesis_plus_gx_libretro.so %ROM%",
               "priority": 10
             },
             {
-              "label": "Genesis Plus GX Wide",
+              "label": "Genesis Plus GX Wide [Widescreen] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/genesis_plus_gx_wide_libretro.so %ROM%",
               "priority": 20
             },
             {
-              "label": "PicoDrive",
+              "label": "PicoDrive [Performance] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/picodrive_libretro.so %ROM%",
               "priority": 30
             }
@@ -2117,32 +2072,32 @@
           "extension": ".32x .68k .7z .bin .bms .chd .cue .gen .gg .iso .m3u .md .mdx .sg .sgd .smd .sms .zip",
           "commands": [
             {
-              "label": "Genesis Plus GX",
+              "label": "Genesis Plus GX [Default] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/genesis_plus_gx_libretro.so %ROM%",
               "priority": 10
             },
             {
-              "label": "Genesis Plus GX Wide",
+              "label": "Genesis Plus GX Wide [Widescreen] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/genesis_plus_gx_wide_libretro.so %ROM%",
               "priority": 20
             },
             {
-              "label": "PicoDrive",
+              "label": "PicoDrive [Performance] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/picodrive_libretro.so %ROM%",
               "priority": 30
             },
             {
-              "label": "BlastEm",
+              "label": "BlastEm (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/blastem_libretro.so %ROM%",
               "priority": 40
             },
             {
-              "label": "Genesis Plus GX [Expanded Rom Size] (Paprium)",
+              "label": "Genesis Plus GX [Paprium - Expanded Rom Size] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/genesis_plus_gx_paprium_libretro.so %ROM%",
               "priority": 50
             },
             {
-              "label": "ClownMDEmu",
+              "label": "ClownMDEmu (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/clownmdemu_libretro.so %ROM%",
               "priority": 60
             }
@@ -2157,17 +2112,17 @@
           "extension": ".32x .68k .7z .bin .bms .chd .cue .gen .gg .iso .m3u .md .mdx .sg .sgd .smd .sms .zip",
           "commands": [
             {
-              "label": "Genesis Plus GX",
+              "label": "Genesis Plus GX [Default] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/genesis_plus_gx_libretro.so %ROM%",
               "priority": 10
             },
             {
-              "label": "Genesis Plus GX Wide",
+              "label": "Genesis Plus GX Wide [Widescreen] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/genesis_plus_gx_wide_libretro.so %ROM%",
               "priority": 20
             },
             {
-              "label": "PicoDrive",
+              "label": "PicoDrive [Performance] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/picodrive_libretro.so %ROM%",
               "priority": 30
             },
@@ -2452,7 +2407,7 @@
           "extension": ".7z .bin .dat .elf .lst .zip",
           "commands": [
             {
-              "label": "Flycast (Libretro Core)",
+              "label": "Flycast [Default] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/flycast_libretro.so %ROM%",
               "priority": 10
             }
@@ -2467,7 +2422,7 @@
           "extension": ".7z .bin .dat .elf .lst .zip",
           "commands": [
             {
-              "label": "Flycast (Libretro Core)",
+              "label": "Flycast [Default] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/flycast_libretro.so %ROM%",
               "priority": 10
             }
@@ -2482,7 +2437,7 @@
           "extension": ".7z .bin .dat .elf .lst .zip",
           "commands": [
             {
-              "label": "Flycast (Libretro Core)",
+              "label": "Flycast [Default] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/flycast_libretro.so %ROM%",
               "priority": 10
             }
@@ -3402,7 +3357,7 @@
           "extension": ".32x .68k .7z .bin .chd .cue .gen .iso .m3u .md .smd .sms .zip",
           "commands": [
             {
-              "label": "PicoDrive",
+              "label": "PicoDrive [Performance] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/picodrive_libretro.so %ROM%",
               "priority": 10
             }
@@ -3417,7 +3372,7 @@
           "extension": ".32x .68k .7z .bin .chd .cue .gen .iso .m3u .md .smd .sms .zip",
           "commands": [
             {
-              "label": "PicoDrive",
+              "label": "PicoDrive [Performance] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/picodrive_libretro.so %ROM%",
               "priority": 10
             }
@@ -3432,7 +3387,7 @@
           "extension": ".32x .68k .7z .bin .chd .cue .gen .iso .m3u .md .smd .sms .zip",
           "commands": [
             {
-              "label": "PicoDrive",
+              "label": "PicoDrive [Performance] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/picodrive_libretro.so %ROM%",
               "priority": 10
             }
@@ -3447,17 +3402,17 @@
           "extension": ".68k .7z .bin .bms .chd .cue .gen .gg .iso .m3u .md .mdx .sg .sgd .smd .sms .zip",
           "commands": [
             {
-              "label": "Genesis Plus GX",
+              "label": "Genesis Plus GX [Default] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/genesis_plus_gx_libretro.so %ROM%",
               "priority": 10
             },
             {
-              "label": "Genesis Plus GX Wide",
+              "label": "Genesis Plus GX Wide [Widescreen] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/genesis_plus_gx_wide_libretro.so %ROM%",
               "priority": 20
             },
             {
-              "label": "PicoDrive",
+              "label": "PicoDrive [Performance] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/picodrive_libretro.so %ROM%",
               "priority": 30
             }
@@ -3582,12 +3537,12 @@
           "extension": ".68k .7z .bin .bms .chd .cue .gen .gg .iso .m3u .md .mdx .ri .rom .sg .sgd .smd .sms .zip",
           "commands": [
             {
-              "label": "Genesis Plus GX",
+              "label": "Genesis Plus GX [Default] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/genesis_plus_gx_libretro.so %ROM%",
               "priority": 10
             },
             {
-              "label": "Genesis Plus GX Wide",
+              "label": "Genesis Plus GX Wide [Widescreen] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/genesis_plus_gx_wide_libretro.so %ROM%",
               "priority": 20
             },
@@ -5531,7 +5486,7 @@
         "system_friendly_name": "Sony Playstation"
       },
       "picodrive_libretro": {
-        "name": "PicoDrive",
+        "name": "PicoDrive [Performance] (Libretro Core)",
         "description": "SEGA MS/MD/CD/32X Libretro Core",
         "system": [
           "ms",
@@ -5542,7 +5497,7 @@
         "system_friendly_name": "Sega Genesis"
       },
       "genesis_plus_gx_libretro_MS": {
-        "name": "Genesis Plus GX",
+        "name": "Genesis Plus GX [Default] (Libretro Core)",
         "description": "SEGA MS/GG/MD/CD Libretro Core (Genesis games)",
         "system": [
           "ms",
@@ -5552,13 +5507,13 @@
         "system_friendly_name": "Sega Genesis"
       },
       "genesis_plus_gx_libretro_GG": {
-        "name": "Genesis Plus GX",
+        "name": "Genesis Plus GX [Default] (Libretro Core)",
         "description": "SEGA MS/GG/MD/CD Libretro Core (GameGear games)",
         "system": "gg",
         "system_friendly_name": "Sega GameGear"
       },
       "genesis_plus_gx_wide_libretro": {
-        "name": "Genesis Plus GX Wide",
+        "name": "Genesis Plus GX Wide [Widescreen] (Libretro Core)",
         "description": "SEGA MS/GG/MD/CD Libretro Core for Wide Screen",
         "system": [
           "ms",
