@@ -2711,36 +2711,6 @@
           "theme": "p2000t"
         },
         {
-          "name": "pc",
-          "fullname": "IBM PC",
-          "path": "%ROMPATH%/pc",
-          "extension": ".7z .bat .com .conf .cue .dosz .exe .img .iso .zip",
-          "commands": [
-            {
-              "label": "DOSBox-Pure",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/dosbox_pure_libretro.so %ROM%",
-              "priority": 10
-            },
-            {
-              "label": "DOSBox-Core",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/dosbox_core_libretro.so %ROM%",
-              "priority": 20
-            },
-            {
-              "label": "DOSBox-SVN",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/dosbox_svn_libretro.so %ROM%",
-              "priority": 30
-            },
-            {
-              "label": "VirtualXT",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/virtualxt_libretro.so %ROM%",
-              "priority": 40
-            }
-          ],
-          "platform": "pc",
-          "theme": "pc"
-        },
-        {
           "name": "pc88",
           "fullname": "NEC PC-8800 Series",
           "path": "%ROMPATH%/pc88",
@@ -2897,27 +2867,27 @@
           "extension": ".appimage .desktop .exe .game .phd .psx .sh",
           "commands": [
             {
-              "label": "CannonBall (OutRun)",
+              "label": "CannonBall [OutRun] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/cannonball_libretro.so %ROM%",
               "priority": 20
             },
             {
-              "label": "Mr.Boom (Bomberman)",
+              "label": "Mr.Boom [Bomberman] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mrboom_libretro.so %INJECT%=nothing",
               "priority": 30
             },
             {
-              "label": "NXEngine (Cave Story)",
+              "label": "NXEngine [Cave Story] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/nxengine_libretro.so %ROM%",
               "priority": 40
             },
             {
-              "label": "OpenLara (Tomb Raider)",
+              "label": "OpenLara [Tomb Raider] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/openlara_libretro.so %ROM%",
               "priority": 50
             },
             {
-              "label": "Super Bros War",
+              "label": "Super Bros War [Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/superbroswar_libretro.so %ROM%",
               "priority": 60
             }
@@ -2932,22 +2902,22 @@
           "extension": ".bin .chd .ciso .cso .desktop .dump .elf .gz .img .iso .isz .m3u .mdf .ngr .nrg .zso",
           "commands": [
             {
-              "label": "PCEE2",
+              "label": "PCEE2 [Experimental] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/pcee2_libretro.so %ROM%",
               "priority": 20
             },
             {
-              "label": "LRPS2",
+              "label": "LRPS2 [Legacy] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/pcsx2_libretro.so %ROM%",
               "priority": 30
             },
             {
-              "label": "PCSX2",
+              "label": "PCSX2 [Legacy] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/pcsx2_libretro.so %ROM%",
               "priority": 40
             },
             {
-              "label": "Play!",
+              "label": "Play! [Legacy] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/play_libretro.so %ROM%",
               "priority": 50
             }
@@ -2962,7 +2932,7 @@
           "extension": ".sfb .sfo .iso .pkg .bin .self .elf",
           "commands": [
             {
-              "label": "RCPS3",
+              "label": "RCPS3 (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/rpcs3_libretro.so %ROM%",
               "priority": 30
             }
@@ -2977,7 +2947,7 @@
           "extension": ".7z .chd .cso .elf .iso .pbp .prx .zip",
           "commands": [
             {
-              "label": "PPSSPP",
+              "label": "PPSSPP (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/ppsspp_libretro.so %ROM%",
               "priority": 20
             }
@@ -2992,7 +2962,7 @@
           "extension": ".vpk .zip .pkg .bin",
           "commands": [
             {
-              "label": "Vita3K",
+              "label": "Vita3K (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/vita3k_libretro.so %ROM%",
               "priority": 20
             }
@@ -3007,7 +2977,7 @@
           "extension": ".mcr .mcs .pss .mcd .bin .gme",
           "commands": [
             {
-              "label": "pokketstation",
+              "label": "pokketstation [Default] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/pokketstation_libretro.so %ROM%",
               "priority": 20
             }
