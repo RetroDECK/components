@@ -270,24 +270,24 @@
           "extension": ".adf .adz .ccd .chd .cue .dms .fdi .hdf .hdz .ipf .iso .lha .m3u .mds .nrg .rp9 .uae .7z .zip",
           "commands": [
             {
-              "label": "Amiberry Floppy (Standalone)",
+              "label": "Amiberry [Floppy] (Standalone)",
               "command": "%EMULATOR_AMIBERRY% -0 %ROM% -G -f",
-              "priority": 30
-            },
-            {
-              "label": "Amiberry WHDLoad (Standalone)",
-              "command": "%EMULATOR_AMIBERRY% --autoload %ROM% -G -f",
               "priority": 40
             },
             {
-              "label": "Amiberry CD (Standalone)",
-              "command": "%EMULATOR_AMIBERRY% --cdimage %ROM% -G -f",
+              "label": "Amiberry [WHDLoad] (Standalone)",
+              "command": "%EMULATOR_AMIBERRY% --autoload %ROM% -G -f",
               "priority": 50
             },
             {
-              "label": "Amiberry AmigaVision (Standalone)",
-              "command": "%EMULATOR_AMIBERRY% --config /var/config/amiberry/AmigaVision.uae",
+              "label": "Amiberry [CD] (Standalone)",
+              "command": "%EMULATOR_AMIBERRY% --cdimage %ROM% -G -f",
               "priority": 60
+            },
+            {
+              "label": "Amiberry [AmigaVision] (Standalone)",
+              "command": "%EMULATOR_AMIBERRY% --config /var/config/amiberry/AmigaVision.uae",
+              "priority": 70
             }
           ],
           "platform": "amiga",

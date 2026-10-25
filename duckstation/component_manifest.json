@@ -40,9 +40,9 @@
           "extension": ".7z .bin .cbn .ccd .chd .cue .ecm .exe .img .iso .m3u .mdf .mds .minipsf .pbp .psexe .psf .toc .z .zip .znx",
           "commands": [
             {
-              "label": "DuckStation (Legacy) (Standalone)",
+              "label": "DuckStation [Legacy] (Standalone)",
               "command": "%EMULATOR_DUCKSTATION% -batch %ROM%",
-              "priority": 50
+              "priority": 20
             }
           ],
           "platform": "psx",
