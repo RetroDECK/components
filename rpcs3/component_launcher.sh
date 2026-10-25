@@ -17,4 +17,4 @@ log d "QT plugin path is: $QT_PLUGIN_PATH"
 
 # NOTE: AppRun is not working for RPCS3
 
-exec "$component_path/bin/shadPS4QtLauncher" "$@"
+exec "$component_path/bin/rpcs3" "$@"
