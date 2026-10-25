@@ -271,17 +271,17 @@
           "commands": [
             {
               "label": "Amiberry [Floppy] (Standalone)",
-              "command": "%EMULATOR_AMIBERRY% -0 %ROM% -G -f",
+              "command": "%EMULATOR_AMIBERRY% %INJECT%=%BASENAME%.commands -0 %ROM% -G -f",
               "priority": 40
             },
             {
               "label": "Amiberry [WHDLoad] (Standalone)",
-              "command": "%EMULATOR_AMIBERRY% --autoload %ROM% -G -f",
+              "command": "%EMULATOR_AMIBERRY% %INJECT%=%BASENAME%.commands --autoload %ROM% -G -f",
               "priority": 50
             },
             {
               "label": "Amiberry [CD] (Standalone)",
-              "command": "%EMULATOR_AMIBERRY% --cdimage %ROM% -G -f",
+              "command": "%EMULATOR_AMIBERRY% %INJECT%=%BASENAME%.commands --cdimage %ROM% -G -f",
               "priority": 60
             },
             {
@@ -300,14 +300,14 @@
           "extension": ".adf .adz .ccd .chd .cue .dms .fdi .hdf .hdz .ipf .iso .lha .m3u .mds .nrg .rp9 .uae .7z .zip",
           "commands": [
             {
-              "label": "Amiberry Floppy Amiga 1200 (Standalone)",
-              "command": "%EMULATOR_AMIBERRY% --model A1200 -0 %ROM% -G -f",
-              "priority": 30
+              "label": "Amiberry [Floppy] [Amiga 1200] (Standalone)",
+              "command": "%EMULATOR_AMIBERRY% %INJECT%=%BASENAME%.commands --model A1200 -0 %ROM% -G -f",
+              "priority": 40
             },
             {
-              "label": "Amiberry WHDLoad Amiga 1200 (Standalone)",
-              "command": "%EMULATOR_AMIBERRY% --model A1200 --autoload %ROM% -G -f",
-              "priority": 40
+              "label": "Amiberry [WHDLoad] [Amiga 1200] (Standalone)",
+              "command": "%EMULATOR_AMIBERRY% %INJECT%=%BASENAME%.commands --model A1200 --autoload %ROM% -G -f",
+              "priority": 50
             }
           ],
           "platform": "amiga1200",
@@ -320,14 +320,14 @@
           "extension": ".adf .adz .ccd .chd .cue .dms .fdi .hdf .hdz .ipf .iso .lha .m3u .mds .nrg .rp9 .uae .7z .zip",
           "commands": [
             {
-              "label": "Amiberry Floppy Amiga 600 (Standalone)",
-              "command": "%EMULATOR_AMIBERRY% --model A600 -0 %ROM% -G -f",
-              "priority": 30
+              "label": "Amiberry [Floppy] [Amiga 600] (Standalone)",
+              "command": "%EMULATOR_AMIBERRY% %INJECT%=%BASENAME%.commands --model A600 -0 %ROM% -G -f",
+              "priority": 40
             },
             {
-              "label": "Amiberry WHDLoad Amiga 600 (Standalone)",
-              "command": "%EMULATOR_AMIBERRY% --model A600 --autoload %ROM% -G -f",
-              "priority": 40
+              "label": "Amiberry [WHDLoad] [Amiga 600] (Standalone)",
+              "command": "%EMULATOR_AMIBERRY% %INJECT%=%BASENAME%.commands --model A600 --autoload %ROM% -G -f",
+              "priority": 50
             }
           ],
           "platform": "amiga600",
@@ -340,9 +340,9 @@
           "extension": ".adf .adz .ccd .chd .cue .dms .fdi .hdf .hdz .ipf .iso .lha .m3u .mds .nrg .rp9 .uae .7z .zip",
           "commands": [
             {
-              "label": "Amiberry CD32 (Standalone)",
-              "command": "%EMULATOR_AMIBERRY% --model CD32 --cdimage %ROM% -G -f",
-              "priority": 30
+              "label": "Amiberry [CD32] (Standalone)",
+              "command": "%EMULATOR_AMIBERRY% %INJECT%=%BASENAME%.commands --model CD32 --cdimage %ROM% -G -f",
+              "priority": 40
             }
           ],
           "platform": "amigacd32",
@@ -355,9 +355,9 @@
           "extension": ".adf .adz .ccd .chd .cue .dms .fdi .hdf .hdz .ipf .iso .lha .m3u .mds .nrg .rp9 .uae .7z .zip",
           "commands": [
             {
-              "label": "Amiberry CDTV (Standalone)",
-              "command": "%EMULATOR_AMIBERRY% --model CDTV --cdimage %ROM% -G -f",
-              "priority": 30
+              "label": "Amiberry [CDTV] (Standalone)",
+              "command": "%EMULATOR_AMIBERRY% %INJECT%=%BASENAME%.commands --model CDTV --cdimage --autoload %ROM% -G -f",
+              "priority": 50
             }
           ],
           "platform": "cdtv",
