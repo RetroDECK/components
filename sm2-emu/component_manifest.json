@@ -39,7 +39,7 @@
           "extension": ".7z .zip",
           "commands": [
             {
-              "label": "sm2-emu (Standalone)",
+              "label": "sm2-emu [Default] (Standalone)",
               "command": "%EMULATOR_SM2-EMU% %ROM%",
               "priority": 10
             }
