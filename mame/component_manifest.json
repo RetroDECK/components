@@ -76,7 +76,7 @@
           "extension": ".7z .cdt .cpr .dsk .kcr .m3u .sna .tap .tar .voc .zip",
           "commands": [
             {
-              "label": "MAME [Compatibility] (Standalone)",
+              "label": "MAME [Compatibility] [ROM Set: Current] (Standalone)",
               "command": "%STARTDIR%=~/.mame %EMULATOR_MAME% -inipath /var/config/mame/ini -rompath %GAMEDIR%\\;%ROMPATH%/amstradcpc cpc6128 -flop1 %ROM%",
               "priority": 30
             }
@@ -91,7 +91,7 @@
           "extension": ".do .dsk .nib .po",
           "commands": [
             {
-              "label": "MAME [Compatibility] (Standalone)",
+              "label": "MAME [Compatibility] [ROM Set: Current] (Standalone)",
               "command": "%STARTDIR%=~/.mame %EMULATOR_MAME% -inipath /var/config/mame/ini -rompath %GAMEDIR%\\;%ROMPATH%/apple2 apple2e -gameio joy -flop1 %ROM%",
               "priority": 20
             }
@@ -106,7 +106,7 @@
           "extension": ".2mg .7z .zip",
           "commands": [
             {
-              "label": "MAME [Compatibility] (Standalone)",
+              "label": "MAME [Compatibility] [ROM Set: Current] (Standalone)",
               "command": "%STARTDIR%=~/.mame %EMULATOR_MAME% -rompath %GAMEDIR%\\;%ROMPATH%/apple2gs apple2gs -gameio joy -flop3 %ROM%",
               "priority": 20
             }
@@ -121,7 +121,7 @@
           "extension": ".7z .cmd .desktop .gam .lindbergh .neo .sh .zip",
           "commands": [
             {
-              "label": "MAME [Compatibility] (Standalone)",
+              "label": "MAME [Compatibility] [ROM Set: Current] (Standalone)",
               "command": "%EMULATOR_MAME% -inipath /var/config/mame/ini -rompath %GAMEDIR%\\;%ROMPATH%/arcade %BASENAME%",
               "priority": 60
             }
@@ -136,7 +136,7 @@
           "extension": ".7z .bin .zip",
           "commands": [
             {
-              "label": "MAME [Compatibility] (Standalone)",
+              "label": "MAME [Compatibility] [ROM Set: Current] (Standalone)",
               "command": "%EMULATOR_MAME% -inipath /var/config/mame/ini -rompath %GAMEDIR%\\;%ROMPATH%/arcadia arcadia -cart %ROM%",
               "priority": 20
             }
@@ -181,7 +181,7 @@
           "extension": ".7z .zip",
           "commands": [
             {
-              "label": "MAME [Compatibility] (Standalone)",
+              "label": "MAME [Compatibility] [ROM Set: Current] (Standalone)",
               "command": "%EMULATOR_MAME% -inipath /var/config/mame/ini -rompath %GAMEDIR%\\;%ROMPATH%/astrocde astrocde -cart %BASENAME%",
               "priority": 20
             }
@@ -196,7 +196,7 @@
           "extension": ".7z .a78 .bin .zip",
           "commands": [
             {
-              "label": "MAME [Compatibility] (Standalone)",
+              "label": "MAME [Compatibility] [ROM Set: Current] (Standalone)",
               "command": "%STARTDIR%=~/.mame %EMULATOR_MAME% -rompath %GAMEDIR%\\;%ROMPATH%/atari7800 a7800 -cart %ROM%",
               "priority": 30
             }
@@ -211,7 +211,7 @@
           "extension": ".7z .abs .bigpimg .bin .cdi .cof .cue .j64 .jag .prg .rom .zip",
           "commands": [
             {
-              "label": "MAME [Compatibility] (Standalone)",
+              "label": "MAME [Compatibility] [ROM Set: Current] (Standalone)",
               "command": "%STARTDIR%=~/.mame %EMULATOR_MAME% -inipath /var/config/mame/ini -rompath %GAMEDIR%\\;%ROMPATH%/atarijaguar jaguar -cart %ROM%",
               "priority": 20
             }
@@ -226,7 +226,7 @@
           "extension": ".7z .dsd .img .ssd .zip",
           "commands": [
             {
-              "label": "MAME [Compatibility] (Standalone)",
+              "label": "MAME [Compatibility] [ROM Set: Current] (Standalone)",
               "command": "%STARTDIR%=~/.mame %EMULATOR_MAME% -rompath %GAMEDIR%\\;%ROMPATH%/bbcmicro bbcb -autoboot_delay \"2\" -autoboot_command \"*cat\\n\\n*exec !boot\\n\" -analogue acornjoy -flop1 %ROM%",
               "priority": 10
             }
@@ -241,7 +241,7 @@
           "extension": ".chd .cue .iso",
           "commands": [
             {
-              "label": "MAME [Compatibility] (Standalone)",
+              "label": "MAME [Compatibility] [ROM Set: Current] (Standalone)",
               "command": "%EMULATOR_MAME% -inipath /var/config/mame/ini -rompath %GAMEDIR%\\;%ROMPATH%/cdimono1 cdimono1 -cdrom %ROM%",
               "priority": 30
             }
@@ -256,7 +256,7 @@
           "extension": ".7z .bin .chf .zip",
           "commands": [
             {
-              "label": "MAME [Compatibility] (Standalone)",
+              "label": "MAME [Compatibility] [ROM Set: Current] (Standalone)",
               "command": "%EMULATOR_MAME% -inipath /var/config/mame/ini -rompath %GAMEDIR%\\;%ROMPATH%/channelf channelf -cart %ROM%",
               "priority": 30
             }
@@ -291,7 +291,7 @@
           "extension": ".7z .arcadedef .desktop .iso .ps3 .sh .xbe .zip",
           "commands": [
             {
-              "label": "MAME [Compatibility] (Standalone)",
+              "label": "MAME [Compatibility] [ROM Set: Current] (Standalone)",
               "command": "%EMULATOR_MAME% -inipath /var/config/mame/ini -rompath %GAMEDIR%\\;%ROMPATH%/consolearcade %BASENAME%",
               "priority": 20
             }
@@ -306,7 +306,7 @@
           "extension": ".7z .zip",
           "commands": [
             {
-              "label": "MAME [Compatibility] (Standalone)",
+              "label": "MAME [Compatibility] [ROM Set: Current] (Standalone)",
               "command": "%EMULATOR_MAME% -inipath /var/config/mame/ini -rompath %GAMEDIR%\\;%ROMPATH%/cps %BASENAME%",
               "priority": 20
             }
@@ -321,7 +321,7 @@
           "extension": ".7z .zip",
           "commands": [
             {
-              "label": "MAME [Compatibility] (Standalone)",
+              "label": "MAME [Compatibility] [ROM Set: Current] (Standalone)",
               "command": "%EMULATOR_MAME% -inipath /var/config/mame/ini -rompath %GAMEDIR%\\;%ROMPATH%/cps1 %BASENAME%",
               "priority": 20
             }
@@ -336,7 +336,7 @@
           "extension": ".7z .zip",
           "commands": [
             {
-              "label": "MAME [Compatibility] (Standalone)",
+              "label": "MAME [Compatibility] [ROM Set: Current] (Standalone)",
               "command": "%EMULATOR_MAME% -inipath /var/config/mame/ini -rompath %GAMEDIR%\\;%ROMPATH%/cps2 %BASENAME%",
               "priority": 20
             }
@@ -351,7 +351,7 @@
           "extension": ".7z .zip",
           "commands": [
             {
-              "label": "MAME [Compatibility] (Standalone)",
+              "label": "MAME [Compatibility] [ROM Set: Current] (Standalone)",
               "command": "%EMULATOR_MAME% -inipath /var/config/mame/ini -rompath %GAMEDIR%\\;%ROMPATH%/cps3 %BASENAME%",
               "priority": 20
             }
@@ -366,7 +366,7 @@
           "extension": ".7z .bin .rom .zip",
           "commands": [
             {
-              "label": "MAME [Compatibility] (Standalone)",
+              "label": "MAME [Compatibility] [ROM Set: Current] (Standalone)",
               "command": "%EMULATOR_MAME% -inipath /var/config/mame/ini -rompath %GAMEDIR%\\;%ROMPATH%/crvision crvision -cart %ROM%",
               "priority": 20
             }
@@ -381,7 +381,7 @@
           "extension": ".7z .daphne .dirksimple .mmi .ogv .singe .zip",
           "commands": [
             {
-              "label": "MAME [Compatibility] (Standalone)",
+              "label": "MAME [Compatibility] [ROM Set: Current] (Standalone)",
               "command": "%EMULATOR_MAME% -inipath /var/config/mame/ini -rompath %GAMEDIR%\\;%ROMPATH%/daphne %BASENAME%",
               "priority": 20
             }
@@ -491,7 +491,7 @@
           "extension": ".cdr .chd .cue .gdi .iso",
           "commands": [
             {
-              "label": "MAME [Compatibility] (Standalone)",
+              "label": "MAME [Compatibility] [ROM Set: Current] (Standalone)",
               "command": "%STARTDIR%=~/.mame %EMULATOR_MAME% -rompath %GAMEDIR%\\;%ROMPATH%/fmtowns fmtownshr -cdrom %ROM%",
               "priority": 20
             }
@@ -506,7 +506,7 @@
           "extension": ".7z .bin .zip",
           "commands": [
             {
-              "label": "MAME [Compatibility] (Standalone)",
+              "label": "MAME [Compatibility] [ROM Set: Current] (Standalone)",
               "command": "%EMULATOR_MAME% -inipath /var/config/mame/ini -rompath %GAMEDIR%\\;%ROMPATH%/gamate gamate -cart %ROM%",
               "priority": 20
             }
@@ -526,7 +526,7 @@
               "priority": 20
             },
             {
-              "label": "MAME [Compatibility] (Standalone)",
+              "label": "MAME [Compatibility] [ROM Set: Current] (Standalone)",
               "command": "%EMULATOR_MAME% -inipath /var/config/mame/ini -rompath %GAMEDIR%\\;%ROMPATH%/gameandwatch %BASENAME%",
               "priority": 30
             }
@@ -541,7 +541,7 @@
           "extension": ".7z .tgc .zip",
           "commands": [
             {
-              "label": "MAME [Compatibility] (Standalone)",
+              "label": "MAME [Compatibility] [ROM Set: Current] (Standalone)",
               "command": "%EMULATOR_MAME% -inipath /var/config/mame/ini -rompath %GAMEDIR%\\;%ROMPATH%/gamecom gamecom -cartridge1 %ROM%",
               "priority": 20
             }
@@ -556,7 +556,7 @@
           "extension": ".7z .bin .zip",
           "commands": [
             {
-              "label": "MAME [Compatibility] (Standalone)",
+              "label": "MAME [Compatibility] [ROM Set: Current] (Standalone)",
               "command": "%EMULATOR_MAME% -inipath /var/config/mame/ini -rompath %GAMEDIR%\\;%ROMPATH%/gmaster gmaster -cart %ROM%",
               "priority": 20
             }
@@ -571,7 +571,7 @@
           "extension": ".7z .bin .cdt .cpr .dsk .kcr .m3u .sna .tap .tar .voc .zip",
           "commands": [
             {
-              "label": "MAME [Compatibility] (Standalone)",
+              "label": "MAME [Compatibility] [ROM Set: Current] (Standalone)",
               "command": "%EMULATOR_MAME% -inipath /var/config/mame/ini -rompath %GAMEDIR%\\;%ROMPATH%/gx4000 gx4000 -cart %ROM%",
               "priority": 30
             }
@@ -586,7 +586,7 @@
           "extension": ".7z .bin .int .rom .zip",
           "commands": [
             {
-              "label": "MAME [Compatibility] (Standalone)",
+              "label": "MAME [Compatibility] [ROM Set: Current] (Standalone)",
               "command": "%EMULATOR_MAME% -inipath /var/config/mame/ini -rompath %GAMEDIR%\\;%ROMPATH%/intellivision intv -cart %ROM%",
               "priority": 30
             }
@@ -601,7 +601,7 @@
           "extension": ".7z .daphne .dirksimple .mmi .ogv .singe .zip",
           "commands": [
             {
-              "label": "MAME [Compatibility] (Standalone)",
+              "label": "MAME [Compatibility] [ROM Set: Current] (Standalone)",
               "command": "%EMULATOR_MAME% -inipath /var/config/mame/ini -rompath %GAMEDIR%\\;%ROMPATH%/laserdisc %BASENAME%",
               "priority": 20
             }
@@ -621,7 +621,7 @@
               "priority": 20
             },
             {
-              "label": "MAME [Compatibility] (Standalone)",
+              "label": "MAME [Compatibility] [ROM Set: Current] (Standalone)",
               "command": "%EMULATOR_MAME% -inipath /var/config/mame/ini -rompath %GAMEDIR%\\;%ROMPATH%/lcdgames %BASENAME%",
               "priority": 30
             }
@@ -666,7 +666,7 @@
           "extension": ".7z .cmd .desktop .gam .lindbergh .neo .sh .zip",
           "commands": [
             {
-              "label": "MAME [Compatibility] (Standalone)",
+              "label": "MAME [Compatibility] [ROM Set: Current] (Standalone)",
               "command": "%EMULATOR_MAME% -inipath /var/config/mame/ini -rompath %GAMEDIR%\\;%ROMPATH%/mame %BASENAME%",
               "priority": 20
             }
@@ -681,7 +681,7 @@
           "extension": ".7z .bin .zip",
           "commands": [
             {
-              "label": "MAME [Compatibility] (Standalone)",
+              "label": "MAME [Compatibility] [ROM Set: Current] (Standalone)",
               "command": "%EMULATOR_MAME% -inipath /var/config/mame/ini -rompath %GAMEDIR%\\;%ROMPATH%/megaduck megaduck -cart %ROM%",
               "priority": 30
             }
@@ -696,7 +696,7 @@
           "extension": ".7z .zip",
           "commands": [
             {
-              "label": "MAME [Compatibility] (Standalone)",
+              "label": "MAME [Compatibility] [ROM Set: Current] (Standalone)",
               "command": "%EMULATOR_MAME% -inipath /var/config/mame/ini -rompath %GAMEDIR%\\;%ROMPATH%/model2 %BASENAME%",
               "priority": 20
             }
@@ -711,7 +711,7 @@
           "extension": ".7z .neo .zip",
           "commands": [
             {
-              "label": "MAME [Compatibility] (Standalone)",
+              "label": "MAME [Compatibility] [ROM Set: Current] (Standalone)",
               "command": "%EMULATOR_MAME% -inipath /var/config/mame/ini -rompath %GAMEDIR%\\;%ROMPATH%/neogeo %BASENAME%",
               "priority": 30
             }
@@ -726,7 +726,7 @@
           "extension": ".chd .cue",
           "commands": [
             {
-              "label": "MAME [Compatibility] (Standalone)",
+              "label": "MAME [Compatibility] [ROM Set: Current] (Standalone)",
               "command": "%EMULATOR_MAME% -inipath /var/config/mame/ini -rompath %GAMEDIR%\\;%ROMPATH%/neogeocd neocdz -cdrm %ROM%",
               "priority": 30
             }
@@ -741,7 +741,7 @@
           "extension": ".chd .cue",
           "commands": [
             {
-              "label": "MAME [Compatibility] (Standalone)",
+              "label": "MAME [Compatibility] [ROM Set: Current] (Standalone)",
               "command": "%EMULATOR_MAME% -inipath /var/config/mame/ini -rompath %GAMEDIR%\\;%ROMPATH%/neogeocdjp neocdz -cdrm %ROM%",
               "priority": 30
             }
@@ -756,7 +756,7 @@
           "extension": ".7z .bin .zip",
           "commands": [
             {
-              "label": "MAME [Compatibility] (Standalone)",
+              "label": "MAME [Compatibility] [ROM Set: Current] (Standalone)",
               "command": "%EMULATOR_MAME% -inipath /var/config/mame/ini -rompath %GAMEDIR%\\;%ROMPATH%/odyssey2 odyssey2 -cart %ROM%",
               "priority": 30
             }
@@ -771,7 +771,7 @@
           "extension": ".dsk .ort .tap .wav",
           "commands": [
             {
-              "label": "MAME [Compatibility] (Standalone)",
+              "label": "MAME [Compatibility] [ROM Set: Current] (Standalone)",
               "command": "%STARTDIR%=~/.mame %EMULATOR_MAME% -inipath /var/config/mame/ini -rompath %GAMEDIR%\\;%ROMPATH%/oric oric1 -autoboot_delay \"4\" -autoboot_command \"cload\\\"\\\"\\n\" -cass %ROM%",
               "priority": 20
             }
@@ -786,7 +786,7 @@
           "extension": ".7z .bin .zip",
           "commands": [
             {
-              "label": "MAME [Compatibility] (Standalone)",
+              "label": "MAME [Compatibility] [ROM Set: Current] (Standalone)",
               "command": "%EMULATOR_MAME% -inipath /var/config/mame/ini -rompath %GAMEDIR%\\;%ROMPATH%/pv1000 pv1000 -cart %ROM%",
               "priority": 20
             }
@@ -801,7 +801,7 @@
           "extension": ".0 .7z .bin .zip",
           "commands": [
             {
-              "label": "MAME [Compatibility] (Standalone)",
+              "label": "MAME [Compatibility] [ROM Set: Current] (Standalone)",
               "command": "%EMULATOR_MAME% -inipath /var/config/mame/ini -rompath %GAMEDIR%\\;%ROMPATH%/scv scv -cart %ROM%",
               "priority": 20
             }
@@ -816,7 +816,7 @@
           "extension": ".7z .zip",
           "commands": [
             {
-              "label": "MAME [Compatibility] (Standalone)",
+              "label": "MAME [Compatibility] [ROM Set: Current] (Standalone)",
               "command": "%EMULATOR_MAME% -inipath /var/config/mame/ini -rompath %GAMEDIR%\\;%ROMPATH%/stv %BASENAME%",
               "priority": 30
             }
@@ -831,7 +831,7 @@
           "extension": ".7z .bin .sv .zip",
           "commands": [
             {
-              "label": "MAME [Compatibility] (Standalone)",
+              "label": "MAME [Compatibility] [ROM Set: Current] (Standalone)",
               "command": "%EMULATOR_MAME% -inipath /var/config/mame/ini -rompath %GAMEDIR%\\;%ROMPATH%/supervision svision -cart %ROM%",
               "priority": 30
             }
@@ -846,7 +846,7 @@
           "extension": ".7z .bin .zip",
           "commands": [
             {
-              "label": "MAME [Compatibility] (Standalone)",
+              "label": "MAME [Compatibility] [ROM Set: Current] (Standalone)",
               "command": "%EMULATOR_MAME% -inipath /var/config/mame/ini -rompath %GAMEDIR%\\;%ROMPATH%/supracan supracan -cart %ROM%",
               "priority": 20
             }
@@ -881,7 +881,7 @@
           "extension": ".7z .rpk .zip",
           "commands": [
             {
-              "label": "MAME [Compatibility] (Standalone)",
+              "label": "MAME [Compatibility] [ROM Set: Current] (Standalone)",
               "command": "%STARTDIR%=~/.mame %EMULATOR_MAME% -inipath /var/config/mame/ini -rompath %GAMEDIR%\\;%ROMPATH%/ti99 ti99_4a -ioport peb -ioport:peb:slot3 speechadapter -cart %BASENAME%",
               "priority": 10
             }
@@ -896,7 +896,7 @@
           "extension": ".7z .bin .gam .vc .vec .zip",
           "commands": [
             {
-              "label": "MAME [Compatibility] (Standalone)",
+              "label": "MAME [Compatibility] [ROM Set: Current] (Standalone)",
               "command": "%EMULATOR_MAME% -inipath /var/config/mame/ini -rompath %GAMEDIR%\\;%ROMPATH%/vectrex vectrex -cart %ROM%",
               "priority": 30
             }
@@ -911,7 +911,7 @@
           "extension": ".7z .bin .zip",
           "commands": [
             {
-              "label": "MAME [Compatibility] (Standalone)",
+              "label": "MAME [Compatibility] [ROM Set: Current] (Standalone)",
               "command": "%EMULATOR_MAME% -inipath /var/config/mame/ini -rompath %GAMEDIR%\\;%ROMPATH%/videopac videopac -cart %ROM%",
               "priority": 30
             }
@@ -926,7 +926,7 @@
           "extension": ".7z .bin .zip",
           "commands": [
             {
-              "label": "MAME [Compatibility] (Standalone)",
+              "label": "MAME [Compatibility] [ROM Set: Current] (Standalone)",
               "command": "%EMULATOR_MAME% -inipath /var/config/mame/ini -rompath %GAMEDIR%\\;%ROMPATH%/vsmile vsmile -cart %ROM%",
               "priority": 20
             }
@@ -961,7 +961,7 @@
           "extension": ".2hd .7z .88d .cmd .d88 .dim .dup .hdf .hdm .img .m3u .xdf .zip",
           "commands": [
             {
-              "label": "MAME [Compatibility] (Standalone)",
+              "label": "MAME [Compatibility] [ROM Set: Current] (Standalone)",
               "command": "%STARTDIR%=~/.mame %EMULATOR_MAME% -rompath %GAMEDIR%\\;%ROMPATH%/x68000 x68000 -flop1 %ROM%",
               "priority": 20
             }
