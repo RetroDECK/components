@@ -58,11 +58,6 @@
               "label": "RPCS3 [Directory / ISO] (Standalone)",
               "command": "%EMULATOR_RPCS3% --no-gui %ROM%",
               "priority": 20
-            },
-            {
-              "label": "RPCS3 [Shortcut] (Standalone)",
-              "command": "%ENABLESHORTCUTS% %EMULATOR_OS-SHELL% %ROM%",
-              "priority": 30
             }
           ],
           "platform": "ps3",

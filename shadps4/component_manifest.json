@@ -48,11 +48,6 @@
               "label": "shadPS4 [eboot.bin] (Standalone)",
               "command": "%EMULATOR_SHADPS4-GUI% -d -g %ROM%",
               "priority": 20
-            },
-            {
-              "label": "shadPS4 [Shortcut] (Standalone)",
-              "command": "%ENABLESHORTCUTS% %EMULATOR_OS-SHELL% %ROM%",
-              "priority": 30
             }
           ],
           "platform": "ps4",
