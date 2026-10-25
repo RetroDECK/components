@@ -36,7 +36,7 @@
           "extension": ".wolf",
           "commands": [
             {
-              "label": "ECWolf (Standalone)",
+              "label": "ECWolf [Default] (Standalone)",
               "command": "%EMULATOR_ECWOLF% %ROM%",
               "priority": 10
             }

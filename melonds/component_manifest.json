@@ -47,7 +47,7 @@
             {
               "label": "melonDS (Standalone)",
               "command": "%EMULATOR_MELONDS% %ROM%",
-              "priority": 50
+              "priority": 20
             }
           ],
           "platform": "nds",

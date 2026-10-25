@@ -521,7 +521,7 @@
           "extension": ".7z .mgw .zip",
           "commands": [
             {
-              "label": "MAME Local Artwork (Standalone)",
+              "label": "MAME [Local Artwork] (Standalone)",
               "command": "%EMULATOR_MAME% -inipath /var/config/mame/ini -artpath %ROMPATH%/gameandwatch/artwork -rompath %GAMEDIR%\\;%ROMPATH%/gameandwatch %BASENAME%",
               "priority": 20
             },
@@ -616,7 +616,7 @@
           "extension": ".7z .mgw .zip",
           "commands": [
             {
-              "label": "MAME Local Artwork (Standalone)",
+              "label": "MAME [Local Artwork] (Standalone)",
               "command": "%EMULATOR_MAME% -inipath /var/config/mame/ini -artpath %ROMPATH%/lcdgames/artwork -rompath %GAMEDIR%\\;%ROMPATH%/lcdgames %BASENAME%",
               "priority": 20
             },
@@ -636,24 +636,24 @@
           "extension": ".dsk .game",
           "commands": [
             {
-              "label": "MAME Mac SE Bootable (Standalone)",
+              "label": "MAME [Macintosh SE] [Bootable] (Standalone)",
               "command": "%EMULATOR_MAME% -inipath /var/config/mame/ini -rompath %GAMEDIR%\\;%ROMPATH%/macintosh macse -flop1 %ROM%",
-              "priority": 10
-            },
-            {
-              "label": "MAME Mac SE Boot Disk (Standalone)",
-              "command": "%EMULATOR_MAME% -inipath /var/config/mame/ini -rompath %GAMEDIR%\\;%ROMPATH%/macintosh macse -flop1 %GAMEDIR%/boot.dsk -flop2 %ROM%",
               "priority": 20
             },
             {
-              "label": "MAME Mac Plus Bootable (Standalone)",
-              "command": "%EMULATOR_MAME% -inipath /var/config/mame/ini -rompath %GAMEDIR%\\;%ROMPATH%/macintosh macplus -flop1 %ROM%",
+              "label": "MAME [Macintosh SE] [Boot Disk] (Standalone)",
+              "command": "%EMULATOR_MAME% -inipath /var/config/mame/ini -rompath %GAMEDIR%\\;%ROMPATH%/macintosh macse -flop1 %GAMEDIR%/boot.dsk -flop2 %ROM%",
               "priority": 30
             },
             {
-              "label": "MAME Mac Plus Boot Disk (Standalone)",
-              "command": "%EMULATOR_MAME% -inipath /var/config/mame/ini -rompath %GAMEDIR%\\;%ROMPATH%/macintosh macplus -flop1 %GAMEDIR%/boot.dsk -flop2 %ROM%",
+              "label": "MAME [Macintosh Plus] [Bootable] (Standalone)",
+              "command": "%EMULATOR_MAME% -inipath /var/config/mame/ini -rompath %GAMEDIR%\\;%ROMPATH%/macintosh macplus -flop1 %ROM%",
               "priority": 40
+            },
+            {
+              "label": "MAME [Macintosh Plus] [Boot Disk] (Standalone)",
+              "command": "%EMULATOR_MAME% -inipath /var/config/mame/ini -rompath %GAMEDIR%\\;%ROMPATH%/macintosh macplus -flop1 %GAMEDIR%/boot.dsk -flop2 %ROM%",
+              "priority": 50
             }
           ],
           "platform": "macintosh",

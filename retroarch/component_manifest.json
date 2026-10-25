@@ -87,7 +87,7 @@
               "priority": 10
             },
             {
-              "label": "Amiberry (Libretro Core)",
+              "label": "Amiberry [Accuracy] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/amiberry_libretro.so %ROM%",
               "priority": 20
             },
@@ -117,7 +117,7 @@
               "priority": 10
             },
             {
-              "label": "Amiberry (Libretro Core)",
+              "label": "Amiberry [Accuracy] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/amiberry_libretro.so %ROM%",
               "priority": 20
             },
@@ -147,7 +147,7 @@
               "priority": 10
             },
             {
-              "label": "Amiberry (Libretro Core)",
+              "label": "Amiberry [Accuracy] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/amiberry_libretro.so %ROM%",
               "priority": 20
             },
@@ -177,7 +177,7 @@
               "priority": 10
             },
             {
-              "label": "Amiberry (Libretro Core)",
+              "label": "Amiberry [Accuracy] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/amiberry_libretro.so %ROM%",
               "priority": 20
             },
@@ -692,7 +692,7 @@
               "priority": 20
             },
             {
-              "label": "Amiberry (Libretro Core)",
+              "label": "Amiberry [Accuracy] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/amiberry_libretro.so %ROM%",
               "priority": 30
             },
@@ -1472,12 +1472,12 @@
               "priority": 20
             },
             {
-              "label": "Gearsystem (Libretro Core)",
+              "label": "Gearsystem (Libretro Core) (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/gearsystem_libretro.so %ROM%",
               "priority": 30
             },
             {
-              "label": "SMS Plus GX (Libretro Core)",
+              "label": "SMS Plus GX (Libretro Core) (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/smsplus_libretro.so %ROM%",
               "priority": 40
             },
@@ -1747,7 +1747,7 @@
           "extension": ".7z .bin .int .rom .zip",
           "commands": [
             {
-              "label": "FreeIntv",
+              "label": "FreeIntv [Default] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/freeintv_libretro.so %ROM%",
               "priority": 10
             },
@@ -1767,7 +1767,7 @@
           "extension": ".7z .jar .zip",
           "commands": [
             {
-              "label": "SquirrelJME",
+              "label": "SquirrelJME [Default] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/squirreljme_libretro.so %ROM%",
               "priority": 10
             }
@@ -1782,13 +1782,13 @@
           "extension": ".7z .daphne .dirksimple .mmi .ogv .singe .zip",
           "commands": [
             {
-              "label": "MAME [Accuracy] [ROM Set: Current] (Libretro Core)",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame_libretro.so %ROM%",
+              "label": "DirkSimple [Default] (Libretro Core)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/dirksimple_libretro.so %ROM%",
               "priority": 10
             },
             {
-              "label": "DirkSimple",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/dirksimple_libretro.so %ROM%",
+              "label": "MAME [Accuracy] [ROM Set: Current] (Libretro Core)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame_libretro.so %ROM%",
               "priority": 30
             }
           ],
@@ -1802,13 +1802,13 @@
           "extension": ".7z .mgw .zip",
           "commands": [
             {
-              "label": "MAME [Accuracy] [ROM Set: Current] (Libretro Core)",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame_libretro.so %ROM%",
+              "label": "Handheld Electronic (GW) [Default] (Libretro Core)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/gw_libretro.so %ROM%",
               "priority": 10
             },
             {
-              "label": "Handheld Electronic (GW)",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/gw_libretro.so %ROM%",
+              "label": "MAME [Accuracy] [ROM Set: Current] (Libretro Core)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame_libretro.so %ROM%",
               "priority": 40
             }
           ],
@@ -1822,7 +1822,7 @@
           "extension": ".nx",
           "commands": [
             {
-              "label": "LowRes NX",
+              "label": "LowRes NX [Default] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/lowresnx_libretro.so %ROM%",
               "priority": 10
             }
@@ -1837,7 +1837,7 @@
           "extension": ".7z .lua .lutro .zip",
           "commands": [
             {
-              "label": "Lutro",
+              "label": "Lutro [Default] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/lutro_libretro.so %ROM%",
               "priority": 10
             }
@@ -1852,9 +1852,9 @@
           "extension": ".dsk .img .zip .hvf .cmd",
           "commands": [
             {
-              "label": "minivmac",
+              "label": "Mini vMac [Default] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/minivmac_libretro.so %ROM%",
-              "priority": 50
+              "priority": 10
             }
           ],
           "platform": "macintosh",
@@ -1867,79 +1867,49 @@
           "extension": ".7z .cmd .desktop .gam .lindbergh .neo .sh .zip",
           "commands": [
             {
-              "label": "MAME [Accuracy] [ROM Set: Current] (Libretro Core)",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame_libretro.so %ROM%",
+              "label": "MAME 2003-Plus [Compatibility] [ROM Set: Current] (Libretro Core)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2003_plus_libretro.so %ROM%",
               "priority": 10
             },
             {
-              "label": "MAME 2000 [Legacy] [Performance] [ROM Set: 0.37b5] (Libretro Core)",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2000_libretro.so %ROM%",
+              "label": "MAME [Accuracy] [ROM Set: Current] (Libretro Core)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame_libretro.so %ROM%",
               "priority": 30
-            },
-            {
-              "label": "MAME 2003-Plus [Compatibility] [ROM Set: Current] (Libretro Core)",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2003_plus_libretro.so %ROM%",
-              "priority": 40
-            },
-            {
-              "label": "MAME 2003 [Legacy] [Performance] [ROM Set: 0.78] (Libretro Core)",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2003_libretro.so %ROM%",
-              "priority": 50
-            },
-            {
-              "label": "MAME 2003 Midway",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2003_midway_libretro.so %ROM%",
-              "priority": 60
-            },
-            {
-              "label": "MAME 2010 [Legacy] [Compatibility] [ROM Set: 0.139] (Libretro Core)",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2010_libretro.so %ROM%",
-              "priority": 70
-            },
-            {
-              "label": "MAME 2015 [Legacy] [ROM Set: 0.160] (Libretro Core)",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2015_libretro.so %ROM%",
-              "priority": 80
-            },
-            {
-              "label": "MAME 2016 [Legacy] [ROM Set: 0.174] (Libretro Core)",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2016_libretro.so %ROM%",
-              "priority": 90
-            },
-            {
-              "label": "DICE",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/dice_libretro.so %ROM%",
-              "priority": 100
-            },
-            {
-              "label": "FB Alpha 2012 [Legacy] (Libretro Core)",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/fbalpha2012_libretro.so %ROM%",
-              "priority": 110
-            },
-            {
-              "label": "FinalBurn Neo (Libretro Core)",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/fbneo_libretro.so %ROM%",
-              "priority": 120
-            },
-            {
-              "label": "Flycast [Default] (Libretro Core)",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/flycast_libretro.so %ROM%",
-              "priority": 130
-            },
-            {
-              "label": "Geolith",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/geolith_libretro.so %ROM%",
-              "priority": 140
             },
             {
               "label": "HBMAME [Homebrew] [Specialized] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/hbmame_libretro.so %ROM%",
-              "priority": 150
+              "priority": 40
             },
             {
-              "label": "Kronos (Libretro Core)",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/kronos_libretro.so %ROM%",
-              "priority": 160
+              "label": "MAME 2000 [Legacy] [Performance] [ROM Set: 0.37b5] (Libretro Core)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2000_libretro.so %ROM%",
+              "priority": 50
+            },
+            {
+              "label": "MAME 2003 [Legacy] [Performance] [ROM Set: 0.78] (Libretro Core)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2003_libretro.so %ROM%",
+              "priority": 60
+            },
+            {
+              "label": "MAME 2003 Midway [Legacy] [Performance] [ROM Set: 0.78] (Libretro Core)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2003_midway_libretro.so %ROM%",
+              "priority": 70
+            },
+            {
+              "label": "MAME 2010 [Legacy] [Compatibility] [ROM Set: 0.139] (Libretro Core)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2010_libretro.so %ROM%",
+              "priority": 80
+            },
+            {
+              "label": "MAME 2015 [Legacy] [ROM Set: 0.160] (Libretro Core)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2015_libretro.so %ROM%",
+              "priority": 90
+            },
+            {
+              "label": "MAME 2016 [Legacy] [ROM Set: 0.174] (Libretro Core)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2016_libretro.so %ROM%",
+              "priority": 100
             }
           ],
           "platform": "arcade",
@@ -1962,12 +1932,12 @@
               "priority": 20
             },
             {
-              "label": "SMS Plus GX",
+              "label": "SMS Plus GX (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/smsplus_libretro.so %ROM%",
               "priority": 30
             },
             {
-              "label": "Gearsystem",
+              "label": "Gearsystem (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/gearsystem_libretro.so %ROM%",
               "priority": 40
             },
@@ -1997,12 +1967,12 @@
               "priority": 20
             },
             {
-              "label": "SMS Plus GX",
+              "label": "SMS Plus GX (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/smsplus_libretro.so %ROM%",
               "priority": 30
             },
             {
-              "label": "Gearsystem",
+              "label": "Gearsystem (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/gearsystem_libretro.so %ROM%",
               "priority": 40
             },
@@ -2322,7 +2292,7 @@
           "extension": ".7z .bin .gg .rom .sg .sms .zip",
           "commands": [
             {
-              "label": "Gearsystem",
+              "label": "Gearsystem (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/gearsystem_libretro.so %ROM%",
               "priority": 10
             }
@@ -2452,29 +2422,29 @@
           "extension": ".7z .app .bin .nds .zip",
           "commands": [
             {
-              "label": "melonDS DS",
+              "label": "melonDS DS [Default] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/melondsds_libretro.so %ROM%",
               "priority": 10
             },
             {
-              "label": "DeSmuME",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/desmume_libretro.so %ROM%",
-              "priority": 20
-            },
-            {
-              "label": "DeSmuME 2015",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/desmume2015_libretro.so %ROM%",
+              "label": "SkyEmu (Libretro Core)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/skyemu_libretro.so %ROM%",
               "priority": 30
             },
             {
-              "label": "melonDS",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/melonds_libretro.so %ROM%",
+              "label": "DeSmuME [Legacy] (Libretro Core)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/desmume_libretro.so %ROM%",
               "priority": 40
             },
             {
-              "label": "SkyEmu",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/skyemu_libretro.so %ROM%",
+              "label": "DeSmuME 2015 [Legacy] (Libretro Core)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/desmume2015_libretro.so %ROM%",
               "priority": 50
+            },
+            {
+              "label": "melonDS [Legacy] (Libretro Core)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/melonds_libretro.so %ROM%",
+              "priority": 60
             }
           ],
           "platform": "nds",
@@ -2492,7 +2462,7 @@
               "priority": 10
             },
             {
-              "label": "Geolith",
+              "label": "Geolith (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/geolith_libretro.so %ROM%",
               "priority": 20
             }
@@ -3547,7 +3517,7 @@
               "priority": 20
             },
             {
-              "label": "Gearsystem",
+              "label": "Gearsystem (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/gearsystem_libretro.so %ROM%",
               "priority": 30
             },
@@ -4282,7 +4252,7 @@
           "extension": ".7z .bin .vb .vboy .zip",
           "commands": [
             {
-              "label": "Beetle VB",
+              "label": "Beetle VB [Default] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mednafen_vb_libretro.so %ROM%",
               "priority": 10
             }
@@ -4312,7 +4282,7 @@
           "extension": ".wasm",
           "commands": [
             {
-              "label": "WASM-4",
+              "label": "WASM-4 [Default] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/wasm4_libretro.so %ROM%",
               "priority": 10
             }
@@ -4327,7 +4297,7 @@
           "extension": ".7z .ciso .dff .dol .elf .gcm .gcz .iso .json .m3u .rvz .tgc .wad .wbfs .wia .zip",
           "commands": [
             {
-              "label": "Dolphin",
+              "label": "Dolphin (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/dolphin_libretro.so %ROM%",
               "priority": 20
             }
@@ -4342,7 +4312,7 @@
           "extension": ".elf .rpx .tmd .wua .wud .wuhb .wux",
           "commands": [
             {
-              "label": "Cemu",
+              "label": "Cemu (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/cemu_libretro.so %ROM%",
               "priority": 20
             }
@@ -4357,7 +4327,7 @@
           "extension": ".7z .appimage .bat .desktop .dosz .sh .zip",
           "commands": [
             {
-              "label": "DOSBox-Pure",
+              "label": "DOSBox-Pure [Default] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/dosbox_pure_libretro.so %ROM%",
               "priority": 10
             }
@@ -4372,7 +4342,7 @@
           "extension": ".7z .appimage .bat .desktop .dosz .sh .zip",
           "commands": [
             {
-              "label": "DOSBox-Pure",
+              "label": "DOSBox-Pure [Default] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/dosbox_pure_libretro.so %ROM%",
               "priority": 10
             }
@@ -4387,7 +4357,7 @@
           "extension": ".wl6 .n3d .sod .sdm .wl1 .pk3 .exe",
           "commands": [
             {
-              "label": "ECWolf (Wolfenstein 3D)",
+              "label": "ECWolf (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/ecwolf_libretro.so %ROM%",
               "priority": 20
             }
@@ -4402,7 +4372,7 @@
           "extension": ".7z .pc2 .ws .zip",
           "commands": [
             {
-              "label": "Beetle Cygne",
+              "label": "Beetle Cygne [Default] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mednafen_wswan_libretro.so %ROM%",
               "priority": 10
             }
@@ -4417,7 +4387,7 @@
           "extension": ".7z .pc2 .ws .wsc .zip",
           "commands": [
             {
-              "label": "Beetle Cygne",
+              "label": "Beetle Cygne [Default] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mednafen_wswan_libretro.so %ROM%",
               "priority": 10
             }
@@ -4432,7 +4402,7 @@
           "extension": ".2d .2hd .7z .88d .cmd .d88 .dup .dx1 .hdm .tap .tfd .xdf .zip",
           "commands": [
             {
-              "label": "X Millennium",
+              "label": "X Millennium [Default] (Libretro Core)",
               "command": "%STARTDIR%=%GAMEDIR% %EMULATOR_RETROARCH% -L %CORE_RETROARCH%/x1_libretro.so %ROM%",
               "priority": 10
             }
@@ -4447,7 +4417,7 @@
           "extension": ".2hd .7z .88d .cmd .d88 .dim .dup .hdf .hdm .img .m3u .xdf .zip",
           "commands": [
             {
-              "label": "PX68k",
+              "label": "PX68k [Default] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/px68k_libretro.so %ROM%",
               "priority": 10
             }
@@ -4462,7 +4432,7 @@
           "extension": ".iso",
           "commands": [
             {
-              "label": "xemu",
+              "label": "xemu (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/xemu_libretro.so %ROM%",
               "priority": 20
             }
@@ -4477,7 +4447,7 @@
           "extension": ".desktop .iso .sh .xex .zar",
           "commands": [
             {
-              "label": "Xenia Edge",
+              "label": "Xenia Edge (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/xenia_edge_libretro.so %ROM%",
               "priority": 20
             }
@@ -4492,7 +4462,7 @@
           "extension": ".dat .z1 .z2 .z3 .z4 .z5 .z6 .z7 .z8 .zblorb .zlb",
           "commands": [
             {
-              "label": "MojoZork",
+              "label": "MojoZork [Default] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mojozork_libretro.so %ROM%",
               "priority": 10
             }
@@ -4507,7 +4477,7 @@
           "extension": ".7z .p .tzx .zip",
           "commands": [
             {
-              "label": "EightyOne",
+              "label": "EightyOne [Default] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/81_libretro.so %ROM%",
               "priority": 10
             }
@@ -4522,7 +4492,7 @@
           "extension": ".7z .dsk .gz .img .mgt .rzx .scl .sh .sna .szx .tap .trd .tzx .udi .z80 .zip",
           "commands": [
             {
-              "label": "Fuse",
+              "label": "Fuse [Default] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/fuse_libretro.so %ROM%",
               "priority": 10
             }
