@@ -251,6 +251,86 @@
           "theme": "apple2gs"
         },
         {
+          "name": "arcade",
+          "fullname": "Arcade",
+          "path": "%ROMPATH%/arcade",
+          "extension": ".7z .cmd .desktop .gam .lindbergh .neo .sh .zip",
+          "commands": [
+            {
+              "label": "FinalBurn Neo (Libretro Core)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/fbneo_libretro.so %ROM%",
+              "priority": 10
+            },
+            {
+              "label": "MAME 2003-Plus [Compatibility] [ROM Set: Current] (Libretro Core)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2003_plus_libretro.so %ROM%",
+              "priority": 20
+            },
+            {
+              "label": "MAME [Accuracy] [ROM Set: Current] (Libretro Core)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame_libretro.so %ROM%",
+              "priority": 30
+            },
+            {
+              "label": "DICE",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/dice_libretro.so %ROM%",
+              "priority": 40
+            },
+            {
+              "label": "Flycast [Default] (Libretro Core)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/flycast_libretro.so %ROM%",
+              "priority": 50
+            },
+            {
+              "label": "Geolith (Libretro Core)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/geolith_libretro.so %ROM%",
+              "priority": 60
+            },
+            {
+              "label": "HBMAME [Homebrew] [Specialized] (Libretro Core)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/hbmame_libretro.so %ROM%",
+              "priority": 70
+            },
+            {
+              "label": "Kronos [Enhanced] (Libretro Core)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/kronos_libretro.so %ROM%",
+              "priority": 80
+            },
+            {
+              "label": "MAME 2000 [Legacy] [Performance] [ROM Set: 0.37b5] (Libretro Core)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2000_libretro.so %ROM%",
+              "priority": 90
+            },
+            {
+              "label": "MAME 2003 [Legacy] [Performance] [ROM Set: 0.78] (Libretro Core)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2003_libretro.so %ROM%",
+              "priority": 100
+            },
+            {
+              "label": "MAME 2010 [Legacy] [Compatibility] [ROM Set: 0.139] (Libretro Core)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2010_libretro.so %ROM%",
+              "priority": 110
+            },
+            {
+              "label": "MAME 2015 [Legacy] [ROM Set: 0.160] (Libretro Core)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2015_libretro.so %ROM%",
+              "priority": 120
+            },
+            {
+              "label": "MAME 2016 [Legacy] [ROM Set: 0.174] (Libretro Core)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2016_libretro.so %ROM%",
+              "priority": 130
+            },
+            {
+              "label": "FB Alpha 2012 [Legacy] (Libretro Core)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/fbalpha2012_libretro.so %ROM%",
+              "priority": 140
+            }
+          ],
+          "platform": "arcade",
+          "theme": "arcade"
+        },
+        {
           "name": "arcadia",
           "fullname": "Emerson Arcadia 2001",
           "path": "%ROMPATH%/arcadia",
