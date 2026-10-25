@@ -1497,12 +1497,12 @@
           "extension": ".7z .bs .cgb .dmg .gb .gbc .sfc .sgb .smc .zip",
           "commands": [
             {
-              "label": "Gambatte",
+              "label": "Gambatte [Performance] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/gambatte_libretro.so %ROM%",
               "priority": 10
             },
             {
-              "label": "SameBoy",
+              "label": "SameBoy [Accuracy] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/sameboy_libretro.so %ROM%",
               "priority": 20
             },
@@ -1512,27 +1512,27 @@
               "priority": 30
             },
             {
-              "label": "TGB Dual",
+              "label": "TGB Dual [Specialized] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/tgbdual_libretro.so %ROM%",
               "priority": 40
             },
             {
-              "label": "DoubleCherryGB",
+              "label": "DoubleCherryGB [Experimental] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/DoubleCherryGB_libretro.so %ROM%",
               "priority": 50
             },
             {
-              "label": "Mesen-S",
+              "label": "Mesen-S [SGB, BSX, Sufami] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mesen-s_libretro.so %ROM%",
               "priority": 60
             },
             {
-              "label": "bsnes",
+              "label": "bsnes [Accuracy] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes_libretro.so %ROM%",
               "priority": 70
             },
             {
-              "label": "mGBA",
+              "label": "mGBA (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mgba_libretro.so %ROM%",
               "priority": 80
             },
@@ -1572,7 +1572,7 @@
           "extension": ".7z .agb .bin .cgb .dmg .gb .gba .gbc .sgb .zip",
           "commands": [
             {
-              "label": "mGBA",
+              "label": "mGBA (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mgba_libretro.so %ROM%",
               "priority": 10
             },
@@ -1627,12 +1627,12 @@
           "extension": ".7z .bs .cgb .dmg .gb .gbc .sfc .sgb .smc .zip",
           "commands": [
             {
-              "label": "Gambatte",
+              "label": "Gambatte [Default] [Performance] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/gambatte_libretro.so %ROM%",
               "priority": 10
             },
             {
-              "label": "SameBoy",
+              "label": "SameBoy [Accuracy] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/sameboy_libretro.so %ROM%",
               "priority": 20
             },
@@ -1642,27 +1642,27 @@
               "priority": 30
             },
             {
-              "label": "TGB Dual",
+              "label": "TGB Dual [Specialized] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/tgbdual_libretro.so %ROM%",
               "priority": 40
             },
             {
-              "label": "DoubleCherryGB",
+              "label": "DoubleCherryGB [Experimental] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/DoubleCherryGB_libretro.so %ROM%",
               "priority": 50
             },
             {
-              "label": "Mesen-S",
+              "label": "Mesen-S [SGB, BSX, Sufami] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mesen-s_libretro.so %ROM%",
               "priority": 60
             },
             {
-              "label": "bsnes",
+              "label": "bsnes [Accuracy] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes_libretro.so %ROM%",
               "priority": 80
             },
             {
-              "label": "mGBA",
+              "label": "mGBA (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mgba_libretro.so %ROM%",
               "priority": 90
             },
@@ -3182,44 +3182,104 @@
           "extension": ".7z .bml .bs .fig .sfc .smc .st .swc .zip",
           "commands": [
             {
-              "label": "Snes9x - Current",
+              "label": "Snes9x [Default] [Accuracy] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/snes9x_libretro.so %ROM%",
               "priority": 10
             },
             {
-              "label": "Snes9x 2010",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/snes9x2010_libretro.so %ROM%",
+              "label": "bsnes [Accuracy] (Libretro Core)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes_libretro.so %ROM%",
               "priority": 20
             },
             {
-              "label": "Snes9x 2005 Plus",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/snes9x2005_plus_libretro.so %ROM%",
+              "label": "Mesen-S [SGB, BSX, Sufami] (Libretro Core)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mesen-s_libretro.so %ROM%",
               "priority": 30
             },
             {
-              "label": "bsnes",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes_libretro.so %ROM%",
+              "label": "bsnes-jg [SGB, BSX, Sufami] (Libretro Core)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes-jg_libretro.so %ROM%",
               "priority": 40
             },
             {
-              "label": "bsnes-hd",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes_hd_beta_libretro.so %ROM%",
+              "label": "Mesen 2/CE [SGB, BSX, Sufami] (Libretro Core)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mesen2_libretro.so %ROM%",
               "priority": 50
             },
             {
-              "label": "bsnes-jg",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes-jg_libretro.so %ROM%",
+              "label": "bsnes HD [Experimental] [Enhanced] (Libretro Core)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes_hd_beta_libretro.so %ROM%",
               "priority": 60
             },
             {
-              "label": "bsnes-mercury Accuracy",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes_mercury_accuracy_libretro.so %ROM%",
+              "label": "Mednafen SNES (Libretro Core)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mednafen_snes_libretro.so %ROM%",
               "priority": 70
             },
             {
-              "label": "Mesen-S",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mesen-s_libretro.so %ROM%",
+              "label": "nSide Balanced (Libretro Core)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/nside_sfc_balanced_libretro.so %ROM%",
               "priority": 80
+            },
+            {
+              "label": "bsnes 2014 [Accuracy] [Legacy] (Libretro Core)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes2014_accuracy_libretro.so %ROM%",
+              "priority": 90
+            },
+            {
+              "label": "bsnes 2014 [Balanced] [Legacy] (Libretro Core)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes2014_balanced_libretro.so %ROM%",
+              "priority": 100
+            },
+            {
+              "label": "bsnes 2014 [Performance] [Legacy] (Libretro Core)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes2014_performance_libretro.so %ROM%",
+              "priority": 110
+            },
+            {
+              "label": "bsnes [C++98 - v085] [Legacy] (Libretro Core)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes_cplusplus98_libretro.so %ROM%",
+              "priority": 120
+            },
+            {
+              "label": "bsnes-mercury [Accuracy] [Legacy] (Libretro Core)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes_mercury_accuracy_libretro.so %ROM%",
+              "priority": 130
+            },
+            {
+              "label": "bsnes-mercury [Balanced] [Legacy] (Libretro Core)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes_mercury_balanced_libretro.so %ROM%",
+              "priority": 140
+            },
+            {
+              "label": "bsnes-mercury [Performance] [Legacy] (Libretro Core)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes_mercury_performance_libretro.so %ROM%",
+              "priority": 150
+            },
+            {
+              "label": "Snes9x 2002 [Legacy] (Libretro Core)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/snes9x2002_libretro.so %ROM%",
+              "priority": 160
+            },
+            {
+              "label": "Snes9x 2005 [Legacy] (Libretro Core)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/snes9x2005_libretro.so %ROM%",
+              "priority": 170
+            },
+            {
+              "label": "Snes9x 2005 Plus [Legacy] (Libretro Core)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/snes9x2005_plus_libretro.so %ROM%",
+              "priority": 180
+            },
+            {
+              "label": "Snes9x 2010 [Legacy] (Libretro Core)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/snes9x2010_libretro.so %ROM%",
+              "priority": 190
+            },
+            {
+              "label": "Beetle Supafaust [Legacy] (Libretro Core)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mednafen_supafaust_libretro.so %ROM%",
+              "priority": 200
             }
           ],
           "platform": "satellaview",
@@ -3412,103 +3472,103 @@
           "extension": ".7z .bin .bml .bs .bsx .dx2 .fig .gd3 .gd7 .mgd .sfc .smc .st .swc .zip",
           "commands": [
             {
-              "label": "Snes9x - Current",
+              "label": "Snes9x [Default] [Accuracy] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/snes9x_libretro.so %ROM%",
               "priority": 10
             },
             {
-              "label": "Beetle Supafaust",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mednafen_supafaust_libretro.so %ROM%",
+              "label": "bsnes [Accuracy] (Libretro Core)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes_libretro.so %ROM%",
               "priority": 20
             },
             {
-              "label": "bsnes",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes_libretro.so %ROM%",
+              "label": "Mesen-S [SGB, BSX, Sufami] (Libretro Core)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mesen-s_libretro.so %ROM%",
               "priority": 30
             },
             {
-              "label": "bsnes 2014 Accuracy",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes2014_accuracy_libretro.so %ROM%",
+              "label": "bsnes-jg [SGB, BSX, Sufami] (Libretro Core)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes-jg_libretro.so %ROM%",
               "priority": 40
             },
             {
-              "label": "bsnes 2014 Balanced",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes2014_balanced_libretro.so %ROM%",
+              "label": "Mesen 2/CE [SGB, BSX, Sufami] (Libretro Core)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mesen2_libretro.so %ROM%",
               "priority": 50
             },
             {
-              "label": "bsnes 2014 Performance",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes2014_performance_libretro.so %ROM%",
+              "label": "bsnes HD [Experimental] [Enhanced] (Libretro Core)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes_hd_beta_libretro.so %ROM%",
               "priority": 60
             },
             {
-              "label": "bsnes C++98 (v085)",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes_cplusplus98_libretro.so %ROM%",
+              "label": "Mednafen SNES (Libretro Core)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mednafen_snes_libretro.so %ROM%",
               "priority": 70
             },
             {
-              "label": "bsnes-hd",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes_hd_beta_libretro.so %ROM%",
+              "label": "nSide Balanced (Libretro Core)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/nside_sfc_balanced_libretro.so %ROM%",
               "priority": 80
             },
             {
-              "label": "bsnes-jg",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes-jg_libretro.so %ROM%",
+              "label": "bsnes 2014 [Accuracy] [Legacy] (Libretro Core)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes2014_accuracy_libretro.so %ROM%",
               "priority": 90
             },
             {
-              "label": "bsnes-mercury Accuracy",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes_mercury_accuracy_libretro.so %ROM%",
+              "label": "bsnes 2014 [Balanced] [Legacy] (Libretro Core)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes2014_balanced_libretro.so %ROM%",
               "priority": 100
             },
             {
-              "label": "bsnes-mercury Balanced",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes_mercury_balanced_libretro.so %ROM%",
+              "label": "bsnes 2014 [Performance] [Legacy] (Libretro Core)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes2014_performance_libretro.so %ROM%",
               "priority": 110
             },
             {
-              "label": "bsnes-mercury Performance",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes_mercury_performance_libretro.so %ROM%",
+              "label": "bsnes [C++98 - v085] [Legacy] (Libretro Core)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes_cplusplus98_libretro.so %ROM%",
               "priority": 120
             },
             {
-              "label": "Mednafen SNES",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mednafen_snes_libretro.so %ROM%",
+              "label": "bsnes-mercury [Accuracy] [Legacy] (Libretro Core)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes_mercury_accuracy_libretro.so %ROM%",
               "priority": 130
             },
             {
-              "label": "Mesen-S",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mesen-s_libretro.so %ROM%",
+              "label": "bsnes-mercury [Balanced] [Legacy] (Libretro Core)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes_mercury_balanced_libretro.so %ROM%",
               "priority": 140
             },
             {
-              "label": "Mesen 2/CE [Accuracy] (Libretro Core)",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mesen2_libretro.so %ROM%",
+              "label": "bsnes-mercury [Performance] [Legacy] (Libretro Core)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes_mercury_performance_libretro.so %ROM%",
               "priority": 150
             },
             {
-              "label": "nSide Balanced",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/nside_sfc_balanced_libretro.so %ROM%",
+              "label": "Snes9x 2002 [Legacy] (Libretro Core)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/snes9x2002_libretro.so %ROM%",
               "priority": 160
             },
             {
-              "label": "Snes9x 2002",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/snes9x2002_libretro.so %ROM%",
+              "label": "Snes9x 2005 [Legacy] (Libretro Core)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/snes9x2005_libretro.so %ROM%",
               "priority": 170
             },
             {
-              "label": "Snes9x 2005",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/snes9x2005_libretro.so %ROM%",
+              "label": "Snes9x 2005 Plus [Legacy] (Libretro Core)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/snes9x2005_plus_libretro.so %ROM%",
               "priority": 180
             },
             {
-              "label": "Snes9x 2005 Plus",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/snes9x2005_plus_libretro.so %ROM%",
+              "label": "Snes9x 2010 [Legacy] (Libretro Core)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/snes9x2010_libretro.so %ROM%",
               "priority": 190
             },
             {
-              "label": "Snes9x 2010",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/snes9x2010_libretro.so %ROM%",
+              "label": "Beetle Supafaust [Legacy] (Libretro Core)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mednafen_supafaust_libretro.so %ROM%",
               "priority": 200
             }
           ],
@@ -3552,17 +3612,17 @@
           "extension": ".7z .gb .gbc .sgb .zip",
           "commands": [
             {
-              "label": "Mesen-S",
+              "label": "Mesen-S [SGB, BSX, Sufami] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mesen-s_libretro.so %ROM%",
               "priority": 10
             },
             {
-              "label": "SameBoy",
+              "label": "SameBoy [Accuracy] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/sameboy_libretro.so %ROM%",
               "priority": 20
             },
             {
-              "label": "mGBA",
+              "label": "mGBA (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mgba_libretro.so %ROM%",
               "priority": 30
             }
@@ -3577,103 +3637,103 @@
           "extension": ".7z .bin .bml .bs .bsx .dx2 .fig .gd3 .gd7 .mgd .sfc .smc .st .swc .zip",
           "commands": [
             {
-              "label": "Snes9x - Current",
+              "label": "Snes9x [Default] [Accuracy] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/snes9x_libretro.so %ROM%",
               "priority": 10
             },
             {
-              "label": "Beetle Supafaust",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mednafen_supafaust_libretro.so %ROM%",
+              "label": "bsnes [Accuracy] (Libretro Core)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes_libretro.so %ROM%",
               "priority": 20
             },
             {
-              "label": "bsnes",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes_libretro.so %ROM%",
+              "label": "Mesen-S [SGB, BSX, Sufami] (Libretro Core)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mesen-s_libretro.so %ROM%",
               "priority": 30
             },
             {
-              "label": "bsnes 2014 Accuracy",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes2014_accuracy_libretro.so %ROM%",
+              "label": "bsnes-jg [SGB, BSX, Sufami] (Libretro Core)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes-jg_libretro.so %ROM%",
               "priority": 40
             },
             {
-              "label": "bsnes 2014 Balanced",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes2014_balanced_libretro.so %ROM%",
+              "label": "Mesen 2/CE [SGB, BSX, Sufami] (Libretro Core)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mesen2_libretro.so %ROM%",
               "priority": 50
             },
             {
-              "label": "bsnes 2014 Performance",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes2014_performance_libretro.so %ROM%",
+              "label": "bsnes HD [Experimental] [Enhanced] (Libretro Core)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes_hd_beta_libretro.so %ROM%",
               "priority": 60
             },
             {
-              "label": "bsnes C++98 (v085)",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes_cplusplus98_libretro.so %ROM%",
+              "label": "Mednafen SNES (Libretro Core)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mednafen_snes_libretro.so %ROM%",
               "priority": 70
             },
             {
-              "label": "bsnes-hd",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes_hd_beta_libretro.so %ROM%",
+              "label": "nSide Balanced (Libretro Core)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/nside_sfc_balanced_libretro.so %ROM%",
               "priority": 80
             },
             {
-              "label": "bsnes-jg",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes-jg_libretro.so %ROM%",
+              "label": "bsnes 2014 [Accuracy] [Legacy] (Libretro Core)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes2014_accuracy_libretro.so %ROM%",
               "priority": 90
             },
             {
-              "label": "bsnes-mercury Accuracy",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes_mercury_accuracy_libretro.so %ROM%",
+              "label": "bsnes 2014 [Balanced] [Legacy] (Libretro Core)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes2014_balanced_libretro.so %ROM%",
               "priority": 100
             },
             {
-              "label": "bsnes-mercury Balanced",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes_mercury_balanced_libretro.so %ROM%",
+              "label": "bsnes 2014 [Performance] [Legacy] (Libretro Core)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes2014_performance_libretro.so %ROM%",
               "priority": 110
             },
             {
-              "label": "bsnes-mercury Performance",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes_mercury_performance_libretro.so %ROM%",
+              "label": "bsnes [C++98 - v085] [Legacy] (Libretro Core)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes_cplusplus98_libretro.so %ROM%",
               "priority": 120
             },
             {
-              "label": "Mednafen SNES",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mednafen_snes_libretro.so %ROM%",
+              "label": "bsnes-mercury [Accuracy] [Legacy] (Libretro Core)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes_mercury_accuracy_libretro.so %ROM%",
               "priority": 130
             },
             {
-              "label": "Mesen-S",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mesen-s_libretro.so %ROM%",
+              "label": "bsnes-mercury [Balanced] [Legacy] (Libretro Core)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes_mercury_balanced_libretro.so %ROM%",
               "priority": 140
             },
             {
-              "label": "Mesen 2/CE [Accuracy] (Libretro Core)",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mesen2_libretro.so %ROM%",
+              "label": "bsnes-mercury [Performance] [Legacy] (Libretro Core)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes_mercury_performance_libretro.so %ROM%",
               "priority": 150
             },
             {
-              "label": "nSide Balanced",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/nside_sfc_balanced_libretro.so %ROM%",
+              "label": "Snes9x 2002 [Legacy] (Libretro Core)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/snes9x2002_libretro.so %ROM%",
               "priority": 160
             },
             {
-              "label": "Snes9x 2002",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/snes9x2002_libretro.so %ROM%",
+              "label": "Snes9x 2005 [Legacy] (Libretro Core)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/snes9x2005_libretro.so %ROM%",
               "priority": 170
             },
             {
-              "label": "Snes9x 2005",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/snes9x2005_libretro.so %ROM%",
+              "label": "Snes9x 2005 Plus [Legacy] (Libretro Core)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/snes9x2005_plus_libretro.so %ROM%",
               "priority": 180
             },
             {
-              "label": "Snes9x 2005 Plus",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/snes9x2005_plus_libretro.so %ROM%",
+              "label": "Snes9x 2010 [Legacy] (Libretro Core)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/snes9x2010_libretro.so %ROM%",
               "priority": 190
             },
             {
-              "label": "Snes9x 2010",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/snes9x2010_libretro.so %ROM%",
+              "label": "Beetle Supafaust [Legacy] (Libretro Core)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mednafen_supafaust_libretro.so %ROM%",
               "priority": 200
             }
           ],
@@ -3687,89 +3747,104 @@
           "extension": ".7z .bin .bml .bs .bsx .dx2 .fig .gd3 .gd7 .mgd .sfc .smc .st .swc .zip",
           "commands": [
             {
-              "label": "Snes9x - Current",
+              "label": "Snes9x [Default] [Accuracy] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/snes9x_libretro.so %ROM%",
               "priority": 10
             },
             {
-              "label": "Snes9x 2010",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/snes9x2010_libretro.so %ROM%",
+              "label": "bsnes [Accuracy] (Libretro Core)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes_libretro.so %ROM%",
               "priority": 20
             },
             {
-              "label": "Snes9x 2005 Plus",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/snes9x2005_plus_libretro.so %ROM%",
+              "label": "Mesen-S [SGB, BSX, Sufami] (Libretro Core)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mesen-s_libretro.so %ROM%",
               "priority": 30
             },
             {
-              "label": "bsnes",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes_libretro.so %ROM%",
+              "label": "bsnes-jg [SGB, BSX, Sufami] (Libretro Core)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes-jg_libretro.so %ROM%",
               "priority": 40
             },
             {
-              "label": "bsnes-hd",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes_hd_beta_libretro.so %ROM%",
+              "label": "Mesen 2/CE [SGB, BSX, Sufami] (Libretro Core)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mesen2_libretro.so %ROM%",
               "priority": 50
             },
             {
-              "label": "bsnes-jg",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes-jg_libretro.so %ROM%",
+              "label": "bsnes HD [Experimental] [Enhanced] (Libretro Core)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes_hd_beta_libretro.so %ROM%",
               "priority": 60
             },
             {
-              "label": "bsnes 2014 Accuracy",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes2014_accuracy_libretro.so %ROM%",
+              "label": "Mednafen SNES (Libretro Core)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mednafen_snes_libretro.so %ROM%",
               "priority": 70
             },
             {
-              "label": "bsnes 2014 Balanced",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes2014_balanced_libretro.so %ROM%",
+              "label": "nSide Balanced (Libretro Core)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/nside_sfc_balanced_libretro.so %ROM%",
               "priority": 80
             },
             {
-              "label": "bsnes 2014 Performance",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes2014_performance_libretro.so %ROM%",
+              "label": "bsnes 2014 [Accuracy] [Legacy] (Libretro Core)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes2014_accuracy_libretro.so %ROM%",
               "priority": 90
             },
             {
-              "label": "bsnes C++98 (v085)",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes_cplusplus98_libretro.so %ROM%",
+              "label": "bsnes 2014 [Balanced] [Legacy] (Libretro Core)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes2014_balanced_libretro.so %ROM%",
               "priority": 100
             },
             {
-              "label": "bsnes-mercury Accuracy",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes_mercury_accuracy_libretro.so %ROM%",
+              "label": "bsnes 2014 [Performance] [Legacy] (Libretro Core)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes2014_performance_libretro.so %ROM%",
               "priority": 110
             },
             {
-              "label": "bsnes-mercury Balanced",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes_mercury_balanced_libretro.so %ROM%",
+              "label": "bsnes [C++98 - v085] [Legacy] (Libretro Core)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes_cplusplus98_libretro.so %ROM%",
               "priority": 120
             },
             {
-              "label": "bsnes-mercury Performance",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes_mercury_performance_libretro.so %ROM%",
+              "label": "bsnes-mercury [Accuracy] [Legacy] (Libretro Core)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes_mercury_accuracy_libretro.so %ROM%",
               "priority": 130
             },
             {
-              "label": "Beetle Supafaust",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mednafen_supafaust_libretro.so %ROM%",
+              "label": "bsnes-mercury [Balanced] [Legacy] (Libretro Core)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes_mercury_balanced_libretro.so %ROM%",
               "priority": 140
             },
             {
-              "label": "Mesen-S",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mesen-s_libretro.so %ROM%",
+              "label": "bsnes-mercury [Performance] [Legacy] (Libretro Core)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes_mercury_performance_libretro.so %ROM%",
               "priority": 150
             },
             {
-              "label": "Mesen 2/CE [Accuracy] (Libretro Core)",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mesen2_libretro.so %ROM%",
+              "label": "Snes9x 2002 [Legacy] (Libretro Core)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/snes9x2002_libretro.so %ROM%",
               "priority": 160
             },
             {
-              "label": "nSide Balanced",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/nside_sfc_balanced_libretro.so %ROM%",
+              "label": "Snes9x 2005 [Legacy] (Libretro Core)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/snes9x2005_libretro.so %ROM%",
               "priority": 170
+            },
+            {
+              "label": "Snes9x 2005 Plus [Legacy] (Libretro Core)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/snes9x2005_plus_libretro.so %ROM%",
+              "priority": 180
+            },
+            {
+              "label": "Snes9x 2010 [Legacy] (Libretro Core)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/snes9x2010_libretro.so %ROM%",
+              "priority": 190
+            },
+            {
+              "label": "Beetle Supafaust [Legacy] (Libretro Core)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mednafen_supafaust_libretro.so %ROM%",
+              "priority": 200
             }
           ],
           "platform": "snes",
@@ -3832,39 +3907,104 @@
           "extension": ".7z .bml .bs .fig .sfc .smc .st .zip",
           "commands": [
             {
-              "label": "Snes9x - Current",
+              "label": "Snes9x [Default] [Accuracy] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/snes9x_libretro.so %ROM%",
               "priority": 10
             },
             {
-              "label": "Snes9x 2010",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/snes9x2010_libretro.so %ROM%",
+              "label": "bsnes [Accuracy] (Libretro Core)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes_libretro.so %ROM%",
               "priority": 20
             },
             {
-              "label": "Snes9x 2005 Plus",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/snes9x2005_plus_libretro.so %ROM%",
+              "label": "Mesen-S [SGB, BSX, Sufami] (Libretro Core)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mesen-s_libretro.so %ROM%",
               "priority": 30
             },
             {
-              "label": "bsnes",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes_libretro.so %ROM%",
+              "label": "bsnes-jg [SGB, BSX, Sufami] (Libretro Core)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes-jg_libretro.so %ROM%",
               "priority": 40
             },
             {
-              "label": "bsnes-hd",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes_hd_beta_libretro.so %ROM%",
+              "label": "Mesen 2/CE [SGB, BSX, Sufami] (Libretro Core)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mesen2_libretro.so %ROM%",
               "priority": 50
             },
             {
-              "label": "bsnes-jg",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes-jg_libretro.so %ROM%",
+              "label": "bsnes HD [Experimental] [Enhanced] (Libretro Core)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes_hd_beta_libretro.so %ROM%",
               "priority": 60
             },
             {
-              "label": "bsnes-mercury Accuracy",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes_mercury_accuracy_libretro.so %ROM%",
+              "label": "Mednafen SNES (Libretro Core)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mednafen_snes_libretro.so %ROM%",
               "priority": 70
+            },
+            {
+              "label": "nSide Balanced (Libretro Core)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/nside_sfc_balanced_libretro.so %ROM%",
+              "priority": 80
+            },
+            {
+              "label": "bsnes 2014 [Accuracy] [Legacy] (Libretro Core)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes2014_accuracy_libretro.so %ROM%",
+              "priority": 90
+            },
+            {
+              "label": "bsnes 2014 [Balanced] [Legacy] (Libretro Core)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes2014_balanced_libretro.so %ROM%",
+              "priority": 100
+            },
+            {
+              "label": "bsnes 2014 [Performance] [Legacy] (Libretro Core)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes2014_performance_libretro.so %ROM%",
+              "priority": 110
+            },
+            {
+              "label": "bsnes [C++98 - v085] [Legacy] (Libretro Core)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes_cplusplus98_libretro.so %ROM%",
+              "priority": 120
+            },
+            {
+              "label": "bsnes-mercury [Accuracy] [Legacy] (Libretro Core)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes_mercury_accuracy_libretro.so %ROM%",
+              "priority": 130
+            },
+            {
+              "label": "bsnes-mercury [Balanced] [Legacy] (Libretro Core)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes_mercury_balanced_libretro.so %ROM%",
+              "priority": 140
+            },
+            {
+              "label": "bsnes-mercury [Performance] [Legacy] (Libretro Core)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bsnes_mercury_performance_libretro.so %ROM%",
+              "priority": 150
+            },
+            {
+              "label": "Snes9x 2002 [Legacy] (Libretro Core)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/snes9x2002_libretro.so %ROM%",
+              "priority": 160
+            },
+            {
+              "label": "Snes9x 2005 [Legacy] (Libretro Core)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/snes9x2005_libretro.so %ROM%",
+              "priority": 170
+            },
+            {
+              "label": "Snes9x 2005 Plus [Legacy] (Libretro Core)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/snes9x2005_plus_libretro.so %ROM%",
+              "priority": 180
+            },
+            {
+              "label": "Snes9x 2010 [Legacy] (Libretro Core)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/snes9x2010_libretro.so %ROM%",
+              "priority": 190
+            },
+            {
+              "label": "Beetle Supafaust [Legacy] (Libretro Core)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mednafen_supafaust_libretro.so %ROM%",
+              "priority": 200
             }
           ],
           "platform": "sufami",
@@ -5453,7 +5593,7 @@
         "system_friendly_name": "Nintendo GameBoy Color"
       },
       "mgba_libretro": {
-        "name": "mGBA",
+        "name": "mGBA (Libretro Core)",
         "description": "Game Boy Advance Libretro Core",
         "system": "gba",
         "system_friendly_name": "Nintendo GameBoy Advance"
