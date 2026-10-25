@@ -272,7 +272,7 @@
               "priority": 30
             },
             {
-              "label": "DICE",
+              "label": "DICE (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/dice_libretro.so %ROM%",
               "priority": 40
             },
