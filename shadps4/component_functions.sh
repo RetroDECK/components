@@ -3,6 +3,7 @@
 export shadps4_config="$XDG_DATA_HOME/shadPS4/config.json"
 export shadps4_input_config_dir="$XDG_DATA_HOME/shadPS4/input_config/"
 export shadps4_input_config="$XDG_DATA_HOME/shadPS4/input_config/default.ini"
+export shadps4_hotkey_config="$XDG_DATA_HOME/shadPS4/input_config/global.ini"
 export shadps4_qt_ui_config="$XDG_DATA_HOME/shadPS4QtLauncher/qt_ui.ini"
 
 _prepare_component::shadps4() {
@@ -20,12 +21,13 @@ _prepare_component::shadps4() {
 
         #shadPS4 uses two XDG_DATA_HOME folders
 
-        create_dir -d "$XDG_DATA_HOME/shadPS4/"
+        create_dir -d "$XDG_DATA_HOME/shadPS4/input_config/"
         create_dir -d "$XDG_DATA_HOME/shadPS4QtLauncher/"
         create_dir -d "$XDG_CONFIG_HOME/shadPS4/"
         cp -f "$component_config/shadPS4/config.json" "$XDG_DATA_HOME/shadPS4/config.json" 
         cp -f "$component_config/shadPS4QtLauncher/t_ui.ini" "$XDG_DATA_HOME/shadPS4QtLauncher/qt_ui.ini" 
         cp -f "$component_config/shadPS4/input_config/default.ini" "$XDG_DATA_HOME/shadPS4/input_config/default.ini" 
+        cp -f "$component_config/shadPS4/input_config/global.ini" "$XDG_DATA_HOME/shadPS4/input_config/global.ini" 
 
         # Storage
         dir_prep "$storage_path/shadPS4/addcont" "$XDG_DATA_HOME/shadPS4/addcont"
