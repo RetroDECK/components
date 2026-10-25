@@ -322,7 +322,7 @@
               "priority": 140
             },
             {
-              "label": "Kronos (Libretro Core)",
+              "label": "Kronos [Enhanced] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/kronos_libretro.so %ROM%",
               "priority": 150
             }
@@ -802,7 +802,7 @@
               "priority": 30
             },
             {
-              "label": "Kronos (Libretro Core)",
+              "label": "Kronos [Enhanced] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/kronos_libretro.so %ROM%",
               "priority": 40
             }
@@ -2597,12 +2597,12 @@
           "extension": ".7z .ngc .ngp .ngpc .npc .zip",
           "commands": [
             {
-              "label": "Beetle NeoPop",
+              "label": "Beetle NeoPop [Default] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mednafen_ngp_libretro.so %ROM%",
               "priority": 10
             },
             {
-              "label": "RACE",
+              "label": "RACE (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/race_libretro.so %ROM%",
               "priority": 20
             }
@@ -2617,12 +2617,12 @@
           "extension": ".7z .ngc .ngp .ngpc .npc .zip",
           "commands": [
             {
-              "label": "Beetle NeoPop",
+              "label": "Beetle NeoPop [Default] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mednafen_ngp_libretro.so %ROM%",
               "priority": 10
             },
             {
-              "label": "RACE",
+              "label": "RACE (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/race_libretro.so %ROM%",
               "priority": 20
             }
@@ -2637,7 +2637,7 @@
           "extension": ".dsk",
           "commands": [
             {
-              "label": "Oberon",
+              "label": "Oberon [Default] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/oberon_libretro.so %ROM%",
               "priority": 10
             }
@@ -2652,7 +2652,7 @@
           "extension": ".7z .bin .zip",
           "commands": [
             {
-              "label": "O2EM",
+              "label": "O2EM [Default] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/o2em_libretro.so %ROM%",
               "priority": 10
             },
@@ -2672,7 +2672,7 @@
           "extension": ".omicron",
           "commands": [
             {
-              "label": "Omicron",
+              "label": "Omicron [Default] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/omicron_libretro.so %ROM%",
               "priority": 10
             }
@@ -2687,7 +2687,7 @@
           "extension": ".7z .img .pqa .prc .zip",
           "commands": [
             {
-              "label": "Mu",
+              "label": "Mu [Default] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mu_libretro.so %ROM%",
               "priority": 10
             }
@@ -2702,7 +2702,7 @@
           "extension": ".cas",
           "commands": [
             {
-              "label": "M2000",
+              "label": "M2000 [Default] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/m2000_libretro.so %ROM%",
               "priority": 10
             }
@@ -2717,7 +2717,7 @@
           "extension": ".88d .cmt .d88 .m3u .t88 .u88",
           "commands": [
             {
-              "label": "QUASI88",
+              "label": "QUASI88 [Default] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/quasi88_libretro.so %ROM%",
               "priority": 10
             }
@@ -2732,12 +2732,12 @@
           "extension": ".2hd .7z .88d .98d .cmd .d88 .d98 .dup .fdd .fdi .hdd .hdi .hdm .hdn .m3u .nhd .tfd .thd .xdf .zip",
           "commands": [
             {
-              "label": "Neko Project II Kai",
+              "label": "Neko Project II Kai [Default] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/np2kai_libretro.so %ROM%",
               "priority": 10
             },
             {
-              "label": "Neko Project II",
+              "label": "Neko Project II (Libretro Core)",
               "command": "%STARTDIR%=%GAMEDIR% %EMULATOR_RETROARCH% -L %CORE_RETROARCH%/nekop2_libretro.so %ROM%",
               "priority": 20
             }
@@ -2752,12 +2752,12 @@
           "extension": ".7z .ccd .chd .cue .img .iso .m3u .pce .rom .sgx .toc .zip",
           "commands": [
             {
-              "label": "Beetle PCE",
+              "label": "Beetle PCE [Default] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mednafen_pce_libretro.so %ROM%",
               "priority": 10
             },
             {
-              "label": "Beetle PCE FAST",
+              "label": "Beetle PCE [FAST] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mednafen_pce_fast_libretro.so %ROM%",
               "priority": 20
             }
@@ -2772,12 +2772,12 @@
           "extension": ".7z .ccd .chd .cue .img .iso .m3u .pce .sgx .toc .zip",
           "commands": [
             {
-              "label": "Beetle PCE",
+              "label": "Beetle PCE [Default] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mednafen_pce_libretro.so %ROM%",
               "priority": 10
             },
             {
-              "label": "Beetle PCE FAST",
+              "label": "Beetle PCE [FAST] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mednafen_pce_fast_libretro.so %ROM%",
               "priority": 20
             }
@@ -2792,7 +2792,7 @@
           "extension": ".7z .ccd .chd .cue cue .m3u .toc .zip",
           "commands": [
             {
-              "label": "Beetle PC-FX",
+              "label": "Beetle PC-FX [Default] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mednafen_pcfx_libretro.so %ROM%",
               "priority": 10
             }
@@ -2807,7 +2807,7 @@
           "extension": ".p8 .png",
           "commands": [
             {
-              "label": "Retro8",
+              "label": "Retro8 (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/retro8_libretro.so %ROM%",
               "priority": 30
             }
@@ -2822,7 +2822,7 @@
           "extension": ".cue .zip .iso bin",
           "commands": [
             {
-              "label": "PlaydiaEmu",
+              "label": "PlaydiaEmu [Default] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/playdiaemu_libretro.so %ROM%",
               "priority": 10
             }
@@ -2837,7 +2837,7 @@
           "extension": ".7z .bin .cmd .crt .d2m .d4m .d64 .d6z .d71 .d7z .d80 .d81 .d82 .d8z .g41 .g4z .g64 .g6z .gz .lnx .m3u .nbz .nib .p00 .prg .t64 .tap .vfl .vsf .x64 .x6z .zip",
           "commands": [
             {
-              "label": "VICE xplus4 (Libretro Core)",
+              "label": "VICE xplus4 [Commodore Plus/4] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/vice_xplus4_libretro.so %ROM%",
               "priority": 10
             }
@@ -2847,12 +2847,12 @@
         },
         {
           "name": "pokemini",
-          "fullname": "Nintendo Pokￃﾩmon Mini",
+          "fullname": "Nintendo Pokémon Mini",
           "path": "%ROMPATH%/pokemini",
           "extension": ".7z .min .zip",
           "commands": [
             {
-              "label": "PokeMini",
+              "label": "PokeMini [Default] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/pokemini_libretro.so %ROM%",
               "priority": 10
             }
@@ -2887,7 +2887,7 @@
               "priority": 50
             },
             {
-              "label": "Super Bros War [Libretro Core)",
+              "label": "Super Bros War (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/superbroswar_libretro.so %ROM%",
               "priority": 60
             }
@@ -3037,7 +3037,7 @@
           "extension": ".pak",
           "commands": [
             {
-              "label": "TyrQuake",
+              "label": "TyrQuake (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/tyrquake_libretro.so %ROM%",
               "priority": 20
             }
@@ -3052,22 +3052,22 @@
           "extension": ".pak",
           "commands": [
             {
-              "label": "vitaQuake 2 [Main Game]",
+              "label": "vitaQuake 2 [Main Game] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/vitaquake2_libretro.so %ROM%",
               "priority": 20
             },
             {
-              "label": "vitaQuake 2 [Rogue]",
+              "label": "vitaQuake 2 [Rogue] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/vitaquake2-rogue_libretro.so %ROM%",
               "priority": 30
             },
             {
-              "label": "vitaQuake 2 [Xatrix]",
+              "label": "vitaQuake 2 [Xatrix] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/vitaquake2-xatrix_libretro.so %ROM%",
               "priority": 40
             },
             {
-              "label": "vitaQuake 2 [Zaero]",
+              "label": "vitaQuake 2 [Zaero] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/vitaquake2-zaero_libretro.so %ROM%",
               "priority": 50
             }
@@ -3082,7 +3082,7 @@
           "extension": ".pak3",
           "commands": [
             {
-              "label": "vitaQuake 3",
+              "label": "vitaQuake 3 (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/vitaquake3_libretro.so %ROM%",
               "priority": 20
             }
@@ -3097,7 +3097,7 @@
           "extension": ".m3u .mp3 .wav",
           "commands": [
             {
-              "label": "RetroArch Internet Radio",
+              "label": "RetroArch Internet Radio (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/radio_libretro.so %ROM%",
               "priority": 10
             }
@@ -3222,28 +3222,28 @@
           "extension": ".7z .bin .ccd .chd .cue .iso .m3u .mds .toc .zip",
           "commands": [
             {
-              "label": "Beetle Saturn",
+              "label": "Beetle Saturn [Default] [Accuracy] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mednafen_saturn_libretro.so %ROM%",
               "priority": 10
             },
             {
-              "label": "Kronos (Libretro Core)",
+              "label": "Kronos [Enhanced] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/kronos_libretro.so %ROM%",
               "priority": 20
             },
             {
-              "label": "YabaSanshiro",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/yabasanshiro_libretro.so %ROM%",
+              "label": "Emir [Ymir] (Libretro Core)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/ymir_libretro.so %ROM%",
               "priority": 30
             },
             {
-              "label": "Yabause",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/yabause_libretro.so %ROM%",
+              "label": "YabaSanshiro [Legacy] (Libretro Core)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/yabasanshiro_libretro.so %ROM%",
               "priority": 40
             },
             {
-              "label": "Emir (Ymir)",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/ymir_libretro.so %ROM%",
+              "label": "Yabause [Legacy] (Libretro Core)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/yabause_libretro.so %ROM%",
               "priority": 50
             }
           ],
@@ -3257,28 +3257,28 @@
           "extension": ".7z .bin .ccd .chd .cue .iso .m3u .mds .toc .zip",
           "commands": [
             {
-              "label": "Beetle Saturn",
+              "label": "Beetle Saturn [Default] [Accuracy] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mednafen_saturn_libretro.so %ROM%",
               "priority": 10
             },
             {
-              "label": "Kronos (Libretro Core)",
+              "label": "Kronos [Enhanced] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/kronos_libretro.so %ROM%",
               "priority": 20
             },
             {
-              "label": "YabaSanshiro",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/yabasanshiro_libretro.so %ROM%",
+              "label": "Emir [Ymir] (Libretro Core)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/ymir_libretro.so %ROM%",
               "priority": 30
             },
             {
-              "label": "Yabause",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/yabause_libretro.so %ROM%",
+              "label": "YabaSanshiro [Legacy] (Libretro Core)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/yabasanshiro_libretro.so %ROM%",
               "priority": 40
             },
             {
-              "label": "Ymir",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/ymir_libretro.so %ROM%",
+              "label": "Yabause [Legacy] (Libretro Core)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/yabause_libretro.so %ROM%",
               "priority": 50
             }
           ],
@@ -3292,7 +3292,7 @@
           "extension": ".scummvm .svm",
           "commands": [
             {
-              "label": "ScummVM",
+              "label": "ScummVM (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/scummvm_libretro.so %ROM%",
               "priority": 20
             }
@@ -3307,12 +3307,12 @@
           "extension": ".0 .7z .bin .bin777 .zip",
           "commands": [
             {
-              "label": "EmuSCV",
+              "label": "EmuSCV [Default] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/emuscv_libretro.so %ROM%",
               "priority": 10
             },
             {
-              "label": "PD777",
+              "label": "PD777 (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/pd777_libretro.so %ROM%",
               "priority": 20
             },
@@ -3817,7 +3817,7 @@
           "extension": ".7z .zip",
           "commands": [
             {
-              "label": "Kronos (Libretro Core)",
+              "label": "Kronos [Enhanced] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/kronos_libretro.so %ROM%",
               "priority": 10
             },
@@ -3942,12 +3942,12 @@
         },
         {
           "name": "native32",
-          "fullname": "Native32 Sunplus DVD / TV",
+          "fullname": "Sunplus Native32",
           "path": "%ROMPATH%/native32",
           "extension": ".smf .sgm .ssl",
           "commands": [
             {
-              "label": "Native32Emu",
+              "label": "Native32Emu [Default] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/native32emu_libretro.so %ROM%",
               "priority": 10
             }
@@ -3957,12 +3957,12 @@
         },
         {
           "name": "nuon",
-          "fullname": "NUON (VM Labs)",
+          "fullname": "VM Labs NUON",
           "path": "%ROMPATH%/nuon",
           "extension": ".run .cof .nuon .cd .iso .img .chd",
           "commands": [
             {
-              "label": "Nuance",
+              "label": "Nuance [Default] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/nuance_libretro.so %ROM%",
               "priority": 10
             }
@@ -3972,12 +3972,12 @@
         },
         {
           "name": "nicai",
-          "fullname": "Nicai MStar Phone",
+          "fullname": "MStar Nicai",
           "path": "%ROMPATH%/nicai",
           "extension": ".cbe",
           "commands": [
             {
-              "label": "NicaiEmu",
+              "label": "NicaiEmu [Default] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/nicaiemu_libretro.so %ROM%",
               "priority": 10
             }
@@ -3992,17 +3992,17 @@
           "extension": ".7z .ccd .chd .cue .pce .rom .sgx .zip",
           "commands": [
             {
-              "label": "Beetle SuperGrafx",
+              "label": "Beetle SuperGrafx [Default] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mednafen_supergrafx_libretro.so %ROM%",
               "priority": 10
             },
             {
-              "label": "Beetle PCE",
+              "label": "Beetle PCE (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mednafen_pce_libretro.so %ROM%",
               "priority": 20
             },
             {
-              "label": "Geargrafx",
+              "label": "Geargrafx (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/geargrafx_libretro.so %ROM%",
               "priority": 30
             }
@@ -4017,7 +4017,7 @@
           "extension": ".7z .bin .sv .zip",
           "commands": [
             {
-              "label": "Potator",
+              "label": "Potator [Default] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/potator_libretro.so %ROM%",
               "priority": 10
             },
@@ -4052,7 +4052,7 @@
           "extension": ".b .rom .bin",
           "commands": [
             {
-              "label": "TamaLIBretro",
+              "label": "TamaLIBretro [Default] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/tamalibretro_libretro.so %ROM%",
               "priority": 10
             }
@@ -4067,17 +4067,17 @@
           "extension": ".7z .ccd .chd .cue .img .iso .m3u .pce .sgx .toc .zip",
           "commands": [
             {
-              "label": "Beetle PCE",
+              "label": "Beetle PCE [Default] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mednafen_pce_libretro.so %ROM%",
               "priority": 10
             },
             {
-              "label": "Beetle PCE FAST",
+              "label": "Beetle PCE [FAST] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mednafen_pce_fast_libretro.so %ROM%",
               "priority": 20
             },
             {
-              "label": "Beetle SuperGrafx",
+              "label": "Beetle SuperGrafx (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mednafen_supergrafx_libretro.so %ROM%",
               "priority": 30
             }
@@ -4092,12 +4092,12 @@
           "extension": ".7z .ccd .chd .cue .img .iso .m3u .pce .sgx .toc .zip",
           "commands": [
             {
-              "label": "Beetle PCE",
+              "label": "Beetle PCE [Default] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mednafen_pce_libretro.so %ROM%",
               "priority": 10
             },
             {
-              "label": "Beetle PCE FAST",
+              "label": "Beetle PCE [FAST] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mednafen_pce_fast_libretro.so %ROM%",
               "priority": 20
             }
@@ -4112,7 +4112,7 @@
           "extension": ".png .tic",
           "commands": [
             {
-              "label": "TIC-80",
+              "label": "TIC-80 [Default] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/tic80_libretro.so %ROM%",
               "priority": 10
             }
@@ -4127,7 +4127,7 @@
           "extension": ".8xp .8xk .8xg",
           "commands": [
             {
-              "label": "Numero",
+              "label": "Numero [Default] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/numero_libretro.so %ROM%",
               "priority": 10
             }
@@ -4142,7 +4142,7 @@
           "extension": ".7z .fd .k7 .m5 .m7 .rom .sap .zip",
           "commands": [
             {
-              "label": "Theodore",
+              "label": "Theodore [Default] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/theodore_libretro.so %ROM%",
               "priority": 10
             }
@@ -4157,7 +4157,7 @@
           "extension": ".7z .uze .zip",
           "commands": [
             {
-              "label": "Uzem",
+              "label": "Uzem [Default] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/uzem_libretro.so %ROM%",
               "priority": 10
             }
@@ -4172,7 +4172,7 @@
           "extension": ".vaporbin",
           "commands": [
             {
-              "label": "VaporSpec",
+              "label": "VaporSpec [Default] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/vaporspec_libretro.so %ROM%",
               "priority": 10
             }
@@ -4187,7 +4187,7 @@
           "extension": ".7z .bin .gam .vc .vec .zip",
           "commands": [
             {
-              "label": "vecx",
+              "label": "vecx [Default] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/vecx_libretro.so %ROM%",
               "priority": 10
             },
@@ -4207,7 +4207,7 @@
           "extension": ".7z .bin .cmd .crt .d2m .d4m .d64 .d6z .d71 .d7z .d80 .d81 .d82 .d8z .g41 .g4z .g64 .g6z .gz .lnx .m3u .nbz .nib .p00 .prg .t64 .tap .vfl .vsf .x64 .x6z .zip",
           "commands": [
             {
-              "label": "VICE xvic (Libretro Core)",
+              "label": "VICE xvic [Commodore VIC-20] [Default] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/vice_xvic_libretro.so %ROM%",
               "priority": 10
             }
@@ -4222,7 +4222,7 @@
           "extension": ".7z .bin .zip",
           "commands": [
             {
-              "label": "O2EM",
+              "label": "O2EM [Default] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/o2em_libretro.so %ROM%",
               "priority": 10
             },
@@ -4242,7 +4242,7 @@
           "extension": ".7z .v32 .zip",
           "commands": [
             {
-              "label": "Vircon32",
+              "label": "Vircon32 [Default] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/vircon32_libretro.so %ROM%",
               "priority": 10
             }
