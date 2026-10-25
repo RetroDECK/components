@@ -2757,7 +2757,7 @@
               "priority": 10
             },
             {
-              "label": "Beetle PCE [FAST] (Libretro Core)",
+              "label": "Beetle PCE [Fast] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mednafen_pce_fast_libretro.so %ROM%",
               "priority": 20
             }
@@ -2777,7 +2777,7 @@
               "priority": 10
             },
             {
-              "label": "Beetle PCE [FAST] (Libretro Core)",
+              "label": "Beetle PCE [Fast] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mednafen_pce_fast_libretro.so %ROM%",
               "priority": 20
             }
@@ -4072,7 +4072,7 @@
               "priority": 10
             },
             {
-              "label": "Beetle PCE [FAST] (Libretro Core)",
+              "label": "Beetle PCE [Fast] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mednafen_pce_fast_libretro.so %ROM%",
               "priority": 20
             },
@@ -4097,7 +4097,7 @@
               "priority": 10
             },
             {
-              "label": "Beetle PCE [FAST] (Libretro Core)",
+              "label": "Beetle PCE [Fast] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mednafen_pce_fast_libretro.so %ROM%",
               "priority": 20
             }
