@@ -67,7 +67,7 @@
           "extension": ".7z .bin .chd .cue .iso .zip",
           "commands": [
             {
-              "label": "Opera",
+              "label": "Opera [Default] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/opera_libretro.so %ROM%",
               "priority": 10
             }
@@ -202,12 +202,12 @@
           "extension": ".7z .cdt .cpr .dsk .kcr .m3u .sna .tap .tar .voc .zip",
           "commands": [
             {
-              "label": "Caprice32",
+              "label": "Caprice32 [Default] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/cap32_libretro.so %ROM%",
               "priority": 10
             },
             {
-              "label": "CrocoDS",
+              "label": "CrocoDS (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/crocods_libretro.so %ROM%",
               "priority": 20
             }
@@ -222,7 +222,7 @@
           "extension": ".bin .do .dsk .nib .po .gz .woz .zip .2mg .2img .iie .apl .hdv .yaml .m3u",
           "commands": [
             {
-              "label": "AppleWin",
+              "label": "AppleWin [Default] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/applewin_libretro.so %ROM%",
               "priority": 10
             },
@@ -282,7 +282,7 @@
               "priority": 60
             },
             {
-              "label": "MAME 2015 ",
+              "label": "MAME 2015 [Legacy] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mame2015_libretro.so %ROM%",
               "priority": 70
             },
@@ -337,7 +337,7 @@
           "extension": ".7z .bin .tvc .zip",
           "commands": [
             {
-              "label": "AmiArcadia",
+              "label": "AmiArcadia [Default] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/amiarcadia_libretro.so %ROM%",
               "priority": 10
             },
@@ -357,12 +357,12 @@
           "extension": ".7z .arduboy .hex .zip",
           "commands": [
             {
-              "label": "Arduous",
+              "label": "Arduous [Default] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/arduous_libretro.so %ROM%",
               "priority": 10
             },
             {
-              "label": "Ardens",
+              "label": "Ardens (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/ardens_libretro.so %ROM%",
               "priority": 20
             }
@@ -392,23 +392,23 @@
           "extension": ".7z .a26 .bin .zip",
           "commands": [
             {
-              "label": "Stella",
+              "label": "Stella [Default] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/stella_libretro.so %ROM%",
               "priority": 10
             },
             {
-              "label": "Stella 2014",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/stella2014_libretro.so %ROM%",
+              "label": "TIA (Libretro Core)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/tia_libretro.so %ROM%",
               "priority": 20
             },
             {
-              "label": "Stella 2023",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/stella2023_libretro.so %ROM%",
+              "label": "Stella 2014 [Legacy] (Libretro Core)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/stella2014_libretro.so %ROM%",
               "priority": 30
             },
             {
-              "label": "TIA",
-              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/tia_libretro.so %ROM%",
+              "label": "Stella 2023 [Legacy] (Libretro Core)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/stella2023_libretro.so %ROM%",
               "priority": 40
             }
           ],
@@ -422,12 +422,12 @@
           "extension": ".7z .a52 .atr .atx .bin .car .cas .cdm .rom .xex .xfd .zip",
           "commands": [
             {
-              "label": "a5200",
+              "label": "a5200 [Default] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/a5200_libretro.so %ROM%",
               "priority": 10
             },
             {
-              "label": "Atari800",
+              "label": "Atari800 (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/atari800_libretro.so %ROM%",
               "priority": 20
             }
@@ -442,7 +442,7 @@
           "extension": ".7z .a78 .bin .zip",
           "commands": [
             {
-              "label": "ProSystem",
+              "label": "ProSystem [Default] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/prosystem_libretro.so %ROM%",
               "priority": 10
             },
@@ -462,7 +462,7 @@
           "extension": ".7z .a52 .atr .atx .bin .car .cas .cdm .com .rom .xex .xfd .zip",
           "commands": [
             {
-              "label": "Atari800",
+              "label": "Atari800 [Default] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/atari800_libretro.so %ROM%",
               "priority": 10
             }
@@ -477,7 +477,7 @@
           "extension": ".7z .abs .bigpimg .bin .cdi .cof .cue .j64 .jag .prg .rom .zip",
           "commands": [
             {
-              "label": "Virtual Jaguar",
+              "label": "Virtual Jaguar [Default] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/virtualjaguar_libretro.so %ROM%",
               "priority": 10
             }
@@ -492,22 +492,22 @@
           "extension": ".7z .lnx .lyx .o .zip",
           "commands": [
             {
-              "label": "Handy",
+              "label": "Handy [Default] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/handy_libretro.so %ROM%",
               "priority": 10
             },
             {
-              "label": "Beetle Lynx",
+              "label": "Beetle Lynx (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/mednafen_lynx_libretro.so %ROM%",
               "priority": 20
             },
             {
-              "label": "Holani",
+              "label": "Holani (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/holani_libretro.so %ROM%",
               "priority": 30
             },
             {
-              "label": "Gearlynx",
+              "label": "Gearlynx (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/gearlynx_libretro.so %ROM%",
               "priority": 40
             }
@@ -522,17 +522,17 @@
           "extension": ".7z .dim .ipf .m3u .msa .st .stx .zip",
           "commands": [
             {
-              "label": "hatari",
+              "label": "hatari [Default] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/hatari_libretro.so %ROM%",
               "priority": 10
             },
             {
-              "label": "hatariB",
+              "label": "hatariB (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/hatarib_libretro.so %ROM%",
               "priority": 20
             },
             {
-              "label": "hatari2014",
+              "label": "hatari2014 (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/hatari2014_libretro.so %ROM%",
               "priority": 30
             }
@@ -547,7 +547,7 @@
           "extension": ".7z .a52 .atr .atx .bin .car .cas .cdm .com .rom .xex .xfd .zip",
           "commands": [
             {
-              "label": "Atari800",
+              "label": "Atari800 [Default] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/atari800_libretro.so %ROM%",
               "priority": 10
             }
@@ -562,7 +562,7 @@
           "extension": ".7z .bin .dat .elf .lst .zip",
           "commands": [
             {
-              "label": "Flycast (Libretro Core)",
+              "label": "Flycast [Default] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/flycast_libretro.so %ROM%",
               "priority": 10
             }
@@ -577,7 +577,7 @@
           "extension": ".7z .dsd .img .ssd .zip",
           "commands": [
             {
-              "label": "b2",
+              "label": "b2 [Default] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/b2_libretro.so %ROM%",
               "priority": 20
             }
@@ -592,12 +592,12 @@
           "extension": ".gam",
           "commands": [
             {
-              "label": "BBKEmu",
+              "label": "BBKEmu [Default] (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/bbkemu_libretro.so %ROM%",
               "priority": 10
             },
             {
-              "label": "GAM4980",
+              "label": "GAM4980 (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/gam4980_libretro.so %ROM%",
               "priority": 20
             }
@@ -9405,25 +9405,51 @@
       },
       {
         "filename": "8.bin",
-        "md5": "ea26b08e67511a34460c103b8b669154",
+        "md5": "ddfc001a6859d63ed46368ea7fe9f20c",
         "system": "bbk",
-        "description": "Font ROM",
+        "description": "Font ROM - A4980",
         "required": "Required",
-        "paths": [
-          "$bios_path/BBKEmu",
-          "$bios_path/gam4980"
-        ]
+        "paths": "$bios_path/BBKEmu/A4980"
+      },
+      {
+        "filename": "E.bin",
+        "md5": "72a16fd0d2453108321edc65cd347c77",
+        "system": "bbk",
+        "description": "OS ROM - A4980",
+        "required": "Required",
+        "paths": "$bios_path/BBKEmu/A4980"
+      },
+      {
+        "filename": "8.bin",
+        "md5": "e3a8eef6edd12e1d60178cb7a5ef3371",
+        "system": "bbk",
+        "description": "Font ROM - A4988",
+        "required": "Required",
+        "paths": "$bios_path/BBKEmu/A4988"
       },
       {
         "filename": "E.bin",
         "md5": "f812738e5ae75de0f4faae78a3829866",
         "system": "bbk",
-        "description": "OS ROM",
+        "description": "OS ROM - A4988",
         "required": "Required",
-        "paths": [
-          "$bios_path/BBKEmu",
-          "$bios_path/gam4980"
-        ]
+        "paths": "$bios_path/BBKEmu/A4988"
+      },
+      {
+        "filename": "8.bin",
+        "md5": "ea26b08e67511a34460c103b8b669154",
+        "system": "bbk",
+        "description": "Font ROM - GAM4980",
+        "required": "Required",
+        "paths": "$bios_path/gam4980"
+      },
+      {
+        "filename": "E.bin",
+        "md5": "f812738e5ae75de0f4faae78a3829866",
+        "system": "bbk",
+        "description": "OS ROM - GAM4980",
+        "required": "Required",
+        "paths": "$bios_path/gam4980"
       },
       {
         "filename": "B11M_BOS.ROM",
