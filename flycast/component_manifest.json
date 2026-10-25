@@ -144,21 +144,6 @@
       },
       "es_systems": [
         {
-          "name": "arcade",
-          "fullname": "Arcade",
-          "path": "%ROMPATH%/arcade",
-          "extension": ".cmd .desktop .gam .lindbergh .neo .sh .7z .zip",
-          "commands": [
-            {
-              "label": "Flycast [Performance] (Standalone)",
-              "command": "%EMULATOR_FLYCAST% %ROM%",
-              "priority": 10
-            }
-          ],
-          "platform": "arcade",
-          "theme": "arcade"
-        },
-        {
           "name": "atomiswave",
           "fullname": "Sammy Corporation Atomiswave",
           "path": "%ROMPATH%/atomiswave",
@@ -172,21 +157,6 @@
           ],
           "platform": "atomiswave",
           "theme": "atomiswave"
-        },
-        {
-          "name": "consolearcade",
-          "fullname": "Console Arcade Systems",
-          "path": "%ROMPATH%/consolearcade",
-          "extension": ".arcadedef .desktop .iso .ps3 .sh .xbe .7z .zip",
-          "commands": [
-            {
-              "label": "Flycast [Performance] (Standalone)",
-              "command": "%EMULATOR_FLYCAST% %ROM%",
-              "priority": 10
-            }
-          ],
-          "platform": "consolearcade",
-          "theme": "consolearcade"
         },
         {
           "name": "dreamcast",

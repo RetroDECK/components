@@ -115,21 +115,6 @@
           "theme": "apple2gs"
         },
         {
-          "name": "arcade",
-          "fullname": "Arcade",
-          "path": "%ROMPATH%/arcade",
-          "extension": ".7z .cmd .desktop .gam .lindbergh .neo .sh .zip",
-          "commands": [
-            {
-              "label": "MAME [Compatibility] [ROM Set: Current] (Standalone)",
-              "command": "%EMULATOR_MAME% -inipath /var/config/mame/ini -rompath %GAMEDIR%\\;%ROMPATH%/arcade %BASENAME%",
-              "priority": 60
-            }
-          ],
-          "platform": "arcade",
-          "theme": "arcade"
-        },
-        {
           "name": "arcadia",
           "fullname": "Emerson Arcadia 2001",
           "path": "%ROMPATH%/arcadia",
@@ -283,21 +268,6 @@
           ],
           "platform": "coco",
           "theme": "coco"
-        },
-        {
-          "name": "consolearcade",
-          "fullname": "Console Arcade Systems",
-          "path": "%ROMPATH%/consolearcade",
-          "extension": ".7z .arcadedef .desktop .iso .ps3 .sh .xbe .zip",
-          "commands": [
-            {
-              "label": "MAME [Compatibility] [ROM Set: Current] (Standalone)",
-              "command": "%EMULATOR_MAME% -inipath /var/config/mame/ini -rompath %GAMEDIR%\\;%ROMPATH%/consolearcade %BASENAME%",
-              "priority": 20
-            }
-          ],
-          "platform": "arcade",
-          "theme": "consolearcade"
         },
         {
           "name": "cps",
