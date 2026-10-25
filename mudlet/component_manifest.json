@@ -40,7 +40,7 @@
           "extension": ".mud",
           "commands": [
             {
-              "label": "Mudlet (Standalone)",
+              "label": "Mudlet [Default] (Standalone)",
               "command": "%EMULATOR_MUDLET% --fullscreen --steammode --profile=%BASENAME%"
             }
           ],

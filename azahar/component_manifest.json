@@ -43,7 +43,7 @@
           "extension": ".3ds .3dsx .app .axf .cci .cxi .desktop .elf .z3dsx .zcci .zcxi .7z .zip",
           "commands": [
             {
-              "label": "Azahar (Standalone)",
+              "label": "Azahar [Default] (Standalone)",
               "command": "%EMULATOR_AZAHAR% %ROM%",
               "priority": 10
             }

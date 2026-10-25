@@ -40,7 +40,7 @@
           "extension": ".gtr",
           "commands": [
             {
-              "label": "GameTank (Standalone)",
+              "label": "GameTank [Default] (Standalone)",
               "command": "%EMULATOR_GAMETANK% %ROM%"
             }
           ],

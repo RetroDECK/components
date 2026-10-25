@@ -40,7 +40,7 @@
           "extension": ".desktop .doom .ipk3 .iwad .pk3 .pk4 .pwad .sh .wad",
           "commands": [
             {
-              "label": "UZDoom (Standalone)",
+              "label": "UZDoom [Default] (Standalone)",
               "command": "%EMULATOR_UZDOOM% %ROM%",
               "priority": 10
             }

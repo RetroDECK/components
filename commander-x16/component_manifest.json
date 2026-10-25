@@ -40,7 +40,7 @@
           "extension": ".bas .img",
           "commands": [
             {
-              "label": "Commander X16 [BASIC Program] (Standalone)",
+              "label": "Commander X16 [BASIC Program] [Default] (Standalone)",
               "command": "%EMULATOR_COMMANDER-X16% -bas %ROM% -run",
               "priority": 10
             },

@@ -2932,9 +2932,9 @@
           "extension": ".sfb .sfo .iso .pkg .bin .self .elf",
           "commands": [
             {
-              "label": "RCPS3 (Libretro Core)",
+              "label": "RPCS3 (Libretro Core)",
               "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/rpcs3_libretro.so %ROM%",
-              "priority": 30
+              "priority": 40
             }
           ],
           "platform": "ps3",

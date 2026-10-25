@@ -120,7 +120,7 @@
           "extension": ".pak .pk3 .quake",
           "commands": [
             {
-              "label": "Ironwail (Standalone)",
+              "label": "Ironwail [Default] (Standalone)",
               "command": "%EMULATOR_IRONWAIL% -game %BASENAME%",
               "priority": 10
             }

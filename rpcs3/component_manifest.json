@@ -3,7 +3,10 @@
     "name": "RPCS3",
     "core_framework_compatibility": "1",
     "component_version": "1.0.0",
-    "capabilities": ["reset","open"],
+    "capabilities": [
+      "reset",
+      "open"
+    ],
     "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/rpcs3/rpcs3-guide/",
     "url_webpage": "https://rpcs3.net/",
     "url_donation_purchase": [
@@ -17,7 +20,9 @@
     "system": "ps3",
     "backup_data": {
       "core": [
-        {"path": "$XDG_CONFIG_HOME/rpcs3"}
+        {
+          "path": "$XDG_CONFIG_HOME/rpcs3"
+        }
       ]
     },
     "es_de_config": {
@@ -60,14 +65,19 @@
           "extension": ".desktop .ps3 .ps3dir",
           "commands": [
             {
-              "label": "RPCS3 Game Serial (Standalone)",
+              "label": "RPCS3 [Game Serial] [Default] (Standalone)",
               "command": "%EMULATOR_RPCS3% --no-gui %RPCS3_GAMEID%:%INJECT%=%BASENAME%.ps3",
               "priority": 10
             },
             {
-              "label": "RPCS3 Directory (Standalone)",
+              "label": "RPCS3 [Directory / ISO] (Standalone)",
               "command": "%EMULATOR_RPCS3% --no-gui %ROM%",
               "priority": 20
+            },
+            {
+              "label": "RPCS3 [Shortcut] (Standalone)",
+              "command": "%ENABLESHORTCUTS% %EMULATOR_OS-SHELL% %ROM%",
+              "priority": 30
             }
           ],
           "platform": "ps3",

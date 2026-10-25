@@ -40,7 +40,7 @@
           "extension": ".doom3",
           "commands": [
             {
-              "label": "dhewm 3 (Standalone)",
+              "label": "dhewm 3 [Default] (Standalone)",
               "command": "%EMULATOR_DHEWM3% +set fs_game %BASENAME%",
               "priority": 10
             },

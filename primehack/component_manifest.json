@@ -64,7 +64,7 @@
           "extension": ".7z .ciso .dff .dol .elf .gcm .gcz .iso .json .m3u .rvz .tgc .wad .wbfs .wia .zip",
           "commands": [
             {
-              "label": "PrimeHack (Standalone)",
+              "label": "PrimeHack [Default] (Standalone)",
               "command": "env QT_QPA_PLATFORM=xcb %EMULATOR_PRIMEHACK% -b -e %ROM%",
               "priority": 10
             }

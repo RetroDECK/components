@@ -62,8 +62,9 @@
           "extension": ".2mg .7z .zip .dsk .po",
           "commands": [
             {
-              "label": "KEGS (Standalone)",
-              "command": "%EMULATOR_KEGS% %INJECT%=%BASENAME%.commands -s5d1 %ROM%"
+              "label": "KEGS [Default] (Standalone)",
+              "command": "%EMULATOR_KEGS% %INJECT%=%BASENAME%.commands -s5d1 %ROM%",
+              "priority": 10
             }
           ],
           "platform": "apple2gs",

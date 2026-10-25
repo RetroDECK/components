@@ -37,7 +37,7 @@
           "extension": ".vpt .vpx",
           "commands": [
             {
-              "label": "Visual Pinball X (Standalone)",
+              "label": "Visual Pinball X [Default] (Standalone)",
               "command": "%EMULATOR_VISUAL-PINBALL% -play %ROM%"
             }
           ],

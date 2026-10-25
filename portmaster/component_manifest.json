@@ -72,7 +72,7 @@
           "extension": ".sh",
           "commands": [
             {
-              "label": "PortMaster",
+              "label": "PortMaster [Default] (Standalone)",
               "command": "%ENABLESHORTCUTS% %EMULATOR_PORTMASTER% %ROM%",
               "priority": 10
             }

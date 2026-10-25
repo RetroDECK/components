@@ -42,7 +42,7 @@
           "extension": ".solarus",
           "commands": [
             {
-              "label": "Solarus (Standalone)",
+              "label": "Solarus [Default] (Standalone)",
               "command": "%EMULATOR_SOLARUS% %ROM%",
               "priority": 10
             }

@@ -42,7 +42,7 @@
           "extension": ".bin .chd .ciso .cso .desktop .dump .elf .gz .img .iso .isz .m3u .mdf .ngr .nrg .zso",
           "commands": [
             {
-              "label": "PCSX2 (Standalone)",
+              "label": "PCSX2 [Default] (Standalone)",
               "command": "%EMULATOR_PCSX2% -batch %ROM%",
               "priority": 10
             }

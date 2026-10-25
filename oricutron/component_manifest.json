@@ -41,7 +41,7 @@
           "extension": ".dsk .ort .tap .wav",
           "commands": [
             {
-              "label": "Oricutron (Standalone)",
+              "label": "Oricutron [Default] (Standalone)",
               "command": "%STARTDIR%=%EMUDIR% %EMULATOR_ORICUTRON% %ROM%",
               "priority": 10
             }

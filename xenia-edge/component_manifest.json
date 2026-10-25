@@ -40,7 +40,7 @@
           "extension": ".desktop .iso .sh .xex .zar",
           "commands": [
             {
-              "label": "Xenia Edge (Standalone)",
+              "label": "Xenia Edge [Default] (Standalone)",
               "command": "%STARTDIR%=%EMUDIR% %EMULATOR_XENIA-EDGE% %INJECT%=%BASENAME%.commands %ROM%",
               "priority": 10
             }

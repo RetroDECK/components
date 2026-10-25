@@ -44,28 +44,13 @@
       },
       "es_systems": [
         {
-          "name": "consolearcade",
-          "fullname": "Console Arcade Systems",
-          "path": "%ROMPATH%/consolearcade",
-          "extension": ".7z .arcadedef .desktop .iso .ps3 .sh .xbe .zip",
-          "commands": [
-            {
-              "label": "xemu (Standalone)",
-              "command": "%INJECT%=%BASENAME%.esprefix %EMULATOR_XEMU% -dvd_path %ROM%",
-              "priority": 70
-            }
-          ],
-          "platform": "arcade",
-          "theme": "consolearcade"
-        },
-        {
           "name": "xbox",
           "fullname": "Microsoft Xbox",
           "path": "%ROMPATH%/xbox",
           "extension": ".iso",
           "commands": [
             {
-              "label": "xemu (Standalone)",
+              "label": "xemu [Default] (Standalone)",
               "command": "%INJECT%=%BASENAME%.esprefix %EMULATOR_XEMU% -dvd_path %ROM%",
               "priority": 10
             }

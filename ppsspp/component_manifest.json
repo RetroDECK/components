@@ -42,7 +42,7 @@
           "extension": ".7z .chd .cso .elf .iso .pbp .prx .zip",
           "commands": [
             {
-              "label": "PPSSPP (Standalone)",
+              "label": "PPSSPP [Default] (Standalone)",
               "command": "%EMULATOR_PPSSPP% %ROM%",
               "priority": 10
             }

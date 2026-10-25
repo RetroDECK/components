@@ -61,7 +61,7 @@
             "extension": ".scummvm",
             "commands": [
               {
-                "label": "ScummVM (Standalone)",
+                "label": "ScummVM [Default] (Standalone)",
                 "command": "%STARTDIR%=%GAMEDIR% %EMULATOR_SCUMMVM% %BASENAME%",
                 "priority": 10
               }

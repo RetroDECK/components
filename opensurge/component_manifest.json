@@ -42,12 +42,12 @@
           "extension": ".surge .lev .qst",
           "commands": [
             {
-              "label": "Open Surge (Game) (Standalone)",
+              "label": "Open Surge [Game] [Default] (Standalone)",
               "command": "%EMULATOR_OPENSURGE% --fullscreen --quality high --game-folder %ROM%",
               "priority": 10
             },
             {
-              "label": "Open Surge - Surge the Rabbit (Standalone)",
+              "label": "Open Surge [Surge the Rabbit] (Standalone)",
               "command": "%EMULATOR_OPENSURGE% --fullscreen --quality high --game-folder /app/retrodeck/components/opensurge/opensurge",
               "priority": 20
             }

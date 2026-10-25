@@ -40,7 +40,7 @@
           "extension": ".dsk .mgt .sad .sbt .7z .zip",
           "commands": [
             {
-              "label": "SimCoupé (Standalone)",
+              "label": "SimCoupé [Default] (Standalone)",
               "command": "%EMULATOR_SIMCOUPE% %ROM%"
             }
           ],

@@ -37,7 +37,7 @@
           "extension": ".bor .openbor",
           "commands": [
             {
-              "label": "OpenBOR (Standalone)",
+              "label": "OpenBOR [Default] (Standalone)",
               "command": "%STARTDIR%=%GAMEDIR% %EMULATOR_OPENBOR% -c \"%ROM%\"",
               "priority": 10
             }

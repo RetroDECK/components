@@ -50,7 +50,7 @@
           "extension": ".elf .rpx .tmd .wua .wud .wuhb .wux",
           "commands": [
             {
-              "label": "Cemu (Standalone)",
+              "label": "Cemu [Default] (Standalone)",
               "command": "%EMULATOR_CEMU% -g %ROM%",
               "priority": 10
             }

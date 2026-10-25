@@ -55,12 +55,12 @@
           "extension": ".p8 .png",
           "commands": [
             {
-              "label": "PICO-8 (Standalone)",
+              "label": "PICO-8 [Default] (Standalone)",
               "command": "%EMULATOR_PICO-8% -root_path %GAMEDIR% -run %ROM%",
               "priority": 10
             },
             {
-              "label": "PICO-8 Splore (Standalone)",
+              "label": "PICO-8 [Splore] (Standalone)",
               "command": "%EMULATOR_PICO-8% -root_path %GAMEDIR% -splore",
               "priority": 20
             }

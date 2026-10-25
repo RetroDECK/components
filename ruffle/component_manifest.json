@@ -43,7 +43,7 @@
           "extension": ".ruf .swf",
           "commands": [
             {
-              "label": "Ruffle (Standalone)",
+              "label": "Ruffle [Default] (Standalone)",
               "command": "%EMULATOR_RUFFLE% --fullscreen %ROM%",
               "priority": 10
             }

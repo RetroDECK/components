@@ -43,7 +43,7 @@
           "extension": ".quake3",
           "commands": [
             {
-              "label": "Quake3e (Standalone)",
+              "label": "Quake3e [Default] (Standalone)",
               "command": "%EMULATOR_QUAKE3E% +set fs_game %BASENAME%",
               "priority": 10
             }
