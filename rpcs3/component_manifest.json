@@ -44,21 +44,6 @@
       },
       "es_systems": [
         {
-          "name": "consolearcade",
-          "fullname": "Console Arcade Systems",
-          "path": "%ROMPATH%/consolearcade",
-          "extension": ".7z .arcadedef .desktop .iso .ps3 .sh .xbe .zip",
-          "commands": [
-            {
-              "label": "RPCS3 Game Serial (Standalone)",
-              "command": "%EMULATOR_RPCS3% --di-gui %RPCS3_GAMEID%:%INJECT%=%BASENAME%.ps3",
-              "priority": 60
-            }
-          ],
-          "platform": "arcade",
-          "theme": "consolearcade"
-        },
-        {
           "name": "ps3",
           "fullname": "Sony PlayStation 3",
           "path": "%ROMPATH%/ps3",
