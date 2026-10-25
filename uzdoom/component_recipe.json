@@ -24,6 +24,11 @@
         },
         {
           "type": "dir",
+          "source": "share/games/uzdoom",
+          "dest": "share/games/doom"
+        },
+        {
+          "type": "dir",
           "source": "share/licenses/org.zdoom.UZDoom/",
           "dest": "docs"
         },
