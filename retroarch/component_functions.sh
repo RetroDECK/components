@@ -680,7 +680,7 @@ _post_update::retroarch() {
 
       dir_prep "$bios_path" "$bios_path/pcsx2/bios"
       
-      dir_prep "$saves_path/ps2/pcsx2/memcards" "$bios_path/pcsx2/memcards"
+      dir_prep "$saves_path/RetroArch/ps2/pcsx2/memcards" "$bios_path/pcsx2/memcards"
       dir_prep "$storage_path/libretro-core/pcsx2/inis" "$bios_path/pcsx2/inis"
       dir_prep "$storage_path/libretro-core/pcsx2/resources" "$bios_path/pcsx2/resources"
       dir_prep "$shaders_path/libretro-core/pcsx2/shaders" "$bios_path/pcsx2/shaders"
