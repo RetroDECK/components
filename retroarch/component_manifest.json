@@ -1211,9 +1211,9 @@
           "theme": "easyrpg"
         },
         {
-          "name": "elektronika",
+          "name": "electronica",
           "fullname": "Electronica BK",
-          "path": "%ROMPATH%/elektronika",
+          "path": "%ROMPATH%/electronica",
           "extension": ".bin",
           "commands": [
             {
@@ -1222,8 +1222,8 @@
               "priority": 10
             }
           ],
-          "platform": "elektronika",
-          "theme": "elektronika"
+          "platform": "electronica",
+          "theme": "electronica"
         },
         {
           "name": "enterprise",
