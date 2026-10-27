@@ -449,8 +449,8 @@ steam_sync() {
       launch_command="run net.retrodeck.retrodeck"
       ;;
     flatpak)
-      target="flatpak-spawn --host"
-      launch_command="flatpak run net.retrodeck.retrodeck"
+      target="flatpak-spawn"
+      launch_command="--host flatpak run net.retrodeck.retrodeck"
       ;;
     *)  # Fallback to legacy default behavior
       target="flatpak"
