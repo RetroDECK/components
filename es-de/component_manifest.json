@@ -140,6 +140,16 @@
         "information": "",
         "filename": "rd-chanukah-splash.svg"
       },
+      "desert_kite_festival": {
+        "start_date": "0114",
+        "end_date": "0114",
+        "start_time": "0000",
+        "end_time": "2359",
+        "holiday_type": "dynamic",
+        "name": "International Desert Kite Festival.",
+        "information": "",
+        "filename": "rd-desert-kite-festival-splash.svg"
+      },
       "up_helly_aa": {
         "start_date": "0126",
         "end_date": "0126",
@@ -449,6 +459,16 @@
         "name": "International Men's Day.",
         "information": "",
         "filename": "rd-mens-day-splash.svg"
+      },
+      "thanksgiving_us": {
+        "start_date": "1125",
+        "end_date": "1125",
+        "start_time": "0000",
+        "end_time": "2359",
+        "holiday_type": "dynamic",
+        "name": "Thanksgiving Day (USA).",
+        "information": "",
+        "filename": "rd-thanksgiving-us-splash.svg"
       },
       "monkey_festival": {
         "start_date": "1128",
