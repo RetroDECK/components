@@ -136,6 +136,8 @@
         "start_time": "0000",
         "end_time": "2359",
         "holiday_type": "dynamic",
+        "name": "Hanukkah, Chanukah (חנוכה).",
+        "information": "",
         "filename": "rd-chanukah-splash.svg"
       },
       "up_helly_aa": {
@@ -144,6 +146,8 @@
         "start_time": "0000",
         "end_time": "2359",
         "holiday_type": "dynamic",
+        "name": "Up Helly Aa.",
+        "information": "",
         "filename": "rd-up-helly-aa-splash.svg"
       },
       "groundhog_day": {
@@ -152,6 +156,8 @@
         "start_time": "0000",
         "end_time": "2359",
         "holiday_type": "stable",
+        "name": "Groundhog Day, Journée de la marmotte, Murmeltiertag.",
+        "information": "",
         "filename": "rd-groundhog-day-splash.svg"
       },
       "setsubun": {
@@ -160,6 +166,8 @@
         "start_time": "0000",
         "end_time": "2359",
         "holiday_type": "stable",
+        "name": "Setsubun (節分).",
+        "information": "",
         "filename": "rd-setsubun-splash.svg"
       },
       "chinese_new_year": {
@@ -168,6 +176,8 @@
         "start_time": "0000",
         "end_time": "2359",
         "holiday_type": "dynamic",
+        "name": "Chinese New Year, Spring Festival (春节).",
+        "information": "",
         "filename": "rd-lunar-goat-splash.svg"
       },
       "carnival": {
@@ -176,6 +186,8 @@
         "start_time": "0001",
         "end_time": "2359",
         "holiday_type": "dynamic",
+        "name": "Carnevale di Venezi, Mardi Gras, Carnaval do Brasil, Semmeldagen.",
+        "information": "",
         "filename": "rd-carnival-splash.svg"
       },
       "valentines_day": {
@@ -184,6 +196,8 @@
         "start_time": "0001",
         "end_time": "2359",
         "holiday_type": "stable",
+        "name": "Saint Valentine's Day, Feast of Saint Valentine.",
+        "information": "",
         "filename": "rd-valentines-splash.svg"
       },
       "retrodeck_birthday_gmday": {
@@ -192,6 +206,8 @@
         "start_time": "0000",
         "end_time": "2359",
         "holiday_type": "stable",
+        "name": "RetroDECK Birthday & International Game Master Day.",
+        "information": "",
         "filename": "rd-gm-bday-splash.svg"
       },
       "womens_day": {
@@ -200,6 +216,8 @@
         "start_time": "0000",
         "end_time": "2359",
         "holiday_type": "stable",
+        "name": "International Women's Day.",
+        "information": "",
         "filename": "rd-womans-day-splash.svg"
       },
       "eid_al_fitr": {
@@ -208,6 +226,8 @@
         "start_time": "0000",
         "end_time": "2359",
         "holiday_type": "dynamic",
+        "name": "Eid al-Fitr (عيد الفطر).",
+        "information": "",
         "filename": "rd-eid-al-fitr-splash.svg"
       },
       "st_patricks_day": {
@@ -216,6 +236,8 @@
         "start_time": "0000",
         "end_time": "2359",
         "holiday_type": "stable",
+        "name": "Saint Patrick's Day or the Feast of Saint Patrick.",
+        "information": "",
         "filename": "rd-stpatricks-splash.svg"
       },
       "holi": {
@@ -224,14 +246,18 @@
         "start_time": "0000",
         "end_time": "2359",
         "holiday_type": "dynamic",
+        "name": "Holi.",
+        "information": "",
         "filename": "rd-holi-splash.svg"
       },
-      "fruhlingsfest": {
-        "start_date": "0416",
-        "end_date": "0416",
+      "festima": {
+        "start_date": "0330",
+        "end_date": "0330",
         "start_time": "0000",
         "end_time": "2359",
         "holiday_type": "dynamic",
+        "name": "FESTIMA (Festival International des Masques et des Arts).",
+        "information": "Only held biennially even-numbered years.",
         "filename": "placeholder.svg"
       },
       "walpurgis": {
@@ -240,6 +266,8 @@
         "start_time": "0000",
         "end_time": "2359",
         "holiday_type": "stable",
+        "name": "Walpurgis Night, Vappu, Valborgsmässoafton.",
+        "information": "",
         "filename": "rd-walpurgis-splash.svg"
       },
       "mayday": {
@@ -248,14 +276,18 @@
         "start_time": "0000",
         "end_time": "2359",
         "holiday_type": "stable",
+        "name": "May Day, International Workers Day.",
+        "information": "",
         "filename": "rd-mayday-splash.svg"
       },
-      "kodomo_golden_week": {
+      "kodomo_no_hi": {
         "start_date": "0502",
         "end_date": "0505",
         "start_time": "0000",
         "end_time": "2359",
         "holiday_type": "stable",
+        "name": " Kodomo no hi (こどもの日).",
+        "information": "",
         "filename": "rd-kodomo-golden-splash.svg"
       },
       "cheese_wake": {
@@ -264,6 +296,8 @@
         "start_time": "0000",
         "end_time": "2359",
         "holiday_type": "dynamic",
+        "name": "Cooper's Hill Cheese-Rolling and Wake.",
+        "information": "",
         "filename": "rd-cheese-wake-splash.svg"
       },
       "dragon_boat": {
@@ -272,6 +306,8 @@
         "start_time": "0000",
         "end_time": "2359",
         "holiday_type": "dynamic",
+        "name": "Dragon Boat Festival (端午节).",
+        "information": "",
         "filename": "rd-dragon-boat-festival-splash.svg"
       },
       "midsommarafton": {
@@ -280,6 +316,8 @@
         "start_time": "0000",
         "end_time": "2359",
         "holiday_type": "dynamic",
+        "name": "Midsommarafton.",
+        "information": "",
         "filename": "rd-midsummer-splash.svg"
       },
       "matariki": {
@@ -288,6 +326,8 @@
         "start_time": "0000",
         "end_time": "2359",
         "holiday_type": "dynamic",
+        "name": "Matariki.",
+        "information": "",
         "filename": "rd-matariki-splash.svg"
       },
       "running_bulls": {
@@ -296,6 +336,8 @@
         "start_time": "0000",
         "end_time": "2359",
         "holiday_type": "stable",
+        "name": "Running of the bulls, Encierro de los toros.",
+        "information": "",
         "filename": "rd-running-bulls-splash.svg"
       },
       "tanabata": {
@@ -304,6 +346,8 @@
         "start_time": "0000",
         "end_time": "2359",
         "holiday_type": "stable",
+        "name": "Tanabata (たなばた).",
+        "information": "",
         "filename": "rd-tanabata-splash.svg"
       },
       "mountain_day": {
@@ -312,6 +356,8 @@
         "start_time": "0000",
         "end_time": "2359",
         "holiday_type": "stable",
+        "name": "Mountain Day (山の日).",
+        "information": "",
         "filename": "placeholder.svg"
       },
       "obon": {
@@ -320,6 +366,8 @@
         "start_time": "0000",
         "end_time": "2359",
         "holiday_type": "stable",
+        "name": "Obon (お盆).",
+        "information": "",
         "filename": "placeholder.svg"
       },
       "la_tomatina": {
@@ -328,6 +376,8 @@
         "start_time": "0000",
         "end_time": "2359",
         "holiday_type": "dynamic",
+        "name": "La Tomatina.",
+        "information": "",
         "filename": "rd-la-tomatina-splash.svg"
       },
       "oktoberfest": {
@@ -336,6 +386,8 @@
         "start_time": "0000",
         "end_time": "2359",
         "holiday_type": "dynamic",
+        "name": "Oktoberfest.",
+        "information": "",
         "filename": "rd-oktoberfest-splash.svg"
       },
       "talk_like_a_pirate": {
@@ -344,6 +396,8 @@
         "start_time": "0000",
         "end_time": "2359",
         "holiday_type": "stable",
+        "name": "International Talk Like a Pirate Day.",
+        "information": "",
         "filename": "rd-pirate-splash.svg"
       },
       "tsukimi_mid_autumn": {
@@ -352,6 +406,8 @@
         "start_time": "0000",
         "end_time": "2359",
         "holiday_type": "dynamic",
+        "name": "Tsukimi (月見).",
+        "information": "",
         "filename": "placeholder.svg"
       },
       "diwali": {
@@ -360,14 +416,18 @@
         "start_time": "0000",
         "end_time": "2359",
         "holiday_type": "dynamic",
+        "name": "Diwali, Dipavali.",
+        "information": "",
         "filename": "rd-diwali-splash.svg"
       },
       "halloween": {
-        "start_date": "1031",
+        "start_date": "1030",
         "end_date": "1031",
         "start_time": "0000",
         "end_time": "2359",
         "holiday_type": "stable",
+        "name": "Halloween.",
+        "information": "",
         "filename": "rd-halloween-splash.svg"
       },
       "dia_de_los_muertos": {
@@ -376,6 +436,8 @@
         "start_time": "0000",
         "end_time": "2359",
         "holiday_type": "stable",
+        "name": "Dia de los Muertos, Day of the Dead.",
+        "information": "",
         "filename": "rd-dia-de-los-muertos-splash.svg"
       },
       "mens_day": {
@@ -384,6 +446,8 @@
         "start_time": "0000",
         "end_time": "2359",
         "holiday_type": "stable",
+        "name": "International Men's Day.",
+        "information": "",
         "filename": "rd-mens-day-splash.svg"
       },
       "monkey_festival": {
@@ -392,6 +456,8 @@
         "start_time": "0000",
         "end_time": "2359",
         "holiday_type": "dynamic",
+        "name": "Monkey Buffet Festival.",
+        "information": "",
         "filename": "rd-monkey-festival-splash.svg"
       },
       "lucia": {
@@ -400,6 +466,8 @@
         "start_time": "0000",
         "end_time": "2359",
         "holiday_type": "stable",
+        "name": "Sankta Lucia, Santa Lucia, Saint Lucy's Day.",
+        "information": "",
         "filename": "rd-lucia-splash.svg"
       },
       "xmas": {
@@ -408,6 +476,8 @@
         "start_time": "0000",
         "end_time": "2359",
         "holiday_type": "stable",
+        "name": "Christmas, Jul, Yule.",
+        "information": "",
         "filename": "rd-xmas-splash.svg"
       },
       "new_year": {
@@ -416,6 +486,8 @@
         "start_time": "0000",
         "end_time": "2359",
         "holiday_type": "stable",
+        "name": "New Year's Eve.",
+        "information": "",
         "filename": "rd-new-year-splash.svg"
       }
     }
