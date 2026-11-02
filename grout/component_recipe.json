@@ -1,0 +1,47 @@
+{
+  "grout": [
+    {
+      "source_url": "$REPO_ROOT/$COMPONENT_NAME/tmp_assets/Grout-RetroDECK.zip",
+      "source_type": "local",
+      "extraction_type": "archive",
+      "assets": [
+        {
+          "type": "create",
+          "dest": "component_version",
+          "contents": "$FRAMEWORK_DESIRED_VERSION"
+        },
+        {
+          "type": "file",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/component_functions.sh",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/component_launcher.sh",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/component_manifest.json",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "file",
+          "source": "$REPO_ROOT/$COMPONENT_NAME/component_recipe.json",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        },
+        {
+          "type": "dir",
+          "source": "Grout",
+          "dest": "$COMPONENT_ARTIFACT_ROOT/Grout"
+        },
+        {
+          "type": "file",
+          "source": "Grout.sh",
+          "dest": "$COMPONENT_ARTIFACT_ROOT"
+        }
+      ],
+      "libs": []
+    }
+  ]
+}

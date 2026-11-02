@@ -1,0 +1,20 @@
+{
+  "grout": {
+    "name": "GROUT",
+    "core_framework_compatibility": "1",
+    "component_version": "0.3",
+    "capabilities": ["reset","open"],
+    "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_tool_guides/grout/grout-guide/",
+    "url_webpage": "https://grout.romm.app",
+    "url_donation_purchase": "https://ko-fi.com/kwallbmoc",
+    "url_source": "https://github.com/rommapp/grout",
+    "description": "A RomM Client for your Linux retro handheld.",
+    "component_type": "Tool",
+    "system_friendly_name": "GROUT",
+    "backup_data": {
+      "core": [
+        {"path": "$XDG_CONFIG_HOME/grout"}
+      ]
+    }
+  }
+}
