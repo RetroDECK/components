@@ -1,0 +1,19 @@
+{
+  "retroverse": {
+    "name": "RetroVERSE",
+    "description": "RetroVERSE store client",
+    "component_version": "1.0.0",
+    "core_framework_version": "1",
+    "client_schema_version": 1,
+    "store_schema_version": 1,
+    "sources": {
+      "official": {
+        "name": "RetroVERSE",
+        "repo": "RetroDECK/RetroVERSE"
+      }
+    },
+    "component_options": {
+      "channel": "stable"
+    }
+  }
+}
