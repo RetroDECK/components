@@ -874,3 +874,174 @@ forget_item::retroverse() {
   rm -f -- "$cache_file" "${cache_file%.json}.dirs"
   remove_installed_version::retroverse "$1" "$2"
 }
+
+#########################################
+# Data item install actions
+#########################################
+
+deploy_install::retroverse() {
+  # Deploy every file in $workdir/plan from the extracted payload, regardless of policy
+  # USAGE: deploy_install::retroverse "$workdir"
+
+  local workdir="$1"
+  local artifact_path destination policy hash source_file
+
+  while IFS=$'\t' read -r -u 3 artifact_path destination policy hash; do
+    source_file="$workdir/payload/$artifact_path"
+    if [[ ! -f "$source_file" ]]; then
+      log e "Payload is missing $artifact_path"
+      return 1
+    fi
+    place_file::retroverse "$workdir" "$source_file" "$destination" || return 1
+  done 3< "$workdir/plan"
+}
+
+deploy_update::retroverse() {
+  # Apply $workdir/plan over an existing install described by $workdir/old_plan, honouring per-file policies, then remove unmodified orphans
+  # Orphans whose content differs from what was installed are left in place
+  # USAGE: deploy_update::retroverse "$workdir"
+
+  local workdir="$1"
+  local -A old_hashes=()
+  local -A new_destinations=()
+  load_plan_hashes::retroverse "$workdir/old_plan" old_hashes
+
+  local artifact_path destination policy hash source_file local_hash
+
+  while IFS=$'\t' read -r -u 3 artifact_path destination policy hash; do
+    new_destinations["$destination"]=1
+    source_file="$workdir/payload/$artifact_path"
+    if [[ ! -f "$source_file" ]]; then
+      log e "Payload is missing $artifact_path"
+      return 1
+    fi
+
+    if [[ "$policy" == "install_once" && -n "${old_hashes[$destination]+x}" ]]; then
+      log d "Leaving install_once file $destination untouched"
+      continue
+    fi
+
+    if [[ ! -e "$destination" ]]; then
+      place_file::retroverse "$workdir" "$source_file" "$destination" || return 1
+      continue
+    fi
+
+    case "$policy" in
+      sync)
+        local_hash=$(hash_file::retroverse "$destination")
+        if [[ "$local_hash" == "$hash" ]]; then
+          continue
+        fi
+        ;;
+      preserve_if_modified)
+        local_hash=$(hash_file::retroverse "$destination")
+        if [[ "$local_hash" == "$hash" ]]; then
+          continue
+        fi
+        if [[ -n "${old_hashes[$destination]+x}" && "$local_hash" != "${old_hashes[$destination]}" ]]; then
+          log i "Preserving locally modified file $destination"
+          continue
+        fi
+        ;;
+    esac
+
+    place_file::retroverse "$workdir" "$source_file" "$destination" || return 1
+  done 3< "$workdir/plan"
+
+  while IFS=$'\t' read -r -u 3 artifact_path destination policy hash; do
+    if [[ -n "${new_destinations[$destination]+x}" ]]; then
+      continue
+    fi
+    if [[ ! -e "$destination" && ! -L "$destination" ]]; then
+      continue
+    fi
+    local_hash=$(hash_file::retroverse "$destination")
+    if [[ "$local_hash" == "$hash" ]]; then
+      log d "Removing orphan $destination"
+      move_aside::retroverse "$workdir" "$destination" || return 1
+    else
+      log i "Leaving locally modified orphan $destination in place"
+    fi
+  done 3< "$workdir/old_plan"
+}
+
+install_data::retroverse() {
+  # Install a data item
+  # All destinations resolve before anything is downloaded or touched, any failure rolls back
+  # USAGE: install_data::retroverse "$source_id" "$item_id" "$workdir"
+
+  local source_id="$1"
+  local item_id="$2"
+  local workdir="$3"
+
+  build_deploy_plan::retroverse "$workdir/entry.json" "$workdir/plan" || return 1
+  download_payload::retroverse "$workdir" || return 1
+  extract_payload::retroverse "$workdir" || return 1
+
+  if ! deploy_install::retroverse "$workdir" || ! commit::retroverse "$source_id" "$item_id" "$workdir"; then
+    rollback::retroverse "$workdir"
+    return 1
+  fi
+  log i "Installed $source_id/$item_id"
+}
+
+update_data::retroverse() {
+  # Update an installed data item to the entry in $workdir/entry.json
+  # Any failure restores the previous state
+  # USAGE: update_data::retroverse "$source_id" "$item_id" "$workdir"
+
+  local source_id="$1"
+  local item_id="$2"
+  local workdir="$3"
+
+  build_deploy_plan::retroverse "$workdir/entry.json" "$workdir/plan" || return 1
+  if ! build_deploy_plan::retroverse "$workdir/old_entry.json" "$workdir/old_plan"; then
+    log e "Cannot resolve the installed destinations of $item_id, refusing to update"
+    return 1
+  fi
+  download_payload::retroverse "$workdir" || return 1
+  extract_payload::retroverse "$workdir" || return 1
+
+  if ! deploy_update::retroverse "$workdir" || ! commit::retroverse "$source_id" "$item_id" "$workdir"; then
+    rollback::retroverse "$workdir"
+    return 1
+  fi
+  log i "Updated $source_id/$item_id"
+}
+
+uninstall_data::retroverse() {
+  # Remove every file declared by an installed data item's cached manifest, prune its directories and forget it
+  # Continues past individual failures and returns 1 if any occurred
+  # USAGE: uninstall_data::retroverse "$source_id" "$item_id" "$workdir"
+
+  local source_id="$1"
+  local item_id="$2"
+  local workdir="$3"
+  local cache_file
+  cache_file=$(cache_file::retroverse "$source_id" "$item_id")
+
+  if ! build_deploy_plan::retroverse "$cache_file" "$workdir/plan"; then
+    log e "Cannot resolve the installed destinations of $item_id, refusing to uninstall"
+    return 1
+  fi
+
+  local failed=0
+  local artifact_path destination policy hash
+  while IFS=$'\t' read -r -u 3 artifact_path destination policy hash; do
+    if [[ -e "$destination" || -L "$destination" ]]; then
+      rm -f -- "$destination" || failed=1
+    fi
+  done 3< "$workdir/plan"
+
+  local dirs_file="${cache_file%.json}.dirs"
+  if [[ -f "$dirs_file" ]]; then
+    prune_directories::retroverse "$dirs_file" "$workdir/dirs.left"
+  fi
+
+  forget_item::retroverse "$source_id" "$item_id" || failed=1
+  if [[ "$failed" -ne 0 ]]; then
+    log e "Uninstall of $source_id/$item_id completed with errors"
+    return 1
+  fi
+  log i "Uninstalled $source_id/$item_id"
+}
