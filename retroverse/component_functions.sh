@@ -126,3 +126,180 @@ remove_installed_version::retroverse() {
     | if (.retroverse_installed // {}) == {} then del(.retroverse_installed) else . end
   ' --arg source "$1" --arg item "$2"
 }
+
+#########################################
+# Store refresh
+#########################################
+
+make_workdir::retroverse() {
+  # Create and print a fresh work directory under $retroverse_data/tmp
+  # USAGE: make_workdir::retroverse
+
+  mkdir -p "$retroverse_data/tmp" || return 1
+  mktemp -d -p "$retroverse_data/tmp" "op.XXXXXX"
+}
+
+hash_file::retroverse() {
+  # Print the sha256 of a regular file
+  # Returns 1 if the path is not a regular file
+  # USAGE: hash_file::retroverse "$file"
+
+  [[ -f "$1" ]] || return 1
+  sha256sum -- "$1" | awk '{ print $1 }'
+}
+
+verify_hash::retroverse() {
+  # Return 0 if a file's sha256 matches the expected value
+  # USAGE: verify_hash::retroverse "$file" "$expected_sha256"
+
+  local file="$1"
+  local expected="$2"
+  local actual
+  actual=$(hash_file::retroverse "$file") || return 1
+  [[ -n "$expected" && "$actual" == "$expected" ]]
+}
+
+resolve_release_tag::retroverse() {
+  # Print the release tag a channel resolves to for a GitHub repo
+  # stable uses /releases/latest, which excludes prereleases and drafts
+  # beta takes the most recently published non-draft release
+  # USAGE: resolve_release_tag::retroverse "$repo" "$channel"
+
+  local repo="$1"
+  local channel="$2"
+  local api="https://api.github.com/repos/$repo/releases"
+  local response tag
+
+  case "$channel" in
+    stable)
+      if ! response=$(curl --silent --fail --max-time 10 "$api/latest"); then
+        log w "Could not query the latest release of $repo"
+        return 1
+      fi
+      tag=$(jq -r '.tag_name // empty' <<< "$response")
+      ;;
+    beta)
+      if ! response=$(curl --silent --fail --max-time 10 "$api?per_page=100"); then
+        log w "Could not query releases of $repo"
+        return 1
+      fi
+      tag=$(jq -r '[.[] | select(.draft | not)] | sort_by(.published_at) | last | .tag_name // empty' <<< "$response")
+      ;;
+    *)
+      log e "Unknown RetroVERSE channel: $channel"
+      return 1
+      ;;
+  esac
+
+  if [[ -z "$tag" ]]; then
+    log w "No release found for $repo on channel $channel"
+    return 1
+  fi
+  printf '%s' "$tag"
+}
+
+fetch_store::retroverse() {
+  # Download and validate a release's inventory and artwork into a work directory, then swap them into the store cache
+  # USAGE: fetch_store::retroverse "$repo" "$source_id" "$release_tag" "$workdir"
+
+  local repo="$1"
+  local source_id="$2"
+  local release_tag="$3"
+  local workdir="$4"
+  local base="https://github.com/$repo/releases/download/$release_tag"
+  local staging="$workdir/store"
+  local store_dir="$retroverse_data/store/$source_id"
+
+  mkdir -p "$staging/artwork" || return 1
+
+  download_file "$base/retroverse.json" "$staging/retroverse.json" "RetroVERSE inventory"
+  if ! jq -e 'type == "object"' "$staging/retroverse.json" > /dev/null 2>&1; then
+    log e "Downloaded inventory for $source_id is missing or not valid JSON"
+    return 1
+  fi
+
+  local supported_schema
+  supported_schema=$(get_supported_store_schema::retroverse) || return 1
+
+  local store_schema blob_source
+  IFS=$'\x1f' read -r store_schema blob_source < <(jq -r '[(.store_schema_version // "" | tostring), (.source_id // "")] | join("\u001f")' "$staging/retroverse.json")
+
+  if [[ ! "$store_schema" =~ ^[0-9]+$ ]]; then
+    log e "Inventory for $source_id has no valid store_schema_version"
+    return 1
+  fi
+  if [[ "$store_schema" -gt "$supported_schema" ]]; then
+    log e "Inventory for $source_id uses store schema $store_schema, this client supports up to $supported_schema"
+    return 1
+  fi
+  if [[ "$blob_source" != "$source_id" ]]; then
+    log e "Inventory declares source_id \"$blob_source\" but was fetched as \"$source_id\""
+    return 1
+  fi
+
+  download_file "$base/artwork.tar.gz" "$workdir/artwork.tar.gz" "RetroVERSE artwork"
+  download_file "$base/artwork.tar.gz.sha" "$workdir/artwork.tar.gz.sha" "RetroVERSE artwork checksum"
+  local artwork_sha
+  artwork_sha=$(awk '{ print $1; exit }' "$workdir/artwork.tar.gz.sha" 2>/dev/null)
+  if ! verify_hash::retroverse "$workdir/artwork.tar.gz" "$artwork_sha" \
+     || ! tar -xzf "$workdir/artwork.tar.gz" -C "$staging/artwork"; then
+    log w "Artwork for $source_id could not be downloaded or verified, continuing without thumbnails"
+    rm -rf "$staging/artwork"
+    mkdir -p "$staging/artwork"
+  fi
+
+  printf '%s\n' "$release_tag" > "$staging/release_tag"
+
+  mkdir -p "$retroverse_data/store" || return 1
+  if [[ -d "$store_dir" ]]; then
+    mv "$store_dir" "$workdir/previous" || return 1
+  fi
+  if ! mv "$staging" "$store_dir"; then
+    log e "Failed to swap in the new store cache for $source_id"
+    [[ -d "$workdir/previous" ]] && mv "$workdir/previous" "$store_dir"
+    return 1
+  fi
+
+  log i "RetroVERSE store $source_id refreshed to $release_tag"
+}
+
+refresh_store::retroverse() {
+  # Fetch the inventory and artwork for a source from the release selected by the configured channel
+  # The cache is kept when the selected release tag has not changed
+  # If the release cannot be resolved but a cache exists, the cache is kept and the function succeeds with a warning, so the store stays browsable offline
+  # USAGE: refresh_store::retroverse "[$source_id]"
+
+  local source_id="${1:-official}"
+  local store_dir="$retroverse_data/store/$source_id"
+
+  local repo
+  repo=$(get_source_repo::retroverse "$source_id") || return 1
+
+  local channel
+  channel=$(get_component_option "retroverse" "channel")
+  channel="${channel:-stable}"
+
+  local release_tag
+  if ! release_tag=$(resolve_release_tag::retroverse "$repo" "$channel"); then
+    if [[ -f "$store_dir/retroverse.json" ]]; then
+      log w "Using cached RetroVERSE store for $source_id"
+      return 0
+    fi
+    log e "RetroVERSE store $source_id is unreachable and no cache exists"
+    return 1
+  fi
+
+  local cached_tag
+  cached_tag=$(cat "$store_dir/release_tag" 2>/dev/null)
+  if [[ -f "$store_dir/retroverse.json" && "$cached_tag" == "$release_tag" ]]; then
+    log d "RetroVERSE store $source_id is current at $release_tag"
+    return 0
+  fi
+
+  local workdir
+  workdir=$(make_workdir::retroverse) || return 1
+  local rc=0
+  fetch_store::retroverse "$repo" "$source_id" "$release_tag" "$workdir" || rc=1
+  rm -rf -- "$workdir"
+  return "$rc"
+}
