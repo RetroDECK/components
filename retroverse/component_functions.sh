@@ -554,3 +554,101 @@ get_item_state::retroverse() {
 
   echo "available"
 }
+
+#########################################
+# Deploy plan
+#########################################
+
+build_deploy_plan::retroverse() {
+  # Expand an entry's files[] and file_hashes into one row per deployed file, resolving every destination first
+  # Rows are tab-separated: artifact path, absolute destination, policy, sha256
+  # Directory entries (trailing "/" on source) expand to every hashed file beneath them
+  # A file source with a trailing "/" on its destination lands inside that directory under its own name
+  # Fails without writing a plan on any unresolvable destination, unknown policy, missing hash, empty directory entry or duplicate destination
+  # USAGE: build_deploy_plan::retroverse "$entry_file" "$plan_file"
+
+  local entry_file="$1"
+  local plan_file="$2"
+
+  if ! jq -e '(.files | type) == "array" and ((.file_hashes // {}) | type) == "object"' "$entry_file" > /dev/null 2>&1; then
+    log e "Entry has no valid files[] or file_hashes"
+    return 1
+  fi
+
+  local -a rows=()
+  local -A resolved_destinations=()
+  local -A seen_entries=()
+  local index destination kind relative artifact_path policy hash resolved
+
+  while IFS=$'\x1f' read -r index destination kind relative artifact_path policy hash; do
+    seen_entries["$index"]=1
+
+    case "$policy" in
+      sync|replace|preserve_if_modified|install_once) ;;
+      *)
+        log e "Unknown policy \"$policy\" in files[$index]"
+        return 1
+        ;;
+    esac
+
+    if [[ -z "$hash" ]]; then
+      log e "No hash for $artifact_path in files[$index]"
+      return 1
+    fi
+
+    if [[ -z "${resolved_destinations[$index]+x}" ]]; then
+      resolve_path::retroverse "$destination" resolved || return 1
+      resolved_destinations["$index"]="$resolved"
+    fi
+    resolved="${resolved_destinations[$index]}"
+
+    if [[ "$kind" == "dir" ]]; then
+      resolved="${resolved%/}/$relative"
+    elif [[ "$resolved" == */ ]]; then
+      resolved="$resolved${artifact_path##*/}"
+    fi
+
+    rows+=("$artifact_path"$'\t'"$resolved"$'\t'"$policy"$'\t'"$hash")
+  done < <(jq -r '
+    (.file_hashes // {}) as $hashes
+    | .files | to_entries[]
+    | (.key | tostring) as $index
+    | .value
+    | .destination as $destination
+    | (.policy // "sync") as $policy
+    | ((.source // "") | ltrimstr("./")) as $source
+    | if ($source | endswith("/")) then
+        ($source | if . == "/" then "" else . end) as $prefix
+        | $hashes | to_entries[] | select(.key | startswith($prefix))
+        | [$index, $destination, "dir", (.key | ltrimstr($prefix)), .key, $policy, .value]
+      else
+        [$index, $destination, "file", "", $source, $policy, ($hashes[$source] // "")]
+      end
+    | join("\u001f")
+  ' "$entry_file")
+
+  local file_count
+  file_count=$(jq '.files | length' "$entry_file")
+  local i=0
+  while [[ "$i" -lt "$file_count" ]]; do
+    if [[ -z "${seen_entries[$i]+x}" ]]; then
+      log e "files[$i] matches no files in file_hashes"
+      return 1
+    fi
+    i=$((i + 1))
+  done
+
+  if [[ ${#rows[@]} -eq 0 ]]; then
+    log e "Entry deploys no files"
+    return 1
+  fi
+
+  local duplicates
+  duplicates=$(printf '%s\n' "${rows[@]}" | cut -f2 | LC_ALL=C sort | uniq -d)
+  if [[ -n "$duplicates" ]]; then
+    log e "Several files deploy to the same destination: $duplicates"
+    return 1
+  fi
+
+  printf '%s\n' "${rows[@]}" > "$plan_file"
+}
