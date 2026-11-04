@@ -401,3 +401,156 @@ check_is_installed::retroverse() {
   fi
   return 0
 }
+
+#########################################
+# Requirements and state
+#########################################
+
+check_requirement::retroverse() {
+  # Test one requirement string against the local install
+  # Returns 0 if met, 1 if not met, 2 if malformed
+  # USAGE: check_requirement::retroverse "$source_id" "$requirement"
+
+  local source_id="$1"
+  local requirement="$2"
+  local type="${requirement%%:*}"
+  local value="${requirement#*:}"
+
+  if [[ "$requirement" != *:* || -z "$value" ]]; then
+    log e "Malformed requirement: $requirement"
+    return 2
+  fi
+
+  case "$type" in
+    component)
+      check_component_present::retroverse "$value" || return 1
+      ;;
+    item)
+      check_is_installed::retroverse "$source_id" "$value" || return 1
+      ;;
+    client_schema)
+      if [[ ! "$value" =~ ^[0-9]+$ ]]; then
+        log e "Malformed requirement: $requirement"
+        return 2
+      fi
+      local client_schema
+      client_schema=$(get_client_schema::retroverse) || return 2
+      [[ "$client_schema" -ge "$value" ]] || return 1
+      ;;
+    *)
+      log e "Unknown requirement type: $requirement"
+      return 2
+      ;;
+  esac
+  return 0
+}
+
+get_requirement_source::retroverse() {
+  # Print "store" if an unmet requirement can be satisfied by installing something from the same inventory, otherwise "none"
+  # USAGE: get_requirement_source::retroverse "$source_id" "$requirement"
+
+  local inventory="$retroverse_data/store/$1/retroverse.json"
+  local requirement="$2"
+  local value="${requirement#*:}"
+
+  if [[ -f "$inventory" ]]; then
+    case "${requirement%%:*}" in
+      component)
+        if jq -e --arg id "$value" 'any(.items[]; .id == $id and .class == "component")' "$inventory" > /dev/null; then
+          echo "store"
+          return
+        fi
+        ;;
+      item)
+        if jq -e --arg id "$value" 'any(.items[]; .id == $id)' "$inventory" > /dev/null; then
+          echo "store"
+          return
+        fi
+        ;;
+    esac
+  fi
+  echo "none"
+}
+
+get_unmet_requirements::retroverse() {
+  # Print every unmet requirement of an entry, including min_client_schema, as "requirement<TAB>store|none" lines
+  # Prints nothing when all requirements are met
+  # USAGE: get_unmet_requirements::retroverse "$source_id" "$entry_json"
+
+  local source_id="$1"
+  local entry="$2"
+  local -a requirements=()
+  mapfile -t requirements < <(jq -r '((.min_client_schema // empty) | "client_schema:\(.)"), (.requires // [])[]' <<< "$entry")
+
+  local requirement
+  for requirement in "${requirements[@]}"; do
+    [[ -z "$requirement" ]] && continue
+    if check_requirement::retroverse "$source_id" "$requirement"; then
+      continue
+    fi
+    printf '%s\t%s\n' "$requirement" "$(get_requirement_source::retroverse "$source_id" "$requirement")"
+  done
+}
+
+get_item_state::retroverse() {
+  # Print the store state of an item, one of:
+  #   installed_current        installed, store version matches
+  #   installed_update         installed, store version differs and its requirements are met
+  #   installed_update_blocked installed, store version differs but its requirements are not met
+  #   installed_unlisted       installed, no longer in the inventory
+  #   requires_client          not installed, needs a newer client schema
+  #   requires_missing         not installed, a requirement cannot be satisfied from the store
+  #   requires_store           not installed, every unmet requirement is available in the store
+  #   unmanaged                component present as an external component but not installed through RetroVERSE
+  #   available                can be installed
+  # USAGE: get_item_state::retroverse "$source_id" "$item_id"
+
+  local source_id="$1"
+  local item_id="$2"
+  local entry unmet
+
+  if check_is_installed::retroverse "$source_id" "$item_id"; then
+    if ! entry=$(get_store_entry::retroverse "$source_id" "$item_id"); then
+      echo "installed_unlisted"
+      return 0
+    fi
+    local installed_version store_version
+    installed_version=$(get_installed_version::retroverse "$source_id" "$item_id")
+    store_version=$(jq -r '.version' <<< "$entry")
+    if [[ "$store_version" == "$installed_version" ]]; then
+      echo "installed_current"
+    else
+      unmet=$(get_unmet_requirements::retroverse "$source_id" "$entry")
+      if [[ -n "$unmet" ]]; then
+        echo "installed_update_blocked"
+      else
+        echo "installed_update"
+      fi
+    fi
+    return 0
+  fi
+
+  if ! entry=$(get_store_entry::retroverse "$source_id" "$item_id"); then
+    log e "Item $item_id is neither installed nor listed in $source_id"
+    return 1
+  fi
+
+  unmet=$(get_unmet_requirements::retroverse "$source_id" "$entry")
+  if [[ -n "$unmet" ]]; then
+    if grep -q '^client_schema:' <<< "$unmet"; then
+      echo "requires_client"
+    elif grep -qv $'\tstore$' <<< "$unmet"; then
+      echo "requires_missing"
+    else
+      echo "requires_store"
+    fi
+    return 0
+  fi
+
+  if [[ "$(jq -r '.class' <<< "$entry")" == "component" ]] && check_external_component_present::retroverse "$item_id"; then
+    echo "unmanaged"
+    return 0
+  fi
+
+  echo "available"
+}
