@@ -652,3 +652,15 @@ build_deploy_plan::retroverse() {
 
   printf '%s\n' "${rows[@]}" > "$plan_file"
 }
+
+load_plan_hashes::retroverse() {
+  # Load a plan into an associative array of destination -> sha256
+  # USAGE: load_plan_hashes::retroverse "$plan_file" "$associative_array_name"
+
+  local plan_file="$1"
+  local -n rv_plan_hashes="$2"
+  local artifact_path destination policy hash
+  while IFS=$'\t' read -r artifact_path destination policy hash; do
+    rv_plan_hashes["$destination"]="$hash"
+  done < "$plan_file"
+}
