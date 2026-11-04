@@ -1045,3 +1045,60 @@ uninstall_data::retroverse() {
   fi
   log i "Uninstalled $source_id/$item_id"
 }
+
+#########################################
+# Component item install actions
+#########################################
+
+install_component::retroverse() {
+  # Install or update a component item
+  # An already present external component, managed or not, goes through the upgrade path so its post-update handler runs
+  # USAGE: install_component::retroverse "$source_id" "$item_id" "$workdir"
+
+  local source_id="$1"
+  local item_id="$2"
+  local workdir="$3"
+  local archive="$workdir/payload.tar.gz"
+
+  download_payload::retroverse "$workdir" || return 1
+
+  local archive_component
+  archive_component=$(get_component_name_from_archive "$archive")
+  if [[ "$archive_component" != "$item_id" ]]; then
+    log e "Archive for $item_id contains component \"$archive_component\""
+    return 1
+  fi
+
+  if check_external_component_present::retroverse "$item_id"; then
+    upgrade_external_component "$archive" || return 1
+  else
+    if check_component_conflict::retroverse "$item_id"; then
+      log w "Component $item_id overrides the core component of the same name"
+    fi
+    install_external_component "$archive" || return 1
+  fi
+
+  if ! commit::retroverse "$source_id" "$item_id" "$workdir"; then
+    rollback::retroverse "$workdir"
+    log e "Component $item_id was installed but its RetroVERSE record could not be written"
+    return 1
+  fi
+  log i "Installed component $source_id/$item_id"
+}
+
+uninstall_component::retroverse() {
+  # Remove a component item and forget it
+  # A component already removed outside RetroVERSE only has its record cleared
+  # USAGE: uninstall_component::retroverse "$source_id" "$item_id"
+
+  local source_id="$1"
+  local item_id="$2"
+
+  if check_external_component_present::retroverse "$item_id"; then
+    remove_external_component "$item_id" || return 1
+  else
+    log w "Component $item_id is no longer installed, clearing its RetroVERSE record"
+  fi
+  forget_item::retroverse "$source_id" "$item_id" || return 1
+  log i "Uninstalled component $source_id/$item_id"
+}
