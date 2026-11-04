@@ -1206,3 +1206,119 @@ uninstall_item::retroverse() {
   esac
   return "$rc"
 }
+
+#########################################
+# Client UI functions
+#########################################
+
+escape_markup::retroverse() {
+  # Print a string with the characters Pango markup treats as special escaped
+  # USAGE: escape_markup::retroverse "$text"
+
+  local text="$1"
+  local amp='&amp;' lt='&lt;' gt='&gt;'
+  text="${text//&/"$amp"}"
+  text="${text//</"$lt"}"
+  text="${text//>/"$gt"}"
+  printf '%s' "$text"
+}
+
+format_size::retroverse() {
+  # Convert a specific byte-count to a human-readable form
+  # USAGE: format_size::retroverse "$bytes"
+
+  [[ "$1" =~ ^[0-9]+$ ]] || return 0
+  awk -v b="$1" 'BEGIN {
+    split("B KB MB GB TB", unit, " "); i = 1
+    while (b >= 1024 && i < 5) { b /= 1024; i++ }
+    printf (i == 1 ? "%d %s" : "%.1f %s"), b, unit[i]
+  }'
+}
+
+show_message::retroverse() {
+  # Show an information or error dialog; error dialogs point to the log
+  # USAGE: show_message::retroverse "info|error" "$markup_text"
+
+  local kind="$1"
+  local text="$2"
+  local image="dialog-information"
+
+  if [[ "$kind" == "error" ]]; then
+    image="dialog-error"
+    text+=$'\n\n'"Details are in the RetroDECK log at $(escape_markup::retroverse "$rd_logs_folder")."
+  fi
+
+  rd_yad --title="$retroverse_ui_title" --image="$image" --width=450 \
+    --text="$text" --button="OK:0"
+  return 0
+}
+
+question_dialog::retroverse() {
+  # Ask the user to confirm something. Returns 0 if they confirm.
+  # USAGE: question_dialog::retroverse "$markup_text" "$confirm_label"
+
+  rd_yad --title="$retroverse_ui_title" --image="dialog-question" --width=450 \
+    --text="$1" --button="Cancel:1" --button="$2:0"
+}
+
+progress_dialog::retroverse() {
+  # USAGE: progress_dialog::retroverse "$markup_text" "$command" "[$args...]"
+
+  local text="$1"
+  shift
+
+  local progress_pipe
+  progress_pipe=$(mktemp -u)
+  mkfifo "$progress_pipe"
+
+  rd_yad --progress --pulsate --auto-close --no-buttons --title="$retroverse_ui_title" \
+    --width=450 --text="$text" < "$progress_pipe" &
+  local yad_pid=$!
+
+  local progress_fd
+  exec {progress_fd}>"$progress_pipe"
+
+  local rc=0
+  "$@" {progress_fd}>&- || rc=$?
+
+  exec {progress_fd}>&-
+  wait "$yad_pid"
+  rm -f "$progress_pipe"
+  return "$rc"
+}
+
+get_status_text::retroverse() {
+  # Convert item state to human-readable form
+  # USAGE: get_status_text::retroverse "$state" "$unmet_all" "$unmet_store" "$unmet_none"
+
+  local state="$1"
+  case "$state" in
+    installed_current)
+      printf 'Installed'
+      ;;
+    installed_update)
+      printf 'Update available'
+      ;;
+    installed_update_blocked)
+      printf 'Installed, update requires %s' "$2"
+      ;;
+    installed_unlisted)
+      printf 'Installed, no longer in RetroVERSE'
+      ;;
+    requires_client)
+      printf 'Requires a newer RetroDECK version'
+      ;;
+    requires_missing)
+      printf 'Requires %s' "$4"
+      ;;
+    requires_store)
+      printf 'Requires %s, available in RetroVERSE' "$3"
+      ;;
+    unmanaged)
+      printf 'Installed manually'
+      ;;
+    available)
+      printf 'Available'
+      ;;
+  esac
+}
