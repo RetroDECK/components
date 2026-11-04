@@ -2,22 +2,19 @@
 
 export retroverse_data="$XDG_CONFIG_HOME/retroverse"
 
+# Client-specific settings
+export retroverse_ui_title="RetroVERSE"
+export retroverse_ui_width=1100
+export retroverse_ui_height=650
+# jq helpers for the UI: Pango-escape a string, and flatten it to one line
+export retroverse_ui_jq_defs='
+  def esc: gsub("&"; "&amp;") | gsub("<"; "&lt;") | gsub(">"; "&gt;");
+  def line: gsub("[\t\n\r\u001f]"; " ");
+'
+
 #########################################
 # Helpers
 #########################################
-
-get_client_schema::retroverse() {
-  # Print the client schema version declared in this component's manifest
-  # USAGE: get_client_schema::retroverse
-
-  local schema
-  schema=$(jq -r '.[] | .manifest | select(has("retroverse")) | .retroverse.client_schema_version // empty' "$component_manifest_cache_file")
-  if [[ ! "$schema" =~ ^[0-9]+$ ]]; then
-    log e "RetroVERSE client_schema_version is missing or not an integer in the component manifest"
-    return 1
-  fi
-  printf '%s' "$schema"
-}
 
 get_supported_store_schema::retroverse() {
   # Print the highest store schema version this client can read, from this component's manifest
@@ -325,46 +322,21 @@ get_store_entry::retroverse() {
   jq -ce --arg item "$2" 'first(.items[] | select(.id == $item))' "$inventory" || return 1
 }
 
-list_items::retroverse() {
-  # Print the ids of every item in a source's inventory, followed by any installed items no longer listed in it
-  # USAGE: list_items::retroverse "$source_id"
-
-  local source_id="$1"
-  local inventory="$retroverse_data/store/$source_id/retroverse.json"
-  {
-    [[ -f "$inventory" ]] && jq -r '.items[].id' "$inventory"
-    jq -r --arg source "$source_id" '.retroverse_installed[$source] // {} | keys[]' "$rd_conf"
-  } | awk '!seen[$0]++'
-}
-
 get_artwork_path::retroverse() {
-  # Print the path of an item's cached thumbnail
-  # Returns 1 if it has none
-  # USAGE: get_artwork_path::retroverse "$source_id" "$item_id"
+  # Print the path of a cached thumbnail by its artwork name from an item entry
+  # Returns 1 if the name is empty or unsafe, or the file is not in the cache
+  # USAGE: get_artwork_path::retroverse "$source_id" "$artwork_name"
 
   local source_id="$1"
-  local item_id="$2"
-  local entry
-  if ! entry=$(get_store_entry::retroverse "$source_id" "$item_id"); then
-    entry=$(cat "$(cache_file::retroverse "$source_id" "$item_id")" 2>/dev/null) || return 1
-  fi
+  local name="$2"
 
-  local name
-  name=$(jq -r '.artwork // empty' <<< "$entry")
-  if [[ -z "$name" || "$name" == */* || "$name" == .* ]]; then
+  if [[ -z "$name" || "$name" == "null" || "$name" == */* || "$name" == .* ]]; then
     return 1
   fi
 
   local path="$retroverse_data/store/$source_id/artwork/$name"
   [[ -f "$path" ]] || return 1
   printf '%s' "$path"
-}
-
-check_component_present::retroverse() {
-  # Return 0 if a component has an entry in the component manifest cache
-  # USAGE: check_component_present::retroverse "$component_name"
-
-  jq -e --arg component "$1" 'any(.[]; .manifest | has($component))' "$component_manifest_cache_file" > /dev/null
 }
 
 check_external_component_present::retroverse() {
@@ -406,94 +378,125 @@ check_is_installed::retroverse() {
 # Requirements and state
 #########################################
 
-check_requirement::retroverse() {
-  # Test one requirement string against the local install
-  # Returns 0 if met, 1 if not met, 2 if malformed
-  # USAGE: check_requirement::retroverse "$source_id" "$requirement"
+retroverse_state_program='
+  ($inventory[0] // {}) as $inv
+  | ($inv.items // []) as $items
+  | (reduce $items[] as $item ({}; .[$item.id] = $item)) as $listed
+  | (reduce $cached[] as $entry ({}; .[$entry.id] = $entry)) as $cache
+  | ($conf[0].retroverse_installed[$source] // {}) as $installed
+  | ($external | split("\n") | map(select(. != ""))) as $ext
+  | ([$manifests[0][] | .manifest | keys[]]) as $components
+  | (first($manifests[0][] | .manifest.retroverse.client_schema_version | numbers) // 0) as $client
+
+  | def is_installed($id):
+      $installed[$id] != null and $cache[$id] != null
+      and ($cache[$id].class != "component" or any($ext[]; . == $id));
+
+    def requirement_parts:
+      capture("^(?<type>[^:]+):(?<value>.+)$") // {type: "", value: .};
+
+    def requirement_met:
+      requirement_parts as $p
+      | if $p.type == "component" then any($components[]; . == $p.value)
+        elif $p.type == "item" then is_installed($p.value)
+        elif $p.type == "client_schema" then (($p.value | tonumber?) // null) as $n | $n != null and $client >= $n
+        else false end;
+
+    def requirement_source:
+      requirement_parts as $p
+      | if ($p.type == "component" and $listed[$p.value].class == "component")
+           or ($p.type == "item" and $listed[$p.value] != null) then "store" else "none" end;
+
+    def requirement_name:
+      requirement_parts as $p
+      | if $p.type == "client_schema" then "a newer RetroDECK version"
+        else $listed[$p.value].name
+             // first($manifests[0][] | .manifest[$p.value].name // empty)
+             // $p.value
+        end;
+
+    def unmet($entry):
+      [ (($entry.min_client_schema // empty) | "client_schema:\(.)"), ($entry.requires // [])[]
+        | select(requirement_met | not)
+        | {requirement: ., source: requirement_source, name: requirement_name} ];
+
+    def state($id):
+      $listed[$id] as $store
+      | if is_installed($id) then
+          if $store == null then "installed_unlisted"
+          elif $store.version == $installed[$id] then "installed_current"
+          elif (unmet($store) | length) > 0 then "installed_update_blocked"
+          else "installed_update" end
+        elif $store == null then null
+        else unmet($store) as $u
+          | if ($u | length) > 0 then
+              if any($u[]; .requirement | startswith("client_schema:")) then "requires_client"
+              elif any($u[]; .source != "store") then "requires_missing"
+              else "requires_store" end
+            elif $store.class == "component" and any($ext[]; . == $id) then "unmanaged"
+            else "available" end
+        end;
+
+    if $mode == "unmet" then
+      unmet($entry)[] | [.requirement, .source] | join("\t")
+    else
+      ([$items[].id] + (($installed | keys) - [$items[].id]))[]
+      | select($only == "" or . == $only)
+      | . as $id
+      | ($listed[$id] // $cache[$id]) as $entry
+      | select($entry != null)
+      | state($id) as $state
+      | select($state != null)
+      | {
+          id: $id,
+          class: ($entry.class // ""),
+          name: ($entry.name // $id),
+          description: ($entry.description // ""),
+          version: ($entry.version // ""),
+          upstream_version: ($entry.upstream_version // ""),
+          tags: ($entry.tags // []),
+          artwork: ($entry.artwork // ""),
+          payload_size: ($entry.payload_size // null),
+          installed_version: ($installed[$id] // ""),
+          state: $state,
+          unmet: (if $listed[$id] != null then unmet($listed[$id]) else [] end)
+        }
+    end
+'
+
+run_state_program::retroverse() {
+  # Run the state program for a source with every input it needs. Further arguments are passed to jq.
+  # USAGE: run_state_program::retroverse "$source_id" "$mode" "[$jq_args...]"
 
   local source_id="$1"
-  local requirement="$2"
-  local type="${requirement%%:*}"
-  local value="${requirement#*:}"
+  local mode="$2"
+  shift 2
 
-  if [[ "$requirement" != *:* || -z "$value" ]]; then
-    log e "Malformed requirement: $requirement"
-    return 2
-  fi
+  local inventory="$retroverse_data/store/$source_id/retroverse.json"
+  [[ -f "$inventory" ]] || inventory="/dev/null"
 
-  case "$type" in
-    component)
-      check_component_present::retroverse "$value" || return 1
-      ;;
-    item)
-      check_is_installed::retroverse "$source_id" "$value" || return 1
-      ;;
-    client_schema)
-      if [[ ! "$value" =~ ^[0-9]+$ ]]; then
-        log e "Malformed requirement: $requirement"
-        return 2
-      fi
-      local client_schema
-      client_schema=$(get_client_schema::retroverse) || return 2
-      [[ "$client_schema" -ge "$value" ]] || return 1
-      ;;
-    *)
-      log e "Unknown requirement type: $requirement"
-      return 2
-      ;;
-  esac
-  return 0
-}
-
-get_requirement_source::retroverse() {
-  # Print "store" if an unmet requirement can be satisfied by installing something from the same inventory, otherwise "none"
-  # USAGE: get_requirement_source::retroverse "$source_id" "$requirement"
-
-  local inventory="$retroverse_data/store/$1/retroverse.json"
-  local requirement="$2"
-  local value="${requirement#*:}"
-
-  if [[ -f "$inventory" ]]; then
-    case "${requirement%%:*}" in
-      component)
-        if jq -e --arg id "$value" 'any(.items[]; .id == $id and .class == "component")' "$inventory" > /dev/null; then
-          echo "store"
-          return
-        fi
-        ;;
-      item)
-        if jq -e --arg id "$value" 'any(.items[]; .id == $id)' "$inventory" > /dev/null; then
-          echo "store"
-          return
-        fi
-        ;;
-    esac
-  fi
-  echo "none"
-}
-
-get_unmet_requirements::retroverse() {
-  # Print every unmet requirement of an entry, including min_client_schema, as "requirement<TAB>store|none" lines
-  # Prints nothing when all requirements are met
-  # USAGE: get_unmet_requirements::retroverse "$source_id" "$entry_json"
-
-  local source_id="$1"
-  local entry="$2"
-  local -a requirements=()
-  mapfile -t requirements < <(jq -r '((.min_client_schema // empty) | "client_schema:\(.)"), (.requires // [])[]' <<< "$entry")
-
-  local requirement
-  for requirement in "${requirements[@]}"; do
-    [[ -z "$requirement" ]] && continue
-    if check_requirement::retroverse "$source_id" "$requirement"; then
-      continue
-    fi
-    printf '%s\t%s\n' "$requirement" "$(get_requirement_source::retroverse "$source_id" "$requirement")"
+  local -a external=()
+  local manifest component_dir
+  for manifest in "$rd_external_components_path"/*/component_manifest.json; do
+    [[ -f "$manifest" ]] || continue
+    component_dir="${manifest%/component_manifest.json}"
+    external+=("${component_dir##*/}")
   done
+
+  jq -nc --arg source "$source_id" --arg mode "$mode" \
+    --slurpfile inventory "$inventory" \
+    --slurpfile conf "$rd_conf" \
+    --slurpfile manifests "$component_manifest_cache_file" \
+    --slurpfile cached <(cat -- "$retroverse_data/installed/$source_id/"*.json 2>/dev/null) \
+    --arg external "$(printf '%s\n' "${external[@]}")" \
+    "$@" "$retroverse_state_program"
 }
 
-get_item_state::retroverse() {
-  # Print the store state of an item, one of:
+get_item_records::retroverse() {
+  # Print one JSON record per item in a source: every listed item, then installed items no longer listed
+  # Fields: id, class, name, description, version, upstream_version, tags, artwork, payload_size,
+  #         installed_version, state, unmet[] ({requirement, source, name})
+  # State is one of:
   #   installed_current        installed, store version matches
   #   installed_update         installed, store version differs and its requirements are met
   #   installed_update_blocked installed, store version differs but its requirements are not met
@@ -503,56 +506,17 @@ get_item_state::retroverse() {
   #   requires_store           not installed, every unmet requirement is available in the store
   #   unmanaged                component present as an external component but not installed through RetroVERSE
   #   available                can be installed
-  # USAGE: get_item_state::retroverse "$source_id" "$item_id"
+  # USAGE: get_item_records::retroverse "$source_id" "[$item_id]"
 
-  local source_id="$1"
-  local item_id="$2"
-  local entry unmet
+  run_state_program::retroverse "$1" "records" --arg only "${2:-}" --argjson entry null
+}
 
-  if check_is_installed::retroverse "$source_id" "$item_id"; then
-    if ! entry=$(get_store_entry::retroverse "$source_id" "$item_id"); then
-      echo "installed_unlisted"
-      return 0
-    fi
-    local installed_version store_version
-    installed_version=$(get_installed_version::retroverse "$source_id" "$item_id")
-    store_version=$(jq -r '.version' <<< "$entry")
-    if [[ "$store_version" == "$installed_version" ]]; then
-      echo "installed_current"
-    else
-      unmet=$(get_unmet_requirements::retroverse "$source_id" "$entry")
-      if [[ -n "$unmet" ]]; then
-        echo "installed_update_blocked"
-      else
-        echo "installed_update"
-      fi
-    fi
-    return 0
-  fi
+get_unmet_requirements::retroverse() {
+  # Print every unmet requirement of an entry, including min_client_schema, as "requirement<TAB>store|none" lines
+  # Prints nothing when all requirements are met
+  # USAGE: get_unmet_requirements::retroverse "$source_id" "$entry_json"
 
-  if ! entry=$(get_store_entry::retroverse "$source_id" "$item_id"); then
-    log e "Item $item_id is neither installed nor listed in $source_id"
-    return 1
-  fi
-
-  unmet=$(get_unmet_requirements::retroverse "$source_id" "$entry")
-  if [[ -n "$unmet" ]]; then
-    if grep -q '^client_schema:' <<< "$unmet"; then
-      echo "requires_client"
-    elif grep -qv $'\tstore$' <<< "$unmet"; then
-      echo "requires_missing"
-    else
-      echo "requires_store"
-    fi
-    return 0
-  fi
-
-  if [[ "$(jq -r '.class' <<< "$entry")" == "component" ]] && check_external_component_present::retroverse "$item_id"; then
-    echo "unmanaged"
-    return 0
-  fi
-
-  echo "available"
+  run_state_program::retroverse "$1" "unmet" -r --arg only "" --argjson entry "$2"
 }
 
 #########################################
@@ -1069,14 +1033,7 @@ install_component::retroverse() {
     return 1
   fi
 
-  if check_external_component_present::retroverse "$item_id"; then
-    upgrade_external_component "$archive" || return 1
-  else
-    if check_component_conflict::retroverse "$item_id"; then
-      log w "Component $item_id overrides the core component of the same name"
-    fi
-    install_external_component "$archive" || return 1
-  fi
+  install_external_component "$archive" || return 1
 
   if ! commit::retroverse "$source_id" "$item_id" "$workdir"; then
     rollback::retroverse "$workdir"
