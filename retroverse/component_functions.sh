@@ -81,3 +81,48 @@ resolve_path::retroverse() {
 
   rv_resolve_out="$rv_result"
 }
+
+#########################################
+# Installed version records handlers, too complicated for set_component_option
+#########################################
+
+edit_rd_conf::retroverse() {
+  # Apply changes to $rd_conf based on passed filter and arguments
+  # USAGE: edit_rd_conf::retroverse "$filter" "[$jq_args...]"
+
+  local filter="$1"
+  shift
+  if ! jq "$@" "$filter" "$rd_conf" > "$rd_conf.tmp"; then
+    rm -f "$rd_conf.tmp"
+    log e "Failed to update $rd_conf"
+    return 1
+  fi
+  mv "$rd_conf.tmp" "$rd_conf"
+}
+
+get_installed_version::retroverse() {
+  # Print the recorded version of an installed item
+  # Returns 1 if no version is recorded
+  # USAGE: get_installed_version::retroverse "$source_id" "$item_id"
+
+  jq -er --arg source "$1" --arg item "$2" '.retroverse_installed[$source][$item] // empty' "$rd_conf" || return 1
+}
+
+set_installed_version::retroverse() {
+  # Record the installed version of an item, creating the section as needed
+  # USAGE: set_installed_version::retroverse "$source_id" "$item_id" "$version"
+
+  edit_rd_conf::retroverse '.retroverse_installed[$source][$item] = $version' \
+    --arg source "$1" --arg item "$2" --arg version "$3"
+}
+
+remove_installed_version::retroverse() {
+  # Remove an item's version record, dropping the source and the whole section when they become empty
+  # USAGE: remove_installed_version::retroverse "$source_id" "$item_id"
+
+  edit_rd_conf::retroverse '
+    del(.retroverse_installed[$source][$item])
+    | if (.retroverse_installed[$source] // {}) == {} then del(.retroverse_installed[$source]) else . end
+    | if (.retroverse_installed // {}) == {} then del(.retroverse_installed) else . end
+  ' --arg source "$1" --arg item "$2"
+}
