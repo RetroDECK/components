@@ -664,3 +664,122 @@ load_plan_hashes::retroverse() {
     rv_plan_hashes["$destination"]="$hash"
   done < "$plan_file"
 }
+
+#########################################
+# Recorded file operations and rollback
+#########################################
+# Every change to the filesystem goes through these, appending to $workdir/journal:
+#   mkdir<TAB>dir                 directory created
+#   moved<TAB>path<TAB>backup     existing path moved aside (replaced or deleted)
+#   created<TAB>path              file written
+# Rollback replays the journal newest-first
+# Backups live in $workdir and are discarded with it
+
+make_parents::retroverse() {
+  # Create a directory and any missing parents, recording each directory created
+  # USAGE: make_parents::retroverse "$workdir" "$directory"
+
+  local workdir="$1"
+  local target="$2"
+  local dir="$target"
+  local -a missing=()
+
+  while [[ -n "$dir" && ! -d "$dir" ]]; do
+    missing+=("$dir")
+    dir="${dir%/*}"
+  done
+  [[ ${#missing[@]} -eq 0 ]] && return 0
+
+  if ! mkdir -p -- "$target"; then
+    log e "Could not create directory $target"
+    return 1
+  fi
+
+  local i=$(( ${#missing[@]} - 1 ))
+  while [[ "$i" -ge 0 ]]; do
+    printf 'mkdir\t%s\n' "${missing[$i]}" >> "$workdir/journal"
+    i=$((i - 1))
+  done
+}
+
+move_aside::retroverse() {
+  # Move an existing path into the work directory's backup area, recording it
+  # Used for both replacement and deletion
+  # USAGE: move_aside::retroverse "$workdir" "$path"
+
+  local workdir="$1"
+  local path="$2"
+  local slot
+
+  mkdir -p "$workdir/backup" || return 1
+  slot=$(mktemp -d -p "$workdir/backup") || return 1
+  if ! mv -- "$path" "$slot/item"; then
+    log e "Could not move $path aside"
+    return 1
+  fi
+  printf 'moved\t%s\t%s\n' "$path" "$slot/item" >> "$workdir/journal"
+}
+
+place_file::retroverse() {
+  # Copy a file to its destination, moving any existing path aside first and recording every change
+  # USAGE: place_file::retroverse "$workdir" "$source_file" "$destination"
+
+  local workdir="$1"
+  local source_file="$2"
+  local destination="$3"
+
+  make_parents::retroverse "$workdir" "${destination%/*}" || return 1
+  if [[ -e "$destination" || -L "$destination" ]]; then
+    move_aside::retroverse "$workdir" "$destination" || return 1
+  fi
+
+  printf 'created\t%s\n' "$destination" >> "$workdir/journal"
+  if ! cp -f -- "$source_file" "$destination"; then
+    log e "Could not write $destination"
+    return 1
+  fi
+}
+
+rollback::retroverse() {
+  # Undo every change recorded in a work directory's journal, newest first
+  # USAGE: rollback::retroverse "$workdir"
+
+  local journal="$1/journal"
+  [[ -f "$journal" ]] || return 0
+
+  log w "Rolling back changes"
+  local action path backup
+  while IFS=$'\t' read -r action path backup; do
+    case "$action" in
+      created)
+        rm -f -- "$path"
+        ;;
+      moved)
+        mkdir -p -- "${path%/*}"
+        mv -T -- "$backup" "$path" || log e "Could not restore $path from $backup"
+        ;;
+      mkdir)
+        rmdir -- "$path" 2>/dev/null
+        ;;
+    esac
+  done < <(tac "$journal")
+}
+
+prune_directories::retroverse() {
+  # Remove every empty directory in a list, deepest first, writing the ones that still exist to a new list
+  # USAGE: prune_directories::retroverse "$directory_list" "$output_list"
+
+  local directory_list="$1"
+  local output_list="$2"
+  local dir
+
+  : > "$output_list"
+  while IFS= read -r dir; do
+    [[ -z "$dir" || ! -d "$dir" ]] && continue
+    if rmdir -- "$dir" 2>/dev/null; then
+      log d "Removed empty directory $dir"
+    else
+      printf '%s\n' "$dir" >> "$output_list"
+    fi
+  done < <(LC_ALL=C sort -ru "$directory_list")
+}
