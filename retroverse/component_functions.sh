@@ -303,3 +303,101 @@ refresh_store::retroverse() {
   rm -rf -- "$workdir"
   return "$rc"
 }
+
+#########################################
+# Inventory and cache lookups
+#########################################
+
+cache_file::retroverse() {
+  # Print the path of an item's installed manifest cache file
+  # USAGE: cache_file::retroverse "$source_id" "$item_id"
+
+  printf '%s' "$retroverse_data/installed/$1/$2.json"
+}
+
+get_store_entry::retroverse() {
+  # Print an item's published entry from the cached inventory 
+  # Returns 1 if the item is not listed
+  # USAGE: get_store_entry::retroverse "$source_id" "$item_id"
+
+  local inventory="$retroverse_data/store/$1/retroverse.json"
+  [[ -f "$inventory" ]] || return 1
+  jq -ce --arg item "$2" 'first(.items[] | select(.id == $item))' "$inventory" || return 1
+}
+
+list_items::retroverse() {
+  # Print the ids of every item in a source's inventory, followed by any installed items no longer listed in it
+  # USAGE: list_items::retroverse "$source_id"
+
+  local source_id="$1"
+  local inventory="$retroverse_data/store/$source_id/retroverse.json"
+  {
+    [[ -f "$inventory" ]] && jq -r '.items[].id' "$inventory"
+    jq -r --arg source "$source_id" '.retroverse_installed[$source] // {} | keys[]' "$rd_conf"
+  } | awk '!seen[$0]++'
+}
+
+get_artwork_path::retroverse() {
+  # Print the path of an item's cached thumbnail
+  # Returns 1 if it has none
+  # USAGE: get_artwork_path::retroverse "$source_id" "$item_id"
+
+  local source_id="$1"
+  local item_id="$2"
+  local entry
+  if ! entry=$(get_store_entry::retroverse "$source_id" "$item_id"); then
+    entry=$(cat "$(cache_file::retroverse "$source_id" "$item_id")" 2>/dev/null) || return 1
+  fi
+
+  local name
+  name=$(jq -r '.artwork // empty' <<< "$entry")
+  if [[ -z "$name" || "$name" == */* || "$name" == .* ]]; then
+    return 1
+  fi
+
+  local path="$retroverse_data/store/$source_id/artwork/$name"
+  [[ -f "$path" ]] || return 1
+  printf '%s' "$path"
+}
+
+check_component_present::retroverse() {
+  # Return 0 if a component has an entry in the component manifest cache
+  # USAGE: check_component_present::retroverse "$component_name"
+
+  jq -e --arg component "$1" 'any(.[]; .manifest | has($component))' "$component_manifest_cache_file" > /dev/null
+}
+
+check_external_component_present::retroverse() {
+  # Return 0 if a component is installed as an external component
+  # USAGE: check_external_component_present::retroverse "$component_name"
+
+  [[ -f "$rd_external_components_path/$1/component_manifest.json" ]]
+}
+
+check_component_conflict::retroverse() {
+  # Return 0 if a component item shares its name with a core component, which installing it would override.
+  # USAGE: check_component_conflict::retroverse "$item_id"
+
+  [[ -f "$rd_components/$1/component_manifest.json" ]]
+}
+
+check_is_installed::retroverse() {
+  # Return 0 if an item is recorded as installed and, for component items, the component is still present
+  # A record for a component that was removed outside RetroVERSE counts as not installed
+  # USAGE: check_is_installed::retroverse "$source_id" "$item_id"
+
+  local source_id="$1"
+  local item_id="$2"
+  local cache_file
+  cache_file=$(cache_file::retroverse "$source_id" "$item_id")
+
+  get_installed_version::retroverse "$source_id" "$item_id" > /dev/null || return 1
+  [[ -f "$cache_file" ]] || return 1
+
+  local class
+  class=$(jq -r '.class // empty' "$cache_file")
+  if [[ "$class" == "component" ]]; then
+    check_external_component_present::retroverse "$item_id" || return 1
+  fi
+  return 0
+}
