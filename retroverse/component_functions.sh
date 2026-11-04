@@ -1102,3 +1102,150 @@ uninstall_component::retroverse() {
   forget_item::retroverse "$source_id" "$item_id" || return 1
   log i "Uninstalled component $source_id/$item_id"
 }
+
+#########################################
+# Client actions
+#########################################
+
+install_item::retroverse() {
+  # Install an item from a source's cached inventory
+  # USAGE: install_item::retroverse "$source_id" "$item_id"
+
+  local source_id="$1"
+  local item_id="$2"
+
+  if check_is_installed::retroverse "$source_id" "$item_id"; then
+    log e "$source_id/$item_id is already installed"
+    return 1
+  fi
+
+  local entry
+  if ! entry=$(get_store_entry::retroverse "$source_id" "$item_id"); then
+    log e "$item_id is not listed in $source_id"
+    return 1
+  fi
+  check_gate::retroverse "$source_id" "$entry" || return 1
+
+  local class
+  class=$(jq -r '.class' <<< "$entry")
+
+  local workdir
+  workdir=$(make_workdir::retroverse) || return 1
+  printf '%s\n' "$entry" > "$workdir/entry.json"
+
+  local rc=0
+  case "$class" in
+    data)
+      install_data::retroverse "$source_id" "$item_id" "$workdir" || rc=1
+      ;;
+    component)
+      install_component::retroverse "$source_id" "$item_id" "$workdir" || rc=1
+      ;;
+    *)
+      log e "Unknown item class: $class"
+      rc=1
+      ;;
+  esac
+
+  rm -rf -- "$workdir"
+  return "$rc"
+}
+
+update_item::retroverse() {
+  # Update an installed item to the version in a source's cached inventory
+  # Succeeds without change if already current
+  # USAGE: update_item::retroverse "$source_id" "$item_id"
+
+  local source_id="$1"
+  local item_id="$2"
+
+  if ! check_is_installed::retroverse "$source_id" "$item_id"; then
+    log e "$source_id/$item_id is not installed"
+    return 1
+  fi
+
+  local entry
+  if ! entry=$(get_store_entry::retroverse "$source_id" "$item_id"); then
+    log e "$item_id is no longer listed in $source_id"
+    return 1
+  fi
+
+  local installed_version store_version
+  installed_version=$(get_installed_version::retroverse "$source_id" "$item_id")
+  store_version=$(jq -r '.version' <<< "$entry")
+  if [[ "$installed_version" == "$store_version" ]]; then
+    log d "$source_id/$item_id is current at $installed_version"
+    return 0
+  fi
+
+  check_gate::retroverse "$source_id" "$entry" || return 1
+
+  local cache_file
+  cache_file=$(cache_file::retroverse "$source_id" "$item_id")
+  local class old_class
+  class=$(jq -r '.class' <<< "$entry")
+  old_class=$(jq -r '.class' "$cache_file")
+  if [[ "$class" != "$old_class" ]]; then
+    log e "$item_id changed class from $old_class to $class; uninstall and reinstall it"
+    return 1
+  fi
+
+  local workdir
+  workdir=$(make_workdir::retroverse) || return 1
+  printf '%s\n' "$entry" > "$workdir/entry.json"
+  cp -- "$cache_file" "$workdir/old_entry.json"
+
+  local rc=0
+  case "$class" in
+    data)      update_data::retroverse "$source_id" "$item_id" "$workdir" || rc=1 ;;
+    component) install_component::retroverse "$source_id" "$item_id" "$workdir" || rc=1 ;;
+    *)
+      log e "Unknown item class: $class"
+      rc=1
+      ;;
+  esac
+
+  rm -rf -- "$workdir"
+  return "$rc"
+}
+
+uninstall_item::retroverse() {
+  # Uninstall an item using its cached manifest
+  # USAGE: uninstall_item::retroverse "$source_id" "$item_id"
+
+  local source_id="$1"
+  local item_id="$2"
+  local cache_file
+  cache_file=$(cache_file::retroverse "$source_id" "$item_id")
+
+  if [[ ! -f "$cache_file" ]]; then
+    if get_installed_version::retroverse "$source_id" "$item_id" > /dev/null; then
+      log w "$source_id/$item_id has a version record but no cached manifest, clearing the record"
+      remove_installed_version::retroverse "$source_id" "$item_id"
+      return 0
+    fi
+    log e "$source_id/$item_id is not installed"
+    return 1
+  fi
+
+  local class
+  class=$(jq -r '.class' "$cache_file")
+
+  local rc=0
+  case "$class" in
+    data)
+      local workdir
+      workdir=$(make_workdir::retroverse) || return 1
+      uninstall_data::retroverse "$source_id" "$item_id" "$workdir" || rc=1
+      rm -rf -- "$workdir"
+      ;;
+    component)
+      uninstall_component::retroverse "$source_id" "$item_id" || rc=1
+      ;;
+    *)
+      log e "Unknown item class in cached manifest: $class"
+      rc=1
+      ;;
+  esac
+  return "$rc"
+}
