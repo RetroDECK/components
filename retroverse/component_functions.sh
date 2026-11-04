@@ -783,3 +783,94 @@ prune_directories::retroverse() {
     fi
   done < <(LC_ALL=C sort -ru "$directory_list")
 }
+
+#########################################
+# Shared install actions
+#########################################
+
+check_gate::retroverse() {
+  # Log every unmet requirement of an entry and return 1 if there are any
+  # USAGE: check_gate::retroverse "$source_id" "$entry_json"
+
+  local unmet
+  unmet=$(get_unmet_requirements::retroverse "$1" "$2")
+  [[ -z "$unmet" ]] && return 0
+
+  local requirement satisfiable
+  while IFS=$'\t' read -r requirement satisfiable; do
+    log e "Unmet requirement: $requirement"
+  done <<< "$unmet"
+  return 1
+}
+
+download_payload::retroverse() {
+  # Download an entry's archive to $workdir/payload.tar.gz and verify it against the entry's hash
+  # USAGE: download_payload::retroverse "$workdir"
+
+  local workdir="$1"
+  local url sha256 name
+  IFS=$'\x1f' read -r url sha256 name < <(jq -r '[(.url // ""), (.sha256 // ""), (.name // .id)] | join("\u001f")' "$workdir/entry.json")
+
+  if [[ -z "$url" || -z "$sha256" ]]; then
+    log e "Entry has no url or sha256"
+    return 1
+  fi
+
+  download_file "$url" "$workdir/payload.tar.gz" "$name"
+  if ! verify_hash::retroverse "$workdir/payload.tar.gz" "$sha256"; then
+    log e "Checksum verification failed for $url"
+    return 1
+  fi
+}
+
+extract_payload::retroverse() {
+  # Extract $workdir/payload.tar.gz into $workdir/payload
+  # USAGE: extract_payload::retroverse "$workdir"
+
+  local workdir="$1"
+  mkdir -p "$workdir/payload" || return 1
+  if ! tar -xzf "$workdir/payload.tar.gz" -C "$workdir/payload"; then
+    log e "Could not extract payload"
+    return 1
+  fi
+}
+
+commit::retroverse() {
+  # Finalize an install or update
+  # Prune empty item directories, write the manifest cache and directory list through the journal so a failure here still rolls back, then record the version
+  # USAGE: commit::retroverse "$source_id" "$item_id" "$workdir"
+
+  local source_id="$1"
+  local item_id="$2"
+  local workdir="$3"
+  local cache_file
+  cache_file=$(cache_file::retroverse "$source_id" "$item_id")
+  local dirs_file="${cache_file%.json}.dirs"
+
+  local version
+  version=$(jq -r '.version // empty' "$workdir/entry.json")
+  if [[ -z "$version" ]]; then
+    log e "Entry has no version"
+    return 1
+  fi
+
+  {
+    [[ -f "$dirs_file" ]] && cat "$dirs_file"
+    [[ -f "$workdir/journal" ]] && awk -F'\t' '$1 == "mkdir" { print $2 }' "$workdir/journal"
+  } > "$workdir/dirs.all"
+  prune_directories::retroverse "$workdir/dirs.all" "$workdir/dirs"
+
+  place_file::retroverse "$workdir" "$workdir/entry.json" "$cache_file" || return 1
+  place_file::retroverse "$workdir" "$workdir/dirs" "$dirs_file" || return 1
+  set_installed_version::retroverse "$source_id" "$item_id" "$version" || return 1
+}
+
+forget_item::retroverse() {
+  # Remove an item's manifest cache, directory list and version record
+  # USAGE: forget_item::retroverse "$source_id" "$item_id"
+
+  local cache_file
+  cache_file=$(cache_file::retroverse "$1" "$2")
+  rm -f -- "$cache_file" "${cache_file%.json}.dirs"
+  remove_installed_version::retroverse "$1" "$2"
+}
