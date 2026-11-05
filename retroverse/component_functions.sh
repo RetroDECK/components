@@ -1245,7 +1245,7 @@ show_message::retroverse() {
 
   if [[ "$kind" == "error" ]]; then
     image="dialog-error"
-    text+=$'\n\n'"Details are in the RetroDECK log at $(escape_markup::retroverse "$rd_logs_folder")."
+    text+=$'\n\n'"Details are in the RetroDECK log at $(escape_markup::retroverse "$logs_path")."
   fi
 
   rd_yad --title="$retroverse_ui_title" --image="$image" --width=450 \
