@@ -1551,7 +1551,7 @@ perform_action::retroverse() {
       ;;
   esac
 
-  if run_with_progress::retroverse "$progress_text" "${command[@]}"; then
+  if progress_dialog::retroverse "$progress_text" "${command[@]}"; then
     show_message::retroverse info "$done_text"
     return 0
   fi
@@ -1723,7 +1723,7 @@ update_all::retroverse() {
   local -a failed=()
   local i=0
   while [[ "$i" -lt "${#ids[@]}" ]]; do
-    if ! run_with_progress::retroverse "Updating <b>${names[$i]}</b> ($((i + 1)) of ${#ids[@]})..." \
+    if ! progress_dialog::retroverse "Updating <b>${names[$i]}</b> ($((i + 1)) of ${#ids[@]})..." \
          update_item::retroverse "$source_id" "${ids[$i]}"; then
       failed+=("${names[$i]}")
     fi
@@ -1848,7 +1848,7 @@ settings_menu::retroverse() {
     return 1
   fi
 
-  if ! run_with_progress::retroverse "Loading the $choice store..." refresh_store::retroverse "$source_id"; then
+  if ! progress_dialog::retroverse "Loading the $choice store..." refresh_store::retroverse "$source_id"; then
     show_message::retroverse error "The $choice store could not be loaded. The previously loaded store is still shown."
     return 1
   fi
@@ -1903,7 +1903,7 @@ launch_client::retroverse() {
   local source_id="${1:-official}"
   local refreshed=0
 
-  run_with_progress::retroverse "Checking RetroVERSE for new content..." refresh_store::retroverse "$source_id" || refreshed=1
+  progress_dialog::retroverse "Checking RetroVERSE for new content..." refresh_store::retroverse "$source_id" || refreshed=1
 
   if [[ ! -f "$retroverse_data/store/$source_id/retroverse.json" ]]; then
     show_message::retroverse error "The RetroVERSE store could not be loaded. Check your internet connection and try again."
