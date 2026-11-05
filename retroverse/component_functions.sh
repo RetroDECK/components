@@ -1411,3 +1411,507 @@ get_status_text::retroverse() {
       ;;
   esac
 }
+
+#########################################
+# UI screens
+#########################################
+
+build_item_rows::retroverse() {
+  # Print the rows of an item list: artwork, name, version, status, item id
+  # Views are "data" and "component" (by class) or "installed" (everything installed through RetroVERSE); an optional tag narrows the view
+  # USAGE: build_item_rows::retroverse "$source_id" "$view" "[$tag]"
+
+  local source_id="$1"
+  local view="$2"
+  local tag="$3"
+  local sort_key item_id state artwork name version installed_version unmet_all unmet_store unmet_none
+  local version_text status artwork_path
+
+  while IFS=$'\x1f' read -r sort_key item_id state artwork name version installed_version unmet_all unmet_store unmet_none; do
+    [[ -z "$item_id" ]] && continue
+
+    version_text="$version"
+    if [[ "$state" == installed_* ]]; then
+      version_text="$installed_version"
+      [[ "$state" == "installed_update" ]] && version_text="$installed_version → $version"
+    fi
+    status=$(get_status_text::retroverse "$state" "$unmet_all" "$unmet_store" "$unmet_none")
+    artwork_path=$(get_artwork_path::retroverse "$source_id" "$artwork") || artwork_path=""
+
+    case "$state" in
+      requires_*)
+        name="<span foreground='gray'>$name</span>"
+        version_text="<span foreground='gray'>$version_text</span>"
+        status="<span foreground='gray'>$status</span>"
+        ;;
+      installed_update)
+        status="<b>$status</b>"
+        ;;
+    esac
+
+    printf '%s\n' "$artwork_path" "$name" "$version_text" "$status" "$item_id"
+  done < <(get_item_records::retroverse "$source_id" | jq -r --arg view "$view" --arg tag "$tag" "$retroverse_ui_jq_defs"'
+      select(if $view == "installed" then (.state | startswith("installed_")) else .class == $view end)
+      | select($tag == "" or any(.tags[]; . == $tag))
+      | [ (.name | ascii_downcase | line), .id, .state, (.artwork | tostring | line),
+          (.name | line | esc), (.version | line | esc), (.installed_version | line | esc),
+          ([.unmet[].name] | join(", ") | line | esc),
+          ([.unmet[] | select(.source == "store") | .name] | join(", ") | line | esc),
+          ([.unmet[] | select(.source != "store") | .name] | join(", ") | line | esc) ]
+      | join("\u001f")' | LC_ALL=C sort -t $'\x1f' -k1,1)
+}
+
+list_updatable::retroverse() {
+  # Print "item_id<TAB>name" for every installed item with an update that can be applied
+  # USAGE: list_updatable::retroverse "$source_id"
+
+  get_item_records::retroverse "$1" | jq -r "$retroverse_ui_jq_defs"'select(.state == "installed_update") | [.id, (.name | line)] | join("\t")'
+}
+
+select_tag::retroverse() {
+  # Ask the user for a tag to filter a class view by, printing the tag, or nothing for all items
+  # Returns 1 if the user cancels, leaving the current filter in place
+  # USAGE: select_tag::retroverse "$source_id" "$class"
+
+  local inventory="$retroverse_data/store/$1/retroverse.json"
+  local class="$2"
+  local -a tags=()
+  mapfile -t tags < <(jq -r --arg class "$class" '[.items[] | select(.class == $class) | (.tags // [])[]] | unique[]' "$inventory")
+
+  local choice
+  choice=$(printf '%s\n' "All items" "${tags[@]}" | rd_yad --list --title="$retroverse_ui_title" \
+    --text="Show only items tagged:" --width=400 --height=450 --no-headers --no-markup \
+    --column="Tag" --separator="" --button="Back:1" --button="Filter:0") || return 1
+  [[ -z "$choice" ]] && return 1
+
+  if [[ "$choice" != "All items" ]]; then
+    printf '%s' "$choice"
+  fi
+}
+
+perform_action::retroverse() {
+  # Confirm where needed, run an install, update or removal with a progress dialog, and report the result
+  # "manage" installs the store version of a component the user installed manually
+  # Returns 1 if the user cancelled or the action failed
+  # USAGE: perform_action::retroverse "install|update|remove|manage" "$source_id" "$item_id"
+
+  local action="$1"
+  local source_id="$2"
+  local item_id="$3"
+
+  local name class
+  IFS=$'\x1f' read -r name class < <(get_item_records::retroverse "$source_id" "$item_id" \
+    | jq -r "$retroverse_ui_jq_defs"'[(.name | line | esc), .class] | join("\u001f")')
+  if [[ -z "$class" ]]; then
+    log e "$item_id is neither installed nor listed in $source_id"
+    return 1
+  fi
+
+  local progress_text done_text fail_text
+  local -a command=()
+
+  case "$action" in
+    install)
+      if [[ "$class" == "component" ]] && check_component_conflict::retroverse "$item_id" \
+         && ! check_external_component_present::retroverse "$item_id"; then
+        ask_question::retroverse "<b>$name</b> is included with RetroDECK.\n\nInstalling it from RetroVERSE replaces the included version with this one. Your current settings for it are kept.\n\nInstall it anyway?" "Install" || return 1
+      fi
+      command=(install_item::retroverse "$source_id" "$item_id")
+      progress_text="Installing <b>$name</b>..."
+      done_text="<b>$name</b> was installed."
+      fail_text="<b>$name</b> could not be installed. Nothing was changed."
+      ;;
+    manage)
+      ask_question::retroverse "<b>$name</b> was installed manually.\n\nRetroVERSE will install its own version over it as an update and look after future updates. Your current settings for it are kept.\n\nContinue?" "Continue" || return 1
+      command=(install_item::retroverse "$source_id" "$item_id")
+      progress_text="Installing <b>$name</b>..."
+      done_text="<b>$name</b> is now managed by RetroVERSE."
+      fail_text="<b>$name</b> could not be installed."
+      ;;
+    update)
+      command=(update_item::retroverse "$source_id" "$item_id")
+      progress_text="Updating <b>$name</b>..."
+      done_text="<b>$name</b> was updated."
+      fail_text="<b>$name</b> could not be updated. The previous version is still installed."
+      ;;
+    remove)
+      if [[ "$class" == "component" ]]; then
+        ask_question::retroverse "Remove <b>$name</b>?\n\nThe component and its settings will be removed." "Remove" || return 1
+      else
+        ask_question::retroverse "Remove <b>$name</b>?\n\nEvery file it installed will be deleted, including any you have changed." "Remove" || return 1
+      fi
+      command=(uninstall_item::retroverse "$source_id" "$item_id")
+      progress_text="Removing <b>$name</b>..."
+      done_text="<b>$name</b> was removed."
+      fail_text="<b>$name</b> could not be removed completely."
+      ;;
+    *)
+      log e "Unknown RetroVERSE action: $action"
+      return 1
+      ;;
+  esac
+
+  if run_with_progress::retroverse "$progress_text" "${command[@]}"; then
+    show_message::retroverse info "$done_text"
+    return 0
+  fi
+  show_message::retroverse error "$fail_text"
+  return 1
+}
+
+item_details::retroverse() {
+  # Show an item's details with the actions its state allows, and run the chosen action
+  # USAGE: item_details::retroverse "$source_id" "$item_id"
+
+  local source_id="$1"
+  local item_id="$2"
+
+  local state name description version upstream installed_version tags size artwork artwork_large screenshot_count
+  local unmet_all unmet_store unmet_none
+  IFS=$'\x1f' read -r state name description version upstream installed_version tags size artwork artwork_large screenshot_count \
+    unmet_all unmet_store unmet_none < <(
+    get_item_records::retroverse "$source_id" "$item_id" | jq -r "$retroverse_ui_jq_defs"'
+      [ .state, (.name | line | esc), (.description | gsub("\n"; "\\n") | line | esc),
+        (.version | line | esc), (.upstream_version | line | esc), (.installed_version | line | esc),
+        (.tags | join(", ") | line | esc), (.payload_size // "" | tostring),
+        (.artwork | tostring | line), (.artwork_large | tostring | line),
+        (if .screenshots_url != "" then (.screenshots | length) else 0 end | tostring),
+        ([.unmet[].name] | join(", ") | line | esc),
+        ([.unmet[] | select(.source == "store") | .name] | join(", ") | line | esc),
+        ([.unmet[] | select(.source != "store") | .name] | join(", ") | line | esc) ]
+      | join("\u001f")')
+  if [[ -z "$state" ]]; then
+    log e "$item_id is neither installed nor listed in $source_id"
+    return 1
+  fi
+
+  local text="<big><b>$name</b></big>"
+  [[ -n "$description" ]] && text+="\n\n$description"
+  text+="\n"
+  if [[ "$state" == installed_* ]]; then
+    text+="\n<b>Installed version:</b> $installed_version"
+    [[ "$state" != "installed_unlisted" ]] && text+="\n<b>Store version:</b> $version"
+  else
+    text+="\n<b>Version:</b> $version"
+  fi
+  [[ -n "$upstream" ]] && text+="\n<b>Upstream version:</b> $upstream"
+  [[ -n "$size" ]] && text+="\n<b>Download size:</b> $(format_size::retroverse "$size")"
+  [[ -n "$tags" ]] && text+="\n<b>Tags:</b> $tags"
+  text+="\n<b>Status:</b> $(get_status_text::retroverse "$state" "$unmet_all" "$unmet_store" "$unmet_none")"
+
+  local -a buttons=()
+  [[ "$screenshot_count" -gt 0 ]] && buttons+=(--button="Screenshots ($screenshot_count):14")
+  case "$state" in
+    available)        buttons+=(--button="Install:10") ;;
+    installed_update) buttons+=(--button="Remove:12" --button="Update:11") ;;
+    installed_*)      buttons+=(--button="Remove:12") ;;
+    unmanaged)        buttons+=(--button="Manage with RetroVERSE:13") ;;
+  esac
+
+  local -a image=()
+  local artwork_path
+  if artwork_path=$(get_artwork_path::retroverse "$source_id" "$artwork_large") \
+     || artwork_path=$(get_artwork_path::retroverse "$source_id" "$artwork"); then
+    image=(--image="$artwork_path")
+  fi
+
+  while true; do
+    local rc=0
+    rd_yad --title="$retroverse_ui_title" "${image[@]}" --width=750 \
+      --text="$text" --button="Back:1" "${buttons[@]}" || rc=$?
+
+    case "$rc" in
+      10)
+        perform_action::retroverse install "$source_id" "$item_id"
+        ;;
+      11)
+        perform_action::retroverse update "$source_id" "$item_id"
+        ;;
+      12)
+        perform_action::retroverse remove "$source_id" "$item_id"
+        ;;
+      13)
+        perform_action::retroverse manage "$source_id" "$item_id"
+        ;;
+      14)
+        view_screenshots::retroverse "$source_id" "$item_id"
+        continue
+        ;;
+    esac
+    return 0
+  done
+}
+
+view_screenshots::retroverse() {
+  # Fetch an item's screenshots if needed and show them
+  # USAGE: view_screenshots::retroverse "$source_id" "$item_id"
+
+  local source_id="$1"
+  local item_id="$2"
+
+  local name
+  name=$(get_item_records::retroverse "$source_id" "$item_id" | jq -r "$retroverse_ui_jq_defs"'.name | line | esc')
+
+  local shot_dir
+  if ! shot_dir=$(fetch_screenshots::retroverse "$source_id" "$item_id"); then
+    show_message::retroverse error "The screenshots for <b>$name</b> could not be downloaded."
+    return 1
+  fi
+
+  local -a shots=()
+  local shot
+  while IFS= read -r shot; do
+    [[ -z "$shot" || "$shot" == */* || "$shot" == .* ]] && continue
+    [[ -f "$shot_dir/$shot" ]] && shots+=("$shot")
+  done < <(get_item_records::retroverse "$source_id" "$item_id" | jq -r '.screenshots[]')
+
+  if [[ ${#shots[@]} -eq 0 ]]; then
+    show_message::retroverse error "The screenshots for <b>$name</b> are missing from the download."
+    return 1
+  fi
+
+  local count=${#shots[@]}
+  local index=0
+  while true; do
+    local -a buttons=(--button="Back:1")
+    [[ "$index" -gt 0 ]] && buttons+=(--button="Previous:2")
+    [[ "$index" -lt $((count - 1)) ]] && buttons+=(--button="Next:3")
+
+    local rc=0
+    rd_yad --picture --title="$retroverse_ui_title" --filename="$shot_dir/${shots[$index]}" --size=fit \
+      --width="$retroverse_ui_width" --height="$retroverse_ui_height" \
+      --text="<b>$name</b>  Screenshot $((index + 1)) of $count" "${buttons[@]}" || rc=$?
+
+    case "$rc" in
+      2)
+        index=$((index - 1))
+        ;;
+      3)
+        index=$((index + 1))
+        ;;
+      *)
+        return 0
+        ;;
+    esac
+  done
+}
+
+update_all::retroverse() {
+  # Apply every available update then summarise any failures
+  # USAGE: update_all::retroverse "$source_id"
+
+  local source_id="$1"
+  local -a ids=()
+  local -a names=()
+  local item_id name
+
+  while IFS=$'\t' read -r item_id name; do
+    [[ -z "$item_id" ]] && continue
+    ids+=("$item_id")
+    names+=("$(escape_markup::retroverse "$name")")
+  done < <(list_updatable::retroverse "$source_id")
+
+  if [[ ${#ids[@]} -eq 0 ]]; then
+    show_message::retroverse info "Everything installed from RetroVERSE is up to date."
+    return 0
+  fi
+
+  local list
+  list=$(printf '\\n- %s' "${names[@]}")
+  ask_question::retroverse "Update ${#ids[@]} item(s)?\n$list" "Update all" || return 1
+
+  local -a failed=()
+  local i=0
+  while [[ "$i" -lt "${#ids[@]}" ]]; do
+    if ! run_with_progress::retroverse "Updating <b>${names[$i]}</b> ($((i + 1)) of ${#ids[@]})..." \
+         update_item::retroverse "$source_id" "${ids[$i]}"; then
+      failed+=("${names[$i]}")
+    fi
+    i=$((i + 1))
+  done
+
+  if [[ ${#failed[@]} -eq 0 ]]; then
+    show_message::retroverse info "All updates were installed."
+    return 0
+  fi
+  list=$(printf '\\n- %s' "${failed[@]}")
+  show_message::retroverse error "These items could not be updated and are still at their previous version:\n$list"
+  return 1
+}
+
+item_list::retroverse() {
+  # Show the item list for a view
+  # USAGE: item_list::retroverse "$source_id" "data|component|installed"
+
+  local source_id="$1"
+  local view="$2"
+  local tag=""
+  local heading
+  case "$view" in
+    data)
+      heading="Content"
+      ;;
+    component)
+      heading="Components"
+      ;;
+    installed)
+      heading="Installed from RetroVERSE"
+      ;;
+  esac
+
+  while true; do
+    local rows
+    rows=$(build_item_rows::retroverse "$source_id" "$view" "$tag")
+
+    if [[ -z "$rows" ]]; then
+      if [[ -n "$tag" ]]; then
+        tag=""
+        continue
+      fi
+      if [[ "$view" == "installed" ]]; then
+        show_message::retroverse info "Nothing has been installed from RetroVERSE yet."
+      else
+        show_message::retroverse info "There is nothing in this section of RetroVERSE yet."
+      fi
+      return 0
+    fi
+
+    local text="<b>$heading</b>"
+    [[ -n "$tag" ]] && text+=", tagged <i>$(escape_markup::retroverse "$tag")</i>"
+
+    local -a buttons=(--button="Back:1")
+    if [[ "$view" == "installed" ]]; then
+      [[ -n "$(list_updatable::retroverse "$source_id")" ]] && buttons+=(--button="Update all:3")
+    else
+      buttons+=(--button="Filter by tag:2")
+    fi
+    buttons+=(--button="Details:0")
+
+    local selection
+    local rc=0
+    selection=$(rd_yad --list --title="$retroverse_ui_title" --text="$text" \
+      --width="$retroverse_ui_width" --height="$retroverse_ui_height" \
+      --column=":IMG" --column="Name" --column="Version" --column="Status" --column="ID" \
+      --hide-column=5 --print-column=5 --separator="" "${buttons[@]}" <<< "$rows") || rc=$?
+
+    case "$rc" in
+      0)
+        [[ -n "$selection" ]] && item_details::retroverse "$source_id" "$selection"
+        ;;
+      2)
+        local new_tag
+        if new_tag=$(select_tag::retroverse "$source_id" "$view"); then
+          tag="$new_tag"
+        fi
+        ;;
+      3)
+        update_all::retroverse "$source_id"
+        ;;
+      *)
+        return 0
+        ;;
+    esac
+  done
+}
+
+settings_menu::retroverse() {
+  # Let the user switch between the stable and beta store channels, warning before switching to beta
+  # USAGE: settings_menu::retroverse "$source_id"
+
+  local source_id="$1"
+  local current
+  current=$(get_component_option "retroverse" "channel")
+  current="${current:-stable}"
+
+  local stable_label="Stable"
+  local beta_label="Beta"
+  [[ "$current" == "stable" ]] && stable_label+=" (current)"
+  [[ "$current" == "beta" ]] && beta_label+=" (current)"
+
+  local choice
+  choice=$(printf '%s\n' "stable" "$stable_label" "Tested content (recommended)" \
+                         "beta" "$beta_label" "Early access to new and updated content, which may not work correctly" \
+    | rd_yad --list --title="$retroverse_ui_title" --text="<b>Store channel</b>" --width=650 --height=300 \
+      --column="ID" --column="Channel" --column="Description" --hide-column=1 --print-column=1 --separator="" \
+      --button="Back:1" --button="Select:0") || return 0
+
+  if [[ -z "$choice" || "$choice" == "$current" ]]; then
+    return 0
+  fi
+
+  if [[ "$choice" == "beta" ]]; then
+    ask_question::retroverse "<b>Switch to the beta channel?</b>\n\nBeta content has not been fully tested and may not work correctly. Items you install or update from it stay installed if you switch back to stable." "Switch to beta" || return 0
+  fi
+
+  if ! set_component_option "retroverse" "channel" "$choice"; then
+    show_message::retroverse error "The store channel could not be changed."
+    return 1
+  fi
+
+  if ! run_with_progress::retroverse "Loading the $choice store..." refresh_store::retroverse "$source_id"; then
+    show_message::retroverse error "The $choice store could not be loaded. The previously loaded store is still shown."
+    return 1
+  fi
+  return 0
+}
+
+main_menu::retroverse() {
+  # USAGE: main_menu::retroverse "$source_id"
+
+  local source_id="$1"
+
+  while true; do
+    local channel updates installed_label text
+    channel=$(get_component_option "retroverse" "channel")
+    updates=$(list_updatable::retroverse "$source_id" | grep -c .)
+
+    installed_label="Everything you have installed from RetroVERSE"
+    if [[ "$updates" -eq 1 ]]; then
+      installed_label="1 update available"
+    elif [[ "$updates" -gt 1 ]]; then
+      installed_label="$updates updates available"
+    fi
+
+    text="<b>Welcome to RetroVERSE</b>"
+    [[ "$channel" == "beta" ]] && text+="\nYou are using the <b>beta</b> channel. Content may not be fully tested."
+
+    local choice
+    choice=$(printf '%s\n' "data" "Content" "Games, artwork and other content" \
+                           "component" "Components" "Additional emulators and tools" \
+                           "installed" "Installed" "$installed_label" \
+                           "settings" "Settings" "Choose between the stable and beta store" \
+      | rd_yad --list --title="$retroverse_ui_title" --text="$text" --width=650 --height=400 \
+        --column="ID" --column="Section" --column="Description" --hide-column=1 --print-column=1 --separator="" \
+        --button="Close:1" --button="Open:0") || return 0
+
+    case "$choice" in
+      data|component|installed)
+        item_list::retroverse "$source_id" "$choice"
+        ;;
+      settings)
+        settings_menu::retroverse "$source_id"
+        ;;
+    esac
+  done
+}
+
+launch_client::retroverse() {
+  # Refresh the store, then show the main menu
+  # If the store cannot be refreshed but a previous copy is cached, that copy is shown with a notice
+  # USAGE: launch_client::retroverse "[$source_id]"
+
+  local source_id="${1:-official}"
+  local refreshed=0
+
+  run_with_progress::retroverse "Checking RetroVERSE for new content..." refresh_store::retroverse "$source_id" || refreshed=1
+
+  if [[ ! -f "$retroverse_data/store/$source_id/retroverse.json" ]]; then
+    show_message::retroverse error "The RetroVERSE store could not be loaded. Check your internet connection and try again."
+    return 1
+  fi
+  if [[ "$refreshed" -ne 0 ]]; then
+    show_message::retroverse info "The RetroVERSE store could not be updated, so the copy loaded last time is shown."
+  fi
+
+  main_menu::retroverse "$source_id"
+}
