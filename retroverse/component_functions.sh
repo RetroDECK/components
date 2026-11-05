@@ -257,6 +257,7 @@ fetch_store::retroverse() {
     return 1
   fi
 
+  prune_screenshot_cache::retroverse "$source_id"
   log i "RetroVERSE store $source_id refreshed to $release_tag"
 }
 
@@ -337,6 +338,88 @@ get_artwork_path::retroverse() {
   local path="$retroverse_data/store/$source_id/artwork/$name"
   [[ -f "$path" ]] || return 1
   printf '%s' "$path"
+}
+
+fetch_screenshots::retroverse() {
+  # Make an item's screenshots available locally and print the directory holding them
+  # Returns 1 if the item has no screenshots or they cannot be fetched
+  # USAGE: fetch_screenshots::retroverse "$source_id" "$item_id"
+
+  local source_id="$1"
+  local item_id="$2"
+  local url sha name
+  IFS=$'\x1f' read -r url sha name < <(get_item_records::retroverse "$source_id" "$item_id" \
+    | jq -r '[.screenshots_url, .screenshots_sha256, (.name | gsub("[\t\n\u001f]"; " "))] | join("\u001f")')
+
+  if [[ -z "$url" || ! "$sha" =~ ^[0-9a-f]{64}$ ]]; then
+    log e "$source_id/$item_id has no screenshots to fetch"
+    return 1
+  fi
+
+  local item_cache="$retroverse_data/screenshots/$source_id/$item_id"
+  local cache_dir="$item_cache/$sha"
+  if [[ -d "$cache_dir" ]]; then
+    printf '%s' "$cache_dir"
+    return 0
+  fi
+
+  local workdir
+  workdir=$(make_workdir::retroverse) || return 1
+
+  local rc=0
+  download_file "$url" "$workdir/screenshots.tar.gz" "$name screenshots"
+  if ! verify_hash::retroverse "$workdir/screenshots.tar.gz" "$sha"; then
+    log e "Checksum verification failed for $url"
+    rc=1
+  elif ! mkdir -p "$workdir/screenshots" || ! tar -xzf "$workdir/screenshots.tar.gz" -C "$workdir/screenshots"; then
+    log e "Could not extract screenshots for $source_id/$item_id"
+    rc=1
+  elif ! mkdir -p "$item_cache" || ! mv -- "$workdir/screenshots" "$cache_dir"; then
+    log e "Could not cache screenshots for $source_id/$item_id"
+    rc=1
+  fi
+  rm -rf -- "$workdir"
+  [[ "$rc" -eq 0 ]] || return 1
+
+  local old
+  for old in "$item_cache"/*/; do
+    old="${old%/}"
+    [[ "$old" == "$cache_dir" ]] || rm -rf -- "$old"
+  done
+
+  log i "Fetched screenshots for $source_id/$item_id"
+  printf '%s' "$cache_dir"
+}
+
+prune_screenshot_cache::retroverse() {
+  # Remove cached screenshot sets the current inventory no longer references
+  # USAGE: prune_screenshot_cache::retroverse "$source_id"
+
+  local source_id="$1"
+  local cache_root="$retroverse_data/screenshots/$source_id"
+  local inventory="$retroverse_data/store/$source_id/retroverse.json"
+  [[ -d "$cache_root" && -f "$inventory" ]] || return 0
+
+  local -A keep=()
+  local key
+  while IFS= read -r key; do
+    keep["$key"]=1
+  done < <(jq -r '.items[] | select((.screenshots_sha256 // "") != "") | "\(.id)/\(.screenshots_sha256)"' "$inventory")
+
+  local set_dir item_dir
+  for set_dir in "$cache_root"/*/*/; do
+    [[ -d "$set_dir" ]] || continue
+    set_dir="${set_dir%/}"
+    key="${set_dir#"$cache_root"/}"
+    if [[ -z "${keep[$key]+x}" ]]; then
+      rm -rf -- "$set_dir"
+      log d "Removed cached screenshots $key"
+    fi
+  done
+  for item_dir in "$cache_root"/*/; do
+    [[ -d "$item_dir" ]] && rmdir -- "$item_dir" 2>/dev/null
+  done
+  return 0
 }
 
 check_external_component_present::retroverse() {
@@ -456,6 +539,11 @@ retroverse_state_program='
           upstream_version: ($entry.upstream_version // ""),
           tags: ($entry.tags // []),
           artwork: ($entry.artwork // ""),
+          artwork_large: ($entry.artwork_large // ""),
+          screenshots: ($entry.screenshots // []),
+          screenshots_url: ($entry.screenshots_url // ""),
+          screenshots_sha256: ($entry.screenshots_sha256 // ""),
+          screenshots_size: ($entry.screenshots_size // null),
           payload_size: ($entry.payload_size // null),
           installed_version: ($installed[$id] // ""),
           state: $state,
@@ -494,7 +582,8 @@ run_state_program::retroverse() {
 
 get_item_records::retroverse() {
   # Print one JSON record per item in a source: every listed item, then installed items no longer listed
-  # Fields: id, class, name, description, version, upstream_version, tags, artwork, payload_size,
+  # Fields: id, class, name, description, version, upstream_version, tags, artwork, artwork_large,
+  #         screenshots[], screenshots_url, screenshots_sha256, screenshots_size, payload_size,
   #         installed_version, state, unmet[] ({requirement, source, name})
   # State is one of:
   #   installed_current        installed, store version matches
