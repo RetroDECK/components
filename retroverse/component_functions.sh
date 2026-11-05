@@ -1514,7 +1514,7 @@ perform_action::retroverse() {
     install)
       if [[ "$class" == "component" ]] && check_component_conflict::retroverse "$item_id" \
          && ! check_external_component_present::retroverse "$item_id"; then
-        ask_question::retroverse "<b>$name</b> is included with RetroDECK.\n\nInstalling it from RetroVERSE replaces the included version with this one. Your current settings for it are kept.\n\nInstall it anyway?" "Install" || return 1
+        question_dialog::retroverse "<b>$name</b> is included with RetroDECK.\n\nInstalling it from RetroVERSE replaces the included version with this one. Your current settings for it are kept.\n\nInstall it anyway?" "Install" || return 1
       fi
       command=(install_item::retroverse "$source_id" "$item_id")
       progress_text="Installing <b>$name</b>..."
@@ -1522,7 +1522,7 @@ perform_action::retroverse() {
       fail_text="<b>$name</b> could not be installed. Nothing was changed."
       ;;
     manage)
-      ask_question::retroverse "<b>$name</b> was installed manually.\n\nRetroVERSE will install its own version over it as an update and look after future updates. Your current settings for it are kept.\n\nContinue?" "Continue" || return 1
+      question_dialog::retroverse "<b>$name</b> was installed manually.\n\nRetroVERSE will install its own version over it as an update and look after future updates. Your current settings for it are kept.\n\nContinue?" "Continue" || return 1
       command=(install_item::retroverse "$source_id" "$item_id")
       progress_text="Installing <b>$name</b>..."
       done_text="<b>$name</b> is now managed by RetroVERSE."
@@ -1536,9 +1536,9 @@ perform_action::retroverse() {
       ;;
     remove)
       if [[ "$class" == "component" ]]; then
-        ask_question::retroverse "Remove <b>$name</b>?\n\nThe component and its settings will be removed." "Remove" || return 1
+        question_dialog::retroverse "Remove <b>$name</b>?\n\nThe component and its settings will be removed." "Remove" || return 1
       else
-        ask_question::retroverse "Remove <b>$name</b>?\n\nEvery file it installed will be deleted, including any you have changed." "Remove" || return 1
+        question_dialog::retroverse "Remove <b>$name</b>?\n\nEvery file it installed will be deleted, including any you have changed." "Remove" || return 1
       fi
       command=(uninstall_item::retroverse "$source_id" "$item_id")
       progress_text="Removing <b>$name</b>..."
@@ -1718,7 +1718,7 @@ update_all::retroverse() {
 
   local list
   list=$(printf '\\n- %s' "${names[@]}")
-  ask_question::retroverse "Update ${#ids[@]} item(s)?\n$list" "Update all" || return 1
+  question_dialog::retroverse "Update ${#ids[@]} item(s)?\n$list" "Update all" || return 1
 
   local -a failed=()
   local i=0
@@ -1840,7 +1840,7 @@ settings_menu::retroverse() {
   fi
 
   if [[ "$choice" == "beta" ]]; then
-    ask_question::retroverse "<b>Switch to the beta channel?</b>\n\nBeta content has not been fully tested and may not work correctly. Items you install or update from it stay installed if you switch back to stable." "Switch to beta" || return 0
+    question_dialog::retroverse "<b>Switch to the beta channel?</b>\n\nBeta content has not been fully tested and may not work correctly. Items you install or update from it stay installed if you switch back to stable." "Switch to beta" || return 0
   fi
 
   if ! set_component_option "retroverse" "channel" "$choice"; then
