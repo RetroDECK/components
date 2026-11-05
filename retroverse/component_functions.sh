@@ -21,9 +21,9 @@ get_supported_store_schema::retroverse() {
   # USAGE: get_supported_store_schema::retroverse
 
   local schema
-  schema=$(jq -r '.[] | .manifest | select(has("retroverse")) | .retroverse.store_schema_version // empty' "$component_manifest_cache_file")
+  schema=$(jq -r '.[] | .manifest | select(has("retroverse")) | .retroverse.retroverse_schema_version // empty' "$component_manifest_cache_file")
   if [[ ! "$schema" =~ ^[0-9]+$ ]]; then
-    log e "RetroVERSE store_schema_version is missing or not an integer in the component manifest"
+    log e "RetroVERSE retroverse_schema_version is missing or not an integer in the component manifest"
     return 1
   fi
   printf '%s' "$schema"
@@ -219,10 +219,10 @@ fetch_store::retroverse() {
   supported_schema=$(get_supported_store_schema::retroverse) || return 1
 
   local store_schema blob_source
-  IFS=$'\x1f' read -r store_schema blob_source < <(jq -r '[(.store_schema_version // "" | tostring), (.source_id // "")] | join("\u001f")' "$staging/retroverse.json")
+  IFS=$'\x1f' read -r store_schema blob_source < <(jq -r '[(.retroverse_schema_version // "" | tostring), (.source_id // "")] | join("\u001f")' "$staging/retroverse.json")
 
   if [[ ! "$store_schema" =~ ^[0-9]+$ ]]; then
-    log e "Inventory for $source_id has no valid store_schema_version"
+    log e "Inventory for $source_id has no valid retroverse_schema_version"
     return 1
   fi
   if [[ "$store_schema" -gt "$supported_schema" ]]; then
