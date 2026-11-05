@@ -1791,7 +1791,7 @@ item_list::retroverse() {
     local rc=0
     selection=$(rd_yad --list --title="$retroverse_ui_title" --text="$text" \
       --width="$retroverse_ui_width" --height="$retroverse_ui_height" \
-      --column=":IMG" --column="Name" --column="Version" --column="Status" --column="ID" \
+      --column=":IMG" --column="Name" --column="RetroVERSE Version" --column="Status" --column="ID" \
       --hide-column=5 --print-column=5 --separator="" "${buttons[@]}" <<< "$rows") || rc=$?
 
     case "$rc" in
