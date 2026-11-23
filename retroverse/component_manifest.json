@@ -20,7 +20,7 @@
         "flag": "--retroverse",
         "description": "Open the RetroVERSE client",
         "handler": "launch_client::retroverse"
-      },
+      }
     ],
     "configurator_menus": {
       "tools": [
