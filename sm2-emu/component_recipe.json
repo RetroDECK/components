@@ -1,20 +1,20 @@
 {
   "sm2-emu": [
     {
-      "source_url": "https://github.com/dmanlfc/sm2-emu/releases/download/{VERSION}/sm2-emu-v*-linux-x86_64.tar.gz",
+      "source_url": "https://github.com/Keisho-Emu/Keisho/releases/download/{VERSION}/keisho-*-linux-x86_64.tar.gz",
       "source_type": "github_release",
       "version": "$SM2_EMU_DESIRED_VERSION",
       "extraction_type": "archive",
       "assets": [
         {
           "type": "dir",
-          "source": "sm2-emu-${SOURCE_VERSION}-linux-x86_64/bin",
+          "source": "keisho-${SOURCE_VERSION}-linux-x86_64/bin",
           "dest": "bin"
         },
         {
           "type": "dir",
-          "source": "sm2-emu-${SOURCE_VERSION}-linux-x86_64/share/sm2-emu",
-          "dest": "share/sm2-emu"
+          "source": "keisho-${SOURCE_VERSION}-linux-x86_64/share/keisho",
+          "dest": "share/keisho"
         },
         {
           "type": "create",
