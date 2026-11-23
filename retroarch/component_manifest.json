@@ -786,6 +786,21 @@
           "theme": "colecovision"
         },
         {
+          "name": "colortvgame",
+          "fullname": "Nintendo Color TV-Game",
+          "path": "%ROMPATH%/colortvgame",
+          "extension": ".7z .ctg .zip",
+          "commands": [
+            {
+              "label": "Color TV-Game Simulator [Default] (Libretro Core)",
+              "command": "%EMULATOR_RETROARCH% -L %CORE_RETROARCH%/colortvgame_libretro.so %ROM%",
+              "priority": 10
+            }
+          ],
+          "platform": "colortvgame",
+          "theme": "colortvgame"
+        },
+        {
           "name": "cps",
           "fullname": "Capcom Play System",
           "path": "%ROMPATH%/cps",
