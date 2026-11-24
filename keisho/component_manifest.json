@@ -1,0 +1,75 @@
+{
+  "keisho": {
+    "name": "Keishō",
+    "core_framework_compatibility": "1",
+    "component_version": "1.0.0",
+    "capabilities": [
+      "reset",
+      "open"
+    ],
+    "url_rdwiki": "https://retrodeck.readthedocs.io/en/latest/wiki_emulator_guides/sm2-emu/sm2-emu-guide/",
+    "url_donation_purchase": "https://github.com/Keisho-Emu/Keisho/blob/main/FUNDING.md",
+    "url_licence": "https://github.com/Keisho-Emu/Keisho/blob/main/LICENSE",
+    "licence_type": "GPL3",
+    "url_source": "https://github.com/dmanlfc/sm2-emu",
+    "description": "SEGA Model 1, 2 and 3 Arcade emulator.",
+    "system_friendly_name": "SEGA Model Arcade",
+    "component_type": "Emulator",
+    "system": [
+      "model1",
+      "model2",
+      "model3"
+    ],
+    "es_de_config": {
+      "es_find_rules": {
+        "emulators": [
+          {
+            "name": "KEISHO",
+            "description": "SEGA Model Arcade Emulator Keishō",
+            "rules": [
+              {
+                "type": "staticpath",
+                "entries": [
+                  "%COMPONENT_PATH%/component_launcher.sh"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "es_systems": [
+        {
+          "name": "model2",
+          "fullname": "Sega Model 2",
+          "path": "%ROMPATH%/model2",
+          "extension": ".7z .zip",
+          "commands": [
+            {
+              "label": "Keishō [Default] (Standalone)",
+              "command": "%EMULATOR_KEISHO% %ROM%",
+              "priority": 10
+            }
+          ],
+          "platform": "arcade",
+          "theme": "model2"
+        },
+        {
+          "name": "model3",
+          "fullname": "Sega Model 3",
+          "path": "%ROMPATH%/model3",
+          "extension": ".7z .zip",
+          "commands": [
+            {
+              "label": "Keishō (Standalone)",
+              "command": "%EMULATOR_KEISHO% %ROM%",
+              "priority": 20
+            }
+          ],
+          "platform": "arcade",
+          "theme": "model3"
+        }
+      ]
+    },
+    "bios": []
+  }
+}
