@@ -288,6 +288,13 @@ export IRONWAIL_VERSION_POLICY="latest"
 export KEGS_VERSION_POLICY="1.38"
 
 # ------------------------------------------------------------------------------
+# Keisho - Sega Model Arcade Emulator
+# Source: Binary
+# Link: https://github.com/Keisho-Emu/Keisho
+# ------------------------------------------------------------------------------
+export KEISHO_VERSION_POLICY="latest"
+
+# ------------------------------------------------------------------------------
 # PortMaster - Multi-System Game Launcher
 # Source: Binary
 # Link: https://github.com/PortsMaster/PortMaster-GUI/releases/
@@ -307,13 +314,6 @@ export QUAKE3E_VERSION_POLICY="latest"
 # Link: https://github.com/simonowen/simcoupe/releases/
 # ------------------------------------------------------------------------------
 export SIMCOUPE_VERSION_POLICY="latest"
-
-# ------------------------------------------------------------------------------
-# sm2-emu - Sega Model 2 Emulator
-# Source: Binary
-# Link: https://github.com/dmanlfc/sm2-emu
-# ------------------------------------------------------------------------------
-export SM2_EMU_VERSION_POLICY="latest"
 
 # ------------------------------------------------------------------------------
 # Tsugaru - FM TOWNS Emulator
