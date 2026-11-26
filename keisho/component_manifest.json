@@ -39,6 +39,21 @@
       },
       "es_systems": [
         {
+          "name": "model1",
+          "fullname": "Sega Model 1",
+          "path": "%ROMPATH%/model1",
+          "extension": ".7z .zip",
+          "commands": [
+            {
+              "label": "Keishō [Default] (Standalone)",
+              "command": "%EMULATOR_KEISHO% %ROM%",
+              "priority": 10
+            }
+          ],
+          "platform": "arcade",
+          "theme": "model1"
+        },
+        {
           "name": "model2",
           "fullname": "Sega Model 2",
           "path": "%ROMPATH%/model2",
